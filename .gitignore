@@ -1,0 +1,40 @@
+
+# Visual Studio and user-specific files
+.vs/
+*.suo
+*.user
+*.userosscache
+*.rsuser
+*.sln.docstates
+*.sln.ide
+*.vspscc
+*.vssscc
+*.scc
+
+# Build output and intermediate files
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.cache
+*.pdb
+*.tmp
+*.temp
+*~
+
+# NuGet restores (keep packages.config tracked)
+packages/
+*.nupkg
+
+# Local environment, credentials, and publish settings
+.env
+.env.*
+!.env.example
+*.publishsettings
+*.pubxml.user
+*.pfx
+*.p12
+*.key
+*.secret
+secrets.json
+Web.*.local.config
