@@ -1,16 +1,10 @@
-﻿// =============================================================================
-//  Manage Companies (Add Company Supervisor)
-//  Owner : Nada
-//  Cards : N03, N04
-// =============================================================================
-using System;
-using System.Collections.Generic;
-using System.Web.UI.WebControls;
-using InternshipManagementSystem.Common;
+﻿using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Services;
-using InternshipManagementSystem.Security;
+using System;
+using System.Collections.Generic;
+using System.Web.UI.WebControls;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
@@ -21,167 +15,126 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (IsPostBack == false)
             {
+                BindExistingCompanies();
                 BindSupervisors();
             }
         }
 
+        private void BindExistingCompanies()
+        {
+            rptExistingCompanies.DataSource = _companyRepo.GetAll();
+            rptExistingCompanies.DataBind();
+        }
+
         private void BindSupervisors()
         {
-            List<Person> people = _userRepo.GetByRole(UserRole.CompanySupervisor);
-            List<CompanySupervisor> supervisors = new List<CompanySupervisor>();
-            foreach (Person p in people)
+            List<CompanySupervisor> supervisorsList = new List<CompanySupervisor>();
+            List<Person> allSupervisors = _userRepo.GetByRole(UserRole.CompanySupervisor);
+
+            foreach (Person person in allSupervisors)
             {
-                if (p is CompanySupervisor cs)
+                CompanySupervisor supervisor = person as CompanySupervisor;
+                if (supervisor != null)
                 {
-                    supervisors.Add(cs);
+                    supervisorsList.Add(supervisor);
                 }
             }
-            gvSupervisors.DataSource = supervisors;
+
+            gvSupervisors.DataSource = supervisorsList;
             gvSupervisors.DataBind();
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
         {
-            string companyName = txtCompanyName.Value.Trim();
-            string industry = txtIndustry.Value.Trim();
-            string city = txtCity.Value.Trim();
-            string website = txtWebsite.Value.Trim();
-            string address = txtAddress.Value.Trim();
-            string companyEmail = txtCompanyEmail.Value.Trim();
-            string companyPhone = txtCompanyPhone.Value.Trim();
+            string supName = txtSupervisorName.Text;
+            string supEmail = txtSupervisorEmail.Text;
+            string tempPass = txtTempPassword.Text;
+            string jobTitle = txtJobTitle.Text;
+            string supPhone = txtSupervisorPhone.Text;
 
-            string supervisorName = txtSupervisorName.Value.Trim();
-            string jobTitle = txtJobTitle.Value.Trim();
-            string supervisorEmail = txtSupervisorEmail.Value.Trim();
-            string supervisorPhone = txtSupervisorPhone.Value.Trim();
-            string tempPassword = txtTempPassword.Value.Trim();
-
-            if (string.IsNullOrEmpty(companyName) || string.IsNullOrEmpty(supervisorEmail) || string.IsNullOrEmpty(tempPassword))
+            if (supName == "" || supEmail == "" || tempPass == "")
             {
-                ShowMessage("Please fill in all required fields (*).", false);
+                ShowMessage("Please fill in all required supervisor fields.", false);
                 return;
             }
 
+            string mode = hfCompanyMode.Value;
+            string finalCompanyId = "";
+            string finalCompanyName = "";
+
             try
             {
-                // 1. حفظ الشركة في Firebase والحصول على معرفها الفريد (Company ID)
-                Company newCompany = new Company
+                if (mode == "Existing")
                 {
-                    Name = companyName,
-                    Industry = industry,
-                    Address = string.IsNullOrEmpty(address) ? city : $"{address}, {city}",
-                    Website = website,
-                    ContactEmail = companyEmail,
-                    ContactPhone = companyPhone,
-                    IsActive = true
-                };
+                    finalCompanyId = hfExistingCompId.Value;
+                    finalCompanyName = hfExistingCompName.Value;
 
-                string companyId = _companyRepo.Insert(newCompany);
-                if (string.IsNullOrEmpty(companyId))
+                    if (finalCompanyId == "")
+                    {
+                        ShowMessage("Please select an existing company.", false);
+                        return;
+                    }
+                }
+                else
                 {
-                    ShowMessage("Failed to create company record in Firebase.", false);
-                    return;
+                    string compName = txtCompanyName.Text;
+                    string compInd = txtIndustry.Text;
+                    string compCity = txtCity.Text;
+
+                    if (compName == "" || compInd == "" || compCity == "")
+                    {
+                        ShowMessage("Please fill in the required company fields.", false);
+                        return;
+                    }
+
+                    Company newCompany = new Company();
+                    newCompany.Name = compName;
+                    newCompany.Industry = compInd;
+                    newCompany.Website = txtWebsite.Text;
+                    newCompany.ContactEmail = txtCompanyEmail.Text;
+                    newCompany.ContactPhone = txtCompanyPhone.Text;
+                    newCompany.IsActive = true;
+
+                    string address = txtAddress.Text;
+                    newCompany.Address = address == "" ? compCity : address + ", " + compCity;
+
+                    finalCompanyId = _companyRepo.Insert(newCompany);
+                    finalCompanyName = newCompany.Name;
                 }
 
-                // 2. إنشاء حساب المصادقة للمشرف باستخدام خدمة أحمد المشتركة (AuthService)[cite: 3, 10]
-                AuthResult authResult = AuthService.CreateAccount(supervisorEmail, tempPassword);
-                if (!authResult.Success)
+                AuthResult authResult = AuthService.CreateAccount(supEmail, tempPass);
+
+                if (authResult.Success == false)
                 {
                     ShowMessage(authResult.ErrorMessage, false);
                     return;
                 }
 
-                // 3. بناء كائن المشرف وربطه بالشركة وحفظه في جدول المستخدمين (Users)[cite: 3, 10]
-                CompanySupervisor supervisor = new CompanySupervisor
-                {
-                    Id = authResult.Uid,
-                    FullName = supervisorName,
-                    Email = supervisorEmail,
-                    PhoneNumber = supervisorPhone,
-                    JobTitle = jobTitle,
-                    CompanyId = companyId,
-                    CompanyName = companyName,
-                    MustChangePassword = true,
-                    IsActive = true
-                };
+                CompanySupervisor supervisor = new CompanySupervisor();
+                supervisor.Id = authResult.Uid;
+                supervisor.FullName = supName;
+                supervisor.Email = supEmail;
+                supervisor.PhoneNumber = supPhone;
+                supervisor.JobTitle = jobTitle;
+                supervisor.CompanyId = finalCompanyId;
+                supervisor.CompanyName = finalCompanyName;
+                supervisor.MustChangePassword = true;
+                supervisor.IsActive = true;
 
                 _userRepo.SavePerson(supervisor);
 
-                ShowMessage("Company and Supervisor account created and saved in Firebase successfully!", true);
+                ShowMessage("Account created successfully! Supervisor is linked to " + finalCompanyName, true);
+
                 ClearForm();
+                BindExistingCompanies();
                 BindSupervisors();
             }
             catch (Exception ex)
             {
-                ShowMessage("An error occurred: " + ex.Message, false);
+                ShowMessage("Error: " + ex.Message, false);
             }
-        }
-
-        // دالة الإضافة السريعة للشركات العشر الخاصة بأحمد
-        protected void SeedAhmadCompanies_Click(object sender, EventArgs e)
-        {
-            var companiesList = new[]
-            {
-                new { Name = "Amazon", Industry = "Cloud & E-Commerce", Domain = "amazon.com", Email = "sup.amazon@gju.edu.jo", Phone = "+96265000001", Job = "Senior Tech Recruiter", SupName = "Ahmad Amazon Supervisor" },
-                new { Name = "Sky Software", Industry = "Hospitality & Enterprise", Domain = "skysoftware.com", Email = "sup.sky@gju.edu.jo", Phone = "+96265000002", Job = "Development Manager", SupName = "Rami Sky Supervisor" },
-                new { Name = "ProgressSoft", Industry = "Financial Solutions", Domain = "progressoft.com", Email = "sup.progress@gju.edu.jo", Phone = "+96265000003", Job = "Engineering Lead", SupName = "Lina Progress Supervisor" },
-                new { Name = "Microsoft", Industry = "Technology", Domain = "microsoft.com", Email = "sup.microsoft@gju.edu.jo", Phone = "+96265000004", Job = "Program Manager", SupName = "Omar Microsoft Supervisor" },
-                new { Name = "SEDCO", Industry = "Queueing Systems", Domain = "sedco-co.com", Email = "sup.sedco@gju.edu.jo", Phone = "+96265000005", Job = "IT Operations Manager", SupName = "Tariq SEDCO Supervisor" },
-                new { Name = "Optimum Partner", Industry = "Consulting", Domain = "optimumpartner.com", Email = "sup.optimum@gju.edu.jo", Phone = "+96265000006", Job = "HR Lead", SupName = "Dana Optimum Supervisor" },
-                new { Name = "Asgatech", Industry = "Software Solutions", Domain = "asgatech.com", Email = "sup.asgatech@gju.edu.jo", Phone = "+96265000007", Job = "Project Manager", SupName = "Sami Asgatech Supervisor" },
-                new { Name = "PWC", Industry = "Auditing & Tax", Domain = "pwc.com", Email = "sup.pwc@gju.edu.jo", Phone = "+96265000008", Job = "Tech Consultant", SupName = "Nour PWC Supervisor" },
-                new { Name = "Optimuze", Industry = "Digital Solutions", Domain = "optimuze.com", Email = "sup.optimuze@gju.edu.jo", Phone = "+96265000009", Job = "Technical Lead", SupName = "Zaid Optimuze Supervisor" },
-                new { Name = "Atypon", Industry = "Publishing Platforms", Domain = "atypon.com", Email = "sup.atypon@gju.edu.jo", Phone = "+96265000010", Job = "Director", SupName = "Yousef Atypon Supervisor" }
-            };
-
-            string defaultTempPassword = "Password123!";
-
-            foreach (var item in companiesList)
-            {
-                try
-                {
-                    Company company = new Company
-                    {
-                        Name = item.Name,
-                        Industry = item.Industry,
-                        Address = "Amman, Jordan",
-                        Website = "https://www." + item.Domain,
-                        ContactEmail = item.Email,
-                        ContactPhone = item.Phone,
-                        IsActive = true
-                    };
-
-                    string companyId = _companyRepo.Insert(company);
-                    if (string.IsNullOrEmpty(companyId)) continue;
-
-                    AuthResult auth = AuthService.CreateAccount(item.Email, defaultTempPassword);
-                    if (!auth.Success || string.IsNullOrEmpty(auth.Uid)) continue;
-
-                    CompanySupervisor supervisor = new CompanySupervisor
-                    {
-                        Id = auth.Uid,
-                        FullName = item.SupName,
-                        Email = item.Email,
-                        PhoneNumber = item.Phone,
-                        JobTitle = item.Job,
-                        CompanyId = companyId,
-                        CompanyName = item.Name,
-                        MustChangePassword = true,
-                        IsActive = true
-                    };
-
-                    _userRepo.SavePerson(supervisor);
-                }
-                catch
-                {
-                    // تجاهل الخطأ في حال تكرار البريد للاستمرار
-                }
-            }
-
-            ShowMessage("All 10 partner companies and supervisors successfully seeded to Firebase!", true);
-            BindSupervisors();
         }
 
         protected void gvSupervisors_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -196,31 +149,24 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     bool newStatus = !person.IsActive;
                     _userRepo.SetActive(supervisorId, newStatus);
                     BindSupervisors();
-                    ShowMessage("Supervisor status updated in Firebase.", true);
+                    ShowMessage("Supervisor status updated successfully.", true);
                 }
             }
         }
 
-        private void ShowMessage(string message, bool success)
+        private void ShowMessage(string msg, bool isSuccess)
         {
-            lblMessage.Text = message;
-            lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
+            lblMessage.Text = msg;
+            lblMessage.CssClass = isSuccess ? "alert alert-success d-block" : "alert alert-danger d-block";
         }
 
         private void ClearForm()
         {
-            txtCompanyName.Value = "";
-            txtIndustry.Value = "";
-            txtCity.Value = "";
-            txtWebsite.Value = "";
-            txtAddress.Value = "";
-            txtCompanyEmail.Value = "";
-            txtCompanyPhone.Value = "";
-            txtSupervisorName.Value = "";
-            txtJobTitle.Value = "";
-            txtSupervisorEmail.Value = "";
-            txtSupervisorPhone.Value = "";
-            txtTempPassword.Value = "";
+            txtCompanyName.Text = ""; txtIndustry.Text = ""; txtCity.Text = "";
+            txtWebsite.Text = ""; txtAddress.Text = ""; txtCompanyEmail.Text = ""; txtCompanyPhone.Text = "";
+            txtSupervisorName.Text = ""; txtJobTitle.Text = ""; txtSupervisorEmail.Text = "";
+            txtSupervisorPhone.Text = ""; txtTempPassword.Text = "";
+            hfExistingCompId.Value = ""; hfExistingCompName.Value = ""; hfCompanyMode.Value = "New";
         }
     }
 }

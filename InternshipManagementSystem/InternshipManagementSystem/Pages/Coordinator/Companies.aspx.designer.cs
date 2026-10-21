@@ -24,13 +24,40 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
-        /// btnSeed control.
+        /// gvSupervisors control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSeed;
+        protected global::System.Web.UI.WebControls.GridView gvSupervisors;
+
+        /// <summary>
+        /// hfCompanyMode control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfCompanyMode;
+
+        /// <summary>
+        /// hfExistingCompId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfExistingCompId;
+
+        /// <summary>
+        /// hfExistingCompName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfExistingCompName;
 
         /// <summary>
         /// txtCompanyName control.
@@ -39,7 +66,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCompanyName;
+        protected global::System.Web.UI.WebControls.TextBox txtCompanyName;
 
         /// <summary>
         /// txtIndustry control.
@@ -48,7 +75,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtIndustry;
+        protected global::System.Web.UI.WebControls.TextBox txtIndustry;
 
         /// <summary>
         /// txtCity control.
@@ -57,7 +84,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCity;
+        protected global::System.Web.UI.WebControls.TextBox txtCity;
 
         /// <summary>
         /// txtWebsite control.
@@ -66,16 +93,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtWebsite;
-
-        /// <summary>
-        /// txtAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtAddress;
+        protected global::System.Web.UI.WebControls.TextBox txtWebsite;
 
         /// <summary>
         /// txtCompanyEmail control.
@@ -84,7 +102,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtCompanyEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtCompanyEmail;
 
         /// <summary>
         /// txtCompanyPhone control.
@@ -93,7 +111,25 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCompanyPhone;
+        protected global::System.Web.UI.WebControls.TextBox txtCompanyPhone;
+
+        /// <summary>
+        /// txtAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtAddress;
+
+        /// <summary>
+        /// rptExistingCompanies control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptExistingCompanies;
 
         /// <summary>
         /// txtSupervisorName control.
@@ -102,7 +138,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtSupervisorName;
+        protected global::System.Web.UI.WebControls.TextBox txtSupervisorName;
 
         /// <summary>
         /// txtJobTitle control.
@@ -111,7 +147,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtJobTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtJobTitle;
 
         /// <summary>
         /// txtSupervisorEmail control.
@@ -120,7 +156,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtSupervisorEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtSupervisorEmail;
 
         /// <summary>
         /// txtSupervisorPhone control.
@@ -129,7 +165,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtSupervisorPhone;
+        protected global::System.Web.UI.WebControls.TextBox txtSupervisorPhone;
 
         /// <summary>
         /// txtTempPassword control.
@@ -138,7 +174,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtTempPassword;
+        protected global::System.Web.UI.WebControls.TextBox txtTempPassword;
 
         /// <summary>
         /// btnSave control.
@@ -148,14 +184,5 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
-
-        /// <summary>
-        /// gvSupervisors control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvSupervisors;
     }
 }

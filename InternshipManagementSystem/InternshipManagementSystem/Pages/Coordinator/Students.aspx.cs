@@ -1,141 +1,302 @@
-﻿// =============================================================================
-//  Manage Students
-//  Owner : Ahmad
-//  Cards : A05, A06
-//
-//  A05: the coordinator creates a student account.
-//    1. AuthService.CreateAccount creates the Firebase Authentication login.
-//    2. The student record is saved at users/{uid} with MustChangePassword = true,
-//       so the student must change the temporary password at first login (A04).
-//  A06 (searchable list with edit) is not built yet.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
 using System;
-using System.Web.UI.WebControls;
+using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
+using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
-    public partial class Students : InternshipManagementSystem.Security.CoordinatorPage
+    public partial class Students : CoordinatorPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-
-            // Fill the major list from the programs in Common/Constants.cs
-            ddlMajor.Items.Add(new ListItem("-- Select major --", ""));
-            foreach (string program in Constants.Programs)
+            if (!IsPostBack)
             {
-                ddlMajor.Items.Add(new ListItem(program, program));
+                ddlMajor.Items.Add(new System.Web.UI.WebControls.ListItem("-- Select major --", ""));
+                foreach (string program in Constants.Programs)
+                    ddlMajor.Items.Add(new System.Web.UI.WebControls.ListItem(program, program));
+                txtUniversity.Text = Constants.UniversityName;
+                txtCollege.Text = Constants.CollegeName;
+                txtRequiredHours.Text = Constants.DefaultRequiredHours.ToString();
+                BindStudents();
             }
-
-            FillDefaults();
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            string fullName = txtFullName.Text.Trim();
-            string studentNumber = txtStudentNumber.Text.Trim();
-            string email = txtEmail.Text.Trim();
-            string phone = txtPhone.Text.Trim();
-            string university = txtUniversity.Text.Trim();
-            string college = txtCollege.Text.Trim();
-            string major = ddlMajor.SelectedValue;
-            string password = txtPassword.Text;
+            string name = InternshipManagementSystem.Common.Validators.Clean(txtFullName.Text);
+            string number = InternshipManagementSystem.Common.Validators.Clean(txtStudentNumber.Text);
+            string email = (txtEmail.Text ?? "").Trim();
+            string university = InternshipManagementSystem.Common.Validators.Clean(txtUniversity.Text);
+            string college = InternshipManagementSystem.Common.Validators.Clean(txtCollege.Text);
+            string major = InternshipManagementSystem.Common.Validators.Clean(ddlMajor.SelectedValue);
             int requiredHours;
 
-            // Check the input on the server
-            if (fullName == "" || studentNumber == "" || university == "" || college == "" || major == "")
+            if (name == null || number == null || university == null || college == null || major == null || string.IsNullOrEmpty(email))
             {
-                ShowMessage("Please fill in all required fields.", false);
+                ShowMessage("Complete all required fields.", false);
                 return;
             }
-
-            if (!Common.Validators.IsEmail(email))
+            if (!InternshipManagementSystem.Common.Validators.IsEmail(email))
             {
-                ShowMessage("Please enter a valid email address.", false);
+                ShowMessage("Enter a valid email address.", false);
                 return;
             }
-
-            if (!int.TryParse(txtRequiredHours.Text.Trim(), out requiredHours) || requiredHours <= 0)
+            string phone = InternshipManagementSystem.Common.Validators.Clean(txtPhone.Text);
+            if (name.Length > 120 || number.Length > 40 || email.Length > 254
+                || university.Length > 120 || college.Length > 120 || major.Length > 120
+                || (phone != null && phone.Length > 40)
+                || Array.IndexOf(Constants.Programs, major) < 0)
             {
-                ShowMessage("Required training hours must be a whole number greater than 0.", false);
+                ShowMessage("Check the length of each field and select a listed major.", false);
                 return;
             }
-
-            if (!Common.Validators.IsStrongEnoughPassword(password))
+            if (!int.TryParse(txtRequiredHours.Text, out requiredHours) || requiredHours <= 0)
+            {
+                ShowMessage("Required training hours must be a positive whole number.", false);
+                return;
+            }
+            if (!InternshipManagementSystem.Common.Validators.IsStrongEnoughPassword(txtPassword.Text))
             {
                 ShowMessage("The temporary password must be at least 6 characters.", false);
                 return;
             }
-
-            // 1. Create the login in Firebase Authentication
-            AuthResult account = AuthService.CreateAccount(email, password);
-            if (!account.Success)
+            if (!FirebaseContext.IsConfigured)
             {
-                ShowMessage(account.ErrorMessage, false);
+                ShowMessage("Firebase is not configured. Ask the project administrator to check the local settings.", false);
                 return;
             }
 
-            // 2. Save the student record at users/{uid}
-            Student student = new Student();
-            student.Id = account.Uid;
-            student.FullName = fullName;
-            student.Email = email;
-            student.PhoneNumber = phone;
-            student.StudentNumber = studentNumber;
-            student.University = university;
-            student.College = college;
-            student.Major = major;
-            student.RequiredHours = requiredHours;
-            student.MustChangePassword = true; // must change the temporary password at first login
+            AuthResult account = AuthService.CreateAccount(email, txtPassword.Text);
+            if (!account.Success || string.IsNullOrEmpty(account.Uid) || string.IsNullOrEmpty(account.IdToken))
+            {
+                ShowMessage(account.ErrorMessage ?? "Could not create the account.", false);
+                return;
+            }
+
+            Student student = new Student
+            {
+                Id = account.Uid,
+                FullName = name,
+                StudentNumber = number,
+                Email = email,
+                PhoneNumber = phone,
+                University = university,
+                College = college,
+                Major = major,
+                RequiredHours = requiredHours,
+                MustChangePassword = true
+            };
 
             try
             {
                 new UserRepository().SavePerson(student);
             }
-            catch (FirebaseException)
+            catch (Exception ex)
             {
-                // Remove the new login again, so the coordinator can simply retry
-                AuthService.DeleteAccount(account.IdToken);
-                ShowMessage("The student could not be saved. Please try again.", false);
+                System.Diagnostics.Trace.TraceError("Student profile save failed for UID {0}: {1}", account.Uid, ex);
+                AuthResult rollback = AuthService.DeleteAccount(account.IdToken);
+                if (!rollback.Success)
+                {
+                    System.Diagnostics.Trace.TraceError("Student Auth rollback failed for UID {0}: {1}", account.Uid, rollback.ErrorCode);
+                    ShowMessage("The account was created but its profile could not be saved. Contact the administrator before retrying.", false);
+                }
+                else
+                {
+                    ShowMessage("The student could not be saved. Please try again.", false);
+                }
                 return;
             }
 
-            ShowMessage("Student account created for " + email + ". Give the student this email and the "
-                + "temporary password. They will be asked to change it at first login.", true);
-            ClearForm();
-        }
-
-        private void FillDefaults()
-        {
-            txtUniversity.Text = Constants.UniversityName;
-            txtCollege.Text = Constants.CollegeName;
-            txtRequiredHours.Text = Constants.DefaultRequiredHours.ToString();
-        }
-
-        private void ClearForm()
-        {
-            txtFullName.Text = "";
-            txtStudentNumber.Text = "";
-            txtEmail.Text = "";
-            txtPhone.Text = "";
-            txtPassword.Text = "";
+            ShowMessage("Student account created. Share the login email and temporary password privately.", true);
+            txtFullName.Text = txtStudentNumber.Text = txtEmail.Text = txtPhone.Text = "";
             ddlMajor.SelectedIndex = 0;
-            FillDefaults();
+            txtPassword.Text = "";
+            BindStudents();
         }
 
-        private void ShowMessage(string message, bool isSuccess)
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
-            lblMessage.Text = Server.HtmlEncode(message);
-            lblMessage.CssClass = isSuccess ? "alert alert-success d-block" : "alert alert-danger d-block";
+            pnlDetails.Visible = false;
+            ViewState["EditingStudentId"] = null;
+            BindStudents();
+        }
+
+        protected void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            pnlDetails.Visible = false;
+            ViewState["EditingStudentId"] = null;
+            BindStudents();
+        }
+
+        protected void btnEdit_Click(object sender, EventArgs e)
+        {
+            var button = sender as System.Web.UI.WebControls.LinkButton;
+            if (button == null) return;
+
+            try
+            {
+                Student student = new UserRepository().GetStudent(button.CommandArgument);
+                if (student == null)
+                {
+                    ShowListMessage("Student record not found.");
+                    return;
+                }
+                ShowDetails(student);
+            }
+            catch (FirebaseException)
+            {
+                ShowListMessage("Could not load this student. Please try again.");
+            }
+        }
+
+        protected void btnSaveDetails_Click(object sender, EventArgs e)
+        {
+            string id = ViewState["EditingStudentId"] as string;
+            pnlDetails.Visible = !string.IsNullOrEmpty(id);
+            if (string.IsNullOrEmpty(id))
+            {
+                ShowListMessage("Select a student before saving changes.");
+                return;
+            }
+
+            string number = InternshipManagementSystem.Common.Validators.Clean(txtEditStudentNumber.Text);
+            string university = InternshipManagementSystem.Common.Validators.Clean(txtEditUniversity.Text);
+            string college = InternshipManagementSystem.Common.Validators.Clean(txtEditCollege.Text);
+            string major = InternshipManagementSystem.Common.Validators.Clean(txtEditMajor.Text);
+            int requiredHours;
+
+            if (number == null || university == null || college == null || major == null)
+            {
+                ShowDetailsMessage("Complete all academic information fields.", false);
+                return;
+            }
+            if (number.Length > 40 || university.Length > 120 || college.Length > 120 || major.Length > 120)
+            {
+                ShowDetailsMessage("One or more academic information fields are too long.", false);
+                return;
+            }
+            if (!int.TryParse(txtEditRequiredHours.Text, out requiredHours) || requiredHours <= 0)
+            {
+                ShowDetailsMessage("Required training hours must be a positive whole number.", false);
+                return;
+            }
+
+            try
+            {
+                UserRepository users = new UserRepository();
+                Student student = users.GetStudent(id);
+                if (student == null)
+                {
+                    pnlDetails.Visible = false;
+                    ViewState["EditingStudentId"] = null;
+                    BindStudents();
+                    ShowListMessage("Student record not found.");
+                    return;
+                }
+
+                // Update only coordinator-owned academic fields. Other profile data
+                // may have changed since the details form was opened.
+                users.Update(id, new Dictionary<string, object>
+                {
+                    { "StudentNumber", number },
+                    { "University", university },
+                    { "College", college },
+                    { "Major", major },
+                    { "RequiredHours", requiredHours }
+                });
+
+                txtEditStudentNumber.Text = number;
+                txtEditUniversity.Text = university;
+                txtEditCollege.Text = college;
+                txtEditMajor.Text = major;
+                txtEditRequiredHours.Text = requiredHours.ToString();
+                ShowDetailsMessage("Student academic information saved.", true);
+                BindStudents();
+            }
+            catch (FirebaseException)
+            {
+                ShowDetailsMessage("Could not save student information. Please try again.", false);
+            }
+        }
+
+        private void BindStudents()
+        {
+            lblListMessage.Visible = false;
+            try
+            {
+                List<Student> students = new List<Student>();
+                string search = (txtSearch.Text ?? "").Trim();
+                foreach (Person person in new UserRepository().GetByRole(UserRole.Student))
+                {
+                    Student student = person as Student;
+                    if (student == null) continue;
+                    if (search.Length == 0 || Matches(student.FullName, search)
+                        || Matches(student.StudentNumber, search) || Matches(student.Email, search)
+                        || Matches(student.University, search) || Matches(student.College, search)
+                        || Matches(student.Major, search))
+                    {
+                        students.Add(student);
+                    }
+                }
+                students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
+                rptStudents.DataSource = students;
+                rptStudents.DataBind();
+                lblNoStudents.Text = search.Length == 0 ? "No students found." : "No students match your search.";
+                lblNoStudents.Visible = students.Count == 0;
+            }
+            catch (FirebaseException)
+            {
+                rptStudents.DataSource = new List<Student>();
+                rptStudents.DataBind();
+                lblNoStudents.Visible = false;
+                ShowListMessage("Could not load student records. Please try again.");
+            }
+        }
+
+        private static bool Matches(string value, string search)
+        {
+            return !string.IsNullOrEmpty(value)
+                && value.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private void ShowDetails(Student student)
+        {
+            ViewState["EditingStudentId"] = student.Id;
+            pnlDetails.Visible = true;
+            lblDetailsMessage.Visible = false;
+            lblStudentName.Text = InternshipManagementSystem.Common.Validators.Safe(student.FullName);
+            lblStudentEmail.Text = InternshipManagementSystem.Common.Validators.Safe(student.Email);
+            lblStudentPhone.Text = InternshipManagementSystem.Common.Validators.Safe(student.PhoneNumber);
+            lblApprovedHours.Text = student.ApprovedHours.ToString();
+            txtEditStudentNumber.Text = student.StudentNumber;
+            txtEditUniversity.Text = student.University;
+            txtEditCollege.Text = student.College;
+            txtEditMajor.Text = student.Major;
+            txtEditRequiredHours.Text = student.RequiredHours.ToString();
+        }
+
+        private void ShowListMessage(string message)
+        {
+            lblListMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            lblListMessage.CssClass = "alert alert-danger d-block";
+            lblListMessage.Visible = true;
+        }
+
+        private void ShowDetailsMessage(string message, bool success)
+        {
+            lblDetailsMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            lblDetailsMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
+            lblDetailsMessage.Visible = true;
+        }
+
+        private void ShowMessage(string message, bool success)
+        {
+            lblMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
             lblMessage.Visible = true;
         }
     }
