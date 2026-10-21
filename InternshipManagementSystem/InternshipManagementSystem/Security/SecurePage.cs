@@ -33,6 +33,11 @@ namespace InternshipManagementSystem.Security
 
         protected override void OnPreInit(EventArgs e)
         {
+            // Do not let the browser cache protected pages, so the Back button
+            // cannot show them again after logout.
+            Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
+
             Person user = CurrentUser;
 
             // 1. anonymous
