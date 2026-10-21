@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Web.UI;
 using InternshipManagementSystem.Common;
+using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Security
@@ -20,7 +21,7 @@ namespace InternshipManagementSystem.Security
     /// for every page at once, instead of 40 hand-written checks of which a
     /// few would certainly be forgotten.
     ///
-    /// Three gates run before the page's own Page_Load:
+    /// Three gates run before the page's own PreInit, Init or Page_Load:
     ///   1. not signed in            -> Login
     ///   2. temporary password       -> Change Password   (card A04)
     ///   3. wrong role, or account deactivated -> Access Denied
@@ -47,10 +48,8 @@ namespace InternshipManagementSystem.Security
             get { return SessionHelper.Current; }
         }
 
-        protected override void OnInit(EventArgs e)
+        protected override void OnPreInit(EventArgs e)
         {
-            base.OnInit(e);
-
             Person user = CurrentUser;
 
             // 1. anonymous
@@ -61,15 +60,17 @@ namespace InternshipManagementSystem.Security
                 return;
             }
 
-            // 2. deactivated mid-session (card N04) - re-read nothing, the flag
-            //    on the cached account is refreshed on the next sign-in, so the
-            //    cheap check here is CanLogin()
-            if (!user.CanLogin())
+            // 2. Re-read on every protected request, including postbacks, so
+            //    deactivation, deletion and permission changes take effect on
+            //    the next request. A failed lookup must not use stale access.
+            user = new UserRepository().GetPerson(user.Id);
+            if (user == null || !user.CanLogin())
             {
                 SessionHelper.SignOut();
                 RedirectTo(Constants.Routes.Login, "error=deactivated");
                 return;
             }
+            SessionHelper.Refresh(user);
 
             // 3. temporary password still in place (card A04)
             if (user.MustChangePassword && !AllowWhilePasswordChangePending)
@@ -82,15 +83,19 @@ namespace InternshipManagementSystem.Security
             if (AllowedRoles != null && !AllowedRoles.Contains(user.Role))
             {
                 RedirectTo(Constants.Routes.AccessDenied, null);
+                return;
             }
+
+            base.OnPreInit(e);
         }
 
         private void RedirectTo(string virtualPath, string query)
         {
             string url = ResolveUrl(virtualPath);
             if (!string.IsNullOrEmpty(query)) url += "?" + query;
-            Response.Redirect(url, false);
-            Context.ApplicationInstance.CompleteRequest();
+            // End the response as well as redirecting. CompleteRequest alone
+            // does not stop the Web Forms lifecycle or postback handlers.
+            Response.Redirect(url, true);
         }
     }
 

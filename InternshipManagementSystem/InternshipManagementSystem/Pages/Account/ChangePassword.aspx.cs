@@ -18,7 +18,7 @@ using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.AccountArea
 {
-    public partial class ChangePassword : InternshipManagementSystem.Security.SecurePage
+    public partial class ChangePassword : InternshipManagementSystem.Security.AuthenticatedPage
     {
         /// <summary>This page must stay reachable while the user still has a
         /// temporary password - it is the page that clears the flag.</summary>
