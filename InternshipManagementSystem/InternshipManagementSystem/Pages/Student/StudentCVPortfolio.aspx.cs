@@ -1,5 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
+using System;
+using System.IO;
+using System.Linq;
+using System.Web;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Security;
 
@@ -7,73 +11,418 @@ namespace InternshipManagementSystem.Pages.StudentArea
 {
     public partial class StudentCVPortfolio : StudentPage
     {
+        protected CvPortfolioData Saved =
+            new CvPortfolioData();
+
+        protected string Notice = "";
+        protected bool NoticeIsError = false;
+
+        private const int MaxFileBytes = 5 * 1024 * 1024;
+
+        public class CvPortfolioData
+        {
+            public string CvUrl { get; set; }
+            public string PortfolioUrl { get; set; }
+            public string CvFileName { get; set; }
+            public string CvStorageName { get; set; }
+            public string PortfolioFileName { get; set; }
+            public string PortfolioStorageName { get; set; }
+            public long UpdatedAt { get; set; }
+        }
+
+        private string StudentId
+        {
+            get
+            {
+                return CurrentStudent == null
+                    ? ""
+                    : CurrentStudent.Id;
+            }
+        }
+
+        private string DataPath
+        {
+            get
+            {
+                return "studentCvPortfolios/" + StudentId;
+            }
+        }
+
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            if (Session != null)
+                ViewStateUserKey = Session.SessionID;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) LoadLinks();
-        }
-
-        private void LoadLinks()
-        {
-            try
+            if (CurrentStudent == null ||
+                !ValidFirebaseKey(StudentId))
             {
-                var student = new UserRepository().GetStudent(CurrentStudent.Id);
-                if (student == null) { ShowMessage("Student account not found.", false); btnSave.Enabled = false; return; }
-                txtCvUrl.Text = student.CvUrl ?? "";
-                txtPortfolioUrl.Text = student.PortfolioUrl ?? "";
-                RenderLinks(student.CvUrl, student.PortfolioUrl);
-            }
-            catch (Exception) { ShowMessage("Unable to load your links. Please try again.", false); btnSave.Enabled = false; }
-        }
-
-        protected void btnSave_Click(object sender, EventArgs e)
-        {
-            string cv = txtCvUrl.Text.Trim();
-            string portfolio = txtPortfolioUrl.Text.Trim();
-            if (!IsSafeLink(cv) || !IsSafeLink(portfolio))
-            {
-                ShowMessage("Please enter valid HTTPS links (up to 2000 characters), or leave a field empty.", false);
+                ShowError("Student account is unavailable.");
                 return;
             }
+
             try
             {
-                string uid = CurrentStudent.Id;
-                if (new UserRepository().GetStudent(uid) == null) { ShowMessage("Student account not found.", false); return; }
-                // PATCH only student-owned fields; academic data is untouched.
-                FirebaseContext.Patch("users/" + uid, new Dictionary<string, object>
+                LoadSaved();
+
+                if (Request.QueryString["download"] != null)
                 {
-                    { "CvUrl", cv }, { "PortfolioUrl", portfolio }
-                });
-                RenderLinks(cv, portfolio);
-                ShowMessage("Your links were saved successfully.", true);
+                    DownloadFile(Request.QueryString["download"]);
+                    return;
+                }
+
+                if (!IsPostBack)
+                    return;
+
+                string action = Request.Form["cvAction"];
+
+                if (action == "save")
+                    SaveChanges();
+                else if (action == "removeCv")
+                    RemoveFile(true);
+                else if (action == "removePortfolio")
+                    RemoveFile(false);
+
+                LoadSaved();
             }
-            catch (Exception) { ShowMessage("Unable to save links. Please try again.", false); }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError(
+                    "Student CV Portfolio: " + ex);
+
+                ShowError(
+                    "Unable to load or save your CV and portfolio.");
+            }
         }
 
-        private static bool IsSafeLink(string value)
+        private static bool ValidFirebaseKey(string value)
         {
-            if (string.IsNullOrEmpty(value)) return true;
-            if (value.Length > 2000) return false;
+            return !string.IsNullOrWhiteSpace(value) &&
+                value.IndexOfAny(
+                    new char[] { '.', '#', '$', '[', ']', '/' }
+                ) < 0;
+        }
+
+        private void LoadSaved()
+        {
+            string etag;
+
+            string json = FirebaseContext.GetWithEtag(
+                DataPath, out etag);
+
+            Saved = string.IsNullOrWhiteSpace(json) ||
+                    json.Trim() == "null"
+                ? new CvPortfolioData()
+                : Json.Deserialize<CvPortfolioData>(json);
+
+            if (Saved == null)
+                Saved = new CvPortfolioData();
+        }
+
+        private bool UpdateData(Action<CvPortfolioData> change)
+        {
+            string etag;
+
+            string json = FirebaseContext.GetWithEtag(
+                DataPath, out etag);
+
+            CvPortfolioData current =
+                string.IsNullOrWhiteSpace(json) ||
+                json.Trim() == "null"
+                    ? new CvPortfolioData()
+                    : Json.Deserialize<CvPortfolioData>(json);
+
+            if (current == null)
+                current = new CvPortfolioData();
+
+            change(current);
+
+            current.UpdatedAt =
+                DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+            bool updated = FirebaseContext.PutIfUnchanged(
+                DataPath, current, etag);
+
+            if (!updated)
+            {
+                ShowError(
+                    "Your information changed. Refresh and try again.");
+            }
+
+            return updated;
+        }
+
+        private static bool ValidUrl(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return true;
+
             Uri uri;
-            return Uri.TryCreate(value, UriKind.Absolute, out uri)
-                && uri.Scheme == Uri.UriSchemeHttps
-                && !string.IsNullOrWhiteSpace(uri.Host)
-                && uri.UserInfo.Length == 0;
+
+            return value.Length <= 500 &&
+                Uri.TryCreate(
+                    value, UriKind.Absolute, out uri) &&
+                (uri.Scheme == Uri.UriSchemeHttps ||
+                 uri.Scheme == Uri.UriSchemeHttp) &&
+                !string.IsNullOrWhiteSpace(uri.Host);
         }
 
-        private void RenderLinks(string cv, string portfolio)
+        private string StorageFolder
         {
-            lnkCv.Visible = IsSafeLink(cv) && !string.IsNullOrEmpty(cv);
-            lnkPortfolio.Visible = IsSafeLink(portfolio) && !string.IsNullOrEmpty(portfolio);
-            lblNoCv.Visible = !lnkCv.Visible;
-            lblNoPortfolio.Visible = !lnkPortfolio.Visible;
-            if (lnkCv.Visible) lnkCv.NavigateUrl = cv;
-            if (lnkPortfolio.Visible) lnkPortfolio.NavigateUrl = portfolio;
+            get
+            {
+                return Server.MapPath(
+                    "~/App_Data/StudentDocuments/" + StudentId);
+            }
         }
 
-        private void ShowMessage(string message, bool success)
+        private bool TrySavePdf(
+            HttpPostedFile file,
+            out string originalName,
+            out string storageName)
         {
-            lblMessage.Text = Server.HtmlEncode(message);
-            lblMessage.CssClass = "r07-message alert " + (success ? "alert-success" : "alert-danger");
+            originalName = "";
+            storageName = "";
+
+            if (file == null || file.ContentLength <= 0)
+                return true;
+
+            if (file.ContentLength > MaxFileBytes)
+            {
+                ShowError("PDF files must be 5 MB or smaller.");
+                return false;
+            }
+
+            originalName = Path.GetFileName(file.FileName);
+
+            if (!string.Equals(
+                Path.GetExtension(originalName),
+                ".pdf",
+                StringComparison.OrdinalIgnoreCase))
+            {
+                ShowError("Only PDF files are supported.");
+                return false;
+            }
+
+            // Check the PDF file signature.
+            byte[] header = new byte[5];
+            int count = file.InputStream.Read(
+                header, 0, header.Length);
+
+            file.InputStream.Position = 0;
+
+            if (count != 5 ||
+                System.Text.Encoding.ASCII.GetString(header)
+                    != "%PDF-")
+            {
+                ShowError("The selected file is not a valid PDF.");
+                return false;
+            }
+
+            Directory.CreateDirectory(StorageFolder);
+
+            storageName = Guid.NewGuid().ToString("N") + ".pdf";
+
+            string fullPath = Path.Combine(
+                StorageFolder, storageName);
+
+            file.SaveAs(fullPath);
+
+            return true;
+        }
+
+        private void SaveChanges()
+        {
+            string cvUrl =
+                (Request.Form["cvUrl"] ?? "").Trim();
+
+            string portfolioUrl =
+                (Request.Form["portfolioUrl"] ?? "").Trim();
+
+            if (!ValidUrl(cvUrl) ||
+                !ValidUrl(portfolioUrl))
+            {
+                ShowError(
+                    "Enter valid HTTP or HTTPS links.");
+                return;
+            }
+
+            HttpPostedFile cvFile =
+                Request.Files["cvFile"];
+
+            HttpPostedFile portfolioFile =
+                Request.Files["portfolioFile"];
+
+            string cvName;
+            string cvStorage;
+            string portfolioName;
+            string portfolioStorage;
+
+            if (!TrySavePdf(
+                cvFile, out cvName, out cvStorage))
+                return;
+
+            if (!TrySavePdf(
+                portfolioFile,
+                out portfolioName,
+                out portfolioStorage))
+            {
+                DeletePhysicalFile(cvStorage);
+                return;
+            }
+
+            bool saved = UpdateData(data =>
+            {
+                data.CvUrl = cvUrl;
+                data.PortfolioUrl = portfolioUrl;
+
+                if (!string.IsNullOrEmpty(cvStorage))
+                {
+                    data.CvFileName = cvName;
+                    data.CvStorageName = cvStorage;
+                }
+
+                if (!string.IsNullOrEmpty(portfolioStorage))
+                {
+                    data.PortfolioFileName = portfolioName;
+                    data.PortfolioStorageName =
+                        portfolioStorage;
+                }
+            });
+
+            if (!saved)
+            {
+                DeletePhysicalFile(cvStorage);
+                DeletePhysicalFile(portfolioStorage);
+                return;
+            }
+
+            Notice = "CV and portfolio saved successfully.";
+            NoticeIsError = false;
+        }
+
+        private void RemoveFile(bool isCv)
+        {
+            string oldStorage = isCv
+                ? Saved.CvStorageName
+                : Saved.PortfolioStorageName;
+
+            bool updated = UpdateData(data =>
+            {
+                if (isCv)
+                {
+                    data.CvFileName = null;
+                    data.CvStorageName = null;
+                }
+                else
+                {
+                    data.PortfolioFileName = null;
+                    data.PortfolioStorageName = null;
+                }
+            });
+
+            if (updated)
+            {
+                // Only remove the physical file after
+                // Firebase confirms the update.
+                DeletePhysicalFile(oldStorage);
+
+                Notice = "File removed successfully.";
+                NoticeIsError = false;
+            }
+        }
+
+        private void DeletePhysicalFile(string storageName)
+        {
+            if (string.IsNullOrWhiteSpace(storageName))
+                return;
+
+            if (!IsSafeStorageName(storageName))
+                return;
+
+            string path = Path.Combine(
+                StorageFolder, storageName);
+
+            if (File.Exists(path))
+                File.Delete(path);
+        }
+
+        private static bool IsSafeStorageName(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return false;
+
+            if (!value.EndsWith(
+                ".pdf", StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            string name = Path.GetFileNameWithoutExtension(value);
+            Guid id;
+
+            return Guid.TryParseExact(name, "N", out id);
+        }
+
+        private void DownloadFile(string type)
+        {
+            string storageName;
+            string displayName;
+
+            if (type == "cv")
+            {
+                storageName = Saved.CvStorageName;
+                displayName = Saved.CvFileName;
+            }
+            else if (type == "portfolio")
+            {
+                storageName = Saved.PortfolioStorageName;
+                displayName = Saved.PortfolioFileName;
+            }
+            else
+            {
+                Response.StatusCode = 400;
+                return;
+            }
+
+            if (!IsSafeStorageName(storageName))
+            {
+                Response.StatusCode = 404;
+                return;
+            }
+
+            string path = Path.Combine(
+                StorageFolder, storageName);
+
+            if (!File.Exists(path))
+            {
+                Response.StatusCode = 404;
+                return;
+            }
+
+            Response.Clear();
+            Response.ContentType = "application/pdf";
+
+            string safeName =
+                type == "cv" ? "Student-CV.pdf" :
+                "Student-Portfolio.pdf";
+
+            Response.AddHeader(
+                "Content-Disposition",
+                "attachment; filename=\"" + safeName + "\"");
+
+            Response.TransmitFile(path);
+            Response.Flush();
+
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        private void ShowError(string message)
+        {
+            Notice = message;
+            NoticeIsError = true;
         }
     }
 }
