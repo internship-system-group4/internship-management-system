@@ -9,5 +9,6 @@ namespace InternshipManagementSystem.Pages.PublicArea
 {
     public partial class AccessDenied
     {
+        protected global::System.Web.UI.WebControls.HyperLink lnkBack;
     }
 }

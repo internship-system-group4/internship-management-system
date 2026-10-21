@@ -476,6 +476,13 @@
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
+    <Content Include="Assets\css\applications.css" />
+    <Content Include="Assets\css\apply-theme.css" />
+    <Content Include="Assets\css\portal-layout.css" />
+    <Content Include="Assets\css\public-layout.css" />
+    <Content Include="Assets\js\public-layout.js" />
+    <Content Include="Assets\js\portal-layout.js" />
+    <Content Include="Assets\images\gju-logo.png" />
     <Content Include="Assets\images\README.txt" />
     <Content Include="Assets\js\site.js" />
     <Content Include="Layout\Academic.master" />

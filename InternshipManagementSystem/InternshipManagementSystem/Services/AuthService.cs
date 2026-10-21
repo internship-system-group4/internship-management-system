@@ -66,12 +66,18 @@ namespace InternshipManagementSystem.Services
                 { "requestType", "PASSWORD_RESET" },
                 { "email", email }
             };
-            AuthResult result = Call("sendOobCode", body, "Could not send the reset email.");
+            AuthResult result = Call("sendOobCode", body, "Could not send the reset email. Please try again later.");
 
-            // Deliberately report success either way: telling the visitor that
-            // an address is unknown hands an attacker a list of real accounts.
-            result.Success = true;
-            result.ErrorMessage = null;
+            // Report success for unknown or disabled accounts too: telling the
+            // visitor that an address is unknown hands an attacker a list of
+            // real accounts. Other errors (no internet, too many requests,
+            // Firebase not configured) are still shown.
+            if (result.ErrorCode != null
+                && (result.ErrorCode.StartsWith("EMAIL_NOT_FOUND") || result.ErrorCode.StartsWith("USER_DISABLED")))
+            {
+                result.Success = true;
+                result.ErrorMessage = null;
+            }
             return result;
         }
 
@@ -216,7 +222,8 @@ namespace InternshipManagementSystem.Services
                 || code.StartsWith("INVALID_PASSWORD")
                 || code.StartsWith("INVALID_LOGIN_CREDENTIALS")) return "Incorrect email or password.";
             if (code.StartsWith("USER_DISABLED")) return "This account has been deactivated.";
-            if (code.StartsWith("TOO_MANY_ATTEMPTS")) return "Too many attempts. Please try again later.";
+            if (code.StartsWith("TOO_MANY_ATTEMPTS")
+                || code.StartsWith("RESET_PASSWORD_EXCEED_LIMIT")) return "Too many attempts. Please try again later.";
             if (code.StartsWith("CREDENTIAL_TOO_OLD")) return "Please sign in again before changing your password.";
             return fallback;
         }
