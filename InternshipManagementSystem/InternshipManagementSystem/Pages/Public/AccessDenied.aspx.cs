@@ -3,7 +3,8 @@
 //  Owner : Ahmad
 //  Cards : A02
 //
-//  Shown when a signed-in user opens a page their role may not see. Already wired up by Security/SecurePage.cs - this page only needs a message and a link back to the user's own dashboard.
+//  Security/SecurePage.cs sends a signed-in user here when their role may not
+//  open a page. The button takes them back to their own dashboard.
 //
 //  Namespace note: these page namespaces end in "Area" on purpose. A namespace
 //  called ...Pages.Student would hide the Student model class and every file in
@@ -12,7 +13,6 @@
 // =============================================================================
 using System;
 using InternshipManagementSystem.Common;
-using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 
@@ -22,9 +22,18 @@ namespace InternshipManagementSystem.Pages.PublicArea
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
+            Person user = SessionHelper.Current;
 
-            // TODO(Ahmad, A02): build this page.
+            if (user != null)
+            {
+                lnkBack.Text = "Go to my dashboard";
+                lnkBack.NavigateUrl = user.DashboardUrl;
+            }
+            else
+            {
+                lnkBack.Text = "Go to login";
+                lnkBack.NavigateUrl = Constants.Routes.Login;
+            }
         }
     }
 }
