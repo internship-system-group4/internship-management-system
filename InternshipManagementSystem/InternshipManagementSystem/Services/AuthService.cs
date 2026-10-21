@@ -58,6 +58,18 @@ namespace InternshipManagementSystem.Services
             return Call("signUp", body, "Could not create the account.");
         }
 
+        /// <summary>Card A05: deletes an account that was just created, using
+        /// the IdToken returned by CreateAccount. Used when the database record
+        /// could not be saved, so the email can be used again.</summary>
+        public static AuthResult DeleteAccount(string idToken)
+        {
+            Dictionary<string, object> body = new Dictionary<string, object>
+            {
+                { "idToken", idToken }
+            };
+            return Call("delete", body, "Could not delete the account.");
+        }
+
         /// <summary>Card A03: send the password-reset email.</summary>
         public static AuthResult SendPasswordResetEmail(string email)
         {
