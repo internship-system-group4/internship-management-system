@@ -74,10 +74,20 @@ namespace InternshipManagementSystem.Pages.AccountArea
             {
                 user = new UserRepository().GetPerson(result.Uid);
             }
-            catch (FirebaseException)
+            catch (FirebaseException ex)
             {
                 SessionHelper.SignOut();
-                ShowError("We could not load your account. Please try again later.");
+
+                // On the developer's own computer, also show the technical reason
+                // (for example a wrong Firebase.DatabaseUrl in Web.config).
+                if (Request.IsLocal)
+                {
+                    ShowError("We could not load your account. Details: " + ex.Message);
+                }
+                else
+                {
+                    ShowError("We could not load your account. Please try again later.");
+                }
                 return;
             }
             catch (InvalidOperationException)

@@ -44,7 +44,7 @@ namespace InternshipManagementSystem.Data
             {
                 throw new InvalidOperationException(
                     "Firebase is not configured. Set Firebase.DatabaseUrl and Firebase.ApiKey " +
-                    "in App_Secrets.config. See docs/05-firebase-setup.md.");
+                    "in Web.config. See docs/05-firebase-setup.md.");
             }
 
             StringBuilder url = new StringBuilder();
