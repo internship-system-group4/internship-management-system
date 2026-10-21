@@ -134,7 +134,8 @@ namespace InternshipManagementSystem.Services
             if (string.IsNullOrEmpty(apiKey))
             {
                 result.ErrorCode = "NOT_CONFIGURED";
-                result.ErrorMessage = "Firebase is not configured yet. See docs/05-firebase-setup.md.";
+                result.ErrorMessage = "Firebase is not configured. Get the latest Web.config from main "
+                    + "(git merge origin/main), then stop and restart the project.";
                 return result;
             }
 

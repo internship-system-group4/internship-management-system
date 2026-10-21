@@ -79,7 +79,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 SessionHelper.SignOut();
 
                 // On the developer's own computer, also show the technical reason
-                // (for example a wrong Firebase.DatabaseUrl in App_Secrets.config).
+                // (for example a wrong Firebase.DatabaseUrl in Web.config).
                 if (Request.IsLocal)
                 {
                     ShowError("We could not load your account. Details: " + ex.Message);
