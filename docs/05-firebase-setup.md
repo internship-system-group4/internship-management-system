@@ -16,6 +16,11 @@ Firebase Storage requires the Blaze plan.
 
 ## One-time development import
 
+> **ALREADY DONE - DO NOT IMPORT ANYTHING.** The team's database and test accounts
+> are set up (Ahmad, 21 Oct 2026). Importing a JSON file replaces existing data and
+> breaks login for everyone. Ask Ahmad if an account is missing. The steps below are
+> kept only as a record.
+
 1. The coordinator already exists in Authentication:
    `coordinator@gju.edu.jo`, UID `YIswkxh3bBQqucIRH1gPRYWkmO33`. Keep this record.
 2. Create four Email/Password accounts using the emails in `dev-users.json`:
