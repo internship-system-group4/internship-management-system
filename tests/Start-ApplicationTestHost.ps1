@@ -25,6 +25,8 @@ protected void Page_Load(object sender, EventArgs e) {
         ? "~/Pages/Student/Apply.aspx?opportunityId=internship-one"
         : user.Role == InternshipManagementSystem.Common.UserRole.CompanySupervisor
             ? "~/Pages/Company/Applications.aspx" : user.DashboardUrl;
+    if (user.Role == InternshipManagementSystem.Common.UserRole.Student && Request.QueryString["page"] == "applications")
+        destination = "~/Pages/Student/MyApplications.aspx";
     Response.Redirect(ResolveUrl(destination));
 }
 </script>

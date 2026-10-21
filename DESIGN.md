@@ -38,3 +38,20 @@ Student navigation collapses into a hamburger at 900px and below. The shared
 portal-layout.js controls the drawer, focus trap, Escape/backdrop close, and
 resize reset. The desktop sidebar stays visible. Without JavaScript, the
 expanded responsive navigation remains available as a fallback.
+
+Public.master provides a shared GJU Navbar and Footer in the same palette.
+The Navbar is white with a logo/product lockup, quiet text links and one blue
+Log in/My dashboard action. The footer uses three flat columns with product
+context, navigation and support, collapsing to one column on phones. Public
+navigation has its own lightweight mobile dropdown and no-JavaScript fallback.
+
+O03 shows a white, green-outlined confirmed-placement summary above the student's
+application list. Accepted offers offer an explicit one-internship acknowledgement
+and Confirm offer action until a placement exists. Other offers then lose their
+confirmation actions while their application statuses remain visible.
+
+O06–O08 reuse Coordinator.master. The dashboard uses six flat metrics and a recent
+placements table; monitoring uses labeled search/status controls and ten rows per
+page. Detail panels keep task attempts, grading, hours and completion visibly
+separate. Narrow screens stack panels and keep wide tables in their own horizontal
+scroll areas. Page-specific styling lives in coordinator-monitoring.css.

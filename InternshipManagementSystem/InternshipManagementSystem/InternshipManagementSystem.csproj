@@ -103,6 +103,7 @@
     <Compile Include="Data\AcademicCommentRepository.cs" />
     <Compile Include="Data\ApplicationRepository.cs" />
     <Compile Include="Data\CompanyRepository.cs" />
+    <Compile Include="Data\CoordinatorMonitoringRepository.cs" />
     <Compile Include="Data\CompletionRepository.cs" />
     <Compile Include="Data\ContactRepository.cs" />
     <Compile Include="Data\EvaluationRepository.cs" />
@@ -479,6 +480,9 @@
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
+    <Content Include="Assets\css\public-layout.css" />
+    <Content Include="Assets\css\coordinator-monitoring.css" />
+    <Content Include="Assets\js\public-layout.js" />
     <Content Include="Assets\js\portal-layout.js" />
     <Content Include="Assets\images\gju-logo.png" />
     <Content Include="Assets\images\README.txt" />
