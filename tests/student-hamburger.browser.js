@@ -1,0 +1,53 @@
+async page => {
+ const base='http://localhost:57982'; let checks=0;
+ const check=(ok,message)=>{if(!ok)throw Error(message);checks++;};
+ await page.goto(base+'/__fixture.aspx');
+ await page.setViewportSize({width:1440,height:1000});
+ const sidebar=page.locator('#studentSidebar');
+ const toggle=page.getByRole('button',{name:'Open navigation',exact:true});
+ check(!await toggle.isVisible(),'Desktop hamburger hidden');
+ check(await sidebar.isVisible(),'Desktop sidebar visible');
+ for(const width of [768,390]) {
+  await page.setViewportSize({width,height:900});
+  check(await toggle.isVisible(),'Hamburger visible at '+width);
+  await sidebar.waitFor({state:'hidden'});
+  check(!await sidebar.isVisible(),'Sidebar initially closed');
+  check(await sidebar.evaluate(el=>el.inert),'Closed sidebar removed from keyboard navigation');
+  await page.screenshot({path:'tests/artifacts/hamburger-closed-'+width+'.png',fullPage:true});
+  await toggle.click();
+  await page.locator('.student-nav-close').waitFor();
+  check(await sidebar.isVisible(),'Sidebar opens');
+  check(await page.locator('.uims-content').evaluate(el=>el.inert),'Background inert while open');
+  check(await sidebar.getAttribute('aria-modal')==='true','Modal announced');
+  const close=page.locator('.student-nav-close');
+  check(await close.evaluate(el=>el===document.activeElement),'Focus enters drawer');
+  await page.keyboard.press('Shift+Tab');
+  check(await page.getByRole('link',{name:'Log out',exact:true}).evaluate(el=>el===document.activeElement),'Reverse focus trapped');
+  await page.keyboard.press('Tab');
+  check(await close.evaluate(el=>el===document.activeElement),'Forward focus trapped');
+  await sidebar.evaluate(el=>Promise.all(el.getAnimations().map(animation=>animation.finished)));
+  await page.screenshot({path:'tests/artifacts/hamburger-open-'+width+'.png',fullPage:true});
+  await page.keyboard.press('Escape');
+  check(await toggle.getAttribute('aria-expanded')==='false','Escape closes');
+  check(await toggle.evaluate(el=>el===document.activeElement),'Focus returns to trigger');
+  await toggle.click();
+  await page.locator('.student-nav-backdrop').click({position:{x:width-10,y:400}});
+  check(await toggle.getAttribute('aria-expanded')==='false','Backdrop closes');
+  await toggle.click(); await page.locator('.student-nav-close').click();
+  check(await toggle.getAttribute('aria-expanded')==='false','Close button works');
+  check(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No horizontal overflow');
+ }
+ await toggle.click();
+ await page.getByRole('link',{name:'My Profile',exact:true}).click();
+ await page.waitForURL('**/Profile.aspx');
+ check(await toggle.getAttribute('aria-expanded')==='false','Link navigation closes drawer');
+ await toggle.click(); await page.setViewportSize({width:1440,height:1000});
+ check(!await page.locator('.uims-content').evaluate(el=>el.inert),'Resize restores background');
+ check(!await sidebar.evaluate(el=>el.inert),'Desktop sidebar interactive');
+ await page.setViewportSize({width:390,height:900});
+ check(await toggle.getAttribute('aria-expanded')==='false','Returning to mobile resets drawer');
+ await toggle.click(); await page.getByRole('link',{name:'Log out',exact:true}).click();
+ await page.waitForURL('**/Account/Login.aspx'); checks++;
+ await page.goto(base+'/__fixture.aspx');
+ return {passed:checks,system:'Shared student hamburger'};
+}
