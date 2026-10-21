@@ -49,3 +49,9 @@ O03 shows a white, green-outlined confirmed-placement summary above the student'
 application list. Accepted offers offer an explicit one-internship acknowledgement
 and Confirm offer action until a placement exists. Other offers then lose their
 confirmation actions while their application statuses remain visible.
+
+O06–O08 reuse Coordinator.master. The dashboard uses six flat metrics and a recent
+placements table; monitoring uses labeled search/status controls and ten rows per
+page. Detail panels keep task attempts, grading, hours and completion visibly
+separate. Narrow screens stack panels and keep wide tables in their own horizontal
+scroll areas. Page-specific styling lives in coordinator-monitoring.css.
