@@ -1,0 +1,5 @@
+simulation: internship-application
+routing: path
+mocks:
+  - routeKey: firebase
+    path: ../mocks/firebase/config.yaml

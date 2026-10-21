@@ -5,18 +5,13 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 
-    <%-- ===================================================================
-         Access Denied
-         Owner : Ahmad
-         Cards : A02
-         Delete the placeholder below and build the page here.
-         =================================================================== --%>
+    <%-- Access Denied - Owner: Ahmad - Card: A02 --%>
 
-    <div class="uims-stub">
-        <span class="uims-stub-badge">A02</span>
-        <h2>Access Denied</h2>
-        <p>Shown when a signed-in user opens a page their role may not see. Already wired up by Security/SecurePage.cs - this page only needs a message and a link back to the user's own dashboard.</p>
-        <p class="uims-stub-owner">Assigned to <strong>Ahmad</strong></p>
+    <div class="container py-5 text-center">
+        <h2 class="mb-3">Access Denied</h2>
+        <p class="text-muted mb-4">You do not have permission to open this page.</p>
+
+        <asp:HyperLink ID="lnkBack" runat="server" CssClass="btn btn-primary"></asp:HyperLink>
     </div>
 
 </asp:Content>

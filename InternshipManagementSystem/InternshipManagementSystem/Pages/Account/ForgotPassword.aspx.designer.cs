@@ -9,5 +9,10 @@ namespace InternshipManagementSystem.Pages.AccountArea
 {
     public partial class ForgotPassword
     {
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+
+        protected global::System.Web.UI.WebControls.Button btnSend;
     }
 }
