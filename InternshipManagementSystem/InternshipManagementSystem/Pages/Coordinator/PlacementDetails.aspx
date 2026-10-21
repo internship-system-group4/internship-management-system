@@ -1,22 +1,55 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="PlacementDetails.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.PlacementDetails" Title="Placement Details" %>
-
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-
+<%@ Import Namespace="System.Linq" %>
+<%@ Import Namespace="System.Collections.Generic" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-
-    <%-- ===================================================================
-         Placement Details
-         Owner : Osama
-         Cards : O08
-         Delete the placeholder below and build the page here.
-         =================================================================== --%>
-
-    <div class="uims-stub">
-        <span class="uims-stub-badge">O08</span>
-        <h2>Placement Details</h2>
-        <p>One student's tasks, submissions, evaluations, approved hours, company and overall progress.</p>
-        <p class="uims-stub-owner">Assigned to <strong>Osama</strong></p>
+<div class="monitor-page">
+    <a href="Placements.aspx">&larr; Placements &amp; progress</a>
+    <% if (LoadError != null) { %><div class="monitor-error" role="alert"><%: LoadError %></div><% } else if (Progress != null) { var row = Progress.Overview; var placement = row.Placement; %>
+    <div class="monitor-heading" style="margin-top:24px"><div><h2><%: row.StudentName %></h2><p><%: row.StudentNumber %> &middot; <%: row.Major %></p></div><span class="monitor-status"><%: row.StatusText %></span></div>
+    <section class="monitor-panel"><div class="monitor-panel-heading"><h3>Internship details</h3><span>Confirmed <%: Time.DisplayDate(placement.ConfirmedAt) %></span></div><div class="monitor-panel-body"><dl class="monitor-profile">
+        <div><dt>Company</dt><dd><%: placement.CompanyName %></dd></div><div><dt>Opportunity</dt><dd><%: placement.OpportunityTitle %></dd></div>
+        <div><dt>Company supervisor</dt><dd><%: Progress.CompanySupervisorName %></dd></div><div><dt>Academic supervisor</dt><dd><%: Progress.AcademicSupervisorName %></dd></div>
+        <div><dt>Training period</dt><dd><%: Time.DisplayDate(placement.StartDate) %> &ndash; <%: Time.DisplayDate(placement.EndDate) %></dd></div><div><dt>Student email</dt><dd><%: row.Student == null ? "Profile unavailable" : row.Student.Email %></dd></div>
+    </dl></div></section>
+    <div class="monitor-progress">
+        <section class="monitor-panel"><div class="monitor-panel-body"><h3>Approved training hours</h3><strong data-approved-hours="<%: row.ApprovedHours %>"><%: row.HoursText %></strong><progress value="<%: row.HoursPercent %>" max="100" aria-label="Approved training hours"><%: row.HoursPercent %>%</progress><p><%: row.PendingHours %> h reported, awaiting approval. Only approved entries count.</p></div></section>
+        <section class="monitor-panel"><div class="monitor-panel-body"><h3>Task progress</h3><strong><%: Progress.Tasks.Count(t => t.Status == InternshipTaskStatus.Graded) %> / <%: Progress.Tasks.Count %> graded</strong><p><%: Progress.Tasks.Count(t => t.IsOverdue) %> past deadline and not graded &middot; <%: Progress.Submissions.Count %> submission attempts</p><p>Tasks and hours are separate. Completing tasks does not approve training hours or internship completion.</p></div></section>
     </div>
-
+    <section class="monitor-panel" id="tasks"><div class="monitor-panel-heading"><h3>Tasks</h3><span><%: Progress.Tasks.Count %> assigned</span></div>
+        <% if (Progress.Tasks.Count == 0) { %><div class="monitor-empty">No tasks have been assigned to this placement yet.</div><% } else { %><div class="monitor-table-scroll"><table class="monitor-table"><caption class="visually-hidden">Tasks assigned to this student placement</caption><thead><tr><th scope="col">Task</th><th scope="col">Deadline</th><th scope="col">Status</th><th scope="col">Mark scale</th><th scope="col">Attempts</th></tr></thead><tbody>
+        <% foreach (var task in Progress.Tasks) { %><tr><td><strong><%: task.Title %></strong><small><%: task.Description %></small></td><td><%: Time.Display(task.Deadline) %><% if (task.IsOverdue) { %><small>Past deadline</small><% } %></td><td><span class="monitor-status"><%: StatusLabel(task.Status) %></span></td><td><%: task.MaxScore > 0 ? "Out of " + task.MaxScore.ToString("0.##") : "Not specified" %></td><td><%: Progress.Submissions.Count(s => s.TaskId == task.Id) %></td></tr><% } %>
+        </tbody></table></div><% } %>
+    </section>
+    <section class="monitor-panel" id="submissions"><div class="monitor-panel-heading"><h3>Submission history</h3><span>All attempts, newest first</span></div>
+        <% if (Progress.Submissions.Count == 0) { %><div class="monitor-empty">No submissions have been recorded for these tasks.</div><% } %>
+        <% foreach (var submission in Progress.Submissions) { %><article class="monitor-entry"><h4><%: Progress.Tasks.First(t => t.Id == submission.TaskId).Title %> &middot; Attempt <%: submission.AttemptNumber %></h4><small><%: Time.Display(submission.SubmittedAt) %> &middot; <%: StatusLabel(submission.Status) %></small><p><%: submission.DescriptionText %></p>
+            <% if (SafeLink(submission.LinkUrl)) { %><a href="<%: submission.LinkUrl %>" target="_blank" rel="noopener noreferrer">Open submitted link</a><% } %><% if (SafeLink(submission.FileUrl)) { %><a href="<%: submission.FileUrl %>" target="_blank" rel="noopener noreferrer">Open attachment: <%: submission.FileName %></a><% } %><p class="monitor-note">Reported for this attempt: <%: submission.ReportedHours %> h (requires separate approval).</p>
+        </article><% } %>
+    </section>
+    <section class="monitor-panel" id="evaluations"><div class="monitor-panel-heading"><h3>Task evaluations &amp; feedback</h3><span><%: Progress.Evaluations.Count %> records</span></div>
+        <% if (Progress.Evaluations.Count == 0) { %><div class="monitor-empty">No task evaluations have been recorded yet.</div><% } %>
+        <% foreach (var evaluation in Progress.Evaluations) { %><article class="monitor-entry"><h4><%: Progress.Tasks.First(t => t.Id == evaluation.TaskId).Title %> &middot; <%: evaluation.RevisionRequested ? "Revision requested" : Score(evaluation.TotalScore, evaluation.MaxScore) %></h4><small>Attempt <%: Progress.Submissions.First(s => s.Id == evaluation.SubmissionId).AttemptNumber %> &middot; <%: Time.Display(evaluation.EvaluatedAt) %></small><p><%: evaluation.Feedback %></p><% if (evaluation.RevisionRequested) { %><p><strong>Requested changes:</strong> <%: evaluation.RevisionInstructions %></p><% } %>
+        <% if (evaluation.Components != null && evaluation.Components.Count > 0) { %><details><summary>Evaluation criteria</summary><% foreach (var component in evaluation.Components) { %><p><%: component.Name %>: <%: Score(component.Score, component.MaxScore) %> &middot; weight <%: component.Weight %>% &middot; <%: component.Comment %></p><% } %></details><% } %>
+        </article><% } %>
+    </section>
+    <section class="monitor-panel" id="hours"><div class="monitor-panel-heading"><h3>Training hours log</h3><span>Approval is separate from task completion</span></div>
+        <% if (Progress.Hours.Count == 0) { %><div class="monitor-empty">No training hours have been reported for this placement.</div><% } else { %><div class="monitor-table-scroll"><table class="monitor-table"><caption class="visually-hidden">Reported hours and review decisions</caption><thead><tr><th scope="col">Work date</th><th scope="col">Description</th><th scope="col">Hours</th><th scope="col">Status</th><th scope="col">Review note</th></tr></thead><tbody><% foreach (var entry in Progress.Hours) { %><tr><td><%: Time.DisplayDate(entry.WorkDate) %></td><td><%: entry.Description %></td><td><%: entry.Hours %> h</td><td><%: entry.Status %></td><td><%: entry.ReviewNote %></td></tr><% } %></tbody></table></div><% } %>
+    </section>
+    <div class="monitor-evaluation-grid">
+        <section class="monitor-panel"><div class="monitor-panel-heading"><h3>Company final evaluation</h3><span>Coordinator access</span></div>
+            <% if (Progress.CompanyFinal == null) { %><div class="monitor-empty">No company final evaluation received.</div><% } else { var final = Progress.CompanyFinal; %><div class="monitor-entry"><h4><%: final.IsSubmitted ? "Submitted" : "Draft — not submitted" %></h4><p>Score: <%: Score(final.TotalScore, final.MaxScore) %></p><small><%: final.IsSubmitted ? Time.Display(final.SubmittedAt) : "Awaiting company submission" %></small></div><details><summary>View confidential company evaluation</summary><div class="monitor-entry"><p><strong>Strengths:</strong> <%: final.Strengths %></p><p><strong>Areas for improvement:</strong> <%: final.AreasForImprovement %></p><p><strong>Overall comment:</strong> <%: final.OverallComment %></p><% foreach (var component in final.Components ?? new List<GradeComponent>()) { %><p><%: component.Name %>: <%: Score(component.Score, component.MaxScore) %> &middot; weight <%: component.Weight %>%</p><% } %></div></details><% } %>
+        </section>
+        <section class="monitor-panel"><div class="monitor-panel-heading"><h3>Academic final evaluation</h3><span>Coordinator access</span></div>
+            <% if (Progress.AcademicFinal == null) { %><div class="monitor-empty">No academic final evaluation received.</div><% } else { var final = Progress.AcademicFinal; %><div class="monitor-entry"><h4><%: final.IsSubmitted ? "Submitted" : "Draft — not submitted" %></h4><p>Score: <%: Score(final.TotalScore, final.MaxScore) %></p><small><%: final.IsSubmitted ? Time.Display(final.SubmittedAt) : "Awaiting academic submission" %></small></div><details><summary>View confidential academic evaluation</summary><div class="monitor-entry"><p><%: final.AcademicComments %></p><p><strong>Company evaluation remarks:</strong> <%: final.CompanyEvaluationRemarks %></p><% foreach (var component in final.Components ?? new List<GradeComponent>()) { %><p><%: component.Name %>: <%: Score(component.Score, component.MaxScore) %> &middot; weight <%: component.Weight %>%</p><% } %></div></details><% } %>
+        </section>
+    </div>
+    <section class="monitor-panel"><div class="monitor-panel-heading"><h3>Academic follow-up</h3><span><%: Progress.Comments.Count %> comments</span></div>
+        <% if (Progress.Comments.Count == 0) { %><div class="monitor-empty">No academic comments have been recorded yet.</div><% } %><% foreach (var comment in Progress.Comments) { %><article class="monitor-entry"><small><%: Time.Display(comment.CreatedAt) %> &middot; <%: comment.IsVisibleToStudent ? "Visible to student" : "Not visible to student" %></small><p><%: comment.Comment %></p></article><% } %>
+    </section>
+    <section class="monitor-panel"><div class="monitor-panel-heading"><h3>Completion &amp; official result</h3><a href="CompletionReview.aspx?id=<%: Server.UrlEncode(placement.Id) %>">Open completion review</a></div><div class="monitor-panel-body">
+        <% if (Progress.Completion == null) { %><p class="monitor-note">No completion review record yet. Training hours and task completion do not automatically approve this internship.</p><% } else { %><p>Review status: <strong><%: StatusLabel(Progress.Completion.Status) %></strong></p><% if (Progress.Completion.Status == CompletionStatus.Approved) { %><p>Recorded final result: <strong><%: Progress.Completion.Result %></strong> &middot; <%: Progress.Completion.FinalScore.ToString("0.##") %>%</p><% if (SafeLink(Progress.Completion.ReportFileUrl)) { %><a href="<%: Progress.Completion.ReportFileUrl %>" target="_blank" rel="noopener noreferrer">Open official completion report</a><% } %><% } else { %><p class="monitor-note">Final result and report are awaiting coordinator approval.</p><% } %><p><%: Progress.Completion.CoordinatorNote %></p><% } %>
+    </div></section>
+    <% } %>
+</div>
 </asp:Content>
