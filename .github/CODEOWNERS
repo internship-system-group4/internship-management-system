@@ -1,0 +1,78 @@
+# =============================================================================
+#  Who owns which files - UIMS Group 4
+#
+#  TODO: replace every @placeholder with the real GitHub username. Once that is
+#  done GitHub automatically requests a review from the owner on any pull
+#  request that touches their files, which is how "one page, one developer"
+#  stops being an honour system.
+#
+#  Later rules win, so the specific entries at the bottom override the general
+#  ones at the top.
+# =============================================================================
+
+# Default: the repository maintainer reviews anything not listed below.
+*                                                   @ahmadfa100
+
+# ---- shared foundation: Ahmad only -----------------------------------------
+# Every page depends on these. A change here can break all seven people's work,
+# so it goes through Ahmad even when the change itself is small.
+/InternshipManagementSystem/InternshipManagementSystem/Models/              @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Security/            @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Common/              @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Layout/              @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Data/Json.cs         @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Data/FirebaseContext.cs      @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Data/RepositoryBase.cs       @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Data/UserRepository.cs       @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Web.config           @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Global.asax.cs       @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Assets/css/site.css  @ahmadfa100
+
+# ---- Ahmad: authentication, academic accounts, final completion -----------
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Account/                        @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/Progress.aspx*          @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/Students.aspx*      @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/AcademicSupervisors.aspx*  @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/Groups.aspx*        @ahmadfa100
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/CompletionReview.aspx*     @ahmadfa100
+
+# ---- Osama: applications and coordinator monitoring ----------------------
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/Apply.aspx*             @osama-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/MyApplications.aspx*    @osama-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/Applications.aspx*      @osama-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/Dashboard.aspx*     @osama-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/Placements.aspx*    @osama-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/PlacementDetails.aspx*     @osama-placeholder
+
+# ---- Nada: home, company management, trainees, company evaluation --------
+/InternshipManagementSystem/InternshipManagementSystem/Default.aspx*                         @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Public/About.aspx*              @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/Dashboard.aspx*         @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/Trainees.aspx*          @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/TraineeDetails.aspx*    @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/FinalEvaluation.aspx*   @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/Account.aspx*           @nada-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/Companies.aspx*     @nada-placeholder
+
+# ---- Fatima: tasks, submissions, optional meetings ----------------------
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/MyTasks.aspx*           @fatima-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/Tasks.aspx*             @fatima-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/TaskReview.aspx*        @fatima-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Meetings/                       @fatima-placeholder
+
+# ---- Sara Rajoub: opportunities and student features -------------------
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/Dashboard.aspx*         @sara-rajoub-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/Profile.aspx*           @sara-rajoub-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/Opportunities.aspx*     @sara-rajoub-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Student/OpportunityDetails.aspx*       @sara-rajoub-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Company/Opportunities.aspx*     @sara-rajoub-placeholder
+
+# ---- Suja: academic supervision ---------------------------------------
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Academic/                       @suja-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Common/GradingPolicy.cs               @suja-placeholder @ahmadfa100
+/docs/01-university-rules.md                                                                 @suja-placeholder
+
+# ---- Sara Dolat: contact and coordinator profile ----------------------
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Public/Contact.aspx*            @sara-dolat-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/ContactMessages.aspx*      @sara-dolat-placeholder
+/InternshipManagementSystem/InternshipManagementSystem/Pages/Coordinator/Account.aspx*       @sara-dolat-placeholder

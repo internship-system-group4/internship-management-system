@@ -1,4 +1,3 @@
-
 # Visual Studio and user-specific files
 .vs/
 *.suo
@@ -38,3 +37,10 @@ packages/
 *.secret
 secrets.json
 Web.*.local.config
+
+# Firebase credentials - each member keeps their own copy.
+# The committed App_Secrets.config.example shows what goes in it.
+App_Secrets.config
+firebase-adminsdk*.json
+google-services.json
+.firebaserc

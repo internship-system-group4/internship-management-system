@@ -1,0 +1,45 @@
+# =============================================================================
+#  Line endings and merge behaviour
+#
+#  Without this file, seven Windows machines with different Git settings churn
+#  line endings, and a one-line change shows up as "whole file rewritten" with
+#  a conflict on every merge. This is the cheapest conflict prevention in the
+#  repository.
+# =============================================================================
+
+# Normalise everything to LF inside Git, check out CRLF on Windows.
+* text=auto eol=crlf
+
+*.cs      text diff=csharp
+*.aspx    text
+*.ascx    text
+*.master  text
+*.asax    text
+*.config  text
+*.css     text
+*.js      text
+*.json    text
+*.md      text
+*.sln     text eol=crlf
+
+# The project file is a flat list of independent <Compile> / <Content> lines,
+# so taking both sides of a conflict is almost always correct. "union" does
+# that automatically.
+#
+# CAVEAT: union can leave a duplicated line if two people added the same file.
+# After any merge that touched the csproj, open it, search for duplicates, and
+# build once before pushing. Every page is pre-registered precisely so this
+# file rarely changes at all.
+*.csproj  text eol=crlf merge=union
+
+# Binary - never diff or merge these.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.docx binary
+*.xlsx binary
+*.pptx binary
+*.zip  binary
