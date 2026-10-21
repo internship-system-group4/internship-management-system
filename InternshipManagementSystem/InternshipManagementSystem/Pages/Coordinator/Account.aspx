@@ -346,18 +346,7 @@
 
                 </section>
 
-                <!-- ACCOUNT ADMINISTRATION -->
-                <div class="ca-info">
-                    <span>ⓘ</span>
-
-                    <div>
-                        <strong>Account administration</strong>
-                        <p>
-                            Create student and supervisor accounts with the Add
-                            buttons on their management pages.
-                        </p>
-                    </div>
-                </div>
+                
 
             </div>
         </div>

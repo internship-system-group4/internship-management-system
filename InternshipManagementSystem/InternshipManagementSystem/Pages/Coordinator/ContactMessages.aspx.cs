@@ -1,4 +1,5 @@
 ﻿
+using InternshipManagementSystem.Common;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -20,7 +21,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             get
             {
-                return (ConfigurationManager.AppSettings["FirebaseDatabaseUrl"] ?? "")
+                return (ConfigurationManager.AppSettings["Firebase.DatabaseUrl"] ?? "")
                     .TrimEnd('/');
             }
         }
@@ -29,7 +30,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             get
             {
-                return Convert.ToString(Session["FirebaseIdToken"]);
+                return Convert.ToString(Session[Constants.SessionTokenKey]);
             }
         }
 
@@ -61,7 +62,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             if (string.IsNullOrWhiteSpace(FirebaseUrl))
                 throw new InvalidOperationException(
-                    "FirebaseDatabaseUrl is missing.");
+                    "Firebase.DatabaseUrl is missing.");
 
             string path = "/ContactMessages" +
                 (id == null ? "" : "/" + Uri.EscapeDataString(id)) +
@@ -215,8 +216,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             catch (Exception)
             {
                 lblError.Text =
-                    "Unable to load messages. Check Firebase URL, " +
-                    "authentication and database rules.";
+                    "Unable to load messages. Check Firebase connection and permissions.";
 
                 lblError.Visible = true;
             }
@@ -257,6 +257,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     litFrom.Text = HttpUtility.HtmlEncode(item.Name);
                     litEmail.Text = HttpUtility.HtmlEncode(item.Email);
                     litSubject.Text = HttpUtility.HtmlEncode(item.Subject);
+
                     litSubmitted.Text = HttpUtility.HtmlEncode(
                         item.FormattedDate);
 
@@ -273,12 +274,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     btnMarkReviewed.Visible =
                         item.Status != "Reviewed";
 
-                    lnkReply.NavigateUrl =
-                        "mailto:" + Uri.EscapeDataString(item.Email) +
-                        "?subject=" +
-                        Uri.EscapeDataString("Re: " + item.Subject);
-
+                    // Show message details
                     pnlDetails.Visible = true;
+
+                    // Open popup
+                    ClientScript.RegisterStartupScript(
+                        GetType(),
+                        "OpenMessageModal",
+                        "openMessageModal();",
+                        true
+                    );
                 }
                 catch (Exception)
                 {

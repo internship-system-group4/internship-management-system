@@ -1,4 +1,5 @@
 ﻿
+
 <%@ Page Language="C#"
     MasterPageFile="~/Layout/Coordinator.master"
     AutoEventWireup="true"
@@ -10,12 +11,9 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 
     <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
 
     <style>
-        /* All styles are scoped to this page to avoid
-           changing the shared Coordinator layout. */
-
         .cm-page {
             --cm-navy: #092e68;
             --cm-blue: #164b84;
@@ -192,7 +190,7 @@
             font-size: 12px;
         }
 
-        /* Status badges */
+        /* Status */
 
         .cm-page .status-badge {
             display: inline-block;
@@ -212,7 +210,7 @@
             background: #def7e9;
         }
 
-        /* Actions */
+        /* View button */
 
         .cm-page .action-button {
             display: inline-block;
@@ -224,7 +222,6 @@
             text-decoration: none;
             font-size: 12px;
             font-weight: 600;
-            transition: background .2s;
         }
 
         .cm-page .action-button:hover {
@@ -291,6 +288,83 @@
             padding: 9px 14px;
         }
 
+        /* POPUP OVERLAY */
+
+        #messageModal.message-modal-overlay {
+            display: none;
+            position: fixed !important;
+            inset: 0 !important;
+            width: 100vw;
+            height: 100vh;
+            z-index: 99999 !important;
+            background: rgba(9, 30, 66, 0.65);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        #messageModal.message-modal-overlay.open {
+            display: flex !important;
+        }
+
+        /* POPUP WINDOW */
+
+        #messageModal .message-modal-box {
+            position: relative;
+            background: #ffffff;
+            width: 100%;
+            max-width: 950px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 16px;
+            padding: 28px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.25);
+        }
+
+        #messageModal .message-popup {
+            position: static !important;
+            transform: none !important;
+            width: 100% !important;
+            max-width: none !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            background: transparent !important;
+            box-shadow: none !important;
+        }
+
+        #messageModal .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #d6e5f6;
+            padding-bottom: 15px;
+            margin-bottom: 22px;
+        }
+
+        #messageModal .popup-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: #092e68;
+            margin: 0;
+        }
+
+        #messageModal .popup-close {
+            border: none;
+            background: #edf5fd;
+            color: #092e68;
+            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+
+        #messageModal .popup-close:hover {
+            background: #dceafa;
+        }
+
+        /* Responsive */
+
         @media (max-width: 768px) {
             .cm-page .page-title {
                 font-size: 24px;
@@ -309,16 +383,22 @@
             .cm-page .details-row {
                 flex-wrap: wrap;
             }
-            /* Hide sidebar scrollbar */
-.uims-sidebar {
-    scrollbar-width: none !important;
-    -ms-overflow-style: none !important;
-}
 
-.uims-sidebar::-webkit-scrollbar,
-.uims-sidebar *::-webkit-scrollbar {
-    display: none !important;
-}
+            #messageModal .message-modal-box {
+                padding: 18px;
+            }
+        }
+
+        /* Hide sidebar scrollbar */
+
+        .uims-sidebar {
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
+        }
+
+        .uims-sidebar::-webkit-scrollbar,
+        .uims-sidebar *::-webkit-scrollbar {
+            display: none !important;
         }
     </style>
 
@@ -334,6 +414,7 @@
         <!-- PAGE HEADER -->
 
         <div class="page-heading">
+
             <h2 class="page-title">
                 Contact Messages
             </h2>
@@ -342,7 +423,10 @@
                 View and manage messages submitted through
                 the Contact Us form.
             </p>
+
         </div>
+
+        <!-- ERROR -->
 
         <asp:Label ID="lblError"
             runat="server"
@@ -538,11 +622,9 @@
 
                         <asp:TemplateField HeaderText="Status">
                             <ItemTemplate>
-
                                 <span class='<%# Convert.ToString(Eval("Status")) == "Reviewed" ? "status-badge reviewed" : "status-badge new" %>'>
                                     <%#: Eval("Status") %>
                                 </span>
-
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -572,134 +654,199 @@
         </div>
 
 
-        <!-- MESSAGE DETAILS -->
+        <!-- MESSAGE DETAILS POPUP -->
 
-        <asp:Panel ID="pnlDetails"
-            runat="server"
-            CssClass="content-panel"
-            Visible="false">
+        <div id="messageModal"
+            class="message-modal-overlay"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Message Details">
 
-            <div class="row g-4">
+            <div class="message-modal-box">
 
-                <!-- MESSAGE INFORMATION -->
+                <asp:Panel ID="pnlDetails"
+                    runat="server"
+                    CssClass="message-popup"
+                    Visible="false">
 
-                <div class="col-lg-5">
+                    <!-- POPUP HEADER -->
 
-                    <h3 class="section-title">
-                        <i class="bi bi-envelope me-2"></i>
-                        Message Details
-                    </h3>
+                    <div class="popup-header">
 
-                    <div class="details-info">
+                        <h3 class="popup-title">
+                            <i class="bi bi-envelope-open me-2"></i>
+                            Message Details
+                        </h3>
 
-                        <div class="details-row">
-                            <span class="details-label">
-                                Name:
-                            </span>
+                        <button type="button"
+                            class="popup-close"
+                            onclick="closeMessageModal()"
+                            aria-label="Close">
+                            &times;
+                        </button>
 
-                            <span class="details-value">
-                                <asp:Literal ID="litFrom"
-                                    runat="server" />
-                            </span>
+                    </div>
+
+                    <div class="row g-4">
+
+                        <!-- MESSAGE INFORMATION -->
+
+                        <div class="col-lg-5">
+
+                            <h3 class="section-title">
+                                <i class="bi bi-person-lines-fill me-2"></i>
+                                Sender Information
+                            </h3>
+
+                            <div class="details-info">
+
+                                <div class="details-row">
+
+                                    <span class="details-label">
+                                        Name:
+                                    </span>
+
+                                    <span class="details-value">
+                                        <asp:Literal ID="litFrom"
+                                            runat="server" />
+                                    </span>
+
+                                </div>
+
+                                <div class="details-row">
+
+                                    <span class="details-label">
+                                        Email:
+                                    </span>
+
+                                    <span class="details-value">
+                                        <asp:Literal ID="litEmail"
+                                            runat="server" />
+                                    </span>
+
+                                </div>
+
+                                <div class="details-row">
+
+                                    <span class="details-label">
+                                        Subject:
+                                    </span>
+
+                                    <span class="details-value">
+                                        <asp:Literal ID="litSubject"
+                                            runat="server" />
+                                    </span>
+
+                                </div>
+
+                                <div class="details-row">
+
+                                    <span class="details-label">
+                                        Date:
+                                    </span>
+
+                                    <span class="details-value">
+                                        <asp:Literal ID="litSubmitted"
+                                            runat="server" />
+                                    </span>
+
+                                </div>
+
+                                <div class="details-row">
+
+                                    <span class="details-label">
+                                        Status:
+                                    </span>
+
+                                    <span class="details-value">
+                                        <asp:Literal ID="litStatus"
+                                            runat="server" />
+                                    </span>
+
+                                </div>
+
+                            </div>
+
                         </div>
 
-                        <div class="details-row">
-                            <span class="details-label">
-                                Email:
-                            </span>
 
-                            <span class="details-value">
-                                <asp:Literal ID="litEmail"
+                        <!-- MESSAGE CONTENT -->
+
+                        <div class="col-lg-7">
+
+                            <h3 class="section-title">
+                                <i class="bi bi-file-text me-2"></i>
+                                Message Content
+                            </h3>
+
+                            <div class="message-box">
+
+                                <asp:Literal ID="litFullMessage"
                                     runat="server" />
-                            </span>
-                        </div>
 
-                        <div class="details-row">
-                            <span class="details-label">
-                                Subject:
-                            </span>
+                            </div>
 
-                            <span class="details-value">
-                                <asp:Literal ID="litSubject"
-                                    runat="server" />
-                            </span>
-                        </div>
+                            <!-- ACTION BUTTONS -->
 
-                        <div class="details-row">
-                            <span class="details-label">
-                                Date:
-                            </span>
+                            <div class="details-actions d-flex justify-content-end gap-2 mt-3 flex-wrap">
 
-                            <span class="details-value">
-                                <asp:Literal ID="litSubmitted"
-                                    runat="server" />
-                            </span>
-                        </div>
 
-                        <div class="details-row">
-                            <span class="details-label">
-                                Status:
-                            </span>
+                                <asp:Button ID="btnMarkReviewed"
+                                    runat="server"
+                                    Text="Mark as Reviewed"
+                                    CssClass="btn btn-reviewed"
+                                    OnClick="btnMarkReviewed_Click" />
 
-                            <span class="details-value">
-                                <asp:Literal ID="litStatus"
-                                    runat="server" />
-                            </span>
+                                <asp:Button ID="btnClose"
+                                    runat="server"
+                                    Text="Close"
+                                    CssClass="btn btn-outline-secondary"
+                                    OnClick="btnClose_Click"
+                                    CausesValidation="false" />
+
+                            </div>
+
                         </div>
 
                     </div>
 
-                </div>
-
-
-                <!-- MESSAGE CONTENT -->
-
-                <div class="col-lg-7">
-
-                    <h3 class="section-title">
-                        <i class="bi bi-file-text me-2"></i>
-                        Message Content
-                    </h3>
-
-                    <div class="message-box">
-                        <asp:Literal ID="litFullMessage"
-                            runat="server" />
-                    </div>
-
-                    <div class="details-actions d-flex justify-content-end gap-2 mt-3 flex-wrap">
-
-                        <asp:HyperLink ID="lnkReply"
-                            runat="server"
-                            CssClass="btn btn-outline-primary">
-
-                            <i class="bi bi-reply me-1"></i>
-                            Reply (Email)
-
-                        </asp:HyperLink>
-
-                        <asp:Button ID="btnMarkReviewed"
-                            runat="server"
-                            Text="Mark as Reviewed"
-                            CssClass="btn btn-reviewed"
-                            OnClick="btnMarkReviewed_Click" />
-
-                        <asp:Button ID="btnClose"
-                            runat="server"
-                            Text="Close"
-                            CssClass="btn btn-outline-secondary"
-                            OnClick="btnClose_Click"
-                            CausesValidation="false" />
-
-                    </div>
-
-                </div>
+                </asp:Panel>
 
             </div>
 
-        </asp:Panel>
+        </div>
 
     </div>
 
+
+    <!-- POPUP JAVASCRIPT -->
+
+    <script type="text/javascript">
+
+        function openMessageModal() {
+            var modal = document.getElementById("messageModal");
+
+            if (modal) {
+                modal.classList.add("open");
+                document.body.style.overflow = "hidden";
+            }
+        }
+
+        function closeMessageModal() {
+            var modal = document.getElementById("messageModal");
+
+            if (modal) {
+                modal.classList.remove("open");
+                document.body.style.overflow = "";
+            }
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+                closeMessageModal();
+            }
+        });
+
+    </script>
+
 </asp:Content>
-
-

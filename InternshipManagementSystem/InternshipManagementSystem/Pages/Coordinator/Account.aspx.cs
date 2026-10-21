@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Text.RegularExpressions;
 using System.Web;
 using InternshipManagementSystem.Common;
@@ -11,6 +12,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class Account : CoordinatorPage
     {
+        // Disable Unobtrusive Validation for this page only.
+        // Fixes the missing jQuery ScriptResourceMapping error.
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            UnobtrusiveValidationMode =
+                System.Web.UI.UnobtrusiveValidationMode.None;
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
@@ -59,7 +70,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
             if (name.Length < 2 || name.Length > 100)
             {
-                Notice("Enter a valid full name (2–100 characters).", true);
+                Notice(
+                    "Enter a valid full name (2–100 characters).",
+                    true
+                );
                 return;
             }
 
@@ -95,7 +109,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
             catch (Exception)
             {
-                Notice("Could not save profile. Please try again.", true);
+                Notice(
+                    "Could not save profile. Please try again.",
+                    true
+                );
             }
         }
 
@@ -115,19 +132,28 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
             if (next.Length < 8 || next.Length > 128)
             {
-                Notice("New password must contain 8–128 characters.", true);
+                Notice(
+                    "New password must contain 8–128 characters.",
+                    true
+                );
                 return;
             }
 
             if (next != confirm)
             {
-                Notice("New passwords do not match.", true);
+                Notice(
+                    "New passwords do not match.",
+                    true
+                );
                 return;
             }
 
             if (current == next)
             {
-                Notice("Choose a password different from the current one.", true);
+                Notice(
+                    "Choose a password different from the current one.",
+                    true
+                );
                 return;
             }
 
@@ -146,7 +172,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                 if (!verified.Success || verified.Uid != user.Id)
                 {
-                    Notice("Current password is incorrect. Please try again.", true);
+                    Notice(
+                        "Current password is incorrect. Please try again.",
+                        true
+                    );
                     return;
                 }
 
@@ -165,11 +194,17 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     return;
                 }
 
-                Notice("Password updated successfully.", false);
+                Notice(
+                    "Password updated successfully.",
+                    false
+                );
             }
             catch (Exception)
             {
-                Notice("Could not change password. Please try again.", true);
+                Notice(
+                    "Could not change password. Please try again.",
+                    true
+                );
             }
         }
 
