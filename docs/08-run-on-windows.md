@@ -4,10 +4,9 @@
    4.7.2 targeting pack**. Open `InternshipManagementSystem/InternshipManagementSystem.sln`.
 2. Right-click the solution → **Restore NuGet Packages**. This restores the existing
    CodeDom compiler package; add no new packages. Build the solution.
-3. Copy the privately shared `App_Secrets.config` beside the web project's `Web.config`
-   in `InternshipManagementSystem/InternshipManagementSystem/`. Alternatively copy
-   the `.example` file and fill in the database URL and API key. Keep StorageBucket
-   empty. Do not add this file to Git or the `.csproj`.
+3. Nothing to copy: the Firebase database URL and API key are already in
+   `Web.config`. Just make sure your branch has the latest `main`
+   (`git fetch origin` then `git merge origin/main`).
 4. Follow `05-firebase-setup.md` for the one-time Auth setup, rules and root import.
 5. Set the web project as the startup project and press **F5** (IIS Express).
 6. Once cards A01/A02 are implemented, open Login and sign in as

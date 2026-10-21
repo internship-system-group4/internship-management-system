@@ -51,8 +51,8 @@ web development* workload, .NET Framework 4.7.2 developer pack.
    doubt.)
 3. Restore NuGet packages: right-click the solution → **Restore NuGet Packages**.
 4. Configure Firebase — see [docs/05-firebase-setup.md](docs/05-firebase-setup.md).
-   In short: copy `App_Secrets.config.example` to `App_Secrets.config` and fill
-   in the database URL, the Web API key and the storage bucket.
+   The team's database URL and Web API key are already in `Web.config`, so there
+   is nothing to copy.
 5. Press **F5**. The site starts at `Default.aspx`.
 
 Without step 4 the pages render but every Firebase call raises
@@ -65,7 +65,7 @@ InternshipManagementSystem/
 └── InternshipManagementSystem/
     ├── Default.aspx              Home
     ├── Global.asax               app start-up (sets TLS 1.2 for Firebase)
-    ├── Web.config                configuration; secrets live in App_Secrets.config
+    ├── Web.config                configuration, including the team's Firebase settings
     ├── Layout/                   five master pages, one per audience
     ├── Security/                 SecurePage + one base class per role
     ├── Models/                   Person hierarchy and the domain entities
