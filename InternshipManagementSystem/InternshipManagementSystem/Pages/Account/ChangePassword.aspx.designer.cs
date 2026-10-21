@@ -9,5 +9,18 @@ namespace InternshipManagementSystem.Pages.AccountArea
 {
     public partial class ChangePassword
     {
+        protected global::System.Web.UI.WebControls.Panel pnlTemporary;
+
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        protected global::System.Web.UI.WebControls.TextBox txtCurrentPassword;
+
+        protected global::System.Web.UI.WebControls.TextBox txtNewPassword;
+
+        protected global::System.Web.UI.WebControls.TextBox txtConfirmPassword;
+
+        protected global::System.Web.UI.WebControls.Button btnChange;
+
+        protected global::System.Web.UI.WebControls.LinkButton btnLogout;
     }
 }

@@ -4,6 +4,7 @@
 //  so no individual page has to.
 // =============================================================================
 using System;
+using System.Linq;
 using System.Web.UI;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
@@ -13,6 +14,28 @@ namespace InternshipManagementSystem.Layout
 {
     public partial class CompanyMaster : MasterPage
     {
+        protected string UserInitials
+        {
+            get
+            {
+                var user = SessionHelper.Current;
+                if (user == null || string.IsNullOrWhiteSpace(user.FullName)) return "";
+                return string.Concat(user.FullName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
+                    .Take(2).Select(name => name.Substring(0, 1))).ToUpperInvariant();
+            }
+        }
+
+        protected string NavigationAttributes(string path)
+        {
+            string current = Request.AppRelativeCurrentExecutionFilePath;
+            if (string.Equals(current, "~/Pages/Company/TraineeDetails.aspx", StringComparison.OrdinalIgnoreCase))
+                current = "~/Pages/Company/Trainees.aspx";
+            if (string.Equals(current, "~/Pages/Meetings/Schedule.aspx", StringComparison.OrdinalIgnoreCase))
+                current = "~/Pages/Meetings/MyMeetings.aspx";
+            return string.Equals(current, path, StringComparison.OrdinalIgnoreCase)
+                ? "aria-current=\"page\"" : "";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Person user = SessionHelper.Current;

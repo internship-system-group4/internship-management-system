@@ -46,8 +46,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             string companyName = txtCompanyName.Value.Trim();
             string industry = txtIndustry.Value.Trim();
-            string address = txtAddress.Value.Trim();
+            string city = txtCity.Value.Trim();
             string website = txtWebsite.Value.Trim();
+            string address = txtAddress.Value.Trim();
             string companyEmail = txtCompanyEmail.Value.Trim();
             string companyPhone = txtCompanyPhone.Value.Trim();
 
@@ -70,7 +71,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 {
                     Name = companyName,
                     Industry = industry,
-                    Address = address,
+                    Address = string.IsNullOrEmpty(address) ? city : $"{address}, {city}",
                     Website = website,
                     ContactEmail = companyEmail,
                     ContactPhone = companyPhone,
@@ -118,7 +119,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        // دالة الزر السريع لإضافة الشركات العشر الخاصة بأحمد[cite: 22]
+        // دالة الإضافة السريعة للشركات العشر الخاصة بأحمد
         protected void SeedAhmadCompanies_Click(object sender, EventArgs e)
         {
             var companiesList = new[]
@@ -175,11 +176,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 }
                 catch
                 {
-                    // تخطي السجل إذا كان الإيميل موجوداً مسبقاً
+                    // تجاهل الخطأ في حال تكرار البريد للاستمرار
                 }
             }
 
-            ShowMessage("All partner companies and supervisors successfully seeded to Firebase!", true);
+            ShowMessage("All 10 partner companies and supervisors successfully seeded to Firebase!", true);
             BindSupervisors();
         }
 
@@ -210,8 +211,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             txtCompanyName.Value = "";
             txtIndustry.Value = "";
-            txtAddress.Value = "";
+            txtCity.Value = "";
             txtWebsite.Value = "";
+            txtAddress.Value = "";
             txtCompanyEmail.Value = "";
             txtCompanyPhone.Value = "";
             txtSupervisorName.Value = "";

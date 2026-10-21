@@ -68,7 +68,7 @@ Paste this exact development rule set into **Realtime Database → Rules**:
     "companies":        { ".read": "auth != null", ".write": "auth != null" },
     "studentGroups":    { ".read": "auth != null", ".write": "auth != null" },
     "opportunities":    { ".read": "auth != null", ".write": "auth != null" },
-    "applications":     { ".read": "auth != null", ".write": "auth != null" },
+    "applications":     { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "CompanyId"] },
     "placements":       { ".read": "auth != null", ".write": "auth != null" },
     "tasks":            { ".read": "auth != null", ".write": "auth != null" },
     "submissions":      { ".read": "auth != null", ".write": "auth != null" },
@@ -88,7 +88,9 @@ academic comments must be checked by student pages, and is not enforced by these
 
 ### Filtered queries
 
-The exact rules above contain no indexes. Firebase REST `GetWhere` queries need
+The application node above indexes `StudentId` and `CompanyId` for O01's student
+and company lists. Apply these indexes to the team's database before testing O01.
+Other Firebase REST `GetWhere` queries need
 an `.indexOn` for each queried field, or they can fail with `Index not defined`.
 Before using filtered pages, have Ahmad add indexes under the existing nodes
 without changing their access rules. For example, add
