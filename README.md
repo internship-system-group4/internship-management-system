@@ -126,9 +126,15 @@ subclass by `Models/PersonFactory.cs`.
 
 ## Status
 
-Scaffold complete: solution, shared data model, role-based access control,
-master pages, Firebase data layer, and all forty pages registered as stubs with
-their owner and Trello card recorded in each file. Page implementation is in
-progress — the placeholder block on a page means it has not been built yet.
+The Coordinator's **Manage Students** page can create accounts, search student
+records, and update academic information. **Academic Supervisors** can create
+and manage supervisor accounts. **Groups & Assignments** can organize students,
+assign a supervisor, and change group membership or supervisor later. The
+Academic Dashboard lists students assigned to the signed-in supervisor.
+
+Other pages are still being implemented. A placeholder block on a page means
+that workflow is not yet available. The group assignment REST smoke test lives
+in `tests/` and uses a local Firebase stand-in; it does not modify the team's
+database.
 
 [Trello board](https://trello.com/b/fUVGTBxk/internship-system-group4)

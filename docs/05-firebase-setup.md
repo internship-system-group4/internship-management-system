@@ -70,10 +70,10 @@ Paste this exact development rule set into **Realtime Database → Rules**:
       ".write": true
     },
     "companies":        { ".read": "auth != null", ".write": "auth != null" },
-    "studentGroups":    { ".read": "auth != null", ".write": "auth != null" },
+    "studentGroups":    { ".read": "auth != null", ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() === 4" },
     "opportunities":    { ".read": "auth != null", ".write": "auth != null" },
     "applications":     { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "CompanyId"] },
-    "placements":       { ".read": "auth != null", ".write": "auth != null" },
+    "placements":       { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["CompanyId", "AcademicSupervisorId"] },
     "tasks":            { ".read": "auth != null", ".write": "auth != null" },
     "submissions":      { ".read": "auth != null", ".write": "auth != null" },
     "taskEvaluations":  { ".read": "auth != null", ".write": "auth != null" },
@@ -93,7 +93,8 @@ academic comments must be checked by student pages, and is not enforced by these
 ### Filtered queries
 
 The application node above indexes `StudentId` and `CompanyId` for O01's student
-and company lists. Apply these indexes to the team's database before testing O01.
+and company lists, plus placement queries by company or academic supervisor.
+Apply these indexes to the team's database before testing those pages.
 Other Firebase REST `GetWhere` queries need
 an `.indexOn` for each queried field, or they can fail with `Index not defined`.
 Before using filtered pages, have Ahmad add indexes under the existing nodes
