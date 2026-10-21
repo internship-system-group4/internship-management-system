@@ -449,12 +449,22 @@
       <DependentUpon>Progress.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Security\AcademicPage.cs" />
-    <Compile Include="Security\CompanyPage.cs" />
-    <Compile Include="Security\CoordinatorPage.cs" />
-    <Compile Include="Security\SecurePage.cs" />
+    <Compile Include="Security\AcademicPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\CompanyPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\CoordinatorPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Security\SecurePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Security\SessionHelper.cs" />
-    <Compile Include="Security\StudentPage.cs" />
+    <Compile Include="Security\StudentPage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\GradingService.cs" />
     <Compile Include="Services\HoursService.cs" />
