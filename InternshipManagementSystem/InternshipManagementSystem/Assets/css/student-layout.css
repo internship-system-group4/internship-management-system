@@ -1,0 +1,53 @@
+/* Shared Student.master shell; loaded on every student page. */
+html.student-portal { --brand:#264f73; --brand-dark:#173f62; --brand-light:#e5efff; --ink:#133d61; --muted:#58718a; --line:#e4ebf4; --canvas:#f6f8ff; }
+body.student-portal { background:var(--canvas); color:var(--ink); font-size:14px; }
+body.student-portal ::selection { background:#dceaff; color:#173f62; }
+body.student-portal :focus-visible { outline:3px solid #517dab; outline-offset:3px; }
+body.student-portal .uims-sidebar { width:224px; flex-basis:224px; padding:30px 16px 22px; background:#fff; color:var(--ink); border-right:1px solid var(--line); display:flex; flex-direction:column; }
+body.student-portal .uims-sidebar-brand { padding:0 10px 22px; border:0; flex-direction:column; align-items:flex-start; gap:8px; }
+body.student-portal .uims-sidebar-brand img { display:block; width:88px; height:auto; margin:0 0 2px; }
+.student-university { font-size:10px; line-height:1.6; color:#606b74; }
+.student-university span { display:block; }
+body.student-portal .uims-sidebar-brand strong { color:var(--ink); font-size:12px; letter-spacing:0; margin:10px 0 8px; }
+body.student-portal .uims-sidebar-brand small { display:inline-block; color:#31577c; background:#e8f1ff; border-radius:4px; padding:3px 7px; font-size:10px; }
+body.student-portal .uims-side-nav { margin:0; }
+body.student-portal .uims-side-link { display:flex; align-items:center; gap:10px; padding:11px 12px; margin:3px 0; border:0; border-radius:5px; color:#476580; font-size:13px; }
+body.student-portal .uims-side-link svg { width:16px; height:16px; flex-shrink:0; }
+body.student-portal .uims-side-link:hover { background:#edf3fc; color:var(--ink); }
+body.student-portal .uims-side-link[aria-current="page"] { background:var(--brand); color:#fff; }
+body.student-portal .student-logout { margin-top:auto; padding-top:22px; border-top:1px solid var(--line); }
+body.student-portal .student-logout a { display:flex; gap:10px; align-items:center; border:0; padding:6px 12px; text-decoration:none; color:#476580; font-size:13px; }
+body.student-portal .student-logout svg { width:16px; height:16px; }
+body.student-portal .uims-topbar { min-height:78px; padding:16px 32px; }
+body.student-portal .uims-page-title { font-size:13px; font-weight:600; }
+body.student-portal .uims-page-title::before { content:'Student portal  /  '; font-weight:400; color:#58718a; }
+body.student-portal .uims-user-meta { font-size:13px; font-weight:600; }
+body.student-portal .uims-user-meta small { margin-top:4px; font-size:11px; font-weight:400; }
+.student-avatar { width:34px; height:34px; display:grid; place-items:center; border-radius:50%; background:#e3eeff; font-size:11px; font-weight:600; color:#315c84; }
+body.student-portal .uims-main-inner { padding:30px 32px 48px; }
+.student-nav-toggle,.student-nav-close { display:none; }
+.student-nav-backdrop[hidden] { display:none; }
+.student-nav-toggle,.student-nav-close { width:44px; height:44px; align-items:center; justify-content:center; padding:10px; border:1px solid var(--line); border-radius:5px; background:#fff; color:var(--ink); cursor:pointer; flex-shrink:0; }
+.student-nav-toggle svg,.student-nav-close svg { width:22px; height:22px; }
+.student-nav-toggle:hover,.student-nav-close:hover { background:#edf3fc; }
+@media(max-width:900px) {
+ html.student-nav-ready .student-nav-toggle { display:flex; }
+ html.student-nav-ready body.student-portal .uims-sidebar { position:fixed; inset:0 auto 0 0; z-index:1050; width:min(288px,calc(100vw - 52px)); height:100vh; height:100dvh; overflow-y:auto; overscroll-behavior:contain; padding:24px 16px; border:0; visibility:hidden; transform:translateX(-100%); transition:transform 180ms ease-out; }
+ html.student-nav-ready body.student-nav-open .uims-sidebar { visibility:visible; transform:translateX(0); }
+ html.student-nav-ready .student-nav-close { display:flex; align-self:flex-end; margin-bottom:16px; }
+ html.student-nav-ready body.student-portal .uims-side-nav { display:block; }
+ html.student-nav-ready body.student-portal .student-logout { margin-top:auto; padding-top:20px; }
+ html.student-nav-ready body.student-portal .uims-page-title { flex:1; }
+ .student-nav-backdrop { position:fixed; inset:0; z-index:1040; width:100%; height:100%; border:0; padding:0; background:rgb(19 40 61 / 38%); cursor:pointer; }
+ body.student-nav-open { overflow:hidden; }
+}
+@media(prefers-reduced-motion:reduce) { html.student-nav-ready body.student-portal .uims-sidebar { transition:none; } }
+@media(max-width:900px) { body.student-portal .uims-sidebar { width:100%; flex-basis:auto; padding:16px; border-right:0; border-bottom:1px solid var(--line); } body.student-portal .uims-sidebar-brand { flex-direction:row; align-items:center; padding:0 4px 12px; gap:14px; } body.student-portal .uims-sidebar-brand img { width:50px; margin:0; } .student-university { display:none; } body.student-portal .uims-sidebar-brand strong { margin:0 0 4px; } body.student-portal .uims-side-nav { gap:2px; } body.student-portal .uims-side-link { font-size:12px; padding:8px 10px; } body.student-portal .student-logout { margin-top:8px; padding-top:8px; } body.student-portal .uims-topbar { padding:16px 20px; } }
+
+@media(max-width:600px) {
+ body.student-portal .uims-main-inner { padding:22px 16px 32px; }
+ body.student-portal .uims-topbar { gap:10px; padding:14px 16px; }
+ body.student-portal .uims-page-title { max-width:180px; line-height:1.6; font-size:12px; }
+ body.student-portal .uims-user-meta { max-width:100px; font-size:12px; }
+ .student-avatar { width:28px; height:28px; flex-shrink:0; }
+}
