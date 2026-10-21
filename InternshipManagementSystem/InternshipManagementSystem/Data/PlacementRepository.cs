@@ -21,9 +21,10 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        public List<Placement> GetByStudent(string studentId)
+        public bool Exists(string studentUid)
         {
-            return GetWhere("StudentId", studentId);
+            return !string.IsNullOrEmpty(studentUid)
+                && FirebaseContext.Get(Collection + "/" + studentUid) != null;
         }
 
         public List<Placement> GetByCompany(string companyId)
@@ -36,37 +37,24 @@ namespace InternshipManagementSystem.Data
             return GetWhere("AcademicSupervisorId", supervisorId);
         }
 
-        /// <summary>
-        /// Card O03: a student may confirm one offer and no more.
-        ///
-        /// The check and the write are separate HTTP calls, so two fast clicks
-        /// could both pass the check. Re-reading the student immediately before
-        /// writing and refusing when ConfirmedPlacementId is already set closes
-        /// almost all of that window. To close it completely, add a Firebase
-        /// security rule that makes users/{uid}/ConfirmedPlacementId writable
-        /// only while its current value is null:
-        ///
-        ///   ".validate": "!data.exists() || data.val() === newData.val()"
-        ///
-        /// A rule is the only guarantee here, because it runs on Google's side.
-        /// </summary>
-        public bool TryConfirm(string studentId, Placement placement)
+        // The conditional PUT also protects against simultaneous confirmations.
+        public bool Confirm(string studentUid, Placement placement)
         {
-            if (string.IsNullOrEmpty(studentId) || placement == null) return false;
+            if (string.IsNullOrWhiteSpace(studentUid) || placement == null) return false;
+            if (Exists(studentUid)) return false;
+            placement.Id = studentUid;
+            placement.StudentId = studentUid;
+            return FirebaseContext.PutIfEmpty(Collection + "/" + studentUid, placement);
+        }
 
-            UserRepository users = new UserRepository();
-            Student student = users.GetStudent(studentId);
-            if (student == null) return false;
-            if (student.HasConfirmedPlacement) return false;
+        public override string Insert(Placement entity)
+        {
+            throw new System.InvalidOperationException("Use Confirm(studentUid, placement) to create a placement.");
+        }
 
-            string placementId = Insert(placement);
-            if (string.IsNullOrEmpty(placementId)) return false;
-
-            users.Update(studentId, new Dictionary<string, object>
-            {
-                { "ConfirmedPlacementId", placementId }
-            });
-            return true;
+        public override void Save(string id, Placement entity)
+        {
+            throw new System.InvalidOperationException("Use Confirm to create a placement and Update to edit its fields.");
         }
     }
 }

@@ -13,7 +13,7 @@ namespace InternshipManagementSystem.Services
     /// cost and in how much control you get.
     ///
     /// Route 1 - a print-styled page (no dependency, ~1 hour)
-    ///   Build Reports/CompletionReport.aspx with the university header, the
+    ///   Build Pages/Coordinator/CompletionReport.aspx with the university header, the
     ///   student's details and the final result, plus a stylesheet with
     ///   @media print rules and a Print button calling window.print(). The
     ///   browser's own "Save as PDF" produces the file. Nothing to install,

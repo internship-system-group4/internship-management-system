@@ -1,111 +1,54 @@
 # University internship rules
 
-**Owner: Suja — Trello card X01. This is the first thing the team needs, because
-`Common/GradingPolicy.cs`, the evaluation forms and the completion review all
-read their numbers from here.**
+Owner: Suja — card X01. Confirm the remaining assumptions before the demo.
 
-The requirements document is explicit on two points:
+| Item | Value / status |
+| --- | --- |
+| University | German Jordanian University — الجامعة الألمانية الأردنية |
+| College | School of Computing |
+| Website | https://www.gju.edu.jo |
+| Required local training | **160 hours**, confirmed by the [official GJU local training page](https://www.gju.edu.jo/content/local-training-14456). |
+| Final result | **Pass / Fail**, as required by this project's GJU brief. |
 
-1. Use the **real** university assigned to Group 4 — its name, logo, colours,
-   colleges and majors.
-2. Where the university does not publish a rule, the team may adopt a
-   reasonable method, **but the document must say in so many words that it is
-   hypothetical.** Leaving that undisclosed is a direct violation of the brief.
+## Programs and tracks
 
-Fill in every section. Where the answer is assumed rather than sourced, write
-"**hypothetical**" next to it and say why the official figure was unavailable.
+**TODO(X01): confirm these program and track names from the official study plan before the demo.**
 
----
+| Program | Tracks (provisional) |
+| --- | --- |
+| Computer Engineering | General; Computer Vision and Robotics; Artificial Intelligence and Machine Learning |
+| Computer Science | General; Cyber Security; Data Science |
 
-## 1. University and college
+Credit-hour eligibility, GPA, training year, duration and weekly schedule are
+**HYPOTHETICAL / unconfirmed, awaiting X01**. No minimum completed-credit figure
+is enforced. TODO: confirm eligibility against the applicable official study plan.
+Brand colours and the logo also await an official source under X01.
 
-| Field | Value | Source |
+## Hours and completion
+
+Project workflow: students report hours; the academic supervisor approves or
+rejects entries (S04). `HoursService.RecomputeTotals` totals approved entries.
+Completing a task never automatically approves hours. This approval workflow is
+**HYPOTHETICAL as university policy, awaiting X01**.
+
+The proposed completion gate is 160 approved hours, both final evaluations,
+a passing result, and coordinator approval. These criteria beyond the confirmed
+hour total are **HYPOTHETICAL, awaiting X01**. Company and academic final
+forms remain confidential; students see the released result.
+
+## Evaluation — HYPOTHETICAL, awaiting X01
+
+| Component | Scale | Weight |
 | --- | --- | --- |
-| University name (English) | | |
-| University name (Arabic) | | |
-| College | | |
-| Majors offered | | |
-| Official website | | |
-| Brand colours (hex) | | |
-| Logo file | `Assets/images/logo.png` | |
+| Graded tasks | Each task's own MaxScore and Weight | 30% |
+| Company final evaluation | 100 | 45% |
+| Academic final evaluation | 50 | 25% |
 
-Once the colours are known, set them in `Assets/css/site.css` under `:root`
-and in `Common/Constants.cs`.
+All criteria, scales, weights and the **60% pass threshold are HYPOTHETICAL**.
+They are implementation defaults, not verified GJU policy. X01 must confirm or
+replace them before the demo. Weights must total 100; the service rejects an
+invalid total. Detailed evaluation criteria await X01.
 
-## 2. Internship requirements
-
-| Field | Value | Source / hypothetical |
-| --- | --- | --- |
-| Required training hours | | |
-| Duration in weeks | | |
-| Minimum hours per week | | |
-| Which academic year students may train | | |
-| Prerequisites (credit hours passed, GPA, …) | | |
-
-Put the hours figure into `Constants.DefaultRequiredHours`.
-
-## 3. How training hours get approved
-
-The requirements document is specific: *"Training hours are not approved
-automatically simply because a task has been completed."* Describe the actual
-process.
-
-- Who reports hours?
-- Who approves them — the company supervisor, the academic supervisor, or both?
-- Is there a timesheet, a weekly report, or per-task reporting?
-- What happens to rejected hours?
-
-This section drives `Services/HoursService.cs` and card S04.
-
-## 4. Evaluation method and weights
-
-List every component that contributes to the final result, with its own scale —
-**not** a flat 100 for everything, which the brief forbids.
-
-| Component | Who evaluates | Max score | Weight % | Source / hypothetical |
-| --- | --- | --- | --- | --- |
-| Graded tasks | Company supervisor | | | |
-| Company final evaluation | Company supervisor | | | |
-| Academic final evaluation | Academic supervisor | | | |
-| *(add rows as the university defines them)* | | | | |
-
-Weights must total 100. `Common/GradingPolicy.WeightsAreValid()` checks this at
-run time and `GradingService` throws if it fails, so a wrong figure here fails
-loudly instead of producing silently wrong grades.
-
-### Company final evaluation criteria
-
-| Criterion | Max score | Weight % |
-| --- | --- | --- |
-| | | |
-
-### Academic final evaluation criteria
-
-| Criterion | Max score | Weight % |
-| --- | --- | --- |
-| | | |
-
-## 5. Grade bands
-
-| Letter | From % | To % |
-| --- | --- | --- |
-| | | |
-
-Pass mark: ____ %. Put these into `GradingPolicy.ToLetter` and
-`GradingPolicy.PassMarkPercent`.
-
-## 6. Completion conditions
-
-What must be true before the coordinator may approve completion? For example:
-approved hours at or above the requirement, both final evaluations submitted,
-final result at or above the pass mark, no outstanding revision requests.
-
-List them explicitly — card A12 turns this list into the approval gate, and the
-live demo walks through it.
-
-## 7. Worked example
-
-Invent one student, fill in every score, and compute the final result by hand.
-
-Card A11 is accepted only when the system reproduces this number exactly, so
-this section is the test case for the whole grading implementation.
+Worked hypothetical example: tasks 80%, company 70/100, academic 40/50:
+`80 × 0.30 + 70 × 0.45 + 80 × 0.25 = 75.5%`, giving `Result = "Pass"`.
+The stored result is always `"Pass"` or `"Fail"`, with the numeric score retained.

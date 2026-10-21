@@ -1,0 +1,131 @@
+{
+  "users": {
+    "YIswkxh3bBQqucIRH1gPRYWkmO33": {
+      "Id": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "FullName": "Internship Coordinator",
+      "Email": "coordinator@gju.edu.jo",
+      "Role": 4,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "College": "School of Computing",
+      "CreatedAt": 1792540800000
+    },
+    "PASTE_UID_HERE_1": {
+      "Id": "PASTE_UID_HERE_1",
+      "FullName": "Development CE Student",
+      "Email": "student.ce@example.com",
+      "Role": 1,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "StudentNumber": "DEV-CE-001",
+      "University": "German Jordanian University",
+      "College": "School of Computing",
+      "Major": "Computer Engineering",
+      "RequiredHours": 160,
+      "ApprovedHours": 0,
+      "CreatedAt": 1792540800000
+    },
+    "PASTE_UID_HERE_2": {
+      "Id": "PASTE_UID_HERE_2",
+      "FullName": "Development CS Student",
+      "Email": "student.cs@example.com",
+      "Role": 1,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "StudentNumber": "DEV-CS-001",
+      "University": "German Jordanian University",
+      "College": "School of Computing",
+      "Major": "Computer Science",
+      "RequiredHours": 160,
+      "ApprovedHours": 0,
+      "CreatedAt": 1792540800000
+    },
+    "PASTE_UID_HERE_3": {
+      "Id": "PASTE_UID_HERE_3",
+      "FullName": "Development Company Supervisor",
+      "Email": "company.supervisor@example.com",
+      "Role": 2,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "CompanyId": "dev-company-1",
+      "CompanyName": "Demo Software Company",
+      "JobTitle": "Training Supervisor",
+      "CreatedAt": 1792540800000
+    },
+    "PASTE_UID_HERE_4": {
+      "Id": "PASTE_UID_HERE_4",
+      "FullName": "Development Academic Supervisor",
+      "Email": "academic.supervisor@example.com",
+      "Role": 3,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "Department": "School of Computing",
+      "AcademicRank": "Development Supervisor",
+      "GroupIds": [],
+      "CreatedAt": 1792540800000
+    }
+  },
+  "companies": {
+    "dev-company-1": {
+      "Id": "dev-company-1",
+      "Name": "Demo Software Company",
+      "Industry": "Software",
+      "Address": "Amman",
+      "ContactEmail": "company.supervisor@example.com",
+      "IsActive": true,
+      "CreatedAt": 1792540800000
+    },
+    "dev-company-2": {
+      "Id": "dev-company-2",
+      "Name": "Demo Robotics Company",
+      "Industry": "Robotics",
+      "Address": "Amman",
+      "ContactEmail": "robotics@example.com",
+      "IsActive": true,
+      "CreatedAt": 1792540800000
+    }
+  },
+  "opportunities": {
+    "dev-opportunity-1": {
+      "Id": "dev-opportunity-1",
+      "CompanyId": "dev-company-1",
+      "CompanyName": "Demo Software Company",
+      "Title": "Software Development Internship",
+      "Description": "Fictional development fixture: build and test a small web application.",
+      "Requirements": "C# and basic database skills.",
+      "Location": "Amman",
+      "EligibleCollege": "School of Computing",
+      "EligibleMajors": [
+        "Computer Science",
+        "Computer Engineering"
+      ],
+      "TotalSeats": 2,
+      "FilledSeats": 0,
+      "DurationWeeks": 4,
+      "StartDate": 0,
+      "ApplicationDeadline": 0,
+      "Status": 1,
+      "CreatedAt": 1792540800000
+    },
+    "dev-opportunity-2": {
+      "Id": "dev-opportunity-2",
+      "CompanyId": "dev-company-2",
+      "CompanyName": "Demo Robotics Company",
+      "Title": "Computer Engineering Internship",
+      "Description": "Fictional development fixture: prototype and test a robotics component.",
+      "Requirements": "Programming and electronics basics.",
+      "Location": "Amman",
+      "EligibleCollege": "School of Computing",
+      "EligibleMajors": [
+        "Computer Engineering"
+      ],
+      "TotalSeats": 2,
+      "FilledSeats": 0,
+      "DurationWeeks": 4,
+      "StartDate": 0,
+      "ApplicationDeadline": 0,
+      "Status": 1,
+      "CreatedAt": 1792540800000
+    }
+  }
+}

@@ -1,9 +1,4 @@
-﻿// =============================================================================
-//  UIMS - Group 4   |   Owner: Ahmad  (Trello card A02)
-//  Firebase Authentication over its REST API (cards A01-A05).
-// =============================================================================
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -17,6 +12,8 @@ namespace InternshipManagementSystem.Services
         public bool Success { get; set; }
         public string Uid { get; set; }
         public string IdToken { get; set; }
+        public string RefreshToken { get; set; }
+        public long ExpiresIn { get; set; }
         public string Email { get; set; }
 
         /// <summary>Raw Firebase code, for example EMAIL_NOT_FOUND. Log this.</summary>
@@ -27,16 +24,7 @@ namespace InternshipManagementSystem.Services
         public string ErrorMessage { get; set; }
     }
 
-    /// <summary>
-    /// Firebase Authentication through the Identity Toolkit REST endpoints.
-    /// No SDK, no NuGet package - the REST API is a handful of HTTP posts and
-    /// it works the same from a Web Forms code-behind as from anywhere else.
-    ///
-    /// One consequence worth knowing: CreateAccount signs up the new user and
-    /// returns a token for THEM. That is harmless here because the coordinator's
-    /// own sign-in lives in our Session, which this call never touches. Drop
-    /// the returned token on the floor.
-    /// </summary>
+    // Firebase Authentication REST endpoints. Account creation does not change the session.
     public static class AuthService
     {
         private const string Base = "https://identitytoolkit.googleapis.com/v1/accounts:";
@@ -50,7 +38,10 @@ namespace InternshipManagementSystem.Services
                 { "password", password },
                 { "returnSecureToken", true }
             };
-            return Call("signInWithPassword", body, "Incorrect email or password.");
+            AuthResult result = Call("signInWithPassword", body, "Incorrect email or password.");
+            // The profile lookup immediately after sign-in also needs authentication.
+            StoreTokens(result);
+            return result;
         }
 
         /// <summary>Cards A05, A07, N03: the coordinator creates an account with
@@ -94,10 +85,29 @@ namespace InternshipManagementSystem.Services
                 { "password", newPassword },
                 { "returnSecureToken", true }
             };
-            return Call("update", body, "Could not change the password.");
+            AuthResult result = Call("update", body, "Could not change the password.");
+            StoreTokens(result);
+            return result;
         }
 
-        // ----------------------------------------------------------------
+        public static AuthResult RefreshIdToken(string refreshToken)
+        {
+            if (string.IsNullOrEmpty(refreshToken) || string.IsNullOrEmpty(FirebaseContext.ApiKey))
+                return new AuthResult { ErrorMessage = "Please sign in again." };
+
+            string url = "https://securetoken.googleapis.com/v1/token?key=" + Uri.EscapeDataString(FirebaseContext.ApiKey);
+            string body = "grant_type=refresh_token&refresh_token=" + Uri.EscapeDataString(refreshToken);
+            return Post(url, body, "application/x-www-form-urlencoded", "Please sign in again.", true);
+        }
+
+        private static void StoreTokens(AuthResult result)
+        {
+            var context = System.Web.HttpContext.Current;
+            if (!result.Success || context == null || context.Session == null) return;
+            context.Session[Common.Constants.SessionTokenKey] = result.IdToken;
+            context.Session[Common.Constants.SessionRefreshTokenKey] = result.RefreshToken;
+        }
+
         private static AuthResult Call(string method, Dictionary<string, object> body, string friendlyError)
         {
             AuthResult result = new AuthResult();
@@ -111,27 +121,42 @@ namespace InternshipManagementSystem.Services
             }
 
             string url = Base + method + "?key=" + Uri.EscapeDataString(apiKey);
+            return Post(url, Json.Serialize(body), "application/json; charset=utf-8", friendlyError, false);
+        }
+
+        private static AuthResult Post(string url, string body, string contentType, string friendlyError, bool refresh)
+        {
+            AuthResult result = new AuthResult();
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = "POST";
-            request.ContentType = "application/json; charset=utf-8";
+            request.ContentType = contentType;
             request.Timeout = 30000;
-
-            byte[] payload = Encoding.UTF8.GetBytes(Json.Serialize(body));
-            request.ContentLength = payload.Length;
-            using (Stream stream = request.GetRequestStream())
-            {
-                stream.Write(payload, 0, payload.Length);
-            }
 
             try
             {
+                byte[] payload = Encoding.UTF8.GetBytes(body);
+                request.ContentLength = payload.Length;
+                using (Stream stream = request.GetRequestStream())
+                {
+                    stream.Write(payload, 0, payload.Length);
+                }
+
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 {
                     Dictionary<string, object> map = Json.ToMap(reader.ReadToEnd());
                     result.Success = true;
                     result.Uid = Read(map, "localId");
-                    result.IdToken = Read(map, "idToken");
+                    result.IdToken = Read(map, refresh ? "id_token" : "idToken");
+                    result.RefreshToken = Read(map, refresh ? "refresh_token" : "refreshToken");
+                    long expiresIn;
+                    long.TryParse(Read(map, refresh ? "expires_in" : "expiresIn"), out expiresIn);
+                    result.ExpiresIn = expiresIn;
+                    if (refresh && (string.IsNullOrEmpty(result.IdToken) || string.IsNullOrEmpty(result.RefreshToken)))
+                    {
+                        result.Success = false;
+                        result.ErrorMessage = friendlyError;
+                    }
                     result.Email = Read(map, "email");
                     return result;
                 }
@@ -142,6 +167,11 @@ namespace InternshipManagementSystem.Services
                 result.ErrorCode = ReadErrorCode(ex);
                 result.ErrorMessage = Friendly(result.ErrorCode, friendlyError);
                 return result;
+            }
+            catch (Exception ex) when (refresh &&
+                (ex is ArgumentException || ex is InvalidOperationException || ex is IOException))
+            {
+                return new AuthResult { ErrorCode = "INVALID_REFRESH_RESPONSE", ErrorMessage = friendlyError };
             }
         }
 

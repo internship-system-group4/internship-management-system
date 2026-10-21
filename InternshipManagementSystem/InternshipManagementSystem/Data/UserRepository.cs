@@ -86,7 +86,6 @@ namespace InternshipManagementSystem.Data
                     if (student == null) return false;
                     if (field == "GroupId") return student.GroupId == value;
                     if (field == "AcademicSupervisorId") return student.AcademicSupervisorId == value;
-                    if (field == "ConfirmedPlacementId") return student.ConfirmedPlacementId == value;
                     return false;
             }
         }

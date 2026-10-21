@@ -100,11 +100,13 @@
     <Compile Include="Common\GradingPolicy.cs" />
     <Compile Include="Common\Time.cs" />
     <Compile Include="Common\Validators.cs" />
+    <Compile Include="Data\AcademicCommentRepository.cs" />
     <Compile Include="Data\ApplicationRepository.cs" />
     <Compile Include="Data\CompanyRepository.cs" />
     <Compile Include="Data\CompletionRepository.cs" />
     <Compile Include="Data\ContactRepository.cs" />
     <Compile Include="Data\EvaluationRepository.cs" />
+    <Compile Include="Data\FirebaseAuthExpiredException.cs" />
     <Compile Include="Data\FirebaseContext.cs" />
     <Compile Include="Data\GroupRepository.cs" />
     <Compile Include="Data\HoursRepository.cs" />
@@ -151,6 +153,7 @@
     <Compile Include="Layout\Student.master.designer.cs">
       <DependentUpon>Student.master</DependentUpon>
     </Compile>
+    <Compile Include="Models\AcademicComment.cs" />
     <Compile Include="Models\AcademicSupervisor.cs" />
     <Compile Include="Models\Company.cs" />
     <Compile Include="Models\CompanySupervisor.cs" />
@@ -465,7 +468,6 @@
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\images\README.txt" />
     <Content Include="Assets\js\site.js" />
-    <Content Include="Controls\README.txt" />
     <Content Include="Layout\Academic.master" />
     <Content Include="Layout\Company.master" />
     <Content Include="Layout\Coordinator.master" />
@@ -510,7 +512,6 @@
     <Content Include="Pages\Student\OpportunityDetails.aspx" />
     <Content Include="Pages\Student\Profile.aspx" />
     <Content Include="Pages\Student\Progress.aspx" />
-    <Content Include="Reports\README.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Secrets.config.example" />

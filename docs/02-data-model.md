@@ -26,12 +26,13 @@ companies/{id}
 studentGroups/{id}
 opportunities/{id}
 applications/{id}
-placements/{id}                    one per confirmed internship
+placements/{studentUid}            one per student; Id = StudentId = UID
 tasks/{id}
 submissions/{id}                   append-only, never overwritten
 taskEvaluations/{id}               visible to the student
 companyFinalEvaluations/{id}       CONFIDENTIAL
 academicFinalEvaluations/{id}      CONFIDENTIAL
+academicComments/{id}              ongoing supervisor comments (S03)
 trainingHours/{id}
 completions/{id}
 contactMessages/{id}
@@ -64,7 +65,7 @@ Shared fields, from `Person`:
 
 Role 1 — Student adds `StudentNumber`, `University`, `College`, `Major`,
 `RequiredHours`, `ApprovedHours`, `GroupId`, `AcademicSupervisorId`, `CvUrl`,
-`PortfolioUrl`, `ConfirmedPlacementId`.
+`PortfolioUrl`. `Major` stores the program name; no track field is introduced.
 
 Role 2 — CompanySupervisor adds `CompanyId`, `CompanyName`, `JobTitle`.
 
@@ -72,12 +73,12 @@ Role 3 — AcademicSupervisor adds `Department`, `AcademicRank`, `GroupIds[]`.
 
 Role 4 — Coordinator adds `College`, `OfficeLocation`.
 
-`ConfirmedPlacementId` is the single field that enforces *a student may confirm
-only one offer*. Null means no confirmed internship.
+`PlacementRepository.Exists(studentUid)` answers whether a student has an internship.
+`GetById(studentUid)` loads it directly.
 
-## placements/{id} — read this one carefully
+## placements/{studentUid} — read this one carefully
 
-A placement is created when a student confirms an accepted offer. **Tasks,
+A placement is created when a student confirms an accepted offer. Its key and `Id` are the student UID; keep `StudentId` equal to that UID too. **Tasks,
 submissions, training hours, both final evaluations and the completion record
 all hang off `PlacementId`** — not off the application, and not off the student
 alone.
@@ -89,6 +90,28 @@ from two companies, and the bug surfaces during the demo.
 
 `AcademicSupervisorId` is copied onto the placement at confirmation time so the
 academic supervisor's pages need one query rather than three.
+
+`PlacementRepository.Confirm(studentUid, placement)` first reads the exact node and
+returns false if anything exists. Only an empty node gets a conditional PUT with
+`if-match: null_etag`; a concurrent confirmation returns false without overwriting.
+`Insert` and `Save` are blocked for placements; later field changes use `Update`.
+Existing push-keyed development placements need manual migration before use:
+back up data, move each to its student UID, and update related `PlacementId` fields.
+
+## academicComments/{id}
+
+Ongoing comments (S03): `Id`, `PlacementId`, `StudentId`, `AcademicSupervisorId`,
+`Comment`, `IsVisibleToStudent` (bool), `CreatedAt` (long Unix milliseconds).
+`AcademicCommentRepository.GetByPlacement` and `GetByStudent` load the timeline.
+Student pages must filter `IsVisibleToStudent`; the supplied development rules
+allow authenticated reads and do not enforce that flag. The separate
+`FinalAcademicEvaluation.AcademicComments` remains the final written summary.
+
+## completions/{id}
+
+`FinalScore` retains the numeric percentage. `Result` is a string containing
+`"Pass"` or `"Fail"`; policy weights and the pass threshold remain HYPOTHETICAL
+pending X01. Only the coordinator releases completion.
 
 ## submissions/{id} — append-only
 
@@ -118,16 +141,16 @@ The cost is that a renamed company leaves stale copies behind. That is an
 acceptable trade for this project; if a rename feature is ever added, it has to
 fan out the update.
 
-`ApprovedHours` appears on both `users/{uid}` and `placements/{id}` as a cached
+`ApprovedHours` appears on both `users/{uid}` and `placements/{studentUid}` as a cached
 total. It is always **recomputed** from the approved `trainingHours` entries by
 `HoursService.RecomputeTotals` — never incremented by hand, so a missed write
 cannot drift the total.
 
 ## Required indexes
 
-`GetWhere` queries need `.indexOn` rules or Firebase returns an index warning
-and filters on the client. The full rule set is in
-`docs/05-firebase-setup.md`.
+`GetWhere` REST queries need `.indexOn` rules or Firebase can reject them.
+The exact development rules and the separate index setup note are in
+`docs/05-firebase-setup.md`. Academic comments query `PlacementId` and `StudentId`.
 
 ## Field naming
 

@@ -30,7 +30,7 @@ namespace InternshipManagementSystem.Models
         /// <summary>Computed by Services/GradingService.cs from the weights in
         /// docs/01-university-rules.md (card A11).</summary>
         public double FinalScore { get; set; }
-        public string FinalGradeLetter { get; set; }
+        public string Result { get; set; }
 
         public int ApprovedHours { get; set; }
         public int RequiredHours { get; set; }

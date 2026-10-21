@@ -40,13 +40,6 @@ namespace InternshipManagementSystem.Models
         public string CvUrl { get; set; }
         public string PortfolioUrl { get; set; }
 
-        /// <summary>The one confirmed internship. Null means the student has
-        /// not confirmed an offer yet, and this single field is what enforces
-        /// the "a student cannot confirm more than one offer" rule (card O03).
-        /// Write it inside a conditional update so two simultaneous clicks
-        /// cannot both win - see Data/PlacementRepository.cs.</summary>
-        public string ConfirmedPlacementId { get; set; }
-
         public override string DashboardUrl
         {
             get { return "~/Pages/Student/Dashboard.aspx"; }
@@ -55,12 +48,6 @@ namespace InternshipManagementSystem.Models
         public override string RoleDisplayName
         {
             get { return "Student"; }
-        }
-
-        [ScriptIgnore]
-        public bool HasConfirmedPlacement
-        {
-            get { return !string.IsNullOrEmpty(ConfirmedPlacementId); }
         }
 
         /// <summary>0-100, for progress bars on the dashboards.</summary>

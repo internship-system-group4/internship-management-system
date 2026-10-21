@@ -5,10 +5,7 @@
 <head runat="server">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- The page title comes from the Title= attribute in each page's @Page
-         directive. Do not put inline server expressions anywhere inside this
-         server-side head: combined with the runat="server" links below, they
-         trigger "the Controls collection cannot be modified" at run time. -->
+    <%-- Page titles come from each page's Title attribute. --%>
     <title></title>
     <link rel="icon" href="~/Assets/images/favicon.png" runat="server" />
     <!-- Bootstrap 5 from CDN. If the demo room has no internet, download these

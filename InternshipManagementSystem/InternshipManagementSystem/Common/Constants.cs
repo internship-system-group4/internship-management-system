@@ -1,35 +1,23 @@
-﻿// =============================================================================
-//  University Internship Management System (UIMS)  -  Group 4
-//  University identity and Firebase paths. Fill the TODOs from docs/01-university-rules.md.
-//  Owner: Ahmad  (Trello card X02 - Shared Firebase Data Structure)
-//  Do not edit without telling the owner: every page in the system depends on
-//  these types. Add new fields, never rename or remove existing ones.
-// =============================================================================
-
-namespace InternshipManagementSystem.Common
+﻿namespace InternshipManagementSystem.Common
 {
     public static class Constants
     {
-        // ------------------------------------------------------------------
-        //  UNIVERSITY IDENTITY  -  TODO(Suja, card X01): replace with the real
-        //  university assigned to Group 4, then update Assets/css/site.css
-        //  brand variables and Assets/images/logo.png to match.
-        // ------------------------------------------------------------------
-        public const string UniversityName = "TODO: University Name";
-        public const string UniversityNameArabic = "TODO: اسم الجامعة";
-        public const string CollegeName = "TODO: College Name";
-        public const string UniversityWebsite = "https://example.edu";
+        public const string UniversityName = "German Jordanian University";
+        public const string UniversityNameArabic = "الجامعة الألمانية الأردنية";
+        public const string CollegeName = "School of Computing";
+        public const string UniversityWebsite = "https://www.gju.edu.jo";
         public const string LogoPath = "~/Assets/images/logo.png";
 
-        /// <summary>Default required training hours. The coordinator can still
-        /// set a different value per student on the Manage Students page.</summary>
-        public const int DefaultRequiredHours = 240;
+        public const int DefaultRequiredHours = 160;
 
-        // ------------------------------------------------------------------
-        //  FIREBASE REALTIME DATABASE PATHS
-        //  One constant per collection. Never hard-code a path in a page:
-        //  a typo in one page silently writes to a node nobody reads.
-        // ------------------------------------------------------------------
+        // TODO(X01): confirm program and track names against the official study plan before the demo.
+        // Credit-hour eligibility is HYPOTHETICAL until X01 confirms it; no minimum is enforced here.
+        public static readonly string[] Programs = { "Computer Engineering", "Computer Science" };
+        public static readonly string[] ComputerEngineeringTracks =
+            { "General", "Computer Vision and Robotics", "Artificial Intelligence and Machine Learning" };
+        public static readonly string[] ComputerScienceTracks =
+            { "General", "Cyber Security", "Data Science" };
+
         public static class Paths
         {
             public const string Users = "users";
@@ -43,6 +31,7 @@ namespace InternshipManagementSystem.Common
             public const string TaskEvaluations = "taskEvaluations";
             public const string CompanyEvaluations = "companyFinalEvaluations";
             public const string AcademicEvaluations = "academicFinalEvaluations";
+            public const string AcademicComments = "academicComments";
             public const string TrainingHours = "trainingHours";
             public const string Completions = "completions";
             public const string ContactMessages = "contactMessages";
@@ -57,9 +46,8 @@ namespace InternshipManagementSystem.Common
             public const string AccessDenied = "~/Pages/Public/AccessDenied.aspx";
         }
 
-        /// <summary>Session key for the signed-in Person. Use SessionHelper
-        /// instead of touching Session directly.</summary>
         public const string SessionUserKey = "UIMS_CurrentUser";
+        public const string SessionRefreshTokenKey = "UIMS_RefreshToken";
         public const string SessionTokenKey = "UIMS_IdToken";
     }
 }

@@ -72,11 +72,9 @@ InternshipManagementSystem/
     ├── Data/                     Firebase REST client and the repositories
     ├── Services/                 auth, grading, hours, PDF, storage
     ├── Common/                   enums, constants, timestamps, validation
-    ├── Controls/                 reusable .ascx controls
     ├── Pages/                    Public, Account, Student, Company, Academic,
     │                             Coordinator, Meetings
-    ├── Assets/                   css, js, images
-    └── Reports/                  completion report and certificate templates
+    └── Assets/                   css, js, images
 docs/                             university rules, data model, workflow, setup
 ```
 

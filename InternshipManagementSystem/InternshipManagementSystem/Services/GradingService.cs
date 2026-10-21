@@ -9,15 +9,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Services
 {
-    /// <summary>
-    /// The only place a final result is computed. Keeping it here means the
-    /// coordinator's review page, the student's progress page and the PDF
-    /// report can never disagree about a student's grade.
-    ///
-    /// Nothing is assumed to be out of 100: every component carries its own
-    /// MaxScore and Weight, and the weights come from Common/GradingPolicy.cs,
-    /// which Suja fills from the real university rules (card X01).
-    /// </summary>
+    // Shared pass/fail calculation; policy values remain HYPOTHETICAL pending X01.
     public static class GradingService
     {
         /// <summary>Weighted percentage of a list of components.</summary>
@@ -108,7 +100,7 @@ namespace InternshipManagementSystem.Services
             record.CompanyScorePercent = companyPercent;
             record.AcademicScorePercent = academicPercent;
             record.FinalScore = FinalPercent(taskPercent, companyPercent, academicPercent);
-            record.FinalGradeLetter = GradingPolicy.ToLetter(record.FinalScore);
+            record.Result = IsPassing(record.FinalScore) ? "Pass" : "Fail";
         }
 
         public static bool IsPassing(double finalPercent)

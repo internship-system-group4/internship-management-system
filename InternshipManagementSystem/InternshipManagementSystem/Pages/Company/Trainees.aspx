@@ -15,7 +15,7 @@
     <div class="uims-stub">
         <span class="uims-stub-badge">N06</span>
         <h2>My Trainees</h2>
-        <p>Students with a confirmed placement at this company. Read placements through PlacementRepository.GetByCompany.</p>
+        <p>Students with a confirmed placement at this company. Read placements through PlacementRepository.GetByCompany; each placement Id is its student UID.</p>
         <p class="uims-stub-owner">Assigned to <strong>Nada</strong></p>
     </div>
 

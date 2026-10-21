@@ -3,7 +3,7 @@
 //  Owner : Osama
 //  Cards : O02, O03
 //
-//  List the student's applications with status and rejection reasons, and let them confirm one accepted offer. Use PlacementRepository.TryConfirm - it refuses a second confirmation and explains the Firebase rule that closes the race.
+//  List the student's applications with status and rejection reasons, and let them confirm one accepted offer. Use PlacementRepository.Confirm(studentUid, placement); Exists(studentUid) checks for an internship and GetById(studentUid) loads it. Confirmation never replaces an existing placement.
 //
 //  Namespace note: these page namespaces end in "Area" on purpose. A namespace
 //  called ...Pages.Student would hide the Student model class and every file in

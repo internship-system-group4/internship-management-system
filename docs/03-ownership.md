@@ -4,8 +4,9 @@ One page, one developer. The owner writes that page's markup, its code-behind,
 its Firebase calls and its tests. Reading data another person's page created is
 normal and expected; editing their files is not.
 
-If you need a change in someone else's file, ask them for it. If you need a
-change in the shared foundation, ask Ahmad.
+Edit only your own `.aspx` and `.aspx.cs`. For a missing query, add a method to
+the relevant repository without changing existing methods. For other shared
+foundation changes, ask Ahmad. See `docs/06-team-guide.md`.
 
 ## Shared foundation - Ahmad only
 
@@ -21,6 +22,18 @@ change in the shared foundation, ask Ahmad.
 
 `Common/GradingPolicy.cs` is the one shared file Suja also owns, because the
 weights in it come from her research (card X01).
+
+## Placement and academic comment contracts
+
+Ahmad owns the shared contract: `placements/{studentUid}`, with `Id` and
+`StudentId` both equal to the UID. Osama's O03 page uses `Confirm`; other pages
+use `Exists(studentUid)` or `GetById(studentUid)` instead of a student-side pointer.
+Do not create placements with generic `Insert` or `Save`.
+
+`academicComments` belongs to Suja's S03 workflow. The model and collection name
+are shared foundation; Suja can add repository queries and implement the timeline
+in Student Progress. `GetByPlacement` and `GetByStudent` are supplied. Keep the
+end-of-internship summary on `FinalAcademicEvaluation.AcademicComments` separate.
 
 ## Pages
 

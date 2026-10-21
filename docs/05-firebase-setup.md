@@ -1,128 +1,113 @@
 # Firebase setup
 
-Do this once as a team, then each member copies the keys into their own local
-`App_Secrets.config`.
+<!-- First create the four development Auth accounts, copy each UID from Authentication (never retype it: I and l look identical), replace both matching placeholders, then import docs/dev-users.json ONCE at the database root. -->
 
-## 1. Create the project
+## Local configuration
 
-1. <https://console.firebase.google.com> → **Add project**.
-2. Name it something like `uims-group4`. Analytics is not needed.
+Use the team's existing Firebase project. Enable **Authentication → Email/Password**
+and use **Realtime Database**, not Firestore. In
+`InternshipManagementSystem/InternshipManagementSystem/`, copy the privately shared
+`App_Secrets.config` into place (or fill a copy of `App_Secrets.config.example`).
+Keep the database URL free of a trailing slash. `Web.config` merges this ignored
+file through `appSettings file=`; never put real settings in a tracked file or
+register the secrets file in the project.
 
-## 2. Authentication
+Leave `Firebase.StorageBucket` empty. This project accepts file links only;
+Firebase Storage requires the Blaze plan.
 
-**Build → Authentication → Get started → Email/Password → Enable.**
+## One-time development import
 
-Leave email link (passwordless) off. Password reset emails work out of the box,
-which is all card A03 needs.
+1. The coordinator already exists in Authentication:
+   `coordinator@gju.edu.jo`, UID `YIswkxh3bBQqucIRH1gPRYWkmO33`. Keep this record.
+2. Create four Email/Password accounts using the emails in `dev-users.json`:
+   `student.ce@example.com`, `student.cs@example.com`,
+   `company.supervisor@example.com`, `academic.supervisor@example.com`.
+   Choose development passwords privately; the seed contains none.
+3. **Copy** each UID from Authentication; never retype it (`I` and `l` look alike).
+   Replace `PASTE_UID_HERE_1` through `_4`, respectively. Each placeholder occurs
+   exactly twice: its node key and its `Id` value. Leave no placeholders.
+4. Export a backup of any existing database data. In **Realtime Database → Data**,
+   select the root and **Import JSON → docs/dev-users.json**, once.
+   **A root import replaces all existing data.** The file includes the coordinator
+   so this import does not delete him. Do not repeat it after the team starts work.
 
-## 3. Realtime Database
+The companies and opportunities are fictional development fixtures. Program names
+are provisional pending the official-study-plan check in X01. `Major` stores the
+program; no track field is added to the data contract. Development users have
+`MustChangePassword = false` for testing.
 
-**Build → Realtime Database → Create database.** Pick the region closest to
-you and start in **test mode**, then replace the rules with the set below.
+Paths are **case-sensitive**: the account node must be `users` (lowercase).
+Fields are PascalCase, timestamps Unix milliseconds, and enums integer values.
 
-Copy the URL shown above the data tree — that is `Firebase.DatabaseUrl`.
+## Database rules
 
-## 4. Storage (only if you choose file uploads)
-
-**Build → Storage.** The bucket name without the `gs://` prefix is
-`Firebase.StorageBucket`. `Services/StorageService.cs` lists three options for
-handling CVs and submissions, one of which is links only and needs no Storage
-at all.
-
-## 5. The Web API key
-
-**Project settings → General → Web API Key** — that is `Firebase.ApiKey`.
-
-## 6. Local configuration
-
-In `InternshipManagementSystem/InternshipManagementSystem/`, copy
-`App_Secrets.config.example` to `App_Secrets.config` and fill in the three
-values. That file is git-ignored, so it never reaches GitHub. `Web.config` picks
-it up automatically through the `appSettings file=` attribute, and simply
-ignores it when it is absent.
-
-## 7. Database rules
-
-Paste this into **Realtime Database → Rules**. It is a development rule set: any
-signed-in user can read and write, which is enough for the demo, and the
-`.indexOn` entries are what the system actually needs to query without warnings.
+Paste this exact development rule set into **Realtime Database → Rules**:
 
 ```json
 {
   "rules": {
-    ".read": "auth != null",
-    ".write": "auth != null",
-
     "users": {
-      ".indexOn": ["Role", "GroupId", "AcademicSupervisorId", "CompanyId"],
+      ".read": "auth != null",
       "$uid": {
-        "ConfirmedPlacementId": {
-          ".validate": "!data.exists() || data.val() === newData.val()"
-        }
+        ".write": "auth != null && ($uid === auth.uid || root.child('users/' + auth.uid + '/Role').val() === 4)",
+        ".validate": "root.child('users/' + auth.uid + '/Role').val() === 4 || (newData.child('Role').val() === data.child('Role').val() && newData.child('IsActive').val() === data.child('IsActive').val())"
       }
     },
-
-    "opportunities":           { ".indexOn": ["CompanyId", "Status", "EligibleCollege"] },
-    "applications":            { ".indexOn": ["StudentId", "OpportunityId", "CompanyId", "Status"] },
-    "placements":              { ".indexOn": ["StudentId", "CompanyId", "AcademicSupervisorId", "Status"] },
-    "tasks":                   { ".indexOn": ["PlacementId", "StudentId", "CompanyId"] },
-    "submissions":             { ".indexOn": ["TaskId", "PlacementId", "StudentId"] },
-    "taskEvaluations":         { ".indexOn": ["TaskId", "PlacementId", "StudentId"] },
-    "companyFinalEvaluations": { ".indexOn": ["PlacementId", "StudentId"] },
-    "academicFinalEvaluations":{ ".indexOn": ["PlacementId", "StudentId"] },
-    "trainingHours":           { ".indexOn": ["PlacementId", "StudentId", "Status"] },
-    "completions":             { ".indexOn": ["PlacementId", "StudentId", "Status"] },
-    "studentGroups":           { ".indexOn": ["AcademicSupervisorId"] },
-    "meetings":                { ".indexOn": ["CreatedById", "PlacementId"] },
-    "contactMessages":         { ".indexOn": ["Status"] }
+    "companyFinalEvaluations": {
+      ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
+      ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1"
+    },
+    "academicFinalEvaluations": {
+      ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
+      ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1"
+    },
+    "contactMessages": {
+      ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() === 4",
+      ".write": true
+    },
+    "companies":        { ".read": "auth != null", ".write": "auth != null" },
+    "studentGroups":    { ".read": "auth != null", ".write": "auth != null" },
+    "opportunities":    { ".read": "auth != null", ".write": "auth != null" },
+    "applications":     { ".read": "auth != null", ".write": "auth != null" },
+    "placements":       { ".read": "auth != null", ".write": "auth != null" },
+    "tasks":            { ".read": "auth != null", ".write": "auth != null" },
+    "submissions":      { ".read": "auth != null", ".write": "auth != null" },
+    "taskEvaluations":  { ".read": "auth != null", ".write": "auth != null" },
+    "academicComments": { ".read": "auth != null", ".write": "auth != null" },
+    "trainingHours":    { ".read": "auth != null", ".write": "auth != null" },
+    "completions":      { ".read": "auth != null", ".write": "auth != null" },
+    "meetings":         { ".read": "auth != null", ".write": "auth != null" }
   }
 }
 ```
 
-The `ConfirmedPlacementId` rule is worth understanding. It allows the field to
-be written while it is empty and refuses any later change, which is what makes
-"a student cannot confirm more than one offer" (card O03) genuinely true. The
-C# check in `PlacementRepository.TryConfirm` narrows the race window; only this
-rule closes it, because only it runs on Google's side.
+There is no blanket root rule: Firebase access grants cascade downward and cannot
+be revoked deeper. A root `.read` would expose the two confidential evaluation
+nodes to students. These are development permissions; `IsVisibleToStudent` on
+academic comments must be checked by student pages, and is not enforced by these rules.
 
-`contactMessages` needs public write if visitors submit without signing in.
-Either add `"contactMessages": { ".write": true }` or, cleaner, keep write
-restricted and let card D01 post through an authenticated path.
+### Filtered queries
 
-> These are development rules. A production system would scope reads per role —
-> above all the two confidential evaluation collections. Note this in the
-> presentation if the markers ask about security.
+The exact rules above contain no indexes. Firebase REST `GetWhere` queries need
+an `.indexOn` for each queried field, or they can fail with `Index not defined`.
+Before using filtered pages, have Ahmad add indexes under the existing nodes
+without changing their access rules. For example, add
+`".indexOn": ["PlacementId", "StudentId"]` to `academicComments`.
+Use the repository's `GetWhere` field names for other collections; the main ones
+are `CompanyId`, `AcademicSupervisorId`, `StudentId`, `PlacementId`, `TaskId`,
+`OpportunityId`, `CreatedById` and `Status` where queried.
 
-## 8. Seed accounts for the demo
+Placements use `placements/{studentUid}`. `Confirm` reads first and uses
+Firebase's [conditional PUT](https://firebase.google.com/docs/reference/rest/database/)
+with `if-match: null_etag` to prevent concurrent confirmations overwriting data.
+Create placements only through `Confirm`; use `Update` for later field changes.
 
-Create the first coordinator by hand, because every other account is created
-*by* a coordinator:
+## Troubleshooting
 
-1. **Authentication → Users → Add user**, with an email and password.
-2. Copy the generated **User UID**.
-3. **Realtime Database → users →** add a child whose key is that UID:
-
-```json
-{
-  "Id": "<the UID>",
-  "FullName": "Internship Coordinator",
-  "Email": "coordinator@example.edu",
-  "Role": 4,
-  "IsActive": true,
-  "MustChangePassword": false,
-  "CreatedAt": 1761000000000
-}
-```
-
-Sign in as that coordinator and create everything else through the system —
-which is also exactly the opening of the live demo (card X06).
-
-## 9. If Firebase calls fail
-
-| Symptom | Cause |
+| Symptom | Check |
 | --- | --- |
-| "Could not create SSL/TLS secure channel" | TLS 1.2 not set. `Global.asax.cs` already does this in `Application_Start`; make sure it runs. |
-| "Firebase is not configured" | `App_Secrets.config` missing or empty. |
-| 401 / "Permission denied" | Rules reject the call, or the ID token in session expired — sign in again. |
-| Query returns everything, with an index warning in the response | A missing `.indexOn` above. |
-| 404 on every call | `DatabaseUrl` has a trailing slash or is the Firestore URL rather than the Realtime Database one. |
+| TLS secure-channel error | `Global.Application_Start` sets TLS 1.2; check Windows certificates and the clock. |
+| Firebase is not configured | The local secrets file exists beside `Web.config`, with nonempty database URL and API key. |
+| 401 / 403 | The client refreshes once using the [Auth REST endpoint](https://firebase.google.com/docs/reference/rest/auth#section-refresh-token); failed refresh signs out protected pages with `error=expired`. Sign in again. Persistent rejection after a successful refresh means check the rules and profile Role. |
+| Index not defined | Add the queried field's index as described above. |
+| Account not found | Auth UID and `users/{uid}/Id` must match exactly; check lowercase `users`. |

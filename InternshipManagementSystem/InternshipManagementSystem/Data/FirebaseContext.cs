@@ -1,9 +1,4 @@
-﻿// =============================================================================
-//  UIMS - Group 4   |   Owner: Ahmad  (Trello card X02)
-//  Every HTTP call to Firebase goes through here.
-// =============================================================================
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -13,19 +8,7 @@ using System.Web.Configuration;
 
 namespace InternshipManagementSystem.Data
 {
-    /// <summary>
-    /// Thin synchronous client for the Firebase Realtime Database REST API.
-    ///
-    /// Deliberately synchronous: mixing async/await into Web Forms page events
-    /// without RegisterAsyncTask deadlocks the request, and that bug is very
-    /// hard to diagnose under demo pressure. These calls block, which is fine
-    /// for the data volumes in this project.
-    ///
-    /// Configure the two settings in Web.config (or in App_Secrets.config,
-    /// which is git-ignored):
-    ///   Firebase.DatabaseUrl   https://your-project-default-rtdb.firebaseio.com
-    ///   Firebase.ApiKey        the Web API key from Firebase project settings
-    /// </summary>
+    // Synchronous Firebase REST calls with one token refresh per request.
     public static class FirebaseContext
     {
         public static string DatabaseUrl
@@ -61,7 +44,7 @@ namespace InternshipManagementSystem.Data
             {
                 throw new InvalidOperationException(
                     "Firebase is not configured. Set Firebase.DatabaseUrl and Firebase.ApiKey " +
-                    "in Web.config or App_Secrets.config. See docs/05-firebase-setup.md.");
+                    "in App_Secrets.config. See docs/05-firebase-setup.md.");
             }
 
             StringBuilder url = new StringBuilder();
@@ -80,24 +63,23 @@ namespace InternshipManagementSystem.Data
         /// <summary>Reads a node. Returns null when the node does not exist.</summary>
         public static string Get(string path)
         {
-            return Send("GET", BuildUrl(path, null), null);
+            return Send("GET", path, null);
         }
 
         /// <summary>Reads children of <paramref name="path"/> whose
         /// <paramref name="field"/> equals <paramref name="value"/>.
-        /// Requires an .indexOn rule for that field - see
-        /// docs/05-firebase-setup.md, or the call returns an index warning.</summary>
+        /// Requires an .indexOn rule for that field; see docs/05-firebase-setup.md.</summary>
         public static string GetWhere(string path, string field, string value)
         {
             string query = "orderBy=" + Uri.EscapeDataString("\"" + field + "\"")
                          + "&equalTo=" + Uri.EscapeDataString("\"" + value + "\"");
-            return Send("GET", BuildUrl(path, query), null);
+            return Send("GET", path, null, query);
         }
 
         /// <summary>Replaces the node completely.</summary>
         public static string Put(string path, object value)
         {
-            return Send("PUT", BuildUrl(path, null), Json.Serialize(value));
+            return Send("PUT", path, Json.Serialize(value));
         }
 
         /// <summary>Merges the given fields into the node, leaving the rest
@@ -105,13 +87,13 @@ namespace InternshipManagementSystem.Data
         /// editing different fields do not overwrite each other.</summary>
         public static string Patch(string path, object value)
         {
-            return Send("PATCH", BuildUrl(path, null), Json.Serialize(value));
+            return Send("PATCH", path, Json.Serialize(value));
         }
 
         /// <summary>Appends a child under a generated key and returns that key.</summary>
         public static string Push(string path, object value)
         {
-            string response = Send("POST", BuildUrl(path, null), Json.Serialize(value));
+            string response = Send("POST", path, Json.Serialize(value));
             Dictionary<string, object> map = Json.ToMap(response);
             object name;
             return map.TryGetValue("name", out name) ? Convert.ToString(name) : null;
@@ -119,31 +101,38 @@ namespace InternshipManagementSystem.Data
 
         public static void Delete(string path)
         {
-            Send("DELETE", BuildUrl(path, null), null);
+            Send("DELETE", path, null);
         }
 
-        // ----------------------------------------------------------------
-        private static string Send(string method, string url, string body)
+        // Firebase rejects this write with 412 if another caller filled the node.
+        public static bool PutIfEmpty(string path, object value)
         {
+            return Send("PUT", path, Json.Serialize(value), onlyIfEmpty: true) != null;
+        }
+
+        private static string Send(string method, string path, string body, string query = null,
+                                   bool onlyIfEmpty = false, bool retried = false)
+        {
+            string url = BuildUrl(path, query);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = method;
             request.ContentType = "application/json; charset=utf-8";
             request.Accept = "application/json";
             request.Timeout = 30000;
             request.KeepAlive = true;
-
-            if (!string.IsNullOrEmpty(body))
-            {
-                byte[] payload = Encoding.UTF8.GetBytes(body);
-                request.ContentLength = payload.Length;
-                using (Stream stream = request.GetRequestStream())
-                {
-                    stream.Write(payload, 0, payload.Length);
-                }
-            }
+            if (onlyIfEmpty) request.Headers["if-match"] = "null_etag";
 
             try
             {
+                if (!string.IsNullOrEmpty(body))
+                {
+                    byte[] payload = Encoding.UTF8.GetBytes(body);
+                    request.ContentLength = payload.Length;
+                    using (Stream stream = request.GetRequestStream())
+                    {
+                        stream.Write(payload, 0, payload.Length);
+                    }
+                }
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 {
@@ -153,6 +142,24 @@ namespace InternshipManagementSystem.Data
             }
             catch (WebException ex)
             {
+                HttpWebResponse response = ex.Response as HttpWebResponse;
+                if (onlyIfEmpty && response != null && response.StatusCode == HttpStatusCode.PreconditionFailed)
+                {
+                    response.Dispose();
+                    return null;
+                }
+                if (!retried && response != null &&
+                    (response.StatusCode == HttpStatusCode.Unauthorized || response.StatusCode == HttpStatusCode.Forbidden))
+                {
+                    response.Dispose();
+                    var session = HttpContext.Current == null ? null : HttpContext.Current.Session;
+                    string refreshToken = session == null ? null : session[Common.Constants.SessionRefreshTokenKey] as string;
+                    Services.AuthResult refreshed = Services.AuthService.RefreshIdToken(refreshToken);
+                    if (!refreshed.Success || session == null) throw new FirebaseAuthExpiredException();
+                    session[Common.Constants.SessionTokenKey] = refreshed.IdToken;
+                    session[Common.Constants.SessionRefreshTokenKey] = refreshed.RefreshToken;
+                    return Send(method, path, body, query, onlyIfEmpty, true);
+                }
                 throw new FirebaseException(method + " " + Scrub(url) + " failed: " + ReadError(ex), ex);
             }
         }
