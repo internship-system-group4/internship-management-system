@@ -99,8 +99,6 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
             if (user == null)
             {
-                SessionHelper.SignOut();
-
                 // On the developer's own computer, say exactly which record was missing
                 if (Request.IsLocal)
                 {
@@ -111,6 +109,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 {
                     ShowError("Your account is not set up yet. Please contact the coordinator.");
                 }
+                SessionHelper.SignOut();
                 return;
             }
 
