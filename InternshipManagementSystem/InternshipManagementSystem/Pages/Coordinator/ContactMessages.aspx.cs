@@ -1,17 +1,4 @@
-﻿// =============================================================================
-//  Contact Messages
-//  Owner : Sara Dolat
-//  Cards : D02, D03
-//
-//  Inbox of Contact Us messages with sender, subject, body and date, plus a mark-as-reviewed action.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
-
-
+﻿
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -24,15 +11,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Xml.Linq;
-
-
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
-    public partial class CoordinatorContactMessages : Page
+    public partial class CoordinatorContactMessages : Security.CoordinatorPage
     {
-        // Firebase database URL from Web.config
         private string FirebaseUrl
         {
             get
@@ -42,7 +25,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        // Firebase token saved after login
         private string FirebaseAuthToken
         {
             get
@@ -51,7 +33,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        // Represents a contact message
         private class ContactMessage
         {
             public string Id { get; set; }
@@ -68,27 +49,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        // Check access and load messages
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserId"] == null ||
-                !string.Equals(
-                    Convert.ToString(Session["Role"]),
-                    "Coordinator",
-                    StringComparison.OrdinalIgnoreCase))
-            {
-                Response.Redirect("~/Login.aspx", false);
-                Context.ApplicationInstance.CompleteRequest();
-                return;
-            }
-
             if (!IsPostBack)
             {
                 RegisterAsyncTask(new PageAsyncTask(LoadMessagesAsync));
             }
         }
 
-        // Build Firebase REST URL
         private string MessageUrl(string id = null)
         {
             if (string.IsNullOrWhiteSpace(FirebaseUrl))
@@ -109,7 +77,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 "?auth=" + Uri.EscapeDataString(token);
         }
 
-        // Get all messages from Firebase
         private async Task<List<ContactMessage>> GetMessagesAsync()
         {
             using (var client = new HttpClient())
@@ -149,14 +116,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     });
                 }
 
-                // Newest messages first
                 return results
                     .OrderByDescending(x => x.SubmittedAt)
                     .ToList();
             }
         }
 
-        // Convert Firebase timestamp
         private static long ParseTimestamp(JToken value)
         {
             if (value == null)
@@ -181,7 +146,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             return 0;
         }
 
-        // Format date for display
         private static string FormatDate(long value)
         {
             try
@@ -200,7 +164,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        // Shorten the message in the table
         protected string Shorten(string value, int max)
         {
             value = (value ?? "")
@@ -212,7 +175,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 : value.Substring(0, max).TrimEnd() + "...";
         }
 
-        // Load summary cards and filtered table
         private async Task LoadMessagesAsync()
         {
             try
@@ -221,7 +183,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                 var all = await GetMessagesAsync();
 
-                // Summary cards
                 litTotal.Text = all.Count.ToString();
 
                 litNew.Text = all.Count(
@@ -233,7 +194,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 string search = (txtSearch.Text ?? "").Trim();
                 string status = ddlStatus.SelectedValue;
 
-                // Search by name, email, subject, or message
                 var filtered = all.Where(x =>
                     (status == "All" || x.Status == status) &&
                     (search.Length == 0 ||
@@ -262,7 +222,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        // Search button
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             pnlDetails.Visible = false;
@@ -271,7 +230,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 new PageAsyncTask(LoadMessagesAsync));
         }
 
-        // Open message details
         protected void gvMessages_RowCommand(
             object sender,
             GridViewCommandEventArgs e)
@@ -296,7 +254,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                     ViewState["SelectedMessageId"] = item.Id;
 
-                    // HTML encoding protects displayed text
                     litFrom.Text = HttpUtility.HtmlEncode(item.Name);
                     litEmail.Text = HttpUtility.HtmlEncode(item.Email);
                     litSubject.Text = HttpUtility.HtmlEncode(item.Subject);
@@ -316,7 +273,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     btnMarkReviewed.Visible =
                         item.Status != "Reviewed";
 
-                    // Open email application
                     lnkReply.NavigateUrl =
                         "mailto:" + Uri.EscapeDataString(item.Email) +
                         "?subject=" +
@@ -332,14 +288,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }));
         }
 
-        // Close message details
         protected void btnClose_Click(object sender, EventArgs e)
         {
             pnlDetails.Visible = false;
             ViewState.Remove("SelectedMessageId");
         }
 
-        // Update message status in Firebase
         protected void btnMarkReviewed_Click(object sender, EventArgs e)
         {
             RegisterAsyncTask(new PageAsyncTask(async () =>
@@ -352,7 +306,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     if (string.IsNullOrWhiteSpace(id))
                         return;
 
-                    // PATCH updates only the Status field
                     using (var client = new HttpClient())
                     using (var content = new StringContent(
                         "{\"Status\":\"Reviewed\"}",
@@ -370,7 +323,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     pnlDetails.Visible = false;
                     ViewState.Remove("SelectedMessageId");
 
-                    // Refresh cards and table
                     await LoadMessagesAsync();
                 }
                 catch (Exception)
@@ -382,15 +334,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }));
         }
 
-        // Logout
         protected void btnLogout_Click(object sender, EventArgs e)
         {
             Session.Clear();
             Session.Abandon();
 
-            Response.Redirect("~/Login.aspx", false);
+            Response.Redirect("~/", false);
             Context.ApplicationInstance.CompleteRequest();
         }
     }
 }
-
