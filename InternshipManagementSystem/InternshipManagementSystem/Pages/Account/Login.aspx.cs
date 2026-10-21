@@ -101,11 +101,19 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 return;
             }
 
-            // 3. Save the user in the session and open the dashboard of their role.
-            //    If the user still has a temporary password, the dashboard sends
-            //    them to Change Password first.
+            // 3. Save the user in the session.
             SessionHelper.SignIn(user, result.IdToken);
-            Response.Redirect(ResolveUrl(user.DashboardUrl), false);
+
+            // 4. A user with a temporary password must change it first (card A04).
+            //    Everyone else opens the dashboard of their role.
+            if (user.MustChangePassword)
+            {
+                Response.Redirect(ResolveUrl(Constants.Routes.ChangePassword), false);
+            }
+            else
+            {
+                Response.Redirect(ResolveUrl(user.DashboardUrl), false);
+            }
             Context.ApplicationInstance.CompleteRequest();
         }
 
