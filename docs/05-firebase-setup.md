@@ -5,12 +5,11 @@
 ## Local configuration
 
 Use the team's existing Firebase project. Enable **Authentication → Email/Password**
-and use **Realtime Database**, not Firestore. In
-`InternshipManagementSystem/InternshipManagementSystem/`, copy the privately shared
-`App_Secrets.config` into place (or fill a copy of `App_Secrets.config.example`).
-Keep the database URL free of a trailing slash. `Web.config` merges this ignored
-file through `appSettings file=`; never put real settings in a tracked file or
-register the secrets file in the project.
+and use **Realtime Database**, not Firestore. The database URL and Web API key
+are already in `Web.config`, so a normal `git pull` / `git merge origin/main` is
+all a teammate needs; no separate settings file is used. Keep the database URL
+free of a trailing slash. The Web API key is not a password (Firebase expects it
+in app code); the database rules below are what protect the data.
 
 Leave `Firebase.StorageBucket` empty. This project accepts file links only;
 Firebase Storage requires the Blaze plan.
