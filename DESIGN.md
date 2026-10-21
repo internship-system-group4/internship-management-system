@@ -15,11 +15,15 @@ new visual direction.
 - Responsive stacked form with readable controls and no horizontal overflow.
 
 The shared student shell now lives in `Layout/Student.master` and
-`Assets/css/student-layout.css` in the web project. Every page using the student
+`Assets/css/portal-layout.css` in the web project. Every page using the student
 master inherits the logo, navigation, top bar, responsive styles and logout.
 `Student.master.cs` renders the user's initials and determines active navigation
 on the server, including mapping Apply to My Applications and Opportunity Details
-to Explore Opportunities. Company, academic and coordinator layouts are unchanged.
+to Explore Opportunities. Company.master now reuses the same portal CSS and
+mobile navigation script with company-specific links and account details.
+Academic.master and Coordinator.master also share the same theme and mobile
+behavior, each with independent navigation. Shared Meetings pages select the
+current role master after the normal authentication checks.
 
 O01's form-only styles remain in `Assets/css/apply-theme.css`. Its script only
 updates the cover-letter character counter; it does not construct the shell.
@@ -31,6 +35,6 @@ redrawn or generated. Original screenshots guide visual styling only; example
 people, hours, dates and company names are not product facts.
 
 Student navigation collapses into a hamburger at 900px and below. The shared
-student-layout.js controls the drawer, focus trap, Escape/backdrop close, and
+portal-layout.js controls the drawer, focus trap, Escape/backdrop close, and
 resize reset. The desktop sidebar stays visible. Without JavaScript, the
 expanded responsive navigation remains available as a fallback.

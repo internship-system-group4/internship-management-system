@@ -42,6 +42,43 @@ namespace InternshipManagementSystem.Data
                 && !Regex.IsMatch(key, @"[.#$\[\]/\x00-\x20\x7f]");
         }
 
+        public void Decide(CompanySupervisor supervisor, string applicationId,
+                           ApplicationStatus decision, string rejectionReason)
+        {
+            if (supervisor == null || !supervisor.CanLogin() || supervisor.Role != UserRole.CompanySupervisor
+                || !IsValidKey(supervisor.Id) || !IsValidKey(supervisor.CompanyId))
+                throw new InvalidOperationException("A valid company supervisor account is required.");
+            if (!IsValidKey(applicationId)) throw new InvalidOperationException("Choose a valid application.");
+            if (decision != ApplicationStatus.Accepted && decision != ApplicationStatus.Rejected)
+                throw new InvalidOperationException("Choose Accept or Reject.");
+            rejectionReason = (rejectionReason ?? "").Trim();
+            if (decision == ApplicationStatus.Rejected && (rejectionReason.Length == 0 || rejectionReason.Length > 2000))
+                throw new InvalidOperationException("Enter a rejection reason between 1 and 2,000 characters.");
+
+            string path = Collection + "/" + applicationId;
+            string etag;
+            string json = FirebaseContext.GetWithEtag(path, out etag);
+            var application = Json.Deserialize<InternshipApplication>(json);
+            if (application == null || application.CompanyId != supervisor.CompanyId)
+                throw new InvalidOperationException("This application is not available to your company.");
+            if (!IsValidKey(application.OpportunityId))
+                throw new InvalidOperationException("The linked opportunity is unavailable.");
+            var opportunity = new OpportunityRepository().GetById(application.OpportunityId);
+            if (opportunity == null || opportunity.CompanyId != supervisor.CompanyId)
+                throw new InvalidOperationException("The linked opportunity does not belong to your company.");
+            if (application.Status != ApplicationStatus.Pending || application.IsConfirmedByStudent)
+                throw new InvalidOperationException("This application has already been reviewed. Refresh to see its current status.");
+
+            // Preserve all other fields, including future model extensions.
+            var record = Json.ToMap(json);
+            record["Status"] = (int)decision;
+            record["RejectionReason"] = decision == ApplicationStatus.Rejected ? rejectionReason : null;
+            record["DecidedBySupervisorId"] = supervisor.Id;
+            record["DecidedAt"] = Time.NowMs();
+            if (!FirebaseContext.PutIfUnchanged(path, record, etag))
+                throw new InvalidOperationException("This application changed during review. Refresh before making another decision.");
+        }
+
         public static bool IsSafeDocumentUrl(string value)
         {
             Uri uri;

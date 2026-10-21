@@ -29,8 +29,8 @@ counts as an existing application; reapplication is not part of O01.
 
 Both lists read this same collection using indexed `StudentId` or `CompanyId`
 queries. They display application details, CV links and status. Company
-accept/reject actions (O04/O05) and student offer confirmation (O03) remain outside
-this O01 change. Existing development database rules remain development rules;
+accept/reject actions are now implemented in O05 (see 07-application-decisions.md).
+Student offer confirmation (O03) remains separate. Existing development database rules remain development rules;
 the list pages enforce role and ownership filters in the server application.
 
 ## Verification
@@ -80,7 +80,7 @@ against the team's configured database before release.
 ## Shared student layout
 
 `Layout/Student.master` owns the GJU logo, sidebar icons, active navigation,
-user initials and logout. Styles are in `Assets/css/student-layout.css`.
+user initials and logout. Styles are in `Assets/css/portal-layout.css`.
 All student pages using this master inherit the theme without copying markup
 or loading O01's form stylesheet. Check the shared layout after the O01 tests:
 

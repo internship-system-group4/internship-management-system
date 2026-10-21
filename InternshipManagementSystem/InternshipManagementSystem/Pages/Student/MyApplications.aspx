@@ -9,7 +9,7 @@
         <% if (ApplicationsList.Count == 0) { %><div class="application-empty">No applications yet. Explore opportunities to find your next internship.</div><% } %>
         <% foreach (var item in ApplicationsList) { %>
         <article class="application-row">
-            <div class="application-row-top"><div><h3><%: item.OpportunityTitle %></h3><div><%: item.CompanyName %></div><p class="application-help">Submitted <%: Time.Display(item.SubmittedAt) %></p></div><span class="application-status"><%: item.Status %></span></div>
+            <div class="application-row-top"><div><h3><%: item.OpportunityTitle %></h3><div><%: item.CompanyName %></div><p class="application-help">Submitted <%: Time.Display(item.SubmittedAt) %></p></div><span class="application-status status-<%: item.Status.ToString().ToLowerInvariant() %>"><%: item.Status %></span></div>
             <% if (!string.IsNullOrWhiteSpace(item.RejectionReason)) { %><p class="application-help">Rejection reason: <%: item.RejectionReason %></p><% } %>
             <details><summary>View application</summary><p><%: item.CoverLetter %></p>
                 <% if (InternshipManagementSystem.Data.ApplicationRepository.IsSafeDocumentUrl(item.CvUrl)) { %><a href="<%: item.CvUrl %>" target="_blank" rel="noopener noreferrer">Open CV &nearr;</a><% } %>

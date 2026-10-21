@@ -20,8 +20,12 @@ Get-ChildItem $source -Exclude App_Secrets.config,obj,.taste-skill | Copy-Item -
 protected void Page_Load(object sender, EventArgs e) {
     var user = new UserRepository().GetPerson(Request.QueryString["user"] ?? "student-one");
     SessionHelper.SignIn(user, "local-fixture-token");
-    Response.Redirect(user.Role == InternshipManagementSystem.Common.UserRole.Student
-        ? "Pages/Student/Apply.aspx?opportunityId=internship-one" : "Pages/Company/Applications.aspx");
+    if (user == null) { Response.StatusCode = 404; Response.Write("Unknown test user"); return; }
+    string destination = user.Role == InternshipManagementSystem.Common.UserRole.Student
+        ? "~/Pages/Student/Apply.aspx?opportunityId=internship-one"
+        : user.Role == InternshipManagementSystem.Common.UserRole.CompanySupervisor
+            ? "~/Pages/Company/Applications.aspx" : user.DashboardUrl;
+    Response.Redirect(ResolveUrl(destination));
 }
 </script>
 '@ | Set-Content (Join-Path $testRoot '__fixture.aspx')

@@ -1,7 +1,7 @@
-/* Shared responsive navigation for Student.master. No Bootstrap dependency. */
+/* Shared responsive behavior for all four role masters. No Bootstrap dependency. */
 (function () {
     'use strict';
-    var sidebar = document.getElementById('studentSidebar');
+    var sidebar = document.querySelector('[data-portal-sidebar]');
     var toggle = document.querySelector('.student-nav-toggle');
     var close = document.querySelector('.student-nav-close');
     var backdrop = document.querySelector('.student-nav-backdrop');

@@ -104,6 +104,21 @@ namespace InternshipManagementSystem.Security
     /// meetings pages, which three different roles share.</summary>
     public abstract class AuthenticatedPage : SecurePage
     {
+        protected override void OnPreInit(EventArgs e)
+        {
+            // Keep all authentication/activation/password checks before selecting a role shell.
+            base.OnPreInit(e);
+            if (!Request.AppRelativeCurrentExecutionFilePath.StartsWith(
+                "~/Pages/Meetings/", StringComparison.OrdinalIgnoreCase)) return;
+            switch (CurrentUser.Role)
+            {
+                case UserRole.Student: MasterPageFile = "~/Layout/Student.master"; break;
+                case UserRole.CompanySupervisor: MasterPageFile = "~/Layout/Company.master"; break;
+                case UserRole.AcademicSupervisor: MasterPageFile = "~/Layout/Academic.master"; break;
+                case UserRole.Coordinator: MasterPageFile = "~/Layout/Coordinator.master"; break;
+            }
+        }
+
         protected override UserRole[] AllowedRoles
         {
             get

@@ -47,3 +47,25 @@
 .application-empty { padding:36px 12px; text-align:center; }
 @media(max-width:1000px) { .application-layout { grid-template-columns:1fr; } .application-opportunity { grid-row:1; } }
 @media(max-width:600px) { .application-section,.application-submit,.application-opportunity { padding:20px; } .application-details { grid-template-columns:1fr; gap:16px; } .application-field-footer { flex-wrap:wrap; gap:0; } .application-row-top { flex-wrap:wrap; } .application-actions { justify-content:space-between; } }
+/* Application decisions (O05), using the approved portal palette. */
+.status-pending { color:#795416; background:#fff4de; }
+.status-accepted { color:#24613f; background:#eaf6ee; }
+.status-rejected { color:#903b35; background:#fceeed; }
+.status-withdrawn { color:#546170; background:#eef1f5; }
+.company-applications .application-heading h2 { font-size:26px; font-weight:650; color:var(--ink); }
+.company-applications .application-heading p { font-size:13px; color:var(--muted); }
+.review-list-heading { display:flex; justify-content:space-between; gap:16px; padding:20px 0; border-bottom:1px solid var(--line); }
+.review-list-heading h3 { font-size:15px; margin:0; }
+.review-list-heading span { color:#58718a; font-size:13px; }
+.review-decision { border-top:1px solid var(--line); margin-top:20px; padding-top:20px; }
+.review-accept { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.review-accept strong { font-size:14px; font-weight:600; }
+.review-accept .btn { white-space:nowrap; font-size:13px; padding:10px 16px; }
+.review-reject summary { display:inline-block; color:#903b35; cursor:pointer; text-decoration:underline; text-underline-offset:3px; }
+.review-reject-fields { padding:0 0 8px; max-width:650px; }
+.review-reject-fields .form-control { color:var(--ink); font-size:14px; border-color:#cad8e8; }
+.review-reject-fields .form-control::placeholder { color:#60758b; }
+.review-reject-button { margin-top:16px; border:1px solid #a64b42; color:#903b35; background:#fff; font-size:13px; }
+.review-reject-button:hover { color:#fff; background:#903b35; }
+.review-rejection-reason { font-size:14px; white-space:pre-wrap; color:#74433f; }
+@media(max-width:600px) { .review-accept { align-items:flex-start; flex-direction:column; gap:12px; } .company-applications .application-list { padding:8px 18px; } }
