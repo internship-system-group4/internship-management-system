@@ -69,3 +69,12 @@
 .review-reject-button:hover { color:#fff; background:#903b35; }
 .review-rejection-reason { font-size:14px; white-space:pre-wrap; color:#74433f; }
 @media(max-width:600px) { .review-accept { align-items:flex-start; flex-direction:column; gap:12px; } .company-applications .application-list { padding:8px 18px; } }
+.confirmed-placement { background:#fff; border:1px solid #b7d4c4; border-radius:7px; padding:24px; margin-bottom:24px; display:flex; align-items:center; justify-content:space-between; gap:24px; }
+.confirmed-placement h3 { font-size:19px; margin:16px 0 6px; }
+.confirmed-placement p { margin:0; }
+.offer-confirmation { margin-top:20px; border-top:1px solid var(--line); padding-top:20px; font-size:14px; }
+.offer-consent { margin:16px 0; line-height:1.8; }
+.offer-consent label { display:inline; }
+.offer-consent input { accent-color:var(--brand); }
+.confirmed-offer-label { margin:20px 0 0; color:#24613f; font-size:14px; font-weight:600; }
+@media(max-width:600px) { .confirmed-placement { align-items:flex-start; flex-direction:column; gap:16px; padding:20px; } }

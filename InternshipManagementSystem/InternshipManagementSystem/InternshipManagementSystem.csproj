@@ -479,6 +479,8 @@
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
+    <Content Include="Assets\css\public-layout.css" />
+    <Content Include="Assets\js\public-layout.js" />
     <Content Include="Assets\js\portal-layout.js" />
     <Content Include="Assets\images\gju-logo.png" />
     <Content Include="Assets\images\README.txt" />

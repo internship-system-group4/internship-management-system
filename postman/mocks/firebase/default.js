@@ -8,14 +8,25 @@ function seed() {
  const opportunity = { Id:'internship-one', Title:'Software Development Intern', CompanyId:'company-one', CompanyName:'Training Company', Location:'Amman, Jordan', Description:'Work with the engineering team to build useful web applications and learn through code reviews.', Requirements:'C#, HTML, CSS, and an interest in learning.', EligibleCollege:'Engineering', EligibleMajors:['Computer Science'], TotalSeats:4, FilledSeats:1, DurationWeeks:12, StartDate:Date.now()+86400000*30, ApplicationDeadline:Date.now()+86400000*7, Status:1 };
  return {users:{'student-one':student,'supervisor-one':supervisor,'other-supervisor':{...supervisor,Id:'other-supervisor',CompanyId:'company-two'}},opportunities:{'internship-one':opportunity}, applications:{},placements:{}};
 }
-http.createServer(async (req,res) => {
+// Serialize requests so compare-and-swap checks and writes are atomic like RTDB.
+let requestQueue=Promise.resolve();
+http.createServer((req,res) => {
+ requestQueue=requestQueue.then(()=>handle(req,res)).catch(()=>{
+   if(!res.headersSent)res.writeHead(500,{'Content-Type':'application/json'});
+   res.end(JSON.stringify({error:'Mock request failed'}));
+ });
+}).listen(process.env.PORT || 4901);
+async function handle(req,res) {
  const url = new URL(req.url,'http://localhost');
  const reply = (status,data) => { res.writeHead(status,{'Content-Type':'application/json'});res.end(JSON.stringify(data)); };
  let db = await pm.state.get('firebase.db'); if (!db) { db=seed(); await pm.state.set('firebase.db',db); }
- if (url.pathname==='/__reset' && req.method==='POST') { await pm.state.set('firebase.db',seed()); await pm.state.set('firebase.failWrites',false); await pm.state.set('firebase.conflictNext',false); return reply(200,{ok:true}); }
+ if (url.pathname==='/__reset' && req.method==='POST') { await pm.state.set('firebase.db',seed()); await pm.state.set('firebase.failWrites',false); await pm.state.set('firebase.failPlacements',false); await pm.state.set('firebase.conflictNext',false); return reply(200,{ok:true}); }
+ if (url.pathname==='/__fail-placement-writes' && req.method==='POST') { await pm.state.set('firebase.failPlacements',true); return reply(200,{ok:true}); }
+ if (url.pathname==='/__restore-writes' && req.method==='POST') { await pm.state.set('firebase.failWrites',false); await pm.state.set('firebase.failPlacements',false); return reply(200,{ok:true}); }
  if (url.pathname==='/__conflict-next' && req.method==='POST') { await pm.state.set('firebase.conflictNext',true); return reply(200,{ok:true}); }
  if (url.pathname==='/__fail-writes' && req.method==='POST') { await pm.state.set('firebase.failWrites',true); return reply(200,{ok:true}); }
- if (req.method==='PUT' && url.pathname.startsWith('/applications/') && await pm.state.get('firebase.failWrites')) return reply(500,{error:'Simulated write failure'});
+ if (['PUT','PATCH'].includes(req.method) && url.pathname.startsWith('/applications/') && await pm.state.get('firebase.failWrites')) return reply(500,{error:'Simulated write failure'});
+ if (req.method==='PUT' && url.pathname.startsWith('/placements/') && await pm.state.get('firebase.failPlacements')) return reply(500,{error:'Simulated placement failure'});
  if (!url.pathname.endsWith('.json')) return reply(501,{error:'Endpoint not modelled'});
  const parts=url.pathname.slice(1,-5).split('/');
  if (!['users','opportunities','applications','placements'].includes(parts[0])) return reply(501,{error:'Endpoint not modelled'});
@@ -30,7 +41,7 @@ http.createServer(async (req,res) => {
    }
    return reply(200,value);
  }
- if(req.method==='PUT') {
+ if(req.method==='PUT' || req.method==='PATCH') {
    if(req.headers['if-match'] && req.headers['if-match']!==etag) return reply(412,value);
    if(req.headers['if-match'] && req.headers['if-match']!=='null_etag' && await pm.state.get('firebase.conflictNext')) {
      await pm.state.set('firebase.conflictNext',false);
@@ -40,7 +51,8 @@ http.createServer(async (req,res) => {
    let body=req.body;
    if(body===undefined) { let raw='';for await(const chunk of req) raw+=chunk;body=JSON.parse(raw); }
    if(typeof body==='string') body=JSON.parse(body);
-   parent[key]=body;await pm.state.set('firebase.db',db);return reply(200,body);
+   parent[key]=req.method==='PATCH'?{...(value||{}),...body}:body;
+   await pm.state.set('firebase.db',db);return reply(200,parent[key]);
  }
  return reply(501,{error:'Method not modelled'});
-}).listen(process.env.PORT || 4901);
+}
