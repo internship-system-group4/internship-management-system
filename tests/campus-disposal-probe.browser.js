@@ -1,0 +1,1 @@
+async page=>{await page.goto('http://localhost:57983/Default.aspx');await page.waitForFunction(()=>document.querySelector('[data-story-figure]').universityStory?.snapshot().state==='ready');return await page.locator('[data-story-figure]').evaluate(h=>{h.universityStory.dispose();return h.universityStory.snapshot();});}

@@ -1,145 +1,15 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master"
-    AutoEventWireup="true" CodeBehind="Login.aspx.cs"
-    Inherits="InternshipManagementSystem.Pages.AccountArea.Login"
-    Title="Login" %>
-
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .login-card {
-            max-width: 450px;
-            margin: auto;
-            border-radius: 12px;
-        }
-    </style>
-</asp:Content>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="InternshipManagementSystem.Pages.AccountArea.Login" Title="Login | UIMS" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-
-    <div class="container py-5">
-
-        <div class="card login-card shadow-sm">
-            <div class="card-body p-4">
-
-                <h2 class="text-center mb-2">Login</h2>
-                <p class="text-center text-muted mb-4">
-                    Welcome to the Internship Management System
-                </p>
-
-                <!-- Server error -->
-                <asp:Label ID="lblError" runat="server"
-                    CssClass="alert alert-danger d-block"
-                    Visible="false">
-                </asp:Label>
-
-                <!-- Email -->
-                <div class="mb-3">
-                    <label for="<%= txtEmail.ClientID %>"
-                        class="form-label">Email</label>
-
-                    <asp:TextBox ID="txtEmail" runat="server"
-                        TextMode="Email"
-                        CssClass="form-control"
-                        placeholder="Enter your email">
-                    </asp:TextBox>
-
-                    <small id="emailError" class="text-danger"></small>
-                </div>
-
-                <!-- Password -->
-                <div class="mb-3">
-                    <label for="<%= txtPassword.ClientID %>"
-                        class="form-label">Password</label>
-
-                    <div class="input-group">
-                        <asp:TextBox ID="txtPassword" runat="server"
-                            TextMode="Password"
-                            CssClass="form-control"
-                            placeholder="Enter your password">
-                        </asp:TextBox>
-
-                        <button type="button"
-                            class="btn btn-outline-secondary"
-                            onclick="togglePassword()"
-                            id="toggleButton">
-                            Show
-                        </button>
-                    </div>
-
-                    <small id="passwordError" class="text-danger"></small>
-                </div>
-
-                <!-- Forgot password -->
-                <div class="text-end mb-3">
-                    <asp:HyperLink ID="lnkForgotPassword"
-                        runat="server"
-                        NavigateUrl="~/Pages/Account/ForgotPassword.aspx">
-                        Forgot password?
-                    </asp:HyperLink>
-                </div>
-
-                <!-- Login button -->
-                <asp:Button ID="btnLogin" runat="server"
-                    Text="Login"
-                    CssClass="btn btn-primary w-100"
-                    OnClientClick="return validateLogin();"
-                    OnClick="btnLogin_Click" />
-
-            </div>
-        </div>
-
-    </div>
-
-    <script>
-        // Show or hide password
-        function togglePassword() {
-            var password = document.getElementById(
-                '<%= txtPassword.ClientID %>'
-            );
-
-            var button = document.getElementById("toggleButton");
-
-            if (password.type === "password") {
-                password.type = "text";
-                button.textContent = "Hide";
-            } else {
-                password.type = "password";
-                button.textContent = "Show";
-            }
-        }
-
-        // Validate login inputs
-        function validateLogin() {
-            var email = document.getElementById(
-                '<%= txtEmail.ClientID %>'
-            ).value.trim();
-
-            var password = document.getElementById(
-                '<%= txtPassword.ClientID %>'
-            ).value;
-
-            var emailError = document.getElementById("emailError");
-            var passwordError = document.getElementById("passwordError");
-
-            emailError.textContent = "";
-            passwordError.textContent = "";
-
-            var valid = true;
-
-            if (email === "") {
-                emailError.textContent = "Email is required.";
-                valid = false;
-            } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-                emailError.textContent = "Enter a valid email address.";
-                valid = false;
-            }
-
-            if (password === "") {
-                passwordError.textContent = "Password is required.";
-                valid = false;
-            }
-
-            return valid;
-        }
-    </script>
-
+<div class="public-auth">
+ <div class="public-auth-intro"><h1>Welcome back.</h1><p class="public-lead">Your next step is waiting in your internship portal.</p><p>Sign in with the account provided for your student, company, academic or coordinator role.</p><img class="public-photo" src="<%: ResolveUrl("~/Assets/images/home-students.jpg") %>" alt="The GJU campus with students outside university buildings" width="960" height="685" /><p class="public-form-note">Need an account? <a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>">Contact your coordinator</a>.</p></div>
+ <section class="public-form" data-public-form="login" aria-labelledby="login-title"><h2 id="login-title">Log in to UIMS</h2><p class="public-form-intro">Use your university internship account.</p>
+ <asp:Label ID="lblError" runat="server" CssClass="alert alert-danger d-block" Visible="false" role="alert" />
+ <div class="public-field"><label for="<%= txtEmail.ClientID %>">Email address</label><asp:TextBox ID="txtEmail" runat="server" TextMode="Email" autocomplete="username" MaxLength="254" placeholder="you@example.com" aria-required="true" data-public-required="" data-required-message="Enter your email address." aria-describedby="emailError" /><span id="emailError" class="public-field-error" aria-live="polite"></span></div>
+ <div class="public-field"><label for="<%= txtPassword.ClientID %>">Password</label><div class="public-password"><asp:TextBox ID="txtPassword" runat="server" TextMode="Password" autocomplete="current-password" aria-required="true" data-public-required="" data-required-message="Enter your password." aria-describedby="passwordError" /><button id="toggleButton" type="button" aria-label="Show password" aria-pressed="false" aria-controls="<%= txtPassword.ClientID %>">Show</button></div><span id="passwordError" class="public-field-error" aria-live="polite"></span></div>
+ <div class="public-form-links"><span>Your account stays private.</span><asp:HyperLink ID="lnkForgotPassword" runat="server" NavigateUrl="~/Pages/Account/ForgotPassword.aspx">Forgot password?</asp:HyperLink></div>
+ <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="public-button" OnClientClick="return validateLogin();" OnClick="btnLogin_Click" />
+ <p class="public-form-note">Your portal opens automatically based on your account role.</p></section>
+</div>
 </asp:Content>
+<asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server"><script src="<%: ResolveUrl("~/Assets/js/public-forms.js?v=20261021-4") %>"></script></asp:Content>
