@@ -10,7 +10,11 @@
 //  the folder would fail to compile with "Student is a namespace but is used
 //  like a type". Keep the suffix.
 // =============================================================================
+
 using System;
+using System.IO;
+using System.Web;
+using System.Text;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
@@ -18,13 +22,716 @@ using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.StudentArea
 {
-    public partial class Profile : InternshipManagementSystem.Security.StudentPage
+    public partial class Profile : StudentPage
     {
+        protected string Notice = "";
+        protected bool NoticeIsError = false;
+
+        protected string StudentName = "";
+        protected string StudentEmail = "";
+        protected string StudentPhone = "";
+        protected string StudentNumber = "";
+        protected string StudentUniversity = "";
+        protected string StudentCollege = "";
+        protected string StudentMajor = "";
+        protected string RequiredHoursText = "";
+        protected string ApprovedHoursText = "";
+
+        protected string AgeText = "";
+        protected string TechnicalSkills = "";
+        protected string SoftSkills = "";
+        protected string LinkedInUrl = "";
+        protected string CvUrl = "";
+        protected string PortfolioUrl = "";
+
+        protected string Initials = "ST";
+        protected string PhotoUrl = "";
+        protected bool HasPhoto = false;
+        protected bool HasCvFile = false;
+        protected bool HasPortfolioFile = false;
+
+        protected string CvDownloadUrl =
+            "StudentCVPortfolio.aspx?download=cv";
+
+        protected string PortfolioDownloadUrl =
+            "StudentCVPortfolio.aspx?download=portfolio";
+
+        private const int MaxPhotoSize = 2 * 1024 * 1024;
+        private const int MaxPdfSize = 5 * 1024 * 1024;
+
+        private Student student;
+        private ExtraProfile extra = new ExtraProfile();
+        private CvPortfolioData documents = new CvPortfolioData();
+
+        // Extra personal fields not present in the shared Student model.
+        public class ExtraProfile
+        {
+            public int Age { get; set; }
+            public string TechnicalSkills { get; set; }
+            public string SoftSkills { get; set; }
+            public string LinkedInUrl { get; set; }
+            public string PhotoStorageName { get; set; }
+            public long UpdatedAt { get; set; }
+        }
+
+        // Same data structure used by StudentCVPortfolio.aspx.cs.
+        public class CvPortfolioData
+        {
+            public string CvUrl { get; set; }
+            public string PortfolioUrl { get; set; }
+            public string CvFileName { get; set; }
+            public string CvStorageName { get; set; }
+            public string PortfolioFileName { get; set; }
+            public string PortfolioStorageName { get; set; }
+            public long UpdatedAt { get; set; }
+        }
+
+        private string StudentId
+        {
+            get { return CurrentStudent == null ? "" : CurrentStudent.Id; }
+        }
+
+        private string ExtraPath
+        {
+            get { return "studentProfileExtras/" + StudentId; }
+        }
+
+        private string DocumentsPath
+        {
+            get { return "studentCvPortfolios/" + StudentId; }
+        }
+
+        private string StorageFolder
+        {
+            get
+            {
+                return Server.MapPath(
+                    "~/App_Data/StudentDocuments/" + StudentId);
+            }
+        }
+
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+
+            // Required for uploading files through the master-page form.
+            if (Page.Form != null)
+                Page.Form.Enctype = "multipart/form-data";
+
+            if (Session != null)
+                ViewStateUserKey = Session.SessionID;
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
+            if (!ValidKey(StudentId))
+            {
+                ShowError("Student account is unavailable.");
+                return;
+            }
 
-            // TODO(Sara Rajoub, R06, R07): build this page.
+            try
+            {
+                student = new UserRepository().GetStudent(StudentId);
+
+                if (student == null)
+                {
+                    ShowError("Student profile could not be found.");
+                    return;
+                }
+
+                LoadExtra();
+                LoadDocuments();
+
+                if (Request.QueryString["photo"] == "1")
+                {
+                    SendPhoto();
+                    return;
+                }
+
+                if (IsPostBack &&
+                    Request.Form["spAction"] == "save")
+                {
+                    SaveProfile();
+
+                    // Reload values saved to Firebase.
+                    student = new UserRepository().GetStudent(StudentId);
+                    LoadExtra();
+                    LoadDocuments();
+                }
+
+                DisplayProfile();
+            }
+            
+                catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceError(
+                    "Student Profile Error: " + ex.ToString());
+
+                ShowError(
+                    "Profile Error: " + ex.Message);
+
+                if (student != null)
+                    DisplayProfile();
+            }
+        }
+
+        private static bool ValidKey(string value)
+        {
+            return !string.IsNullOrWhiteSpace(value) &&
+                   value.IndexOfAny(
+                       new char[] { '.', '#', '$', '[', ']', '/' }
+                   ) < 0;
+        }
+
+        private void LoadExtra()
+        {
+            string json = FirebaseContext.Get(ExtraPath);
+
+            extra = string.IsNullOrWhiteSpace(json)
+                ? new ExtraProfile()
+                : Json.Deserialize<ExtraProfile>(json);
+
+            if (extra == null)
+                extra = new ExtraProfile();
+        }
+
+        private void LoadDocuments()
+        {
+            string json = FirebaseContext.Get(DocumentsPath);
+
+            documents = string.IsNullOrWhiteSpace(json)
+                ? new CvPortfolioData()
+                : Json.Deserialize<CvPortfolioData>(json);
+
+            if (documents == null)
+                documents = new CvPortfolioData();
+        }
+
+        private void DisplayProfile()
+        {
+            StudentName = student.FullName ?? "";
+            StudentEmail = student.Email ?? "";
+            StudentPhone = student.PhoneNumber ?? "";
+
+            StudentNumber = student.StudentNumber ?? "";
+            StudentUniversity = student.University ?? "";
+            StudentCollege = student.College ?? "";
+            StudentMajor = student.Major ?? "";
+
+            RequiredHoursText = student.RequiredHours.ToString();
+            ApprovedHoursText = student.ApprovedHours.ToString();
+
+            AgeText = extra.Age > 0
+                ? extra.Age.ToString()
+                : "";
+
+            TechnicalSkills = extra.TechnicalSkills ?? "";
+            SoftSkills = extra.SoftSkills ?? "";
+            LinkedInUrl = extra.LinkedInUrl ?? "";
+
+            CvUrl = documents.CvUrl ?? student.CvUrl ?? "";
+            PortfolioUrl =
+                documents.PortfolioUrl ?? student.PortfolioUrl ?? "";
+
+            string name = StudentName.Trim();
+
+            if (!string.IsNullOrEmpty(name))
+            {
+                string[] parts = name.Split(
+                    new char[] { ' ' },
+                    StringSplitOptions.RemoveEmptyEntries);
+
+                Initials = parts[0].Substring(0, 1).ToUpper();
+
+                if (parts.Length > 1)
+                {
+                    Initials += parts[parts.Length - 1]
+                        .Substring(0, 1).ToUpper();
+                }
+            }
+
+            HasPhoto = IsSafePhotoName(extra.PhotoStorageName) &&
+                       File.Exists(Path.Combine(
+                           StorageFolder, extra.PhotoStorageName));
+
+            if (HasPhoto)
+            {
+                PhotoUrl = ResolveUrl(
+                    "~/Pages/Student/Profile.aspx?photo=1&v=" +
+                    extra.UpdatedAt);
+            }
+
+            HasCvFile =
+                IsSafePdfName(documents.CvStorageName);
+
+            HasPortfolioFile =
+                IsSafePdfName(documents.PortfolioStorageName);
+        }
+
+        protected string FormValue(string name, string savedValue)
+        {
+            // Keep typed values visible when validation fails.
+            if (IsPostBack &&
+                Request.Form["spAction"] == "save" &&
+                NoticeIsError)
+            {
+                return Request.Form[name] ?? "";
+            }
+
+            return savedValue ?? "";
+        }
+
+        private void SaveProfile()
+        {
+            string fullName =
+                (Request.Form["spName"] ?? "").Trim();
+
+            string phone =
+                (Request.Form["spPhone"] ?? "").Trim();
+
+            string ageText =
+                (Request.Form["spAge"] ?? "").Trim();
+
+            string technical =
+                (Request.Form["spTechnical"] ?? "").Trim();
+
+            string soft =
+                (Request.Form["spSoft"] ?? "").Trim();
+
+            string linkedIn =
+                (Request.Form["spLinkedIn"] ?? "").Trim();
+
+            string portfolioUrl =
+                (Request.Form["spPortfolioUrl"] ?? "").Trim();
+
+            string cvUrl =
+                (Request.Form["spCvUrl"] ?? "").Trim();
+
+            int age = 0;
+
+            if (fullName.Length < 2 || fullName.Length > 120)
+            {
+                ShowError("Full name must be between 2 and 120 characters.");
+                return;
+            }
+
+            if (phone.Length > 25 ||
+                technical.Length > 1500 ||
+                soft.Length > 1500)
+            {
+                ShowError("One or more fields exceed the allowed length.");
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(ageText) &&
+                (!int.TryParse(ageText, out age) ||
+                 age < 16 || age > 100))
+            {
+                ShowError("Please enter a valid age between 16 and 100.");
+                return;
+            }
+
+            if (!ValidUrl(linkedIn) ||
+                !ValidUrl(portfolioUrl) ||
+                !ValidUrl(cvUrl))
+            {
+                ShowError("Please enter valid HTTP or HTTPS links.");
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(linkedIn))
+            {
+                Uri linkedInUri = new Uri(linkedIn);
+
+                if (!linkedInUri.Host.Equals(
+                        "linkedin.com",
+                        StringComparison.OrdinalIgnoreCase) &&
+                    !linkedInUri.Host.EndsWith(
+                        ".linkedin.com",
+                        StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowError("Please enter a valid LinkedIn profile URL.");
+                    return;
+                }
+            }
+
+            HttpPostedFile photo = Request.Files["spPhoto"];
+            HttpPostedFile cv = Request.Files["spCvFile"];
+            HttpPostedFile portfolio =
+                Request.Files["spPortfolioFile"];
+
+            if (!ValidatePhoto(photo) ||
+                !ValidatePdf(cv) ||
+                !ValidatePdf(portfolio))
+            {
+                return;
+            }
+
+            string photoName = "";
+            string cvName = "";
+            string portfolioName = "";
+
+            try
+            {
+                Directory.CreateDirectory(StorageFolder);
+
+                if (HasUpload(photo))
+                {
+                    string extension = Path.GetExtension(
+                        photo.FileName).ToLowerInvariant();
+
+                    photoName = Guid.NewGuid().ToString("N") + extension;
+
+                    photo.SaveAs(Path.Combine(
+                        StorageFolder, photoName));
+                }
+
+                if (HasUpload(cv))
+                {
+                    cvName = Guid.NewGuid().ToString("N") + ".pdf";
+
+                    cv.SaveAs(Path.Combine(
+                        StorageFolder, cvName));
+                }
+
+                if (HasUpload(portfolio))
+                {
+                    portfolioName =
+                        Guid.NewGuid().ToString("N") + ".pdf";
+
+                    portfolio.SaveAs(Path.Combine(
+                        StorageFolder, portfolioName));
+                }
+
+                // Update only permitted account fields.
+                // Academic fields are deliberately not included.
+                FirebaseContext.Patch(
+                    Constants.Paths.Users + "/" + StudentId,
+                    new
+                    {
+                        FullName = fullName,
+                        PhoneNumber = phone,
+                        CvUrl = cvUrl,
+                        PortfolioUrl = portfolioUrl
+                    });
+
+                // Save personal extras without modifying Student.cs.
+                string extraEtag;
+                string extraJson = FirebaseContext.GetWithEtag(
+                    ExtraPath, out extraEtag);
+
+                ExtraProfile updatedExtra =
+                    string.IsNullOrWhiteSpace(extraJson)
+                        ? new ExtraProfile()
+                        : Json.Deserialize<ExtraProfile>(extraJson);
+
+                if (updatedExtra == null)
+                    updatedExtra = new ExtraProfile();
+
+                updatedExtra.Age = age;
+                updatedExtra.TechnicalSkills = technical;
+                updatedExtra.SoftSkills = soft;
+                updatedExtra.LinkedInUrl = linkedIn;
+                updatedExtra.UpdatedAt = Time.NowMs();
+
+                if (!string.IsNullOrEmpty(photoName))
+                    updatedExtra.PhotoStorageName = photoName;
+
+                if (!FirebaseContext.PutIfUnchanged(
+                    ExtraPath, updatedExtra, extraEtag))
+                {
+                    ShowError(
+                        "Your profile was updated elsewhere. " +
+                        "Please refresh and try again.");
+                    return;
+                }
+
+                // Save CV and portfolio using the same Firebase node
+                // as the existing StudentCVPortfolio page.
+                string documentsEtag;
+                string documentsJson =
+                    FirebaseContext.GetWithEtag(
+                        DocumentsPath, out documentsEtag);
+
+                CvPortfolioData updatedDocuments =
+                    string.IsNullOrWhiteSpace(documentsJson)
+                        ? new CvPortfolioData()
+                        : Json.Deserialize<CvPortfolioData>(
+                            documentsJson);
+
+                if (updatedDocuments == null)
+                    updatedDocuments = new CvPortfolioData();
+
+                updatedDocuments.CvUrl = cvUrl;
+                updatedDocuments.PortfolioUrl = portfolioUrl;
+
+                if (!string.IsNullOrEmpty(cvName))
+                {
+                    updatedDocuments.CvFileName =
+                        Path.GetFileName(cv.FileName);
+
+                    updatedDocuments.CvStorageName = cvName;
+                }
+
+                if (!string.IsNullOrEmpty(portfolioName))
+                {
+                    updatedDocuments.PortfolioFileName =
+                        Path.GetFileName(portfolio.FileName);
+
+                    updatedDocuments.PortfolioStorageName =
+                        portfolioName;
+                }
+
+                updatedDocuments.UpdatedAt = Time.NowMs();
+
+                if (!FirebaseContext.PutIfUnchanged(
+                    DocumentsPath,
+                    updatedDocuments,
+                    documentsEtag))
+                {
+                    ShowError(
+                        "Your CV or portfolio could not be updated " +
+                        "because the record changed. Refresh and try again.");
+                    return;
+                }
+
+                // Refresh the current session's student details.
+                student.FullName = fullName;
+                student.PhoneNumber = phone;
+                student.CvUrl = cvUrl;
+                student.PortfolioUrl = portfolioUrl;
+
+                Session[Constants.SessionUserKey] = student;
+
+                Notice = "Your profile has been updated successfully.";
+                NoticeIsError = false;
+            }
+            catch
+            {
+                // Remove newly uploaded files if the save failed.
+                // Existing files are never deleted here.
+                if (!string.IsNullOrEmpty(photoName))
+                    DeleteFile(photoName);
+
+                if (!string.IsNullOrEmpty(cvName))
+                    DeleteFile(cvName);
+
+                if (!string.IsNullOrEmpty(portfolioName))
+                    DeleteFile(portfolioName);
+
+                throw;
+            }
+        }
+
+        private static bool HasUpload(HttpPostedFile file)
+        {
+            return file != null && file.ContentLength > 0;
+        }
+
+        private bool ValidatePhoto(HttpPostedFile file)
+        {
+            if (!HasUpload(file))
+                return true;
+
+            if (file.ContentLength > MaxPhotoSize)
+            {
+                ShowError("Profile photo must be 2 MB or smaller.");
+                return false;
+            }
+
+            string extension =
+                Path.GetExtension(file.FileName).ToLowerInvariant();
+
+            if (extension != ".jpg" &&
+                extension != ".jpeg" &&
+                extension != ".png")
+            {
+                ShowError("Profile photo must be JPG or PNG.");
+                return false;
+            }
+
+            byte[] header = new byte[8];
+            int count = file.InputStream.Read(
+                header, 0, header.Length);
+
+            file.InputStream.Position = 0;
+
+            bool isPng =
+                count == 8 &&
+                header[0] == 137 &&
+                header[1] == 80 &&
+                header[2] == 78 &&
+                header[3] == 71 &&
+                header[4] == 13 &&
+                header[5] == 10 &&
+                header[6] == 26 &&
+                header[7] == 10;
+
+            bool isJpeg =
+                count >= 3 &&
+                header[0] == 255 &&
+                header[1] == 216 &&
+                header[2] == 255;
+
+            bool valid =
+                extension == ".png" ? isPng : isJpeg;
+
+            if (!valid)
+            {
+                ShowError("The selected photo is not a valid image.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool ValidatePdf(HttpPostedFile file)
+        {
+            if (!HasUpload(file))
+                return true;
+
+            if (file.ContentLength > MaxPdfSize)
+            {
+                ShowError("PDF files must be 5 MB or smaller.");
+                return false;
+            }
+
+            if (!string.Equals(
+                Path.GetExtension(file.FileName),
+                ".pdf",
+                StringComparison.OrdinalIgnoreCase))
+            {
+                ShowError("CV and portfolio files must be PDF.");
+                return false;
+            }
+
+            byte[] header = new byte[5];
+            int count = file.InputStream.Read(
+                header, 0, header.Length);
+
+            file.InputStream.Position = 0;
+
+            if (count != 5 ||
+                Encoding.ASCII.GetString(header) != "%PDF-")
+            {
+                ShowError("The selected file is not a valid PDF.");
+                return false;
+            }
+
+            return true;
+        }
+
+        private static bool ValidUrl(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return true;
+
+            Uri uri;
+
+            return value.Length <= 500 &&
+                   Uri.TryCreate(
+                       value, UriKind.Absolute, out uri) &&
+                   (uri.Scheme == Uri.UriSchemeHttps ||
+                    uri.Scheme == Uri.UriSchemeHttp) &&
+                   !string.IsNullOrWhiteSpace(uri.Host);
+        }
+
+        private static bool IsSafePdfName(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value) ||
+                !value.EndsWith(
+                    ".pdf",
+                    StringComparison.OrdinalIgnoreCase))
+                return false;
+
+            Guid id;
+
+            return Guid.TryParseExact(
+                Path.GetFileNameWithoutExtension(value),
+                "N",
+                out id);
+        }
+
+        private static bool IsSafePhotoName(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+                return false;
+
+            string extension =
+                Path.GetExtension(value).ToLowerInvariant();
+
+            if (extension != ".png" &&
+                extension != ".jpg" &&
+                extension != ".jpeg")
+                return false;
+
+            Guid id;
+
+            return Guid.TryParseExact(
+                Path.GetFileNameWithoutExtension(value),
+                "N",
+                out id);
+        }
+
+        private void SendPhoto()
+        {
+            if (!IsSafePhotoName(extra.PhotoStorageName))
+            {
+                Response.StatusCode = 404;
+                return;
+            }
+
+            string path = Path.Combine(
+                StorageFolder, extra.PhotoStorageName);
+
+            if (!File.Exists(path))
+            {
+                Response.StatusCode = 404;
+                return;
+            }
+
+            string extension =
+                Path.GetExtension(path).ToLowerInvariant();
+
+            Response.Clear();
+
+            Response.ContentType =
+                extension == ".png"
+                    ? "image/png"
+                    : "image/jpeg";
+
+            Response.AddHeader(
+                "Content-Disposition",
+                "inline; filename=\"profile-photo" +
+                extension + "\"");
+
+            Response.AddHeader(
+                "X-Content-Type-Options", "nosniff");
+
+            Response.TransmitFile(path);
+            Response.Flush();
+
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        private void DeleteFile(string storageName)
+        {
+            if (string.IsNullOrWhiteSpace(storageName))
+                return;
+
+            string path = Path.Combine(
+                StorageFolder,
+                Path.GetFileName(storageName));
+
+            if (File.Exists(path))
+                File.Delete(path);
+        }
+
+        private void ShowError(string message)
+        {
+            Notice = message;
+            NoticeIsError = true;
         }
     }
 }

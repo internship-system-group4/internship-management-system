@@ -1,4 +1,5 @@
-﻿
+﻿// Edit & colse page opportunities 
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -13,53 +14,30 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 {
     public partial class ManageOpportunities : CompanyPage
     {
-        private readonly OpportunityRepository repo =
+        private readonly OpportunityRepository repository =
             new OpportunityRepository();
 
         protected List<Opportunity> OpportunityItems =
             new List<Opportunity>();
 
-        protected Opportunity Editing;
+        protected Opportunities.CompanyOpportunity Editing;
 
-        protected string Notice;
-        protected bool NoticeIsError;
+        protected string Notice = "";
+        protected bool IsError = false;
 
-        protected string College
-        {
-            get
-            {
-                return Constants.CollegeName;
-            }
-        }
+        protected string CollegeName = Constants.CollegeName;
+        protected string[] Majors = Constants.Programs;
 
-        protected string[] Programs
-        {
-            get
-            {
-                return Constants.Programs;
-            }
-        }
-
-        protected override void OnInit(EventArgs e)
-        {
-            base.OnInit(e);
-
-            if (Session != null)
-            {
-                ViewStateUserKey = Session.SessionID;
-            }
-        }
+        protected int OpenCount;
+        protected int DraftCount;
+        protected int ClosedCount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (CurrentSupervisor == null ||
-                string.IsNullOrWhiteSpace(
-                    CurrentSupervisor.CompanyId))
+                string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
             {
-                ShowError(
-                    "Your supervisor account is not linked to a company."
-                );
-
+                ShowError("Your account is not linked to a company.");
                 return;
             }
 
@@ -67,393 +45,320 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 if (IsPostBack)
                 {
-                    string closeId = Request.Form["moClose"];
+                    string action = Request.Form["moAction"];
 
-                    if (!string.IsNullOrWhiteSpace(closeId))
-                    {
-                        CloseOpportunity(closeId);
-                    }
-                    else if (Request.Form["moAction"] == "save")
-                    {
+                    if (action == "close")
+                        CloseOpportunity(Request.Form["moId"]);
+
+                    if (action == "save")
                         SaveEdit();
-                    }
                 }
 
-                LoadCompanyOpportunities();
+                LoadOpportunities();
 
-                string editId;
-
-                if (IsPostBack &&
-                    Request.Form["moAction"] == "save")
-                {
-                    editId = Request.Form["moId"];
-                }
-                else
-                {
-                    editId = Request.QueryString["edit"];
-                }
+                string editId = Request.QueryString["edit"];
 
                 if (!string.IsNullOrWhiteSpace(editId))
-                {
-                    Editing = OpportunityItems
-                        .FirstOrDefault(x => x.Id == editId);
-
-                    if (Editing == null)
-                    {
-                        ShowError(
-                            "Opportunity not found or access denied."
-                        );
-                    }
-                }
+                    LoadEditing(editId);
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceError(
-                    "ManageOpportunities error: " + ex
-                );
+                    "Manage opportunities: " + ex);
 
                 ShowError(
-                    "Unable to load or update opportunities. " +
-                    "Please check Firebase and try again."
-                );
+                    "Unable to load or update opportunities.");
             }
         }
 
-        // =====================================================
-        // LOAD COMPANY OPPORTUNITIES
-        // =====================================================
-
-        private void LoadCompanyOpportunities()
+        private void LoadOpportunities()
         {
-            string companyId =
-                CurrentSupervisor.CompanyId;
-
-            OpportunityItems = repo.GetAll()
-                .Where(x =>
-                    x != null &&
-                    x.CompanyId == companyId)
-                .OrderByDescending(x => x.CreatedAt)
+            OpportunityItems = repository.GetAll()
+                .Where(o =>
+                    o != null &&
+                    o.CompanyId == CurrentSupervisor.CompanyId)
+                .OrderByDescending(o => o.CreatedAt)
                 .ToList();
+
+            OpenCount = OpportunityItems.Count(o =>
+                o.Status == OpportunityStatus.Open);
+
+            DraftCount = OpportunityItems.Count(o =>
+                o.Status == OpportunityStatus.Draft);
+
+            ClosedCount = OpportunityItems.Count(o =>
+                o.Status == OpportunityStatus.Closed);
         }
 
-        // =====================================================
-        // FORM FIELD HELPERS
-        // =====================================================
-
-        protected string Field(
-            string name,
-            string fallback)
+        private bool ValidId(string id)
         {
-            if (IsPostBack &&
-                Request.Form["moAction"] == "save")
-            {
-                return Request.Form[name] ?? "";
-            }
-
-            return fallback ?? "";
+            return !string.IsNullOrWhiteSpace(id) &&
+                id.IndexOfAny(
+                    new char[] { '.', '#', '$', '[', ']', '/' }
+                ) < 0;
         }
 
-        protected bool MajorChecked(string major)
-        {
-            if (Editing == null)
-            {
-                return false;
-            }
-
-            if (IsPostBack &&
-                Request.Form["moAction"] == "save")
-            {
-                string[] selectedMajors =
-                    Request.Form.GetValues("moMajors")
-                    ?? new string[0];
-
-                return selectedMajors.Contains(major);
-            }
-
-            return Editing.EligibleMajors != null &&
-                   Editing.EligibleMajors.Contains(major);
-        }
-
-        protected static string DateValue(long timestamp)
-        {
-            if (timestamp <= 0)
-            {
-                return "";
-            }
-
-            return Time.FromUnixMs(timestamp)
-                .ToLocalTime()
-                .ToString("yyyy-MM-dd");
-        }
-
-        // =====================================================
-        // ERROR MESSAGE
-        // =====================================================
-
-        private void ShowError(string message)
-        {
-            Notice = message;
-            NoticeIsError = true;
-        }
-
-        // =====================================================
-        // SECURITY: VERIFY OPPORTUNITY OWNERSHIP
-        // =====================================================
-
-        private bool UpdateOwned(
+        private Opportunities.CompanyOpportunity GetOwned(
             string id,
-            Action<Opportunity> change)
+            out string etag)
         {
-            if (string.IsNullOrWhiteSpace(id) ||
-                id.IndexOf('/') >= 0 ||
-                id.IndexOf('.') >= 0 ||
-                id.IndexOf('#') >= 0 ||
-                id.IndexOf('$') >= 0 ||
-                id.IndexOf('[') >= 0 ||
-                id.IndexOf(']') >= 0)
+            etag = "";
+
+            if (!ValidId(id))
             {
                 ShowError("Invalid opportunity ID.");
-                return false;
+                return null;
             }
 
             string path =
                 Constants.Paths.Opportunities + "/" + id;
 
-            string etag;
+            string json = FirebaseContext.GetWithEtag(
+                path, out etag);
 
-            string json =
-                FirebaseContext.GetWithEtag(
-                    path,
-                    out etag
-                );
-
-            Opportunity opportunity =
-                string.IsNullOrWhiteSpace(json)
-                    ? null
-                    : Json.Deserialize<Opportunity>(json);
-
-            if (opportunity == null ||
-                opportunity.CompanyId !=
-                CurrentSupervisor.CompanyId)
+            if (string.IsNullOrWhiteSpace(json) ||
+                json.Trim() == "null")
             {
-                ShowError(
-                    "Access denied. This opportunity " +
-                    "does not belong to your company."
-                );
-
-                return false;
+                ShowError("Opportunity not found.");
+                return null;
             }
 
-            opportunity.Id = id;
+            Opportunities.CompanyOpportunity item =
+                Json.Deserialize<Opportunities.CompanyOpportunity>(
+                    json);
 
-            change(opportunity);
-
-            bool updated =
-                FirebaseContext.PutIfUnchanged(
-                    path,
-                    opportunity,
-                    etag
-                );
-
-            if (!updated)
+            if (item == null ||
+                item.CompanyId != CurrentSupervisor.CompanyId)
             {
                 ShowError(
-                    "This opportunity was changed by " +
-                    "another user. Refresh and try again."
-                );
-
-                return false;
+                    "You cannot manage another company's opportunity.");
+                return null;
             }
 
-            return true;
+            item.Id = id;
+            return item;
         }
 
-        // =====================================================
-        // CLOSE OPPORTUNITY
-        // =====================================================
+        private void LoadEditing(string id)
+        {
+            string etag;
+            Editing = GetOwned(id, out etag);
+        }
 
         private void CloseOpportunity(string id)
         {
-            bool closed = UpdateOwned(
-                id,
-                opportunity =>
-                {
-                    opportunity.Status =
-                        OpportunityStatus.Closed;
-                }
-            );
+            string etag;
 
-            if (closed)
+            Opportunities.CompanyOpportunity item =
+                GetOwned(id, out etag);
+
+            if (item == null)
+                return;
+
+            if (item.Status == OpportunityStatus.Closed)
             {
-                Notice =
-                    "Opportunity closed successfully. " +
-                    "It will no longer accept applications.";
-
-                NoticeIsError = false;
-            }
-        }
-
-        // =====================================================
-        // EDIT OPPORTUNITY
-        // =====================================================
-
-        private void SaveEdit()
-        {
-            string title =
-                (Request.Form["moTitle"] ?? "").Trim();
-
-            string location =
-                (Request.Form["moLocation"] ?? "").Trim();
-
-            string description =
-                (Request.Form["moDescription"] ?? "").Trim();
-
-            string requirements =
-                (Request.Form["moRequirements"] ?? "").Trim();
-
-            string college =
-                (Request.Form["moCollege"] ?? "").Trim();
-
-            List<string> majors =
-                (Request.Form.GetValues("moMajors")
-                ?? new string[0])
-                .Distinct()
-                .ToList();
-
-            int seats = 0;
-            int duration = 0;
-
-            DateTime deadline = DateTime.MinValue;
-            DateTime start = DateTime.MinValue;
-
-            bool valid =
-                title.Length >= 4 &&
-                title.Length <= 160 &&
-
-                location.Length >= 2 &&
-                location.Length <= 160 &&
-
-                description.Length >= 20 &&
-                description.Length <= 5000 &&
-
-                requirements.Length >= 5 &&
-                requirements.Length <= 3000 &&
-
-                college == Constants.CollegeName &&
-
-                majors.Count > 0 &&
-
-                !majors.Any(
-                    x => !Constants.Programs.Contains(x)
-                ) &&
-
-                int.TryParse(
-                    Request.Form["moSeats"],
-                    out seats
-                ) &&
-
-                seats >= 1 &&
-                seats <= 10000 &&
-
-                int.TryParse(
-                    Request.Form["moDuration"],
-                    out duration
-                ) &&
-
-                duration >= 1 &&
-                duration <= 104 &&
-
-                DateTime.TryParseExact(
-                    Request.Form["moDeadline"],
-                    "yyyy-MM-dd",
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None,
-                    out deadline
-                ) &&
-
-                DateTime.TryParseExact(
-                    Request.Form["moStart"],
-                    "yyyy-MM-dd",
-                    CultureInfo.InvariantCulture,
-                    DateTimeStyles.None,
-                    out start
-                ) &&
-
-                start.Date > deadline.Date;
-
-            if (!valid)
-            {
-                ShowError(
-                    "Please check all required fields, " +
-                    "eligible majors, seats, duration, " +
-                    "and dates. The start date must " +
-                    "be after the application deadline."
-                );
-
+                ShowError("This opportunity is already closed.");
                 return;
             }
 
-            bool seatsInvalid = false;
+            item.Status = OpportunityStatus.Closed;
 
-            bool saved = UpdateOwned(
-                Request.Form["moId"],
-                opportunity =>
-                {
-                    // Never reduce total seats below
-                    // the number of already filled seats.
+            string path =
+                Constants.Paths.Opportunities + "/" + id;
 
-                    if (seats < opportunity.FilledSeats)
-                    {
-                        seatsInvalid = true;
-                        return;
-                    }
-
-                    opportunity.Title = title;
-                    opportunity.Location = location;
-                    opportunity.Description = description;
-                    opportunity.Requirements = requirements;
-
-                    opportunity.EligibleCollege = college;
-                    opportunity.EligibleMajors = majors;
-
-                    opportunity.TotalSeats = seats;
-                    opportunity.DurationWeeks = duration;
-
-                    opportunity.ApplicationDeadline =
-                        Time.ToUnixMs(
-                            deadline.Date
-                                .AddDays(1)
-                                .AddTicks(-1)
-                        );
-
-                    opportunity.StartDate =
-                        Time.ToUnixMs(start.Date);
-
-                    // Important:
-                    // Do not change CompanyId.
-                    // Do not change FilledSeats.
-                    // Do not change CreatedAt.
-                    // Do not change Status here.
-                }
-            );
-
-            if (seatsInvalid)
-            {
-                ShowError(
-                    "Total seats cannot be less " +
-                    "than the number of filled seats."
-                );
-
-                return;
-            }
+            bool saved = FirebaseContext.PutIfUnchanged(
+                path, item, etag);
 
             if (saved)
             {
-                Notice =
-                    "Opportunity updated successfully.";
-
-                NoticeIsError = false;
+                Notice = "Opportunity closed successfully.";
+                IsError = false;
             }
+            else
+            {
+                ShowError(
+                    "Opportunity changed. Please refresh and try again.");
+            }
+        }
+
+        private void SaveEdit()
+        {
+            string id = Request.Form["moId"];
+            string etag;
+
+            Opportunities.CompanyOpportunity item =
+                GetOwned(id, out etag);
+
+            if (item == null)
+                return;
+
+            string title = Value("moTitle");
+            string department = Value("moDepartment");
+            string location = Value("moLocation");
+            string description = Value("moDescription");
+            string requirements = Value("moRequirements");
+            string technologies = Value("moTechnologies");
+            string mode = Value("moMode");
+
+            string[] selected =
+                Request.Form.GetValues("moMajors") ?? new string[0];
+
+            List<string> majors = selected
+                .Where(x => Majors.Contains(x))
+                .Distinct()
+                .ToList();
+
+            int seats;
+            int duration;
+            DateTime deadline;
+            DateTime start;
+            DateTime end;
+
+            bool validSeats = int.TryParse(
+                Request.Form["moSeats"], out seats);
+
+            bool validDuration = int.TryParse(
+                Request.Form["moDuration"], out duration);
+
+            bool validDeadline = DateTime.TryParseExact(
+                Request.Form["moDeadline"],
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out deadline);
+
+            bool validStart = DateTime.TryParseExact(
+                Request.Form["moStart"],
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out start);
+
+            bool validEnd = DateTime.TryParseExact(
+                Request.Form["moEnd"],
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out end);
+
+            if (title.Length < 4 || title.Length > 160 ||
+                department.Length == 0 || department.Length > 120 ||
+                location.Length < 2 || location.Length > 160 ||
+                description.Length < 20 ||
+                description.Length > 5000 ||
+                requirements.Length < 5 ||
+                requirements.Length > 3000 ||
+                technologies.Length > 1000 ||
+                majors.Count == 0 ||
+                selected.Length != majors.Count ||
+                !validSeats || seats < 1 || seats > 10000 ||
+                !validDuration || duration < 1 || duration > 104 ||
+                !validDeadline || !validStart || !validEnd)
+            {
+                ShowError("Please check all opportunity fields.");
+                return;
+            }
+
+            if (seats < item.FilledSeats)
+            {
+                ShowError(
+                    "Seats cannot be less than filled seats.");
+                return;
+            }
+
+            if (start.Date <= deadline.Date ||
+                end.Date <= start.Date)
+            {
+                ShowError(
+                    "Start date must follow the deadline, " +
+                    "and end date must follow start date.");
+                return;
+            }
+
+            if (mode != "On-site" &&
+                mode != "Hybrid" &&
+                mode != "Remote")
+            {
+                ShowError("Invalid training mode.");
+                return;
+            }
+
+            item.Title = title;
+            item.Department = department;
+            item.Location = location;
+            item.Description = description;
+            item.Requirements = requirements;
+            item.TechnologiesUsed = technologies;
+            item.TrainingMode = mode;
+
+            item.EligibleCollege = CollegeName;
+            item.EligibleMajors = majors;
+
+            item.TotalSeats = seats;
+            item.DurationWeeks = duration;
+
+            item.ApplicationDeadline = ToUnix(deadline);
+            item.StartDate = ToUnix(start);
+            item.EndDate = ToUnix(end);
+
+            string path =
+                Constants.Paths.Opportunities + "/" + id;
+
+            bool saved = FirebaseContext.PutIfUnchanged(
+                path, item, etag);
+
+            if (saved)
+            {
+                Notice = "Opportunity updated successfully.";
+                IsError = false;
+            }
+            else
+            {
+                ShowError(
+                    "Opportunity changed. Refresh and try again.");
+            }
+        }
+
+        private string Value(string key)
+        {
+            return (Request.Form[key] ?? "").Trim();
+        }
+
+        private static long ToUnix(DateTime date)
+        {
+            return new DateTimeOffset(
+                date.Date).ToUnixTimeMilliseconds();
+        }
+
+        protected static string DateText(long value)
+        {
+            if (value <= 0)
+                return "";
+
+            return DateTimeOffset
+                .FromUnixTimeMilliseconds(value)
+                .ToLocalTime()
+                .ToString("yyyy-MM-dd");
+        }
+
+        protected bool IsMajorSelected(string major)
+        {
+            if (Editing == null ||
+                Editing.EligibleMajors == null)
+                return false;
+
+            return Editing.EligibleMajors.Contains(major);
+        }
+
+        protected string StatusText(Opportunity item)
+        {
+            return item.Status.ToString();
+        }
+
+        private void ShowError(string message)
+        {
+            Notice = message;
+            IsError = true;
         }
     }
 }

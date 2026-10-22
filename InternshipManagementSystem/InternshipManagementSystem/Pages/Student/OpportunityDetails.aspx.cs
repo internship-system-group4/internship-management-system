@@ -11,8 +11,10 @@
 //  like a type". Keep the suffix.
 // =============================================================================
 
+
 using System;
 using System.Linq;
+using System.Web;
 
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -24,6 +26,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
     public partial class OpportunityDetails : StudentPage
     {
         protected Opportunity SelectedOpportunity;
+
         protected string Notice = "";
         protected bool CanApply = false;
         protected string ApplyUrl = "";
@@ -36,92 +39,102 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 return;
             }
 
-            string id = Request.QueryString["id"];
+            string opportunityId = Request.QueryString["id"];
 
-            if (!ApplicationRepository.IsValidKey(id))
+            // Check that the opportunity ID is safe and valid.
+            if (!ApplicationRepository.IsValidKey(opportunityId))
             {
-                Notice =
-                    "Invalid opportunity link. " +
-                    "Please select an opportunity from Explore.";
+                Notice = "Invalid opportunity link. " +
+                         "Please select an opportunity from Explore Opportunities.";
                 return;
             }
 
             try
             {
-                var repository = new OpportunityRepository();
+                OpportunityRepository repository =
+                    new OpportunityRepository();
 
-                SelectedOpportunity = repository.GetById(id);
+                SelectedOpportunity =
+                    repository.GetById(opportunityId);
 
                 if (SelectedOpportunity == null)
                 {
-                    Notice = "Opportunity not found.";
+                    Notice = "This opportunity could not be found.";
                     return;
                 }
 
-                // Students may only view opportunities
-                // that match their college and major.
+                // The student can only view eligible opportunities.
                 if (!SelectedOpportunity.IsEligible(CurrentStudent))
                 {
                     SelectedOpportunity = null;
 
-                    Notice =
-                        "This opportunity is not available " +
-                        "for your college or major.";
+                    Notice = "This opportunity is not available " +
+                             "for your college or major.";
                     return;
                 }
 
-                CanApply =
-                    SelectedOpportunity.IsOpenForApplications;
+                // The model checks status, deadline and remaining seats.
+                CanApply = SelectedOpportunity.IsOpenForApplications;
 
                 if (CanApply)
                 {
-                    ApplyUrl =
-                        "Apply.aspx?opportunityId=" +
-                        Server.UrlEncode(id);
+                    // Osama's Apply.aspx expects opportunityId.
+                    ApplyUrl = "Apply.aspx?opportunityId=" +
+                               HttpUtility.UrlEncode(opportunityId);
                 }
                 else
                 {
-                    Notice =
-                        "This opportunity is no longer " +
-                        "accepting applications.";
+                    Notice = "This opportunity is no longer " +
+                             "accepting applications.";
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceError(
-                    "Opportunity Details: " + ex
+                    "Opportunity Details Error: " + ex.ToString()
                 );
 
                 SelectedOpportunity = null;
                 CanApply = false;
 
-                Notice =
-                    "Unable to load opportunity details. " +
-                    "Please try again later.";
+                Notice = "Unable to load opportunity details. " +
+                         "Please try again later.";
             }
         }
 
-        protected static string DisplayDate(long timestamp)
-        {
-            return Time.DisplayDate(timestamp);
-        }
-
-        protected string EligibleMajorsText
+        protected string CompanyNameText
         {
             get
             {
-                if (SelectedOpportunity == null ||
-                    SelectedOpportunity.EligibleMajors == null ||
-                    SelectedOpportunity.EligibleMajors.Count == 0)
+                if (SelectedOpportunity == null)
                 {
                     return "Not specified";
                 }
 
-                return string.Join(
-                    ", ",
-                    SelectedOpportunity.EligibleMajors
+                return ValueOrDefault(
+                    SelectedOpportunity.CompanyName
                 );
             }
+        }
+
+        protected static string ValueOrDefault(string value)
+        {
+            if (string.IsNullOrWhiteSpace(value))
+            {
+                return "Not specified";
+            }
+
+            return value;
+        }
+
+        protected static string DisplayDate(long timestamp)
+        {
+            if (timestamp <= 0)
+            {
+                return "Not specified";
+            }
+
+            return Time.DisplayDate(timestamp);
         }
     }
 }

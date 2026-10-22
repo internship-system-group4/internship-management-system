@@ -3,17 +3,21 @@
 //  Owner : Sara Rajoub
 //  Cards : R01, R02
 //
-//  Create, edit and close this company's opportunities, with majors, requirements and seat count. A supervisor must not be able to touch another company's rows.
+//  (Create on this page), edit and close this company's opportunities, with majors, requirements and seat count. A supervisor must not be able to touch another company's rows.
 //
 //  Namespace note: these page namespaces end in "Area" on purpose. A namespace
 //  called ...Pages.Student would hide the Student model class and every file in
 //  the folder would fail to compile with "Student is a namespace but is used
 //  like a type". Keep the suffix.
 // =============================================================================
+
+
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Web;
+
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
@@ -23,147 +27,260 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 {
     public partial class Opportunities : CompanyPage
     {
-        protected string Notice { get; private set; }
-        protected bool NoticeIsError { get; private set; }
-        protected string SupervisorCompanyName
-        {
-            get { return CurrentSupervisor == null ? "" : (CurrentSupervisor.CompanyName ?? ""); }
-        }
+        protected string Notice = "";
+        protected bool IsError = false;
 
-        protected override void OnInit(EventArgs e)
+        protected string CollegeName = Constants.CollegeName;
+        protected string[] Majors = Constants.Programs;
+
+        // Additional fields required by the Figma design.
+        // Inherit from the existing Opportunity model.
+        public class CompanyOpportunity : Opportunity
         {
-            base.OnInit(e);
-            if (Session != null) ViewStateUserKey = Session.SessionID;
+            public string Department { get; set; }
+            public string OpportunityType { get; set; }
+            public string TrainingMode { get; set; }
+            public string TechnologiesUsed { get; set; }
+            public long EndDate { get; set; }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Request.QueryString["created"] == "1" && !IsPostBack)
-                Notice = "Opportunity published successfully. Eligible students can now discover it.";
+            if (!IsPostBack)
+                return;
 
-            if (IsPostBack && Request.Form["opAction"] == "publish")
-                Publish();
+            string action = Request.Form["opAction"];
+
+            if (action == "draft" || action == "publish")
+            {
+                SaveOpportunity(action == "publish");
+            }
         }
 
-        protected string FormValue(string name)
+        private void SaveOpportunity(bool publish)
         {
-            return IsPostBack ? (Request.Form[name] ?? "") : "";
-        }
+            if (CurrentSupervisor == null ||
+                string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
+            {
+                ShowError("Your account is not linked to a company.");
+                return;
+            }
 
-        protected string FormValueOrDefault(string name, string fallback)
-        {
-            return IsPostBack ? (Request.Form[name] ?? "") : fallback;
-        }
+            string title = Value("opTitle");
+            string department = Value("opDepartment");
+            string location = Value("opLocation");
+            string type = Value("opType");
+            string mode = Value("opMode");
+            string description = Value("opDescription");
+            string requirements = Value("opRequirements");
+            string technologies = Value("opTechnologies");
 
-        protected bool IsMajorSelected(string major)
-        {
-            string[] values = Request.Form.GetValues("opMajors") ?? new string[0];
-            return values.Contains(major, StringComparer.Ordinal);
-        }
+            string[] selectedMajors =
+                Request.Form.GetValues("opMajors") ?? new string[0];
 
-        private void Fail(string message)
-        {
-            Notice = message;
-            NoticeIsError = true;
-        }
+            List<string> eligibleMajors = selectedMajors
+                .Where(x => Majors.Contains(x))
+                .Distinct()
+                .ToList();
 
-        private static bool ParseDate(string input, out DateTime value)
-        {
-            return DateTime.TryParseExact(input, "yyyy-MM-dd", CultureInfo.InvariantCulture,
-                DateTimeStyles.None, out value);
-        }
+            int seats;
+            int duration;
+            DateTime deadline;
+            DateTime start;
+            DateTime end;
 
-        private void Publish()
-        {
+            bool validSeats = int.TryParse(
+                Request.Form["opSeats"], out seats);
+
+            bool validDuration = int.TryParse(
+                Request.Form["opDuration"], out duration);
+
+            bool validDeadline = DateTime.TryParseExact(
+                Request.Form["opDeadline"],
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out deadline);
+
+            bool validStart = DateTime.TryParseExact(
+                Request.Form["opStart"],
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out start);
+
+            bool validEnd = DateTime.TryParseExact(
+                Request.Form["opEnd"],
+                "yyyy-MM-dd",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out end);
+
+            if (title.Length > 160 ||
+                department.Length > 120 ||
+                location.Length > 160 ||
+                description.Length > 5000 ||
+                requirements.Length > 3000 ||
+                technologies.Length > 1000)
+            {
+                ShowError("One or more fields are too long.");
+                return;
+            }
+
+            if (selectedMajors.Length != eligibleMajors.Count)
+            {
+                ShowError("Please select valid specializations.");
+                return;
+            }
+
+            if (publish)
+            {
+                if (title.Length < 4 ||
+                    department.Length == 0 ||
+                    location.Length < 2 ||
+                    description.Length < 20 ||
+                    requirements.Length < 5 ||
+                    eligibleMajors.Count == 0 ||
+                    !validSeats || seats < 1 || seats > 10000 ||
+                    !validDuration || duration < 1 || duration > 104 ||
+                    !validDeadline || !validStart || !validEnd)
+                {
+                    ShowError("Please complete all required fields.");
+                    return;
+                }
+            }
+
+            if ((validSeats && (seats < 1 || seats > 10000)) ||
+                (validDuration && (duration < 1 || duration > 104)))
+            {
+                ShowError("Please enter valid seats and duration.");
+                return;
+            }
+
+            if (validDeadline && validStart &&
+                start.Date <= deadline.Date)
+            {
+                ShowError("Start date must be after the deadline.");
+                return;
+            }
+
+            if (validStart && validEnd &&
+                end.Date <= start.Date)
+            {
+                ShowError("End date must be after start date.");
+                return;
+            }
+
+            if (publish &&
+                deadline.Date < DateTime.Today)
+            {
+                ShowError("Application deadline cannot be in the past.");
+                return;
+            }
+
+            if (type != "Internship" ||
+                (mode != "On-site" &&
+                 mode != "Hybrid" &&
+                 mode != "Remote"))
+            {
+                ShowError("Please select a valid opportunity type.");
+                return;
+            }
+
             try
             {
-                var supervisor = CurrentSupervisor;
-                if (supervisor == null || string.IsNullOrWhiteSpace(supervisor.Id)
-                    || string.IsNullOrWhiteSpace(supervisor.CompanyId))
+                string id = Guid.NewGuid().ToString("N");
+
+                CompanyOpportunity opportunity =
+                    new CompanyOpportunity();
+
+                opportunity.Id = id;
+                opportunity.CompanyId =
+                    CurrentSupervisor.CompanyId;
+
+                opportunity.Title = title;
+                opportunity.Location = location;
+                opportunity.Description = description;
+                opportunity.Requirements = requirements;
+
+                opportunity.EligibleCollege = CollegeName;
+                opportunity.EligibleMajors = eligibleMajors;
+
+                opportunity.TotalSeats =
+                    validSeats ? seats : 0;
+
+                opportunity.FilledSeats = 0;
+
+                opportunity.DurationWeeks =
+                    validDuration ? duration : 0;
+
+                opportunity.ApplicationDeadline =
+                    validDeadline ? ToUnix(deadline) : 0;
+
+                opportunity.StartDate =
+                    validStart ? ToUnix(start) : 0;
+
+                opportunity.EndDate =
+                    validEnd ? ToUnix(end) : 0;
+
+                opportunity.Department = department;
+                opportunity.OpportunityType = type;
+                opportunity.TrainingMode = mode;
+                opportunity.TechnologiesUsed = technologies;
+
+                opportunity.Status = publish
+                    ? OpportunityStatus.Open
+                    : OpportunityStatus.Draft;
+
+                opportunity.CreatedAt =
+                    DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+
+                string path =
+                    Constants.Paths.Opportunities + "/" + id;
+
+                string etag;
+                FirebaseContext.GetWithEtag(path, out etag);
+
+                bool saved = FirebaseContext.PutIfUnchanged(
+                    path, opportunity, etag);
+
+                if (!saved)
                 {
-                    Fail("Your account is not linked to a company. Contact the coordinator.");
+                    ShowError("Unable to save. Please try again.");
                     return;
                 }
 
-                string title = (Request.Form["opTitle"] ?? "").Trim();
-                string location = (Request.Form["opLocation"] ?? "").Trim();
-                string description = (Request.Form["opDescription"] ?? "").Trim();
-                string requirements = (Request.Form["opRequirements"] ?? "").Trim();
-                string college = (Request.Form["opCollege"] ?? "").Trim();
-                string[] requestedMajors = Request.Form.GetValues("opMajors") ?? new string[0];
-                var majors = requestedMajors.Distinct(StringComparer.Ordinal).ToList();
+                Notice = publish
+                    ? "Opportunity published successfully."
+                    : "Draft saved successfully.";
 
-                if (title.Length < 4 || title.Length > 160 || location.Length < 2 || location.Length > 160
-                    || description.Length < 20 || description.Length > 5000
-                    || requirements.Length < 5 || requirements.Length > 3000)
-                {
-                    Fail("Please complete the title, location, description (at least 20 characters), and requirements.");
-                    return;
-                }
-
-                if (college != Constants.CollegeName || majors.Count == 0
-                    || majors.Any(m => !Constants.Programs.Contains(m)))
-                {
-                    Fail("Select the configured college and at least one valid major.");
-                    return;
-                }
-
-                int seats, duration;
-                if (!int.TryParse(Request.Form["opSeats"], out seats) || seats < 1 || seats > 10000
-                    || !int.TryParse(Request.Form["opDuration"], out duration) || duration < 1 || duration > 104)
-                {
-                    Fail("Seats must be 1–10000 and duration must be 1–104 weeks.");
-                    return;
-                }
-
-                DateTime deadline, start;
-                if (!ParseDate(Request.Form["opDeadline"], out deadline)
-                    || !ParseDate(Request.Form["opStart"], out start))
-                {
-                    Fail("Enter a valid application deadline and start date.");
-                    return;
-                }
-                if (deadline.Date < DateTime.Today || start.Date <= deadline.Date)
-                {
-                    Fail("Deadline cannot be in the past; start date must be after the application deadline.");
-                    return;
-                }
-
-                // Store end of deadline day (local server time) as Unix milliseconds.
-                DateTime deadlineEnd = deadline.Date.AddDays(1).AddTicks(-1);
-                var item = new Opportunity
-                {
-                    CompanyId = supervisor.CompanyId,
-                    CompanyName = supervisor.CompanyName,
-                    CreatedBySupervisorId = supervisor.Id,
-                    Title = title,
-                    Description = description,
-                    Requirements = requirements,
-                    Location = location,
-                    EligibleCollege = college,
-                    EligibleMajors = majors,
-                    TotalSeats = seats,
-                    FilledSeats = 0,
-                    DurationWeeks = duration,
-                    StartDate = Time.ToUnixMs(start.Date),
-                    ApplicationDeadline = Time.ToUnixMs(deadlineEnd),
-                    Status = OpportunityStatus.Open,
-                    CreatedAt = Time.NowMs()
-                };
-
-                string id = new OpportunityRepository().Insert(item);
-                if (string.IsNullOrWhiteSpace(id))
-                {
-                    Fail("Firebase did not return an opportunity ID. Verify the saved record before retrying.");
-                    return;
-                }
-                Response.Redirect("~/Pages/Company/Opportunities.aspx?created=1", false);
-                Context.ApplicationInstance.CompleteRequest();
+                IsError = false;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                Fail("Unable to publish. Check Firebase configuration, access rules and connectivity.");
+                System.Diagnostics.Trace.TraceError(
+                    "Create opportunity: " + ex);
+
+                ShowError(
+                    "Unable to save the opportunity in Firebase.");
             }
+        }
+
+        private string Value(string key)
+        {
+            return (Request.Form[key] ?? "").Trim();
+        }
+
+        private static long ToUnix(DateTime date)
+        {
+            return new DateTimeOffset(
+                date.Date).ToUnixTimeMilliseconds();
+        }
+
+        private void ShowError(string message)
+        {
+            Notice = message;
+            IsError = true;
         }
     }
 }

@@ -69,6 +69,24 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected global::System.Web.UI.WebControls.Literal litHours;
 
         /// <summary>
+        /// rptApplications control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptApplications;
+
+        /// <summary>
+        /// pnlNoApplications control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlNoApplications;
+
+        /// <summary>
         /// rptTasks control.
         /// </summary>
         /// <remarks>
@@ -112,23 +130,5 @@ namespace InternshipManagementSystem.Pages.StudentArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl progressFill;
-
-        /// <summary>
-        /// rptApplications control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater rptApplications;
-
-        /// <summary>
-        /// pnlNoApplications control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlNoApplications;
     }
 }

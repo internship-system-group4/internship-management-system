@@ -265,8 +265,8 @@
       <DependentUpon>ManageOpportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
@@ -412,8 +412,8 @@
       <DependentUpon>Apply.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Dashboard.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -447,8 +447,8 @@
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\OpportunityDetails.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>OpportunityDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Student\OpportunityDetails.aspx.designer.cs">
       <DependentUpon>OpportunityDetails.aspx</DependentUpon>
