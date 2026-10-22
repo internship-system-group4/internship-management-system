@@ -73,13 +73,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td colspan="8" class="text-center text-muted py-4">
-                            No tasks created yet.
-                        </td>
-                    </tr>
-                </tbody>
+    <asp:Repeater ID="rptCompanyTasks" runat="server">
+        <ItemTemplate>
+            <tr>
+                <td><%#: Eval("Title") %></td>
+                <td><%#: Eval("Trainee") %></td>
+                <td><%#: Eval("Deadline") %></td>
+                <td><%#: Eval("MaxScore") %></td>
+                <td><%#: Eval("Weight") %></td>
+                <td><%#: Eval("TaskStatus") %></td>
+                <td><%#: Eval("SubmissionStatus") %></td>
+                <td>
+                    <asp:HyperLink runat="server"
+                        NavigateUrl="~/Pages/Company/TaskReview.aspx"
+                        Text="View Submissions"
+                        CssClass="btn btn-outline-secondary btn-sm" />
+                </td>
+            </tr>
+        </ItemTemplate>
+    </asp:Repeater>
+</tbody>
             </table>
+            <asp:Label ID="lblNoCompanyTasks" runat="server"
+    Text="No tasks created yet."
+    CssClass="text-muted" />
         </div>
     </div>
 

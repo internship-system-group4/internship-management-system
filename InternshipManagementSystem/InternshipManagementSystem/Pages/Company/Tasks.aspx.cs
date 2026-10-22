@@ -34,6 +34,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 gvCriteria.DataSource = criteria;
                 gvCriteria.DataBind();
                 LoadTrainees();
+                LoadCompanyTasks();
             }
         }
         protected void btnCreateTask_Click(object sender, EventArgs e)
@@ -153,6 +154,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 Session["TaskCriteria"] = new List<GradeComponent>();
                 gvCriteria.DataSource = new List<GradeComponent>();
                 gvCriteria.DataBind();
+                LoadCompanyTasks();
             }
             catch (FirebaseException)
             {
@@ -281,5 +283,83 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             lblMessage.CssClass = "text-success";
             lblMessage.Text = "Criterion added successfully.";
         }
+        private void LoadCompanyTasks()
+        {
+            List<CompanyTaskRow> rows = new List<CompanyTaskRow>();
+
+            // نقرأ المهام والتسليمات ثم نعرض ما يخص شركة المشرف فقط.
+            List<InternshipTask> tasks = new TaskRepository().GetAll();
+            List<Submission> submissions = new SubmissionRepository().GetAll();
+            PlacementRepository placements = new PlacementRepository();
+
+            foreach (InternshipTask task in tasks)
+            {
+                if (task.CompanyId != CurrentSupervisor.CompanyId) continue;
+
+                Placement placement = placements.GetById(task.PlacementId);
+
+                if (placement == null ||
+                    placement.CompanyId != CurrentSupervisor.CompanyId ||
+                    placement.StudentId != task.StudentId)
+                {
+                    continue;
+                }
+
+                Submission latest = null;
+
+                foreach (Submission submission in submissions)
+                {
+                    if (submission.TaskId != task.Id ||
+                        submission.PlacementId != task.PlacementId ||
+                        submission.StudentId != task.StudentId)
+                    {
+                        continue;
+                    }
+
+                    if (latest == null ||
+                        submission.AttemptNumber > latest.AttemptNumber ||
+                        (submission.AttemptNumber == latest.AttemptNumber &&
+                         submission.SubmittedAt > latest.SubmittedAt))
+                    {
+                        latest = submission;
+                    }
+                }
+
+                rows.Add(new CompanyTaskRow
+                {
+                    Title = task.Title,
+                    Trainee = string.IsNullOrWhiteSpace(placement.StudentName)
+                        ? placement.StudentId
+                        : placement.StudentName,
+                    Deadline = task.Deadline > 0
+                        ? DateTimeOffset.FromUnixTimeMilliseconds(task.Deadline)
+                            .UtcDateTime.ToString("yyyy-MM-dd HH:mm") + " UTC"
+                        : "Not set",
+                    MaxScore = task.MaxScore,
+                    Weight = task.Weight,
+                    TaskStatus = task.Status.ToString(),
+                    SubmissionStatus = latest == null
+                        ? "Not submitted"
+                        : latest.Status.ToString() + " (attempt " +
+                          latest.AttemptNumber + ")"
+                });
+            }
+
+            rptCompanyTasks.DataSource = rows;
+            rptCompanyTasks.DataBind();
+            lblNoCompanyTasks.Visible = rows.Count == 0;
+        }
+
+        public class CompanyTaskRow
+        {
+            public string Title { get; set; }
+            public string Trainee { get; set; }
+            public string Deadline { get; set; }
+            public double MaxScore { get; set; }
+            public double Weight { get; set; }
+            public string TaskStatus { get; set; }
+            public string SubmissionStatus { get; set; }
+        }
     }
+
 }

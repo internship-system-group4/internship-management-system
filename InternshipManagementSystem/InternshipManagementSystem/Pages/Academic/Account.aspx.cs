@@ -1,8 +1,10 @@
 ﻿using System;
+
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Services;
+using System.Web.Services.Description;
 
 namespace InternshipManagementSystem.Pages.Academic
 {
@@ -76,7 +78,7 @@ namespace InternshipManagementSystem.Pages.Academic
 
                 ShowMessage("Your profile information has been updated successfully.", true);
             }
-            catch (Exception )
+            catch (Exception ex)
             {
                 ShowMessage("Error: " + ex.Message, false);
             }

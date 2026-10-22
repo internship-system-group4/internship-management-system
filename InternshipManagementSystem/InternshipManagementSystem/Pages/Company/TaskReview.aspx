@@ -1,73 +1,127 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="TaskReview.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.TaskReview" Title="Review Submissions" %>
- <%-- ===================================================================
-      Review Submissions
-      Owner : Fatima
-      Cards : F05, F06, F07
-      Delete the placeholder below and build the page here.
-      =================================================================== --%>
+﻿<%@ Page Language="C#"
+    MasterPageFile="~/Layout/Company.master"
+    AutoEventWireup="true"
+    CodeBehind="TaskReview.aspx.cs"
+    Inherits="InternshipManagementSystem.Pages.CompanyArea.TaskReview"
+    Title="Review Submissions" %>
+
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
         .review-overlay {
-            display: none;
             position: fixed;
             inset: 0;
             z-index: 2000;
-            background: rgba(20, 30, 45, .45);
-            backdrop-filter: blur(4px);
-            padding: 24px;
-            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            background: rgba(17, 24, 39, .52);
+            -webkit-backdrop-filter: blur(6px);
+            backdrop-filter: blur(6px);
         }
 
         .review-dialog {
-            max-width: 850px;
-            margin: 30px auto;
-            padding: 28px;
+            width: 100%;
+            max-width: 820px;
+            max-height: calc(100vh - 32px);
+            overflow-y: auto;
             background: #fff;
             border-radius: 16px;
+            padding: 26px;
+            box-shadow: 0 24px 65px rgba(0, 0, 0, .24);
         }
 
-        .review-choice {
-            border: 1px solid #dee2e6;
+        .review-summary {
+            padding: 16px;
+            background: #f8fafc;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+        }
+
+        .review-tabs > input {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .review-tab-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 6px;
+            background: #f3f4f6;
             border-radius: 12px;
-            padding: 20px;
-            height: 100%;
+            margin: 20px 0;
         }
 
-        .review-choice h4 {
-            margin-bottom: 8px;
+        .review-tab-buttons label {
+            flex: 1;
+            min-width: 150px;
+            margin: 0;
+            padding: 11px 14px;
+            border-radius: 9px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+            color: #475569;
         }
 
-        .review-section {
+        .review-tab-buttons label:hover {
+            background: #e7ebef;
+        }
+
+        #reviewTabDetails:checked ~ .review-tab-buttons label[for="reviewTabDetails"],
+        #reviewTabGrade:checked ~ .review-tab-buttons label[for="reviewTabGrade"],
+        #reviewTabRevision:checked ~ .review-tab-buttons label[for="reviewTabRevision"] {
+            background: #fff;
+            color: #0b7a75;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+        }
+
+        .review-tab-content {
             display: none;
         }
 
-        .review-history {
-            margin-top: 28px;
-            border-top: 1px solid #dee2e6;
-            padding-top: 22px;
+        #reviewTabDetails:checked ~ #reviewDetailsContent,
+        #reviewTabGrade:checked ~ #reviewGradeContent,
+        #reviewTabRevision:checked ~ #reviewRevisionContent {
+            display: block;
         }
 
-        .review-history details {
-            padding: 12px 0;
-            border-bottom: 1px solid #eee;
+        .review-work-text {
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
         }
 
-        .review-history summary {
-            cursor: pointer;
-            font-weight: 600;
+        @media (max-width: 576px) {
+            .review-dialog {
+                padding: 18px;
+            }
+
+            .review-tab-buttons {
+                display: block;
+            }
+
+            .review-tab-buttons label {
+                display: block;
+                width: 100%;
+            }
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 
-    <div class="uims-card">
-        <h2>Review Submissions</h2>
-        <p class="text-muted">
-            Open a submission to evaluate it or request a new attempt.
+    <div class="mb-4">
+        <h2 class="mb-1">Review Submissions</h2>
+        <p class="text-muted mb-0">
+            Review student work, give a grade, or request another attempt.
         </p>
+    </div>
 
-        <%-- Example data for the frontend preview. Later: load company submissions from Firebase. --%>
+    <div class="uims-card">
+        <h3 class="mb-3">Student Submissions</h3>
+
         <div class="table-responsive">
             <table class="uims-table">
                 <thead>
@@ -76,305 +130,229 @@
                         <th>Trainee</th>
                         <th>Attempt</th>
                         <th>Status</th>
-                        <th>Submitted</th>
-                        <th></th>
+                        <th>Submitted At</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-              <asp:Repeater ID="rptSubmissions" runat="server"
-    OnItemCommand="rptSubmissions_ItemCommand">
-    <ItemTemplate>
-       <td>
-    <asp:LinkButton ID="btnViewDetails" runat="server"
-        Text="View Details"
-        CssClass="btn btn-outline-primary btn-sm"
-        CommandName="ViewDetails"
-        CommandArgument='<%# Eval("Id") %>' />
-</td>
-    </ItemTemplate>
-</asp:Repeater>
+                <tbody>
+                    <asp:Repeater ID="rptSubmissions"
+                        runat="server"
+                        OnItemCommand="rptSubmissions_ItemCommand">
+                        <ItemTemplate>
+                            <tr>
+                                <td><%#: Eval("TaskId") %></td>
+                                <td><%#: Eval("StudentId") %></td>
+                                <td><%#: Eval("AttemptNumber") %></td>
+                                <td><%#: Eval("Status") %></td>
+                                <td>
+                                    <%# DateTimeOffset
+                                        .FromUnixTimeMilliseconds(Convert.ToInt64(Eval("SubmittedAt")))
+                                        .ToLocalTime()
+                                        .ToString("yyyy-MM-dd HH:mm") %>
+                                </td>
+                                <td>
+                                    <asp:LinkButton ID="btnViewDetails"
+                                        runat="server"
+                                        Text="View Details"
+                                        CssClass="btn btn-outline-secondary btn-sm"
+                                        CommandName="ViewDetails"
+                                        CommandArgument='<%# Eval("Id") %>' />
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
             </table>
         </div>
     </div>
 
-    <div id="reviewOverlay" class="review-overlay" role="dialog"
-        aria-modal="true" aria-labelledby="reviewTitle">
+    <asp:Panel ID="pnlSubmissionDetails"
+        runat="server"
+        Visible="false"
+        CssClass="review-overlay">
+
         <div class="review-dialog">
 
-            <div class="d-flex justify-content-between align-items-start mb-3">
+            <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
                 <div>
-                    <h2 id="reviewTitle">Weekly Progress Report</h2>
+                    <h3 class="mb-1">Review Submission</h3>
                     <p class="text-muted mb-0">
-                        Example Student · Attempt 2 · Pending Review
+                        Choose what you want to do with this attempt.
                     </p>
                 </div>
-                <button type="button" class="btn btn-outline-secondary"
-                    onclick="closeReview()" aria-label="Close review">
+
+                <a href="TaskReview.aspx"
+                    class="btn btn-outline-secondary"
+                    aria-label="Close">
+                    &times;
+                </a>
+            </div>
+
+            <div class="review-summary">
+                <div>
+                    <strong>Task:</strong>
+                    <asp:Label ID="lblDetailTask" runat="server" />
+                </div>
+
+                <div class="mt-1">
+                    <strong>Attempt:</strong>
+                    <asp:Label ID="lblDetailAttempt" runat="server" />
+                </div>
+            </div>
+
+            <asp:Label ID="lblReviewMessage"
+                runat="server"
+                EnableViewState="false"
+                CssClass="d-block mt-3" />
+
+            <div class="review-tabs">
+
+                <input type="radio"
+                    name="reviewAction"
+                    id="reviewTabDetails"
+                    checked="checked" />
+
+                <input type="radio"
+                    name="reviewAction"
+                    id="reviewTabGrade" />
+
+                <input type="radio"
+                    name="reviewAction"
+                    id="reviewTabRevision" />
+
+                <div class="review-tab-buttons">
+                    <label for="reviewTabDetails">View Details</label>
+                    <label for="reviewTabGrade">Give Grade</label>
+                    <label for="reviewTabRevision">Request Revision</label>
+                </div>
+
+                <%-- التبويب الأول: التفاصيل --%>
+                <div id="reviewDetailsContent"
+                    class="review-tab-content">
+
+                    <h4 class="mb-3">Submitted Work</h4>
+
+                    <div class="border rounded p-3 mb-3">
+                        <strong>Student's Text</strong>
+
+                        <div class="review-work-text mt-2">
+                            <asp:Label ID="lblDetailText" runat="server" />
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <asp:HyperLink ID="lnkDetailWork"
+                            runat="server"
+                            Text="Open submitted link"
+                            Target="_blank"
+                            Visible="false" />
+                    </div>
+
+                    <div>
+                        <asp:HyperLink ID="lnkDetailFile"
+                            runat="server"
+                            Text="Open attached file"
+                            Target="_blank"
+                            Visible="false" />
+                    </div>
+                </div>
+
+                <%-- التبويب الثاني: التقييم --%>
+                <div id="reviewGradeContent"
+                    class="review-tab-content">
+
+                    <h4 class="mb-2">Give Grade</h4>
+                    <p class="text-muted">
+                        Enter a score for each criterion and leave feedback.
+                    </p>
+
+                    <asp:Repeater ID="rptReviewCriteria" runat="server">
+                        <ItemTemplate>
+                            <div class="border rounded p-3 mb-3">
+                                <div class="mb-2">
+                                    <strong><%#: Eval("Name") %></strong>
+                                    <span class="text-muted">
+                                        — Maximum: <%#: Eval("MaxScore") %>,
+                                        Weight: <%#: Eval("Weight") %>%
+                                    </span>
+                                </div>
+
+                                <div class="text-muted mb-2">
+                                    <%#: Eval("Description") %>
+                                </div>
+
+                                <asp:TextBox ID="txtScore"
+                                    runat="server"
+                                    CssClass="form-control"
+                                    TextMode="Number"
+                                    min="0"
+                                    step="0.01"
+                                    placeholder="Enter score" />
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+
+                    <div class="mb-3">
+                        <asp:Label ID="lblFeedback"
+                            runat="server"
+                            AssociatedControlID="txtFeedback"
+                            CssClass="form-label"
+                            Text="Feedback for Student" />
+
+                        <asp:TextBox ID="txtFeedback"
+                            runat="server"
+                            CssClass="form-control"
+                            TextMode="MultiLine"
+                            Rows="4" />
+                    </div>
+
+                    <asp:Button ID="btnSaveGrade"
+                        runat="server"
+                        Text="Save Grade"
+                        CssClass="btn btn-brand"
+                        OnClick="btnSaveGrade_Click" />
+                </div>
+
+                <%-- التبويب الثالث: طلب إعادة التسليم --%>
+                <div id="reviewRevisionContent"
+                    class="review-tab-content">
+
+                    <h4 class="mb-2">Request Revision</h4>
+                    <p class="text-muted">
+                        Explain what the student needs to change.
+                    </p>
+
+                    <div class="mb-3">
+                        <asp:Label ID="lblRevisionInstructions"
+                            runat="server"
+                            AssociatedControlID="txtRevisionInstructions"
+                            CssClass="form-label"
+                            Text="Revision Instructions" />
+
+                        <asp:TextBox ID="txtRevisionInstructions"
+                            runat="server"
+                            CssClass="form-control"
+                            TextMode="MultiLine"
+                            Rows="4" />
+                    </div>
+
+                    <asp:Button ID="btnRequestRevision"
+                        runat="server"
+                        Text="Send Revision Request"
+                        CssClass="btn btn-brand"
+                        OnClick="btnRequestRevision_Click" />
+                </div>
+
+            </div>
+
+            <div class="text-end mt-4">
+                <a href="TaskReview.aspx"
+                    class="btn btn-outline-secondary">
                     Close
-                </button>
+                </a>
             </div>
 
-            <hr />
-
-            <h4>Submitted Work</h4>
-            <p><strong>Student's text:</strong></p>
-            <p class="text-muted">
-                Example submission text will appear here.
-            </p>
-            <p>
-                <strong>Link:</strong>
-                <span class="text-muted">No link in this example</span>
-            </p>
-            <p>
-                <strong>File:</strong>
-                <span class="text-muted">No file in this example</span>
-            </p>
-
-            <hr />
-
-            <%-- The supervisor chooses one action. --%>
-            <div id="reviewChoices">
-                <h4>What would you like to do?</h4>
-
-                <div class="row g-3 mt-1">
-                    <div class="col-md-6">
-                        <div class="review-choice">
-                            <h4>Evaluate Submission</h4>
-                            <p class="text-muted">
-                                Enter scores for the task criteria and leave feedback.
-                            </p>
-                            <button type="button" class="btn btn-brand"
-                                onclick="showReviewSection('grade')">
-                                Start Evaluation
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <div class="review-choice">
-                            <h4>Request Revision</h4>
-                            <p class="text-muted">
-                                Explain what the student needs to change before submitting again.
-                            </p>
-                            <button type="button" class="btn btn-outline-secondary"
-                                onclick="showReviewSection('revision')">
-                                Request Revision
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <%-- F05: grading fields --%>
-            <div id="gradeSection" class="review-section">
-                <button type="button" class="btn btn-link px-0"
-                    onclick="showReviewChoices()">
-                    ← Back to choices
-                </button>
-
-                <h4>Evaluate Submission</h4>
-                <p class="text-muted">
-                    The criteria and maximum scores will come from this task.
-                </p>
-
-                <div class="table-responsive">
-                    <table class="uims-table">
-                        <thead>
-                            <tr>
-                                <th>Criterion</th>
-                                <th>Maximum Score</th>
-                                <th>Score</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Report Quality (example)</td>
-                                <td>20</td>
-                                <td>
-                                    <asp:TextBox ID="txtCriterionScore" runat="server"
-                                        CssClass="form-control" TextMode="Number" />
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                   <asp:Panel ID="pnlSubmissionDetails" runat="server"
-    Visible="false" CssClass="uims-card mt-4">
-
-    <h3>Submission Details</h3>
-
-    <p><strong>Task:</strong>
-        <asp:Label ID="lblDetailTask" runat="server" /></p>
-
-    <p><strong>Attempt:</strong>
-        <asp:Label ID="lblDetailAttempt" runat="server" /></p>
-
-    <p><strong>Student's text:</strong><br />
-        <asp:Label ID="lblDetailText" runat="server" /></p>
-
-    <p><asp:HyperLink ID="lnkDetailWork" runat="server"
-        Text="Open submitted link" Target="_blank" Visible="false" /></p>
-
-    <p><asp:HyperLink ID="lnkDetailFile" runat="server"
-        Text="Open attached file" Target="_blank" Visible="false" /></p>
-
-    <hr class="my-4" />
-
-    <h4>Evaluation</h4>
-    <p class="text-muted">Enter a score for each criterion.</p>
-
-    <asp:Repeater ID="rptReviewCriteria" runat="server">
-        <ItemTemplate>
-            <div class="mb-3">
-                <label class="form-label">
-                    <%#: Eval("Name") %>
-                    — Max: <%#: Eval("MaxScore") %>
-                    — Weight: <%#: Eval("Weight") %>%
-                </label>
-
-                <asp:TextBox ID="txtScore" runat="server"
-                    TextMode="Number"
-                    CssClass="form-control"
-                    min="0"
-                    step="0.01" />
-            </div>
-        </ItemTemplate>
-    </asp:Repeater>
-
-    <div class="mb-3">
-        <asp:Label ID="Label1" runat="server"
-            AssociatedControlID="txtFeedback"
-            CssClass="form-label"
-            Text="Feedback for student" />
-
-        <asp:TextBox ID="TextBox1" runat="server"
-            TextMode="MultiLine"
-            Rows="4"
-            CssClass="form-control" />
-    </div>
-    <div class="d-flex gap-2">
-        <asp:Button ID="btnSaveGrade" runat="server"
-            Text="Save Grade"
-            CssClass="btn btn-brand"
-            OnClick="btnSaveGrade_Click"
-            Enabled="false" />
-
-        <asp:Button ID="Button1" runat="server"
-            Text="Request Revision"
-            CssClass="btn btn-outline-secondary"
-            Enabled="false" />
-    </div>
-                       <asp:Label ID="lblReviewMessage" runat="server"
-    CssClass="d-block mt-3" />
-</asp:Panel>
-                </div>
-
-                <div class="mb-3 mt-3">
-                    <asp:Label ID="lblFeedback" runat="server"
-                        AssociatedControlID="txtFeedback"
-                        CssClass="form-label" Text="Feedback" />
-                    <asp:TextBox ID="txtFeedback" runat="server"
-                        CssClass="form-control" TextMode="MultiLine" Rows="4" />
-
-                </div>
-
-                <asp:Button ID="btnSaveEvaluation" runat="server"
-                    Text="Save Evaluation" CssClass="btn btn-brand"
-                    OnClientClick="showReviewNotice(); return false;" />
-            </div>
-
-            <%-- F06: revision fields --%>
-            <div id="revisionSection" class="review-section">
-                <button type="button" class="btn btn-link px-0"
-                    onclick="showReviewChoices()">
-                    ← Back to choices
-                </button>
-
-                <h4>Request Revision</h4>
-                <p class="text-muted">
-                    Tell the student exactly what to improve in the next attempt.
-                </p>
-
-                <div class="mb-3">
-                    <asp:Label ID="lblRevisionInstructions" runat="server"
-                        AssociatedControlID="txtRevisionInstructions"
-                        CssClass="form-label" Text="Revision Instructions" />
-                    <asp:TextBox ID="txtRevisionInstructions" runat="server"
-                        CssClass="form-control" TextMode="MultiLine" Rows="5" />
-                </div>
-
-                <asp:Button ID="btnRequestRevision" runat="server"
-                    Text="Send Revision Request"
-                    CssClass="btn btn-brand"
-                    OnClientClick="showReviewNotice(); return false;" />
-            </div>
-
-            <div id="reviewNotice" class="alert alert-info mt-3"
-                style="display: none;" role="status">
-                This is a design preview. Nothing was saved yet.
-            </div>
-
-            <%-- F07: all previous attempts remain readable. --%>
-            <div class="review-history">
-                <h4>Submission History</h4>
-                <p class="text-muted">
-                    Previous attempts will stay here even after a revision.
-                </p>
-
-                <details>
-                    <summary>Attempt 2 · Pending Review</summary>
-                    <p class="mt-2 mb-0">
-                        Example text for the student's second attempt.
-                    </p>
-                </details>
-
-                <details>
-                    <summary>Attempt 1 · Revision Requested</summary>
-                    <p class="mt-2">
-                        Example text for the student's first attempt.
-                    </p>
-                    <p class="mb-0">
-                        <strong>Revision instructions:</strong>
-                        Please add more detail to the report.
-                    </p>
-                </details>
-            </div>
         </div>
-    </div>
-
-    <script>
-        function openReview() {
-            document.getElementById("reviewOverlay").style.display = "block";
-            document.body.style.overflow = "hidden";
-            showReviewChoices();
-        }
-
-        function closeReview() {
-            document.getElementById("reviewOverlay").style.display = "none";
-            document.body.style.overflow = "";
-        }
-
-        function showReviewChoices() {
-            document.getElementById("reviewChoices").style.display = "block";
-            document.getElementById("gradeSection").style.display = "none";
-            document.getElementById("revisionSection").style.display = "none";
-            document.getElementById("reviewNotice").style.display = "none";
-        }
-
-        function showReviewSection(section) {
-            document.getElementById("reviewChoices").style.display = "none";
-            document.getElementById("gradeSection").style.display =
-                section === "grade" ? "block" : "none";
-            document.getElementById("revisionSection").style.display =
-                section === "revision" ? "block" : "none";
-            document.getElementById("reviewNotice").style.display = "none";
-        }
-
-        function showReviewNotice() {
-            document.getElementById("reviewNotice").style.display = "block";
-        }
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") closeReview();
-        });
-    </script>
+    </asp:Panel>
 
 </asp:Content>
