@@ -17,8 +17,9 @@ namespace InternshipManagementSystem.Pages.PublicArea
         {
             get
             {
-                return (ConfigurationManager.AppSettings["Firebase.DatabaseUrl"] ?? "")
-                    .TrimEnd('/');
+                return (
+                    ConfigurationManager.AppSettings["Firebase.DatabaseUrl"] ?? ""
+                ).TrimEnd('/');
             }
         }
 
@@ -32,7 +33,9 @@ namespace InternshipManagementSystem.Pages.PublicArea
 
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            RegisterAsyncTask(new PageAsyncTask(SaveMessageAsync));
+            RegisterAsyncTask(
+                new PageAsyncTask(SaveMessageAsync)
+            );
         }
 
         private async Task SaveMessageAsync()
@@ -56,7 +59,9 @@ namespace InternshipManagementSystem.Pages.PublicArea
             // Validate email
             if (email.Length == 0 ||
                 email.Length > 254 ||
-                !Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+                !Regex.IsMatch(
+                    email,
+                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 ShowMessage(
                     "Please enter a valid email address.",
@@ -86,11 +91,13 @@ namespace InternshipManagementSystem.Pages.PublicArea
             {
                 if (string.IsNullOrWhiteSpace(FirebaseUrl))
                 {
-                    throw new InvalidOperationException(
-                        "Firebase Database URL is missing.");
+                    ShowMessage(
+                        "Firebase Database URL is not configured.",
+                        true);
+                    return;
                 }
 
-                // Create message data
+                // Message data saved to Firebase
                 var contactMessage = new
                 {
                     Name = name,
@@ -102,11 +109,11 @@ namespace InternshipManagementSystem.Pages.PublicArea
                         DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
                 };
 
-                // Convert data to JSON
                 string json =
                     JsonConvert.SerializeObject(contactMessage);
 
-                // Save to Firebase without login
+                // Send directly to Firebase without user authentication.
+                // Firebase generates a unique key for the new message.
                 using (var client = new HttpClient())
                 using (var content = new StringContent(
                     json,
@@ -116,15 +123,21 @@ namespace InternshipManagementSystem.Pages.PublicArea
                     FirebaseUrl + "/ContactMessages.json",
                     content))
                 {
-                    response.EnsureSuccessStatusCode();
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        ShowMessage(
+                            "Unable to save your message to Firebase. " +
+                            "Please check the database permissions.",
+                            true);
+                        return;
+                    }
                 }
 
-                // Success message
                 ShowMessage(
                     "Your message has been sent successfully!",
                     false);
 
-                // Clear form
+                // Clear fields after successful submission
                 txtName.Text = "";
                 txtEmail.Text = "";
                 txtSubject.Text = "";

@@ -162,11 +162,7 @@
         <div class="contact-heading">
             <h1>Contact Us</h1>
 
-            <p>
-                Have a question about internship opportunities
-                or the internship management system?
-                We're here to help.
-            </p>
+          
         </div>
 
         <div class="contact-card">
@@ -234,11 +230,6 @@
                 Text="Send Message"
                 CssClass="contact-send"
                 OnClick="btnSend_Click" />
-
-            <p class="contact-note">
-                All fields are required.
-                Your message will be reviewed by the internship coordinator.
-            </p>
 
         </div>
 
