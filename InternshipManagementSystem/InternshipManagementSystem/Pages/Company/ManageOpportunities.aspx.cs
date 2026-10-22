@@ -21,6 +21,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             new List<Opportunity>();
 
         protected Opportunities.CompanyOpportunity Editing;
+        protected Opportunities.CompanyOpportunity Viewing;
 
         protected string Notice = "";
         protected bool IsError = false;
@@ -58,8 +59,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 string editId = Request.QueryString["edit"];
 
+                string viewId = Request.QueryString["view"];
+
                 if (!string.IsNullOrWhiteSpace(editId))
                     LoadEditing(editId);
+                else if (!string.IsNullOrWhiteSpace(viewId))
+                    LoadViewing(viewId);
             }
             catch (Exception ex)
             {
@@ -143,6 +148,18 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             string etag;
             Editing = GetOwned(id, out etag);
+        }
+
+        // Read-only details for the View button.
+        private void LoadViewing(string id)
+        {
+            string etag;
+            Viewing = GetOwned(id, out etag);
+        }
+
+        protected static string TextOrDash(string value)
+        {
+            return string.IsNullOrWhiteSpace(value) ? "-" : value;
         }
 
         private void CloseOpportunity(string id)

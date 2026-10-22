@@ -36,6 +36,7 @@
             public const string Completions = "completions";
             public const string ContactMessages = "contactMessages";
             public const string Meetings = "meetings";
+            public const string Notifications = "notifications";
         }
 
         public static class Routes

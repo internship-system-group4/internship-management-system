@@ -250,6 +250,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     return;
                 }
 
+                // Tell eligible students about a newly published opportunity.
+                if (publish)
+                    Services.NotificationService.OpportunityPublished(id);
+
                 Notice = publish
                     ? "Opportunity published successfully."
                     : "Draft saved successfully.";

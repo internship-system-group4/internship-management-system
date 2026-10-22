@@ -68,11 +68,49 @@ namespace InternshipManagementSystem.Data
 
         /// <summary>Reads children of <paramref name="path"/> whose
         /// <paramref name="field"/> equals <paramref name="value"/>.
-        /// Requires an .indexOn rule for that field; see docs/05-firebase-setup.md.</summary>
+        /// Uses the field's .indexOn rule (docs/05-firebase-setup.md). If the rule
+        /// is missing, reads the whole node and filters here so the page still loads.</summary>
         public static string GetWhere(string path, string field, string value)
         {
             string query = "orderBy=" + Uri.EscapeDataString("\"" + field + "\"")
                          + "&equalTo=" + Uri.EscapeDataString("\"" + value + "\"");
+            try
+            {
+                return Send("GET", path, null, query);
+            }
+            catch (FirebaseException ex)
+            {
+                if (ex.Message.IndexOf("Index not defined", StringComparison.OrdinalIgnoreCase) < 0) throw;
+                System.Diagnostics.Trace.TraceWarning(
+                    "Firebase index missing: add \".indexOn\": \"" + field + "\" to /" + path.Trim('/') + ". Filtering locally.");
+                return FilterChildren(Get(path), field, value);
+            }
+        }
+
+        private static string FilterChildren(string json, string field, string value)
+        {
+            if (json == null) return null;
+            Dictionary<string, object> all = Json.ToMap(json);
+            Dictionary<string, object> matches = new Dictionary<string, object>();
+            foreach (KeyValuePair<string, object> child in all)
+            {
+                IDictionary<string, object> record = child.Value as IDictionary<string, object>;
+                object fieldValue;
+                if (record != null && record.TryGetValue(field, out fieldValue)
+                    && string.Equals(Convert.ToString(fieldValue), value, StringComparison.Ordinal))
+                {
+                    matches[child.Key] = child.Value;
+                }
+            }
+            return matches.Count == 0 ? null : Json.Serialize(matches);
+        }
+
+        /// <summary>Reads only the newest <paramref name="count"/> children of a
+        /// node whose keys are Push keys (they sort by creation time). Ordering
+        /// by key needs no .indexOn rule.</summary>
+        public static string GetLast(string path, int count)
+        {
+            string query = "orderBy=" + Uri.EscapeDataString("\"$key\"") + "&limitToLast=" + count;
             return Send("GET", path, null, query);
         }
 

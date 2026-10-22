@@ -24,14 +24,6 @@ body.uims-public { margin:0; background:#fff; color:var(--ink); font:16px/1.65 "
 .public-links .public-login:hover { background:var(--brand-dark); }
 .public-menu-toggle { display:none; width:46px; height:46px; align-items:center; justify-content:center; background:#fff; border:1px solid #cad8e8; border-radius:5px; color:var(--brand); }
 .public-menu-toggle svg { width:23px; height:23px; }
-.public-footer { background:var(--canvas); margin-top:auto; }
-.public-footer-grid { display:grid; grid-template-columns:1.5fr .8fr 1fr; gap:64px; padding-block:56px; }
-.public-footer-grid p { color:var(--muted); font-size:14px; max-width:350px; margin:20px 0 0; }
-.public-footer h2 { font-size:15px; font-weight:650; margin:0 0 20px; color:var(--ink); }
-.public-footer nav a,.public-support a { display:block; margin-top:10px; font-size:14px; text-decoration:none; width:fit-content; padding-block:4px; }
-.public-footer a:hover { text-decoration:underline; }
-.public-support p { margin-top:0; }
-.public-footer-bottom { display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px; padding-block:24px; font-size:13px; color:var(--muted); }
 .public-skip { position:absolute; inset-block-start:8px; inset-inline-start:16px; z-index:100; transform:translateY(-180%); background:#fff; padding:12px 16px; border:1px solid var(--brand); }
 .public-skip:focus { transform:translateY(0); }
 .public-page h1,.public-auth h1,.public-status h1 { font-size:clamp(36px,4.4vw,60px); line-height:1.12; font-weight:650; letter-spacing:-.03em; margin:0 0 24px; text-wrap:balance; color:var(--ink); }
@@ -114,7 +106,6 @@ body.uims-public { margin:0; background:#fff; color:var(--ink); font:16px/1.65 "
  html.public-nav-ready .public-menu-toggle { display:flex; }
  html.public-nav-ready .public-links { display:none; position:absolute; inset-inline:-24px; inset-block-start:100%; z-index:50; background:#fff; border-bottom:1px solid var(--line); }
  html.public-nav-ready .public-links.is-open { display:flex; }
- .public-footer-grid { grid-template-columns:1.3fr 1fr; gap:40px; } .public-footer-grid>div:first-child { grid-column:1/-1; }
  .public-split,.public-auth,.public-contact { grid-template-columns:1fr; gap:36px; }
  .public-auth { max-width:620px; } .public-auth-intro { padding:0; }
  .public-auth-intro .public-photo { display:none; }
@@ -125,7 +116,6 @@ body.uims-public { margin:0; background:#fff; color:var(--ink); font:16px/1.65 "
  .public-container { width:calc(100% - 32px); } .uims-public .uims-main { padding-block:36px 48px; }
  .public-brand { gap:10px; } .public-brand img { width:44px; } .public-brand strong { font-size:13px; max-width:200px; } .public-brand small { font-size:13px; }
  html.public-nav-ready .public-links { inset-inline:-16px; }
- .public-footer-grid { grid-template-columns:1fr; gap:32px; padding-block:40px; } .public-footer-grid>div:first-child { grid-column:auto; }
  .public-form,.public-callout { padding:24px; } .public-auth-intro h1,.public-contact h1 { font-size:36px; }
  .public-role-list li { grid-template-columns:1fr; gap:8px; }
  .public-photo { height:290px; } .public-lead { font-size:17px; }

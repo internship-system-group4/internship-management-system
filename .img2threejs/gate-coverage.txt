@@ -1,0 +1,88 @@
+note  part-not-specified: entrance-road
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: fence-rail--3.65-0.3
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: fence-rail--3.65-2.35
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: fence-rail-4.4-0.3
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: fence-rail-4.4-2.35
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: forecourt
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--2.29
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--2.5100000000000002
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--2.7300000000000004
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--2.9500000000000006
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--3.170000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--3.390000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--3.610000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar-3.7750000000000004
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--3.8300000000000014
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar-3.9950000000000006
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--4.050000000000002
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar-4.215000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--4.270000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar-4.4350000000000005
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--4.490000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar-4.655
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--4.710000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar-4.875
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--4.930000000000001
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: gate-bar--5.15
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: germany-base
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: germany-finial
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: germany-pole
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: jordan-base
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: jordan-finial
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: jordan-pole
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: official-logo-and-bilingual-gate-sign
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: return-window
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: road-edge--4.6
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: stone-return
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: university-gate
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: window-grille-0
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: window-grille-1
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: window-grille-2
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: window-grille-3
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: window-grille-4
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+note  part-not-specified: window-grille-5
+      built part has no matching component in the spec (fine for detail groups; a sign of spec drift for anything larger)
+
+check_part_coverage: 11 specified, 55 built, 0 error(s), 0 warning(s)

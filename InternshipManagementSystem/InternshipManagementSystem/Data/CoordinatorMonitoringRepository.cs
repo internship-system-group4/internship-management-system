@@ -9,15 +9,32 @@ namespace InternshipManagementSystem.Data
     // Read-only coordinator views. No monitoring action changes grades, hours or completion.
     public class CoordinatorMonitoringRepository
     {
+        // Reads a collection, optionally filtered by one field. If Firebase has no
+        // .indexOn rule for that field ("Index not defined"), it reads the whole
+        // collection and filters here instead, so the page still loads.
         private List<T> Read<T>(string collection, string field = null, string value = null) where T : class
         {
-            string json = field == null ? FirebaseContext.Get(collection) : FirebaseContext.GetWhere(collection, field, value);
+            string json;
+            bool filterHere = false;
+            if (field == null) json = FirebaseContext.Get(collection);
+            else
+            {
+                try { json = FirebaseContext.GetWhere(collection, field, value); }
+                catch (FirebaseException ex)
+                {
+                    if (ex.Message.IndexOf("Index not defined", StringComparison.OrdinalIgnoreCase) < 0) throw;
+                    json = FirebaseContext.Get(collection);
+                    filterHere = true;
+                }
+            }
             var map = Json.Deserialize<Dictionary<string, Dictionary<string, object>>>(json);
             var result = new List<T>();
             if (map == null) return result;
             foreach (var pair in map)
             {
                 if (pair.Value == null) continue;
+                object fieldValue;
+                if (filterHere && (!pair.Value.TryGetValue(field, out fieldValue) || Convert.ToString(fieldValue) != value)) continue;
                 pair.Value["Id"] = pair.Key;
                 result.Add(Json.Deserialize<T>(Json.Serialize(pair.Value)));
             }
@@ -94,7 +111,7 @@ namespace InternshipManagementSystem.Data
             var submissionMap = submissions.ToDictionary(s => s.Id);
             var evaluations = Read<TaskEvaluation>(Constants.Paths.TaskEvaluations, "PlacementId", id)
                 .Where(e => e.StudentId == placement.StudentId && taskIds.Contains(e.TaskId) && submissionMap.ContainsKey(e.SubmissionId ?? "") && submissionMap[e.SubmissionId].TaskId == e.TaskId).OrderByDescending(e => e.EvaluatedAt).ToList();
-            var hours = new HoursRepository().GetByPlacement(id).Where(h => h.StudentId == placement.StudentId).OrderByDescending(h => h.WorkDate).ToList();
+            var hours = Read<TrainingHoursEntry>(Constants.Paths.TrainingHours, "PlacementId", id).Where(h => h.StudentId == placement.StudentId).OrderByDescending(h => h.WorkDate).ToList();
             var companyFinal = Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations, "PlacementId", id)
                 .Where(e => e.StudentId == placement.StudentId && e.CompanyId == placement.CompanyId)
                 .OrderByDescending(e => e.IsSubmitted).ThenByDescending(e => e.SubmittedAt).ThenByDescending(e => e.CreatedAt).FirstOrDefault();
@@ -110,8 +127,31 @@ namespace InternshipManagementSystem.Data
                 CompanyFinal = companyFinal, AcademicFinal = academicFinal, Completion = completion,
                 CompanySupervisorName = Name(placement.CompanySupervisorId, placement.CompanySupervisorName),
                 AcademicSupervisorName = Name(placement.AcademicSupervisorId, "Not assigned"),
-                Comments = new AcademicCommentRepository().GetByPlacement(id).Where(c => c.StudentId == placement.StudentId).OrderByDescending(c => c.CreatedAt).ToList()
+                Comments = Read<AcademicComment>(Constants.Paths.AcademicComments, "PlacementId", id).Where(c => c.StudentId == placement.StudentId).OrderByDescending(c => c.CreatedAt).ToList()
             };
+        }
+        /// <summary>Every placement with its final-evaluation and completion
+        /// state, for the Final Completion Review queue (card A10).</summary>
+        public List<CompletionQueueRow> LoadCompletionQueue()
+        {
+            var rows = LoadPlacements().Where(r => r.Placement.Status != PlacementStatus.Cancelled).ToList();
+            var companyDone = new HashSet<string>(Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations)
+                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId));
+            var academicDone = new HashSet<string>(Read<FinalAcademicEvaluation>(Constants.Paths.AcademicEvaluations)
+                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId));
+            var completions = Read<CompletionRecord>(Constants.Paths.Completions);
+            return rows.Select(r =>
+            {
+                string key = r.Placement.Id + "|" + r.Placement.StudentId;
+                return new CompletionQueueRow
+                {
+                    Overview = r,
+                    CompanySubmitted = companyDone.Contains(key),
+                    AcademicSubmitted = academicDone.Contains(key),
+                    Completion = completions.Where(c => c.PlacementId == r.Placement.Id && c.StudentId == r.Placement.StudentId)
+                        .OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt).FirstOrDefault()
+                };
+            }).OrderBy(q => q.SortOrder).ThenBy(q => q.Overview.StudentName).ToList();
         }
         private string Name(string id, string fallback)
         {
@@ -132,6 +172,28 @@ namespace InternshipManagementSystem.Data
         public string Major { get { return Student == null ? "—" : Student.Major; } }
         public int HoursPercent { get { return Placement.RequiredHours <= 0 ? 0 : (int)Math.Min(100, ApprovedHours * 100 / Placement.RequiredHours); } }
         public string HoursText { get { return Placement.RequiredHours > 0 ? ApprovedHours + " / " + Placement.RequiredHours + " h" : ApprovedHours + " h · requirement not configured"; } }
+    }
+    public class CompletionQueueRow
+    {
+        public PlacementOverview Overview;
+        public bool CompanySubmitted, AcademicSubmitted;
+        public CompletionRecord Completion;
+        public bool IsApproved { get { return Completion != null && Completion.Status == CompletionStatus.Approved; } }
+        public bool IsReturned { get { return Completion != null && Completion.Status == CompletionStatus.Rejected; } }
+        public bool IsReady { get { return !IsApproved && CompanySubmitted && AcademicSubmitted; } }
+        public string StageText
+        {
+            get
+            {
+                if (IsApproved) return "Approved";
+                if (IsReturned) return "Returned";
+                if (IsReady) return "Ready for review";
+                if (!CompanySubmitted) return "Awaiting company evaluation";
+                return "Awaiting academic evaluation";
+            }
+        }
+        // Ready first, then returned, then waiting for evaluations, approved last.
+        public int SortOrder { get { return IsApproved ? 3 : IsReady ? (IsReturned ? 1 : 0) : 2; } }
     }
     public class CoordinatorDashboardData
     {

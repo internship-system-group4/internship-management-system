@@ -9,5 +9,39 @@ namespace InternshipManagementSystem.Pages.StudentArea
 {
     public partial class Progress
     {
+        protected global::System.Web.UI.WebControls.Panel pnlError;
+        protected global::System.Web.UI.WebControls.Panel pnlNoPlacement;
+        protected global::System.Web.UI.WebControls.Panel pnlContent;
+        protected global::System.Web.UI.WebControls.Panel pnlNoTasks;
+        protected global::System.Web.UI.WebControls.Panel pnlNoAttempts;
+        protected global::System.Web.UI.WebControls.Panel pnlNoHours;
+        protected global::System.Web.UI.WebControls.Panel pnlNotApproved;
+        protected global::System.Web.UI.WebControls.Panel pnlApproved;
+        protected global::System.Web.UI.WebControls.Panel pnlReportPending;
+        protected global::System.Web.UI.WebControls.Literal litSumHours;
+        protected global::System.Web.UI.WebControls.Literal litSumHoursPercent;
+        protected global::System.Web.UI.WebControls.Literal litSumTasks;
+        protected global::System.Web.UI.WebControls.Literal litSumRevisions;
+        protected global::System.Web.UI.WebControls.Literal litSumAverage;
+        protected global::System.Web.UI.WebControls.Literal litOpportunity;
+        protected global::System.Web.UI.WebControls.Literal litCompany;
+        protected global::System.Web.UI.WebControls.Literal litSupervisor;
+        protected global::System.Web.UI.WebControls.Literal litDates;
+        protected global::System.Web.UI.WebControls.Literal litPlacementStatus;
+        protected global::System.Web.UI.WebControls.Literal litHoursApproved;
+        protected global::System.Web.UI.WebControls.Literal litHoursPending;
+        protected global::System.Web.UI.WebControls.Literal litHoursRejected;
+        protected global::System.Web.UI.WebControls.Literal litCompletionStage;
+        protected global::System.Web.UI.WebControls.Literal litFinalScore;
+        protected global::System.Web.UI.WebControls.Literal litFinalResult;
+        protected global::System.Web.UI.WebControls.Literal litApprovedAt;
+        protected global::System.Web.UI.WebControls.Repeater rptTasks;
+        protected global::System.Web.UI.WebControls.Repeater rptAttempts;
+        protected global::System.Web.UI.WebControls.Repeater rptHours;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hoursBar;
+        protected global::System.Web.UI.WebControls.HyperLink lnkReport;
+        protected global::System.Web.UI.WebControls.Literal litErrorDetail;
+        protected global::System.Web.UI.WebControls.Panel pnlWarning;
+        protected global::System.Web.UI.WebControls.Repeater rptProblems;
     }
 }

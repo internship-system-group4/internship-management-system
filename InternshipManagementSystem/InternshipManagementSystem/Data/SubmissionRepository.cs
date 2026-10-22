@@ -25,5 +25,13 @@ namespace InternshipManagementSystem.Data
         {
             return GetWhere("TaskId", taskId);
         }
+
+        /// <summary>Saves a new attempt and tells the company supervisor.</summary>
+        public override string Insert(Submission entity)
+        {
+            string id = base.Insert(entity);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskSubmitted(entity);
+            return id;
+        }
     }
 }

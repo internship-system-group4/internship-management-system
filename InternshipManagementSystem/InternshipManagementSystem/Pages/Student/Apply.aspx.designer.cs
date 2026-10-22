@@ -10,6 +10,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected global::System.Web.UI.WebControls.TextBox CoverLetter;
         protected global::System.Web.UI.WebControls.CheckBox Confirm;
         protected global::System.Web.UI.WebControls.Button SubmitApplication;
+        protected global::System.Web.UI.WebControls.Panel ViewPanel;
         protected global::System.Web.UI.WebControls.Panel OpportunityPanel;
     }
 }

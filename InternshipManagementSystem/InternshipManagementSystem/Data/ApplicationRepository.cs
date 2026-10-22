@@ -77,6 +77,8 @@ namespace InternshipManagementSystem.Data
             record["DecidedAt"] = Time.NowMs();
             if (!FirebaseContext.PutIfUnchanged(path, record, etag))
                 throw new InvalidOperationException("This application changed during review. Refresh before making another decision.");
+
+            Services.NotificationService.ApplicationDecided(application, decision);
         }
 
         public static bool IsSafeDocumentUrl(string value)
@@ -134,6 +136,8 @@ namespace InternshipManagementSystem.Data
             // Conditional write prevents concurrent tabs and retries from overwriting a decision.
             if (!FirebaseContext.PutIfEmpty(Collection + "/" + id, application))
                 throw new InvalidOperationException("You have already applied to this internship. Check My Applications.");
+
+            Services.NotificationService.ApplicationSubmitted(application);
             return application;
         }
     }

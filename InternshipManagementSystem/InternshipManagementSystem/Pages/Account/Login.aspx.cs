@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  Login
 //  Owner : Ahmad
 //  Cards : A01, A02
@@ -26,13 +26,17 @@ namespace InternshipManagementSystem.Pages.AccountArea
 {
     public partial class Login : System.Web.UI.Page
     {
-        protected override void OnInit(EventArgs e)
-        {
-            ViewStateUserKey = Session.SessionID;
-            base.OnInit(e);
-        }
+        // Set for this verified POST response only. Never persisted in ViewState.
+        protected string VerifiedDestination { get; private set; }
+
+        // No ViewStateUserKey here on purpose: the visitor has no session yet,
+        // so the session id can change between showing this form and posting
+        // it, which made the login button fail with "Validation of viewstate
+        // MAC failed".
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);
+            Response.Cache.SetNoStore();
             if (IsPostBack) return;
 
             // An existing session is only a hint; reverify the profile before
@@ -101,20 +105,10 @@ namespace InternshipManagementSystem.Pages.AccountArea
             {
                 user = new UserRepository().GetPerson(result.Uid);
             }
-            catch (FirebaseException ex)
+            catch (FirebaseException)
             {
                 SessionHelper.SignOut();
-
-                // On the developer's own computer, also show the technical reason
-                // (for example a wrong Firebase.DatabaseUrl in Web.config).
-                if (Request.IsLocal)
-                {
-                    ShowError("We could not load your account. Details: " + ex.Message);
-                }
-                else
-                {
-                    ShowError("We could not load your account. Please try again later.");
-                }
+                ShowError("We could not load your account. Please try again later.");
                 return;
             }
             catch (FirebaseAuthExpiredException)
@@ -132,16 +126,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
             if (user == null)
             {
-                // On the developer's own computer, say exactly which record was missing
-                if (Request.IsLocal)
-                {
-                    ShowError("Your account is not set up yet. No record with a Role was found at users/"
-                        + result.Uid + " in " + FirebaseContext.DatabaseUrl);
-                }
-                else
-                {
-                    ShowError("Your account is not set up yet. Please contact the coordinator.");
-                }
+                ShowError("We could not verify your account access. Please contact the coordinator.");
                 SessionHelper.SignOut();
                 return;
             }
@@ -153,20 +138,43 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 return;
             }
 
+            // Reject unknown roles and destinations before creating the session.
+            string destination = ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl);
+            if (!Enum.IsDefined(typeof(UserRole), user.Role) || !IsApprovedDestination(destination))
+            {
+                SessionHelper.SignOut();
+                ShowError("We could not verify your account access. Please contact the coordinator.");
+                return;
+            }
+
             // 3. Save the user in the session.
             SessionHelper.SignIn(user, result.IdToken);
 
-            // 4. A user with a temporary password must change it first (card A04).
-            //    Everyone else opens the dashboard of their role.
-            if (user.MustChangePassword)
+            // Progressive enhancement only: this flag requests presentation, never authorization.
+            // No script / reduced motion takes the original immediate server redirect.
+            if (Request.Form["campusAnimation"] == "1")
             {
-                Response.Redirect(ResolveUrl(Constants.Routes.ChangePassword), false);
+                VerifiedDestination = destination;
+                txtPassword.Text = string.Empty;
+                btnLogin.Enabled = false;
+                // Survives missing/broken scripts, failed WebGL and a stalled animation.
+                Response.AddHeader("Refresh", "3; url=" + destination);
             }
             else
             {
-                Response.Redirect(ResolveUrl(user.DashboardUrl), false);
+                Response.Redirect(destination, false);
+                Context.ApplicationInstance.CompleteRequest();
             }
-            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        private bool IsApprovedDestination(string destination)
+        {
+            string[] routes = { Constants.Routes.ChangePassword,
+                "~/Pages/Student/Dashboard.aspx", "~/Pages/Company/Dashboard.aspx",
+                "~/Pages/Academic/Dashboard.aspx", "~/Pages/Coordinator/Dashboard.aspx" };
+            foreach (string route in routes)
+                if (string.Equals(destination, ResolveUrl(route), StringComparison.Ordinal)) return true;
+            return false;
         }
 
         private void ShowError(string message)

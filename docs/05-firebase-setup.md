@@ -74,16 +74,28 @@ Paste this exact development rule set into **Realtime Database → Rules**:
     "opportunities":    { ".read": "auth != null", ".write": "auth != null" },
     "applications":     { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "CompanyId"] },
     "placements":       { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["CompanyId", "AcademicSupervisorId"] },
-    "tasks":            { ".read": "auth != null", ".write": "auth != null" },
-    "submissions":      { ".read": "auth != null", ".write": "auth != null" },
-    "taskEvaluations":  { ".read": "auth != null", ".write": "auth != null" },
+    "tasks":            { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "CompanyId", "PlacementId"] },
+    "submissions":      { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "TaskId", "PlacementId"] },
+    "taskEvaluations":  { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "PlacementId"] },
     "academicComments": { ".read": "auth != null", ".write": "auth != null" },
-    "trainingHours":    { ".read": "auth != null", ".write": "auth != null" },
-    "completions":      { ".read": "auth != null", ".write": "auth != null" },
-    "meetings":         { ".read": "auth != null", ".write": "auth != null" }
+    "trainingHours":    { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "PlacementId"] },
+    "completions":      { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "PlacementId"] },
+    "meetings":         { ".read": "auth != null", ".write": "auth != null" },
+    "notifications": {
+      "$uid": {
+        ".read":  "auth != null && auth.uid === $uid",
+        ".write": "auth != null"
+      }
+    }
   }
 }
 ```
+
+`notifications/{uid}` feeds the bell in every portal's top bar. People can read
+only their own list; any signed-in user can add to another person's list,
+because the person who acts (for example a company supervisor creating a task)
+is the one who notifies the student. Without this rule the bell shows
+"Notifications are unavailable right now" and every other page keeps working.
 
 There is no blanket root rule: Firebase access grants cascade downward and cannot
 be revoked deeper. A root `.read` would expose the two confidential evaluation
