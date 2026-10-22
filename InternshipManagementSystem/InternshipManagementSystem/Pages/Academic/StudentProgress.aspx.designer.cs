@@ -15,6 +15,42 @@ namespace InternshipManagementSystem.Pages.Academic
     {
 
         /// <summary>
+        /// pnlStudentList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlStudentList;
+
+        /// <summary>
+        /// rptStudentsList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptStudentsList;
+
+        /// <summary>
+        /// litNoStudents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNoStudents;
+
+        /// <summary>
+        /// pnlProgressDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlProgressDetails;
+
+        /// <summary>
         /// litStudentName control.
         /// </summary>
         /// <remarks>

@@ -191,15 +191,15 @@
     <Compile Include="Models\TaskEvaluation.cs" />
     <Compile Include="Models\TrainingHoursEntry.cs" />
     <Compile Include="Pages\Academic\Account.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -329,6 +329,13 @@
     </Compile>
     <Compile Include="Pages\Company\Trainees.aspx.designer.cs">
       <DependentUpon>Trainees.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ViewOpportunity.aspx.cs">
+      <DependentUpon>ViewOpportunity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Company\ViewOpportunity.aspx.designer.cs">
+      <DependentUpon>ViewOpportunity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\AcademicSupervisors.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -556,6 +563,7 @@
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
+    <Content Include="Pages\Company\ViewOpportunity.aspx" />
     <Content Include="Pages\Student\DisplayEditProfile.aspx" />
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
     <Content Include="Web.config" />
