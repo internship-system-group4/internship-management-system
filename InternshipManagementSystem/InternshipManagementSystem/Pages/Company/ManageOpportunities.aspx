@@ -410,12 +410,21 @@
                             </td>
 
                             <td>
-                                <div class="mo-actions">
+                                
+                    <div class="mo-actions">
 
-                                    <a class="mo-btn mo-btn-light mo-small"
-                                       href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(item.Id) %>">
-                                        Edit
-                                    </a>
+                             <!-- View Opportunity -->
+                                   <a class="mo-btn mo-btn-light mo-small"
+                                       href="ViewOpportunity.aspx?id=<%: Server.UrlEncode(item.Id) %>">
+                                              View
+                                               </a>
+
+                                        <!-- Edit Opportunity -->
+                                               <a class="mo-btn mo-btn-light mo-small"
+                                               href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(item.Id) %>">
+                                                     Edit
+                                            </a>
+
 
                                     <% if (item.Status != OpportunityStatus.Closed) { %>
 
