@@ -159,51 +159,6 @@ namespace InternshipManagementSystem.Pages.Academic
         protected global::System.Web.UI.WebControls.TextBox txtEnrollmentYear;
 
         /// <summary>
-        /// txtTechnicalSkills control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtTechnicalSkills;
-
-        /// <summary>
-        /// txtSoftSkills control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtSoftSkills;
-
-        /// <summary>
-        /// txtCvUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCvUrl;
-
-        /// <summary>
-        /// txtPortfolioUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPortfolioUrl;
-
-        /// <summary>
-        /// txtLinkedInUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLinkedInUrl;
-
-        /// <summary>
         /// btnSaveChanges control.
         /// </summary>
         /// <remarks>
