@@ -314,8 +314,8 @@
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Companies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.designer.cs">
       <DependentUpon>Companies.aspx</DependentUpon>
@@ -328,8 +328,8 @@
       <DependentUpon>CompletionReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ContactMessages.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ContactMessages.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Coordinator\ContactMessages.aspx.designer.cs">
       <DependentUpon>ContactMessages.aspx</DependentUpon>

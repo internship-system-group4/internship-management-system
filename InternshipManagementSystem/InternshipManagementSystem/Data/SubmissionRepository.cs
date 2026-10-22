@@ -7,6 +7,10 @@ using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
+using System.Collections.Generic;
+using InternshipManagementSystem.Common;
+using InternshipManagementSystem.Models;
+
 namespace InternshipManagementSystem.Data
 {
     public class SubmissionRepository : RepositoryBase<Submission>
@@ -21,8 +25,9 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        // Add the queries your pages need here, as named methods.
-        // Keep raw field names out of the pages: if the field is ever
-        // renamed, this file is the only one that has to change.
+        public List<Submission> GetByTask(string taskId)
+        {
+            return GetWhere("TaskId", taskId);
+        }
     }
 }
