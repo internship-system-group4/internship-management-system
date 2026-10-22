@@ -2,111 +2,132 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
-        .back-link {
-            text-decoration: none;
-            color: var(--muted);
-            font-weight: 600;
-            font-size: 0.9rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-        }
-        .back-link:hover { color: var(--brand); }
-        .score-box {
-            background-color: var(--canvas);
-            border: 1px solid var(--line);
-            border-radius: var(--radius);
-            padding: 1rem;
-            text-align: center;
-        }
+        .score-box { background-color: var(--canvas); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; text-align: center; }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
-    <!-- Back Navigation -->
-    <a href="Dashboard.aspx" class="back-link">
-        <span>&larr;</span> Back to Dashboard
-    </a>
-
     <div class="uims-topbar mb-4" style="border-radius: var(--radius);">
         <h1 class="uims-page-title">Final Academic Evaluation</h1>
-        <div class="text-muted">Student: <strong style="color: var(--brand-dark);"><asp:Literal ID="litStudentName" runat="server"></asp:Literal></strong></div>
+        <div class="text-muted">Select a student to complete their final evaluation.</div>
     </div>
 
-    <!-- Section 1: Company Evaluation Summary (Read-Only) -->
-    <div class="uims-card mb-4" style="border-top: 4px solid var(--accent);">
-        <h3 style="color: var(--brand-dark);">1. Company Supervisor Evaluation</h3>
-        
-        <asp:Panel ID="pnlCompanyEvalExists" runat="server" Visible="false">
-            <div class="row mt-3">
-                <div class="col-md-3">
-                    <div class="score-box">
-                        <div class="text-muted" style="font-size: 0.85rem; font-weight: 600;">Total Score</div>
-                        <h2 style="color: var(--brand); margin: 0;">
-                            <asp:Literal ID="litCompanyScore" runat="server"></asp:Literal> / <asp:Literal ID="litCompanyMaxScore" runat="server"></asp:Literal>
-                        </h2>
-                    </div>
-                </div>
-                <div class="col-md-9">
-                    <div class="mb-2">
-                        <strong class="text-muted">Strengths:</strong>
-                        <p><asp:Literal ID="litStrengths" runat="server"></asp:Literal></p>
-                    </div>
-                    <div class="mb-2">
-                        <strong class="text-muted">Areas for Improvement:</strong>
-                        <p><asp:Literal ID="litImprovements" runat="server"></asp:Literal></p>
-                    </div>
-                    <div>
-                        <strong class="text-muted">Overall Comment:</strong>
-                        <p><asp:Literal ID="litCompanyComment" runat="server"></asp:Literal></p>
-                    </div>
-                </div>
-            </div>
-        </asp:Panel>
-        
-        <!-- Warning if company hasn't submitted yet -->
-        <asp:Panel ID="pnlNoCompanyEval" runat="server" Visible="true">
-            <div class="alert alert-warning mt-3 mb-0" role="alert">
-                The company supervisor has not submitted their final evaluation yet. You may want to wait before completing the academic evaluation.
-            </div>
-        </asp:Panel>
+    <!-- Success Message Panel -->
+    <asp:Panel ID="pnlSuccessMessage" runat="server" Visible="false" CssClass="alert alert-success mb-4">
+        <asp:Literal ID="litSuccessMessage" runat="server"></asp:Literal>
+    </asp:Panel>
+
+    <!-- Students Table -->
+    <div class="uims-card">
+        <div class="table-responsive">
+            <table class="uims-table align-middle">
+                <thead>
+                    <tr>
+                        <th>Student Name</th>
+                        <th>University ID</th>
+                        <th>Major</th>
+                        <th class="text-end">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rptStudents" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td><strong><%# Eval("FullName") %></strong></td>
+                                <td>#<%# Eval("StudentNumber") %></td>
+                                <td><%# Eval("Major") %></td>
+                                <td class="text-end">
+                                    <!-- LinkButton triggers server-side click to open the modal -->
+                                   <asp:LinkButton ID="btnOpenModal" runat="server" CssClass="btn btn-sm btn-brand" 
+    CommandArgument='<%# Eval("Id") %>' OnClick="btnOpenModal_Click" CausesValidation="false" formnovalidate="true">
+    View & Evaluate
+</asp:LinkButton>
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    
+                    <asp:Literal ID="litNoData" runat="server" Visible="false">
+                        <tr><td colspan="4" class="text-center text-muted py-4">No students are currently assigned to you.</td></tr>
+                    </asp:Literal>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <!-- Section 2: Academic Evaluation Form (Tasks S05 & S06) -->
-    <div class="uims-card mb-4" style="border-top: 4px solid var(--brand);">
-        <h3 style="color: var(--brand-dark);">2. Academic Final Grading</h3>
-        <p class="text-muted mb-4">Please grade the student based on the university's evaluation criteria. Once submitted, this will be sent to the Coordinator.</p>
-        
-        <div class="row mb-3">
-            <!-- Criteria 1 -->
-            <div class="col-md-4 mb-3">
-                <label class="form-label" style="font-weight: 600;">Company Evaluation Score (out of 40)</label>
-                <asp:TextBox ID="txtCompanyComponent" runat="server" CssClass="form-control" type="number" min="0" max="40" step="0.5" required="true"></asp:TextBox>
-            </div>
-            <!-- Criteria 2 -->
-            <div class="col-md-4 mb-3">
-                <label class="form-label" style="font-weight: 600;">Final Report Score (out of 40)</label>
-                <asp:TextBox ID="txtReportComponent" runat="server" CssClass="form-control" type="number" min="0" max="40" step="0.5" required="true"></asp:TextBox>
-            </div>
-            <!-- Criteria 3 -->
-            <div class="col-md-4 mb-3">
-                <label class="form-label" style="font-weight: 600;">Discussion / Follow-up (out of 20)</label>
-                <asp:TextBox ID="txtDiscussionComponent" runat="server" CssClass="form-control" type="number" min="0" max="20" step="0.5" required="true"></asp:TextBox>
+    <!-- Bootstrap Modal (Popup) for Evaluation -->
+    <div class="modal fade" id="evaluationModal" tabindex="-1" aria-labelledby="evaluationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color: var(--brand-light);">
+                    <h5 class="modal-title" id="evaluationModalLabel" style="color: var(--brand-dark); font-weight: 700;">
+                        Evaluate: <asp:Literal ID="litModalStudentName" runat="server"></asp:Literal>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <!-- Hidden field to store the student ID being evaluated -->
+                    <asp:HiddenField ID="hfSelectedStudentId" runat="server" />
+
+                    <!-- 1. Company Evaluation (Read-Only) -->
+                    <h5 style="color: var(--brand-dark); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;">1. Company Supervisor Evaluation</h5>
+                    
+                    <asp:Panel ID="pnlCompanyEvalExists" runat="server" Visible="false" CssClass="mb-4">
+                        <div class="row mt-3">
+                            <div class="col-md-3">
+                                <div class="score-box">
+                                    <div class="text-muted" style="font-size: 0.85rem; font-weight: 600;">Total Score</div>
+                                    <h3 style="color: var(--brand); margin: 0;">
+                                        <asp:Literal ID="litCompanyScore" runat="server"></asp:Literal> / <asp:Literal ID="litCompanyMaxScore" runat="server"></asp:Literal>
+                                    </h3>
+                                </div>
+                            </div>
+                            <div class="col-md-9">
+                                <p class="mb-1"><strong class="text-muted">Strengths:</strong> <asp:Literal ID="litStrengths" runat="server"></asp:Literal></p>
+                                <p class="mb-1"><strong class="text-muted">Areas for Improvement:</strong> <asp:Literal ID="litImprovements" runat="server"></asp:Literal></p>
+                                <p class="mb-0"><strong class="text-muted">Overall Comment:</strong> <asp:Literal ID="litCompanyComment" runat="server"></asp:Literal></p>
+                            </div>
+                        </div>
+                    </asp:Panel>
+                    
+                    <asp:Panel ID="pnlNoCompanyEval" runat="server" Visible="true" CssClass="mb-4">
+                        <div class="alert alert-warning mt-3 mb-0" style="padding: 0.75rem;">The company supervisor has not submitted their final evaluation yet.</div>
+                    </asp:Panel>
+
+                    <!-- 2. Academic Evaluation Form (Pass/Fail) -->
+                    <h5 style="color: var(--brand-dark); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;">2. Academic Final Decision</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.9rem;">Submit your final decision. Once submitted, it will be sent to the Coordinator.</p>
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label" style="font-weight: 600;">Final Decision</label>
+                            <asp:DropDownList ID="ddlPassFail" runat="server" CssClass="form-select">
+                                <asp:ListItem Text="-- Select Decision --" Value="" />
+                                <asp:ListItem Text="Pass" Value="100" />
+                                <asp:ListItem Text="Fail" Value="0" />
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+
+                    <div class="mb-2">
+                        <label class="form-label" style="font-weight: 600;">Academic Comments & Remarks</label>
+                        <asp:TextBox ID="txtAcademicComments" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
+                    </div>
+
+                    <asp:Panel ID="pnlAlreadySubmitted" runat="server" Visible="false" CssClass="alert alert-success mt-3 mb-0">
+                        <asp:Literal ID="litAlreadySubmittedText" runat="server"></asp:Literal>
+                    </asp:Panel>
+
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                    <asp:Button ID="btnSubmitEvaluation" runat="server" Text="Submit to Coordinator" CssClass="btn btn-brand" OnClick="btnSubmitEvaluation_Click" OnClientClick="return confirm('Are you sure you want to submit this evaluation? It cannot be changed later.');" />
+                </div>
             </div>
         </div>
-
-        <div class="mb-4">
-            <label class="form-label" style="font-weight: 600;">Academic Comments & Remarks</label>
-            <asp:TextBox ID="txtAcademicComments" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Write your final remarks regarding the student's performance..."></asp:TextBox>
-        </div>
-
-        <!-- Submission Actions -->
-        <asp:Panel ID="pnlSubmission" runat="server" CssClass="text-end border-top pt-3">
-            <asp:Label ID="lblStatusMessage" runat="server" CssClass="me-3" style="font-weight: 600;" Visible="false"></asp:Label>
-            <asp:Button ID="btnSubmitEvaluation" runat="server" Text="Submit to Coordinator" CssClass="btn btn-brand" OnClick="btnSubmitEvaluation_Click" OnClientClick="return confirm('Are you sure you want to submit this evaluation? It cannot be changed later.');" />
-        </asp:Panel>
     </div>
 
 </asp:Content>
