@@ -47,3 +47,7 @@
     .students-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 440px) { .students-facts { grid-template-columns: 1fr; } }
+
+.creation-modal .modal-header h5, .creation-modal h6 { color: var(--brand); }
+.creation-modal .creation-section + .creation-section { border-top: 1px solid var(--line); padding-top: 1.5rem; margin-top: 1.5rem; }
+.creation-modal .creation-section p { color: var(--muted); font-size: .875rem; margin-bottom: 0; }

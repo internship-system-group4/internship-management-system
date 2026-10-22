@@ -1,13 +1,13 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="AcademicSupervisors.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.AcademicSupervisors" Title="Academic Supervisors" %>
 
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261022-tabs-2") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261022-creation-modal") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page">
-        <div class="students-intro"><div><span class="students-eyebrow">Coordinator / Academic supervisors</span><h2>Academic supervisors</h2><p>Review records, create accounts, and manage supervisor information.</p></div></div>
+        <div class="students-intro"><div><span class="students-eyebrow">Coordinator / Academic supervisors</span><h2>Academic supervisors</h2><p>Review records, create accounts, and manage supervisor information.</p></div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addAcademicSupervisorModal">+ Add supervisor</button></div>
+        <asp:Label ID="lblCreateSuccess" runat="server" Visible="false" EnableViewState="false" CssClass="alert alert-success d-block" role="status" />
         <asp:HiddenField ID="hdnActiveTab" runat="server" Value="records" />
         <div class="students-tabs" role="tablist" aria-label="Supervisor sections">
             <button type="button" id="supervisor-records-tab" role="tab" data-tab="records" aria-controls="supervisor-records">View records</button>
-            <button type="button" id="supervisor-add-tab" role="tab" data-tab="add" aria-controls="supervisor-add">Add supervisor</button>
             <button type="button" id="supervisor-manage-tab" role="tab" data-tab="manage" aria-controls="supervisor-manage">Manage supervisors</button>
         </div>
 
@@ -45,22 +45,33 @@
             </asp:Panel>
         </section>
 
-        <section id="supervisor-add" class="supervisor-tab-panel" role="tabpanel" aria-labelledby="supervisor-add-tab" hidden>
-            <div class="students-card">
-                <div class="students-card-heading"><div><h3>Create supervisor account</h3><p>Share the login email and temporary password privately. The supervisor changes the password on first sign-in.</p></div></div>
-                <asp:Label ID="lblCreateMessage" runat="server" Visible="false" role="alert" />
+        <div class="modal fade creation-modal" id="addAcademicSupervisorModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addAcademicSupervisorTitle" aria-hidden="true" data-open-on-load="<%= ShowCreationModal ? "true" : "false" %>">
+            <div class="modal-dialog modal-lg modal-dialog-scrollable">
+                <asp:Panel ID="pnlCreateContent" runat="server" DefaultButton="btnCreate" CssClass="modal-content rounded-4 border-0 shadow-lg">
+                    <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
+                        <div><h5 id="addAcademicSupervisorTitle" class="fw-bold mb-1">Add academic supervisor</h5><p class="text-muted small mb-0">Create a supervisor account and enter their academic information.</p></div>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4">
+                        <asp:Label ID="lblCreateMessage" runat="server" Visible="false" EnableViewState="false" role="alert" />
                 <div class="row g-3">
-                    <div class="col-md-6"><label for="<%= txtFullName.ClientID %>" class="form-label">Full name <span class="text-danger">*</span></label><asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" MaxLength="120" /></div>
-                    <div class="col-md-6"><label for="<%= txtEmail.ClientID %>" class="form-label">Login email <span class="text-danger">*</span></label><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" MaxLength="254" /></div>
-                    <div class="col-md-6"><label for="<%= txtPhone.ClientID %>" class="form-label">Phone <span class="text-muted">(optional)</span></label><asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" TextMode="Phone" MaxLength="40" /></div>
-                    <div class="col-md-6"><label for="<%= txtDepartment.ClientID %>" class="form-label">Department <span class="text-danger">*</span></label><asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control" MaxLength="120" /></div>
-                    <div class="col-md-6"><label for="<%= txtAcademicRank.ClientID %>" class="form-label">Academic rank <span class="text-muted">(optional)</span></label><asp:TextBox ID="txtAcademicRank" runat="server" CssClass="form-control" MaxLength="80" /></div>
-                    <div class="col-md-6"><label for="<%= txtPassword.ClientID %>" class="form-label">Temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
-                    <div class="col-md-6"><label for="<%= txtConfirmPassword.ClientID %>" class="form-label">Confirm temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
-                    <div class="col-12"><asp:Button ID="btnCreate" runat="server" Text="Create supervisor" CssClass="btn btn-primary" OnClick="btnCreate_Click" /></div>
+                    <div class="col-md-6"><label for="<%= txtFullName.ClientID %>" class="form-label">Full name <span class="text-danger">*</span></label><asp:TextBox ID="txtFullName" runat="server" CssClass="form-control bg-light" MaxLength="120" /></div>
+                    <div class="col-md-6"><label for="<%= txtEmail.ClientID %>" class="form-label">Login email <span class="text-danger">*</span></label><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control bg-light" TextMode="Email" MaxLength="254" /></div>
+                    <div class="col-md-6"><label for="<%= txtPhone.ClientID %>" class="form-label">Phone <span class="text-muted">(optional)</span></label><asp:TextBox ID="txtPhone" runat="server" CssClass="form-control bg-light" TextMode="Phone" MaxLength="40" /></div>
+                    <div class="col-md-6"><label for="<%= txtDepartment.ClientID %>" class="form-label">Department <span class="text-danger">*</span></label><asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control bg-light" MaxLength="120" /></div>
+                    <div class="col-md-6"><label for="<%= txtAcademicRank.ClientID %>" class="form-label">Academic rank <span class="text-muted">(optional)</span></label><asp:TextBox ID="txtAcademicRank" runat="server" CssClass="form-control bg-light" MaxLength="80" /></div>
+                    <div class="col-md-6"><label for="<%= txtPassword.ClientID %>" class="form-label">Temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtPassword" runat="server" CssClass="form-control bg-light" TextMode="Password" MaxLength="128" /></div>
+                    <div class="col-md-6"><label for="<%= txtConfirmPassword.ClientID %>" class="form-label">Confirm temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control bg-light" TextMode="Password" MaxLength="128" /></div>
                 </div>
+                        <p class="text-muted small mt-3 mb-0">Share the login email and temporary password privately. The supervisor changes the password on first sign-in.</p>
+                    </div>
+                    <div class="modal-footer bg-light px-4 border-top-0">
+                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                        <asp:Button ID="btnCreate" runat="server" Text="Create supervisor" CssClass="btn btn-primary rounded-pill px-4" OnClick="btnCreate_Click" />
+                    </div>
+                </asp:Panel>
             </div>
-        </section>
+        </div>
 
         <section id="supervisor-manage" class="supervisor-tab-panel" role="tabpanel" aria-labelledby="supervisor-manage-tab" hidden>
             <div class="students-card">
@@ -105,12 +116,13 @@
     </div>
 </asp:Content>
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
+    <script src="<%= ResolveUrl("~/Assets/js/account-creation-modal.js") %>" defer></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var state = document.getElementById('<%= hdnActiveTab.ClientID %>');
             var tabs = document.querySelectorAll('.students-tabs button[data-tab]');
             function activate(name) {
-                if (['records', 'add', 'manage'].indexOf(name) < 0) name = 'records';
+                if (['records', 'manage'].indexOf(name) < 0) name = 'records';
                 tabs.forEach(function (tab) {
                     var active = tab.getAttribute('data-tab') === name;
                     tab.classList.toggle('active', active);

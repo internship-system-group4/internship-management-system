@@ -11,6 +11,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class AcademicSupervisors : CoordinatorPage
     {
+        protected bool ShowCreationModal { get; private set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack) BindSupervisors();
@@ -18,7 +20,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void btnCreate_Click(object sender, EventArgs e)
         {
-            hdnActiveTab.Value = "add";
+            pnlDetails.Visible = false;
             string name = InternshipManagementSystem.Common.Validators.Clean(txtFullName.Text);
             string email = (txtEmail.Text ?? "").Trim();
             string phone = InternshipManagementSystem.Common.Validators.Clean(txtPhone.Text);
@@ -368,9 +370,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         private void ShowCreateMessage(string message, bool success)
         {
-            lblCreateMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
-            lblCreateMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
-            lblCreateMessage.Visible = true;
+            ShowCreationModal = !success;
+            var label = success ? lblCreateSuccess : lblCreateMessage;
+            label.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            label.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
+            label.Visible = true;
         }
 
         private void ShowListMessage(string message)

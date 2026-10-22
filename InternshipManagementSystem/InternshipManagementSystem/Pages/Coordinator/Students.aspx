@@ -1,17 +1,19 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Students.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Students" Title="Student records" %>
+<%@ Register Src="StudentCreation.ascx" TagPrefix="uims" TagName="StudentCreation" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261022-creation-modal") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page">
         <div class="students-intro">
             <div><span class="students-eyebrow">Coordinator / Students</span><h2>Student records</h2><p>Find a student and review their account and training information.</p></div>
-            <a class="btn btn-primary" href="<%= ResolveUrl("~/Pages/Coordinator/AddStudent.aspx") %>">+ Add student</a>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">+ Add student</button>
         </div>
+        <uims:StudentCreation ID="StudentCreator" runat="server" OnCreated="StudentCreator_Created" />
         <nav class="students-tabs" aria-label="Student pages">
             <a class="active" aria-current="page" href="<%= ResolveUrl("~/Pages/Coordinator/Students.aspx") %>">View records</a>
-            <a href="<%= ResolveUrl("~/Pages/Coordinator/AddStudent.aspx") %>">Add student</a>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add student</button>
             <a href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>">Manage students</a>
         </nav>
 

@@ -2,6 +2,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class Students
     {
+        protected global::InternshipManagementSystem.Pages.CoordinatorArea.StudentCreation StudentCreator;
         protected global::System.Web.UI.WebControls.Label lblListMessage;
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
         protected global::System.Web.UI.WebControls.Button btnSearch;
