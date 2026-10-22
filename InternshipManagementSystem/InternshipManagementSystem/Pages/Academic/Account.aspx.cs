@@ -76,7 +76,7 @@ namespace InternshipManagementSystem.Pages.Academic
 
                 ShowMessage("Your profile information has been updated successfully.", true);
             }
-            catch (Exception ex)
+            catch (Exception )
             {
                 ShowMessage("Error: " + ex.Message, false);
             }

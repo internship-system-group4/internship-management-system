@@ -38,25 +38,126 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         }
         protected void btnCreateTask_Click(object sender, EventArgs e)
         {
+            lblMessage.CssClass = "text-danger";
+            lblMessage.Text = "";
+
             string title = txtTitle.Text.Trim();
             string placementId = ddlTrainee.SelectedValue;
 
-            lblMessage.CssClass = "text-danger";
-
-            if (title == "")
+            if (title == "" || txtDescription.Text.Trim() == "" ||
+                txtInstructions.Text.Trim() == "")
             {
-                lblMessage.Text = "Please enter a task title.";
+                lblMessage.Text = "Enter the title, description and instructions.";
                 return;
             }
 
-            if (placementId == "")
+            if (string.IsNullOrEmpty(placementId))
             {
                 lblMessage.Text = "Please select a trainee.";
                 return;
             }
 
-            lblMessage.CssClass = "text-success";
-            lblMessage.Text = "Title and trainee selected. Task is not saved yet.";
+            DateTime deadline;
+            if (!DateTime.TryParse(txtDeadline.Text, out deadline) ||
+                deadline <= DateTime.Now)
+            {
+                lblMessage.Text = "Enter a future deadline.";
+                return;
+            }
+
+            double maxScore;
+            if (!double.TryParse(txtMaxScore.Text, out maxScore) ||
+                double.IsNaN(maxScore) || double.IsInfinity(maxScore) ||
+                maxScore <= 0)
+            {
+                lblMessage.Text = "Enter a valid maximum score greater than zero.";
+                return;
+            }
+
+            double weight;
+            if (!double.TryParse(txtWeight.Text, out weight) ||
+                double.IsNaN(weight) || double.IsInfinity(weight) ||
+                weight <= 0)
+            {
+                lblMessage.Text = "Enter a valid task weight greater than zero.";
+                return;
+            }
+
+            List<GradeComponent> criteria =
+                Session["TaskCriteria"] as List<GradeComponent>;
+
+            if (criteria == null || criteria.Count == 0)
+            {
+                lblMessage.Text = "Add at least one evaluation criterion.";
+                return;
+            }
+
+            double totalCriteriaWeight = 0;
+            foreach (GradeComponent criterion in criteria)
+            {
+                totalCriteriaWeight += criterion.Weight;
+            }
+
+            if (Math.Abs(totalCriteriaWeight - 100) > 0.01)
+            {
+                lblMessage.Text = "Evaluation criteria weights must total 100%.";
+                return;
+            }
+
+            try
+            {
+                Placement placement =
+                    new PlacementRepository().GetById(placementId);
+
+                // لا نعتمد على اختيار القائمة وحده؛ نتحقق من الشركة في قاعدة البيانات.
+                if (placement == null ||
+                    placement.CompanyId != CurrentSupervisor.CompanyId ||
+                    string.IsNullOrEmpty(placement.StudentId))
+                {
+                    lblMessage.Text = "The selected trainee does not belong to your company.";
+                    return;
+                }
+
+                InternshipTask task = new InternshipTask();
+                task.PlacementId = placement.Id;
+                task.StudentId = placement.StudentId;
+                task.CompanyId = CurrentSupervisor.CompanyId;
+                task.CreatedBySupervisorId = CurrentSupervisor.Id;
+                task.Title = title;
+                task.Description = txtDescription.Text.Trim();
+                task.Instructions = txtInstructions.Text.Trim();
+                task.Deadline = new DateTimeOffset(deadline).ToUnixTimeMilliseconds();
+                task.MaxScore = maxScore;
+                task.Weight = weight;
+                task.Criteria = new List<GradeComponent>(criteria);
+
+                string taskId = new TaskRepository().Insert(task);
+
+                if (string.IsNullOrEmpty(taskId))
+                {
+                    lblMessage.Text = "Task could not be saved.";
+                    return;
+                }
+
+                lblMessage.CssClass = "text-success";
+                lblMessage.Text = "Task created successfully.";
+
+                txtTitle.Text = "";
+                txtDescription.Text = "";
+                txtInstructions.Text = "";
+                txtDeadline.Text = "";
+                txtMaxScore.Text = "";
+                txtWeight.Text = "";
+                ddlTrainee.SelectedIndex = 0;
+
+                Session["TaskCriteria"] = new List<GradeComponent>();
+                gvCriteria.DataSource = new List<GradeComponent>();
+                gvCriteria.DataBind();
+            }
+            catch (FirebaseException)
+            {
+                lblMessage.Text = "Could not save the task. Please try again.";
+            }
         }
         private void LoadTrainees()
         {
