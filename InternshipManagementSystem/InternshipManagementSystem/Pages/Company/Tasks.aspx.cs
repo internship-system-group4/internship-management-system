@@ -68,16 +68,19 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             PlacementRepository repository = new PlacementRepository();
 
-            List<Placement> placements =
-                repository.GetByCompany(CurrentSupervisor.CompanyId);
+            List<Placement> placements = repository.GetAll();
 
             foreach (Placement placement in placements)
             {
-                ddlTrainee.Items.Add(
-                    new ListItem(placement.StudentName, placement.Id)
-                );
+                if (placement.CompanyId == CurrentSupervisor.CompanyId)
+                {
+                    ddlTrainee.Items.Add(
+                        new ListItem(placement.StudentName, placement.Id)
+                    );
+                }
             }
         }
+        
 
         protected void btnAddCriterion_Click(object sender, EventArgs e)
         {
