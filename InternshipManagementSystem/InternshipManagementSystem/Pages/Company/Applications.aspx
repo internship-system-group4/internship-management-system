@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="Applications.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.Applications" Title="Applications Review" %>
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/applications.css") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/applications.css?v=20261022-review-2") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="application-page company-applications">
     <div class="application-heading"><h2>Applications review</h2><p>Review applications for your company and let students know your decision.</p></div>
@@ -11,9 +11,16 @@
         <asp:Repeater ID="ApplicationRepeater" runat="server" OnItemCommand="Application_Command">
             <ItemTemplate>
                 <article class="application-row" data-application-id="<%#: Eval("Id") %>">
-                    <div class="application-row-top"><div><h3><%#: Eval("OpportunityTitle") %></h3><div><%#: Eval("StudentName") %> &middot; <%#: Eval("StudentMajor") %></div><p class="application-help">Submitted <%#: Time.Display((long)Eval("SubmittedAt")) %></p></div><span class="<%# StatusClass(Eval("Status")) %>"><%#: Eval("Status") %></span></div>
+                    <div class="application-row-top">
+                        <div class="review-applicant">
+                            <h3><%#: Eval("StudentName") %></h3>
+                            <p class="review-applied-for">Applied for <strong><%#: Eval("OpportunityTitle") %></strong></p>
+                            <p class="review-meta"><span><%#: OrDash(Eval("StudentMajor")) %></span><span>Submitted <%#: Time.Display((long)Eval("SubmittedAt")) %></span></p>
+                        </div>
+                        <span class="<%# StatusClass(Eval("Status")) %>"><%#: Eval("Status") %></span>
+                    </div>
                     <details class="review-application-details" <%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Pending ? "open" : "" %>>
-                        <summary><span class="candidate-toggle-label">View candidate details</span><span class="candidate-toggle-hint">Profile, cover letter and CV</span></summary>
+                        <summary><span class="candidate-toggle-label candidate-toggle-show">View candidate details</span><span class="candidate-toggle-label candidate-toggle-hide">Hide candidate details</span><span class="candidate-toggle-hint">Profile, cover letter and CV</span></summary>
                         <div class="candidate-panel">
                             <dl class="candidate-details">
                                 <div><dt>Student number</dt><dd><%#: OrDash(Eval("StudentNumber")) %></dd></div>
@@ -61,8 +68,11 @@
                         </div>
                     </asp:PlaceHolder>
                     <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Accepted || (ApplicationStatus)Eval("Status") == ApplicationStatus.Rejected %>'>
-                        <p class="application-help">Reviewed <%#: Time.Display((long)Eval("DecidedAt")) %>. This decision has been recorded.</p>
-                        <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Rejected %>'><p class="review-rejection-reason"><strong>Rejection reason:</strong> <%#: Eval("RejectionReason") %></p></asp:PlaceHolder>
+                        <div class="review-outcome review-outcome-<%#: Eval("Status").ToString().ToLowerInvariant() %>">
+                            <p class="review-outcome-title"><%#: Eval("Status") %> on <%#: Time.Display((long)Eval("DecidedAt")) %></p>
+                            <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Accepted %>'><p class="application-help"><%# (bool)Eval("IsConfirmedByStudent") ? "The student has confirmed this offer." : "The student has been offered a place and still needs to confirm it." %></p></asp:PlaceHolder>
+                            <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Rejected %>'><p class="review-rejection-reason"><strong>Reason given:</strong> <%#: Eval("RejectionReason") %></p></asp:PlaceHolder>
+                        </div>
                     </asp:PlaceHolder>
                 </article>
             </ItemTemplate>

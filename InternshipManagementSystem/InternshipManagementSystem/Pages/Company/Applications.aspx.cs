@@ -20,6 +20,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             public long SubmittedAt { get { return Application.SubmittedAt; } }
             public long DecidedAt { get { return Application.DecidedAt; } }
             public string RejectionReason { get { return Application.RejectionReason; } }
+            public bool IsConfirmedByStudent { get { return Application.IsConfirmedByStudent; } }
 
             public string StudentName { get; set; }
             public string StudentMajor { get; set; }
