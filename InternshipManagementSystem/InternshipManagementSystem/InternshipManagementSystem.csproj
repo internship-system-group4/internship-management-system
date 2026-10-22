@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ===========================================================================
   UIMS - Group 4
@@ -64,6 +64,7 @@
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -181,15 +182,15 @@
     <Compile Include="Models\TaskEvaluation.cs" />
     <Compile Include="Models\TrainingHoursEntry.cs" />
     <Compile Include="Pages\Academic\Account.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -517,8 +518,48 @@
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
     <Content Include="Assets\css\public-layout.css" />
+    <Content Include="Assets\css\public-navbar.css" />
     <Content Include="Assets\css\coordinator-monitoring.css" />
+    <Content Include="Assets\css\home.css" />
+    <Content Include="Assets\images\home-campus.jpg" />
+    <Content Include="Assets\images\home-students.jpg" />
+    <Content Include="Assets\video\*.mp4" />
+    <Content Include="Assets\video\*.vtt" />
+    <Content Include="Assets\video\README.md" />
     <Content Include="Assets\js\public-layout.js" />
+    <Content Include="Assets\js\public-navbar.js" />
+    <Content Include="Assets\js\public-forms.js" />
+    <Content Include="Assets\js\home-courtyard.js" />
+    <Content Include="Assets\css\home-story.css" />
+    <Content Include="Assets\css\home-experience.css" />
+    <Content Include="Assets\js\home-experience.js" />
+    <Content Include="Assets\images\university\4a85f19e-09cd-47d5-b8de-a18f277616a7.png" />
+    <Content Include="Assets\fonts\switzer-400.woff2" />
+    <Content Include="Assets\fonts\switzer-600.woff2" />
+    <Content Include="Assets\fonts\switzer-700.woff2" />
+    <Content Include="Assets\fonts\README.md" />
+    <Content Include="Assets\images\university\6753e8dc-1deb-4e1d-848c-79304737fb69.png" />
+    <Content Include="Assets\js\home-story.js" />
+    <Content Include="Assets\js\home-story-scene.js" />
+    <Content Include="Assets\js\home-campus-model.js" />
+    <Content Include="Assets\js\home-campus-materials.js" />
+    <Content Include="Assets\images\university\materials\stone-albedo.png" />
+    <Content Include="Assets\images\university\materials\stone-height.png" />
+    <Content Include="Assets\images\university\materials\stone-roughness.png" />
+    <Content Include="Assets\images\university\b270da86-de83-4a48-898d-7446958fbe45.png" />
+    <Content Include="Assets\js\home-gate-model.js" />
+    <Content Include="Assets\js\home-college-symbol.js" />
+    <Content Include="Assets\js\vendor\gsap.min.js" />
+    <Content Include="Assets\js\vendor\ScrollTrigger.min.js" />
+    <Content Include="Assets\js\vendor\GSAP-NOTICE.txt" />
+    <Content Include="Assets\images\university\b1138b1f-421a-4fb1-9003-2d233d57c05c.png" />
+    <Content Include="Assets\js\courtyard-scene.js" />
+    <Content Include="Assets\js\courtyard-model.js" />
+    <Content Include="Assets\js\vendor\three.module.min.js" />
+    <Content Include="Assets\js\vendor\three.core.min.js" />
+    <Content Include="Assets\js\vendor\THREE-LICENSE.txt" />
+    <Content Include="Assets\js\vendor\README.md" />
+    <Content Include="Assets\images\university\b774db96-c900-40dc-b579-3fa681fb49ec.png" />
     <Content Include="Assets\js\portal-layout.js" />
     <Content Include="Assets\images\gju-logo.png" />
     <Content Include="Assets\images\README.txt" />
@@ -528,6 +569,7 @@
     <Content Include="Layout\Coordinator.master" />
     <Content Include="Layout\Public.master" />
     <Content Include="Layout\Student.master" />
+    <Content Include="Layout\Sidebar.ascx" />
     <Content Include="Pages\Academic\Account.aspx" />
     <Content Include="Pages\Academic\Dashboard.aspx" />
     <Content Include="Pages\Academic\FinalEvaluation.aspx" />

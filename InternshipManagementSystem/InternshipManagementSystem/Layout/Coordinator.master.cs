@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  UIMS - Group 4   |   Owner: Ahmad   (shared layout - tell the team before editing)
 //  Layout for the Coordinator pages. Shows who is signed in and handles sign-out,
 //  so no individual page has to.
@@ -23,17 +23,6 @@ namespace InternshipManagementSystem.Layout
                 return string.Concat(user.FullName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                     .Take(2).Select(name => name.Substring(0, 1))).ToUpperInvariant();
             }
-        }
-
-        protected string NavigationAttributes(string path)
-        {
-            string current = Request.AppRelativeCurrentExecutionFilePath;
-            if (string.Equals(current, "~/Pages/Meetings/Schedule.aspx", StringComparison.OrdinalIgnoreCase))
-                current = "~/Pages/Meetings/MyMeetings.aspx";
-            else if (string.Equals(current, "~/Pages/Coordinator/PlacementDetails.aspx", StringComparison.OrdinalIgnoreCase))
-                current = "~/Pages/Coordinator/Placements.aspx";
-            return string.Equals(current, path, StringComparison.OrdinalIgnoreCase)
-                ? "aria-current=\"page\"" : "";
         }
 
         protected void Page_Load(object sender, EventArgs e)

@@ -1,22 +1,11 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="InternshipManagementSystem.Pages.PublicArea.About" Title="About Us" %>
-
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-</asp:Content>
-
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master" AutoEventWireup="true" CodeBehind="About.aspx.cs" Inherits="InternshipManagementSystem.Pages.PublicArea.About" Title="About | GJU Internship Management System" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><meta name="description" content="Understand how UIMS connects students, training companies and university supervisors throughout the internship journey." /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-
-    <%-- ===================================================================
-         About Us
-         Owner : Nada
-         Cards : N02
-         Delete the placeholder below and build the page here.
-         =================================================================== --%>
-
-    <div class="uims-stub">
-        <span class="uims-stub-badge">N02</span>
-        <h2>About Us</h2>
-        <p>Information about the university, the system and its objectives.</p>
-        <p class="uims-stub-owner">Assigned to <strong>Nada</strong></p>
-    </div>
-
+<div class="public-page">
+ <section class="public-split" aria-labelledby="about-title"><div><h1 id="about-title">Learning beyond<br />the classroom.</h1><p class="public-lead">The Internship Management System connects students, training companies and university supervisors throughout the internship journey at German Jordanian University.</p><a class="public-button" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>">Access your portal <span aria-hidden="true">&rarr;</span></a></div><img class="public-photo" src="<%: ResolveUrl("~/Assets/images/home-campus.jpg") %>" alt="GJU students walking together between campus buildings" width="960" height="685" /></section>
+ <section class="public-section public-editorial" aria-labelledby="university-title"><h2 id="university-title">German Jordanian University.</h2><div><p>GJU is a public Jordanian university founded in 2005. Its educational approach connects academic learning with practical experience, drawing on the traditions of applied higher education in Jordan and Germany.</p><p><a href="https://gju.edu.jo/content/about-gju-687" target="_blank" rel="noopener noreferrer">About the university — official GJU website</a></p><p>This internship management platform is the Group 4 student project. It is not a replacement for the university's official website or published academic policies.</p></div></section>
+ <section class="public-section public-editorial" aria-labelledby="purpose-title"><h2 id="purpose-title">A shared view.<br />A clearer journey.</h2><div><p>An internship involves more than an application. There are decisions to follow, work to submit, training hours to review and feedback to learn from.</p><p>UIMS gives each participant a dedicated space while keeping the internship connected through a confirmed student placement. The aim is simple: make the next step easier to understand and follow.</p></div></section>
+ <section class="public-section public-editorial" aria-labelledby="roles-title"><h2 id="roles-title">Built for the people<br />behind your progress.</h2><ul class="public-role-list"><li><h3>Students</h3><p>Explore eligible opportunities, apply, confirm a placement and follow training work and progress.</p></li><li><h3>Company supervisors</h3><p>Review applicants, guide trainees through their work and provide feedback and evaluations.</p></li><li><h3>Academic supervisors</h3><p>Follow assigned students, provide academic guidance and review training progress.</p></li><li><h3>Coordinators</h3><p>Manage the university workflow, monitor placements and oversee the final completion review.</p></li></ul></section>
+ <section class="public-section public-callout" aria-labelledby="account-title"><h2 id="account-title">Your account is your starting point.</h2><p class="public-lead">Use the account provided for your role. If you need access or are unsure where to begin, contact your university coordinator.</p><div class="public-actions"><a class="public-button" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>">Log in</a><a class="public-text-link" href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>">Get help with access</a></div></section>
+</div>
 </asp:Content>

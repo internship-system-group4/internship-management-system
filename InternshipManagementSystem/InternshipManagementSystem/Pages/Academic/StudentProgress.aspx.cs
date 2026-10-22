@@ -7,10 +7,8 @@ using System.Linq;
 
 namespace InternshipManagementSystem.Pages.Academic
 {
-    // Secure the page by inheriting from AcademicPage
     public partial class StudentProgress : AcademicPage
     {
-        // Store the current student ID from the URL
         private string CurrentStudentId
         {
             get { return Request.QueryString["id"]; }
@@ -20,39 +18,62 @@ namespace InternshipManagementSystem.Pages.Academic
         {
             if (string.IsNullOrEmpty(CurrentStudentId))
             {
-                // If no ID is provided, send them back to the dashboard
-                Response.Redirect("Dashboard.aspx");
-                return;
-            }
+                // Sidebar clicked: Show the students list table
+                pnlStudentList.Visible = true;
+                pnlProgressDetails.Visible = false;
 
-            if (!IsPostBack)
+                if (!IsPostBack)
+                {
+                    LoadStudentsTable();
+                }
+            }
+            else
             {
-                LoadStudentAndPlacementData();
-                LoadTasks();
-                LoadComments();
+                // Student Selected: Show their progress details
+                pnlStudentList.Visible = false;
+                pnlProgressDetails.Visible = true;
+
+                if (!IsPostBack)
+                {
+                    LoadStudentAndPlacementData();
+                    LoadTasks();
+                    LoadComments();
+                }
+            }
+        }
+
+        private void LoadStudentsTable()
+        {
+            UserRepository userRepo = new UserRepository();
+            List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
+
+            if (myStudents != null && myStudents.Count > 0)
+            {
+                rptStudentsList.DataSource = myStudents;
+                rptStudentsList.DataBind();
+                litNoStudents.Visible = false;
+            }
+            else
+            {
+                litNoStudents.Visible = true;
             }
         }
 
         private void LoadStudentAndPlacementData()
         {
-            // 1. Fetch Student
             UserRepository userRepo = new UserRepository();
             Student student = userRepo.GetStudent(CurrentStudentId);
 
-            // Security check: Ensure the student actually belongs to this supervisor
             if (student == null || student.AcademicSupervisorId != CurrentSupervisor.Id)
             {
-                Response.Redirect("Dashboard.aspx");
+                Response.Redirect("StudentProgress.aspx");
                 return;
             }
 
-            // Populate student header
             litStudentName.Text = student.FullName;
             litStudentId.Text = student.StudentNumber;
             litMajor.Text = student.Major;
 
-            // 2. Fetch Placement (Internship details)
-            // The placement ID is identical to the student ID based on the repository rules.
             PlacementRepository placementRepo = new PlacementRepository();
             Placement placement = placementRepo.GetById(student.Id);
 
@@ -75,7 +96,6 @@ namespace InternshipManagementSystem.Pages.Academic
         private void LoadTasks()
         {
             TaskRepository taskRepo = new TaskRepository();
-            // Fetch all tasks for this specific placement
             List<InternshipTask> tasks = taskRepo.GetWhere("PlacementId", CurrentStudentId).Cast<InternshipTask>().ToList();
 
             if (tasks != null && tasks.Count > 0)
@@ -96,7 +116,6 @@ namespace InternshipManagementSystem.Pages.Academic
 
             if (comments != null && comments.Count > 0)
             {
-                // Sort comments to show the newest first
                 rptComments.DataSource = comments.OrderByDescending(c => c.CreatedAt).ToList();
                 rptComments.DataBind();
                 litNoComments.Visible = false;
@@ -111,7 +130,6 @@ namespace InternshipManagementSystem.Pages.Academic
         {
             if (string.IsNullOrWhiteSpace(txtNewComment.Text)) return;
 
-            // Create and populate the new comment object
             AcademicComment newComment = new AcademicComment
             {
                 PlacementId = CurrentStudentId,
@@ -121,23 +139,19 @@ namespace InternshipManagementSystem.Pages.Academic
                 IsVisibleToStudent = chkVisibleToStudent.Checked
             };
 
-            // Save to Firebase
             AcademicCommentRepository commentRepo = new AcademicCommentRepository();
             commentRepo.Insert(newComment);
 
-            // Reset form and show success message
             txtNewComment.Text = string.Empty;
             chkVisibleToStudent.Checked = false;
             lblCommentStatus.Text = "Comment saved successfully!";
             lblCommentStatus.Visible = true;
 
-            // Refresh the comments list
             LoadComments();
         }
 
         protected void btnFinalEvaluation_Click(object sender, EventArgs e)
         {
-            // Redirect to the Final Evaluation page, passing the student ID
             Response.Redirect("FinalEvaluation.aspx?id=" + CurrentStudentId);
         }
     }
