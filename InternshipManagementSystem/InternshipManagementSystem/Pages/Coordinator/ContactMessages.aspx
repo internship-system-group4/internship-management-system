@@ -639,7 +639,7 @@
                                     CommandArgument='<%# Eval("Id") %>'
                                     ToolTip="View Message Details"
                                     CausesValidation="false">
-                                    View
+                                   Review
                                 </asp:LinkButton>
 
                             </ItemTemplate>
