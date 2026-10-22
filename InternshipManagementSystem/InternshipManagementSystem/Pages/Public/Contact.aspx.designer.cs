@@ -60,11 +60,6 @@ namespace InternshipManagementSystem.Pages.PublicArea
         protected global::System.Web.UI.WebControls.TextBox txtMessage;
 
         /// <summary>
-        /// Website control (spam honeypot, must stay empty).
-        /// </summary>
-        protected global::System.Web.UI.WebControls.TextBox Website;
-
-        /// <summary>
         /// btnSend control.
         /// </summary>
         /// <remarks>
