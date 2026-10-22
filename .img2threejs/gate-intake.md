@@ -1,0 +1,4 @@
+# Gate 1 reference intake
+Gate 1 front b1138b1f and side4f98f98f only; Gate4 and campus renderings not used to override photos. Conditional approximate reconstruction: portal/opening proportion, sign layout and grills visible; hidden rear and survey dimensions unknown. Warm matte stone, satin gray metal, official logo pixels; flag design from primary official descriptions. Ground Y0, poles z-1.35 behind portal. Paired Jordan/Germany flags are the requested staging. Only cloth deforms, camera moves down independently; solid architecture stationary. Native HTML remains primary.
+Projection choice: national flag graphics authored from their geometric specification; no photographic flag mapping or guessed logos. Unpainted stone relief is an explicitly simplified procedural material.
+Composition: the entrance becomes a physical frame for the two-chapter story; native sticky visual alongside meaningful text, no added empty pin spacer.

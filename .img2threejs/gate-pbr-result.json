@@ -1,0 +1,85 @@
+{
+  "ok": true,
+  "verdict": "pass",
+  "confidence": 0.831,
+  "estimatedFidelity": 0.831,
+  "targetThreshold": 0.7,
+  "materialId": "stone",
+  "sourceImage": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-stone-crop.png",
+  "outDir": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-pbr",
+  "palette": [
+    "#756D61",
+    "#726A5D",
+    "#6D655A",
+    "#675F54",
+    "#7D7566"
+  ],
+  "maps": {
+    "albedo": {
+      "path": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-pbr\\stone_albedo.png",
+      "url": "stone_albedo.png",
+      "channel": "albedo",
+      "source": "reference-pixel-extraction"
+    },
+    "roughness": {
+      "path": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-pbr\\stone_roughness.png",
+      "url": "stone_roughness.png",
+      "channel": "roughness",
+      "source": "reference-pixel-extraction"
+    },
+    "height": {
+      "path": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-pbr\\stone_height.png",
+      "url": "stone_height.png",
+      "channel": "height",
+      "source": "reference-pixel-extraction"
+    },
+    "normal": {
+      "path": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-pbr\\stone_normal.png",
+      "url": "stone_normal.png",
+      "channel": "normal",
+      "source": "reference-pixel-extraction"
+    },
+    "ao": {
+      "path": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.img2threejs\\gate-pbr\\stone_ao.png",
+      "url": "stone_ao.png",
+      "channel": "ao",
+      "source": "reference-pixel-extraction"
+    }
+  },
+  "diagnostics": {
+    "sourceWidth": 45,
+    "sourceHeight": 160,
+    "mapSize": 256,
+    "cropBBoxPixels": {
+      "x": 0,
+      "y": 0,
+      "width": 45,
+      "height": 160
+    },
+    "mask": {
+      "backgroundColor": "#6F675C",
+      "backgroundNoise": 31.177,
+      "transparentPixelFraction": 0.0,
+      "foregroundCoverage": 0.6935
+    },
+    "mapStats": {
+      "valueRange": 0.0919,
+      "heightP90Gradient": 0.11539,
+      "roughnessBase": 0.763,
+      "roughnessVariation": 0.201,
+      "normalStrength": 0.291,
+      "blurRadius": 5
+    },
+    "palette": [
+      "#756D61",
+      "#726A5D",
+      "#6D655A",
+      "#675F54",
+      "#7D7566"
+    ]
+  },
+  "warnings": [
+    "low value range weakens height/roughness inference"
+  ],
+  "limitation": "single-image PBR extraction is an estimate; 70%+ extraction confidence still needs render screenshot review"
+}

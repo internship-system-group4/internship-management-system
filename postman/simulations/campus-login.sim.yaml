@@ -1,0 +1,7 @@
+simulation: campus-login
+routing: path
+mocks:
+  - routeKey: firebase
+    path: ../mocks/firebase/config.yaml
+  - routeKey: auth
+    path: ../mocks/campus-auth/config.yaml
