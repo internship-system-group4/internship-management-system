@@ -306,13 +306,6 @@
     <Compile Include="Pages\Coordinator\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Coordinator\Account\Account.aspx.cs">
-      <DependentUpon>Account.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Coordinator\Account\Account.aspx.designer.cs">
-      <DependentUpon>Account.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Companies.aspx</DependentUpon>
@@ -486,7 +479,6 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\Coordinator\Account\Account.aspx" />
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\css\applications.css" />
