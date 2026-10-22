@@ -1,50 +1,61 @@
 ﻿using System;
+using System.Collections.Generic;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Data;
-using InternshipManagementSystem.Common;
 
 namespace InternshipManagementSystem.Pages.Academic
 {
     public partial class FinalEvaluation : AcademicPage
     {
-        private string CurrentStudentId
-        {
-            get { return Request.QueryString["id"]; }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(CurrentStudentId))
-            {
-                Response.Redirect("Dashboard.aspx");
-                return;
-            }
-
             if (!IsPostBack)
             {
-                LoadEvaluationData();
+                LoadStudentsTable();
             }
         }
 
-        private void LoadEvaluationData()
+        private void LoadStudentsTable()
         {
+            // جلب الطلاب المخصصين للمشرف لعرضهم في الجدول
             UserRepository userRepo = new UserRepository();
-            Student student = userRepo.GetStudent(CurrentStudentId);
+            List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
 
-            // Security check
-            if (student == null || student.AcademicSupervisorId != CurrentSupervisor.Id)
+            if (myStudents != null && myStudents.Count > 0)
             {
-                Response.Redirect("Dashboard.aspx");
-                return;
+                rptStudents.DataSource = myStudents;
+                rptStudents.DataBind();
+                litNoData.Visible = false;
             }
+            else
+            {
+                litNoData.Visible = true;
+            }
+        }
 
-            litStudentName.Text = student.FullName;
+        // هذا الحدث يعمل عندما يضغط الدكتور على زر View لأي طالب
+        protected void btnOpenModal_Click(object sender, EventArgs e)
+        {
+            // إخفاء رسالة النجاح السابقة إن وجدت
+            pnlSuccessMessage.Visible = false;
 
+            // أخذ الـ ID الخاص بالطالب الذي تم الضغط عليه
+            System.Web.UI.WebControls.LinkButton btn = (System.Web.UI.WebControls.LinkButton)sender;
+            string studentId = btn.CommandArgument;
+
+            // حفظه في Hidden Field لنستخدمه عند الضغط على إرسال التقييم
+            hfSelectedStudentId.Value = studentId;
+
+            // 1. جلب اسم الطالب
+            UserRepository userRepo = new UserRepository();
+            Student student = userRepo.GetStudent(studentId);
+            litModalStudentName.Text = student != null ? student.FullName : "Unknown Student";
+
+            // 2. جلب تقييم الشركة إن وجد
             EvaluationRepository evalRepo = new EvaluationRepository();
+            FinalCompanyEvaluation companyEval = evalRepo.GetCompanyFinalForPlacement(studentId);
 
-            // 1. Load Company Evaluation (Read-Only)
-            FinalCompanyEvaluation companyEval = evalRepo.GetCompanyFinalForPlacement(CurrentStudentId);
             if (companyEval != null && companyEval.IsSubmitted)
             {
                 pnlCompanyEvalExists.Visible = true;
@@ -56,64 +67,82 @@ namespace InternshipManagementSystem.Pages.Academic
                 litImprovements.Text = string.IsNullOrEmpty(companyEval.AreasForImprovement) ? "N/A" : companyEval.AreasForImprovement;
                 litCompanyComment.Text = string.IsNullOrEmpty(companyEval.OverallComment) ? "N/A" : companyEval.OverallComment;
             }
+            else
+            {
+                pnlCompanyEvalExists.Visible = false;
+                pnlNoCompanyEval.Visible = true;
+            }
 
-            // 2. Check if Academic Evaluation is already submitted
-            FinalAcademicEvaluation academicEval = evalRepo.GetAcademicFinalForPlacement(CurrentStudentId);
+            // 3. التحقق إذا كان التقييم الأكاديمي محفوظ مسبقاً لهذا الطالب
+            FinalAcademicEvaluation academicEval = evalRepo.GetAcademicFinalForPlacement(studentId);
+
             if (academicEval != null && academicEval.IsSubmitted)
             {
-                // Lock the form if already submitted
-                txtCompanyComponent.Enabled = false;
-                txtReportComponent.Enabled = false;
-                txtDiscussionComponent.Enabled = false;
+                ddlPassFail.SelectedValue = academicEval.TotalScore > 0 ? "100" : "0";
+                ddlPassFail.Enabled = false;
+                txtAcademicComments.Text = academicEval.AcademicComments;
                 txtAcademicComments.Enabled = false;
+
                 btnSubmitEvaluation.Visible = false;
+                pnlAlreadySubmitted.Visible = true;
 
-                // Convert Unix timestamp to DateTime (Fixed CS0117 Error)
-                DateTime submitDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-                    .AddMilliseconds(academicEval.SubmittedAt).ToLocalTime();
-
-                lblStatusMessage.Text = "Evaluation successfully submitted to the Coordinator on " + submitDate.ToString("dd/MM/yyyy");
-                lblStatusMessage.CssClass = "text-success me-3";
-                lblStatusMessage.Visible = true;
+                DateTime submitDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(academicEval.SubmittedAt).ToLocalTime();
+                litAlreadySubmittedText.Text = "Decision submitted successfully on " + submitDate.ToString("dd/MM/yyyy");
             }
+            else
+            {
+                // إذا لم يتم التقييم بعد، نفتح النموذج
+                ddlPassFail.SelectedValue = "";
+                ddlPassFail.Enabled = true;
+                txtAcademicComments.Text = "";
+                txtAcademicComments.Enabled = true;
+                btnSubmitEvaluation.Visible = true;
+                pnlAlreadySubmitted.Visible = false;
+            }
+
+            // 4. كود جافاسكريبت متطور لإظهار النافذة المنبثقة (Modal) بأمان
+            string script = @"
+        setTimeout(function() {
+            var modalEl = document.getElementById('evaluationModal');
+            if(modalEl) {
+                var myModal = new bootstrap.Modal(modalEl);
+                myModal.show();
+            }
+        }, 100);
+    ";
+            ClientScript.RegisterStartupScript(this.GetType(), "ShowEvaluationModal", script, true);
         }
 
+        // هذا الحدث يعمل عندما يضغط الدكتور "إرسال" من داخل النافذة المنبثقة
         protected void btnSubmitEvaluation_Click(object sender, EventArgs e)
         {
-            // Parse scores safely
-            double compScore, repScore, discScore;
-            double.TryParse(txtCompanyComponent.Text, out compScore);
-            double.TryParse(txtReportComponent.Text, out repScore);
-            double.TryParse(txtDiscussionComponent.Text, out discScore);
+            string studentId = hfSelectedStudentId.Value;
 
-            double totalScore = compScore + repScore + discScore;
+            if (string.IsNullOrEmpty(studentId) || string.IsNullOrEmpty(ddlPassFail.SelectedValue))
+            {
+                return;
+            }
+
+            double totalScore = double.Parse(ddlPassFail.SelectedValue);
 
             FinalAcademicEvaluation eval = new FinalAcademicEvaluation
             {
-                StudentId = CurrentStudentId,
-                PlacementId = CurrentStudentId, // Based on repo rules, placement ID matches student ID
+                StudentId = studentId,
+                PlacementId = studentId,
                 AcademicSupervisorId = CurrentSupervisor.Id,
                 TotalScore = totalScore,
                 MaxScore = 100,
                 AcademicComments = txtAcademicComments.Text,
                 IsSubmitted = true,
-                SubmittedAt = Time.NowMs()
+                SubmittedAt = Common.Time.NowMs()
             };
 
-            // Save the evaluation via the repository
             EvaluationRepository evalRepo = new EvaluationRepository();
             evalRepo.SaveAcademicFinal(eval);
 
-            // Update UI
-            txtCompanyComponent.Enabled = false;
-            txtReportComponent.Enabled = false;
-            txtDiscussionComponent.Enabled = false;
-            txtAcademicComments.Enabled = false;
-            btnSubmitEvaluation.Visible = false;
-
-            lblStatusMessage.Text = "Evaluation successfully submitted to the Coordinator!";
-            lblStatusMessage.CssClass = "text-success me-3";
-            lblStatusMessage.Visible = true;
+            // إظهار رسالة النجاح في الشاشة الرئيسية (لأن النافذة ستغلق تلقائياً بعد الإرسال)
+            pnlSuccessMessage.Visible = true;
+            litSuccessMessage.Text = "Evaluation for the selected student has been submitted to the Coordinator successfully!";
         }
     }
 }
