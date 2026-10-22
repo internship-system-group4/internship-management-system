@@ -3,7 +3,7 @@ async page => {
  const check=(ok,message)=>{if(!ok)throw Error(message);checks++;};
  const errors=[],consoleErrors=[];page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')consoleErrors.push(m.text());});
  const get=async path=>(await page.request.get(db+'/'+path+'.json')).json();
- const count=async()=>Object.keys(await get('contactMessages')||{}).length;
+ const count=async()=>Object.keys(await get('ContactMessages')||{}).length;
  const routes=[['home','/Default.aspx'],['about','/Pages/Public/About.aspx'],['contact','/Pages/Public/Contact.aspx'],['login','/Pages/Account/Login.aspx'],['recovery','/Pages/Account/ForgotPassword.aspx'],['denied','/Pages/Public/AccessDenied.aspx']];
  await page.context().clearCookies();await page.request.post(db+'/__reset');
  for(const width of [1440,768,390,320])for(const [name,path] of routes){
@@ -51,8 +51,8 @@ async page => {
  check(await page.getByLabel('Message *',{exact:true}).evaluate(el=>getComputedStyle(el).direction)==='rtl','Arabic input direction');
  await page.getByRole('button',{name:'Send message'}).click();
  check((await page.getByRole('alert').innerText()).includes('has been sent'),'Persisted success');
- const messages=await get('contactMessages'),records=Object.values(messages);
- check(records.length===1&&records[0].SenderName==='أسامة بني هاني'&&records[0].Status===0,'Existing message contract');
+ const messages=await get('ContactMessages'),records=Object.values(messages);
+ check(records.length===1&&records[0].Name==='أسامة بني هاني'&&records[0].Status==='New','Existing message contract');
  check(records[0].Id===Object.keys(messages)[0]&&records[0].SubmittedAt>0,'Server owned key and time');
  await page.reload();check(await count()===1,'Refresh cannot duplicate');
  await fillContact();await page.request.post(db+'/__fail-writes');await page.getByRole('button',{name:'Send message'}).click();

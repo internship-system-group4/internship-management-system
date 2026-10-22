@@ -60,10 +60,10 @@ async page => {
  check((await page.locator('[data-submit-status]').innerText()).includes('Sending your message'),'Accessible progress state');
  check(await page.locator('[data-public-form] input[type="submit"]').getAttribute('aria-disabled')==='true','Duplicate action disabled semantically');
  check(await page.evaluate(()=>window.validateContact())===false,'Repeated submission blocked during pending state');
- check(Object.keys(await get('contactMessages')||{}).length===0,'Progress never claims a saved record');
+ check(Object.keys(await get('ContactMessages')||{}).length===0,'Progress never claims a saved record');
  await page.evaluate(()=>window.dispatchEvent(new Event('pageshow')));
  await page.getByRole('button',{name:'Send message'}).click();
- check((await page.getByRole('alert').innerText()).includes('has been sent')&&Object.keys(await get('contactMessages')).length===1,'Success only after confirmed save');
+ check((await page.getByRole('alert').innerText()).includes('has been sent')&&Object.keys(await get('ContactMessages')).length===1,'Success only after confirmed save');
  await page.request.post(db+'/__reset');await put('publicOpportunityPreviews',{'internship-one':preview});
  for(const width of [1440,768,390]){
   await page.setViewportSize({width,height:1000});await page.goto(base+'/Default.aspx');

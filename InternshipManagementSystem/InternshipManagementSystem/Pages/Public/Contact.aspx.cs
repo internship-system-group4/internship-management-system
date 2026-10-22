@@ -23,11 +23,11 @@ namespace InternshipManagementSystem.Pages.PublicArea
                 }
             }
         }
-        protected void Send_Click(object sender, EventArgs e)
+        protected void btnSend_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(Website.Text)) return;
-            string name = SenderName.Text.Trim(), email = SenderEmail.Text.Trim(),
-                subject = Subject.Text.Trim(), message = MessageText.Text.Trim();
+            string name = txtName.Text.Trim(), email = txtEmail.Text.Trim(),
+                subject = txtSubject.Text.Trim(), message = txtMessage.Text.Trim();
             if (name.Length < 2 || name.Length > 100 || email.Length > 254 || !Common.Validators.IsEmail(email)
                 || subject.Length < 5 || subject.Length > 150 || message.Length < 20 || message.Length > 4000)
             {
@@ -40,8 +40,12 @@ namespace InternshipManagementSystem.Pages.PublicArea
             try
             {
                 // A stable, server-owned key makes repeated posts of the same form idempotent.
-                new ContactRepository().Save(id.ToString("N"), new ContactMessage
-                { SenderName = name, SenderEmail = email, Subject = subject, Message = message, Status = ContactMessageStatus.New });
+                // Preserve main's coordinator inbox contract and the stable server-owned key.
+                FirebaseContext.PutIfEmpty("ContactMessages/" + id.ToString("N"), new
+                {
+                    Name = name, Email = email, Subject = subject, Message = message,
+                    Status = "New", SubmittedAt = Time.NowMs()
+                });
                 Session["PublicContactSent"] = true;
                 Response.Redirect("Contact.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
@@ -53,9 +57,9 @@ namespace InternshipManagementSystem.Pages.PublicArea
         }
         private void ShowNotice(string message, bool success)
         {
-            MessageNotice.Text = Server.HtmlEncode(message);
-            MessageNotice.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
-            MessageNotice.Visible = true;
+            lblMessage.Text = Server.HtmlEncode(message);
+            lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
+            lblMessage.Visible = true;
         }
     }
 }

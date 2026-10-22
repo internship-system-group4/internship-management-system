@@ -2,12 +2,12 @@ namespace InternshipManagementSystem.Pages.PublicArea
 {
     public partial class Contact
     {
-        protected global::System.Web.UI.WebControls.Label MessageNotice;
-        protected global::System.Web.UI.WebControls.TextBox SenderName;
-        protected global::System.Web.UI.WebControls.TextBox SenderEmail;
-        protected global::System.Web.UI.WebControls.TextBox Subject;
-        protected global::System.Web.UI.WebControls.TextBox MessageText;
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.TextBox txtName;
+        protected global::System.Web.UI.WebControls.TextBox txtEmail;
+        protected global::System.Web.UI.WebControls.TextBox txtSubject;
+        protected global::System.Web.UI.WebControls.TextBox txtMessage;
         protected global::System.Web.UI.WebControls.TextBox Website;
-        protected global::System.Web.UI.WebControls.Button SendButton;
+        protected global::System.Web.UI.WebControls.Button btnSend;
     }
 }
