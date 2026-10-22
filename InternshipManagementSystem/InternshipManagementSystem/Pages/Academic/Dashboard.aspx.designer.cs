@@ -7,12 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InternshipManagementSystem.Pages.Academic
+namespace InternshipManagementSystem.Pages.AcademicArea
 {
 
 
     public partial class Dashboard
     {
+        protected global::System.Web.UI.WebControls.Label lblMessage;
 
         /// <summary>
         /// litSupervisorName control.

@@ -99,8 +99,17 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
             if (user == null)
             {
+                // On the developer's own computer, say exactly which record was missing
+                if (Request.IsLocal)
+                {
+                    ShowError("Your account is not set up yet. No record with a Role was found at users/"
+                        + result.Uid + " in " + FirebaseContext.DatabaseUrl);
+                }
+                else
+                {
+                    ShowError("Your account is not set up yet. Please contact the coordinator.");
+                }
                 SessionHelper.SignOut();
-                ShowError("Your account is not set up yet. Please contact the coordinator.");
                 return;
             }
 

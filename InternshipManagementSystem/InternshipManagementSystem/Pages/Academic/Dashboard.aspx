@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Dashboard" %>
+﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.AcademicArea.Dashboard" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <!-- Custom styles to perfectly match Figma components -->
@@ -46,6 +46,8 @@
             </div>
         </div>
     </div>
+
+    <asp:Label ID="lblMessage" runat="server" Visible="false" CssClass="alert alert-danger d-block" role="alert" />
 
     <!-- Summary Cards -->
     <div class="row mb-4">
@@ -99,23 +101,23 @@
                                 <td style="width: 50px;">
                                     <div class="student-avatar">
                                         <!-- Displays the first letter of the student's name safely -->
-                                        <%# Eval("FullName") != null && Eval("FullName").ToString().Length > 0 ? Eval("FullName").ToString().Substring(0, 1).ToUpper() : "S" %>
+                                        <%#: Eval("FullName") != null && Eval("FullName").ToString().Length > 0 ? Eval("FullName").ToString().Substring(0, 1).ToUpper() : "S" %>
                                     </div>
                                 </td>
                                 
                                 <!-- Name and ID -->
                                 <td>
                                     <div style="font-weight: 600; color: var(--brand-dark); font-size: 0.95rem;">
-                                        <%# Eval("FullName") %>
+                                        <%#: Eval("FullName") %>
                                     </div>
                                     <div style="font-size: 0.75rem; color: var(--muted);">
-                                        #<%# Eval("StudentNumber") %>
+                                        #<%#: Eval("StudentNumber") %>
                                     </div>
                                 </td>
 
                                 <!-- Major -->
                                 <td style="font-size: 0.9rem; color: var(--muted);">
-                                    <%# Eval("Major") %>
+                                    <%#: Eval("Major") %>
                                 </td>
 
                                 <!-- Hours Progress -->
@@ -134,7 +136,7 @@
 
                                 <!-- Action Button -->
                                 <td class="text-end">
-                                    <a href="StudentProgress.aspx?id=<%# Eval("Id") %>" class="btn btn-sm btn-outline-brand">View progress</a>
+                                    <a href="<%#: GetStudentProgressUrl(Eval("Id")) %>" class="btn btn-sm btn-outline-brand">View progress</a>
                                 </td>
                             </tr>
                         </ItemTemplate>
