@@ -197,15 +197,29 @@
     runat="server">
 
 <div class="cv-page">
+    
+<div style="margin-bottom:22px;">
+    <a href="<%: ResolveUrl("~/Pages/Student/Profile.aspx") %>"
+       style="color:#28547d;
+              text-decoration:none;
+              font-size:13px;
+              font-weight:700;">
+        &larr; Back to My Profile
+    </a>
+</div>
 
-    <div class="cv-heading">
-        <h2>Student CV &amp; Portfolio</h2>
+    
+<div class="cv-heading">
+    <h2>My CV &amp; Portfolio</h2>
 
-        <p class="cv-muted">
-            Manage your CV and portfolio to showcase
-            your skills, projects, and experience.
-        </p>
-    </div>
+    <p class="cv-muted">
+        Build your professional presence by managing
+        your CV, project portfolio and online links.
+        Keep everything updated before applying
+        for internship opportunities.
+    </p>
+</div>
+
 
     <% if (!string.IsNullOrEmpty(Notice)) { %>
 

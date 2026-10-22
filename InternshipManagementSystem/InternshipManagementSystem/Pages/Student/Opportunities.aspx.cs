@@ -12,6 +12,7 @@
 // =============================================================================
 
 
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,31 +42,37 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 return;
             }
 
+            // Academic information is read from the logged-in student.
+            // Students cannot change their college or major here.
             StudentCollege = CurrentStudent.College ?? "";
             StudentMajor = CurrentStudent.Major ?? "";
 
             if (string.IsNullOrWhiteSpace(StudentCollege) ||
                 string.IsNullOrWhiteSpace(StudentMajor))
             {
-                Notice =
-                    "Your college or major is missing. " +
-                    "Please contact the university coordinator.";
+                Notice = "Your college or major is missing. " +
+                         "Please contact the internship coordinator.";
                 return;
+            }
+
+            SearchText = (Request.QueryString["q"] ?? "").Trim();
+
+            if (SearchText.Length > 100)
+            {
+                SearchText = SearchText.Substring(0, 100);
             }
 
             try
             {
-                SearchText =
-                    (Request.QueryString["q"] ?? "").Trim();
+                OpportunityRepository repository =
+                    new OpportunityRepository();
 
-                if (SearchText.Length > 100)
-                {
-                    SearchText = SearchText.Substring(0, 100);
-                }
+                List<Opportunity> allOpportunities =
+                    repository.GetAll();
 
-                var repository = new OpportunityRepository();
-
-                AvailableOpportunities = repository.GetAll()
+                // R03: Only open opportunities that match the student's
+                // college and major can be displayed.
+                AvailableOpportunities = allOpportunities
                     .Where(o =>
                         o != null &&
                         o.IsOpenForApplications &&
@@ -73,52 +80,70 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     .OrderByDescending(o => o.CreatedAt)
                     .ToList();
 
+                // Optional search within eligible opportunities only.
                 if (!string.IsNullOrWhiteSpace(SearchText))
                 {
                     AvailableOpportunities =
-                        AvailableOpportunities.Where(o =>
+                        AvailableOpportunities
+                        .Where(o =>
                             ContainsText(o.Title, SearchText) ||
                             ContainsText(o.CompanyName, SearchText) ||
                             ContainsText(o.Location, SearchText) ||
-                            ContainsText(o.Description, SearchText) ||
-                            ContainsText(o.Requirements, SearchText)
-                        ).ToList();
+                            ContainsText(o.Description, SearchText))
+                        .ToList();
                 }
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceError(
-                    "Explore Opportunities: " + ex
+                    "Explore Opportunities Error: " + ex.ToString()
                 );
 
                 AvailableOpportunities.Clear();
 
-                Notice =
-                    "Unable to load opportunities right now. " +
-                    "Please try again later.";
+                Notice = "Unable to load opportunities right now. " +
+                         "Please try again later.";
             }
         }
 
-        private static bool ContainsText(
-            string source,
-            string search)
+        private static bool ContainsText(string source, string search)
         {
-            return !string.IsNullOrEmpty(source) &&
-                source.IndexOf(
-                    search,
-                    StringComparison.OrdinalIgnoreCase
-                ) >= 0;
+            return !string.IsNullOrWhiteSpace(source) &&
+                   source.IndexOf(
+                       search,
+                       StringComparison.OrdinalIgnoreCase
+                   ) >= 0;
         }
 
         protected static string DisplayDate(long timestamp)
         {
+            if (timestamp <= 0)
+            {
+                return "Not specified";
+            }
+
             return Time.DisplayDate(timestamp);
+        }
+
+        protected static string ShortDescription(string description)
+        {
+            if (string.IsNullOrWhiteSpace(description))
+            {
+                return "Explore this internship to learn more about the role.";
+            }
+
+            if (description.Length > 155)
+            {
+                return description.Substring(0, 155).TrimEnd() + "...";
+            }
+
+            return description;
         }
 
         protected static string DetailsUrl(string id)
         {
             return "OpportunityDetails.aspx?id=" +
-                System.Web.HttpUtility.UrlEncode(id ?? "");
+                   System.Web.HttpUtility.UrlEncode(id ?? "");
         }
     }
 }
