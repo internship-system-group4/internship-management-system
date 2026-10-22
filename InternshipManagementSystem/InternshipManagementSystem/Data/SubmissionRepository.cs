@@ -7,10 +7,6 @@ using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
-using System.Collections.Generic;
-using InternshipManagementSystem.Common;
-using InternshipManagementSystem.Models;
-
 namespace InternshipManagementSystem.Data
 {
     public class SubmissionRepository : RepositoryBase<Submission>
