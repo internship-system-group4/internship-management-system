@@ -24,7 +24,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        // هذا الحدث يشتغل تلقائياً لما تكتبي بالبحث أو تغيري القائمة المنسدلة
         protected void Filter_Changed(object sender, EventArgs e)
         {
             LoadTraineesData();
@@ -37,7 +36,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             try
             {
-                // جلب كل التدريبات وفلترتها محلياً لتجاوز خطأ الفايربيس (Index not defined)
                 List<Placement> allPlacements = _placementRepo.GetAll();
                 List<Placement> companyPlacements = new List<Placement>();
 
@@ -55,7 +53,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 List<TraineeViewModel> allTraineesList = new List<TraineeViewModel>();
 
-                // تجهيز قائمة المتدربين مع حساب نسبهم
                 foreach (Placement p in companyPlacements)
                 {
                     var student = _userRepo.GetStudent(p.StudentId);
@@ -89,9 +86,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litNearCompletion.Text = nearCompleteCount.ToString();
                 litCompleted.Text = completedCount.ToString();
 
-                // ----------------------------------------------------
-                // تطبيق الفلترة (البحث)
-                // ----------------------------------------------------
                 string searchText = txtSearch.Text.ToLower().Trim();
                 string selectedDept = ddlDepartment.SelectedValue;
                 string selectedStatus = ddlStatus.SelectedValue;
@@ -123,7 +117,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     }
                 }
 
-                // ربط الجدول بالقائمة المفلترة النهائية
                 gvTrainees.DataSource = filteredList;
                 gvTrainees.DataBind();
             }

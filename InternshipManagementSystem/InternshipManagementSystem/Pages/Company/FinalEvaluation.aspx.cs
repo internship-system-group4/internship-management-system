@@ -18,10 +18,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (IsPostBack == false)
             {
                 LoadTraineesDropdown();
+
+                // ربط اسم المشرف لطباعته على الشهادة التلقائية
+                if (CurrentSupervisor != null)
+                {
+                    litCompanySupervisorName.Text = CurrentSupervisor.FullName;
+                }
             }
         }
 
-        // 1. تعبئة القائمة المنسدلة بالمتدربين النشطين
         private void LoadTraineesDropdown()
         {
             try
@@ -34,7 +39,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 {
                     if (p.CompanyId == CurrentSupervisor.CompanyId)
                     {
-                        // تم إصلاح الخطأ هنا: نستخدم "Completed" بدلاً من الكلمة الوهمية "Evaluated"
                         if (p.Status.ToString() != "Completed")
                         {
                             ddlTrainees.Items.Add(new ListItem(p.StudentName, p.Id));
@@ -48,7 +52,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        // 2. عند اختيار متدرب من القائمة
         protected void DdlTrainees_SelectedIndexChanged(object sender, EventArgs e)
         {
             string placementId = ddlTrainees.SelectedValue;
@@ -82,7 +85,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        // 3. زر مسوداتي
         protected void BtnMyDrafts_Click(object sender, EventArgs e)
         {
             try
@@ -92,7 +94,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 foreach (Placement p in allPlacements)
                 {
-                    // لجعلها تعمل بدون أخطاء، نعتبر أي متدرب لم يكتمل تدريبه كمسودة قابلة للتقييم
                     if (p.CompanyId == CurrentSupervisor.CompanyId && p.Status.ToString() != "Completed")
                     {
                         drafts.Add(p);
@@ -110,7 +111,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        // 4. عند الضغط على "Continue" من جدول المسودات
         protected void GvDrafts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             if (e.CommandName == "LoadDraft")
@@ -122,7 +122,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        // 5. حفظ كمسودة
         protected void BtnSaveDraft_Click(object sender, EventArgs e)
         {
             string placementId = ddlTrainees.SelectedValue;
@@ -134,16 +133,18 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             try
             {
-                // تم إزالة تغيير الـ Status الوهمي، نحفظ فقط القيم الإضافية لتجنب الإيرور
+                // حفظ البيانات شاملة الساعات والتوصية
                 var updates = new Dictionary<string, object>
                 {
                     { "EvalTech", txtTechSkills.Text },
                     { "EvalWork", txtWorkQuality.Text },
-                    { "EvalComm", txtCommunication.Text },
                     { "EvalProf", txtProfessionalism.Text },
+                    { "EvalComm", txtCommunication.Text },
                     { "EvalPerformance", ddlPerformance.SelectedValue },
                     { "EvalStrengths", txtStrengths.Text },
-                    { "EvalImprovements", txtImprovements.Text }
+                    { "EvalImprovements", txtImprovements.Text },
+                    { "ActualHours", txtActualHours.Text },
+                    { "CompanyRecommendation", ddlRecommendation.SelectedValue }
                 };
 
                 _placementRepo.Update(placementId, updates);
@@ -155,7 +156,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        // 6. الإرسال النهائي
         protected void BtnSendEvaluation_Click(object sender, EventArgs e)
         {
             string placementId = ddlTrainees.SelectedValue;
@@ -169,39 +169,41 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 int.TryParse(txtTechSkills.Text, out int tech);
                 int.TryParse(txtWorkQuality.Text, out int work);
-                int.TryParse(txtCommunication.Text, out int comm);
                 int.TryParse(txtProfessionalism.Text, out int prof);
+                int.TryParse(txtCommunication.Text, out int comm);
 
-                if (tech > 30 || work > 25 || comm > 20 || prof > 25)
+                // تطبيق معايير GJU: (40, 25, 20, 15)
+                if (tech > 40 || work > 25 || prof > 20 || comm > 15)
                 {
-                    ShowPopupMessage("Invalid Scores", "Please check your numbers. Scores cannot exceed the maximum values.", false);
+                    ShowPopupMessage("Invalid Scores", "Please check your numbers. Scores cannot exceed the maximum GJU criteria values.", false);
                     return;
                 }
 
-                if (string.IsNullOrEmpty(ddlPerformance.SelectedValue))
+                if (string.IsNullOrEmpty(ddlPerformance.SelectedValue) || string.IsNullOrEmpty(ddlRecommendation.SelectedValue) || string.IsNullOrEmpty(txtActualHours.Text))
                 {
-                    ShowPopupMessage("Missing Field", "Please open the Feedback form and select a Performance level.", false);
+                    ShowPopupMessage("Missing Fields", "Please complete actual hours, feedback, and recommendation fields.", false);
                     return;
                 }
 
-                // تم إصلاح الخطأ: نغير الحالة إلى "Completed" (وهي حالة صحيحة وموجودة بالنظام)
                 var updates = new Dictionary<string, object>
                 {
                     { "Status", "Completed" },
                     { "EvalTech", tech },
                     { "EvalWork", work },
-                    { "EvalComm", comm },
                     { "EvalProf", prof },
+                    { "EvalComm", comm },
                     { "EvalPerformance", ddlPerformance.SelectedValue },
                     { "EvalStrengths", txtStrengths.Text },
                     { "EvalImprovements", txtImprovements.Text },
-                    { "FinalScore", (tech + work + comm + prof) }
+                    { "FinalScore", (tech + work + prof + comm) },
+                    { "ActualHours", txtActualHours.Text },
+                    { "CompanyRecommendation", ddlRecommendation.SelectedValue }
                 };
 
                 _placementRepo.Update(placementId, updates);
 
                 litStatusBadge.Text = "<span class='status-badge-green'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>Evaluated</span>";
-                ShowPopupMessage("Evaluation Sent!", "Success! The evaluation has been sent to the Academic Supervisor.", true);
+                ShowPopupMessage("Certificate Issued!", "Success! Evaluation submitted to the GJU Academic Supervisor. You may now print the certificate.", true);
 
                 ClearFormFields();
                 LoadTraineesDropdown();
@@ -240,7 +242,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             txtWorkQuality.Text = "";
             txtCommunication.Text = "";
             txtProfessionalism.Text = "";
+            txtActualHours.Text = "";
             ddlPerformance.SelectedIndex = 0;
+            ddlRecommendation.SelectedIndex = 0;
             txtStrengths.Text = "";
             txtImprovements.Text = "";
         }
