@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student.master.cs" Inherits="InternshipManagementSystem.Layout.StudentMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student.master.cs" Inherits="InternshipManagementSystem.Layout.StudentMaster" %>
 <%@ Register Src="~/Layout/Sidebar.ascx" TagPrefix="uims" TagName="Sidebar" %>
 <%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
 
@@ -14,11 +14,16 @@
          two files into Assets/css and Assets/js and swap the four links. -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261022-sidebar-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-4" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-4" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-4" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-4" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-4" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/reference-analytics.css?v=20261023-5" runat="server" />
 </head>
-<body class="student-portal uims-portal">
+<body data-ui-owner="<%: InternshipManagementSystem.Security.SessionHelper.Current == null ? "" : InternshipManagementSystem.Security.SessionHelper.Current.Id %>" class="student-portal uims-portal">
 <form id="mainForm" runat="server">
     <div class="uims-shell">
         <aside id="studentSidebar" data-portal-sidebar="true" class="uims-sidebar" aria-label="Student navigation" tabindex="-1">
@@ -54,7 +59,10 @@
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261022-sidebar-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-4") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
+<script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-4") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-4") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/workspace-charts.js?v=20261023-5") %>"></script>
 </body>
 </html>

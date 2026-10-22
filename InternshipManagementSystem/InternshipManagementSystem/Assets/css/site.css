@@ -10,9 +10,9 @@
    TODO(Nada, card N01 + Suja, card X01): replace these four values with the
    assigned university's real colours, then everything below follows. */
 :root {
-    --brand: #0f4c81;
-    --brand-dark: #0a3457;
-    --brand-light: #e8f0f7;
+    --brand: var(--ui-primary);
+    --brand-dark: var(--ui-primary-hover);
+    --brand-light: var(--ui-primary-soft);
     --accent: #c8a349;
 
     --ink: #1d2733;

@@ -795,7 +795,7 @@
                                     runat="server"
                                     Text="Mark as Reviewed"
                                     CssClass="btn btn-reviewed"
-                                    OnClick="btnMarkReviewed_Click" />
+                                    OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="Updating…"/>
 
                                 <asp:Button ID="btnClose"
                                     runat="server"

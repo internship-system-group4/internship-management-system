@@ -255,7 +255,7 @@
             Text="Save Grade"
             CssClass="btn btn-brand"
             OnClick="btnSaveGrade_Click"
-            Enabled="false" />
+            Enabled="false"  data-ui-action="save" data-loading-label="Saving…"/>
 
         <asp:Button ID="Button1" runat="server"
             Text="Request Revision"

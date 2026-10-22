@@ -1,25 +1,27 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Dashboard" Title="Coordinator Dashboard" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Register Src="~/Layout/WorkspaceJourney.ascx" TagPrefix="uims" TagName="WorkspaceJourney" %>
+<%@ Register Src="~/Layout/WorkspaceChart.ascx" TagPrefix="uims" TagName="WorkspaceChart" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="monitor-page">
-    <div class="monitor-heading"><div><h2>Coordinator dashboard</h2><p>Follow students, training partners and internship progress.</p></div><a class="btn btn-brand" href="Placements.aspx">View placements</a></div>
-    <% if (LoadError != null) { %><div class="monitor-error" role="alert"><%: LoadError %> <a href="Dashboard.aspx">Retry</a></div><% } else if (Summary != null) { %>
-    <p class="monitor-freshness">Loaded from Firebase on page refresh &middot; <%: DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm") %> UTC</p>
-    <div class="monitor-metrics" aria-label="System statistics">
-        <a href="Students.aspx" class="monitor-metric" data-metric="students"><span>Students</span><strong><%: Summary.Students %></strong><small><%: Summary.ActiveStudents %> active accounts</small></a>
-        <a href="Companies.aspx" class="monitor-metric" data-metric="companies"><span>Companies</span><strong><%: Summary.Companies %></strong><small><%: Summary.ActiveCompanies %> active partners</small></a>
-        <div class="monitor-metric" data-metric="opportunities"><span>Opportunities</span><strong><%: Summary.Opportunities %></strong><small><%: Summary.OpenOpportunities %> accepting applications</small></div>
-        <a href="Placements.aspx" class="monitor-metric" data-metric="placements"><span>Confirmed placements</span><strong><%: Summary.Placements %></strong><small><%: Summary.ActivePlacements %> confirmed or active</small></a>
-        <div class="monitor-metric" data-metric="task-evaluations"><span>Task evaluations</span><strong><%: Summary.TaskEvaluations %></strong><small>Linked to confirmed placements</small></div>
-        <div class="monitor-metric" data-metric="final-evaluations"><span>Submitted final evaluations</span><strong><%: Summary.CompanyFinals + Summary.AcademicFinals %></strong><small><%: Summary.CompanyFinals %> company &middot; <%: Summary.AcademicFinals %> academic</small></div>
-    </div>
-    <div class="monitor-attention"><h3>Needs attention</h3><div><a href="Placements.aspx?status=3"><strong><%: Summary.AwaitingCompletion %></strong> placements awaiting completion</a><span><strong><%: Summary.OverdueTasks %></strong> tasks past deadline and not graded</span><span><strong><%: Summary.PendingHours %> h</strong> reported, awaiting approval</span></div></div>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3>Recent placements</h3><a href="Placements.aspx">View all placements</a></div>
-        <% if (Summary.Recent.Count == 0) { %><div class="monitor-empty">No confirmed internships yet. Placements appear here after a student confirms an accepted offer.</div><% } else { %>
-        <div class="monitor-table-scroll"><table class="monitor-table"><caption class="visually-hidden">Five most recently confirmed student placements</caption><thead><tr><th scope="col">Student</th><th scope="col">Company</th><th scope="col">Status</th><th scope="col">Approved hours</th><th scope="col">Action</th></tr></thead><tbody>
-        <% foreach (var row in Summary.Recent) { %><tr><td><strong><%: row.StudentName %></strong><small><%: row.StudentNumber %></small></td><td><%: row.Placement.CompanyName %></td><td><span class="monitor-status"><%: row.StatusText %></span></td><td><%: row.HoursText %></td><td><a href="PlacementDetails.aspx?id=<%: Server.UrlEncode(row.Placement.Id) %>" aria-label="View internship for <%: row.StudentName %>">View details</a></td></tr><% } %>
-        </tbody></table></div><% } %>
-    </section>
-    <% } %>
+<div class="ws-dashboard ws-reference ws-coordinator" data-workspace-role="coordinator">
+ <header class="ws-page-heading" data-ws-enter="header"><div><h2>Coordination desk</h2><p>Keep assignments, training exceptions and completion decisions in view.</p></div><a class="btn btn-brand" href="CompletionReview.aspx">Open completion review <span data-ui-icon="next" aria-hidden="true"></span></a></header>
+ <% if(LoadError != null) { %><div class="alert alert-danger" role="alert"><%: LoadError %> <a href="Dashboard.aspx">Retry</a></div><% } %>
+ <uims:WorkspaceJourney ID="Journey" runat="server" />
+ <uims:WorkspaceChart ID="Charts" runat="server" />
+ <% if(Summary != null) { %>
+ <dl class="ws-metric-band" hidden aria-hidden="true" data-ws-enter="metrics"><div data-metric="students"><dt>Students</dt><dd><strong><%: Summary.Students %></strong></dd><small><%: Summary.ActiveStudents %> active accounts</small></div><div data-metric="placements"><dt>Confirmed placements</dt><dd><strong><%: Summary.Placements %></strong></dd><small><%: Summary.ActivePlacements %> confirmed or active</small></div><div data-metric="final-evaluations"><dt>Final assessments received</dt><dd><strong><%: Summary.CompanyFinals + Summary.AcademicFinals %></strong></dd><small><%: Summary.CompanyFinals %> company · <%: Summary.AcademicFinals %> academic</small></div><div><dt>Ready for review</dt><dd><%: Workspace.Queue.Count(q => q.IsReady) %></dd><small>Both evaluations; not yet approved</small></div></dl>
+ <div class="ws-coordination-work" data-ws-enter="work">
+  <section class="ws-work-panel"><div class="ws-section-heading"><div><h3>Completion queue</h3><p>Each student needs an individual coordinator decision.</p></div><a href="CompletionReview.aspx">View queue</a></div>
+   <% if(Workspace.Queue.Count == 0) { %><div class="ws-empty"><h4>No confirmed placements yet</h4><p>Students appear here after confirming one accepted offer.</p><a href="ManageStudents.aspx">Manage student records</a></div><% } else { %>
+   <table class="ws-completion-table"><caption class="visually-hidden">Completion work and approved hours for confirmed placements</caption><thead><tr><th>Student &amp; company</th><th>Approved hours</th><th>Review stage</th><th>Action</th></tr></thead><tbody>
+    <% foreach(var row in Workspace.Queue.Take(5)) { %><tr data-workspace-row="<%: row.Overview.Placement.Id %>" data-workspace-status="<%: row.StageText %>"><td><strong><%: row.Overview.StudentName %></strong><small><%: row.Overview.Placement.CompanyName %></small></td><td><%: row.Overview.HoursText %></td><td><span class="monitor-status"><%: row.StageText %></span></td><td><a class="ws-text-action" href="CompletionReview.aspx?id=<%: Server.UrlEncode(row.Overview.Placement.Id) %>">Review <span data-ui-icon="next" aria-hidden="true"></span></a></td></tr><% } %>
+   </tbody></table><% } %>
+  </section>
+  <aside class="ws-assignment-desk"><span data-ui-icon="people" aria-hidden="true"></span><h3>Assignments</h3><div class="ws-assignment-number"><%: Workspace.UnassignedStudents %></div><p>active student profiles have no academic supervisor recorded.</p><a class="btn btn-light" href="Groups.aspx">Manage groups &amp; assignments <span data-ui-icon="next" aria-hidden="true"></span></a><a href="AcademicSupervisors.aspx">Academic supervisors</a></aside>
+ </div>
+ <section class="ws-exceptions" data-ws-enter="support"><div class="ws-section-heading"><h3>Training exceptions</h3><a href="Placements.aspx">Open placements</a></div><div class="ws-exception-band"><a href="Placements.aspx?status=3"><strong><%: Summary.AwaitingCompletion %></strong><span>placements awaiting completion</span></a><div><strong><%: Summary.OverdueTasks %></strong><span>ungraded tasks past their deadline</span></div><div><strong><%: Summary.PendingHours %> h</strong><span>reported, awaiting company approval</span></div></div></section>
+ <div class="ws-programme-totals"><span data-metric="companies"><strong><%: Summary.Companies %></strong> companies · <%: Summary.ActiveCompanies %> active</span><span data-metric="opportunities"><strong><%: Summary.Opportunities %></strong> opportunities · <%: Summary.OpenOpportunities %> open</span><span data-metric="task-evaluations"><strong><%: Summary.TaskEvaluations %></strong> linked task evaluations</span><small>Updated on page load · <%: DateTime.UtcNow.ToString("dd MMM yyyy HH:mm") %> UTC</small></div>
+ <% } %>
 </div>
 </asp:Content>

@@ -19,11 +19,11 @@
                 <asp:PlaceHolder runat="server" Visible='<%# CanConfirm(Container.DataItem) %>'>
                     <div class="offer-confirmation"><strong>Ready to join this company?</strong><p class="application-help">You can confirm only one internship. Choose carefully before continuing.</p>
                         <div class="offer-consent"><asp:CheckBox ID="ConfirmConsent" runat="server" Text=" I understand that I can confirm only one internship offer." /></div>
-                        <asp:Button runat="server" CommandName="Confirm" CommandArgument='<%# Eval("Id") %>' Text="Confirm offer" CssClass="btn btn-brand" />
+                        <asp:Button runat="server" CommandName="Confirm" CommandArgument='<%# Eval("Id") %>' Text="Confirm offer" CssClass="btn btn-brand"  data-ui-action="confirm" data-loading-label="Confirming…"/>
                     </div>
                 </asp:PlaceHolder>
                 <asp:PlaceHolder runat="server" Visible='<%# IsConfirmed(Container.DataItem) %>'><p class="confirmed-offer-label">This is your confirmed internship.</p></asp:PlaceHolder>
-                <asp:PlaceHolder runat="server" Visible='<%# NeedsSync(Container.DataItem) %>'><asp:Button runat="server" CommandName="Sync" CommandArgument='<%# Eval("Id") %>' Text="Sync confirmation" CssClass="btn btn-outline-secondary" /></asp:PlaceHolder>
+                <asp:PlaceHolder runat="server" Visible='<%# NeedsSync(Container.DataItem) %>'><asp:Button runat="server" CommandName="Sync" CommandArgument='<%# Eval("Id") %>' Text="Sync confirmation" CssClass="btn btn-outline-secondary"  data-ui-action="sync" data-loading-label="Synchronizing…"/></asp:PlaceHolder>
             </article>
         </ItemTemplate></asp:Repeater>
     </div>

@@ -42,6 +42,18 @@ plain list shows with no error.
 ## Limits
 
 The figures are static: one frozen seated frame per avatar, with no idle motion. They show mid-2010s
-game-character fidelity, convincing at hall distance but not photoreal in close-up. Team members use the same
-generic figures, chosen by seat, so no individual appearance is implied; identity lives in the profile photo.
+game-character fidelity, convincing at hall distance but not photoreal in close-up. Team members use generic figures
+chosen by the roster's `Character` field (male or female), in everyday university clothing; no attire is inferred from
+names, and the figures are not likenesses. Identity lives in the profile photo.
+
+## Team highlighting
+
+Team members are drawn as their own meshes:
+- a restrained cool rim and a soft accent-light lift in the shader (faces get only a fraction of the rim);
+- light pools on the desk and behind the seat, and the backlit seat-back strip;
+- HTML name markers above them, laid out without overlap, with a leader line when nudged, hidden while the camera
+  moves and when something opaque blocks the view of the member's head.
+
+Background students use slightly desaturated, dimmer materials. Hover, keyboard focus in the finder, and selection
+strengthen the cues. All of it is depth-tested and works without shadows, so it holds on phones.
 If the models fail to load, the hall falls back to simple procedural figures.

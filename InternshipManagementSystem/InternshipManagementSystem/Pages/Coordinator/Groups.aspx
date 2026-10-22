@@ -28,7 +28,7 @@
                     <asp:Label ID="lblNoAvailableStudents" runat="server" CssClass="text-muted" Visible="false" Text="No available students." />
                 </div>
                 <div class="col-12 d-flex gap-2">
-                    <asp:Button ID="btnSave" runat="server" Text="Create group" CssClass="btn btn-primary" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnSave" runat="server" Text="Create group" CssClass="btn btn-primary" OnClick="btnSave_Click"  data-ui-action="create" data-loading-label="Creating…"/>
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel edit" CssClass="btn btn-outline-secondary" OnClick="btnCancel_Click" CausesValidation="false" Visible="false" />
                 </div>
             </div>

@@ -124,6 +124,11 @@ const blobTexture = () => canvasTexture(64, (c, s) => {
  const g = c.createRadialGradient(s/2,s/2,2,s/2,s/2,s/2); g.addColorStop(0,'rgba(0,0,0,.55)'); g.addColorStop(.6,'rgba(0,0,0,.22)'); g.addColorStop(1,'rgba(0,0,0,0)');
  c.fillStyle = g; c.fillRect(0,0,s,s);
 });
+// Accent pool: a soft white falloff, tinted by the material.
+const poolTexture = () => canvasTexture(64, (c, s) => {
+ const g = c.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2); g.addColorStop(0,'rgba(255,255,255,.9)'); g.addColorStop(.45,'rgba(255,255,255,.4)'); g.addColorStop(1,'rgba(255,255,255,0)');
+ c.fillStyle = g; c.fillRect(0,0,s,s);
+});
 // Seat marker: a GJU-blue dot with a light core and a soft edge; normal blending reads on light and dark surfaces.
 const glowTexture = () => canvasTexture(64, (c, s) => {
  const g = c.createRadialGradient(s/2,s/2,0,s/2,s/2,s/2); g.addColorStop(0,'rgba(235,247,255,1)'); g.addColorStop(.22,'rgba(70,170,230,1)'); g.addColorStop(.42,'rgba(0,128,200,.75)'); g.addColorStop(.7,'rgba(0,110,190,.18)'); g.addColorStop(1,'rgba(0,100,180,0)');
@@ -240,8 +245,30 @@ function personParts(look) {
 
 // ---- Seated Rocketbox figures (Assets/models/people, MIT; see LICENSE.md there) ----
 const FIGURES = ['Female_Adult_04','Female_Adult_06','Female_Adult_08','Female_Adult_09','Female_Adult_14','Male_Adult_06','Male_Adult_09','Male_Adult_11','Male_Adult_17','Male_Adult_18'];
-// Phones load a lighter five-figure cast (about 2 MB instead of 5 MB).
-const COMPACT_FIGURES = ['Female_Adult_06','Female_Adult_08','Male_Adult_11','Male_Adult_17','Male_Adult_18'];
+// Phones load a lighter five-figure cast (about 2 MB instead of 5 MB) that still covers the team figures.
+const COMPACT_FIGURES = ['Female_Adult_06','Female_Adult_08','Female_Adult_14','Male_Adult_11','Male_Adult_17'];
+// Team members get everyday university clothing in the roster's Character; no attire is inferred from names.
+const TEAM_FIGURES = { male:['Male_Adult_11','Male_Adult_17','Male_Adult_06','Male_Adult_09'], female:['Female_Adult_08','Female_Adult_14','Female_Adult_04','Female_Adult_09'] };
+// Background students: slightly desaturated and dimmer, so the team reads first without changing the room's look.
+function toneDown(material) {
+ const toned = material.clone();
+ toned.onBeforeCompile = shader => { shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n diffuseColor.rgb = mix(vec3(dot(diffuseColor.rgb, vec3(.299,.587,.114))), diffuseColor.rgb, .62) * .8;'); };
+ toned.customProgramCacheKey = () => 'background-student';
+ return toned;
+}
+// Team members: a restrained silhouette rim plus a soft accent-light lift of their own colours, both in the
+// shader (cheap enough for phones, depth-tested like any surface). Faces get a fraction of the rim so they
+// never wash out.
+function rimLit(material, strength) {
+ const lit = material.clone(), face = /_head$/i.test(material.name) ? .3 : 1;
+ lit.onBeforeCompile = shader => {
+  shader.uniforms.rimStrength = strength; shader.uniforms.rimFace = { value:face };
+  shader.fragmentShader = 'uniform float rimStrength;\nuniform float rimFace;\n' + shader.fragmentShader.replace('#include <emissivemap_fragment>',
+   '#include <emissivemap_fragment>\n float rimFactor = pow(1.0 - clamp(dot(normalize(normal), normalize(vViewPosition)), 0.0, 1.0), 3.4);\n totalEmissiveRadiance += vec3(.6, .8, 1.0) * rimFactor * rimStrength * rimFace + diffuseColor.rgb * (.1 + .12 * rimStrength);');
+ };
+ lit.customProgramCacheKey = () => 'team-rim';
+ return lit;
+}
 const DESK_ITEMS = new Set(['laptopBase','laptopScreen','notebook','pen']);
 async function loadFigures(compact) {
  const { GLTFLoader } = await import('./vendor/addons/loaders/GLTFLoader.js');
@@ -268,7 +295,7 @@ async function loadFigures(compact) {
 }
 
 // ---- Scene ----
-export async function createLectureHall({ container, members, logo, reducedMotion, onProgress, onHover, onSelect, onLost, onCamera }) {
+export async function createLectureHall({ container, members, logo, reducedMotion, onProgress, onHover, onSelect, onLost, onCamera, onLabels }) {
  const progress = async (value, label) => { onProgress?.(value, label); await new Promise(requestAnimationFrame); };
  const compact = Math.min(innerWidth, innerHeight) < 700 || matchMedia('(pointer: coarse)').matches;
  await progress(.08, 'Preparing the lecture hall');
@@ -427,27 +454,33 @@ export async function createLectureHall({ container, members, logo, reducedMotio
 
  await progress(.74, 'Seating the students');
  // Students: seated Rocketbox figures (MIT, baked by tools/rocketbox), one instanced batch per figure.
- // Team members use the same generic figures, chosen by seat, so no individual appearance is implied;
- // identity lives in the profile photo. If the models cannot load, procedural figures stand in.
+ // Team members get a figure from the roster's Character and their own highlighted meshes; they are
+ // generic figures, not likenesses, and identity lives in the profile photo. If the models cannot load,
+ // procedural figures stand in.
  const seated = layout.seats.filter(seat => occupied.has(seat.id));
+ const teamBySeat = new Map(members.filter(m => teamSeats.has(m.key)).map(m => [teamSeats.get(m.key), m]));
  const figures = await loadFigures(compact).catch(error => { console.warn('Seated figures unavailable; using simple figures.', error); return null; });
- const color = new THREE.Color();
+ const color = new THREE.Color(), placeFigure = seat => seatFrame(seat).multiply(local([0,0,-.02],[0,(seeded(hash(seat.id))()-.5)*.14,0]));
+ const background = seated.filter(seat => !teamBySeat.has(seat.id));
  if (figures) {
-  const bySeat = new Map(seated.map(seat => [seat.id, figures[hash(seat.id + 'figure') % figures.length]]));
+  const bySeat = new Map(background.map(seat => [seat.id, figures[hash(seat.id + 'figure') % figures.length]]));
   for (const figure of figures) {
-   const seats = seated.filter(seat => bySeat.get(seat.id) === figure);
-   const mesh = shadowed(new THREE.InstancedMesh(figure.geometry, figure.materials, seats.length));
-   seats.forEach((seat, i) => mesh.setMatrixAt(i, seatFrame(seat).multiply(local([0,0,-.02],[0,(seeded(hash(seat.id))()-.5)*.14,0]))));
+   const seats = background.filter(seat => bySeat.get(seat.id) === figure);
+   if (!seats.length) continue;
+   const mesh = shadowed(new THREE.InstancedMesh(figure.geometry, figure.materials.map(toneDown), seats.length));
+   seats.forEach((seat, i) => mesh.setMatrixAt(i, placeFigure(seat)));
    scene.add(mesh);
   }
   textures.push(...figures.flatMap(figure => figure.materials.map(material => material.map).filter(Boolean)));
  }
- // Desk items for everyone; full procedural bodies only when the figures are unavailable.
- const buckets = new Map();
+ // Desk items for everyone; full procedural bodies only for background students when the figures are unavailable.
+ const buckets = new Map(), teamLooks = new Map();
  for (const seat of seated) {
-  const look = lookFor(seeded(hash(seat.id))), frame = seatFrame(seat);
+  const member = teamBySeat.get(seat.id), look = lookFor(seeded(hash(seat.id)));
+  if (member) { look.style = member.character === 'male' ? 'short' : 'long'; look.top = 'collar'; teamLooks.set(member.key, look); }
+  const frame = seatFrame(seat);
   for (const [part, matrix, role] of personParts(look)) {
-   if (figures && !DESK_ITEMS.has(part)) continue;
+   if ((figures || member) && !DESK_ITEMS.has(part)) continue;
    if (!buckets.has(part)) buckets.set(part, []);
    buckets.get(part).push([frame.clone().multiply(figures ? local([0,0,-.1]).multiply(matrix) : matrix), look[role]]);
   }
@@ -460,22 +493,43 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  }
 
  await progress(.88, 'Marking the team seats');
- // Team cue: a slim backlit strip on the seat back plus a soft glow; hover and selection brighten it.
- const glowMap = tex(glowTexture()), people = new Map(), hitboxes = [];
+ // Team cues, all depth-tested so nothing shows through people or walls: the figure's rim highlight,
+ // a soft light pool on the desk and behind the seat, and the backlit strip on the seat back.
+ const poolMap = tex(poolTexture()), people = new Map(), hitboxes = [], occluders = [];
  const hitGeometry = new THREE.BoxGeometry(.72,1.2,1.05), plaqueGeometry = new THREE.BoxGeometry(.46,.032,.05);
+ const deskPool = new THREE.PlaneGeometry(1.1,.55), backPool = new THREE.PlaneGeometry(1.3,1.3);
+ const gendered = { male:0, female:0 };
  for (const member of members) {
   const seat = seatMap.get(teamSeats.get(member.key)); if (!seat) continue;
-  const frame = seatFrame(seat);
+  const frame = seatFrame(seat), rim = { value:.5 };
+  // Figure: from the roster's Character, cycling through distinct figures so members differ.
+  let figureRoot;
+  const choices = figures && member.character ? TEAM_FIGURES[member.character].map(name => figures.find(f => f.name === name)).filter(Boolean) : [];
+  if (choices.length) {
+   const figure = choices[gendered[member.character]++ % choices.length];
+   figureRoot = shadowed(new THREE.Mesh(figure.geometry, figure.materials.map(m => rimLit(m, rim))));
+   figureRoot.applyMatrix4(placeFigure(seat)); figureRoot.userData.figure = figure.name;
+  } else {
+   const look = teamLooks.get(member.key) || lookFor(seeded(hash(seat.id)));
+   figureRoot = new THREE.Group(); figureRoot.applyMatrix4(frame); figureRoot.userData.figure = 'procedural-' + (member.character || 'generic');
+   for (const [part, matrix, role] of personParts(look)) {
+    if (DESK_ITEMS.has(part)) continue;
+    const mesh = shadowed(new THREE.Mesh(PART[part](), rimLit(new THREE.MeshStandardMaterial({ color:look[role], roughness:ROUGH[part] ?? .86 }), rim)));
+    mesh.applyMatrix4(matrix); figureRoot.add(mesh);
+   }
+  }
+  figureRoot.name = 'team-' + member.key; scene.add(figureRoot);
   const plaqueMaterial = new THREE.MeshStandardMaterial({ color:'#8fc6ea', emissive:'#2f8fd0', emissiveIntensity:1.2, roughness:.3 });
-  // Mounted along the top of the seat back, so it stays visible either side of the occupant's head.
   const plaque = new THREE.Mesh(plaqueGeometry, plaqueMaterial); plaque.applyMatrix4(frame.clone().multiply(local([0,1.112,-.235],[-.12,0,0])));
-  // A small screen-constant glow keeps every team seat findable from the full-hall view.
-  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map:glowMap, transparent:true, depthWrite:false, depthTest:false, opacity:.85, sizeAttenuation:false }));
-  glow.position.copy(new THREE.Vector3(0,1.46,-.12).applyMatrix4(frame)); glow.scale.set(.032,.032,1); glow.renderOrder = 2;
+  const poolMaterial = new THREE.MeshBasicMaterial({ map:poolMap, transparent:true, depthWrite:false, opacity:.42, color:'#d6eaff' });
+  const desk = new THREE.Mesh(deskPool, poolMaterial); desk.applyMatrix4(frame.clone().multiply(local([0,.745,.34],[-Math.PI/2,0,0])));
+  const back = new THREE.Mesh(backPool, poolMaterial); back.applyMatrix4(frame.clone().multiply(local([0,1.0,-.34])));
   const hit = new THREE.Mesh(hitGeometry); hit.visible = false; hit.applyMatrix4(frame.clone().multiply(local([0,.85,.32]))); hit.userData.key = member.key;
-  scene.add(plaque, glow, hit); hitboxes.push(hit);
-  people.set(member.key, { member, seat, plaqueMaterial, glow, head:new THREE.Vector3(0,1.32,.05).applyMatrix4(frame), level:0, target:0 });
+  scene.add(plaque, desk, back, hit); hitboxes.push(hit);
+  people.set(member.key, { member, seat, plaqueMaterial, poolMaterial, rim, figure:figureRoot, head:new THREE.Vector3(0,1.32,.05).applyMatrix4(frame), label:new THREE.Vector3(0,1.47,.02).applyMatrix4(frame), level:0, target:0 });
  }
+ // Anything opaque that can stand between the camera and a team member's head hides that member's label.
+ scene.traverse(object => { if (object.isMesh && object.visible && !hitboxes.includes(object) && ![].concat(object.material).some(m => m.transparent)) occluders.push(object); });
 
  // ---- Camera choreography ----
  const camera = new THREE.PerspectiveCamera(40, 1, .1, 90);
@@ -506,10 +560,29 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  const ease = t => t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
  // Interrupts cleanly: every move starts from wherever the camera is now, position and target together.
  // onCamera reports 'moving', then 'overview' or 'member:<key>' once the camera settles.
- const settled = () => onCamera?.(focused ? 'member:' + focused : 'overview');
+ // Name markers: screen positions for members whose head is in view and not blocked by anything opaque.
+ const ray = new THREE.Raycaster();
+ function labels() {
+  if (!onLabels) return;
+  if (tween) { onLabels(null); return; }
+  const list = [];
+  for (const [key, person] of people) {
+   const point = person.label.clone().project(camera);
+   let visible = point.z < 1 && Math.abs(point.x) < 1.02 && Math.abs(point.y) < 1.02;
+   if (visible) {
+    const direction = person.head.clone().sub(camera.position), distance = direction.length();
+    ray.set(camera.position, direction.normalize()); ray.far = distance - .22;
+    const own = object => { for (let o = object; o; o = o.parent) if (o === person.figure) return true; return false; };
+    visible = !ray.intersectObjects(occluders, false).some(hit => !own(hit.object));
+   }
+   list.push({ key, x:(point.x+1)/2*width, y:(1-point.y)/2*height, visible });
+  }
+  onLabels(list);
+ }
+ const settled = () => { onCamera?.(focused ? 'member:' + focused : 'overview'); labels(); };
  function moveTo(to, duration, lift = 0) {
   if (reduced || !duration) { tween = null; Object.assign(pose, { position:to.position.clone(), target:to.target.clone(), offX:to.offX, offY:to.offY }); applyPose(); request(); settled(); return; }
-  onCamera?.('moving');
+  onCamera?.('moving'); onLabels?.(null);
   const from = { position:pose.position.clone(), target:pose.target.clone(), offX:pose.offX, offY:pose.offY };
   const control = from.position.clone().lerp(to.position, .5).add(new THREE.Vector3(0, lift, 0));
   tween = { from, to, control, start:performance.now(), duration }; request();
@@ -563,7 +636,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
   for (const person of people.values()) {
    const next = reduced ? person.target : person.level + (person.target-person.level)*Math.min(delta*10, 1);
    person.level = Math.abs(next-person.target) < .01 ? person.target : next; if (person.level !== person.target) moving = true;
-   person.plaqueMaterial.emissiveIntensity = 1.2 + person.level*1.3; person.glow.material.opacity = .85 + person.level*.15; person.glow.scale.setScalar(.032 + person.level*.016);
+   person.plaqueMaterial.emissiveIntensity = 1.2 + person.level*1.3; person.poolMaterial.opacity = .42 + person.level*.25; person.rim.value = .5 + person.level*.45;
   }
   const lightGoal = accent.userData.goal ?? 0;
   accent.intensity = reduced ? lightGoal : accent.intensity + (lightGoal-accent.intensity)*Math.min(delta*8, 1);
@@ -576,7 +649,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  function resize() {
   const rect = container.getBoundingClientRect(); if (!rect.width || !rect.height) return;
   width = rect.width; height = rect.height; renderer.setSize(width, height, false); camera.aspect = width/height;
-  if (!tween) { const to = goal(); Object.assign(pose, { position:to.position, target:to.target, offX:to.offX, offY:to.offY }); applyPose(); }
+  if (!tween) { const to = goal(); Object.assign(pose, { position:to.position, target:to.target, offX:to.offX, offY:to.offY }); applyPose(); labels(); }
   request();
  }
  const observer = new ResizeObserver(resize); observer.observe(container);
@@ -606,9 +679,11 @@ export async function createLectureHall({ container, members, logo, reducedMotio
    focused = null; selected = null; insets = nextInsets || { right:0, bottom:0 }; highlight();
    moveTo(goal(), 1150, .6);
   },
+  preview(key) { setHover(people.has(key) ? key : null); },
   setInsets(nextInsets) { insets = nextInsets; moveTo(goal(), reduced ? 0 : 450); },
   setReducedMotion(value) { reduced = value; if (value && tween) moveTo(tween.to, 0); request(); },
   seatOf: key => teamSeats.get(key),
+  figureOf: key => people.get(key)?.figure.userData.figure ?? null,
   screenPoint,
   camera, // read-only diagnostics for tests
   dispose() {

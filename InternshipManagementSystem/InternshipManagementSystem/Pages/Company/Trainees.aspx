@@ -4,24 +4,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
-        .page-header-title { font-size: 1.75rem; font-weight: 700; color: #0f4c81; }
+        .page-header-title { font-size: 1.75rem; font-weight: 700; color: var(--ui-primary); }
         
         .stat-card-box { background: #ffffff; border: 1px solid #e3e8ee; border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(16, 24, 40, 0.04); display: flex; flex-direction: column; justify-content: space-between; position: relative; transition: transform 0.2s; cursor: default; }
-        .stat-card-box:hover { transform: translateY(-3px); border-color: #0f4c81; box-shadow: 0 4px 12px rgba(15, 76, 129, 0.06); }
+        .stat-card-box:hover { transform: translateY(-3px); border-color: var(--ui-primary); box-shadow: 0 4px 12px rgba(15, 76, 129, 0.06); }
         .stat-card-title { font-size: 0.85rem; color: #6b7786; font-weight: 600; margin-bottom: 0.25rem; }
         .stat-card-value { font-size: 2.2rem; font-weight: 700; color: #1d2733; margin-bottom: 0.25rem; line-height: 1; }
         .stat-card-sub { font-size: 0.8rem; color: #6b7786; }
-        .stat-card-icon { position: absolute; top: 1.5rem; right: 1.5rem; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background-color: #f8fafc; color: #0f4c81; border: 1px solid #e3e8ee; font-size: 1.1rem; }
+        .stat-card-icon { position: absolute; top: 1.5rem; right: 1.5rem; width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; border-radius: 8px; background-color: #f8fafc; color: var(--ui-primary); border: 1px solid #e3e8ee; font-size: 1.1rem; }
 
         .section-box { background: #ffffff; border: 1px solid #e3e8ee; border-radius: 12px; padding: 1.5rem; box-shadow: 0 1px 3px rgba(16, 24, 40, 0.04); }
         .table-custom { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
         .table-custom th { color: #6b7786; font-size: 0.75rem; font-weight: 600; padding: 1rem; border-bottom: 1px solid #e3e8ee; background-color: #f8fafc; text-transform: uppercase;}
         .table-custom td { padding: 1rem; border-bottom: 1px solid #e3e8ee; color: #1d2733; vertical-align: middle; }
         
-        .student-initials { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #e8f0f7; color: #0f4c81; font-weight: 600; font-size: 0.85rem; margin-right: 0.75rem; border: 1px solid #d9e2ec; }
+        .student-initials { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; background-color: #e8f0f7; color: var(--ui-primary); font-weight: 600; font-size: 0.85rem; margin-right: 0.75rem; border: 1px solid #d9e2ec; }
         
         .progress-container { width: 120px; background-color: #e3e8ee; border-radius: 10px; height: 6px; margin-top: 6px; overflow: hidden; display: inline-block; }
-        .progress-fill { height: 100%; background-color: #0f4c81; border-radius: 10px; }
+        .progress-fill { height: 100%; background-color: var(--ui-primary); border-radius: 10px; }
         
         .filter-input { background-color: #f8fafc; border: 1px solid #e3e8ee; color: #1d2733; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 6px; }
     </style>
@@ -77,7 +77,7 @@
         <!-- قسم الجدول والبحث -->
         <div class="section-box">
             <div class="mb-4">
-                <h5 class="fw-bold mb-1" style="color: #0f4c81; font-size: 1.1rem;">Trainee directory</h5>
+                <h5 class="fw-bold mb-1" style="color: var(--ui-primary); font-size: 1.1rem;">Trainee directory</h5>
                 <p class="text-muted small mb-3"><asp:Literal ID="litTotalCount" runat="server">0</asp:Literal> accepted students</p>
                 
                 <!-- أدوات الفلترة الفعالة برمجياً -->

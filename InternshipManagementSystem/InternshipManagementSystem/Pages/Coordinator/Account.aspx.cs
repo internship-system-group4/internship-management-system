@@ -50,8 +50,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtCollege.Text = user.College ?? "";
 
             lblStatus.Text = user.IsActive
-                ? "● Active"
-                : "● Inactive";
+                ? "Active"
+                : "Inactive";
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -105,7 +105,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                 SessionHelper.Refresh(user);
 
-                Notice("Profile updated successfully.", false);
+                Notice("Profile updated successfully.", false, true);
             }
             catch (Exception)
             {
@@ -196,7 +196,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                 Notice(
                     "Password updated successfully.",
-                    false
+                    false, true
                 );
             }
             catch (Exception)
@@ -208,9 +208,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        private void Notice(string message, bool error)
+        private void Notice(string message, bool error, bool confirmedWrite = false)
         {
             lblNotice.Text = HttpUtility.HtmlEncode(message);
+            lblNotice.Attributes["role"] = error ? "alert" : "status";
+            if (confirmedWrite) lblNotice.Attributes["data-ui-confirmed"] = "true";
+            else lblNotice.Attributes.Remove("data-ui-confirmed");
 
             lblNotice.CssClass = error
                 ? "ca-notice ca-notice-error"

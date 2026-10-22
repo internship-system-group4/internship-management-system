@@ -35,6 +35,6 @@
                 <div class="col-md-6"><label for="<%= txtConfirmPassword.ClientID %>" class="form-label">Confirm temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
             </div>
         </section>
-        <div class="students-actions"><asp:Button ID="btnCreate" runat="server" Text="Create student" CssClass="btn btn-primary" OnClick="btnCreate_Click" /><a class="btn btn-outline-secondary" href="<%= ResolveUrl("~/Pages/Coordinator/Students.aspx") %>">Back to records</a></div>
+        <div class="students-actions"><asp:Button ID="btnCreate" runat="server" Text="Create student" CssClass="btn btn-primary" OnClick="btnCreate_Click"  data-ui-action="create" data-loading-label="Creating…"/><a class="btn btn-outline-secondary" href="<%= ResolveUrl("~/Pages/Coordinator/Students.aspx") %>">Back to records</a></div>
     </div>
 </asp:Content>

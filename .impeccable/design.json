@@ -1,0 +1,378 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-22T22:55:02.666265+00:00",
+  "title": "Design System: GJU Internship Management System",
+  "extensions": {
+    "colorMeta": {
+      "primary": {
+        "role": "primary",
+        "displayName": "Primary"
+      },
+      "primary-hover": {
+        "role": "primary",
+        "displayName": "Primary Hover"
+      },
+      "primary-soft": {
+        "role": "primary",
+        "displayName": "Primary Soft"
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink"
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Muted"
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface"
+      },
+      "canvas": {
+        "role": "neutral",
+        "displayName": "Canvas"
+      },
+      "nav": {
+        "role": "neutral",
+        "displayName": "Nav"
+      },
+      "nav-text": {
+        "role": "neutral",
+        "displayName": "Nav Text"
+      },
+      "nav-muted": {
+        "role": "neutral",
+        "displayName": "Nav Muted"
+      },
+      "accent": {
+        "role": "secondary",
+        "displayName": "Accent"
+      },
+      "neutral": {
+        "role": "neutral",
+        "displayName": "Neutral"
+      },
+      "neutral-soft": {
+        "role": "neutral",
+        "displayName": "Neutral Soft"
+      },
+      "border": {
+        "role": "neutral",
+        "displayName": "Border"
+      },
+      "control-border": {
+        "role": "neutral",
+        "displayName": "Control Border"
+      },
+      "success": {
+        "role": "neutral",
+        "displayName": "Success"
+      },
+      "success-soft": {
+        "role": "neutral",
+        "displayName": "Success Soft"
+      },
+      "warning": {
+        "role": "neutral",
+        "displayName": "Warning"
+      },
+      "warning-soft": {
+        "role": "neutral",
+        "displayName": "Warning Soft"
+      },
+      "danger": {
+        "role": "neutral",
+        "displayName": "Danger"
+      },
+      "danger-soft": {
+        "role": "neutral",
+        "displayName": "Danger Soft"
+      },
+      "info": {
+        "role": "neutral",
+        "displayName": "Info"
+      },
+      "info-soft": {
+        "role": "neutral",
+        "displayName": "Info Soft"
+      },
+      "focus": {
+        "role": "neutral",
+        "displayName": "Focus"
+      },
+      "chart-blue": {
+        "role": "secondary",
+        "displayName": "Chart Blue"
+      },
+      "chart-teal": {
+        "role": "secondary",
+        "displayName": "Chart Teal"
+      },
+      "chart-amber": {
+        "role": "secondary",
+        "displayName": "Chart Amber"
+      },
+      "chart-green": {
+        "role": "secondary",
+        "displayName": "Chart Green"
+      },
+      "chart-purple": {
+        "role": "secondary",
+        "displayName": "Chart Purple"
+      },
+      "chart-red": {
+        "role": "secondary",
+        "displayName": "Chart Red"
+      }
+    },
+    "typographyMeta": {
+      "title": {
+        "displayName": "Title",
+        "purpose": "Noto Sans/Noto Sans Arabic headings; public scene headline scale remains contextual."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Larger 18px working text across role and public UI."
+      },
+      "field": {
+        "displayName": "Field",
+        "purpose": "Larger 18px editable control text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Readable 15px supporting labels and statuses."
+      }
+    },
+    "shadows": [
+      {
+        "name": "elevation",
+        "value": "0 22px 70px rgb(11 36 51 / 20%)",
+        "purpose": "Dialogs and toasts; working panels stay flat."
+      }
+    ],
+    "motion": [
+      {
+        "name": "motion-fast",
+        "value": "120ms",
+        "purpose": "Pressed feedback."
+      },
+      {
+        "name": "motion-control",
+        "value": "200ms",
+        "purpose": "Control state changes."
+      },
+      {
+        "name": "motion-dialog",
+        "value": "300ms",
+        "purpose": "Centered dialog entrance, 20px rise and scale .97."
+      },
+      {
+        "name": "motion-exit",
+        "value": "200ms",
+        "purpose": "Dialog exit."
+      },
+      {
+        "name": "motion-page",
+        "value": "460ms",
+        "purpose": "Shared workspace section entrance; reference analytics has its own staged card entrances and follows the journey."
+      },
+      {
+        "name": "motion-progress",
+        "value": "600ms",
+        "purpose": "Real approved-hours change from prior observed value."
+      },
+      {
+        "name": "journey-marker",
+        "value": "360ms",
+        "purpose": "Anchored selection marker and connector."
+      },
+      {
+        "name": "row-confirm",
+        "value": "1400ms",
+        "purpose": "Highlight a real observed status change."
+      },
+      {
+        "name": "check-enter",
+        "value": "380ms",
+        "purpose": "Actual visible server-success check entrance."
+      },
+      {
+        "name": "check-draw",
+        "value": "450ms",
+        "purpose": "Actual visible server-success check drawing."
+      },
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Shared ease-out curve."
+      },
+      {
+        "name": "analytics-chart-reveal",
+        "value": "620ms",
+        "purpose": "Reference area, bar and donut initial reveal; range changes reveal dated activity only."
+      },
+      {
+        "name": "analytics-range-marker",
+        "value": "340ms",
+        "purpose": "Anchored 6/12-month range selection indicator."
+      },
+      {
+        "name": "analytics-kpi-enter",
+        "value": "450ms",
+        "purpose": "Reference KPI entrance with 55ms increments."
+      },
+      {
+        "name": "analytics-card-enter",
+        "value": "500ms",
+        "purpose": "Primary panels enter after 120ms; donut after 180ms."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "portal-content",
+        "value": "600px"
+      },
+      {
+        "name": "workspace-stack",
+        "value": "760px"
+      },
+      {
+        "name": "portal-navigation",
+        "value": "900px"
+      },
+      {
+        "name": "workspace-gutters",
+        "value": "1100px"
+      },
+      {
+        "name": "public-navigation",
+        "value": "1120px"
+      },
+      {
+        "name": "academic-work-stack",
+        "value": "1250px"
+      },
+      {
+        "name": "analytics-primary-stack",
+        "value": "1000px"
+      },
+      {
+        "name": "analytics-donut-context-stack",
+        "value": "1200px"
+      },
+      {
+        "name": "analytics-compact",
+        "value": "600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Shared action treatment; native page padding remains contextual.",
+      "html": "<button type=\"button\" class=\"ds-primary\">Primary action</button>",
+      "css": ".ds-primary{font-family:var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);font-size:var(--ui-text-base,1.125rem);font-weight:600;min-height:var(--ui-control,48px);border-radius:var(--ui-radius,8px);transition:background-color var(--ui-motion-control,200ms) var(--ui-ease,cubic-bezier(.16,1,.3,1)),transform var(--ui-motion-fast,120ms) var(--ui-ease,cubic-bezier(.16,1,.3,1));background:var(--ui-primary,#264f73);color:var(--ui-surface,#fff);border:1px solid var(--ui-primary,#264f73);}.ds-primary:hover{background:var(--ui-primary-hover,#173f62);}.ds-primary:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}.ds-primary:active{transform:scale(.985);}.ds-primary:disabled{opacity:.65;cursor:not-allowed;}@media(prefers-reduced-motion:reduce){.ds-primary{transition:none;}.ds-primary:active{transform:none;}}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Shared action treatment; native page padding remains contextual.",
+      "html": "<button type=\"button\" class=\"ds-secondary\">Secondary action</button>",
+      "css": ".ds-secondary{font-family:var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);font-size:var(--ui-text-base,1.125rem);font-weight:600;min-height:var(--ui-control,48px);border-radius:var(--ui-radius,8px);transition:background-color var(--ui-motion-control,200ms) var(--ui-ease,cubic-bezier(.16,1,.3,1)),transform var(--ui-motion-fast,120ms) var(--ui-ease,cubic-bezier(.16,1,.3,1));background:var(--ui-surface,#fff);color:var(--ui-primary,#264f73);border:1px solid var(--ui-control-border,#7b8b9e);}.ds-secondary:hover{background:var(--ui-primary-soft,#e5efff);}.ds-secondary:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}.ds-secondary:active{transform:scale(.985);}.ds-secondary:disabled{opacity:.65;cursor:not-allowed;}@media(prefers-reduced-motion:reduce){.ds-secondary{transition:none;}.ds-secondary:active{transform:none;}}"
+    },
+    {
+      "name": "Danger Button",
+      "kind": "button",
+      "refersTo": "button-danger",
+      "description": "Shared action treatment; native page padding remains contextual.",
+      "html": "<button type=\"button\" class=\"ds-danger\">Danger action</button>",
+      "css": ".ds-danger{font-family:var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);font-size:var(--ui-text-base,1.125rem);font-weight:600;min-height:var(--ui-control,48px);border-radius:var(--ui-radius,8px);transition:background-color var(--ui-motion-control,200ms) var(--ui-ease,cubic-bezier(.16,1,.3,1)),transform var(--ui-motion-fast,120ms) var(--ui-ease,cubic-bezier(.16,1,.3,1));background:var(--ui-danger,#a52c37);color:var(--ui-surface,#fff);border:1px solid var(--ui-danger,#a52c37);}.ds-danger:hover{background:var(--ui-danger,#a52c37);}.ds-danger:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}.ds-danger:active{transform:scale(.985);}.ds-danger:disabled{opacity:.65;cursor:not-allowed;}@media(prefers-reduced-motion:reduce){.ds-danger{transition:none;}.ds-danger:active{transform:none;}}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "field",
+      "description": "Native editable field with visible label.",
+      "html": "<label class=\"ds-label\" for=\"ds-field\">Internship title</label><input id=\"ds-field\" class=\"ds-field\" placeholder=\"Enter title\" />",
+      "css": ".ds-label{display:block;font-family:var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);color:var(--ui-ink,#133d61);}.ds-field{min-height:var(--ui-control,48px);border:1px solid var(--ui-control-border,#7b8b9e);border-radius:var(--ui-radius,8px);padding:10px 12px;font:400 var(--ui-text-base,1.125rem)/1.5 var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);color:var(--ui-ink,#133d61);background:var(--ui-surface,#fff);transition:border-color var(--ui-motion-control,200ms) var(--ui-ease,cubic-bezier(.16,1,.3,1));}.ds-field:focus{border-color:var(--ui-primary,#264f73);}.ds-field:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}.ds-field[aria-invalid=\"true\"]{border-color:var(--ui-danger,#a52c37);}"
+    },
+    {
+      "name": "Approved Status",
+      "kind": "chip",
+      "refersTo": "status-success",
+      "description": "Actual label with authored outline status icon.",
+      "html": "<span class=\"ds-status\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m8 12 3 3 5-6M22 12a10 10 0 1 1-20 0 10 10 0 0 1 20 0\"/></svg>Approved</span>",
+      "css": ".ds-status{display:inline-flex;align-items:center;gap:6px;padding:4px 9px;border-radius:var(--ui-radius,8px);font:600 var(--ui-text-xs,.9375rem)/1.4 var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);color:var(--ui-success,#206044);background:var(--ui-success-soft,#edf7f0);}.ds-status svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:var(--ui-stroke,1.75);stroke-linecap:round;stroke-linejoin:round;}"
+    },
+    {
+      "name": "Active Tab",
+      "kind": "nav",
+      "description": "Selected portal tab presentation.",
+      "html": "<nav aria-label=\"Preview tabs\"><button type=\"button\" class=\"ds-tab\" aria-current=\"page\">Applications</button></nav>",
+      "css": ".ds-tab{font-family:var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);font-size:var(--ui-text-base,1.125rem);font-weight:600;min-height:var(--ui-control,48px);border-radius:var(--ui-radius,8px);transition:background-color var(--ui-motion-control,200ms) var(--ui-ease,cubic-bezier(.16,1,.3,1)),transform var(--ui-motion-fast,120ms) var(--ui-ease,cubic-bezier(.16,1,.3,1));color:var(--ui-ink,#133d61);background:var(--ui-primary-soft,#e5efff);border:1px solid var(--ui-border,#e4ebf4);}.ds-tab:hover{color:var(--ui-primary,#264f73);}.ds-tab:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}"
+    },
+    {
+      "name": "Flat Panel",
+      "kind": "card",
+      "description": "Noninteractive working panel; page padding remains contextual.",
+      "html": "<section class=\"ds-panel\"><h3>Applications</h3><p>No applications to review.</p></section>",
+      "css": ".ds-panel{font-family:var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);color:var(--ui-ink,#133d61);background:var(--ui-surface,#fff);border:1px solid var(--ui-border,#e4ebf4);border-radius:var(--ui-radius-panel,12px);box-shadow:none;}.ds-panel h3{font-family:var(--ui-heading-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);font-size:25px;line-height:1.35;font-weight:600;}"
+    },
+    {
+      "name": "Journey Stage",
+      "kind": "custom",
+      "refersTo": "journey-stage",
+      "description": "Server-state stage button; selection opens real contextual details in the application. Preview is presentation only.",
+      "html": "<button type=\"button\" class=\"ds-journey\" aria-expanded=\"false\"><span class=\"ds-stage-symbol\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M4 7h16v13H4zM9 7V4h6v3M4 12h16M10 12v3h4v-3\"/></svg></span><strong>Training</strong><span>72 approved hours</span><small>Current</small></button>",
+      "css": ".ds-journey{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;padding:10px 12px 19px;min-height:130px;min-width:160px;border:0;border-bottom:3px solid var(--ui-primary,#264f73);border-radius:8px 8px 0 0;background:#e5efff;color:var(--ui-ink,#133d61);text-align:left;font:400 16px/1.45 var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);transition:background-color 200ms ease;}.ds-stage-symbol{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:var(--ui-primary,#264f73);color:#fff;margin-bottom:6px;}.ds-stage-symbol svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;}.ds-journey strong{font:600 18px/1.4 var(--ui-heading-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);}.ds-journey>span:not(.ds-stage-symbol){color:var(--ui-muted,#50657a);}.ds-journey small{margin-top:2px;font-size:15px;color:var(--ui-primary,#264f73);font-weight:600;}.ds-journey:hover{background:#dce9f7;}.ds-journey:active{background:#dce9f7;}.ds-journey:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}@media(prefers-reduced-motion:reduce){.ds-journey{transition:none;}}"
+    },
+    {
+      "name": "Reference Analytics KPI",
+      "kind": "button",
+      "refersTo": "analytics-kpi",
+      "description": "Scoped four-role dashboard KPI; activating opens real authorized records. Flow values follow the selected dated range; snapshot values remain current.",
+      "html": "<button type=\"button\" class=\"ds-analytics-kpi\"><span>Approved in range</span><strong>32 <small>h</small></strong><span>Available dated approvals only</span><span>Current range · UTC</span></button>",
+      "css": ".ds-analytics-kpi{display:flex;flex-direction:column;gap:10px;min-width:170px;padding:18px 20px;border:1px solid var(--ui-border,#e4ebf4);border-radius:14px;background:var(--ui-surface,#fff);color:var(--ui-ink,#133d61);font:400 14px/1.6 var(--ui-font,\"Noto Sans\",\"Noto Sans Arabic\",Arial,sans-serif);text-align:left;transition:border-color 160ms ease,background-color 160ms ease;}.ds-analytics-kpi strong{font-size:36px;line-height:1.15;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;}.ds-analytics-kpi small{font-size:14px;font-weight:400;}.ds-analytics-kpi>span{color:var(--ui-muted,#50657a);}.ds-analytics-kpi>span:nth-last-child(-n+2){font-size:13px;}.ds-analytics-kpi:hover{border-color:#9fb6ce;background:#fbfdff;}.ds-analytics-kpi:active{transform:scale(.99);}.ds-analytics-kpi:focus-visible{outline:3px solid var(--ui-focus,#315e8d);outline-offset:3px;}@media(prefers-reduced-motion:reduce){.ds-analytics-kpi{transition:none;}.ds-analytics-kpi:active{transform:none;}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The university workspace: clear information, real decisions",
+    "overview": "The university workspace restores the approved blue, white and light gray identity. Locally served Noto Sans and Noto Sans Arabic unify interface typography with larger body text, controls and tables. Flat work areas and interactive, directly labeled charts make each role’s principal information easier to read and explore.\n\nThe four dashboards have distinct working compositions. Other authenticated pages inherit the shared shell, typography, controls and feedback; this does not mean every work page has been recomposed. Home, About, Contact, Login and Powered by retain their existing public scenes, photographs, video and footer concepts, with shared type and control refinement.",
+    "keyCharacteristics": [
+      "Pale blue canvas, light gray navigation, navy type and white work surfaces.",
+      "Distinct role work areas, interactive charts and a server-backed journey.",
+      "Real counts, permission-bound actions and server-confirmed feedback."
+    ],
+    "rules": [
+      {
+        "name": "The Server Authority Rule",
+        "body": "Success, progress and workflow completion come from real server results. Activation, a spinner or an animation never establishes success.",
+        "section": "colors"
+      },
+      {
+        "name": "The Consistent Reading Rule",
+        "body": "Shared interface typography deliberately overrides legacy per-page font families. Keep physical 3D signage, original logos and text embedded in images intact; they are brand assets rather than interface text.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do use the shared CSS tokens and master-page assets.",
+      "Do preserve server control IDs, names, naming containers, validation groups and postbacks.",
+      "Do derive progress from real approved hours and the applicable requirement.",
+      "Do preserve the original logo, licensed fonts, factual asset provenance and public scene fallbacks.",
+      "Do pair semantic color with readable labels and meaningful icons."
+    ],
+    "donts": [
+      "Don't invent percentages, successful outcomes, campus facts or final completion.",
+      "Don't expose confidential final evaluation content in the student journey.",
+      "Don't disable a submit control before Web Forms receives its name and event.",
+      "Don't delay navigation or postbacks solely to finish an animation.",
+      "Don't spread Home camera motion or decorative scenes into task dashboards.",
+      "Don't describe shared CSS refinement as a full recomposition of every work page."
+    ]
+  },
+  "sourceHash": "e140fbc9c4a8c33151d28e43afc6566d5ccce711b1cef5b0e4a54fa0e9b2189b"
+}

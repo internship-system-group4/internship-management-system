@@ -188,7 +188,7 @@
                             <asp:CheckBox ID="chkVisibleToStudent" runat="server" CssClass="form-check-input" />
                             <label class="form-check-label text-muted" for="chkVisibleToStudent">Make this comment visible to the student</label>
                         </div>
-                        <asp:Button ID="btnSaveComment" runat="server" Text="Save Comment" CssClass="btn btn-brand" OnClick="btnSaveComment_Click" />
+                        <asp:Button ID="btnSaveComment" runat="server" Text="Save Comment" CssClass="btn btn-brand" OnClick="btnSaveComment_Click"  data-ui-action="save" data-loading-label="Saving…"/>
                         
                         <div class="mt-2">
                             <asp:Label ID="lblCommentStatus" runat="server" CssClass="text-success" style="font-weight: 600;" Visible="false"></asp:Label>

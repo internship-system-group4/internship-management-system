@@ -20,11 +20,13 @@ namespace InternshipManagementSystem.Pages.PublicArea
 {
     public partial class About : System.Web.UI.Page
     {
+        // The university introduction film supplied with the project (H.264/AAC MP4, 1280x538, 1 min 48 s).
+        // It is served in place; the internship-process video slot on Home is separate (~/Assets/video/).
+        protected const string FilmPath = "~/Assets/images/university/materials/-578791943103387727.mp4";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-
-            // TODO(Nada, N02): build this page.
         }
     }
 }

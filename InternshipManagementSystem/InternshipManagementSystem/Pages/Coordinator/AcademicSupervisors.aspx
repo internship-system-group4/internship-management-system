@@ -57,7 +57,7 @@
                     <div class="col-md-6"><label for="<%= txtAcademicRank.ClientID %>" class="form-label">Academic rank <span class="text-muted">(optional)</span></label><asp:TextBox ID="txtAcademicRank" runat="server" CssClass="form-control" MaxLength="80" /></div>
                     <div class="col-md-6"><label for="<%= txtPassword.ClientID %>" class="form-label">Temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
                     <div class="col-md-6"><label for="<%= txtConfirmPassword.ClientID %>" class="form-label">Confirm temporary password <span class="text-danger">*</span></label><asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
-                    <div class="col-12"><asp:Button ID="btnCreate" runat="server" Text="Create supervisor" CssClass="btn btn-primary" OnClick="btnCreate_Click" /></div>
+                    <div class="col-12"><asp:Button ID="btnCreate" runat="server" Text="Create supervisor" CssClass="btn btn-primary" OnClick="btnCreate_Click"  data-ui-action="create" data-loading-label="Creating…"/></div>
                 </div>
             </div>
         </section>
@@ -97,9 +97,9 @@
                         <div class="col-md-6"><label for="<%= txtEditDepartment.ClientID %>" class="form-label">Department</label><asp:TextBox ID="txtEditDepartment" runat="server" CssClass="form-control" MaxLength="120" /></div>
                         <div class="col-md-6"><label for="<%= txtEditAcademicRank.ClientID %>" class="form-label">Academic rank <span class="text-muted">(optional)</span></label><asp:TextBox ID="txtEditAcademicRank" runat="server" CssClass="form-control" MaxLength="80" /></div>
                     </div>
-                    <div class="students-access"><div><h4>Account access</h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click" /></div>
+                    <div class="students-access"><div><h4>Account access</h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button><asp:Button ID="btnSaveDetails" runat="server" Text="Save changes" CssClass="btn btn-primary" OnClick="btnSaveDetails_Click" /></div>
+                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button><asp:Button ID="btnSaveDetails" runat="server" Text="Save changes" CssClass="btn btn-primary" OnClick="btnSaveDetails_Click"  data-ui-action="save" data-loading-label="Saving…"/></div>
             </div></div>
         </asp:Panel>
     </div>

@@ -46,7 +46,7 @@
                 <asp:Literal ID="litProfileDept" runat="server">Academic Supervisor</asp:Literal> | German Jordanian University
             </div>
             <!-- Hidden upload button for backend handling if needed -->
-            <asp:Button ID="btnUploadPhoto" runat="server" Text="Upload" CssClass="d-none" OnClick="btnUploadPhoto_Click" CausesValidation="false" formnovalidate="true" />
+            <asp:Button ID="btnUploadPhoto" runat="server" Text="Upload" CssClass="d-none" OnClick="btnUploadPhoto_Click" CausesValidation="false" formnovalidate="true"  data-ui-action="upload" data-loading-label="Uploading…" data-ui-validation="none"/>
         </div>
     </div>
 
@@ -88,7 +88,7 @@
     <!-- Section 2: Academic Information (READ-ONLY) -->
     <div class="uims-card mb-4">
         <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid var(--line);">
-            <div class="section-icon">🎓</div>
+            <div class="section-icon"><span data-ui-icon="study" aria-hidden="true"></span></div>
             <div>
                 <h3 class="mb-1" style="color: var(--brand-dark); font-weight: 700; font-size: 1.1rem;">Academic Information</h3>
                 <div class="text-muted" style="font-size: 0.85rem;">Your official university details. Managed by coordinator.</div>
@@ -164,7 +164,7 @@
         </div>
 
         <div class="text-end pt-3" style="border-top: 1px solid var(--line);">
-            <asp:Button ID="btnSaveChanges" runat="server" Text="Save All Changes" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true" />
+            <asp:Button ID="btnSaveChanges" runat="server" Text="Save All Changes" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true"  data-ui-action="save" data-loading-label="Saving…" data-ui-validation="none"/>
         </div>
     </div>
 
@@ -188,7 +188,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <asp:Button ID="btnSavePassword" runat="server" Text="Update Password" CssClass="btn btn-brand" OnClick="btnSavePassword_Click" CausesValidation="false" formnovalidate="true" />
+                    <asp:Button ID="btnSavePassword" runat="server" Text="Update Password" CssClass="btn btn-brand" OnClick="btnSavePassword_Click" CausesValidation="false" formnovalidate="true"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/>
                 </div>
             </div>
         </div>

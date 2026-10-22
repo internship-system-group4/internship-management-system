@@ -50,6 +50,14 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-hover strong { color:var(--ink); font-weight:650; }
 .team-hover span { color:var(--muted); font-size:12px; }
 
+/* Team name markers: small, readable, never on top of the overlays; brighter on hover, focus and selection. */
+.team-labels { position:absolute; inset:0; z-index:1; pointer-events:none; transition:opacity 180ms ease; }
+.team-labels.is-moving { opacity:0; }
+.team-experience:not([data-mode="ready"]) .team-labels { display:none; }
+.team-label { position:absolute; transform:translate(-50%,-100%); padding:3px 9px; border:1px solid rgba(47,143,208,.55); border-radius:999px; background:rgba(255,255,255,.9); color:var(--ink); font-size:12px; font-weight:650; line-height:1.4; white-space:nowrap; pointer-events:auto; cursor:pointer; box-shadow:0 2px 8px -3px rgba(20,24,30,.45); transition:background-color 150ms ease,border-color 150ms ease,box-shadow 150ms ease; }
+.team-label[hidden] { display:none; }
+.team-label::after { content:''; position:absolute; left:50%; top:100%; width:1px; height:var(--lead,0px); background:rgba(47,143,208,.75); }
+.team-label.is-active { background:#fff; border-color:#2f8fd0; box-shadow:0 0 0 3px rgba(47,143,208,.28),0 4px 12px -4px rgba(20,24,30,.5); }
 /* Profile: compact side panel on desktop, bottom sheet on phones. */
 .team-profile { position:absolute; z-index:4; top:118px; right:var(--edge); width:360px; max-height:calc(100% - 142px); overflow:auto; border-radius:12px; overscroll-behavior:contain; }
 .team-profile[hidden] { display:none; }
@@ -63,7 +71,7 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-profile .team-portrait { width:112px; height:112px; border-radius:12px; font-size:30px; margin-bottom:16px; }
 .team-profile .team-member-name { font-size:24px; line-height:1.2; letter-spacing:-.01em; }
 .team-profile .team-member-name:focus { outline:none; }
-.team-profile .team-member-name:focus-visible { outline:3px solid #a45220; outline-offset:4px; border-radius:2px; }
+.team-profile .team-member-name:focus-visible { outline:3px solid var(--ui-focus); outline-offset:4px; border-radius:2px; }
 
 /* Member details (profile panel and fallback list). */
 .team-member-name { margin:0; font-size:19px; line-height:1.3; font-weight:650; color:var(--ink); }
@@ -97,6 +105,7 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
  .team-experience:not([data-mode="fallback"]) { min-height:560px; }
  .team-heading { top:96px; right:12px; max-width:none; padding:12px 14px; }
  .team-heading h1 { font-size:22px; }
+ .team-label { font-size:11px; padding:2px 7px; }
  .team-lede { font-size:13px; margin-top:4px; }
  .team-credit { font-size:11px; margin-top:4px; }
  .team-controls { right:12px; bottom:14px; }
@@ -109,4 +118,4 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
  .team-roster { grid-template-columns:1fr; }
  .team-roster .team-member-card { padding:18px; gap:14px; }
 }
-@media (prefers-reduced-motion:reduce) { .team-loading, .team-loading-bar span { transition:none; } }
+@media (prefers-reduced-motion:reduce) { .team-loading, .team-loading-bar span, .team-labels, .team-label { transition:none; } }

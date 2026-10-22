@@ -35,7 +35,7 @@
                         <td><div class="d-flex flex-wrap gap-2">
                             <asp:LinkButton ID="btnView" runat="server" Text="View" CssClass="btn btn-sm btn-outline-secondary" CommandArgument='<%# Eval("Id") %>' OnClick="btnView_Click" CausesValidation="false" />
                             <asp:LinkButton ID="btnEdit" runat="server" Text="Edit group" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnEdit_Click" CausesValidation="false" />
-                            <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-sm btn-outline-danger" CommandArgument='<%# Eval("Id") %>' OnClick="btnDelete_Click" CausesValidation="false" OnClientClick="return confirm('Delete this group? Its students will become unassigned.');" />
+                            <asp:LinkButton ID="btnDelete" runat="server" Text="Delete" CssClass="btn btn-sm btn-outline-danger" CommandArgument='<%# Eval("Id") %>' OnClick="btnDelete_Click" CausesValidation="false" OnClientClick="return confirm('Delete this group? Its students will become unassigned.');"  data-ui-action="delete" data-loading-label="Deleting…" data-ui-validation="none"/>
                         </div></td>
                     </tr></ItemTemplate></asp:Repeater></tbody>
                 </table>

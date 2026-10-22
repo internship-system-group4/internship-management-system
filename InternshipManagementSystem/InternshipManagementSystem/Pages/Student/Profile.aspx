@@ -7,7 +7,7 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 <style>
 .sp-page {
-    --sp-navy:#183d63;
+    --sp-navy:var(--ui-primary);
     --sp-blue:#28547d;
     --sp-muted:#72839a;
     --sp-line:#e1e9f2;
@@ -525,7 +525,7 @@ input[type=file].sp-input {padding:9px}
         <button class="sp-btn"
                 type="submit"
                 name="spAction"
-                value="save">
+                value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
             Update Profile
         </button>
     </div>

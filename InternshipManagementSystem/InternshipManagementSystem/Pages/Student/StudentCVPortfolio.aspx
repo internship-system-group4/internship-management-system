@@ -367,7 +367,7 @@
             <button type="submit"
                     name="cvAction"
                     value="save"
-                    class="cv-btn">
+                    class="cv-btn" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
                 Save CV &amp; Portfolio
             </button>
 
@@ -433,7 +433,7 @@
                                     name="cvAction"
                                     value="removeCv"
                                     class="cv-btn cv-btn-danger"
-                                    onclick="return confirm('Remove your CV file?');">
+                                    onclick="return confirm('Remove your CV file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="Deleting…">
                                 Remove
                             </button>
 
@@ -498,7 +498,7 @@
                                     name="cvAction"
                                     value="removePortfolio"
                                     class="cv-btn cv-btn-danger"
-                                    onclick="return confirm('Remove your portfolio file?');">
+                                    onclick="return confirm('Remove your portfolio file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="Deleting…">
                                 Remove
                             </button>
 

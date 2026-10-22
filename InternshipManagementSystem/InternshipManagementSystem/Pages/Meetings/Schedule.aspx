@@ -107,7 +107,7 @@
                 Text="Schedule Meeting"
                 CssClass="btn btn-brand"
                 OnClick="btnSchedule_Click"
-                OnClientClick="setMeetingTimezone();" />
+                OnClientClick="setMeetingTimezone();"  data-ui-action="schedule" data-loading-label="Scheduling…"/>
 
             <asp:Label ID="lblMessage" runat="server"
                 EnableViewState="false" />

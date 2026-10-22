@@ -1,0 +1,23 @@
+/* UIMS: the university workspace foundation. Font assets retain their Fontshare license. */
+@font-face { font-family:Switzer;src:url('../fonts/switzer-400.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap; }
+@font-face { font-family:Switzer;src:url('../fonts/switzer-600.woff2') format('woff2');font-style:normal;font-weight:600;font-display:swap; }
+@font-face { font-family:Switzer;src:url('../fonts/switzer-700.woff2') format('woff2');font-style:normal;font-weight:700;font-display:swap; }
+@font-face {font-family:"Noto Sans";src:url('../fonts/notosans-variable.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap;}
+@font-face {font-family:"Noto Sans Arabic";src:url('../fonts/notosansarabic-variable.ttf') format('truetype');font-style:normal;font-weight:100 900;font-display:swap;}
+:root {
+ --ui-primary:#264f73;--ui-primary-hover:#173f62;--ui-primary-soft:#e5efff;
+ --ui-ink:#133d61;--ui-muted:#50657a;--ui-surface:#fff;--ui-canvas:#f6f8ff;
+ --ui-nav:#f5f5f5;--ui-nav-text:#42474b;--ui-nav-muted:#565f69;--ui-accent:#c8a349;
+ --ui-neutral:#52616a;--ui-neutral-soft:#f0f3f7;--ui-border:#e4ebf4;--ui-control-border:#7b8b9e;
+ --ui-success:#206044;--ui-success-soft:#edf7f0;--ui-warning:#76500b;--ui-warning-soft:#fff5db;
+ --ui-danger:#a52c37;--ui-danger-soft:#fff0f1;--ui-info:#245979;--ui-info-soft:#edf5fb;
+ --ui-font:"Noto Sans","Noto Sans Arabic",Arial,sans-serif;--ui-heading-font:"Noto Sans","Noto Sans Arabic",Arial,sans-serif;
+ --ui-text-xs:.9375rem;--ui-text-sm:1rem;--ui-text-base:1.125rem;--ui-title:clamp(2.125rem,2.8vw,2.75rem);--ui-line-height:1.6;
+ --ui-space-1:4px;--ui-space-2:8px;--ui-space-3:12px;--ui-space-4:16px;--ui-space-5:24px;--ui-space-6:32px;--ui-space-7:48px;
+ --ui-radius:8px;--ui-radius-panel:12px;--ui-radius-dialog:16px;--ui-elevation:0 22px 70px rgb(11 36 51 / 20%);
+ --ui-icon:21px;--ui-icon-sm:17px;--ui-stroke:1.75;--ui-control:48px;--ui-control-sm:40px;
+ --ui-z-nav:1100;--ui-z-modal:1200;--ui-z-toast:1300;
+ --ui-motion-fast:120ms;--ui-motion-control:200ms;--ui-motion-dialog:300ms;--ui-motion-exit:200ms;--ui-motion-page:460ms;--ui-motion-progress:600ms;
+ --ui-ease:cubic-bezier(.16,1,.3,1);--ui-focus:#315e8d;
+}
+@media(prefers-reduced-motion:reduce) { :root {--ui-motion-fast:0ms;--ui-motion-control:0ms;--ui-motion-dialog:0ms;--ui-motion-exit:0ms;--ui-motion-page:0ms;--ui-motion-progress:0ms;} }

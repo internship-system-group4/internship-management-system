@@ -53,7 +53,7 @@
                                 <div><strong>Ready to make a decision?</strong><p class="application-help">Acceptance offers a place. The student still needs to confirm one offer.</p></div>
                                 <div class="review-decision-actions">
                                     <button type="button" class="btn review-reject-toggle" aria-expanded="false" aria-controls="reject-<%#: Eval("Id") %>">Reject</button>
-                                    <asp:Button runat="server" CommandName="Accept" CommandArgument='<%# Eval("Id") %>' Text="Accept application" CssClass="btn btn-brand review-accept-button" />
+                                    <asp:Button runat="server" CommandName="Accept" CommandArgument='<%# Eval("Id") %>' Text="Accept application" CssClass="btn btn-brand review-accept-button"  data-ui-action="accept" data-loading-label="Accepting…"/>
                                 </div>
                             </div>
                             <div class="review-reject-fields" id="reject-<%#: Eval("Id") %>" hidden>
@@ -62,7 +62,7 @@
                                 <p class="application-help">This reason will be visible to the student. Up to 2,000 characters.</p>
                                 <div class="review-reject-actions">
                                     <button type="button" class="btn review-cancel-button" data-reject-cancel>Cancel</button>
-                                    <asp:Button runat="server" CommandName="Reject" CommandArgument='<%# Eval("Id") %>' Text="Confirm rejection" CssClass="btn review-reject-button" />
+                                    <asp:Button runat="server" CommandName="Reject" CommandArgument='<%# Eval("Id") %>' Text="Confirm rejection" CssClass="btn review-reject-button"  data-ui-action="confirm" data-loading-label="Confirming…"/>
                                 </div>
                             </div>
                         </div>

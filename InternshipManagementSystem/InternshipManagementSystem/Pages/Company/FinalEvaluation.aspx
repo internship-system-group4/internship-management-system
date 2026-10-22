@@ -4,20 +4,20 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
-        .page-header-title { font-size: 1.75rem; font-weight: 700; color: #0f4c81; }
+        .page-header-title { font-size: 1.75rem; font-weight: 700; color: var(--ui-primary); }
         .score-input { width: 80px; text-align: center; background-color: #f8fafc; border: 1px solid #e3e8ee; border-radius: 6px; }
-        .score-input:focus { border-color: #0f4c81; outline: none; box-shadow: 0 0 0 2px rgba(15, 76, 129, 0.2); }
-        .total-row { background-color: #f0f4f8; border-radius: 8px; padding: 1rem; margin-top: 1rem; font-weight: 700; color: #0f4c81; }
-        .student-avatar { width: 45px; height: 45px; border-radius: 50%; background-color: #e8f0f7; color: #0f4c81; font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
+        .score-input:focus { border-color: var(--ui-primary); outline: none; box-shadow: 0 0 0 2px rgba(15, 76, 129, 0.2); }
+        .total-row { background-color: #f0f4f8; border-radius: 8px; padding: 1rem; margin-top: 1rem; font-weight: 700; color: var(--ui-primary); }
+        .student-avatar { width: 45px; height: 45px; border-radius: 50%; background-color: #e8f0f7; color: var(--ui-primary); font-weight: 700; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; }
         
-        .btn-action { background-color: #f8fafc; border: 1px solid #e3e8ee; color: #0f4c81; font-weight: 600; text-align: left; transition: all 0.2s; }
-        .btn-action:hover { background-color: #e8f0f7; border-color: #0f4c81; }
+        .btn-action { background-color: #f8fafc; border: 1px solid #e3e8ee; color: var(--ui-primary); font-weight: 600; text-align: left; transition: all 0.2s; }
+        .btn-action:hover { background-color: #e8f0f7; border-color: var(--ui-primary); }
         .btn-send { background-color: #2b4560; color: white; border: none; font-weight: 600; }
         .btn-send:hover { background-color: #1a2e44; color: white; }
         .btn-draft { background-color: white; color: #2b4560; border: 1px solid #c9d2db; font-weight: 600; }
         .btn-draft:hover { background-color: #f8fafc; border-color: #2b4560; }
         .btn-preview { color: #2b4560; font-weight: 600; background: none; border: none; }
-        .btn-preview:hover { color: #0f4c81; text-decoration: underline; }
+        .btn-preview:hover { color: var(--ui-primary); text-decoration: underline; }
         
         .status-badge-green { background-color: #e6f4ea; color: #1e7e34; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
         .status-badge-warning { background-color: #fff3cd; color: #856404; padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
@@ -76,14 +76,14 @@
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <div class="card border-0 shadow-sm rounded-4 border p-4 mb-4">
-                    <h5 class="fw-bold mb-3" style="color: #0f4c81;">1. Select Trainee</h5>
+                    <h5 class="fw-bold mb-3" style="color: var(--ui-primary);">1. Select Trainee</h5>
                     <asp:DropDownList ID="ddlTrainees" runat="server" CssClass="form-select bg-light" AutoPostBack="true" OnSelectedIndexChanged="DdlTrainees_SelectedIndexChanged">
                         <asp:ListItem Text="-- Select a trainee to evaluate --" Value=""></asp:ListItem>
                     </asp:DropDownList>
                 </div>
 
                 <div class="card border-0 shadow-sm rounded-4 border p-4">
-                    <h5 class="fw-bold mb-3" style="color: #0f4c81;">2. Evaluation Forms</h5>
+                    <h5 class="fw-bold mb-3" style="color: var(--ui-primary);">2. Evaluation Forms</h5>
                     <p class="text-muted small mb-4">Fill out both sections below before sending the final evaluation.</p>
                     
                     <div class="d-flex flex-column gap-3 mb-4">
@@ -102,15 +102,15 @@
                         <!-- زر الـ Preview رجع مكانه -->
                         <button type="button" class="btn-preview" onclick="showPreviewModal()"><i class="bi bi-eye me-2"></i>Preview</button>
                         
-                        <asp:Button ID="btnSaveDraft" runat="server" Text="Save as draft" CssClass="btn btn-draft px-4 py-2 rounded-3" OnClick="BtnSaveDraft_Click" />
-                        <asp:Button ID="btnSendEvaluation" runat="server" Text="Send evaluation" CssClass="btn btn-send px-4 py-2 rounded-3 shadow-sm" OnClick="BtnSendEvaluation_Click" />
+                        <asp:Button ID="btnSaveDraft" runat="server" Text="Save as draft" CssClass="btn btn-draft px-4 py-2 rounded-3" OnClick="BtnSaveDraft_Click"  data-ui-action="save" data-loading-label="Saving…"/>
+                        <asp:Button ID="btnSendEvaluation" runat="server" Text="Send evaluation" CssClass="btn btn-send px-4 py-2 rounded-3 shadow-sm" OnClick="BtnSendEvaluation_Click"  data-ui-action="send" data-loading-label="Sending…"/>
                     </div>
                 </div>
             </div>
 
             <div class="col-lg-4 mb-4">
                 <div class="card border-0 shadow-sm rounded-4 border p-4">
-                    <h5 class="fw-bold mb-4" style="color: #0f4c81;">Trainee Details</h5>
+                    <h5 class="fw-bold mb-4" style="color: var(--ui-primary);">Trainee Details</h5>
                     
                     <div class="d-flex align-items-center gap-3 mb-4 pb-4 border-bottom">
                         <div class="student-avatar border shadow-sm">
@@ -145,7 +145,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0">
-            <h5 class="modal-title fw-bold" style="color: #0f4c81;">Evaluation Preview</h5>
+            <h5 class="modal-title fw-bold" style="color: var(--ui-primary);">Evaluation Preview</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pt-4">
@@ -155,7 +155,7 @@
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">Communication <span class="fw-bold" id="prevComm">0</span></li>
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">Professionalism <span class="fw-bold" id="prevProf">0</span></li>
             </ul>
-            <div class="p-3 rounded-3 mt-3 d-flex justify-content-between fw-bold" style="background-color: #f0f4f8; color: #0f4c81;">
+            <div class="p-3 rounded-3 mt-3 d-flex justify-content-between fw-bold" style="background-color: #f0f4f8; color: var(--ui-primary);">
                 <span>Calculated Total:</span>
                 <span id="prevTotal">-- / 100</span>
             </div>
@@ -172,7 +172,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0">
-            <h5 class="modal-title fw-bold" style="color: #0f4c81;">Numerical Scores</h5>
+            <h5 class="modal-title fw-bold" style="color: var(--ui-primary);">Numerical Scores</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pt-4">
@@ -210,7 +210,7 @@
               </div>
           </div>
           <div class="modal-footer border-top-0">
-            <button type="button" class="btn btn-primary rounded-3 px-4" data-bs-dismiss="modal" style="background-color: #0f4c81; border: none;">Done</button>
+            <button type="button" class="btn btn-primary rounded-3 px-4" data-bs-dismiss="modal" style="background-color: var(--ui-primary); border: none;">Done</button>
           </div>
         </div>
       </div>
@@ -221,7 +221,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0">
-            <h5 class="modal-title fw-bold" style="color: #0f4c81;">Overall Feedback</h5>
+            <h5 class="modal-title fw-bold" style="color: var(--ui-primary);">Overall Feedback</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pt-4">
@@ -245,7 +245,7 @@
                 </div>
           </div>
           <div class="modal-footer border-top-0">
-            <button type="button" class="btn btn-primary rounded-3 px-4" data-bs-dismiss="modal" style="background-color: #0f4c81; border: none;">Done</button>
+            <button type="button" class="btn btn-primary rounded-3 px-4" data-bs-dismiss="modal" style="background-color: var(--ui-primary); border: none;">Done</button>
           </div>
         </div>
       </div>
@@ -256,7 +256,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0">
-            <h5 class="modal-title fw-bold" style="color: #0f4c81;">My Saved Drafts</h5>
+            <h5 class="modal-title fw-bold" style="color: var(--ui-primary);">My Saved Drafts</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body pt-4">
@@ -283,7 +283,7 @@
           <div class="mb-3"><asp:Literal ID="litModalIcon" runat="server"></asp:Literal></div>
           <h5 class="fw-bold mb-2 text-dark"><asp:Literal ID="litModalTitle" runat="server"></asp:Literal></h5>
           <p class="text-muted small mb-4"><asp:Literal ID="litModalMessage" runat="server"></asp:Literal></p>
-          <button type="button" class="btn btn-primary rounded-pill px-4 w-100" data-bs-dismiss="modal" style="background-color: #0f4c81; border: none;">Okay</button>
+          <button type="button" class="btn btn-primary rounded-pill px-4 w-100" data-bs-dismiss="modal" style="background-color: var(--ui-primary); border: none;">Okay</button>
         </div>
       </div>
     </div>

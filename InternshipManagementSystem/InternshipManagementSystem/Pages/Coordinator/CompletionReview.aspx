@@ -155,8 +155,8 @@
                 placeholder="Optional when approving (shown on the report). Required when returning." />
             <div class="completion-actions">
                 <asp:Button ID="btnApprove" runat="server" Text="Approve completion" CssClass="btn btn-brand" OnClick="Approve_Click"
-                    OnClientClick="return confirm('Approve internship completion? The official report will be released to the student.');" />
-                <asp:Button ID="btnReturn" runat="server" Text="Return to student" CssClass="btn btn-outline-secondary" OnClick="Return_Click" />
+                    OnClientClick="return confirm('Approve internship completion? The official report will be released to the student.');"  data-ui-action="approve" data-loading-label="Approving…"/>
+                <asp:Button ID="btnReturn" runat="server" Text="Return to student" CssClass="btn btn-outline-secondary" OnClick="Return_Click"  data-ui-action="return" data-loading-label="Returning…"/>
             </div>
         </asp:Panel>
         </div>

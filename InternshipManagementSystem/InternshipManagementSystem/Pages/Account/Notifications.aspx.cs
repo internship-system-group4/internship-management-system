@@ -95,6 +95,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
             {
                 new NotificationRepository().MarkAllRead(CurrentUser.Id);
                 ShowMessage("All notifications are marked as read.");
+                lblMessage.Attributes["data-ui-toast"] = "true";
             }
             catch (Exception ex)
             {
@@ -121,6 +122,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
         private void ShowMessage(string text)
         {
+            lblMessage.Attributes.Remove("data-ui-toast");
             lblMessage.Text = HttpUtility.HtmlEncode(text);
             lblMessage.Visible = true;
         }

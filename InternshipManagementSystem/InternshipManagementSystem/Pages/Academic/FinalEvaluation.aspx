@@ -124,7 +124,7 @@
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
-                    <asp:Button ID="btnSubmitEvaluation" runat="server" Text="Submit to Coordinator" CssClass="btn btn-brand" OnClick="btnSubmitEvaluation_Click" OnClientClick="return confirm('Are you sure you want to submit this evaluation? It cannot be changed later.');" />
+                    <asp:Button ID="btnSubmitEvaluation" runat="server" Text="Submit to Coordinator" CssClass="btn btn-brand" OnClick="btnSubmitEvaluation_Click" OnClientClick="return confirm('Are you sure you want to submit this evaluation? It cannot be changed later.');"  data-ui-action="submit" data-loading-label="Submitting…"/>
                 </div>
             </div>
         </div>

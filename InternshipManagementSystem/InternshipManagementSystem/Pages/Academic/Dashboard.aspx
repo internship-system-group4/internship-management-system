@@ -1,151 +1,26 @@
-﻿<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Dashboard" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <!-- Custom styles to perfectly match Figma components -->
-    <style>
-        .student-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background-color: var(--brand-light);
-            color: var(--brand);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-        .progress-text {
-            font-size: 0.75rem;
-            color: var(--muted);
-            font-weight: 600;
-        }
-        .btn-outline-brand {
-            border: 1px solid var(--brand);
-            color: var(--brand);
-            background: transparent;
-            font-weight: 600;
-            padding: 0.4rem 1rem;
-            border-radius: 6px;
-        }
-        .btn-outline-brand:hover {
-            background-color: var(--brand-light);
-            color: var(--brand-dark);
-        }
-    </style>
-</asp:Content>
-
-<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-    <!-- Topbar & Welcome -->
-    <div class="uims-topbar mb-4">
-        <h1 class="uims-page-title">Academic Supervisor Portal <span class="text-muted mx-2">></span> Academic dashboard</h1>
-        <div class="uims-user">
-            <div class="uims-user-meta">
-                <strong>Dr. <asp:Literal ID="litSupervisorName" runat="server"></asp:Literal></strong>
-                <small>Academic supervisor</small>
-            </div>
-        </div>
-    </div>
-
-    <!-- Summary Cards -->
-    <div class="row mb-4">
-        <div class="col-md-4 mb-3 mb-md-0">
-            <div class="uims-card h-100 d-flex align-items-center justify-content-between">
-                <div>
-                    <h3 class="text-muted mb-1" style="font-size: 0.85rem; font-weight: 600;">Assigned students</h3>
-                    <h2 class="display-5 mb-0" style="color: var(--brand); font-weight: 700;">
-                        <asp:Literal ID="litTotalStudents" runat="server"></asp:Literal>
-                    </h2>
-                </div>
-                <div class="p-3" style="background-color: var(--brand-light); border-radius: 8px;">
-                    <!-- Placeholder icon -->
-                    <span style="color: var(--brand); font-size: 1.2rem;">👥</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="uims-card h-100 d-flex align-items-center justify-content-between">
-                <div>
-                    <h3 class="text-muted mb-1" style="font-size: 0.85rem; font-weight: 600;">Completed students</h3>
-                    <h2 class="display-5 mb-0" style="color: var(--accent); font-weight: 700;">
-                        <asp:Literal ID="litCompletedStudents" runat="server"></asp:Literal>
-                    </h2>
-                </div>
-                <div class="p-3" style="background-color: #fcf6e8; border-radius: 8px;">
-                    <!-- Placeholder icon -->
-                    <span style="color: var(--accent); font-size: 1.2rem;">🎓</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Assigned Students Table -->
-    <div class="uims-card">
-        <div class="table-responsive">
-            <table class="uims-table align-middle">
-                <thead>
-                    <tr>
-                        <th colspan="2">Student Details</th>
-                        <th>Major</th>
-                        <th>Progress</th>
-                        <th class="text-end">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <asp:Repeater ID="rptStudents" runat="server">
-                        <ItemTemplate>
-                            <tr>
-                                <!-- Avatar -->
-                                <td style="width: 50px;">
-                                    <div class="student-avatar">
-                                        <!-- Displays the first letter of the student's name safely -->
-                                        <%# Eval("FullName") != null && Eval("FullName").ToString().Length > 0 ? Eval("FullName").ToString().Substring(0, 1).ToUpper() : "S" %>
-                                    </div>
-                                </td>
-                                
-                                <!-- Name and ID -->
-                                <td>
-                                    <div style="font-weight: 600; color: var(--brand-dark); font-size: 0.95rem;">
-                                        <%# Eval("FullName") %>
-                                    </div>
-                                    <div style="font-size: 0.75rem; color: var(--muted);">
-                                        #<%# Eval("StudentNumber") %>
-                                    </div>
-                                </td>
-
-                                <!-- Major -->
-                                <td style="font-size: 0.9rem; color: var(--muted);">
-                                    <%# Eval("Major") %>
-                                </td>
-
-                                <!-- Hours Progress -->
-                                <td>
-                                    <div class="d-flex justify-content-between align-items-center mb-1">
-                                        <span class="progress-text"><%# Eval("ApprovedHours") %> / <%# Eval("RequiredHours") %> h</span>
-                                        <span class="progress-text"><%# Eval("HoursProgressPercent") %>%</span>
-                                    </div>
-                                    <div class="progress" style="height: 6px; border-radius: 10px; background-color: var(--brand-light);">
-                                        <div class="progress-bar" role="progressbar" 
-                                             style='width: <%# Eval("HoursProgressPercent") %>%; background-color: var(--brand);' 
-                                             aria-valuenow='<%# Eval("HoursProgressPercent") %>' aria-valuemin="0" aria-valuemax="100">
-                                        </div>
-                                    </div>
-                                </td>
-
-                                <!-- Action Button -->
-                                <td class="text-end">
-                                    <a href="StudentProgress.aspx?id=<%# Eval("Id") %>" class="btn btn-sm btn-outline-brand">View progress</a>
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                    
-                    <!-- Empty State -->
-                    <asp:Literal ID="litNoData" runat="server" Visible="false">
-                        <tr><td colspan="5" class="text-center text-muted py-4">No students are currently assigned to you.</td></tr>
-                    </asp:Literal>
-                </tbody>
-            </table>
-        </div>
-    </div>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Dashboard" Title="Academic Dashboard" %>
+<%@ Import Namespace="System.Linq" %>
+<%@ Register Src="~/Layout/WorkspaceJourney.ascx" TagPrefix="uims" TagName="WorkspaceJourney" %>
+<%@ Register Src="~/Layout/WorkspaceChart.ascx" TagPrefix="uims" TagName="WorkspaceChart" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"></asp:Content>
+<asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
+<div class="ws-dashboard ws-reference ws-academic" data-workspace-role="academic">
+ <header class="ws-page-heading" data-ws-enter="header"><div><h2>Student oversight</h2><p><asp:Literal ID="litSupervisorName" runat="server" />, follow your assigned students and academic work.</p></div><a class="btn btn-brand" href="StudentProgress.aspx">Review student records <span data-ui-icon="next" aria-hidden="true"></span></a></header>
+ <% if(LoadError != null) { %><div class="alert alert-danger" role="alert"><%: LoadError %> <a href="Dashboard.aspx">Retry</a></div><% } %>
+ <uims:WorkspaceJourney ID="Journey" runat="server" />
+ <uims:WorkspaceChart ID="Charts" runat="server" />
+ <dl class="ws-metric-band" hidden aria-hidden="true" data-ws-enter="metrics"><div><dt>Assigned students</dt><dd><asp:Literal ID="litTotalStudents" runat="server" /></dd><small>Your supervision group</small></div><div><dt>Hours requirement met</dt><dd><asp:Literal ID="litCompletedStudents" runat="server" /></dd><small>Approved entries only</small></div><div><dt>Company assessments</dt><dd><%: Workspace == null ? "—" : Workspace.CompanyFeedback.ToString() %></dd><small>Submitted for your students</small></div><div><dt>Academic follow-up</dt><dd><%: Workspace == null ? "—" : Workspace.PendingEvaluations.ToString() %></dd><small>Company assessment received</small></div></dl>
+ <div class="ws-academic-work" data-ws-enter="work">
+  <section class="ws-work-panel"><div class="ws-section-heading"><div><h3>Assigned students</h3><p>Placement, approved hours and the next academic action.</p></div></div>
+   <table class="ws-student-table"><caption class="visually-hidden">Students assigned to the signed-in academic supervisor</caption><thead><tr><th>Student</th><th>Placement</th><th>Approved hours</th><th>Follow-up</th></tr></thead><tbody>
+   <asp:Repeater ID="rptStudents" runat="server"><ItemTemplate><tr data-workspace-row='<%# Eval("Id") %>'><td><strong><%#: Eval("FullName") %></strong><small><%#: Eval("StudentNumber") %></small></td><td><strong><%#: Eval("CompanyName") %></strong><small><%#: Eval("Major") %></small></td><td><span><%#: Eval("HoursText") %></span><div class="ws-mini-progress"><div id='academic-hours-<%# Eval("Id") %>' data-ui-progress="" data-ui-approved='<%# Eval("ApprovedHours") %>' data-ui-target='<%# Eval("RequiredHours") %>'></div></div><small><%#: Eval("PendingHours") %> h pending</small></td><td><span class="ws-followup"><%#: Eval("NextAction") %></span><a class="ws-text-action" href='StudentProgress.aspx?id=<%# Server.UrlEncode(Eval("Id").ToString()) %>'>View progress <span data-ui-icon="next" aria-hidden="true"></span></a></td></tr></ItemTemplate></asp:Repeater>
+   </tbody></table>
+   <asp:Literal ID="litNoData" runat="server" Visible="false" Text="<div class='ws-empty'><h4>No students assigned yet</h4><p>Your coordinator manages academic supervision assignments. Assigned students will appear here.</p></div>" />
+  </section>
+  <aside class="ws-academic-followup"><h3>Academic work</h3><p>Assessment and follow-up stay linked to each assigned student.</p>
+   <% if(Workspace != null && Workspace.PendingEvaluations > 0) { foreach(var row in Workspace.Students.Where(s => s.CompanySubmitted && !s.AcademicSubmitted).Take(3)) { %><a class="ws-evaluation-person" href="FinalEvaluation.aspx?id=<%: Server.UrlEncode(row.Id) %>"><span class="ws-person-initial" aria-hidden="true"><%: row.FullName.Substring(0,1) %></span><span><strong><%: row.FullName %></strong><small>Company assessment received</small></span><span data-ui-icon="next" aria-hidden="true"></span></a><% } } else { %><p class="ws-inline-note">No received company assessments are waiting for your academic submission.</p><% } %>
+   <a class="ws-text-action" href="FinalEvaluation.aspx">Open academic evaluations <span data-ui-icon="next" aria-hidden="true"></span></a><div class="ws-privacy-note"><span data-ui-icon="info" aria-hidden="true"></span><p>Internal evaluation forms remain restricted. Students see the released result only after coordinator approval.</p></div>
+  </aside>
+ </div>
+</div>
 </asp:Content>

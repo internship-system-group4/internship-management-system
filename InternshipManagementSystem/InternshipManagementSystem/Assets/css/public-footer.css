@@ -9,7 +9,7 @@
 @keyframes uims-footer-wave { from { transform:translateX(0); } to { transform:translateX(-50%); } }
 .uims-public-footer[data-waves-paused] .uims-public-footer-wave { animation-play-state:paused; }
 .uims-public-footer-body { background:var(--footer-bg); }
-.uims-public-footer-grid { display:grid; grid-template-columns:1.5fr .9fr 1fr 1fr; gap:48px; padding-block:20px 48px; }
+.uims-public-footer-grid { display:grid; grid-template-columns:1.5fr .9fr 1fr 1fr; gap:48px; padding-block:20px 44px; }
 .uims-public-footer h2 { font-size:15px; line-height:1.4; font-weight:650; margin:0 0 16px; color:var(--footer-text); letter-spacing:0; }
 .uims-public-footer p { color:var(--footer-muted); font-size:14px; line-height:1.65; margin:0; }
 .uims-public-footer ul { list-style:none; margin:0; padding:0; }
@@ -23,6 +23,39 @@
 .uims-public-footer-logo img { width:56px; height:auto; display:block; }
 .uims-public .uims-public-footer .uims-public-footer-official { display:inline-flex; align-items:center; gap:10px; }
 .uims-public-footer-official svg { width:20px; height:20px; flex-shrink:0; }
+/* Footer row: link columns on the left, a compact campus map in a fixed 280px column on the right. */
+.uims-public-footer-main { display:grid; grid-template-columns:minmax(0,1fr) 280px; gap:48px; align-items:start; padding-block:20px 40px; }
+.uims-public-footer-main .uims-public-footer-grid { gap:32px; padding-block:0; }
+/* Campus map. data-footer-map-state (set by public-footer-map.js): loading -> ready -> flying -> done, or fallback
+   (Google embed). Without script the embed simply shows. */
+.uims-public-footer-campus { width:280px; justify-self:end; }
+.uims-public-footer-campus h2 { margin-bottom:4px; }
+.uims-public-footer-campus address { margin:0 0 10px; }
+.uims-public-footer .uims-public-footer-campus address p { font-size:13px; line-height:1.5; }
+.uims-public-footer-campus-map { position:relative; width:280px; height:180px; border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden; background:#1f4466; isolation:isolate; }
+.uims-public-footer-campus-canvas, .uims-public-footer-campus-embed { position:absolute; inset:0; width:100%; height:100%; border:0; }
+.uims-public-footer-campus[data-footer-map-state]:not([data-footer-map-state="fallback"]) .uims-public-footer-campus-embed { display:none; }
+.uims-public-footer-campus-loading { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); padding:6px 12px; border-radius:999px; background:rgba(19,61,97,.85); white-space:nowrap; }
+.uims-public .uims-public-footer .uims-public-footer-campus-loading { font-size:12px; }
+.uims-public-footer-campus-loading[hidden] { display:none; }
+.uims-public-footer-campus-actions { display:flex; flex-wrap:wrap; gap:4px 18px; margin-top:6px; }
+.uims-public-footer-campus-actions > * { transition:opacity 300ms ease; }
+.uims-public-footer-campus:is([data-footer-map-state="loading"],[data-footer-map-state="ready"],[data-footer-map-state="flying"]) .uims-public-footer-campus-actions > * { opacity:0; pointer-events:none; }
+.uims-public .uims-public-footer .uims-public-footer-campus-actions a { display:inline-flex; align-items:center; gap:6px; padding-block:6px; font-size:13px; }
+.uims-public-footer-campus-actions svg { width:16px; height:16px; }
+/* Replay / Explore sit on the map, bottom-left, clear of the attribution (i) and the zoom controls. */
+.uims-public .uims-public-footer .uims-public-footer-campus-button { position:absolute; z-index:2; left:8px; bottom:8px; min-height:28px; padding:0 10px; border:1px solid rgba(255,255,255,.35); border-radius:6px; background:rgba(19,61,97,.88); color:#fff; font:600 12px/1.2 "Segoe UI",system-ui,sans-serif; cursor:pointer; box-shadow:0 4px 12px -6px rgba(0,0,0,.5); }
+.uims-public .uims-public-footer .uims-public-footer-campus-button:hover { filter:brightness(1.12); }
+.uims-public-footer-campus-button[hidden] { display:none !important; }
+/* Campus marker (a MapLibre marker element): a pin with the university's name, revealed when the flight ends. */
+.uims-campus-marker { display:flex; flex-direction:column; align-items:center; gap:4px; pointer-events:none; opacity:0; }
+.uims-campus-marker.is-shown { opacity:1; animation:uims-campus-marker 360ms ease-out both; }
+.uims-campus-marker span { padding:3px 8px; border-radius:5px; background:#fff; color:var(--ui-ink); font:650 12px/1.3 "Segoe UI",system-ui,sans-serif; white-space:nowrap; box-shadow:0 6px 16px -6px rgba(0,0,0,.45); }
+.uims-campus-marker i { flex-shrink:0; width:18px; height:18px; border:3px solid #fff; border-radius:50%; background:#0091d1; box-shadow:0 0 0 4px rgba(0,145,209,.28),0 3px 8px rgba(0,0,0,.35); }
+@keyframes uims-campus-marker { from { opacity:0; transform:translateY(4px); } }
+/* MapLibre's own controls and attribution keep readable map colours inside the dark footer. */
+.uims-public .uims-public-footer .maplibregl-ctrl, .uims-public .uims-public-footer .maplibregl-ctrl a { color:#333; font-size:12px; }
+.uims-public .uims-public-footer .maplibregl-ctrl a:hover { color:#000; text-decoration:underline; }
 .uims-public-footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px 24px; padding-block:20px 28px; border-top:1px solid rgba(255,255,255,.16); }
 .uims-public-footer-bottom p { font-size:13px; }
 .uims-public-footer-actions { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }
@@ -31,9 +64,15 @@
 .uims-public-footer-pause:hover { color:var(--footer-text); border-color:rgba(255,255,255,.3); }
 .uims-public .uims-public-footer .uims-public-footer-powered { color:var(--footer-text); background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.55); }
 .uims-public .uims-public-footer .uims-public-footer-powered:hover { background:rgba(255,255,255,.16); text-decoration:none; }
-@media(max-width:960px) {
+@media(max-width:1120px) {
  .uims-public-footer-grid { grid-template-columns:repeat(3,1fr); gap:36px 32px; }
  .uims-public-footer-identity { grid-column:1/-1; }
+}
+/* Narrow screens: the map stacks below the link columns, up to 280px wide. */
+@media(max-width:860px) {
+ .uims-public-footer-main { grid-template-columns:minmax(0,1fr); gap:32px; }
+ .uims-public-footer-campus { width:100%; max-width:280px; justify-self:start; }
+ .uims-public-footer-campus-map { width:100%; }
 }
 @media(max-width:600px) {
  .uims-public-footer-grid { grid-template-columns:1fr; gap:28px; padding-block:12px 36px; }
@@ -41,4 +80,4 @@
  .uims-public-footer-actions { width:100%; }
  .uims-public .uims-public-footer .uims-public-footer-powered { flex:1; }
 }
-@media(prefers-reduced-motion:reduce) { .uims-public-footer-wave { animation:none; } }
+@media(prefers-reduced-motion:reduce) { .uims-public-footer-wave, .uims-campus-marker { animation:none; } .uims-public-footer-campus-actions > * { transition:none; } }

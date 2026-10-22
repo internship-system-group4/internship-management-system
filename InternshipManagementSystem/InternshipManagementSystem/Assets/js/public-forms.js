@@ -1,14 +1,21 @@
 ﻿(function () {
  'use strict';
  function field(id){return document.getElementById(id);}
+ // The message for one required field, or '' when it is locally valid. Pages may override the wording with
+ // data-required-message, data-invalid-message (email) and data-short-message (minlength).
+ function fieldMessage(input){
+  var value=input.value.trim();
+  if(!value) return input.getAttribute('data-required-message')||'Please fill in this field.';
+  if(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return input.getAttribute('data-invalid-message')||'Enter a valid email address.';
+  if(input.minLength>0&&value.length<input.minLength) return input.getAttribute('data-short-message')||'Please enter at least '+input.minLength+' characters.';
+  return '';
+ }
+ window.publicFieldMessage=fieldMessage;
  function validate(form){
   if(form.getAttribute('data-submitting')==='true')return false;
   var first=null,valid=true;
   form.querySelectorAll('[data-public-required]').forEach(function(input){
-   var message='',value=input.value.trim(),error=field(input.getAttribute('aria-describedby').split(' ')[0]);
-   if(!value) message=input.getAttribute('data-required-message')||'Please fill in this field.';
-   else if(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) message='Enter a valid email address.';
-   else if(input.minLength>0&&value.length<input.minLength) message='Please enter at least '+input.minLength+' characters.';
+   var message=fieldMessage(input),error=field(input.getAttribute('aria-describedby').split(' ')[0]);
    if(error)error.textContent=message;
    input.setAttribute('aria-invalid',String(!!message));
    if(message){valid=false;if(!first)first=input;}
@@ -17,7 +24,7 @@
   if(valid){
    form.setAttribute('data-submitting','true');form.setAttribute('aria-busy','true');
    var button=form.querySelector('input[type="submit"]'),status=form.querySelector('[data-submit-status]');
-   if(button){button.dataset.originalText=button.value;button.setAttribute('aria-disabled','true');button.value=form.dataset.publicForm==='contact'?'Sending message…':form.dataset.publicForm==='login'?'Signing in…':'Requesting reset link…';}
+   if(button){button.dataset.originalText=button.value;button.setAttribute('aria-disabled','true');button.value=form.dataset.publicForm==='contact'?'Sending…':form.dataset.publicForm==='login'?'Signing in…':'Requesting reset link…';}
    if(status)status.textContent='Sending your message. Please wait for confirmation.';
   }
   return valid;

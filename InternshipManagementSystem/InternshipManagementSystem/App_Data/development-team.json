@@ -1,9 +1,10 @@
 {
-  "Note": "Public development-team roster for Pages/Public/PoweredBy.aspx, in display order. Add a member only after they approve each field for public display. Required: Key (stable lowercase slug), Name, Role. Seat: lecture-hall seat as <block L|C|R><row 1-7>-<seat from the left>, e.g. C4-5; an invalid or missing seat is assigned automatically. Optional: Email, Bio, Photo (~/Assets/images/team/<file>; a 240px copy in team/small/ is used when present), GitHub, LinkedIn, Portfolio (https URLs). Leave out anything not supplied.",
+  "Note": "Public development-team roster for Pages/Public/PoweredBy.aspx, in display order. Add a member only after they approve each field for public display. Required: Key (stable lowercase slug), Name, Role. Seat: lecture-hall seat as <block L|C|R><row 1-7>-<seat from the left>, e.g. C4-5; an invalid or missing seat is assigned automatically. Character: \"male\" or \"female\", choosing the generic 3D figure shown at the seat (not a likeness). Optional: Email, Bio, Photo (~/Assets/images/team/<file>; a 240px copy in team/small/ is used when present), GitHub, LinkedIn, Portfolio (https URLs). Leave out anything not supplied.",
   "Members": [
     {
       "Key": "osama-banihani",
       "Seat": "L3-7",
+      "Character": "male",
       "Name": "Osama Banihani",
       "Role": "Developer",
       "Photo": "~/Assets/images/team/Osama.png",
@@ -14,6 +15,7 @@
     {
       "Key": "nada-alawneh",
       "Seat": "C2-2",
+      "Character": "female",
       "Name": "Nada Alawneh",
       "Role": "Developer",
       "Photo": "~/Assets/images/team/Nada.png",
@@ -24,6 +26,7 @@
     {
       "Key": "sara-aldoulat",
       "Seat": "R3-2",
+      "Character": "female",
       "Name": "Sara Aldoulat",
       "Role": "QA",
       "Photo": "~/Assets/images/team/Sara Aldoulat.png",
@@ -34,6 +37,7 @@
     {
       "Key": "saja-diabat",
       "Seat": "L5-8",
+      "Character": "female",
       "Name": "Saja Diabat",
       "Role": "Developer",
       "Photo": "~/Assets/images/team/Saja Diabat.png",
@@ -44,6 +48,7 @@
     {
       "Key": "ahmad-bani-hamad",
       "Seat": "C4-5",
+      "Character": "male",
       "Name": "Ahmad Bani Hamad",
       "Role": "Scrum Master",
       "Photo": "~/Assets/images/team/Ahmad.png",
@@ -54,6 +59,7 @@
     {
       "Key": "fatima-tawalbeh",
       "Seat": "R5-3",
+      "Character": "female",
       "Name": "Fatima Ehab Tawalbeh",
       "Role": "Developer",
       "Photo": "~/Assets/images/team/Fatima Tawalbeh.png",
@@ -64,6 +70,7 @@
     {
       "Key": "sara-alrjoub",
       "Seat": "C6-9",
+      "Character": "female",
       "Name": "Sara Alrjoub",
       "Role": "Product Owner",
       "Photo": "~/Assets/images/team/Sara Al Rjoub.png",

@@ -27,9 +27,9 @@ async page => {
  check(endpoint.duration>=1250&&endpoint.duration<1500,'Measured entry animation 1.25–1.5 seconds');
  await page.context().clearCookies();await page.goto(base+path);await page.waitForSelector('[data-scene-ready]');
  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
- check(await page.locator('canvas').count()===0&&await page.locator('.login-campus-photo').isVisible(),'Pagehide disposes canvas and exposes photo');
+ check(await page.locator('[data-campus-canvas] canvas').count()===0&&await page.locator('.login-campus-photo').isVisible(),'Pagehide disposes canvas and exposes photo');
  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
- await page.waitForSelector('[data-scene-ready]');check(await page.locator('canvas').count()===1,'Persisted pageshow reconstructs exactly one canvas');
+ await page.waitForSelector('[data-scene-ready]');check(await page.locator('[data-campus-canvas] canvas').count()===1,'Persisted pageshow reconstructs exactly one canvas');
  await page.locator('[data-campus-pause]').click();check(await page.locator('[data-campus-pause]').getAttribute('aria-pressed')==='true','Restored pause control works');
  await page.evaluate(()=>{const canvas=document.querySelector('canvas');const gl=canvas.getContext('webgl2');gl.getExtension('WEBGL_lose_context').loseContext();});
  await page.waitForFunction(()=>!document.querySelector('[data-login-campus]').hasAttribute('data-scene-ready'));

@@ -44,6 +44,7 @@ namespace InternshipManagementSystem.Pages.Academic
             System.Web.UI.WebControls.LinkButton btn = (System.Web.UI.WebControls.LinkButton)sender;
             string studentId = btn.CommandArgument;
 
+            if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
             // حفظه في Hidden Field لنستخدمه عند الضغط على إرسال التقييم
             hfSelectedStudentId.Value = studentId;
 
@@ -123,6 +124,9 @@ namespace InternshipManagementSystem.Pages.Academic
                 return;
             }
 
+            if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
+            var existing = new EvaluationRepository().GetAcademicFinalForPlacement(studentId);
+            if (existing != null && existing.IsSubmitted) return;
             double totalScore = double.Parse(ddlPassFail.SelectedValue);
 
             FinalAcademicEvaluation eval = new FinalAcademicEvaluation
@@ -143,6 +147,15 @@ namespace InternshipManagementSystem.Pages.Academic
             // إظهار رسالة النجاح في الشاشة الرئيسية (لأن النافذة ستغلق تلقائياً بعد الإرسال)
             pnlSuccessMessage.Visible = true;
             litSuccessMessage.Text = "Evaluation for the selected student has been submitted to the Coordinator successfully!";
+        }
+        private bool CanEvaluate(string studentId)
+        {
+            if (!ApplicationRepository.IsValidKey(studentId)) return false;
+            var student = new UserRepository().GetStudent(studentId);
+            var placement = new PlacementRepository().GetById(studentId);
+            return student != null && student.AcademicSupervisorId == CurrentSupervisor.Id
+                && placement != null && placement.StudentId == studentId
+                && placement.AcademicSupervisorId == CurrentSupervisor.Id;
         }
     }
 }

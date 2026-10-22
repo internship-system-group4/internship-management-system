@@ -2,7 +2,7 @@
 @font-face{font-family:Switzer;src:url('../fonts/switzer-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
 @font-face{font-family:Switzer;src:url('../fonts/switzer-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:Switzer;src:url('../fonts/switzer-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
-.home-page{--campus-ground:#f1f3f2;--campus-ink:#153d54;--campus-blue:#264f73;--campus-secondary:#153d54;--campus-gutter:clamp(24px,3.4vw,64px);font-family:Switzer,'Segoe UI',sans-serif;color:var(--campus-ink);background:var(--campus-ground)}
+.home-page{--campus-ground:#f1f3f2;--campus-ink:#153d54;--campus-blue:var(--ui-primary);--campus-secondary:#153d54;--campus-gutter:clamp(24px,3.4vw,64px);font-family:Switzer,'Segoe UI',sans-serif;color:var(--campus-ink);background:var(--campus-ground)}
 .campus-story{background:var(--campus-ground)}
 .campus-chapter{padding-inline:var(--campus-gutter);padding-block:40px}
 .campus-copy,.campus-colleges .campus-copy,.campus-process .campus-copy{width:min(38%,490px);padding:28px 24px 28px 0;background:var(--campus-ground)}

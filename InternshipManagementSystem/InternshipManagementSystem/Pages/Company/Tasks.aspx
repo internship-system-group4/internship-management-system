@@ -120,7 +120,7 @@
     </div>
 
     <!-- Popup with blurred background -->
-    <div id="taskModal"
+    <div id="taskModal" data-ui-dialog="" data-ui-close="showTasksList"
          class="task-modal-overlay"
          style="display: none;"
          role="dialog"
@@ -231,7 +231,7 @@
                             CssClass="btn btn-outline-secondary w-100"
                             CausesValidation="false"
                             OnClientClick="rememberTaskForm();"
-                            OnClick="btnAddCriterion_Click" />
+                            OnClick="btnAddCriterion_Click"  data-ui-action="add" data-loading-label="Updating…" data-ui-validation="none"/>
                     </div>
                 </div>
 
@@ -275,7 +275,7 @@
                                     CausesValidation="false"
                                     OnClientClick="rememberTaskForm();"
                                     CssClass="text-danger small"
-                                    Text="Remove" />
+                                    Text="Remove"  data-ui-action="remove" data-loading-label="Updating…" data-ui-validation="none"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -301,7 +301,7 @@
                 <asp:Button ID="btnCreateTask" runat="server" Text="Create Task"
                     CssClass="btn btn-brand"
                     OnClientClick="rememberTaskForm();"
-                    OnClick="btnCreateTask_Click" />
+                    OnClick="btnCreateTask_Click"  data-ui-action="create" data-loading-label="Creating…"/>
             </div>
 
         </div>

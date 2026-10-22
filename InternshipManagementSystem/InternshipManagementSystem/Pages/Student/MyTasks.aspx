@@ -100,7 +100,7 @@
     </div>
 
     <!-- Task details and submission popup -->
-    <div id="taskDetailsModal"
+    <div id="taskDetailsModal" data-ui-dialog="" data-ui-close="closeTaskDetails"
          class="task-details-overlay"
          style="display: none;"
          role="dialog"
@@ -229,7 +229,7 @@
             runat="server"
             Text="Submit Task"
             CssClass="btn btn-brand"
-            OnClick="btnSubmitTask_Click" />
+            OnClick="btnSubmitTask_Click"  data-ui-action="submit" data-loading-label="Submitting…"/>
 
 <asp:Label ID="lblSubmitMessage"
            runat="server"

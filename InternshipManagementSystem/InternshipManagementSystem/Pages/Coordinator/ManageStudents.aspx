@@ -25,7 +25,7 @@
                         <td><strong><%#: Eval("FullName") %></strong><small><%#: Eval("Email") %></small></td>
                         <td><%#: Eval("StudentNumber") %></td><td><%#: Eval("Major") %></td>
                         <td><span class='<%# (bool)Eval("IsActive") ? "students-status is-active" : "students-status is-inactive" %>'><%# (bool)Eval("IsActive") ? "Active" : "Inactive" %></span></td>
-                        <td><asp:LinkButton ID="btnEdit" runat="server" Text="Manage" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnEdit_Click" CausesValidation="false" /></td>
+                        <td><asp:LinkButton ID="btnEdit" runat="server" data-ui-modal-opener="pnlDetails" Text="Manage" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnEdit_Click" CausesValidation="false" /></td>
                     </tr></ItemTemplate></asp:Repeater></tbody>
                 </table>
             </div>
@@ -45,9 +45,9 @@
                         <div class="col-md-6"><label for="<%= txtEditCollege.ClientID %>" class="form-label">College</label><asp:TextBox ID="txtEditCollege" runat="server" CssClass="form-control" MaxLength="120" /></div>
                         <div class="col-md-6"><label for="<%= ddlEditMajor.ClientID %>" class="form-label">Major</label><asp:DropDownList ID="ddlEditMajor" runat="server" CssClass="form-select" /></div>
                     </div>
-                    <div class="students-access"><div><h4>Account access</h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click" /></div>
+                    <div class="students-access"><div><h4>Account access</h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/></div>
                 </div>
-                <div class="modal-footer"><asp:HyperLink ID="lnkRecord" runat="server" CssClass="btn btn-outline-secondary me-auto" Text="View record" /><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button><asp:Button ID="btnSaveDetails" runat="server" Text="Save changes" CssClass="btn btn-primary" OnClick="btnSaveDetails_Click" /></div>
+                <div class="modal-footer"><asp:HyperLink ID="lnkRecord" runat="server" CssClass="btn btn-outline-secondary me-auto" Text="View record" /><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button><asp:Button ID="btnSaveDetails" runat="server" Text="Save changes" CssClass="btn btn-primary" OnClick="btnSaveDetails_Click"  data-ui-action="save" data-loading-label="Saving…"/></div>
             </div></div>
         </asp:Panel>
     </div>

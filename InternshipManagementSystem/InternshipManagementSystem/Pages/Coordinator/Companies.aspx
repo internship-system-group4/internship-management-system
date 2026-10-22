@@ -8,12 +8,12 @@
         .logout-container, .logout-box { margin-top: auto !important; border-top: 1px solid #e3e8ee; padding-top: 1rem; }
 
         /* 2. اللون الأساسي ولمسات بسيطة */
-        .text-brand { color: #0f4c81 !important; }
-        .bg-brand { background-color: #0f4c81 !important; color: white; border: none; }
+        .text-brand { color: var(--ui-primary) !important; }
+        .bg-brand { background-color: var(--ui-primary) !important; color: white; border: none; }
         .bg-brand:hover { background-color: #0a365c !important; color: white; }
         .nav-tabs .nav-link { color: #6b7786; font-weight: 500; border: none; background: transparent; }
-        .nav-tabs .nav-link.active { color: #0f4c81; font-weight: bold; border-bottom: 2px solid #0f4c81; }
-        .hover-item:hover { border-color: #0f4c81 !important; background-color: #f8fafc; cursor: pointer; }
+        .nav-tabs .nav-link.active { color: var(--ui-primary); font-weight: bold; border-bottom: 2px solid var(--ui-primary); }
+        .hover-item:hover { border-color: var(--ui-primary) !important; background-color: #f8fafc; cursor: pointer; }
     </style>
 </asp:Content>
 
@@ -52,7 +52,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Actions">
                             <ItemTemplate>
-                                <asp:Button ID="btnToggle" runat="server" Text='<%# (bool)Eval("IsActive") ? "Deactivate" : "Activate" %>' CommandName="ToggleStatus" CommandArgument='<%# Eval("Id") %>' CssClass='<%# (bool)Eval("IsActive") ? "btn btn-sm btn-outline-danger rounded-pill px-3" : "btn btn-sm btn-outline-success rounded-pill px-3" %>' OnClientClick="return confirm('Change this supervisor status?');" />
+                                <asp:Button ID="btnToggle" runat="server" Text='<%# (bool)Eval("IsActive") ? "Deactivate" : "Activate" %>' CommandName="ToggleStatus" CommandArgument='<%# Eval("Id") %>' CssClass='<%# (bool)Eval("IsActive") ? "btn btn-sm btn-outline-danger rounded-pill px-3" : "btn btn-sm btn-outline-success rounded-pill px-3" %>' OnClientClick="return confirm('Change this supervisor status?');"  data-ui-action="update" data-loading-label="Updating…"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -190,7 +190,7 @@
 
                 <div class="modal-footer bg-light px-4 border-top-0">
                     <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal" onclick="resetFormState()">Cancel</button>
-                    <asp:Button ID="btnSave" runat="server" Text="Create account" CssClass="btn bg-brand rounded-pill px-4" OnClientClick="return validateAndConfirm();" OnClick="btnSave_Click" />
+                    <asp:Button ID="btnSave" runat="server" Text="Create account" CssClass="btn bg-brand rounded-pill px-4" OnClientClick="return validateAndConfirm();" OnClick="btnSave_Click"  data-ui-action="create" data-loading-label="Creating…"/>
                 </div>
 
             </div>

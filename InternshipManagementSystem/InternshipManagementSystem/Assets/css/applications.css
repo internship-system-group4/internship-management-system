@@ -56,7 +56,7 @@
 .company-applications .application-heading p { font-size:13px; color:var(--muted); }
 .review-list-heading { display:flex; justify-content:space-between; align-items:baseline; gap:16px; padding:0 0 14px; }
 .review-list-heading h3 { font-size:15px; margin:0; }
-.review-list-heading span { color:#58718a; font-size:13px; }
+.review-list-heading span { color:var(--ui-muted); font-size:13px; }
 /* Each application is its own card on the company page. */
 .company-applications .application-list { background:none; border:0; padding:0; }
 .company-applications .application-row,.company-applications .application-row:last-child { background:var(--surface); border:1px solid var(--line); border-radius:8px; padding:22px 24px; margin-bottom:16px; }
@@ -122,7 +122,7 @@
 .review-application-details summary:hover { background:#dce8f3; border-color:#a9c2dc; }
 .review-application-details summary:focus-visible { outline:3px solid rgba(15,76,129,.25); outline-offset:2px; }
 .candidate-toggle-label { font-weight:600; font-size:13px; }
-.candidate-toggle-hint { color:#58718a; font-size:12px; font-weight:400; }
+.candidate-toggle-hint { color:var(--ui-muted); font-size:12px; font-weight:400; }
 .review-application-details .candidate-toggle-hide,.review-application-details[open] .candidate-toggle-show { display:none; }
 .review-application-details[open] .candidate-toggle-hide { display:inline; }
 .candidate-panel { margin-top:14px; border:1px solid var(--line); border-radius:8px; background:var(--canvas); overflow:hidden; }

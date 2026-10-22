@@ -487,7 +487,7 @@
 
         <!-- Close Confirmation Dialog -->
 
-        <div id="moDialog" class="mo-dialog"
+        <div id="moDialog" data-ui-dialog="" data-ui-close="hideCloseDialog" class="mo-dialog"
             role="dialog" aria-modal="true"
             aria-labelledby="moDialogTitle">
 
@@ -515,7 +515,7 @@
                         class="mo-btn mo-btn-danger"
                         name="moAction"
                         value="close"
-                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;">
+                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="Closing…">
                         Close opportunity
                     </button>
 
@@ -806,7 +806,7 @@
                 <button type="submit"
                     class="mo-btn"
                     name="moAction"
-                    value="save">
+                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
                     Save changes
                 </button>
 

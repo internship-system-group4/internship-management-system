@@ -14,7 +14,7 @@
                  <div class="text-muted small mb-1">
                      Company portal &gt; <a href="Trainees.aspx" class="text-decoration-none text-muted">My trainees</a> &gt; <span class="text-dark fw-bold">Trainee details</span>
                  </div>
-                 <h2 class="fw-bold mb-0" style="color: #0f4c81; font-size: 1.75rem;">Trainee Details & Progress</h2>
+                 <h2 class="fw-bold mb-0" style="color: var(--ui-primary); font-size: 1.75rem;">Trainee Details & Progress</h2>
             </div>
             <a href="Trainees.aspx" class="btn btn-outline-secondary px-4 py-2 rounded-3 shadow-sm"><i class="bi bi-arrow-left me-2"></i>Back to list</a>
         </div>
@@ -41,10 +41,10 @@
                 <div class="col-md-5 border-start ps-4">
                     <div class="d-flex justify-content-between align-items-end mb-2">
                         <span class="text-muted small fw-bold text-uppercase">Overall Progress</span>
-                        <h4 class="fw-bold mb-0" style="color: #0f4c81;"><asp:Literal ID="litProgressPercentage" runat="server">0</asp:Literal>%</h4>
+                        <h4 class="fw-bold mb-0" style="color: var(--ui-primary);"><asp:Literal ID="litProgressPercentage" runat="server">0</asp:Literal>%</h4>
                     </div>
                     <div class="progress mb-2" style="height: 8px;">
-                        <div id="divProgressBar" runat="server" class="progress-bar" style="background-color: #0f4c81; width: 0%;"></div>
+                        <div id="divProgressBar" runat="server" class="progress-bar" style="background-color: var(--ui-primary); width: 0%;"></div>
                     </div>
                     <div class="d-flex justify-content-between text-muted small">
                         <span><asp:Literal ID="litApprovedHours" runat="server">0</asp:Literal> hrs approved</span>
@@ -57,7 +57,7 @@
 
         <!-- معلومات التدريب -->
         <div class="card border-0 shadow-sm rounded-4 border p-4 mb-4">
-            <h5 class="fw-bold mb-4" style="color: #0f4c81;">Internship Information</h5>
+            <h5 class="fw-bold mb-4" style="color: var(--ui-primary);">Internship Information</h5>
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="text-muted small fw-bold text-uppercase mb-1">Opportunity</div>
@@ -87,8 +87,8 @@
         <!-- جدول المهام الخاصة بهذا المتدرب -->
         <div class="card border-0 shadow-sm rounded-4 border mb-4">
             <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center p-4">
-                <h5 class="fw-bold mb-0" style="color: #0f4c81;">Assigned Tasks</h5>
-                <a href="Tasks.aspx" class="btn px-4 py-2 rounded-3 shadow-sm" style="background-color: #0f4c81; color: white;"><i class="bi bi-plus-lg me-2"></i>Assign New Task</a>
+                <h5 class="fw-bold mb-0" style="color: var(--ui-primary);">Assigned Tasks</h5>
+                <a href="Tasks.aspx" class="btn px-4 py-2 rounded-3 shadow-sm" style="background-color: var(--ui-primary); color: white;"><i class="bi bi-plus-lg me-2"></i>Assign New Task</a>
             </div>
             
             <div class="card-body p-0 table-responsive">

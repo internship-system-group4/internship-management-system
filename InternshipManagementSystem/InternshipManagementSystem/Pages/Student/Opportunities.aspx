@@ -7,7 +7,7 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 <style>
 .explore-page {
-    --ex-navy: #183d63;
+    --ex-navy: var(--ui-primary);
     --ex-blue: #28547d;
     --ex-muted: #71839a;
     --ex-line: #e0e8f2;

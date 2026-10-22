@@ -11,7 +11,7 @@
                 <p><%: UnreadCount == 0 ? "No unread notifications." : UnreadCount + (UnreadCount == 1 ? " unread notification." : " unread notifications.") %></p>
             </div>
             <asp:Button ID="btnMarkAllRead" runat="server" Text="Mark all as read" CssClass="btn btn-outline-secondary btn-sm"
-                        OnClick="btnMarkAllRead_Click" CausesValidation="false" />
+                        OnClick="btnMarkAllRead_Click" CausesValidation="false"  data-ui-action="mark" data-loading-label="Updating…" data-ui-validation="none"/>
         </div>
 
         <asp:Label ID="lblMessage" runat="server" CssClass="uims-notify-page-message" Visible="false" role="status" />

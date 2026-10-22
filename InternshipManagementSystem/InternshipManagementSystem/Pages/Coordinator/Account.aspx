@@ -285,7 +285,7 @@
                                 Text="Save changes"
                                 CssClass="btn btn-primary"
                                 ValidationGroup="profile"
-                                OnClick="btnSave_Click" />
+                                OnClick="btnSave_Click"  data-ui-action="save" data-loading-label="Saving…"/>
                         </div>
                     </div>
 
@@ -342,7 +342,7 @@
                         Text="Update password"
                         CssClass="btn btn-primary w-100"
                         CausesValidation="false"
-                        OnClick="btnChangePassword_Click" />
+                        OnClick="btnChangePassword_Click"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/>
 
                 </section>
 

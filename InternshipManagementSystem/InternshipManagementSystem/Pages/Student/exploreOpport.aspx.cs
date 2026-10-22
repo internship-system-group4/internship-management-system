@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-
-namespace InternshipManagementSystem.Pages.Student
+using System;
+using InternshipManagementSystem.Security;
+namespace InternshipManagementSystem.Pages.StudentArea
 {
-    public partial class exploreOpport : System.Web.UI.Page
+    // Legacy bookmark: the current student opportunities page owns this workflow.
+    public partial class exploreOpport : StudentPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Response.Redirect("~/Pages/Student/Opportunities.aspx", false);
+            Context.ApplicationInstance.CompleteRequest();
         }
     }
 }

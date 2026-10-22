@@ -16,7 +16,7 @@
         var media = window.matchMedia('(max-width: 900px)');
         var controller = new AbortController();
         var opened = false, hovered = false, pinned = false;
-        try { pinned = localStorage.getItem('uims.sidebar.pinned') === 'true'; } catch (_) { /* Storage may be unavailable. */ }
+        try { pinned = localStorage.getItem('uims.sidebar.pinned') !== 'false'; } catch (_) { /* Storage may be unavailable. */ }
         function on(target, name, handler) { target.addEventListener(name, handler, { signal: controller.signal }); }
         function desktop() {
             var expanded = !media.matches && (pinned || hovered || sidebar.contains(document.activeElement));

@@ -21,11 +21,25 @@ async page => {
  await page.context().clearCookies();await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1440,height:900});
  await page.goto(url);await ready(page);await camera(page,'overview');
  // Full-page composition: one canvas, no visible roster grid, footer after the experience.
- check(await page.locator('canvas').count()===1,'One canvas');
+ check(await page.locator('[data-hall-canvas] canvas').count()===1,'One canvas');
  check(models.size===10&&[...models.values()].every(s=>s===200||s===304)&&!warnings.some(w=>w.includes('Seated figures unavailable')),'Ten seated Rocketbox figures load on desktop');
  check(!await page.locator('.team-roster').isVisible()&&await page.locator('.team-roster-section').isHidden(),'No visible team grid under the scene');
  const box=await root(page).boundingBox();check(Math.abs(box.height-900)<2&&box.x===0&&box.width===1440,'Experience fills the viewport edge to edge');
  const footerTop=await page.locator('footer').evaluate(f=>f.getBoundingClientRect().top+scrollY);check(footerTop>=box.y+box.height-1,'Footer follows the experience without overlap');
+ // Team figures follow the roster's Character; seats are unchanged.
+ const expectSeat={'osama-banihani':'L3-7','nada-alawneh':'C2-2','sara-aldoulat':'R3-2','saja-diabat':'L5-8','ahmad-bani-hamad':'C4-5','fatima-tawalbeh':'R5-3','sara-alrjoub':'C6-9'};
+ const markerData=await page.$$eval('.team-label',l=>l.map(m=>({key:m.dataset.key,name:m.textContent,figure:m.dataset.figure,seat:m.dataset.seat})));
+ for(const m of markerData){
+  const male=m.key==='ahmad-bani-hamad'||m.key==='osama-banihani';
+  check(male?/^Male_Adult_/.test(m.figure):/^Female_Adult_/.test(m.figure),m.name+' uses a '+(male?'male':'female')+' figure ('+m.figure+')');
+  check(m.figure!=='Female_Adult_06'&&m.figure!=='Male_Adult_18','No inferred religious or hood-up attire for '+m.name);
+  check(m.seat===expectSeat[m.key],m.name+' keeps seat '+expectSeat[m.key]);
+ }
+ // Name markers: all seven visible on the desktop overview, none overlapping.
+ const boxes=await page.$$eval('.team-label:not([hidden])',l=>l.map(m=>{const r=m.getBoundingClientRect();return [r.left,r.top,r.right,r.bottom,m.textContent];}));
+ check(boxes.length===7,'All seven name markers visible on desktop: '+boxes.map(b=>b[4]).join(', '));
+ check(boxes.every((a,i)=>boxes.every((b,j)=>i===j||a[2]<=b[0]||b[2]<=a[0]||a[3]<=b[1]||b[3]<=a[1])),'Name markers do not overlap');
+ check(await page.locator('.team-labels').getAttribute('aria-hidden')==='true','Markers are decorative duplicates for assistive technology');
  check(await page.getByRole('heading',{level:1}).innerText()==='Meet the team'&&(await page.locator('.team-eyebrow').innerText()).toLowerCase()==='powered by','Discreet Powered by / Meet the team title');
  // Finder lists all seven, in roster order, with equal treatment.
  await toggle(page).click();check(await toggle(page).getAttribute('aria-expanded')==='true','Finder opens');
@@ -52,6 +66,16 @@ async page => {
   await page.keyboard.press('Escape');
   check(await profile.isHidden()&&await toggle(page).evaluate(e=>e===document.activeElement),'Escape closes '+name+' and restores focus to the finder');
  }
+ // Keyboard focus in the finder emphasizes that member in the hall; markers hide while the camera moves.
+ await page.locator('[data-team-overview]').click();await camera(page,'overview');
+ await toggle(page).click();await page.locator('#teamFinderList button').nth(2).focus();
+ check((await page.locator('.team-label.is-active').allInnerTexts()).includes('Sara Aldoulat'),'Keyboard focus in the finder emphasizes the member');
+ await page.keyboard.press('Escape');
+ await page.locator('.team-label',{hasText:'Saja Diabat'}).click();
+ check(await page.locator('.team-labels').evaluate(l=>l.classList.contains('is-moving')),'Markers step aside during camera moves');
+ await camera(page,'member:saja-diabat');check(await page.locator('#teamProfileName').innerText()==='Saja Diabat','Clicking a name marker opens that member');
+ check((await page.locator('.team-label.is-active').allInnerTexts()).includes('Saja Diabat'),'Selected member marker is emphasized');
+ await page.keyboard.press('Escape');
  // Previous/next wrap, and interruption: a second selection mid-move wins.
  await choose(page,'Sara Alrjoub');await camera(page,'member:sara-alrjoub');
  await page.locator('[data-team-next]').click();await camera(page,'member:osama-banihani');check(await page.locator('#teamProfileName').innerText()==='Osama Banihani','Next wraps to the first member');
@@ -106,10 +130,10 @@ async page => {
  await calm.close();
  // Lifecycle: hidden page disposes, persisted return rebuilds exactly one canvas.
  await page.setViewportSize({width:1440,height:900});await page.goto(url);await ready(page);
- await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));check(await page.locator('canvas').count()===0,'Pagehide releases the renderer');
- await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));await ready(page);check(await page.locator('canvas').count()===1,'Persisted return rebuilds one canvas');
+ await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));check(await page.locator('[data-hall-canvas] canvas').count()===0,'Pagehide releases the renderer');
+ await page.evaluate(()=>dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));await ready(page);check(await page.locator('[data-hall-canvas] canvas').count()===1,'Persisted return rebuilds one canvas');
  const broken=await page.context().browser().newContext({viewport:{width:1440,height:900}});await broken.route('**/*.glb',r=>r.abort());const bp=await broken.newPage();
- await bp.goto(url);await ready(bp);check(await bp.locator('canvas').count()===1,'Missing figure models fall back to simple figures, hall still ready');await broken.close();
+ await bp.goto(url);await ready(bp);check(await bp.locator('[data-hall-canvas] canvas').count()===1,'Missing figure models fall back to simple figures, hall still ready');await broken.close();
  const before=errors.length;
  // Failure paths end in the readable list, never a blank screen.
  const fails=[
@@ -125,7 +149,7 @@ async page => {
   await ctx.close();
  }
  const nojs=await page.context().browser().newContext({javaScriptEnabled:false,viewport:{width:1440,height:900}});const plain=await nojs.newPage();
- await plain.goto(url);check(await plain.locator('.team-roster').isVisible()&&await plain.locator('.team-member').count()===7&&!await plain.locator('.team-failure').isVisible()&&await plain.locator('canvas').count()===0,'Without JavaScript the team list shows without an error');
+ await plain.goto(url);check(await plain.locator('.team-roster').isVisible()&&await plain.locator('.team-member').count()===7&&!await plain.locator('.team-failure').isVisible()&&await plain.locator('[data-hall-canvas] canvas').count()===0,'Without JavaScript the team list shows without an error');
  await nojs.close();
  check(errors.slice(0,before).length===0,'No console errors: '+errors.slice(0,before).join(' | '));
  return {passed:checks.length,checks};

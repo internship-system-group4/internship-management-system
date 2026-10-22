@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InternshipManagementSystem.Pages.Student
+namespace InternshipManagementSystem.Pages.StudentArea
 {
 
 

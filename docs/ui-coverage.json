@@ -1,0 +1,1385 @@
+{
+  "summary": {
+    "routeCount": 52,
+    "masters": {
+      "~/Layout/Public.master": 10,
+      "~/Layout/Academic.master": 4,
+      "dynamic role master": 2,
+      "~/Layout/Student.master": 11,
+      "~/Layout/Company.master": 12,
+      "~/Layout/Coordinator.master": 13
+    },
+    "totals": {
+      "serverActions": 77,
+      "busyActions": 45,
+      "fields": 146,
+      "tables": 35,
+      "dialogs": 10,
+      "updatePanels": 0
+    }
+  },
+  "routes": [
+    {
+      "route": "Default.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Default.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Default.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Academic/Account.aspx",
+      "master": "~/Layout/Academic.master",
+      "serverActions": 3,
+      "busyActions": 3,
+      "fields": 17,
+      "tables": 0,
+      "dialogs": 1,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Academic/Account.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Academic/Account.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Academic/Dashboard.aspx",
+      "master": "~/Layout/Academic.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Academic/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Academic/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Academic/FinalEvaluation.aspx",
+      "master": "~/Layout/Academic.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 2,
+      "tables": 1,
+      "dialogs": 1,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Academic/FinalEvaluation.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Academic/FinalEvaluation.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Academic/StudentProgress.aspx",
+      "master": "~/Layout/Academic.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 1,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Academic/StudentProgress.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Academic/StudentProgress.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Account/ChangePassword.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 3,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Account/ChangePassword.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Account/CompletionReport.aspx",
+      "master": "dynamic role master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 390,
+          "status": 404,
+          "url": "/Pages/Account/CompletionReport.aspx",
+          "kind": "authorization/document negative check",
+          "overflow": null
+        }
+      ]
+    },
+    {
+      "route": "Pages/Account/ForgotPassword.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 1,
+      "busyActions": 0,
+      "fields": 1,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Account/ForgotPassword.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Account/ForgotPassword.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Account/Login.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 1,
+      "busyActions": 0,
+      "fields": 2,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Account/Login.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Account/Login.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Account/Notifications.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 1,
+      "busyActions": 1,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Account/Notifications.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/Account.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 1,
+      "busyActions": 1,
+      "fields": 4,
+      "tables": 0,
+      "dialogs": 2,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/Account.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/Account.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/ApplicantDocument.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Public/AccessDenied.aspx",
+          "kind": "authorization/document negative check",
+          "overflow": null
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/Applications.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 2,
+      "busyActions": 2,
+      "fields": 1,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/Applications.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/Applications.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/Dashboard.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/FinalEvaluation.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 4,
+      "busyActions": 2,
+      "fields": 8,
+      "tables": 1,
+      "dialogs": 5,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/FinalEvaluation.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/FinalEvaluation.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/ManageOpportunities.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 2,
+      "fields": 0,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/ManageOpportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/ManageOpportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/Opportunities.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 2,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/Opportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/Opportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/TaskReview.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 5,
+      "busyActions": 1,
+      "fields": 5,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/TaskReview.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/TaskReview.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/Tasks.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 4,
+      "busyActions": 3,
+      "fields": 9,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/Tasks.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/Tasks.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/TraineeDetails.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/TraineeDetails.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/TraineeDetails.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/Trainees.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 3,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/Trainees.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/Trainees.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Company/ViewOpportunity.aspx",
+      "master": "~/Layout/Company.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Company/ViewOpportunity.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Company/ViewOpportunity.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/AcademicSupervisors.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 10,
+      "busyActions": 3,
+      "fields": 13,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/AcademicSupervisors.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/AcademicSupervisors.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/Account.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 3,
+      "busyActions": 2,
+      "fields": 9,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/Account.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/Account.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/AddStudent.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 1,
+      "busyActions": 1,
+      "fields": 9,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/AddStudent.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/AddStudent.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/Companies.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 2,
+      "busyActions": 2,
+      "fields": 12,
+      "tables": 1,
+      "dialogs": 1,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/Companies.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/Companies.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/CompletionReview.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 2,
+      "busyActions": 2,
+      "fields": 1,
+      "tables": 4,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/CompletionReview.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/CompletionReview.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/ConfiguredGroups.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 5,
+      "busyActions": 1,
+      "fields": 1,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/ConfiguredGroups.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/ConfiguredGroups.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/ContactMessages.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 4,
+      "busyActions": 1,
+      "fields": 2,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/ContactMessages.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/ContactMessages.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/Dashboard.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/Groups.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 4,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/Groups.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/Groups.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/ManageStudents.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 5,
+      "busyActions": 2,
+      "fields": 6,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/ManageStudents.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/ManageStudents.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/PlacementDetails.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/PlacementDetails.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/PlacementDetails.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/Placements.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 1,
+      "busyActions": 0,
+      "fields": 2,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/Placements.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/Placements.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Coordinator/Students.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "serverActions": 3,
+      "busyActions": 0,
+      "fields": 1,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Coordinator/Students.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Coordinator/Students.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Meetings/MyMeetings.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 1,
+      "busyActions": 0,
+      "fields": 5,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Meetings/MyMeetings.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Meetings/Schedule.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 6,
+      "tables": 1,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Meetings/Schedule.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Public/About.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Public/About.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Public/About.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Public/AccessDenied.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Public/AccessDenied.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Public/AccessDenied.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Public/Contact.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 1,
+      "busyActions": 0,
+      "fields": 5,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Public/Contact.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Public/Contact.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Public/PoweredBy.aspx",
+      "master": "~/Layout/Public.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Public/PoweredBy.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Public/PoweredBy.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/Apply.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 1,
+      "busyActions": 1,
+      "fields": 2,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/Apply.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/Apply.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/Dashboard.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/Dashboard.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/DisplayEditProfile.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 10,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/DisplayEditProfile.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/DisplayEditProfile.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/exploreOpport.aspx",
+      "master": "dynamic role master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "legacy bookmark redirects to Student/Opportunities.aspx",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/Opportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/Opportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/MyApplications.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 2,
+      "busyActions": 2,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/MyApplications.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/MyApplications.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/MyTasks.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 2,
+      "busyActions": 1,
+      "fields": 2,
+      "tables": 2,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/MyTasks.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/MyTasks.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/Opportunities.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/Opportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/Opportunities.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/OpportunityDetails.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/OpportunityDetails.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/OpportunityDetails.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/Profile.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 0,
+      "busyActions": 1,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/Profile.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/Profile.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/Progress.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 0,
+      "busyActions": 0,
+      "fields": 0,
+      "tables": 3,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/Progress.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/Progress.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    },
+    {
+      "route": "Pages/Student/StudentCVPortfolio.aspx",
+      "master": "~/Layout/Student.master",
+      "serverActions": 0,
+      "busyActions": 3,
+      "fields": 0,
+      "tables": 0,
+      "dialogs": 0,
+      "updatePanels": 0,
+      "foundation": "inherited through shared master; direct/binary responses have no controls",
+      "runtime": [
+        {
+          "width": 1440,
+          "status": 200,
+          "url": "/Pages/Student/StudentCVPortfolio.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        },
+        {
+          "width": 390,
+          "status": 200,
+          "url": "/Pages/Student/StudentCVPortfolio.aspx",
+          "kind": "rendered fixture page",
+          "overflow": false
+        }
+      ]
+    }
+  ]
+}

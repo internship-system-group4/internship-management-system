@@ -124,7 +124,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             litModalMessage.Text = message;
 
             if (isSuccess)
-                litModalIcon.Text = "<i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i>";
+                litModalIcon.Text = "<span data-ui-confirmed='true'><i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i></span>";
             else
                 litModalIcon.Text = "<i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>";
 

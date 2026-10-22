@@ -366,12 +366,12 @@
             </a>
 
             <button class="op-btn op-btn-light"
-                type="submit" name="opAction" value="draft">
+                type="submit" name="opAction" value="draft" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
                 Save draft
             </button>
 
             <button class="op-btn"
-                type="submit" name="opAction" value="publish">
+                type="submit" name="opAction" value="publish" data-ui-action="publish" data-ui-validation="none" data-loading-label="Publishing…">
                 Publish
             </button>
         </div>

@@ -315,6 +315,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
             litSumHoursPercent.Text = percent.ToString();
             hoursBar.Style["width"] = percent + "%";
             hoursBar.Attributes["aria-valuenow"] = percent.ToString();
+            hoursBar.Attributes["data-ui-progress"] = "";
+            hoursBar.Attributes["data-ui-approved"] = approvedHours.ToString();
+            hoursBar.Attributes["data-ui-target"] = required.ToString();
+            hoursBar.Attributes["aria-valuetext"] = required > 0
+                ? approvedHours + " approved hours of " + required + " required hours"
+                : approvedHours + " approved hours. Training hours target is not set.";
+            if (required <= 0) hoursBar.Attributes.Remove("aria-valuenow");
 
             int graded = tasks.Count(t => t.Status == InternshipTaskStatus.Graded);
             litSumTasks.Text = graded + " / " + tasks.Count;

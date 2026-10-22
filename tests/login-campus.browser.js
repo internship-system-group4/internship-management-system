@@ -11,7 +11,7 @@ async page => {
   await page.request.put(db+'/users/'+id+'.json',{data:{Id:id,Role:role,FullName:'Synthetic test account',IsActive:true,MustChangePassword:false}});
  await page.context().clearCookies();await page.setViewportSize({width:1440,height:1000});await page.goto(base+path);
  await page.waitForSelector('[data-scene-ready]');
- check(await page.locator('canvas').count()===1,'One progressively loaded canvas');
+ check(await page.locator('[data-campus-canvas] canvas').count()===1,'One progressively loaded canvas');
  await button().click();check(await email().getAttribute('aria-invalid')==='true','Empty email validation');
  check(await password().getAttribute('aria-invalid')==='true','Empty password validation');
  await fill('bad-address');await button().click();check((await page.locator('#emailError').innerText()).includes('valid'),'Invalid email validation');

@@ -38,7 +38,7 @@
             <div class="application-submit">
                 <div class="application-confirm"><asp:CheckBox ID="Confirm" runat="server" Text=" I confirm that my information is accurate and my CV link is accessible." /></div>
                 <p class="application-help">Your application will be marked Pending until the company reviews it.</p>
-                <div class="application-actions"><a href="Opportunities.aspx">Cancel</a><asp:Button ID="SubmitApplication" runat="server" Text="Submit application →" OnClick="Submit_Click" CssClass="btn btn-brand" /></div>
+                <div class="application-actions"><a href="Opportunities.aspx">Cancel</a><asp:Button ID="SubmitApplication" runat="server" Text="Submit application →" OnClick="Submit_Click" CssClass="btn btn-brand"  data-ui-action="submit" data-loading-label="Submitting…"/></div>
             </div>
         </asp:Panel>
         <asp:Panel ID="ViewPanel" runat="server" Visible="false" CssClass="application-sheet">

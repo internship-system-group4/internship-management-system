@@ -9,7 +9,7 @@
 
 <style>
 .od-page {
-    --od-navy: #183d63;
+    --od-navy: var(--ui-primary);
     --od-blue: #28547d;
     --od-muted: #71839a;
     --od-border: #e0e8f2;
