@@ -1,0 +1,140 @@
+/* Home's architectural editorial direction. No private-portal styles are changed. */
+@font-face{font-family:Switzer;src:url('../fonts/switzer-400.woff2') format('woff2');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Switzer;src:url('../fonts/switzer-600.woff2') format('woff2');font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:Switzer;src:url('../fonts/switzer-700.woff2') format('woff2');font-weight:700;font-style:normal;font-display:swap}
+.home-page{--campus-ground:#f1f3f2;--campus-ink:#153d54;--campus-blue:#264f73;--campus-secondary:#153d54;--campus-gutter:clamp(24px,3.4vw,64px);font-family:Switzer,'Segoe UI',sans-serif;color:var(--campus-ink);background:var(--campus-ground)}
+.campus-story{background:var(--campus-ground)}
+.campus-chapter{padding-inline:var(--campus-gutter);padding-block:40px}
+.campus-copy,.campus-colleges .campus-copy,.campus-process .campus-copy{width:min(38%,490px);padding:28px 24px 28px 0;background:var(--campus-ground)}
+.campus-copy:before{display:none}
+.campus-copy h2{font-size:clamp(42px,4.2vw,64px);font-weight:600;line-height:.99;letter-spacing:-.04em;margin-bottom:28px;color:var(--campus-ink)}
+.campus-copy>p,.campus-copy .home-section-heading p{font-size:16px;line-height:1.6;color:var(--campus-secondary);margin-bottom:24px}
+.campus-copy .public-button,.campus-opening-intro .public-button{border-radius:0;padding:15px 23px;font-weight:600}
+.campus-copy .public-text-link{font-weight:600}
+.campus-opening{align-items:flex-start;padding-top:36px}
+.campus-opening .campus-copy,.campus-chapter[data-chapter="0"] .campus-copy{width:100%;padding:0;background:transparent}
+.campus-opening .campus-copy{pointer-events:none}.campus-opening [data-copy-zone]{pointer-events:auto}
+.campus-opening h1{font-size:clamp(68px,7.65vw,124px);font-weight:600;line-height:.92;letter-spacing:-.04em;max-width:1180px;margin:0;text-wrap:initial;color:var(--campus-ink)}
+.campus-opening h1 span{display:block;width:fit-content}
+.campus-opening h1 span+span{color:inherit}
+.campus-opening-intro{max-width:390px;margin-top:24px;padding:10px 10px 14px 0;background:var(--campus-ground)}
+.campus-opening-intro>p{font-size:16px;line-height:1.6;color:var(--campus-secondary);margin:0 0 22px}
+.campus-opening-intro .public-actions{gap:14px 24px;align-items:center}
+.campus-opening-intro .home-jump-nav{margin-top:20px;font-size:13px;gap:8px 20px}
+.campus-opening-intro .campus-scroll{margin-top:16px;font-size:13px}
+.campus-chapter-nav{position:absolute;inset-block-start:36px;inset-inline-end:var(--campus-gutter);display:grid;gap:3px;z-index:2}
+.campus-chapter-nav a{display:flex;align-items:center;justify-content:flex-end;gap:12px;min-height:44px;text-decoration:none;font-size:13px;color:var(--campus-secondary);padding:6px 10px;background:var(--campus-ground)}
+.campus-chapter-nav a>span:first-child{font-size:13px;opacity:1}
+.campus-chapter-nav a[aria-current="step"]{color:#fff;background:var(--campus-blue)}
+.campus-chapter-nav a[aria-current="step"]>span:first-child{opacity:1}
+.campus-hotspots a{border:0;border-radius:0;background:#fff;color:var(--campus-ink);font-size:13px;font-weight:600;padding:12px 16px;min-height:44px}
+.campus-scene-controls{inset-inline:var(--campus-gutter);bottom:20px}
+.home-story-toggle{border:0;border-radius:0;background:#fff;color:var(--campus-ink);font:400 13px Switzer,sans-serif;padding:10px 16px;min-height:44px}
+.campus-scene-controls span{background:var(--campus-ground);color:var(--campus-secondary)}
+.home-college{border:0;background:transparent}
+.home-college summary{padding:16px 0;color:var(--campus-ink)}
+.home-college summary strong{font-size:24px}.home-college summary small{font-size:16px;color:var(--campus-secondary)}
+.campus-copy .home-programs{gap:24px}.campus-copy .home-program h3{font-size:16px;line-height:1.3}.campus-copy .home-program ul{font-size:16px;line-height:1.65}.campus-copy .home-program li{color:var(--campus-secondary)}
+.campus-process .home-steps{gap:16px}.campus-process .home-steps h3{font-size:16px;font-weight:600}.campus-process .home-steps p{font-size:16px;line-height:1.5;color:var(--campus-secondary)}
+.campus-process .home-steps li:before{color:var(--campus-blue);font-variant-numeric:tabular-nums}
+.home-page>.home-section{max-width:none;width:100%;margin:0;padding:120px var(--campus-gutter);scroll-margin-top:0}
+.home-page .home-section h2{font-size:clamp(46px,5.5vw,80px);font-weight:600;line-height:1;letter-spacing:-.04em;color:var(--campus-ink)}
+.home-page .home-video{grid-template-columns:.36fr .64fr;gap:64px;background:#fff;align-items:center}
+.home-video-intro>p{font-size:16px;line-height:1.6;max-width:32ch;margin-bottom:26px!important;color:var(--campus-secondary)}
+.home-video-visual{position:relative;min-width:0;background:var(--campus-ground)}
+.home-video-visual>img{width:100%;height:440px;object-fit:cover;display:block}
+.home-video-visual .home-video-placeholder{border:0;border-radius:0;padding:30px 32px;background:var(--campus-ground)}
+.home-video-placeholder strong{font-size:24px;font-weight:600;color:var(--campus-ink)}
+.home-video-placeholder p{font-size:16px;line-height:1.6;max-width:58ch;color:var(--campus-secondary);margin-top:12px}
+.home-page #opportunities{background:var(--campus-ink);color:#fff;padding-block:110px}
+.home-page #opportunities .home-section-heading{grid-template-columns:1.05fr .7fr;align-items:end;gap:80px;margin-bottom:54px}
+.home-page #opportunities h2{color:#fff;margin:0}.home-page #opportunities .home-section-heading p{color:#d1dde4;font-size:16px;max-width:36ch}
+.home-page #opportunities .home-preview-title{font-size:16px;font-weight:400;color:#d1dde4;margin:0 0 24px}
+.home-page #opportunities .public-preview-notice{border-radius:0;border:0;background:#204b62;color:#fff;padding:32px;font-size:16px;line-height:1.6}
+.home-page #opportunities .home-access-note{color:#d1dde4;font-size:16px;margin-top:26px}
+.home-page .home-preview{background:#fff;border:0;border-radius:0;padding:32px;box-shadow:none}
+.home-page .home-preview h3{font-size:24px;font-weight:600;line-height:1.2;color:var(--campus-ink)}
+.home-page .home-preview p{color:var(--campus-secondary);font-size:16px}.home-page .home-preview .home-preview-meta{font-size:16px}
+.home-page .home-preview-grid{display:block}
+.home-page .home-preview{display:grid;grid-template-columns:1fr .7fr 1.35fr auto;align-items:start;gap:24px;background:#204b62;margin-top:16px;color:#fff}
+.home-page .home-preview h3{color:#fff;font-size:24px;margin:0}.home-page .home-preview p{color:#fff;margin:0}.home-page .home-preview .public-text-link{color:#fff}
+.home-page>.home-cta{width:100%;max-width:none;border-radius:0;margin:0;padding:100px var(--campus-gutter);background:var(--campus-ground);gap:64px}
+.home-page .home-cta h2{font-size:clamp(42px,5vw,76px);font-weight:600;line-height:1.02;letter-spacing:-.04em;color:var(--campus-ink);max-width:15ch}
+.home-page .home-cta p{color:var(--campus-secondary);font-size:16px}
+.uims-public .home-page .home-cta a.public-button{background:var(--campus-blue);border-color:var(--campus-blue);color:#fff;border-radius:0;padding:18px 28px;white-space:nowrap}
+.campus-story.is-static .campus-chapter-nav{display:none}
+.campus-story.is-static .campus-copy{width:min(100%,850px);background:transparent}
+.campus-story.is-static .campus-opening h1{font-size:clamp(44px,7vw,100px)}
+@media(min-width:1800px){.campus-copy{max-width:560px}.campus-opening-intro{max-width:420px}.campus-opening{padding-top:54px}}
+@media(max-width:1000px){
+ .home-page{--campus-gutter:28px}.campus-opening h1{font-size:clamp(60px,8.4vw,84px)}
+ .campus-copy,.campus-colleges .campus-copy,.campus-process .campus-copy{width:46%;padding-right:18px}
+ .campus-copy h2{font-size:44px}.campus-copy>p,.campus-copy .home-section-heading p{font-size:16px}
+ .campus-opening-intro{max-width:330px}.campus-opening-intro>p{font-size:16px}.campus-chapter-nav{top:30px;right:28px}
+ .campus-chapter-nav .campus-nav-label{display:block}.campus-chapter-nav a{min-height:44px;padding:8px 12px}
+ .home-page .home-video{grid-template-columns:1fr;gap:36px}.home-video-intro{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}.home-video-intro .public-text-link{grid-column:2}
+ .home-page>.home-section{padding-block:80px}.home-page #opportunities .home-section-heading{gap:40px}.home-page #opportunities .home-section-heading p{font-size:16px}
+ .home-page .home-preview{grid-template-columns:1fr 1fr;gap:20px 32px}
+}
+@media(max-width:680px){
+ .home-page{--campus-gutter:20px}.campus-chapter{padding:24px 20px 100px;min-height:100svh}
+ .campus-copy,.campus-colleges .campus-copy,.campus-process .campus-copy{width:100%;padding:0 0 14px;background:var(--campus-ground)}
+ .campus-opening h1{font-size:clamp(34px,10.5vw,68px);line-height:.98;letter-spacing:-.04em;max-width:none;margin:0}
+ .campus-opening-intro{max-width:100%;margin-top:16px;padding:0 0 12px}
+ .campus-opening-intro>p{font-size:16px;line-height:1.5;margin-bottom:16px}.campus-opening-intro .public-actions{gap:12px}
+ .campus-opening-intro .public-button{padding:12px 18px;min-height:46px}.campus-opening-intro .home-jump-nav{margin-top:10px;gap:6px 18px}.campus-opening-intro .campus-scroll{margin-top:8px}
+ .campus-copy h2{font-size:36px;line-height:1.02;margin-bottom:18px;max-width:none}
+ .campus-copy>p,.campus-copy .home-section-heading p{font-size:16px;line-height:1.55;margin-bottom:18px}
+ .campus-chapter-nav{top:auto;bottom:68px;left:20px;right:20px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;pointer-events:none}
+ .campus-chapter-nav a{justify-content:center;min-width:0;min-height:44px;pointer-events:auto;padding:10px 2px;background:var(--campus-ground)}
+ .campus-chapter-nav a>span:first-child{font-size:13px}.campus-chapter-nav .campus-nav-label{display:block}
+ .campus-scene-controls{bottom:12px;inset-inline:20px}.home-story-toggle{font-size:13px}
+ .campus-copy .home-programs{gap:18px}.campus-copy .home-program h3{font-size:16px}.campus-copy .home-program ul{font-size:16px;line-height:1.5}.home-college summary strong{font-size:24px}
+ .campus-process .home-steps{gap:12px;margin-bottom:18px}.campus-process .home-steps h3{font-size:16px}.campus-process .home-steps p{font-size:16px}
+ .home-page>.home-section{width:100%;padding:64px 20px}.home-page .home-section h2{font-size:44px}
+ .home-video-intro{display:block}.home-video-intro>p{font-size:16px;margin-bottom:20px!important;max-width:40ch}
+ .home-video-visual>img{height:280px}.home-video-visual .home-video-placeholder{padding:24px}.home-video-placeholder strong{font-size:24px}
+ .home-page #opportunities{padding-block:64px}.home-page #opportunities .home-section-heading{display:block;margin-bottom:34px}
+ .home-page #opportunities .home-section-heading p{margin-top:26px;max-width:40ch}.home-page #opportunities .public-preview-notice{padding:24px;font-size:16px}
+ .home-page .home-preview{padding:26px}.home-page .home-preview h3{font-size:24px}
+ .home-page .home-preview{grid-template-columns:1fr;gap:16px}
+ .home-page>.home-cta{padding:64px 20px;gap:28px}.home-page .home-cta h2{font-size:44px}.home-page .home-cta p{font-size:16px}
+ .campus-story.is-static .campus-chapter{padding-block:28px;min-height:0}.campus-story.is-static .campus-opening h1{font-size:clamp(34px,10.5vw,60px)}
+}
+@media(prefers-reduced-motion:reduce){.campus-chapter-nav{display:none}.campus-copy{background:transparent}.campus-opening h1{font-size:clamp(34px,7.5vw,100px)}}
+
+/* Real campus photography carries the same subject beyond the animated story. */
+.home-page .home-gallery{background:#fff}
+.home-gallery .home-section-heading{grid-template-columns:1fr 1fr;align-items:end;gap:64px;margin-bottom:48px}
+.home-gallery .home-section-heading>p{font-size:16px;line-height:1.6;color:var(--campus-ink);max-width:42ch}
+.home-gallery-layout{display:grid;grid-template-columns:1.35fr 1fr;gap:28px 40px;align-items:start}
+.home-gallery figure{margin:0;min-width:0;overflow:hidden}
+.home-gallery-main{grid-row:span 2}
+.home-gallery img{width:100%;height:252px;object-fit:cover;display:block}
+.home-gallery .home-gallery-main img{height:588px}
+.home-gallery figcaption{font-size:16px;line-height:1.5;color:var(--campus-ink);margin-top:14px}
+.campus-story.is-static .campus-chapters{background:var(--campus-ground)}
+body.uims-public:has(.home-page) .public-header,body.uims-public:has(.home-page) .public-footer-bottom{border:0}
+body.uims-public:has(.home-page) .public-menu-toggle{border:0;background:#f1f3f2}
+.home-page .public-revealed{animation:none}
+.home-page a,.home-page button{transition:background-color .18s ease,color .18s ease,transform .18s ease}
+.home-page .public-button:active,.home-page .home-story-toggle:active{transform:translateY(2px)}
+.campus-chapter-nav a:not([aria-current]):hover{background:#dde5e6;color:var(--campus-ink)}
+@media(prefers-reduced-motion:no-preference){
+ .home-page .home-arrived{animation:home-part-arrival .65s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--arrival-delay,0ms)}
+ @keyframes home-part-arrival{from{opacity:.65;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+}
+@media(max-width:1000px){.home-gallery-layout{gap:24px}.home-gallery .home-gallery-main img{height:516px}.home-gallery img{height:216px}.home-gallery .home-section-heading{gap:32px}.home-gallery .home-section-heading>p{font-size:16px}}
+@media(max-width:680px){.home-gallery .home-section-heading{display:block}.home-gallery .home-section-heading>p{margin-top:24px}.home-gallery-layout{grid-template-columns:1fr;gap:32px}.home-gallery-main{grid-row:auto}.home-gallery img,.home-gallery .home-gallery-main img{height:280px}}
+@media(prefers-reduced-motion:reduce){.home-page a,.home-page button{transition:none}.home-page .public-button:active,.home-page .home-story-toggle:active{transform:none}}
+
+/* Five roles keep the editorial scale coherent across the whole Home surface. */
+.home-page{--campus-title:64px}
+.home-page .campus-copy h2,.home-page .home-section h2,.home-page .home-cta h2{font-size:var(--campus-title)}
+.home-page .home-program h3,.home-page .home-steps h3{font-size:24px}
+body.uims-public:has(.home-page) .public-links a{font-size:16px}
+body.uims-public:has(.home-page) .public-brand small,body.uims-public:has(.home-page) .public-footer-bottom{font-size:13px}
+body.uims-public:has(.home-page) .public-footer h2{font-size:24px}
+body.uims-public:has(.home-page) .public-footer p,body.uims-public:has(.home-page) .public-footer nav a,body.uims-public:has(.home-page) .public-support a{font-size:16px}
+@media(max-width:1000px){.home-page{--campus-title:44px}}
+@media(max-width:680px){.home-page{--campus-title:36px}.home-page .home-program h3,.home-page .home-steps h3{font-size:16px}}

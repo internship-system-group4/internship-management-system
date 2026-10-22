@@ -1,4 +1,4 @@
-async page => {
+﻿async page => {
  const base='http://localhost:57982';let checks=0;
  const check=(ok,message)=>{if(!ok)throw Error(message);checks++;};
  await page.context().clearCookies();
@@ -7,7 +7,7 @@ async page => {
   check(await page.locator('.public-header').count()===1,'Shared Navbar '+route);
   check(await page.locator('.public-footer').count()===1,'Shared Footer '+route);
   check(await page.locator('.public-header img').evaluate(el=>el.complete&&el.naturalWidth>0),'Logo loads '+route);
-  check(await page.getByRole('link',{name:'Log in',exact:true}).count()===1,'Anonymous login action '+route);
+  check(await page.locator('.public-header').getByRole('link',{name:'Log in',exact:true}).count()===1,'Anonymous login action '+route);
  }
  await page.goto(base+'/Default.aspx');
  for(const width of [1440,768,390]){

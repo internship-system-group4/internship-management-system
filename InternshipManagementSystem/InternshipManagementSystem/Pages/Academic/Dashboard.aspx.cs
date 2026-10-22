@@ -5,9 +5,9 @@ using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Data;
 
-namespace InternshipManagementSystem.Pages.AcademicArea
+namespace InternshipManagementSystem.Pages.Academic
 {
-    // Inherit from AcademicPage to secure this page (Trello S01 requirement)
+    // Inherit from AcademicPage to secure this page
     public partial class Dashboard : AcademicPage
     {
         protected void Page_Load(object sender, EventArgs e)
@@ -20,39 +20,29 @@ namespace InternshipManagementSystem.Pages.AcademicArea
 
         private void LoadDashboardData()
         {
-            litSupervisorName.Text = Server.HtmlEncode(CurrentSupervisor.FullName);
+            // 1. Display the currently logged-in supervisor's full name
+            litSupervisorName.Text = CurrentSupervisor.FullName;
 
-            try
+            // 2. Fetch students assigned to this supervisor
+            UserRepository userRepo = new UserRepository();
+            List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
+
+            // 3. Calculate and display statistics
+            litTotalStudents.Text = myStudents.Count.ToString();
+
+            int completedCount = myStudents.Count(s => s.HoursProgressPercent >= 100);
+            litCompletedStudents.Text = completedCount.ToString();
+
+            // 4. Bind the student list to the HTML Repeater
+            if (myStudents.Count > 0)
             {
-                UserRepository userRepo = new UserRepository();
-                List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
-                List<string> groupIds = CurrentSupervisor.GroupIds ?? new List<string>();
-                myStudents.RemoveAll(student => !groupIds.Contains(student.GroupId));
-                myStudents.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
-
-                litTotalStudents.Text = myStudents.Count.ToString();
-                litCompletedStudents.Text = myStudents.Count(s => s.HoursProgressPercent >= 100).ToString();
-
-                if (myStudents.Count > 0)
-                {
-                    rptStudents.DataSource = myStudents;
-                    rptStudents.DataBind();
-                }
-                else
-                {
-                    litNoData.Visible = true;
-                }
+                rptStudents.DataSource = myStudents;
+                rptStudents.DataBind();
             }
-            catch (FirebaseException)
+            else
             {
-                lblMessage.Text = "Could not load your assigned students. Please try again.";
-                lblMessage.Visible = true;
+                litNoData.Visible = true;
             }
-        }
-
-        protected string GetStudentProgressUrl(object id)
-        {
-            return ResolveUrl("~/Pages/Academic/StudentProgress.aspx?id=" + Server.UrlEncode(Convert.ToString(id)));
         }
     }
 }
