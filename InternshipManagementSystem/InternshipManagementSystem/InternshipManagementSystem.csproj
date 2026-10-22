@@ -191,8 +191,8 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\FinalEvaluation.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\FinalEvaluation.aspx.designer.cs">
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
