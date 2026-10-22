@@ -6,7 +6,7 @@ const student = { Id:'student-one', FullName:'Osama Banihani', Email:'osama@exam
 const supervisor = { Id:'supervisor-one', FullName:'Company Supervisor', Role:2, IsActive:true, MustChangePassword:false, CompanyId:'company-one', CompanyName:'Training Company' };
 function seed() {
  const opportunity = { Id:'internship-one', Title:'Software Development Intern', CompanyId:'company-one', CompanyName:'Training Company', Location:'Amman, Jordan', Description:'Work with the engineering team to build useful web applications and learn through code reviews.', Requirements:'C#, HTML, CSS, and an interest in learning.', EligibleCollege:'Engineering', EligibleMajors:['Computer Science'], TotalSeats:4, FilledSeats:1, DurationWeeks:12, StartDate:Date.now()+86400000*30, ApplicationDeadline:Date.now()+86400000*7, Status:1 };
- return {users:{'student-one':student,'supervisor-one':supervisor,'other-supervisor':{...supervisor,Id:'other-supervisor',CompanyId:'company-two'}},opportunities:{'internship-one':opportunity}, applications:{},placements:{},companies:{},tasks:{},submissions:{},taskEvaluations:{},companyFinalEvaluations:{},academicFinalEvaluations:{},trainingHours:{},academicComments:{},completions:{}};
+ return {users:{'student-one':student,'supervisor-one':supervisor,'other-supervisor':{...supervisor,Id:'other-supervisor',CompanyId:'company-two'}},opportunities:{'internship-one':opportunity}, applications:{},placements:{},companies:{},tasks:{},submissions:{},taskEvaluations:{},companyFinalEvaluations:{},academicFinalEvaluations:{},trainingHours:{},academicComments:{},completions:{},contactMessages:{},publicOpportunityPreviews:{}};
 }
 // Serialize requests so compare-and-swap checks and writes are atomic like RTDB.
 let requestQueue=Promise.resolve();
@@ -20,7 +20,10 @@ async function handle(req,res) {
  const url = new URL(req.url,'http://localhost');
  const reply = (status,data) => { res.writeHead(status,{'Content-Type':'application/json'});res.end(JSON.stringify(data)); };
  let db = await pm.state.get('firebase.db'); if (!db) { db=seed(); await pm.state.set('firebase.db',db); }
- if (url.pathname==='/__reset' && req.method==='POST') { await pm.state.set('firebase.failMonitoring',false); await pm.state.set('firebase.db',seed()); await pm.state.set('firebase.failWrites',false); await pm.state.set('firebase.failPlacements',false); await pm.state.set('firebase.conflictNext',false); return reply(200,{ok:true}); }
+ if (url.pathname==='/__reset' && req.method==='POST') { await pm.state.set('firebase.failPreviews',false);await pm.state.set('firebase.failMonitoring',false); await pm.state.set('firebase.db',seed()); await pm.state.set('firebase.failWrites',false); await pm.state.set('firebase.failPlacements',false); await pm.state.set('firebase.conflictNext',false); return reply(200,{ok:true}); }
+ if (url.pathname==='/__fail-previews' && req.method==='POST') { await pm.state.set('firebase.failPreviews',true);return reply(200,{ok:true}); }
+ if (url.pathname==='/__restore-previews' && req.method==='POST') { await pm.state.set('firebase.failPreviews',false);return reply(200,{ok:true}); }
+ if(req.method==='GET' && url.pathname.startsWith('/publicOpportunityPreviews') && await pm.state.get('firebase.failPreviews'))return reply(500,{error:'Preview read unavailable'});
  if (url.pathname==='/__fail-monitoring' && req.method==='POST') { await pm.state.set('firebase.failMonitoring',true); return reply(200,{ok:true}); }
  if (url.pathname==='/__restore-monitoring' && req.method==='POST') { await pm.state.set('firebase.failMonitoring',false); return reply(200,{ok:true}); }
  if (req.method==='GET' && url.pathname.startsWith('/trainingHours') && await pm.state.get('firebase.failMonitoring')) return reply(500,{error:'Simulated monitoring read failure'});
@@ -28,11 +31,11 @@ async function handle(req,res) {
  if (url.pathname==='/__restore-writes' && req.method==='POST') { await pm.state.set('firebase.failWrites',false); await pm.state.set('firebase.failPlacements',false); return reply(200,{ok:true}); }
  if (url.pathname==='/__conflict-next' && req.method==='POST') { await pm.state.set('firebase.conflictNext',true); return reply(200,{ok:true}); }
  if (url.pathname==='/__fail-writes' && req.method==='POST') { await pm.state.set('firebase.failWrites',true); return reply(200,{ok:true}); }
- if (['PUT','PATCH'].includes(req.method) && url.pathname.startsWith('/applications/') && await pm.state.get('firebase.failWrites')) return reply(500,{error:'Simulated write failure'});
+ if (['PUT','PATCH'].includes(req.method) && (url.pathname.startsWith('/applications/') || url.pathname.startsWith('/contactMessages/')) && await pm.state.get('firebase.failWrites')) return reply(500,{error:'Simulated write failure'});
  if (req.method==='PUT' && url.pathname.startsWith('/placements/') && await pm.state.get('firebase.failPlacements')) return reply(500,{error:'Simulated placement failure'});
  if (!url.pathname.endsWith('.json')) return reply(501,{error:'Endpoint not modelled'});
  const parts=url.pathname.slice(1,-5).split('/');
- if (!['users','opportunities','applications','placements','companies','tasks','submissions','taskEvaluations','companyFinalEvaluations','academicFinalEvaluations','trainingHours','academicComments','completions'].includes(parts[0])) return reply(501,{error:'Endpoint not modelled'});
+ if (!['users','opportunities','applications','placements','companies','tasks','submissions','taskEvaluations','companyFinalEvaluations','academicFinalEvaluations','trainingHours','academicComments','completions','contactMessages','publicOpportunityPreviews'].includes(parts[0])) return reply(501,{error:'Endpoint not modelled'});
  let parent=db; for (const key of parts.slice(0,-1)) { if (!parent[key]) parent[key]={}; parent=parent[key]; }
  const key=parts.at(-1); let value=parent[key] ?? null;
  const etag=value===null?'null_etag':'"'+crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex')+'"';
@@ -44,6 +47,7 @@ async function handle(req,res) {
    }
    return reply(200,value);
  }
+ if(req.method==='DELETE'){delete parent[key];await pm.state.set('firebase.db',db);return reply(200,null);}
  if(req.method==='PUT' || req.method==='PATCH') {
    if(req.headers['if-match'] && req.headers['if-match']!==etag) return reply(412,value);
    if(req.headers['if-match'] && req.headers['if-match']!=='null_etag' && await pm.state.get('firebase.conflictNext')) {

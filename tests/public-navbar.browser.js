@@ -1,0 +1,128 @@
+async page=>{
+ const base='http://localhost:57983',db='http://localhost:4903/firebase';let checks=0;const errors=[];
+ const check=(ok,name)=>{if(!ok)throw Error(name);checks++;};
+ const header=page.locator('[data-public-navbar]'),bar=header.locator('.public-header-inner'),menu=header.locator('#publicNav');
+ const settle=async()=>{await page.evaluate(()=>new Promise(requestAnimationFrame));await header.evaluate(el=>Promise.all(el.getAnimations({subtree:true}).map(a=>a.finished.catch(()=>{})))); };
+ const scroll=async y=>{await page.evaluate(y=>scrollTo({top:y,behavior:'instant'}),y);await settle();};
+ const noOverflow=()=>page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth);
+ page.on('pageerror',e=>errors.push(e.message));page.on('console',e=>{if(e.type()==='error')errors.push(e.text());});
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.context().clearCookies();await page.request.post(db+'/__reset');
+ await page.setViewportSize({width:1440,height:1000});await page.goto(base+'/Default.aspx');
+ await page.waitForFunction(()=>document.querySelector('[data-story-figure]').universityStory?.snapshot().state==='ready');
+ check(await header.count()===1,'One shared header');
+ check(await page.locator('[data-hotspot]:visible').count()>=3,'Landmark actions survive reserved header space');
+ check(await page.locator('[data-hotspot]:visible').evaluateAll(links=>{const n=document.querySelector('.public-header-inner').getBoundingClientRect();return links.every(link=>{const r=link.getBoundingClientRect();return r.right<=n.left||r.left>=n.right||r.bottom<=n.top||r.top>=n.bottom;});}),'Landmark labels avoid floating navbar');
+ check(await header.getAttribute('data-compact')==='false','Wide initial state');
+ check(Math.round((await bar.boundingBox()).width)===1280,'1280px expanded maximum');
+ check(await header.locator('.public-brand img').getAttribute('src')==='/Assets/images/gju-logo.png','Original university logo');
+ check(await header.locator('.public-login').innerText()==='Log in','Anonymous login action');
+ check(await menu.locator('[aria-current="page"]').innerText()==='Home','Active Home');
+ check(await page.locator('h1').evaluate(el=>el.getBoundingClientRect().top>document.querySelector('.public-header-inner').getBoundingClientRect().bottom),'Hero title clears navbar');
+ check(await header.evaluate(el=>!el.closest('[data-home-story]')),'Header outside campus transforms');
+ await page.screenshot({path:'tests/artifacts/navbar-home-wide.png'});
+ const originalMainTop=await page.locator('#public-content').evaluate(el=>el.getBoundingClientRect().top+scrollY);
+ await scroll(50);check(await header.getAttribute('data-scrolled')==='true','Readable surface before content passes underneath');
+ await scroll(130);check(await header.getAttribute('data-compact')==='true','Compact beyond threshold');
+ check(Math.round((await bar.boundingBox()).width)===1000,'Compact content width');
+ check((await bar.boundingBox()).y>=16&&(await bar.boundingBox()).y<=24,'Floating 16–24px offset');
+ check(await page.locator('#public-content').evaluate(el=>el.getBoundingClientRect().top+scrollY)===originalMainTop,'No document shift on contraction');
+ await scroll(98);check(await header.getAttribute('data-compact')==='true','Hysteresis retains compact near threshold');
+ await scroll(80);check(await header.getAttribute('data-compact')==='false','Restores wide above threshold');
+ await scroll(101);check(await header.getAttribute('data-compact')==='false','Hysteresis avoids rapid toggling');
+ await scroll(400);await page.screenshot({path:'tests/artifacts/navbar-home-compact.png'});
+ await page.reload();await page.waitForFunction(()=>scrollY>112&&document.querySelector('[data-public-navbar]').dataset.compact==='true');
+ check(await header.getAttribute('data-compact')==='true','Restored scroll load initializes compact');
+ await scroll(0);
+ const about=menu.getByRole('link',{name:'About us',exact:true});await about.hover();await settle();
+ check(await header.locator('.uims-public-nav-highlight').evaluate(el=>getComputedStyle(el).opacity==='1'),'Soft hover highlight');
+ const linkRect=await about.boundingBox(),highlightRect=await header.locator('.uims-public-nav-highlight').boundingBox();
+ check(Math.abs(linkRect.x-highlightRect.x)<1&&Math.abs(linkRect.width-highlightRect.width)<1,'Highlight matches hovered label');
+ await menu.getByRole('link',{name:'Contact us',exact:true}).focus();await page.mouse.move(20,400);await settle();
+ check(await header.locator('.uims-public-nav-highlight').evaluate(el=>el.classList.contains('is-visible')),'Keyboard equivalent highlight');
+ check(await menu.getByRole('link',{name:'Home',exact:true}).getAttribute('aria-current')==='page','Hover does not replace active page');
+ for(const width of [1920,1440,1200,1121]){
+  await page.setViewportSize({width,height:1000});await scroll(400);
+  const rects=await header.evaluate(el=>[el.querySelector('.public-brand'),...el.querySelectorAll('#publicNav>a')].map(x=>{const r=x.getBoundingClientRect();return {x:r.x,right:r.right,y:r.y,bottom:r.bottom};}));
+  check(rects.every((r,i)=>rects.every((q,j)=>i===j||r.right<=q.x||q.right<=r.x||r.bottom<=q.y||q.bottom<=r.y)),'Desktop content never overlaps '+width);
+  check(await noOverflow(),'No desktop overflow '+width);
+ }
+ await page.setViewportSize({width:1440,height:1000});
+ for(const [path,active] of [['/Pages/Public/About.aspx','About us'],['/Pages/Public/Contact.aspx','Contact us'],['/Pages/Account/Login.aspx','Log in'],['/Pages/Account/ForgotPassword.aspx',null]]){
+  await page.goto(base+path);await scroll(0);
+  check(await header.count()===1,'Shared header '+path);
+  if(active)check(await menu.locator('[aria-current="page"]').innerText()===active,'Exact active page '+path);
+  else check(await menu.locator('[aria-current="page"]').count()===0,'Recovery does not invent active destination');
+  check(await page.locator('h1').evaluate(el=>el.getBoundingClientRect().top>document.querySelector('.public-header-inner').getBoundingClientRect().bottom),'Inner heading clear '+path);
+  check(await page.locator('form').count()===1&&await page.locator('form form').count()===0,'Web Forms structure '+path);
+  check(await menu.locator('a[href="#"]').count()===0,'No placeholder hrefs '+path);
+  await scroll(250);const actualY=await page.evaluate(()=>scrollY);check(await header.getAttribute('data-compact')===(actualY>112?'true':'false'),'Inner page follows actual available scroll '+path);
+ }
+ await page.goto(base+'/Pages/Public/About.aspx');await menu.getByRole('link',{name:'How it works',exact:true}).click();
+ await page.waitForURL('**/Default.aspx#how-it-works');await page.waitForFunction(()=>document.querySelector('[data-story-figure]').universityStory?.snapshot().state==='ready');
+ await page.waitForFunction(()=>document.querySelector('[data-story-link="3"]').getAttribute('aria-current')==='step');
+ check(await page.locator('#how-it-works .campus-copy').evaluate(el=>!el.inert&&el.getBoundingClientRect().bottom>120),'Cross-page pinned chapter destination visible');
+ await menu.getByRole('link',{name:'Opportunities',exact:true}).click();await page.waitForURL('**/Default.aspx#opportunities');
+ check(await page.locator('#opportunities').evaluate(el=>el.getBoundingClientRect().top>=100&&el.getBoundingClientRect().top<=120),'Public opportunities anchor clears floating header');
+ const manualY=await page.evaluate(()=>scrollY-200);await page.mouse.click(1436,700);await scroll(manualY);await page.setViewportSize({width:1440,height:999});await settle();
+ check(await page.evaluate(y=>Math.abs(scrollY-y)<2,manualY),'Manual interaction cancels pending anchor correction');await page.setViewportSize({width:1440,height:1000});
+ await page.goBack();await page.waitForFunction(()=>document.querySelector('[data-story-link="3"]').getAttribute('aria-current')==='step');
+ check(page.url().endsWith('#how-it-works'),'Back restores chapter');
+ await page.goForward();await page.waitForFunction(()=>document.querySelector('#opportunities').getBoundingClientRect().top>=100&&document.querySelector('#opportunities').getBoundingClientRect().top<=120);
+ check(page.url().endsWith('#opportunities'),'Forward restores normal-flow anchor');
+ for(const width of [1120,960,768,390,320]){
+  await page.setViewportSize({width,height:844});await page.goto(base+'/Pages/Public/About.aspx');
+  await page.waitForFunction(()=>document.getElementById('publicNav').inert);
+  const toggle=header.locator('.public-menu-toggle');
+  check(await toggle.isVisible(),'Real menu button '+width);
+  check(await toggle.getAttribute('type')==='button','Menu does not post form '+width);
+  check(await menu.getAttribute('aria-hidden')==='true','Closed menu hidden from AT '+width);
+  await toggle.click();await settle();
+  check(await toggle.getAttribute('aria-expanded')==='true'&&await menu.evaluate(el=>!el.inert),'Open menu accessible '+width);
+  check(await menu.locator('a').first().isVisible(),'Mobile labels visible '+width);
+  check(await menu.locator('.public-login').evaluate(el=>Math.abs(el.getBoundingClientRect().width-(el.parentElement.clientWidth-24))<2),'Full-width auth action '+width);
+  check(await menu.evaluate(el=>el.getBoundingClientRect().bottom<=innerHeight),'Panel stays within viewport '+width);
+  check(await noOverflow(),'No mobile overflow '+width);
+  await page.screenshot({path:'tests/artifacts/navbar-mobile-open-'+width+'.png'});
+  await page.keyboard.press('Escape');check(await toggle.evaluate(el=>el===document.activeElement),'Escape restores toggle '+width);
+  check(await menu.evaluate(el=>el.inert),'Closed links unfocusable '+width);
+  await toggle.click();await settle();await page.mouse.click(width-4,500);check(await toggle.getAttribute('aria-expanded')==='false','Outside click closes '+width);
+  await toggle.click();await menu.locator('.public-login').focus();await page.keyboard.press('Tab');
+  check(await page.evaluate(()=>!document.querySelector('[data-public-navbar]').contains(document.activeElement)),'Dropdown does not trap Tab '+width);
+  await page.keyboard.press('Escape');await scroll(250);await toggle.click();await settle();if(width===390)await page.screenshot({path:'tests/artifacts/navbar-mobile-compact.png'});
+  check(await header.getAttribute('data-compact')==='true'&&await menu.locator('.public-login').isVisible(),'Compact mobile menu usable '+width);
+  await menu.getByRole('link',{name:'Contact us'}).click();await page.waitForURL('**/Public/Contact.aspx');
+  check(await menu.evaluate(el=>el.inert),'Navigation resets mobile menu '+width);
+ }
+ await page.setViewportSize({width:390,height:300});await header.getByRole('button',{name:'Open main menu'}).click();await settle();
+ check(await menu.evaluate(el=>el.scrollHeight>el.clientHeight),'Short viewport panel scrolls');await menu.locator('.public-login').scrollIntoViewIfNeeded();check(await menu.locator('.public-login').isVisible(),'Last action reachable by internal scrolling');
+ await page.setViewportSize({width:1440,height:1000});await settle();check(await menu.evaluate(el=>!el.inert)&&await header.locator('.public-menu-toggle').getAttribute('aria-expanded')==='false','Resize resets mobile');
+ // Trusted fixture sessions use the repository lookup, never a browser role value.
+ for(const [id,Role,destination] of [['student-one',1,'Student'],['supervisor-one',2,'Company'],['academic-one',3,'Academic'],['coordinator-one',4,'Coordinator']]){
+  if(Role>2)await page.request.put(db+'/users/'+id+'.json',{data:{Id:id,Role,FullName:'Authorized navbar test account',IsActive:true,MustChangePassword:false}});
+  await page.goto(base+'/__fixture.aspx?user='+id);await page.goto(base+'/Pages/Public/About.aspx');
+  check(await header.locator('.public-login').innerText()==='My dashboard','Authenticated action '+destination);
+  check((await header.locator('.public-login').getAttribute('href')).endsWith('/'+destination+'/Dashboard.aspx'),'Verified dashboard '+destination);
+ }
+ const user=await (await page.request.get(db+'/users/coordinator-one.json')).json();
+ await page.request.put(db+'/users/coordinator-one.json',{data:{...user,Role:3}});await page.reload();
+ check((await header.locator('.public-login').getAttribute('href')).includes('/Academic/Dashboard.aspx'),'Public action re-verifies changed role');
+ await page.request.put(db+'/users/coordinator-one.json',{data:{...user,IsActive:false}});await page.reload();check(await header.locator('.public-login').innerText()==='Log in','Deactivated session cannot advertise dashboard');
+ await page.context().clearCookies();await page.goto(base+'/Pages/Account/Login.aspx');await page.getByRole('button',{name:'Login',exact:true}).click();
+ check(await page.locator('[aria-invalid="true"]').count()===2,'Existing login validation intact');
+ await page.goto(base+'/Pages/Account/ForgotPassword.aspx');check(await page.locator('input[type=email]').count()===1,'Existing password recovery form intact');
+ await page.goto(base+'/Pages/Public/Contact.aspx');await page.getByRole('button',{name:'Send message'}).click();check(await page.locator('[aria-invalid="true"]').count()>0,'Existing contact validation intact');
+ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>document.documentElement.dir='rtl');await header.getByRole('button',{name:'Open main menu'}).click();await settle();
+ check(await noOverflow(),'RTL mobile no overflow');await page.screenshot({path:'tests/artifacts/navbar-mobile-rtl.png'});
+ await page.keyboard.press('Escape');await page.setViewportSize({width:1440,height:1000});await scroll(250);await menu.getByRole('link',{name:'About us'}).focus();await settle();
+ check(await noOverflow(),'RTL desktop no overflow');const rtlLink=await menu.getByRole('link',{name:'About us'}).boundingBox(),rtlHighlight=await header.locator('.uims-public-nav-highlight').boundingBox();check(Math.abs(rtlLink.x-rtlHighlight.x)<1,'RTL moving highlight aligned');
+ await page.evaluate(()=>document.documentElement.removeAttribute('dir'));
+ await page.emulateMedia({reducedMotion:'reduce'});check(await bar.evaluate(el=>getComputedStyle(el).transitionDuration==='0s'),'Reduced-motion transition removed');
+ await page.goto(base+'/Default.aspx#how-it-works');await page.waitForFunction(()=>getComputedStyle(document.querySelector('.campus-stage')).position==='relative');
+ check(await page.locator('#how-it-works').evaluate(el=>el.getBoundingClientRect().top>=100),'Reduced-motion anchor not hidden');
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ const nojs=await page.context().browser().newContext({javaScriptEnabled:false,viewport:{width:320,height:844}});const staticPage=await nojs.newPage();await staticPage.goto(base+'/Pages/Public/About.aspx');
+ check(await staticPage.locator('[data-public-navbar] #publicNav>a').count()===6&&await staticPage.getByRole('link',{name:'Log in',exact:true}).first().isVisible(),'No-JS essential navigation usable');await nojs.close();
+ await page.goto(base+'/Pages/Public/About.aspx');await page.evaluate(()=>{for(let i=0;i<5;i++)window.UimsPublicNavbar.init();});await page.setViewportSize({width:390,height:844});await header.getByRole('button',{name:'Open main menu'}).click();check(await header.locator('.public-menu-toggle').getAttribute('aria-expanded')==='true','Idempotent initialization');
+ check(errors.length===0,'No console errors: '+errors.join('; '));
+ return {passed:checks,roles:4,consoleErrors:errors,mode:'IIS Express and local Firebase stand-in'};
+}

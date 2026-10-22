@@ -1,30 +1,61 @@
-﻿// =============================================================================
-//  Contact Us
-//  Owner : Sara Dolat
-//  Cards : D01
-//
-//  Name, email, subject and message, validated and saved to Firebase, with confirmation feedback. The saved message must appear in the coordinator's inbox.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
 using System;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
-using InternshipManagementSystem.Security;
-
 namespace InternshipManagementSystem.Pages.PublicArea
 {
     public partial class Contact : System.Web.UI.Page
     {
+        protected override void OnInit(EventArgs e)
+        {
+            ViewStateUserKey = Session.SessionID;
+            base.OnInit(e);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-
-            // TODO(Sara Dolat, D01): build this page.
+            if (!IsPostBack)
+            {
+                ViewState["SubmissionId"] = Guid.NewGuid().ToString("N");
+                if (Session["PublicContactSent"] is bool && (bool)Session["PublicContactSent"])
+                {
+                    Session.Remove("PublicContactSent");
+                    ShowNotice("Your message has been sent to the coordination team. Thank you for getting in touch.", true);
+                }
+            }
+        }
+        protected void Send_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(Website.Text)) return;
+            string name = SenderName.Text.Trim(), email = SenderEmail.Text.Trim(),
+                subject = Subject.Text.Trim(), message = MessageText.Text.Trim();
+            if (name.Length < 2 || name.Length > 100 || email.Length > 254 || !Common.Validators.IsEmail(email)
+                || subject.Length < 5 || subject.Length > 150 || message.Length < 20 || message.Length > 4000)
+            {
+                ShowNotice("Check your details: name 2–100 characters, a valid email, subject 5–150 characters and message 20–4,000 characters.", false);
+                return;
+            }
+            Guid id;
+            if (!Guid.TryParse(Convert.ToString(ViewState["SubmissionId"]), out id))
+            { ShowNotice("Your form session could not be verified. Refresh this page and try again.", false); return; }
+            try
+            {
+                // A stable, server-owned key makes repeated posts of the same form idempotent.
+                new ContactRepository().Save(id.ToString("N"), new ContactMessage
+                { SenderName = name, SenderEmail = email, Subject = subject, Message = message, Status = ContactMessageStatus.New });
+                Session["PublicContactSent"] = true;
+                Response.Redirect("Contact.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (FirebaseException)
+            { ShowNotice("We could not confirm your message was saved. Your details are still here; please try again.", false); }
+            catch (InvalidOperationException)
+            { ShowNotice("The contact service is not configured yet. Please contact your university coordinator through your usual university channel.", false); }
+        }
+        private void ShowNotice(string message, bool success)
+        {
+            MessageNotice.Text = Server.HtmlEncode(message);
+            MessageNotice.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
+            MessageNotice.Visible = true;
         }
     }
 }

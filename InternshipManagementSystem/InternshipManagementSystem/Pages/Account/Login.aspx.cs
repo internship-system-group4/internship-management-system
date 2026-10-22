@@ -26,9 +26,36 @@ namespace InternshipManagementSystem.Pages.AccountArea
 {
     public partial class Login : System.Web.UI.Page
     {
+        protected override void OnInit(EventArgs e)
+        {
+            ViewStateUserKey = Session.SessionID;
+            base.OnInit(e);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
+
+            // An existing session is only a hint; reverify the profile before
+            // redirecting and never accept a role from the URL or posted fields.
+            if (SessionHelper.Current != null)
+            {
+                try
+                {
+                    var user = new UserRepository().GetPerson(SessionHelper.Current.Id);
+                    if (user != null && user.CanLogin())
+                    {
+                        SessionHelper.Refresh(user);
+                        Response.Redirect(ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl), false);
+                        Context.ApplicationInstance.CompleteRequest();
+                        return;
+                    }
+                    SessionHelper.SignOut();
+                    ShowError("Your account is not active. Please contact the coordinator.");
+                }
+                catch (FirebaseAuthExpiredException) { SessionHelper.SignOut(); ShowError("Your session has expired. Please log in again."); }
+                catch (FirebaseException) { SessionHelper.SignOut(); ShowError("We could not verify your account. Please log in again."); }
+                catch (InvalidOperationException) { SessionHelper.SignOut(); ShowError("The sign-in service is not configured. Please contact the coordinator."); }
+            }
 
             // Messages sent here by the page guard (Security/SecurePage.cs)
             string error = Request.QueryString["error"];
@@ -88,6 +115,12 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 {
                     ShowError("We could not load your account. Please try again later.");
                 }
+                return;
+            }
+            catch (FirebaseAuthExpiredException)
+            {
+                SessionHelper.SignOut();
+                ShowError("We could not verify your account access. Please try logging in again.");
                 return;
             }
             catch (InvalidOperationException)
