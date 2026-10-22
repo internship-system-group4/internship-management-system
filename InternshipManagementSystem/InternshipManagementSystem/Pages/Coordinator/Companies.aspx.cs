@@ -130,6 +130,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ClearForm();
                 BindExistingCompanies();
                 BindSupervisors();
+
+                // كود إغلاق النافذة المنبثقة تلقائياً بعد النجاح
+                ClientScript.RegisterStartupScript(this.GetType(), "CloseModal", "var myModalEl = document.getElementById('addSupervisorModal'); var modal = bootstrap.Modal.getInstance(myModalEl); if(modal) { modal.hide(); }", true);
             }
             catch (Exception ex)
             {
