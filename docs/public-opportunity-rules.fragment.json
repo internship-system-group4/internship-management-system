@@ -1,0 +1,41 @@
+{
+  "rules": {
+    "publicOpportunityPreviews": {
+      ".read": true,
+      "$id": {
+        ".write": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('MustChangePassword').val() !== true && (root.child('users').child(auth.uid).child('Role').val() === 4 || (root.child('users').child(auth.uid).child('Role').val() === 2 && root.child('users').child(auth.uid).child('CompanyId').val() === root.child('opportunities').child($id).child('CompanyId').val()))",
+        ".validate": "newData.hasChildren(['Id','Title','CompanyName','Summary','Status','RemainingSeats','ApplicationDeadline','PublishedAt'])",
+        "Id": {
+          ".validate": "newData.isString() && newData.val() === $id"
+        },
+        "Title": {
+          ".validate": "newData.isString() && newData.val().length <= 150 && newData.val() === root.child('opportunities').child($id).child('Title').val()"
+        },
+        "CompanyName": {
+          ".validate": "newData.isString() && newData.val().length <= 150 && newData.val() === root.child('opportunities').child($id).child('CompanyName').val()"
+        },
+        "Location": {
+          ".validate": "newData.isString() && newData.val().length <= 150 && newData.val() === root.child('opportunities').child($id).child('Location').val()"
+        },
+        "Summary": {
+          ".validate": "newData.isString() && newData.val().length >= 20 && newData.val().length <= 280"
+        },
+        "Status": {
+          ".validate": "newData.val() === 1 && root.child('opportunities').child($id).child('Status').val() === 1"
+        },
+        "RemainingSeats": {
+          ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() === root.child('opportunities').child($id).child('TotalSeats').val() - root.child('opportunities').child($id).child('FilledSeats').val()"
+        },
+        "ApplicationDeadline": {
+          ".validate": "newData.isNumber() && (newData.val() <= 0 || newData.val() > now) && newData.val() === root.child('opportunities').child($id).child('ApplicationDeadline').val()"
+        },
+        "PublishedAt": {
+          ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= now + 60000"
+        },
+        "$other": {
+          ".validate": false
+        }
+      }
+    }
+  }
+}

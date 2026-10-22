@@ -1,164 +1,64 @@
-﻿
 using System;
-using System.Configuration;
-using System.Net.Http;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.UI;
-using Newtonsoft.Json;
-
+using InternshipManagementSystem.Common;
+using InternshipManagementSystem.Data;
+using InternshipManagementSystem.Models;
 namespace InternshipManagementSystem.Pages.PublicArea
 {
     public partial class Contact : System.Web.UI.Page
     {
-        private string FirebaseUrl
+        protected override void OnInit(EventArgs e)
         {
-            get
-            {
-                return (
-                    ConfigurationManager.AppSettings["Firebase.DatabaseUrl"] ?? ""
-                ).TrimEnd('/');
-            }
+            ViewStateUserKey = Session.SessionID;
+            base.OnInit(e);
         }
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                lblMessage.Visible = false;
+                ViewState["SubmissionId"] = Guid.NewGuid().ToString("N");
+                if (Session["PublicContactSent"] is bool && (bool)Session["PublicContactSent"])
+                {
+                    Session.Remove("PublicContactSent");
+                    ShowNotice("Your message has been sent to the coordination team. Thank you for getting in touch.", true);
+                }
             }
         }
-
         protected void btnSend_Click(object sender, EventArgs e)
         {
-            RegisterAsyncTask(
-                new PageAsyncTask(SaveMessageAsync)
-            );
-        }
-
-        private async Task SaveMessageAsync()
-        {
-            lblMessage.Visible = false;
-
-            string name = (txtName.Text ?? "").Trim();
-            string email = (txtEmail.Text ?? "").Trim();
-            string subject = (txtSubject.Text ?? "").Trim();
-            string message = (txtMessage.Text ?? "").Trim();
-
-            // Validate name
-            if (name.Length < 2 || name.Length > 100)
+            if (!string.IsNullOrWhiteSpace(Website.Text)) return;
+            string name = txtName.Text.Trim(), email = txtEmail.Text.Trim(),
+                subject = txtSubject.Text.Trim(), message = txtMessage.Text.Trim();
+            if (name.Length < 2 || name.Length > 100 || email.Length > 254 || !Common.Validators.IsEmail(email)
+                || subject.Length < 5 || subject.Length > 150 || message.Length < 20 || message.Length > 4000)
             {
-                ShowMessage(
-                    "Please enter a valid full name (2–100 characters).",
-                    true);
+                ShowNotice("Check your details: name 2–100 characters, a valid email, subject 5–150 characters and message 20–4,000 characters.", false);
                 return;
             }
-
-            // Validate email
-            if (email.Length == 0 ||
-                email.Length > 254 ||
-                !Regex.IsMatch(
-                    email,
-                    @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            {
-                ShowMessage(
-                    "Please enter a valid email address.",
-                    true);
-                return;
-            }
-
-            // Validate subject
-            if (subject.Length < 3 || subject.Length > 150)
-            {
-                ShowMessage(
-                    "Please enter a subject (3–150 characters).",
-                    true);
-                return;
-            }
-
-            // Validate message
-            if (message.Length < 10 || message.Length > 5000)
-            {
-                ShowMessage(
-                    "Please enter a message (10–5000 characters).",
-                    true);
-                return;
-            }
-
+            Guid id;
+            if (!Guid.TryParse(Convert.ToString(ViewState["SubmissionId"]), out id))
+            { ShowNotice("Your form session could not be verified. Refresh this page and try again.", false); return; }
             try
             {
-                if (string.IsNullOrWhiteSpace(FirebaseUrl))
+                // A stable, server-owned key makes repeated posts of the same form idempotent.
+                // Preserve main's coordinator inbox contract and the stable server-owned key.
+                FirebaseContext.PutIfEmpty("ContactMessages/" + id.ToString("N"), new
                 {
-                    ShowMessage(
-                        "Firebase Database URL is not configured.",
-                        true);
-                    return;
-                }
-
-                // Message data saved to Firebase
-                var contactMessage = new
-                {
-                    Name = name,
-                    Email = email,
-                    Subject = subject,
-                    Message = message,
-                    Status = "New",
-                    SubmittedAt =
-                        DateTimeOffset.UtcNow.ToUnixTimeMilliseconds()
-                };
-
-                string json =
-                    JsonConvert.SerializeObject(contactMessage);
-
-                // Send directly to Firebase without user authentication.
-                // Firebase generates a unique key for the new message.
-                using (var client = new HttpClient())
-                using (var content = new StringContent(
-                    json,
-                    Encoding.UTF8,
-                    "application/json"))
-                using (var response = await client.PostAsync(
-                    FirebaseUrl + "/ContactMessages.json",
-                    content))
-                {
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        ShowMessage(
-                            "Unable to save your message to Firebase. " +
-                            "Please check the database permissions.",
-                            true);
-                        return;
-                    }
-                }
-
-                ShowMessage(
-                    "Your message has been sent successfully!",
-                    false);
-
-                // Clear fields after successful submission
-                txtName.Text = "";
-                txtEmail.Text = "";
-                txtSubject.Text = "";
-                txtMessage.Text = "";
+                    Name = name, Email = email, Subject = subject, Message = message,
+                    Status = "New", SubmittedAt = Time.NowMs()
+                });
+                Session["PublicContactSent"] = true;
+                Response.Redirect("Contact.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
-            catch (Exception)
-            {
-                ShowMessage(
-                    "Unable to send your message. Please try again.",
-                    true);
-            }
+            catch (FirebaseException)
+            { ShowNotice("We could not confirm your message was saved. Your details are still here; please try again.", false); }
+            catch (InvalidOperationException)
+            { ShowNotice("The contact service is not configured yet. Please contact your university coordinator through your usual university channel.", false); }
         }
-
-        private void ShowMessage(string text, bool isError)
+        private void ShowNotice(string message, bool success)
         {
-            lblMessage.Text = HttpUtility.HtmlEncode(text);
-
-            lblMessage.CssClass = isError
-                ? "contact-alert contact-alert-error"
-                : "contact-alert contact-alert-success";
-
+            lblMessage.Text = Server.HtmlEncode(message);
+            lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
             lblMessage.Visible = true;
         }
     }

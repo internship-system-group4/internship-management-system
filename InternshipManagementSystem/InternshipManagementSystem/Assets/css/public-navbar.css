@@ -1,0 +1,66 @@
+/* Public reference adaptation: fixed outside the campus story; changing width never changes document flow. */
+body.uims-public .uims-public-nav { position:fixed; inset-block-start:0; inset-inline:0; z-index:1100; width:100%; padding-block-start:16px; border:0; background:transparent; pointer-events:none; }
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ body.uims-public .uims-public-nav .public-header-inner { position:relative; display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:20px; width:min(1280px,calc(100% - 48px)); max-width:none; min-height:76px; margin-inline:auto; padding:12px 20px; border:1px solid transparent; border-radius:999px; background:transparent; pointer-events:auto; transition:width 260ms ease,transform 260ms ease,background-color 200ms ease,box-shadow 200ms ease,border-color 200ms ease; }
+body.uims-public .uims-public-nav[data-scrolled="true"]:not([data-compact="true"]) .public-header-inner { background:rgb(255 255 255 / 96%); }
+/* The requested glass and soft elevation identify the floating state; opaque white is the fallback. */
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { width:min(1000px,calc(100% - 48px)); transform:translateY(4px); background:#fff; border-color:rgb(38 79 115 / 12%); box-shadow:0 6px 24px rgb(20 42 58 / 9%); }
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ @supports ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px))) {
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */  body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { background:rgb(255 255 255 / 90%); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
+}
+body.uims-public .uims-public-nav .public-brand { flex:none; gap:10px; position:relative; z-index:2; }
+body.uims-public .uims-public-nav .public-brand img { display:block; width:48px; height:auto; }
+body.uims-public .uims-public-nav .public-brand strong { max-width:none; font-size:16px; line-height:1.3; letter-spacing:0; font-weight:650; }
+body.uims-public .uims-public-nav .public-brand small { max-width:none; margin-block-start:3px; font-size:13px; line-height:1.4; white-space:nowrap; }
+body.uims-public .uims-public-nav .public-navigation { flex:1; min-width:0; width:auto; }
+body.uims-public .uims-public-nav .public-links { position:relative; display:flex; flex-direction:row; align-items:center; justify-content:center; gap:0; background:transparent; border:0; padding-inline-end:144px; }
+body.uims-public .uims-public-nav .public-links>a { position:relative; z-index:1; display:flex; align-items:center; justify-content:center; min-height:44px; padding:10px 12px; border:0; border-radius:999px; color:var(--ink); text-decoration:none; font-size:14px; font-weight:400; white-space:nowrap; }
+body.uims-public .uims-public-nav .public-links>a[aria-current="page"] { font-weight:650; text-decoration:underline; text-decoration-thickness:2px; text-underline-offset:7px; }
+body.uims-public .uims-public-nav .public-links>a:not(.public-login):hover,body.uims-public .uims-public-nav .public-links>a:not(.public-login):focus-visible { background:#eaf0f3; }
+html.uims-public-nav-ready body.uims-public .uims-public-nav .public-links>a:not(.public-login):hover,html.uims-public-nav-ready body.uims-public .uims-public-nav .public-links>a:not(.public-login):focus-visible { background:transparent; }
+.uims-public-nav .uims-public-nav-highlight { display:none; position:absolute; inset-block-start:0; inset-inline-start:0; width:var(--highlight-width,0px); height:44px; border-radius:999px; background:#eaf0f3; pointer-events:none; opacity:0; transform:translateX(var(--highlight-x,0px)); transition:transform 200ms ease,width 200ms ease,opacity 150ms ease; }
+html.uims-public-nav-ready .uims-public-nav .uims-public-nav-highlight { display:block; }
+.uims-public-nav .uims-public-nav-highlight.is-visible { opacity:1; }
+body.uims-public .uims-public-nav .public-links>.public-login { position:absolute; inset-inline-end:0; inset-block-start:0; min-width:124px; padding-inline:18px; background:var(--brand); color:#fff; font-weight:600; border-radius:8px; transition:transform 150ms ease,background-color 150ms ease; }
+body.uims-public .uims-public-nav .public-links>.public-login:hover { background:var(--brand-dark); transform:translateY(-1px); }
+body.uims-public .uims-public-nav .public-menu-toggle { display:none; }
+body.uims-public .uims-main { padding-block-start:152px; }
+body.uims-public .uims-main:has(.home-page) { padding:0; }
+body.uims-public .campus-opening { padding-block-start:140px; }
+body.uims-public .campus-chapter-nav { inset-block-start:140px; }
+body.uims-public .home-page>.home-section { scroll-margin-block-start:108px; }
+body.uims-public :is(.public-page,.public-auth,.public-status) [id] { scroll-margin-block-start:112px; }
+body.uims-public .public-skip { position:fixed; z-index:1200; }
+@media(max-width:1120px) {
+ body.uims-public .uims-public-nav { padding-block-start:12px; }
+ body.uims-public .uims-public-nav .public-header-inner { width:calc(100% - 32px); min-height:72px; padding:10px 16px; gap:12px; border-radius:18px; }
+ body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { width:calc(100% - 40px); border-radius:18px; transform:translateY(8px); }
+ body.uims-public .uims-public-nav .public-brand img { width:44px; }
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */  body.uims-public .uims-public-nav .public-menu-toggle { display:flex; width:44px; height:44px; flex:none; background:transparent; border:1px solid #c9d3db; border-radius:8px; }
+ body.uims-public .uims-public-nav .public-navigation { flex:0 0 auto; }
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */  body.uims-public .uims-public-nav .public-links { display:flex; position:static; flex-direction:column; align-items:stretch; padding:12px; margin-block-start:12px; background:#fff; border:1px solid #dce5ef; border-radius:14px; gap:2px; }
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */  html.uims-public-nav-ready body.uims-public .uims-public-nav .public-links { position:absolute; inset-inline:0; inset-block-start:100%; margin:8px 0 0; max-height:calc(100dvh - 124px); overflow-y:auto; overscroll-behavior:contain; opacity:0; visibility:hidden; transform:translateY(-6px); transition:opacity 180ms ease,transform 180ms ease,visibility 180ms; box-shadow:0 8px 24px rgb(20 42 58 / 10%); }
+ html.uims-public-nav-ready body.uims-public .uims-public-nav .public-links.is-open { opacity:1; visibility:visible; transform:translateY(0); }
+ body.uims-public .uims-public-nav .public-links>a { justify-content:flex-start; padding:12px 16px; min-height:48px; border-radius:8px; }
+ body.uims-public .uims-public-nav .public-links>.public-login { position:static; width:100%; justify-content:center; margin:10px 0 0; }
+ html.uims-public-nav-ready body.uims-public .uims-public-nav .uims-public-nav-highlight { display:none; }
+ html.uims-public-nav-ready body.uims-public .uims-public-nav .public-links>a:not(.public-login):hover,html.uims-public-nav-ready body.uims-public .uims-public-nav .public-links>a:not(.public-login):focus-visible { background:#eaf0f3; }
+ html:not(.uims-public-nav-ready) body.uims-public .uims-public-nav { position:relative; }
+ html:not(.uims-public-nav-ready) body.uims-public .uims-public-nav .public-header-inner { flex-wrap:wrap; }
+ html:not(.uims-public-nav-ready) body.uims-public .uims-public-nav .public-navigation { width:100%; }
+ html:not(.uims-public-nav-ready) body.uims-public .uims-public-nav .public-menu-toggle { display:none; }
+}
+@media(max-width:680px) { body.uims-public .campus-chapter-nav { inset-block-start:auto; } }
+@media(max-width:520px) {
+ body.uims-public .uims-public-nav .public-header-inner { width:calc(100% - 24px); padding-inline:12px; }
+ body.uims-public .uims-public-nav .public-brand { gap:8px; }
+ body.uims-public .uims-public-nav .public-brand img { width:36px; }
+ body.uims-public .uims-public-nav .public-brand strong { font-size:14px; }
+ body.uims-public .uims-public-nav .public-brand small { font-size:12px; white-space:normal; max-width:142px; }
+ body.uims-public .uims-main { padding-block-start:128px; }
+ body.uims-public .uims-main:has(.home-page) { padding:0; }
+ body.uims-public .campus-opening { padding-block-start:116px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ body.uims-public .campus-chapter { scroll-margin-block-start:112px; }
+ body.uims-public .uims-public-nav *,body.uims-public .uims-public-nav .public-header-inner { transition:none !important; animation:none !important; }
+}
