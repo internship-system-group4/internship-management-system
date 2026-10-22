@@ -177,15 +177,15 @@
     <Compile Include="Models\TaskEvaluation.cs" />
     <Compile Include="Models\TrainingHoursEntry.cs" />
     <Compile Include="Pages\Academic\Account.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
