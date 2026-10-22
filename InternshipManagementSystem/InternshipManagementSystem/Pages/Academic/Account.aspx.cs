@@ -35,7 +35,8 @@ namespace InternshipManagementSystem.Pages.Academic
                 txtPhone.Text = CurrentSupervisor.PhoneNumber;
 
                 // Academic Info (Read-Only)
-                txtSupervisorId.Text = CurrentSupervisor.SupervisorNumber;
+                //txtSupervisorId.Text = CurrentSupervisor.SupervisorNumber;
+                txtSupervisorId.Text = !string.IsNullOrEmpty(CurrentSupervisor.SupervisorNumber) ? CurrentSupervisor.SupervisorNumber : CurrentSupervisor.Id;
                 txtUniversity.Text = string.IsNullOrEmpty(CurrentSupervisor.University) ? "German Jordanian University" : CurrentSupervisor.University;
                 txtCollege.Text = CurrentSupervisor.College;
                 txtMajor.Text = CurrentSupervisor.Major;
