@@ -15,7 +15,6 @@
   ===========================================================================
 -->
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -82,11 +81,6 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Default.aspx.cs">
@@ -257,16 +251,9 @@
     <Compile Include="Pages\Company\FinalEvaluation.aspx.designer.cs">
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
-      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.cs">
-      <DependentUpon>Opportunities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
@@ -328,8 +315,8 @@
       <DependentUpon>CompletionReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ContactMessages.aspx.cs">
-      <DependentUpon>ContactMessages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ContactMessages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ContactMessages.aspx.designer.cs">
       <DependentUpon>ContactMessages.aspx</DependentUpon>
@@ -412,18 +399,11 @@
       <DependentUpon>Apply.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Student\DisplayEditProfile.aspx.cs">
-      <DependentUpon>DisplayEditProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Student\DisplayEditProfile.aspx.designer.cs">
-      <DependentUpon>DisplayEditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\MyApplications.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -440,15 +420,15 @@
       <DependentUpon>MyTasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Opportunities.aspx.cs">
-      <DependentUpon>Opportunities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\OpportunityDetails.aspx.cs">
-      <DependentUpon>OpportunityDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>OpportunityDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\OpportunityDetails.aspx.designer.cs">
       <DependentUpon>OpportunityDetails.aspx</DependentUpon>
@@ -466,13 +446,6 @@
     </Compile>
     <Compile Include="Pages\Student\Progress.aspx.designer.cs">
       <DependentUpon>Progress.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Student\StudentCVPortfolio.aspx.cs">
-      <DependentUpon>StudentCVPortfolio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Student\StudentCVPortfolio.aspx.designer.cs">
-      <DependentUpon>StudentCVPortfolio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcademicPage.cs">
@@ -500,9 +473,6 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Pages\Company\ManageOpportunities.aspx" />
-    <Content Include="Pages\Student\DisplayEditProfile.aspx" />
-    <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\css\applications.css" />
@@ -562,13 +532,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Secrets.config" />
+    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -594,10 +564,4 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
-  </Target>
 </Project>
