@@ -1,12 +1,14 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="ManageStudents.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.ManageStudents" Title="Manage students" %>
+<%@ Register Src="StudentCreation.ascx" TagPrefix="uims" TagName="StudentCreation" %>
 
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261022-tabs-2") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261022-creation-modal") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page">
-        <div class="students-intro"><div><span class="students-eyebrow">Coordinator / Students</span><h2>Manage students</h2><p>Update academic details or remove and restore student access.</p></div></div>
+        <div class="students-intro"><div><span class="students-eyebrow">Coordinator / Students</span><h2>Manage students</h2><p>Update academic details or remove and restore student access.</p></div><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal">+ Add student</button></div>
+        <uims:StudentCreation ID="StudentCreator" runat="server" OnCreated="StudentCreator_Created" />
         <nav class="students-tabs" aria-label="Student pages">
             <a href="<%= ResolveUrl("~/Pages/Coordinator/Students.aspx") %>">View records</a>
-            <a href="<%= ResolveUrl("~/Pages/Coordinator/AddStudent.aspx") %>">Add student</a>
+            <button type="button" data-bs-toggle="modal" data-bs-target="#addStudentModal">Add student</button>
             <a class="active" aria-current="page" href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>">Manage students</a>
         </nav>
         <section class="students-card" aria-labelledby="select-heading">
@@ -56,7 +58,8 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             var modal = document.getElementById('pnlDetails');
-            if (modal && window.bootstrap) new bootstrap.Modal(modal).show();
+            var creating = document.querySelector('.creation-modal[data-open-on-load="true"]');
+            if (modal && window.bootstrap && !creating) new bootstrap.Modal(modal).show();
         });
     </script>
 </asp:Content>

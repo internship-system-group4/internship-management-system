@@ -20,6 +20,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (IsValidStudentId(id)) LoadStudent(id);
         }
 
+        protected void StudentCreator_Created(object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            pnlDetails.Visible = false;
+            BindStudents();
+        }
+
         protected void btnSearch_Click(object sender, EventArgs e)
         {
             ClearSelection();

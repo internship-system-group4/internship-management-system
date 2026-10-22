@@ -3,6 +3,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
     public partial class AcademicSupervisors
     {
         protected global::System.Web.UI.WebControls.HiddenField hdnActiveTab;
+        protected global::System.Web.UI.WebControls.Panel pnlCreateContent;
+        protected global::System.Web.UI.WebControls.Label lblCreateSuccess;
         protected global::System.Web.UI.WebControls.Label lblCreateMessage;
         protected global::System.Web.UI.WebControls.TextBox txtFullName;
         protected global::System.Web.UI.WebControls.TextBox txtEmail;

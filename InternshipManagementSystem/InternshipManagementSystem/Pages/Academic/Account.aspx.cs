@@ -8,6 +8,13 @@ namespace InternshipManagementSystem.Pages.Academic
 {
     public partial class Account : AcademicPage
     {
+        protected override void OnInit(EventArgs e)
+        {
+            base.OnInit(e);
+            btnUploadPhoto.Click += btnUploadPhoto_Click;
+            fuProfileImage.Attributes["onchange"] = "document.getElementById('" + btnUploadPhoto.ClientID + "').click();";
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -41,15 +48,6 @@ namespace InternshipManagementSystem.Pages.Academic
                 txtCollege.Text = CurrentSupervisor.College;
                 txtMajor.Text = CurrentSupervisor.Major;
                 txtEnrollmentYear.Text = CurrentSupervisor.EnrollmentYear > 0 ? CurrentSupervisor.EnrollmentYear.ToString() : "";
-
-                // Skills
-                txtTechnicalSkills.Text = CurrentSupervisor.TechnicalSkills;
-                txtSoftSkills.Text = CurrentSupervisor.SoftSkills;
-
-                // CV & Portfolio
-                txtCvUrl.Text = CurrentSupervisor.CvUrl;
-                txtPortfolioUrl.Text = CurrentSupervisor.PortfolioUrl;
-                txtLinkedInUrl.Text = CurrentSupervisor.LinkedInUrl;
             }
         }
 
@@ -58,11 +56,6 @@ namespace InternshipManagementSystem.Pages.Academic
             try
             {
                 CurrentSupervisor.PhoneNumber = txtPhone.Text.Trim();
-                CurrentSupervisor.TechnicalSkills = txtTechnicalSkills.Text.Trim();
-                CurrentSupervisor.SoftSkills = txtSoftSkills.Text.Trim();
-                CurrentSupervisor.CvUrl = txtCvUrl.Text.Trim();
-                CurrentSupervisor.PortfolioUrl = txtPortfolioUrl.Text.Trim();
-                CurrentSupervisor.LinkedInUrl = txtLinkedInUrl.Text.Trim();
 
                 if (int.TryParse(txtAge.Text, out int age))
                 {

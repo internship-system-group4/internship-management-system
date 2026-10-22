@@ -363,8 +363,8 @@
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Companies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.designer.cs">
       <DependentUpon>Companies.aspx</DependentUpon>
@@ -424,6 +424,13 @@
     </Compile>
     <Compile Include="Pages\Coordinator\Students.aspx.designer.cs">
       <DependentUpon>Students.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\StudentCreation.ascx.cs">
+      <DependentUpon>StudentCreation.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Coordinator\StudentCreation.ascx.designer.cs">
+      <DependentUpon>StudentCreation.ascx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\AddStudent.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -736,6 +743,8 @@
     <Content Include="Pages\Coordinator\PlacementDetails.aspx" />
     <Content Include="Pages\Coordinator\Placements.aspx" />
     <Content Include="Pages\Coordinator\Students.aspx" />
+    <Content Include="Pages\Coordinator\StudentCreation.ascx" />
+    <Content Include="Assets\js\account-creation-modal.js" />
     <Content Include="Pages\Coordinator\AddStudent.aspx" />
     <Content Include="Pages\Coordinator\ManageStudents.aspx" />
     <Content Include="Pages\Meetings\MyMeetings.aspx" />

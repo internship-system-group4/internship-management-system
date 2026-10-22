@@ -1,4 +1,4 @@
-﻿<%@ Page Title="My Account" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Account" %>
+<%@ Page Title="My Account" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Account" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -30,11 +30,11 @@
                 <asp:Literal ID="litAvatarInitials" runat="server">Dr</asp:Literal>
             </div>
             <!-- Clickable Pencil Icon -->
-            <label for="MainContent_fuProfileImage" class="edit-badge" title="Change profile photo">
+            <label for="<%= fuProfileImage.ClientID %>" class="edit-badge" title="Change profile photo">
                 ✎
             </label>
             <!-- Hidden file upload triggered by pencil -->
-            <asp:FileUpload ID="fuProfileImage" runat="server" style="display:none;" />
+            <asp:FileUpload ID="fuProfileImage" runat="server" style="display:none;" accept="image/jpeg,image/png" />
         </div>
 
         <!-- Supervisor Info placed cleanly BELOW the cover -->
@@ -46,7 +46,7 @@
                 <asp:Literal ID="litProfileDept" runat="server">Academic Supervisor</asp:Literal> | German Jordanian University
             </div>
             <!-- Hidden upload button for backend handling if needed -->
-            <asp:Button ID="btnUploadPhoto" runat="server" Text="Upload" CssClass="d-none" OnClick="btnUploadPhoto_Click" CausesValidation="false" formnovalidate="true"  data-ui-action="upload" data-loading-label="Uploading…" data-ui-validation="none"/>
+            <asp:Button ID="btnUploadPhoto" runat="server" Text="Upload" CssClass="d-none" CausesValidation="false" formnovalidate="true" data-ui-action="upload" data-loading-label="Uploading…" data-ui-validation="none" />
         </div>
     </div>
 
@@ -88,7 +88,7 @@
     <!-- Section 2: Academic Information (READ-ONLY) -->
     <div class="uims-card mb-4">
         <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid var(--line);">
-            <div class="section-icon"><span data-ui-icon="study" aria-hidden="true"></span></div>
+            <div class="section-icon">🎓</div>
             <div>
                 <h3 class="mb-1" style="color: var(--brand-dark); font-weight: 700; font-size: 1.1rem;">Academic Information</h3>
                 <div class="text-muted" style="font-size: 0.85rem;">Your official university details. Managed by coordinator.</div>
@@ -118,54 +118,8 @@
         </div>
     </div>
 
-    <!-- Section 3: Skills & Competencies -->
-    <div class="uims-card mb-4">
-        <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid var(--line);">
-            <div class="section-icon">&lt;/&gt;</div>
-            <div>
-                <h3 class="mb-1" style="color: var(--brand-dark); font-weight: 700; font-size: 1.1rem;">Skills & Competencies</h3>
-                <div class="text-muted" style="font-size: 0.85rem;">Highlight the skills you can offer.</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;">Technical Skills</label>
-                <asp:TextBox ID="txtTechnicalSkills" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Example: C#, ASP.NET, SQL"></asp:TextBox>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;">Soft Skills</label>
-                <asp:TextBox ID="txtSoftSkills" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Example: Teamwork, Communication"></asp:TextBox>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section 4: CV & Professional Portfolio -->
-    <div class="uims-card mb-4">
-        <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid var(--line);">
-            <div class="section-icon">📄</div>
-            <div>
-                <h3 class="mb-1" style="color: var(--brand-dark); font-weight: 700; font-size: 1.1rem;">CV & Professional Portfolio</h3>
-                <div class="text-muted" style="font-size: 0.85rem;">Manage your professional documents and online presence.</div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;">Curriculum Vitae (CV Link)</label>
-                <asp:TextBox ID="txtCvUrl" runat="server" CssClass="form-control" placeholder="https://drive.google.com/..."></asp:TextBox>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;">Project Portfolio Link</label>
-                <asp:TextBox ID="txtPortfolioUrl" runat="server" CssClass="form-control" placeholder="https://github.com/..."></asp:TextBox>
-            </div>
-            <div class="col-md-12 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;">LinkedIn Profile</label>
-                <asp:TextBox ID="txtLinkedInUrl" runat="server" CssClass="form-control" placeholder="https://www.linkedin.com/in/..."></asp:TextBox>
-            </div>
-        </div>
-
-        <div class="text-end pt-3" style="border-top: 1px solid var(--line);">
-            <asp:Button ID="btnSaveChanges" runat="server" Text="Save All Changes" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true"  data-ui-action="save" data-loading-label="Saving…" data-ui-validation="none"/>
-        </div>
+    <div class="text-end mb-4">
+        <asp:Button ID="btnSaveChanges" runat="server" Text="Save Changes" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true" data-ui-action="save" data-loading-label="Saving…" data-ui-validation="none" />
     </div>
 
     <!-- Change Password Modal -->
@@ -188,7 +142,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
-                    <asp:Button ID="btnSavePassword" runat="server" Text="Update Password" CssClass="btn btn-brand" OnClick="btnSavePassword_Click" CausesValidation="false" formnovalidate="true"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/>
+                    <asp:Button ID="btnSavePassword" runat="server" Text="Update Password" CssClass="btn btn-brand" OnClick="btnSavePassword_Click" CausesValidation="false" formnovalidate="true" data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none" />
                 </div>
             </div>
         </div>
