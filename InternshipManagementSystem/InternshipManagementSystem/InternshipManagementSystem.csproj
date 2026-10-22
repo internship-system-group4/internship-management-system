@@ -537,7 +537,7 @@
     <Content Include="Pages\Student\Progress.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Secrets.config" />
+    <None Include="App_Secrets.config.example" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
