@@ -15,13 +15,58 @@ namespace InternshipManagementSystem.Pages.Academic
     {
 
         /// <summary>
-        /// litStudentName control.
+        /// pnlSuccessMessage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litStudentName;
+        protected global::System.Web.UI.WebControls.Panel pnlSuccessMessage;
+
+        /// <summary>
+        /// litSuccessMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litSuccessMessage;
+
+        /// <summary>
+        /// rptStudents control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptStudents;
+
+        /// <summary>
+        /// litNoData control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litNoData;
+
+        /// <summary>
+        /// litModalStudentName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litModalStudentName;
+
+        /// <summary>
+        /// hfSelectedStudentId control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfSelectedStudentId;
 
         /// <summary>
         /// pnlCompanyEvalExists control.
@@ -87,31 +132,13 @@ namespace InternshipManagementSystem.Pages.Academic
         protected global::System.Web.UI.WebControls.Panel pnlNoCompanyEval;
 
         /// <summary>
-        /// txtCompanyComponent control.
+        /// ddlPassFail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCompanyComponent;
-
-        /// <summary>
-        /// txtReportComponent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtReportComponent;
-
-        /// <summary>
-        /// txtDiscussionComponent control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDiscussionComponent;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPassFail;
 
         /// <summary>
         /// txtAcademicComments control.
@@ -123,22 +150,22 @@ namespace InternshipManagementSystem.Pages.Academic
         protected global::System.Web.UI.WebControls.TextBox txtAcademicComments;
 
         /// <summary>
-        /// pnlSubmission control.
+        /// pnlAlreadySubmitted control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSubmission;
+        protected global::System.Web.UI.WebControls.Panel pnlAlreadySubmitted;
 
         /// <summary>
-        /// lblStatusMessage control.
+        /// litAlreadySubmittedText control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblStatusMessage;
+        protected global::System.Web.UI.WebControls.Literal litAlreadySubmittedText;
 
         /// <summary>
         /// btnSubmitEvaluation control.

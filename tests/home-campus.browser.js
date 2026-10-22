@@ -1,0 +1,55 @@
+async page=>{
+ const base='http://localhost:57983',results=[],errors=[],failed=[];const check=(ok,name)=>{if(!ok)throw Error(name);results.push(name);};
+ page.on('pageerror',e=>errors.push(String(e)));page.on('console',m=>{if(m.type()==='error')errors.push(m.text());});page.on('response',r=>{if(r.status()>=400)failed.push(r.url());});
+ const ready=()=>page.waitForFunction(()=>['ready','paused'].includes(document.querySelector('[data-story-figure]')?.universityStory?.snapshot().state));
+ const snap=()=>page.locator('[data-story-figure]').evaluate(h=>h.universityStory.snapshot());
+ const chapter=async i=>{await page.locator('[data-chapter="'+i+'"]').evaluate(el=>scrollTo({top:el.getBoundingClientRect().top+scrollY,behavior:"instant"}));await page.waitForTimeout(800);};
+ await page.context().clearCookies();await page.setViewportSize({width:1440,height:1000});await page.emulateMedia({reducedMotion:'no-preference'});await page.goto(base+'/Default.aspx');await ready();
+ check(await page.locator('canvas').count()===1,'One persistent canvas');
+ check(await page.locator('[data-story-viewport]').evaluate(el=>el.clientWidth===innerWidth&&el.clientHeight===innerHeight),'Canvas fills viewport edge to edge');
+ check(await page.locator('.public-brand img').first().isVisible(),'Official logo remains in public header');
+ check(await page.getByRole('link',{name:'Explore internships',exact:false}).first().isVisible(),'Opportunity CTA visible in first viewport');
+ check(await page.locator('[data-chapter]').count()===5,'Five semantic chapters');
+ check(await page.locator('[data-story-figure]').evaluate(h=>['campusRoot','entranceGroup','waterwheelGroup','buildingsGroup','landscapeGroup','opportunityMarkerGroup'].every(n=>h.universityStory.model.root.getObjectByName(n))),'Six required named groups');
+ const before=await page.locator('[data-story-figure]').evaluate(h=>({wheel:h.universityStory.model.courtyard.wheel.rotation.z,gate:h.universityStory.model.gate.root.matrix.toArray()}));await page.waitForTimeout(250);
+ check(await page.locator('[data-story-figure]').evaluate((h,b)=>h.universityStory.model.courtyard.wheel.rotation.z!==b.wheel&&JSON.stringify(h.universityStory.model.gate.root.matrix.toArray())===JSON.stringify(b.gate),before),'Only wheel assembly and cloth animate; architecture stationary');
+ await page.evaluate(()=>{window.__hidden=false;Object.defineProperty(document,'hidden',{configurable:true,get:()=>window.__hidden});window.__hidden=true;document.dispatchEvent(new Event('visibilitychange'));});const hiddenTime=(await snap()).time;await page.waitForTimeout(180);check((await snap()).time===hiddenTime,'Hidden-document rendering suspends');await page.evaluate(()=>{window.__hidden=false;document.dispatchEvent(new Event('visibilitychange'));});await page.waitForTimeout(160);check((await snap()).time>hiddenTime,'Visible-document rendering resumes');
+ await page.locator('[data-story-toggle]').click();const stopped=await snap();await page.waitForTimeout(180);check((await snap()).time===stopped.time,'Pause stops ambient animation');
+ const frames=[];
+ for(let i=0;i<5;i++){await chapter(i);const s=await snap();frames.push(s);check(s.triggerActive&&s.progress>=0&&s.progress<=1,'Scroll chapter '+(i+1));await page.screenshot({path:'tests/artifacts/campus-desktop-chapter-'+(i+1)+'.png'});}
+ check(frames.every((s,i)=>i===0||s.progress>frames[i-1].progress),'Scroll progression moves forward');check(frames[0].camera[1]>frames[1].camera[1],'Camera descends toward entrance');
+ await chapter(0);check((await snap()).progress<.01,'Reverse scroll restores overview');
+ check(await page.locator('[data-hotspot]:visible').count()>=3,'Projected readable landmark hotspots');
+ const hs=await page.locator('[data-hotspot]:visible').evaluateAll(links=>links.map(a=>{const r=a.getBoundingClientRect();return{x:r.x,y:r.y,w:r.width,h:r.height};}));check(hs.every((r,i)=>hs.every((q,j)=>i===j||r.x+r.w<=q.x||q.x+q.w<=r.x||r.y+r.h<=q.y||q.y+q.h<=r.y)),'Hotspot collision avoidance');
+ await page.locator('[data-hotspot="colleges"]').click();await page.waitForTimeout(800);check(page.url().endsWith('#colleges')&&(await snap()).progress>.35,'Hotspot navigates through native scroll');
+ check((await page.locator('#colleges').innerText()).includes('School of Computing')&&!(await page.locator('#colleges').innerText()).includes('Medicine'),'Only configured college');
+ check((await page.locator('.home-programs').innerText()).includes('Computer Vision and Robotics')&&(await page.locator('.home-programs').innerText()).includes('Cyber Security'),'Configured specialization data');
+ const cameraBefore=(await snap()).camera;await page.locator('#computing-college summary').focus();await page.keyboard.press('Space');await page.waitForTimeout(70);check(!await page.locator('#computing-college').evaluate(el=>el.open),'College control works with keyboard');
+ check(await page.locator('[data-story-figure]').evaluate(h=>!h.universityStory.model.selection.visible),'Selection updates local symbol');check(JSON.stringify((await snap()).camera)===JSON.stringify(cameraBefore),'College selection does not compete with camera');await page.keyboard.press('Enter');
+ await chapter(3);check(await page.locator('.home-steps li').count()===4,'Four existing approved internship steps');
+ await page.locator('.campus-process a[href="#internship-video"]').click();await page.waitForTimeout(250);check(await page.locator('.home-video-placeholder').isVisible(),'Video chapter leads into stable honest placeholder');
+ check(await page.locator('video source').count()===0,'Missing video has no fake player');
+ await page.waitForFunction(()=>document.querySelector('[data-story-figure]').getBoundingClientRect().bottom<=2);
+ const released=await page.locator('[data-story-figure]').evaluate(h=>h.getBoundingClientRect().bottom);check(released<=2,'Sticky story releases before video');
+ const off=await snap();await page.waitForTimeout(180);check((await snap()).time===off.time,'Rendering pauses offscreen');
+ await page.goto(base+'/Default.aspx#colleges');await ready();await page.waitForTimeout(800);check((await snap()).progress>.35,'Direct anchor restores chapter and camera');
+ await page.setViewportSize({width:768,height:1024});await page.waitForTimeout(200);check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'Tablet has no horizontal overflow');await page.screenshot({path:'tests/artifacts/campus-tablet.png'});
+ await page.setViewportSize({width:390,height:844});await page.waitForTimeout(200);check((await snap()).compact,'Portrait camera reframes');
+ for(let i=0;i<5;i++){await chapter(i);check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'Mobile chapter '+(i+1)+' no overflow');await page.screenshot({path:'tests/artifacts/campus-mobile-chapter-'+(i+1)+'.png'});}
+ for(const width of [320,1920]){await page.setViewportSize({width,height:900});await page.waitForTimeout(160);check(!await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),'No overflow at '+width);}
+ check((await snap()).width<=1801&&(await snap()).height<=1201,'Rendering resolution capped');
+ await page.emulateMedia({reducedMotion:'reduce'});await page.waitForFunction(()=>document.querySelector('[data-home-story]').classList.contains('is-static'));check(!(await snap()).triggerActive&&!(await snap()).running,'Reduced motion removes camera timeline and ambient animation');check(await page.locator('[data-chapter] .campus-copy[inert]').count()===0,'All chapters accessible in static document flow');await page.screenshot({path:'tests/artifacts/campus-reduced-motion.png',fullPage:true});
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.setViewportSize({width:1440,height:1000});await chapter(0);
+ await page.evaluate(()=>{const script=document.createElement('script');script.src='/Assets/js/home-story.js?repeat';document.head.append(script);});await page.waitForTimeout(150);check(await page.locator('canvas').count()===1,'Repeated initialization creates no duplicate canvas');
+ check(await page.evaluate(()=>ScrollTrigger.getAll().length)===1,'Only one ScrollTrigger');
+ for(const path of ['/Pages/Student/OpportunityDetails.aspx?id=internship-one','/Pages/Student/Apply.aspx?opportunityId=internship-one']){await page.goto(base+path);check(page.url().includes('/Pages/Account/Login.aspx?returnUrl='),'Server authorization preserved '+path);}
+ check(errors.length===0&&failed.length===0,'No console errors or failed asset requests: '+JSON.stringify({errors,failed}));
+ // Failure contexts isolate expected browser errors from the healthy-page check.
+ const context=await page.context().browser().newContext({viewport:{width:390,height:844}});const fail=await context.newPage();
+ await fail.addInitScript(()=>{const original=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(type,...args){return String(type).includes('webgl')?null:original.call(this,type,...args);};});await fail.goto(base+'/Default.aspx');await fail.waitForSelector('[data-scene-state="fallback"]');check(await fail.locator('.home-story-photo').evaluate(el=>el.complete&&el.naturalWidth>0),'WebGL failure displays real university image');check(await fail.locator('.campus-chapter .campus-copy[inert]').count()===0,'Fallback restores all HTML chapters');await fail.screenshot({path:'tests/artifacts/campus-fallback.png'});await context.close();
+ const blockedContext=await page.context().browser().newContext();const blocked=await blockedContext.newPage();await blocked.route('**/home-story-scene.js*',route=>route.abort());await blocked.goto(base+'/Default.aspx');await blocked.waitForSelector('[data-scene-state="fallback"]');check(await blocked.locator('.home-story-photo').evaluate(el=>el.naturalWidth>0)&&await blocked.locator('.campus-chapter .campus-copy[inert]').count()===0,'Failed module loading preserves photograph and all content');await blockedContext.close();
+ const plain=await page.context().browser().newContext({javaScriptEnabled:false});const nojs=await plain.newPage();await nojs.goto(base+'/Default.aspx');check(await nojs.locator('h1').isVisible()&&await nojs.locator('.home-story-photo').evaluate(el=>el.naturalWidth>0),'No-JS heading and university photograph');await plain.close();
+ await page.goto(base+'/Default.aspx');await ready();await page.locator('[data-story-viewport] canvas').evaluate(c=>c.dispatchEvent(new Event('webglcontextlost',{cancelable:true})));await page.waitForSelector('[data-scene-state="fallback"]');check(await page.locator('canvas').count()===0&&await page.evaluate(()=>ScrollTrigger.getAll().length)===0,'Context loss disposes canvas and timeline');
+ await page.goto(base+'/Default.aspx');await ready();await page.locator('[data-story-figure]').evaluate(h=>h.universityStory.dispose());check(await page.locator('canvas').count()===0&&await page.evaluate(()=>ScrollTrigger.getAll().length)===0,'Explicit disposal clears resources');check((await snap()).textures===0&&(await snap()).geometries===0,'GPU resources released');
+ return {passed:results.length,results,errors,failed};
+}

@@ -1,30 +1,30 @@
-﻿// =============================================================================
-//  Home
-//  Owner : Nada
-//  Cards : N01, N02
-//
-//  University identity, system introduction, colleges and majors, the internship process section with its video, and opportunity previews. A visitor may read a preview but must log in for full details or to apply.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
-using System;
-using InternshipManagementSystem.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using InternshipManagementSystem.Data;
-using InternshipManagementSystem.Models;
-using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.PublicArea
 {
+    // Owner: Osama. Anonymous reads use only the published public projection.
     public partial class Default : System.Web.UI.Page
     {
+        protected List<PublicOpportunityPreview> Previews = new List<PublicOpportunityPreview>();
+        protected string PreviewError;
+        protected bool ProcessVideoAvailable, ProcessCaptionsAvailable;
+        protected string[] TracksFor(string program)
+        {
+            if (program == "Computer Engineering") return Common.Constants.ComputerEngineeringTracks;
+            if (program == "Computer Science") return Common.Constants.ComputerScienceTracks;
+            return new string[0];
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-
-            // TODO(Nada, N01, N02): build this page.
+            ProcessVideoAvailable = File.Exists(Server.MapPath("~/Assets/video/internship-process.mp4"));
+            ProcessCaptionsAvailable = File.Exists(Server.MapPath("~/Assets/video/internship-process.en.vtt"));
+            try { Previews = new OpportunityRepository().GetPublicPreviews(); }
+            catch (FirebaseAuthExpiredException) { PreviewError = "Public opportunity previews are not available yet. Please try again later or log in to your portal."; }
+            catch (FirebaseException) { PreviewError = "We could not load public opportunity previews. Please refresh to try again."; }
+            catch (InvalidOperationException) { PreviewError = "Public opportunity previews are not configured yet."; }
         }
     }
 }
