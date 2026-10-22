@@ -108,7 +108,7 @@
     </ul>
 </nav>
 <% if (SessionHelper.Current != null) { %>
-<a class="uims-sidebar-account" href="<%: ResolveUrl(AccountPath) %>" <%= NavigationAttributes(AccountPath) %> title="<%: SessionHelper.Current.FullName %> — My account">
+<a class="uims-sidebar-account" href="<%: ResolveUrl(AccountPath) %>" <%= NavigationAttributes(AccountPath) %> title="<%: SessionHelper.Current.FullName %> &mdash; My account">
     <span class="uims-sidebar-avatar" aria-hidden="true"><span><%: Initials %></span><% if (!string.IsNullOrEmpty(ProfileImage)) { %><img src="<%: ProfileImage %>" alt="" width="28" height="28" /><% } %></span>
     <span class="uims-sidebar-label uims-sidebar-account-meta"><strong><%: SessionHelper.Current.FullName %></strong><small><%: SessionHelper.Current.RoleDisplayName %></small><span><%: SessionHelper.IsInRole(UserRole.Student) ? "My Profile" : "My Account" %></span></span>
 </a>

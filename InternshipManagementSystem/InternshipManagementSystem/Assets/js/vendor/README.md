@@ -7,8 +7,9 @@ https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.min.js
 https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.core.min.js
 
 The module imports its adjacent core. Both files must be published together.
-Only Home loads this runtime, asynchronously, for the university story and static
-computing symbol. The earlier courtyard implementation remains as unused source.
+Home (university story and computing symbol), Login (gate scene) and Powered by
+(team lecture hall) load this runtime asynchronously; no other page does. The earlier
+courtyard implementation remains as unused source.
 
 GSAP and ScrollTrigger are pinned to 3.13.0, downloaded unchanged from
 https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js and

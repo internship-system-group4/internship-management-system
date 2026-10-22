@@ -1,0 +1,1761 @@
+{
+ "url": "http://localhost:57983/Default.aspx",
+ "at": "2026-10-21T18:08:57.826Z",
+ "allow": [
+  "hairline",
+  "few-pictures",
+  "still-page"
+ ],
+ "viewports": [
+  {
+   "width": 1440,
+   "height": 900,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.49,
+    0.52,
+    0.47,
+    0.43,
+    0.61
+   ],
+   "motion": {
+    "elements": 6,
+    "css": 6,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "page": {
+     "height": 3815,
+     "screens": 4.2,
+     "words": 493,
+     "img": 4,
+     "video": 0,
+     "canvas": 1,
+     "svg": 1,
+     "sections": 7,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "b774db96-c900-40dc-b579-3fa681fb49ec.png",
+      "home-campus.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "From campus to career.",
+     "words": 4,
+     "chars": 22,
+     "lines": 2,
+     "size": 68,
+     "vw": 4.7,
+     "font": "Segoe UI",
+     "weight": 650,
+     "tracking": -0.035,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.36,
+     "top": 151,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "From campus to career.",
+     "words": 4,
+     "lines": 2,
+     "size": 68,
+     "font": "Segoe UI"
+    },
+    "headings": [
+     {
+      "text": "From campus to career.",
+      "words": 4,
+      "chars": 22,
+      "lines": 2,
+      "size": 68,
+      "vw": 4.7,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.035,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.36,
+      "top": 151,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "A clear path from application to completion.",
+      "words": 7,
+      "chars": 44,
+      "lines": 2,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.33,
+      "top": 866,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Your studies. A practical next step.",
+      "words": 6,
+      "chars": 36,
+      "lines": 2,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.37,
+      "top": 1309,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Experience in your field.",
+      "words": 4,
+      "chars": 25,
+      "lines": 1,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.33,
+      "top": 1721,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Understand the internship process.",
+      "words": 4,
+      "chars": 34,
+      "lines": 2,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.33,
+      "top": 2526,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Connected at every step.",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 40,
+      "vw": 2.8,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.33,
+      "top": 2873,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ready for your next chapter?",
+      "words": 5,
+      "chars": 28,
+      "lines": 1,
+      "size": 36,
+      "vw": 2.5,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.02,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.58,
+      "top": 3330,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 7,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 5,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Segoe UI",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      20,
+      21,
+      23,
+      24,
+      26,
+      36,
+      40,
+      68
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "Segoe UI",
+      "size": 16,
+      "leading": 1.65,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 4.8
+     },
+     "measureChars": 75,
+     "max": {
+      "size": 68,
+      "vw": 4.7,
+      "font": "Segoe UI",
+      "text": "From campusto career."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f6f8ff",
+       "top": 1221,
+       "hsl": {
+        "h": 227,
+        "s": 1,
+        "l": 0.98
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#58718a",
+       "share": 0.69
+      },
+      {
+       "color": "#133d61",
+       "share": 0.17
+      },
+      {
+       "color": "#264f73",
+       "share": 0.11
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      },
+      {
+       "color": "#e2edf8",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#264f73"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 5,
+     "inHero": 4,
+     "radius": 5,
+     "height": 49,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Log in",
+      "Log in to your portal →",
+      "Pause wheel motion"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 6,
+     "hairlineSamples": [
+      "header.public-header 1440px",
+      "article.home-program 576px",
+      "article.home-program 576px",
+      "li 664px",
+      "li 664px"
+     ],
+     "outlinedBoxes": 2,
+     "dashed": 1,
+     "blurred": 0,
+     "roundedBoxes": 5,
+     "boxRadius": 6,
+     "squareMedia": 0,
+     "roundedMedia": 3,
+     "mediaRadius": 6,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 3,
+       "iconTopped": false,
+       "rounded": true,
+       "top": 645
+      },
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 994
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.19
+     },
+     {
+      "type": "canvas",
+      "ratio": 0.19
+     }
+    ],
+    "nav": {
+     "links": 7,
+     "fixed": false,
+     "height": 101,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 1440,
+     "h": 900
+    },
+    "pageH": 3815,
+    "margins": {
+     "left": 120,
+     "right": 120
+    },
+    "sections": [
+     {
+      "sel": "main#public-content.uims-main.public-container",
+      "tag": "main",
+      "top": 101,
+      "height": 3366,
+      "words": 455,
+      "media": 3,
+      "middle": 0,
+      "heading": {
+       "text": "From campus",
+       "size": 68,
+       "tag": "h1"
+      },
+      "left": 120,
+      "right": 120,
+      "textLeft": 120,
+      "textRight": 133,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.public-footer",
+      "tag": "footer",
+      "top": 3467,
+      "height": 348,
+      "words": 58,
+      "media": 0,
+      "middle": 258,
+      "heading": {
+       "text": "Explore UIMS",
+       "size": 15,
+       "tag": "h2"
+      },
+      "left": 120,
+      "right": 120,
+      "textLeft": 120,
+      "textRight": 120,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "From campus to career.",
+      "size": 68,
+      "top": 151,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 120,
+      "n": 13
+     },
+     {
+      "x": 744,
+      "n": 4
+     },
+     {
+      "x": 656,
+      "n": 3
+     },
+     {
+      "x": 149,
+      "n": 1
+     },
+     {
+      "x": 172,
+      "n": 1
+     },
+     {
+      "x": 384,
+      "n": 1
+     },
+     {
+      "x": 689,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 24,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0.07,
+    "voidBox": {
+     "x": 0,
+     "y": 120,
+     "w": 120,
+     "h": 780
+    }
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 768,
+   "height": 1024,
+   "load": "load",
+   "screens": 5,
+   "filled": [
+    0.46,
+    0.6,
+    0.47,
+    0.56,
+    0.72
+   ],
+   "motion": {
+    "elements": 6,
+    "css": 6,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "page": {
+     "height": 4338,
+     "screens": 4.2,
+     "words": 482,
+     "img": 4,
+     "video": 0,
+     "canvas": 1,
+     "svg": 1,
+     "sections": 7,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "b774db96-c900-40dc-b579-3fa681fb49ec.png",
+      "home-campus.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "From campus to career.",
+     "words": 4,
+     "chars": 22,
+     "lines": 2,
+     "size": 44,
+     "vw": 5.7,
+     "font": "Segoe UI",
+     "weight": 650,
+     "tracking": -0.035,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "left",
+     "widthRatio": 0.45,
+     "top": 173,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "From campus to career.",
+     "words": 4,
+     "lines": 2,
+     "size": 44,
+     "font": "Segoe UI"
+    },
+    "headings": [
+     {
+      "text": "From campus to career.",
+      "words": 4,
+      "chars": 22,
+      "lines": 2,
+      "size": 44,
+      "vw": 5.7,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.035,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.45,
+      "top": 173,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "A clear path from application to completion.",
+      "words": 7,
+      "chars": 44,
+      "lines": 2,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 905,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Your studies. A practical next step.",
+      "words": 6,
+      "chars": 36,
+      "lines": 2,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "right",
+      "widthRatio": 0.41,
+      "top": 1482,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Experience in your field.",
+      "words": 4,
+      "chars": 25,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 1862,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Available internship previews",
+      "words": 3,
+      "chars": 29,
+      "lines": 1,
+      "size": 26,
+      "vw": 3.4,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 2325,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Understand the internship process.",
+      "words": 4,
+      "chars": 34,
+      "lines": 1,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 2720,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Connected at every step.",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 28,
+      "vw": 3.6,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.94,
+      "top": 3147,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ready for your next chapter?",
+      "words": 5,
+      "chars": 28,
+      "lines": 2,
+      "size": 36,
+      "vw": 4.7,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.02,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "left",
+      "widthRatio": 0.51,
+      "top": 3675,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 8,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Segoe UI",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      20,
+      21,
+      23,
+      24,
+      26,
+      28,
+      36,
+      44
+     ],
+     "sizeCount": 14,
+     "notLoaded": [],
+     "body": {
+      "font": "Segoe UI",
+      "size": 16,
+      "leading": 1.65,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 4.8
+     },
+     "measureChars": 82,
+     "max": {
+      "size": 44,
+      "vw": 5.7,
+      "font": "Segoe UI",
+      "text": "From campusto career."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#f6f8ff",
+       "top": 1402,
+       "hsl": {
+        "h": 227,
+        "s": 1,
+        "l": 0.98
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#58718a",
+       "share": 0.7
+      },
+      {
+       "color": "#133d61",
+       "share": 0.17
+      },
+      {
+       "color": "#264f73",
+       "share": 0.1
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      },
+      {
+       "color": "#e2edf8",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#264f73"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 4,
+     "inHero": 3,
+     "radius": 5,
+     "height": 49,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Log in to your portal →",
+      "Pause wheel motion"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 6,
+     "hairlineSamples": [
+      "header.public-header 768px",
+      "article.home-program 336px",
+      "article.home-program 336px",
+      "li 720px",
+      "li 720px"
+     ],
+     "outlinedBoxes": 2,
+     "dashed": 1,
+     "blurred": 0,
+     "roundedBoxes": 5,
+     "boxRadius": 6,
+     "squareMedia": 0,
+     "roundedMedia": 3,
+     "mediaRadius": 6,
+     "textShadow": 0,
+     "cardRows": [
+      {
+       "count": 4,
+       "iconTopped": false,
+       "rounded": false,
+       "top": 1080
+      }
+     ]
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.17
+     },
+     {
+      "type": "canvas",
+      "ratio": 0.17
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 87,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 768,
+     "h": 1024
+    },
+    "pageH": 4338,
+    "margins": {
+     "left": 24,
+     "right": 24
+    },
+    "sections": [
+     {
+      "sel": "main#public-content.uims-main.public-container",
+      "tag": "main",
+      "top": 87,
+      "height": 3752,
+      "words": 455,
+      "media": 3,
+      "middle": 0,
+      "heading": {
+       "text": "From campus",
+       "size": 44,
+       "tag": "h1"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 40,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.public-footer",
+      "tag": "footer",
+      "top": 3839,
+      "height": 499,
+      "words": 58,
+      "media": 0,
+      "middle": 131,
+      "heading": {
+       "text": "Explore UIMS",
+       "size": 15,
+       "tag": "h2"
+      },
+      "left": 24,
+      "right": 24,
+      "textLeft": 24,
+      "textRight": 24,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "From campus to career.",
+      "size": 44,
+      "top": 173,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 24,
+      "n": 16
+     },
+     {
+      "x": 400,
+      "n": 4
+     },
+     {
+      "x": 53,
+      "n": 3
+     },
+     {
+      "x": 64,
+      "n": 1
+     }
+    ],
+    "leftBlocks": 24,
+    "bodySize": 16,
+    "stage": false,
+    "explains": true,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  },
+  {
+   "width": 390,
+   "height": 844,
+   "load": "load",
+   "screens": 8,
+   "filled": [
+    0.7,
+    0.69,
+    0.66,
+    0.51,
+    0.71,
+    0.51,
+    0.98,
+    0.98
+   ],
+   "motion": {
+    "elements": 6,
+    "css": 6,
+    "transitions": 0,
+    "scripted": 0,
+    "videos": 0,
+    "playingVideos": 0
+   },
+   "metrics": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "page": {
+     "height": 5971,
+     "screens": 7.1,
+     "words": 482,
+     "img": 4,
+     "video": 0,
+     "canvas": 1,
+     "svg": 1,
+     "sections": 7,
+     "horizontalOverflow": 0,
+     "overflowCulprits": [],
+     "uiFragments": 0,
+     "uiAbuse": false,
+     "realPictures": 2,
+     "videoCount": 0,
+     "uiPictures": 0,
+     "pictureSamples": [
+      "b774db96-c900-40dc-b579-3fa681fb49ec.png",
+      "home-campus.jpg"
+     ],
+     "blendText": 0,
+     "sideScrollers": 0,
+     "brokenImages": [],
+     "emoji": [],
+     "videosNoPoster": 0
+    },
+    "hero": {
+     "text": "From campus to career.",
+     "words": 4,
+     "chars": 22,
+     "lines": 2,
+     "size": 44,
+     "vw": 11.3,
+     "font": "Segoe UI",
+     "weight": 650,
+     "tracking": -0.035,
+     "leading": 1.08,
+     "upper": false,
+     "italic": false,
+     "mono": false,
+     "align": "left",
+     "position": "center",
+     "widthRatio": 0.92,
+     "top": 115,
+     "tag": "h1",
+     "kind": "heading"
+    },
+    "h1": {
+     "text": "From campus to career.",
+     "words": 4,
+     "lines": 2,
+     "size": 44,
+     "font": "Segoe UI"
+    },
+    "headings": [
+     {
+      "text": "From campus to career.",
+      "words": 4,
+      "chars": 22,
+      "lines": 2,
+      "size": 44,
+      "vw": 11.3,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.035,
+      "leading": 1.08,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 115,
+      "tag": "h1",
+      "kind": "heading"
+     },
+     {
+      "text": "One place for your internship journey.",
+      "words": 6,
+      "chars": 38,
+      "lines": 2,
+      "size": 23,
+      "vw": 5.9,
+      "font": "Segoe UI",
+      "weight": 600,
+      "tracking": 0,
+      "leading": 1.65,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.77,
+      "top": 985,
+      "tag": "strong",
+      "kind": "heading"
+     },
+     {
+      "text": "A clear path from application to completion.",
+      "words": 7,
+      "chars": 44,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 1266,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Your studies. A practical next step.",
+      "words": 6,
+      "chars": 36,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 2349,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Experience in your field.",
+      "words": 4,
+      "chars": 25,
+      "lines": 1,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2661,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Computer Engineering",
+      "words": 2,
+      "chars": 20,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 2925,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Computer Science",
+      "words": 2,
+      "chars": 16,
+      "lines": 1,
+      "size": 24,
+      "vw": 6.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3176,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Available internship previews",
+      "words": 3,
+      "chars": 29,
+      "lines": 2,
+      "size": 26,
+      "vw": 6.7,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": 0,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3426,
+      "tag": "h3",
+      "kind": "heading"
+     },
+     {
+      "text": "Understand the internship process.",
+      "words": 4,
+      "chars": 34,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 3882,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Connected at every step.",
+      "words": 4,
+      "chars": 24,
+      "lines": 2,
+      "size": 28,
+      "vw": 7.2,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.025,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.92,
+      "top": 4453,
+      "tag": "h2",
+      "kind": "heading"
+     },
+     {
+      "text": "Ready for your next chapter?",
+      "words": 5,
+      "chars": 28,
+      "lines": 2,
+      "size": 30,
+      "vw": 7.7,
+      "font": "Segoe UI",
+      "weight": 650,
+      "tracking": -0.02,
+      "leading": 1.2,
+      "upper": false,
+      "italic": false,
+      "mono": false,
+      "align": "left",
+      "position": "center",
+      "widthRatio": 0.79,
+      "top": 5048,
+      "tag": "h2",
+      "kind": "heading"
+     }
+    ],
+    "headingSummary": {
+     "count": 11,
+     "maxLines": 2,
+     "over2Lines": 0,
+     "statements": 0,
+     "centered": 0,
+     "medianWords": 4,
+     "mixedFontHeadings": 0
+    },
+    "type": {
+     "families": [
+      {
+       "family": "Segoe UI",
+       "share": 1,
+       "mono": false
+      }
+     ],
+     "familyCount": 1,
+     "sizes": [
+      13,
+      14,
+      15,
+      16,
+      17,
+      20,
+      21,
+      23,
+      24,
+      26,
+      28,
+      30,
+      44
+     ],
+     "sizeCount": 13,
+     "notLoaded": [],
+     "body": {
+      "font": "Segoe UI",
+      "size": 16,
+      "leading": 1.65,
+      "weight": 400,
+      "tracking": 0,
+      "contrast": 4.8
+     },
+     "measureChars": 39,
+     "max": {
+      "size": 44,
+      "vw": 11.3,
+      "font": "Segoe UI",
+      "text": "From campusto career."
+     },
+     "monoShare": 0,
+     "monoProseShare": 0,
+     "monoFamilies": [],
+     "monoSamples": [],
+     "microLabels": 0,
+     "microLabelShare": 0,
+     "microSamples": [],
+     "upperShare": 0,
+     "centerShare": 0.01,
+     "smallText": 0
+    },
+    "eyebrows": [],
+    "numbered": [],
+    "color": {
+     "bodyBg": "#ffffff",
+     "bodyBgHsl": {
+      "h": 0,
+      "s": 0,
+      "l": 1
+     },
+     "dark": false,
+     "sectionBgs": [
+      {
+       "color": "#edf2f6",
+       "top": 520,
+       "hsl": {
+        "h": 207,
+        "s": 0.33,
+        "l": 0.95
+       }
+      },
+      {
+       "color": "#f6f8ff",
+       "top": 2037,
+       "hsl": {
+        "h": 227,
+        "s": 1,
+        "l": 0.98
+       }
+      },
+      {
+       "color": "#264f73",
+       "top": 5016,
+       "hsl": {
+        "h": 208,
+        "s": 0.5,
+        "l": 0.3
+       }
+      }
+     ],
+     "textColors": [
+      {
+       "color": "#58718a",
+       "share": 0.7
+      },
+      {
+       "color": "#133d61",
+       "share": 0.17
+      },
+      {
+       "color": "#264f73",
+       "share": 0.1
+      },
+      {
+       "color": "#ffffff",
+       "share": 0.02
+      },
+      {
+       "color": "#e2edf8",
+       "share": 0.01
+      }
+     ],
+     "button": {
+      "bg": "#ffffff",
+      "hsl": {
+       "h": 0,
+       "s": 0,
+       "l": 1
+      },
+      "fg": "#264f73"
+     },
+     "lowContrast": []
+    },
+    "buttons": {
+     "count": 4,
+     "inHero": 2,
+     "radius": 5,
+     "height": 49,
+     "withShadow": 0,
+     "withGradient": 0,
+     "mono": 0,
+     "upper": 0,
+     "heroLabels": [
+      "Skip to content",
+      "Log in to your portal →"
+     ]
+    },
+    "surfaces": {
+     "shadowStatic": 0,
+     "shadowOverlay": 0,
+     "shadowSamples": [],
+     "gradients": 0,
+     "scrims": 0,
+     "gradientSamples": [],
+     "gradientText": 0,
+     "hairlines": 6,
+     "hairlineSamples": [
+      "header.public-header 390px",
+      "article.home-program 358px",
+      "article.home-program 358px",
+      "li 358px",
+      "li 358px"
+     ],
+     "outlinedBoxes": 2,
+     "dashed": 1,
+     "blurred": 0,
+     "roundedBoxes": 5,
+     "boxRadius": 6,
+     "squareMedia": 0,
+     "roundedMedia": 3,
+     "mediaRadius": 6,
+     "textShadow": 0,
+     "cardRows": []
+    },
+    "heroMedia": [
+     {
+      "type": "img",
+      "ratio": 0.35
+     },
+     {
+      "type": "canvas",
+      "ratio": 0.35
+     }
+    ],
+    "nav": {
+     "links": 1,
+     "fixed": false,
+     "height": 87,
+     "floatingPill": false,
+     "blur": false
+    },
+    "fontsLoaded": []
+   },
+   "layout": {
+    "viewport": {
+     "w": 390,
+     "h": 844
+    },
+    "pageH": 5971,
+    "margins": {
+     "left": 16,
+     "right": 16
+    },
+    "sections": [
+     {
+      "sel": "main#public-content.uims-main.public-container",
+      "tag": "main",
+      "top": 87,
+      "height": 5208,
+      "words": 455,
+      "media": 3,
+      "middle": 0,
+      "heading": {
+       "text": "From campus",
+       "size": 44,
+       "tag": "h1"
+      },
+      "left": 16,
+      "right": 16,
+      "textLeft": 16,
+      "textRight": 18,
+      "fullBleed": false,
+      "footer": false,
+      "hero": true,
+      "continues": false,
+      "pinned": false
+     },
+     {
+      "sel": "footer.public-footer",
+      "tag": "footer",
+      "top": 5295,
+      "height": 676,
+      "words": 58,
+      "media": 0,
+      "middle": 0,
+      "heading": {
+       "text": "Explore UIMS",
+       "size": 15,
+       "tag": "h2"
+      },
+      "left": 16,
+      "right": 53,
+      "textLeft": 16,
+      "textRight": 53,
+      "fullBleed": false,
+      "footer": true,
+      "hero": false,
+      "continues": false,
+      "pinned": false
+     }
+    ],
+    "gaps": [],
+    "h1s": [
+     {
+      "text": "From campus to career.",
+      "size": 44,
+      "top": 115,
+      "firstScreen": true
+     }
+    ],
+    "edgeText": [],
+    "edges": [
+     {
+      "x": 16,
+      "n": 17
+     },
+     {
+      "x": 40,
+      "n": 7
+     }
+    ],
+    "leftBlocks": 24,
+    "bodySize": 16,
+    "stage": false,
+    "explains": false,
+    "slivers": [],
+    "voidShare": 0,
+    "voidBox": null
+   },
+   "app": null,
+   "consoleErrors": []
+  }
+ ],
+ "findings": [
+  {
+   "level": "WARN",
+   "id": "outlined-box",
+   "width": 1440,
+   "message": "2 box(es) drawn with a 1px outline.",
+   "fix": "Prefer a filled surface or no box.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "dashed",
+   "width": 1440,
+   "message": "1 dashed/dotted border(s).",
+   "fix": "Remove unless it is a real drop zone.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "card-rows",
+   "width": 1440,
+   "message": "2 rows of identical boxed cards.",
+   "fix": "Vary the composition; not every section is a card grid."
+  },
+  {
+   "level": "WARN",
+   "id": "size-count",
+   "width": 1440,
+   "message": "14 different font sizes (13, 14, 15, 16, 17, 18, 20, 21, 23, 24, 26, 36, 40, 68).",
+   "fix": "A page needs about five: display, heading, lead, body, small.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "grey-body",
+   "width": 1440,
+   "message": "The running text is a soft grey on its ground (4.8:1).",
+   "fix": "Set body copy in the full ink (7:1 or more). Keep the muted ink for secondary notes; pages read thin and unfinished when everything is grey.",
+   "alsoAt": [
+    768,
+    390
+   ]
+  },
+  {
+   "level": "WARN",
+   "id": "no-footage",
+   "width": 1440,
+   "message": "No video anywhere on the page.",
+   "fix": "Look for one honest clip with scripts/assets.mjs --video (the place, the material, the process) and use it as a muted loop with a poster frame. Defend its absence only if no clip fits the subject."
+  }
+ ],
+ "images": [
+  {
+   "viewport": "desktop",
+   "width": 1440,
+   "fold": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\desktop-fold.jpg",
+   "pages": [
+    "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\desktop-page-01.jpg",
+    "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\desktop-page-02.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "tablet",
+   "width": 768,
+   "fold": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\tablet-fold.jpg",
+   "pages": [
+    "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\tablet-page-01.jpg"
+   ],
+   "film": []
+  },
+  {
+   "viewport": "mobile",
+   "width": 390,
+   "fold": "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\mobile-fold.jpg",
+   "pages": [
+    "C:\\Users\\user\\Desktop\\Project3\\internship-management-system\\.taste-skill\\courtyard-confirm\\mobile-page-01.jpg"
+   ],
+   "film": []
+  }
+ ]
+}

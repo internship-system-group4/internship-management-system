@@ -1,0 +1,75 @@
+{
+  "Note": "Public development-team roster for Pages/Public/PoweredBy.aspx, in display order. Add a member only after they approve each field for public display. Required: Key (stable lowercase slug), Name, Role. Seat: lecture-hall seat as <block L|C|R><row 1-7>-<seat from the left>, e.g. C4-5; an invalid or missing seat is assigned automatically. Optional: Email, Bio, Photo (~/Assets/images/team/<file>; a 240px copy in team/small/ is used when present), GitHub, LinkedIn, Portfolio (https URLs). Leave out anything not supplied.",
+  "Members": [
+    {
+      "Key": "osama-banihani",
+      "Seat": "L3-7",
+      "Name": "Osama Banihani",
+      "Role": "Developer",
+      "Photo": "~/Assets/images/team/Osama.png",
+      "Email": "osamabanihani124@gmail.com",
+      "GitHub": "https://github.com/osamabanihani",
+      "LinkedIn": "https://www.linkedin.com/in/osama-banihani-/"
+    },
+    {
+      "Key": "nada-alawneh",
+      "Seat": "C2-2",
+      "Name": "Nada Alawneh",
+      "Role": "Developer",
+      "Photo": "~/Assets/images/team/Nada.png",
+      "Email": "nadaalawneh504@gmail.com",
+      "GitHub": "https://github.com/Nada-Alawneh",
+      "LinkedIn": "https://www.linkedin.com/in/nada-alawneh/"
+    },
+    {
+      "Key": "sara-aldoulat",
+      "Seat": "R3-2",
+      "Name": "Sara Aldoulat",
+      "Role": "QA",
+      "Photo": "~/Assets/images/team/Sara Aldoulat.png",
+      "Email": "saraaldoulat2749@gmail.com",
+      "GitHub": "https://github.com/saraaldoulat2749-art",
+      "Portfolio": "https://saraaldoulat2749-art.github.io/Project1/"
+    },
+    {
+      "Key": "saja-diabat",
+      "Seat": "L5-8",
+      "Name": "Saja Diabat",
+      "Role": "Developer",
+      "Photo": "~/Assets/images/team/Saja Diabat.png",
+      "Email": "sajadiabat9@gmail.com",
+      "GitHub": "https://github.com/sajadiabat9-ui",
+      "LinkedIn": "https://www.linkedin.com/in/saja-diabat-585943380/"
+    },
+    {
+      "Key": "ahmad-bani-hamad",
+      "Seat": "C4-5",
+      "Name": "Ahmad Bani Hamad",
+      "Role": "Scrum Master",
+      "Photo": "~/Assets/images/team/Ahmad.png",
+      "Email": "ahmad100.fa100@gmail.com",
+      "GitHub": "https://github.com/ahmadfa100",
+      "LinkedIn": "https://www.linkedin.com/in/ahmad-faisal-dev/"
+    },
+    {
+      "Key": "fatima-tawalbeh",
+      "Seat": "R5-3",
+      "Name": "Fatima Ehab Tawalbeh",
+      "Role": "Developer",
+      "Photo": "~/Assets/images/team/Fatima Tawalbeh.png",
+      "Email": "fatimatawalbeh9@gmail.com",
+      "GitHub": "https://github.com/fatimaT2023",
+      "LinkedIn": "https://www.linkedin.com/in/fatima-tawalbeh/"
+    },
+    {
+      "Key": "sara-alrjoub",
+      "Seat": "C6-9",
+      "Name": "Sara Alrjoub",
+      "Role": "Product Owner",
+      "Photo": "~/Assets/images/team/Sara Al Rjoub.png",
+      "Email": "sararjoub31@gmail.com",
+      "GitHub": "https://github.com/sararjoub",
+      "LinkedIn": "https://www.linkedin.com/in/sara-al-rjoub-666aa22a6/"
+    }
+  ]
+}

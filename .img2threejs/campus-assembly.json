@@ -1,0 +1,153 @@
+{
+  "kind": "campus-story-integration",
+  "notSurveyedMap": true,
+  "sourceSpecs": [
+    "gate-spec.json",
+    "waterwheel-spec.json"
+  ],
+  "referencesInspected": "../tests/artifacts/campus-reference-sheet.jpg",
+  "qualityContract": {
+    "requiredGroups": [
+      "campusRoot",
+      "entranceGroup",
+      "waterwheelGroup",
+      "buildingsGroup",
+      "landscapeGroup",
+      "opportunityMarkerGroup"
+    ],
+    "wheelAxle": "local Z of courtyard.wheel",
+    "onlyWheelAssemblyRotates": true,
+    "publicDataSource": "existing Constants and PublicOpportunityPreview projection",
+    "targetVisibleTriangles": 30000,
+    "targetDrawCalls": 200,
+    "maxDprDesktop": 1.5,
+    "maxDprMobile": 1.25
+  },
+  "layout": {
+    "gate": {
+      "position": [
+        -6,
+        0.06,
+        8
+      ],
+      "scale": 0.65,
+      "confidence": "reference-matched form, artistic placement"
+    },
+    "courtyard": {
+      "position": [
+        7,
+        0.08,
+        -3
+      ],
+      "scale": 0.83,
+      "confidence": "reference-matched parts, artistic placement"
+    },
+    "buildingWings": {
+      "positions": [
+        [
+          -6,
+          0,
+          -7
+        ],
+        [
+          7,
+          0,
+          -11
+        ]
+      ],
+      "confidence": "approximate proportions and hidden depth"
+    },
+    "base": {
+      "size": [
+        33,
+        0.55,
+        29
+      ],
+      "confidence": "storytelling miniature, not a real-world campus boundary"
+    }
+  },
+  "validationLimit": "Reused procedural models and browser comparisons; no full img2threejs fidelity-pipeline pass claimed.",
+  "refinement": {
+    "date": "2026-10-22",
+    "reason": "Larger and more realistic per user request",
+    "referenceTextures": "pbr-stone/stone_{albedo,height,roughness}.png from primary courtyard stone crop",
+    "measuredFidelity": false,
+    "cameraOverview": [
+      28,
+      24,
+      39
+    ],
+    "observedOverviewTriangles": 23159,
+    "observedOverviewDrawCalls": 186,
+    "preserved": "Reference-derived landmark structure; documented approximate adjacency",
+    "presentationV2": {
+      "date": "2026-10-22",
+      "scope": "Camera, material response, lighting and landscape presentation; landmark dimensions unchanged",
+      "desktopDistanceScale": [
+        0.88,
+        0.94,
+        0.93,
+        0.91,
+        0.92
+      ],
+      "tabletDistanceScale": 1.18,
+      "portraitDistanceScale": 1.4,
+      "desktopViewOffset": -0.16,
+      "stoneTint": "#e5edf1",
+      "stoneBumpScale": 0.014,
+      "glass": {
+        "metalness": 0,
+        "roughness": 0.12,
+        "ior": 1.5,
+        "environmentIntensity": 1.6
+      },
+      "sunIntensity": 3.4,
+      "skyIntensity": 0.85,
+      "exposure": 1.02,
+      "contactOcclusion": "Five soft transparent patches at paving level; illustrative ambient occlusion, not measured lighting",
+      "leaves": "155 ellipses per organic alpha cluster; deterministic seed preserved",
+      "fidelityGate": "Existing Tier 1 failure remains unresolved; no reconstruction pass approval",
+      "portraitEntranceDistanceReduction": 0.13,
+      "overviewCopyWidth": "min(31%,410px)",
+      "verification": "56 campus browser assertions pass after final presentation changes; no console errors or failed requests"
+    },
+    "editorialHome": {
+      "authorization": "User explicitly released prior Home composition restrictions on 22 October 2026",
+      "geometry": "Unchanged reference-derived landmark factories",
+      "ground": "#f1f3f2",
+      "type": "Switzer 400/600/700, local WOFF2",
+      "headline": "Campus today. Career tomorrow.",
+      "desktopChapterDistanceScales": [
+        0.78,
+        0.92,
+        0.9,
+        0.88,
+        0.9
+      ],
+      "tabletDistanceScale": 1.08,
+      "portraitBaseDistanceScale": 1.2,
+      "portraitCollegeDistanceAddition": 0.35,
+      "openingViewOffsetY": -0.18,
+      "chapterNavigation": "Five named native anchors; aria-current=step follows scroll progress",
+      "copyAnchors": "Sections remain anchor targets; only invisible inner copy is inert",
+      "fidelity": "Presentation redesign only; existing reconstruction gate limitation remains"
+    },
+    "tasteRefinement": {
+      "direction": "editorial-report",
+      "seed": 1444959711,
+      "visibleChapterLabels": [
+        "Campus",
+        "Connect",
+        "Study",
+        "Journey",
+        "Explore"
+      ],
+      "headlineInk": "#153d54",
+      "bodyPixels": 16,
+      "gallery": "Three existing university reference photographs; no new external artwork",
+      "motion": "One-shot semantic section-part entrances, static under reduced motion",
+      "navigation": "Native anchor scrolling and history restoration; scroll timeline owns camera",
+      "fidelity": "No landmark geometry changes; no new reconstruction gate approval"
+    }
+  }
+}
