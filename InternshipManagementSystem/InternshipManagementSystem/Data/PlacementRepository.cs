@@ -90,12 +90,20 @@ namespace InternshipManagementSystem.Data
                     ? opportunity.StartDate + (long)opportunity.DurationWeeks * 7 * 24 * 60 * 60 * 1000 : 0,
                 Status = PlacementStatus.Confirmed, ConfirmedAt = Time.NowMs()
             };
-            if (existing == null && !Confirm(student.Id, placement))
+            if (existing == null)
             {
-                // A competing confirmation may have won after the first read.
-                placement = GetById(student.Id);
-                if (placement == null || placement.ApplicationId != applicationId)
-                    throw new InvalidOperationException("Another internship was confirmed. Refresh to see your placement.");
+                if (Confirm(student.Id, placement))
+                {
+                    // Only the first, successful confirmation sends notifications.
+                    Services.NotificationService.PlacementConfirmed(placement);
+                }
+                else
+                {
+                    // A competing confirmation may have won after the first read.
+                    placement = GetById(student.Id);
+                    if (placement == null || placement.ApplicationId != applicationId)
+                        throw new InvalidOperationException("Another internship was confirmed. Refresh to see your placement.");
+                }
             }
             bool syncPending = false;
             try

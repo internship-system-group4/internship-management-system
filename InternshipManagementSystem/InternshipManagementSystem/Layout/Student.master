@@ -1,5 +1,6 @@
 <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Student.master.cs" Inherits="InternshipManagementSystem.Layout.StudentMaster" %>
 <%@ Register Src="~/Layout/Sidebar.ascx" TagPrefix="uims" TagName="Sidebar" %>
+<%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
 
 <!DOCTYPE html>
 <html lang="en" class="student-portal uims-portal">
@@ -14,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261022-sidebar-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body class="student-portal uims-portal">
@@ -36,6 +38,7 @@
                 </button>
                 <h1 class="uims-page-title" data-portal-label="Student portal / "><%: Page.Title %></h1>
                 <div class="uims-user">
+                    <uims:NotificationBell runat="server" />
                     <div class="uims-user-meta">
                         <asp:Literal ID="litUserName" runat="server" />
                         <small><asp:Literal ID="litRoleName" runat="server" /></small>

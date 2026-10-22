@@ -3,7 +3,13 @@
 //  Owner : Fatima
 //  Cards : F01, F02
 //
-//  Create tasks with title, description, instructions, deadline, trainee and evaluation criteria, and list them with their submission statuses. Set each task's MaxScore and Weight from the university's method - not a flat 100.
+//  Create tasks with title, description, instructions, deadline, trainee and
+//  evaluation criteria, and list them.
+//
+//  Grading is kept simple: the supervisor gives each criterion a number of
+//  points. The task's MaxScore is the sum of those points, and each
+//  criterion's Weight (its share of the task, in %) is worked out from them.
+//  So there is only one number to type per criterion and no flat 100.
 //
 //  Namespace note: these page namespaces end in "Area" on purpose. A namespace
 //  called ...Pages.Student would hide the Student model class and every file in
@@ -12,173 +18,361 @@
 // =============================================================================
 using System;
 using System.Collections.Generic;
+using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
-using System.Web.UI.WebControls;
 
 namespace InternshipManagementSystem.Pages.CompanyArea
 {
     public partial class Tasks : CompanyPage
     {
+        private const string CriteriaKey = "TaskCriteria";
+        private const string CreatedKey = "TaskCreatedMessage";
+        private const int MinPoints = 1;
+        private const int MaxPoints = 100;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
-                List<GradeComponent> criteria =
-                    new List<GradeComponent>();
-
-                Session["TaskCriteria"] = criteria;
-
-                gvCriteria.DataSource = criteria;
-                gvCriteria.DataBind();
+                Session[CriteriaKey] = new List<GradeComponent>();
                 LoadTrainees();
-            }
-        }
-        protected void btnCreateTask_Click(object sender, EventArgs e)
-        {
-            string title = txtTitle.Text.Trim();
-            string placementId = ddlTrainee.SelectedValue;
+                LoadTasks();
+                ShowCriteria(new List<GradeComponent>());
 
-            lblMessage.CssClass = "text-danger";
-
-            if (title == "")
-            {
-                lblMessage.Text = "Please enter a task title.";
-                return;
-            }
-
-            if (placementId == "")
-            {
-                lblMessage.Text = "Please select a trainee.";
-                return;
-            }
-
-            lblMessage.CssClass = "text-success";
-            lblMessage.Text = "Title and trainee selected. Task is not saved yet.";
-        }
-        private void LoadTrainees()
-        {
-            ddlTrainee.Items.Clear();
-
-            ddlTrainee.Items.Add(
-                new ListItem("Select a trainee", "")
-            );
-
-            PlacementRepository repository = new PlacementRepository();
-
-            List<Placement> placements = repository.GetAll();
-
-            foreach (Placement placement in placements)
-            {
-                if (placement.CompanyId == CurrentSupervisor.CompanyId)
+                // Message from the task that was just saved.
+                string created = Session[CreatedKey] as string;
+                if (created != null)
                 {
-                    ddlTrainee.Items.Add(
-                        new ListItem(placement.StudentName, placement.Id)
-                    );
+                    Session.Remove(CreatedKey);
+                    lblPageMessage.Visible = true;
+                    lblPageMessage.CssClass = "alert alert-success d-block mb-4";
+                    lblPageMessage.Text = Server.HtmlEncode(created);
+                    ClientScript.RegisterStartupScript(GetType(), "closeTaskForm", "showTasksList();", true);
                 }
             }
         }
-        
+
+        // ------------------------------------------------------------------
+        //  Criteria
+        // ------------------------------------------------------------------
 
         protected void btnAddCriterion_Click(object sender, EventArgs e)
         {
-            string name = txtCriterionName.Text.Trim();
-            string description = txtCriterionDescription.Text.Trim();
+            List<GradeComponent> criteria = GetCriteria();
+            if (criteria == null) return;
 
-            
+            string name = txtCriterionName.Text.Trim();
             if (name == "")
             {
-                lblMessage.CssClass = "text-danger";
-                lblMessage.Text = "Please enter a criterion name.";
+                ShowError("Write what you will check, for example \"Code quality\".");
                 return;
             }
-
-            // نحول العلامة القصوى من نص لرقم
-            double maxScore;
-
-            bool validMaxScore = double.TryParse(
-                txtCriterionMaxScore.Text,
-                out maxScore
-            );
-
-            if (!validMaxScore || double.IsNaN(maxScore)
-                || double.IsInfinity(maxScore) || maxScore <= 0)
-            {
-                lblMessage.CssClass = "text-danger";
-                lblMessage.Text = "Enter a valid maximum score greater than zero.";
-                return;
-            }
-
-            // نحول وزن المعيار من نص لرقم
-            double weight;
-
-            bool validWeight = double.TryParse(
-                txtCriterionWeight.Text,
-                out weight
-            );
-
-            if (!validWeight || double.IsNaN(weight)
-                || double.IsInfinity(weight)
-                || weight <= 0 || weight > 100)
-            {
-                lblMessage.CssClass = "text-danger";
-                lblMessage.Text = "Enter a criterion weight greater than zero and up to 100.";
-                return;
-            }
-
-            // نجيب القائمة المحفوظة مؤقتًا
-            List<GradeComponent> criteria =
-                Session["TaskCriteria"] as List<GradeComponent>;
-
-            if (criteria == null)
-            {
-                lblMessage.CssClass = "text-danger";
-                lblMessage.Text = "Your session expired. Reload the page and add the criteria again.";
-                return;
-            }
-
-            // نحسب مجموع الأوزان مع المعيار الجديد
-            double totalWeight = weight;
 
             foreach (GradeComponent item in criteria)
             {
-                totalWeight = totalWeight + item.Weight;
+                if (string.Equals(item.Name, name, StringComparison.OrdinalIgnoreCase))
+                {
+                    ShowError("\"" + name + "\" is already in the list.");
+                    return;
+                }
             }
 
-            if (totalWeight > 100.000001)
+            int points;
+            if (!int.TryParse(txtCriterionPoints.Text.Trim(), out points)
+                || points < MinPoints || points > MaxPoints)
             {
-                lblMessage.CssClass = "text-danger";
-                lblMessage.Text = "The total criteria weight cannot exceed 100%.";
+                ShowError("Points must be a whole number from " + MinPoints + " to " + MaxPoints + ".");
                 return;
             }
 
-            // نجهز المعيار الجديد
             GradeComponent criterion = new GradeComponent();
-
             criterion.Name = name;
-            criterion.Description = description;
-            criterion.MaxScore = maxScore;
-            criterion.Weight = weight;
-
-            // نضيفه للقائمة ونحفظ القائمة مؤقتًا
+            criterion.Description = txtCriterionDescription.Text.Trim();
+            criterion.MaxScore = points;
             criteria.Add(criterion);
 
-            Session["TaskCriteria"] = criteria;
+            SaveCriteria(criteria);
 
-            // نعرض القائمة بالجدول
+            // Clear the fields so the next criterion can be typed.
+            txtCriterionName.Text = "";
+            txtCriterionDescription.Text = "";
+            txtCriterionPoints.Text = "";
+        }
+
+        protected void btnUseStarter_Click(object sender, EventArgs e)
+        {
+            List<GradeComponent> criteria = GetCriteria();
+            if (criteria == null) return;
+
+            if (criteria.Count == 0)
+            {
+                criteria.Add(NewCriterion("Quality of work", 10, "Correct, clean and well organised."));
+                criteria.Add(NewCriterion("Completeness", 5, "Everything in the instructions is done."));
+                criteria.Add(NewCriterion("On time", 5, "Submitted before the deadline."));
+            }
+
+            SaveCriteria(criteria);
+        }
+
+        protected void gvCriteria_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName != "RemoveCriterion") return;
+
+            List<GradeComponent> criteria = GetCriteria();
+            if (criteria == null) return;
+
+            int index;
+            if (int.TryParse(Convert.ToString(e.CommandArgument), out index)
+                && index >= 0 && index < criteria.Count)
+            {
+                criteria.RemoveAt(index);
+            }
+
+            SaveCriteria(criteria);
+        }
+
+        // ------------------------------------------------------------------
+        //  Create task
+        // ------------------------------------------------------------------
+
+        protected void btnCreateTask_Click(object sender, EventArgs e)
+        {
+            List<GradeComponent> criteria = GetCriteria();
+            if (criteria == null) return;
+
+            string title = txtTitle.Text.Trim();
+            if (title == "")
+            {
+                ShowError("Please enter a task title.");
+                return;
+            }
+
+            string placementId = ddlTrainee.SelectedValue;
+            Placement placement = FindMyPlacement(placementId);
+            if (placement == null)
+            {
+                ShowError("Please choose a trainee.");
+                return;
+            }
+
+            DateTime deadline;
+            if (!DateTime.TryParse(txtDeadline.Text, out deadline))
+            {
+                ShowError("Please choose a deadline.");
+                return;
+            }
+
+            if (deadline <= DateTime.Now)
+            {
+                ShowError("The deadline must be in the future.");
+                return;
+            }
+
+            int weight;
+            if (!int.TryParse(ddlWeight.SelectedValue, out weight) || weight < 1 || weight > 3)
+            {
+                weight = 1;
+            }
+
+            if (criteria.Count == 0)
+            {
+                ShowError("Add at least one criterion in step 2 so you can grade this task.");
+                return;
+            }
+
+            InternshipTask task = new InternshipTask();
+            task.PlacementId = placement.Id;
+            task.StudentId = placement.StudentId;
+            task.CompanyId = CurrentSupervisor.CompanyId;
+            task.CreatedBySupervisorId = CurrentSupervisor.Id;
+            task.Title = title;
+            task.Description = txtDescription.Text.Trim();
+            task.Instructions = txtInstructions.Text.Trim();
+            task.Deadline = Time.ToUnixMs(deadline);
+            task.Criteria = criteria;
+            task.MaxScore = TotalPoints(criteria);
+            task.Weight = weight;
+            task.Status = InternshipTaskStatus.Assigned;
+
+            string id;
+            try
+            {
+                id = new TaskRepository().Insert(task);
+            }
+            catch (Exception)
+            {
+                id = null;
+            }
+
+            if (string.IsNullOrEmpty(id))
+            {
+                ShowError("The task could not be saved. Please try again.");
+                return;
+            }
+
+            Session.Remove(CriteriaKey);
+            Session[CreatedKey] = "Task \"" + title + "\" was assigned to "
+                                  + placement.StudentName + " (out of "
+                                  + task.MaxScore.ToString("0") + " points).";
+            Response.Redirect(Request.Path, false);
+            Context.ApplicationInstance.CompleteRequest();
+        }
+
+        // ------------------------------------------------------------------
+        //  Helpers
+        // ------------------------------------------------------------------
+
+        private void LoadTrainees()
+        {
+            ddlTrainee.Items.Clear();
+            ddlTrainee.Items.Add(new ListItem("Select a trainee", ""));
+
+            foreach (Placement placement in MyPlacements())
+            {
+                if (placement.Status != PlacementStatus.Confirmed
+                    && placement.Status != PlacementStatus.Active)
+                {
+                    continue;
+                }
+
+                string text = placement.StudentName;
+                if (!string.IsNullOrEmpty(placement.OpportunityTitle))
+                {
+                    text = text + " - " + placement.OpportunityTitle;
+                }
+
+                ddlTrainee.Items.Add(new ListItem(text, placement.Id));
+            }
+        }
+
+        private void LoadTasks()
+        {
+            Dictionary<string, string> names = new Dictionary<string, string>();
+            foreach (Placement placement in MyPlacements())
+            {
+                if (!string.IsNullOrEmpty(placement.Id)) names[placement.Id] = placement.StudentName;
+            }
+
+            List<InternshipTask> tasks = new TaskRepository().GetByCompany(CurrentSupervisor.CompanyId);
+            tasks.Sort((a, b) => a.Deadline.CompareTo(b.Deadline));
+
+            List<object> rows = new List<object>();
+            foreach (InternshipTask task in tasks)
+            {
+                string trainee;
+                if (task.PlacementId == null || !names.TryGetValue(task.PlacementId, out trainee))
+                {
+                    trainee = "-";
+                }
+
+                rows.Add(new
+                {
+                    Title = task.Title,
+                    Trainee = trainee,
+                    Deadline = Time.Display(task.Deadline),
+                    Points = task.MaxScore > 0 ? task.MaxScore.ToString("0.##") : "-",
+                    Counts = WeightLabel(task.Weight),
+                    Status = task.IsOverdue ? "Overdue" : StatusLabel(task.Status)
+                });
+            }
+
+            gvTasks.DataSource = rows;
+            gvTasks.DataBind();
+        }
+
+        private List<Placement> MyPlacements()
+        {
+            return new PlacementRepository().GetByCompany(CurrentSupervisor.CompanyId);
+        }
+
+        /// <summary>Only accept a placement that belongs to this company.</summary>
+        private Placement FindMyPlacement(string placementId)
+        {
+            if (string.IsNullOrEmpty(placementId)) return null;
+
+            foreach (Placement placement in MyPlacements())
+            {
+                if (placement.Id == placementId) return placement;
+            }
+            return null;
+        }
+
+        private List<GradeComponent> GetCriteria()
+        {
+            List<GradeComponent> criteria = Session[CriteriaKey] as List<GradeComponent>;
+            if (criteria == null)
+            {
+                ShowError("Your session expired. Please reload the page and try again.");
+            }
+            return criteria;
+        }
+
+        /// <summary>Recalculates each criterion's share, stores the list and shows it.</summary>
+        private void SaveCriteria(List<GradeComponent> criteria)
+        {
+            double total = TotalPoints(criteria);
+            foreach (GradeComponent item in criteria)
+            {
+                item.Weight = total <= 0 ? 0 : item.MaxScore / total * 100.0;
+            }
+
+            Session[CriteriaKey] = criteria;
+            ShowCriteria(criteria);
+        }
+
+        private void ShowCriteria(List<GradeComponent> criteria)
+        {
             gvCriteria.DataSource = criteria;
             gvCriteria.DataBind();
 
-            // نفرغ حقول المعيار لإضافة معيار ثاني
-            txtCriterionName.Text = "";
-            txtCriterionDescription.Text = "";
-            txtCriterionMaxScore.Text = "";
-            txtCriterionWeight.Text = "";
+            double total = TotalPoints(criteria);
+            lblTotalPoints.Text = total.ToString("0") + (total == 1 ? " point" : " points");
+            pnlStarter.Visible = criteria.Count == 0;
+        }
 
-            lblMessage.CssClass = "text-success";
-            lblMessage.Text = "Criterion added successfully.";
+        private static double TotalPoints(List<GradeComponent> criteria)
+        {
+            double total = 0;
+            foreach (GradeComponent item in criteria) total += item.MaxScore;
+            return total;
+        }
+
+        private static GradeComponent NewCriterion(string name, int points, string description)
+        {
+            GradeComponent criterion = new GradeComponent();
+            criterion.Name = name;
+            criterion.MaxScore = points;
+            criterion.Description = description;
+            return criterion;
+        }
+
+        private static string WeightLabel(double weight)
+        {
+            if (weight >= 3) return "Major (x3)";
+            if (weight >= 2) return "Important (x2)";
+            return "Normal (x1)";
+        }
+
+        private static string StatusLabel(InternshipTaskStatus status)
+        {
+            switch (status)
+            {
+                case InternshipTaskStatus.Submitted: return "Submitted";
+                case InternshipTaskStatus.UnderReview: return "Under review";
+                case InternshipTaskStatus.RevisionRequested: return "Revision requested";
+                case InternshipTaskStatus.Resubmitted: return "Resubmitted";
+                case InternshipTaskStatus.Graded: return "Graded";
+                default: return "Assigned";
+            }
+        }
+
+        private void ShowError(string message)
+        {
+            lblMessage.CssClass = "alert alert-danger d-block mb-0";
+            lblMessage.Text = Server.HtmlEncode(message);
         }
     }
 }

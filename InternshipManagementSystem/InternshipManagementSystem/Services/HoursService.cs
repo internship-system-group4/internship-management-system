@@ -28,7 +28,9 @@ namespace InternshipManagementSystem.Services
             if (entry == null) return null;
             entry.Status = HoursStatus.Reported;
             entry.ReportedAt = Time.NowMs();
-            return new HoursRepository().Insert(entry);
+            string id = new HoursRepository().Insert(entry);
+            if (!string.IsNullOrEmpty(id)) NotificationService.HoursReported(entry);
+            return id;
         }
 
         /// <summary>Approve or reject one entry, then refresh the cached
@@ -48,6 +50,7 @@ namespace InternshipManagementSystem.Services
             });
 
             RecomputeTotals(entry.PlacementId, entry.StudentId);
+            NotificationService.HoursDecided(entry, approve);
         }
 
         /// <summary>Recalculates approved hours from the entries themselves.

@@ -78,3 +78,16 @@
 .offer-consent input { accent-color:var(--brand); }
 .confirmed-offer-label { margin:20px 0 0; color:#24613f; font-size:14px; font-weight:600; }
 @media(max-width:600px) { .confirmed-placement { align-items:flex-start; flex-direction:column; gap:16px; padding:20px; } }
+/* Candidate details on the company review card. */
+.review-application-details summary { cursor:pointer; color:var(--brand); font-weight:600; }
+.candidate-details { margin-top:16px; }
+.candidate-details .candidate-wide { grid-column:1 / -1; }
+.candidate-details dd { white-space:pre-wrap; overflow-wrap:anywhere; }
+.candidate-heading { font-size:13px; color:#586575; font-weight:400; margin:20px 0 0; }
+.application-row details p.candidate-letter { margin-top:6px; line-height:1.7; }
+.candidate-documents { display:flex; flex-wrap:wrap; align-items:center; gap:10px; margin-top:16px; }
+.candidate-documents .btn { font-size:13px; padding:9px 16px; }
+.candidate-secondary { border:1px solid var(--line); background:#fff; color:var(--ink); }
+/* Student read-only application view and link from My Applications. */
+.application-view-link { display:inline-block; margin-top:12px; font-size:14px; font-weight:600; color:var(--brand); }
+.application-letter-view { white-space:pre-wrap; overflow-wrap:anywhere; line-height:1.7; font-size:14px; margin:6px 0 0; }

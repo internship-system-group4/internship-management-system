@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -13,32 +14,42 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) BindPage();
-        }
-
-        protected void btnEdit_Click(object sender, EventArgs e)
-        {
-            LinkButton button = sender as LinkButton;
-            if (button == null) return;
+            if (IsPostBack) return;
+            string editId = Request.QueryString["edit"];
             try
             {
-                StudentGroup group = new GroupRepository().GetById(button.CommandArgument);
-                if (group == null) { ShowMessage("Group not found.", false); return; }
-                ViewState["EditingGroupId"] = group.Id;
-                BindChoices(group.Id);
-                txtName.Text = group.Name;
-                txtAcademicYear.Text = group.AcademicYear;
-                txtSemester.Text = group.Semester;
-                if (ddlSupervisor.Items.FindByValue(group.AcademicSupervisorId) != null)
-                    ddlSupervisor.SelectedValue = group.AcademicSupervisorId;
-                foreach (ListItem item in cblStudents.Items)
-                    item.Selected = group.StudentIds != null && group.StudentIds.Contains(item.Value);
-                lblEditorTitle.Text = "Edit group";
-                btnSave.Text = "Save changes";
-                btnCancel.Visible = true;
-                lblMessage.Visible = false;
+                if (string.IsNullOrEmpty(editId)) BindChoices(null);
+                else if (Regex.IsMatch(editId, @"^[A-Za-z0-9_-]+$")) LoadGroup(editId);
+                else
+                {
+                    BindChoices(null);
+                    ShowMessage("Invalid group link.", false);
+                }
             }
-            catch (FirebaseException) { ShowMessage("Could not load this group. Please try again.", false); }
+            catch (FirebaseException) { ShowMessage("Could not load groups and account records. Please try again.", false); }
+        }
+
+        private void LoadGroup(string id)
+        {
+            StudentGroup group = new GroupRepository().GetById(id);
+            if (group == null)
+            {
+                BindChoices(null);
+                ShowMessage("Group not found.", false);
+                return;
+            }
+            ViewState["EditingGroupId"] = group.Id;
+            BindChoices(group.Id);
+            txtName.Text = group.Name;
+            txtAcademicYear.Text = group.AcademicYear;
+            txtSemester.Text = group.Semester;
+            if (ddlSupervisor.Items.FindByValue(group.AcademicSupervisorId) != null)
+                ddlSupervisor.SelectedValue = group.AcademicSupervisorId;
+            foreach (ListItem item in cblStudents.Items)
+                item.Selected = group.StudentIds != null && group.StudentIds.Contains(item.Value);
+            lblEditorTitle.Text = "Edit group";
+            btnSave.Text = "Save changes";
+            btnCancel.Visible = true;
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -71,8 +82,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             try
             {
                 new GroupRepository().SaveAssignments(group, selected);
-                ResetEditor();
-                if (BindPage()) ShowMessage("Group and assignments saved.", true);
+                Response.Redirect(ResolveUrl("~/Pages/Coordinator/ConfiguredGroups.aspx?saved=1"), false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
             catch (FirebaseException) { ShowMessage("Could not save the group. Please try again.", false); }
@@ -80,34 +91,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            ResetEditor();
-            BindPage();
-        }
-
-        private bool BindPage()
-        {
-            try
-            {
-                BindChoices(null);
-                List<StudentGroup> groups = new GroupRepository().GetAll();
-                groups.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
-                rptGroups.DataSource = groups;
-                rptGroups.DataBind();
-                lblNoGroups.Visible = groups.Count == 0;
-                return true;
-            }
-            catch (FirebaseException)
-            {
-                ShowMessage("Could not load groups and account records. Please try again.", false);
-                return false;
-            }
+            Response.Redirect(ResolveUrl("~/Pages/Coordinator/ConfiguredGroups.aspx"), false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         private void BindChoices(string editingGroupId)
         {
             List<Person> people = new UserRepository().GetAllPeople();
-            Dictionary<string, string> groupNames = new GroupRepository().GetAll()
-                .ToDictionary(group => group.Id, group => group.Name);
+            List<StudentGroup> groups = new GroupRepository().GetAll();
             ddlSupervisor.Items.Clear();
             ddlSupervisor.Items.Add(new ListItem("Select a supervisor", ""));
             foreach (AcademicSupervisor supervisor in people.OfType<AcademicSupervisor>().OrderBy(p => p.FullName))
@@ -116,28 +107,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             cblStudents.Items.Clear();
             foreach (Student student in people.OfType<Student>().OrderBy(p => p.FullName))
             {
-                if (!student.IsActive && student.GroupId != editingGroupId) continue;
+                if (!GroupRepository.IsAvailableForGroup(student, groups, editingGroupId)) continue;
                 string label = student.FullName + " (" + student.StudentNumber + ")";
                 if (!student.IsActive) label += " — inactive";
-                if (!string.IsNullOrEmpty(student.GroupId) && student.GroupId != editingGroupId)
-                {
-                    string currentGroup;
-                    groupNames.TryGetValue(student.GroupId, out currentGroup);
-                    label += " — currently in " + (currentGroup ?? "another group");
-                }
                 cblStudents.Items.Add(new ListItem(label, student.Id));
             }
             lblNoAvailableStudents.Visible = cblStudents.Items.Count == 0;
-        }
-
-        private void ResetEditor()
-        {
-            ViewState["EditingGroupId"] = null;
-            txtName.Text = txtAcademicYear.Text = txtSemester.Text = "";
-            lblEditorTitle.Text = "Create group";
-            btnSave.Text = "Create group";
-            btnCancel.Visible = false;
-            lblMessage.Visible = false;
         }
 
         private void ShowMessage(string message, bool success)

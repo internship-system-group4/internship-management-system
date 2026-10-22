@@ -37,7 +37,17 @@ trainingHours/{id}
 completions/{id}
 contactMessages/{id}
 meetings/{id}                      optional
+notifications/{uid}/{id}           the top-bar bell; one list per person
 ```
+
+## notifications/{uid}/{id}
+
+`Id`, `RecipientId`, `Type` (Task, Group, Application, Placement, Hours,
+Evaluation, Comment, Meeting, Opportunity, Completion), `Title`, `Message`,
+`Link` (an app-relative `~/Pages/...` path), `IsRead` (bool), `CreatedAt`
+(long Unix ms). Never write these by hand: `Services/NotificationService` has
+one method per workflow event and the repositories already call it after a
+successful save. See `docs/23-notifications.md`.
 
 ## users/{uid}
 

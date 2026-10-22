@@ -12,7 +12,5 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected global::System.Web.UI.WebControls.Label lblNoAvailableStudents;
         protected global::System.Web.UI.WebControls.Button btnSave;
         protected global::System.Web.UI.WebControls.Button btnCancel;
-        protected global::System.Web.UI.WebControls.Repeater rptGroups;
-        protected global::System.Web.UI.WebControls.Label lblNoGroups;
     }
 }

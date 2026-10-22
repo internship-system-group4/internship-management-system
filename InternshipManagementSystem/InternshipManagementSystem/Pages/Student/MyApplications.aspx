@@ -15,7 +15,7 @@
             <article class="application-row" data-application-id="<%#: Eval("Id") %>">
                 <div class="application-row-top"><div><h3><%#: Eval("OpportunityTitle") %></h3><div><%#: Eval("CompanyName") %></div><p class="application-help">Submitted <%#: Time.Display((long)Eval("SubmittedAt")) %></p></div><span class="application-status status-<%#: Eval("Status").ToString().ToLowerInvariant() %>"><%#: Eval("Status") %></span></div>
                 <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Rejected %>'><p class="review-rejection-reason"><strong>Rejection reason:</strong> <%#: Eval("RejectionReason") %></p></asp:PlaceHolder>
-                <details><summary>View application</summary><p><%#: Eval("CoverLetter") %></p><asp:HyperLink runat="server" NavigateUrl='<%# SafeCvUrl(Eval("CvUrl")) %>' Visible='<%# !string.IsNullOrEmpty(SafeCvUrl(Eval("CvUrl"))) %>' Target="_blank" rel="noopener noreferrer" Text="Open CV" /></details>
+                <a class="application-view-link" href="Apply.aspx?opportunityId=<%#: Server.UrlEncode(Convert.ToString(Eval("OpportunityId"))) %>">View application &rarr;</a>
                 <asp:PlaceHolder runat="server" Visible='<%# CanConfirm(Container.DataItem) %>'>
                     <div class="offer-confirmation"><strong>Ready to join this company?</strong><p class="application-help">You can confirm only one internship. Choose carefully before continuing.</p>
                         <div class="offer-consent"><asp:CheckBox ID="ConfirmConsent" runat="server" Text=" I understand that I can confirm only one internship offer." /></div>

@@ -1,0 +1,49 @@
+.students-page { max-width: 1160px; margin: 0 auto; }
+.students-intro { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; margin-bottom: 1.4rem; }
+.students-eyebrow { display: block; color: var(--brand); font-size: .75rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; margin-bottom: .4rem; }
+.students-intro h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin: 0 0 .3rem; }
+.students-intro p, .students-card-heading p { color: var(--muted); margin: 0; }
+.students-tabs { display: flex; gap: .25rem; overflow-x: auto; border-bottom: 1px solid var(--line); margin-bottom: 1.5rem; }
+.students-tabs a, .students-tabs button { display: inline-block; white-space: nowrap; padding: .8rem 1rem; color: var(--muted); font-weight: 600; text-decoration: none; border: 0; border-bottom: 3px solid transparent; background: transparent; }
+.students-tabs a:hover, .students-tabs button:hover { color: var(--brand); }
+.students-tabs a.active, .students-tabs button.active { color: var(--brand); border-bottom-color: var(--brand); }
+.students-card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: 1.5rem; margin-bottom: 1.25rem; }
+.students-card-heading { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1.25rem; }
+.students-card-heading h3 { font-size: 1.15rem; font-weight: 700; margin: 0 0 .25rem; }
+.students-card-heading p { font-size: .92rem; }
+.students-step { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 10px; background: var(--brand-light); color: var(--brand); font-size: .78rem; font-weight: 800; margin-bottom: .75rem; }
+.students-search { display: flex; gap: .6rem; margin-bottom: 1.2rem; }
+.students-search .form-control { max-width: 480px; }
+.students-table { margin-bottom: 0; }
+.students-table th { color: var(--muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .04em; border-bottom-width: 1px; white-space: nowrap; }
+.students-table td { padding-top: .9rem; padding-bottom: .9rem; }
+.students-table td strong { display: block; font-weight: 600; }
+.students-table td small { display: block; color: var(--muted); overflow-wrap: anywhere; }
+.students-status { display: inline-block; border-radius: 99px; padding: .25rem .65rem; font-size: .76rem; font-weight: 700; }
+.students-status.is-active { color: #19633d; background: #e4f5eb; }
+.students-status.is-inactive { color: #835022; background: #fff2df; }
+.students-empty { display: block; padding: 1.5rem; text-align: center; color: var(--muted); }
+.students-detail { scroll-margin-top: 1.5rem; }
+.students-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; margin: 0; }
+.students-facts > div { border-top: 1px solid var(--line); padding: 1rem .5rem 1rem 0; min-width: 0; }
+.students-facts dt { color: var(--muted); font-size: .8rem; font-weight: 500; margin-bottom: .3rem; }
+.students-facts dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+.students-section-label { border-top: 1px solid var(--line); padding-top: 1.2rem; margin: 1rem 0; font-weight: 700; }
+.students-actions { display: flex; gap: .6rem; flex-wrap: wrap; margin: 1.5rem 0; }
+.students-access { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; border-top: 1px solid var(--line); margin-top: 1.5rem; padding-top: 1.5rem; }
+.students-access h4 { font-size: 1rem; font-weight: 700; margin: 0 0 .25rem; }
+.students-access p { color: var(--muted); margin: 0; font-size: .9rem; }
+.students-access .btn { white-space: nowrap; }
+.students-modal-content { border: 0; border-radius: 14px; box-shadow: 0 24px 65px rgba(13, 35, 58, .22); }
+.students-modal-content .modal-header, .students-modal-content .modal-body, .students-modal-content .modal-footer { padding: 1.25rem 1.5rem; }
+.students-modal-content .students-section-label { border: 0; margin-top: 0; padding-top: 0; }
+.supervisor-tab-panel[hidden] { display: none !important; }
+@media (max-width: 700px) {
+    .students-intro { align-items: flex-start; flex-direction: column; }
+    .students-card { padding: 1rem; }
+    .students-card-heading, .students-access { align-items: flex-start; flex-direction: column; }
+    .students-search { flex-wrap: wrap; }
+    .students-search .form-control { flex: 1 0 100%; max-width: none; }
+    .students-facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 440px) { .students-facts { grid-template-columns: 1fr; } }

@@ -27,6 +27,13 @@ namespace InternshipManagementSystem.Data
                 FirebaseContext.GetWhere(Constants.Paths.TaskEvaluations, "StudentId", studentId));
         }
 
+        /// <summary>Every task evaluation. Used only as a fallback when the
+        /// database has no .indexOn rule for a filtered query.</summary>
+        public List<TaskEvaluation> GetAllTaskEvaluations()
+        {
+            return Deserialise<TaskEvaluation>(FirebaseContext.Get(Constants.Paths.TaskEvaluations));
+        }
+
         public List<TaskEvaluation> GetTaskEvaluationsForPlacement(string placementId)
         {
             return Deserialise<TaskEvaluation>(
@@ -35,25 +42,75 @@ namespace InternshipManagementSystem.Data
 
         public string SaveTaskEvaluation(TaskEvaluation evaluation)
         {
-            return PushWithId(Constants.Paths.TaskEvaluations, evaluation);
+            string id = PushWithId(Constants.Paths.TaskEvaluations, evaluation);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskReviewed(evaluation);
+            return id;
         }
 
         // ---- final company evaluation: CONFIDENTIAL ----------------------
         public FinalCompanyEvaluation GetCompanyFinalForPlacement(string placementId)
         {
-            List<FinalCompanyEvaluation> found = Deserialise<FinalCompanyEvaluation>(
-                FirebaseContext.GetWhere(Constants.Paths.CompanyEvaluations, "PlacementId", placementId));
-            return found.Count > 0 ? found[0] : null;
+            if (string.IsNullOrEmpty(placementId)) return null;
+
+            List<FinalCompanyEvaluation> found;
+            try
+            {
+                found = Deserialise<FinalCompanyEvaluation>(
+                    FirebaseContext.GetWhere(Constants.Paths.CompanyEvaluations, "PlacementId", placementId));
+            }
+            catch (FirebaseException)
+            {
+                // No .indexOn rule for PlacementId yet: read all and filter here.
+                found = new List<FinalCompanyEvaluation>();
+                foreach (FinalCompanyEvaluation evaluation in GetAllCompanyFinals())
+                {
+                    if (evaluation.PlacementId == placementId) found.Add(evaluation);
+                }
+            }
+
+            // Prefer the submitted record if a draft was ever duplicated.
+            FinalCompanyEvaluation best = null;
+            foreach (FinalCompanyEvaluation evaluation in found)
+            {
+                if (best == null || (evaluation.IsSubmitted && !best.IsSubmitted)) best = evaluation;
+            }
+            return best;
+        }
+
+        /// <summary>Every company final written for one company. The company
+        /// supervisor's Reports page uses this; never call it from a student page.</summary>
+        public List<FinalCompanyEvaluation> GetCompanyFinalsForCompany(string companyId)
+        {
+            List<FinalCompanyEvaluation> result = new List<FinalCompanyEvaluation>();
+            if (string.IsNullOrEmpty(companyId)) return result;
+
+            foreach (FinalCompanyEvaluation evaluation in GetAllCompanyFinals())
+            {
+                if (evaluation.CompanyId == companyId) result.Add(evaluation);
+            }
+            return result;
+        }
+
+        private List<FinalCompanyEvaluation> GetAllCompanyFinals()
+        {
+            return Deserialise<FinalCompanyEvaluation>(FirebaseContext.Get(Constants.Paths.CompanyEvaluations));
         }
 
         public string SaveCompanyFinal(FinalCompanyEvaluation evaluation)
         {
+            string id;
             if (!string.IsNullOrEmpty(evaluation.Id))
             {
                 FirebaseContext.Put(Constants.Paths.CompanyEvaluations + "/" + evaluation.Id, evaluation);
-                return evaluation.Id;
+                id = evaluation.Id;
             }
-            return PushWithId(Constants.Paths.CompanyEvaluations, evaluation);
+            else
+            {
+                id = PushWithId(Constants.Paths.CompanyEvaluations, evaluation);
+            }
+            // Drafts send nothing; only a submitted form notifies.
+            Services.NotificationService.CompanyFinalSubmitted(evaluation);
+            return id;
         }
 
         // ---- final academic evaluation: CONFIDENTIAL --------------------
@@ -66,12 +123,19 @@ namespace InternshipManagementSystem.Data
 
         public string SaveAcademicFinal(FinalAcademicEvaluation evaluation)
         {
+            string id;
             if (!string.IsNullOrEmpty(evaluation.Id))
             {
                 FirebaseContext.Put(Constants.Paths.AcademicEvaluations + "/" + evaluation.Id, evaluation);
-                return evaluation.Id;
+                id = evaluation.Id;
             }
-            return PushWithId(Constants.Paths.AcademicEvaluations, evaluation);
+            else
+            {
+                id = PushWithId(Constants.Paths.AcademicEvaluations, evaluation);
+            }
+            // Drafts send nothing; only a submitted form notifies.
+            Services.NotificationService.AcademicFinalSubmitted(evaluation);
+            return id;
         }
 
         // ----------------------------------------------------------------
