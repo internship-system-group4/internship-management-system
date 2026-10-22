@@ -346,8 +346,8 @@
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Companies.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.designer.cs">
       <DependentUpon>Companies.aspx</DependentUpon>
@@ -549,13 +549,10 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
-
-
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
     <Content Include="Pages\Company\ViewOpportunity.aspx" />
     <Content Include="Pages\Student\DisplayEditProfile.aspx" />
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
-
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\css\students.css" />

@@ -105,6 +105,24 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.Literal litStatusBadge;
 
         /// <summary>
+        /// litCompanySupervisorName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litCompanySupervisorName;
+
+        /// <summary>
+        /// txtActualHours control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtActualHours;
+
+        /// <summary>
         /// txtTechSkills control.
         /// </summary>
         /// <remarks>
@@ -123,15 +141,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.TextBox txtWorkQuality;
 
         /// <summary>
-        /// txtCommunication control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCommunication;
-
-        /// <summary>
         /// txtProfessionalism control.
         /// </summary>
         /// <remarks>
@@ -141,6 +150,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.TextBox txtProfessionalism;
 
         /// <summary>
+        /// txtCommunication control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtCommunication;
+
+        /// <summary>
         /// ddlPerformance control.
         /// </summary>
         /// <remarks>
@@ -148,6 +166,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlPerformance;
+
+        /// <summary>
+        /// ddlRecommendation control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlRecommendation;
 
         /// <summary>
         /// txtStrengths control.
