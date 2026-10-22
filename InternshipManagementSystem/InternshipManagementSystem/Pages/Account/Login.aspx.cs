@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  Login
 //  Owner : Ahmad
 //  Cards : A01, A02
@@ -26,6 +26,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
 {
     public partial class Login : System.Web.UI.Page
     {
+ osamabanihani
         // Set for this verified POST response only. Never persisted in ViewState.
         protected string VerifiedDestination { get; private set; }
         protected override void OnInit(EventArgs e)
@@ -33,6 +34,12 @@ namespace InternshipManagementSystem.Pages.AccountArea
             ViewStateUserKey = Session.SessionID;
             base.OnInit(e);
         }
+
+        // No ViewStateUserKey here on purpose: the visitor has no session yet,
+        // so the session id can change between showing this form and posting
+        // it, which made the login button fail with "Validation of viewstate
+        // MAC failed".
+ main
         protected void Page_Load(object sender, EventArgs e)
         {
             Response.Cache.SetCacheability(System.Web.HttpCacheability.NoCache);

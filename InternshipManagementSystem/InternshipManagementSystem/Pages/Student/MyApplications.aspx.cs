@@ -52,11 +52,6 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             return IsConfirmed(item) && !((InternshipApplication)item).IsConfirmedByStudent;
         }
-        protected string SafeCvUrl(object value)
-        {
-            string url = Convert.ToString(value);
-            return ApplicationRepository.IsSafeDocumentUrl(url) ? url : "";
-        }
         protected void Application_Command(object source, RepeaterCommandEventArgs e)
         {
             if (e.CommandName != "Confirm" && e.CommandName != "Sync") return;

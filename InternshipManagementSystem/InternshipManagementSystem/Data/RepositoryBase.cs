@@ -3,7 +3,9 @@
 //  Generic CRUD so nobody writes raw Firebase paths in a page.
 // =============================================================================
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace InternshipManagementSystem.Data
 {
@@ -27,7 +29,7 @@ namespace InternshipManagementSystem.Data
         public virtual T GetById(string id)
         {
             if (string.IsNullOrEmpty(id)) return null;
-            T entity = Json.Deserialize<T>(FirebaseContext.Get(Collection + "/" + id));
+            T entity = Json.ConvertTo<T>(Json.Deserialize<object>(FirebaseContext.Get(Collection + "/" + id)));
             if (entity != null) SetId(entity, id);
             return entity;
         }
@@ -89,14 +91,28 @@ namespace InternshipManagementSystem.Data
             List<T> results = new List<T>();
             if (string.IsNullOrWhiteSpace(json) || json == "null") return results;
 
-            Dictionary<string, T> map = Json.Deserialize<Dictionary<string, T>>(json);
+            // Read the raw records first, then convert each one on its own, so a
+            // single bad record (for example a status value typed by hand in the
+            // Firebase console) is skipped instead of crashing the whole page.
+            Dictionary<string, object> map = Json.Deserialize<Dictionary<string, object>>(json);
             if (map == null) return results;
 
-            foreach (KeyValuePair<string, T> pair in map)
+            foreach (KeyValuePair<string, object> pair in map)
             {
                 if (pair.Value == null) continue;
-                SetId(pair.Value, pair.Key);
-                results.Add(pair.Value);
+                T entity;
+                try
+                {
+                    entity = Json.ConvertTo<T>(pair.Value);
+                }
+                catch (Exception ex)
+                {
+                    Trace.TraceWarning("Skipped unreadable record {0}/{1}: {2}", Collection, pair.Key, ex.Message);
+                    continue;
+                }
+                if (entity == null) continue;
+                SetId(entity, pair.Key);
+                results.Add(entity);
             }
             return results;
         }

@@ -274,8 +274,32 @@
     margin-top: 20px;
 }
 
+.mo-view-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 24px;
+    margin-top: 16px;
+}
+
+.mo-view-grid p,
+.mo-view-block p {
+    margin: 4px 0 0;
+    font-size: 14px;
+    color: #173451;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+}
+
+.mo-view-block {
+    margin-top: 20px;
+}
+
 @media (max-width: 750px) {
     .mo-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .mo-view-grid {
         grid-template-columns: 1fr;
     }
 
@@ -302,7 +326,7 @@
         </div>
     <% } %>
 
-    <% if (Editing == null) { %>
+    <% if (Editing == null && Viewing == null) { %>
 
         <!-- Manage List -->
 
@@ -410,12 +434,21 @@
                             </td>
 
                             <td>
-                                <div class="mo-actions">
+                                
+                    <div class="mo-actions">
 
-                                    <a class="mo-btn mo-btn-light mo-small"
-                                       href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(item.Id) %>">
-                                        Edit
-                                    </a>
+                             <!-- View Opportunity -->
+                                   <a class="mo-btn mo-btn-light mo-small"
+                                       href="ViewOpportunity.aspx?id=<%: Server.UrlEncode(item.Id) %>">
+                                              View
+                                               </a>
+
+                                        <!-- Edit Opportunity -->
+                                               <a class="mo-btn mo-btn-light mo-small"
+                                               href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(item.Id) %>">
+                                                     Edit
+                                            </a>
+
 
                                     <% if (item.Status != OpportunityStatus.Closed) { %>
 
@@ -494,6 +527,112 @@
 
         <input type="hidden" name="moId"
             id="moCloseId" value="" />
+
+    <% } else if (Viewing != null) { %>
+
+        <!-- View Opportunity (read only) -->
+
+        <a href="ManageOpportunities.aspx" class="mo-muted">
+            &larr; Back to opportunities
+        </a>
+
+        <div class="mo-heading" style="margin-top:15px;">
+            <div>
+                <h2><%: Viewing.Title %></h2>
+                <p class="mo-muted"><%: Viewing.Id %></p>
+            </div>
+
+            <div class="mo-actions">
+                <span class='mo-badge <%=
+                    Viewing.Status == OpportunityStatus.Closed
+                    ? "closed"
+                    : Viewing.Status == OpportunityStatus.Draft
+                    ? "draft"
+                    : ""
+                %>'>
+                    <%: StatusText(Viewing) %>
+                </span>
+
+                <a class="mo-btn"
+                   href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(Viewing.Id) %>">
+                    Edit
+                </a>
+            </div>
+        </div>
+
+        <div class="mo-card">
+
+            <h3>Opportunity information</h3>
+
+            <div class="mo-view-grid">
+                <div>
+                    <span class="mo-muted">Department</span>
+                    <p><%: TextOrDash(Viewing.Department) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Training mode</span>
+                    <p><%: TextOrDash(Viewing.TrainingMode) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Location</span>
+                    <p><%: TextOrDash(Viewing.Location) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Eligible college</span>
+                    <p><%: TextOrDash(Viewing.EligibleCollege) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Eligible specializations</span>
+                    <p><%: Viewing.EligibleMajors == null || Viewing.EligibleMajors.Count == 0
+                            ? "-"
+                            : string.Join(", ", Viewing.EligibleMajors) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Technologies used</span>
+                    <p><%: TextOrDash(Viewing.TechnologiesUsed) %></p>
+                </div>
+            </div>
+
+            <div class="mo-view-block">
+                <span class="mo-muted">Description</span>
+                <p><%: TextOrDash(Viewing.Description) %></p>
+            </div>
+
+            <div class="mo-view-block">
+                <span class="mo-muted">Requirements</span>
+                <p><%: TextOrDash(Viewing.Requirements) %></p>
+            </div>
+
+        </div>
+
+        <div class="mo-card">
+
+            <h3>Seats and dates</h3>
+
+            <div class="mo-view-grid">
+                <div>
+                    <span class="mo-muted">Seats (filled / total)</span>
+                    <p><%: Viewing.FilledSeats %> / <%: Viewing.TotalSeats %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Duration</span>
+                    <p><%: Viewing.DurationWeeks %> weeks</p>
+                </div>
+                <div>
+                    <span class="mo-muted">Application deadline</span>
+                    <p><%: TextOrDash(DateText(Viewing.ApplicationDeadline)) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">Start date</span>
+                    <p><%: TextOrDash(DateText(Viewing.StartDate)) %></p>
+                </div>
+                <div>
+                    <span class="mo-muted">End date</span>
+                    <p><%: TextOrDash(DateText(Viewing.EndDate)) %></p>
+                </div>
+            </div>
+
+        </div>
 
     <% } else { %>
 

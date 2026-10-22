@@ -43,32 +43,20 @@ namespace InternshipManagementSystem.Data
                 .FirstOrDefault(p => p.Id == requested.AcademicSupervisorId && p.IsActive);
             if (supervisor == null) throw new InvalidOperationException("Select an active academic supervisor.");
 
+            List<StudentGroup> existingGroups = GetAll();
             bool creating = string.IsNullOrEmpty(requested.Id);
-            StudentGroup previous = creating ? null : GetById(requested.Id);
+            StudentGroup previous = creating ? null : existingGroups.FirstOrDefault(group => group.Id == requested.Id);
             if (!creating && previous == null) throw new InvalidOperationException("Group no longer exists. Reload the page.");
             string id = creating ? Guid.NewGuid().ToString("N") : previous.Id;
             List<string> chosen = (selectedIds ?? new List<string>()).Distinct().ToList();
             HashSet<string> chosenSet = new HashSet<string>(chosen);
             Dictionary<string, Student> students = people.OfType<Student>().ToDictionary(p => p.Id);
-            Dictionary<string, StudentGroup> sourceGroups = new Dictionary<string, StudentGroup>();
             foreach (string studentId in chosen)
             {
                 Student student;
                 if (!SafeKey(studentId) || !students.TryGetValue(studentId, out student)
-                    || (!student.IsActive && student.GroupId != id))
+                    || !IsAvailableForGroup(student, existingGroups, id))
                     throw new InvalidOperationException("A selected student is no longer available. Reload the page.");
-                if (!string.IsNullOrEmpty(student.GroupId) && student.GroupId != id)
-                {
-                    if (!SafeKey(student.GroupId))
-                        throw new InvalidOperationException("A student's current group is invalid. Reload the page.");
-                    if (!sourceGroups.ContainsKey(student.GroupId))
-                    {
-                        StudentGroup source = GetById(student.GroupId);
-                        if (source == null)
-                            throw new InvalidOperationException("A student's current group no longer exists. Reload the page.");
-                        sourceGroups.Add(student.GroupId, source);
-                    }
-                }
             }
 
             Dictionary<string, object> updates = new Dictionary<string, object>();
@@ -82,17 +70,19 @@ namespace InternshipManagementSystem.Data
             updates[groupPath + "StudentIds"] = chosen;
             if (creating) updates[groupPath + "CreatedAt"] = requested.CreatedAt;
 
-            // A transfer removes the student from the previous group's list in
-            // the same request as the new assignment.
-            foreach (StudentGroup source in sourceGroups.Values)
-                updates[Constants.Paths.Groups + "/" + source.Id + "/StudentIds"] =
-                    (source.StudentIds ?? new List<string>()).Where(studentId => !chosenSet.Contains(studentId)).ToList();
+            // Remember who changed, so each person gets the right notification.
+            List<string> addedIds = new List<string>();
+            List<string> removedIds = new List<string>();
+            List<string> keptIds = new List<string>();
 
             PlacementRepository placements = new PlacementRepository();
             foreach (Student student in students.Values)
             {
                 bool selected = chosenSet.Contains(student.Id);
                 if (!selected && student.GroupId != id) continue;
+                if (selected && student.GroupId == id) keptIds.Add(student.Id);
+                else if (selected) addedIds.Add(student.Id);
+                else removedIds.Add(student.Id);
                 string studentPath = Constants.Paths.Users + "/" + student.Id + "/";
                 updates[studentPath + "GroupId"] = selected ? id : null;
                 updates[studentPath + "AcademicSupervisorId"] = selected ? supervisor.Id : null;
@@ -122,6 +112,69 @@ namespace InternshipManagementSystem.Data
 
             FirebaseContext.Patch("", updates);
             requested.Id = id;
+
+            Services.NotificationService.GroupSaved(requested.Name, supervisor,
+                previous == null ? null : previous.AcademicSupervisorId, addedIds, removedIds, keptIds);
+        }
+
+        /// <summary>Delete a group in one Firebase update. Its students become
+        /// unassigned again and the supervisor no longer lists the group.</summary>
+        public void DeleteGroup(string groupId)
+        {
+            if (!SafeKey(groupId)) throw new InvalidOperationException("Select a valid group.");
+            StudentGroup group = GetById(groupId);
+            if (group == null) throw new InvalidOperationException("Group no longer exists. Reload the page.");
+
+            List<Person> people = new UserRepository().GetAllPeople();
+            PlacementRepository placements = new PlacementRepository();
+            Dictionary<string, object> updates = new Dictionary<string, object>();
+            List<string> memberIds = new List<string>();
+
+            foreach (Student student in people.OfType<Student>())
+            {
+                bool inGroup = student.GroupId == groupId
+                    || (group.StudentIds != null && group.StudentIds.Contains(student.Id));
+                if (!inGroup) continue;
+                memberIds.Add(student.Id);
+                string studentPath = Constants.Paths.Users + "/" + student.Id + "/";
+                updates[studentPath + "GroupId"] = null;
+                updates[studentPath + "AcademicSupervisorId"] = null;
+                if (placements.GetById(student.Id) != null)
+                    updates[Constants.Paths.Placements + "/" + student.Id + "/AcademicSupervisorId"] = null;
+            }
+
+            AcademicSupervisor supervisor = people.OfType<AcademicSupervisor>()
+                .FirstOrDefault(p => p.Id == group.AcademicSupervisorId);
+            if (supervisor != null)
+            {
+                List<string> groupIds = new List<string>(supervisor.GroupIds ?? new List<string>());
+                groupIds.RemoveAll(id => id == groupId);
+                updates[Constants.Paths.Users + "/" + supervisor.Id + "/GroupIds"] = groupIds;
+            }
+
+            updates[Constants.Paths.Groups + "/" + groupId] = null;
+            FirebaseContext.Patch("", updates);
+
+            Services.NotificationService.GroupDeleted(group.Name, supervisor == null ? null : supervisor.Id, memberIds);
+        }
+
+        /// <summary>Unassigned students can join a group; its existing members
+        /// remain selectable while that group is being edited.</summary>
+        public static bool IsAvailableForGroup(Student student, IEnumerable<StudentGroup> groups, string groupId)
+        {
+            if (student == null) return false;
+            if (!string.IsNullOrEmpty(student.GroupId) && student.GroupId != groupId) return false;
+
+            bool belongsToThisGroup = false;
+            foreach (StudentGroup group in groups)
+            {
+                if (group.StudentIds == null || !group.StudentIds.Contains(student.Id)) continue;
+                if (group.Id != groupId) return false;
+                belongsToThisGroup = true;
+            }
+
+            return student.IsActive || (groupId != null &&
+                (student.GroupId == groupId || belongsToThisGroup));
         }
 
         private static bool SafeKey(string value)

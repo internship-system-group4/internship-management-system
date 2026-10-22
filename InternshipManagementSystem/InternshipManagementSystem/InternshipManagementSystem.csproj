@@ -90,6 +90,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\TaskEvaluationRepository.cs" />
     <Compile Include="Default.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Default.aspx</DependentUpon>
@@ -118,6 +119,7 @@
     <Compile Include="Data\HoursRepository.cs" />
     <Compile Include="Data\Json.cs" />
     <Compile Include="Data\MeetingRepository.cs" />
+    <Compile Include="Data\NotificationRepository.cs" />
     <Compile Include="Data\OpportunityRepository.cs" />
     <Compile Include="Data\PlacementRepository.cs" />
     <Compile Include="Data\RepositoryBase.cs" />
@@ -159,6 +161,13 @@
     <Compile Include="Layout\Student.master.designer.cs">
       <DependentUpon>Student.master</DependentUpon>
     </Compile>
+    <Compile Include="Layout\NotificationBell.ascx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>NotificationBell.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Layout\NotificationBell.ascx.designer.cs">
+      <DependentUpon>NotificationBell.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Models\AcademicComment.cs" />
     <Compile Include="Models\AcademicSupervisor.cs" />
     <Compile Include="Models\Company.cs" />
@@ -172,6 +181,7 @@
     <Compile Include="Models\InternshipApplication.cs" />
     <Compile Include="Models\InternshipTask.cs" />
     <Compile Include="Models\Meeting.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Opportunity.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonFactory.cs" />
@@ -182,15 +192,15 @@
     <Compile Include="Models\TaskEvaluation.cs" />
     <Compile Include="Models\TrainingHoursEntry.cs" />
     <Compile Include="Pages\Academic\Account.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Account.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
@@ -216,6 +226,13 @@
     <Compile Include="Pages\Account\ChangePassword.aspx.designer.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Account\CompletionReport.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>CompletionReport.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Account\CompletionReport.aspx.designer.cs">
+      <DependentUpon>CompletionReport.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Account\ForgotPassword.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ForgotPassword.aspx</DependentUpon>
@@ -230,12 +247,26 @@
     <Compile Include="Pages\Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Account\Notifications.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Notifications.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Account\Notifications.aspx.designer.cs">
+      <DependentUpon>Notifications.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Company\Account.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ApplicantDocument.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ApplicantDocument.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ApplicantDocument.aspx.designer.cs">
+      <DependentUpon>ApplicantDocument.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\Applications.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -258,23 +289,16 @@
     <Compile Include="Pages\Company\FinalEvaluation.aspx.designer.cs">
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
-      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.cs">
-      <DependentUpon>Opportunities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\TaskReview.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>TaskReview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Company\TaskReview.aspx.designer.cs">
       <DependentUpon>TaskReview.aspx</DependentUpon>
@@ -300,6 +324,13 @@
     <Compile Include="Pages\Company\Trainees.aspx.designer.cs">
       <DependentUpon>Trainees.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Company\ViewOpportunity.aspx.cs">
+      <DependentUpon>ViewOpportunity.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Company\ViewOpportunity.aspx.designer.cs">
+      <DependentUpon>ViewOpportunity.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Coordinator\AcademicSupervisors.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>AcademicSupervisors.aspx</DependentUpon>
@@ -315,8 +346,8 @@
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.cs">
-      <DependentUpon>Companies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Companies.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Companies.aspx.designer.cs">
       <DependentUpon>Companies.aspx</DependentUpon>
@@ -329,8 +360,8 @@
       <DependentUpon>CompletionReview.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ContactMessages.aspx.cs">
-      <DependentUpon>ContactMessages.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ContactMessages.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ContactMessages.aspx.designer.cs">
       <DependentUpon>ContactMessages.aspx</DependentUpon>
@@ -348,6 +379,13 @@
     </Compile>
     <Compile Include="Pages\Coordinator\Groups.aspx.designer.cs">
       <DependentUpon>Groups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\ConfiguredGroups.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ConfiguredGroups.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\ConfiguredGroups.aspx.designer.cs">
+      <DependentUpon>ConfiguredGroups.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\PlacementDetails.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -369,6 +407,20 @@
     </Compile>
     <Compile Include="Pages\Coordinator\Students.aspx.designer.cs">
       <DependentUpon>Students.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\AddStudent.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\AddStudent.aspx.designer.cs">
+      <DependentUpon>AddStudent.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\ManageStudents.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ManageStudents.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\ManageStudents.aspx.designer.cs">
+      <DependentUpon>ManageStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Meetings\MyMeetings.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -420,18 +472,11 @@
       <DependentUpon>Apply.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Dashboard.aspx.cs">
-      <DependentUpon>Dashboard.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Dashboard.aspx.designer.cs">
       <DependentUpon>Dashboard.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Student\DisplayEditProfile.aspx.cs">
-      <DependentUpon>DisplayEditProfile.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Student\DisplayEditProfile.aspx.designer.cs">
-      <DependentUpon>DisplayEditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\MyApplications.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -448,15 +493,15 @@
       <DependentUpon>MyTasks.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Opportunities.aspx.cs">
-      <DependentUpon>Opportunities.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\OpportunityDetails.aspx.cs">
-      <DependentUpon>OpportunityDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>OpportunityDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\OpportunityDetails.aspx.designer.cs">
       <DependentUpon>OpportunityDetails.aspx</DependentUpon>
@@ -474,13 +519,6 @@
     </Compile>
     <Compile Include="Pages\Student\Progress.aspx.designer.cs">
       <DependentUpon>Progress.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\Student\StudentCVPortfolio.aspx.cs">
-      <DependentUpon>StudentCVPortfolio.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Student\StudentCVPortfolio.aspx.designer.cs">
-      <DependentUpon>StudentCVPortfolio.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcademicPage.cs">
@@ -500,24 +538,34 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Services\AuthService.cs" />
+    <Compile Include="Services\CompletionService.cs" />
     <Compile Include="Services\GradingService.cs" />
     <Compile Include="Services\HoursService.cs" />
+    <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PdfReportService.cs" />
     <Compile Include="Services\StorageService.cs" />
+    <Compile Include="Services\StudentDocumentService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+
+
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
+    <Content Include="Pages\Company\ViewOpportunity.aspx" />
     <Content Include="Pages\Student\DisplayEditProfile.aspx" />
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
+
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
+    <Content Include="Assets\css\students.css" />
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
+    <Content Include="Assets\css\notifications.css" />
     <Content Include="Assets\css\public-layout.css" />
     <Content Include="Assets\css\public-navbar.css" />
+    <Content Include="Assets\css\completion-review.css" />
     <Content Include="Assets\css\coordinator-monitoring.css" />
     <Content Include="Assets\css\home.css" />
     <Content Include="Assets\images\home-campus.jpg" />
@@ -607,14 +655,18 @@
     <Content Include="Layout\Public.master" />
     <Content Include="Layout\Student.master" />
     <Content Include="Layout\Sidebar.ascx" />
+    <Content Include="Layout\NotificationBell.ascx" />
     <Content Include="Pages\Academic\Account.aspx" />
     <Content Include="Pages\Academic\Dashboard.aspx" />
     <Content Include="Pages\Academic\FinalEvaluation.aspx" />
     <Content Include="Pages\Academic\StudentProgress.aspx" />
     <Content Include="Pages\Account\ChangePassword.aspx" />
+    <Content Include="Pages\Account\CompletionReport.aspx" />
     <Content Include="Pages\Account\ForgotPassword.aspx" />
     <Content Include="Pages\Account\Login.aspx" />
+    <Content Include="Pages\Account\Notifications.aspx" />
     <Content Include="Pages\Company\Account.aspx" />
+    <Content Include="Pages\Company\ApplicantDocument.aspx" />
     <Content Include="Pages\Company\Applications.aspx" />
     <Content Include="Pages\Company\Dashboard.aspx" />
     <Content Include="Pages\Company\FinalEvaluation.aspx" />
@@ -630,9 +682,12 @@
     <Content Include="Pages\Coordinator\ContactMessages.aspx" />
     <Content Include="Pages\Coordinator\Dashboard.aspx" />
     <Content Include="Pages\Coordinator\Groups.aspx" />
+    <Content Include="Pages\Coordinator\ConfiguredGroups.aspx" />
     <Content Include="Pages\Coordinator\PlacementDetails.aspx" />
     <Content Include="Pages\Coordinator\Placements.aspx" />
     <Content Include="Pages\Coordinator\Students.aspx" />
+    <Content Include="Pages\Coordinator\AddStudent.aspx" />
+    <Content Include="Pages\Coordinator\ManageStudents.aspx" />
     <Content Include="Pages\Meetings\MyMeetings.aspx" />
     <Content Include="Pages\Meetings\Schedule.aspx" />
     <Content Include="Pages\Public\About.aspx" />
@@ -648,7 +703,7 @@
     <Content Include="Pages\Student\Progress.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_Secrets.config" />
+    <None Include="App_Secrets.config.example" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

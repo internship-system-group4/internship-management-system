@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  University Internship Management System (UIMS)  -  Group 4
 //  A university-side supervisor account.
 //  Owner: Ahmad  (Trello card X02 - Shared Firebase Data Structure)
@@ -32,5 +32,17 @@ namespace InternshipManagementSystem.Models
         {
             get { return "Academic Supervisor"; }
         }
+        public int Age { get; set; }
+        // PhoneNumber comes from Person.
+        public string SupervisorNumber { get; set; }
+        public string University { get; set; }
+        public string College { get; set; }
+        public string Major { get; set; }
+        public int EnrollmentYear { get; set; }
+        public string TechnicalSkills { get; set; }
+        public string SoftSkills { get; set; }
+        public string CvUrl { get; set; }
+        public string PortfolioUrl { get; set; }
+        public string LinkedInUrl { get; set; }
     }
 }

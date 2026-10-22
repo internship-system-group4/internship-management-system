@@ -7,10 +7,6 @@ using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
-using System.Collections.Generic;
-using InternshipManagementSystem.Common;
-using InternshipManagementSystem.Models;
-
 namespace InternshipManagementSystem.Data
 {
     public class SubmissionRepository : RepositoryBase<Submission>
@@ -28,6 +24,14 @@ namespace InternshipManagementSystem.Data
         public List<Submission> GetByTask(string taskId)
         {
             return GetWhere("TaskId", taskId);
+        }
+
+        /// <summary>Saves a new attempt and tells the company supervisor.</summary>
+        public override string Insert(Submission entity)
+        {
+            string id = base.Insert(entity);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskSubmitted(entity);
+            return id;
         }
     }
 }

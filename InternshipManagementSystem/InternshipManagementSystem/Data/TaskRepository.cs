@@ -36,6 +36,14 @@ namespace InternshipManagementSystem.Data
         {
             return GetWhere("CompanyId", companyId);
         }
+
+        /// <summary>Saves a new task and tells the student about it.</summary>
+        public override string Insert(InternshipTask entity)
+        {
+            string id = base.Insert(entity);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskAssigned(entity);
+            return id;
+        }
     }
 }
 

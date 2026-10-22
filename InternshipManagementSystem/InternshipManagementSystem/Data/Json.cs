@@ -3,7 +3,11 @@
 //  JSON in and out of Firebase. Zero NuGet packages on purpose - see docs/04-git-workflow.md.
 // =============================================================================
 
+using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Reflection;
 using System.Web.Script.Serialization;
 
 namespace InternshipManagementSystem.Data
@@ -45,6 +49,45 @@ namespace InternshipManagementSystem.Data
         {
             if (string.IsNullOrWhiteSpace(json) || json == "null") return default(T);
             return Create().Deserialize<T>(json);
+        }
+
+        /// <summary>Converts an already-parsed JSON value (a dictionary from
+        /// Deserialize) into a typed object.</summary>
+        public static T ConvertTo<T>(object value)
+        {
+            if (value == null) return default(T);
+            IDictionary<string, object> map = value as IDictionary<string, object>;
+            if (map != null) DropUnknownEnumValues(map, typeof(T));
+            return Create().ConvertToType<T>(value);
+        }
+
+        /// <summary>A status typed by hand in the Firebase console (for example
+        /// "Evaluated") is not a valid enum name and would make the whole read
+        /// fail. Such fields are removed so they fall back to the default value,
+        /// and a warning is logged so the bad data can be fixed.</summary>
+        private static void DropUnknownEnumValues(IDictionary<string, object> map, Type type)
+        {
+            foreach (PropertyInfo property in type.GetProperties(BindingFlags.Public | BindingFlags.Instance))
+            {
+                Type enumType = Nullable.GetUnderlyingType(property.PropertyType) ?? property.PropertyType;
+                if (!enumType.IsEnum) continue;
+
+                string key = map.Keys.FirstOrDefault(k => string.Equals(k, property.Name, StringComparison.OrdinalIgnoreCase));
+                if (key == null) continue;
+
+                string text = map[key] as string;
+                if (text == null || IsValidEnumText(enumType, text)) continue;
+
+                Trace.TraceWarning("Ignored unknown {0} value '{1}' on {2}.{3}", enumType.Name, text, type.Name, property.Name);
+                map.Remove(key);
+            }
+        }
+
+        private static bool IsValidEnumText(Type enumType, string text)
+        {
+            long number;
+            if (long.TryParse(text, out number)) return true;
+            return Enum.GetNames(enumType).Any(n => string.Equals(n, text.Trim(), StringComparison.OrdinalIgnoreCase));
         }
 
         /// <summary>For reading a node whose shape is not known in advance.</summary>

@@ -15,13 +15,13 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
     {
 
         /// <summary>
-        /// lblTitle control.
+        /// ddlPlacement control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTitle;
+        protected global::System.Web.UI.WebControls.DropDownList ddlPlacement;
 
         /// <summary>
         /// txtTitle control.
@@ -33,15 +33,6 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         protected global::System.Web.UI.WebControls.TextBox txtTitle;
 
         /// <summary>
-        /// lblAgenda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAgenda;
-
-        /// <summary>
         /// txtAgenda control.
         /// </summary>
         /// <remarks>
@@ -49,15 +40,6 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtAgenda;
-
-        /// <summary>
-        /// lblScheduledAt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblScheduledAt;
 
         /// <summary>
         /// txtScheduledAt control.
@@ -69,15 +51,6 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         protected global::System.Web.UI.WebControls.TextBox txtScheduledAt;
 
         /// <summary>
-        /// lblDuration control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDuration;
-
-        /// <summary>
         /// ddlDuration control.
         /// </summary>
         /// <remarks>
@@ -85,15 +58,6 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlDuration;
-
-        /// <summary>
-        /// lblParticipants control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblParticipants;
 
         /// <summary>
         /// cblParticipants control.
@@ -105,15 +69,6 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         protected global::System.Web.UI.WebControls.CheckBoxList cblParticipants;
 
         /// <summary>
-        /// lblJoinUrl control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblJoinUrl;
-
-        /// <summary>
         /// txtJoinUrl control.
         /// </summary>
         /// <remarks>
@@ -123,6 +78,15 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         protected global::System.Web.UI.WebControls.TextBox txtJoinUrl;
 
         /// <summary>
+        /// hfTimezoneOffset control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfTimezoneOffset;
+
+        /// <summary>
         /// btnSchedule control.
         /// </summary>
         /// <remarks>
@@ -130,5 +94,86 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSchedule;
+
+        /// <summary>
+        /// lblMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        /// <summary>
+        /// rptMeetings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Repeater rptMeetings;
+
+        /// <summary>
+        /// lblNoMeetings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblNoMeetings;
+
+        /// <summary>
+        /// pnlMeetingDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMeetingDetails;
+
+        /// <summary>
+        /// lblDetailTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetailTitle;
+
+        /// <summary>
+        /// lblDetailAgenda control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetailAgenda;
+
+        /// <summary>
+        /// lblDetailDate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetailDate;
+
+        /// <summary>
+        /// lblDetailDuration control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetailDuration;
+
+        /// <summary>
+        /// lnkJoin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink lnkJoin;
     }
 }
