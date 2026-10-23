@@ -71,8 +71,17 @@
             });
         });
         root.querySelector('[data-notice-mark]').addEventListener('click', function () { request('all'); });
-        root.addEventListener('toggle', function () { if (root.open) request(); });
-        root.addEventListener('keydown', function (event) { if (event.key === 'Escape' && root.open) { root.open = false; root.querySelector('summary').focus(); } });
+        root.addEventListener('toggle', function () {
+            var summary = root.querySelector('summary');
+            if (summary) summary.setAttribute('aria-expanded', String(root.open));
+            if (root.open) request();
+        });
+        root.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && root.open) {
+                event.preventDefault(); event.stopPropagation();
+                root.open = false; root.querySelector('summary').setAttribute('aria-expanded', 'false'); root.querySelector('summary').focus();
+            }
+        });
         document.addEventListener('click', function (event) { if (root.open && !root.contains(event.target)) root.open = false; });
         async function refresh() { if (busy || document.hidden) return; busy = true; await request(); busy = false; }
         refresh(); setInterval(refresh, 30000);

@@ -1,4 +1,12 @@
-# UIMS shared sidebar — current update, 23 October 2026
+# UIMS shared sidebar — live notifications, 24 October 2026
+
+The integrated live `ActivityBell` is anchored above the shared sidebar utility row in all four portals. The panel uses the sidebar's available viewport height, scrolls its activity list, follows RTL and the selected theme, and remains above desktop content. Mobile drawer focus includes the native summary control: Escape closes notifications first and restores bell focus; a second Escape closes the drawer. Closing or resizing the drawer also dismisses the notification panel. The summary exposes its panel ID and expanded state. Each master versions the shared layout and notification scripts to invalidate old cached assets.
+
+`tests/SidebarNotificationsSmoke.cjs` passed **500 checks** across four authenticated fixture roles, English/Arabic, Light/Dark, 1440/390/320px widths and a 1000×420 short desktop. Coverage includes one sidebar bell, unread badges/filtering, CSRF on mark-all-read, inbox navigation, compact keyboard access, panel bounds/scrolling, Escape/focus behavior, zero unintended form posts and zero browser errors. Arabic/dark mobile captures were inspected under ignored `tests/artifacts/sidebar-notifications/`. Browser activity responses are synthetic; notification service checks run separately. The grade/export fixture now includes the app's language lifecycle and a headed login page for those checks.
+
+Run `tests/Run-GradesExportSmoke.ps1 -Serve`, then `node tests/SidebarNotificationsSmoke.cjs` with Playwright available through `NODE_PATH` and Chrome installed. The fixture uses only localhost ports 19081/19082. No runtime npm dependency was added to the portal.
+
+# UIMS shared sidebar — 23 October 2026
 
 The single shared `Layout/Sidebar.ascx` now owns the former portal-header content for all four roles: localized portal/page context, one language toggle, one theme toggle, the existing notification control, and the existing trusted account/avatar link. The duplicate header account literals and initials helpers were removed from the four masters and their designers. Their logout controls and postback handlers remain intact. Desktop content no longer reserves the former top-bar space; mobile retains only the drawer opener above the page.
 

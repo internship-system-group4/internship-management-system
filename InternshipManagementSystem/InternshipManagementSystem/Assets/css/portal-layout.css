@@ -181,3 +181,21 @@ body.uims-portal .student-logout svg {width:21px;height:21px;}
  body.uims-portal .student-logout a {min-height:40px;padding-block:8px;}
 }
 @media(prefers-reduced-motion:reduce) {body.uims-portal :is(.uims-side-link,.uims-sidebar-account) {transition:none;}}
+
+/* The live activity bell opens above its sidebar utility row, inside the drawer. */
+@media(min-width:901px) {body.uims-portal .uims-sidebar {z-index:20;}}
+body.uims-portal .uims-sidebar-tools .notice-bell {position:static;color:var(--ui-ink);}
+body.uims-portal .uims-sidebar-tools .notice-bell summary {width:44px;height:44px;border:1px solid transparent;border-radius:var(--ui-radius);background:transparent;color:var(--ui-ink);}
+body.uims-portal .uims-sidebar-tools .notice-bell summary:hover,
+body.uims-portal .uims-sidebar-tools .notice-bell[open] summary {background:var(--ui-surface);border-color:var(--ui-control-border);}
+body.uims-portal .uims-sidebar-tools .notice-bell .notice-panel {position:absolute;inset:auto;inset-inline-start:0;inset-block-end:calc(100% + 8px);width:min(360px,calc(100vw - 40px));max-height:var(--sidebar-notify-height,360px);margin:0;z-index:1110;background:var(--ui-surface);color:var(--ui-ink);border-color:var(--ui-border);text-align:start;box-shadow:0 12px 36px rgb(10 30 43 / 18%);}
+body.uims-portal .uims-sidebar-tools .notice-bell[open] .notice-panel {display:flex;flex-direction:column;}
+body.uims-portal .uims-sidebar-tools .notice-bell:not([open]) .notice-panel {display:none;}
+.uims-sidebar-tools .notice-panel :is(.notice-header,.notice-filters,.notice-footer) {flex:none;}
+.uims-sidebar-tools .notice-panel .notice-header {gap:8px;flex-wrap:wrap;padding:16px;}
+.uims-sidebar-tools .notice-panel .notice-header h2 {font-size:18px;}
+.uims-sidebar-tools .notice-panel .notice-filters {padding:0 16px 12px;flex-wrap:wrap;}
+.uims-sidebar-tools .notice-panel .notice-list {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;}
+.uims-sidebar-tools .notice-panel .notice-item {padding:14px 16px;}
+.uims-sidebar-tools .notice-panel .notice-copy strong {overflow-wrap:anywhere;}
+.uims-sidebar-tools .notice-panel .notice-footer {padding:12px 16px;}

@@ -255,6 +255,7 @@ class GradesExportSmoke
             // A disposable web root keeps fixture login and settings out of the real application.
             string host = Path.Combine(output, "web");
             Directory.CreateDirectory(host);
+            File.Copy(Path.Combine(app, "Global.asax"), Path.Combine(host, "Global.asax"), true);
             foreach (string folder in new[] { "Layout", "Pages", "Assets", "App_GlobalResources", "bin" })
                 foreach (string file in Directory.GetFiles(Path.Combine(app, folder), "*", SearchOption.AllDirectories))
                 {
@@ -264,7 +265,7 @@ class GradesExportSmoke
                     File.Copy(file, target, true);
                 }
             File.WriteAllText(Path.Combine(host, "Web.config"), "<configuration><appSettings><add key='Firebase.DatabaseUrl' value='http://localhost:19081'/><add key='Firebase.ApiKey' value='fixture'/></appSettings><system.web><compilation debug='true' targetFramework='4.7.2'/><pages><namespaces><add namespace='InternshipManagementSystem.Common'/></namespaces></pages><httpRuntime targetFramework='4.7.2'/><customErrors mode='Off'/></system.web></configuration>");
-            File.WriteAllText(Path.Combine(host, "FixtureLogin.aspx"), "<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><script runat=\"server\">protected void Page_Load(object sender, EventArgs e) { SessionHelper.SignIn(new UserRepository().GetPerson(Request.QueryString[\"id\"]), Request.QueryString[\"id\"]); Response.Write(\"Fixture session ready\"); }</script>");
+            File.WriteAllText(Path.Combine(host, "FixtureLogin.aspx"), "<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><script runat=\"server\">protected void Page_Load(object sender, EventArgs e) { SessionHelper.SignIn(new UserRepository().GetPerson(Request.QueryString[\"id\"]), Request.QueryString[\"id\"]); Response.Write(\"Fixture session ready\"); }</script><head runat=\"server\"><title>Fixture login</title></head>");
             iis = Process.Start(new ProcessStartInfo {
                 FileName = @"C:\Program Files\IIS Express\iisexpress.exe", Arguments = "/path:\"" + host + "\" /port:19082 /systray:false",
                 UseShellExecute = false, CreateNoWindow = true, RedirectStandardOutput = true, RedirectStandardError = true

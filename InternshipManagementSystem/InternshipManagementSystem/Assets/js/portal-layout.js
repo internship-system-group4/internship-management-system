@@ -29,6 +29,7 @@
         }
         function mobile(value, restoreFocus) {
             opened = value && media.matches;
+            if (!opened) closeNotifications(false);
             if (!opened && window.bootstrap) {
                 var bell = sidebar.querySelector('.uims-notify-button');
                 var dropdown = bell && window.bootstrap.Dropdown.getInstance(bell);
@@ -60,17 +61,30 @@
             }
             desktop();
         }
-        // Keep the existing Bootstrap notification dropdown above the sidebar utilities,
-        // bounded by the available space on short screens. It remains inside the modal drawer.
-        var notification = sidebar.querySelector('.uims-notify');
+        // Both notification controls belong to the sidebar's focus scope. The live
+        // activity bell uses native details; older pages may still use Bootstrap.
+        var notification = sidebar.querySelector('.notice-bell, .uims-notify');
+        function closeNotifications(restoreFocus) {
+            var liveBell = sidebar.querySelector('.notice-bell');
+            if (!liveBell || !liveBell.open) return false;
+            liveBell.open = false;
+            var summary = liveBell.querySelector('summary');
+            summary.setAttribute('aria-expanded', 'false');
+            if (restoreFocus) summary.focus();
+            return true;
+        }
         function positionNotifications() {
             if (!notification) return;
             var tools = sidebar.querySelector('.uims-sidebar-tools');
-            var menu = notification.querySelector('.uims-notify-menu');
+            var menu = notification.querySelector('.notice-panel, .uims-notify-menu');
+            if (!menu) return;
             var room = Math.max(100, tools.getBoundingClientRect().top - 16);
             menu.style.setProperty('--sidebar-notify-height', Math.floor(room) + 'px');
         }
-        if (notification) on(notification, 'show.bs.dropdown', positionNotifications);
+        if (notification) {
+            on(notification, 'show.bs.dropdown', positionNotifications);
+            on(notification, 'toggle', positionNotifications);
+        }
         on(window, 'resize', positionNotifications);
         on(toggle, 'click', function () { mobile(!opened, true); });
         on(close, 'click', function () { mobile(false, true); });
@@ -91,6 +105,9 @@
         });
         on(sidebar, 'keydown', function (event) {
             if (event.key !== 'Escape') return;
+            if (closeNotifications(true)) {
+                event.preventDefault(); event.stopPropagation(); return;
+            }
             var bell = sidebar.querySelector('.uims-notify-button');
             var menu = sidebar.querySelector('.uims-notify-menu.show');
             if (menu && window.bootstrap) {
@@ -106,7 +123,7 @@
             if (!opened || event.defaultPrevented) return;
             if (event.key === 'Escape') { event.preventDefault(); mobile(false, true); }
             else if (event.key === 'Tab') {
-                var targets = Array.from(sidebar.querySelectorAll('a[href],button:not([disabled]),[tabindex="0"]'))
+                var targets = Array.from(sidebar.querySelectorAll('a[href],button:not([disabled]),summary,[tabindex="0"]'))
                     .filter(function (element) { return element.getClientRects().length && getComputedStyle(element).visibility !== 'hidden'; });
                 var first = targets[0], last = targets[targets.length - 1];
                 if (!first) { event.preventDefault(); sidebar.focus(); return; }
