@@ -49,7 +49,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
                     if (user != null && user.CanLogin())
                     {
                         SessionHelper.Refresh(user);
-                        Response.Redirect(ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl), false);
+                        Response.Redirect(ResumeDestination(user) ?? ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl), false);
                         Context.ApplicationInstance.CompleteRequest();
                         return;
                     }
@@ -139,8 +139,9 @@ namespace InternshipManagementSystem.Pages.AccountArea
             }
 
             // Reject unknown roles and destinations before creating the session.
-            string destination = ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl);
-            if (!Enum.IsDefined(typeof(UserRole), user.Role) || !IsApprovedDestination(destination))
+            string resume = ResumeDestination(user);
+            string destination = resume ?? ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl);
+            if (!Enum.IsDefined(typeof(UserRole), user.Role) || (resume == null && !IsApprovedDestination(destination)))
             {
                 SessionHelper.SignOut();
                 ShowError("We could not verify your account access. Please contact the coordinator.");
@@ -165,6 +166,20 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 Response.Redirect(destination, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+        }
+
+        // A visitor who pressed "Apply now" on the homepage comes back here with
+        // ?returnUrl=/Pages/Student/Apply.aspx?opportunityId=<id>. Only that page, only a
+        // valid opportunity key, and only for an active student who needs no password change.
+        // Everything else still goes to the role dashboard, so this cannot become an open redirect.
+        private string ResumeDestination(Person user)
+        {
+            string requested = Request.QueryString["returnUrl"];
+            if (string.IsNullOrEmpty(requested) || user == null || user.Role != UserRole.Student || user.MustChangePassword) return null;
+            string prefix = ResolveUrl("~/Pages/Student/Apply.aspx") + "?opportunityId=";
+            if (!requested.StartsWith(prefix, StringComparison.Ordinal)) return null;
+            string id = requested.Substring(prefix.Length);
+            return ApplicationRepository.IsValidKey(id) ? prefix + Uri.EscapeDataString(id) : null;
         }
 
         private bool IsApprovedDestination(string destination)

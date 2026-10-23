@@ -25,7 +25,7 @@ namespace InternshipManagementSystem.Data
 
         // Separate allowlisted projection: never expose the protected opportunity
         // collection or its requirements/contacts to anonymous homepage visitors.
-        public List<PublicOpportunityPreview> GetPublicPreviews()
+        public List<PublicOpportunityPreview> GetPublicPreviews(int count = 3)
         {
             var raw = Json.Deserialize<Dictionary<string, PublicOpportunityPreview>>(
                 FirebaseContext.Get("publicOpportunityPreviews"));
@@ -36,8 +36,8 @@ namespace InternshipManagementSystem.Data
                 && (p.ApplicationDeadline <= 0 || !Time.IsPast(p.ApplicationDeadline))
                 && !string.IsNullOrWhiteSpace(p.Title) && p.Title.Length <= 150
                 && (p.Summary ?? "").Length <= 280 && (p.CompanyName ?? "").Length <= 150
-                && (p.Location ?? "").Length <= 150)
-                .OrderByDescending(p => p.PublishedAt).Take(3).ToList();
+                && (p.Location ?? "").Length <= 150 && (p.Specialization ?? "").Length <= 200)
+                .OrderByDescending(p => p.PublishedAt).Take(count).ToList();
         }
 
         // Explicit publication by a verified owner/coordinator; private workflows
@@ -63,9 +63,36 @@ namespace InternshipManagementSystem.Data
             {
                 Id = id, Title = opportunity.Title, CompanyName = opportunity.CompanyName,
                 Location = opportunity.Location, Summary = summary, Status = opportunity.Status,
+                Specialization = SpecializationText(opportunity),
                 RemainingSeats = opportunity.RemainingSeats, ApplicationDeadline = opportunity.ApplicationDeadline,
                 PublishedAt = Time.NowMs()
             });
+        }
+
+        // Keep the homepage projection in step after an owner creates, edits or closes an
+        // opportunity. Best effort: a failure here must never block the owner's own save.
+        public void SyncPublicPreview(string id)
+        {
+            try
+            {
+                var opportunity = ApplicationRepository.IsValidKey(id) ? GetById(id) : null;
+                if (opportunity == null) return;
+                string summary = (opportunity.Description ?? "").Trim();
+                if (summary.Length > 280) summary = summary.Substring(0, 277).TrimEnd() + "...";
+                if (summary.Length < 20) summary = (opportunity.Title + " internship at " + opportunity.CompanyName + ".").Trim();
+                PublishPublicPreview(id, summary);
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceWarning("Public preview sync skipped for " + id + ": " + ex.Message);
+            }
+        }
+
+        private static string SpecializationText(Opportunity opportunity)
+        {
+            var majors = (opportunity.EligibleMajors ?? new List<string>()).Where(m => !string.IsNullOrWhiteSpace(m)).ToList();
+            string text = majors.Count > 0 ? string.Join(", ", majors) : (opportunity.EligibleCollege ?? "");
+            return text.Length > 200 ? text.Substring(0, 200) : text;
         }
 
         // Add the queries your pages need here, as named methods.
@@ -84,5 +111,6 @@ namespace InternshipManagementSystem.Data
         public int RemainingSeats { get; set; }
         public long ApplicationDeadline { get; set; }
         public long PublishedAt { get; set; }
+        public string Specialization { get; set; }
     }
 }

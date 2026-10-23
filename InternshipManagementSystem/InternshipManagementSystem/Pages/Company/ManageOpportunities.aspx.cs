@@ -188,6 +188,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
+                new OpportunityRepository().SyncPublicPreview(id);
                 Notice = "Opportunity closed successfully.";
                 IsError = false;
             }
@@ -326,6 +327,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
+                new OpportunityRepository().SyncPublicPreview(id);
                 Notice = "Opportunity updated successfully.";
                 IsError = false;
             }
