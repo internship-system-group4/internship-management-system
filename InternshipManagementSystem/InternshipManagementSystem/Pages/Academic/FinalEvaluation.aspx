@@ -110,7 +110,21 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-
+                    <!-- Smart Recommendation Chips -->
+<div class="mb-2">
+    <label class="form-label text-muted" style="font-size: 0.85rem; font-weight: 600;">Quick Academic Templates:</label>
+    <div class="d-flex flex-wrap gap-2 mb-2">
+        <button type="button" class="btn btn-sm btn-outline-success" onclick="setRemark('Excellent performance and outstanding commitment to training tasks and required hours.')">
+            🟢 Excellent
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-warning text-dark" onclick="setRemark('Minimum hours completed, periodic reports and follow-up are required.')">
+            🟡 Complete Requirements
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger" onclick="setRemark('Training requirements and core competencies were not sufficiently met.')">
+            🔴 Re-evaluation Needed
+        </button>
+    </div>
+</div>
                     <div class="mb-2">
                         <label class="form-label" style="font-weight: 600;">Academic Comments & Remarks</label>
                         <asp:TextBox ID="txtAcademicComments" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
@@ -129,5 +143,14 @@
             </div>
         </div>
     </div>
+    <!-- نهاية محتوى الصفحة -->
+    <script type="text/javascript">
+        function setRemark(text) {
+            var txtBox = document.getElementById('<%= txtAcademicComments.ClientID %>');
+            if (txtBox) {
+                txtBox.value = text;
+            }
+        }
+    </script>
 
 </asp:Content>

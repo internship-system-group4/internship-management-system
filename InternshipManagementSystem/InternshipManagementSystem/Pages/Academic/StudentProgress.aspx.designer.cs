@@ -96,6 +96,15 @@ namespace InternshipManagementSystem.Pages.Academic
         protected global::System.Web.UI.WebControls.Literal litRequiredHours;
 
         /// <summary>
+        /// badgeStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl badgeStatus;
+
+        /// <summary>
         /// litCompanyName control.
         /// </summary>
         /// <remarks>
