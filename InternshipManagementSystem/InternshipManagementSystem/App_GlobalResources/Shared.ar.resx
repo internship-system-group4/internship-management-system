@@ -340,17 +340,4 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>تفاصيل المسار</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>اختر مرحلة لعرض تفاصيلها</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.</value></data>
-  <data name="Js.DashboardRefresh" xml:space="preserve"><value>تحديث النظرة العامة</value></data>
-  <data name="Js.DashboardReady" xml:space="preserve"><value>النظرة العامة محدّثة</value></data>
-  <data name="Js.DashboardLoading" xml:space="preserve"><value>جارٍ تحميل النظرة العامة للبرنامج</value></data>
-  <data name="Js.DashboardUnavailable" xml:space="preserve"><value>النظرة العامة غير متاحة</value></data>
-  <data name="Js.DashboardFull" xml:space="preserve"><value>فتح لوحة التحكم كاملة</value></data>
-  <data name="Js.DashboardFailed" xml:space="preserve"><value>تعذّر تحميل النظرة العامة.</value></data>
-  <data name="Js.DashboardFailedHelp" xml:space="preserve"><value>تحقّق من الاتصال وأعد المحاولة. لم تتغير سجلاتك.</value></data>
-  <data name="Js.DashboardRetry" xml:space="preserve"><value>إعادة المحاولة</value></data>
-  <data name="Js.DashboardRefreshing" xml:space="preserve"><value>جارٍ تحديث النظرة العامة</value></data>
-  <data name="Js.DashboardLoadingProgram" xml:space="preserve"><value>جارٍ تحميل النظرة العامة للبرنامج</value></data>
-  <data name="Js.DashboardRefreshingProgram" xml:space="preserve"><value>جارٍ تحديث النظرة العامة للبرنامج</value></data>
-  <data name="Js.DashboardSlow" xml:space="preserve"><value>التحميل مستمر. يستغرق الاتصال وقتًا أطول قليلًا.</value></data>
-  <data name="Js.DashboardRefreshFailed" xml:space="preserve"><value>تعذّر التحديث. ما زالت النظرة العامة السابقة معروضة.</value></data>
 </root>

@@ -340,17 +340,4 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>Journey details</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>Select a stage for details</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>Swipe through stages. Select one to view its details.</value></data>
-  <data name="Js.DashboardRefresh" xml:space="preserve"><value>Refresh overview</value></data>
-  <data name="Js.DashboardReady" xml:space="preserve"><value>Overview up to date</value></data>
-  <data name="Js.DashboardLoading" xml:space="preserve"><value>Loading your program overview</value></data>
-  <data name="Js.DashboardUnavailable" xml:space="preserve"><value>Overview unavailable</value></data>
-  <data name="Js.DashboardFull" xml:space="preserve"><value>Open full dashboard</value></data>
-  <data name="Js.DashboardFailed" xml:space="preserve"><value>Your overview could not be loaded.</value></data>
-  <data name="Js.DashboardFailedHelp" xml:space="preserve"><value>Check your connection and try again. Your records have not changed.</value></data>
-  <data name="Js.DashboardRetry" xml:space="preserve"><value>Try again</value></data>
-  <data name="Js.DashboardRefreshing" xml:space="preserve"><value>Refreshing your overview</value></data>
-  <data name="Js.DashboardLoadingProgram" xml:space="preserve"><value>Loading program overview</value></data>
-  <data name="Js.DashboardRefreshingProgram" xml:space="preserve"><value>Refreshing program overview</value></data>
-  <data name="Js.DashboardSlow" xml:space="preserve"><value>Still loading. Your connection is taking a little longer.</value></data>
-  <data name="Js.DashboardRefreshFailed" xml:space="preserve"><value>Refresh failed. Previous overview retained.</value></data>
 </root>

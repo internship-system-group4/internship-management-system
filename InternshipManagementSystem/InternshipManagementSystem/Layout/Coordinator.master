@@ -23,7 +23,7 @@
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-3" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/portal-motion.css?v=20261023-motion-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/portal-motion.css?v=20261023-team-sync" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-5" runat="server" />

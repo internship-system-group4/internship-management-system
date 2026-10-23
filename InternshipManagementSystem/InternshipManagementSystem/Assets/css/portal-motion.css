@@ -2,8 +2,10 @@
 @view-transition { navigation: auto; }
 :root { view-transition-name: none; }
 body.uims-portal .uims-sidebar { view-transition-name: portal-sidebar; }
-body.uims-portal .uims-topbar { view-transition-name: portal-header; }
+body.uims-portal .uims-topbar { view-transition-name: portal-header; position: relative; z-index: 10; }
 body.uims-portal .uims-main-inner { view-transition-name: portal-main; }
+/* A named transition creates a stacking context; dialogs must stay above their backdrop. */
+body.uims-portal.modal-open .uims-main-inner { view-transition-name: none; }
 ::view-transition-group(portal-sidebar),
 ::view-transition-group(portal-header) { animation-duration: 180ms; }
 ::view-transition-old(portal-main) { animation: portal-out 120ms ease both; }

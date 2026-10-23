@@ -602,6 +602,10 @@
     <Content Include="App_GlobalResources\Shared.ar.resx" />
     <Content Include="App_GlobalResources\Shared.resx" />
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
+    <Compile Include="Pages\Student\DisplayEditProfile.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>DisplayEditProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Student\DisplayEditProfile.aspx.designer.cs" />
     <Compile Include="Pages\Student\StudentCVPortfolio.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
