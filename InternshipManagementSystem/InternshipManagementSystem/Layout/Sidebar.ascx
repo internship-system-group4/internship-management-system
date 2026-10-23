@@ -4,7 +4,25 @@
 <%@ Import Namespace="InternshipManagementSystem.Security" %>
 <%@ Import Namespace="InternshipManagementSystem.Common" %>
 <%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
+<%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
+<%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
 <script runat="server">
+    protected string PortalName
+    {
+        get
+        {
+            var user = SessionHelper.Current;
+            if (user == null) return L.T("Shared.Sidebar.Portal");
+            switch (user.Role)
+            {
+                case UserRole.Student: return L.T("Shared.Student.StudentPortal");
+                case UserRole.CompanySupervisor: return L.T("Shared.Company.CompanyPortal");
+                case UserRole.AcademicSupervisor: return L.T("Shared.Academic.AcademicSupervisorPortal");
+                case UserRole.Coordinator: return L.T("Shared.Coordinator.CoordinatorPortal");
+                default: return L.T("Shared.Sidebar.Portal");
+            }
+        }
+    }
     protected string NavigationAttributes(string path)
     {
         string current = Request.AppRelativeCurrentExecutionFilePath;
@@ -71,13 +89,15 @@
 <div class="uims-sidebar-heading">
     <div class="uims-sidebar-brand">
         <img src="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" alt="<%: L.T("Shared.Sidebar.GermanJordanianUniversity") %>" width="88" height="65" />
-        <div class="uims-sidebar-label uims-sidebar-identity"><strong><%: L.T("Shared.Sidebar.GermanJordanianUniversity") %></strong><small><%: L.T("Shared.Sidebar.InternshipManagementSystem") %></small></div>
+        <div class="uims-sidebar-label uims-sidebar-identity"><strong title="<%: L.T("Shared.Sidebar.InternshipManagementSystem") %>">UIMS</strong><small><%: L.T("Shared.Sidebar.GermanJordanianUniversity") %></small><span class="visually-hidden"><%: L.T("Shared.Sidebar.InternshipManagementSystem") %></span></div>
     </div>
-    <button type="button" class="student-nav-close" aria-label="<%: L.T("Shared.Sidebar.CloseNavigation") %>"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
-</div>
-<button type="button" class="uims-sidebar-pin" aria-pressed="false" aria-expanded="false" aria-label="<%: L.T("Shared.Sidebar.PinNavigationOpen") %>" title="<%: L.T("Shared.Sidebar.PinNavigationOpen") %>">
+    <button type="button" class="uims-sidebar-pin" aria-pressed="false" aria-expanded="false" aria-label="<%: L.T("Shared.Sidebar.PinNavigationOpen") %>" title="<%: L.T("Shared.Sidebar.PinNavigationOpen") %>">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M14 9l3 3-3 3"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.PinNavigation") %></span>
 </button>
+    <button type="button" class="student-nav-close" aria-label="<%: L.T("Shared.Sidebar.CloseNavigation") %>"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+</div>
+<div class="uims-sidebar-context"><small><%: PortalName %></small><h1 class="uims-page-title"><%: Page.Title %></h1></div>
+
 <nav class="uims-sidebar-navigation" aria-label="<%: L.T("Shared.Sidebar.Portal") %>">
     <ul class="uims-side-nav">
     <% if (SessionHelper.IsInRole(UserRole.Student)) { %>
@@ -117,11 +137,15 @@
     <% } %>
     </ul>
 </nav>
-<%-- On drawer-sized screens the language choice lives here instead of the header (Assets/css/i18n.css). --%>
-<div class="uims-sidebar-lang"><uims:LanguageSelector runat="server" Variant="inline" /></div>
+<div class="uims-sidebar-tools" role="group" aria-label="<%: L.T("Shared.Sidebar.Portal") %>">
+    <uims:LanguageSelector runat="server" Variant="link" />
+    <uims:ThemeSelector runat="server" Variant="menu" />
+    <uims:NotificationBell runat="server" />
+</div>
 <% if (SessionHelper.Current != null) { %>
 <a class="uims-sidebar-account" href="<%: ResolveUrl(AccountPath) %>" <%= NavigationAttributes(AccountPath) %> title="<%: SessionHelper.Current.FullName %> &mdash; <%: L.T("Shared.Sidebar.MyAccountTitle") %>">
     <span class="uims-sidebar-avatar" aria-hidden="true"><span><%: Initials %></span><% if (!string.IsNullOrEmpty(ProfileImage)) { %><img src="<%: ProfileImage %>" alt="" width="28" height="28" /><% } %></span>
     <span class="uims-sidebar-label uims-sidebar-account-meta"><strong><%: SessionHelper.Current.FullName %></strong><small><%: L.Role(SessionHelper.Current.Role) %></small><span><%: L.T(SessionHelper.IsInRole(UserRole.Student) ? "Shared.Sidebar.MyProfile" : "Shared.Sidebar.MyAccount") %></span></span>
+    <svg class="uims-sidebar-account-arrow uims-sidebar-label" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg>
 </a>
 <% } %>

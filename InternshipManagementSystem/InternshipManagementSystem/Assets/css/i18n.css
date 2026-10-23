@@ -26,14 +26,6 @@ body.uims-public .uims-public-nav .public-theme-desktop { position:static; displ
  body.uims-public .uims-public-nav .public-links>.public-login { margin-inline-start:0; }
  body.uims-public .public-theme-mobile { display:grid; gap:14px; }
 }
-body.uims-portal .uims-user .uims-lang-control { flex:none; }
-/* Portal: in the header on wide screens; inside the navigation drawer on drawer-sized screens. */
-body.uims-portal .uims-sidebar-lang { display:none; }
-@media(max-width:900px) {
- body.uims-portal .uims-user .uims-lang-control { display:none; }
- body.uims-portal .uims-sidebar-lang { display:block; flex:none; margin:12px 0 4px; padding:14px 6px 0; border-top:1px solid var(--ui-border); }
-}
-
 /* --------------------------------------------------------------------------------- Arabic typography */
 :root[lang="ar"] body, :root[lang="ar"] :is(button,input,select,textarea,optgroup) { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,Arial,sans-serif; }
 /* Home's display face (Switzer) has no Arabic glyphs. */

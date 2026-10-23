@@ -4,6 +4,11 @@
 body.uims-portal .uims-sidebar { view-transition-name: portal-sidebar; }
 body.uims-portal .uims-topbar { view-transition-name: portal-header; position: relative; z-index: 10; }
 body.uims-portal .uims-main-inner { view-transition-name: portal-main; }
+/* Theme changes need one root snapshot for the circular reveal. Navigation names
+   otherwise lift the sidebar/main out of that snapshot, while :root disables it.
+   Scope the override to the existing theme class so normal route motion survives. */
+html.uims-theme-reveal { view-transition-name: root; }
+html.uims-theme-reveal body.uims-portal :is(.uims-sidebar,.uims-topbar,.uims-main-inner) { view-transition-name: none; }
 /* A named transition creates a stacking context; dialogs must stay above their backdrop. */
 body.uims-portal.modal-open .uims-main-inner { view-transition-name: none; }
 ::view-transition-group(portal-sidebar),
