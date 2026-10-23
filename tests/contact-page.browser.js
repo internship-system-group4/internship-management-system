@@ -116,16 +116,16 @@ async page => {
  // Without JavaScript: server validation, boundaries and success.
  const nojs=await page.context().browser().newContext({javaScriptEnabled:false,viewport:{width:1440,height:900}});const plain=await nojs.newPage();
  await plain.goto(url);
- await plain.locator('form').evaluate(f=>f.noValidate=true).catch(()=>{});
- await send(plain).click();await plain.waitForLoadState();
+ // Playwright's stability check never settles after evaluating in a JavaScript-disabled page, so these clicks are forced.
+ await send(plain).click({force:true});await plain.waitForLoadState();
  check(await plain.locator('.contact-alert').isVisible()&&await err(plain,'nameError')==='Enter your full name.'&&await name(plain).getAttribute('aria-invalid')==='true','No JS: server errors beside fields with aria-invalid');
  await plain.goto(url);
  await name(plain).fill('N');await email(plain).fill('no-at-sign');await subject(plain).fill('abc');await message(plain).evaluate(t=>{t.removeAttribute('maxlength');t.removeAttribute('minlength');t.value='y'.repeat(4001);});
  await name(plain).evaluate(i=>i.removeAttribute('minlength'));await subject(plain).evaluate(i=>i.removeAttribute('minlength'));await email(plain).evaluate(i=>i.type='text');
- await send(plain).click();await plain.waitForLoadState();
+ await send(plain).click({force:true});await plain.waitForLoadState();
  check([await err(plain,'nameError'),await err(plain,'contactEmailError'),await err(plain,'subjectError'),await err(plain,'messageError')].join('|')==='Your name needs 2 to 100 characters.|Enter an email address like name@example.com.|Your subject needs 5 to 150 characters.|Your message needs 20 to 4,000 characters.','No JS: server enforces name 2, email format, subject 5 and message 4,000 limits');
  await name(plain).fill('Sami Khalil');await email(plain).fill('sami@example.com');await subject(plain).fill('Hello');await message(plain).fill('z'.repeat(20));
- await send(plain).click();await plain.waitForLoadState();
+ await send(plain).click({force:true});await plain.waitForLoadState();
  check(await plain.locator('.contact-sent h2').innerText()==='Message sent'&&(await stored()).length===2,'No JS: boundary values (subject 5, message 20) save and confirm');
  await nojs.close();
 
