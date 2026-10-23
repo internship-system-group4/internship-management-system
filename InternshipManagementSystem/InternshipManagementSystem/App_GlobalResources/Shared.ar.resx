@@ -340,4 +340,5 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>تفاصيل المسار</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>اختر مرحلة لعرض تفاصيلها</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.</value></data>
+  <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>الصفحة غير موجودة | UIMS</value></data>
 </root>

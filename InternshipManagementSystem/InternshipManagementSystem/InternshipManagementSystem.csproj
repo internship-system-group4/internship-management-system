@@ -101,6 +101,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Public\NotFound.aspx.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Localization.cs" />
     <Compile Include="Common\Enums.cs" />
@@ -776,6 +779,9 @@
     <Content Include="Pages\Coordinator\ManageStudents.aspx" />
     <Content Include="Pages\Meetings\MyMeetings.aspx" />
     <Content Include="Pages\Meetings\Schedule.aspx" />
+    <Content Include="Pages\Public\NotFound.aspx" />
+    <Content Include="Assets\css\not-found.css" />
+    <Content Include="Assets\js\not-found.js" />
     <Content Include="Pages\Public\About.aspx" />
     <Content Include="Pages\Public\AccessDenied.aspx" />
     <Content Include="Pages\Public\Contact.aspx" />
