@@ -83,6 +83,26 @@
 
         <!-- Accordion for detailed sections -->
         <div class="accordion" id="progressAccordion">
+            <!-- Interactive Progress Summary Card (Bonus Feature) -->
+<div class="card shadow-sm mb-4 border-0" style="background-color: #f8f9fa; border-radius: 10px;">
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="fw-bold text-dark m-0">Training Hours & Progress Overview</h6>
+            <!-- Dynamic Status Badge -->
+            <span class="badge bg-warning text-dark px-3 py-2" id="badgeStatus" runat="server">In Progress ⏳</span>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="progress mb-2" style="height: 12px; border-radius: 6px;">
+            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+        
+        <div class="d-flex justify-content-between text-muted" style="font-size: 0.85rem;">
+            <span>Completed Hours: <b>0 hrs</b> / 160 hrs</span>
+            <span>Pending Company Verification</span>
+        </div>
+    </div>
+</div>
             
             <!-- Section 1: Placement Details -->
             <div class="accordion-item mb-3" style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;">

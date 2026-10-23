@@ -1,0 +1,28 @@
+/* Shared coordinator navigation. Native fallbacks need no routing library. */
+@view-transition { navigation: auto; }
+:root { view-transition-name: none; }
+body.uims-portal .uims-sidebar { view-transition-name: portal-sidebar; }
+body.uims-portal .uims-topbar { view-transition-name: portal-header; position: relative; z-index: 10; }
+body.uims-portal .uims-main-inner { view-transition-name: portal-main; }
+/* A named transition creates a stacking context; dialogs must stay above their backdrop. */
+body.uims-portal.modal-open .uims-main-inner { view-transition-name: none; }
+::view-transition-group(portal-sidebar),
+::view-transition-group(portal-header) { animation-duration: 180ms; }
+::view-transition-old(portal-main) { animation: portal-out 120ms ease both; }
+::view-transition-new(portal-main) { animation: portal-in 240ms cubic-bezier(.22,1,.36,1) both; }
+@keyframes portal-out { to { opacity: 0; } }
+@keyframes portal-in { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+.portal-loading-line { position: fixed; inset: 0 0 auto; height: 3px; z-index: 2000; overflow: hidden; opacity: 0; pointer-events: none; transition: opacity 140ms ease; }
+.portal-loading-line.is-loading { opacity: 1; }
+.portal-loading-line > span { display: block; height: 100%; width: 36%; background: var(--theme-primary, #087f75); border-radius: 0 3px 3px 0; transform: translateX(-110%); box-shadow: 0 0 12px rgb(8 127 117 / 25%); }
+.portal-loading-line.is-loading > span { animation: portal-loading 1250ms cubic-bezier(.4,0,.2,1) infinite; }
+@keyframes portal-loading { to { transform: translateX(385%); } }
+.portal-route-status { position: fixed; inset-inline-end: 24px; bottom: 24px; z-index: 1100; max-width: min(360px, calc(100vw - 32px)); padding: 11px 16px; background: var(--theme-navy, #172c35); color: #fff; border: 1px solid #49616b; border-radius: 10px; box-shadow: 0 8px 24px rgb(23 44 53 / 14%); font: 500 12px/1.5 "Segoe UI", sans-serif; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity 160ms ease, transform 220ms ease; }
+.portal-route-status.is-visible { opacity: 1; transform: none; }
+body.uims-portal a[data-pending-navigation] { opacity: .72; }
+@media (prefers-reduced-motion: reduce) {
+    @view-transition { navigation: none; }
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*) { animation: none !important; }
+    .portal-loading-line, .portal-route-status { transition: none; transform: none; }
+    .portal-loading-line.is-loading > span { animation: none; width: 100%; transform: none; opacity: .7; }
+}

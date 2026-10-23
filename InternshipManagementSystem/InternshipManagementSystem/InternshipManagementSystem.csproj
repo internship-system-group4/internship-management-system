@@ -314,6 +314,13 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
+	  <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
+		  <SubType>ASPXCodeBehind</SubType>
+		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+	  </Compile>
+	  <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
+		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+	  </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
@@ -598,12 +605,9 @@
     <Content Include="App_GlobalResources\Shared.ar.resx" />
     <Content Include="App_GlobalResources\Shared.resx" />
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
-    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs" />
     <Compile Include="Pages\Student\DisplayEditProfile.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>DisplayEditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Student\DisplayEditProfile.aspx.designer.cs" />
     <Compile Include="Pages\Student\StudentCVPortfolio.aspx.cs">
@@ -619,6 +623,11 @@
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
+    <Content Include="Assets\theme.css" />
+    <Content Include="Assets\css\coordinator-dashboard.css" />
+    <Content Include="Assets\css\portal-motion.css" />
+    <Content Include="Assets\js\portal-motion.js" />
+    <Content Include="Assets\js\coordinator-dashboard.js" />
     <Content Include="Assets\css\students.css" />
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />

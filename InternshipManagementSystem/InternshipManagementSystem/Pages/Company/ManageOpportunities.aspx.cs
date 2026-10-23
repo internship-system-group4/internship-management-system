@@ -1,14 +1,13 @@
 ﻿// Edit & colse page opportunities 
 
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
 
 namespace InternshipManagementSystem.Pages.CompanyArea
 {

@@ -449,8 +449,15 @@ namespace InternshipManagementSystem.Services
                 foreach (string participantId in meeting.ParticipantIds.Distinct())
                 {
                     if (participantId == meeting.CreatedById) continue;
-                    Send(participantId, TypeMeeting, "New meeting scheduled",
-                        "\"" + meeting.Title + "\" on " + Time.Display(meeting.ScheduledAt) + ".",
+                    bool pending = meeting.ApprovalState == "Pending";
+
+                    Send(
+                        participantId,
+                        TypeMeeting,
+                        pending ? "New meeting request" : "New meeting scheduled",
+                        "\"" + meeting.Title + "\" on " +
+                            Time.Display(meeting.ScheduledAt) +
+                            (pending ? ". Please accept or reject the request." : "."),
                         "~/Pages/Meetings/MyMeetings.aspx");
                 }
             });
