@@ -1,302 +1,117 @@
 import * as THREE from './vendor/three.module.min.js';
+import { GLTFLoader } from './vendor/addons/loaders/GLTFLoader.js';
 import { createGateModel } from './home-gate-model.js';
-import { architecturalUV } from './home-campus-materials.js';
+import { architecturalUV, loadCampusSurfaces } from './home-campus-materials.js';
 
-// Rigid, fictional adult figures: no likeness, dialogue, facial or skeletal animation.
-function createPerson(uniform) {
- const root = new THREE.Group(); root.name = uniform ? 'campus-security-guard' : 'adult-campus-visitor';
- const skin = new THREE.MeshStandardMaterial({ color:uniform ? '#9a6e52' : '#c08d6b', roughness:.8 });
- const shirt = new THREE.MeshStandardMaterial({ color:uniform ? '#2b4f70' : '#e9e2d3', roughness:.9 });
- const outer = new THREE.MeshStandardMaterial({ color:uniform ? '#1f3a54' : '#6f7f73', roughness:.88 });
- const trousers = new THREE.MeshStandardMaterial({ color:uniform ? '#1f2b36' : '#3d4a55', roughness:.92 });
- const dark = new THREE.MeshStandardMaterial({ color:'#1d252b', roughness:.7 });
- function mesh(name, geometry, material, position, parent = root) {
-  const object = new THREE.Mesh(geometry, material); object.name = name;
-  object.position.fromArray(position); object.castShadow = true; parent.add(object); return object;
- }
- const torso = mesh('torso', new THREE.CapsuleGeometry(.21,.4,4,10), uniform ? shirt : outer, [0,1.15,0]); torso.scale.z = .72;
- if (!uniform) { const collar = mesh('shirt-collar', new THREE.CylinderGeometry(.1,.13,.08,10), shirt, [0,1.49,0]); collar.scale.z = .8; }
- mesh('neck', new THREE.CylinderGeometry(.07,.078,.12,10), skin, [0,1.54,0]);
- const head = new THREE.Group(); head.name = 'head-pivot'; head.position.set(0,1.6,0); root.add(head);
- const skull = mesh('head', new THREE.SphereGeometry(.145,16,12), skin, [0,.12,0], head); skull.scale.set(.88,1.12,.92);
- // Hair is a continuous upper hemisphere, seated on the head.
- mesh('hair', new THREE.SphereGeometry(.148,16,8,0,Math.PI*2,0,Math.PI/2.1), dark, [0,.155,-.008], head).scale.set(.9,1,.95);
- for (const side of [-1,1]) {
-  mesh('trouser-leg-'+side, new THREE.CapsuleGeometry(.095,.62,4,8), trousers, [side*.11,.47,0]);
-  const shoe = mesh('shoe-'+side, new THREE.SphereGeometry(.1,10,6), dark, [side*.11,.07,.05]); shoe.scale.set(1,.6,1.7);
- }
- const arms = [];
- for (const side of [-1,1]) {
-  const pivot = new THREE.Group(); pivot.name = 'shoulder-'+side; pivot.position.set(side*.255,1.39,0); root.add(pivot);
-  mesh('sleeve-'+side, new THREE.CapsuleGeometry(.072,.3,4,8), uniform ? shirt : outer, [0,-.17,0], pivot);
-  mesh('forearm-'+side, new THREE.CapsuleGeometry(.058,.2,4,8), uniform ? skin : outer, [0,-.43,0], pivot);
-  mesh('hand-'+side, new THREE.SphereGeometry(.062,10,8), skin, [0,-.6,0], pivot); arms.push(pivot);
- }
- if (uniform) {
-  mesh('cap', new THREE.CylinderGeometry(.152,.15,.09,16), outer, [0,.27,0], head);
-  mesh('cap-visor', new THREE.BoxGeometry(.22,.02,.13), dark, [0,.235,.13], head);
-  mesh('badge', new THREE.BoxGeometry(.055,.07,.012), new THREE.MeshStandardMaterial({ color:'#cfae62', metalness:.5, roughness:.45 }), [-.09,1.3,.155]);
-  mesh('shoulder-radio', new THREE.BoxGeometry(.05,.09,.03), dark, [.1,1.33,.155]);
-  mesh('belt', new THREE.BoxGeometry(.4,.06,.29), dark, [0,.93,0]);
-  for (const side of [-1,1]) mesh('epaulette-'+side, new THREE.BoxGeometry(.12,.02,.1), outer, [side*.17,1.47,0]);
- } else {
-  // Lanyard and entry pass; the pass travels with the right hand when presented.
-  mesh('lanyard', new THREE.TorusGeometry(.13,.008,4,24,Math.PI), new THREE.MeshStandardMaterial({ color:'#264f73', roughness:.8 }), [0,1.42,.1]).rotation.set(Math.PI*.55,0,Math.PI);
-  const pass = mesh('entry-pass', new THREE.BoxGeometry(.09,.13,.01), new THREE.MeshStandardMaterial({ color:'#fbfbf8', roughness:.7 }), [0,-.66,.07], arms[1]);
-  mesh('pass-band', new THREE.BoxGeometry(.09,.03,.012), new THREE.MeshStandardMaterial({ color:'#f2a900', roughness:.7 }), [0,.04,.001], pass);
- }
- return { root, arms, head };
-}
-
-// Daylight sky painted once on a canvas: zenith blue, pale horizon, soft cumulus.
-function skyTexture() {
- const canvas = document.createElement('canvas'); canvas.width = 1024; canvas.height = 512;
- const c = canvas.getContext('2d'), gradient = c.createLinearGradient(0,0,0,512);
- gradient.addColorStop(0,'#3d73b0'); gradient.addColorStop(.3,'#5f93cc'); gradient.addColorStop(.43,'#9cc2e4'); gradient.addColorStop(.49,'#d6e4ee'); gradient.addColorStop(.5,'#e6ece9'); gradient.addColorStop(1,'#e6ece9');
- c.fillStyle = gradient; c.fillRect(0,0,1024,512);
- let seed = 41; const random = () => { seed = (Math.imul(seed,1664525)+1013904223)>>>0; return seed/4294967296; };
- for (let cloud = 0; cloud < 16; cloud++) {
-  const cx = random()*1024, cy = 150+random()*95, width = 60+random()*110;
-  for (let puff = 0; puff < 9; puff++) {
-   const x = cx+(random()-.5)*width, y = cy+(random()-.5)*width*.18, r = width*(.18+random()*.2);
-   const g = c.createRadialGradient(x,y,0,x,y,r);
-   g.addColorStop(0,'rgba(255,255,255,.85)'); g.addColorStop(.6,'rgba(255,255,255,.35)'); g.addColorStop(1,'rgba(255,255,255,0)');
-   c.fillStyle = g; c.beginPath(); c.arc(x,y,r,0,Math.PI*2); c.fill();
+// Reuse the project's MIT Rocketbox adult and captured idle motion, not a primitive mannequin.
+async function createGuard() {
+ const gltf=await new GLTFLoader().loadAsync(new URL('../models/people/Male_Adult_17_Animated.glb',import.meta.url).href);
+ const root=new THREE.Group();root.name='campus-security-guard';root.add(gltf.scene);
+ gltf.scene.traverse(o=>{if(!o.isMesh)return;o.castShadow=o.receiveShadow=true;o.frustumCulled=false;
+  for(const m of [].concat(o.material)){m.roughness=.88;m.envMapIntensity=.45;
+   if(m.name==='m022_body')m.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>',`#include <map_fragment>
+    float skinMask=smoothstep(1.08,1.23,diffuseColor.r/max(diffuseColor.g,.001))*smoothstep(1.10,1.35,diffuseColor.r/max(diffuseColor.b,.001));
+    float fold=dot(diffuseColor.rgb,vec3(.2126,.7152,.0722));
+    diffuseColor.rgb=mix(vec3(.012,.027,.045)*(.4+fold*2.0),diffuseColor.rgb,skinMask);
+   `);};
   }
- }
- const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace; return texture;
+ });
+ const mixer=new THREE.AnimationMixer(gltf.scene);mixer.clipAction(gltf.animations.find(c=>c.name==='look')).play();mixer.update(0);root.updateMatrixWorld(true);
+ const head=gltf.scene.getObjectByName('Bip01_Head'),chest=gltf.scene.getObjectByName('Bip01_Spine2');
+ const navy=new THREE.MeshStandardMaterial({color:'#203849',roughness:.92}),black=new THREE.MeshStandardMaterial({color:'#161f26',roughness:.74}),gold=new THREE.MeshStandardMaterial({color:'#b79b62',roughness:.38,metalness:.65});
+ function accessory(name,geo,mat,pos,bone){const m=new THREE.Mesh(geo,mat);m.name=name;m.position.fromArray(pos);m.castShadow=true;root.add(m);if(bone)bone.attach(m);return m;}
+ const hp=head.getWorldPosition(new THREE.Vector3());
+ const cap=accessory('security-cap',new THREE.SphereGeometry(.124,32,16,0,Math.PI*2,0,Math.PI/2),navy,[hp.x,hp.y+.105,hp.z]);cap.scale.set(1,.65,1.13);head.attach(cap);
+ const visor=accessory('cap-visor',new THREE.SphereGeometry(.12,32,12),black,[hp.x,hp.y+.096,hp.z+.095]);visor.scale.set(1,.08,.8);head.attach(visor);
+ accessory('cap-badge',new THREE.BoxGeometry(.032,.034,.005),gold,[hp.x,hp.y+.13,hp.z+.127],head);
+ accessory('security-badge',new THREE.BoxGeometry(.045,.059,.008),gold,[-.09,1.32,.155],chest);
+ accessory('shoulder-radio',new THREE.BoxGeometry(.052,.095,.025),black,[.105,1.36,.155],chest);
+ accessory('radio-antenna',new THREE.CylinderGeometry(.003,.003,.065,8),black,[.12,1.437,.155],chest);
+ const headRest=head.quaternion.clone(),gaze=new THREE.Quaternion(),euler=new THREE.Euler();let clock=0,lean=0;
+ return {root,update(dt,checking){clock+=dt;lean+=((checking?1:0)-lean)*(1-Math.exp(-dt*4));head.quaternion.copy(headRest).multiply(gaze.setFromEuler(euler.set(.10*lean+.009*Math.sin(clock*1.1),-.18*lean+.025*Math.sin(clock*.4),0)));root.scale.y=1+.0012*Math.sin(clock*1.5);},dispose(){mixer.stopAllAction();mixer.uncacheRoot(gltf.scene);}};
 }
 
-// Gate 1 limestone: cream ashlar in ~0.6 m courses with faint joints, toned from the reference photo.
-// One tile spans 2.4 m, so architecturalUV(geometry, 2.4) keeps courses at true scale.
-function limestoneTexture() {
- const size = 512, canvas = document.createElement('canvas'); canvas.width = canvas.height = size;
- const c = canvas.getContext('2d'); let seed = 1907;
- const random = () => { seed = (Math.imul(seed,1664525)+1013904223)>>>0; return seed/4294967296; };
- c.fillStyle = '#dccfb5'; c.fillRect(0,0,size,size);
- const course = size/4;
- for (let row = 0; row < 4; row++) {
-  const offset = row % 2 ? size/4 : 0;
-  for (let col = -1; col < 3; col++) {
-   const x = col*size/2+offset, tone = 214+Math.floor(random()*16)-8;
-   c.fillStyle = `rgb(${tone+6},${tone-2},${tone-22})`; c.fillRect(x+1,row*course+1,size/2-2,course-2);
-  }
- }
- for (let i = 0; i < 2600; i++) {
-  const x = random()*size, y = random()*size, a = .05+random()*.08;
-  c.fillStyle = random() < .5 ? `rgba(120,104,80,${a})` : `rgba(255,250,238,${a})`; c.fillRect(x,y,1+random()*2.5,1+random()*1.5);
- }
- c.strokeStyle = 'rgba(150,134,108,.55)'; c.lineWidth = 2;
- for (let row = 0; row <= 4; row++) { c.beginPath(); c.moveTo(0,row*course); c.lineTo(size,row*course); c.stroke(); }
- for (let row = 0; row < 4; row++) for (let col = 0; col < 3; col++) {
-  const x = col*size/2+(row % 2 ? size/4 : 0); c.beginPath(); c.moveTo(x,row*course); c.lineTo(x,(row+1)*course); c.stroke();
- }
- const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace;
- texture.wrapS = texture.wrapT = THREE.RepeatWrapping; texture.anisotropy = 4; return texture;
-}
+function textureCanvas(w,h,paint){const c=document.createElement('canvas');c.width=w;c.height=h;paint(c.getContext('2d'),c);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=4;return t;}
+function noiseTexture(stone=false){return textureCanvas(512,512,(c)=>{let seed=1907;const rand=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+ if(stone){c.fillStyle='#d2c9b6';c.fillRect(0,0,512,512);for(let row=0;row<4;row++)for(let col=-1;col<3;col++){const v=202+Math.floor(rand()*22)-11;c.fillStyle=`rgb(${v+6},${v-2},${v-22})`;c.fillRect(col*256+(row%2?128:0)+1,row*128+1,254,126);}for(let i=0;i<15000;i++){c.fillStyle=rand()<.5?'rgba(90,80,60,.1)':'rgba(255,250,230,.1)';c.fillRect(rand()*512,rand()*512,1+rand()*2,1+rand()*2);}}
+ else{const data=c.createImageData(512,512);for(let i=0;i<data.data.length;i+=4){const v=100+rand()*56;data.data[i]=v;data.data[i+1]=data.data[i+2]=v+2;data.data[i+3]=255;}c.putImageData(data,0,0);}
+ });}
+function skyTexture(){return textureCanvas(1024,512,c=>{const g=c.createLinearGradient(0,0,0,512);g.addColorStop(0,'#3d73b0');g.addColorStop(.35,'#80b0da');g.addColorStop(.5,'#e3ebee');g.addColorStop(1,'#e3ebee');c.fillStyle=g;c.fillRect(0,0,1024,512);for(let i=0;i<14;i++){const x=(i*277%1024),y=165+(i*31%75),r=40+i%4*13;const a=c.createRadialGradient(x,y,0,x,y,r);a.addColorStop(0,'rgba(255,255,255,.65)');a.addColorStop(1,'rgba(255,255,255,0)');c.fillStyle=a;c.fillRect(x-r,y-r,r*2,r*2);}});}
+function bevelBox(w,h,d){const shape=new THREE.Shape();shape.moveTo(-w/2+.025,-h/2+.025);shape.lineTo(w/2-.025,-h/2+.025);shape.lineTo(w/2-.025,h/2-.025);shape.lineTo(-w/2+.025,h/2-.025);shape.closePath();const geo=new THREE.ExtrudeGeometry(shape,{depth:d-.05,bevelEnabled:true,bevelThickness:.025,bevelSize:.025,bevelSegments:2,steps:1});geo.translate(0,0,-(d-.05)/2);const p=geo.attributes.position,n=geo.attributes.normal,uv=geo.attributes.uv;for(let i=0;i<p.count;i++)uv.setXY(i,(Math.abs(n.getX(i))>.5?p.getZ(i):p.getX(i))/2.4,(Math.abs(n.getY(i))>.5?p.getZ(i):p.getY(i))/2.4);return geo;}
+function disposeScene(scene){const gs=new Set(),ms=new Set(),ts=new Set();scene.traverse(o=>{if(o.geometry)gs.add(o.geometry);for(const m of o.material?[].concat(o.material):[]){ms.add(m);Object.values(m).forEach(t=>{if(t?.isTexture)ts.add(t);});}});gs.forEach(g=>g.dispose());ms.forEach(m=>m.dispose());ts.forEach(t=>t.dispose());}
 
-function contactShadowTexture() {
- const canvas = document.createElement('canvas'); canvas.width = canvas.height = 64;
- const c = canvas.getContext('2d'), g = c.createRadialGradient(32,32,4,32,32,32);
- g.addColorStop(0,'rgba(40,36,29,.42)'); g.addColorStop(.55,'rgba(40,36,29,.18)'); g.addColorStop(1,'rgba(40,36,29,0)');
- c.fillStyle = g; c.fillRect(0,0,64,64); return new THREE.CanvasTexture(canvas);
-}
-
-// The photograph's right curb is painted in alternating black and white blocks.
-function curbTexture() {
- const canvas = document.createElement('canvas'); canvas.width = 64; canvas.height = 8;
- const c = canvas.getContext('2d'); c.fillStyle = '#e9e7e1'; c.fillRect(0,0,64,8); c.fillStyle = '#262a2c'; c.fillRect(0,0,32,8);
- const texture = new THREE.CanvasTexture(canvas); texture.colorSpace = THREE.SRGBColorSpace;
- texture.wrapS = THREE.RepeatWrapping; texture.magFilter = THREE.NearestFilter; return texture;
-}
-
-export async function createCampusScene(host, options) {
- const container = host.querySelector('[data-campus-canvas]');
- const pause = host.querySelector('[data-campus-pause]');
- const compact = innerWidth <= 640;
- let renderer, gate;
- const scene = new THREE.Scene();
+export async function createCampusScene(host,options={}) {
+ const container=host.querySelector('[data-campus-canvas]'),pause=host.querySelector('[data-campus-pause]'),compact=innerWidth<=640;
+ const scene=new THREE.Scene();let renderer,guard,surfaces,environment,pmrem;
  try {
-  renderer = new THREE.WebGLRenderer({ antialias:!compact, alpha:false, powerPreference:'low-power' });
-  gate = await createGateModel(host.dataset.logo);
- } catch (error) { renderer?.dispose(); throw error; }
- scene.background = new THREE.Color('#dfe9ef'); scene.fog = new THREE.Fog('#e3ebee',46,110);
- renderer.setPixelRatio(Math.min(devicePixelRatio,compact?1.25:1.5));
- renderer.shadowMap.enabled = !compact; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
- renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
- renderer.toneMappingExposure = 1.05; container.appendChild(renderer.domElement);
- scene.add(new THREE.HemisphereLight('#dcecff','#b8a98c',2.1));
- const sun = new THREE.DirectionalLight('#fff3df',3.4); sun.position.set(-9,15,13); sun.castShadow = true;
- sun.shadow.mapSize.set(1536,1536); Object.assign(sun.shadow.camera,{left:-14,right:14,top:12,bottom:-10,near:1,far:50}); sun.shadow.bias = -.0008; sun.shadow.normalBias = .02;
- scene.add(sun);
- const sky = new THREE.Mesh(new THREE.SphereGeometry(120,32,16), new THREE.MeshBasicMaterial({ map:skyTexture(), side:THREE.BackSide, fog:false, depthWrite:false, toneMapped:false }));
- sky.name = 'daylight-sky'; scene.add(sky);
- scene.add(gate.root);
+  renderer=new THREE.WebGLRenderer({antialias:!compact,powerPreference:'low-power'});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,compact?1.25:1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=.95;
+  const gate=await createGateModel(host.dataset.logo);scene.add(gate.root);gate.root.position.z=-8;
+  guard=await createGuard();scene.add(guard.root);guard.root.position.set(-.35,0,6.9);guard.root.rotation.y=.24;
+  surfaces=await loadCampusSurfaces();pmrem=new THREE.PMREMGenerator(renderer);environment=pmrem.fromCubemap(surfaces.environment);scene.environment=environment.texture;
+  scene.background=new THREE.Color('#dfe9ef');scene.fog=new THREE.Fog('#e3ebee',40,100);
+  const sky=new THREE.Mesh(new THREE.SphereGeometry(120,32,16),new THREE.MeshBasicMaterial({map:skyTexture(),side:THREE.BackSide,fog:false,depthWrite:false,toneMapped:false}));sky.name='daylight-sky';scene.add(sky);
+  scene.add(new THREE.HemisphereLight('#dcecff','#b8a98c',1.7));const sun=new THREE.DirectionalLight('#fff3df',2.5);sun.position.set(-9,15,13);sun.castShadow=true;sun.shadow.mapSize.set(compact?768:1536,compact?768:1536);Object.assign(sun.shadow.camera,{left:-16,right:16,top:16,bottom:-16,near:1,far:60});sun.shadow.bias=-.0004;sun.shadow.normalBias=.015;scene.add(sun);
+  function box(name,size,pos,mat,parent=scene){const m=new THREE.Mesh(new THREE.BoxGeometry(...size),mat);m.name=name;m.position.fromArray(pos);m.castShadow=m.receiveShadow=true;parent.add(m);return m;}
+  const stone=gate.parts.get('limestone-portal').children[0].material,stoneMap=noiseTexture(true);stoneMap.wrapS=stoneMap.wrapT=THREE.RepeatWrapping;stone.map=stoneMap;stone.color.set('#fff');stone.needsUpdate=true;
+  gate.parts.get('limestone-portal').traverse(o=>{if(o.isMesh){const {width:w,height:h,depth:d}=o.geometry.parameters;o.geometry.dispose();o.geometry=bevelBox(w,h,d);}});
+  gate.parts.get('right-return').traverse(o=>{if(o.isMesh&&o.material===stone)architecturalUV(o.geometry,2.4);});
+  gate.parts.get('ground').visible=false;gate.parts.get('flagpoles').scale.y=3.5/8.5;gate.parts.get('germany-flag').visible=false;
+  const jordan=gate.parts.get('jordan-flag');jordan.scale.setScalar(.6);jordan.position.set(-2.29,3,-1.35);const flag2=jordan.clone();flag2.name='login-jordan-flag-right';flag2.position.x=2.46;gate.root.add(flag2);
+  const metal=new THREE.MeshStandardMaterial({color:'#78858a',metalness:.6,roughness:.45}),dark=new THREE.MeshStandardMaterial({color:'#17232d',roughness:.48,metalness:.16});
+  for(const x of [-3.9,-1.3,1.3,3.9])box('soffit-light',[.22,.16,.22],[x,3.52,0],dark,gate.root);
+  const roadMap=noiseTexture();roadMap.wrapS=roadMap.wrapT=THREE.RepeatWrapping;const asphalt=new THREE.MeshStandardMaterial({color:'#9a9e9d',map:roadMap,roughness:.96});
+  const ground=box('outer-forecourt',[40,.04,30],[0,-.04,4],asphalt);architecturalUV(ground.geometry,1.5);
+  const inner=box('approach-road',[8.8,.04,70],[0,-.02,-37],asphalt);architecturalUV(inner.geometry,1.5);
+  const paving=new THREE.MeshStandardMaterial({map:surfaces.paving,roughness:.92});
+  box('right-sidewalk',[2.4,.14,60],[5.9,0,-37],paving);box('left-sidewalk',[2.4,.14,60],[-5.9,0,-37],paving);
+  const curbMaterials=['#dddcd4','#30373a'].map(color=>new THREE.MeshStandardMaterial({color,roughness:.93}));
+  for(let i=0;i<42;i++)for(const side of [-1,1])box('painted-curb',[.22,.18,.7],[side*4.58,.04,-8-i*.7],curbMaterials[i%2]);
+  const wall=new THREE.MeshStandardMaterial({color:'#d2b49a',roughness:.95});box('boundary-wall',[.3,1.05,44],[7.3,.45,-30],wall);
+  box('distant-sports-hall',[16,4.6,9],[-14,2.05,-24],stone);box('distant-hall-band',[16.05,.7,9.05],[-14,3.7,-24],wall);
+  const poleGeo=new THREE.CylinderGeometry(.045,.065,6.4,12);for(let i=0;i<6;i++)for(const side of [-1,1]){const x=side*5.1,z=-13-i*9;const pole=new THREE.Mesh(poleGeo,metal);pole.name='street-lamp';pole.position.set(x,3.2,z);scene.add(pole);box('lamp-arm',[1.3,.05,.07],[x-side*.6,6.38,z],metal);box('lamp-head',[.45,.07,.22],[x-side*1.2,6.35,z],metal);}
+  const trunkGeo=new THREE.CylinderGeometry(.09,.16,2.9,12),trunkMat=new THREE.MeshStandardMaterial({color:'#71634e',roughness:1}),leafGeo=new THREE.PlaneGeometry(1.6,1.25),leafMat=new THREE.MeshStandardMaterial({map:surfaces.foliage,alphaTest:.42,side:THREE.DoubleSide,roughness:.92,color:'#718266'});
+  let leafSeed=39;const rand=()=>{leafSeed=(Math.imul(leafSeed,1664525)+1013904223)>>>0;return leafSeed/4294967296;};for(const [x,z]of[[-9,-10],[-11,-18],[10,-12],[12,-20],[-9,-32],[12,-35]]){const trunk=new THREE.Mesh(trunkGeo,trunkMat);trunk.name='olive-trunk';trunk.position.set(x,1.4,z);scene.add(trunk);for(let j=0;j<32;j++){const leaf=new THREE.Mesh(leafGeo,leafMat);leaf.name='olive-leaf-cluster';const az=rand()*Math.PI*2,r=Math.sqrt(rand())*1.6;leaf.position.set(x+Math.cos(az)*r,2.8+(rand()-.5)*1.5,z+Math.sin(az)*r);leaf.rotation.set((rand()-.5)*1.5,rand()*Math.PI,rand()*.6);scene.add(leaf);}}
+  // Batch repeated foliage and curbs; this keeps the same depth with far fewer draw calls.
+  function instanceParts(name,materials){for(const mat of materials){const items=[];scene.traverse(o=>{if(o.isMesh&&o.name===name&&o.material===mat)items.push(o);});if(!items.length)continue;const batch=new THREE.InstancedMesh(items[0].geometry,mat,items.length);batch.name=name+'-batch';batch.receiveShadow=true;const geometries=new Set();items.forEach((m,i)=>{m.updateMatrix();batch.setMatrixAt(i,m.matrix);m.removeFromParent();if(m.geometry!==batch.geometry)geometries.add(m.geometry);});geometries.forEach(g=>g.dispose());batch.computeBoundingSphere();scene.add(batch);}}
+  instanceParts('olive-leaf-cluster',[leafMat]);instanceParts('painted-curb',curbMaterials);
+  // Closed until the server navigates to the authenticated route; no cosmetic success on a timer.
+  gate.parts.get('metal-gates').visible=false;const leaves=[];for(const side of [-1,1]){const leaf=new THREE.Group();leaf.name='security-gate-leaf';leaf.position.set(side*2.5,0,-7.5);scene.add(leaf);leaves.push(leaf);for(const y of [.12,1.95,2.42])box('gate-rail',[4.96,.07,.07],[0,y,0],metal,leaf);for(let i=0;i<25;i++)box('gate-bar',[.035,2.4,.035],[-2.44+i*4.88/24,1.25,0],metal,leaf);}
 
- // Login's reference (b1138b1f) shows two Jordan flags inside the portal, unlike Home's staging.
- // Adapt this instance only, keeping the shared Home model and its callers unchanged.
- gate.parts.get('flagpoles').scale.y = 3.5 / 8.5;
- const jordan = gate.parts.get('jordan-flag'), germany = gate.parts.get('germany-flag');
- germany.visible = false;
- jordan.scale.setScalar(.6); jordan.position.set(-3.2 + .91,3,-1.35);
- const secondJordan = jordan.clone(); secondJordan.name = 'login-jordan-flag-right';
- secondJordan.position.x = 1.55 + .91; gate.root.add(secondJordan);
- // Reference-toned limestone courses on the stationary structure.
- const portal = gate.parts.get('limestone-portal').children[0].material;
- portal.map = limestoneTexture(); portal.color.set('#ffffff'); portal.needsUpdate = true;
- for (const id of ['limestone-portal','right-return']) gate.parts.get(id).traverse(o => { if (o.isMesh && o.material === portal) architecturalUV(o.geometry,2.4); });
- // Reference details: recessed sign band and four soffit downlights under the lintel.
- const soffit = new THREE.MeshStandardMaterial({ color:'#1f2427', roughness:.6 });
- const lampGeo = new THREE.CylinderGeometry(.13,.13,.2,12);
- for (const x of [-3.9,-1.3,1.3,3.9]) { const can = new THREE.Mesh(lampGeo,soffit); can.name = 'soffit-light'; can.position.set(x,3.5,.2); gate.root.add(can); }
-
- // Long approach road, curbs, low wall, lamps and a distant hall, read from the photograph's background.
- const surroundings = new THREE.Group(); surroundings.name = 'campus-surroundings'; scene.add(surroundings);
- function block(name, size, position, material, shadow = true) {
-  const m = new THREE.Mesh(new THREE.BoxGeometry(...size), material); m.name = name; m.position.fromArray(position);
-  m.castShadow = shadow; m.receiveShadow = true; surroundings.add(m); return m;
- }
- const ground = new THREE.Mesh(new THREE.PlaneGeometry(260,260), new THREE.MeshStandardMaterial({ color:'#d6cfbf', roughness:1 }));
- ground.name = 'campus-ground'; ground.rotation.x = -Math.PI/2; ground.position.y = -.26; ground.receiveShadow = true; scene.add(ground);
- const asphalt = new THREE.MeshStandardMaterial({ color:'#a3a7a6', roughness:.95 });
- block('approach-road-inner', [8.8,.02,60], [0,-.04,-37], asphalt, false);
- block('approach-road-outer', [8.8,.02,12], [0,-.2,10], asphalt, false);
- const curbMap = curbTexture(); curbMap.repeat.set(30,1);
- const curb = new THREE.MeshStandardMaterial({ map:curbMap, roughness:.8 });
- // Side faces map u along z; the top face is swapped so its stripes also run along the curb.
- const curbGeo = block('painted-curb', [.25,.22,60], [4.55,.06,-37], curb, false).geometry, uv = curbGeo.attributes.uv;
- for (let i = 8; i < 12; i++) uv.setXY(i,uv.getY(i),uv.getX(i));
- block('sidewalk-right', [2.4,.14,60], [5.9,.0,-37], new THREE.MeshStandardMaterial({ color:'#ddd6c7', roughness:.95 }), false);
- block('terracotta-wall', [.35,1.05,44], [7.3,.45,-30], new THREE.MeshStandardMaterial({ color:'#d7b49a', roughness:.95 }));
- const hall = new THREE.MeshStandardMaterial({ color:'#ddd3c1', roughness:.9 });
- block('sport-hall', [16,4.6,9], [-14,2.05,-24], hall);
- block('sport-hall-band', [16.05,.7,9.05], [-14,3.7,-24], new THREE.MeshStandardMaterial({ color:'#c9bfad', roughness:.9 }), false);
- block('distant-fields', [140,.1,30], [0,-.2,-95], new THREE.MeshStandardMaterial({ color:'#a9b48f', roughness:1 }), false);
- const poleMat = new THREE.MeshStandardMaterial({ color:'#8c9497', metalness:.4, roughness:.5 });
- const poleGeo = new THREE.CylinderGeometry(.06,.08,7,8), armGeo = new THREE.BoxGeometry(1.3,.06,.08), headGeo = new THREE.BoxGeometry(.5,.08,.22);
- for (let i = 0; i < 6; i++) for (const side of [-1,1]) {
-  if (side < 0 && i < 1) continue;
-  const z = -10 - i*9, x = side*5.1;
-  const pole = new THREE.Mesh(poleGeo,poleMat); pole.position.set(x,3.3,z); pole.castShadow = !compact;
-  const arm = new THREE.Mesh(armGeo,poleMat); arm.position.set(x-side*.62,6.75,z);
-  const lamp = new THREE.Mesh(headGeo,poleMat); lamp.position.set(x-side*1.2,6.7,z);
-  pole.name = 'street-lamp'; surroundings.add(pole,arm,lamp);
- }
- const trunkGeo = new THREE.CylinderGeometry(.12,.15,1.6,6), crownGeo = new THREE.IcosahedronGeometry(1,1);
- const trunkMat = new THREE.MeshStandardMaterial({ color:'#80705c', roughness:1 }), crownMat = new THREE.MeshStandardMaterial({ color:'#8aa07a', roughness:1, flatShading:true });
- for (const [x,z,s] of [[-9,-6,1.1],[-10.5,-11,1.3],[11,-8,1.2],[12.5,-15,1.4],[10,-22,1],[-24,-14,1.5],[-8,-36,1.2],[13,-33,1.3]]) {
-  const trunk = new THREE.Mesh(trunkGeo,trunkMat); trunk.position.set(x,.8,z); surroundings.add(trunk);
-  const crown = new THREE.Mesh(crownGeo,crownMat); crown.position.set(x,2.3*s,z); crown.scale.set(s*1.1,s*1.35,s*1.1); crown.castShadow = !compact; surroundings.add(crown);
- }
-
- // The existing photographed structure stays fixed. These complete sliding leaves
- // deliberately use a symbolic mechanism; no claim about the real gate hardware.
- gate.parts.get('metal-gates').visible = false;
- const leaves = []; const metal = new THREE.MeshStandardMaterial({ color:'#7c8588', metalness:.6, roughness:.42 });
- const barGeo = new THREE.BoxGeometry(.034,2.3,.034);
- function bar(parent,name,size,pos) {
-  const m = new THREE.Mesh(new THREE.BoxGeometry(...size),metal); m.name = name; m.position.fromArray(pos); m.castShadow = true; parent.add(m);
- }
- for (const side of [-1,1]) {
-  const leaf = new THREE.Group(); leaf.name = 'symbolic-sliding-gate-'+side; leaf.position.set(side*2.5,0,.5); scene.add(leaf); leaves.push(leaf);
-  for (const y of [.12,1.95,2.42]) bar(leaf,'rail-'+y,[4.96,.07,.07],[0,y,0]);
-  for (const x of [-2.44,2.44]) bar(leaf,'stile-'+x,[.09,2.42,.08],[x,1.27,0]);
-  for (let i = 1; i < 24; i++) { const v = new THREE.Mesh(barGeo,metal); v.name = 'vertical-'+i; v.position.set(-2.44+i*4.88/24,1.2,0); v.castShadow = true; leaf.add(v); }
- }
-
- const guard = createPerson(true), visitor = createPerson(false);
- guard.root.position.set(4.3,0,3.1); guard.root.rotation.y = -.75;
- visitor.root.position.set(2.85,0,3.95); visitor.root.rotation.y = 1.05; scene.add(guard.root, visitor.root);
- // Verification kiosk beside the guard; its status light is the only colour cue.
- const kiosk = new THREE.Group(); kiosk.name = 'verification-device'; kiosk.position.set(3.65,0,2.75); kiosk.rotation.y = -.5; scene.add(kiosk);
- const kioskMat = new THREE.MeshStandardMaterial({ color:'#2a3740', roughness:.55, metalness:.3 });
- const post = new THREE.Mesh(new THREE.CylinderGeometry(.04,.06,1.05,10),kioskMat); post.position.y = .52; post.castShadow = true;
- const reader = new THREE.Mesh(new THREE.BoxGeometry(.3,.2,.06),kioskMat); reader.position.set(0,1.1,0); reader.rotation.x = -.6; reader.castShadow = true;
- const lightMat = new THREE.MeshStandardMaterial({ color:'#3c4a52', emissive:'#000000', roughness:.4 });
- const indicator = new THREE.Mesh(new THREE.BoxGeometry(.2,.035,.012),lightMat); indicator.position.set(0,.03,.032); reader.add(indicator);
- kiosk.add(post,reader);
- const contact = new THREE.MeshBasicMaterial({ map:contactShadowTexture(), transparent:true, depthWrite:false });
- for (const person of [guard,visitor]) {
-  const blob = new THREE.Mesh(new THREE.PlaneGeometry(.9,.9),contact); blob.rotation.x = -Math.PI/2; blob.position.y = .012; person.root.add(blob);
- }
-
- const camera = new THREE.PerspectiveCamera(38,1,.1,260);
- let basePosition = new THREE.Vector3(), baseTarget = new THREE.Vector3(), reduced = options.reducedMotion, paused = false, disposed = false, raf = 0;
- let state = 'idle', progress = 0, entryStart = 0, resolveEntry, clock = 0, lastTime = 0, settling = 0;
- // Exit path runs midway between the two flagpoles (x = -3.2 and 1.55).
- const exitPosition = new THREE.Vector3(-.8,1.6,-2), exitTarget = new THREE.Vector3(-.8,1.7,-14);
- function resize() {
-  const {width,height} = container.getBoundingClientRect(); if (!width || !height) return;
-  renderer.setSize(width,height,false); camera.aspect = width/height;
-  const aspect = width/height;
-  if (aspect < .9) { basePosition.set(1.2,2.7,27.5); baseTarget.set(.7,2.2,0); camera.fov = 44; }
-  else if (width <= 1100) { basePosition.set(1.4,2.4,21); baseTarget.set(-2.6,2.8,0); camera.fov = 40; }
-  else { basePosition.set(1.4,2.1,20.5); baseTarget.set(-4.3,3,0); camera.fov = 38; }
-  if (!entryStart) { camera.position.copy(basePosition); camera.lookAt(baseTarget); }
-  camera.updateProjectionMatrix(); draw();
- }
- function draw() { if (!disposed) renderer.render(scene,camera); }
- // Restrained target poses; the loop eases toward them instead of snapping.
- const targets = { visitorArmX:0, visitorArmZ:0, visitorHead:0, guardHeadX:0, guardHeadY:0, guardArmX:0, guardArmZ:0 };
- function setTargets() {
-  const checking = state === 'submitting', success = state === 'success';
-  Object.assign(targets, {
-   visitorArmX: checking || success ? -1.05 : 0, visitorArmZ: checking ? -.3 : 0, visitorHead: checking ? .12 : 0,
-   guardHeadX: checking ? .22 : 0, guardHeadY: checking ? .35 : 0,
-   guardArmX: success ? -.55 : 0, guardArmZ: success ? -1.15 : 0
-  });
-  lightMat.emissive.set(success ? '#2fae6b' : checking ? '#e3a21a' : '#000000');
-  lightMat.color.set(success ? '#2fae6b' : checking ? '#e3a21a' : '#3c4a52');
-  settling = reduced ? 0 : 1;
- }
- function applyPose(rate) {
-  const ease = (object, key, value) => { object[key] += (value - object[key]) * rate; };
-  ease(visitor.arms[1].rotation,'x',targets.visitorArmX); ease(visitor.arms[1].rotation,'z',targets.visitorArmZ);
-  ease(visitor.head.rotation,'x',targets.visitorHead);
-  ease(guard.head.rotation,'x',targets.guardHeadX); ease(guard.head.rotation,'y',targets.guardHeadY);
-  // The guard's own right arm (the -X side) gives the small welcoming gesture.
-  ease(guard.arms[0].rotation,'x',targets.guardArmX); ease(guard.arms[0].rotation,'z',targets.guardArmZ);
-  const remaining = Math.abs(visitor.arms[1].rotation.x - targets.visitorArmX) + Math.abs(guard.arms[0].rotation.z - targets.guardArmZ) + Math.abs(guard.head.rotation.y - targets.guardHeadY);
-  if (remaining < .002) settling = 0;
- }
- function ambient(time) {
-  if (reduced || paused) return;
-  gate.updateCloth(time,.45);
-  guard.root.position.y = .005*Math.sin(time*1.4);
-  visitor.root.rotation.y = 1.05 + .025*Math.sin(time*.5);
- }
- function frame(now) {
-  raf = 0; if (disposed || document.hidden) return;
-  const delta = lastTime ? Math.min((now-lastTime)/1000,.05) : 0; clock += delta; lastTime = now;
-  if (entryStart) {
-   progress = Math.min((now-entryStart)/1250,1);
-   const open = 1-Math.pow(1-Math.min(progress/.7,1),3), travel = progress<.15 ? 0 : 1-Math.pow(1-(progress-.15)/.85,2.4);
-   leaves.forEach((leaf,i) => leaf.position.x = (i?1:-1)*(2.5+5.1*open));
-   camera.position.copy(basePosition).lerp(exitPosition,travel); camera.lookAt(baseTarget.clone().lerp(exitTarget,travel));
-   if(progress===1){entryStart=0;resolveEntry?.();resolveEntry=null;}
+  const kiosk=new THREE.Group();kiosk.name='university-id-checkpoint';kiosk.position.set(.95,0,7.4);kiosk.rotation.y=.18;scene.add(kiosk);
+  const brushed=new THREE.MeshStandardMaterial({color:'#52616c',roughness:.43,metalness:.78});
+  box('pedestal-foot',[.64,.07,.51],[0,.035,0],brushed,kiosk);box('pedestal-column',[.35,1.03,.28],[0,.58,-.05],brushed,kiosk);
+  const consoleHead=new THREE.Group();consoleHead.name='reader-console';consoleHead.position.y=1.19;consoleHead.rotation.x=-.27;kiosk.add(consoleHead);box('reader-housing',[.63,.45,.1],[0,0,0],dark,consoleHead);
+  const lightMat=new THREE.MeshStandardMaterial({color:'#809cab',emissive:'#152936',roughness:.3});box('reader-status-strip',[.48,.012,.004],[0,.177,.054],lightMat,consoleHead);
+  const display=document.createElement('canvas');display.width=768;display.height=512;const dc=display.getContext('2d'),displayMap=new THREE.CanvasTexture(display);displayMap.colorSpace=THREE.SRGBColorSpace;
+  box('reader-screen',[.49,.29,.005],[0,.005,.055],new THREE.MeshStandardMaterial({map:displayMap,emissiveMap:displayMap,emissive:'#fff',emissiveIntensity:.45,roughness:.25}),consoleHead);
+  for(const x of [-.283,.283])for(const y of [-.19,.19]){const screw=new THREE.Mesh(new THREE.CylinderGeometry(.006,.006,.004,12),brushed);screw.name='reader-fastener';screw.rotation.x=Math.PI/2;screw.position.set(x,y,.053);consoleHead.add(screw);}
+  const cardMap=textureCanvas(1024,640,c=>{c.fillStyle='#f3f5f4';c.fillRect(0,0,1024,640);c.fillStyle='#264f73';c.fillRect(0,0,1024,146);c.fillStyle='#fff';c.font='600 48px sans-serif';c.fillText('German Jordanian University',40,89);c.fillStyle='#efb12b';c.fillRect(0,146,1024,12);c.fillStyle='#172e40';c.font='600 58px sans-serif';c.fillText('UNIVERSITY ID',300,272);c.font='36px sans-serif';c.fillText('Campus access',300,338);c.font='26px sans-serif';c.fillStyle='#60717c';c.fillText('SAMPLE / UIMS',300,405);c.fillStyle='#d9e1e5';c.fillRect(42,205,210,255);c.fillStyle='#8a9eac';c.beginPath();c.arc(147,285,47,0,Math.PI*2);c.fill();c.beginPath();c.ellipse(147,410,80,65,0,0,Math.PI*2);c.fill();c.fillStyle='#203849';for(let i=0;i<84;i++)if(i*17%11>4)c.fillRect(42+i*11,533,4,58);});
+  // Sample card on a physical support, never a real user's ID or a floating credential.
+  const pass=new THREE.Group();pass.name='university-identity-card';pass.position.set(.22,1.05,.23);pass.rotation.set(-.15,-.12,-.12);kiosk.add(pass);
+  box('card-laminate',[.38,.238,.006],[0,0,0],new THREE.MeshPhysicalMaterial({color:'#f0f2f0',roughness:.3,clearcoat:.65}),pass);box('card-printed-face',[.371,.231,.001],[0,0,.0037],new THREE.MeshPhysicalMaterial({map:cardMap,roughness:.42,clearcoat:.3}),pass);box('card-support',[.43,.025,.12],[.15,.917,.2],dark,kiosk);
+  const ar=document.documentElement.lang==='ar';function screen(checking){dc.fillStyle='#10232f';dc.fillRect(0,0,768,512);dc.fillStyle=checking?'#edc773':'#a8c6d8';dc.textAlign='center';dc.font='600 49px sans-serif';dc.fillText(ar?(checking?'جارٍ التحقق':'الأمن الجامعي'):(checking?'Checking identity':'Campus security'),384,165);dc.font='35px sans-serif';dc.fillStyle='#dce8ee';dc.fillText(ar?(checking?'يرجى الانتظار':'الدخول بالهوية الجامعية'):(checking?'Please wait':'University ID access'),384,260);dc.strokeStyle=checking?'#edc773':'#668a9f';dc.lineWidth=7;dc.beginPath();dc.roundRect(335,320,98,67,12);dc.stroke();displayMap.needsUpdate=true;}
+  container.appendChild(renderer.domElement);
+  const camera=new THREE.PerspectiveCamera(50,1,.1,260),basePosition=new THREE.Vector3(),baseTarget=new THREE.Vector3(0,1.85,-4);
+  let lastDraw=0;
+  let reduced=!!options.reducedMotion,paused=false,disposed=false,contextLost=false,state='idle',raf=0,last=0,time=0,draws=0,px=0,py=0,vx=0,vy=0;
+  function draw(){if(!disposed&&!contextLost){renderer.render(scene,camera);draws++;}}
+  function resize(){const {width,height}=container.getBoundingClientRect();if(!width||!height)return;renderer.setSize(width,height,false);camera.aspect=width/height;basePosition.set(1.2,1.85,width/height<1.05?12:10.5);camera.position.copy(basePosition);camera.lookAt(baseTarget);camera.updateProjectionMatrix();draw();}
+  function frame(now){raf=0;if(disposed||contextLost||document.hidden)return;if(now-lastDraw<32){raf=requestAnimationFrame(frame);return;}lastDraw=now;const dt=last?Math.min((now-last)/1000,.05):0;last=now;
+   if(!paused&&!reduced){time+=dt;gate.updateCloth(time,.3);guard.update(dt,state==='submitting');const k=1-Math.exp(-dt*4);vx+=(px-vx)*k;vy+=(py-vy)*k;camera.position.copy(basePosition);camera.position.x+=vx;camera.position.y+=vy;camera.lookAt(baseTarget);}
+   draw();if(!paused&&!reduced)raf=requestAnimationFrame(frame);
   }
-  if (settling) applyPose(1-Math.exp(-delta*9));
-  ambient(clock); draw();
-  if (entryStart || settling || (!paused && !reduced)) raf = requestAnimationFrame(frame);
- }
- function start() { if (!raf && !disposed && !document.hidden) { lastTime = 0; raf = requestAnimationFrame(frame); } }
- function visibility() { if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTime = 0; } else start(); }
- function snap() { applyPose(1); settling = 0; draw(); }
- function setReducedMotion(value) { reduced = value; pause.hidden = value; if (value) snap(); start(); }
- function togglePause() { paused = !paused; pause.textContent = (paused ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('ResumeScene') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PauseScene')); pause.setAttribute('aria-pressed',String(paused)); start(); }
- function lost(event) { event.preventDefault(); host.removeAttribute('data-scene-ready'); cancelAnimationFrame(raf); raf = 0; pause.hidden = true; resolveEntry?.(); }
- const observer = new ResizeObserver(resize); observer.observe(container);
- document.addEventListener('visibilitychange',visibility); pause.addEventListener('click',togglePause); renderer.domElement.addEventListener('webglcontextlost',lost);
- resize(); setTargets(); snap(); pause.hidden = reduced; start();
- return {
-  setState(value){state=value;setTargets();if(reduced)snap();start();},setReducedMotion,
-  enter(){if(reduced)return Promise.resolve();return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();start();});},
-  dispose(){
-   if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();
-   document.removeEventListener('visibilitychange',visibility);pause.removeEventListener('click',togglePause);renderer.domElement.removeEventListener('webglcontextlost',lost);
-   const geometries=new Set(),materials=new Set(),textures=new Set();
-   scene.traverse(object=>{if(object.geometry)geometries.add(object.geometry);for(const material of object.material?(Array.isArray(object.material)?object.material:[object.material]):[]){materials.add(material);for(const value of Object.values(material))if(value?.isTexture)textures.add(value);}});
-   geometries.forEach(g=>g.dispose());textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());renderer.dispose();renderer.domElement.remove();
-  }
- };
+  function start(){if(!raf&&!disposed&&!contextLost&&!document.hidden){last=0;raf=requestAnimationFrame(frame);}}
+  function setState(value){state=value==='submitting'?'submitting':'idle';lightMat.color.set(state==='submitting'?'#edc773':'#809cab');lightMat.emissive.set(state==='submitting'?'#a47c26':'#152936');screen(state==='submitting');start();}
+  function setReducedMotion(value){reduced=value;pause.hidden=value;if(value){vx=vy=0;camera.position.copy(basePosition);camera.lookAt(baseTarget);}start();}
+  function toggle(){paused=!paused;pause.setAttribute('aria-pressed',String(paused));pause.textContent=paused?pause.dataset.resumeLabel:pause.dataset.pauseLabel;start();}
+  function visibility(){if(document.hidden){cancelAnimationFrame(raf);raf=0;last=0;}else start();}
+  function lost(e){e.preventDefault();contextLost=true;host.removeAttribute('data-scene-ready');host.dataset.visualMode='photo';pause.hidden=true;cancelAnimationFrame(raf);raf=0;}
+  function pointer(e){if(e.pointerType!=='mouse')return;const r=container.getBoundingClientRect();px=((e.clientX-r.left)/r.width-.5)*.22;py=-((e.clientY-r.top)/r.height-.5)*.08;}
+  function leave(){px=py=0;}
+  const observer=new ResizeObserver(resize);observer.observe(container);pause.addEventListener('click',toggle);document.addEventListener('visibilitychange',visibility);container.addEventListener('pointermove',pointer,{passive:true});container.addEventListener('pointerleave',leave);renderer.domElement.addEventListener('webglcontextlost',lost);
+  resize();setState('idle');pause.hidden=reduced;pause.setAttribute('aria-pressed','false');pause.textContent=pause.dataset.pauseLabel;start();
+  return {setState,setReducedMotion,snapshot(){return {state,paused,reduced,draws,camera:camera.position.toArray(),card:pass.getWorldPosition(new THREE.Vector3()).toArray(),leaves:leaves.map(l=>l.position.x),triangles:renderer.info.render.triangles,drawCalls:renderer.info.render.calls};},dispose(){if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();pause.removeEventListener('click',toggle);document.removeEventListener('visibilitychange',visibility);container.removeEventListener('pointermove',pointer);container.removeEventListener('pointerleave',leave);renderer.domElement.removeEventListener('webglcontextlost',lost);guard.dispose();disposeScene(scene);Object.values(surfaces).forEach(t=>t?.dispose());environment.dispose();pmrem.dispose();renderer.dispose();renderer.domElement.remove();}};
+ } catch(error){guard?.dispose();disposeScene(scene);Object.values(surfaces||{}).forEach(t=>t?.dispose());environment?.dispose();pmrem?.dispose();renderer?.dispose();renderer?.domElement.remove();throw error;}
 }

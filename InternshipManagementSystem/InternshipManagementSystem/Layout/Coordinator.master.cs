@@ -4,10 +4,8 @@
 //  so no individual page has to.
 // =============================================================================
 using System;
-using System.Linq;
 using System.Web.UI;
 using InternshipManagementSystem.Common;
-using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Layout
@@ -23,26 +21,6 @@ namespace InternshipManagementSystem.Layout
             return string.Equals(Request.AppRelativeCurrentExecutionFilePath, virtualPath,
                 StringComparison.OrdinalIgnoreCase) ? "page" : "false";
         }
-        protected string UserInitials
-        {
-            get
-            {
-                var user = SessionHelper.Current;
-                if (user == null || string.IsNullOrWhiteSpace(user.FullName)) return "";
-                return string.Concat(user.FullName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
-                    .Take(2).Select(name => name.Substring(0, 1))).ToUpperInvariant();
-            }
-        }
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            Person user = SessionHelper.Current;
-            if (user == null) return;
-
-            litUserName.Text = Validators.Safe(user.FullName);
-            litRoleName.Text = Validators.Safe(L.Role(user.Role));
-        }
-
         protected void btnSignOut_Click(object sender, EventArgs e)
         {
             SessionHelper.SignOut();

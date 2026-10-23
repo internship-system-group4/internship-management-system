@@ -44,6 +44,21 @@ namespace InternshipManagementSystem
             Exception error = Server.GetLastError();
             if (error == null) return;
 
+            // ASP.NET 404s (including missing .aspx pages). Native/static 404s are
+            // executed by IIS httpErrors. Both paths keep the browser's original URL.
+            var httpError = error as HttpException;
+            if (httpError != null && httpError.GetHttpCode() == 404 &&
+                Context.Items["Uims.NotFound"] == null &&
+                !Request.Path.StartsWith(VirtualPathUtility.ToAbsolute("~/Assets/"), StringComparison.OrdinalIgnoreCase) &&
+                !Request.CurrentExecutionFilePath.Equals(VirtualPathUtility.ToAbsolute("~/Pages/Public/NotFound.aspx"), StringComparison.OrdinalIgnoreCase))
+            {
+                Context.Items["Uims.NotFound"] = true;
+                Server.ClearError();
+                Response.Clear();
+                Server.Transfer("~/Pages/Public/NotFound.aspx", false);
+                return;
+            }
+
             // A form posted after the session changed (expired, app restarted,
             // signed out in another tab) fails the viewstate check. Instead of
             // the yellow error page, just reload the same page fresh.
