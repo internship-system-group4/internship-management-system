@@ -1,17 +1,4 @@
-﻿// =============================================================================
-//  Schedule a Meeting
-//  Owner : Fatima
-//  Cards : F08, F10 (OPTIONAL)
-//
-//  OPTIONAL - do not start this until every core card is done. Date, time, participants and a pasted Zoom join link, saved to Firebase, with back-end access checks via Meeting.CanBeViewedBy.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
-using System;
-using InternshipManagementSystem.Common;
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Web.UI.WebControls;
@@ -29,47 +16,70 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
             try
             {
-                LoadPlacements();
+                LoadStudents();
+                LoadParticipants();
                 LoadMeetings();
             }
             catch (FirebaseException)
             {
-                ShowMessage(L.T("Meetings.Schedule.CouldNotLoadMeetingsPleaseTry"), false);
+                ShowMessage("Could not load meetings. Please try again.", false);
             }
         }
 
-        private bool BelongsToCurrentUser(Placement placement)
-        {
-            if (placement == null) return false;
-
-            CompanySupervisor supervisor = CurrentUser as CompanySupervisor;
-
-            return placement.StudentId == CurrentUser.Id
-                || placement.CompanySupervisorId == CurrentUser.Id
-                || placement.AcademicSupervisorId == CurrentUser.Id
-                || (supervisor != null &&
-                    placement.CompanyId == supervisor.CompanyId);
-        }
-
-        private void LoadPlacements()
+        // الطالب يرى تدريبه فقط. المشرف يرى الطلاب التابعين له.
+        private void LoadStudents()
         {
             ddlPlacement.Items.Clear();
             ddlPlacement.Items.Add(
-                new ListItem(L.T("Meetings.Schedule.SelectAnInternship"), ""));
+                new ListItem("Select a student", ""));
 
-            foreach (Placement placement in new PlacementRepository().GetAll())
+            foreach (Placement placement in
+                     new PlacementRepository().GetAll())
             {
-                if (!BelongsToCurrentUser(placement)) continue;
+                if (!CanManagePlacement(placement)) continue;
 
-                string name = string.IsNullOrWhiteSpace(placement.StudentName)
-                    ? placement.StudentId
+                string studentName =
+                    string.IsNullOrWhiteSpace(placement.StudentName)
+                    ? "Student"
                     : placement.StudentName;
 
                 ddlPlacement.Items.Add(
-                    new ListItem(name, placement.Id));
+                    new ListItem(studentName, placement.Id));
             }
 
-            cblParticipants.Items.Clear();
+            // الطالب لا يحتاج يختار تدريبه يدويًا.
+            if (CurrentUser is Student && ddlPlacement.Items.Count > 1)
+            {
+                ddlPlacement.SelectedIndex = 1;
+                ddlPlacement.Enabled = false;
+            }
+        }
+
+        private bool CanManagePlacement(Placement placement)
+        {
+            if (placement == null || CurrentUser == null)
+                return false;
+
+            if (CurrentUser is Student)
+                return placement.StudentId == CurrentUser.Id;
+
+            CompanySupervisor companySupervisor =
+                CurrentUser as CompanySupervisor;
+
+            if (companySupervisor != null)
+            {
+                return !string.IsNullOrEmpty(companySupervisor.CompanyId)
+                    && placement.CompanyId ==
+                       companySupervisor.CompanyId;
+            }
+
+            if (CurrentUser is AcademicSupervisor)
+            {
+                return placement.AcademicSupervisorId ==
+                       CurrentUser.Id;
+            }
+
+            return false;
         }
 
         protected void ddlPlacement_SelectedIndexChanged(
@@ -81,169 +91,201 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             }
             catch (FirebaseException)
             {
-                ShowMessage(L.T("Meetings.Schedule.CouldNotLoadParticipants"), false);
+                ShowMessage("Could not load participants.", false);
             }
         }
 
         private void LoadParticipants()
         {
             cblParticipants.Items.Clear();
+            lblNoParticipants.Visible = true;
+            lblNoParticipants.Text =
+                "Choose a student to see participants.";
 
-            if (string.IsNullOrWhiteSpace(ddlPlacement.SelectedValue))
+            string placementId = ddlPlacement.SelectedValue;
+
+            if (string.IsNullOrEmpty(placementId))
                 return;
 
-            Placement placement = new PlacementRepository()
-                .GetById(ddlPlacement.SelectedValue);
+            Placement placement =
+                new PlacementRepository().GetById(placementId);
 
-            if (!BelongsToCurrentUser(placement)) return;
+            if (!CanManagePlacement(placement))
+            {
+                lblNoParticipants.Text =
+                    "This internship is not available.";
+                return;
+            }
 
-            AddParticipant(placement.StudentId);
-            AddParticipant(placement.CompanySupervisorId);
-            AddParticipant(placement.AcademicSupervisorId);
+            // الأرقام موجودة في Placement نفسه؛ لا نعتمد على users.
+            AddParticipant(
+                placement.StudentId,
+                placement.StudentName,
+                "Student");
+
+            AddParticipant(
+                placement.CompanySupervisorId,
+                placement.CompanySupervisorName,
+                "Company supervisor");
+
+            AddParticipant(
+                placement.AcademicSupervisorId,
+                "",
+                "Academic supervisor");
+
+            lblNoParticipants.Visible =
+                cblParticipants.Items.Count == 0;
+
+            if (lblNoParticipants.Visible)
+            {
+                lblNoParticipants.Text =
+                    "No other participants are linked to this internship.";
+            }
         }
 
-        private void AddParticipant(string personId)
+        private void AddParticipant(
+            string personId, string personName, string fallbackName)
         {
             if (string.IsNullOrWhiteSpace(personId) ||
                 personId == CurrentUser.Id ||
                 cblParticipants.Items.FindByValue(personId) != null)
+            {
                 return;
+            }
 
-            Person person = new UserRepository().GetPerson(personId);
-            if (person == null) return;
-
-            string name = string.IsNullOrWhiteSpace(person.FullName)
-                ? person.Id
-                : person.FullName;
+            string displayName =
+                string.IsNullOrWhiteSpace(personName)
+                ? fallbackName
+                : personName;
 
             cblParticipants.Items.Add(
-                new ListItem(name, personId));
+                new ListItem(displayName, personId));
         }
 
         protected void btnSchedule_Click(object sender, EventArgs e)
         {
-            try
+            string placementId = ddlPlacement.SelectedValue;
+
+            if (string.IsNullOrWhiteSpace(placementId))
             {
-                Placement placement = new PlacementRepository()
-                    .GetById(ddlPlacement.SelectedValue);
+                ShowMessage("Select a student first.", false);
+                return;
+            }
 
-                if (!BelongsToCurrentUser(placement))
-                {
-                    ShowMessage(L.T("Meetings.Schedule.SelectOneOfYourInternships"), false);
-                    return;
-                }
+            string title = txtTitle.Text.Trim();
+            string agenda = txtAgenda.Text.Trim();
+            string joinUrl = txtJoinUrl.Text.Trim();
 
-                string title = txtTitle.Text.Trim();
-                string agenda = txtAgenda.Text.Trim();
-                string url = txtJoinUrl.Text.Trim();
+            if (title == "")
+            {
+                ShowMessage("Enter a meeting title.", false);
+                return;
+            }
 
-                if (title == "")
-                {
-                    ShowMessage(L.T("Meetings.Schedule.EnterAMeetingTitle"), false);
-                    return;
-                }
+            DateTime meetingTime;
 
-                DateTime localDate;
-                if (!DateTime.TryParseExact(
+            if (!DateTime.TryParseExact(
                     txtScheduledAt.Text,
-                    new[] { "yyyy-MM-ddTHH:mm", "yyyy-MM-ddTHH:mm:ss" },
+                    "yyyy-MM-ddTHH:mm",
                     CultureInfo.InvariantCulture,
                     DateTimeStyles.None,
-                    out localDate))
-                {
-                    ShowMessage(L.T("Meetings.Schedule.EnterAValidMeetingDateAnd"), false);
-                    return;
-                }
+                    out meetingTime))
+            {
+                ShowMessage("Enter a valid meeting date and time.", false);
+                return;
+            }
 
-                int offsetMinutes;
-                if (!int.TryParse(hfTimezoneOffset.Value,
-                                  out offsetMinutes) ||
-                    offsetMinutes < -840 ||
-                    offsetMinutes > 840)
+            // الحقل في الصفحة مكتوب عليه UTC.
+            meetingTime = DateTime.SpecifyKind(
+                meetingTime, DateTimeKind.Utc);
+
+            if (meetingTime <= DateTime.UtcNow)
+            {
+                ShowMessage("Choose a future date and time.", false);
+                return;
+            }
+
+            Uri zoomLink;
+
+            if (!Uri.TryCreate(
+                    joinUrl, UriKind.Absolute, out zoomLink) ||
+                zoomLink.Scheme != Uri.UriSchemeHttps)
+            {
+                ShowMessage(
+                    "Enter a valid HTTPS meeting link.", false);
+                return;
+            }
+
+            try
+            {
+                Placement placement =
+                    new PlacementRepository().GetById(placementId);
+
+                // نفحص الصلاحية مرة ثانية قبل الحفظ.
+                if (!CanManagePlacement(placement))
                 {
                     ShowMessage(
-                        L.T("Meetings.Schedule.CouldNotReadYourTimeZone"),
+                        "You cannot schedule a meeting for this student.",
                         false);
                     return;
                 }
 
-                // JavaScript offset = UTC - local time.
-                DateTime utcDate = DateTime.SpecifyKind(
-                    localDate.AddMinutes(offsetMinutes),
-                    DateTimeKind.Utc);
+                List<string> allowedIds =
+                    new List<string>();
 
-                long scheduledAt =
-                    new DateTimeOffset(utcDate).ToUnixTimeMilliseconds();
+                AddAllowedId(allowedIds, placement.StudentId);
+                AddAllowedId(
+                    allowedIds, placement.CompanySupervisorId);
+                AddAllowedId(
+                    allowedIds, placement.AcademicSupervisorId);
 
-                if (scheduledAt <= DateTimeOffset.UtcNow
-                                      .ToUnixTimeMilliseconds())
-                {
-                    ShowMessage(L.T("Meetings.Schedule.ChooseAFutureDateAndTime"), false);
-                    return;
-                }
-
-                int duration;
-                if (!int.TryParse(ddlDuration.SelectedValue, out duration) ||
-                    (duration != 30 && duration != 45 && duration != 60))
-                {
-                    ShowMessage(L.T("Meetings.Schedule.SelectAValidDuration"), false);
-                    return;
-                }
-
-                if (!IsZoomUrl(url))
-                {
-                    ShowMessage(L.T("Meetings.Schedule.EnterAValidHTTPSZoomLink"), false);
-                    return;
-                }
-
-                // لا نعتمد على IDs المرسلة من المتصفح.
-                // نتحقق أن كل مشارك من الأشخاص المرتبطين بهذا التدريب.
-                List<string> allowed = new List<string>
-                {
-                    placement.StudentId,
-                    placement.CompanySupervisorId,
-                    placement.AcademicSupervisorId
-                };
-
-                List<string> selected = new List<string>();
+                List<string> selectedIds =
+                    new List<string>();
 
                 foreach (ListItem item in cblParticipants.Items)
                 {
                     if (!item.Selected) continue;
 
-                    if (!allowed.Contains(item.Value))
+                    // ممنوع إرسال دعوة لشخص خارج هذا التدريب.
+                    if (!allowedIds.Contains(item.Value) ||
+                        item.Value == CurrentUser.Id)
                     {
-                        ShowMessage(L.T("Meetings.Schedule.InvalidParticipantSelected"), false);
+                        ShowMessage(
+                            "Invalid participant selection.", false);
                         return;
                     }
 
-                    if (!selected.Contains(item.Value))
-                        selected.Add(item.Value);
+                    if (!selectedIds.Contains(item.Value))
+                        selectedIds.Add(item.Value);
                 }
 
-                if (selected.Count == 0)
+                if (selectedIds.Count == 0)
                 {
-                    ShowMessage(L.T("Meetings.Schedule.SelectAtLeastOneParticipant"), false);
+                    ShowMessage(
+                        "Choose at least one participant.", false);
                     return;
                 }
 
-                Meeting meeting = new Meeting
-                {
-                    Title = title,
-                    Agenda = agenda,
-                    CreatedById = CurrentUser.Id,
-                    PlacementId = placement.Id,
-                    ParticipantIds = selected,
-                    ScheduledAt = scheduledAt,
-                    DurationMinutes = duration,
-                    JoinUrl = url
-                };
+                Meeting meeting = new Meeting();
+                meeting.Title = title;
+                meeting.Agenda = agenda;
+                meeting.PlacementId = placement.Id;
+                meeting.CreatedById = CurrentUser.Id;
+                meeting.ParticipantIds = selectedIds;
+                meeting.ScheduledAt =
+                    new DateTimeOffset(meetingTime)
+                        .ToUnixTimeMilliseconds();
+                meeting.DurationMinutes =
+                    int.Parse(ddlDuration.SelectedValue);
+                meeting.JoinUrl = joinUrl;
 
-                string id = new MeetingRepository().Insert(meeting);
+                string meetingId =
+                    new MeetingRepository().Insert(meeting);
 
-                if (string.IsNullOrWhiteSpace(id))
+                if (string.IsNullOrEmpty(meetingId))
                 {
-                    ShowMessage(L.T("Meetings.Schedule.MeetingCouldNotBeSaved"), false);
+                    ShowMessage(
+                        "Meeting could not be saved.", false);
                     return;
                 }
 
@@ -251,49 +293,69 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 txtAgenda.Text = "";
                 txtScheduledAt.Text = "";
                 txtJoinUrl.Text = "";
-                cblParticipants.ClearSelection();
+
+                foreach (ListItem item in cblParticipants.Items)
+                    item.Selected = false;
 
                 LoadMeetings();
-                ShowMessage(L.T("Meetings.Schedule.MeetingScheduledSuccessfully"), true);
+
+                ShowMessage(
+                    "Meeting scheduled successfully.", true);
             }
             catch (FirebaseException)
             {
-                ShowMessage(L.T("Meetings.Schedule.CouldNotSaveTheMeetingTry"), false);
+                ShowMessage(
+                    "Could not save the meeting. Please try again.",
+                    false);
+            }
+        }
+
+        private void AddAllowedId(
+            List<string> ids, string personId)
+        {
+            if (!string.IsNullOrWhiteSpace(personId) &&
+                !ids.Contains(personId))
+            {
+                ids.Add(personId);
             }
         }
 
         private void LoadMeetings()
         {
-            List<Meeting> visible = new List<Meeting>();
+            List<Meeting> mine = new List<Meeting>();
 
-            foreach (Meeting meeting in new MeetingRepository().GetAll())
+            foreach (Meeting meeting in
+                     new MeetingRepository().GetAll())
             {
                 if (meeting.CanBeViewedBy(CurrentUser.Id))
-                    visible.Add(meeting);
+                    mine.Add(meeting);
             }
 
-            rptMeetings.DataSource = visible;
+            rptMeetings.DataSource = mine;
             rptMeetings.DataBind();
-            lblNoMeetings.Visible = visible.Count == 0;
+            lblNoMeetings.Visible = mine.Count == 0;
         }
 
         protected void rptMeetings_ItemCommand(
             object source, RepeaterCommandEventArgs e)
         {
-            if (e.CommandName != "ViewMeeting") return;
+            if (e.CommandName != "ViewMeeting")
+                return;
 
             try
             {
-                string id = Convert.ToString(e.CommandArgument);
-                Meeting meeting = new MeetingRepository().GetById(id);
+                string meetingId =
+                    Convert.ToString(e.CommandArgument);
 
-                // نفحص الصلاحية مرة ثانية عند فتح التفاصيل.
+                Meeting meeting =
+                    new MeetingRepository().GetById(meetingId);
+
+                // نفحص الوصول على السيرفر قبل عرض الرابط.
                 if (meeting == null ||
                     !meeting.CanBeViewedBy(CurrentUser.Id))
                 {
-                    pnlMeetingDetails.Visible = false;
                     ShowMessage(
-                        L.T("Meetings.Schedule.YouDoNotHaveAccessTo"), false);
+                        "Meeting not found or access denied.", false);
                     return;
                 }
 
@@ -303,12 +365,19 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 lblDetailAgenda.Text =
                     Server.HtmlEncode(meeting.Agenda ?? "");
 
-                lblDetailDate.Text = FormatDate(meeting.ScheduledAt);
+                lblDetailDate.Text =
+                    FormatDate(meeting.ScheduledAt);
 
                 lblDetailDuration.Text =
                     meeting.DurationMinutes + " minutes";
 
-                lnkJoin.Visible = IsZoomUrl(meeting.JoinUrl);
+                Uri link;
+                lnkJoin.Visible =
+                    Uri.TryCreate(
+                        meeting.JoinUrl,
+                        UriKind.Absolute,
+                        out link) &&
+                    link.Scheme == Uri.UriSchemeHttps;
 
                 if (lnkJoin.Visible)
                     lnkJoin.NavigateUrl = meeting.JoinUrl;
@@ -317,44 +386,36 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             }
             catch (FirebaseException)
             {
-                ShowMessage(L.T("Meetings.Schedule.CouldNotOpenThisMeeting"), false);
+                ShowMessage(
+                    "Could not open meeting details.", false);
             }
         }
 
         protected string FormatDate(object value)
         {
-            long milliseconds;
+            if (value == null)
+                return "Not set";
 
-            if (!long.TryParse(Convert.ToString(value),
-                               out milliseconds) ||
-                milliseconds <= 0)
-                return L.T("Meetings.Schedule.NotSet");
+            long milliseconds =
+                Convert.ToInt64(value);
+
+            if (milliseconds <= 0)
+                return "Not set";
 
             return DateTimeOffset
                 .FromUnixTimeMilliseconds(milliseconds)
                 .UtcDateTime
-                .ToString("yyyy-MM-dd HH:mm") + " UTC";
+                .ToString(
+                    "yyyy-MM-dd HH:mm 'UTC'",
+                    CultureInfo.InvariantCulture);
         }
 
-        private static bool IsZoomUrl(string value)
+        private void ShowMessage(
+            string message, bool success)
         {
-            Uri uri;
+            lblMessage.Text =
+                Server.HtmlEncode(message);
 
-            if (!Uri.TryCreate(value, UriKind.Absolute, out uri) ||
-                uri.Scheme != Uri.UriSchemeHttps)
-                return false;
-
-            string host = uri.Host.ToLowerInvariant();
-
-            return host == "zoom.us" ||
-                   host.EndsWith(".zoom.us") ||
-                   host == "zoom.com" ||
-                   host.EndsWith(".zoom.com");
-        }
-
-        private void ShowMessage(string message, bool success)
-        {
-            lblMessage.Text = Server.HtmlEncode(message);
             lblMessage.CssClass = success
                 ? "alert alert-success d-block mt-3"
                 : "alert alert-danger d-block mt-3";

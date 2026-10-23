@@ -3,16 +3,13 @@
     Inherits="InternshipManagementSystem.Pages.MeetingsArea.Schedule"
     Title="Meetings" %>
 
-<%-- ===================================================================
-     Schedule a Meeting
-     Owner : Fatima
-     Cards : F08, F10 (OPTIONAL)
-     Delete the placeholder below and build the page here.
-     =================================================================== --%>
-
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
-        .meeting-page { max-width: 850px; margin: 0 auto; }
+        .meeting-page {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
         .meeting-participants {
             border: 1px solid var(--th-line-dee2e6,#dee2e6);
             border-radius: 8px;
@@ -22,164 +19,176 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
+
     <div class="meeting-page">
-        <h2 class="mb-1"><%: L.T("Meetings.Schedule.Meetings") %></h2>
+        <h2 class="mb-1">Meetings</h2>
         <p class="text-muted mb-4">
-            <%: L.T("Meetings.Schedule.ScheduleAMeetingAndShareA") %>
+            Schedule a meeting with people involved in the student's internship.
         </p>
 
         <div class="uims-card mb-4">
-            <h3 class="mb-3"><%: L.T("Meetings.Schedule.ScheduleAMeeting") %></h3>
+            <h3 class="mb-3">Schedule a Meeting</h3>
 
             <div class="mb-3">
-                <label class="form-label" for="<%= ddlPlacement.ClientID %>">
-                    <%: L.T("Meetings.Schedule.Internship") %>
-                </label>
+                <asp:Label runat="server"
+                    AssociatedControlID="ddlPlacement"
+                    CssClass="form-label"
+                    Text="Student" />
+
                 <asp:DropDownList ID="ddlPlacement" runat="server"
                     CssClass="form-select"
                     AutoPostBack="true"
                     OnSelectedIndexChanged="ddlPlacement_SelectedIndexChanged" />
+
+                <small class="text-muted">
+                    If you are a student, your internship is selected automatically.
+                </small>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="<%= txtTitle.ClientID %>">
-                    <%: L.T("Meetings.Schedule.MeetingTitle") %>
-                </label>
+                <asp:Label runat="server"
+                    AssociatedControlID="txtTitle"
+                    CssClass="form-label"
+                    Text="Meeting Title" />
+
                 <asp:TextBox ID="txtTitle" runat="server"
                     CssClass="form-control" />
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="<%= txtAgenda.ClientID %>">
-                    <%: L.T("Meetings.Schedule.Agenda") %>
-                </label>
+                <asp:Label runat="server"
+                    AssociatedControlID="txtAgenda"
+                    CssClass="form-label"
+                    Text="Agenda" />
+
                 <asp:TextBox ID="txtAgenda" runat="server"
-                    CssClass="form-control" TextMode="MultiLine" Rows="3" />
+                    CssClass="form-control"
+                    TextMode="MultiLine"
+                    Rows="3" />
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label class="form-label" for="<%= txtScheduledAt.ClientID %>">
-                        <%: L.T("Meetings.Schedule.DateAndTime") %>
-                    </label>
+                    <asp:Label runat="server"
+                        AssociatedControlID="txtScheduledAt"
+                        CssClass="form-label"
+                        Text="Date and Time (UTC)" />
+
                     <asp:TextBox ID="txtScheduledAt" runat="server"
-                        CssClass="form-control" TextMode="DateTimeLocal" />
+                        CssClass="form-control"
+                        TextMode="DateTimeLocal" />
+
                     <small class="text-muted">
-                        <%: L.T("Meetings.Schedule.UseTheLocalTimeOnYour") %>
+                        Enter the meeting time in UTC.
                     </small>
                 </div>
 
                 <div class="col-md-6 mb-3">
-                    <label class="form-label" for="<%= ddlDuration.ClientID %>">
-                        <%: L.T("Meetings.Schedule.Duration") %>
-                    </label>
+                    <asp:Label runat="server"
+                        AssociatedControlID="ddlDuration"
+                        CssClass="form-label"
+                        Text="Duration" />
+
                     <asp:DropDownList ID="ddlDuration" runat="server"
                         CssClass="form-select">
-                        <asp:ListItem Text="<%$ Resources:Meetings, Schedule.30Minutes %>" Value="30" />
-                        <asp:ListItem Text="<%$ Resources:Meetings, Schedule.45Minutes %>" Value="45" />
-                        <asp:ListItem Text="<%$ Resources:Meetings, Schedule.60Minutes %>" Value="60" />
+                        <asp:ListItem Text="30 minutes" Value="30" />
+                        <asp:ListItem Text="45 minutes" Value="45" />
+                        <asp:ListItem Text="60 minutes" Value="60" />
                     </asp:DropDownList>
                 </div>
             </div>
 
             <div class="mb-3">
-                <span class="form-label d-block"><%: L.T("Meetings.Schedule.Participants") %></span>
+                <span class="form-label d-block">Invite participants</span>
+
                 <div class="meeting-participants">
-                    <asp:CheckBoxList ID="cblParticipants" runat="server" />
+                    <asp:CheckBoxList ID="cblParticipants"
+                        runat="server" />
+
+                    <asp:Label ID="lblNoParticipants"
+                        runat="server"
+                        CssClass="text-muted"
+                        Text="Choose a student to see participants." />
                 </div>
             </div>
 
             <div class="mb-3">
-                <label class="form-label" for="<%= txtJoinUrl.ClientID %>">
-                    <%: L.T("Meetings.Schedule.ZoomMeetingLink") %>
-                </label>
+                <asp:Label runat="server"
+                    AssociatedControlID="txtJoinUrl"
+                    CssClass="form-label"
+                    Text="Zoom Meeting Link" />
+
                 <asp:TextBox ID="txtJoinUrl" runat="server"
-                    CssClass="form-control" TextMode="Url"
+                    CssClass="form-control"
+                    TextMode="Url"
                     placeholder="https://zoom.us/j/..." />
+
                 <small class="text-muted">
-                    <%: L.T("Meetings.Schedule.CreateTheMeetingInZoomThen") %>
+                    Create the meeting in Zoom and paste its join link here.
                 </small>
             </div>
 
-            <asp:HiddenField ID="hfTimezoneOffset" runat="server" ClientIDMode="Static" />
-
             <asp:Button ID="btnSchedule" runat="server"
-                Text="<%$ Resources:Meetings, Schedule.ScheduleMeeting %>"
+                Text="Schedule Meeting"
                 CssClass="btn btn-brand"
-                OnClick="btnSchedule_Click"
-                OnClientClick="setMeetingTimezone();"  data-ui-action="schedule" data-loading-label="Scheduling…"/>
+                OnClick="btnSchedule_Click" data-ui-action="schedule" data-loading-label="Scheduling…" />
 
             <asp:Label ID="lblMessage" runat="server"
                 EnableViewState="false" />
         </div>
 
         <div class="uims-card">
-            <h3 class="mb-3"><%: L.T("Meetings.Schedule.MyMeetings") %></h3>
+            <h3 class="mb-3">My Meetings</h3>
 
             <asp:Repeater ID="rptMeetings" runat="server"
                 OnItemCommand="rptMeetings_ItemCommand">
-                <HeaderTemplate>
-                    <div class="table-responsive">
-                        <table class="uims-table">
-                            <thead>
-                                <tr>
-                                    <th><%: L.T("Meetings.Schedule.Meeting") %></th>
-                                    <th><%: L.T("Meetings.Schedule.ScheduledAtUTC") %></th>
-                                    <th><%: L.T("Meetings.Schedule.Duration") %></th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                </HeaderTemplate>
                 <ItemTemplate>
-                    <tr>
-                        <td><%#: Eval("Title") %></td>
-                        <td><%# FormatDate(Eval("ScheduledAt")) %></td>
-                        <td><%#: Eval("DurationMinutes") %> <%: L.T("Meetings.Schedule.Min") %></td>
-                        <td>
-                            <asp:LinkButton ID="btnView" runat="server"
-                                Text="<%$ Resources:Meetings, Schedule.ViewDetails %>"
-                                CssClass="btn btn-outline-secondary btn-sm"
-                                CommandName="ViewMeeting"
-                                CommandArgument='<%# Eval("Id") %>' />
-                        </td>
-                    </tr>
-                </ItemTemplate>
-                <FooterTemplate>
-                            </tbody>
-                        </table>
+                    <div class="border rounded p-3 mb-3">
+                        <strong><%#: Eval("Title") %></strong>
+
+                        <div class="text-muted small mt-1">
+                            <%# FormatDate(Eval("ScheduledAt")) %>
+                            · <%#: Eval("DurationMinutes") %> minutes
+                        </div>
+
+                        <asp:LinkButton ID="btnView" runat="server"
+                            Text="View Details"
+                            CssClass="btn btn-outline-secondary btn-sm mt-2"
+                            CommandName="ViewMeeting"
+                            CommandArgument='<%# Eval("Id") %>' />
                     </div>
-                </FooterTemplate>
+                </ItemTemplate>
             </asp:Repeater>
 
             <asp:Label ID="lblNoMeetings" runat="server"
-                Text="<%$ Resources:Meetings, Schedule.NoMeetingsToShow %>"
+                Text="No meetings to show."
                 CssClass="text-muted" />
         </div>
 
         <asp:Panel ID="pnlMeetingDetails" runat="server"
-            Visible="false" CssClass="uims-card mt-4">
-            <h3><%: L.T("Meetings.Schedule.MeetingDetails") %></h3>
-            <p><strong><%: L.T("Meetings.Schedule.Title") %></strong>
+            Visible="false"
+            CssClass="uims-card mt-4">
+
+            <h3>Meeting Details</h3>
+
+            <p><strong>Title:</strong>
                 <asp:Label ID="lblDetailTitle" runat="server" /></p>
-            <p><strong><%: L.T("Meetings.Schedule.Agenda2") %></strong>
+
+            <p><strong>Agenda:</strong>
                 <asp:Label ID="lblDetailAgenda" runat="server" /></p>
-            <p><strong><%: L.T("Meetings.Schedule.ScheduledAtUTC2") %></strong>
+
+            <p><strong>Scheduled At:</strong>
                 <asp:Label ID="lblDetailDate" runat="server" /></p>
-            <p><strong><%: L.T("Meetings.Schedule.Duration2") %></strong>
+
+            <p><strong>Duration:</strong>
                 <asp:Label ID="lblDetailDuration" runat="server" /></p>
+
             <asp:HyperLink ID="lnkJoin" runat="server"
-                Text="<%$ Resources:Meetings, Schedule.JoinZoomMeeting %>"
+                Text="Join Zoom Meeting"
                 CssClass="btn btn-brand"
                 Target="_blank"
                 Visible="false" />
         </asp:Panel>
     </div>
 
-   <script>
-    function setMeetingTimezone() {
-        document.getElementById("hfTimezoneOffset").value =
-            new Date().getTimezoneOffset();
-    }
-</script>
 </asp:Content>

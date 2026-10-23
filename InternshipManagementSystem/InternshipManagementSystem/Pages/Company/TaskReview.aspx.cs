@@ -23,17 +23,16 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             List<Submission> companySubmissions = new List<Submission>();
 
-            TaskRepository taskRepository = new TaskRepository();
-            SubmissionRepository submissionRepository =
-                new SubmissionRepository();
-
             List<InternshipTask> tasks =
-                taskRepository.GetByCompany(CurrentSupervisor.CompanyId);
+                new TaskRepository().GetAll();
+
+            List<Submission> submissions =
+                new SubmissionRepository().GetAll();
 
             foreach (InternshipTask task in tasks)
             {
-                List<Submission> submissions =
-                    submissionRepository.GetByTask(task.Id);
+                if (task.CompanyId != CurrentSupervisor.CompanyId)
+                    continue;
 
                 foreach (Submission submission in submissions)
                 {
@@ -310,6 +309,87 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 lblReviewMessage.Text =
                     L.T("Company.TaskReview.CouldNotLoadOrSaveThe");
+            }
+        }
+        protected void btnRequestRevision_Click(object sender, EventArgs e)
+        {
+            lblReviewMessage.CssClass = "text-danger d-block mt-3";
+            pnlSubmissionDetails.Visible = true;
+
+            string submissionId = ViewState["SelectedSubmissionId"] as string;
+            if (string.IsNullOrEmpty(submissionId))
+            {
+                lblReviewMessage.Text = "Open a submission first.";
+                return;
+            }
+
+            Submission submission =
+                new SubmissionRepository().GetById(submissionId);
+
+            if (submission == null)
+            {
+                lblReviewMessage.Text = "Submission was not found.";
+                return;
+            }
+
+            InternshipTask task =
+                new TaskRepository().GetById(submission.TaskId);
+
+            // نتأكد على السيرفر أن هذا التسليم تابع لشركة المشرف.
+            if (task == null ||
+                task.CompanyId != CurrentSupervisor.CompanyId ||
+                task.StudentId != submission.StudentId ||
+                task.PlacementId != submission.PlacementId)
+            {
+                lblReviewMessage.Text = "You cannot review this submission.";
+                return;
+            }
+
+            if (task.Status != InternshipTaskStatus.Submitted &&
+                task.Status != InternshipTaskStatus.Resubmitted)
+            {
+                lblReviewMessage.Text = "This task is not waiting for review.";
+                return;
+            }
+
+            string instructions = txtRevisionInstructions.Text.Trim();
+
+            if (instructions == "")
+            {
+                lblReviewMessage.Text = "Tell the student what needs to be changed.";
+                return;
+            }
+
+            TaskEvaluation revision = new TaskEvaluation();
+            revision.TaskId = task.Id;
+            revision.SubmissionId = submission.Id;
+            revision.PlacementId = submission.PlacementId;
+            revision.StudentId = submission.StudentId;
+            revision.EvaluatedBySupervisorId = CurrentSupervisor.Id;
+            revision.RevisionRequested = true;
+            revision.RevisionInstructions = instructions;
+            revision.MaxScore = task.MaxScore;
+
+            try
+            {
+                new TaskEvaluationRepository().Insert(revision);
+
+                new TaskRepository().Update(
+                    task.Id,
+                    new Dictionary<string, object>
+                    {
+                { "Status", InternshipTaskStatus.RevisionRequested }
+                    });
+
+                lblReviewMessage.CssClass = "text-success d-block mt-3";
+                lblReviewMessage.Text = "Revision requested successfully.";
+                txtRevisionInstructions.Text = "";
+                LoadCompanySubmissions();
+            }
+            catch (FirebaseException)
+            {
+                lblReviewMessage.Text =
+                    "Could not complete the revision request. Check Firebase before trying again.";
             }
         }
     }
