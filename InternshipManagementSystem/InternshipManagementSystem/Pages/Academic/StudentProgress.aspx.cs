@@ -1,4 +1,5 @@
 ﻿using System;
+using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
@@ -84,12 +85,12 @@ namespace InternshipManagementSystem.Pages.Academic
                 litCompanyName.Text = placement.CompanyName;
                 litCompanySupervisor.Text = placement.CompanySupervisorName;
                 litOpportunityTitle.Text = placement.OpportunityTitle;
-                litPlacementStatus.Text = placement.Status.ToString();
+                litPlacementStatus.Text = L.Value("PlacementStatus", placement.Status);
             }
             else
             {
-                litCompanyName.Text = "Not assigned yet";
-                litPlacementStatus.Text = "Pending";
+                litCompanyName.Text = L.T("Academic.StudentProgress.NotAssignedYet");
+                litPlacementStatus.Text = L.T("Academic.StudentProgress.Pending");
             }
         }
 
@@ -144,7 +145,7 @@ namespace InternshipManagementSystem.Pages.Academic
 
             txtNewComment.Text = string.Empty;
             chkVisibleToStudent.Checked = false;
-            lblCommentStatus.Text = "Comment saved successfully!";
+            lblCommentStatus.Text = L.T("Academic.StudentProgress.CommentSavedSuccessfully");
             lblCommentStatus.Visible = true;
 
             LoadComments();

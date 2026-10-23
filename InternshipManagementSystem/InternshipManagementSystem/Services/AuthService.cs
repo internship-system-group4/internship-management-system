@@ -1,4 +1,5 @@
 ﻿using System;
+using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
@@ -38,7 +39,7 @@ namespace InternshipManagementSystem.Services
                 { "password", password },
                 { "returnSecureToken", true }
             };
-            AuthResult result = Call("signInWithPassword", body, "Incorrect email or password.");
+            AuthResult result = Call("signInWithPassword", body, L.T("Account.AuthService.IncorrectEmailOrPassword"));
             // The profile lookup immediately after sign-in also needs authentication.
             StoreTokens(result);
             return result;
@@ -55,7 +56,7 @@ namespace InternshipManagementSystem.Services
                 { "password", temporaryPassword },
                 { "returnSecureToken", true }
             };
-            return Call("signUp", body, "Could not create the account.");
+            return Call("signUp", body, L.T("Account.AuthService.CouldNotCreateTheAccount"));
         }
 
         /// <summary>Card A05: deletes an account that was just created, using
@@ -67,7 +68,7 @@ namespace InternshipManagementSystem.Services
             {
                 { "idToken", idToken }
             };
-            return Call("delete", body, "Could not delete the account.");
+            return Call("delete", body, L.T("Account.AuthService.CouldNotDeleteTheAccount"));
         }
 
         /// <summary>Card A03: send the password-reset email.</summary>
@@ -78,7 +79,7 @@ namespace InternshipManagementSystem.Services
                 { "requestType", "PASSWORD_RESET" },
                 { "email", email }
             };
-            AuthResult result = Call("sendOobCode", body, "Could not send the reset email. Please try again later.");
+            AuthResult result = Call("sendOobCode", body, L.T("Account.AuthService.CouldNotSendTheResetEmail"));
 
             // Report success for unknown or disabled accounts too: telling the
             // visitor that an address is unknown hands an attacker a list of
@@ -103,7 +104,7 @@ namespace InternshipManagementSystem.Services
                 { "password", newPassword },
                 { "returnSecureToken", true }
             };
-            AuthResult result = Call("update", body, "Could not change the password.");
+            AuthResult result = Call("update", body, L.T("Account.AuthService.CouldNotChangeThePassword"));
             StoreTokens(result);
             return result;
         }
@@ -111,7 +112,7 @@ namespace InternshipManagementSystem.Services
         public static AuthResult RefreshIdToken(string refreshToken)
         {
             if (string.IsNullOrEmpty(refreshToken) || string.IsNullOrEmpty(FirebaseContext.ApiKey))
-                return new AuthResult { ErrorMessage = "Please sign in again." };
+                return new AuthResult { ErrorMessage = L.T("Account.AuthService.PleaseSignInAgain") };
 
             string url = "https://securetoken.googleapis.com/v1/token?key=" + Uri.EscapeDataString(FirebaseContext.ApiKey);
             string body = "grant_type=refresh_token&refresh_token=" + Uri.EscapeDataString(refreshToken);
@@ -134,8 +135,7 @@ namespace InternshipManagementSystem.Services
             if (string.IsNullOrEmpty(apiKey))
             {
                 result.ErrorCode = "NOT_CONFIGURED";
-                result.ErrorMessage = "Firebase is not configured. Get the latest Web.config from main "
-                    + "(git merge origin/main), then stop and restart the project.";
+                result.ErrorMessage = L.T("Account.AuthService.FirebaseIsNotConfiguredGetThe");
                 return result;
             }
 
@@ -228,16 +228,16 @@ namespace InternshipManagementSystem.Services
         private static string Friendly(string code, string fallback)
         {
             if (string.IsNullOrEmpty(code)) return fallback;
-            if (code.StartsWith("EMAIL_EXISTS")) return "An account with this email already exists.";
-            if (code.StartsWith("WEAK_PASSWORD")) return "The password must be at least 6 characters.";
-            if (code.StartsWith("INVALID_EMAIL")) return "That email address is not valid.";
+            if (code.StartsWith("EMAIL_EXISTS")) return L.T("Account.AuthService.AnAccountWithThisEmailAlready");
+            if (code.StartsWith("WEAK_PASSWORD")) return L.T("Account.AuthService.ThePasswordMustBeAtLeast");
+            if (code.StartsWith("INVALID_EMAIL")) return L.T("Account.AuthService.ThatEmailAddressIsNotValid");
             if (code.StartsWith("EMAIL_NOT_FOUND")
                 || code.StartsWith("INVALID_PASSWORD")
-                || code.StartsWith("INVALID_LOGIN_CREDENTIALS")) return "Incorrect email or password.";
-            if (code.StartsWith("USER_DISABLED")) return "This account has been deactivated.";
+                || code.StartsWith("INVALID_LOGIN_CREDENTIALS")) return L.T("Account.AuthService.IncorrectEmailOrPassword");
+            if (code.StartsWith("USER_DISABLED")) return L.T("Account.AuthService.ThisAccountHasBeenDeactivated");
             if (code.StartsWith("TOO_MANY_ATTEMPTS")
-                || code.StartsWith("RESET_PASSWORD_EXCEED_LIMIT")) return "Too many attempts. Please try again later.";
-            if (code.StartsWith("CREDENTIAL_TOO_OLD")) return "Please sign in again before changing your password.";
+                || code.StartsWith("RESET_PASSWORD_EXCEED_LIMIT")) return L.T("Account.AuthService.TooManyAttemptsPleaseTryAgain");
+            if (code.StartsWith("CREDENTIAL_TOO_OLD")) return L.T("Account.AuthService.PleaseSignInAgainBeforeChanging");
             return fallback;
         }
     }

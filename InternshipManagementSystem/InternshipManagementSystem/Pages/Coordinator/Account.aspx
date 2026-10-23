@@ -191,8 +191,8 @@
     <div class="ca-page">
 
         <div class="ca-heading">
-            <h2>Account settings</h2>
-            <p>Manage your profile information and account security.</p>
+            <h2><%: L.T("Coordinator.Account.AccountSettings") %></h2>
+            <p><%: L.T("Coordinator.Account.ManageYourProfileInformationAndAccount") %></p>
         </div>
 
         <asp:Label ID="lblNotice" runat="server"
@@ -206,8 +206,8 @@
 
                     <div class="d-flex justify-content-between align-items-start gap-2">
                         <div>
-                            <h3>Profile information</h3>
-                            <p>Update your name and contact information.</p>
+                            <h3><%: L.T("Coordinator.Account.ProfileInformation") %></h3>
+                            <p><%: L.T("Coordinator.Account.UpdateYourNameAndContactInformation") %></p>
                         </div>
 
                         <asp:Label ID="lblStatus" runat="server"
@@ -217,7 +217,7 @@
                     <div class="row g-3 mt-1">
 
                         <div class="col-md-6">
-                            <label for="<%= txtName.ClientID %>">Full name *</label>
+                            <label for="<%= txtName.ClientID %>"><%: L.T("Coordinator.Account.FullName") %></label>
                             <asp:TextBox ID="txtName" runat="server"
                                 CssClass="form-control" MaxLength="100" />
 
@@ -226,42 +226,42 @@
                                 runat="server"
                                 ControlToValidate="txtName"
                                 ValidationGroup="profile"
-                                ErrorMessage="Full name is required."
+                                ErrorMessage="<%$ Resources:Coordinator, Account.FullNameIsRequired %>"
                                 CssClass="ca-error"
                                 Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
-                            <label for="<%= txtPhone.ClientID %>">Phone number</label>
+                            <label for="<%= txtPhone.ClientID %>"><%: L.T("Coordinator.Account.PhoneNumber") %></label>
                             <asp:TextBox ID="txtPhone" runat="server"
                                 CssClass="form-control"
                                 MaxLength="25"
-                                placeholder="Enter phone number" />
+                                placeholder="<%$ Resources:Coordinator, Account.EnterPhoneNumber %>" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>Email address</label>
+                            <label><%: L.T("Coordinator.Account.EmailAddress") %></label>
                             <asp:TextBox ID="txtEmail" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>Staff ID</label>
+                            <label><%: L.T("Coordinator.Account.StaffID") %></label>
                             <asp:TextBox ID="txtStaffId" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>University</label>
+                            <label><%: L.T("Coordinator.Account.University") %></label>
                             <asp:TextBox ID="txtUniversity" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>College</label>
+                            <label><%: L.T("Coordinator.Account.College") %></label>
                             <asp:TextBox ID="txtCollege" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
@@ -271,18 +271,18 @@
 
                     <div class="ca-footer">
                         <small>
-                            University and role information are managed by the system.
+                            <%: L.T("Coordinator.Account.UniversityAndRoleInformationAreManaged") %>
                         </small>
 
                         <div class="d-flex gap-2">
                             <asp:Button ID="btnCancel" runat="server"
-                                Text="Cancel"
+                                Text="<%$ Resources:Coordinator, Account.Cancel %>"
                                 CssClass="btn btn-outline-primary"
                                 CausesValidation="false"
                                 OnClick="btnCancel_Click" />
 
                             <asp:Button ID="btnSave" runat="server"
-                                Text="Save changes"
+                                Text="<%$ Resources:Coordinator, Account.SaveChanges %>"
                                 CssClass="btn btn-primary"
                                 ValidationGroup="profile"
                                 OnClick="btnSave_Click"  data-ui-action="save" data-loading-label="Saving…"/>
@@ -296,12 +296,12 @@
             <div class="col-lg-5">
 
                 <section class="ca-card">
-                    <h3>Change password</h3>
-                    <p>Enter your current password to set a new one.</p>
+                    <h3><%: L.T("Coordinator.Account.ChangePassword") %></h3>
+                    <p><%: L.T("Coordinator.Account.EnterYourCurrentPasswordToSet") %></p>
 
                     <div class="ca-field">
                         <label for="<%= txtCurrentPassword.ClientID %>">
-                            Current password *
+                            <%: L.T("Coordinator.Account.CurrentPassword") %>
                         </label>
 
                         <asp:TextBox ID="txtCurrentPassword"
@@ -313,7 +313,7 @@
 
                     <div class="ca-field">
                         <label for="<%= txtNewPassword.ClientID %>">
-                            New password *
+                            <%: L.T("Coordinator.Account.NewPassword") %>
                         </label>
 
                         <asp:TextBox ID="txtNewPassword"
@@ -322,12 +322,12 @@
                             CssClass="form-control"
                             autocomplete="new-password" />
 
-                        <small>Use at least 8 characters.</small>
+                        <small><%: L.T("Coordinator.Account.UseAtLeast8Characters") %></small>
                     </div>
 
                     <div class="ca-field">
                         <label for="<%= txtConfirmPassword.ClientID %>">
-                            Confirm new password *
+                            <%: L.T("Coordinator.Account.ConfirmNewPassword") %>
                         </label>
 
                         <asp:TextBox ID="txtConfirmPassword"
@@ -339,7 +339,7 @@
 
                     <asp:Button ID="btnChangePassword"
                         runat="server"
-                        Text="Update password"
+                        Text="<%$ Resources:Coordinator, Account.UpdatePassword %>"
                         CssClass="btn btn-primary w-100"
                         CausesValidation="false"
                         OnClick="btnChangePassword_Click"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/>
@@ -395,7 +395,7 @@
                 confirmInput === null
             ) {
                 event.preventDefault();
-                alert("Password fields could not be found.");
+                alert(window.uimsT('PwFieldsMissing'));
                 return;
             }
 
@@ -412,16 +412,16 @@
             var message = "";
 
             if (!currentValue || !newValue || !confirmValue) {
-                message = "Please complete all password fields.";
+                message = window.uimsT('PwCompleteAll');
             }
             else if (newValue.length < 8 || newValue.length > 128) {
                 message = "Password must contain 8 to 128 characters.";
             }
             else if (newValue !== confirmValue) {
-                message = "New passwords do not match.";
+                message = window.uimsT('PwNewMismatch');
             }
             else if (currentValue === newValue) {
-                message = "Choose a different password.";
+                message = window.uimsT('PwChooseDifferent');
             }
 
             if (message !== "") {

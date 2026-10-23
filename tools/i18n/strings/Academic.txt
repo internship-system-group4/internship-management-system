@@ -1,0 +1,376 @@
+
+Account.ChangeProfilePhoto
+en: Change profile photo
+
+Account.Dr
+en: Dr.
+
+Account.GermanJordanianUniversity
+en: | German Jordanian University
+
+Account.Upload
+en: Upload
+
+Account.PersonalInformation
+en: Personal Information
+
+Account.UpdateYourPersonalAndContactInformation
+en: Update your personal and contact information.
+
+Account.ChangePassword
+en: Change Password
+ar: تغيير كلمة المرور
+
+Account.FullName
+en: Full Name *
+
+Account.AccountEmail
+en: Account Email
+
+Account.Age
+en: Age
+
+Account.PhoneNumber
+en: Phone Number
+
+Account.9627XXXXXXXX
+en: +962 7X XXX XXXX
+
+Account.AcademicInformation
+en: Academic Information
+
+Account.YourOfficialUniversityDetailsManagedBy
+en: Your official university details. Managed by coordinator.
+
+Account.SupervisorID
+en: Supervisor ID
+
+Account.University
+en: University
+
+Account.College
+en: College
+
+Account.Major
+en: Major
+
+Account.EnrollmentYear
+en: Enrollment Year
+
+Account.SaveChanges
+en: Save Changes
+
+Account.Close
+en: Close
+ar: إغلاق
+
+Account.NewPassword
+en: New Password
+
+Account.ConfirmNewPassword
+en: Confirm New Password
+
+Account.Cancel
+en: Cancel
+
+Account.UpdatePassword
+en: Update Password
+
+Dashboard.StudentOversight
+en: Student oversight
+
+Dashboard.FollowYourAssignedStudentsAndAcademic
+en: , follow your assigned students and academic work.
+
+Dashboard.ReviewStudentRecords
+en: Review student records
+
+Dashboard.Retry
+en: Retry
+
+Dashboard.AssignedStudents
+en: Assigned students
+
+Dashboard.YourSupervisionGroup
+en: Your supervision group
+
+Dashboard.HoursRequirementMet
+en: Hours requirement met
+
+Dashboard.ApprovedEntriesOnly
+en: Approved entries only
+
+Dashboard.CompanyAssessments
+en: Company assessments
+
+Dashboard.SubmittedForYourStudents
+en: Submitted for your students
+
+Dashboard.AcademicFollowUp
+en: Academic follow-up
+
+Dashboard.CompanyAssessmentReceived
+en: Company assessment received
+
+Dashboard.PlacementApprovedHoursAndTheNext
+en: Placement, approved hours and the next academic action.
+
+Dashboard.StudentsAssignedToTheSignedIn
+en: Students assigned to the signed-in academic supervisor
+
+Dashboard.Student
+en: Student
+
+Dashboard.Placement
+en: Placement
+
+Dashboard.ApprovedHours
+en: Approved hours
+
+Dashboard.FollowUp
+en: Follow-up
+
+Dashboard.HPending
+en: h pending
+
+Dashboard.ViewProgress
+en: View progress
+
+Dashboard.DivClassWsEmptyH4No
+en: <div class='ws-empty'><h4>No students assigned yet</h4><p>Your coordinator manages academic supervision assignments. Assigned students will appear here.</p></div>
+
+Dashboard.AcademicWork
+en: Academic work
+
+Dashboard.AssessmentAndFollowUpStayLinked
+en: Assessment and follow-up stay linked to each assigned student.
+
+Dashboard.NoReceivedCompanyAssessmentsAreWaiting
+en: No received company assessments are waiting for your academic submission.
+
+Dashboard.OpenAcademicEvaluations
+en: Open academic evaluations
+
+Dashboard.InternalEvaluationFormsRemainRestrictedStudents
+en: Internal evaluation forms remain restricted. Students see the released result only after coordinator approval.
+
+FinalEvaluation.FinalAcademicEvaluation
+en: Final Academic Evaluation
+ar: التقييم الأكاديمي النهائي
+
+FinalEvaluation.SelectAStudentToCompleteTheir
+en: Select a student to complete their final evaluation.
+
+FinalEvaluation.StudentName
+en: Student Name
+
+FinalEvaluation.UniversityID
+en: University ID
+
+FinalEvaluation.Major
+en: Major
+
+FinalEvaluation.Action
+en: Action
+
+FinalEvaluation.Evaluate
+en: Evaluate:
+
+FinalEvaluation.Close
+en: Close
+ar: إغلاق
+
+FinalEvaluation.1CompanySupervisorEvaluation
+en: 1. Company Supervisor Evaluation
+
+FinalEvaluation.TotalScore
+en: Total Score
+
+FinalEvaluation.Strengths
+en: Strengths:
+
+FinalEvaluation.AreasForImprovement
+en: Areas for Improvement:
+
+FinalEvaluation.OverallComment
+en: Overall Comment:
+
+FinalEvaluation.TheCompanySupervisorHasNotSubmitted
+en: The company supervisor has not submitted their final evaluation yet.
+
+FinalEvaluation.2AcademicFinalDecision
+en: 2. Academic Final Decision
+
+FinalEvaluation.SubmitYourFinalDecisionOnceSubmitted
+en: Submit your final decision. Once submitted, it will be sent to the Coordinator.
+
+FinalEvaluation.FinalDecision
+en: Final Decision
+
+FinalEvaluation.SelectDecision
+en: -- Select Decision --
+
+FinalEvaluation.Pass
+en: Pass
+
+FinalEvaluation.Fail
+en: Fail
+
+FinalEvaluation.AcademicCommentsRemarks
+en: Academic Comments & Remarks
+
+FinalEvaluation.SubmitToCoordinator
+en: Submit to Coordinator
+
+StudentProgress.StudentProgressMonitor
+en: Student Progress Monitor
+
+StudentProgress.SelectAStudentToViewTheir
+en: Select a student to view their progress, tasks, and evaluations.
+
+StudentProgress.StudentName
+en: Student Name
+
+StudentProgress.UniversityID
+en: University ID
+
+StudentProgress.Major
+en: Major
+
+StudentProgress.Action
+en: Action
+
+StudentProgress.ViewProgress
+en: View Progress
+
+StudentProgress.BackToStudentsList
+en: Back to Students List
+
+StudentProgress.TrainingHours
+en: Training Hours
+
+StudentProgress.PlacementCompanyDetails
+en: Placement & Company Details
+
+StudentProgress.CompanyName
+en: Company Name
+
+StudentProgress.CompanySupervisor
+en: Company Supervisor
+
+StudentProgress.OpportunityTitle
+en: Opportunity Title
+
+StudentProgress.Status
+en: Status
+
+StudentProgress.TasksSubmissions
+en: Tasks & Submissions
+
+StudentProgress.TaskTitle
+en: Task Title
+
+StudentProgress.MaxScore
+en: Max Score
+
+StudentProgress.EstimatedHours
+en: Estimated Hours
+
+StudentProgress.AcademicCommentsFeedback
+en: Academic Comments & Feedback
+
+StudentProgress.AddANewComment
+en: Add a New Comment
+
+StudentProgress.WriteYourObservationOrFeedbackHere
+en: Write your observation or feedback here...
+
+StudentProgress.MakeThisCommentVisibleToThe
+en: Make this comment visible to the student
+
+StudentProgress.SaveComment
+en: Save Comment
+
+StudentProgress.ProceedToFinalEvaluation
+en: Proceed to Final Evaluation
+
+Account.AcademicSupervisorPlaceholder
+en: Academic Supervisor
+ar: المشرف الأكاديمي
+
+FinalEvaluation.ViewAndEvaluate
+en: View & Evaluate
+ar: عرض وتقييم
+
+FinalEvaluation.NoStudentsAssigned
+en: No students are currently assigned to you.
+ar: لا يوجد طلبة مسندون إليك حاليًا.
+
+StudentProgress.NoStudentsAssigned
+en: No students are currently assigned to you.
+ar: لا يوجد طلبة مسندون إليك حاليًا.
+
+StudentProgress.NoTasksAssignedYet
+en: No tasks assigned yet.
+ar: لم تُسند أي مهام بعد.
+
+StudentProgress.NoCommentsYet
+en: No comments added yet.
+ar: لم تُضَف أي تعليقات بعد.
+
+Account.YourProfileInformationHasBeenUpdated
+en: Your profile information has been updated successfully.
+
+Account.ProfilePhotoUploadedSuccessfully
+en: Profile photo uploaded successfully.
+
+Account.OnlyJpgJpegOrPngFiles
+en: Only .jpg, .jpeg or .png files are allowed.
+
+Account.PleaseSelectAnImageFileFirst
+en: Please select an image file first.
+
+Account.PasswordsDoNotMatchPleaseTry
+en: Passwords do not match. Please try again.
+
+Account.PasswordMustBeAtLeast6
+en: Password must be at least 6 characters.
+
+Account.SessionExpiredPleaseLogOutAnd
+en: Session expired. Please log out and log in again.
+
+Account.YourPasswordHasBeenChangedSuccessfully
+en: Your password has been changed successfully.
+
+Dashboard.WeCouldNotLoadYourAssigned
+en: We could not load your assigned students. Refresh to try again.
+
+FinalEvaluation.EvaluationForTheSelectedStudentHas
+en: Evaluation for the selected student has been submitted to the Coordinator successfully!
+
+StudentProgress.NotAssignedYet
+en: Not assigned yet
+
+StudentProgress.CommentSavedSuccessfully
+en: Comment saved successfully!
+
+Account.Error
+en: Error: {0}
+ar: خطأ: {0}
+
+Account.ErrorUploadingFile
+en: Error uploading file: {0}
+ar: خطأ في رفع الملف: {0}
+
+FinalEvaluation.DecisionSubmittedSuccessfullyOn
+en: Decision submitted successfully on {0}
+ar: أُرسل القرار بنجاح بتاريخ {0}
+
+Account.AcademicStaff
+en: Academic Staff
+
+FinalEvaluation.UnknownStudent
+en: Unknown Student
+
+StudentProgress.Pending
+en: Pending

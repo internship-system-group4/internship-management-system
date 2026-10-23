@@ -1,0 +1,506 @@
+
+About.MutedPreviewOfTheGermanJordanian
+en: Muted preview of the German Jordanian University film: campus buildings, students and the German Year
+
+About.PlayPreview
+en: Play preview
+
+About.TurnSoundOn
+en: Turn sound on
+
+About.DiscoverGJU
+en: Discover GJU
+
+About.WhereLearningMeetsExperience
+en: Where Learning Meets Experience
+
+About.ExploreTheCampusTheUniversityS
+en: Explore the campus, the university’s applied learning approach and the purpose behind our internship management project.
+
+About.PlayUniversityFilm
+en: Play university film
+
+About.1Min48SWithSound
+en: (1 min 48 s, with sound)
+
+About.ExploreOurStory
+en: Explore our story
+
+About.TheUniversity
+en: The university
+
+About.GermanJordanianUniversity
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+About.TheGermanJordanianUniversityGJUIs
+en: The German Jordanian University (GJU) is a public Jordanian university, founded by Royal Decree in 2005 following a memorandum of understanding between the governments of Jordan and Germany.
+
+About.ItsEducationLinksAcademicStudyWith
+en: Its education links academic study with practical experience and with what industry needs, following the German model of applied sciences.
+
+About.EstablishedIn2005
+en: Established in 2005
+
+About.JordanianGermanCooperation
+en: Jordanian–German Cooperation
+
+About.VisitTheOfficialGJUWebsite
+en: Visit the official GJU website
+
+About.OpensInANewTab
+en: (opens in a new tab)
+ar: (يُفتح في علامة تبويب جديدة)
+
+About.Gate1OfTheGermanJordanian
+en: Gate 1 of the German Jordanian University campus, with the university name in Arabic and English
+
+About.TheGJUApproach
+en: The GJU approach
+
+About.WhatMakesGJUDistinctive
+en: What Makes GJU Distinctive
+
+About.AppliedEducation
+en: Applied Education
+
+About.ConnectingAcademicKnowledgeWithPracticalProjects
+en: Connecting academic knowledge with practical projects and professional experience.
+
+About.TheGermanYear
+en: The German Year
+
+About.ADistinctiveInternationalExperienceCombiningA
+en: A distinctive international experience combining a study semester at a partner university with an internship semester in Germany.
+
+About.IndustryConnections
+en: Industry Connections
+
+About.BuildingRelationshipsBetweenEducationAndProfessional
+en: Building relationships between education and professional practice through training, collaboration and industry engagement.
+
+About.UniversityIdentity
+en: University identity
+
+About.TheUniversitySVisionAndMission
+en: The University’s Vision and Mission
+
+About.Vision
+en: Vision
+
+About.InspiringInnovationThroughAppliedEducation
+en: Inspiring innovation through applied education.
+
+About.Mission
+en: Mission
+
+About.ProvidingAppliedEducationAndScientificResearch
+en: Providing applied education and scientific research that support entrepreneurship and sustainable development through engagement with industry and with local, German and global partners.
+
+About.SelectedValues
+en: Selected values
+
+About.DiversityEquityAndInclusion
+en: Diversity, Equity and Inclusion
+
+About.InnovationAndEntrepreneurialSpirit
+en: Innovation and Entrepreneurial Spirit
+
+About.Sustainability
+en: Sustainability
+
+About.LoyaltyAndEngagement
+en: Loyalty and Engagement
+
+About.EnglishSummaryOfTheIdentityPublished
+en: English summary of the identity published by German Jordanian University. These are the university’s statements, not the development team’s.
+
+About.AcademicSchools
+en: Academic schools
+
+About.ADiverseAcademicCommunity
+en: A Diverse Academic Community
+
+About.GJUSProgramsAreOrganizedAcross
+en: GJU’s programs are organized across eight schools.
+
+About.BusinessSchool
+en: Business School
+
+About.SchoolOfAppliedHumanitiesAndSocial
+en: School of Applied Humanities and Social Sciences
+
+About.SchoolOfAppliedMedicalSciences
+en: School of Applied Medical Sciences
+
+About.SchoolOfAppliedTechnicalSciences
+en: School of Applied Technical Sciences
+
+About.SchoolOfArchitectureAndBuiltEnvironment
+en: School of Architecture and Built Environment
+
+About.SchoolOfComputing
+en: School of Computing
+
+About.SchoolOfSustainableSystemsEngineering
+en: School of Sustainable Systems Engineering
+
+About.SchoolOfNursing
+en: School of Nursing
+
+About.ThisListDescribesTheUniversityUIMS
+en: This list describes the university. UIMS, our student project, is currently configured for the
+
+About.Only
+en: only.
+
+About.ExploreGJUProgramsOnTheOfficial
+en: Explore GJU programs on the official website
+
+About.AerialViewOfTheGermanJordanian
+en: Aerial view of the German Jordanian University campus buildings and surrounding farmland
+
+About.FromTheUniversityToOurProject
+en: From the university to our project
+
+About.OurStudentProject
+en: Our student project
+
+About.AboutUIMS
+en: About UIMS
+
+About.UIMSIsAnInternshipManagementProject
+en: UIMS is an internship management project designed to connect students, company supervisors, academic supervisors and internship coordinators in one organized experience.
+
+About.ItsPurposeIsToMakeThe
+en: Its purpose is to make the internship journey clearer by organizing applications, training tasks, approved hours, feedback and completion evaluations.
+
+About.UIMSIsAGroup4Student
+en: UIMS is a Group 4 student project. It is not the university’s official portal and does not replace MyGJU or published university policies.
+
+About.StudentsTalkingOnAPathBetween
+en: Students talking on a path between GJU campus buildings
+
+About.ProjectObjectives
+en: Project objectives
+
+About.HelpStudentsDiscoverRelevantInternshipOpportunities
+en: Help students discover relevant internship opportunities.
+
+About.OrganizeApplicationsAndTrainingActivities
+en: Organize applications and training activities.
+
+About.MakeProgressFeedbackAndApprovedHours
+en: Make progress, feedback and approved hours easier to follow.
+
+About.SupportCoordinationBetweenStudentsSupervisorsAnd
+en: Support coordination between students, supervisors and coordinators.
+
+About.OurProjectWorkflow
+en: Our project workflow
+
+About.TheJourneyThroughUIMS
+en: The Journey Through UIMS
+
+About.HowTheInternshipMovesThroughUIMS
+en: How the internship moves through UIMS. This describes our project’s workflow, not every official GJU administrative procedure.
+
+About.Discover
+en: Discover
+
+About.VisitorsCanBrowseOpportunitySummariesFull
+en: Visitors can browse opportunity summaries; full details and applications require signing in.
+
+About.Apply
+en: Apply
+
+About.StudentsApplyToOpportunitiesOpenTo
+en: Students apply to opportunities open to their college and major under the system’s rules.
+
+About.Train
+en: Train
+
+About.TraineesCompleteTasksAndReceiveFeedback
+en: Trainees complete tasks and receive feedback from their company supervisor.
+
+About.Track
+en: Track
+
+About.ProgressFeedbackAndApprovedHoursStay
+en: Progress, feedback and approved hours stay visible as the internship continues.
+
+About.Complete
+en: Complete
+
+About.TheCompanySFinalEvaluationGoes
+en: The company’s final evaluation goes to the academic supervisor, who forwards the academic evaluation to the coordinator for final approval.
+
+About.TakeTheNextStep
+en: Take the Next Step
+
+About.ExploreInternshipOpportunitiesAndStartConnecting
+en: Explore internship opportunities and start connecting your learning with practical experience.
+
+About.ExploreOpportunities
+en: Explore Opportunities
+ar: استكشاف فرص التدريب
+
+About.ContactUs
+en: Contact Us
+
+About.UniversityIntroductionFilm
+en: University introduction film
+
+About.Close
+en: Close
+ar: إغلاق
+
+About.TheFilm
+en: the film
+
+About.YourBrowserCannotPlayThisVideo
+en: Your browser cannot play this video here.
+
+About.OpenTheCampusFilmMP413
+en: Open the campus film (MP4, 13 MB)
+
+About.1Min48SCaptionsAre
+en: 1 min 48 s · Captions are not available for this film.
+
+About.OpenTheVideoFile
+en: Open the video file
+
+Contact.ContactUIMS
+en: Contact UIMS
+
+Contact.LetSStartAConversation
+en: Let’s Start a Conversation
+
+Contact.HaveAQuestionAboutUsingUIMS
+en: Have a question about using UIMS? Send us a message and tell us how we can help.
+
+Contact.APavedWalkwayBetweenLimestoneBuildings
+en: A paved walkway between limestone buildings at the German Jordanian University, with the courtyard waterwheel
+
+Contact.UniversityInformation
+en: University information
+
+Contact.ThisFormReachesTheUIMSCoordination
+en: This form reaches the UIMS coordination team, not the university’s own offices. To reach German Jordanian University directly, use its official channels.
+
+Contact.OfficialGJUWebsite
+en: Official GJU website
+
+Contact.OpensInANewTab
+en: (opens in a new tab)
+ar: (يُفتح في علامة تبويب جديدة)
+
+Contact.MainCampusLocationAmmanMadabaStreet
+en: Main campus location, Amman Madaba Street
+
+Contact.OpensGoogleMapsInANew
+en: (opens Google Maps in a new tab)
+
+Contact.MessageSent
+en: Message sent
+
+Contact.YourMessageHasBeenReceivedThank
+en: Your message has been received. Thank you for contacting us.
+
+Contact.SendAnotherMessage
+en: Send another message
+
+Contact.SendAMessage
+en: Send a message
+
+Contact.AllFieldsAreRequired
+en: All fields are required
+
+Contact.FormReadiness
+en: Form readiness
+
+Contact.0Of4FieldsReady
+en: 0 of 4 fields ready
+
+Contact.FullName
+en: Full Name
+
+Contact.YourFullName
+en: Your full name
+
+Contact.EnterYourFullName
+en: Enter your full name.
+
+Contact.YourNameNeedsAtLeast2
+en: Your name needs at least 2 characters.
+
+Contact.EmailAddress
+en: Email Address
+
+Contact.EnterYourEmailAddress
+en: Enter your email address.
+
+Contact.EnterAnEmailAddressLikeName
+en: Enter an email address like name@example.com.
+
+Contact.Subject
+en: Subject
+
+Contact.WhatWouldYouLikeToDiscuss
+en: What would you like to discuss?
+
+Contact.EnterASubjectForYourMessage
+en: Enter a subject for your message.
+
+Contact.YourSubjectNeedsAtLeast5
+en: Your subject needs at least 5 characters.
+
+Contact.Message
+en: Message
+
+Contact.EnterYourMessage
+en: Enter your message.
+
+Contact.YourMessageNeedsAtLeast20
+en: Your message needs at least 20 characters.
+
+Contact.204000CharactersShareEnough
+en: 20–4,000 characters. Share enough detail to help the team understand your question.
+
+Contact.LeaveThisFieldEmpty
+en: Leave this field empty
+
+Contact.PleaseDoNotIncludePasswordsOr
+en: Please do not include passwords or sensitive account information.
+
+Contact.SendMessage
+en: Send message
+
+Contact.YourMessageAndEmailAddressAre
+en: Your message and email address are saved for the UIMS coordination team to review and follow up.
+
+Contact.BeforeYouWrite
+en: Before you write
+
+Contact.INeedAnInternshipAccount
+en: I need an internship account.
+
+Contact.AccountsAreProvidedForYourRole
+en: Accounts are provided for your role. Include your name and student number, if applicable, so your coordinator can understand your request.
+
+Contact.IForgotMyPassword
+en: I forgot my password.
+
+Contact.YouCan
+en: You can
+
+Contact.RequestAResetLink
+en: request a reset link
+
+Contact.UsingYourAccountEmailIfYou
+en: using your account email. If you cannot access that inbox, explain the issue in your message.
+
+Contact.IHaveAQuestionAboutMy
+en: I have a question about my training.
+
+Contact.ForTaskFeedbackOrTrainingDecisions
+en: For task feedback or training decisions, start with your assigned company or academic supervisor. Contact the coordinator for general process or access questions.
+
+PoweredBy.PreparingTheLectureHall
+en: Preparing the lecture hall
+
+PoweredBy.PoweredBy
+en: Powered by
+ar: فريق التطوير
+
+PoweredBy.MeetTheTeam
+en: Meet the team
+
+PoweredBy.TheStudentsOfGroup4Designed
+en: The students of Group 4 designed and built UIMS.
+
+PoweredBy.EachHasAMarkedSeatIn
+en: Each has a marked seat in this lecture hall.
+
+PoweredBy.DevelopmentCreditOnlyNotAStatement
+en: Development credit only, not a statement of university ownership or endorsement. Official information:
+
+PoweredBy.GJUWebsite
+en: GJU website
+
+PoweredBy.OpensInANewTab
+en: (opens in a new tab)
+ar: (يُفتح في علامة تبويب جديدة)
+
+PoweredBy.The3DLectureHallCouldNot
+en: The 3D lecture hall could not be shown on this device, so the team is listed below.
+
+PoweredBy.FindATeamMember
+en: Find a team member
+
+PoweredBy.TeamMembers
+en: Team members
+
+PoweredBy.ViewFullHall
+en: View full hall
+
+PoweredBy.PreviousTeamMember
+en: Previous team member
+
+PoweredBy.NextTeamMember
+en: Next team member
+
+PoweredBy.CloseProfile
+en: Close profile
+
+PoweredBy.TheDevelopmentTeam
+en: The development team
+
+PoweredBy.TeamProfilesAreBeingConfirmedNames
+en: Team profiles are being confirmed. Names, roles and profiles will appear here once each team member approves them for public display.
+
+PoweredBy.Email
+en: Email
+
+PoweredBy.Portfolio
+en: Portfolio
+
+AccessDenied.ThisPageNeeds
+en: This page needs
+
+AccessDenied.DifferentAccess
+en: different access.
+
+AccessDenied.YouDoNotHavePermissionTo
+en: You do not have permission to open this page with your current account.
+
+AccessDenied.ReturnToThePortalForYour
+en: Return to the portal for your role, or contact your coordinator if you believe you should have access.
+
+AccessDenied.GetHelpWithAccess
+en: Get help with access
+
+Contact.SomeDetailsNeedAttentionCheckThe
+en: Some details need attention. Check the highlighted fields below.
+
+Contact.YourMessageCouldNotBeSent
+en: Your message could not be sent right now. Your details are still here, so you can try again.
+
+Contact.YourNameNeeds2To100
+en: Your name needs 2 to 100 characters.
+
+Contact.YourSubjectNeeds5To150
+en: Your subject needs 5 to 150 characters.
+
+Contact.YourMessageNeeds20To4
+en: Your message needs 20 to 4,000 characters.
+
+Contact.MessagePlaceholder
+en: Tell us how we can help…
+ar: أخبرنا كيف يمكننا المساعدة…
+
+AccessDenied.GoToMyDashboard
+en: Go to my dashboard
+
+AccessDenied.GoToLogin
+en: Go to login

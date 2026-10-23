@@ -38,7 +38,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (CurrentStudent == null)
             {
-                Notice = "Please sign in as a student.";
+                Notice = L.T("Student.Opportunities.PleaseSignInAsAStudent");
                 return;
             }
 
@@ -51,7 +51,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 string.IsNullOrWhiteSpace(StudentMajor))
             {
                 Notice = "Your college or major is missing. " +
-                         "Please contact the internship coordinator.";
+                         L.T("Student.Opportunities.PleaseContactTheInternshipCoordinator");
                 return;
             }
 
@@ -102,7 +102,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 AvailableOpportunities.Clear();
 
                 Notice = "Unable to load opportunities right now. " +
-                         "Please try again later.";
+                         L.T("Student.Opportunities.PleaseTryAgainLater");
             }
         }
 
@@ -119,7 +119,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (timestamp <= 0)
             {
-                return "Not specified";
+                return L.T("Student.Opportunities.NotSpecified");
             }
 
             return Time.DisplayDate(timestamp);
@@ -129,7 +129,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (string.IsNullOrWhiteSpace(description))
             {
-                return "Explore this internship to learn more about the role.";
+                return L.T("Student.Opportunities.ExploreThisInternshipToLearnMore");
             }
 
             if (description.Length > 155)

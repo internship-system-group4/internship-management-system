@@ -124,14 +124,14 @@ body {
     padding: .6rem 1.25rem;
     color: #cfddea;
     text-decoration: none;
-    border-left: 3px solid transparent;
+    border-inline-start: 3px solid transparent;
     font-size: .94rem;
 }
 
 .uims-side-link:hover {
     background: rgba(255, 255, 255, .07);
     color: #fff;
-    border-left-color: var(--accent);
+    border-inline-start-color: var(--accent);
 }
 
 .uims-content {
@@ -164,7 +164,7 @@ body {
 }
 
 .uims-user-meta {
-    text-align: right;
+    text-align: end;
     line-height: 1.2;
 }
 
@@ -204,7 +204,7 @@ body {
 .uims-table td {
     padding: .65rem .75rem;
     border-bottom: 1px solid var(--line);
-    text-align: left;
+    text-align: start;
     font-size: .92rem;
 }
 
@@ -274,15 +274,10 @@ body {
     .uims-shell { flex-direction: column; }
     .uims-sidebar { width: 100%; flex: 0 0 auto; }
     .uims-side-nav { display: flex; flex-wrap: wrap; }
-    .uims-side-link { border-left: 0; border-bottom: 3px solid transparent; }
+    .uims-side-link { border-inline-start: 0; border-bottom: 3px solid transparent; }
 }
 
 /* ---- Arabic / RTL ----------------------------------------------------
-   If the team decides to present the UI in Arabic, set lang="ar" dir="rtl"
-   on the <html> element in the master pages and add the Bootstrap RTL
-   stylesheet instead of the default one. These rules cover the custom parts. */
-[dir="rtl"] .uims-side-link { border-left: 0; border-right: 3px solid transparent; }
-[dir="rtl"] .uims-side-link:hover { border-right-color: var(--accent); }
-[dir="rtl"] .uims-table th,
-[dir="rtl"] .uims-table td { text-align: right; }
-[dir="rtl"] .uims-user-meta { text-align: left; }
+   Arabic sets lang="ar" dir="rtl" on <html> and loads Bootstrap's RTL build (see the masters). Layout uses logical
+   properties (margin-inline-start, text-align:start, ...), so it mirrors without per-rule overrides here; the few
+   direction-specific rules live in Assets/css/i18n.css. */

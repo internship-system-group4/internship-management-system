@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Apply.504000CharactersKeepIt" xml:space="preserve"><value>50–4,000 characters. Keep it specific to this opportunity.</value></data>
+  <data name="Apply.AboutTheInternship" xml:space="preserve"><value>About the internship</value></data>
+  <data name="Apply.ApplyBy" xml:space="preserve"><value>Apply by</value></data>
+  <data name="Apply.ApplyForAnInternship" xml:space="preserve"><value>Apply for an internship</value></data>
+  <data name="Apply.AvailableSeats" xml:space="preserve"><value>Available seats</value></data>
+  <data name="Apply.CVLink" xml:space="preserve"><value>CV link</value></data>
+  <data name="Apply.CVLinkRequired" xml:space="preserve"><value>CV link (required)</value></data>
+  <data name="Apply.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Apply.ChooseAnInternshipFromExploreOpportunities" xml:space="preserve"><value>Choose an internship from Explore Opportunities to start your application.</value></data>
+  <data name="Apply.CoverLetter" xml:space="preserve"><value>Cover letter</value></data>
+  <data name="Apply.CoverLetterRequired" xml:space="preserve"><value>Cover letter (required)</value></data>
+  <data name="Apply.Duration" xml:space="preserve"><value>Duration</value></data>
+  <data name="Apply.EmailAddress" xml:space="preserve"><value>Email address</value></data>
+  <data name="Apply.ExploreOpportunities" xml:space="preserve"><value>← Explore opportunities</value></data>
+  <data name="Apply.FromYourStudentProfile" xml:space="preserve"><value>From your student profile.</value></data>
+  <data name="Apply.FullName" xml:space="preserve"><value>Full name</value></data>
+  <data name="Apply.IConfirmThatMyInformationIs" xml:space="preserve"><value>I confirm that my information is accurate and my CV link is accessible.</value></data>
+  <data name="Apply.Location" xml:space="preserve"><value>Location</value></data>
+  <data name="Apply.Major" xml:space="preserve"><value>Major</value></data>
+  <data name="Apply.MyApplications" xml:space="preserve"><value>← My applications</value></data>
+  <data name="Apply.MyApplications2" xml:space="preserve"><value>My Applications →</value></data>
+  <data name="Apply.MyApplications3" xml:space="preserve"><value>My Applications</value></data>
+  <data name="Apply.NoCVLinkAvailable" xml:space="preserve"><value>No CV link available.</value></data>
+  <data name="Apply.OpenCV" xml:space="preserve"><value>Open CV ↗</value></data>
+  <data name="Apply.RejectionReason" xml:space="preserve"><value>Rejection reason:</value></data>
+  <data name="Apply.Requirements" xml:space="preserve"><value>Requirements</value></data>
+  <data name="Apply.ReviewTheOpportunityAndTellThe" xml:space="preserve"><value>Review the opportunity and tell the company why you would be a good fit.</value></data>
+  <data name="Apply.SelectedInternship" xml:space="preserve"><value>Selected internship</value></data>
+  <data name="Apply.ShareRelevantSkillsProjectsAndWhat" xml:space="preserve"><value>Share relevant skills, projects, and what you hope to learn.</value></data>
+  <data name="Apply.Starts" xml:space="preserve"><value>Starts</value></data>
+  <data name="Apply.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Apply.StudentNumber" xml:space="preserve"><value>Student number</value></data>
+  <data name="Apply.SubmitApplication" xml:space="preserve"><value>Submit application →</value></data>
+  <data name="Apply.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Apply.TheApplicationServiceIsNotConfigured" xml:space="preserve"><value>The application service is not configured. Please contact the coordinator.</value></data>
+  <data name="Apply.ThisInternshipCouldNotBeFound" xml:space="preserve"><value>This internship could not be found.</value></data>
+  <data name="Apply.ThisInternshipIsNoLongerAccepting" xml:space="preserve"><value>This internship is no longer accepting applications.</value></data>
+  <data name="Apply.ThisInternshipIsNotAvailableFor" xml:space="preserve"><value>This internship is not available for your college or major.</value></data>
+  <data name="Apply.ThisIsWhatYouSentTo" xml:space="preserve"><value>This is what you sent to the company. Track its status here.</value></data>
+  <data name="Apply.ToConfirmThisOfferGoTo" xml:space="preserve"><value>To confirm this offer, go to</value></data>
+  <data name="Apply.UpdateProfile" xml:space="preserve"><value>Update profile</value></data>
+  <data name="Apply.UseAnHTTPSLinkToYour" xml:space="preserve"><value>Use an HTTPS link to your CV. Make sure the company can open it without requesting access.</value></data>
+  <data name="Apply.ViewOpportunityDetails" xml:space="preserve"><value>View opportunity details →</value></data>
+  <data name="Apply.WeCouldNotConfirmYourSubmission" xml:space="preserve"><value>We could not confirm your submission. Check My Applications before trying again. Your form is still here.</value></data>
+  <data name="Apply.WeCouldNotLoadThisInternship" xml:space="preserve"><value>We could not load this internship. Please try again shortly.</value></data>
+  <data name="Apply.YouAlreadyHaveAConfirmedInternship" xml:space="preserve"><value>You already have a confirmed internship.</value></data>
+  <data name="Apply.YourApplication" xml:space="preserve"><value>Your application</value></data>
+  <data name="Apply.YourApplicationWillBeMarkedPending" xml:space="preserve"><value>Your application will be marked Pending until the company reviews it.</value></data>
+  <data name="Apply.YourDetails" xml:space="preserve"><value>Your details</value></data>
+  <data name="Dashboard.AllApplications" xml:space="preserve"><value>All applications</value></data>
+  <data name="Dashboard.Applications" xml:space="preserve"><value>Applications</value></data>
+  <data name="Dashboard.ApplicationsPlacement" xml:space="preserve"><value>Applications &amp; placement</value></data>
+  <data name="Dashboard.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
+  <data name="Dashboard.ApprovedHours2" xml:space="preserve"><value>approved hours</value></data>
+  <data name="Dashboard.ApprovedTrainingHours" xml:space="preserve"><value>Approved training hours</value></data>
+  <data name="Dashboard.AwaitingApproval" xml:space="preserve"><value>awaiting approval</value></data>
+  <data name="Dashboard.CVPortfolio" xml:space="preserve"><value>CV &amp; portfolio</value></data>
+  <data name="Dashboard.Due" xml:space="preserve"><value>Due</value></data>
+  <data name="Dashboard.ExploreOpportunities" xml:space="preserve"><value>Explore opportunities</value></data>
+  <data name="Dashboard.FeedbackAvailableToYou" xml:space="preserve"><value>Feedback available to you</value></data>
+  <data name="Dashboard.FindAnEligibleOpportunity" xml:space="preserve"><value>Find an eligible opportunity</value></data>
+  <data name="Dashboard.HoursTargetNotSet" xml:space="preserve"><value> hours · target not set</value></data>
+  <data name="Dashboard.HoursUnit" xml:space="preserve"><value> hours</value></data>
+  <data name="Dashboard.KeepYourNextStepInView" xml:space="preserve"><value>, keep your next step in view.</value></data>
+  <data name="Dashboard.LinkedToYourPlacement" xml:space="preserve"><value>Linked to your placement</value></data>
+  <data name="Dashboard.Meetings" xml:space="preserve"><value>Meetings</value></data>
+  <data name="Dashboard.NoDeadline" xml:space="preserve"><value>No deadline</value></data>
+  <data name="Dashboard.NoOpenTrainingTasks" xml:space="preserve"><value>No open training tasks</value></data>
+  <data name="Dashboard.OnlyApprovedEntriesCountTowardYour" xml:space="preserve"><value>Only approved entries count toward your requirement. Completion still needs coordinator approval.</value></data>
+  <data name="Dashboard.OpenTasks" xml:space="preserve"><value>Open tasks</value></data>
+  <data name="Dashboard.PendingHoursAreSeparate" xml:space="preserve"><value>Pending hours are separate</value></data>
+  <data name="Dashboard.RecentDecisionsWithYourOriginalSubmission" xml:space="preserve"><value>Recent decisions, with your original submission dates.</value></data>
+  <data name="Dashboard.RefreshToTryAgain" xml:space="preserve"><value>Refresh to try again</value></data>
+  <data name="Dashboard.StudentResources" xml:space="preserve"><value>Student resources</value></data>
+  <data name="Dashboard.TargetNotSet" xml:space="preserve"><value>Target not set</value></data>
+  <data name="Dashboard.TasksAndSubmissionsInYourCurrent" xml:space="preserve"><value>Tasks and submissions in your current placement.</value></data>
+  <data name="Dashboard.TasksEvaluated" xml:space="preserve"><value>Tasks evaluated</value></data>
+  <data name="Dashboard.TasksFromYourCompanySupervisorWill" xml:space="preserve"><value>Tasks from your company supervisor will appear here once assigned.</value></data>
+  <data name="Dashboard.TrainingHours" xml:space="preserve"><value>Training hours</value></data>
+  <data name="Dashboard.TrainingTasks" xml:space="preserve"><value>Training tasks</value></data>
+  <data name="Dashboard.ViewHoursAndFeedback" xml:space="preserve"><value>View hours and feedback</value></data>
+  <data name="Dashboard.ViewYourTaskRecord" xml:space="preserve"><value>View your task record</value></data>
+  <data name="Dashboard.WeCouldNotLoadYourInternship" xml:space="preserve"><value>We could not load your internship record.</value></data>
+  <data name="Dashboard.YouHaveNotSubmittedAnApplication" xml:space="preserve"><value>You have not submitted an application yet.</value></data>
+  <data name="Dashboard.YourInternship" xml:space="preserve"><value>Your internship</value></data>
+  <data name="Dashboard.YourNextWork" xml:space="preserve"><value>Your next work</value></data>
+  <data name="Dashboard.YourProfile" xml:space="preserve"><value>Your profile</value></data>
+  <data name="Dashboard.YourSubmittedApplications" xml:space="preserve"><value>Your submitted applications</value></data>
+  <data name="Dashboard.YourTrainingRecord" xml:space="preserve"><value>Your training record</value></data>
+  <data name="DisplayEditProfile.AcademicInformation" xml:space="preserve"><value>Academic Information</value></data>
+  <data name="DisplayEditProfile.AcademicInformationIsManagedByThe" xml:space="preserve"><value>🔒 Academic information is managed by the Coordinator</value></data>
+  <data name="DisplayEditProfile.CancelChanges" xml:space="preserve"><value>Cancel Changes</value></data>
+  <data name="DisplayEditProfile.ChangesCouldNotBeSavedPlease" xml:space="preserve"><value>Changes could not be saved. Please try again.</value></data>
+  <data name="DisplayEditProfile.College" xml:space="preserve"><value>College</value></data>
+  <data name="DisplayEditProfile.EachSkillsSectionMustBe1000" xml:space="preserve"><value>Each skills section must be 1000 characters or less.</value></data>
+  <data name="DisplayEditProfile.EmailAddress" xml:space="preserve"><value>Email Address</value></data>
+  <data name="DisplayEditProfile.EnterAValidPhoneNumberDigits" xml:space="preserve"><value>Enter a valid phone number (digits, spaces, +, -, or parentheses).</value></data>
+  <data name="DisplayEditProfile.FullName" xml:space="preserve"><value>Full Name</value></data>
+  <data name="DisplayEditProfile.Major" xml:space="preserve"><value>Major</value></data>
+  <data name="DisplayEditProfile.MyProfile" xml:space="preserve"><value>My Profile</value></data>
+  <data name="DisplayEditProfile.PersonalInformation" xml:space="preserve"><value>Personal Information</value></data>
+  <data name="DisplayEditProfile.PhoneNumber" xml:space="preserve"><value>Phone Number</value></data>
+  <data name="DisplayEditProfile.ReadOnly" xml:space="preserve"><value>— Read only</value></data>
+  <data name="DisplayEditProfile.RequiredTrainingHours" xml:space="preserve"><value>Required Training Hours</value></data>
+  <data name="DisplayEditProfile.SaveChanges" xml:space="preserve"><value>Save Changes</value></data>
+  <data name="DisplayEditProfile.SeparateSkillsWithCommasForExample" xml:space="preserve"><value>Separate skills with commas, for example: C#, SQL, HTML, CSS.</value></data>
+  <data name="DisplayEditProfile.SeparateSkillsWithCommasForExample2" xml:space="preserve"><value>Separate skills with commas, for example: Communication, Teamwork, Problem Solving.</value></data>
+  <data name="DisplayEditProfile.SoftSkills" xml:space="preserve"><value>Soft Skills</value></data>
+  <data name="DisplayEditProfile.StudentNumber" xml:space="preserve"><value>Student Number</value></data>
+  <data name="DisplayEditProfile.StudentRecordWasNotFound" xml:space="preserve"><value>Student record was not found.</value></data>
+  <data name="DisplayEditProfile.TechnicalSkills" xml:space="preserve"><value>Technical Skills</value></data>
+  <data name="DisplayEditProfile.TheseFieldsAreControlledByThe" xml:space="preserve"><value>These fields are controlled by the University Internship Coordinator.</value></data>
+  <data name="DisplayEditProfile.UnableToLoadYourProfilePlease" xml:space="preserve"><value>Unable to load your profile. Please try again.</value></data>
+  <data name="DisplayEditProfile.University" xml:space="preserve"><value>University</value></data>
+  <data name="DisplayEditProfile.ViewYourInformationAndKeepYour" xml:space="preserve"><value>View your information and keep your permitted details up to date.</value></data>
+  <data name="DisplayEditProfile.YourPhoneNumberCanBeUpdated" xml:space="preserve"><value>Your phone number can be updated. Contact the Coordinator for changes to account details.</value></data>
+  <data name="DisplayEditProfile.YourProfileHasBeenUpdatedSuccessfully" xml:space="preserve"><value>Your profile has been updated successfully.</value></data>
+  <data name="DisplayEditProfile.YourSoftSkills" xml:space="preserve"><value>Your soft skills</value></data>
+  <data name="DisplayEditProfile.YourTechnicalSkills" xml:space="preserve"><value>Your technical skills</value></data>
+  <data name="MyApplications.ApplicationSubmittedYourStatusIsPending" xml:space="preserve"><value>Application submitted. Your status is Pending and the company can now review it.</value></data>
+  <data name="MyApplications.ConfirmOffer" xml:space="preserve"><value>Confirm offer</value></data>
+  <data name="MyApplications.ConfirmedInternship" xml:space="preserve"><value>Confirmed internship</value></data>
+  <data name="MyApplications.ExploreOpportunities" xml:space="preserve"><value>Explore opportunities</value></data>
+  <data name="MyApplications.IUnderstandThatICanConfirm" xml:space="preserve"><value>I understand that I can confirm only one internship offer.</value></data>
+  <data name="MyApplications.InternshipConfirmedThisIsYourSelected" xml:space="preserve"><value>Internship confirmed. This is your selected placement; other offers cannot be confirmed.</value></data>
+  <data name="MyApplications.MyApplications" xml:space="preserve"><value>My applications</value></data>
+  <data name="MyApplications.NoApplicationsYet" xml:space="preserve"><value>No applications yet.</value></data>
+  <data name="MyApplications.ReadyToJoinThisCompany" xml:space="preserve"><value>Ready to join this company?</value></data>
+  <data name="MyApplications.RefreshApplications" xml:space="preserve"><value>Refresh applications</value></data>
+  <data name="MyApplications.RejectionReason" xml:space="preserve"><value>Rejection reason:</value></data>
+  <data name="MyApplications.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="MyApplications.SyncConfirmation" xml:space="preserve"><value>Sync confirmation</value></data>
+  <data name="MyApplications.TheApplicationServiceIsNotConfigured" xml:space="preserve"><value>The application service is not configured. Contact the coordinator.</value></data>
+  <data name="MyApplications.ThisIsYourConfirmedInternship" xml:space="preserve"><value>This is your confirmed internship.</value></data>
+  <data name="MyApplications.ToFindYourInternship" xml:space="preserve"><value>to find your internship.</value></data>
+  <data name="MyApplications.TrackYourApplicationsAndChooseOne" xml:space="preserve"><value>Track your applications and choose one accepted internship offer.</value></data>
+  <data name="MyApplications.ViewApplication" xml:space="preserve"><value>View application →</value></data>
+  <data name="MyApplications.WeCouldNotConfirmTheResult" xml:space="preserve"><value>We could not confirm the result. Refresh to check your placement before trying again.</value></data>
+  <data name="MyApplications.WeCouldNotLoadApplicationsRefresh" xml:space="preserve"><value>We could not load applications. Refresh to try again.</value></data>
+  <data name="MyApplications.YouCanConfirmOnlyOneInternship" xml:space="preserve"><value>You can confirm only one internship. Choose carefully before continuing.</value></data>
+  <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>Your internship is confirmed and saved. The application flag still needs syncing; use Sync confirmation below.</value></data>
+  <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>Your placement is saved. You cannot confirm another offer.</value></data>
+  <data name="MyTasks.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>Assigned Tasks</value></data>
+  <data name="MyTasks.Attempt" xml:space="preserve"><value>Attempt</value></data>
+  <data name="MyTasks.Attempts" xml:space="preserve"><value>Attempts</value></data>
+  <data name="MyTasks.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="MyTasks.Deadline" xml:space="preserve"><value>Deadline</value></data>
+  <data name="MyTasks.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>Enter a valid http or https link.</value></data>
+  <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>Enter submission text or a link.</value></data>
+  <data name="MyTasks.EvaluationCriteria" xml:space="preserve"><value>Evaluation Criteria</value></data>
+  <data name="MyTasks.ExampleTask" xml:space="preserve"><value>Example Task</value></data>
+  <data name="MyTasks.Feedback" xml:space="preserve"><value>Feedback</value></data>
+  <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>File uploads are not available yet. Submit text or a shareable link.</value></data>
+  <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>Instructions and Requirements</value></data>
+  <data name="MyTasks.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
+  <data name="MyTasks.NoEvaluationCriteriaProvided" xml:space="preserve"><value>No evaluation criteria provided.</value></data>
+  <data name="MyTasks.NoSubmissionAttemptsYet" xml:space="preserve"><value>No submission attempts yet.</value></data>
+  <data name="MyTasks.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>No tasks have been assigned to you yet.</value></data>
+  <data name="MyTasks.NotSet" xml:space="preserve"><value>Not set</value></data>
+  <data name="MyTasks.NotSubmitted" xml:space="preserve"><value>Not submitted</value></data>
+  <data name="MyTasks.OfTheTask" xml:space="preserve"><value>% of the task)</value></data>
+  <data name="MyTasks.Points" xml:space="preserve"><value>points (</value></data>
+  <data name="MyTasks.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="MyTasks.SubmissionCouldNotBeSaved" xml:space="preserve"><value>Submission could not be saved.</value></data>
+  <data name="MyTasks.SubmissionCouldNotBeSavedTry" xml:space="preserve"><value>Submission could not be saved. Try again.</value></data>
+  <data name="MyTasks.SubmissionHistory" xml:space="preserve"><value>Submission History</value></data>
+  <data name="MyTasks.SubmissionLink" xml:space="preserve"><value>Submission Link</value></data>
+  <data name="MyTasks.SubmissionSavedSuccessfully" xml:space="preserve"><value>Submission saved successfully.</value></data>
+  <data name="MyTasks.SubmissionText" xml:space="preserve"><value>Submission Text</value></data>
+  <data name="MyTasks.SubmissionWasSavedButTheTask" xml:space="preserve"><value>Submission was saved, but the task status could not be updated. Refresh the page.</value></data>
+  <data name="MyTasks.SubmitTask" xml:space="preserve"><value>Submit Task</value></data>
+  <data name="MyTasks.SubmitYourWork" xml:space="preserve"><value>Submit Your Work</value></data>
+  <data name="MyTasks.SubmittedAt" xml:space="preserve"><value>Submitted At</value></data>
+  <data name="MyTasks.Task" xml:space="preserve"><value>Task</value></data>
+  <data name="MyTasks.TaskDetailsAndSubmission" xml:space="preserve"><value>Task details and submission</value></data>
+  <data name="MyTasks.TheSupervisorSInstructionsWillAppear" xml:space="preserve"><value>The supervisor's instructions will appear here.</value></data>
+  <data name="MyTasks.TheTaskDescriptionWillAppearHere" xml:space="preserve"><value>The task description will appear here.</value></data>
+  <data name="MyTasks.ThisTaskIsNotAcceptingSubmissions" xml:space="preserve"><value>This task is not accepting submissions now.</value></data>
+  <data name="MyTasks.ThisTaskRequiresAFileFile" xml:space="preserve"><value>This task requires a file. File uploads are not available yet.</value></data>
+  <data name="MyTasks.ToBeSetBySupervisor" xml:space="preserve"><value>To be set by supervisor</value></data>
+  <data name="MyTasks.UTC" xml:space="preserve"><value>UTC</value></data>
+  <data name="MyTasks.ViewDetails" xml:space="preserve"><value>View Details</value></data>
+  <data name="MyTasks.ViewYourAssignedTasksDeadlinesAnd" xml:space="preserve"><value>View your assigned tasks, deadlines, and submission status.</value></data>
+  <data name="MyTasks.YouAlreadySubmittedThisTaskWait" xml:space="preserve"><value>You already submitted this task. Wait for a revision request.</value></data>
+  <data name="MyTasks.YouCanProvideTextALink" xml:space="preserve"><value>You can provide text, a link, or a file. Each new submission will be kept as a separate attempt.</value></data>
+  <data name="MyTasks.YourConfirmedPlacementWasNotFound" xml:space="preserve"><value>Your confirmed placement was not found.</value></data>
+  <data name="Opportunities.APPLICATIONDEADLINE" xml:space="preserve"><value>APPLICATION DEADLINE</value></data>
+  <data name="Opportunities.AVAILABLESEATS" xml:space="preserve"><value>AVAILABLE SEATS</value></data>
+  <data name="Opportunities.AvailableOpportunities" xml:space="preserve"><value>Available Opportunities</value></data>
+  <data name="Opportunities.Clear" xml:space="preserve"><value>Clear</value></data>
+  <data name="Opportunities.College" xml:space="preserve"><value>College:</value></data>
+  <data name="Opportunities.DURATION" xml:space="preserve"><value>DURATION</value></data>
+  <data name="Opportunities.DiscoverYourNextInternship" xml:space="preserve"><value>Discover Your Next Internship</value></data>
+  <data name="Opportunities.ExploreOpportunities" xml:space="preserve"><value>Explore Opportunities</value></data>
+  <data name="Opportunities.ExploreOpportunitiesFromPartnerCompaniesDiscover" xml:space="preserve"><value>Explore opportunities from partner companies, discover the skills you can develop, and take the next step in your career.</value></data>
+  <data name="Opportunities.ExploreThisInternshipToLearnMore" xml:space="preserve"><value>Explore this internship to learn more about the role.</value></data>
+  <data name="Opportunities.FindInternshipOpportunitiesThatMatchYour" xml:space="preserve"><value>Find internship opportunities that match your academic program.</value></data>
+  <data name="Opportunities.InternshipsForYou" xml:space="preserve"><value>Internships For You</value></data>
+  <data name="Opportunities.LOCATION" xml:space="preserve"><value>LOCATION</value></data>
+  <data name="Opportunities.Major" xml:space="preserve"><value>Major:</value></data>
+  <data name="Opportunities.MatchesYourAcademicProgram" xml:space="preserve"><value>✓ Matches your academic program</value></data>
+  <data name="Opportunities.MatchingOpportunities" xml:space="preserve"><value>matching opportunities</value></data>
+  <data name="Opportunities.NoMatchingOpportunities" xml:space="preserve"><value>No Matching Opportunities</value></data>
+  <data name="Opportunities.NotSpecified" xml:space="preserve"><value>Not specified</value></data>
+  <data name="Opportunities.Of" xml:space="preserve"><value>of</value></data>
+  <data name="Opportunities.Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Opportunities.PleaseContactTheInternshipCoordinator" xml:space="preserve"><value>Please contact the internship coordinator.</value></data>
+  <data name="Opportunities.PleaseSignInAsAStudent" xml:space="preserve"><value>Please sign in as a student.</value></data>
+  <data name="Opportunities.PleaseTryAgainLater" xml:space="preserve"><value>Please try again later.</value></data>
+  <data name="Opportunities.ResetSearch" xml:space="preserve"><value>Reset Search</value></data>
+  <data name="Opportunities.ResultsAreFilteredAutomaticallyForYour" xml:space="preserve"><value>Results are filtered automatically for your program.</value></data>
+  <data name="Opportunities.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Opportunities.SearchAcademicFilters" xml:space="preserve"><value>Search &amp; Academic Filters</value></data>
+  <data name="Opportunities.SearchByOpportunityCompanyOrLocation" xml:space="preserve"><value>Search by opportunity, company or location...</value></data>
+  <data name="Opportunities.StatusOpen" xml:space="preserve"><value>Status: Open</value></data>
+  <data name="Opportunities.ThereAreCurrentlyNoAvailableInternships" xml:space="preserve"><value>There are currently no available internships matching your academic program and search.</value></data>
+  <data name="Opportunities.TryAnotherSearchOrCheckBack" xml:space="preserve"><value>Try another search or check back later.</value></data>
+  <data name="Opportunities.ViewDetails" xml:space="preserve"><value>View Details →</value></data>
+  <data name="Opportunities.Weeks" xml:space="preserve"><value>weeks</value></data>
+  <data name="OpportunityDetails.APPLICATIONDEADLINE" xml:space="preserve"><value>APPLICATION DEADLINE</value></data>
+  <data name="OpportunityDetails.AVAILABLESEATS" xml:space="preserve"><value>AVAILABLE SEATS</value></data>
+  <data name="OpportunityDetails.AboutThisOpportunity" xml:space="preserve"><value>About This Opportunity</value></data>
+  <data name="OpportunityDetails.AllMajorsInEligibleCollege" xml:space="preserve"><value>All majors in eligible college</value></data>
+  <data name="OpportunityDetails.ApplicationsUnavailable" xml:space="preserve"><value>Applications Unavailable</value></data>
+  <data name="OpportunityDetails.ApplyBefore" xml:space="preserve"><value>Apply Before</value></data>
+  <data name="OpportunityDetails.ApplyNow" xml:space="preserve"><value>Apply Now →</value></data>
+  <data name="OpportunityDetails.BackToExploreOpportunities" xml:space="preserve"><value>← Back to Explore Opportunities</value></data>
+  <data name="OpportunityDetails.Company" xml:space="preserve"><value>Company</value></data>
+  <data name="OpportunityDetails.DURATION" xml:space="preserve"><value>DURATION</value></data>
+  <data name="OpportunityDetails.EligibleCollege" xml:space="preserve"><value>Eligible College</value></data>
+  <data name="OpportunityDetails.EligibleMajors" xml:space="preserve"><value>Eligible Majors</value></data>
+  <data name="OpportunityDetails.ExploreOpportunities" xml:space="preserve"><value>Explore Opportunities</value></data>
+  <data name="OpportunityDetails.InterestedInThisOpportunityStartYour" xml:space="preserve"><value>Interested in this opportunity? Start your application and submit the required information through the student portal.</value></data>
+  <data name="OpportunityDetails.InternshipInformation" xml:space="preserve"><value>Internship Information</value></data>
+  <data name="OpportunityDetails.InternshipOpportunity" xml:space="preserve"><value>Internship Opportunity</value></data>
+  <data name="OpportunityDetails.Location" xml:space="preserve"><value>Location</value></data>
+  <data name="OpportunityDetails.LocationCaps" xml:space="preserve"><value>LOCATION</value></data>
+  <data name="OpportunityDetails.MyApplications" xml:space="preserve"><value>My Applications</value></data>
+  <data name="OpportunityDetails.NotSpecified" xml:space="preserve"><value>Not specified</value></data>
+  <data name="OpportunityDetails.OpportunityNotAvailable" xml:space="preserve"><value>Opportunity Not Available</value></data>
+  <data name="OpportunityDetails.PleaseSelectAnOpportunityFromExplore" xml:space="preserve"><value>Please select an opportunity from Explore Opportunities.</value></data>
+  <data name="OpportunityDetails.PleaseSignInAsAStudent" xml:space="preserve"><value>Please sign in as a student.</value></data>
+  <data name="OpportunityDetails.PleaseTryAgainLater" xml:space="preserve"><value>Please try again later.</value></data>
+  <data name="OpportunityDetails.ReadyToApply" xml:space="preserve"><value>Ready to Apply?</value></data>
+  <data name="OpportunityDetails.RemainingSeats" xml:space="preserve"><value>Remaining Seats</value></data>
+  <data name="OpportunityDetails.RequirementsQualifications" xml:space="preserve"><value>Requirements &amp; Qualifications</value></data>
+  <data name="OpportunityDetails.ThisOpportunityCouldNotBeFound" xml:space="preserve"><value>This opportunity could not be found.</value></data>
+  <data name="OpportunityDetails.ThisOpportunityIsAvailableToStudents" xml:space="preserve"><value>This opportunity is available to students whose academic college and major meet the eligibility requirements.</value></data>
+  <data name="OpportunityDetails.TrainingDuration" xml:space="preserve"><value>Training Duration</value></data>
+  <data name="OpportunityDetails.TrainingStart" xml:space="preserve"><value>Training Start</value></data>
+  <data name="OpportunityDetails.WeCouldnTDisplayThisOpportunity" xml:space="preserve"><value>We couldn't display this opportunity. Please return to Explore Opportunities and choose another internship.</value></data>
+  <data name="OpportunityDetails.Weeks" xml:space="preserve"><value>weeks</value></data>
+  <data name="OpportunityDetails.WhoCanApply" xml:space="preserve"><value>Who Can Apply?</value></data>
+  <data name="Profile.9627XXXXXXXX" xml:space="preserve"><value>+962 7X XXX XXXX</value></data>
+  <data name="Profile.AcademicDetailsAreManagedByThe" xml:space="preserve"><value>Academic details are managed by the internship coordinator. Contact your coordinator if any information is incorrect.</value></data>
+  <data name="Profile.AcademicInformation" xml:space="preserve"><value>Academic Information</value></data>
+  <data name="Profile.Age" xml:space="preserve"><value>Age</value></data>
+  <data name="Profile.ApprovedTrainingHours" xml:space="preserve"><value>Approved Training Hours</value></data>
+  <data name="Profile.CVAndPortfolioFilesMustBe" xml:space="preserve"><value>CV and portfolio files must be PDF.</value></data>
+  <data name="Profile.CVProfessionalPortfolio" xml:space="preserve"><value>CV &amp; Professional Portfolio</value></data>
+  <data name="Profile.ChooseProfilePhoto" xml:space="preserve"><value>Choose Profile Photo</value></data>
+  <data name="Profile.College" xml:space="preserve"><value>College</value></data>
+  <data name="Profile.CommunicationLeadershipProblemSolvingAndTeamwork" xml:space="preserve"><value>Communication, leadership, problem-solving and teamwork.</value></data>
+  <data name="Profile.CurriculumVitaeCV" xml:space="preserve"><value>Curriculum Vitae (CV)</value></data>
+  <data name="Profile.DownloadCurrentCV" xml:space="preserve"><value>Download Current CV →</value></data>
+  <data name="Profile.DownloadCurrentPortfolio" xml:space="preserve"><value>Download Current Portfolio →</value></data>
+  <data name="Profile.ExampleCASPNETHTMLCSS" xml:space="preserve"><value>Example: C#, ASP.NET, HTML, CSS, SQL, Git</value></data>
+  <data name="Profile.ExampleTeamworkCommunicationTimeManagement" xml:space="preserve"><value>Example: Teamwork, communication, time management</value></data>
+  <data name="Profile.FullName" xml:space="preserve"><value>Full Name *</value></data>
+  <data name="Profile.FullNameMustBeBetween2" xml:space="preserve"><value>Full name must be between 2 and 120 characters.</value></data>
+  <data name="Profile.GermanJordanianUniversity" xml:space="preserve"><value>| German Jordanian University</value></data>
+  <data name="Profile.HighlightTheSkillsYouCanOffer" xml:space="preserve"><value>Highlight the skills you can offer to companies.</value></data>
+  <data name="Profile.JPGOrPNGMaximum2MB" xml:space="preserve"><value>JPG or PNG, maximum 2 MB.</value></data>
+  <data name="Profile.KeepYourCVAndPortfolioUp" xml:space="preserve"><value>Keep your CV and portfolio up to date so companies can learn more about your experience, projects and skills.</value></data>
+  <data name="Profile.LinkedInProfile" xml:space="preserve"><value>LinkedIn Profile</value></data>
+  <data name="Profile.MajorSpecialization" xml:space="preserve"><value>Major / Specialization</value></data>
+  <data name="Profile.ManageCVPortfolio" xml:space="preserve"><value>Manage CV &amp; Portfolio →</value></data>
+  <data name="Profile.ManageYourPersonalDetailsAcademicInformation" xml:space="preserve"><value>Manage your personal details, academic information and professional profile.</value></data>
+  <data name="Profile.ManageYourProfessionalDocumentsAndOnline" xml:space="preserve"><value>Manage your professional documents and online presence.</value></data>
+  <data name="Profile.ManagedByYourUniversityAccount" xml:space="preserve"><value>Managed by your university account.</value></data>
+  <data name="Profile.MyStudentProfile" xml:space="preserve"><value>My Student Profile</value></data>
+  <data name="Profile.NoUploadedCVAvailable" xml:space="preserve"><value>No uploaded CV available.</value></data>
+  <data name="Profile.NoUploadedPortfolioAvailable" xml:space="preserve"><value>No uploaded portfolio available.</value></data>
+  <data name="Profile.OneOrMoreFieldsExceedThe" xml:space="preserve"><value>One or more fields exceed the allowed length.</value></data>
+  <data name="Profile.PDFFilesMustBe5MB" xml:space="preserve"><value>PDF files must be 5 MB or smaller.</value></data>
+  <data name="Profile.PersonalInformation" xml:space="preserve"><value>Personal Information</value></data>
+  <data name="Profile.PhoneNumber" xml:space="preserve"><value>Phone Number</value></data>
+  <data name="Profile.PleaseEnterAValidAgeBetween" xml:space="preserve"><value>Please enter a valid age between 16 and 100.</value></data>
+  <data name="Profile.PleaseEnterAValidLinkedInProfile" xml:space="preserve"><value>Please enter a valid LinkedIn profile URL.</value></data>
+  <data name="Profile.PleaseEnterValidHTTPOrHTTPS" xml:space="preserve"><value>Please enter valid HTTP or HTTPS links.</value></data>
+  <data name="Profile.ProfileError" xml:space="preserve"><value>Profile Error: {0}</value></data>
+  <data name="Profile.ProfilePhotoMustBe2MB" xml:space="preserve"><value>Profile photo must be 2 MB or smaller.</value></data>
+  <data name="Profile.ProfilePhotoMustBeJPGOr" xml:space="preserve"><value>Profile photo must be JPG or PNG.</value></data>
+  <data name="Profile.ProgrammingLanguagesFrameworksToolsAndTechnologies" xml:space="preserve"><value>Programming languages, frameworks, tools and technologies.</value></data>
+  <data name="Profile.ProjectPortfolio" xml:space="preserve"><value>Project Portfolio</value></data>
+  <data name="Profile.ReadOnly" xml:space="preserve"><value>Read Only</value></data>
+  <data name="Profile.RequiredTrainingHours" xml:space="preserve"><value>Required Training Hours</value></data>
+  <data name="Profile.ShowcaseYourAcademicProjectsPracticalWork" xml:space="preserve"><value>Showcase your academic projects, practical work, achievements and professional experience.</value></data>
+  <data name="Profile.SkillsCompetencies" xml:space="preserve"><value>Skills &amp; Competencies</value></data>
+  <data name="Profile.SoftSkills" xml:space="preserve"><value>Soft Skills</value></data>
+  <data name="Profile.StudentAccountIsUnavailable" xml:space="preserve"><value>Student account is unavailable.</value></data>
+  <data name="Profile.StudentID" xml:space="preserve"><value>Student ID</value></data>
+  <data name="Profile.StudentProfileCouldNotBeFound" xml:space="preserve"><value>Student profile could not be found.</value></data>
+  <data name="Profile.StudentProfilePhoto" xml:space="preserve"><value>Student profile photo</value></data>
+  <data name="Profile.TechnicalSkills" xml:space="preserve"><value>Technical Skills</value></data>
+  <data name="Profile.TheSelectedFileIsNotA" xml:space="preserve"><value>The selected file is not a valid PDF.</value></data>
+  <data name="Profile.TheSelectedPhotoIsNotA" xml:space="preserve"><value>The selected photo is not a valid image.</value></data>
+  <data name="Profile.University" xml:space="preserve"><value>University</value></data>
+  <data name="Profile.UniversityAccountEmail" xml:space="preserve"><value>University / Account Email</value></data>
+  <data name="Profile.UpdateProfile" xml:space="preserve"><value>Update Profile</value></data>
+  <data name="Profile.UpdateYourPersonalAndContactInformation" xml:space="preserve"><value>Update your personal and contact information.</value></data>
+  <data name="Profile.UploadYourLatestCVReplaceAn" xml:space="preserve"><value>Upload your latest CV, replace an existing file, or manage your online CV link.</value></data>
+  <data name="Profile.YourCVOrPortfolioCouldNot" xml:space="preserve"><value>Your CV or portfolio could not be updated because the record changed. Refresh and try again.</value></data>
+  <data name="Profile.YourOfficialUniversityAndTrainingDetails" xml:space="preserve"><value>Your official university and training details.</value></data>
+  <data name="Profile.YourProfileHasBeenUpdatedSuccessfully" xml:space="preserve"><value>Your profile has been updated successfully.</value></data>
+  <data name="Profile.YourProfileWasUpdatedElsewherePlease" xml:space="preserve"><value>Your profile was updated elsewhere. Please refresh and try again.</value></data>
+  <data name="Progress.Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Progress.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
+  <data name="Progress.ApprovedHoursProgress" xml:space="preserve"><value>Approved hours progress</value></data>
+  <data name="Progress.ApprovedOn" xml:space="preserve"><value>Approved on</value></data>
+  <data name="Progress.Attempt" xml:space="preserve"><value>Attempt</value></data>
+  <data name="Progress.Attempts" xml:space="preserve"><value>Attempts</value></data>
+  <data name="Progress.AwaitingReview" xml:space="preserve"><value>Awaiting review</value></data>
+  <data name="Progress.Company" xml:space="preserve"><value>Company</value></data>
+  <data name="Progress.CompanySupervisor" xml:space="preserve"><value>Company supervisor</value></data>
+  <data name="Progress.CompletionStatus" xml:space="preserve"><value>Completion status</value></data>
+  <data name="Progress.Date" xml:space="preserve"><value>Date</value></data>
+  <data name="Progress.Deadline" xml:space="preserve"><value>Deadline</value></data>
+  <data name="Progress.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Progress.Details" xml:space="preserve"><value>Details</value></data>
+  <data name="Progress.DownloadPrintCompletionReportPDF" xml:space="preserve"><value>Download / print completion report (PDF)</value></data>
+  <data name="Progress.EachTaskIsGradedOutOf" xml:space="preserve"><value>Each task is graded out of its own maximum score set by your company supervisor.</value></data>
+  <data name="Progress.FinalScore" xml:space="preserve"><value>Final score</value></data>
+  <data name="Progress.GoToMyApplications" xml:space="preserve"><value>Go to My Applications</value></data>
+  <data name="Progress.Grade" xml:space="preserve"><value>Grade</value></data>
+  <data name="Progress.GradedOutOfAssigned" xml:space="preserve"><value>Graded out of assigned</value></data>
+  <data name="Progress.Hours" xml:space="preserve"><value>Hours</value></data>
+  <data name="Progress.InternshipCompletionOfficialReport" xml:space="preserve"><value>Internship completion &amp; official report</value></data>
+  <data name="Progress.MyInternship" xml:space="preserve"><value>My internship</value></data>
+  <data name="Progress.MyProgressEvaluation" xml:space="preserve"><value>My Progress &amp; Evaluation</value></data>
+  <data name="Progress.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
+  <data name="Progress.NoConfirmedInternshipYet" xml:space="preserve"><value>No confirmed internship yet</value></data>
+  <data name="Progress.NoFeedbackYet" xml:space="preserve"><value>No feedback yet</value></data>
+  <data name="Progress.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>No tasks have been assigned to you yet.</value></data>
+  <data name="Progress.NoTrainingHoursHaveBeenRecorded" xml:space="preserve"><value>No training hours have been recorded yet.</value></data>
+  <data name="Progress.NotGradedYet" xml:space="preserve"><value>Not graded yet</value></data>
+  <data name="Progress.OfRequiredHours" xml:space="preserve"><value>% of required hours</value></data>
+  <data name="Progress.OnlyHoursApprovedByYourSupervisor" xml:space="preserve"><value>Only hours approved by your supervisor count toward your required hours. Completing a task does not approve its hours automatically.</value></data>
+  <data name="Progress.OpenRevisions" xml:space="preserve"><value>Open revisions</value></data>
+  <data name="Progress.Opportunity" xml:space="preserve"><value>Opportunity</value></data>
+  <data name="Progress.Outcome" xml:space="preserve"><value>Outcome</value></data>
+  <data name="Progress.PendingApproval" xml:space="preserve"><value>Pending approval</value></data>
+  <data name="Progress.PlacementStatus" xml:space="preserve"><value>Placement status</value></data>
+  <data name="Progress.Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Progress.Result" xml:space="preserve"><value>Result</value></data>
+  <data name="Progress.ReviewerNote" xml:space="preserve"><value>Reviewer note</value></data>
+  <data name="Progress.RevisionRequested" xml:space="preserve"><value>Revision requested</value></data>
+  <data name="Progress.SomeSectionsCouldNotBeLoaded" xml:space="preserve"><value>Some sections could not be loaded and may look empty:</value></data>
+  <data name="Progress.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Progress.SubmissionsRevisionHistory" xml:space="preserve"><value>Submissions &amp; revision history</value></data>
+  <data name="Progress.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Progress.SupervisorFeedback" xml:space="preserve"><value>Supervisor feedback</value></data>
+  <data name="Progress.Task" xml:space="preserve"><value>Task</value></data>
+  <data name="Progress.TaskEvaluations" xml:space="preserve"><value>Task evaluations</value></data>
+  <data name="Progress.TaskEvaluationsFeedback" xml:space="preserve"><value>Task evaluations &amp; feedback</value></data>
+  <data name="Progress.TaskGradeAverage" xml:space="preserve"><value>Task grade average</value></data>
+  <data name="Progress.TasksGraded" xml:space="preserve"><value>Tasks graded</value></data>
+  <data name="Progress.TasksWaitingForYourResubmission" xml:space="preserve"><value>Tasks waiting for your resubmission</value></data>
+  <data name="Progress.TheInternshipCoordinatorIsReviewingYour" xml:space="preserve"><value>The internship coordinator is reviewing your completion.</value></data>
+  <data name="Progress.TheOfficialCompletionReportIsBeing" xml:space="preserve"><value>The official completion report is being prepared by the coordinator and will be available to download here soon.</value></data>
+  <data name="Progress.TrainingHours" xml:space="preserve"><value>Training hours</value></data>
+  <data name="Progress.TrainingHours2" xml:space="preserve"><value>Training hours</value></data>
+  <data name="Progress.TrainingPeriod" xml:space="preserve"><value>Training period</value></data>
+  <data name="Progress.UnderReview" xml:space="preserve"><value>Under review</value></data>
+  <data name="Progress.WeightedByEachTaskSWeight" xml:space="preserve"><value>Weighted by each task's weight</value></data>
+  <data name="Progress.YouHaveNotSubmittedAnyWork" xml:space="preserve"><value>You have not submitted any work yet. Submit tasks from</value></data>
+  <data name="Progress.YourCompletionWasNotApprovedPlease" xml:space="preserve"><value>Your completion was not approved. Please contact the internship coordinator.</value></data>
+  <data name="Progress.YourFinalResultAndTheOfficial" xml:space="preserve"><value>Your final result and the official Internship Completion Report (PDF) will appear here after the University Internship Coordinator approves your internship completion.</value></data>
+  <data name="Progress.YourInternshipCompletionHasBeenApproved" xml:space="preserve"><value>Your internship completion has been approved by the University Internship Coordinator.</value></data>
+  <data name="Progress.YourInternshipIsStillInProgress" xml:space="preserve"><value>Your internship is still in progress.</value></data>
+  <data name="Progress.YourProgressAndEvaluationsWillAppear" xml:space="preserve"><value>Your progress and evaluations will appear here after you confirm an accepted internship offer.</value></data>
+  <data name="Progress.YourProgressCouldNotBeLoaded" xml:space="preserve"><value>Your progress could not be loaded right now. Please refresh the page or try again later.</value></data>
+  <data name="Progress.YourSupervisorsArePreparingTheirFinal" xml:space="preserve"><value>Your supervisors are preparing their final evaluations.</value></data>
+  <data name="Progress.YourTaskGradesSupervisorFeedbackApproved" xml:space="preserve"><value>Your task grades, supervisor feedback, approved training hours and completion status.</value></data>
+  <data name="StudentCVPortfolio.AddALinkToYourOnline" xml:space="preserve"><value>Add a link to your online CV.</value></data>
+  <data name="StudentCVPortfolio.AddLinksToYourOnlineCV" xml:space="preserve"><value>Add links to your online CV and portfolio. You can update them whenever needed.</value></data>
+  <data name="StudentCVPortfolio.BackToMyProfile" xml:space="preserve"><value>← Back to My Profile</value></data>
+  <data name="StudentCVPortfolio.BuildYourProfessionalPresenceByManaging" xml:space="preserve"><value>Build your professional presence by managing your CV, project portfolio and online links. Keep everything updated before applying for internship opportunities.</value></data>
+  <data name="StudentCVPortfolio.CVLink" xml:space="preserve"><value>CV Link</value></data>
+  <data name="StudentCVPortfolio.CVPortfolioLinks" xml:space="preserve"><value>CV &amp; Portfolio Links</value></data>
+  <data name="StudentCVPortfolio.ChooseCVFile" xml:space="preserve"><value>Choose CV File</value></data>
+  <data name="StudentCVPortfolio.ChoosePortfolioFile" xml:space="preserve"><value>Choose Portfolio File</value></data>
+  <data name="StudentCVPortfolio.DownloadCV" xml:space="preserve"><value>Download CV</value></data>
+  <data name="StudentCVPortfolio.DownloadPortfolio" xml:space="preserve"><value>Download Portfolio</value></data>
+  <data name="StudentCVPortfolio.EnterValidHTTPOrHTTPSLinks" xml:space="preserve"><value>Enter valid HTTP or HTTPS links.</value></data>
+  <data name="StudentCVPortfolio.FileRemovedSuccessfully" xml:space="preserve"><value>File removed successfully.</value></data>
+  <data name="StudentCVPortfolio.GitHubBehanceOrAPersonalWebsite" xml:space="preserve"><value>GitHub, Behance, or a personal website.</value></data>
+  <data name="StudentCVPortfolio.MyCVPortfolio" xml:space="preserve"><value>My CV &amp; Portfolio</value></data>
+  <data name="StudentCVPortfolio.MySavedCVPortfolio" xml:space="preserve"><value>My Saved CV &amp; Portfolio</value></data>
+  <data name="StudentCVPortfolio.NoCVFileUploadedYet" xml:space="preserve"><value>No CV file uploaded yet.</value></data>
+  <data name="StudentCVPortfolio.NoCVLinkAddedYet" xml:space="preserve"><value>No CV link added yet.</value></data>
+  <data name="StudentCVPortfolio.NoPortfolioFileUploadedYet" xml:space="preserve"><value>No portfolio file uploaded yet.</value></data>
+  <data name="StudentCVPortfolio.NoPortfolioLinkAddedYet" xml:space="preserve"><value>No portfolio link added yet.</value></data>
+  <data name="StudentCVPortfolio.OnlyPDFFilesAreSupported" xml:space="preserve"><value>Only PDF files are supported.</value></data>
+  <data name="StudentCVPortfolio.PDFFilesMustBe5MB" xml:space="preserve"><value>PDF files must be 5 MB or smaller.</value></data>
+  <data name="StudentCVPortfolio.PDFOnlyMaximumFileSize5" xml:space="preserve"><value>PDF only. Maximum file size: 5 MB.</value></data>
+  <data name="StudentCVPortfolio.PortfolioLink" xml:space="preserve"><value>Portfolio Link</value></data>
+  <data name="StudentCVPortfolio.Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="StudentCVPortfolio.SaveCVPortfolio" xml:space="preserve"><value>Save CV &amp; Portfolio</value></data>
+  <data name="StudentCVPortfolio.SaveYourInformation" xml:space="preserve"><value>Save Your Information</value></data>
+  <data name="StudentCVPortfolio.SaveYourLinksAndSelectedFiles" xml:space="preserve"><value>Save your links and selected files. You can return to this page later to view or update them.</value></data>
+  <data name="StudentCVPortfolio.StudentAccountIsUnavailable" xml:space="preserve"><value>Student account is unavailable.</value></data>
+  <data name="StudentCVPortfolio.TheSelectedFileIsNotA" xml:space="preserve"><value>The selected file is not a valid PDF.</value></data>
+  <data name="StudentCVPortfolio.UnableToLoadOrSaveYour" xml:space="preserve"><value>Unable to load or save your CV and portfolio.</value></data>
+  <data name="StudentCVPortfolio.UploadAPDFContainingYourProjects" xml:space="preserve"><value>Upload a PDF containing your projects, skills, and previous work.</value></data>
+  <data name="StudentCVPortfolio.UploadCV" xml:space="preserve"><value>Upload CV</value></data>
+  <data name="StudentCVPortfolio.UploadPortfolio" xml:space="preserve"><value>Upload Portfolio</value></data>
+  <data name="StudentCVPortfolio.UploadYourLatestCVAsA" xml:space="preserve"><value>Upload your latest CV as a PDF document.</value></data>
+  <data name="StudentCVPortfolio.UploadedCV" xml:space="preserve"><value>Uploaded CV</value></data>
+  <data name="StudentCVPortfolio.UploadedPortfolio" xml:space="preserve"><value>Uploaded Portfolio</value></data>
+  <data name="StudentCVPortfolio.ViewCVLink" xml:space="preserve"><value>View CV Link</value></data>
+  <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>View Portfolio</value></data>
+  <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>View your previously saved links and documents.</value></data>
+  <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>Your information changed. Refresh and try again.</value></data>
+</root>

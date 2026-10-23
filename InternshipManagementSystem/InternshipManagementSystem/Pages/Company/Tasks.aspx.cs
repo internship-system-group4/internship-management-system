@@ -67,7 +67,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string name = txtCriterionName.Text.Trim();
             if (name == "")
             {
-                ShowError("Write what you will check, for example \"Code quality\".");
+                ShowError(L.T("Company.Tasks.WriteWhatYouWillCheckFor"));
                 return;
             }
 
@@ -84,7 +84,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (!int.TryParse(txtCriterionPoints.Text.Trim(), out points)
                 || points < MinPoints || points > MaxPoints)
             {
-                ShowError("Points must be a whole number from " + MinPoints + " to " + MaxPoints + ".");
+                ShowError(L.F("Company.Tasks.PointsMustBeAWholeNumberFrom", MinPoints, MaxPoints));
                 return;
             }
 
@@ -146,7 +146,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string title = txtTitle.Text.Trim();
             if (title == "")
             {
-                ShowError("Please enter a task title.");
+                ShowError(L.T("Company.Tasks.PleaseEnterATaskTitle"));
                 return;
             }
 
@@ -154,20 +154,20 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             Placement placement = FindMyPlacement(placementId);
             if (placement == null)
             {
-                ShowError("Please choose a trainee.");
+                ShowError(L.T("Company.Tasks.PleaseChooseATrainee"));
                 return;
             }
 
             DateTime deadline;
             if (!DateTime.TryParse(txtDeadline.Text, out deadline))
             {
-                ShowError("Please choose a deadline.");
+                ShowError(L.T("Company.Tasks.PleaseChooseADeadline"));
                 return;
             }
 
             if (deadline <= DateTime.Now)
             {
-                ShowError("The deadline must be in the future.");
+                ShowError(L.T("Company.Tasks.TheDeadlineMustBeInThe"));
                 return;
             }
 
@@ -179,7 +179,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (criteria.Count == 0)
             {
-                ShowError("Add at least one criterion in step 2 so you can grade this task.");
+                ShowError(L.T("Company.Tasks.AddAtLeastOneCriterionIn"));
                 return;
             }
 
@@ -209,7 +209,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (string.IsNullOrEmpty(id))
             {
-                ShowError("The task could not be saved. Please try again.");
+                ShowError(L.T("Company.Tasks.TheTaskCouldNotBeSaved"));
                 return;
             }
 
@@ -228,7 +228,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         private void LoadTrainees()
         {
             ddlTrainee.Items.Clear();
-            ddlTrainee.Items.Add(new ListItem("Select a trainee", ""));
+            ddlTrainee.Items.Add(new ListItem(L.T("Company.Tasks.SelectATrainee"), ""));
 
             foreach (Placement placement in MyPlacements())
             {
@@ -305,7 +305,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             List<GradeComponent> criteria = Session[CriteriaKey] as List<GradeComponent>;
             if (criteria == null)
             {
-                ShowError("Your session expired. Please reload the page and try again.");
+                ShowError(L.T("Company.Tasks.YourSessionExpiredPleaseReloadThe"));
             }
             return criteria;
         }
@@ -351,9 +351,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private static string WeightLabel(double weight)
         {
-            if (weight >= 3) return "Major (x3)";
-            if (weight >= 2) return "Important (x2)";
-            return "Normal (x1)";
+            if (weight >= 3) return L.T("Company.Tasks.MajorX3");
+            if (weight >= 2) return L.T("Company.Tasks.ImportantX2");
+            return L.T("Company.Tasks.NormalX1");
         }
 
         private static string StatusLabel(InternshipTaskStatus status)
@@ -361,8 +361,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             switch (status)
             {
                 case InternshipTaskStatus.Submitted: return "Submitted";
-                case InternshipTaskStatus.UnderReview: return "Under review";
-                case InternshipTaskStatus.RevisionRequested: return "Revision requested";
+                case InternshipTaskStatus.UnderReview: return L.T("Company.Tasks.UnderReview");
+                case InternshipTaskStatus.RevisionRequested: return L.T("Company.Tasks.RevisionRequested");
                 case InternshipTaskStatus.Resubmitted: return "Resubmitted";
                 case InternshipTaskStatus.Graded: return "Graded";
                 default: return "Assigned";

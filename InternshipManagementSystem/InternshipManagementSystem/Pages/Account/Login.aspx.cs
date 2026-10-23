@@ -54,22 +54,22 @@ namespace InternshipManagementSystem.Pages.AccountArea
                         return;
                     }
                     SessionHelper.SignOut();
-                    ShowError("Your account is not active. Please contact the coordinator.");
+                    ShowError(L.T("Account.Login.YourAccountIsNotActivePlease"));
                 }
-                catch (FirebaseAuthExpiredException) { SessionHelper.SignOut(); ShowError("Your session has expired. Please log in again."); }
-                catch (FirebaseException) { SessionHelper.SignOut(); ShowError("We could not verify your account. Please log in again."); }
-                catch (InvalidOperationException) { SessionHelper.SignOut(); ShowError("The sign-in service is not configured. Please contact the coordinator."); }
+                catch (FirebaseAuthExpiredException) { SessionHelper.SignOut(); ShowError(L.T("Account.Login.YourSessionHasExpiredPleaseLog")); }
+                catch (FirebaseException) { SessionHelper.SignOut(); ShowError(L.T("Account.Login.WeCouldNotVerifyYourAccount")); }
+                catch (InvalidOperationException) { SessionHelper.SignOut(); ShowError(L.T("Account.Login.TheSignInServiceIsNot")); }
             }
 
             // Messages sent here by the page guard (Security/SecurePage.cs)
             string error = Request.QueryString["error"];
             if (error == "deactivated")
             {
-                ShowError("Your account is not active. Please contact the coordinator.");
+                ShowError(L.T("Account.Login.YourAccountIsNotActivePlease"));
             }
             else if (error == "expired")
             {
-                ShowError("Your session has expired. Please log in again.");
+                ShowError(L.T("Account.Login.YourSessionHasExpiredPleaseLog"));
             }
         }
 
@@ -81,13 +81,13 @@ namespace InternshipManagementSystem.Pages.AccountArea
             // Check the input again on the server (JavaScript can be turned off)
             if (email == "" || password == "")
             {
-                ShowError("Please enter your email and password.");
+                ShowError(L.T("Account.Login.PleaseEnterYourEmailAndPassword"));
                 return;
             }
 
             if (!Common.Validators.IsEmail(email))
             {
-                ShowError("Please enter a valid email address.");
+                ShowError(L.T("Account.Login.PleaseEnterAValidEmailAddress"));
                 return;
             }
 
@@ -108,25 +108,25 @@ namespace InternshipManagementSystem.Pages.AccountArea
             catch (FirebaseException)
             {
                 SessionHelper.SignOut();
-                ShowError("We could not load your account. Please try again later.");
+                ShowError(L.T("Account.Login.WeCouldNotLoadYourAccount"));
                 return;
             }
             catch (FirebaseAuthExpiredException)
             {
                 SessionHelper.SignOut();
-                ShowError("We could not verify your account access. Please try logging in again.");
+                ShowError(L.T("Account.Login.WeCouldNotVerifyYourAccount2"));
                 return;
             }
             catch (InvalidOperationException)
             {
                 SessionHelper.SignOut();
-                ShowError("Firebase is not configured yet. See docs/05-firebase-setup.md.");
+                ShowError(L.T("Account.Login.FirebaseIsNotConfiguredYetSee"));
                 return;
             }
 
             if (user == null)
             {
-                ShowError("We could not verify your account access. Please contact the coordinator.");
+                ShowError(L.T("Account.Login.WeCouldNotVerifyYourAccount3"));
                 SessionHelper.SignOut();
                 return;
             }
@@ -134,7 +134,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
             if (!user.CanLogin())
             {
                 SessionHelper.SignOut();
-                ShowError("Your account is not active. Please contact the coordinator.");
+                ShowError(L.T("Account.Login.YourAccountIsNotActivePlease"));
                 return;
             }
 
@@ -143,7 +143,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
             if (!Enum.IsDefined(typeof(UserRole), user.Role) || !IsApprovedDestination(destination))
             {
                 SessionHelper.SignOut();
-                ShowError("We could not verify your account access. Please contact the coordinator.");
+                ShowError(L.T("Account.Login.WeCouldNotVerifyYourAccount3"));
                 return;
             }
 

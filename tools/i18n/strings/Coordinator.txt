@@ -1,0 +1,1930 @@
+
+AcademicSupervisors.CoordinatorAcademicSupervisors
+en: Coordinator / Academic supervisors
+
+AcademicSupervisors.AcademicSupervisors
+en: Academic supervisors
+
+AcademicSupervisors.ReviewRecordsCreateAccountsAndManage
+en: Review records, create accounts, and manage supervisor information.
+
+AcademicSupervisors.AddSupervisor
+en: + Add supervisor
+
+AcademicSupervisors.SupervisorSections
+en: Supervisor sections
+
+AcademicSupervisors.ViewRecords
+en: View records
+ar: عرض السجلات
+
+AcademicSupervisors.ManageSupervisors
+en: Manage supervisors
+
+AcademicSupervisors.SupervisorRecords
+en: Supervisor records
+
+AcademicSupervisors.SearchAndViewAccountAndAssignment
+en: Search and view account and assignment information.
+
+AcademicSupervisors.SearchSupervisorRecords
+en: Search supervisor records
+
+AcademicSupervisors.SearchNameEmailDepartmentOrRank
+en: Search name, email, department, or rank
+
+AcademicSupervisors.Search
+en: Search
+
+AcademicSupervisors.Clear
+en: Clear
+
+AcademicSupervisors.Supervisor
+en: Supervisor
+
+AcademicSupervisors.Department
+en: Department
+
+AcademicSupervisors.AcademicRank
+en: Academic rank
+
+AcademicSupervisors.Status
+en: Status
+
+AcademicSupervisors.Actions
+en: Actions
+
+AcademicSupervisors.View
+en: View
+
+AcademicSupervisors.Manage
+en: Manage
+
+AcademicSupervisors.SelectedRecord
+en: Selected record
+
+AcademicSupervisors.LoginEmail
+en: Login email
+
+AcademicSupervisors.Phone
+en: Phone
+
+AcademicSupervisors.AssignedGroups
+en: Assigned groups
+
+AcademicSupervisors.AccountStatus
+en: Account status
+
+AcademicSupervisors.AddAcademicSupervisor
+en: Add academic supervisor
+
+AcademicSupervisors.CreateASupervisorAccountAndEnter
+en: Create a supervisor account and enter their academic information.
+
+AcademicSupervisors.Close
+en: Close
+ar: إغلاق
+
+AcademicSupervisors.FullName
+en: Full name
+
+AcademicSupervisors.Optional
+en: (optional)
+
+AcademicSupervisors.TemporaryPassword
+en: Temporary password
+
+AcademicSupervisors.ConfirmTemporaryPassword
+en: Confirm temporary password
+
+AcademicSupervisors.ShareTheLoginEmailAndTemporary
+en: Share the login email and temporary password privately. The supervisor changes the password on first sign-in.
+
+AcademicSupervisors.Cancel
+en: Cancel
+
+AcademicSupervisors.CreateSupervisor
+en: Create supervisor
+
+AcademicSupervisors.ChooseAnAccountToUpdateIts
+en: Choose an account to update its details or change access.
+
+AcademicSupervisors.SearchSupervisorsToManage
+en: Search supervisors to manage
+
+AcademicSupervisors.SearchSupervisors
+en: Search supervisors
+
+AcademicSupervisors.Action
+en: Action
+
+AcademicSupervisors.ManageSupervisor
+en: Manage supervisor
+
+AcademicSupervisors.AssignedGroups2
+en: Assigned groups:
+
+AcademicSupervisors.AccountAccess
+en: Account access
+
+AcademicSupervisors.SaveChanges
+en: Save changes
+
+Account.AccountSettings
+en: Account settings
+
+Account.ManageYourProfileInformationAndAccount
+en: Manage your profile information and account security.
+
+Account.ProfileInformation
+en: Profile information
+
+Account.UpdateYourNameAndContactInformation
+en: Update your name and contact information.
+
+Account.FullName
+en: Full name *
+
+Account.FullNameIsRequired
+en: Full name is required.
+
+Account.PhoneNumber
+en: Phone number
+
+Account.EnterPhoneNumber
+en: Enter phone number
+
+Account.EmailAddress
+en: Email address
+ar: البريد الإلكتروني
+
+Account.StaffID
+en: Staff ID
+
+Account.University
+en: University
+
+Account.College
+en: College
+
+Account.UniversityAndRoleInformationAreManaged
+en: University and role information are managed by the system.
+
+Account.Cancel
+en: Cancel
+
+Account.SaveChanges
+en: Save changes
+
+Account.ChangePassword
+en: Change password
+
+Account.EnterYourCurrentPasswordToSet
+en: Enter your current password to set a new one.
+
+Account.CurrentPassword
+en: Current password *
+
+Account.NewPassword
+en: New password *
+
+Account.UseAtLeast8Characters
+en: Use at least 8 characters.
+
+Account.ConfirmNewPassword
+en: Confirm new password *
+
+Account.UpdatePassword
+en: Update password
+
+Companies.CoordinatorWorkspace
+en: Coordinator workspace >
+
+Companies.ManageCompanies
+en: Manage companies
+
+Companies.ManageCompaniesSupervisors
+en: Manage Companies & Supervisors
+
+Companies.AddSupervisor
+en: Add Supervisor
+
+Companies.ExistingCompanySupervisors
+en: Existing Company Supervisors
+
+Companies.HideList
+en: Hide List
+
+Companies.Supervisor
+en: Supervisor
+
+Companies.CompanyRole
+en: Company & Role
+
+Companies.Status
+en: Status
+
+Companies.Actions
+en: Actions
+
+Companies.AddCompanySupervisor
+en: Add company supervisor
+
+Companies.CreateASupervisorAccountAndLink
+en: Create a supervisor account and link it to a training company.
+
+Companies.CompanyInformation
+en: Company information
+
+Companies.NewCompany
+en: New company
+
+Companies.ExistingCompany
+en: Existing company
+
+Companies.CompanyName
+en: Company name *
+
+Companies.EGTechSolutions
+en: e.g. Tech Solutions
+
+Companies.Industry
+en: Industry *
+
+Companies.EGSoftwareDevelopment
+en: e.g. Software Development
+
+Companies.City
+en: City *
+
+Companies.EGAmman
+en: e.g. Amman
+
+Companies.Website
+en: Website
+
+Companies.Https
+en: https://
+
+Companies.CompanyEmail
+en: Company Email
+
+Companies.CompanyPhone
+en: Company Phone
+
+Companies.FullAddress
+en: Full Address
+
+Companies.BuildingStreet
+en: Building, Street...
+
+Companies.Selected
+en: Selected:
+
+Companies.Change
+en: Change
+
+Companies.Select
+en: Select
+
+Companies.SupervisorDetails
+en: Supervisor details
+
+Companies.FullName
+en: Full name *
+
+Companies.EGAhmadKhaled
+en: e.g. Ahmad Khaled
+
+Companies.JobTitle
+en: Job title
+
+Companies.EGHRManager
+en: e.g. HR Manager
+
+Companies.EmailAddress
+en: Email address *
+
+Companies.PhoneNumber
+en: Phone number
+
+Companies.AccountAccess
+en: Account access
+
+Companies.TemporaryPassword
+en: Temporary password *
+
+Companies.Minimum6Characters
+en: Minimum 6 characters
+
+Companies.AccountRole
+en: Account role
+
+Companies.Cancel
+en: Cancel
+
+Companies.CreateAccount
+en: Create account
+
+Companies.SupervisorDetails2
+en: Supervisor Details
+
+Companies.Close
+en: Close
+ar: إغلاق
+
+Companies.PersonalInfo
+en: Personal Info
+
+Companies.FullName2
+en: Full Name
+ar: الاسم الكامل
+
+Companies.JobTitle2
+en: Job Title
+
+Companies.EmailAddress2
+en: Email Address
+ar: البريد الإلكتروني
+
+Companies.PhoneNumber2
+en: Phone Number
+
+Companies.CompanyInfo
+en: Company Info
+
+Companies.CompanyName2
+en: Company Name
+
+Companies.Industry2
+en: Industry
+
+Companies.ConfirmAction
+en: Confirm Action
+
+Companies.AreYouSureYouWantTo
+en: Are you sure you want to change the status of this supervisor?
+
+Companies.YesIMSure
+en: Yes, I'm sure
+
+Companies.Okay
+en: Okay
+
+CompletionReview.FinalCompletionReview
+en: Final Completion Review
+ar: مراجعة إتمام التدريب
+
+CompletionReview.ReviewBothFinalEvaluationsAndThe
+en: Review both final evaluations and the university's requirements, then approve completion. Nothing is marked complete without this approval.
+
+CompletionReview.Retry
+en: Retry
+
+CompletionReview.ReadyForReview
+en: Ready for review
+
+CompletionReview.BothFinalEvaluationsSubmitted
+en: Both final evaluations submitted
+
+CompletionReview.AwaitingEvaluations
+en: Awaiting evaluations
+
+CompletionReview.CompanyOrAcademicFormMissing
+en: Company or academic form missing
+
+CompletionReview.Approved
+en: Approved
+
+CompletionReview.ReportReleasedToTheStudent
+en: Report released to the student
+
+CompletionReview.CompletionQueue
+en: Completion queue
+
+CompletionReview.Placements
+en: placements
+
+CompletionReview.NoConfirmedPlacementsYet
+en: No confirmed placements yet.
+
+CompletionReview.PlacementsAndTheirCompletionStage
+en: Placements and their completion stage
+
+CompletionReview.Student
+en: Student
+
+CompletionReview.Company
+en: Company
+
+CompletionReview.ApprovedHours
+en: Approved hours
+
+CompletionReview.FinalEvaluations
+en: Final evaluations
+
+CompletionReview.Stage
+en: Stage
+
+CompletionReview.Action
+en: Action
+
+CompletionReview.Company2
+en: Company:
+
+CompletionReview.Academic
+en: Academic:
+
+CompletionReview.CompletionQueue2
+en: ← Completion queue
+
+CompletionReview.CompletionApproved
+en: Completion approved
+
+CompletionReview.Returned
+en: Returned
+
+CompletionReview.ReadyToApprove
+en: Ready to approve
+
+CompletionReview.RequirementsNotMet
+en: Requirements not met
+
+CompletionReview.Internship
+en: Internship
+
+CompletionReview.FullProgressHistory
+en: Full progress & history
+
+CompletionReview.Opportunity
+en: Opportunity
+
+CompletionReview.CompanySupervisor
+en: Company supervisor
+
+CompletionReview.AcademicSupervisor
+en: Academic supervisor
+
+CompletionReview.TrainingPeriod
+en: Training period
+
+CompletionReview.TasksGraded
+en: Tasks graded
+
+CompletionReview.Of
+en: of
+
+CompletionReview.StudentEmail
+en: Student email
+
+CompletionReview.UniversityRequirements
+en: University requirements
+
+CompletionReview.AllMustBeMetBeforeApproval
+en: All must be met before approval
+
+CompletionReview.CompanyFinalEvaluationSubmitted
+en: Company final evaluation submitted
+
+CompletionReview.AcademicFinalEvaluationSubmitted
+en: Academic final evaluation submitted
+
+CompletionReview.RequiredTrainingHoursApproved
+en: Required training hours approved
+
+CompletionReview.HoursApproved
+en: hours approved
+
+CompletionReview.OnlyApprovedEntriesCount
+en: . Only approved entries count.
+
+CompletionReview.PassingFinalResult
+en: Passing final result (
+
+CompletionReview.OrMore
+en: % or more)
+
+CompletionReview.CompanyFinalEvaluation
+en: Company final evaluation
+
+CompletionReview.Confidential
+en: Confidential
+
+CompletionReview.TheCompanyFinalEvaluationHasNot
+en: The company final evaluation has not been submitted.
+
+CompletionReview.HReportedByTheCompany
+en: h reported by the company
+
+CompletionReview.Strengths
+en: Strengths:
+
+CompletionReview.AreasForImprovement
+en: Areas for improvement:
+
+CompletionReview.OverallComment
+en: Overall comment:
+
+CompletionReview.AcademicFinalEvaluation
+en: Academic final evaluation
+
+CompletionReview.TheAcademicFinalEvaluationHasNot
+en: The academic final evaluation has not been submitted.
+
+CompletionReview.AcademicComments
+en: Academic comments:
+
+CompletionReview.RemarksOnTheCompanyEvaluation
+en: Remarks on the company evaluation:
+
+CompletionReview.FinalResult
+en: Final result
+
+CompletionReview.CalculatedWithTheUniversityGradingPolicy
+en: Calculated with the university grading policy
+
+CompletionReview.Component
+en: Component
+
+CompletionReview.Score
+en: Score
+
+CompletionReview.Weight
+en: Weight
+
+CompletionReview.Points
+en: Points
+
+CompletionReview.GradedTasks
+en: Graded tasks
+
+CompletionReview.FinalScore
+en: Final score
+
+CompletionReview.Result
+en: Result
+
+CompletionReview.PassMark
+en: Pass mark
+
+CompletionReview.TheStudentSeesOnlyTheFinal
+en: %. The student sees only the final score and result, never the two evaluation forms.
+
+CompletionReview.LastDecisionBy
+en: Last decision by
+
+CompletionReview.ApprovedOn
+en: Approved on
+
+CompletionReview.WithAFinalResultOf
+en: with a final result of
+
+CompletionReview.NoteOnTheReport
+en: Note on the report:
+
+CompletionReview.OpenCompletionReportPDF
+en: Open completion report (PDF)
+
+CompletionReview.PrintCertificatePDF
+en: Print certificate (PDF)
+
+CompletionReview.TheReportHasBeenSentTo
+en: The report has been sent to the student. They can download and print it from their Progress page.
+
+CompletionReview.ReturnedOnTheLastReview
+en: Returned on the last review:
+
+CompletionReview.ApprovalIsLockedUntilEveryRequirement
+en: Approval is locked until every requirement above is met. You can still return the completion with a note.
+
+CompletionReview.NoteToTheStudent
+en: Note to the student
+
+CompletionReview.OptionalWhenApprovingShownOnThe
+en: Optional when approving (shown on the report). Required when returning.
+
+CompletionReview.ApproveCompletion
+en: Approve completion
+
+CompletionReview.ReturnToStudent
+en: Return to student
+
+ConfiguredGroups.CoordinatorGroups
+en: Coordinator / Groups
+
+ConfiguredGroups.ConfiguredGroups
+en: Configured groups
+ar: المجموعات المُعدّة
+
+ConfiguredGroups.ReviewGroupMembershipAndSupervisorAssignments
+en: Review group membership and supervisor assignments.
+
+ConfiguredGroups.CreateGroup
+en: + Create group
+
+ConfiguredGroups.GroupPages
+en: Group pages
+
+ConfiguredGroups.CreateEditGroup
+en: Create / edit group
+
+ConfiguredGroups.Groups
+en: Groups
+
+ConfiguredGroups.SearchByGroupNameAcademicYear
+en: Search by group name, academic year, semester, or supervisor.
+
+ConfiguredGroups.SearchConfiguredGroups
+en: Search configured groups
+
+ConfiguredGroups.Search
+en: Search
+
+ConfiguredGroups.Clear
+en: Clear
+
+ConfiguredGroups.Group
+en: Group
+
+ConfiguredGroups.AcademicYear
+en: Academic year
+
+ConfiguredGroups.Semester
+en: Semester
+
+ConfiguredGroups.Supervisor
+en: Supervisor
+
+ConfiguredGroups.Students
+en: Students
+
+ConfiguredGroups.Actions
+en: Actions
+
+ConfiguredGroups.View
+en: View
+
+ConfiguredGroups.EditGroup
+en: Edit group
+
+ConfiguredGroups.Delete
+en: Delete
+
+ConfiguredGroups.GroupDetails
+en: Group details
+
+ConfiguredGroups.Close
+en: Close
+ar: إغلاق
+
+ConfiguredGroups.AcademicSupervisor
+en: Academic supervisor
+
+ConfiguredGroups.AcademicYearSemester
+en: Academic year / semester
+
+ConfiguredGroups.Created
+en: Created
+
+ConfiguredGroups.Name
+en: Name
+
+ConfiguredGroups.StudentID
+en: Student ID
+
+ConfiguredGroups.Email
+en: Email
+ar: البريد الإلكتروني
+
+ConfiguredGroups.Major
+en: Major
+
+ConfiguredGroups.Internship
+en: Internship
+
+ConfiguredGroups.ApprovedHours
+en: Approved hours
+
+ConfiguredGroups.Account
+en: Account
+
+ConfiguredGroups.NoStudentsAreAssignedToThis
+en: No students are assigned to this group.
+
+ContactMessages.ContactMessages
+en: Contact Messages
+ar: رسائل التواصل
+
+ContactMessages.ViewAndManageMessagesSubmittedThrough
+en: View and manage messages submitted through the Contact Us form.
+
+ContactMessages.TotalMessages
+en: Total Messages
+
+ContactMessages.NewMessages
+en: New Messages
+
+ContactMessages.ReviewedMessages
+en: Reviewed Messages
+
+ContactMessages.Search
+en: Search
+
+ContactMessages.SearchByNameEmailSubjectOr
+en: Search by name, email, subject or message...
+
+ContactMessages.Status
+en: Status
+
+ContactMessages.NoMessagesFound
+en: No messages found.
+
+ContactMessages.Name
+en: Name
+
+ContactMessages.Email
+en: Email
+ar: البريد الإلكتروني
+
+ContactMessages.Subject
+en: Subject
+ar: الموضوع
+
+ContactMessages.Date
+en: Date
+
+ContactMessages.Actions
+en: Actions
+
+ContactMessages.ViewMessageDetails
+en: View Message Details
+
+ContactMessages.MessageDetails
+en: Message Details
+
+ContactMessages.Close
+en: Close
+ar: إغلاق
+
+ContactMessages.SenderInformation
+en: Sender Information
+
+ContactMessages.Name2
+en: Name:
+
+ContactMessages.Email2
+en: Email:
+
+ContactMessages.Subject2
+en: Subject:
+
+ContactMessages.Date2
+en: Date:
+
+ContactMessages.Status2
+en: Status:
+
+ContactMessages.MessageContent
+en: Message Content
+
+ContactMessages.MarkAsReviewed
+en: Mark as Reviewed
+
+Dashboard.CoordinationDesk
+en: Coordination desk
+
+Dashboard.KeepAssignmentsTrainingExceptionsAndCompletion
+en: Keep assignments, training exceptions and completion decisions in view.
+
+Dashboard.OpenCompletionReview
+en: Open completion review
+
+Dashboard.Retry
+en: Retry
+
+Dashboard.Students
+en: Students
+
+Dashboard.ActiveAccounts
+en: active accounts
+
+Dashboard.ConfirmedPlacements
+en: Confirmed placements
+
+Dashboard.ConfirmedOrActive
+en: confirmed or active
+
+Dashboard.FinalAssessmentsReceived
+en: Final assessments received
+
+Dashboard.Company
+en: company ·
+
+Dashboard.Academic
+en: academic
+
+Dashboard.ReadyForReview
+en: Ready for review
+
+Dashboard.BothEvaluationsNotYetApproved
+en: Both evaluations; not yet approved
+
+Dashboard.CompletionQueue
+en: Completion queue
+
+Dashboard.EachStudentNeedsAnIndividualCoordinator
+en: Each student needs an individual coordinator decision.
+
+Dashboard.ViewQueue
+en: View queue
+
+Dashboard.NoConfirmedPlacementsYet
+en: No confirmed placements yet
+
+Dashboard.StudentsAppearHereAfterConfirmingOne
+en: Students appear here after confirming one accepted offer.
+
+Dashboard.ManageStudentRecords
+en: Manage student records
+
+Dashboard.CompletionWorkAndApprovedHoursFor
+en: Completion work and approved hours for confirmed placements
+
+Dashboard.StudentCompany
+en: Student & company
+
+Dashboard.ApprovedHours
+en: Approved hours
+
+Dashboard.ReviewStage
+en: Review stage
+
+Dashboard.Action
+en: Action
+
+Dashboard.Review
+en: Review
+
+Dashboard.Assignments
+en: Assignments
+
+Dashboard.ActiveStudentProfilesHaveNoAcademic
+en: active student profiles have no academic supervisor recorded.
+
+Dashboard.ManageGroupsAssignments
+en: Manage groups & assignments
+
+Dashboard.AcademicSupervisors
+en: Academic supervisors
+
+Dashboard.TrainingExceptions
+en: Training exceptions
+
+Dashboard.OpenPlacements
+en: Open placements
+
+Dashboard.PlacementsAwaitingCompletion
+en: placements awaiting completion
+
+Dashboard.UngradedTasksPastTheirDeadline
+en: ungraded tasks past their deadline
+
+Dashboard.ReportedAwaitingCompanyApproval
+en: reported, awaiting company approval
+
+Dashboard.Companies
+en: companies ·
+
+Dashboard.Active
+en: active
+
+Dashboard.Opportunities
+en: opportunities ·
+
+Dashboard.Open
+en: open
+
+Dashboard.LinkedTaskEvaluations
+en: linked task evaluations
+
+Dashboard.UpdatedOnPageLoad
+en: Updated on page load ·
+
+Dashboard.UTC
+en: UTC
+
+Groups.CoordinatorGroups
+en: Coordinator / Groups
+
+Groups.CreateGroup
+en: Create group
+
+Groups.ChooseASupervisorAndAssignAvailable
+en: Choose a supervisor and assign available students.
+
+Groups.GroupPages
+en: Group pages
+
+Groups.CreateEditGroup
+en: Create / edit group
+
+Groups.ConfiguredGroups
+en: Configured groups
+ar: المجموعات المُعدّة
+
+Groups.GroupDetails
+en: Group details
+
+Groups.EachStudentCanBelongToOne
+en: Each student can belong to one group at a time.
+
+Groups.GroupName
+en: Group name
+
+Groups.AcademicYearOptional
+en: Academic year (optional)
+
+Groups.SemesterOptional
+en: Semester (optional)
+
+Groups.AcademicSupervisor
+en: Academic supervisor
+
+Groups.Students
+en: Students
+
+Groups.OnlyUnassignedStudentsAreAvailableWhen
+en: Only unassigned students are available. When editing a group, its current students are also shown.
+
+Groups.NoAvailableStudents
+en: No available students.
+
+Groups.CancelEdit
+en: Cancel edit
+
+ManageStudents.CoordinatorStudents
+en: Coordinator / Students
+
+ManageStudents.ManageStudents
+en: Manage students
+ar: إدارة الطلبة
+
+ManageStudents.UpdateAcademicDetailsOrRemoveAnd
+en: Update academic details or remove and restore student access.
+
+ManageStudents.AddStudent
+en: + Add student
+
+ManageStudents.StudentPages
+en: Student pages
+
+ManageStudents.ViewRecords
+en: View records
+ar: عرض السجلات
+
+ManageStudents.AddStudent2
+en: Add student
+ar: إضافة طالب
+
+ManageStudents.SelectAStudent
+en: Select a student
+
+ManageStudents.ChooseARecordToEditInactive
+en: Choose a record to edit. Inactive students remain available for restoration.
+
+ManageStudents.SearchStudentsToManage
+en: Search students to manage
+
+ManageStudents.SearchStudents
+en: Search students
+
+ManageStudents.Search
+en: Search
+
+ManageStudents.Clear
+en: Clear
+
+ManageStudents.Student
+en: Student
+
+ManageStudents.StudentNumber
+en: Student number
+
+ManageStudents.Major
+en: Major
+
+ManageStudents.Status
+en: Status
+
+ManageStudents.Action
+en: Action
+
+ManageStudents.Manage
+en: Manage
+
+ManageStudents.ManageStudent
+en: Manage student
+
+ManageStudents.Close
+en: Close
+ar: إغلاق
+
+ManageStudents.AcademicInformation
+en: Academic information
+
+ManageStudents.StudentID
+en: Student ID
+
+ManageStudents.AssignedWhenTheAccountIsCreated
+en: Assigned when the account is created.
+
+ManageStudents.RequiredTrainingHours
+en: Required training hours
+
+ManageStudents.University
+en: University
+
+ManageStudents.College
+en: College
+
+ManageStudents.AccountAccess
+en: Account access
+
+ManageStudents.ViewRecord
+en: View record
+
+ManageStudents.SaveChanges
+en: Save changes
+
+PlacementDetails.PlacementsProgress
+en: ← Placements & progress
+
+PlacementDetails.InternshipDetails
+en: Internship details
+
+PlacementDetails.Confirmed
+en: Confirmed
+
+PlacementDetails.Company
+en: Company
+
+PlacementDetails.Opportunity
+en: Opportunity
+
+PlacementDetails.CompanySupervisor
+en: Company supervisor
+
+PlacementDetails.AcademicSupervisor
+en: Academic supervisor
+
+PlacementDetails.TrainingPeriod
+en: Training period
+
+PlacementDetails.StudentEmail
+en: Student email
+
+PlacementDetails.ApprovedTrainingHours
+en: Approved training hours
+
+PlacementDetails.HReportedAwaitingApprovalOnlyApproved
+en: h reported, awaiting approval. Only approved entries count.
+
+PlacementDetails.TaskProgress
+en: Task progress
+
+PlacementDetails.Graded
+en: graded
+
+PlacementDetails.PastDeadlineAndNotGraded
+en: past deadline and not graded ·
+
+PlacementDetails.SubmissionAttempts
+en: submission attempts
+
+PlacementDetails.TasksAndHoursAreSeparateCompleting
+en: Tasks and hours are separate. Completing tasks does not approve training hours or internship completion.
+
+PlacementDetails.Tasks
+en: Tasks
+
+PlacementDetails.Assigned
+en: assigned
+
+PlacementDetails.NoTasksHaveBeenAssignedTo
+en: No tasks have been assigned to this placement yet.
+
+PlacementDetails.TasksAssignedToThisStudentPlacement
+en: Tasks assigned to this student placement
+
+PlacementDetails.Task
+en: Task
+
+PlacementDetails.Deadline
+en: Deadline
+
+PlacementDetails.Status
+en: Status
+
+PlacementDetails.MarkScale
+en: Mark scale
+
+PlacementDetails.Attempts
+en: Attempts
+
+PlacementDetails.PastDeadline
+en: Past deadline
+
+PlacementDetails.SubmissionHistory
+en: Submission history
+
+PlacementDetails.AllAttemptsNewestFirst
+en: All attempts, newest first
+
+PlacementDetails.NoSubmissionsHaveBeenRecordedFor
+en: No submissions have been recorded for these tasks.
+
+PlacementDetails.Attempt
+en: · Attempt
+
+PlacementDetails.OpenSubmittedLink
+en: Open submitted link
+
+PlacementDetails.OpenAttachment
+en: Open attachment:
+
+PlacementDetails.ReportedForThisAttempt
+en: Reported for this attempt:
+
+PlacementDetails.HRequiresSeparateApproval
+en: h (requires separate approval).
+
+PlacementDetails.TaskEvaluationsFeedback
+en: Task evaluations & feedback
+
+PlacementDetails.Records
+en: records
+
+PlacementDetails.NoTaskEvaluationsHaveBeenRecorded
+en: No task evaluations have been recorded yet.
+
+PlacementDetails.Attempt2
+en: Attempt
+
+PlacementDetails.RequestedChanges
+en: Requested changes:
+
+PlacementDetails.EvaluationCriteria
+en: Evaluation criteria
+
+PlacementDetails.Weight
+en: · weight
+
+PlacementDetails.TrainingHoursLog
+en: Training hours log
+
+PlacementDetails.ApprovalIsSeparateFromTaskCompletion
+en: Approval is separate from task completion
+
+PlacementDetails.NoTrainingHoursHaveBeenReported
+en: No training hours have been reported for this placement.
+
+PlacementDetails.ReportedHoursAndReviewDecisions
+en: Reported hours and review decisions
+
+PlacementDetails.WorkDate
+en: Work date
+
+PlacementDetails.Description
+en: Description
+
+PlacementDetails.Hours
+en: Hours
+
+PlacementDetails.ReviewNote
+en: Review note
+
+PlacementDetails.CompanyFinalEvaluation
+en: Company final evaluation
+
+PlacementDetails.CoordinatorAccess
+en: Coordinator access
+
+PlacementDetails.NoCompanyFinalEvaluationReceived
+en: No company final evaluation received.
+
+PlacementDetails.Score
+en: Score:
+
+PlacementDetails.ViewConfidentialCompanyEvaluation
+en: View confidential company evaluation
+
+PlacementDetails.Strengths
+en: Strengths:
+
+PlacementDetails.AreasForImprovement
+en: Areas for improvement:
+
+PlacementDetails.OverallComment
+en: Overall comment:
+
+PlacementDetails.AcademicFinalEvaluation
+en: Academic final evaluation
+
+PlacementDetails.NoAcademicFinalEvaluationReceived
+en: No academic final evaluation received.
+
+PlacementDetails.ViewConfidentialAcademicEvaluation
+en: View confidential academic evaluation
+
+PlacementDetails.CompanyEvaluationRemarks
+en: Company evaluation remarks:
+
+PlacementDetails.AcademicFollowUp
+en: Academic follow-up
+
+PlacementDetails.Comments
+en: comments
+
+PlacementDetails.NoAcademicCommentsHaveBeenRecorded
+en: No academic comments have been recorded yet.
+
+PlacementDetails.CompletionOfficialResult
+en: Completion & official result
+
+PlacementDetails.OpenCompletionReview
+en: Open completion review
+
+PlacementDetails.NoCompletionReviewRecordYetTraining
+en: No completion review record yet. Training hours and task completion do not automatically approve this internship.
+
+PlacementDetails.ReviewStatus
+en: Review status:
+
+PlacementDetails.RecordedFinalResult
+en: Recorded final result:
+
+PlacementDetails.OpenOfficialCompletionReport
+en: Open official completion report
+
+PlacementDetails.FinalResultAndReportAreAwaiting
+en: Final result and report are awaiting coordinator approval.
+
+Placements.PlacementsProgress
+en: Placements & progress
+
+Placements.FindAStudentSConfirmedInternship
+en: Find a student's confirmed internship and review their progress.
+
+Placements.BackToDashboard
+en: Back to dashboard
+
+Placements.SearchPlacements
+en: Search placements
+
+Placements.StudentNameNumberUIDOrCompany
+en: Student name, number, UID or company
+
+Placements.PlacementStatus
+en: Placement status
+
+Placements.Search
+en: Search
+
+Placements.ClearFilters
+en: Clear filters
+
+Placements.Retry
+en: Retry
+
+Placements.StudentPlacements
+en: Student placements
+
+Placements.Matching
+en: matching ·
+
+Placements.Total
+en: total
+
+Placements.ConfirmedStudentPlacementsAndApprovedHour
+en: Confirmed student placements and approved-hour progress
+
+Placements.Student
+en: Student
+
+Placements.Major
+en: Major
+
+Placements.CompanyOpportunity
+en: Company / opportunity
+
+Placements.Status
+en: Status
+
+Placements.ApprovedHours
+en: Approved hours
+
+Placements.Action
+en: Action
+
+Placements.ViewDetails
+en: View details
+
+Placements.Page
+en: Page
+
+Placements.Of
+en: of
+
+Placements.Showing
+en: · Showing
+
+Placements.PlacementsPagination
+en: Placements pagination
+
+Placements.Previous
+en: Previous
+ar: السابق
+
+Placements.Next
+en: Next
+ar: التالي
+
+Placements.HoursAreCalculatedFromApprovedTraining
+en: Hours are calculated from approved training-hour entries. Completing a task does not approve hours or complete an internship.
+
+StudentCreation.AddStudent
+en: Add student
+ar: إضافة طالب
+
+StudentCreation.CreateAnAccountAndEnterThe
+en: Create an account and enter the student's academic information.
+
+StudentCreation.Close
+en: Close
+ar: إغلاق
+
+StudentCreation.PersonalInformation
+en: Personal information
+
+StudentCreation.UseTheStudentSOfficialName
+en: Use the student's official name and login email.
+
+StudentCreation.FullName
+en: Full name
+
+StudentCreation.StudentID
+en: Student ID
+
+StudentCreation.GeneratedAutomaticallyWhenTheAccountIs
+en: Generated automatically when the account is created.
+
+StudentCreation.LoginEmail
+en: Login email
+
+StudentCreation.PhoneNumber
+en: Phone number
+
+StudentCreation.Optional
+en: (optional)
+
+StudentCreation.AcademicInformation
+en: Academic information
+
+StudentCreation.TheseDetailsAppearInTheStudent
+en: These details appear in the student's record.
+
+StudentCreation.University
+en: University
+
+StudentCreation.College
+en: College
+
+StudentCreation.Major
+en: Major
+
+StudentCreation.RequiredTrainingHours
+en: Required training hours
+
+StudentCreation.AccountAccess
+en: Account access
+
+StudentCreation.ShareTheEmailAndTemporaryPassword
+en: Share the email and temporary password privately. The student must change the password after signing in.
+
+StudentCreation.TemporaryPassword
+en: Temporary password
+
+StudentCreation.ConfirmTemporaryPassword
+en: Confirm temporary password
+
+StudentCreation.Cancel
+en: Cancel
+
+StudentCreation.CreateStudent
+en: Create student
+
+Students.CoordinatorStudents
+en: Coordinator / Students
+
+Students.StudentRecords
+en: Student records
+ar: سجلات الطلبة
+
+Students.FindAStudentAndReviewTheir
+en: Find a student and review their account and training information.
+
+Students.AddStudent
+en: + Add student
+
+Students.StudentPages
+en: Student pages
+
+Students.ViewRecords
+en: View records
+ar: عرض السجلات
+
+Students.AddStudent2
+en: Add student
+ar: إضافة طالب
+
+Students.ManageStudents
+en: Manage students
+ar: إدارة الطلبة
+
+Students.Directory
+en: Directory
+
+Students.SearchByNameStudentNumberEmail
+en: Search by name, student number, email, university, college, or major.
+
+Students.SearchStudentRecords
+en: Search student records
+
+Students.Search
+en: Search
+
+Students.Clear
+en: Clear
+
+Students.Student
+en: Student
+
+Students.StudentNumber
+en: Student number
+
+Students.Major
+en: Major
+
+Students.TrainingHours
+en: Training hours
+
+Students.Status
+en: Status
+
+Students.Record
+en: Record
+
+Students.ViewRecord
+en: View record
+
+Students.SelectedRecord
+en: Selected record
+
+Students.ManageThisStudent
+en: Manage this student
+
+Students.LoginEmail
+en: Login email
+
+Students.Phone
+en: Phone
+
+Students.University
+en: University
+
+Students.College
+en: College
+
+Students.ApprovedHours
+en: Approved hours
+
+Students.RequiredHours
+en: Required hours
+
+Students.AccountStatus
+en: Account status
+
+Companies.ViewAction
+en: View
+ar: عرض
+
+Companies.ToggleAction
+en: Toggle
+ar: تبديل الحالة
+
+ContactMessages.AllMessages
+en: All Messages
+ar: جميع الرسائل
+
+ContactMessages.ReviewAction
+en: Review
+ar: مراجعة
+
+Placements.AllStatuses
+en: All statuses
+ar: جميع الحالات
+
+AcademicSupervisors.EnterANameLoginEmailAnd
+en: Enter a name, login email, and department.
+
+AcademicSupervisors.OneOrMoreFieldsAreToo
+en: One or more fields are too long.
+
+AcademicSupervisors.EnterAValidEmailAddress
+en: Enter a valid email address.
+
+AcademicSupervisors.TheTemporaryPasswordMustBeAt
+en: The temporary password must be at least 6 characters.
+
+AcademicSupervisors.ThePasswordsDoNotMatch
+en: The passwords do not match.
+
+AcademicSupervisors.FirebaseIsNotConfiguredAskThe
+en: Firebase is not configured. Ask the project administrator to check the local settings.
+
+AcademicSupervisors.TheAccountWasCreatedButIts
+en: The account was created but its profile could not be saved. Contact the administrator before retrying.
+
+AcademicSupervisors.TheSupervisorCouldNotBeSaved
+en: The supervisor could not be saved. Please try again.
+
+AcademicSupervisors.AcademicSupervisorAccountCreatedShareThe
+en: Academic supervisor account created. Share the login credentials privately.
+
+AcademicSupervisors.SupervisorRecordNotFound
+en: Supervisor record not found.
+
+AcademicSupervisors.CouldNotLoadThisSupervisorPlease
+en: Could not load this supervisor. Please try again.
+
+AcademicSupervisors.SelectASupervisorBeforeSavingChanges
+en: Select a supervisor before saving changes.
+
+AcademicSupervisors.EnterANameAndDepartment
+en: Enter a name and department.
+
+AcademicSupervisors.SupervisorInformationSaved
+en: Supervisor information saved.
+
+AcademicSupervisors.CouldNotSaveSupervisorInformationPlease
+en: Could not save supervisor information. Please try again.
+
+AcademicSupervisors.SelectASupervisorBeforeChangingAccess
+en: Select a supervisor before changing access.
+
+AcademicSupervisors.CouldNotChangeSupervisorAccessPlease
+en: Could not change supervisor access. Please try again.
+
+AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry
+en: Could not load supervisors. Please try again.
+
+Companies.MissingFields
+en: Missing Fields
+
+Companies.ActionRequired
+en: Action Required
+
+Companies.CreationFailed
+en: Creation Failed
+
+Companies.IClassBiBiCheckCircle
+en: <i class='bi bi-check-circle-fill text-success' style='font-size: 3.5rem;'></i>
+
+Companies.NotProvided
+en: Not Provided
+
+Companies.StatusUpdated
+en: Status Updated
+
+Companies.IClassBiBiExclamationCircle
+en: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3.5rem;'></i>
+
+CompletionReview.WeCouldNotLoadCompletionData
+en: We could not load completion data. Refresh to try again.
+
+CompletionReview.CompletionApprovedTheOfficialReportIs
+en: Completion approved. The official report is now available to the student.
+
+CompletionReview.CompletionReturnedToTheStudentWith
+en: Completion returned to the student with your note.
+
+CompletionReview.ChooseAStudentFromTheCompletion
+en: Choose a student from the completion queue.
+
+CompletionReview.ThisConfirmedPlacementCouldNotBe
+en: This confirmed placement could not be found.
+
+CompletionReview.TheDecisionCouldNotBeSaved
+en: The decision could not be saved. Please try again.
+
+ConfiguredGroups.GroupAndAssignmentsSaved
+en: Group and assignments saved.
+
+ConfiguredGroups.InvalidGroupLink
+en: Invalid group link.
+
+ConfiguredGroups.GroupNotFoundItMayHave
+en: Group not found. It may have been deleted.
+
+ConfiguredGroups.CouldNotLoadTheGroupDetails
+en: Could not load the group details. Please try again.
+
+ConfiguredGroups.GroupDeletedItsStudentsAreNow
+en: Group deleted. Its students are now unassigned.
+
+ConfiguredGroups.CouldNotDeleteTheGroupPlease
+en: Could not delete the group. Please try again.
+
+ConfiguredGroups.CouldNotLoadConfiguredGroupsPlease
+en: Could not load configured groups. Please try again.
+
+ContactMessages.UnableToLoadMessagesCheckFirebase
+en: Unable to load messages. Check Firebase connection and permissions.
+
+ContactMessages.UnableToOpenMessageDetails
+en: Unable to open message details.
+
+ContactMessages.CouldNotUpdateTheMessageStatus
+en: Could not update the message status.
+
+Dashboard.WeCouldNotLoadTheProgramme
+en: We could not load the programme work queues. Refresh to try again.
+
+Groups.InvalidGroupLink
+en: Invalid group link.
+
+Groups.CouldNotLoadGroupsAndAccount
+en: Could not load groups and account records. Please try again.
+
+Groups.GroupNotFound
+en: Group not found.
+
+Groups.EnterAGroupNameOfAt
+en: Enter a group name of at most 120 characters and check the academic fields.
+
+Groups.ChooseAnAcademicSupervisor
+en: Choose an academic supervisor.
+
+Groups.CouldNotSaveTheGroupPlease
+en: Could not save the group. Please try again.
+
+Groups.EditGroup
+en: Edit group
+
+Groups.SaveChanges
+en: Save changes
+
+ManageStudents.SelectAStudentBeforeSavingChanges
+en: Select a student before saving changes.
+
+ManageStudents.CompleteAllAcademicInformationFields
+en: Complete all academic information fields.
+
+ManageStudents.OneOrMoreAcademicInformationFields
+en: One or more academic information fields are too long.
+
+ManageStudents.RequiredTrainingHoursMustBeA
+en: Required training hours must be a positive whole number.
+
+ManageStudents.StudentRecordNotFound
+en: Student record not found.
+
+ManageStudents.StudentAcademicInformationSaved
+en: Student academic information saved.
+
+ManageStudents.CouldNotSaveStudentInformationPlease
+en: Could not save student information. Please try again.
+
+ManageStudents.SelectAStudentBeforeChangingAccess
+en: Select a student before changing access.
+
+ManageStudents.CouldNotChangeStudentAccessPlease
+en: Could not change student access. Please try again.
+
+ManageStudents.CouldNotLoadThisStudentPlease
+en: Could not load this student. Please try again.
+
+ManageStudents.CouldNotLoadStudentRecordsPlease
+en: Could not load student records. Please try again.
+
+PlacementDetails.ChooseAStudentFromPlacementsProgress
+en: Choose a student from Placements & Progress to view their internship.
+
+PlacementDetails.ThisConfirmedPlacementCouldNotBe
+en: This confirmed placement could not be found.
+
+PlacementDetails.WeCouldNotLoadInternshipProgress
+en: We could not load internship progress. Refresh to try again.
+
+PlacementDetails.FirebaseIsNotConfiguredContactThe
+en: Firebase is not configured. Contact the project administrator.
+
+Placements.WeCouldNotLoadPlacementsRefresh
+en: We could not load placements. Refresh to try again.
+
+Placements.FirebaseIsNotConfiguredContactThe
+en: Firebase is not configured. Contact the project administrator.
+
+StudentCreation.CompleteAllRequiredFields
+en: Complete all required fields.
+
+StudentCreation.OneOrMoreFieldsAreToo
+en: One or more fields are too long.
+
+StudentCreation.EnterAValidEmailAddress
+en: Enter a valid email address.
+
+StudentCreation.RequiredTrainingHoursMustBeA
+en: Required training hours must be a positive whole number.
+
+StudentCreation.TheTemporaryPasswordMustBeAt
+en: The temporary password must be at least 6 characters.
+
+StudentCreation.ThePasswordsDoNotMatch
+en: The passwords do not match.
+
+StudentCreation.FirebaseIsNotConfiguredAskThe
+en: Firebase is not configured. Ask the project administrator to check the local settings.
+
+StudentCreation.TheAccountWasCreatedButIts
+en: The account was created but its profile could not be saved. Contact the administrator before retrying.
+
+StudentCreation.TheStudentCouldNotBeSaved
+en: The student could not be saved. Please try again.
+
+Students.StudentRecordNotFound
+en: Student record not found.
+
+Students.CouldNotLoadThisStudentPlease
+en: Could not load this student. Please try again.
+
+Students.CouldNotLoadStudentRecordsPlease
+en: Could not load student records. Please try again.
+
+Companies.ErrorProcessingRequest
+en: Error processing request: {0}
+ar: خطأ في معالجة الطلب: {0}
+
+Companies.ErrorLoadingDetails
+en: Error loading details: {0}
+ar: خطأ في تحميل التفاصيل: {0}
+
+Companies.ErrorUpdatingStatus
+en: Error updating status: {0}
+ar: خطأ في تحديث الحالة: {0}
+
+Companies.PleaseFillInAllRequiredSupervisor
+en: Please fill in all required supervisor fields (*).
+ar: يُرجى تعبئة جميع حقول المشرف المطلوبة (*).
+
+Companies.PleaseSelectAnExistingCompanyFrom
+en: Please select an existing company from the list.
+ar: يُرجى اختيار شركة حالية من القائمة.
+
+Companies.PleaseFillInTheRequiredCompany
+en: Please fill in the required company fields (*).
+ar: يُرجى تعبئة حقول الشركة المطلوبة (*).
+
+Companies.AccountCreatedSuccessfullySupervisorIsLinked
+en: Account created successfully! Supervisor is linked to {0}
+ar: تم إنشاء الحساب بنجاح! وارتبط المشرف بشركة {0}
+
+StudentCreation.StudentAccountCreatedWithIDShare
+en: Student account created with ID {0}. Share the login email and temporary password privately.
+ar: أُنشئ حساب الطالب بالرقم {0}. شارك بريد تسجيل الدخول وكلمة المرور المؤقتة بشكل خاص.
+
+AcademicSupervisors.CouldNotCreateTheAccount
+en: Could not create the account.
+
+AcademicSupervisors.SupervisorAccessRestored
+en: Supervisor access restored.
+
+AcademicSupervisors.SupervisorAccessRemovedAssignedGroupsAnd
+en: Supervisor access removed. Assigned groups and history are retained.
+
+AcademicSupervisors.NoAcademicSupervisorsFound
+en: No academic supervisors found.
+
+AcademicSupervisors.NoSupervisorsMatchYourSearch
+en: No supervisors match your search.
+
+AcademicSupervisors.RemoveAccess
+en: Remove access
+
+AcademicSupervisors.RestoreAccess
+en: Restore access
+
+AcademicSupervisors.RemovingAccessBlocksSignInAssigned
+en: Removing access blocks sign in. Assigned groups stay linked and may need reassignment.
+
+AcademicSupervisors.ThisSupervisorCannotSignInRestore
+en: This supervisor cannot sign in. Restore access when needed.
+
+Account.ChangesDiscarded
+en: Changes discarded.
+
+Account.EnterAValidFullName2
+en: Enter a valid full name (2–100 characters).
+
+Account.EnterAValidPhoneNumber
+en: Enter a valid phone number.
+
+Account.ProfileUpdatedSuccessfully
+en: Profile updated successfully.
+
+Account.CouldNotSaveProfilePleaseTry
+en: Could not save profile. Please try again.
+
+Account.CompleteAllPasswordFields
+en: Complete all password fields.
+
+Account.NewPasswordMustContain8128
+en: New password must contain 8–128 characters.
+
+Account.NewPasswordsDoNotMatch
+en: New passwords do not match.
+
+Account.ChooseAPasswordDifferentFromThe
+en: Choose a password different from the current one.
+
+Account.CurrentPasswordIsIncorrectPleaseTry
+en: Current password is incorrect. Please try again.
+
+Account.PasswordUpdateFailed
+en: Password update failed.
+
+Account.PasswordUpdatedSuccessfully
+en: Password updated successfully.
+
+Account.CouldNotChangePasswordPleaseTry
+en: Could not change password. Please try again.
+
+CompletionReview.NotScored
+en: Not scored
+
+ConfiguredGroups.NoInternshipYet
+en: No internship yet
+
+ConfiguredGroups.NotAssigned
+en: Not assigned
+
+ConfiguredGroups.NoGroupsMatchYourSearch
+en: No groups match your search.
+
+ConfiguredGroups.NoGroupsHaveBeenCreatedYet
+en: No groups have been created yet.
+
+ContactMessages.Unknown
+en: Unknown
+
+Groups.SelectASupervisor
+en: Select a supervisor
+
+ManageStudents.StudentAccessRestored
+en: Student access restored.
+
+ManageStudents.StudentAccessRemovedTheRecordAnd
+en: Student access removed. The record and training history are retained.
+
+ManageStudents.RemoveAccess
+en: Remove access
+
+ManageStudents.RestoreAccess
+en: Restore access
+
+ManageStudents.RemovingAccessBlocksSignInWhile
+en: Removing access blocks sign in while keeping the record and training history. You can restore access later.
+
+ManageStudents.ThisStudentCannotSignInRestore
+en: This student cannot sign in. Restore access when needed.
+
+ManageStudents.NoStudentsFound
+en: No students found.
+
+ManageStudents.NoStudentsMatchYourSearch
+en: No students match your search.
+
+PlacementDetails.NotScored
+en: Not scored
+
+StudentCreation.SelectAMajor
+en: Select a major
+
+StudentCreation.CouldNotCreateTheAccount
+en: Could not create the account.
+
+Students.NoStudentsFoundAddAStudent
+en: No students found. Add a student to get started.
+
+Students.NoStudentsMatchYourSearch
+en: No students match your search.

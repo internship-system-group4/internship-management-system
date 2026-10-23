@@ -31,7 +31,7 @@ namespace InternshipManagementSystem.Layout
             if (user == null) return;
 
             litUserName.Text = Validators.Safe(user.FullName);
-            litRoleName.Text = Validators.Safe(user.RoleDisplayName);
+            litRoleName.Text = Validators.Safe(L.Role(user.Role));
         }
 
         protected void btnSignOut_Click(object sender, EventArgs e)

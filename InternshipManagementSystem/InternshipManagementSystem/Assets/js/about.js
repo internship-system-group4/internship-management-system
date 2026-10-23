@@ -26,9 +26,9 @@
  function sync() {
   var playing = !preview.paused;
   toggle.setAttribute('aria-pressed', String(playing));
-  toggleLabel.textContent = playing ? 'Pause preview' : 'Play preview';
+  toggleLabel.textContent = playing ? window.uimsT('PausePreview') : window.uimsT('PlayPreview');
   sound.setAttribute('aria-pressed', String(!preview.muted));
-  soundLabel.textContent = preview.muted ? 'Turn sound on' : 'Turn sound off';
+  soundLabel.textContent = preview.muted ? window.uimsT('SoundOn') : window.uimsT('SoundOff');
  }
  function play() {
   if (failed) return;
@@ -53,11 +53,11 @@
   sync();
  });
  ['play', 'pause', 'volumechange'].forEach(function (name) { preview.addEventListener(name, sync); });
- preview.addEventListener('waiting', function () { status.textContent = 'Loading the film…'; });
+ preview.addEventListener('waiting', function () { status.textContent = window.uimsT('FilmLoading'); });
  preview.addEventListener('playing', function () { status.textContent = ''; });
  preview.addEventListener('loadedmetadata', function () { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
  preview.querySelector('source').addEventListener('error', function () {
-  failed = true; status.textContent = 'The film could not be loaded.'; toggle.disabled = true; sound.disabled = true;
+  failed = true; status.textContent = window.uimsT('FilmFailed'); toggle.disabled = true; sound.disabled = true;
  });
  sync();
 

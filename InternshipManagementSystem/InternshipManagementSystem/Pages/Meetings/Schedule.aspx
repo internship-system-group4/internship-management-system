@@ -23,17 +23,17 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="meeting-page">
-        <h2 class="mb-1">Meetings</h2>
+        <h2 class="mb-1"><%: L.T("Meetings.Schedule.Meetings") %></h2>
         <p class="text-muted mb-4">
-            Schedule a meeting and share a Zoom link with its participants.
+            <%: L.T("Meetings.Schedule.ScheduleAMeetingAndShareA") %>
         </p>
 
         <div class="uims-card mb-4">
-            <h3 class="mb-3">Schedule a Meeting</h3>
+            <h3 class="mb-3"><%: L.T("Meetings.Schedule.ScheduleAMeeting") %></h3>
 
             <div class="mb-3">
                 <label class="form-label" for="<%= ddlPlacement.ClientID %>">
-                    Internship
+                    <%: L.T("Meetings.Schedule.Internship") %>
                 </label>
                 <asp:DropDownList ID="ddlPlacement" runat="server"
                     CssClass="form-select"
@@ -43,7 +43,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="<%= txtTitle.ClientID %>">
-                    Meeting Title
+                    <%: L.T("Meetings.Schedule.MeetingTitle") %>
                 </label>
                 <asp:TextBox ID="txtTitle" runat="server"
                     CssClass="form-control" />
@@ -51,7 +51,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="<%= txtAgenda.ClientID %>">
-                    Agenda
+                    <%: L.T("Meetings.Schedule.Agenda") %>
                 </label>
                 <asp:TextBox ID="txtAgenda" runat="server"
                     CssClass="form-control" TextMode="MultiLine" Rows="3" />
@@ -60,30 +60,30 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label class="form-label" for="<%= txtScheduledAt.ClientID %>">
-                        Date and Time
+                        <%: L.T("Meetings.Schedule.DateAndTime") %>
                     </label>
                     <asp:TextBox ID="txtScheduledAt" runat="server"
                         CssClass="form-control" TextMode="DateTimeLocal" />
                     <small class="text-muted">
-                        Use the local time on your device.
+                        <%: L.T("Meetings.Schedule.UseTheLocalTimeOnYour") %>
                     </small>
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <label class="form-label" for="<%= ddlDuration.ClientID %>">
-                        Duration
+                        <%: L.T("Meetings.Schedule.Duration") %>
                     </label>
                     <asp:DropDownList ID="ddlDuration" runat="server"
                         CssClass="form-select">
-                        <asp:ListItem Text="30 minutes" Value="30" />
-                        <asp:ListItem Text="45 minutes" Value="45" />
-                        <asp:ListItem Text="60 minutes" Value="60" />
+                        <asp:ListItem Text="<%$ Resources:Meetings, Schedule.30Minutes %>" Value="30" />
+                        <asp:ListItem Text="<%$ Resources:Meetings, Schedule.45Minutes %>" Value="45" />
+                        <asp:ListItem Text="<%$ Resources:Meetings, Schedule.60Minutes %>" Value="60" />
                     </asp:DropDownList>
                 </div>
             </div>
 
             <div class="mb-3">
-                <span class="form-label d-block">Participants</span>
+                <span class="form-label d-block"><%: L.T("Meetings.Schedule.Participants") %></span>
                 <div class="meeting-participants">
                     <asp:CheckBoxList ID="cblParticipants" runat="server" />
                 </div>
@@ -91,20 +91,20 @@
 
             <div class="mb-3">
                 <label class="form-label" for="<%= txtJoinUrl.ClientID %>">
-                    Zoom Meeting Link
+                    <%: L.T("Meetings.Schedule.ZoomMeetingLink") %>
                 </label>
                 <asp:TextBox ID="txtJoinUrl" runat="server"
                     CssClass="form-control" TextMode="Url"
                     placeholder="https://zoom.us/j/..." />
                 <small class="text-muted">
-                    Create the meeting in Zoom, then paste its link here.
+                    <%: L.T("Meetings.Schedule.CreateTheMeetingInZoomThen") %>
                 </small>
             </div>
 
             <asp:HiddenField ID="hfTimezoneOffset" runat="server" ClientIDMode="Static" />
 
             <asp:Button ID="btnSchedule" runat="server"
-                Text="Schedule Meeting"
+                Text="<%$ Resources:Meetings, Schedule.ScheduleMeeting %>"
                 CssClass="btn btn-brand"
                 OnClick="btnSchedule_Click"
                 OnClientClick="setMeetingTimezone();"  data-ui-action="schedule" data-loading-label="Scheduling…"/>
@@ -114,7 +114,7 @@
         </div>
 
         <div class="uims-card">
-            <h3 class="mb-3">My Meetings</h3>
+            <h3 class="mb-3"><%: L.T("Meetings.Schedule.MyMeetings") %></h3>
 
             <asp:Repeater ID="rptMeetings" runat="server"
                 OnItemCommand="rptMeetings_ItemCommand">
@@ -123,9 +123,9 @@
                         <table class="uims-table">
                             <thead>
                                 <tr>
-                                    <th>Meeting</th>
-                                    <th>Scheduled At (UTC)</th>
-                                    <th>Duration</th>
+                                    <th><%: L.T("Meetings.Schedule.Meeting") %></th>
+                                    <th><%: L.T("Meetings.Schedule.ScheduledAtUTC") %></th>
+                                    <th><%: L.T("Meetings.Schedule.Duration") %></th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -135,10 +135,10 @@
                     <tr>
                         <td><%#: Eval("Title") %></td>
                         <td><%# FormatDate(Eval("ScheduledAt")) %></td>
-                        <td><%#: Eval("DurationMinutes") %> min</td>
+                        <td><%#: Eval("DurationMinutes") %> <%: L.T("Meetings.Schedule.Min") %></td>
                         <td>
                             <asp:LinkButton ID="btnView" runat="server"
-                                Text="View Details"
+                                Text="<%$ Resources:Meetings, Schedule.ViewDetails %>"
                                 CssClass="btn btn-outline-secondary btn-sm"
                                 CommandName="ViewMeeting"
                                 CommandArgument='<%# Eval("Id") %>' />
@@ -153,23 +153,23 @@
             </asp:Repeater>
 
             <asp:Label ID="lblNoMeetings" runat="server"
-                Text="No meetings to show."
+                Text="<%$ Resources:Meetings, Schedule.NoMeetingsToShow %>"
                 CssClass="text-muted" />
         </div>
 
         <asp:Panel ID="pnlMeetingDetails" runat="server"
             Visible="false" CssClass="uims-card mt-4">
-            <h3>Meeting Details</h3>
-            <p><strong>Title:</strong>
+            <h3><%: L.T("Meetings.Schedule.MeetingDetails") %></h3>
+            <p><strong><%: L.T("Meetings.Schedule.Title") %></strong>
                 <asp:Label ID="lblDetailTitle" runat="server" /></p>
-            <p><strong>Agenda:</strong>
+            <p><strong><%: L.T("Meetings.Schedule.Agenda2") %></strong>
                 <asp:Label ID="lblDetailAgenda" runat="server" /></p>
-            <p><strong>Scheduled At (UTC):</strong>
+            <p><strong><%: L.T("Meetings.Schedule.ScheduledAtUTC2") %></strong>
                 <asp:Label ID="lblDetailDate" runat="server" /></p>
-            <p><strong>Duration:</strong>
+            <p><strong><%: L.T("Meetings.Schedule.Duration2") %></strong>
                 <asp:Label ID="lblDetailDuration" runat="server" /></p>
             <asp:HyperLink ID="lnkJoin" runat="server"
-                Text="Join Zoom Meeting"
+                Text="<%$ Resources:Meetings, Schedule.JoinZoomMeeting %>"
                 CssClass="btn btn-brand"
                 Target="_blank"
                 Visible="false" />

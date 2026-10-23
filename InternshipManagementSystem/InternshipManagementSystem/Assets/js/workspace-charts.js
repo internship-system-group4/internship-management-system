@@ -2,8 +2,8 @@
 (function(){
  'use strict';
  if(window.UimsReferenceAnalytics){window.UimsReferenceAnalytics.refresh();return;}
- const NS='http://www.w3.org/2000/svg',reduced=matchMedia('(prefers-reduced-motion: reduce)'),instances=new Map(),format=new Intl.NumberFormat('en',{maximumFractionDigits:1});
- const number=n=>format.format(n),month=d=>new Intl.DateTimeFormat('en',{month:'short',year:'2-digit',timeZone:'UTC'}).format(new Date(d));
+ const NS='http://www.w3.org/2000/svg',reduced=matchMedia('(prefers-reduced-motion: reduce)'),instances=new Map(),locale=window.uimsLang==='ar'?'ar-JO-u-nu-latn-ca-gregory':'en',format=new Intl.NumberFormat(locale,{maximumFractionDigits:1}),t=function(){return typeof window.uimsT==='function'?window.uimsT.apply(null,arguments):arguments[0];};
+ const number=n=>format.format(n),month=d=>new Intl.DateTimeFormat(locale,{month:'short',year:'2-digit',timeZone:'UTC'}).format(new Date(d));
  function node(tag,cls,text){const n=document.createElement(tag);if(cls)n.className=cls;if(text!==undefined)n.textContent=text;return n;}
  function svg(tag,attrs,text){const n=document.createElementNS(NS,tag);Object.entries(attrs||{}).forEach(([k,v])=>n.setAttribute(k,String(v)));if(text!==undefined)n.textContent=text;return n;}
  function sum(events){return events.reduce((n,e)=>n+e.Value,0);}
@@ -24,28 +24,28 @@
   const data=JSON.parse(root.querySelector('[data-analytics-model]').textContent),rangeButtons=[...root.querySelectorAll('[data-range]')],marker=root.querySelector('.ra-range-marker'),modal=root.querySelector('.ra-record-modal'),tooltip=root.querySelector('.ra-tooltip');
   let range=6,current=[],points=[],opener=null,recordRows=[],recordPage=0,recordScope='',width=0,frame=0;
   const safeUrl=value=>{const raw=value?.startsWith('~/')?root.dataset.appRoot+value.slice(2):value;try{const url=new URL(raw,location.href);return url.origin===location.origin&&/^https?:$/.test(url.protocol)?url.href:'#';}catch(_){return '#';}};
-  const stockScope='Current snapshot · '+new Date(data.Now).toISOString().slice(0,10)+' UTC';
+  const stockScope=t('ChartCurrentSnapshot',new Date(data.Now).toISOString().slice(0,10));
   function mark(animate){const button=rangeButtons.find(b=>Number(b.dataset.range)===range),x=button.offsetLeft,w=button.offsetWidth,from=getComputedStyle(marker).transform;marker.getAnimations().forEach(a=>a.cancel());marker.style.width=w+'px';marker.style.transform='translateX('+x+'px)';if(animate&&!reduced.matches&&from!=='none')marker.animate([{transform:from},{transform:marker.style.transform}],{duration:340,easing:'cubic-bezier(.16,1,.3,1)'});}
   function pageRecords(){
    const list=modal.querySelector('.ra-record-list');list.replaceChildren();const start=recordPage*10,rows=recordRows.slice(start,start+10);
-   rows.forEach(record=>{const li=node('li'),body=node('div');body.append(node('strong','',record.Title),node('p','',record.Detail||''));const link=node('a','','Open related record');link.href=safeUrl(record.Url);body.append(link);li.append(body);if(record.Value!==null&&record.Value!==undefined)li.append(node('b','',number(record.Value)));list.append(li);});
+   rows.forEach(record=>{const li=node('li'),body=node('div');body.append(node('strong','',record.Title),node('p','',record.Detail||''));const link=node('a','',t('ChartOpenRecord'));link.href=safeUrl(record.Url);body.append(link);li.append(body);if(record.Value!==null&&record.Value!==undefined)li.append(node('b','',number(record.Value)));list.append(li);});
    modal.querySelector('[data-record-empty]').hidden=rows.length>0;
    const prev=modal.querySelector('[data-record-page="-1"]'),next=modal.querySelector('[data-record-page="1"]');prev.disabled=recordPage===0;next.disabled=start+10>=recordRows.length;
-   modal.querySelector('[data-record-page-label]').textContent=recordRows.length?`${start+1}–${Math.min(start+10,recordRows.length)} of ${recordRows.length}`:'0 records';
+   modal.querySelector('[data-record-page-label]').textContent=recordRows.length?t('ChartRecordRange',start+1,Math.min(start+10,recordRows.length),recordRows.length):t('ChartZeroRecords');
    modal.querySelector('[data-record-scope]').textContent=recordScope;window.UimsUI?.refresh(modal);
   }
   function records(title,rows,scope,target){opener=target instanceof SVGElement?root.querySelector('[data-data-toggle]'):target;recordRows=rows;recordScope=scope;recordPage=0;modal.querySelector('.modal-title').textContent=title;pageRecords();tooltip.hidden=true;bootstrap.Modal.getOrCreateInstance(modal).show(opener);}
   modal.addEventListener('hidden.bs.modal',()=>{if(opener?.isConnected&&!opener.disabled)opener.focus();});
   function area(animate){
    const plot=root.querySelector('[data-plot="trend"]');
-   if(!points.length){const unknown=data.Undated.length>0;plot.replaceChildren(node('div','ra-empty',unknown&&!data.Events.length?'Historical activity is unavailable. Approved records do not have valid approval dates.':'No dated approvals in this period. No historical points have been invented.'));plot.dataset.state=unknown&&!data.Events.length?'missing':'empty';return;}
+   if(!points.length){const unknown=data.Undated.length>0;plot.replaceChildren(node('div','ra-empty',unknown&&!data.Events.length?t('ChartHistoryUnavailable'):t('ChartNoDatedInPeriod')));plot.dataset.state=unknown&&!data.Events.length?'missing':'empty';return;}
    plot.dataset.state=points.length===1?'single':'ready';const c=chartBase(plot,Math.max(...points.map(p=>p.value)),false),coords=points.map((p,i)=>[c.pad.l+(points.length===1?c.innerW/2:c.innerW*(p.date-points[0].date)/(points.at(-1).date-points[0].date)),c.base-c.innerH*p.value/c.top]),path=curve(coords);
    if(points.length>1){const gradientId=modal.id+'_fill',defs=svg('defs'),gradient=svg('linearGradient',{id:gradientId,x1:0,x2:0,y1:0,y2:1});gradient.append(svg('stop',{offset:'0%','stop-color':'var(--ra-approved)','stop-opacity':.14}),svg('stop',{offset:'100%','stop-color':'var(--ra-approved)','stop-opacity':.02}));defs.append(gradient);c.drawing.append(defs,svg('path',{d:path+' L'+coords.at(-1)[0]+','+c.base+' L'+coords[0][0]+','+c.base+' Z',fill:'url(#'+gradientId+')'}),svg('path',{d:path,fill:'none',stroke:'var(--ra-approved)','stroke-width':2,'stroke-linejoin':'round','stroke-linecap':'round'}));}
    coords.forEach((p,i)=>{c.drawing.append(svg('circle',{cx:p[0],cy:p[1],r:4,fill:'var(--ra-approved)',stroke:'var(--ui-surface)','stroke-width':2,'data-mark':'trend','data-index':i}));const interval=Math.max(1,Math.ceil(points.length/(c.w<350?3:6)));if(i%interval===0||i===points.length-1)c.drawing.append(svg('text',{x:p[0],y:c.h-10,'text-anchor':i===0?'start':i===points.length-1?'end':'middle'},month(points[i].date)));});enter(plot,animate);
   }
   function bar(animate){
    const plot=root.querySelector('[data-plot="bar"]'),items=data.Bars;
-   if(!items.length){plot.replaceChildren(node('div','ra-empty','No current category records.'));return;}
+   if(!items.length){plot.replaceChildren(node('div','ra-empty',t('ChartNoCategoryRecords')));return;}
    const c=chartBase(plot,Math.max(...items.map(p=>p.Value)),true),cell=c.innerW/items.length,bw=Math.min(24,cell*.42);
    const context=document.createElement('canvas').getContext('2d');context.font='13px '+getComputedStyle(root).fontFamily;
    const aliases={'Applications':'Apps','Submissions':'Work','Hour entries':'Hour entries','Hours target met':'Target met','Target not set':'No target','No placement':'No place','Under review':'Review','Needs revision':'Revision','Resubmitted':'Resubmit'};
@@ -68,30 +68,30 @@
   function render(animate){
    const now=new Date(data.Now),start=Date.UTC(now.getUTCFullYear(),now.getUTCMonth()-range+1,1),previousStart=start-(data.Now-start);
    current=data.Events.filter(e=>e.Date>=start&&e.Date<=data.Now);const previous=data.Events.filter(e=>e.Date>=previousStart&&e.Date<start),value=sum(current),prev=sum(previous),historyKnown=data.Events.length>0||data.Undated.length===0;points=buckets(current);
-   root.dataset.selectedRange=range;root.querySelector('[data-range-caption]').textContent=`${month(start)} – ${month(data.Now)} · UTC. Range changes dated approvals only; categories are current snapshots.`;
-   root.querySelector('[data-trend-subtitle]').textContent=`Available dated ${data.TrendUnit}, by recorded approval month`;
-   root.querySelectorAll('[data-kpi]').forEach(card=>{const index=Number(card.dataset.kpi),kpi=data.Kpis[index];if(!kpi.Flow)return;card.querySelector('[data-kpi-value]').textContent=historyKnown?number(value):'—';const compare=card.querySelector('[data-kpi-comparison]');compare.textContent=!historyKnown?'History unavailable: approval dates missing':prev>0?`${value>=prev?'+':''}${number((value/prev-1)*100)}% vs previous equal-length window`:'No percentage: previous window has no dated approvals';
+   root.dataset.selectedRange=range;root.querySelector('[data-range-caption]').textContent=t('ChartRangeCaption',month(start),month(data.Now));
+   root.querySelector('[data-trend-subtitle]').textContent=t('ChartTrendSubtitle',data.TrendUnit);
+   root.querySelectorAll('[data-kpi]').forEach(card=>{const index=Number(card.dataset.kpi),kpi=data.Kpis[index];if(!kpi.Flow)return;card.querySelector('[data-kpi-value]').textContent=historyKnown?number(value):'—';const compare=card.querySelector('[data-kpi-comparison]');compare.textContent=!historyKnown?t('ChartHistoryMissing'):prev>0?t('ChartVsPrevious',(value>=prev?'+':'')+number((value/prev-1)*100)):t('ChartNoPercentage');
     const spark=card.querySelector('.ra-spark');spark.replaceChildren();if(points.length>=2){const max=Math.max(...points.map(p=>p.value),1),coords=points.map((p,i)=>[3+(p.date-points[0].date)*66/(points.at(-1).date-points[0].date),27-p.value/max*24]),drawing=svg('svg',{viewBox:'0 0 72 30',width:72,height:30});drawing.append(svg('path',{d:curve(coords),fill:'none',stroke:'var(--ra-approved)','stroke-width':2,'stroke-linecap':'round'}));spark.append(drawing);}
    });
-   const note=root.querySelector('[data-history-note]');note.replaceChildren(document.createTextNode(points.length===1?'One recorded month; no inferred history. ':'Only months with dated approvals are plotted. '));
-   note.append(document.createTextNode(data.Role==='Coordinator'?'Explicit approvals in current retained records.':'Currently approved entries by review date, not historical status snapshots.'));
-   if(data.Undated.length){const button=node('button','ra-table-action',`${data.Undated.length} undated approval record${data.Undated.length===1?'':'s'} excluded`);button.type='button';button.dataset.undated='true';note.append(' ',button);}
-   const body=root.querySelector('[data-trend-rows]');body.replaceChildren();points.forEach((point,i)=>{const tr=node('tr'),label=node('th','',month(point.date));label.scope='row';const value=node('td','',number(point.value)),action=node('td'),button=node('button','ra-table-action','View records');button.type='button';button.dataset.records='trend';button.dataset.category=i;button.setAttribute('aria-label','View records for '+month(point.date));action.append(button);tr.append(label,value,action);body.append(tr);});if(!points.length){const tr=node('tr'),td=node('td','','No dated approval records in this window.');td.colSpan=3;tr.append(td);body.append(tr);}
+   const note=root.querySelector('[data-history-note]');note.replaceChildren(document.createTextNode(points.length===1?t('ChartOneMonth'):t('ChartOnlyMonths')));
+   note.append(document.createTextNode(data.Role==='Coordinator'?t('ChartCoordinatorNote'):t('ChartReviewDateNote')));
+   if(data.Undated.length){const button=node('button','ra-table-action',t(data.Undated.length===1?'ChartUndatedOne':'ChartUndatedMany',data.Undated.length));button.type='button';button.dataset.undated='true';note.append(' ',button);}
+   const body=root.querySelector('[data-trend-rows]');body.replaceChildren();points.forEach((point,i)=>{const tr=node('tr'),label=node('th','',month(point.date));label.scope='row';const value=node('td','',number(point.value)),action=node('td'),button=node('button','ra-table-action',t('ChartViewRecords'));button.type='button';button.dataset.records='trend';button.dataset.category=i;button.setAttribute('aria-label',t('ChartViewRecordsFor',month(point.date)));action.append(button);tr.append(label,value,action);body.append(tr);});if(!points.length){const tr=node('tr'),td=node('td','',t('ChartNoDatedWindow'));td.colSpan=3;tr.append(td);body.append(tr);}
    rangeButtons.forEach(b=>{const selected=Number(b.dataset.range)===range;b.setAttribute('aria-checked',String(selected));b.tabIndex=selected?0:-1;b.disabled=data.Events.length===0;});mark(animate);area(animate);
   }
   const legend=root.querySelector('[data-bar-legend]');data.Bars.forEach((point,i)=>{const button=node('button');button.type='button';button.dataset.records='bar';button.dataset.category=i;button.setAttribute('aria-haspopup','dialog');const swatch=node('i');swatch.dataset.tone=point.Tone;swatch.setAttribute('aria-hidden','true');button.append(swatch,document.createTextNode(point.Label));legend.append(button);});
   root.querySelectorAll('[data-kpi]').forEach((card,i)=>card.style.setProperty('--ra-delay',i*55+'ms'));
   function chooseRange(button){if(button.disabled)return;range=Number(button.dataset.range);tooltip.hidden=true;render(true);}
-  root.addEventListener('keydown',event=>{const button=event.target.closest('[data-range]');if(!button||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const index=rangeButtons.indexOf(button),next=event.key==='Home'?0:event.key==='End'?rangeButtons.length-1:(index+(event.key==='ArrowLeft'?-1:1)+rangeButtons.length)%rangeButtons.length;chooseRange(rangeButtons[next]);rangeButtons[next].focus();});
+  root.addEventListener('keydown',event=>{const button=event.target.closest('[data-range]');if(!button||!['ArrowLeft','ArrowRight','Home','End'].includes(event.key))return;event.preventDefault();const index=rangeButtons.indexOf(button),next=event.key==='Home'?0:event.key==='End'?rangeButtons.length-1:(index+((event.key==='ArrowLeft')!==(document.documentElement.dir==='rtl')?-1:1)+rangeButtons.length)%rangeButtons.length;chooseRange(rangeButtons[next]);rangeButtons[next].focus();});
   root.addEventListener('click',event=>{
    const target=event.target.closest('button,a,[data-mark]');if(!target)return;
    if(target.matches('[data-range]')){chooseRange(target);return;}
-   if(target.matches('[data-kpi]')){const kpi=data.Kpis[Number(target.dataset.kpi)],missing=kpi.Flow&&!data.Events.length&&data.Undated.length;records(kpi.Label,kpi.Flow?(missing?data.Undated:current.map(e=>e.Record)):kpi.Records,kpi.Flow?(missing?'History unavailable: these current approvals have no valid dates.':month(Date.UTC(new Date(data.Now).getUTCFullYear(),new Date(data.Now).getUTCMonth()-range+1,1))+' – '+month(data.Now)+' · available dated approvals only'):stockScope,target);return;}
-   if(target.matches('[data-undated]')){records('Undated approvals',data.Undated,'Excluded from every date range. Current approved records only.',target);return;}
+   if(target.matches('[data-kpi]')){const kpi=data.Kpis[Number(target.dataset.kpi)],missing=kpi.Flow&&!data.Events.length&&data.Undated.length;records(kpi.Label,kpi.Flow?(missing?data.Undated:current.map(e=>e.Record)):kpi.Records,kpi.Flow?(missing?t('ChartUndatedNoDates'):t('ChartRangeScope',month(Date.UTC(new Date(data.Now).getUTCFullYear(),new Date(data.Now).getUTCMonth()-range+1,1)),month(data.Now))):stockScope,target);return;}
+   if(target.matches('[data-undated]')){records(t('ChartUndatedTitle'),data.Undated,t('ChartUndatedScope'),target);return;}
    if(target.matches('[data-data-toggle]')){event.preventDefault();const details=root.querySelector('[data-data-table="'+target.dataset.dataToggle+'"]');details.open=!details.open;if(details.open)details.querySelector('summary').focus();return;}
    if(target.matches('[data-record-page]')){recordPage=Math.max(0,Math.min(Math.ceil(recordRows.length/10)-1,recordPage+Number(target.dataset.recordPage)));pageRecords();if(target.disabled)modal.querySelector('.modal-title').focus();return;}
    const kind=target.dataset.records||target.dataset.mark,index=Number(target.dataset.category??target.dataset.index);
-   if(kind==='trend'&&points[index])records(month(points[index].date)+' · '+data.TrendUnit,points[index].records,'Actual dated approvals in this recorded month.',target);
+   if(kind==='trend'&&points[index])records(month(points[index].date)+' · '+data.TrendUnit,points[index].records,t('ChartMonthScope'),target);
    else if(kind==='bar'||kind==='donut'){const point=(kind==='bar'?data.Bars:data.Breakdown)[index];records(point.Label,point.Records,stockScope,target);}
   });
   root.addEventListener('pointerover',event=>{const mark=event.target.closest('[data-mark]');if(!mark)return;const kind=mark.dataset.mark,index=Number(mark.dataset.index),point=kind==='trend'?points[index]:(kind==='bar'?data.Bars:data.Breakdown)[index];if(!point)return;tooltip.textContent=kind==='trend'?`${month(point.date)} · ${number(point.value)} ${data.TrendUnit}`:`${point.Label} · ${number(point.Value)} ${kind==='bar'?data.BarUnit:data.DonutUnit}`;tooltip.hidden=false;});
@@ -101,7 +101,7 @@
   render(true);bar(true);donut(true);root.dataset.analyticsReady='true';
   return {dispose(){observer.disconnect();cancelAnimationFrame(frame);bootstrap.Modal.getInstance(modal)?.dispose();},reduce(){root.getAnimations({subtree:true}).forEach(a=>a.cancel());}};
  }
- function refresh(){for(const [root,instance]of instances)if(!root.isConnected){instance.dispose();instances.delete(root);}document.querySelectorAll('[data-reference-analytics]').forEach(root=>{if(instances.has(root))return;try{instances.set(root,create(root));}catch(error){root.dataset.analyticsReady='error';const message=node('p','ra-empty','Analytics could not be displayed. Refresh to retry; current records remain available below.');message.setAttribute('role','alert');root.prepend(message);}});}
+ function refresh(){for(const [root,instance]of instances)if(!root.isConnected){instance.dispose();instances.delete(root);}document.querySelectorAll('[data-reference-analytics]').forEach(root=>{if(instances.has(root))return;try{instances.set(root,create(root));}catch(error){root.dataset.analyticsReady='error';const message=node('p','ra-empty',t('ChartFailed'));message.setAttribute('role','alert');root.prepend(message);}});}
  window.UimsReferenceAnalytics={refresh};window.UimsCharts={refresh};refresh();document.addEventListener('DOMContentLoaded',refresh,{once:true});
  reduced.addEventListener('change',()=>{if(reduced.matches)instances.forEach(instance=>instance.reduce());});
  if(window.Sys?.WebForms)Sys.WebForms.PageRequestManager.getInstance().add_endRequest(refresh);

@@ -1,4 +1,5 @@
 ﻿using System;
+using InternshipManagementSystem.Common;
 using System.Linq;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Security;
@@ -15,7 +16,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
     Workspace=new WorkspaceDashboardRepository().LoadCompany(CurrentSupervisor.CompanyId);Journey.Model=Workspace.Journey;Charts.Model=WorkspaceChartFactory.Company(Workspace);
     litTotalOpportunities.Text=Workspace.Opportunities.ToString();litTotalApplications.Text=Workspace.Applications.Count.ToString();litTotalTrainees.Text=Workspace.Trainees.Count.ToString();litPendingApps.Text=Workspace.PendingApplications.ToString();litActiveTrainees.Text=Workspace.Trainees.Count.ToString();
     gvRecentApplications.DataSource=Workspace.Applications.OrderBy(a=>a.Status==InternshipManagementSystem.Common.ApplicationStatus.Pending?0:1).ThenByDescending(a=>a.SubmittedAt).Take(5).Select(a=>new RecentAppViewModel { StudentName=a.StudentName,Major=a.StudentMajor,OpportunityTitle=a.OpportunityTitle,Status=a.Status.ToString(),SubmittedAt=a.SubmittedAt });gvRecentApplications.DataBind();lblMessage.Visible=false;
-   }catch(Exception ex){System.Diagnostics.Trace.TraceError("Company workspace: "+ex.Message);lblMessage.Text="We could not load your company work queues. Refresh to try again.";lblMessage.CssClass="alert alert-danger d-block";lblMessage.Attributes["role"]="alert";}
+   }catch(Exception ex){System.Diagnostics.Trace.TraceError("Company workspace: "+ex.Message);lblMessage.Text=L.T("Company.Dashboard.WeCouldNotLoadYourCompany");lblMessage.CssClass="alert alert-danger d-block";lblMessage.Attributes["role"]="alert";}
   }
         protected string GetStatusCss(string status)
         {

@@ -39,7 +39,7 @@
    if (ok) ready++;
    if (segments[index]) segments[index].classList.toggle('is-on', ok);
   });
-  readinessText.textContent = ready + ' of ' + fields.length + ' fields ready';
+  readinessText.textContent = window.uimsT('ContactReadiness', ready, fields.length);
   if (envelope) {
    envelope.style.setProperty('--ready', String(ready / fields.length));
    envelope.classList.toggle('is-ready', ready === fields.length);

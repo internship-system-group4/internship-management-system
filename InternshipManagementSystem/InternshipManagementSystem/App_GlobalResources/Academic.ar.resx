@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Account.9627XXXXXXXX" xml:space="preserve"><value>+962 7X XXX XXXX</value></data>
+  <data name="Account.AcademicInformation" xml:space="preserve"><value>البيانات الأكاديمية</value></data>
+  <data name="Account.AcademicStaff" xml:space="preserve"><value>الهيئة الأكاديمية</value></data>
+  <data name="Account.AcademicSupervisorPlaceholder" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
+  <data name="Account.AccountEmail" xml:space="preserve"><value>بريد الحساب</value></data>
+  <data name="Account.Age" xml:space="preserve"><value>العمر</value></data>
+  <data name="Account.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="Account.ChangePassword" xml:space="preserve"><value>تغيير كلمة المرور</value></data>
+  <data name="Account.ChangeProfilePhoto" xml:space="preserve"><value>تغيير الصورة الشخصية</value></data>
+  <data name="Account.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="Account.College" xml:space="preserve"><value>الكلية</value></data>
+  <data name="Account.ConfirmNewPassword" xml:space="preserve"><value>تأكيد كلمة المرور الجديدة</value></data>
+  <data name="Account.Dr" xml:space="preserve"><value>د.</value></data>
+  <data name="Account.EnrollmentYear" xml:space="preserve"><value>سنة الالتحاق</value></data>
+  <data name="Account.Error" xml:space="preserve"><value>خطأ: {0}</value></data>
+  <data name="Account.ErrorUploadingFile" xml:space="preserve"><value>خطأ في رفع الملف: {0}</value></data>
+  <data name="Account.FullName" xml:space="preserve"><value>الاسم الكامل *</value></data>
+  <data name="Account.GermanJordanianUniversity" xml:space="preserve"><value>| الجامعة الألمانية الأردنية</value></data>
+  <data name="Account.Major" xml:space="preserve"><value>التخصص</value></data>
+  <data name="Account.NewPassword" xml:space="preserve"><value>كلمة المرور الجديدة</value></data>
+  <data name="Account.OnlyJpgJpegOrPngFiles" xml:space="preserve"><value>لا يُسمح إلا بملفات ‎.jpg‎ أو ‎.jpeg‎ أو ‎.png‎.</value></data>
+  <data name="Account.PasswordMustBeAtLeast6" xml:space="preserve"><value>يجب أن تتكوّن كلمة المرور من 6 أحرف على الأقل.</value></data>
+  <data name="Account.PasswordsDoNotMatchPleaseTry" xml:space="preserve"><value>كلمتا المرور غير متطابقتين. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="Account.PersonalInformation" xml:space="preserve"><value>البيانات الشخصية</value></data>
+  <data name="Account.PhoneNumber" xml:space="preserve"><value>رقم الهاتف</value></data>
+  <data name="Account.PleaseSelectAnImageFileFirst" xml:space="preserve"><value>يُرجى اختيار ملف صورة أولًا.</value></data>
+  <data name="Account.ProfilePhotoUploadedSuccessfully" xml:space="preserve"><value>تم رفع الصورة الشخصية بنجاح.</value></data>
+  <data name="Account.SaveChanges" xml:space="preserve"><value>حفظ التغييرات</value></data>
+  <data name="Account.SessionExpiredPleaseLogOutAnd" xml:space="preserve"><value>انتهت الجلسة. يُرجى تسجيل الخروج ثم تسجيل الدخول مرة أخرى.</value></data>
+  <data name="Account.SupervisorID" xml:space="preserve"><value>الرقم الوظيفي للمشرف</value></data>
+  <data name="Account.University" xml:space="preserve"><value>الجامعة</value></data>
+  <data name="Account.UpdatePassword" xml:space="preserve"><value>تحديث كلمة المرور</value></data>
+  <data name="Account.UpdateYourPersonalAndContactInformation" xml:space="preserve"><value>حدّث بياناتك الشخصية ومعلومات التواصل.</value></data>
+  <data name="Account.Upload" xml:space="preserve"><value>رفع</value></data>
+  <data name="Account.YourOfficialUniversityDetailsManagedBy" xml:space="preserve"><value>بياناتك الجامعية الرسمية، ويديرها منسّق التدريب.</value></data>
+  <data name="Account.YourPasswordHasBeenChangedSuccessfully" xml:space="preserve"><value>تم تغيير كلمة المرور بنجاح.</value></data>
+  <data name="Account.YourProfileInformationHasBeenUpdated" xml:space="preserve"><value>تم تحديث بيانات ملفك الشخصي بنجاح.</value></data>
+  <data name="Dashboard.AcademicFollowUp" xml:space="preserve"><value>المتابعة الأكاديمية</value></data>
+  <data name="Dashboard.AcademicWork" xml:space="preserve"><value>العمل الأكاديمي</value></data>
+  <data name="Dashboard.ApprovedEntriesOnly" xml:space="preserve"><value>الساعات المعتمدة فقط</value></data>
+  <data name="Dashboard.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
+  <data name="Dashboard.AssessmentAndFollowUpStayLinked" xml:space="preserve"><value>يبقى التقييم والمتابعة مرتبطين بكل طالب مسند.</value></data>
+  <data name="Dashboard.AssignedStudents" xml:space="preserve"><value>الطلبة المسندون</value></data>
+  <data name="Dashboard.CompanyAssessmentReceived" xml:space="preserve"><value>تم استلام تقييم الشركة</value></data>
+  <data name="Dashboard.CompanyAssessments" xml:space="preserve"><value>تقييمات الشركات</value></data>
+  <data name="Dashboard.DivClassWsEmptyH4No" xml:space="preserve"><value>&lt;div class='ws-empty'&gt;&lt;h4&gt;لم يُسند إليك أي طالب بعد&lt;/h4&gt;&lt;p&gt;يتولّى منسّق التدريب إسناد الإشراف الأكاديمي، وسيظهر الطلبة المسندون إليك هنا.&lt;/p&gt;&lt;/div&gt;</value></data>
+  <data name="Dashboard.FollowUp" xml:space="preserve"><value>المتابعة</value></data>
+  <data name="Dashboard.FollowYourAssignedStudentsAndAcademic" xml:space="preserve"><value>، تابع طلبتك والعمل الأكاديمي المسند إليك.</value></data>
+  <data name="Dashboard.HPending" xml:space="preserve"><value>ساعة معلّقة</value></data>
+  <data name="Dashboard.HoursRequirementMet" xml:space="preserve"><value>استوفوا الساعات المطلوبة</value></data>
+  <data name="Dashboard.InternalEvaluationFormsRemainRestrictedStudents" xml:space="preserve"><value>تبقى نماذج التقييم الداخلية مقيّدة، ولا يرى الطلبة النتيجة إلا بعد اعتماد منسّق التدريب.</value></data>
+  <data name="Dashboard.NoReceivedCompanyAssessmentsAreWaiting" xml:space="preserve"><value>لا توجد تقييمات شركات مستلمة بانتظار تقييمك الأكاديمي.</value></data>
+  <data name="Dashboard.OpenAcademicEvaluations" xml:space="preserve"><value>فتح التقييمات الأكاديمية</value></data>
+  <data name="Dashboard.Placement" xml:space="preserve"><value>جهة التدريب</value></data>
+  <data name="Dashboard.PlacementApprovedHoursAndTheNext" xml:space="preserve"><value>جهة التدريب والساعات المعتمدة والإجراء الأكاديمي التالي.</value></data>
+  <data name="Dashboard.Retry" xml:space="preserve"><value>إعادة المحاولة</value></data>
+  <data name="Dashboard.ReviewStudentRecords" xml:space="preserve"><value>مراجعة سجلات الطلبة</value></data>
+  <data name="Dashboard.Student" xml:space="preserve"><value>الطالب</value></data>
+  <data name="Dashboard.StudentOversight" xml:space="preserve"><value>متابعة الطلبة</value></data>
+  <data name="Dashboard.StudentsAssignedToTheSignedIn" xml:space="preserve"><value>الطلبة المسندون إلى المشرف الأكاديمي المسجّل دخوله</value></data>
+  <data name="Dashboard.SubmittedForYourStudents" xml:space="preserve"><value>المقدّمة لطلبتك</value></data>
+  <data name="Dashboard.ViewProgress" xml:space="preserve"><value>عرض التقدّم</value></data>
+  <data name="Dashboard.WeCouldNotLoadYourAssigned" xml:space="preserve"><value>تعذّر تحميل الطلبة المسندين إليك. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
+  <data name="Dashboard.YourSupervisionGroup" xml:space="preserve"><value>مجموعة إشرافك</value></data>
+  <data name="FinalEvaluation.1CompanySupervisorEvaluation" xml:space="preserve"><value>1. تقييم مشرف الشركة</value></data>
+  <data name="FinalEvaluation.2AcademicFinalDecision" xml:space="preserve"><value>2. القرار الأكاديمي النهائي</value></data>
+  <data name="FinalEvaluation.AcademicCommentsRemarks" xml:space="preserve"><value>التعليقات والملاحظات الأكاديمية</value></data>
+  <data name="FinalEvaluation.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="FinalEvaluation.AreasForImprovement" xml:space="preserve"><value>جوانب التحسين:</value></data>
+  <data name="FinalEvaluation.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="FinalEvaluation.DecisionSubmittedSuccessfullyOn" xml:space="preserve"><value>أُرسل القرار بنجاح بتاريخ {0}</value></data>
+  <data name="FinalEvaluation.Evaluate" xml:space="preserve"><value>تقييم:</value></data>
+  <data name="FinalEvaluation.EvaluationForTheSelectedStudentHas" xml:space="preserve"><value>أُرسل تقييم الطالب المحدد إلى منسّق التدريب بنجاح!</value></data>
+  <data name="FinalEvaluation.Fail" xml:space="preserve"><value>راسب</value></data>
+  <data name="FinalEvaluation.FinalAcademicEvaluation" xml:space="preserve"><value>التقييم الأكاديمي النهائي</value></data>
+  <data name="FinalEvaluation.FinalDecision" xml:space="preserve"><value>القرار النهائي</value></data>
+  <data name="FinalEvaluation.Major" xml:space="preserve"><value>التخصص</value></data>
+  <data name="FinalEvaluation.NoStudentsAssigned" xml:space="preserve"><value>لا يوجد طلبة مسندون إليك حاليًا.</value></data>
+  <data name="FinalEvaluation.OverallComment" xml:space="preserve"><value>التعليق العام:</value></data>
+  <data name="FinalEvaluation.Pass" xml:space="preserve"><value>ناجح</value></data>
+  <data name="FinalEvaluation.SelectAStudentToCompleteTheir" xml:space="preserve"><value>اختر طالبًا لإكمال تقييمه النهائي.</value></data>
+  <data name="FinalEvaluation.SelectDecision" xml:space="preserve"><value>-- اختر القرار --</value></data>
+  <data name="FinalEvaluation.Strengths" xml:space="preserve"><value>نقاط القوة:</value></data>
+  <data name="FinalEvaluation.StudentName" xml:space="preserve"><value>اسم الطالب</value></data>
+  <data name="FinalEvaluation.SubmitToCoordinator" xml:space="preserve"><value>الإرسال إلى منسّق التدريب</value></data>
+  <data name="FinalEvaluation.SubmitYourFinalDecisionOnceSubmitted" xml:space="preserve"><value>أرسل قرارك النهائي، وسيُحال بعد الإرسال إلى منسّق التدريب.</value></data>
+  <data name="FinalEvaluation.TheCompanySupervisorHasNotSubmitted" xml:space="preserve"><value>لم يرسل مشرف الشركة تقييمه النهائي بعد.</value></data>
+  <data name="FinalEvaluation.TotalScore" xml:space="preserve"><value>الدرجة الكلية</value></data>
+  <data name="FinalEvaluation.UniversityID" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="FinalEvaluation.UnknownStudent" xml:space="preserve"><value>طالب غير معروف</value></data>
+  <data name="FinalEvaluation.ViewAndEvaluate" xml:space="preserve"><value>عرض وتقييم</value></data>
+  <data name="StudentProgress.AcademicCommentsFeedback" xml:space="preserve"><value>التعليقات والملاحظات الأكاديمية</value></data>
+  <data name="StudentProgress.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="StudentProgress.AddANewComment" xml:space="preserve"><value>إضافة تعليق جديد</value></data>
+  <data name="StudentProgress.BackToStudentsList" xml:space="preserve"><value>العودة إلى قائمة الطلبة</value></data>
+  <data name="StudentProgress.CommentSavedSuccessfully" xml:space="preserve"><value>تم حفظ التعليق بنجاح!</value></data>
+  <data name="StudentProgress.CompanyName" xml:space="preserve"><value>اسم الشركة</value></data>
+  <data name="StudentProgress.CompanySupervisor" xml:space="preserve"><value>مشرف الشركة</value></data>
+  <data name="StudentProgress.EstimatedHours" xml:space="preserve"><value>الساعات التقديرية</value></data>
+  <data name="StudentProgress.Major" xml:space="preserve"><value>التخصص</value></data>
+  <data name="StudentProgress.MakeThisCommentVisibleToThe" xml:space="preserve"><value>إظهار هذا التعليق للطالب</value></data>
+  <data name="StudentProgress.MaxScore" xml:space="preserve"><value>الدرجة القصوى</value></data>
+  <data name="StudentProgress.NoCommentsYet" xml:space="preserve"><value>لم تُضَف أي تعليقات بعد.</value></data>
+  <data name="StudentProgress.NoStudentsAssigned" xml:space="preserve"><value>لا يوجد طلبة مسندون إليك حاليًا.</value></data>
+  <data name="StudentProgress.NoTasksAssignedYet" xml:space="preserve"><value>لم تُسند أي مهام بعد.</value></data>
+  <data name="StudentProgress.NotAssignedYet" xml:space="preserve"><value>لم يُسند بعد</value></data>
+  <data name="StudentProgress.OpportunityTitle" xml:space="preserve"><value>عنوان الفرصة</value></data>
+  <data name="StudentProgress.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="StudentProgress.PlacementCompanyDetails" xml:space="preserve"><value>تفاصيل جهة التدريب والشركة</value></data>
+  <data name="StudentProgress.ProceedToFinalEvaluation" xml:space="preserve"><value>المتابعة إلى التقييم النهائي</value></data>
+  <data name="StudentProgress.SaveComment" xml:space="preserve"><value>حفظ التعليق</value></data>
+  <data name="StudentProgress.SelectAStudentToViewTheir" xml:space="preserve"><value>اختر طالبًا لعرض تقدّمه ومهامه وتقييماته.</value></data>
+  <data name="StudentProgress.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="StudentProgress.StudentName" xml:space="preserve"><value>اسم الطالب</value></data>
+  <data name="StudentProgress.StudentProgressMonitor" xml:space="preserve"><value>متابعة تقدّم الطلبة</value></data>
+  <data name="StudentProgress.TaskTitle" xml:space="preserve"><value>عنوان المهمة</value></data>
+  <data name="StudentProgress.TasksSubmissions" xml:space="preserve"><value>المهام والتسليمات</value></data>
+  <data name="StudentProgress.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="StudentProgress.UniversityID" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>عرض التقدّم</value></data>
+  <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>اكتب ملاحظتك أو تعليقك هنا...</value></data>
+</root>

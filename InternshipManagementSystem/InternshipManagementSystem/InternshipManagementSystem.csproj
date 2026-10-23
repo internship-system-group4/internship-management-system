@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ===========================================================================
   UIMS - Group 4
@@ -102,6 +102,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Localization.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\GradingPolicy.cs" />
     <Compile Include="Common\Time.cs" />
@@ -573,6 +574,26 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="App_GlobalResources\Workspace.ar.resx" />
+    <Content Include="App_GlobalResources\Workspace.resx" />
+    <Content Include="App_GlobalResources\Student.ar.resx" />
+    <Content Include="App_GlobalResources\Student.resx" />
+    <Content Include="App_GlobalResources\Meetings.ar.resx" />
+    <Content Include="App_GlobalResources\Meetings.resx" />
+    <Content Include="App_GlobalResources\Coordinator.ar.resx" />
+    <Content Include="App_GlobalResources\Coordinator.resx" />
+    <Content Include="App_GlobalResources\Company.ar.resx" />
+    <Content Include="App_GlobalResources\Company.resx" />
+    <Content Include="App_GlobalResources\Academic.ar.resx" />
+    <Content Include="App_GlobalResources\Academic.resx" />
+    <Content Include="App_GlobalResources\Public.ar.resx" />
+    <Content Include="App_GlobalResources\Public.resx" />
+    <Content Include="App_GlobalResources\Home.ar.resx" />
+    <Content Include="App_GlobalResources\Home.resx" />
+    <Content Include="App_GlobalResources\Account.ar.resx" />
+    <Content Include="App_GlobalResources\Account.resx" />
+    <Content Include="App_GlobalResources\Shared.ar.resx" />
+    <Content Include="App_GlobalResources\Shared.resx" />
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
     <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -661,6 +682,9 @@
     <Content Include="Assets\js\about.js" />
     <Content Include="Assets\css\contact.css" />
     <Content Include="Assets\css\theme.css" />
+    <Content Include="Assets\css\i18n.css" />
+    <Content Include="Assets\js\i18n.js" />
+    <Content Include="Layout\LanguageSelector.ascx" />
     <Content Include="Assets\js\theme.js" />
     <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />

@@ -1,4 +1,5 @@
 using System;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Services;
@@ -27,14 +28,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (Exception)
             {
-                ShowMessage("We could not load this application. Please try again.");
+                ShowMessage(L.T("Company.ApplicantDocument.WeCouldNotLoadThisApplication"));
                 return;
             }
 
             // Only the company the student applied to may open the document.
             if (application == null || application.CompanyId != CurrentSupervisor.CompanyId)
             {
-                ShowMessage("This application is not available to your company.");
+                ShowMessage(L.T("Company.ApplicantDocument.ThisApplicationIsNotAvailableTo"));
                 return;
             }
 
@@ -68,8 +69,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
 
             ShowMessage(isCv
-                ? "This student has not shared a CV that can be opened. Ask them to upload a PDF or add a public CV link on their profile."
-                : "This student has not shared a portfolio.");
+                ? L.T("Company.ApplicantDocument.ThisStudentHasNotSharedA")
+                : L.T("Company.ApplicantDocument.ThisStudentHasNotSharedA2"));
         }
 
         private void SendPdf(string path, string fileName)

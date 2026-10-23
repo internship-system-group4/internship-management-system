@@ -13,7 +13,7 @@ html.student-nav-ready .uims-sidebar:not([data-expanded=true]) .uims-sidebar-lab
 body.uims-portal .uims-sidebar-identity {flex:1;min-width:170px;}
 body.uims-portal .uims-sidebar-brand strong {display:block;color:var(--ui-ink);font:600 17px/1.35 var(--ui-heading-font);white-space:normal;max-width:175px;margin:0;}
 body.uims-portal .uims-sidebar-brand small {display:block;color:var(--ui-nav-muted);font-size:13px;line-height:1.5;white-space:normal;margin-top:6px;padding:0;background:none;}
-.uims-sidebar-pin {width:100%;display:flex;align-items:center;gap:14px;min-height:44px;margin:20px 0 12px;padding:10px 12px;background:transparent;border:0;border-radius:6px;color:var(--ui-nav-muted);font-size:14px;text-align:left;overflow:hidden;flex:none;}
+.uims-sidebar-pin {width:100%;display:flex;align-items:center;gap:14px;min-height:44px;margin:20px 0 12px;padding:10px 12px;background:transparent;border:0;border-radius:6px;color:var(--ui-nav-muted);font-size:14px;text-align:start;overflow:hidden;flex:none;}
 .uims-sidebar-pin svg {width:22px;height:22px;flex:none;}
 .uims-sidebar-pin:hover {background:var(--th-bg-e3e8ec,#e3e8ec);color:var(--ui-ink);}.uims-sidebar-pin[aria-pressed=true] svg {transform:scaleX(-1);}
 .uims-sidebar-navigation {flex:1;min-height:0;overflow:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#6d8290 transparent;}
@@ -38,8 +38,8 @@ body.uims-portal .uims-content {flex:1;width:0;min-width:0;min-height:100vh;}
 body.uims-portal .uims-topbar {display:flex;align-items:center;gap:16px;min-height:76px;padding:16px 36px;background:var(--ui-canvas);border-bottom:1px solid var(--ui-border);}
 body.uims-portal .uims-page-title {font:400 14px/1.5 var(--ui-font);margin:0;min-width:0;color:var(--ui-ink);}
 body.uims-portal .uims-page-title::before {content:attr(data-portal-label);color:var(--ui-muted);}
-body.uims-portal .uims-user {display:flex;align-items:center;gap:14px;margin-left:auto;flex:none;max-width:45%;}
-body.uims-portal .uims-user-meta {font-size:14px;font-weight:600;text-align:right;min-width:0;white-space:nowrap;}
+body.uims-portal .uims-user {display:flex;align-items:center;gap:14px;margin-inline-start:auto;flex:none;max-width:45%;}
+body.uims-portal .uims-user-meta {font-size:14px;font-weight:600;text-align:end;min-width:0;white-space:nowrap;}
 body.uims-portal .uims-user-meta small {display:block;font-size:13px;font-weight:400;color:var(--ui-muted);margin-top:2px;}
 .student-avatar {width:36px;height:36px;display:grid;place-items:center;flex:none;border-radius:50%;background:var(--th-bg-e1e6e3,#e1e6e3);font-size:12px;color:var(--ui-ink);}
 body.uims-portal .uims-main-inner {width:100%;max-width:1560px;margin:0 auto;padding:36px 36px 56px;min-width:0;}
@@ -63,5 +63,11 @@ body.uims-portal .uims-main-inner {width:100%;max-width:1560px;margin:0 auto;pad
  body.uims-portal .uims-main-inner {padding:24px 18px 40px;}body.uims-portal .uims-topbar {padding:12px 18px;gap:12px;min-height:72px;}
  body.uims-portal .uims-page-title {font-size:14px;line-height:1.4;flex:1;}body.uims-portal .uims-page-title::before {display:none;}
  body.uims-portal .uims-user {gap:8px;max-width:32%;}body.uims-portal .uims-user-meta {display:none;}.student-avatar {width:32px;height:32px;}
+}
+/* Theme, notifications and avatar need ~120px; on the narrowest phones the title gives way instead. */
+@media(max-width:360px) {
+ body.uims-portal .uims-topbar {padding-inline:14px;gap:10px;}
+ body.uims-portal .uims-user {max-width:none;}
+ body.uims-portal .uims-page-title {overflow-wrap:anywhere;}
 }
 @media(prefers-reduced-motion:reduce) {body.uims-portal .uims-sidebar,.uims-sidebar-label {transition:none!important;}}

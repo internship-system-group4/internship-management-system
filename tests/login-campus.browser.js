@@ -50,12 +50,12 @@ async page => {
  check(await page.locator('[data-campus-animation]').inputValue()==='0'&&!await page.locator('[data-campus-pause]').isVisible(),'Reduced motion static mode');
  await fill('student@campus.test');await button().click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');check(true,'Reduced motion immediate server redirect');
  await page.emulateMedia({reducedMotion:'no-preference'});await page.context().clearCookies();
- await page.route('**/login-campus-scene.js',r=>r.abort());await page.goto(base+path);await page.waitForSelector('[data-scene-fallback]');
+ await page.route('**/login-campus-scene.js*',r=>r.abort());await page.goto(base+path);await page.waitForSelector('[data-scene-fallback]');
  check(await page.locator('.login-campus-photo').isVisible(),'Image fallback when scene fails');
- await fill('student@campus.test');await button().click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');check(true,'Scene failure still redirects');await page.unroute('**/login-campus-scene.js');
+ await fill('student@campus.test');await button().click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');check(true,'Scene failure still redirects');await page.unroute('**/login-campus-scene.js*');
  await page.context().clearCookies();
- await page.route('**/login-campus-scene.js',r=>r.fulfill({contentType:'text/javascript',body:'export async function createCampusScene(){return {setState(){},setReducedMotion(){},dispose(){},enter(){throw new Error("Injected animation failure");}}}'}));
- await page.goto(base+path);await fill('student@campus.test');await button().click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');check(true,'Animation exception still redirects');await page.unroute('**/login-campus-scene.js');
+ await page.route('**/login-campus-scene.js*',r=>r.fulfill({contentType:'text/javascript',body:'export async function createCampusScene(){return {setState(){},setReducedMotion(){},dispose(){},enter(){throw new Error("Injected animation failure");}}}'}));
+ await page.goto(base+path);await fill('student@campus.test');await button().click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');check(true,'Animation exception still redirects');await page.unroute('**/login-campus-scene.js*');
  await page.context().clearCookies();
  const nojs=await page.context().browser().newContext({javaScriptEnabled:false});const plain=await nojs.newPage();
  await plain.goto(base+path);await plain.getByLabel('Email address',{exact:true}).fill('student@campus.test');await plain.getByLabel('Password',{exact:true}).fill('Fixture-pass-2026');await plain.locator('[data-public-form] input[type=submit]').click();

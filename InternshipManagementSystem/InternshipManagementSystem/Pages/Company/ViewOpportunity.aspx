@@ -151,7 +151,7 @@
 
     <a class="vo-back"
        href="ManageOpportunities.aspx">
-        &larr; Back to opportunities
+        <%: L.T("Company.ViewOpportunity.BackToOpportunities") %>
     </a>
 
     <% if (!string.IsNullOrEmpty(ErrorMessage)) { %>
@@ -166,7 +166,7 @@
             <div>
                 <h2><%: Display(Item.Title) %></h2>
                 <div class="vo-muted">
-                    Opportunity details - Read-only view
+                    <%: L.T("Company.ViewOpportunity.OpportunityDetailsReadOnlyView") %>
                 </div>
             </div>
 
@@ -185,13 +185,13 @@
 
         <section class="vo-card">
 
-            <h3>Opportunity Information</h3>
+            <h3><%: L.T("Company.ViewOpportunity.OpportunityInformation") %></h3>
 
             <div class="vo-grid">
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Opportunity Title
+                        <%: L.T("Company.ViewOpportunity.OpportunityTitle") %>
                     </span>
                     <div class="vo-value">
                         <%: Display(Item.Title) %>
@@ -200,7 +200,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Department
+                        <%: L.T("Company.ViewOpportunity.Department") %>
                     </span>
                     <div class="vo-value">
                         <%: Display(Item.Department) %>
@@ -209,7 +209,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Training Mode
+                        <%: L.T("Company.ViewOpportunity.TrainingMode") %>
                     </span>
                     <div class="vo-value">
                         <%: Display(Item.TrainingMode) %>
@@ -218,7 +218,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Location
+                        <%: L.T("Company.ViewOpportunity.Location") %>
                     </span>
                     <div class="vo-value">
                         <%: Display(Item.Location) %>
@@ -227,7 +227,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Eligible College
+                        <%: L.T("Company.ViewOpportunity.EligibleCollege") %>
                     </span>
                     <div class="vo-value">
                         <%: Display(Item.EligibleCollege) %>
@@ -236,7 +236,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Technologies Used
+                        <%: L.T("Company.ViewOpportunity.TechnologiesUsed") %>
                     </span>
                     <div class="vo-value">
                         <%: Display(Item.TechnologiesUsed) %>
@@ -245,7 +245,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Opportunity ID
+                        <%: L.T("Company.ViewOpportunity.OpportunityID") %>
                     </span>
                     <div class="vo-value">
                         <%: Item.Id %>
@@ -254,7 +254,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Status
+                        <%: L.T("Company.ViewOpportunity.Status") %>
                     </span>
                     <div class="vo-value">
                         <%: Item.Status.ToString() %>
@@ -269,7 +269,7 @@
 
         <section class="vo-card">
 
-            <h3>Eligible Specializations</h3>
+            <h3><%: L.T("Company.ViewOpportunity.EligibleSpecializations") %></h3>
 
             <% if (Item.EligibleMajors != null &&
                    Item.EligibleMajors.Count > 0) { %>
@@ -285,7 +285,7 @@
             <% } else { %>
 
                 <p class="vo-muted">
-                    Not specified
+                    <%: L.T("Company.ViewOpportunity.NotSpecified") %>
                 </p>
 
             <% } %>
@@ -296,7 +296,7 @@
 
         <section class="vo-card">
 
-            <h3>Description</h3>
+            <h3><%: L.T("Company.ViewOpportunity.Description") %></h3>
 
             <p class="vo-long"><%: Display(Item.Description) %></p>
 
@@ -306,7 +306,7 @@
 
         <section class="vo-card">
 
-            <h3>Requirements</h3>
+            <h3><%: L.T("Company.ViewOpportunity.Requirements") %></h3>
 
             <p class="vo-long"><%: Display(Item.Requirements) %></p>
 
@@ -316,13 +316,13 @@
 
         <section class="vo-card">
 
-            <h3>Seats &amp; Schedule</h3>
+            <h3><%: L.T("Company.ViewOpportunity.SeatsSchedule") %></h3>
 
             <div class="vo-grid">
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Total Seats
+                        <%: L.T("Company.ViewOpportunity.TotalSeats") %>
                     </span>
                     <div class="vo-value">
                         <%: Item.TotalSeats %>
@@ -331,7 +331,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Filled Seats
+                        <%: L.T("Company.ViewOpportunity.FilledSeats") %>
                     </span>
                     <div class="vo-value">
                         <%: Item.FilledSeats %>
@@ -340,16 +340,16 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Duration
+                        <%: L.T("Company.ViewOpportunity.Duration") %>
                     </span>
                     <div class="vo-value">
-                        <%: Item.DurationWeeks %> weeks
+                        <%: Item.DurationWeeks %> <%: L.T("Company.ViewOpportunity.Weeks") %>
                     </div>
                 </div>
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Application Deadline
+                        <%: L.T("Company.ViewOpportunity.ApplicationDeadline") %>
                     </span>
                     <div class="vo-value">
                         <%: DateText(Item.ApplicationDeadline) %>
@@ -358,7 +358,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        Start Date
+                        <%: L.T("Company.ViewOpportunity.StartDate") %>
                     </span>
                     <div class="vo-value">
                         <%: DateText(Item.StartDate) %>
@@ -367,7 +367,7 @@
 
                 <div class="vo-field">
                     <span class="vo-label">
-                        End Date
+                        <%: L.T("Company.ViewOpportunity.EndDate") %>
                     </span>
                     <div class="vo-value">
                         <%: DateText(Item.EndDate) %>

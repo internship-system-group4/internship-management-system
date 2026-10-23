@@ -70,20 +70,20 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 placement.StudentId != CurrentStudent.Id ||
                 task.PlacementId != placement.Id)
             {
-                ShowMessage("Your confirmed placement was not found.", false, task);
+                ShowMessage(L.T("Student.MyTasks.YourConfirmedPlacementWasNotFound"), false, task);
                 return;
             }
 
             if (!task.AcceptsSubmission)
             {
-                ShowMessage("This task is not accepting submissions now.", false, task);
+                ShowMessage(L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions"), false, task);
                 return;
             }
 
             if (task.RequiresFileUpload)
             {
                 ShowMessage(
-                    "This task requires a file. File uploads are not available yet.",
+                    L.T("Student.MyTasks.ThisTaskRequiresAFileFile"),
                     false, task);
                 return;
             }
@@ -93,7 +93,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             if (submissionText == "" && submissionLink == "")
             {
-                ShowMessage("Enter submission text or a link.", false, task);
+                ShowMessage(L.T("Student.MyTasks.EnterSubmissionTextOrALink"), false, task);
                 return;
             }
 
@@ -107,7 +107,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     (address.Scheme != Uri.UriSchemeHttp &&
                      address.Scheme != Uri.UriSchemeHttps))
                 {
-                    ShowMessage("Enter a valid http or https link.", false, task);
+                    ShowMessage(L.T("Student.MyTasks.EnterAValidHttpOrHttps"), false, task);
                     return;
                 }
             }
@@ -132,7 +132,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 task.Status != InternshipTaskStatus.RevisionRequested)
             {
                 ShowMessage(
-                    "You already submitted this task. Wait for a revision request.",
+                    L.T("Student.MyTasks.YouAlreadySubmittedThisTaskWait"),
                     false, task);
                 return;
             }
@@ -152,13 +152,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 if (string.IsNullOrEmpty(newId))
                 {
-                    ShowMessage("Submission could not be saved.", false, task);
+                    ShowMessage(L.T("Student.MyTasks.SubmissionCouldNotBeSaved"), false, task);
                     return;
                 }
             }
             catch (FirebaseException)
             {
-                ShowMessage("Submission could not be saved. Try again.", false, task);
+                ShowMessage(L.T("Student.MyTasks.SubmissionCouldNotBeSavedTry"), false, task);
                 return;
             }
 
@@ -181,7 +181,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             catch (FirebaseException)
             {
                 ShowMessage(
-                    "Submission was saved, but the task status could not be updated. Refresh the page.",
+                    L.T("Student.MyTasks.SubmissionWasSavedButTheTask"),
                     false, task);
                 return;
             }
@@ -190,20 +190,20 @@ namespace InternshipManagementSystem.Pages.StudentArea
             txtSubmissionLink.Text = "";
 
             LoadTasks();
-            ShowMessage("Submission saved successfully.", true, task);
+            ShowMessage(L.T("Student.MyTasks.SubmissionSavedSuccessfully"), true, task);
         }
 
         private void ShowTask(InternshipTask task)
         {
             litTaskTitle.Text = task.Title ?? "";
-            litStatus.Text = task.Status.ToString();
+            litStatus.Text = L.Value("TaskStatus", task.Status);
             litDescription.Text = task.Description ?? "";
             litInstructions.Text = task.Instructions ?? "";
 
             litDeadline.Text = task.Deadline > 0
                 ? DateTimeOffset.FromUnixTimeMilliseconds(task.Deadline)
                     .UtcDateTime.ToString("yyyy-MM-dd HH:mm") + " UTC"
-                : "Not set";
+                : L.T("Student.MyTasks.NotSet");
 
             rptCriteria.DataSource = task.Criteria;
             rptCriteria.DataBind();

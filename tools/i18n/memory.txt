@@ -1,0 +1,5891 @@
+# Translation memory: English text -> Arabic, applied to every resource entry with the same English text unless the
+# entry gives its own "ar:". One block per English string. Glossary: docs/34-localization.md.
+
+en: Skip to content
+ar: انتقل إلى المحتوى
+
+en: UIMS home
+ar: الصفحة الرئيسية لنظام إدارة التدريب
+
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+en: Main navigation
+ar: التنقّل الرئيسي
+
+en: Open main menu
+ar: فتح القائمة الرئيسية
+
+en: Home
+ar: الرئيسية
+
+en: About us
+ar: من نحن
+
+en: Opportunities
+ar: فرص التدريب
+
+en: How it works
+ar: كيف يعمل النظام
+
+en: Contact us
+ar: تواصل معنا
+
+en: Internship Management System
+ar: نظام إدارة التدريب الميداني
+
+en: Connecting students, university supervisors and companies throughout the internship journey at German Jordanian University.
+ar: يربط الطلبة والمشرفين الأكاديميين والشركات طوال رحلة التدريب الميداني في الجامعة الألمانية الأردنية.
+
+en: Quick links
+ar: روابط سريعة
+
+en: Contact
+ar: التواصل
+
+en: For account access and internship guidance, contact your university coordinator.
+ar: للحصول على حساب أو إرشاد حول التدريب، تواصل مع منسّق التدريب في الجامعة.
+
+en: Message the coordination team
+ar: راسل فريق التنسيق
+
+en: Official links
+ar: روابط رسمية
+
+en: GJU official website
+ar: الموقع الرسمي للجامعة
+
+en: (opens in a new tab)
+ar: (يُفتح في علامة تبويب جديدة)
+
+en: University Location
+ar: موقع الجامعة
+
+en: Amman Madaba Street, Amman, Jordan
+ar: شارع عمّان–مادبا، عمّان، الأردن
+
+en: Map of the German Jordanian University main campus, Amman Madaba Street, Jordan
+ar: خريطة الحرم الرئيسي للجامعة الألمانية الأردنية، شارع عمّان–مادبا، الأردن
+
+en: Loading map…
+ar: جارٍ تحميل الخريطة…
+
+en: Explore campus
+ar: استكشف الحرم الجامعي
+
+en: Replay flight
+ar: إعادة الجولة
+
+en: Get directions
+ar: الاتجاهات
+
+en: View on
+ar: عرض على
+
+en: Google Maps
+ar: خرائط Google
+
+en: UIMS · Group 4 · Student project · GJU-inspired visual theme
+ar: نظام إدارة التدريب · المجموعة 4 · مشروع طلابي · هوية بصرية مستوحاة من الجامعة
+
+en: Pause waves
+ar: إيقاف الأمواج
+
+en: Powered by — Meet the development team
+ar: فريق التطوير — تعرّف على الفريق
+
+en: Powered by
+ar: فريق التطوير
+
+en: Close navigation
+ar: إغلاق التنقّل
+
+en: Pin navigation open
+ar: تثبيت قائمة التنقّل مفتوحة
+
+en: Pin navigation
+ar: تثبيت القائمة
+
+en: Portal
+ar: البوابة
+
+en: Dashboard
+ar: لوحة التحكم
+
+en: Explore Opportunities
+ar: استكشاف فرص التدريب
+
+en: My Applications
+ar: طلباتي
+
+en: My Tasks
+ar: مهامي
+
+en: My Progress & Evaluation
+ar: تقدّمي وتقييمي
+
+en: Meetings
+ar: الاجتماعات
+
+en: Manage Opportunities
+ar: إدارة فرص التدريب
+
+en: Applications Review
+ar: مراجعة الطلبات
+
+en: My Trainees
+ar: المتدرّبون
+
+en: Manage Tasks
+ar: إدارة المهام
+
+en: Review Submissions
+ar: مراجعة التسليمات
+
+en: Final Evaluation
+ar: التقييم النهائي
+
+en: Student Progress
+ar: تقدّم الطلبة
+
+en: Final Academic Evaluation
+ar: التقييم الأكاديمي النهائي
+
+en: Manage Students
+ar: إدارة الطلبة
+
+en: Manage Companies
+ar: إدارة الشركات
+
+en: Academic Supervisors
+ar: المشرفون الأكاديميون
+
+en: Groups & Assignments
+ar: المجموعات والإسناد
+
+en: Placements & Progress
+ar: أماكن التدريب والتقدّم
+
+en: Final Completion Review
+ar: مراجعة إتمام التدريب
+
+en: Contact Messages
+ar: رسائل التواصل
+
+en: Notifications
+ar: الإشعارات
+
+en: new
+ar: جديدة
+
+en: Notifications are unavailable right now.
+ar: الإشعارات غير متاحة حاليًا.
+
+en: You're all caught up. New tasks, decisions and updates will appear here.
+ar: لا يوجد جديد. ستظهر هنا المهام والقرارات والتحديثات الجديدة.
+
+en: View all notifications
+ar: عرض كل الإشعارات
+
+en: Theme
+ar: السمة
+
+en: Light
+ar: فاتح
+
+en: Dark
+ar: داكن
+
+en: System
+ar: حسب النظام
+
+en: Colour theme: Light
+ar: سمة الألوان: فاتح
+
+en: Colour theme
+ar: سمة الألوان
+
+en: Available dated records; current categories are a snapshot.
+ar: السجلات المؤرخة المتاحة؛ الفئات الحالية لقطة للوضع الراهن.
+
+en: Approval activity range
+ar: نطاق نشاط الاعتماد
+
+en: 6 months
+ar: 6 أشهر
+
+en: 12 months
+ar: 12 شهرًا
+
+en: Available approval events by month, UTC
+ar: أحداث الاعتماد المتاحة حسب الشهر (UTC)
+
+en: View data
+ar: عرض البيانات
+
+en: Preparing dated activity…
+ar: جارٍ تجهيز النشاط المؤرخ…
+
+en: Activity data and record details
+ar: بيانات النشاط وتفاصيل السجلات
+
+en: , available dated records only
+ar: ، السجلات المؤرخة المتاحة فقط
+
+en: Month
+ar: الشهر
+
+en: Details
+ar: التفاصيل
+
+en: Preparing current categories…
+ar: جارٍ تجهيز الفئات الحالية…
+
+en: Category data and record details
+ar: بيانات الفئات وتفاصيل السجلات
+
+en: , current snapshot in
+ar: ، لقطة حالية ضمن
+
+en: Category
+ar: الفئة
+
+en: View records
+ar: عرض السجلات
+
+en: Current snapshot · mutually exclusive categories
+ar: لقطة حالية · فئات غير متداخلة
+
+en: Preparing breakdown…
+ar: جارٍ تجهيز التوزيع…
+
+en: Select a category to inspect its underlying authorized records. The range selector changes dated activity only; this breakdown shows current records.
+ar: اختر فئة لعرض السجلات المصرّح بها التي تتكوّن منها. يغيّر اختيار النطاق النشاط المؤرخ فقط، ويعرض هذا التوزيع السجلات الحالية.
+
+en: Breakdown data
+ar: بيانات التوزيع
+
+en: , current snapshot
+ar: ، لقطة حالية
+
+en: JavaScript enables charts, range filtering and drill-down. Current values and data tables above remain available.
+ar: تتيح JavaScript الرسوم البيانية وتصفية النطاق وعرض التفاصيل. تبقى القيم الحالية وجداول البيانات أعلاه متاحة.
+
+en: Close details
+ar: إغلاق التفاصيل
+
+en: No matching records in this scope.
+ar: لا توجد سجلات مطابقة ضمن هذا النطاق.
+
+en: Previous
+ar: السابق
+
+en: Next
+ar: التالي
+
+en: Done
+ar: تم
+
+en: Select a stage for details
+ar: اختر مرحلة لعرض تفاصيلها
+
+en: Swipe through stages. Select one to view its details.
+ar: تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.
+
+en: Journey details
+ar: تفاصيل المسار
+
+en: Close journey details
+ar: إغلاق تفاصيل المسار
+
+en: Details reflect the current server record.
+ar: تعكس التفاصيل السجل الحالي على الخادم.
+
+en: Close
+ar: إغلاق
+
+en: Student navigation
+ar: قائمة الطالب
+
+en: Log out
+ar: تسجيل الخروج
+
+en: Close navigation backdrop
+ar: إغلاق خلفية التنقّل
+
+en: Open navigation
+ar: فتح قائمة التنقّل
+
+en: Student portal
+ar: بوابة الطالب
+
+en: Company navigation
+ar: قائمة الشركة
+
+en: Company portal
+ar: بوابة الشركة
+
+en: Academic navigation
+ar: القائمة الأكاديمية
+
+en: Academic supervisor portal
+ar: بوابة المشرف الأكاديمي
+
+en: Coordinator navigation
+ar: قائمة منسّق التدريب
+
+en: Coordinator portal
+ar: بوابة منسّق التدريب
+
+en: Home | GJU Internship Management System
+ar: الرئيسية | نظام إدارة التدريب – الجامعة الألمانية الأردنية
+
+en: About | GJU Internship Management System
+ar: من نحن | نظام إدارة التدريب – الجامعة الألمانية الأردنية
+
+en: Contact | GJU Internship Management System
+ar: تواصل معنا | نظام إدارة التدريب – الجامعة الألمانية الأردنية
+
+en: Meet the Team | GJU Internship Management System
+ar: تعرّف على الفريق | نظام إدارة التدريب – الجامعة الألمانية الأردنية
+
+en: Access Denied | UIMS
+ar: الوصول مرفوض | نظام إدارة التدريب
+
+en: Login | UIMS
+ar: تسجيل الدخول | نظام إدارة التدريب
+
+en: Password Recovery | UIMS
+ar: استعادة كلمة المرور | نظام إدارة التدريب
+
+en: Academic Dashboard
+ar: لوحة التحكم الأكاديمية
+
+en: Add Opportunity
+ar: إضافة فرصة تدريب
+
+en: Add student
+ar: إضافة طالب
+
+en: Applicant Document
+ar: مستند المتقدّم
+
+en: Change Password
+ar: تغيير كلمة المرور
+
+en: Company Dashboard
+ar: لوحة تحكم الشركة
+
+en: Configured groups
+ar: المجموعات المُعدّة
+
+en: Coordinator Dashboard
+ar: لوحة تحكم منسّق التدريب
+
+en: Internship Application
+ar: طلب التدريب
+
+en: Manage students
+ar: إدارة الطلبة
+
+en: My Account
+ar: حسابي
+
+en: My Meetings
+ar: اجتماعاتي
+
+en: My Profile
+ar: ملفي الشخصي
+
+en: Opportunity Details
+ar: تفاصيل فرصة التدريب
+
+en: Placement Details
+ar: تفاصيل مكان التدريب
+
+en: Student CV & Portfolio
+ar: السيرة الذاتية وملف الأعمال
+
+en: Student Dashboard
+ar: لوحة تحكم الطالب
+
+en: Student records
+ar: سجلات الطلبة
+
+en: Trainee Details
+ar: تفاصيل المتدرّب
+
+en: View Opportunity
+ar: عرض فرصة التدريب
+
+# ---------------------------------------------------------------- Home
+en: Aerial photograph of German Jordanian University's stone buildings and courtyards
+ar: صورة جوية لمباني الجامعة الألمانية الأردنية الحجرية وساحاتها
+
+en: Campus landmarks
+ar: معالم الحرم الجامعي
+
+en: About the system
+ar: عن النظام
+
+en: Colleges
+ar: الكليات
+
+en: Campus story chapters
+ar: فصول قصة الحرم الجامعي
+
+en: Chapter 1: The campus
+ar: الفصل 1: الحرم الجامعي
+
+en: Campus
+ar: الحرم
+
+en: Chapter 2: The connection
+ar: الفصل 2: الصلة
+
+en: Connect
+ar: التواصل
+
+en: Chapter 3: Your field
+ar: الفصل 3: تخصّصك
+
+en: Study
+ar: الدراسة
+
+en: Chapter 4: Your journey
+ar: الفصل 4: مسارك
+
+en: Journey
+ar: المسار
+
+en: Chapter 5: What comes next
+ar: الفصل 5: الخطوة التالية
+
+en: Explore
+ar: استكشف
+
+en: German Jordanian University · Campus photograph
+ar: الجامعة الألمانية الأردنية · صورة للحرم الجامعي
+
+en: Pause campus motion
+ar: إيقاف حركة الحرم الجامعي
+
+en: Campus today.
+ar: حرمٌ جامعي اليوم.
+
+en: Career tomorrow.
+ar: مسيرة مهنية غدًا.
+
+en: Your internship journey at German Jordanian University. Connect your studies with practical experience, from the first application to final review.
+ar: رحلتك في التدريب الميداني في الجامعة الألمانية الأردنية. اربط دراستك بالخبرة العملية، من أول طلب حتى المراجعة النهائية.
+
+en: Explore internships →
+ar: استكشف فرص التدريب ←
+
+en: On this page
+ar: في هذه الصفحة
+
+en: Process video
+ar: فيديو الخطوات
+
+en: Explore your campus
+ar: استكشف حرمك الجامعي
+
+en: A shared
+ar: نقطة انطلاق
+
+en: starting point.
+ar: مشتركة.
+
+en: UIMS connects students, companies and university supervisors. Manage applications, follow training tasks and stay connected through every stage of your internship.
+ar: يربط نظام إدارة التدريب الطلبة والشركات والمشرفين الأكاديميين. أدِر طلباتك، وتابع مهام التدريب، وابقَ على تواصل في كل مرحلة من مراحل تدريبك.
+
+en: About the internship system →
+ar: عن نظام التدريب ←
+
+en: Your field.
+ar: تخصّصك.
+
+en: Your future.
+ar: مستقبلك.
+
+en: Explore the college, programs and specializations currently supported by the internship portal.
+ar: تعرّف على الكلية والبرامج والمسارات التي تدعمها بوابة التدريب حاليًا.
+
+en: Programs & specializations
+ar: البرامج والمسارات
+
+en: Specializations
+ar: المسارات
+
+en: Learn. Apply.
+ar: تعلّم. تقدّم.
+
+en: Grow.
+ar: تطوّر.
+
+en: Understand each stage before you begin. Your company and academic supervisors guide your progress along the way.
+ar: افهم كل مرحلة قبل أن تبدأ. يرافقك مشرف الشركة والمشرف الأكاديمي في تقدّمك طوال الطريق.
+
+en: Explore opportunities
+ar: استكشف فرص التدريب
+
+en: Find internships that match your college and major.
+ar: اعثر على فرص تدريب تناسب كليتك وتخصّصك.
+
+en: Apply & confirm
+ar: تقدّم وأكِّد
+
+en: Apply, follow the company decision and confirm one accepted offer.
+ar: قدّم طلبك، وتابع قرار الشركة، وأكِّد عرضًا مقبولًا واحدًا.
+
+en: Train & grow
+ar: تدرّب وتطوّر
+
+en: Complete tasks, submit work and learn from your supervisors' feedback.
+ar: أنجز المهام، وسلّم أعمالك، واستفد من ملاحظات مشرفيك.
+
+en: Complete your review
+ar: أتمّ مراجعتك
+
+en: Track approved hours and evaluations through the final university review.
+ar: تابع الساعات المعتمدة والتقييمات حتى المراجعة النهائية في الجامعة.
+
+en: Watch the process guide ↓
+ar: شاهد دليل الخطوات ↓
+
+en: Make your
+ar: اخطُ
+
+en: next move.
+ar: خطوتك التالية.
+
+en: Discover published internship summaries. Log in with your university account to view full details and apply.
+ar: اطّلع على ملخّصات فرص التدريب المنشورة. سجّل الدخول بحسابك الجامعي لعرض التفاصيل كاملة والتقدّم.
+
+en: Explore opportunities ↓
+ar: استكشف فرص التدريب ↓
+
+en: Log in to your portal
+ar: سجّل الدخول إلى بوابتك
+
+en: A campus
+ar: حرمٌ جامعي
+
+en: you know.
+ar: تعرفه.
+
+en: The entrance, the courtyard and the spaces between. Explore the German Jordanian University landmarks that shape this experience.
+ar: المدخل والساحة والمساحات بينهما. استكشف معالم الجامعة الألمانية الأردنية التي تصنع هذه التجربة.
+
+en: Timber courtyard waterwheel beside its limestone support and blue water basin at GJU
+ar: الناعورة الخشبية في ساحة الجامعة بجانب دعامتها من الحجر الجيري وحوض الماء الأزرق
+
+en: The courtyard waterwheel
+ar: ناعورة الساحة
+
+en: GJU Gate 1 with its original bilingual university sign and metal entrance gates
+ar: البوابة 1 للجامعة الألمانية الأردنية بلافتتها الأصلية ثنائية اللغة وبواباتها المعدنية
+
+en: Gate 1, German Jordanian University
+ar: البوابة 1، الجامعة الألمانية الأردنية
+
+en: Glazed university connector framed by limestone buildings, steps and a courtyard tree
+ar: ممرّ زجاجي في الجامعة تحيط به مبانٍ من الحجر الجيري ودرجات وشجرة في الساحة
+
+en: Stone, glass and shared spaces
+ar: حجر وزجاج ومساحات مشتركة
+
+en: See the path
+ar: تعرّف على الطريق
+
+en: ahead.
+ar: أمامك.
+
+en: Understand the internship process. Use this guide alongside the steps above, and ask your coordinator about university-specific requirements.
+ar: افهم خطوات التدريب الميداني. استخدم هذا الدليل مع الخطوات أعلاه، واسأل منسّق التدريب عن متطلبات الجامعة الخاصة.
+
+en: Explore the four steps ↑
+ar: استكشف الخطوات الأربع ↑
+
+en: University internship process video
+ar: فيديو خطوات التدريب في الجامعة
+
+en: Your browser does not support video.
+ar: لا يدعم متصفحك تشغيل الفيديو.
+
+en: Open the video
+ar: فتح الفيديو
+
+en: Development notice: captions for this video have not been provided.
+ar: ملاحظة تطوير: لم تُوفَّر ترجمة نصية لهذا الفيديو.
+
+en: The real German Jordanian University courtyard, with its timber waterwheel, limestone buildings and glazed connector
+ar: ساحة الجامعة الألمانية الأردنية الحقيقية بناعورتها الخشبية ومبانيها من الحجر الجيري وممرّها الزجاجي
+
+en: Official video coming here.
+ar: سيُعرض الفيديو الرسمي هنا.
+
+en: Development placeholder: the university's internship process video and captions have not been provided yet.
+ar: عنصر مؤقت للتطوير: لم يُوفَّر بعد فيديو خطوات التدريب الخاص بالجامعة وترجمته النصية.
+
+en: Read the internship steps →
+ar: اقرأ خطوات التدريب ←
+
+en: The next chapter
+ar: الفصل التالي
+
+en: is yours.
+ar: لك.
+
+en: Experience in your field starts with a first look. Browse published summaries, then log in to view full details and apply through your student portal.
+ar: تبدأ الخبرة في تخصّصك بنظرة أولى. تصفّح الملخّصات المنشورة، ثم سجّل الدخول لعرض التفاصيل كاملة والتقدّم عبر بوابة الطالب.
+
+en: Available internship previews
+ar: ملخّصات فرص التدريب المتاحة
+
+en: No public internship summaries are published right now. Check back later or log in to view your student portal.
+ar: لا توجد ملخّصات منشورة لفرص التدريب حاليًا. عُد لاحقًا أو سجّل الدخول لعرض بوابة الطالب.
+
+en: Log in to view details
+ar: سجّل الدخول لعرض التفاصيل
+
+en: Only published summaries are public. Full details and applications require an authenticated student account.
+ar: الملخّصات المنشورة فقط متاحة للعموم. تتطلّب التفاصيل الكاملة والتقدّم حساب طالب مسجّلًا.
+
+en: Ready for your next chapter?
+ar: هل أنت مستعد لفصلك التالي؟
+
+en: Continue with your university internship account.
+ar: تابع باستخدام حسابك الجامعي في نظام التدريب.
+
+en: Log in to get started
+ar: سجّل الدخول للبدء
+
+# ---------------------------------------------------------------- About
+en: Muted preview of the German Jordanian University film: campus buildings, students and the German Year
+ar: معاينة صامتة لفيلم الجامعة الألمانية الأردنية: مباني الحرم والطلبة والسنة الألمانية
+
+en: Play preview
+ar: تشغيل المعاينة
+
+en: Turn sound on
+ar: تشغيل الصوت
+
+en: Discover GJU
+ar: اكتشف الجامعة
+
+en: Where Learning Meets Experience
+ar: حيث يلتقي التعلّم بالخبرة
+
+en: Explore the campus, the university’s applied learning approach and the purpose behind our internship management project.
+ar: استكشف الحرم الجامعي ونهج الجامعة في التعليم التطبيقي والغاية من مشروعنا لإدارة التدريب الميداني.
+
+en: Play university film
+ar: تشغيل فيلم الجامعة
+
+en: (1 min 48 s, with sound)
+ar: (دقيقة و48 ثانية، مع الصوت)
+
+en: Explore our story
+ar: اكتشف قصتنا
+
+en: The university
+ar: الجامعة
+
+en: The German Jordanian University (GJU) is a public Jordanian university, founded by Royal Decree in 2005 following a memorandum of understanding between the governments of Jordan and Germany.
+ar: الجامعة الألمانية الأردنية جامعة أردنية حكومية، تأسست بإرادة ملكية سامية عام 2005 بناءً على مذكرة تفاهم بين حكومتَي الأردن وألمانيا.
+
+en: Its education links academic study with practical experience and with what industry needs, following the German model of applied sciences.
+ar: يربط تعليمها الدراسة الأكاديمية بالخبرة العملية وباحتياجات سوق العمل، وفق النموذج الألماني للعلوم التطبيقية.
+
+en: Established in 2005
+ar: تأسست عام 2005
+
+en: Jordanian–German Cooperation
+ar: تعاون أردني–ألماني
+
+en: Visit the official GJU website
+ar: زيارة الموقع الرسمي للجامعة
+
+en: Gate 1 of the German Jordanian University campus, with the university name in Arabic and English
+ar: البوابة 1 لحرم الجامعة الألمانية الأردنية، وعليها اسم الجامعة بالعربية والإنجليزية
+
+en: The GJU approach
+ar: نهج الجامعة
+
+en: What Makes GJU Distinctive
+ar: ما الذي يميّز الجامعة
+
+en: Applied Education
+ar: التعليم التطبيقي
+
+en: Connecting academic knowledge with practical projects and professional experience.
+ar: ربط المعرفة الأكاديمية بالمشاريع العملية والخبرة المهنية.
+
+en: The German Year
+ar: السنة الألمانية
+
+en: A distinctive international experience combining a study semester at a partner university with an internship semester in Germany.
+ar: تجربة دولية مميزة تجمع فصلًا دراسيًا في جامعة شريكة وفصل تدريب عملي في ألمانيا.
+
+en: Industry Connections
+ar: الصلة بسوق العمل
+
+en: Building relationships between education and professional practice through training, collaboration and industry engagement.
+ar: بناء الصلة بين التعليم والممارسة المهنية من خلال التدريب والتعاون والشراكة مع القطاع الصناعي.
+
+en: University identity
+ar: هوية الجامعة
+
+en: The University’s Vision and Mission
+ar: رؤية الجامعة ورسالتها
+
+en: Vision
+ar: الرؤية
+
+en: Inspiring innovation through applied education.
+ar: إلهام الابتكار من خلال التعليم التطبيقي.
+
+en: Mission
+ar: الرسالة
+
+en: Providing applied education and scientific research that support entrepreneurship and sustainable development through engagement with industry and with local, German and global partners.
+ar: تقديم تعليم تطبيقي وبحث علمي يدعمان الريادة والتنمية المستدامة من خلال الشراكة مع القطاع الصناعي ومع الشركاء المحليين والألمان والدوليين.
+
+en: Selected values
+ar: من قيم الجامعة
+
+en: Diversity, Equity and Inclusion
+ar: التنوّع والإنصاف والشمول
+
+en: Innovation and Entrepreneurial Spirit
+ar: الابتكار وروح الريادة
+
+en: Sustainability
+ar: الاستدامة
+
+en: Loyalty and Engagement
+ar: الانتماء والمشاركة
+
+en: English summary of the identity published by German Jordanian University. These are the university’s statements, not the development team’s.
+ar: ملخّص للهوية التي نشرتها الجامعة الألمانية الأردنية. هذه عبارات الجامعة، وليست عبارات فريق التطوير.
+
+en: Academic schools
+ar: الكليات الأكاديمية
+
+en: A Diverse Academic Community
+ar: مجتمع أكاديمي متنوّع
+
+en: GJU’s programs are organized across eight schools.
+ar: تتوزّع برامج الجامعة على ثماني كليات.
+
+en: Business School
+ar: كلية إدارة الأعمال
+
+en: School of Applied Humanities and Social Sciences
+ar: كلية العلوم الإنسانية والاجتماعية التطبيقية
+
+en: School of Applied Medical Sciences
+ar: كلية العلوم الطبية التطبيقية
+
+en: School of Applied Technical Sciences
+ar: كلية العلوم التقنية التطبيقية
+
+en: School of Architecture and Built Environment
+ar: كلية العمارة والبيئة المبنية
+
+en: School of Computing
+ar: كلية الحوسبة
+
+en: School of Sustainable Systems Engineering
+ar: كلية هندسة النظم المستدامة
+
+en: School of Nursing
+ar: كلية التمريض
+
+en: This list describes the university. UIMS, our student project, is currently configured for the
+ar: تصف هذه القائمة الجامعة. أمّا نظام إدارة التدريب، مشروعنا الطلابي، فهو مُعدّ حاليًا لـ
+
+en: only.
+ar: فقط.
+
+en: Explore GJU programs on the official website
+ar: استكشف برامج الجامعة على الموقع الرسمي
+
+en: Aerial view of the German Jordanian University campus buildings and surrounding farmland
+ar: منظر جوي لمباني حرم الجامعة الألمانية الأردنية والأراضي الزراعية المحيطة
+
+en: From the university to our project
+ar: من الجامعة إلى مشروعنا
+
+en: Our student project
+ar: مشروعنا الطلابي
+
+en: About UIMS
+ar: عن نظام إدارة التدريب
+
+en: UIMS is an internship management project designed to connect students, company supervisors, academic supervisors and internship coordinators in one organized experience.
+ar: نظام إدارة التدريب مشروع لإدارة التدريب الميداني، صُمّم ليجمع الطلبة ومشرفي الشركات والمشرفين الأكاديميين ومنسّقي التدريب في تجربة واحدة منظّمة.
+
+en: Its purpose is to make the internship journey clearer by organizing applications, training tasks, approved hours, feedback and completion evaluations.
+ar: غايته أن يجعل رحلة التدريب أوضح، بتنظيم الطلبات ومهام التدريب والساعات المعتمدة والملاحظات وتقييمات الإتمام.
+
+en: UIMS is a Group 4 student project. It is not the university’s official portal and does not replace MyGJU or published university policies.
+ar: نظام إدارة التدريب مشروع طلابي للمجموعة 4. وليس البوابة الرسمية للجامعة، ولا يحلّ محلّ MyGJU أو سياسات الجامعة المنشورة.
+
+en: Students talking on a path between GJU campus buildings
+ar: طلبة يتحدّثون على ممرّ بين مباني حرم الجامعة
+
+en: Project objectives
+ar: أهداف المشروع
+
+en: Help students discover relevant internship opportunities.
+ar: مساعدة الطلبة على اكتشاف فرص التدريب المناسبة.
+
+en: Organize applications and training activities.
+ar: تنظيم الطلبات وأنشطة التدريب.
+
+en: Make progress, feedback and approved hours easier to follow.
+ar: تسهيل متابعة التقدّم والملاحظات والساعات المعتمدة.
+
+en: Support coordination between students, supervisors and coordinators.
+ar: دعم التنسيق بين الطلبة والمشرفين ومنسّقي التدريب.
+
+en: Our project workflow
+ar: مسار العمل في مشروعنا
+
+en: The Journey Through UIMS
+ar: الرحلة عبر نظام إدارة التدريب
+
+en: How the internship moves through UIMS. This describes our project’s workflow, not every official GJU administrative procedure.
+ar: كيف يسير التدريب عبر نظام إدارة التدريب. يصف هذا مسار العمل في مشروعنا، وليس كل الإجراءات الإدارية الرسمية في الجامعة.
+
+en: Discover
+ar: اكتشف
+
+en: Visitors can browse opportunity summaries; full details and applications require signing in.
+ar: يمكن للزوّار تصفّح ملخّصات الفرص؛ أمّا التفاصيل الكاملة والتقدّم فيتطلّبان تسجيل الدخول.
+
+en: Apply
+ar: تقدّم
+
+en: Students apply to opportunities open to their college and major under the system’s rules.
+ar: يتقدّم الطلبة إلى الفرص المتاحة لكليتهم وتخصّصهم وفق قواعد النظام.
+
+en: Train
+ar: تدرّب
+
+en: Trainees complete tasks and receive feedback from their company supervisor.
+ar: ينجز المتدرّبون المهام ويتلقّون ملاحظات مشرف الشركة.
+
+en: Track
+ar: تابِع
+
+en: Progress, feedback and approved hours stay visible as the internship continues.
+ar: يبقى التقدّم والملاحظات والساعات المعتمدة ظاهرة طوال فترة التدريب.
+
+en: Complete
+ar: أتمِم
+
+en: The company’s final evaluation goes to the academic supervisor, who forwards the academic evaluation to the coordinator for final approval.
+ar: يصل التقييم النهائي من الشركة إلى المشرف الأكاديمي، الذي يرسل التقييم الأكاديمي إلى منسّق التدريب للاعتماد النهائي.
+
+en: Take the Next Step
+ar: اخطُ الخطوة التالية
+
+en: Explore internship opportunities and start connecting your learning with practical experience.
+ar: استكشف فرص التدريب وابدأ بربط تعلّمك بالخبرة العملية.
+
+en: Contact Us
+ar: تواصل معنا
+
+en: University introduction film
+ar: الفيلم التعريفي بالجامعة
+
+en: the film
+ar: الفيلم
+
+en: Your browser cannot play this video here.
+ar: لا يستطيع متصفحك تشغيل هذا الفيديو هنا.
+
+en: Open the campus film (MP4, 13 MB)
+ar: فتح فيلم الحرم الجامعي (MP4، 13 ميغابايت)
+
+en: 1 min 48 s · Captions are not available for this film.
+ar: دقيقة و48 ثانية · لا تتوفر ترجمة نصية لهذا الفيلم.
+
+en: Open the video file
+ar: فتح ملف الفيديو
+
+# ---------------------------------------------------------------- Contact
+en: Contact UIMS
+ar: تواصل مع نظام إدارة التدريب
+
+en: Let’s Start a Conversation
+ar: لنبدأ الحديث
+
+en: Have a question about using UIMS? Send us a message and tell us how we can help.
+ar: لديك سؤال عن استخدام نظام إدارة التدريب؟ أرسل لنا رسالة وأخبرنا كيف يمكننا المساعدة.
+
+en: A paved walkway between limestone buildings at the German Jordanian University, with the courtyard waterwheel
+ar: ممرّ مرصوف بين مبانٍ من الحجر الجيري في الجامعة الألمانية الأردنية، وتظهر ناعورة الساحة
+
+en: University information
+ar: معلومات الجامعة
+
+en: This form reaches the UIMS coordination team, not the university’s own offices. To reach German Jordanian University directly, use its official channels.
+ar: يصل هذا النموذج إلى فريق التنسيق في نظام إدارة التدريب، وليس إلى مكاتب الجامعة. للتواصل مع الجامعة الألمانية الأردنية مباشرةً، استخدم قنواتها الرسمية.
+
+en: Official GJU website
+ar: الموقع الرسمي للجامعة
+
+en: Main campus location, Amman Madaba Street
+ar: موقع الحرم الرئيسي، شارع عمّان–مادبا
+
+en: (opens Google Maps in a new tab)
+ar: (يفتح خرائط Google في علامة تبويب جديدة)
+
+en: Message sent
+ar: أُرسلت الرسالة
+
+en: Your message has been received. Thank you for contacting us.
+ar: تم استلام رسالتك. شكرًا لتواصلك معنا.
+
+en: Send another message
+ar: إرسال رسالة أخرى
+
+en: Send a message
+ar: أرسل رسالة
+
+en: All fields are required
+ar: جميع الحقول مطلوبة
+
+en: Form readiness
+ar: جاهزية النموذج
+
+en: 0 of 4 fields ready
+ar: 0 من 4 حقول جاهزة
+
+en: Full Name
+ar: الاسم الكامل
+
+en: Your full name
+ar: اسمك الكامل
+
+en: Enter your full name.
+ar: أدخل اسمك الكامل.
+
+en: Your name needs at least 2 characters.
+ar: يجب أن يتكوّن الاسم من حرفين على الأقل.
+
+en: Email Address
+ar: البريد الإلكتروني
+
+en: Enter your email address.
+ar: أدخل بريدك الإلكتروني.
+
+en: Enter an email address like name@example.com.
+ar: أدخل بريدًا إلكترونيًا بصيغة name@example.com.
+
+en: Subject
+ar: الموضوع
+
+en: What would you like to discuss?
+ar: ما الموضوع الذي تودّ مناقشته؟
+
+en: Enter a subject for your message.
+ar: أدخل موضوعًا لرسالتك.
+
+en: Your subject needs at least 5 characters.
+ar: يجب أن يتكوّن الموضوع من 5 أحرف على الأقل.
+
+en: Message
+ar: الرسالة
+
+en: Enter your message.
+ar: أدخل رسالتك.
+
+en: Your message needs at least 20 characters.
+ar: يجب أن تتكوّن الرسالة من 20 حرفًا على الأقل.
+
+en: 20–4,000 characters. Share enough detail to help the team understand your question.
+ar: من 20 إلى 4,000 حرف. اذكر تفاصيل كافية لمساعدة الفريق على فهم سؤالك.
+
+en: Leave this field empty
+ar: اترك هذا الحقل فارغًا
+
+en: Please do not include passwords or sensitive account information.
+ar: يُرجى عدم إدراج كلمات المرور أو أي معلومات حساسة عن الحساب.
+
+en: Send message
+ar: إرسال الرسالة
+
+en: Your message and email address are saved for the UIMS coordination team to review and follow up.
+ar: تُحفظ رسالتك وبريدك الإلكتروني ليراجعها فريق التنسيق في نظام إدارة التدريب ويتابعها.
+
+en: Before you write
+ar: قبل أن تكتب
+
+en: I need an internship account.
+ar: أحتاج إلى حساب في نظام التدريب.
+
+en: Accounts are provided for your role. Include your name and student number, if applicable, so your coordinator can understand your request.
+ar: تُنشأ الحسابات حسب دورك. اذكر اسمك ورقمك الجامعي إن وُجد، ليفهم منسّق التدريب طلبك.
+
+en: I forgot my password.
+ar: نسيت كلمة المرور.
+
+en: You can
+ar: يمكنك
+
+en: request a reset link
+ar: طلب رابط لإعادة تعيين كلمة المرور
+
+en: using your account email. If you cannot access that inbox, explain the issue in your message.
+ar: باستخدام البريد الإلكتروني لحسابك. وإن لم تتمكن من الوصول إلى ذلك البريد، فاشرح المشكلة في رسالتك.
+
+en: I have a question about my training.
+ar: لديّ سؤال عن تدريبي.
+
+en: For task feedback or training decisions, start with your assigned company or academic supervisor. Contact the coordinator for general process or access questions.
+ar: لملاحظات المهام أو قرارات التدريب، تواصل أولًا مع مشرف الشركة أو المشرف الأكاديمي المعيّن لك. وتواصل مع منسّق التدريب للأسئلة العامة عن الإجراءات أو الوصول إلى الحساب.
+
+# ---------------------------------------------------------------- Powered by
+en: Preparing the lecture hall
+ar: جارٍ تجهيز قاعة المحاضرات
+
+en: Meet the team
+ar: تعرّف على الفريق
+
+en: The students of Group 4 designed and built UIMS.
+ar: صمّم طلبة المجموعة 4 نظام إدارة التدريب وبنوه.
+
+en: Each has a marked seat in this lecture hall.
+ar: ولكلٍّ منهم مقعد محدّد في هذه القاعة.
+
+en: Development credit only, not a statement of university ownership or endorsement. Official information:
+ar: هذا تعريف بفريق التطوير فقط، وليس إعلانًا عن ملكية الجامعة للمشروع أو اعتمادها له. المعلومات الرسمية:
+
+en: GJU website
+ar: موقع الجامعة
+
+en: The 3D lecture hall could not be shown on this device, so the team is listed below.
+ar: تعذّر عرض قاعة المحاضرات ثلاثية الأبعاد على هذا الجهاز، لذا يظهر الفريق في القائمة أدناه.
+
+en: Find a team member
+ar: ابحث عن عضو في الفريق
+
+en: Team members
+ar: أعضاء الفريق
+
+en: View full hall
+ar: عرض القاعة كاملة
+
+en: Previous team member
+ar: العضو السابق
+
+en: Next team member
+ar: العضو التالي
+
+en: Close profile
+ar: إغلاق الملف التعريفي
+
+en: The development team
+ar: فريق التطوير
+
+en: Team profiles are being confirmed. Names, roles and profiles will appear here once each team member approves them for public display.
+ar: يجري تأكيد الملفات التعريفية للفريق. ستظهر الأسماء والأدوار والملفات هنا بعد موافقة كل عضو على عرضها للعموم.
+
+en: Email
+ar: البريد الإلكتروني
+
+en: Portfolio
+ar: ملف الأعمال
+
+# ---------------------------------------------------------------- Access denied, Login, recovery
+en: This page needs
+ar: تتطلّب هذه الصفحة
+
+en: different access.
+ar: صلاحية مختلفة.
+
+en: You do not have permission to open this page with your current account.
+ar: لا تملك صلاحية فتح هذه الصفحة بحسابك الحالي.
+
+en: Return to the portal for your role, or contact your coordinator if you believe you should have access.
+ar: عُد إلى بوابة دورك، أو تواصل مع منسّق التدريب إن كنت ترى أنه يجب أن تتمكّن من الوصول.
+
+en: Get help with access
+ar: احصل على مساعدة في الوصول
+
+en: Welcome back.
+ar: مرحبًا بعودتك.
+
+en: Your next step starts here. Sign in to your internship portal.
+ar: خطوتك التالية تبدأ هنا. سجّل الدخول إلى بوابة التدريب.
+
+en: Email address
+ar: البريد الإلكتروني
+
+en: Password
+ar: كلمة المرور
+
+en: Enter your password.
+ar: أدخل كلمة المرور.
+
+en: Show password
+ar: إظهار كلمة المرور
+
+en: Show
+ar: إظهار
+
+en: Your account stays private.
+ar: يبقى حسابك خاصًا.
+
+en: Log in
+ar: تسجيل الدخول
+
+en: Need an account?
+ar: تحتاج إلى حساب؟
+
+en: Contact your coordinator
+ar: تواصل مع منسّق التدريب
+
+en: Continue to your portal
+ar: المتابعة إلى بوابتك
+
+en: Welcome. Your entry is verified.
+ar: أهلًا بك. تم التحقق من دخولك.
+
+en: German Jordanian University · Gate 1
+ar: الجامعة الألمانية الأردنية · البوابة 1
+
+en: Pause scene
+ar: إيقاف المشهد
+
+en: Let's get you
+ar: لنُعِدك
+
+en: back on track.
+ar: إلى المسار.
+
+en: Forgot your password? Request a reset link using the email address associated with your internship account.
+ar: نسيت كلمة المرور؟ اطلب رابطًا لإعادة تعيينها باستخدام البريد الإلكتروني المرتبط بحسابك في نظام التدريب.
+
+en: If you cannot access that email address, your university coordinator can help you with the next step.
+ar: إن لم تتمكن من الوصول إلى ذلك البريد، يمكن لمنسّق التدريب في الجامعة مساعدتك في الخطوة التالية.
+
+en: Contact the coordination team
+ar: تواصل مع فريق التنسيق
+
+en: Reset your password
+ar: إعادة تعيين كلمة المرور
+
+en: Enter your account email to request a reset link.
+ar: أدخل البريد الإلكتروني لحسابك لطلب رابط إعادة التعيين.
+
+en: Check your inbox and spam folder after requesting a link.
+ar: تحقّق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها بعد طلب الرابط.
+
+en: Send Reset Link
+ar: إرسال رابط إعادة التعيين
+
+en: For your privacy, the response will not confirm whether an account exists for an email address.
+ar: حرصًا على خصوصيتك، لن يؤكّد الرد وجود حساب مرتبط بالبريد الإلكتروني من عدمه.
+
+en: Back to Login
+ar: العودة إلى تسجيل الدخول
+
+en: You are using a temporary password. Please choose a new password to continue.
+ar: أنت تستخدم كلمة مرور مؤقتة. يُرجى اختيار كلمة مرور جديدة للمتابعة.
+
+en: Current password
+ar: كلمة المرور الحالية
+
+en: New password
+ar: كلمة المرور الجديدة
+
+en: At least 6 characters.
+ar: 6 أحرف على الأقل.
+
+en: Confirm new password
+ar: تأكيد كلمة المرور الجديدة
+
+en: Mark all as read
+ar: تعليم الكل كمقروء
+
+en: Forgot password?
+ar: نسيت كلمة المرور؟
+
+# ---------------------------------------------------------------- server messages: Contact, Login, recovery, password, notifications, sign-in service
+en: Some details need attention. Check the highlighted fields below.
+ar: بعض البيانات تحتاج إلى مراجعة. تحقّق من الحقول المميّزة أدناه.
+
+en: Your message could not be sent right now. Your details are still here, so you can try again.
+ar: تعذّر إرسال رسالتك الآن. ما زالت بياناتك محفوظة في النموذج، ويمكنك المحاولة مرة أخرى.
+
+en: Your name needs 2 to 100 characters.
+ar: يجب أن يتكوّن الاسم من 2 إلى 100 حرف.
+
+en: Your subject needs 5 to 150 characters.
+ar: يجب أن يتكوّن الموضوع من 5 إلى 150 حرفًا.
+
+en: Your message needs 20 to 4,000 characters.
+ar: يجب أن تتكوّن الرسالة من 20 إلى 4,000 حرف.
+
+en: Your account is not active. Please contact the coordinator.
+ar: حسابك غير مفعّل. يُرجى التواصل مع منسّق التدريب.
+
+en: Your session has expired. Please log in again.
+ar: انتهت جلستك. يُرجى تسجيل الدخول مرة أخرى.
+
+en: We could not verify your account. Please log in again.
+ar: تعذّر التحقق من حسابك. يُرجى تسجيل الدخول مرة أخرى.
+
+en: The sign-in service is not configured. Please contact the coordinator.
+ar: خدمة تسجيل الدخول غير مُعدّة. يُرجى التواصل مع منسّق التدريب.
+
+en: Please enter your email and password.
+ar: يُرجى إدخال البريد الإلكتروني وكلمة المرور.
+
+en: Please enter a valid email address.
+ar: يُرجى إدخال بريد إلكتروني صحيح.
+
+en: We could not load your account. Please try again later.
+ar: تعذّر تحميل حسابك. يُرجى المحاولة لاحقًا.
+
+en: We could not verify your account access. Please try logging in again.
+ar: تعذّر التحقق من صلاحية الوصول إلى حسابك. يُرجى تسجيل الدخول مرة أخرى.
+
+en: We could not verify your account access. Please contact the coordinator.
+ar: تعذّر التحقق من صلاحية الوصول إلى حسابك. يُرجى التواصل مع منسّق التدريب.
+
+en: Please enter your email address.
+ar: يُرجى إدخال بريدك الإلكتروني.
+
+en: If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.
+ar: إن كان هناك حساب مرتبط بهذا البريد، فقد أُرسل إليه رابط لإعادة تعيين كلمة المرور. يُرجى التحقق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها.
+
+en: Please fill in all fields.
+ar: يُرجى تعبئة جميع الحقول.
+
+en: The new password must be at least 6 characters.
+ar: يجب أن تتكوّن كلمة المرور الجديدة من 6 أحرف على الأقل.
+
+en: The new passwords do not match.
+ar: كلمتا المرور الجديدتان غير متطابقتين.
+
+en: The new password must be different from the current password.
+ar: يجب أن تختلف كلمة المرور الجديدة عن الحالية.
+
+en: The current password is incorrect.
+ar: كلمة المرور الحالية غير صحيحة.
+
+en: Your password was changed, but your account could not be updated. Please try again using your new password as the current password.
+ar: تم تغيير كلمة المرور، لكن تعذّر تحديث حسابك. يُرجى المحاولة مرة أخرى باستخدام كلمة المرور الجديدة بوصفها كلمة المرور الحالية.
+
+en: All notifications are marked as read.
+ar: تم تعليم جميع الإشعارات كمقروءة.
+
+en: Could not update notifications. Please try again.
+ar: تعذّر تحديث الإشعارات. يُرجى المحاولة مرة أخرى.
+
+en: Please sign in again.
+ar: يُرجى تسجيل الدخول مرة أخرى.
+
+en: Firebase is not configured. Get the latest Web.config from main (git merge origin/main), then stop and restart the project.
+ar: لم تُعدّ Firebase بعد. احصل على أحدث Web.config من الفرع main ‏(git merge origin/main)، ثم أوقف المشروع وأعد تشغيله.
+
+en: Incorrect email or password.
+ar: البريد الإلكتروني أو كلمة المرور غير صحيحة.
+
+en: Could not create the account.
+ar: تعذّر إنشاء الحساب.
+
+en: Could not delete the account.
+ar: تعذّر حذف الحساب.
+
+en: Could not send the reset email. Please try again later.
+ar: تعذّر إرسال بريد إعادة التعيين. يُرجى المحاولة لاحقًا.
+
+en: Could not change the password.
+ar: تعذّر تغيير كلمة المرور.
+
+en: An account with this email already exists.
+ar: يوجد حساب مرتبط بهذا البريد الإلكتروني بالفعل.
+
+en: The password must be at least 6 characters.
+ar: يجب أن تتكوّن كلمة المرور من 6 أحرف على الأقل.
+
+en: That email address is not valid.
+ar: هذا البريد الإلكتروني غير صالح.
+
+en: This account has been deactivated.
+ar: تم إيقاف هذا الحساب.
+
+en: Too many attempts. Please try again later.
+ar: محاولات كثيرة جدًا. يُرجى المحاولة لاحقًا.
+
+en: Please sign in again before changing your password.
+ar: يُرجى تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.
+
+# ---------------------------------------------------------------- role pages: student (1)
+en: ← My applications
+ar: → طلباتي
+
+en: Your application
+ar: طلبك
+
+en: This is what you sent to the company. Track its status here.
+ar: هذا ما أرسلته إلى الشركة. تابع حالة طلبك من هنا.
+
+en: ← Explore opportunities
+ar: → استكشاف الفرص
+
+en: Apply for an internship
+ar: التقديم على فرصة تدريب
+
+en: Review the opportunity and tell the company why you would be a good fit.
+ar: راجع تفاصيل الفرصة، ووضّح للشركة سبب ملاءمتك لها.
+
+en: My Applications →
+ar: طلباتي ←
+
+en: Your details
+ar: بياناتك
+
+en: From your student profile.
+ar: من ملفك الطلابي.
+
+en: Update profile
+ar: تحديث الملف الشخصي
+
+en: Full name
+ar: الاسم الكامل
+
+en: Student number
+ar: الرقم الجامعي
+
+en: Major
+ar: التخصص
+
+en: CV link (required)
+ar: رابط السيرة الذاتية (مطلوب)
+
+en: Use an HTTPS link to your CV. Make sure the company can open it without requesting access.
+ar: استخدم رابط HTTPS لسيرتك الذاتية، وتأكد من أن الشركة تستطيع فتحه دون طلب صلاحية وصول.
+
+en: Cover letter (required)
+ar: رسالة التقديم (مطلوبة)
+
+en: Share relevant skills, projects, and what you hope to learn.
+ar: اذكر مهاراتك ومشاريعك ذات الصلة، وما تأمل أن تتعلّمه.
+
+en: 50–4,000 characters. Keep it specific to this opportunity.
+ar: من 50 إلى 4,000 حرف. اجعلها خاصة بهذه الفرصة.
+
+en: I confirm that my information is accurate and my CV link is accessible.
+ar: أؤكد أن بياناتي صحيحة وأن رابط سيرتي الذاتية متاح للوصول.
+
+en: Your application will be marked Pending until the company reviews it.
+ar: سيظهر طلبك بحالة «قيد الانتظار» إلى أن تراجعه الشركة.
+
+en: Cancel
+ar: إلغاء
+
+en: Submit application →
+ar: إرسال الطلب ←
+
+en: Status
+ar: الحالة
+
+en: Submitted
+ar: تاريخ الإرسال
+
+en: Rejection reason:
+ar: سبب الرفض:
+
+en: To confirm this offer, go to
+ar: لتأكيد هذا العرض، انتقل إلى
+
+en: CV link
+ar: رابط السيرة الذاتية
+
+en: Open CV ↗
+ar: فتح السيرة الذاتية ↗
+
+en: No CV link available.
+ar: لا يتوفر رابط للسيرة الذاتية.
+
+en: Cover letter
+ar: رسالة التقديم
+
+en: Selected internship
+ar: فرصة التدريب المختارة
+
+en: Location
+ar: الموقع
+
+en: Duration
+ar: المدة
+
+en: Starts
+ar: تاريخ البدء
+
+en: Apply by
+ar: آخر موعد للتقديم
+
+en: Available seats
+ar: المقاعد المتاحة
+
+en: About the internship
+ar: عن فرصة التدريب
+
+en: Requirements
+ar: المتطلبات
+
+en: View opportunity details →
+ar: عرض تفاصيل الفرصة ←
+
+en: Your internship
+ar: تدريبك
+
+en: , keep your next step in view.
+ar: ، تابع خطوتك التالية من هنا.
+
+en: We could not load your internship record.
+ar: تعذّر تحميل سجل تدريبك.
+
+en: Refresh to try again
+ar: حدّث الصفحة للمحاولة مرة أخرى
+
+en: Your training record
+ar: سجل تدريبك
+
+en: Applications
+ar: الطلبات
+
+en: Your submitted applications
+ar: الطلبات التي أرسلتها
+
+en: Training tasks
+ar: مهام التدريب
+
+en: Linked to your placement
+ar: مرتبطة بجهة تدريبك
+
+en: Tasks evaluated
+ar: المهام المقيّمة
+
+en: Feedback available to you
+ar: ملاحظات متاحة لك
+
+en: Approved hours
+ar: الساعات المعتمدة
+
+en: Pending hours are separate
+ar: الساعات المعلّقة تُحتسب بشكل منفصل
+
+en: Your next work
+ar: عملك القادم
+
+en: Tasks and submissions in your current placement.
+ar: المهام والتسليمات في جهة تدريبك الحالية.
+
+en: Open tasks
+ar: المهام المفتوحة
+
+en: Due
+ar: الاستحقاق
+
+en: No open training tasks
+ar: لا توجد مهام تدريب مفتوحة
+
+en: Tasks from your company supervisor will appear here once assigned.
+ar: ستظهر هنا المهام التي يسندها إليك مشرف الشركة.
+
+en: View your task record
+ar: عرض سجل مهامك
+
+en: Approved training hours
+ar: ساعات التدريب المعتمدة
+
+en: Training hours
+ar: ساعات التدريب
+
+en: approved hours
+ar: ساعة معتمدة
+
+en: awaiting approval
+ar: بانتظار الاعتماد
+
+en: Only approved entries count toward your requirement. Completion still needs coordinator approval.
+ar: لا تُحتسب ضمن المطلوب إلا الساعات المعتمدة، ويبقى إنهاء التدريب بحاجة إلى موافقة منسّق التدريب.
+
+en: View hours and feedback
+ar: عرض الساعات والملاحظات
+
+en: Applications & placement
+ar: الطلبات وجهة التدريب
+
+en: Recent decisions, with your original submission dates.
+ar: أحدث القرارات مع تواريخ التقديم الأصلية.
+
+en: All applications
+ar: جميع الطلبات
+
+en: You have not submitted an application yet.
+ar: لم تقدّم أي طلب بعد.
+
+en: Find an eligible opportunity
+ar: ابحث عن فرصة مناسبة لك
+
+en: Student resources
+ar: موارد الطالب
+
+en: Your profile
+ar: ملفك الشخصي
+
+en: CV & portfolio
+ar: السيرة الذاتية والملف المهني
+
+en: View your information and keep your permitted details up to date.
+ar: اطّلع على بياناتك، وحدّث ما يُسمح لك بتعديله منها.
+
+en: 🔒 Academic information is managed by the Coordinator
+ar: 🔒 يدير منسّق التدريب البيانات الأكاديمية
+
+en: Personal Information
+ar: البيانات الشخصية
+
+en: Phone Number
+ar: رقم الهاتف
+
+en: Your phone number can be updated. Contact the Coordinator for changes to account details.
+ar: يمكنك تحديث رقم هاتفك. تواصل مع منسّق التدريب لتغيير بيانات الحساب.
+
+en: Academic Information
+ar: البيانات الأكاديمية
+
+en: — Read only
+ar: — للعرض فقط
+
+en: Student Number
+ar: الرقم الجامعي
+
+en: University
+ar: الجامعة
+
+en: College
+ar: الكلية
+
+en: Required Training Hours
+ar: ساعات التدريب المطلوبة
+
+en: These fields are controlled by the University Internship Coordinator.
+ar: يتحكم منسّق التدريب في الجامعة بهذه الحقول.
+
+en: Technical Skills
+ar: المهارات التقنية
+
+en: Your technical skills
+ar: مهاراتك التقنية
+
+en: Separate skills with commas, for example: C#, SQL, HTML, CSS.
+ar: افصل بين المهارات بفواصل، مثل: C#, SQL, HTML, CSS.
+
+en: Soft Skills
+ar: المهارات الشخصية
+
+en: Your soft skills
+ar: مهاراتك الشخصية
+
+en: Separate skills with commas, for example: Communication, Teamwork, Problem Solving.
+ar: افصل بين المهارات بفواصل، مثل: التواصل، العمل الجماعي، حل المشكلات.
+
+en: Cancel Changes
+ar: إلغاء التغييرات
+
+en: Save Changes
+ar: حفظ التغييرات
+
+en: My applications
+ar: طلباتي
+
+en: Track your applications and choose one accepted internship offer.
+ar: تابع طلباتك واختر عرض تدريب واحدًا من العروض المقبولة.
+
+en: Refresh applications
+ar: تحديث الطلبات
+
+en: Confirmed internship
+ar: التدريب المؤكَّد
+
+en: Your placement is saved. You cannot confirm another offer.
+ar: تم حفظ جهة تدريبك، ولا يمكنك تأكيد عرض آخر.
+
+en: No applications yet.
+ar: لا توجد طلبات بعد.
+
+en: to find your internship.
+ar: للعثور على فرصة تدريبك.
+
+en: View application →
+ar: عرض الطلب ←
+
+en: Ready to join this company?
+ar: هل أنت مستعد للانضمام إلى هذه الشركة؟
+
+en: You can confirm only one internship. Choose carefully before continuing.
+ar: يمكنك تأكيد فرصة تدريب واحدة فقط، فاختر بعناية قبل المتابعة.
+
+en: I understand that I can confirm only one internship offer.
+ar: أدرك أنه لا يمكنني تأكيد أكثر من عرض تدريب واحد.
+
+en: Confirm offer
+ar: تأكيد العرض
+
+en: This is your confirmed internship.
+ar: هذا هو تدريبك المؤكَّد.
+
+en: Sync confirmation
+ar: مزامنة التأكيد
+
+en: View your assigned tasks, deadlines, and submission status.
+ar: اطّلع على المهام المسندة إليك ومواعيدها النهائية وحالة تسليمها.
+
+en: Assigned Tasks
+ar: المهام المسندة
+
+en: Task
+ar: المهمة
+
+en: Deadline
+ar: الموعد النهائي
+
+en: Attempts
+ar: المحاولات
+
+en: Action
+ar: الإجراء
+
+en: UTC
+ar: UTC
+
+en: View Details
+ar: عرض التفاصيل
+
+en: No tasks have been assigned to you yet.
+ar: لم تُسند إليك أي مهام بعد.
+
+en: Example Task
+ar: مهمة نموذجية
+
+en: Task details and submission
+ar: تفاصيل المهمة والتسليم
+
+en: To be set by supervisor
+ar: يحدّده المشرف
+
+en: Not submitted
+ar: لم تُسلَّم
+
+en: Description
+ar: الوصف
+
+en: The task description will appear here.
+ar: سيظهر وصف المهمة هنا.
+
+en: Instructions and Requirements
+ar: التعليمات والمتطلبات
+
+en: The supervisor's instructions will appear here.
+ar: ستظهر تعليمات المشرف هنا.
+
+en: Evaluation Criteria
+ar: معايير التقييم
+
+en: points (
+ar: نقطة (
+
+en: % of the task)
+ar: % من المهمة)
+
+en: No evaluation criteria provided.
+ar: لم تُحدَّد معايير للتقييم.
+
+en: Submit Your Work
+ar: سلّم عملك
+
+en: You can provide text, a link, or a file. Each new submission will be kept as a separate attempt.
+ar: يمكنك تقديم نص أو رابط أو ملف، وتُحفظ كل عملية تسليم جديدة كمحاولة مستقلة.
+
+en: Submission Text
+ar: نص التسليم
+
+en: Submission Link
+ar: رابط التسليم
+
+en: File uploads are not available yet. Submit text or a shareable link.
+ar: رفع الملفات غير متاح حاليًا. سلّم نصًا أو رابطًا قابلًا للمشاركة.
+
+en: Submit Task
+ar: تسليم المهمة
+
+en: Submission History
+ar: سجل التسليمات
+
+en: Attempt
+ar: المحاولة
+
+en: Submitted At
+ar: وقت التسليم
+
+en: Feedback
+ar: الملاحظات
+
+en: No submission attempts yet.
+ar: لا توجد محاولات تسليم بعد.
+
+en: Find internship opportunities that match your academic program.
+ar: ابحث عن فرص تدريب تناسب برنامجك الأكاديمي.
+
+en: Available Opportunities
+ar: الفرص المتاحة
+
+en: Discover Your Next Internship
+ar: اكتشف فرصة تدريبك القادمة
+
+en: Explore opportunities from partner companies, discover the skills you can develop, and take the next step in your career.
+ar: استكشف الفرص لدى الشركات الشريكة، وتعرّف على المهارات التي يمكنك تطويرها، وانطلق نحو خطوتك المهنية التالية.
+
+en: Search & Academic Filters
+ar: البحث والتصفية الأكاديمية
+
+en: Results are filtered automatically for your program.
+ar: تُصفّى النتائج تلقائيًا وفق برنامجك.
+
+en: Search by opportunity, company or location...
+ar: ابحث باسم الفرصة أو الشركة أو الموقع...
+
+en: Search
+ar: بحث
+
+en: Clear
+ar: مسح
+
+en: College:
+ar: الكلية:
+
+en: Major:
+ar: التخصص:
+
+en: Status: Open
+ar: الحالة: مفتوحة
+
+en: Internships For You
+ar: فرص تدريب لك
+
+en: matching opportunities
+ar: فرصة مطابقة
+
+en: No Matching Opportunities
+ar: لا توجد فرص مطابقة
+
+en: There are currently no available internships matching your academic program and search.
+ar: لا توجد حاليًا فرص تدريب متاحة تطابق برنامجك الأكاديمي وبحثك.
+
+en: Try another search or check back later.
+ar: جرّب بحثًا آخر أو عُد لاحقًا.
+
+en: Reset Search
+ar: إعادة ضبط البحث
+
+en: Open
+ar: مفتوحة
+
+en: LOCATION
+ar: الموقع
+
+en: DURATION
+ar: المدة
+
+en: weeks
+ar: أسابيع
+
+en: AVAILABLE SEATS
+ar: المقاعد المتاحة
+
+en: of
+ar: من
+
+en: APPLICATION DEADLINE
+ar: آخر موعد للتقديم
+
+en: ✓ Matches your academic program
+ar: ✓ تناسب برنامجك الأكاديمي
+
+en: View Details →
+ar: عرض التفاصيل ←
+
+en: ← Back to Explore Opportunities
+ar: → العودة إلى استكشاف الفرص
+
+en: Opportunity Not Available
+ar: الفرصة غير متاحة
+
+en: We couldn't display this opportunity. Please return to Explore Opportunities and choose another internship.
+ar: تعذّر عرض هذه الفرصة. يُرجى العودة إلى استكشاف الفرص واختيار فرصة تدريب أخرى.
+
+en: Internship Opportunity
+ar: فرصة تدريب
+
+en: About This Opportunity
+ar: عن هذه الفرصة
+
+en: Requirements & Qualifications
+ar: المتطلبات والمؤهلات
+
+en: Who Can Apply?
+ar: من يمكنه التقديم؟
+
+en: This opportunity is available to students whose academic college and major meet the eligibility requirements.
+ar: هذه الفرصة متاحة للطلبة الذين تستوفي كليتهم وتخصصهم شروط الأهلية.
+
+en: Eligible College
+ar: الكلية المؤهلة
+
+en: Eligible Majors
+ar: التخصصات المؤهلة
+
+en: All majors in eligible college
+ar: جميع تخصصات الكلية المؤهلة
+
+en: Internship Information
+ar: معلومات التدريب
+
+en: Company
+ar: الشركة
+
+en: Training Duration
+ar: مدة التدريب
+
+en: Training Start
+ar: بداية التدريب
+
+en: Apply Before
+ar: التقديم قبل
+
+en: Remaining Seats
+ar: المقاعد المتبقية
+
+en: Ready to Apply?
+ar: هل أنت مستعد للتقديم؟
+
+en: Interested in this opportunity? Start your application and submit the required information through the student portal.
+ar: هل تهمّك هذه الفرصة؟ ابدأ طلبك وقدّم المعلومات المطلوبة عبر بوابة الطالب.
+
+en: Apply Now →
+ar: قدّم الآن ←
+
+en: Applications Unavailable
+ar: التقديم غير متاح
+
+en: My Student Profile
+ar: ملفي الطلابي
+
+en: Manage your personal details, academic information and professional profile.
+ar: أدِر بياناتك الشخصية ومعلوماتك الأكاديمية وملفك المهني.
+
+en: Student profile photo
+ar: صورة الطالب الشخصية
+
+en: | German Jordanian University
+ar: | الجامعة الألمانية الأردنية
+
+en: Choose Profile Photo
+ar: اختيار الصورة الشخصية
+
+en: JPG or PNG, maximum 2 MB.
+ar: JPG أو PNG، بحد أقصى 2 ميغابايت.
+
+en: Update your personal and contact information.
+ar: حدّث بياناتك الشخصية ومعلومات التواصل.
+
+en: Full Name *
+ar: الاسم الكامل *
+
+en: Age
+ar: العمر
+
+en: University / Account Email
+ar: البريد الجامعي / بريد الحساب
+
+en: Managed by your university account.
+ar: يُدار من خلال حسابك الجامعي.
+
+en: +962 7X XXX XXXX
+ar: +962 7X XXX XXXX
+
+en: Your official university and training details.
+ar: بياناتك الجامعية والتدريبية الرسمية.
+
+en: Read Only
+ar: للعرض فقط
+
+en: Academic details are managed by the internship coordinator. Contact your coordinator if any information is incorrect.
+ar: يدير منسّق التدريب البيانات الأكاديمية. تواصل معه إذا كانت أي معلومة غير صحيحة.
+
+en: Student ID
+ar: الرقم الجامعي
+
+en: Major / Specialization
+ar: التخصص
+
+en: Approved Training Hours
+ar: ساعات التدريب المعتمدة
+
+en: Skills & Competencies
+ar: المهارات والكفاءات
+
+en: Highlight the skills you can offer to companies.
+ar: أبرز المهارات التي يمكنك تقديمها للشركات.
+
+en: Example: C#, ASP.NET, HTML, CSS, SQL, Git
+ar: مثال: C#, ASP.NET, HTML, CSS, SQL, Git
+
+en: Programming languages, frameworks, tools and technologies.
+ar: لغات البرمجة وأطر العمل والأدوات والتقنيات.
+
+en: Example: Teamwork, communication, time management
+ar: مثال: العمل الجماعي، التواصل، إدارة الوقت
+
+en: Communication, leadership, problem-solving and teamwork.
+ar: التواصل والقيادة وحل المشكلات والعمل الجماعي.
+
+en: CV & Professional Portfolio
+ar: السيرة الذاتية والملف المهني
+
+en: Manage your professional documents and online presence.
+ar: أدِر مستنداتك المهنية وحضورك الإلكتروني.
+
+en: Keep your CV and portfolio up to date so companies can learn more about your experience, projects and skills.
+ar: حافظ على تحديث سيرتك الذاتية وملفك المهني لتتعرّف الشركات على خبراتك ومشاريعك ومهاراتك.
+
+en: Curriculum Vitae (CV)
+ar: السيرة الذاتية (CV)
+
+en: Upload your latest CV, replace an existing file, or manage your online CV link.
+ar: ارفع أحدث نسخة من سيرتك الذاتية، أو استبدل الملف الحالي، أو أدِر رابطها الإلكتروني.
+
+en: Download Current CV →
+ar: تنزيل السيرة الذاتية الحالية ←
+
+en: No uploaded CV available.
+ar: لا توجد سيرة ذاتية مرفوعة.
+
+en: Project Portfolio
+ar: ملف المشاريع
+
+en: Showcase your academic projects, practical work, achievements and professional experience.
+ar: اعرض مشاريعك الأكاديمية وأعمالك التطبيقية وإنجازاتك وخبراتك المهنية.
+
+en: Download Current Portfolio →
+ar: تنزيل ملف المشاريع الحالي ←
+
+en: No uploaded portfolio available.
+ar: لا يوجد ملف مشاريع مرفوع.
+
+en: LinkedIn Profile
+ar: حساب LinkedIn
+
+en: Manage CV & Portfolio →
+ar: إدارة السيرة الذاتية والملف المهني ←
+
+en: Update Profile
+ar: تحديث الملف الشخصي
+
+en: Your task grades, supervisor feedback, approved training hours and completion status.
+ar: درجات مهامك وملاحظات المشرف وساعات التدريب المعتمدة وحالة إنهاء التدريب.
+
+en: Your progress could not be loaded right now. Please refresh the page or try again later.
+ar: تعذّر تحميل تقدّمك الآن. يُرجى تحديث الصفحة أو المحاولة لاحقًا.
+
+en: Some sections could not be loaded and may look empty:
+ar: تعذّر تحميل بعض الأقسام، وقد تظهر فارغة:
+
+en: No confirmed internship yet
+ar: لا يوجد تدريب مؤكَّد بعد
+
+en: Your progress and evaluations will appear here after you confirm an accepted internship offer.
+ar: سيظهر تقدّمك وتقييماتك هنا بعد تأكيد أحد عروض التدريب المقبولة.
+
+en: Go to My Applications
+ar: الانتقال إلى طلباتي
+
+en: Approved hours progress
+ar: تقدّم الساعات المعتمدة
+
+en: % of required hours
+ar: % من الساعات المطلوبة
+
+en: Tasks graded
+ar: المهام المقيّمة
+
+en: Graded out of assigned
+ar: المقيّمة من أصل المسندة
+
+en: Open revisions
+ar: التعديلات المفتوحة
+
+en: Tasks waiting for your resubmission
+ar: مهام بانتظار إعادة تسليمك
+
+en: Task grade average
+ar: متوسط درجات المهام
+
+en: Weighted by each task's weight
+ar: موزون حسب وزن كل مهمة
+
+en: My internship
+ar: تدريبي
+
+en: Opportunity
+ar: الفرصة
+
+en: Company supervisor
+ar: مشرف الشركة
+
+en: Training period
+ar: فترة التدريب
+
+en: Placement status
+ar: حالة جهة التدريب
+
+en: Task evaluations & feedback
+ar: تقييمات المهام والملاحظات
+
+en: Grade
+ar: الدرجة
+
+en: Supervisor feedback
+ar: ملاحظات المشرف
+
+en: Each task is graded out of its own maximum score set by your company supervisor.
+ar: تُقيَّم كل مهمة من الدرجة القصوى التي يحددها لها مشرف الشركة.
+
+en: Submissions & revision history
+ar: التسليمات وسجل التعديلات
+
+en: Outcome
+ar: النتيجة
+
+en: You have not submitted any work yet. Submit tasks from
+ar: لم تسلّم أي عمل بعد. سلّم المهام من
+
+en: Approved
+ar: معتمدة
+
+en: Pending approval
+ar: بانتظار الاعتماد
+
+en: Rejected
+ar: مرفوضة
+
+en: Date
+ar: التاريخ
+
+en: Hours
+ar: الساعات
+
+en: Reviewer note
+ar: ملاحظة المراجِع
+
+en: No training hours have been recorded yet.
+ar: لم تُسجَّل أي ساعات تدريب بعد.
+
+en: Only hours approved by your supervisor count toward your required hours. Completing a task does not approve its hours automatically.
+ar: لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك، وإنجاز المهمة لا يعني اعتماد ساعاتها تلقائيًا.
+
+en: Internship completion & official report
+ar: إنهاء التدريب والتقرير الرسمي
+
+en: Your final result and the official Internship Completion Report (PDF) will appear here after the University Internship Coordinator approves your internship completion.
+ar: ستظهر هنا نتيجتك النهائية وتقرير إنهاء التدريب الرسمي (PDF) بعد أن يعتمد منسّق التدريب في الجامعة إنهاء تدريبك.
+
+en: Your internship completion has been approved by the University Internship Coordinator.
+ar: اعتمد منسّق التدريب في الجامعة إنهاء تدريبك.
+
+en: Final score
+ar: الدرجة النهائية
+
+en: Result
+ar: النتيجة
+
+en: Approved on
+ar: تاريخ الاعتماد
+
+en: Download / print completion report (PDF)
+ar: تنزيل / طباعة تقرير إنهاء التدريب (PDF)
+
+en: The official completion report is being prepared by the coordinator and will be available to download here soon.
+ar: يُعدّ منسّق التدريب تقرير الإنهاء الرسمي، وسيتاح للتنزيل هنا قريبًا.
+
+en: ← Back to My Profile
+ar: → العودة إلى ملفي الشخصي
+
+en: My CV & Portfolio
+ar: سيرتي الذاتية وملفي المهني
+
+en: Build your professional presence by managing your CV, project portfolio and online links. Keep everything updated before applying for internship opportunities.
+ar: ابنِ حضورك المهني بإدارة سيرتك الذاتية وملف مشاريعك وروابطك الإلكترونية، وحافظ على تحديثها قبل التقديم على فرص التدريب.
+
+# ---------------------------------------------------------------- role pages: student (2), company (1)
+en: CV & Portfolio Links
+ar: روابط السيرة الذاتية والملف المهني
+
+en: Add links to your online CV and portfolio. You can update them whenever needed.
+ar: أضف روابط سيرتك الذاتية وملفك المهني على الإنترنت، ويمكنك تحديثها متى احتجت.
+
+en: CV Link
+ar: رابط السيرة الذاتية
+
+en: Add a link to your online CV.
+ar: أضف رابط سيرتك الذاتية على الإنترنت.
+
+en: Portfolio Link
+ar: رابط الملف المهني
+
+en: GitHub, Behance, or a personal website.
+ar: GitHub أو Behance أو موقع شخصي.
+
+en: Upload CV
+ar: رفع السيرة الذاتية
+
+en: Upload your latest CV as a PDF document.
+ar: ارفع أحدث نسخة من سيرتك الذاتية بصيغة PDF.
+
+en: Choose CV File
+ar: اختيار ملف السيرة الذاتية
+
+en: PDF only. Maximum file size: 5 MB.
+ar: PDF فقط، بحد أقصى 5 ميغابايت.
+
+en: Upload Portfolio
+ar: رفع الملف المهني
+
+en: Upload a PDF containing your projects, skills, and previous work.
+ar: ارفع ملف PDF يضم مشاريعك ومهاراتك وأعمالك السابقة.
+
+en: Choose Portfolio File
+ar: اختيار ملف الملف المهني
+
+en: Save Your Information
+ar: حفظ بياناتك
+
+en: Save your links and selected files. You can return to this page later to view or update them.
+ar: احفظ روابطك والملفات التي اخترتها، ويمكنك العودة إلى هذه الصفحة لاحقًا لعرضها أو تحديثها.
+
+en: Save CV & Portfolio
+ar: حفظ السيرة الذاتية والملف المهني
+
+en: My Saved CV & Portfolio
+ar: سيرتي الذاتية وملفي المهني المحفوظان
+
+en: View your previously saved links and documents.
+ar: اطّلع على الروابط والمستندات التي حفظتها سابقًا.
+
+en: View CV Link
+ar: عرض رابط السيرة الذاتية
+
+en: No CV link added yet.
+ar: لم يُضَف رابط للسيرة الذاتية بعد.
+
+en: Uploaded CV
+ar: السيرة الذاتية المرفوعة
+
+en: Download CV
+ar: تنزيل السيرة الذاتية
+
+en: Remove
+ar: إزالة
+
+en: No CV file uploaded yet.
+ar: لم يُرفع ملف للسيرة الذاتية بعد.
+
+en: View Portfolio
+ar: عرض الملف المهني
+
+en: No portfolio link added yet.
+ar: لم يُضَف رابط للملف المهني بعد.
+
+en: Uploaded Portfolio
+ar: الملف المهني المرفوع
+
+en: Download Portfolio
+ar: تنزيل الملف المهني
+
+en: No portfolio file uploaded yet.
+ar: لم يُرفع ملف مهني بعد.
+
+en: Manage your personal profile and view your system associations.
+ar: أدِر ملفك الشخصي واطّلع على ارتباطاتك في النظام.
+
+en: Edit Profile
+ar: تعديل الملف الشخصي
+
+en: Company Supervisor
+ar: مشرف الشركة
+
+en: Email Address (Read-Only)
+ar: البريد الإلكتروني (للعرض فقط)
+
+en: Company Association (Read-Only)
+ar: الشركة المرتبطة (للعرض فقط)
+
+en: Job Title / Department
+ar: المسمى الوظيفي / القسم
+
+en: Profile Picture
+ar: الصورة الشخصية
+
+en: Choose a new photo
+ar: اختيار صورة جديدة
+
+en: JPG or PNG allowed
+ar: يُسمح بصيغتي JPG وPNG
+
+en: e.g. HR Manager
+ar: مثال: مدير الموارد البشرية
+
+en: Okay
+ar: حسنًا
+
+en: ← Back to applications
+ar: → العودة إلى الطلبات
+
+en: Applications review
+ar: مراجعة الطلبات
+
+en: Review applications for your company and let students know your decision.
+ar: راجع الطلبات المقدّمة إلى شركتك وأبلغ الطلبة بقرارك.
+
+en: Student applications
+ar: طلبات الطلبة
+
+en: total
+ar: إجمالًا
+
+en: No applications yet. New student applications for your company will appear here.
+ar: لا توجد طلبات بعد. ستظهر هنا طلبات الطلبة الجديدة المقدّمة إلى شركتك.
+
+en: Applied for
+ar: الفرصة المتقدَّم إليها
+
+en: View candidate details
+ar: عرض تفاصيل المتقدّم
+
+en: Hide candidate details
+ar: إخفاء تفاصيل المتقدّم
+
+en: Profile, cover letter and CV
+ar: الملف الشخصي ورسالة التقديم والسيرة الذاتية
+
+en: Phone
+ar: الهاتف
+
+en: Technical skills
+ar: المهارات التقنية
+
+en: Soft skills
+ar: المهارات الشخصية
+
+en: Documents and links
+ar: المستندات والروابط
+
+en: Open CV
+ar: فتح السيرة الذاتية
+
+en: Open portfolio
+ar: فتح الملف المهني
+
+en: LinkedIn profile
+ar: حساب LinkedIn
+
+en: This student has not shared a CV that can be opened yet.
+ar: لم يشارك هذا الطالب سيرة ذاتية يمكن فتحها بعد.
+
+en: Ready to make a decision?
+ar: هل أنت مستعد لاتخاذ القرار؟
+
+en: Acceptance offers a place. The student still needs to confirm one offer.
+ar: القبول يمنح الطالب مقعدًا، ويبقى عليه تأكيد عرض واحد.
+
+en: Reject
+ar: رفض
+
+en: Accept application
+ar: قبول الطلب
+
+en: Reason for rejection (required)
+ar: سبب الرفض (مطلوب)
+
+en: Explain the decision so the student knows why their application was rejected.
+ar: وضّح القرار ليعرف الطالب سبب رفض طلبه.
+
+en: This reason will be visible to the student. Up to 2,000 characters.
+ar: سيظهر هذا السبب للطالب، بحد أقصى 2,000 حرف.
+
+en: Confirm rejection
+ar: تأكيد الرفض
+
+en: on
+ar: في
+
+en: Reason given:
+ar: السبب المذكور:
+
+en: Company workspace
+ar: مساحة عمل الشركة
+
+en: Review candidates. Support trainees. Keep decisions moving.
+ar: راجع المتقدّمين، وادعم المتدرّبين، وأبقِ القرارات في مسارها.
+
+en: Create opportunity
+ar: إنشاء فرصة
+
+en: Openings & opportunities
+ar: الشواغر والفرص
+
+en: All company opportunities
+ar: جميع فرص الشركة
+
+en: awaiting a decision
+ar: بانتظار القرار
+
+en: Confirmed trainees
+ar: المتدرّبون المؤكَّدون
+
+en: confirmed placement records
+ar: سجل تدريب مؤكَّد
+
+en: Work to review
+ar: أعمال للمراجعة
+
+en: Submitted training work
+ar: أعمال التدريب المسلَّمة
+
+en: Application review
+ar: مراجعة الطلبات
+
+en: Pending decisions first, then recent applications.
+ar: القرارات المعلّقة أولًا، ثم أحدث الطلبات.
+
+en: Open review queue
+ar: فتح قائمة المراجعة
+
+en: No applications yet. New candidates for your company will appear here.
+ar: لا توجد طلبات بعد. سيظهر هنا المتقدّمون الجدد إلى شركتك.
+
+en: Candidate
+ar: المتقدّم
+
+en: Decision
+ar: القرار
+
+en: Review desk
+ar: مكتب المراجعة
+
+en: Go directly to the work that needs your attention.
+ar: انتقل مباشرة إلى الأعمال التي تحتاج إلى متابعتك.
+
+en: Submitted work
+ar: الأعمال المسلَّمة
+
+en: submissions waiting
+ar: تسليمات بالانتظار
+
+en: Reported hours
+ar: الساعات المسجّلة
+
+en: h awaiting approval
+ar: ساعة بانتظار الاعتماد
+
+en: Final assessments
+ar: التقييمات النهائية
+
+en: not yet submitted
+ar: لم تُرسَل بعد
+
+en: Training in your company
+ar: التدريب في شركتك
+
+en: Approved progress stays separate from reported hours.
+ar: يُحتسب التقدّم المعتمد بشكل منفصل عن الساعات المسجّلة.
+
+en: All trainees
+ar: جميع المتدرّبين
+
+en: h pending
+ar: ساعة معلّقة
+
+en: Confirmed trainees will appear after a student accepts your offer.
+ar: سيظهر المتدرّبون المؤكَّدون بعد أن يقبل الطالب عرضك.
+
+en: Review applications
+ar: مراجعة الطلبات
+
+en: Final evaluation
+ar: التقييم النهائي
+
+en: Select a trainee and complete their final internship assessment.
+ar: اختر متدرّبًا وأكمل تقييمه النهائي للتدريب.
+
+en: 1. Select Trainee
+ar: 1. اختيار المتدرّب
+
+en: -- Select a trainee to evaluate --
+ar: -- اختر متدرّبًا لتقييمه --
+
+en: 2. Evaluation Forms
+ar: 2. نماذج التقييم
+
+en: Fill out both sections below according to GJU criteria before sending the final evaluation.
+ar: املأ القسمين أدناه وفق معايير الجامعة الألمانية الأردنية قبل إرسال التقييم النهائي.
+
+en: Numerical Scores & Hours (GJU Criteria)
+ar: الدرجات والساعات (معايير الجامعة الألمانية الأردنية)
+
+en: Overall Feedback & Recommendation
+ar: الملاحظات العامة والتوصية
+
+en: Score Summary
+ar: ملخص الدرجات
+
+en: Preview Certificate
+ar: معاينة الشهادة
+
+en: Save as draft
+ar: حفظ كمسودة
+
+en: Send Evaluation & Approve
+ar: إرسال التقييم واعتماده
+
+en: Internship
+ar: التدريب
+
+en: Certificate of Completion
+ar: شهادة إتمام
+
+en: Internship Program
+ar: برنامج التدريب
+
+en: This is to proudly certify that
+ar: نشهد بكل فخر بأن
+
+en: Student Name
+ar: اسم الطالب
+
+en: has successfully completed
+ar: قد أتمّ بنجاح
+
+en: hours of practical training
+ar: ساعة من التدريب العملي
+
+en: as a
+ar: بصفة
+
+en: Trainee
+ar: متدرّب
+
+en: Their dedication, technical skills, and professionalism
+ar: وقد حقّق تفانيه ومهاراته التقنية واحترافيته
+
+en: have met the highest standards of our organization.
+ar: أعلى معايير مؤسستنا.
+
+en: Date of Issue
+ar: تاريخ الإصدار
+
+en: Official
+ar: الختم
+
+en: Seal
+ar: الرسمي
+
+en: Authorized Signature
+ar: التوقيع المعتمد
+
+en: Print Certificate
+ar: طباعة الشهادة
+
+en: Tech. Skills & Application
+ar: المهارات التقنية وتطبيقها
+
+en: Quality of Work & Logic
+ar: جودة العمل والتفكير المنطقي
+
+en: Professionalism & Ethics
+ar: الاحترافية والأخلاقيات
+
+en: Communication & Teamwork
+ar: التواصل والعمل الجماعي
+
+en: Calculated Total:
+ar: المجموع المحسوب:
+
+en: Scores & Attendance
+ar: الدرجات والحضور
+
+en: Actual Training Hours
+ar: ساعات التدريب الفعلية
+
+en: Enter the total hours completed by the trainee.
+ar: أدخل إجمالي الساعات التي أتمّها المتدرّب.
+
+en: Evaluation Form (GJU Criteria)
+ar: نموذج التقييم (معايير الجامعة الألمانية الأردنية)
+
+en: Total score
+ar: الدرجة الكلية
+
+en: Save Scores
+ar: حفظ الدرجات
+
+en: Feedback & Recommendation
+ar: الملاحظات والتوصية
+
+en: Performance level
+ar: مستوى الأداء
+
+en: Select performance level
+ar: اختر مستوى الأداء
+
+en: Excellent (A)
+ar: ممتاز (A)
+
+en: Very Good (B)
+ar: جيد جدًا (B)
+
+en: Good (C)
+ar: جيد (C)
+
+en: Needs Improvement (D)
+ar: يحتاج إلى تحسين (D)
+
+en: Company Recommendation
+ar: توصية الشركة
+
+en: Select recommendation
+ar: اختر التوصية
+
+en: Highly Recommended for Hire
+ar: يُوصى بتوظيفه بشدة
+
+en: Recommended
+ar: يُوصى به
+
+en: Recommend with Reservations
+ar: يُوصى به مع تحفّظات
+
+en: Do Not Recommend
+ar: لا يُوصى به
+
+en: Strengths
+ar: نقاط القوة
+
+en: Describe the trainee's main strengths...
+ar: صِف أبرز نقاط قوة المتدرّب...
+
+en: Areas for improvement
+ar: جوانب التحسين
+
+en: Describe areas the trainee should develop...
+ar: صِف الجوانب التي ينبغي للمتدرّب تطويرها...
+
+en: Save Feedback
+ar: حفظ الملاحظات
+
+en: My Saved Drafts
+ar: مسوداتي المحفوظة
+
+en: You have no saved drafts.
+ar: لا توجد لديك مسودات محفوظة.
+
+en: Trainee Name
+ar: اسم المتدرّب
+
+en: Manage opportunities
+ar: إدارة الفرص
+
+en: Create, update and track your internship postings.
+ar: أنشئ فرص التدريب التي تعلن عنها وحدّثها وتابعها.
+
+en: + Add opportunity
+ar: + إضافة فرصة
+
+en: Open opportunities
+ar: الفرص المفتوحة
+
+en: Accepting applications
+ar: تستقبل الطلبات
+
+en: Drafts
+ar: المسودات
+
+en: Not published
+ar: غير منشورة
+
+en: Closed opportunities
+ar: الفرص المغلقة
+
+en: No longer accepting applications
+ar: لم تعد تستقبل الطلبات
+
+en: All opportunities
+ar: جميع الفرص
+
+en: postings in total
+ar: فرصة إجمالًا
+
+en: Specialization
+ar: التخصص
+
+en: Seats
+ar: المقاعد
+
+en: Actions
+ar: الإجراءات
+
+en: View
+ar: عرض
+
+en: Edit
+ar: تعديل
+
+en: No opportunities created yet.
+ar: لم تُنشأ أي فرص بعد.
+
+en: Close this opportunity?
+ar: هل تريد إغلاق هذه الفرصة؟
+
+en: will no longer accept new applications. Existing applications will remain saved.
+ar: لن تستقبل طلبات جديدة، وستبقى الطلبات الحالية محفوظة.
+
+en: Close opportunity
+ar: إغلاق الفرصة
+
+en: ← Back to opportunities
+ar: → العودة إلى الفرص
+
+en: Opportunity information
+ar: معلومات الفرصة
+
+en: Department
+ar: القسم
+
+en: Training mode
+ar: نمط التدريب
+
+en: Eligible college
+ar: الكلية المؤهلة
+
+en: Eligible specializations
+ar: التخصصات المؤهلة
+
+en: Technologies used
+ar: التقنيات المستخدمة
+
+en: Seats and dates
+ar: المقاعد والتواريخ
+
+en: Seats (filled / total)
+ar: المقاعد (المشغولة / الإجمالية)
+
+en: Application deadline
+ar: آخر موعد للتقديم
+
+en: Start date
+ar: تاريخ البدء
+
+en: End date
+ar: تاريخ الانتهاء
+
+en: Edit opportunity
+ar: تعديل الفرصة
+
+en: Update the details and save your changes.
+ar: حدّث التفاصيل واحفظ تغييراتك.
+
+en: Provide the main details of this opportunity.
+ar: أدخل التفاصيل الأساسية لهذه الفرصة.
+
+en: Opportunity title *
+ar: عنوان الفرصة *
+
+en: Department *
+ar: القسم *
+
+en: Location *
+ar: الموقع *
+
+en: Eligible specializations *
+ar: التخصصات المؤهلة *
+
+en: Description *
+ar: الوصف *
+
+en: Requirements *
+ar: المتطلبات *
+
+en: Available seats *
+ar: المقاعد المتاحة *
+
+en: Duration (weeks) *
+ar: المدة (بالأسابيع) *
+
+en: Application deadline *
+ar: آخر موعد للتقديم *
+
+en: Start date *
+ar: تاريخ البدء *
+
+en: End date *
+ar: تاريخ الانتهاء *
+
+en: Save changes
+ar: حفظ التغييرات
+
+en: Add new opportunity
+ar: إضافة فرصة جديدة
+
+en: Complete the details below to create an internship opportunity.
+ar: أكمل التفاصيل أدناه لإنشاء فرصة تدريب.
+
+en: Basic information
+ar: المعلومات الأساسية
+
+en: e.g. Web Developer Intern
+ar: مثال: متدرّب تطوير مواقع الويب
+
+en: e.g. Information Technology
+ar: مثال: تكنولوجيا المعلومات
+
+en: Opportunity type
+ar: نوع الفرصة
+
+en: e.g. Amman, Jordan
+ar: مثال: عمّان، الأردن
+
+en: Select the university majors eligible to apply.
+ar: اختر التخصصات الجامعية المؤهلة للتقديم.
+
+en: Describe the role, responsibilities and learning objectives...
+ar: صِف الدور والمسؤوليات وأهداف التعلّم...
+
+en: List the skills, qualifications and requirements...
+ar: اذكر المهارات والمؤهلات والمتطلبات...
+
+en: e.g. C#, ASP.NET, SQL, HTML, CSS
+ar: مثال: C#, ASP.NET, SQL, HTML, CSS
+
+en: Save draft
+ar: حفظ المسودة
+
+en: Publish
+ar: نشر
+
+en: Open a submission to evaluate it or request a new attempt.
+ar: افتح تسليمًا لتقييمه أو لطلب محاولة جديدة.
+
+en: Weekly Progress Report
+ar: تقرير التقدّم الأسبوعي
+
+en: Example Student · Attempt 2 · Pending Review
+ar: طالب نموذجي · المحاولة 2 · بانتظار المراجعة
+
+en: Close review
+ar: إغلاق المراجعة
+
+en: Submitted Work
+ar: العمل المسلَّم
+
+en: Student's text:
+ar: نص الطالب:
+
+en: Example submission text will appear here.
+ar: سيظهر هنا نص تسليم نموذجي.
+
+en: Link:
+ar: الرابط:
+
+en: No link in this example
+ar: لا يوجد رابط في هذا المثال
+
+en: File:
+ar: الملف:
+
+en: No file in this example
+ar: لا يوجد ملف في هذا المثال
+
+en: What would you like to do?
+ar: ماذا تريد أن تفعل؟
+
+en: Evaluate Submission
+ar: تقييم التسليم
+
+en: Enter scores for the task criteria and leave feedback.
+ar: أدخل درجات معايير المهمة واكتب ملاحظاتك.
+
+en: Start Evaluation
+ar: بدء التقييم
+
+en: Request Revision
+ar: طلب تعديل
+
+en: Explain what the student needs to change before submitting again.
+ar: وضّح ما يجب على الطالب تغييره قبل إعادة التسليم.
+
+en: ← Back to choices
+ar: → العودة إلى الخيارات
+
+en: The criteria and maximum scores will come from this task.
+ar: ستُؤخذ المعايير والدرجات القصوى من هذه المهمة.
+
+en: Criterion
+ar: المعيار
+
+en: Maximum Score
+ar: الدرجة القصوى
+
+en: Score
+ar: الدرجة
+
+en: Report Quality (example)
+ar: جودة التقرير (مثال)
+
+en: Submission Details
+ar: تفاصيل التسليم
+
+en: Task:
+ar: المهمة:
+
+en: Attempt:
+ar: المحاولة:
+
+en: Open submitted link
+ar: فتح الرابط المسلَّم
+
+en: Open attached file
+ar: فتح الملف المرفق
+
+en: Evaluation
+ar: التقييم
+
+en: Enter a score for each criterion.
+ar: أدخل درجة لكل معيار.
+
+en: — Max:
+ar: — الحد الأقصى:
+
+en: — Weight:
+ar: — الوزن:
+
+en: Feedback for student
+ar: ملاحظات للطالب
+
+en: Save Grade
+ar: حفظ الدرجة
+
+en: Save Evaluation
+ar: حفظ التقييم
+
+en: Tell the student exactly what to improve in the next attempt.
+ar: أخبر الطالب بدقة بما يجب تحسينه في المحاولة التالية.
+
+en: Revision Instructions
+ar: تعليمات التعديل
+
+en: Send Revision Request
+ar: إرسال طلب التعديل
+
+en: This is a design preview. Nothing was saved yet.
+ar: هذه معاينة للتصميم، ولم يُحفظ أي شيء بعد.
+
+en: Previous attempts will stay here even after a revision.
+ar: ستبقى المحاولات السابقة هنا حتى بعد التعديل.
+
+en: Attempt 2 · Pending Review
+ar: المحاولة 2 · بانتظار المراجعة
+
+en: Example text for the student's second attempt.
+ar: نص نموذجي لمحاولة الطالب الثانية.
+
+# ---------------------------------------------------------------- role pages: company (2), academic, coordinator (1)
+en: Attempt 1 · Revision Requested
+ar: المحاولة 1 · طُلب تعديلها
+
+en: Example text for the student's first attempt.
+ar: نص نموذجي لمحاولة الطالب الأولى.
+
+en: Revision instructions:
+ar: تعليمات التعديل:
+
+en: Please add more detail to the report.
+ar: يُرجى إضافة مزيد من التفاصيل إلى التقرير.
+
+en: View and manage tasks assigned to your trainees.
+ar: اعرض المهام المسندة إلى متدرّبيك وأدِرها.
+
+en: + Create New Task
+ar: + إنشاء مهمة جديدة
+
+en: No tasks created yet.
+ar: لم تُنشأ أي مهام بعد.
+
+en: Total Points
+ar: مجموع النقاط
+
+en: Counts As
+ar: تُحتسب
+
+en: Create Task
+ar: إنشاء مهمة
+
+en: Two steps: describe the task, then list what you will grade.
+ar: خطوتان: صِف المهمة، ثم حدّد ما ستقيّمه.
+
+en: Task details
+ar: تفاصيل المهمة
+
+en: Fields marked * are required.
+ar: الحقول المميّزة بـ * مطلوبة.
+
+en: Task Title *
+ar: عنوان المهمة *
+
+en: e.g. Build the login page
+ar: مثال: بناء صفحة تسجيل الدخول
+
+en: What is the task about?
+ar: ما موضوع المهمة؟
+
+en: Instructions
+ar: التعليمات
+
+en: Steps, links and what the trainee should hand in.
+ar: الخطوات والروابط وما يجب أن يسلّمه المتدرّب.
+
+en: Assigned Trainee *
+ar: المتدرّب المسند إليه *
+
+en: Deadline *
+ar: الموعد النهائي *
+
+en: How much does this task count?
+ar: ما وزن هذه المهمة؟
+
+en: Normal - counts once
+ar: عادية - تُحتسب مرة واحدة
+
+en: Important - counts twice
+ar: مهمة - تُحتسب مرتين
+
+en: Major - counts three times
+ar: رئيسية - تُحتسب ثلاث مرات
+
+en: Compared with this trainee's other tasks. Choose Normal for most tasks.
+ar: مقارنةً بمهام المتدرّب الأخرى. اختر «عادية» لمعظم المهام.
+
+en: How will you grade it?
+ar: كيف ستقيّمها؟
+
+en: Add each thing you will check and how many points it is worth. The task total is the sum of the points.
+ar: أضف كل عنصر ستقيّمه وعدد نقاطه، ومجموع المهمة هو مجموع هذه النقاط.
+
+en: What will you check?
+ar: ما الذي ستقيّمه؟
+
+en: e.g. Code quality
+ar: مثال: جودة الشيفرة
+
+en: Points
+ar: النقاط
+
+en: + Add
+ar: + إضافة
+
+en: Short note for the trainee (optional)
+ar: ملاحظة قصيرة للمتدرّب (اختيارية)
+
+en: e.g. Clean, readable and commented code
+ar: مثال: شيفرة نظيفة ومقروءة وموثّقة بالتعليقات
+
+en: Not sure where to start?
+ar: لست متأكدًا من أين تبدأ؟
+
+en: Use a simple starter set (Quality 10, Completeness 5, On time 5)
+ar: استخدم مجموعة بداية بسيطة (الجودة 10، الاكتمال 5، الالتزام بالموعد 5)
+
+en: No criteria yet. Add at least one above.
+ar: لا توجد معايير بعد. أضف معيارًا واحدًا على الأقل أعلاه.
+
+en: Note
+ar: ملاحظة
+
+en: Share of Task
+ar: النسبة من المهمة
+
+en: Task total
+ar: مجموع المهمة
+
+en: 0 points
+ar: 0 نقطة
+
+en: Company portal >
+ar: بوابة الشركة <
+
+en: My trainees
+ar: متدرّبيّ
+
+en: Trainee details
+ar: تفاصيل المتدرّب
+
+en: Trainee Details & Progress
+ar: تفاصيل المتدرّب وتقدّمه
+
+en: Back to list
+ar: العودة إلى القائمة
+
+en: View Trainee CV
+ar: عرض السيرة الذاتية للمتدرّب
+
+en: Overall Progress
+ar: التقدّم العام
+
+en: hrs approved
+ar: ساعة معتمدة
+
+en: hrs required
+ar: ساعة مطلوبة
+
+en: Start Date
+ar: تاريخ البدء
+
+en: End Date
+ar: تاريخ الانتهاء
+
+en: Academic Supervisor
+ar: المشرف الأكاديمي
+
+en: Placement Status
+ar: حالة جهة التدريب
+
+en: Assign New Task
+ar: إسناد مهمة جديدة
+
+en: No tasks assigned to this trainee yet.
+ar: لم تُسند أي مهام إلى هذا المتدرّب بعد.
+
+en: Task Title
+ar: عنوان المهمة
+
+en: Est. Hours
+ar: الساعات التقديرية
+
+en: hrs
+ar: ساعة
+
+en: Review
+ar: مراجعة
+
+en: Trainee CV / Portfolio
+ar: السيرة الذاتية / الملف المهني للمتدرّب
+
+en: You can access the trainee's submitted CV or portfolio using the button below:
+ar: يمكنك الوصول إلى السيرة الذاتية أو الملف المهني الذي قدّمه المتدرّب من خلال الزر أدناه:
+
+en: Open CV in New Tab
+ar: فتح السيرة الذاتية في علامة تبويب جديدة
+
+en: No CV or portfolio was provided by this trainee.
+ar: لم يقدّم هذا المتدرّب سيرة ذاتية أو ملفًا مهنيًا.
+
+en: Track accepted students, training information, and their progress.
+ar: تابع الطلبة المقبولين ومعلومات تدريبهم وتقدّمهم.
+
+en: Active training
+ar: تدريب جارٍ
+
+en: Currently in progress
+ar: قيد التنفيذ حاليًا
+
+en: Near completion
+ar: قارب على الانتهاء
+
+en: Above 80% progress
+ar: تقدّم يتجاوز 80%
+
+en: Completed
+ar: مكتمل
+
+en: Successfully finished
+ar: انتهى بنجاح
+
+en: Trainee directory
+ar: دليل المتدرّبين
+
+en: accepted students
+ar: طالب مقبول
+
+en: Hide List
+ar: إخفاء القائمة
+
+en: Search by name...
+ar: البحث بالاسم...
+
+en: All departments
+ar: جميع الأقسام
+
+en: Software Engineering
+ar: هندسة البرمجيات
+
+en: Computer Science
+ar: علم الحاسوب
+
+en: Computer Information Systems
+ar: أنظمة المعلومات الحاسوبية
+
+en: All training statuses
+ar: جميع حالات التدريب
+
+en: In progress (0-79%)
+ar: قيد التنفيذ (0-79%)
+
+en: Near finish (80-99%)
+ar: قارب على الانتهاء (80-99%)
+
+en: Completed (100%)
+ar: مكتمل (100%)
+
+en: No trainees match your search criteria.
+ar: لا يوجد متدرّبون يطابقون معايير البحث.
+
+en: Progress
+ar: التقدّم
+
+en: View details
+ar: عرض التفاصيل
+
+en: Opportunity details - Read-only view
+ar: تفاصيل الفرصة - عرض فقط
+
+en: Opportunity Information
+ar: معلومات الفرصة
+
+en: Opportunity Title
+ar: عنوان الفرصة
+
+en: Training Mode
+ar: نمط التدريب
+
+en: Technologies Used
+ar: التقنيات المستخدمة
+
+en: Opportunity ID
+ar: رقم الفرصة
+
+en: Eligible Specializations
+ar: التخصصات المؤهلة
+
+en: Not specified
+ar: غير محدد
+
+en: Seats & Schedule
+ar: المقاعد والجدول الزمني
+
+en: Total Seats
+ar: إجمالي المقاعد
+
+en: Filled Seats
+ar: المقاعد المشغولة
+
+en: Application Deadline
+ar: آخر موعد للتقديم
+
+en: Change profile photo
+ar: تغيير الصورة الشخصية
+
+en: Dr.
+ar: د.
+
+en: Upload
+ar: رفع
+
+en: Account Email
+ar: بريد الحساب
+
+en: Your official university details. Managed by coordinator.
+ar: بياناتك الجامعية الرسمية، ويديرها منسّق التدريب.
+
+en: Supervisor ID
+ar: الرقم الوظيفي للمشرف
+
+en: Enrollment Year
+ar: سنة الالتحاق
+
+en: New Password
+ar: كلمة المرور الجديدة
+
+en: Confirm New Password
+ar: تأكيد كلمة المرور الجديدة
+
+en: Update Password
+ar: تحديث كلمة المرور
+
+en: Student oversight
+ar: متابعة الطلبة
+
+en: , follow your assigned students and academic work.
+ar: ، تابع طلبتك والعمل الأكاديمي المسند إليك.
+
+en: Review student records
+ar: مراجعة سجلات الطلبة
+
+en: Retry
+ar: إعادة المحاولة
+
+en: Assigned students
+ar: الطلبة المسندون
+
+en: Your supervision group
+ar: مجموعة إشرافك
+
+en: Hours requirement met
+ar: استوفوا الساعات المطلوبة
+
+en: Approved entries only
+ar: الساعات المعتمدة فقط
+
+en: Company assessments
+ar: تقييمات الشركات
+
+en: Submitted for your students
+ar: المقدّمة لطلبتك
+
+en: Academic follow-up
+ar: المتابعة الأكاديمية
+
+en: Company assessment received
+ar: تم استلام تقييم الشركة
+
+en: Placement, approved hours and the next academic action.
+ar: جهة التدريب والساعات المعتمدة والإجراء الأكاديمي التالي.
+
+en: Students assigned to the signed-in academic supervisor
+ar: الطلبة المسندون إلى المشرف الأكاديمي المسجّل دخوله
+
+en: Student
+ar: الطالب
+
+en: Placement
+ar: جهة التدريب
+
+en: Follow-up
+ar: المتابعة
+
+en: View progress
+ar: عرض التقدّم
+
+en: <div class='ws-empty'><h4>No students assigned yet</h4><p>Your coordinator manages academic supervision assignments. Assigned students will appear here.</p></div>
+ar: <div class='ws-empty'><h4>لم يُسند إليك أي طالب بعد</h4><p>يتولّى منسّق التدريب إسناد الإشراف الأكاديمي، وسيظهر الطلبة المسندون إليك هنا.</p></div>
+
+en: Academic work
+ar: العمل الأكاديمي
+
+en: Assessment and follow-up stay linked to each assigned student.
+ar: يبقى التقييم والمتابعة مرتبطين بكل طالب مسند.
+
+en: No received company assessments are waiting for your academic submission.
+ar: لا توجد تقييمات شركات مستلمة بانتظار تقييمك الأكاديمي.
+
+en: Open academic evaluations
+ar: فتح التقييمات الأكاديمية
+
+en: Internal evaluation forms remain restricted. Students see the released result only after coordinator approval.
+ar: تبقى نماذج التقييم الداخلية مقيّدة، ولا يرى الطلبة النتيجة إلا بعد اعتماد منسّق التدريب.
+
+en: Select a student to complete their final evaluation.
+ar: اختر طالبًا لإكمال تقييمه النهائي.
+
+en: University ID
+ar: الرقم الجامعي
+
+en: Evaluate:
+ar: تقييم:
+
+en: 1. Company Supervisor Evaluation
+ar: 1. تقييم مشرف الشركة
+
+en: Total Score
+ar: الدرجة الكلية
+
+en: Strengths:
+ar: نقاط القوة:
+
+en: Areas for Improvement:
+ar: جوانب التحسين:
+
+en: Overall Comment:
+ar: التعليق العام:
+
+en: The company supervisor has not submitted their final evaluation yet.
+ar: لم يرسل مشرف الشركة تقييمه النهائي بعد.
+
+en: 2. Academic Final Decision
+ar: 2. القرار الأكاديمي النهائي
+
+en: Submit your final decision. Once submitted, it will be sent to the Coordinator.
+ar: أرسل قرارك النهائي، وسيُحال بعد الإرسال إلى منسّق التدريب.
+
+en: Final Decision
+ar: القرار النهائي
+
+en: -- Select Decision --
+ar: -- اختر القرار --
+
+en: Pass
+ar: ناجح
+
+en: Fail
+ar: راسب
+
+en: Academic Comments & Remarks
+ar: التعليقات والملاحظات الأكاديمية
+
+en: Submit to Coordinator
+ar: الإرسال إلى منسّق التدريب
+
+en: Student Progress Monitor
+ar: متابعة تقدّم الطلبة
+
+en: Select a student to view their progress, tasks, and evaluations.
+ar: اختر طالبًا لعرض تقدّمه ومهامه وتقييماته.
+
+en: View Progress
+ar: عرض التقدّم
+
+en: Back to Students List
+ar: العودة إلى قائمة الطلبة
+
+en: Training Hours
+ar: ساعات التدريب
+
+en: Placement & Company Details
+ar: تفاصيل جهة التدريب والشركة
+
+en: Company Name
+ar: اسم الشركة
+
+en: Tasks & Submissions
+ar: المهام والتسليمات
+
+en: Max Score
+ar: الدرجة القصوى
+
+en: Estimated Hours
+ar: الساعات التقديرية
+
+en: Academic Comments & Feedback
+ar: التعليقات والملاحظات الأكاديمية
+
+en: Add a New Comment
+ar: إضافة تعليق جديد
+
+en: Write your observation or feedback here...
+ar: اكتب ملاحظتك أو تعليقك هنا...
+
+en: Make this comment visible to the student
+ar: إظهار هذا التعليق للطالب
+
+en: Save Comment
+ar: حفظ التعليق
+
+en: Proceed to Final Evaluation
+ar: المتابعة إلى التقييم النهائي
+
+en: Coordinator / Academic supervisors
+ar: منسّق التدريب / المشرفون الأكاديميون
+
+en: Academic supervisors
+ar: المشرفون الأكاديميون
+
+en: Review records, create accounts, and manage supervisor information.
+ar: راجع السجلات، وأنشئ الحسابات، وأدِر بيانات المشرفين.
+
+en: + Add supervisor
+ar: + إضافة مشرف
+
+en: Supervisor sections
+ar: أقسام المشرفين
+
+en: Manage supervisors
+ar: إدارة المشرفين
+
+en: Supervisor records
+ar: سجلات المشرفين
+
+en: Search and view account and assignment information.
+ar: ابحث واطّلع على بيانات الحسابات والإسناد.
+
+en: Search supervisor records
+ar: البحث في سجلات المشرفين
+
+en: Search name, email, department, or rank
+ar: ابحث بالاسم أو البريد الإلكتروني أو القسم أو الرتبة
+
+en: Supervisor
+ar: المشرف
+
+en: Academic rank
+ar: الرتبة الأكاديمية
+
+en: Manage
+ar: إدارة
+
+en: Selected record
+ar: السجل المحدد
+
+en: Login email
+ar: بريد تسجيل الدخول
+
+en: Assigned groups
+ar: المجموعات المسندة
+
+en: Account status
+ar: حالة الحساب
+
+en: Add academic supervisor
+ar: إضافة مشرف أكاديمي
+
+en: Create a supervisor account and enter their academic information.
+ar: أنشئ حساب مشرف وأدخل بياناته الأكاديمية.
+
+en: (optional)
+ar: (اختياري)
+
+en: Temporary password
+ar: كلمة المرور المؤقتة
+
+en: Confirm temporary password
+ar: تأكيد كلمة المرور المؤقتة
+
+en: Share the login email and temporary password privately. The supervisor changes the password on first sign-in.
+ar: شارك بريد تسجيل الدخول وكلمة المرور المؤقتة بشكل خاص، وسيغيّر المشرف كلمة المرور عند أول تسجيل دخول.
+
+en: Create supervisor
+ar: إنشاء المشرف
+
+en: Choose an account to update its details or change access.
+ar: اختر حسابًا لتحديث بياناته أو تغيير صلاحية وصوله.
+
+en: Search supervisors to manage
+ar: ابحث عن المشرفين لإدارتهم
+
+en: Search supervisors
+ar: البحث عن المشرفين
+
+en: Manage supervisor
+ar: إدارة المشرف
+
+en: Assigned groups:
+ar: المجموعات المسندة:
+
+en: Account access
+ar: الوصول إلى الحساب
+
+en: Account settings
+ar: إعدادات الحساب
+
+en: Manage your profile information and account security.
+ar: أدِر بيانات ملفك الشخصي وأمان حسابك.
+
+en: Profile information
+ar: بيانات الملف الشخصي
+
+en: Update your name and contact information.
+ar: حدّث اسمك ومعلومات التواصل.
+
+en: Full name *
+ar: الاسم الكامل *
+
+en: Full name is required.
+ar: الاسم الكامل مطلوب.
+
+en: Phone number
+ar: رقم الهاتف
+
+en: Enter phone number
+ar: أدخل رقم الهاتف
+
+en: Staff ID
+ar: الرقم الوظيفي
+
+en: University and role information are managed by the system.
+ar: يدير النظام بيانات الجامعة والدور.
+
+en: Change password
+ar: تغيير كلمة المرور
+
+en: Enter your current password to set a new one.
+ar: أدخل كلمة المرور الحالية لتعيين كلمة جديدة.
+
+en: Current password *
+ar: كلمة المرور الحالية *
+
+en: New password *
+ar: كلمة المرور الجديدة *
+
+en: Use at least 8 characters.
+ar: استخدم 8 أحرف على الأقل.
+
+en: Confirm new password *
+ar: تأكيد كلمة المرور الجديدة *
+
+en: Update password
+ar: تحديث كلمة المرور
+
+en: Coordinator workspace >
+ar: مساحة عمل منسّق التدريب <
+
+en: Manage companies
+ar: إدارة الشركات
+
+en: Manage Companies & Supervisors
+ar: إدارة الشركات والمشرفين
+
+en: Add Supervisor
+ar: إضافة مشرف
+
+en: Existing Company Supervisors
+ar: مشرفو الشركات الحاليون
+
+en: Company & Role
+ar: الشركة والدور
+
+en: Add company supervisor
+ar: إضافة مشرف شركة
+
+en: Create a supervisor account and link it to a training company.
+ar: أنشئ حساب مشرف واربطه بشركة تدريب.
+
+en: Company information
+ar: بيانات الشركة
+
+en: New company
+ar: شركة جديدة
+
+en: Existing company
+ar: شركة حالية
+
+en: Company name *
+ar: اسم الشركة *
+
+en: e.g. Tech Solutions
+ar: مثال: Tech Solutions
+
+en: Industry *
+ar: القطاع *
+
+en: e.g. Software Development
+ar: مثال: تطوير البرمجيات
+
+en: City *
+ar: المدينة *
+
+en: e.g. Amman
+ar: مثال: عمّان
+
+en: Website
+ar: الموقع الإلكتروني
+
+en: https://
+ar: https://
+
+en: Company Email
+ar: بريد الشركة
+
+en: Company Phone
+ar: هاتف الشركة
+
+en: Full Address
+ar: العنوان الكامل
+
+en: Building, Street...
+ar: المبنى، الشارع...
+
+en: Selected:
+ar: المحدد:
+
+en: Change
+ar: تغيير
+
+en: Select
+ar: اختيار
+
+en: Supervisor details
+ar: بيانات المشرف
+
+en: e.g. Ahmad Khaled
+ar: مثال: أحمد خالد
+
+en: Job title
+ar: المسمى الوظيفي
+
+en: Email address *
+ar: البريد الإلكتروني *
+
+en: Temporary password *
+ar: كلمة المرور المؤقتة *
+
+en: Minimum 6 characters
+ar: 6 أحرف على الأقل
+
+en: Account role
+ar: دور الحساب
+
+en: Create account
+ar: إنشاء الحساب
+
+en: Supervisor Details
+ar: بيانات المشرف
+
+en: Personal Info
+ar: البيانات الشخصية
+
+en: Job Title
+ar: المسمى الوظيفي
+
+en: Company Info
+ar: بيانات الشركة
+
+en: Industry
+ar: القطاع
+
+en: Confirm Action
+ar: تأكيد الإجراء
+
+en: Are you sure you want to change the status of this supervisor?
+ar: هل أنت متأكد من أنك تريد تغيير حالة هذا المشرف؟
+
+en: Yes, I'm sure
+ar: نعم، متأكد
+
+en: Review both final evaluations and the university's requirements, then approve completion. Nothing is marked complete without this approval.
+ar: راجع التقييمين النهائيين ومتطلبات الجامعة، ثم اعتمد إنهاء التدريب. لا يُعدّ أي تدريب منتهيًا دون هذا الاعتماد.
+
+en: Ready for review
+ar: جاهز للمراجعة
+
+en: Both final evaluations submitted
+ar: أُرسل التقييمان النهائيان
+
+en: Awaiting evaluations
+ar: بانتظار التقييمات
+
+en: Company or academic form missing
+ar: ينقص نموذج الشركة أو النموذج الأكاديمي
+
+en: Report released to the student
+ar: أُتيح التقرير للطالب
+
+en: Completion queue
+ar: قائمة إنهاء التدريب
+
+# ---------------------------------------------------------------- role pages: coordinator (2), meetings
+en: placements
+ar: جهة تدريب
+
+en: No confirmed placements yet.
+ar: لا توجد جهات تدريب مؤكَّدة بعد.
+
+en: Placements and their completion stage
+ar: جهات التدريب ومرحلة إنهائها
+
+en: Final evaluations
+ar: التقييمات النهائية
+
+en: Stage
+ar: المرحلة
+
+en: Company:
+ar: الشركة:
+
+en: Academic:
+ar: الأكاديمي:
+
+en: ← Completion queue
+ar: → قائمة إنهاء التدريب
+
+en: Completion approved
+ar: تم اعتماد الإنهاء
+
+en: Returned
+ar: أُعيد
+
+en: Ready to approve
+ar: جاهز للاعتماد
+
+en: Requirements not met
+ar: المتطلبات غير مستوفاة
+
+en: Full progress & history
+ar: التقدّم الكامل والسجل
+
+en: Academic supervisor
+ar: المشرف الأكاديمي
+
+en: Student email
+ar: بريد الطالب
+
+en: University requirements
+ar: متطلبات الجامعة
+
+en: All must be met before approval
+ar: يجب استيفاؤها جميعًا قبل الاعتماد
+
+en: Company final evaluation submitted
+ar: أُرسل التقييم النهائي للشركة
+
+en: Academic final evaluation submitted
+ar: أُرسل التقييم الأكاديمي النهائي
+
+en: Required training hours approved
+ar: اعتُمدت ساعات التدريب المطلوبة
+
+en: hours approved
+ar: ساعة معتمدة
+
+en: . Only approved entries count.
+ar: . لا تُحتسب إلا الساعات المعتمدة.
+
+en: Passing final result (
+ar: نتيجة نهائية ناجحة (
+
+en: % or more)
+ar: % أو أكثر)
+
+en: Company final evaluation
+ar: التقييم النهائي للشركة
+
+en: Confidential
+ar: سرّي
+
+en: The company final evaluation has not been submitted.
+ar: لم يُرسَل التقييم النهائي للشركة.
+
+en: h reported by the company
+ar: ساعة سجّلتها الشركة
+
+en: Areas for improvement:
+ar: جوانب التحسين:
+
+en: Overall comment:
+ar: التعليق العام:
+
+en: Academic final evaluation
+ar: التقييم الأكاديمي النهائي
+
+en: The academic final evaluation has not been submitted.
+ar: لم يُرسَل التقييم الأكاديمي النهائي.
+
+en: Academic comments:
+ar: التعليقات الأكاديمية:
+
+en: Remarks on the company evaluation:
+ar: ملاحظات على تقييم الشركة:
+
+en: Final result
+ar: النتيجة النهائية
+
+en: Calculated with the university grading policy
+ar: محسوبة وفق سياسة التقييم في الجامعة
+
+en: Component
+ar: المكوّن
+
+en: Weight
+ar: الوزن
+
+en: Graded tasks
+ar: المهام المقيّمة
+
+en: Pass mark
+ar: درجة النجاح
+
+en: %. The student sees only the final score and result, never the two evaluation forms.
+ar: %. لا يرى الطالب إلا الدرجة والنتيجة النهائيتين، ولا يطّلع على نموذجي التقييم.
+
+en: Last decision by
+ar: آخر قرار اتخذه
+
+en: with a final result of
+ar: بنتيجة نهائية قدرها
+
+en: Note on the report:
+ar: ملاحظة على التقرير:
+
+en: Open completion report (PDF)
+ar: فتح تقرير إنهاء التدريب (PDF)
+
+en: Print certificate (PDF)
+ar: طباعة الشهادة (PDF)
+
+en: The report has been sent to the student. They can download and print it from their Progress page.
+ar: أُرسل التقرير إلى الطالب، ويمكنه تنزيله وطباعته من صفحة التقدّم.
+
+en: Returned on the last review:
+ar: أُعيد في المراجعة الأخيرة:
+
+en: Approval is locked until every requirement above is met. You can still return the completion with a note.
+ar: يبقى الاعتماد مقفلًا حتى تُستوفى جميع المتطلبات أعلاه، ويمكنك مع ذلك إعادة الطلب مع ملاحظة.
+
+en: Note to the student
+ar: ملاحظة للطالب
+
+en: Optional when approving (shown on the report). Required when returning.
+ar: اختيارية عند الاعتماد (تظهر في التقرير)، ومطلوبة عند الإعادة.
+
+en: Approve completion
+ar: اعتماد الإنهاء
+
+en: Return to student
+ar: إعادة إلى الطالب
+
+en: Coordinator / Groups
+ar: منسّق التدريب / المجموعات
+
+en: Review group membership and supervisor assignments.
+ar: راجع أعضاء المجموعات وإسناد المشرفين.
+
+en: + Create group
+ar: + إنشاء مجموعة
+
+en: Group pages
+ar: صفحات المجموعات
+
+en: Create / edit group
+ar: إنشاء / تعديل مجموعة
+
+en: Groups
+ar: المجموعات
+
+en: Search by group name, academic year, semester, or supervisor.
+ar: ابحث باسم المجموعة أو العام الأكاديمي أو الفصل أو المشرف.
+
+en: Search configured groups
+ar: البحث في المجموعات المُعدّة
+
+en: Group
+ar: المجموعة
+
+en: Academic year
+ar: العام الأكاديمي
+
+en: Semester
+ar: الفصل الدراسي
+
+en: Students
+ar: الطلبة
+
+en: Edit group
+ar: تعديل المجموعة
+
+en: Delete
+ar: حذف
+
+en: Group details
+ar: تفاصيل المجموعة
+
+en: Academic year / semester
+ar: العام الأكاديمي / الفصل الدراسي
+
+en: Created
+ar: تاريخ الإنشاء
+
+en: Name
+ar: الاسم
+
+en: Account
+ar: الحساب
+
+en: No students are assigned to this group.
+ar: لا يوجد طلبة في هذه المجموعة.
+
+en: View and manage messages submitted through the Contact Us form.
+ar: اعرض الرسائل المرسلة عبر نموذج «تواصل معنا» وأدِرها.
+
+en: Total Messages
+ar: إجمالي الرسائل
+
+en: New Messages
+ar: الرسائل الجديدة
+
+en: Reviewed Messages
+ar: الرسائل المراجَعة
+
+en: Search by name, email, subject or message...
+ar: ابحث بالاسم أو البريد الإلكتروني أو الموضوع أو نص الرسالة...
+
+en: No messages found.
+ar: لا توجد رسائل.
+
+en: View Message Details
+ar: عرض تفاصيل الرسالة
+
+en: Message Details
+ar: تفاصيل الرسالة
+
+en: Sender Information
+ar: بيانات المرسِل
+
+en: Name:
+ar: الاسم:
+
+en: Email:
+ar: البريد الإلكتروني:
+
+en: Subject:
+ar: الموضوع:
+
+en: Date:
+ar: التاريخ:
+
+en: Status:
+ar: الحالة:
+
+en: Message Content
+ar: نص الرسالة
+
+en: Mark as Reviewed
+ar: تعليم كمراجَعة
+
+en: Coordination desk
+ar: مكتب التنسيق
+
+en: Keep assignments, training exceptions and completion decisions in view.
+ar: تابع الإسنادات واستثناءات التدريب وقرارات الإنهاء.
+
+en: Open completion review
+ar: فتح مراجعة الإنهاء
+
+en: active accounts
+ar: حساب نشط
+
+en: Confirmed placements
+ar: جهات التدريب المؤكَّدة
+
+en: confirmed or active
+ar: مؤكَّدة أو نشطة
+
+en: Final assessments received
+ar: التقييمات النهائية المستلمة
+
+en: company ·
+ar: للشركة ·
+
+en: academic
+ar: أكاديمي
+
+en: Both evaluations; not yet approved
+ar: التقييمان مكتملان ولم يُعتمدا بعد
+
+en: Each student needs an individual coordinator decision.
+ar: يحتاج كل طالب إلى قرار مستقل من منسّق التدريب.
+
+en: View queue
+ar: عرض القائمة
+
+en: No confirmed placements yet
+ar: لا توجد جهات تدريب مؤكَّدة بعد
+
+en: Students appear here after confirming one accepted offer.
+ar: يظهر الطلبة هنا بعد تأكيد أحد العروض المقبولة.
+
+en: Manage student records
+ar: إدارة سجلات الطلبة
+
+en: Completion work and approved hours for confirmed placements
+ar: أعمال الإنهاء والساعات المعتمدة لجهات التدريب المؤكَّدة
+
+en: Student & company
+ar: الطالب والشركة
+
+en: Review stage
+ar: مرحلة المراجعة
+
+en: Assignments
+ar: الإسنادات
+
+en: active student profiles have no academic supervisor recorded.
+ar: ملفًا طلابيًا نشطًا بلا مشرف أكاديمي مسجّل.
+
+en: Manage groups & assignments
+ar: إدارة المجموعات والإسنادات
+
+en: Training exceptions
+ar: استثناءات التدريب
+
+en: Open placements
+ar: جهات التدريب المفتوحة
+
+en: placements awaiting completion
+ar: جهة تدريب بانتظار الإنهاء
+
+en: ungraded tasks past their deadline
+ar: مهمة غير مقيّمة تجاوزت موعدها النهائي
+
+en: reported, awaiting company approval
+ar: مسجّلة بانتظار اعتماد الشركة
+
+en: companies ·
+ar: شركة ·
+
+en: active
+ar: نشطة
+
+en: opportunities ·
+ar: فرصة ·
+
+en: open
+ar: مفتوحة
+
+en: linked task evaluations
+ar: تقييم مهمة مرتبط
+
+en: Updated on page load ·
+ar: يُحدَّث عند تحميل الصفحة ·
+
+en: Create group
+ar: إنشاء مجموعة
+
+en: Choose a supervisor and assign available students.
+ar: اختر مشرفًا وأسند إليه الطلبة المتاحين.
+
+en: Each student can belong to one group at a time.
+ar: يمكن أن ينتمي كل طالب إلى مجموعة واحدة فقط في الوقت نفسه.
+
+en: Group name
+ar: اسم المجموعة
+
+en: Academic year (optional)
+ar: العام الأكاديمي (اختياري)
+
+en: Semester (optional)
+ar: الفصل الدراسي (اختياري)
+
+en: Only unassigned students are available. When editing a group, its current students are also shown.
+ar: لا يظهر إلا الطلبة غير المسندين، وعند تعديل مجموعة يظهر طلبتها الحاليون أيضًا.
+
+en: No available students.
+ar: لا يوجد طلبة متاحون.
+
+en: Cancel edit
+ar: إلغاء التعديل
+
+en: Coordinator / Students
+ar: منسّق التدريب / الطلبة
+
+en: Update academic details or remove and restore student access.
+ar: حدّث البيانات الأكاديمية، أو أوقف وصول الطلبة أو استعده.
+
+en: + Add student
+ar: + إضافة طالب
+
+en: Student pages
+ar: صفحات الطلبة
+
+en: Select a student
+ar: اختر طالبًا
+
+en: Choose a record to edit. Inactive students remain available for restoration.
+ar: اختر سجلًا لتعديله، ويبقى الطلبة غير النشطين متاحين للاستعادة.
+
+en: Search students to manage
+ar: ابحث عن الطلبة لإدارتهم
+
+en: Search students
+ar: البحث عن الطلبة
+
+en: Manage student
+ar: إدارة الطالب
+
+en: Academic information
+ar: البيانات الأكاديمية
+
+en: Assigned when the account is created.
+ar: يُحدَّد عند إنشاء الحساب.
+
+en: Required training hours
+ar: ساعات التدريب المطلوبة
+
+en: View record
+ar: عرض السجل
+
+en: ← Placements & progress
+ar: → جهات التدريب والتقدّم
+
+en: Internship details
+ar: تفاصيل التدريب
+
+en: Confirmed
+ar: مؤكَّد
+
+en: h reported, awaiting approval. Only approved entries count.
+ar: ساعة مسجّلة بانتظار الاعتماد. لا تُحتسب إلا الساعات المعتمدة.
+
+en: Task progress
+ar: تقدّم المهام
+
+en: graded
+ar: مقيّمة
+
+en: past deadline and not graded ·
+ar: تجاوزت موعدها ولم تُقيَّم ·
+
+en: submission attempts
+ar: محاولة تسليم
+
+en: Tasks and hours are separate. Completing tasks does not approve training hours or internship completion.
+ar: المهام والساعات منفصلة، وإنجاز المهام لا يعني اعتماد ساعات التدريب أو إنهاء التدريب.
+
+en: Tasks
+ar: المهام
+
+en: assigned
+ar: مسندة
+
+en: No tasks have been assigned to this placement yet.
+ar: لم تُسند أي مهام لجهة التدريب هذه بعد.
+
+en: Tasks assigned to this student placement
+ar: المهام المسندة لجهة تدريب هذا الطالب
+
+en: Mark scale
+ar: سلّم الدرجات
+
+en: Past deadline
+ar: تجاوزت الموعد النهائي
+
+en: Submission history
+ar: سجل التسليمات
+
+en: All attempts, newest first
+ar: جميع المحاولات، الأحدث أولًا
+
+en: No submissions have been recorded for these tasks.
+ar: لم تُسجَّل أي تسليمات لهذه المهام.
+
+en: · Attempt
+ar: · المحاولة
+
+en: Open attachment:
+ar: فتح المرفق:
+
+en: Reported for this attempt:
+ar: المسجّل لهذه المحاولة:
+
+en: h (requires separate approval).
+ar: ساعة (تحتاج إلى اعتماد منفصل).
+
+en: records
+ar: سجل
+
+en: No task evaluations have been recorded yet.
+ar: لم تُسجَّل أي تقييمات للمهام بعد.
+
+en: Requested changes:
+ar: التعديلات المطلوبة:
+
+en: Evaluation criteria
+ar: معايير التقييم
+
+en: · weight
+ar: · الوزن
+
+en: Training hours log
+ar: سجل ساعات التدريب
+
+en: Approval is separate from task completion
+ar: الاعتماد منفصل عن إنجاز المهام
+
+en: No training hours have been reported for this placement.
+ar: لم تُسجَّل أي ساعات تدريب لجهة التدريب هذه.
+
+en: Reported hours and review decisions
+ar: الساعات المسجّلة وقرارات المراجعة
+
+en: Work date
+ar: تاريخ العمل
+
+en: Review note
+ar: ملاحظة المراجعة
+
+en: Coordinator access
+ar: وصول منسّق التدريب
+
+en: No company final evaluation received.
+ar: لم يُستلم التقييم النهائي للشركة.
+
+en: Score:
+ar: الدرجة:
+
+en: View confidential company evaluation
+ar: عرض تقييم الشركة السرّي
+
+en: No academic final evaluation received.
+ar: لم يُستلم التقييم الأكاديمي النهائي.
+
+en: View confidential academic evaluation
+ar: عرض التقييم الأكاديمي السرّي
+
+en: Company evaluation remarks:
+ar: ملاحظات على تقييم الشركة:
+
+en: comments
+ar: تعليق
+
+en: No academic comments have been recorded yet.
+ar: لم تُسجَّل أي تعليقات أكاديمية بعد.
+
+en: Completion & official result
+ar: الإنهاء والنتيجة الرسمية
+
+en: No completion review record yet. Training hours and task completion do not automatically approve this internship.
+ar: لا يوجد سجل لمراجعة الإنهاء بعد، ولا تعني ساعات التدريب وإنجاز المهام اعتماد هذا التدريب تلقائيًا.
+
+en: Review status:
+ar: حالة المراجعة:
+
+en: Recorded final result:
+ar: النتيجة النهائية المسجّلة:
+
+en: Open official completion report
+ar: فتح تقرير الإنهاء الرسمي
+
+en: Final result and report are awaiting coordinator approval.
+ar: النتيجة النهائية والتقرير بانتظار اعتماد منسّق التدريب.
+
+en: Placements & progress
+ar: جهات التدريب والتقدّم
+
+en: Find a student's confirmed internship and review their progress.
+ar: ابحث عن تدريب الطالب المؤكَّد وراجع تقدّمه.
+
+en: Back to dashboard
+ar: العودة إلى لوحة التحكم
+
+en: Search placements
+ar: البحث في جهات التدريب
+
+en: Student name, number, UID or company
+ar: اسم الطالب أو رقمه أو المعرّف أو الشركة
+
+en: Clear filters
+ar: مسح عوامل التصفية
+
+en: Student placements
+ar: جهات تدريب الطلبة
+
+en: matching ·
+ar: مطابقة ·
+
+en: Confirmed student placements and approved-hour progress
+ar: جهات تدريب الطلبة المؤكَّدة وتقدّم الساعات المعتمدة
+
+en: Company / opportunity
+ar: الشركة / الفرصة
+
+en: Page
+ar: الصفحة
+
+en: · Showing
+ar: · عرض
+
+en: Placements pagination
+ar: التنقل بين صفحات جهات التدريب
+
+en: Hours are calculated from approved training-hour entries. Completing a task does not approve hours or complete an internship.
+ar: تُحتسب الساعات من إدخالات ساعات التدريب المعتمدة، وإنجاز المهمة لا يعني اعتماد الساعات أو إنهاء التدريب.
+
+en: Create an account and enter the student's academic information.
+ar: أنشئ حسابًا وأدخل البيانات الأكاديمية للطالب.
+
+en: Personal information
+ar: البيانات الشخصية
+
+en: Use the student's official name and login email.
+ar: استخدم الاسم الرسمي للطالب وبريد تسجيل الدخول.
+
+en: Generated automatically when the account is created.
+ar: يُنشأ تلقائيًا عند إنشاء الحساب.
+
+en: These details appear in the student's record.
+ar: تظهر هذه البيانات في سجل الطالب.
+
+en: Share the email and temporary password privately. The student must change the password after signing in.
+ar: شارك البريد الإلكتروني وكلمة المرور المؤقتة بشكل خاص، ويجب على الطالب تغيير كلمة المرور بعد تسجيل الدخول.
+
+en: Create student
+ar: إنشاء الطالب
+
+en: Find a student and review their account and training information.
+ar: ابحث عن طالب وراجع بيانات حسابه وتدريبه.
+
+en: Directory
+ar: الدليل
+
+en: Search by name, student number, email, university, college, or major.
+ar: ابحث بالاسم أو الرقم الجامعي أو البريد الإلكتروني أو الجامعة أو الكلية أو التخصص.
+
+en: Search student records
+ar: البحث في سجلات الطلبة
+
+en: Record
+ar: السجل
+
+en: Manage this student
+ar: إدارة هذا الطالب
+
+en: Required hours
+ar: الساعات المطلوبة
+
+en: View your scheduled meetings and join them from here.
+ar: اعرض اجتماعاتك المجدولة وانضم إليها من هنا.
+
+en: + Schedule Meeting
+ar: + جدولة اجتماع
+
+en: Upcoming Meetings
+ar: الاجتماعات القادمة
+
+en: You have no upcoming meetings yet.
+ar: لا توجد لديك اجتماعات قادمة بعد.
+
+en: Past Meetings
+ar: الاجتماعات السابقة
+
+en: Your past meetings will appear here.
+ar: ستظهر اجتماعاتك السابقة هنا.
+
+en: Schedule a Meeting
+ar: جدولة اجتماع
+
+en: Enter the meeting details and paste its Zoom link.
+ar: أدخل تفاصيل الاجتماع والصق رابط Zoom الخاص به.
+
+en: Close form
+ar: إغلاق النموذج
+
+en: Meeting Title
+ar: عنوان الاجتماع
+
+en: e.g. Internship Progress Meeting
+ar: مثال: اجتماع متابعة تقدّم التدريب
+
+en: Agenda
+ar: جدول الأعمال
+
+en: What will you discuss?
+ar: ما الذي ستناقشونه؟
+
+en: Date and Time
+ar: التاريخ والوقت
+
+en: 30 minutes
+ar: 30 دقيقة
+
+en: 45 minutes
+ar: 45 دقيقة
+
+en: 60 minutes
+ar: 60 دقيقة
+
+en: Participants
+ar: المشاركون
+
+en: Available participants will appear here after we connect the page to the project data.
+ar: سيظهر المشاركون المتاحون هنا بعد ربط الصفحة ببيانات المشروع.
+
+en: Zoom Meeting Link
+ar: رابط اجتماع Zoom
+
+en: Schedule Meeting
+ar: جدولة الاجتماع
+
+en: This is a design preview. No meeting was saved yet.
+ar: هذه معاينة للتصميم، ولم يُحفظ أي اجتماع بعد.
+
+en: Schedule a meeting and share a Zoom link with its participants.
+ar: جدوِل اجتماعًا وشارك رابط Zoom مع المشاركين فيه.
+
+en: Use the local time on your device.
+ar: استخدم التوقيت المحلي لجهازك.
+
+en: Create the meeting in Zoom, then paste its link here.
+ar: أنشئ الاجتماع في Zoom، ثم الصق رابطه هنا.
+
+en: Meeting
+ar: الاجتماع
+
+en: Scheduled At (UTC)
+ar: موعد الاجتماع (UTC)
+
+en: min
+ar: دقيقة
+
+en: No meetings to show.
+ar: لا توجد اجتماعات لعرضها.
+
+en: Meeting Details
+ar: تفاصيل الاجتماع
+
+en: Title:
+ar: العنوان:
+
+en: Agenda:
+ar: جدول الأعمال:
+
+en: Scheduled At (UTC):
+ar: موعد الاجتماع (UTC):
+
+en: Duration:
+ar: المدة:
+
+en: Join Zoom Meeting
+ar: الانضمام إلى اجتماع Zoom
+
+# ---------------------------------------------------------------- role pages: server messages
+en: We could not confirm your submission. Check My Applications before trying again. Your form is still here.
+ar: تعذّر تأكيد إرسال طلبك. راجع صفحة طلباتي قبل المحاولة مرة أخرى، وما زالت بياناتك في النموذج.
+
+en: Student record was not found.
+ar: لم يُعثر على سجل الطالب.
+
+en: Unable to load your profile. Please try again.
+ar: تعذّر تحميل ملفك الشخصي. يُرجى المحاولة مرة أخرى.
+
+en: Enter a valid phone number (digits, spaces, +, -, or parentheses).
+ar: أدخل رقم هاتف صحيحًا (أرقام أو مسافات أو + أو - أو أقواس).
+
+en: Each skills section must be 1000 characters or less.
+ar: يجب ألا يتجاوز كل قسم من أقسام المهارات 1000 حرف.
+
+en: Your profile has been updated successfully.
+ar: تم تحديث ملفك الشخصي بنجاح.
+
+en: Changes could not be saved. Please try again.
+ar: تعذّر حفظ التغييرات. يُرجى المحاولة مرة أخرى.
+
+en: We could not load applications. Refresh to try again.
+ar: تعذّر تحميل الطلبات. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: The application service is not configured. Contact the coordinator.
+ar: خدمة الطلبات غير مُعدّة. تواصل مع منسّق التدريب.
+
+en: We could not confirm the result. Refresh to check your placement before trying again.
+ar: تعذّر تأكيد النتيجة. حدّث الصفحة للتحقق من جهة تدريبك قبل المحاولة مرة أخرى.
+
+en: Your confirmed placement was not found.
+ar: لم يُعثر على جهة تدريبك المؤكَّدة.
+
+en: This task is not accepting submissions now.
+ar: لا تستقبل هذه المهمة تسليمات حاليًا.
+
+en: This task requires a file. File uploads are not available yet.
+ar: تتطلب هذه المهمة ملفًا، ورفع الملفات غير متاح حاليًا.
+
+en: Enter submission text or a link.
+ar: أدخل نص التسليم أو رابطًا.
+
+en: Enter a valid http or https link.
+ar: أدخل رابط http أو https صحيحًا.
+
+en: You already submitted this task. Wait for a revision request.
+ar: سلّمت هذه المهمة بالفعل. انتظر طلب تعديل.
+
+en: Submission could not be saved.
+ar: تعذّر حفظ التسليم.
+
+en: Submission could not be saved. Try again.
+ar: تعذّر حفظ التسليم. حاول مرة أخرى.
+
+en: Submission was saved, but the task status could not be updated. Refresh the page.
+ar: حُفظ التسليم، لكن تعذّر تحديث حالة المهمة. حدّث الصفحة.
+
+en: Submission saved successfully.
+ar: تم حفظ التسليم بنجاح.
+
+en: Student account is unavailable.
+ar: حساب الطالب غير متاح.
+
+en: Student profile could not be found.
+ar: لم يُعثر على ملف الطالب.
+
+en: Full name must be between 2 and 120 characters.
+ar: يجب أن يتكوّن الاسم الكامل من 2 إلى 120 حرفًا.
+
+en: One or more fields exceed the allowed length.
+ar: حقل واحد أو أكثر يتجاوز الطول المسموح به.
+
+en: Please enter a valid age between 16 and 100.
+ar: يُرجى إدخال عمر صحيح بين 16 و100.
+
+en: Please enter valid HTTP or HTTPS links.
+ar: يُرجى إدخال روابط HTTP أو HTTPS صحيحة.
+
+en: Please enter a valid LinkedIn profile URL.
+ar: يُرجى إدخال رابط صحيح لحساب LinkedIn.
+
+en: Your profile was updated elsewhere. Please refresh and try again.
+ar: حُدّث ملفك الشخصي من مكان آخر. يُرجى تحديث الصفحة والمحاولة مرة أخرى.
+
+en: Your CV or portfolio could not be updated because the record changed. Refresh and try again.
+ar: تعذّر تحديث سيرتك الذاتية أو ملفك المهني لأن السجل تغيّر. حدّث الصفحة وحاول مرة أخرى.
+
+en: Profile photo must be 2 MB or smaller.
+ar: يجب ألا يتجاوز حجم الصورة الشخصية 2 ميغابايت.
+
+en: Profile photo must be JPG or PNG.
+ar: يجب أن تكون الصورة الشخصية بصيغة JPG أو PNG.
+
+en: The selected photo is not a valid image.
+ar: الصورة المختارة ليست صورة صالحة.
+
+en: PDF files must be 5 MB or smaller.
+ar: يجب ألا يتجاوز حجم ملفات PDF خمسة ميغابايت.
+
+en: CV and portfolio files must be PDF.
+ar: يجب أن تكون ملفات السيرة الذاتية والملف المهني بصيغة PDF.
+
+en: The selected file is not a valid PDF.
+ar: الملف المختار ليس ملف PDF صالحًا.
+
+en: Your internship is still in progress.
+ar: ما زال تدريبك قيد التنفيذ.
+
+en: Unable to load or save your CV and portfolio.
+ar: تعذّر تحميل سيرتك الذاتية وملفك المهني أو حفظهما.
+
+en: Your information changed. Refresh and try again.
+ar: تغيّرت بياناتك. حدّث الصفحة وحاول مرة أخرى.
+
+en: Only PDF files are supported.
+ar: لا تُقبل إلا ملفات PDF.
+
+en: Enter valid HTTP or HTTPS links.
+ar: أدخل روابط HTTP أو HTTPS صحيحة.
+
+en: Missing Field
+ar: حقل ناقص
+
+en: Profile Updated
+ar: تم تحديث الملف الشخصي
+
+en: <span data-ui-confirmed='true'><i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i></span>
+ar: <span data-ui-confirmed='true'><i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i></span>
+
+en: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>
+ar: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>
+
+en: We could not load this application. Please try again.
+ar: تعذّر تحميل هذا الطلب. يُرجى المحاولة مرة أخرى.
+
+en: This application is not available to your company.
+ar: هذا الطلب غير متاح لشركتك.
+
+en: The application service is not configured. Please contact the coordinator.
+ar: خدمة الطلبات غير مُعدّة. يُرجى التواصل مع منسّق التدريب.
+
+en: We could not confirm the decision. Your reason is still here. Refresh to check the current status before trying again.
+ar: تعذّر تأكيد القرار، وما زال السبب الذي كتبته محفوظًا. حدّث الصفحة للتحقق من الحالة الحالية قبل المحاولة مرة أخرى.
+
+en: We could not load your company work queues. Refresh to try again.
+ar: تعذّر تحميل قوائم عمل شركتك. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: Draft Loaded
+ar: تم تحميل المسودة
+
+en: Select Trainee
+ar: اختر متدرّبًا
+
+en: Draft Saved
+ar: تم حفظ المسودة
+
+en: Invalid Scores
+ar: درجات غير صحيحة
+
+en: Missing Fields
+ar: حقول ناقصة
+
+en: Certificate Issued!
+ar: تم إصدار الشهادة!
+
+en: <span class='status-badge-warning'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>In Progress</span>
+ar: <span class='status-badge-warning'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>قيد التنفيذ</span>
+
+en: <span class='status-badge-green'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>Evaluated</span>
+ar: <span class='status-badge-green'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>تم التقييم</span>
+
+en: <i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i>
+ar: <i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i>
+
+en: <span class='badge bg-secondary'>Pending</span>
+ar: <span class='badge bg-secondary'>قيد الانتظار</span>
+
+en: Your account is not linked to a company.
+ar: حسابك غير مرتبط بأي شركة.
+
+en: Unable to load or update opportunities.
+ar: تعذّر تحميل الفرص أو تحديثها.
+
+en: Invalid opportunity ID.
+ar: رقم الفرصة غير صالح.
+
+en: Opportunity not found.
+ar: لم يُعثر على الفرصة.
+
+en: You cannot manage another company's opportunity.
+ar: لا يمكنك إدارة فرصة تابعة لشركة أخرى.
+
+en: This opportunity is already closed.
+ar: هذه الفرصة مغلقة بالفعل.
+
+en: Opportunity changed. Please refresh and try again.
+ar: تغيّرت الفرصة. يُرجى تحديث الصفحة والمحاولة مرة أخرى.
+
+en: Please check all opportunity fields.
+ar: يُرجى مراجعة جميع حقول الفرصة.
+
+en: Seats cannot be less than filled seats.
+ar: لا يمكن أن يقل عدد المقاعد عن عدد المقاعد المشغولة.
+
+en: Start date must follow the deadline, and end date must follow start date.
+ar: يجب أن يأتي تاريخ البدء بعد آخر موعد للتقديم، وتاريخ الانتهاء بعد تاريخ البدء.
+
+en: Invalid training mode.
+ar: نمط التدريب غير صالح.
+
+en: Opportunity changed. Refresh and try again.
+ar: تغيّرت الفرصة. حدّث الصفحة وحاول مرة أخرى.
+
+en: One or more fields are too long.
+ar: حقل واحد أو أكثر أطول من المسموح.
+
+en: Please select valid specializations.
+ar: يُرجى اختيار تخصصات صحيحة.
+
+en: Please complete all required fields.
+ar: يُرجى إكمال جميع الحقول المطلوبة.
+
+en: Please enter valid seats and duration.
+ar: يُرجى إدخال عدد مقاعد ومدة صحيحين.
+
+en: Start date must be after the deadline.
+ar: يجب أن يكون تاريخ البدء بعد آخر موعد للتقديم.
+
+en: End date must be after start date.
+ar: يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء.
+
+en: Application deadline cannot be in the past.
+ar: لا يمكن أن يكون آخر موعد للتقديم في الماضي.
+
+en: Please select a valid opportunity type.
+ar: يُرجى اختيار نوع فرصة صحيح.
+
+en: Unable to save. Please try again.
+ar: تعذّر الحفظ. يُرجى المحاولة مرة أخرى.
+
+en: This task is not waiting for grading.
+ar: هذه المهمة ليست بانتظار التقييم.
+
+en: This task has no valid grading criteria.
+ar: لا توجد لهذه المهمة معايير تقييم صالحة.
+
+en: Please enter feedback for the student.
+ar: يُرجى كتابة ملاحظات للطالب.
+
+en: A newer submission attempt exists. Review that one instead.
+ar: توجد محاولة تسليم أحدث، فراجعها بدلًا من هذه.
+
+en: This submission has already been reviewed.
+ar: رُوجع هذا التسليم بالفعل.
+
+en: The grade could not be saved.
+ar: تعذّر حفظ الدرجة.
+
+en: The grade was saved, but the task status was not updated. Check Firebase before trying again.
+ar: حُفظت الدرجة، لكن لم تُحدَّث حالة المهمة. تحقّق من Firebase قبل المحاولة مرة أخرى.
+
+en: Grade saved successfully.
+ar: تم حفظ الدرجة بنجاح.
+
+en: Could not load or save the evaluation. Please try again.
+ar: تعذّر تحميل التقييم أو حفظه. يُرجى المحاولة مرة أخرى.
+
+en: Write what you will check, for example "Code quality".
+ar: اكتب ما ستقيّمه، مثل «جودة الشيفرة».
+
+en: Please enter a task title.
+ar: يُرجى إدخال عنوان المهمة.
+
+en: Please choose a trainee.
+ar: يُرجى اختيار متدرّب.
+
+en: Please choose a deadline.
+ar: يُرجى اختيار موعد نهائي.
+
+en: The deadline must be in the future.
+ar: يجب أن يكون الموعد النهائي في المستقبل.
+
+en: Add at least one criterion in step 2 so you can grade this task.
+ar: أضف معيارًا واحدًا على الأقل في الخطوة 2 لتتمكن من تقييم هذه المهمة.
+
+en: The task could not be saved. Please try again.
+ar: تعذّر حفظ المهمة. يُرجى المحاولة مرة أخرى.
+
+en: Your session expired. Please reload the page and try again.
+ar: انتهت جلستك. يُرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.
+
+en: Major (x3)
+ar: رئيسية (×3)
+
+en: Important (x2)
+ar: مهمة (×2)
+
+en: Normal (x1)
+ar: عادية (×1)
+
+en: Invalid trainee ID.
+ar: رقم المتدرّب غير صالح.
+
+en: Trainee record not found.
+ar: لم يُعثر على سجل المتدرّب.
+
+en: Access denied. This trainee belongs to another company.
+ar: الوصول مرفوض، فهذا المتدرّب تابع لشركة أخرى.
+
+en: Near finish
+ar: قارب على الانتهاء
+
+en: In progress
+ar: قيد التنفيذ
+
+en: Opportunity not found or access denied.
+ar: لم يُعثر على الفرصة أو أن الوصول إليها مرفوض.
+
+en: Unable to load opportunity details.
+ar: تعذّر تحميل تفاصيل الفرصة.
+
+en: Your profile information has been updated successfully.
+ar: تم تحديث بيانات ملفك الشخصي بنجاح.
+
+en: Profile photo uploaded successfully.
+ar: تم رفع الصورة الشخصية بنجاح.
+
+en: Only .jpg, .jpeg or .png files are allowed.
+ar: لا يُسمح إلا بملفات ‎.jpg‎ أو ‎.jpeg‎ أو ‎.png‎.
+
+en: Please select an image file first.
+ar: يُرجى اختيار ملف صورة أولًا.
+
+en: Passwords do not match. Please try again.
+ar: كلمتا المرور غير متطابقتين. يُرجى المحاولة مرة أخرى.
+
+en: Password must be at least 6 characters.
+ar: يجب أن تتكوّن كلمة المرور من 6 أحرف على الأقل.
+
+en: Session expired. Please log out and log in again.
+ar: انتهت الجلسة. يُرجى تسجيل الخروج ثم تسجيل الدخول مرة أخرى.
+
+en: Your password has been changed successfully.
+ar: تم تغيير كلمة المرور بنجاح.
+
+en: We could not load your assigned students. Refresh to try again.
+ar: تعذّر تحميل الطلبة المسندين إليك. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: Evaluation for the selected student has been submitted to the Coordinator successfully!
+ar: أُرسل تقييم الطالب المحدد إلى منسّق التدريب بنجاح!
+
+en: Not assigned yet
+ar: لم يُسند بعد
+
+en: Comment saved successfully!
+ar: تم حفظ التعليق بنجاح!
+
+en: Enter a name, login email, and department.
+ar: أدخل الاسم وبريد تسجيل الدخول والقسم.
+
+en: Enter a valid email address.
+ar: أدخل بريدًا إلكترونيًا صحيحًا.
+
+en: The temporary password must be at least 6 characters.
+ar: يجب أن تتكوّن كلمة المرور المؤقتة من 6 أحرف على الأقل.
+
+en: The passwords do not match.
+ar: كلمتا المرور غير متطابقتين.
+
+en: Firebase is not configured. Ask the project administrator to check the local settings.
+ar: لم تُعدّ Firebase بعد. اطلب من مسؤول المشروع التحقق من الإعدادات المحلية.
+
+en: The account was created but its profile could not be saved. Contact the administrator before retrying.
+ar: أُنشئ الحساب لكن تعذّر حفظ ملفه. تواصل مع المسؤول قبل إعادة المحاولة.
+
+en: The supervisor could not be saved. Please try again.
+ar: تعذّر حفظ المشرف. يُرجى المحاولة مرة أخرى.
+
+en: Academic supervisor account created. Share the login credentials privately.
+ar: تم إنشاء حساب المشرف الأكاديمي. شارك بيانات تسجيل الدخول بشكل خاص.
+
+en: Supervisor record not found.
+ar: لم يُعثر على سجل المشرف.
+
+en: Could not load this supervisor. Please try again.
+ar: تعذّر تحميل بيانات هذا المشرف. يُرجى المحاولة مرة أخرى.
+
+en: Select a supervisor before saving changes.
+ar: اختر مشرفًا قبل حفظ التغييرات.
+
+en: Enter a name and department.
+ar: أدخل الاسم والقسم.
+
+en: Supervisor information saved.
+ar: تم حفظ بيانات المشرف.
+
+en: Could not save supervisor information. Please try again.
+ar: تعذّر حفظ بيانات المشرف. يُرجى المحاولة مرة أخرى.
+
+en: Select a supervisor before changing access.
+ar: اختر مشرفًا قبل تغيير صلاحية الوصول.
+
+en: Could not change supervisor access. Please try again.
+ar: تعذّر تغيير صلاحية وصول المشرف. يُرجى المحاولة مرة أخرى.
+
+en: Could not load supervisors. Please try again.
+ar: تعذّر تحميل المشرفين. يُرجى المحاولة مرة أخرى.
+
+en: Action Required
+ar: مطلوب إجراء
+
+en: Creation Failed
+ar: تعذّر الإنشاء
+
+en: <i class='bi bi-check-circle-fill text-success' style='font-size: 3.5rem;'></i>
+ar: <i class='bi bi-check-circle-fill text-success' style='font-size: 3.5rem;'></i>
+
+en: Not Provided
+ar: غير مُدخل
+
+en: Status Updated
+ar: تم تحديث الحالة
+
+en: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3.5rem;'></i>
+ar: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3.5rem;'></i>
+
+en: We could not load completion data. Refresh to try again.
+ar: تعذّر تحميل بيانات الإنهاء. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: Completion approved. The official report is now available to the student.
+ar: تم اعتماد الإنهاء، وأصبح التقرير الرسمي متاحًا للطالب.
+
+en: Completion returned to the student with your note.
+ar: أُعيد طلب الإنهاء إلى الطالب مع ملاحظتك.
+
+en: Choose a student from the completion queue.
+ar: اختر طالبًا من قائمة إنهاء التدريب.
+
+en: This confirmed placement could not be found.
+ar: لم يُعثر على جهة التدريب المؤكَّدة هذه.
+
+en: The decision could not be saved. Please try again.
+ar: تعذّر حفظ القرار. يُرجى المحاولة مرة أخرى.
+
+en: Group and assignments saved.
+ar: تم حفظ المجموعة والإسنادات.
+
+en: Invalid group link.
+ar: رابط المجموعة غير صالح.
+
+en: Group not found. It may have been deleted.
+ar: لم يُعثر على المجموعة، وربما حُذفت.
+
+en: Could not load the group details. Please try again.
+ar: تعذّر تحميل تفاصيل المجموعة. يُرجى المحاولة مرة أخرى.
+
+en: Group deleted. Its students are now unassigned.
+ar: حُذفت المجموعة، وأصبح طلبتها غير مسندين.
+
+en: Could not delete the group. Please try again.
+ar: تعذّر حذف المجموعة. يُرجى المحاولة مرة أخرى.
+
+en: Could not load configured groups. Please try again.
+ar: تعذّر تحميل المجموعات المُعدّة. يُرجى المحاولة مرة أخرى.
+
+en: Unable to load messages. Check Firebase connection and permissions.
+ar: تعذّر تحميل الرسائل. تحقّق من اتصال Firebase والصلاحيات.
+
+en: Unable to open message details.
+ar: تعذّر فتح تفاصيل الرسالة.
+
+en: Could not update the message status.
+ar: تعذّر تحديث حالة الرسالة.
+
+en: We could not load the programme work queues. Refresh to try again.
+ar: تعذّر تحميل قوائم عمل البرنامج. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: Could not load groups and account records. Please try again.
+ar: تعذّر تحميل المجموعات وسجلات الحسابات. يُرجى المحاولة مرة أخرى.
+
+en: Group not found.
+ar: لم يُعثر على المجموعة.
+
+en: Enter a group name of at most 120 characters and check the academic fields.
+ar: أدخل اسمًا للمجموعة لا يتجاوز 120 حرفًا، وراجع الحقول الأكاديمية.
+
+en: Choose an academic supervisor.
+ar: اختر مشرفًا أكاديميًا.
+
+en: Could not save the group. Please try again.
+ar: تعذّر حفظ المجموعة. يُرجى المحاولة مرة أخرى.
+
+en: Select a student before saving changes.
+ar: اختر طالبًا قبل حفظ التغييرات.
+
+en: Complete all academic information fields.
+ar: أكمل جميع حقول البيانات الأكاديمية.
+
+en: One or more academic information fields are too long.
+ar: حقل واحد أو أكثر من حقول البيانات الأكاديمية أطول من المسموح.
+
+en: Required training hours must be a positive whole number.
+ar: يجب أن تكون ساعات التدريب المطلوبة عددًا صحيحًا موجبًا.
+
+en: Student record not found.
+ar: لم يُعثر على سجل الطالب.
+
+en: Student academic information saved.
+ar: تم حفظ البيانات الأكاديمية للطالب.
+
+en: Could not save student information. Please try again.
+ar: تعذّر حفظ بيانات الطالب. يُرجى المحاولة مرة أخرى.
+
+en: Select a student before changing access.
+ar: اختر طالبًا قبل تغيير صلاحية الوصول.
+
+en: Could not change student access. Please try again.
+ar: تعذّر تغيير صلاحية وصول الطالب. يُرجى المحاولة مرة أخرى.
+
+en: Could not load this student. Please try again.
+ar: تعذّر تحميل بيانات هذا الطالب. يُرجى المحاولة مرة أخرى.
+
+en: Could not load student records. Please try again.
+ar: تعذّر تحميل سجلات الطلبة. يُرجى المحاولة مرة أخرى.
+
+en: Choose a student from Placements & Progress to view their internship.
+ar: اختر طالبًا من صفحة جهات التدريب والتقدّم لعرض تدريبه.
+
+en: We could not load internship progress. Refresh to try again.
+ar: تعذّر تحميل تقدّم التدريب. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: Firebase is not configured. Contact the project administrator.
+ar: لم تُعدّ Firebase بعد. تواصل مع مسؤول المشروع.
+
+en: We could not load placements. Refresh to try again.
+ar: تعذّر تحميل جهات التدريب. حدّث الصفحة للمحاولة مرة أخرى.
+
+en: Complete all required fields.
+ar: أكمل جميع الحقول المطلوبة.
+
+en: The student could not be saved. Please try again.
+ar: تعذّر حفظ الطالب. يُرجى المحاولة مرة أخرى.
+
+en: Could not load meetings. Please try again.
+ar: تعذّر تحميل الاجتماعات. يُرجى المحاولة مرة أخرى.
+
+en: Could not load participants.
+ar: تعذّر تحميل المشاركين.
+
+en: Select one of your internships.
+ar: اختر أحد تدريباتك.
+
+en: Enter a meeting title.
+ar: أدخل عنوان الاجتماع.
+
+en: Enter a valid meeting date and time.
+ar: أدخل تاريخًا ووقتًا صحيحين للاجتماع.
+
+en: Could not read your time zone. Refresh and try again.
+ar: تعذّرت قراءة منطقتك الزمنية. حدّث الصفحة وحاول مرة أخرى.
+
+en: Choose a future date and time.
+ar: اختر تاريخًا ووقتًا في المستقبل.
+
+en: Select a valid duration.
+ar: اختر مدة صحيحة.
+
+en: Enter a valid HTTPS Zoom link.
+ar: أدخل رابط Zoom صحيحًا يبدأ بـ HTTPS.
+
+en: Invalid participant selected.
+ar: المشارك المختار غير صالح.
+
+en: Select at least one participant.
+ar: اختر مشاركًا واحدًا على الأقل.
+
+en: Meeting could not be saved.
+ar: تعذّر حفظ الاجتماع.
+
+en: Meeting scheduled successfully.
+ar: تمت جدولة الاجتماع بنجاح.
+
+en: Could not save the meeting. Try again.
+ar: تعذّر حفظ الاجتماع. حاول مرة أخرى.
+
+en: You do not have access to this meeting.
+ar: لا تملك صلاحية الوصول إلى هذا الاجتماع.
+
+en: Could not open this meeting.
+ar: تعذّر فتح هذا الاجتماع.
+
+# ---------------------------------------------------------------- workspace dashboards, journey and charts
+en: Pending
+ar: قيد الانتظار
+
+en: Accepted
+ar: مقبول
+
+en: Withdrawn
+ar: مسحوب
+
+en: Current decision: 
+ar: القرار الحالي: 
+
+en: Decision unavailable
+ar: القرار غير متاح
+
+en: Not recorded
+ar: غير مسجّل
+
+en: Approved hours over time
+ar: الساعات المعتمدة عبر الزمن
+
+en: Approved training entry
+ar: إدخال تدريب معتمد
+
+en: Training overview
+ar: نظرة عامة على التدريب
+
+en: Your own internship records. Current totals and dated approval activity.
+ar: سجلات تدريبك فقط: المجاميع الحالية ونشاط الاعتماد المؤرّخ.
+
+en: Tasks by status
+ar: المهام حسب الحالة
+
+en: Current status of tasks linked to your placement.
+ar: الحالة الحالية للمهام المرتبطة بجهة تدريبك.
+
+en: Application decisions
+ar: قرارات الطلبات
+
+en: Assigned
+ar: مسندة
+
+en: Under review
+ar: قيد المراجعة
+
+en: Needs revision
+ar: تحتاج إلى تعديل
+
+en: Resubmitted
+ar: أُعيد تسليمها
+
+en: Graded
+ar: مقيّمة
+
+en: Current status: 
+ar: الحالة الحالية: 
+
+en: Status not recorded
+ar: الحالة غير مسجّلة
+
+en: All your current application records
+ar: جميع سجلات طلباتك الحالية
+
+en: Decision: 
+ar: القرار: 
+
+en: Pending applications
+ar: الطلبات المعلّقة
+
+en: Awaiting a company decision
+ar: بانتظار قرار الشركة
+
+en: Approved in range
+ar: المعتمد ضمن الفترة
+
+en: Current approved total: 
+ar: الإجمالي المعتمد حاليًا: 
+
+en: Tasks awaiting action
+ar: مهام بانتظار إجراء
+
+en: Assigned or returned for revision
+ar: مسندة أو أُعيدت للتعديل
+
+en: Company activity
+ar: نشاط الشركة
+
+en: Your company's trainees, applications and review queues.
+ar: متدرّبو شركتك وطلباتها وقوائم المراجعة.
+
+en: Work awaiting review
+ar: أعمال بانتظار المراجعة
+
+en: Independent queues; a trainee may appear in more than one. Not a part-to-whole chart.
+ar: قوائم مستقلة، وقد يظهر المتدرّب في أكثر من قائمة. ليست مخططًا لأجزاء من كل.
+
+en: Submission attempt 
+ar: محاولة التسليم 
+
+en: Student: 
+ar: الطالب: 
+
+en: ; current status: 
+ar: ؛ الحالة الحالية: 
+
+en: Reported hours entry
+ar: إدخال ساعات مسجّلة
+
+en: Awaiting approval
+ar: بانتظار الاعتماد
+
+en: Active trainees
+ar: المتدرّبون النشطون
+
+en: Confirmed or active placements
+ar: جهات تدريب مؤكَّدة أو نشطة
+
+en: Applications to review
+ar: طلبات للمراجعة
+
+en: Current pending decisions
+ar: القرارات المعلّقة حاليًا
+
+en: Submissions to evaluate
+ar: تسليمات للتقييم
+
+en: Submitted or under review
+ar: مسلَّمة أو قيد المراجعة
+
+en: Hours awaiting approval
+ar: ساعات بانتظار الاعتماد
+
+en: Reported hours; not approved
+ar: ساعات مسجّلة غير معتمدة
+
+en: Submissions
+ar: التسليمات
+
+en: Hour entries
+ar: إدخالات الساعات
+
+en: Assigned student overview
+ar: نظرة عامة على الطلبة المسندين
+
+en: Only students assigned to you. Hours targets do not imply final completion.
+ar: الطلبة المسندون إليك فقط. استيفاء الساعات المستهدفة لا يعني إنهاء التدريب.
+
+en: Training progress
+ar: تقدّم التدريب
+
+en: Each assigned student appears in exactly one progress category.
+ar: يظهر كل طالب مسند في فئة تقدّم واحدة فقط.
+
+en: Academic assessment status
+ar: حالة التقييم الأكاديمي
+
+en: Hours target met
+ar: استوفى الساعات المستهدفة
+
+en: Training
+ar: في التدريب
+
+en: Target not set
+ar: لم يُحدَّد الهدف
+
+en: No placement
+ar: بلا جهة تدريب
+
+en: Ready for academic action
+ar: جاهز للإجراء الأكاديمي
+
+en: Awaiting company feedback
+ar: بانتظار ملاحظات الشركة
+
+en: Awaiting placement
+ar: بانتظار جهة التدريب
+
+en: Current assignment scope
+ar: نطاق الإسناد الحالي
+
+en: Currently training
+ar: في التدريب حاليًا
+
+en: Academic action due
+ar: إجراء أكاديمي مستحق
+
+en: Company feedback received; academic not submitted
+ar: وصلت ملاحظات الشركة ولم يُرسَل التقييم الأكاديمي
+
+en: Academic assessment due
+ar: التقييم الأكاديمي مستحق
+
+en: Dated company approvals for assigned students
+ar: اعتمادات الشركة المؤرّخة للطلبة المسندين
+
+en: Programme overview
+ar: نظرة عامة على البرنامج
+
+en: Programme-wide current records and explicit coordinator approval events.
+ar: السجلات الحالية على مستوى البرنامج وأحداث اعتماد منسّق التدريب.
+
+en: Completion approvals over time
+ar: اعتمادات الإنهاء عبر الزمن
+
+en: Students by college
+ar: الطلبة حسب الكلية
+
+en: Current student profiles; missing colleges are labeled explicitly.
+ar: الملفات الطلابية الحالية، مع الإشارة صراحةً إلى الكليات غير المسجّلة.
+
+en: Completion review status
+ar: حالة مراجعة الإنهاء
+
+en: Current student profile
+ar: ملف طالب حالي
+
+en: Awaiting company
+ar: بانتظار الشركة
+
+en: Awaiting academic
+ar: بانتظار التقييم الأكاديمي
+
+en: Students in scope
+ar: الطلبة ضمن النطاق
+
+en: All current student profiles
+ar: جميع الملفات الطلابية الحالية
+
+en: Pending assignments
+ar: إسنادات معلّقة
+
+en: Active profiles without an academic supervisor
+ar: ملفات نشطة بلا مشرف أكاديمي
+
+en: Academic supervisor not assigned
+ar: لم يُسند مشرف أكاديمي
+
+en: Final reviews ready
+ar: مراجعات نهائية جاهزة
+
+en: Both assessments received; requirements still need review
+ar: وصل التقييمان، وما زالت المتطلبات بحاجة إلى مراجعة
+
+en: Current approved completions: 
+ar: حالات الإنهاء المعتمدة حاليًا: 
+
+en: Current
+ar: الحالية
+
+en: Action required
+ar: مطلوب إجراء
+
+en: Upcoming
+ar: القادمة
+
+en:  h · target not set
+ar:  ساعة · لم يُحدَّد الهدف
+
+en: Academic evaluation due
+ar: التقييم الأكاديمي مستحق
+
+en: Training in progress
+ar: التدريب قيد التنفيذ
+
+en: Your internship journey
+ar: رحلة تدريبك
+
+en: Your own application, confirmed placement and training record.
+ar: طلبك وجهة تدريبك المؤكَّدة وسجل تدريبك.
+
+en: Application
+ar: التقديم
+
+en:  application
+ar:  طلب
+
+en:  applications
+ar:  طلبات
+
+en: Explore eligible opportunities and follow the company’s decision. An accepted offer still needs your confirmation.
+ar: استكشف الفرص المناسبة لك وتابع قرار الشركة. يحتاج العرض المقبول إلى تأكيدك.
+
+en: View applications
+ar: عرض الطلبات
+
+en: Awaiting company review
+ar: بانتظار مراجعة الشركة
+
+en: Accepted offers
+ar: العروض المقبولة
+
+en: Not confirmed
+ar: غير مؤكَّدة
+
+en: Placement cancelled
+ar: أُلغيت جهة التدريب
+
+en: Confirm one accepted offer to establish your single internship placement.
+ar: أكّد أحد العروض المقبولة لتثبيت جهة تدريبك الوحيدة.
+
+en: This placement has been cancelled. Contact your coordinator before continuing.
+ar: أُلغيت جهة التدريب هذه. تواصل مع منسّق التدريب قبل المتابعة.
+
+en: This is your confirmed internship. Your training work is linked to this placement.
+ar: هذا هو تدريبك المؤكَّد، ويرتبط عملك التدريبي بجهة التدريب هذه.
+
+en: Review offers
+ar: مراجعة العروض
+
+en: View placement
+ar: عرض جهة التدريب
+
+en: Not yet
+ar: ليس بعد
+
+en: Training dates
+ar: تواريخ التدريب
+
+en: Not set
+ar: غير محددة
+
+en:  approved hours
+ar:  ساعة معتمدة
+
+en: Only supervisor-approved training hours count. Submitted hours remain separate until approved.
+ar: لا تُحتسب إلا ساعات التدريب التي يعتمدها المشرف، وتبقى الساعات المسلَّمة منفصلة حتى تُعتمد.
+
+en: Open training tasks
+ar: فتح مهام التدريب
+
+en: Pending hours
+ar: الساعات المعلّقة
+
+en:  of 
+ar:  من 
+
+en: Assessment received
+ar: تم استلام التقييم
+
+en: Supervisor assessment
+ar: تقييم المشرف
+
+en: Your supervisors manage the final assessments. Their internal forms stay private; your released result appears only after coordinator approval.
+ar: يتولّى مشرفوك التقييمات النهائية، وتبقى نماذجهم الداخلية خاصة، ولا تظهر نتيجتك إلا بعد اعتماد منسّق التدريب.
+
+en: View progress and feedback
+ar: عرض التقدّم والملاحظات
+
+en: Task feedback available
+ar: ملاحظات المهام المتاحة
+
+en: Completion record
+ar: سجل الإنهاء
+
+en: Not started
+ar: لم يبدأ
+
+en: Under coordinator review
+ar: قيد مراجعة منسّق التدريب
+
+en: Returned for follow-up
+ar: أُعيد للمتابعة
+
+en: Awaiting supervisor assessment
+ar: بانتظار تقييم المشرف
+
+en: Completion
+ar: الإنهاء
+
+en: Coordinator approved
+ar: اعتمده منسّق التدريب
+
+en: Follow-up required
+ar: مطلوب متابعة
+
+en: Coordinator approval
+ar: اعتماد منسّق التدريب
+
+en: Meeting an hours target does not complete an internship. Only the coordinator can approve completion and release the final result.
+ar: استيفاء الساعات المستهدفة لا يعني إنهاء التدريب؛ فمنسّق التدريب وحده يعتمد الإنهاء ويُصدر النتيجة النهائية.
+
+en: Open completion status
+ar: فتح حالة الإنهاء
+
+en: Approved 
+ar: اعتُمد في 
+
+en: Returned — contact your supervisor
+ar: أُعيد — تواصل مع مشرفك
+
+en: Not approved yet
+ar: لم يُعتمد بعد
+
+en: Company review workflow
+ar: سير مراجعة الشركة
+
+en: Application, training and assessment queues for your company.
+ar: قوائم الطلبات والتدريب والتقييم الخاصة بشركتك.
+
+en:  awaiting review
+ar:  بانتظار المراجعة
+
+en: Review candidates for your company. Acceptance is an offer; a placement exists only after the student confirms it.
+ar: راجع المتقدّمين إلى شركتك. القبول عرضٌ، ولا تُثبَّت جهة التدريب إلا بعد تأكيد الطالب.
+
+en: Pending decisions
+ar: القرارات المعلّقة
+
+en: All company applications
+ar: جميع طلبات الشركة
+
+en:  trainees
+ar:  متدرّب
+
+en: Follow your company’s confirmed placements and review reported hours. Pending hours are not approved progress.
+ar: تابع جهات التدريب المؤكَّدة لشركتك وراجع الساعات المسجّلة. الساعات المعلّقة ليست تقدّمًا معتمدًا.
+
+en: View trainees and hours
+ar: عرض المتدرّبين والساعات
+
+en:  to review
+ar:  للمراجعة
+
+en: Open the submitted work, grade against the task criteria, or request a revision using the existing review workflow.
+ar: افتح العمل المسلَّم، وقيّمه وفق معايير المهمة، أو اطلب تعديلًا من خلال سير المراجعة المعتاد.
+
+en: Review submitted work
+ar: مراجعة الأعمال المسلَّمة
+
+en: Waiting submissions
+ar: تسليمات بالانتظار
+
+en: Final assessment
+ar: التقييم النهائي
+
+en:  not submitted
+ar:  لم يُرسَل
+
+en: Complete your company assessment for the applicable trainee. This does not replace the academic assessment or coordinator approval.
+ar: أكمل تقييم الشركة للمتدرّب المعني. لا يُغني ذلك عن التقييم الأكاديمي أو اعتماد منسّق التدريب.
+
+en: Open final evaluations
+ar: فتح التقييمات النهائية
+
+en: Company assessments submitted
+ar: تقييمات الشركة المرسلة
+
+en: Placements without a submitted assessment
+ar: جهات تدريب بلا تقييم مُرسَل
+
+en: Academic review workflow
+ar: سير المراجعة الأكاديمية
+
+en: Follow-up and assessment queues for your assigned students.
+ar: قوائم المتابعة والتقييم للطلبة المسندين إليك.
+
+en:  students
+ar:  طالب
+
+en: Open a student’s record to review the placement, training tasks and academic follow-up. Unassigned students are outside this view.
+ar: افتح سجل الطالب لمراجعة جهة التدريب ومهام التدريب والمتابعة الأكاديمية. الطلبة غير المسندين إليك خارج هذا العرض.
+
+en: View assigned students
+ar: عرض الطلبة المسندين
+
+en: Assigned to you
+ar: المسندون إليك
+
+en: With confirmed placements
+ar: لديهم جهات تدريب مؤكَّدة
+
+en:  hours target met
+ar:  استوفى الساعات المستهدفة
+
+en:  hours targets met
+ar:  استوفوا الساعات المستهدفة
+
+en: Review approved and pending hours separately. An hours target being met is not a final completion decision.
+ar: راجع الساعات المعتمدة والمعلّقة كلًّا على حدة. استيفاء الساعات المستهدفة ليس قرارًا بإنهاء التدريب.
+
+en: Review training progress
+ar: مراجعة تقدّم التدريب
+
+en: Hours requirements met
+ar: استوفوا الساعات المطلوبة
+
+en: Hours awaiting company approval
+ar: ساعات بانتظار اعتماد الشركة
+
+en: Company feedback
+ar: ملاحظات الشركة
+
+en:  assessments received
+ar:  تقييم مستلم
+
+en: Read authorized company feedback inside the assigned student’s record. Internal assessments remain restricted.
+ar: اطّلع على ملاحظات الشركة المصرّح بها داخل سجل الطالب المسند. تبقى التقييمات الداخلية مقيّدة.
+
+en: Open student records
+ar: فتح سجلات الطلبة
+
+en: Submitted company assessments
+ar: تقييمات الشركة المرسلة
+
+en: Academic evaluation
+ar: التقييم الأكاديمي
+
+en:  ready for follow-up
+ar:  جاهز للمتابعة
+
+en: Complete the academic assessment through the existing evaluation page. The coordinator makes the final completion decision.
+ar: أكمل التقييم الأكاديمي من خلال صفحة التقييم المعتادة، ويتخذ منسّق التدريب قرار الإنهاء النهائي.
+
+en: Company assessment received; academic not submitted
+ar: وصل تقييم الشركة ولم يُرسَل التقييم الأكاديمي
+
+en: Academic assessments submitted
+ar: التقييمات الأكاديمية المرسلة
+
+en: Programme coordination
+ar: تنسيق البرنامج
+
+en: Programme-wide work queues. Completion is a separate, coordinator-only decision for each student.
+ar: قوائم العمل على مستوى البرنامج. الإنهاء قرار مستقل يتخذه منسّق التدريب وحده لكل طالب.
+
+en:  without a supervisor
+ar:  بلا مشرف
+
+en: Check active student records and group assignments. This count uses the academic supervisor recorded on each student profile.
+ar: راجع سجلات الطلبة النشطين وإسناد المجموعات. يعتمد هذا العدد على المشرف الأكاديمي المسجّل في ملف كل طالب.
+
+en: Manage assignments
+ar: إدارة الإسنادات
+
+en: Training oversight
+ar: متابعة التدريب
+
+en:  active placements
+ar:  جهة تدريب نشطة
+
+en: Monitor confirmed training and exceptions. Each record retains its own company, supervisor and hours requirement.
+ar: تابع التدريب المؤكَّد والاستثناءات. يحتفظ كل سجل بشركته ومشرفه ومتطلب ساعاته.
+
+en: Confirmed or active
+ar: مؤكَّدة أو نشطة
+
+en: Overdue ungraded tasks
+ar: مهام متأخرة غير مقيّمة
+
+en:  submitted
+ar:  مُرسَل
+
+en: Review received assessments in the authorized completion workflow. Submitted evaluations do not automatically approve completion.
+ar: راجع التقييمات المستلمة في سير الإنهاء المصرّح به. التقييمات المرسلة لا تعني اعتماد الإنهاء تلقائيًا.
+
+en: Review evaluations
+ar: مراجعة التقييمات
+
+en: Academic assessments
+ar: التقييمات الأكاديمية
+
+en: Completion review
+ar: مراجعة الإنهاء
+
+en:  ready for review
+ar:  جاهز للمراجعة
+
+en: Review the actual requirements and final result before approving. Only an explicit coordinator decision releases the student’s result and report.
+ar: راجع المتطلبات الفعلية والنتيجة النهائية قبل الاعتماد. لا تُتاح نتيجة الطالب وتقريره إلا بقرار صريح من منسّق التدريب.
+
+en: Open completion queue
+ar: فتح قائمة الإنهاء
+
+en: Both evaluations received; not approved
+ar: وصل التقييمان ولم يُعتمد الإنهاء
+
+en: Approved completions
+ar: حالات الإنهاء المعتمدة
+
+
+# ---------------------------------------------------------------- second pass: remaining server text
+en: Choose an internship from Explore Opportunities to start your application.
+ar: اختر فرصة تدريب من صفحة استكشاف الفرص لبدء طلبك.
+
+en: This internship could not be found.
+ar: لم يُعثر على فرصة التدريب هذه.
+
+en: This internship is no longer accepting applications.
+ar: لم تعد فرصة التدريب هذه تستقبل الطلبات.
+
+en: This internship is not available for your college or major.
+ar: فرصة التدريب هذه غير متاحة لكليتك أو تخصصك.
+
+en: You already have a confirmed internship.
+ar: لديك تدريب مؤكَّد بالفعل.
+
+en: We could not load this internship. Please try again shortly.
+ar: تعذّر تحميل فرصة التدريب هذه. يُرجى المحاولة بعد قليل.
+
+en: No deadline
+ar: بلا موعد نهائي
+
+en: Application submitted. Your status is Pending and the company can now review it.
+ar: أُرسل الطلب. حالته الآن «قيد المراجعة»، ويمكن للشركة مراجعته.
+
+en: Your internship is confirmed and saved. The application flag still needs syncing; use Sync confirmation below.
+ar: تم تأكيد تدريبك وحفظه، لكن علامة الطلب ما زالت بحاجة إلى مزامنة؛ استخدم «مزامنة التأكيد» أدناه.
+
+en: Internship confirmed. This is your selected placement; other offers cannot be confirmed.
+ar: تم تأكيد التدريب. هذه جهة تدريبك المختارة، ولا يمكن تأكيد عروض أخرى.
+
+en: Please sign in as a student.
+ar: يُرجى تسجيل الدخول بحساب طالب.
+
+en: Please contact the internship coordinator.
+ar: يُرجى التواصل مع منسّق التدريب.
+
+en: Please try again later.
+ar: يُرجى المحاولة لاحقًا.
+
+en: Explore this internship to learn more about the role.
+ar: استكشف فرصة التدريب هذه لتتعرّف أكثر على الدور.
+
+en: Please select an opportunity from Explore Opportunities.
+ar: يُرجى اختيار فرصة من صفحة استكشاف الفرص.
+
+en: This opportunity could not be found.
+ar: لم يُعثر على هذه الفرصة.
+
+en: Task evaluations
+ar: تقييمات المهام
+
+en: Completion status
+ar: حالة الإنهاء
+
+en: Not graded yet
+ar: لم تُقيَّم بعد
+
+en: No feedback yet
+ar: لا توجد ملاحظات بعد
+
+en: Awaiting review
+ar: بانتظار المراجعة
+
+en: Revision requested
+ar: مطلوب تعديلها
+
+en: Your supervisors are preparing their final evaluations.
+ar: يُعدّ مشرفوك تقييماتهم النهائية.
+
+en: The internship coordinator is reviewing your completion.
+ar: يراجع منسّق التدريب طلب إنهاء تدريبك.
+
+en: Your completion was not approved. Please contact the internship coordinator.
+ar: لم يُعتمد إنهاء تدريبك. يُرجى التواصل مع منسّق التدريب.
+
+en: File removed successfully.
+ar: تمت إزالة الملف بنجاح.
+
+en: This student has not shared a CV that can be opened. Ask them to upload a PDF or add a public CV link on their profile.
+ar: لم يشارك هذا الطالب سيرة ذاتية يمكن فتحها. اطلب منه رفع ملف PDF أو إضافة رابط عام لسيرته الذاتية في ملفه.
+
+en: This student has not shared a portfolio.
+ar: لم يشارك هذا الطالب ملفًا مهنيًا.
+
+en: Opportunity closed successfully.
+ar: تم إغلاق الفرصة بنجاح.
+
+en: Opportunity updated successfully.
+ar: تم تحديث الفرصة بنجاح.
+
+en: Opportunity published successfully.
+ar: تم نشر الفرصة بنجاح.
+
+en: Draft saved successfully.
+ar: تم حفظ المسودة بنجاح.
+
+en: Unable to save the opportunity in Firebase.
+ar: تعذّر حفظ الفرصة في Firebase.
+
+en: No text submitted.
+ar: لم يُسلَّم أي نص.
+
+en: Select a trainee
+ar: اختر متدرّبًا
+
+en: Academic Staff
+ar: الهيئة الأكاديمية
+
+en: Unknown Student
+ar: طالب غير معروف
+
+en: Supervisor access restored.
+ar: تمت استعادة وصول المشرف.
+
+en: Supervisor access removed. Assigned groups and history are retained.
+ar: أُوقف وصول المشرف، مع الاحتفاظ بالمجموعات المسندة والسجل.
+
+en: No academic supervisors found.
+ar: لا يوجد مشرفون أكاديميون.
+
+en: No supervisors match your search.
+ar: لا يوجد مشرفون يطابقون بحثك.
+
+en: Remove access
+ar: إيقاف الوصول
+
+en: Restore access
+ar: استعادة الوصول
+
+en: Removing access blocks sign in. Assigned groups stay linked and may need reassignment.
+ar: إيقاف الوصول يمنع تسجيل الدخول، وتبقى المجموعات المسندة مرتبطة وقد تحتاج إلى إعادة إسناد.
+
+en: This supervisor cannot sign in. Restore access when needed.
+ar: لا يستطيع هذا المشرف تسجيل الدخول. استعد وصوله عند الحاجة.
+
+en: Changes discarded.
+ar: تم تجاهل التغييرات.
+
+en: Enter a valid full name (2–100 characters).
+ar: أدخل اسمًا كاملًا صحيحًا (من 2 إلى 100 حرف).
+
+en: Enter a valid phone number.
+ar: أدخل رقم هاتف صحيحًا.
+
+en: Profile updated successfully.
+ar: تم تحديث الملف الشخصي بنجاح.
+
+en: Could not save profile. Please try again.
+ar: تعذّر حفظ الملف الشخصي. يُرجى المحاولة مرة أخرى.
+
+en: Complete all password fields.
+ar: أكمل جميع حقول كلمة المرور.
+
+en: New password must contain 8–128 characters.
+ar: يجب أن تتكوّن كلمة المرور الجديدة من 8 إلى 128 حرفًا.
+
+en: New passwords do not match.
+ar: كلمتا المرور الجديدتان غير متطابقتين.
+
+en: Choose a password different from the current one.
+ar: اختر كلمة مرور مختلفة عن الحالية.
+
+en: Current password is incorrect. Please try again.
+ar: كلمة المرور الحالية غير صحيحة. يُرجى المحاولة مرة أخرى.
+
+en: Password update failed.
+ar: تعذّر تحديث كلمة المرور.
+
+en: Password updated successfully.
+ar: تم تحديث كلمة المرور بنجاح.
+
+en: Could not change password. Please try again.
+ar: تعذّر تغيير كلمة المرور. يُرجى المحاولة مرة أخرى.
+
+en: Not scored
+ar: لم يُقيَّم
+
+en: No internship yet
+ar: لا يوجد تدريب بعد
+
+en: Not assigned
+ar: غير مُسند
+
+en: No groups match your search.
+ar: لا توجد مجموعات تطابق بحثك.
+
+en: No groups have been created yet.
+ar: لم تُنشأ أي مجموعات بعد.
+
+en: Unknown
+ar: غير معروف
+
+en: Select a supervisor
+ar: اختر مشرفًا
+
+en: Student access restored.
+ar: تمت استعادة وصول الطالب.
+
+en: Student access removed. The record and training history are retained.
+ar: أُوقف وصول الطالب، مع الاحتفاظ بسجله وتاريخ تدريبه.
+
+en: Removing access blocks sign in while keeping the record and training history. You can restore access later.
+ar: إيقاف الوصول يمنع تسجيل الدخول مع الاحتفاظ بالسجل وتاريخ التدريب، ويمكنك استعادة الوصول لاحقًا.
+
+en: This student cannot sign in. Restore access when needed.
+ar: لا يستطيع هذا الطالب تسجيل الدخول. استعد وصوله عند الحاجة.
+
+en: No students found.
+ar: لا يوجد طلبة.
+
+en: No students match your search.
+ar: لا يوجد طلبة يطابقون بحثك.
+
+en: Select a major
+ar: اختر تخصصًا
+
+en: No students found. Add a student to get started.
+ar: لا يوجد طلبة. أضف طالبًا للبدء.
+
+en: Select an internship
+ar: اختر تدريبًا
+
+en: Awaiting completion
+ar: بانتظار الإنهاء
+
+en: Awaiting company evaluation
+ar: بانتظار تقييم الشركة
+
+en: Awaiting academic evaluation
+ar: بانتظار التقييم الأكاديمي
+
+en: Your session has expired. Please sign in again.
+ar: انتهت جلستك. يُرجى تسجيل الدخول مرة أخرى.
+
+en: Go to my dashboard
+ar: الانتقال إلى لوحة التحكم
+
+en: Go to login
+ar: الانتقال إلى تسجيل الدخول
+
+en: This report is not available.
+ar: هذا التقرير غير متاح.
+
+en: Firebase is not configured yet. See docs/05-firebase-setup.md.
+ar: لم تُعدّ Firebase بعد. راجع docs/05-firebase-setup.md.
+
+en: Just now
+ar: الآن
+

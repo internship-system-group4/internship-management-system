@@ -68,9 +68,9 @@
 @media(min-width:1800px){.campus-copy{max-width:560px}.campus-opening-intro{max-width:420px}.campus-opening{padding-top:54px}}
 @media(max-width:1000px){
  .home-page{--campus-gutter:28px}.campus-opening h1{font-size:clamp(60px,8.4vw,84px)}
- .campus-copy,.campus-colleges .campus-copy,.campus-process .campus-copy{width:46%;padding-right:18px}
+ .campus-copy,.campus-colleges .campus-copy,.campus-process .campus-copy{width:46%;padding-inline-end:18px}
  .campus-copy h2{font-size:44px}.campus-copy>p,.campus-copy .home-section-heading p{font-size:16px}
- .campus-opening-intro{max-width:330px}.campus-opening-intro>p{font-size:16px}.campus-chapter-nav{top:30px;right:28px}
+ .campus-opening-intro{max-width:330px}.campus-opening-intro>p{font-size:16px}.campus-chapter-nav{top:30px;inset-inline-end:28px}
  .campus-chapter-nav .campus-nav-label{display:block}.campus-chapter-nav a{min-height:44px;padding:8px 12px}
  .home-page .home-video{grid-template-columns:1fr;gap:36px}.home-video-intro{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}.home-video-intro .public-text-link{grid-column:2}
  .home-page>.home-section{padding-block:80px}.home-page #opportunities .home-section-heading{gap:40px}.home-page #opportunities .home-section-heading p{font-size:16px}
@@ -85,7 +85,7 @@
  .campus-opening-intro .public-button{padding:12px 18px;min-height:46px}.campus-opening-intro .home-jump-nav{margin-top:10px;gap:6px 18px}.campus-opening-intro .campus-scroll{margin-top:8px}
  .campus-copy h2{font-size:36px;line-height:1.02;margin-bottom:18px;max-width:none}
  .campus-copy>p,.campus-copy .home-section-heading p{font-size:16px;line-height:1.55;margin-bottom:18px}
- .campus-chapter-nav{top:auto;bottom:68px;left:20px;right:20px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;pointer-events:none}
+ .campus-chapter-nav{top:auto;bottom:68px;inset-inline-start:20px;inset-inline-end:20px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px;pointer-events:none}
  .campus-chapter-nav a{justify-content:center;min-width:0;min-height:44px;pointer-events:auto;padding:10px 2px;background:var(--campus-ground)}
  .campus-chapter-nav a>span:first-child{font-size:13px}.campus-chapter-nav .campus-nav-label{display:block}
  .campus-scene-controls{bottom:12px;inset-inline:20px}.home-story-toggle{font-size:13px}

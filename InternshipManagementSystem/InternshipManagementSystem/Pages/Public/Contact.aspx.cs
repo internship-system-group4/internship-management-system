@@ -1,5 +1,6 @@
-
+﻿
 using System;
+using InternshipManagementSystem.Common;
 using System.Configuration;
 using System.Net.Http;
 using System.Text;
@@ -37,7 +38,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            txtMessage.Attributes["placeholder"] = "Tell us how we can help…";
+            txtMessage.Attributes["placeholder"] = L.T("Public.Contact.MessagePlaceholder");
 
             if (!IsPostBack)
             {
@@ -69,27 +70,27 @@ namespace InternshipManagementSystem.Pages.PublicArea
 
             // Check every field so each error appears beside its own field.
             if (name.Length == 0)
-                NameError = "Enter your full name.";
+                NameError = L.T("Public.Contact.EnterYourFullName");
             else if (name.Length < NameMin || name.Length > NameMax)
-                NameError = "Your name needs 2 to 100 characters.";
+                NameError = L.T("Public.Contact.YourNameNeeds2To100");
 
             if (email.Length == 0)
-                EmailError = "Enter your email address.";
+                EmailError = L.T("Public.Contact.EnterYourEmailAddress");
             else if (email.Length > EmailMax ||
                 !Regex.IsMatch(
                     email,
                     @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-                EmailError = "Enter an email address like name@example.com.";
+                EmailError = L.T("Public.Contact.EnterAnEmailAddressLikeName");
 
             if (subject.Length == 0)
-                SubjectError = "Enter a subject for your message.";
+                SubjectError = L.T("Public.Contact.EnterASubjectForYourMessage");
             else if (subject.Length < SubjectMin || subject.Length > SubjectMax)
-                SubjectError = "Your subject needs 5 to 150 characters.";
+                SubjectError = L.T("Public.Contact.YourSubjectNeeds5To150");
 
             if (message.Length == 0)
-                MessageError = "Enter your message.";
+                MessageError = L.T("Public.Contact.EnterYourMessage");
             else if (message.Length < MessageMin || message.Length > MessageMax)
-                MessageError = "Your message needs 20 to 4,000 characters.";
+                MessageError = L.T("Public.Contact.YourMessageNeeds20To4");
 
             MarkInvalid(txtName, NameError);
             MarkInvalid(txtEmail, EmailError);
@@ -99,7 +100,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
             if (NameError.Length + EmailError.Length + SubjectError.Length + MessageError.Length > 0)
             {
                 ShowMessage(
-                    "Some details need attention. Check the highlighted fields below.");
+                    L.T("Public.Contact.SomeDetailsNeedAttentionCheckThe"));
                 return;
             }
 
@@ -146,8 +147,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
                 // The visitor keeps everything they typed; the technical reason goes to the trace log only.
                 Trace.Warn("Contact", "Message not saved", ex);
                 ShowMessage(
-                    "Your message could not be sent right now. " +
-                    "Your details are still here, so you can try again.");
+                    L.T("Public.Contact.YourMessageCouldNotBeSent"));
                 return;
             }
 

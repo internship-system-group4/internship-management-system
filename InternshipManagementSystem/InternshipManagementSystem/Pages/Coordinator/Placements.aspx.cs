@@ -34,8 +34,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 CurrentPage = Math.Max(1, Math.Min(requested, PageCount));
                 Rows = matches.Skip((CurrentPage - 1) * 10).Take(10).ToList();
             }
-            catch (FirebaseException) { LoadError = "We could not load placements. Refresh to try again."; }
-            catch (InvalidOperationException) { LoadError = "Firebase is not configured. Contact the project administrator."; }
+            catch (FirebaseException) { LoadError = L.T("Coordinator.Placements.WeCouldNotLoadPlacementsRefresh"); }
+            catch (InvalidOperationException) { LoadError = L.T("Coordinator.Placements.FirebaseIsNotConfiguredContactThe"); }
         }
         private static bool Contains(string value, string query) { return (value ?? "").IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0; }
         protected void Search_Click(object sender, EventArgs e)

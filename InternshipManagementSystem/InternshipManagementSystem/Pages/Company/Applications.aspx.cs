@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
@@ -61,8 +61,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 EmptyPanel.Visible = applications.Count == 0;
                 ApplicationCount.Text = applications.Count.ToString();
             }
-            catch (FirebaseException) { ShowError("We could not load applications. Refresh to try again."); }
-            catch (InvalidOperationException) { ShowError("The application service is not configured. Please contact the coordinator."); }
+            catch (FirebaseException) { ShowError(L.T("Company.Applications.WeCouldNotLoadApplicationsRefresh")); }
+            catch (InvalidOperationException) { ShowError(L.T("Company.Applications.TheApplicationServiceIsNotConfigured")); }
         }
 
         private List<ApplicantRow> BuildRows(List<InternshipApplication> applications)
@@ -126,7 +126,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             catch (InvalidOperationException ex) { ShowError(ex.Message); }
             catch (FirebaseException)
             {
-                ShowError("We could not confirm the decision. Your reason is still here. Refresh to check the current status before trying again.");
+                ShowError(L.T("Company.Applications.WeCouldNotConfirmTheDecision"));
             }
         }
 

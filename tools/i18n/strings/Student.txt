@@ -1,0 +1,1297 @@
+
+Apply.MyApplications
+en: ← My applications
+
+Apply.YourApplication
+en: Your application
+
+Apply.ThisIsWhatYouSentTo
+en: This is what you sent to the company. Track its status here.
+
+Apply.ExploreOpportunities
+en: ← Explore opportunities
+
+Apply.ApplyForAnInternship
+en: Apply for an internship
+
+Apply.ReviewTheOpportunityAndTellThe
+en: Review the opportunity and tell the company why you would be a good fit.
+
+Apply.MyApplications2
+en: My Applications →
+
+Apply.YourDetails
+en: Your details
+
+Apply.FromYourStudentProfile
+en: From your student profile.
+
+Apply.UpdateProfile
+en: Update profile
+
+Apply.FullName
+en: Full name
+
+Apply.StudentNumber
+en: Student number
+
+Apply.EmailAddress
+en: Email address
+ar: البريد الإلكتروني
+
+Apply.Major
+en: Major
+
+Apply.CVLinkRequired
+en: CV link (required)
+
+Apply.UseAnHTTPSLinkToYour
+en: Use an HTTPS link to your CV. Make sure the company can open it without requesting access.
+
+Apply.CoverLetterRequired
+en: Cover letter (required)
+
+Apply.ShareRelevantSkillsProjectsAndWhat
+en: Share relevant skills, projects, and what you hope to learn.
+
+Apply.504000CharactersKeepIt
+en: 50–4,000 characters. Keep it specific to this opportunity.
+
+Apply.IConfirmThatMyInformationIs
+en: I confirm that my information is accurate and my CV link is accessible.
+
+Apply.YourApplicationWillBeMarkedPending
+en: Your application will be marked Pending until the company reviews it.
+
+Apply.Cancel
+en: Cancel
+
+Apply.SubmitApplication
+en: Submit application →
+
+Apply.Status
+en: Status
+
+Apply.Submitted
+en: Submitted
+
+Apply.RejectionReason
+en: Rejection reason:
+
+Apply.ToConfirmThisOfferGoTo
+en: To confirm this offer, go to
+
+Apply.MyApplications3
+en: My Applications
+ar: طلباتي
+
+Apply.CVLink
+en: CV link
+
+Apply.OpenCV
+en: Open CV ↗
+
+Apply.NoCVLinkAvailable
+en: No CV link available.
+
+Apply.CoverLetter
+en: Cover letter
+
+Apply.SelectedInternship
+en: Selected internship
+
+Apply.Location
+en: Location
+
+Apply.Duration
+en: Duration
+
+Apply.Starts
+en: Starts
+
+Apply.ApplyBy
+en: Apply by
+
+Apply.AvailableSeats
+en: Available seats
+
+Apply.AboutTheInternship
+en: About the internship
+
+Apply.Requirements
+en: Requirements
+
+Apply.ViewOpportunityDetails
+en: View opportunity details →
+
+Dashboard.YourInternship
+en: Your internship
+
+Dashboard.KeepYourNextStepInView
+en: , keep your next step in view.
+
+Dashboard.ExploreOpportunities
+en: Explore opportunities
+ar: استكشف فرص التدريب
+
+Dashboard.WeCouldNotLoadYourInternship
+en: We could not load your internship record.
+
+Dashboard.RefreshToTryAgain
+en: Refresh to try again
+
+Dashboard.YourTrainingRecord
+en: Your training record
+
+Dashboard.Applications
+en: Applications
+
+Dashboard.YourSubmittedApplications
+en: Your submitted applications
+
+Dashboard.TrainingTasks
+en: Training tasks
+
+Dashboard.LinkedToYourPlacement
+en: Linked to your placement
+
+Dashboard.TasksEvaluated
+en: Tasks evaluated
+
+Dashboard.FeedbackAvailableToYou
+en: Feedback available to you
+
+Dashboard.ApprovedHours
+en: Approved hours
+
+Dashboard.PendingHoursAreSeparate
+en: Pending hours are separate
+
+Dashboard.YourNextWork
+en: Your next work
+
+Dashboard.TasksAndSubmissionsInYourCurrent
+en: Tasks and submissions in your current placement.
+
+Dashboard.OpenTasks
+en: Open tasks
+
+Dashboard.Due
+en: Due
+
+Dashboard.NoOpenTrainingTasks
+en: No open training tasks
+
+Dashboard.TasksFromYourCompanySupervisorWill
+en: Tasks from your company supervisor will appear here once assigned.
+
+Dashboard.ViewYourTaskRecord
+en: View your task record
+
+Dashboard.ApprovedTrainingHours
+en: Approved training hours
+
+Dashboard.TrainingHours
+en: Training hours
+
+Dashboard.ApprovedHours2
+en: approved hours
+
+Dashboard.AwaitingApproval
+en: awaiting approval
+
+Dashboard.OnlyApprovedEntriesCountTowardYour
+en: Only approved entries count toward your requirement. Completion still needs coordinator approval.
+
+Dashboard.ViewHoursAndFeedback
+en: View hours and feedback
+
+Dashboard.ApplicationsPlacement
+en: Applications & placement
+
+Dashboard.RecentDecisionsWithYourOriginalSubmission
+en: Recent decisions, with your original submission dates.
+
+Dashboard.AllApplications
+en: All applications
+
+Dashboard.YouHaveNotSubmittedAnApplication
+en: You have not submitted an application yet.
+
+Dashboard.FindAnEligibleOpportunity
+en: Find an eligible opportunity
+
+Dashboard.StudentResources
+en: Student resources
+
+Dashboard.YourProfile
+en: Your profile
+
+Dashboard.CVPortfolio
+en: CV & portfolio
+
+Dashboard.Meetings
+en: Meetings
+ar: الاجتماعات
+
+DisplayEditProfile.MyProfile
+en: My Profile
+ar: ملفي الشخصي
+
+DisplayEditProfile.ViewYourInformationAndKeepYour
+en: View your information and keep your permitted details up to date.
+
+DisplayEditProfile.AcademicInformationIsManagedByThe
+en: 🔒 Academic information is managed by the Coordinator
+
+DisplayEditProfile.PersonalInformation
+en: Personal Information
+
+DisplayEditProfile.FullName
+en: Full Name
+ar: الاسم الكامل
+
+DisplayEditProfile.EmailAddress
+en: Email Address
+ar: البريد الإلكتروني
+
+DisplayEditProfile.PhoneNumber
+en: Phone Number
+
+DisplayEditProfile.YourPhoneNumberCanBeUpdated
+en: Your phone number can be updated. Contact the Coordinator for changes to account details.
+
+DisplayEditProfile.AcademicInformation
+en: Academic Information
+
+DisplayEditProfile.ReadOnly
+en: — Read only
+
+DisplayEditProfile.StudentNumber
+en: Student Number
+
+DisplayEditProfile.University
+en: University
+
+DisplayEditProfile.College
+en: College
+
+DisplayEditProfile.Major
+en: Major
+
+DisplayEditProfile.RequiredTrainingHours
+en: Required Training Hours
+
+DisplayEditProfile.TheseFieldsAreControlledByThe
+en: These fields are controlled by the University Internship Coordinator.
+
+DisplayEditProfile.TechnicalSkills
+en: Technical Skills
+
+DisplayEditProfile.YourTechnicalSkills
+en: Your technical skills
+
+DisplayEditProfile.SeparateSkillsWithCommasForExample
+en: Separate skills with commas, for example: C#, SQL, HTML, CSS.
+
+DisplayEditProfile.SoftSkills
+en: Soft Skills
+
+DisplayEditProfile.YourSoftSkills
+en: Your soft skills
+
+DisplayEditProfile.SeparateSkillsWithCommasForExample2
+en: Separate skills with commas, for example: Communication, Teamwork, Problem Solving.
+
+DisplayEditProfile.CancelChanges
+en: Cancel Changes
+
+DisplayEditProfile.SaveChanges
+en: Save Changes
+
+MyApplications.MyApplications
+en: My applications
+
+MyApplications.TrackYourApplicationsAndChooseOne
+en: Track your applications and choose one accepted internship offer.
+
+MyApplications.RefreshApplications
+en: Refresh applications
+
+MyApplications.ConfirmedInternship
+en: Confirmed internship
+
+MyApplications.YourPlacementIsSavedYouCannot
+en: Your placement is saved. You cannot confirm another offer.
+
+MyApplications.NoApplicationsYet
+en: No applications yet.
+
+MyApplications.ExploreOpportunities
+en: Explore opportunities
+ar: استكشف فرص التدريب
+
+MyApplications.ToFindYourInternship
+en: to find your internship.
+
+MyApplications.Submitted
+en: Submitted
+
+MyApplications.RejectionReason
+en: Rejection reason:
+
+MyApplications.ViewApplication
+en: View application →
+
+MyApplications.ReadyToJoinThisCompany
+en: Ready to join this company?
+
+MyApplications.YouCanConfirmOnlyOneInternship
+en: You can confirm only one internship. Choose carefully before continuing.
+
+MyApplications.IUnderstandThatICanConfirm
+en: I understand that I can confirm only one internship offer.
+
+MyApplications.ConfirmOffer
+en: Confirm offer
+
+MyApplications.ThisIsYourConfirmedInternship
+en: This is your confirmed internship.
+
+MyApplications.SyncConfirmation
+en: Sync confirmation
+
+MyTasks.MyTasks
+en: My Tasks
+ar: مهامي
+
+MyTasks.ViewYourAssignedTasksDeadlinesAnd
+en: View your assigned tasks, deadlines, and submission status.
+
+MyTasks.AssignedTasks
+en: Assigned Tasks
+
+MyTasks.Task
+en: Task
+
+MyTasks.Deadline
+en: Deadline
+
+MyTasks.Status
+en: Status
+
+MyTasks.Attempts
+en: Attempts
+
+MyTasks.Action
+en: Action
+
+MyTasks.UTC
+en: UTC
+
+MyTasks.ViewDetails
+en: View Details
+
+MyTasks.NoTasksHaveBeenAssignedTo
+en: No tasks have been assigned to you yet.
+
+MyTasks.ExampleTask
+en: Example Task
+
+MyTasks.TaskDetailsAndSubmission
+en: Task details and submission
+
+MyTasks.Close
+en: Close
+ar: إغلاق
+
+MyTasks.ToBeSetBySupervisor
+en: To be set by supervisor
+
+MyTasks.NotSubmitted
+en: Not submitted
+
+MyTasks.Description
+en: Description
+
+MyTasks.TheTaskDescriptionWillAppearHere
+en: The task description will appear here.
+
+MyTasks.InstructionsAndRequirements
+en: Instructions and Requirements
+
+MyTasks.TheSupervisorSInstructionsWillAppear
+en: The supervisor's instructions will appear here.
+
+MyTasks.EvaluationCriteria
+en: Evaluation Criteria
+
+MyTasks.Points
+en: points (
+
+MyTasks.OfTheTask
+en: % of the task)
+
+MyTasks.NoEvaluationCriteriaProvided
+en: No evaluation criteria provided.
+
+MyTasks.SubmitYourWork
+en: Submit Your Work
+
+MyTasks.YouCanProvideTextALink
+en: You can provide text, a link, or a file. Each new submission will be kept as a separate attempt.
+
+MyTasks.SubmissionText
+en: Submission Text
+
+MyTasks.SubmissionLink
+en: Submission Link
+
+MyTasks.FileUploadsAreNotAvailableYet
+en: File uploads are not available yet. Submit text or a shareable link.
+
+MyTasks.SubmitTask
+en: Submit Task
+
+MyTasks.SubmissionHistory
+en: Submission History
+
+MyTasks.Attempt
+en: Attempt
+
+MyTasks.SubmittedAt
+en: Submitted At
+
+MyTasks.Feedback
+en: Feedback
+
+MyTasks.NoSubmissionAttemptsYet
+en: No submission attempts yet.
+
+Opportunities.ExploreOpportunities
+en: Explore Opportunities
+ar: استكشاف فرص التدريب
+
+Opportunities.FindInternshipOpportunitiesThatMatchYour
+en: Find internship opportunities that match your academic program.
+
+Opportunities.AvailableOpportunities
+en: Available Opportunities
+
+Opportunities.DiscoverYourNextInternship
+en: Discover Your Next Internship
+
+Opportunities.ExploreOpportunitiesFromPartnerCompaniesDiscover
+en: Explore opportunities from partner companies, discover the skills you can develop, and take the next step in your career.
+
+Opportunities.SearchAcademicFilters
+en: Search & Academic Filters
+
+Opportunities.ResultsAreFilteredAutomaticallyForYour
+en: Results are filtered automatically for your program.
+
+Opportunities.SearchByOpportunityCompanyOrLocation
+en: Search by opportunity, company or location...
+
+Opportunities.Search
+en: Search
+
+Opportunities.Clear
+en: Clear
+
+Opportunities.College
+en: College:
+
+Opportunities.Major
+en: Major:
+
+Opportunities.StatusOpen
+en: Status: Open
+
+Opportunities.InternshipsForYou
+en: Internships For You
+
+Opportunities.MatchingOpportunities
+en: matching opportunities
+
+Opportunities.NoMatchingOpportunities
+en: No Matching Opportunities
+
+Opportunities.ThereAreCurrentlyNoAvailableInternships
+en: There are currently no available internships matching your academic program and search.
+
+Opportunities.TryAnotherSearchOrCheckBack
+en: Try another search or check back later.
+
+Opportunities.ResetSearch
+en: Reset Search
+
+Opportunities.Open
+en: Open
+
+Opportunities.LOCATION
+en: LOCATION
+
+Opportunities.DURATION
+en: DURATION
+
+Opportunities.Weeks
+en: weeks
+
+Opportunities.AVAILABLESEATS
+en: AVAILABLE SEATS
+
+Opportunities.Of
+en: of
+
+Opportunities.APPLICATIONDEADLINE
+en: APPLICATION DEADLINE
+
+Opportunities.MatchesYourAcademicProgram
+en: ✓ Matches your academic program
+
+Opportunities.ViewDetails
+en: View Details →
+
+OpportunityDetails.BackToExploreOpportunities
+en: ← Back to Explore Opportunities
+
+OpportunityDetails.OpportunityNotAvailable
+en: Opportunity Not Available
+
+OpportunityDetails.WeCouldnTDisplayThisOpportunity
+en: We couldn't display this opportunity. Please return to Explore Opportunities and choose another internship.
+
+OpportunityDetails.ExploreOpportunities
+en: Explore Opportunities
+ar: استكشاف فرص التدريب
+
+OpportunityDetails.InternshipOpportunity
+en: Internship Opportunity
+
+OpportunityDetails.LocationCaps
+en: LOCATION
+
+OpportunityDetails.DURATION
+en: DURATION
+
+OpportunityDetails.Weeks
+en: weeks
+
+OpportunityDetails.AVAILABLESEATS
+en: AVAILABLE SEATS
+
+OpportunityDetails.APPLICATIONDEADLINE
+en: APPLICATION DEADLINE
+
+OpportunityDetails.AboutThisOpportunity
+en: About This Opportunity
+
+OpportunityDetails.RequirementsQualifications
+en: Requirements & Qualifications
+
+OpportunityDetails.WhoCanApply
+en: Who Can Apply?
+
+OpportunityDetails.ThisOpportunityIsAvailableToStudents
+en: This opportunity is available to students whose academic college and major meet the eligibility requirements.
+
+OpportunityDetails.EligibleCollege
+en: Eligible College
+
+OpportunityDetails.EligibleMajors
+en: Eligible Majors
+
+OpportunityDetails.AllMajorsInEligibleCollege
+en: All majors in eligible college
+
+OpportunityDetails.InternshipInformation
+en: Internship Information
+
+OpportunityDetails.Company
+en: Company
+
+OpportunityDetails.Location
+en: Location
+
+OpportunityDetails.TrainingDuration
+en: Training Duration
+
+OpportunityDetails.TrainingStart
+en: Training Start
+
+OpportunityDetails.ApplyBefore
+en: Apply Before
+
+OpportunityDetails.RemainingSeats
+en: Remaining Seats
+
+OpportunityDetails.ReadyToApply
+en: Ready to Apply?
+
+OpportunityDetails.InterestedInThisOpportunityStartYour
+en: Interested in this opportunity? Start your application and submit the required information through the student portal.
+
+OpportunityDetails.ApplyNow
+en: Apply Now →
+
+OpportunityDetails.ApplicationsUnavailable
+en: Applications Unavailable
+
+OpportunityDetails.MyApplications
+en: My Applications
+ar: طلباتي
+
+Profile.MyStudentProfile
+en: My Student Profile
+
+Profile.ManageYourPersonalDetailsAcademicInformation
+en: Manage your personal details, academic information and professional profile.
+
+Profile.StudentProfilePhoto
+en: Student profile photo
+
+Profile.GermanJordanianUniversity
+en: | German Jordanian University
+
+Profile.ChooseProfilePhoto
+en: Choose Profile Photo
+
+Profile.JPGOrPNGMaximum2MB
+en: JPG or PNG, maximum 2 MB.
+
+Profile.PersonalInformation
+en: Personal Information
+
+Profile.UpdateYourPersonalAndContactInformation
+en: Update your personal and contact information.
+
+Profile.FullName
+en: Full Name *
+
+Profile.Age
+en: Age
+
+Profile.UniversityAccountEmail
+en: University / Account Email
+
+Profile.ManagedByYourUniversityAccount
+en: Managed by your university account.
+
+Profile.PhoneNumber
+en: Phone Number
+
+Profile.9627XXXXXXXX
+en: +962 7X XXX XXXX
+
+Profile.AcademicInformation
+en: Academic Information
+
+Profile.YourOfficialUniversityAndTrainingDetails
+en: Your official university and training details.
+
+Profile.ReadOnly
+en: Read Only
+
+Profile.AcademicDetailsAreManagedByThe
+en: Academic details are managed by the internship coordinator. Contact your coordinator if any information is incorrect.
+
+Profile.StudentID
+en: Student ID
+
+Profile.University
+en: University
+
+Profile.College
+en: College
+
+Profile.MajorSpecialization
+en: Major / Specialization
+
+Profile.RequiredTrainingHours
+en: Required Training Hours
+
+Profile.ApprovedTrainingHours
+en: Approved Training Hours
+
+Profile.SkillsCompetencies
+en: Skills & Competencies
+
+Profile.HighlightTheSkillsYouCanOffer
+en: Highlight the skills you can offer to companies.
+
+Profile.TechnicalSkills
+en: Technical Skills
+
+Profile.ExampleCASPNETHTMLCSS
+en: Example: C#, ASP.NET, HTML, CSS, SQL, Git
+
+Profile.ProgrammingLanguagesFrameworksToolsAndTechnologies
+en: Programming languages, frameworks, tools and technologies.
+
+Profile.SoftSkills
+en: Soft Skills
+
+Profile.ExampleTeamworkCommunicationTimeManagement
+en: Example: Teamwork, communication, time management
+
+Profile.CommunicationLeadershipProblemSolvingAndTeamwork
+en: Communication, leadership, problem-solving and teamwork.
+
+Profile.CVProfessionalPortfolio
+en: CV & Professional Portfolio
+
+Profile.ManageYourProfessionalDocumentsAndOnline
+en: Manage your professional documents and online presence.
+
+Profile.KeepYourCVAndPortfolioUp
+en: Keep your CV and portfolio up to date so companies can learn more about your experience, projects and skills.
+
+Profile.CurriculumVitaeCV
+en: Curriculum Vitae (CV)
+
+Profile.UploadYourLatestCVReplaceAn
+en: Upload your latest CV, replace an existing file, or manage your online CV link.
+
+Profile.DownloadCurrentCV
+en: Download Current CV →
+
+Profile.NoUploadedCVAvailable
+en: No uploaded CV available.
+
+Profile.ProjectPortfolio
+en: Project Portfolio
+
+Profile.ShowcaseYourAcademicProjectsPracticalWork
+en: Showcase your academic projects, practical work, achievements and professional experience.
+
+Profile.DownloadCurrentPortfolio
+en: Download Current Portfolio →
+
+Profile.NoUploadedPortfolioAvailable
+en: No uploaded portfolio available.
+
+Profile.LinkedInProfile
+en: LinkedIn Profile
+
+Profile.ManageCVPortfolio
+en: Manage CV & Portfolio →
+
+Profile.UpdateProfile
+en: Update Profile
+
+Progress.MyProgressEvaluation
+en: My Progress & Evaluation
+ar: تقدّمي وتقييمي
+
+Progress.YourTaskGradesSupervisorFeedbackApproved
+en: Your task grades, supervisor feedback, approved training hours and completion status.
+
+Progress.YourProgressCouldNotBeLoaded
+en: Your progress could not be loaded right now. Please refresh the page or try again later.
+
+Progress.SomeSectionsCouldNotBeLoaded
+en: Some sections could not be loaded and may look empty:
+
+Progress.NoConfirmedInternshipYet
+en: No confirmed internship yet
+
+Progress.YourProgressAndEvaluationsWillAppear
+en: Your progress and evaluations will appear here after you confirm an accepted internship offer.
+
+Progress.GoToMyApplications
+en: Go to My Applications
+
+Progress.ApprovedHours
+en: Approved hours
+
+Progress.ApprovedHoursProgress
+en: Approved hours progress
+
+Progress.OfRequiredHours
+en: % of required hours
+
+Progress.TasksGraded
+en: Tasks graded
+
+Progress.GradedOutOfAssigned
+en: Graded out of assigned
+
+Progress.OpenRevisions
+en: Open revisions
+
+Progress.TasksWaitingForYourResubmission
+en: Tasks waiting for your resubmission
+
+Progress.TaskGradeAverage
+en: Task grade average
+
+Progress.WeightedByEachTaskSWeight
+en: Weighted by each task's weight
+
+Progress.MyInternship
+en: My internship
+
+Progress.Opportunity
+en: Opportunity
+
+Progress.Company
+en: Company
+
+Progress.CompanySupervisor
+en: Company supervisor
+
+Progress.TrainingPeriod
+en: Training period
+
+Progress.PlacementStatus
+en: Placement status
+
+Progress.TaskEvaluationsFeedback
+en: Task evaluations & feedback
+
+Progress.Task
+en: Task
+
+Progress.Deadline
+en: Deadline
+
+Progress.Status
+en: Status
+
+Progress.Attempts
+en: Attempts
+
+Progress.Grade
+en: Grade
+
+Progress.SupervisorFeedback
+en: Supervisor feedback
+
+Progress.NoTasksHaveBeenAssignedTo
+en: No tasks have been assigned to you yet.
+
+Progress.EachTaskIsGradedOutOf
+en: Each task is graded out of its own maximum score set by your company supervisor.
+
+Progress.SubmissionsRevisionHistory
+en: Submissions & revision history
+
+Progress.Attempt
+en: Attempt
+
+Progress.Submitted
+en: Submitted
+
+Progress.Outcome
+en: Outcome
+
+Progress.Details
+en: Details
+ar: التفاصيل
+
+Progress.YouHaveNotSubmittedAnyWork
+en: You have not submitted any work yet. Submit tasks from
+
+Progress.MyTasks
+en: My Tasks
+ar: مهامي
+
+Progress.TrainingHours
+en: Training hours
+
+Progress.Approved
+en: Approved
+
+Progress.PendingApproval
+en: Pending approval
+
+Progress.Rejected
+en: Rejected
+
+Progress.Date
+en: Date
+
+Progress.Hours
+en: Hours
+
+Progress.Description
+en: Description
+
+Progress.ReviewerNote
+en: Reviewer note
+
+Progress.NoTrainingHoursHaveBeenRecorded
+en: No training hours have been recorded yet.
+
+Progress.OnlyHoursApprovedByYourSupervisor
+en: Only hours approved by your supervisor count toward your required hours. Completing a task does not approve its hours automatically.
+
+Progress.InternshipCompletionOfficialReport
+en: Internship completion & official report
+
+Progress.YourFinalResultAndTheOfficial
+en: Your final result and the official Internship Completion Report (PDF) will appear here after the University Internship Coordinator approves your internship completion.
+
+Progress.YourInternshipCompletionHasBeenApproved
+en: Your internship completion has been approved by the University Internship Coordinator.
+
+Progress.FinalScore
+en: Final score
+
+Progress.Result
+en: Result
+
+Progress.ApprovedOn
+en: Approved on
+
+Progress.DownloadPrintCompletionReportPDF
+en: Download / print completion report (PDF)
+
+Progress.TheOfficialCompletionReportIsBeing
+en: The official completion report is being prepared by the coordinator and will be available to download here soon.
+
+StudentCVPortfolio.BackToMyProfile
+en: ← Back to My Profile
+
+StudentCVPortfolio.MyCVPortfolio
+en: My CV & Portfolio
+
+StudentCVPortfolio.BuildYourProfessionalPresenceByManaging
+en: Build your professional presence by managing your CV, project portfolio and online links. Keep everything updated before applying for internship opportunities.
+
+StudentCVPortfolio.CVPortfolioLinks
+en: CV & Portfolio Links
+
+StudentCVPortfolio.AddLinksToYourOnlineCV
+en: Add links to your online CV and portfolio. You can update them whenever needed.
+
+StudentCVPortfolio.CVLink
+en: CV Link
+
+StudentCVPortfolio.AddALinkToYourOnline
+en: Add a link to your online CV.
+
+StudentCVPortfolio.PortfolioLink
+en: Portfolio Link
+
+StudentCVPortfolio.GitHubBehanceOrAPersonalWebsite
+en: GitHub, Behance, or a personal website.
+
+StudentCVPortfolio.UploadCV
+en: Upload CV
+
+StudentCVPortfolio.UploadYourLatestCVAsA
+en: Upload your latest CV as a PDF document.
+
+StudentCVPortfolio.ChooseCVFile
+en: Choose CV File
+
+StudentCVPortfolio.PDFOnlyMaximumFileSize5
+en: PDF only. Maximum file size: 5 MB.
+
+StudentCVPortfolio.UploadPortfolio
+en: Upload Portfolio
+
+StudentCVPortfolio.UploadAPDFContainingYourProjects
+en: Upload a PDF containing your projects, skills, and previous work.
+
+StudentCVPortfolio.ChoosePortfolioFile
+en: Choose Portfolio File
+
+StudentCVPortfolio.SaveYourInformation
+en: Save Your Information
+
+StudentCVPortfolio.SaveYourLinksAndSelectedFiles
+en: Save your links and selected files. You can return to this page later to view or update them.
+
+StudentCVPortfolio.SaveCVPortfolio
+en: Save CV & Portfolio
+
+StudentCVPortfolio.MySavedCVPortfolio
+en: My Saved CV & Portfolio
+
+StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd
+en: View your previously saved links and documents.
+
+StudentCVPortfolio.ViewCVLink
+en: View CV Link
+
+StudentCVPortfolio.NoCVLinkAddedYet
+en: No CV link added yet.
+
+StudentCVPortfolio.UploadedCV
+en: Uploaded CV
+
+StudentCVPortfolio.DownloadCV
+en: Download CV
+
+StudentCVPortfolio.Remove
+en: Remove
+
+StudentCVPortfolio.NoCVFileUploadedYet
+en: No CV file uploaded yet.
+
+StudentCVPortfolio.ViewPortfolio
+en: View Portfolio
+
+StudentCVPortfolio.NoPortfolioLinkAddedYet
+en: No portfolio link added yet.
+
+StudentCVPortfolio.UploadedPortfolio
+en: Uploaded Portfolio
+
+StudentCVPortfolio.DownloadPortfolio
+en: Download Portfolio
+
+StudentCVPortfolio.NoPortfolioFileUploadedYet
+en: No portfolio file uploaded yet.
+
+Apply.WeCouldNotConfirmYourSubmission
+en: We could not confirm your submission. Check My Applications before trying again. Your form is still here.
+
+DisplayEditProfile.StudentRecordWasNotFound
+en: Student record was not found.
+
+DisplayEditProfile.UnableToLoadYourProfilePlease
+en: Unable to load your profile. Please try again.
+
+DisplayEditProfile.EnterAValidPhoneNumberDigits
+en: Enter a valid phone number (digits, spaces, +, -, or parentheses).
+
+DisplayEditProfile.EachSkillsSectionMustBe1000
+en: Each skills section must be 1000 characters or less.
+
+DisplayEditProfile.YourProfileHasBeenUpdatedSuccessfully
+en: Your profile has been updated successfully.
+
+DisplayEditProfile.ChangesCouldNotBeSavedPlease
+en: Changes could not be saved. Please try again.
+
+MyApplications.WeCouldNotLoadApplicationsRefresh
+en: We could not load applications. Refresh to try again.
+
+MyApplications.TheApplicationServiceIsNotConfigured
+en: The application service is not configured. Contact the coordinator.
+
+MyApplications.WeCouldNotConfirmTheResult
+en: We could not confirm the result. Refresh to check your placement before trying again.
+
+MyTasks.YourConfirmedPlacementWasNotFound
+en: Your confirmed placement was not found.
+
+MyTasks.ThisTaskIsNotAcceptingSubmissions
+en: This task is not accepting submissions now.
+
+MyTasks.ThisTaskRequiresAFileFile
+en: This task requires a file. File uploads are not available yet.
+
+MyTasks.EnterSubmissionTextOrALink
+en: Enter submission text or a link.
+
+MyTasks.EnterAValidHttpOrHttps
+en: Enter a valid http or https link.
+
+MyTasks.YouAlreadySubmittedThisTaskWait
+en: You already submitted this task. Wait for a revision request.
+
+MyTasks.SubmissionCouldNotBeSaved
+en: Submission could not be saved.
+
+MyTasks.SubmissionCouldNotBeSavedTry
+en: Submission could not be saved. Try again.
+
+MyTasks.SubmissionWasSavedButTheTask
+en: Submission was saved, but the task status could not be updated. Refresh the page.
+
+MyTasks.SubmissionSavedSuccessfully
+en: Submission saved successfully.
+
+Profile.StudentAccountIsUnavailable
+en: Student account is unavailable.
+
+Profile.StudentProfileCouldNotBeFound
+en: Student profile could not be found.
+
+Profile.FullNameMustBeBetween2
+en: Full name must be between 2 and 120 characters.
+
+Profile.OneOrMoreFieldsExceedThe
+en: One or more fields exceed the allowed length.
+
+Profile.PleaseEnterAValidAgeBetween
+en: Please enter a valid age between 16 and 100.
+
+Profile.PleaseEnterValidHTTPOrHTTPS
+en: Please enter valid HTTP or HTTPS links.
+
+Profile.PleaseEnterAValidLinkedInProfile
+en: Please enter a valid LinkedIn profile URL.
+
+Profile.YourProfileWasUpdatedElsewherePlease
+en: Your profile was updated elsewhere. Please refresh and try again.
+
+Profile.YourCVOrPortfolioCouldNot
+en: Your CV or portfolio could not be updated because the record changed. Refresh and try again.
+
+Profile.ProfilePhotoMustBe2MB
+en: Profile photo must be 2 MB or smaller.
+
+Profile.ProfilePhotoMustBeJPGOr
+en: Profile photo must be JPG or PNG.
+
+Profile.TheSelectedPhotoIsNotA
+en: The selected photo is not a valid image.
+
+Profile.PDFFilesMustBe5MB
+en: PDF files must be 5 MB or smaller.
+
+Profile.CVAndPortfolioFilesMustBe
+en: CV and portfolio files must be PDF.
+
+Profile.TheSelectedFileIsNotA
+en: The selected file is not a valid PDF.
+
+Progress.YourInternshipIsStillInProgress
+en: Your internship is still in progress.
+
+StudentCVPortfolio.StudentAccountIsUnavailable
+en: Student account is unavailable.
+
+StudentCVPortfolio.UnableToLoadOrSaveYour
+en: Unable to load or save your CV and portfolio.
+
+StudentCVPortfolio.YourInformationChangedRefreshAndTry
+en: Your information changed. Refresh and try again.
+
+StudentCVPortfolio.PDFFilesMustBe5MB
+en: PDF files must be 5 MB or smaller.
+
+StudentCVPortfolio.OnlyPDFFilesAreSupported
+en: Only PDF files are supported.
+
+StudentCVPortfolio.TheSelectedFileIsNotA
+en: The selected file is not a valid PDF.
+
+StudentCVPortfolio.EnterValidHTTPOrHTTPSLinks
+en: Enter valid HTTP or HTTPS links.
+
+Profile.ProfileError
+en: Profile Error: {0}
+ar: خطأ في الملف الشخصي: {0}
+
+Apply.ChooseAnInternshipFromExploreOpportunities
+en: Choose an internship from Explore Opportunities to start your application.
+
+Apply.ThisInternshipCouldNotBeFound
+en: This internship could not be found.
+
+Apply.ThisInternshipIsNoLongerAccepting
+en: This internship is no longer accepting applications.
+
+Apply.ThisInternshipIsNotAvailableFor
+en: This internship is not available for your college or major.
+
+Apply.YouAlreadyHaveAConfirmedInternship
+en: You already have a confirmed internship.
+
+Apply.WeCouldNotLoadThisInternship
+en: We could not load this internship. Please try again shortly.
+
+Apply.TheApplicationServiceIsNotConfigured
+en: The application service is not configured. Please contact the coordinator.
+
+Dashboard.NoDeadline
+en: No deadline
+
+Dashboard.TargetNotSet
+en: Target not set
+
+MyApplications.ApplicationSubmittedYourStatusIsPending
+en: Application submitted. Your status is Pending and the company can now review it.
+
+MyApplications.YourInternshipIsConfirmedAndSaved
+en: Your internship is confirmed and saved. The application flag still needs syncing; use Sync confirmation below.
+
+MyApplications.InternshipConfirmedThisIsYourSelected
+en: Internship confirmed. This is your selected placement; other offers cannot be confirmed.
+
+MyTasks.NotSet
+en: Not set
+
+Opportunities.PleaseSignInAsAStudent
+en: Please sign in as a student.
+
+Opportunities.PleaseContactTheInternshipCoordinator
+en: Please contact the internship coordinator.
+
+Opportunities.PleaseTryAgainLater
+en: Please try again later.
+
+Opportunities.NotSpecified
+en: Not specified
+
+Opportunities.ExploreThisInternshipToLearnMore
+en: Explore this internship to learn more about the role.
+
+OpportunityDetails.PleaseSignInAsAStudent
+en: Please sign in as a student.
+
+OpportunityDetails.PleaseSelectAnOpportunityFromExplore
+en: Please select an opportunity from Explore Opportunities.
+
+OpportunityDetails.ThisOpportunityCouldNotBeFound
+en: This opportunity could not be found.
+
+OpportunityDetails.PleaseTryAgainLater
+en: Please try again later.
+
+OpportunityDetails.NotSpecified
+en: Not specified
+
+Profile.YourProfileHasBeenUpdatedSuccessfully
+en: Your profile has been updated successfully.
+
+Progress.TaskEvaluations
+en: Task evaluations
+
+Progress.TrainingHours2
+en: Training hours
+
+Progress.CompletionStatus
+en: Completion status
+
+Progress.NotGradedYet
+en: Not graded yet
+
+Progress.NoFeedbackYet
+en: No feedback yet
+
+Progress.AwaitingReview
+en: Awaiting review
+
+Progress.RevisionRequested
+en: Revision requested
+
+Progress.YourSupervisorsArePreparingTheirFinal
+en: Your supervisors are preparing their final evaluations.
+
+Progress.TheInternshipCoordinatorIsReviewingYour
+en: The internship coordinator is reviewing your completion.
+
+Progress.YourCompletionWasNotApprovedPlease
+en: Your completion was not approved. Please contact the internship coordinator.
+
+Progress.UnderReview
+en: Under review
+
+StudentCVPortfolio.FileRemovedSuccessfully
+en: File removed successfully.
+
+Dashboard.HoursUnit
+en:  hours
+ar:  ساعة
+
+Dashboard.HoursTargetNotSet
+en:  hours · target not set
+ar:  ساعة · لم يُحدَّد الهدف

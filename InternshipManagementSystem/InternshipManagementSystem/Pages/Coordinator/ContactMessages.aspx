@@ -416,12 +416,11 @@
         <div class="page-heading">
 
             <h2 class="page-title">
-                Contact Messages
+                <%: L.T("Coordinator.ContactMessages.ContactMessages") %>
             </h2>
 
             <p class="page-subtitle">
-                View and manage messages submitted through
-                the Contact Us form.
+                <%: L.T("Coordinator.ContactMessages.ViewAndManageMessagesSubmittedThrough") %>
             </p>
 
         </div>
@@ -447,7 +446,7 @@
 
                     <div>
                         <div class="summary-label">
-                            Total Messages
+                            <%: L.T("Coordinator.ContactMessages.TotalMessages") %>
                         </div>
 
                         <div class="summary-value">
@@ -468,7 +467,7 @@
 
                     <div>
                         <div class="summary-label">
-                            New Messages
+                            <%: L.T("Coordinator.ContactMessages.NewMessages") %>
                         </div>
 
                         <div class="summary-value">
@@ -489,7 +488,7 @@
 
                     <div>
                         <div class="summary-label">
-                            Reviewed Messages
+                            <%: L.T("Coordinator.ContactMessages.ReviewedMessages") %>
                         </div>
 
                         <div class="summary-value">
@@ -514,7 +513,7 @@
 
                     <label class="form-label"
                         for="<%= txtSearch.ClientID %>">
-                        Search
+                        <%: L.T("Coordinator.ContactMessages.Search") %>
                     </label>
 
                     <div class="input-group">
@@ -526,7 +525,7 @@
                         <asp:TextBox ID="txtSearch"
                             runat="server"
                             CssClass="form-control"
-                            placeholder="Search by name, email, subject or message..." />
+                            placeholder="<%$ Resources:Coordinator, ContactMessages.SearchByNameEmailSubjectOr %>" />
 
                     </div>
 
@@ -536,24 +535,18 @@
 
                     <label class="form-label"
                         for="<%= ddlStatus.ClientID %>">
-                        Status
+                        <%: L.T("Coordinator.ContactMessages.Status") %>
                     </label>
 
                     <asp:DropDownList ID="ddlStatus"
                         runat="server"
                         CssClass="form-select">
 
-                        <asp:ListItem Value="All">
-                            All Messages
-                        </asp:ListItem>
+                        <asp:ListItem Value="All" Text="<%$ Resources:Coordinator, ContactMessages.AllMessages %>" />
 
-                        <asp:ListItem Value="New">
-                            New
-                        </asp:ListItem>
+                        <asp:ListItem Value="New" Text="<%$ Resources:Shared, Value.ContactMessageStatus.New %>" />
 
-                        <asp:ListItem Value="Reviewed">
-                            Reviewed
-                        </asp:ListItem>
+                        <asp:ListItem Value="Reviewed" Text="<%$ Resources:Shared, Value.ContactMessageStatus.Reviewed %>" />
 
                     </asp:DropDownList>
 
@@ -563,7 +556,7 @@
 
                     <asp:Button ID="btnSearch"
                         runat="server"
-                        Text="Search"
+                        Text="<%$ Resources:Coordinator, ContactMessages.Search %>"
                         CssClass="btn btn-main w-100"
                         OnClick="btnSearch_Click" />
 
@@ -579,7 +572,7 @@
         <div class="content-panel">
 
             <h3 class="section-title">
-                Contact Messages
+                <%: L.T("Coordinator.ContactMessages.ContactMessages") %>
             </h3>
 
             <div class="table-responsive messages-table">
@@ -590,18 +583,18 @@
                     CssClass="table align-middle"
                     GridLines="None"
                     ShowHeaderWhenEmpty="true"
-                    EmptyDataText="No messages found."
+                    EmptyDataText="<%$ Resources:Coordinator, ContactMessages.NoMessagesFound %>"
                     OnRowCommand="gvMessages_RowCommand">
 
                     <Columns>
 
-                        <asp:TemplateField HeaderText="Name">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Name %>">
                             <ItemTemplate>
                                 <%#: Eval("Name") %>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Email">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Email %>">
                             <ItemTemplate>
                                 <span class="email-text">
                                     <%#: Eval("Email") %>
@@ -609,7 +602,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Subject">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Subject %>">
                             <ItemTemplate>
                                 <%#: Eval("Subject") %>
                             </ItemTemplate>
@@ -617,10 +610,10 @@
 
                         <asp:BoundField
                             DataField="FormattedDate"
-                            HeaderText="Date"
+                            HeaderText="<%$ Resources:Coordinator, ContactMessages.Date %>"
                             HtmlEncode="true" />
 
-                        <asp:TemplateField HeaderText="Status">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Status %>">
                             <ItemTemplate>
                                 <span class='<%# Convert.ToString(Eval("Status")) == "Reviewed" ? "status-badge reviewed" : "status-badge new" %>'>
                                     <%#: Eval("Status") %>
@@ -628,7 +621,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Actions">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Actions %>">
                             <ItemTemplate>
 
                                 <asp:LinkButton
@@ -637,9 +630,9 @@
                                     CssClass="action-button"
                                     CommandName="Details"
                                     CommandArgument='<%# Eval("Id") %>'
-                                    ToolTip="View Message Details"
+                                    ToolTip="<%$ Resources:Coordinator, ContactMessages.ViewMessageDetails %>"
                                     CausesValidation="false">
-                                   Review
+                                   <%# L.T("Coordinator.ContactMessages.ReviewAction") %>
                                 </asp:LinkButton>
 
                             </ItemTemplate>
@@ -660,7 +653,7 @@
             class="message-modal-overlay"
             role="dialog"
             aria-modal="true"
-            aria-label="Message Details">
+            aria-label="<%: L.T("Coordinator.ContactMessages.MessageDetails") %>">
 
             <div class="message-modal-box">
 
@@ -675,13 +668,13 @@
 
                         <h3 class="popup-title">
                             <i class="bi bi-envelope-open me-2"></i>
-                            Message Details
+                            <%: L.T("Coordinator.ContactMessages.MessageDetails") %>
                         </h3>
 
                         <button type="button"
                             class="popup-close"
                             onclick="closeMessageModal()"
-                            aria-label="Close">
+                            aria-label="<%: L.T("Coordinator.ContactMessages.Close") %>">
                             &times;
                         </button>
 
@@ -695,7 +688,7 @@
 
                             <h3 class="section-title">
                                 <i class="bi bi-person-lines-fill me-2"></i>
-                                Sender Information
+                                <%: L.T("Coordinator.ContactMessages.SenderInformation") %>
                             </h3>
 
                             <div class="details-info">
@@ -703,7 +696,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Name:
+                                        <%: L.T("Coordinator.ContactMessages.Name2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -716,7 +709,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Email:
+                                        <%: L.T("Coordinator.ContactMessages.Email2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -729,7 +722,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Subject:
+                                        <%: L.T("Coordinator.ContactMessages.Subject2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -742,7 +735,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Date:
+                                        <%: L.T("Coordinator.ContactMessages.Date2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -755,7 +748,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Status:
+                                        <%: L.T("Coordinator.ContactMessages.Status2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -776,7 +769,7 @@
 
                             <h3 class="section-title">
                                 <i class="bi bi-file-text me-2"></i>
-                                Message Content
+                                <%: L.T("Coordinator.ContactMessages.MessageContent") %>
                             </h3>
 
                             <div class="message-box">
@@ -793,13 +786,13 @@
 
                                 <asp:Button ID="btnMarkReviewed"
                                     runat="server"
-                                    Text="Mark as Reviewed"
+                                    Text="<%$ Resources:Coordinator, ContactMessages.MarkAsReviewed %>"
                                     CssClass="btn btn-reviewed"
                                     OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="Updating…"/>
 
                                 <asp:Button ID="btnClose"
                                     runat="server"
-                                    Text="Close"
+                                    Text="<%$ Resources:Coordinator, ContactMessages.Close %>"
                                     CssClass="btn btn-outline-secondary"
                                     OnClick="btnClose_Click"
                                     CausesValidation="false" />

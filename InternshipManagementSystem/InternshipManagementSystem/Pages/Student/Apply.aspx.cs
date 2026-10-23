@@ -32,7 +32,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             try
             {
                 if (!ApplicationRepository.IsValidKey(OpportunityId))
-                { Block("Choose an internship from Explore Opportunities to start your application."); return; }
+                { Block(L.T("Student.Apply.ChooseAnInternshipFromExploreOpportunities")); return; }
                 SelectedOpportunity = new OpportunityRepository().GetById(OpportunityId);
 
                 // Already applied: show the submitted application read-only instead of the form.
@@ -46,16 +46,16 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     return;
                 }
 
-                if (SelectedOpportunity == null) { Block("This internship could not be found."); return; }
+                if (SelectedOpportunity == null) { Block(L.T("Student.Apply.ThisInternshipCouldNotBeFound")); return; }
                 OpportunityPanel.Visible = true;
-                if (!SelectedOpportunity.IsOpenForApplications) { Block("This internship is no longer accepting applications."); return; }
-                if (!SelectedOpportunity.IsEligible(CurrentStudent)) { Block("This internship is not available for your college or major."); return; }
-                if (new PlacementRepository().Exists(CurrentStudent.Id)) { Block("You already have a confirmed internship."); return; }
+                if (!SelectedOpportunity.IsOpenForApplications) { Block(L.T("Student.Apply.ThisInternshipIsNoLongerAccepting")); return; }
+                if (!SelectedOpportunity.IsEligible(CurrentStudent)) { Block(L.T("Student.Apply.ThisInternshipIsNotAvailableFor")); return; }
+                if (new PlacementRepository().Exists(CurrentStudent.Id)) { Block(L.T("Student.Apply.YouAlreadyHaveAConfirmedInternship")); return; }
                 FormPanel.Visible = true;
                 if (!IsPostBack) CvUrl.Text = CurrentStudent.CvUrl;
             }
-            catch (FirebaseException) { Block("We could not load this internship. Please try again shortly."); }
-            catch (InvalidOperationException) { Block("The application service is not configured. Please contact the coordinator."); }
+            catch (FirebaseException) { Block(L.T("Student.Apply.WeCouldNotLoadThisInternship")); }
+            catch (InvalidOperationException) { Block(L.T("Student.Apply.TheApplicationServiceIsNotConfigured")); }
         }
 
         protected void Submit_Click(object sender, EventArgs e)
@@ -70,7 +70,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             }
             catch (InvalidOperationException ex) { ShowError(ex.Message); }
             catch (FirebaseException)
-            { ShowError("We could not confirm your submission. Check My Applications before trying again. Your form is still here."); }
+            { ShowError(L.T("Student.Apply.WeCouldNotConfirmYourSubmission")); }
         }
 
         private void Block(string message) { FormPanel.Visible = false; ShowError(message); }

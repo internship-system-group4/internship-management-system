@@ -1,0 +1,57 @@
+async page => {
+ // Language switching behaviour against the disposable host (57992) and the campus-login simulation (4910).
+ // Writes only to the simulation (reset first); never to a live service.
+ const base='http://localhost:57992',db='http://127.0.0.1:4910/firebase';
+ const checks=[];const check=(ok,name)=>{if(!ok)throw Error(name);checks.push(name);};
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ const html=async()=>page.evaluate(()=>({lang:document.documentElement.lang,dir:document.documentElement.dir,rtlCss:[...document.styleSheets].some(s=>/bootstrap\.rtl\.min\.css/.test(s.href||'')),ltrCss:[...document.styleSheets].some(s=>/bootstrap\.min\.css/.test(s.href||''))}));
+ const langLink=()=>page.locator('[data-lang-switch]:visible').first();
+ await page.request.post(db+'/__reset');
+ await page.context().clearCookies();await page.setViewportSize({width:1440,height:1000});
+
+ // English is the default; exactly one Bootstrap build is loaded.
+ await page.goto(base+'/Pages/Public/Contact.aspx?topic=general');let h=await html();
+ check(h.lang==='en'&&h.dir==='ltr'&&h.ltrCss&&!h.rtlCss,'English default with the LTR Bootstrap build only');
+ check((await langLink().innerText()).includes('العربية')&&await langLink().getAttribute('hreflang')==='ar','Selector names the other language');
+
+ // A failed postback (server validation) stays a POST; switching language afterwards is a GET to the same page.
+ const posts=[];page.on('request',r=>{if(r.method()==='POST'&&r.url().includes('/Contact.aspx'))posts.push(r.url());});
+ // form.submit() skips the client checks: a plain postback with empty fields, rejected by the server.
+ await Promise.all([page.waitForNavigation(),page.evaluate(()=>HTMLFormElement.prototype.submit.call(document.forms[0]))]);
+ const postsBefore=posts.length;check(postsBefore>=1,'Validation round trip is a postback');
+ check(new URL(await langLink().getAttribute('href'),base).searchParams.get('ui-lang')==='ar','Selector is a plain link carrying ui-lang');
+ const nav=page.waitForRequest(r=>r.isNavigationRequest()&&r.url().includes('ui-lang=ar'));await langLink().click();const req=await nav;await page.waitForLoadState('load');
+ check(req.method()==='GET'&&posts.length===postsBefore,'Language switch is a GET and does not replay the POST');
+ check(new URL(page.url()).pathname==='/Pages/Public/Contact.aspx'&&new URL(page.url()).searchParams.get('topic')==='general'&&!page.url().includes('ui-lang'),'Same page, safe query kept, switch parameter removed');
+ h=await html();check(h.lang==='ar'&&h.dir==='rtl'&&h.rtlCss&&!h.ltrCss,'Arabic with the RTL Bootstrap build only');
+ const cookie=(await page.context().cookies()).find(c=>c.name==='uims-lang');check(cookie&&cookie.value==='ar'&&cookie.httpOnly&&cookie.sameSite==='Lax','First-party HttpOnly SameSite=Lax cookie');
+
+ // Arabic client validation messages.
+ await page.reload();await page.locator('[data-public-form] input[type=submit],[data-public-form] button[type=submit]').first().click();
+ const message=await page.locator('[data-public-form] [role=alert]:visible, [data-public-form] .field-error:visible, [data-public-form] [id$=Error]:visible').first().innerText().catch(()=> '');
+ check(/[؀-ۿ]/.test(message),'Client validation message is Arabic: '+message);
+
+ // Dirty form: dismissing the confirmation keeps the page and the typed text; accepting switches.
+ await page.reload();const field=page.locator('[data-public-form] input[type=text]:visible').first();await field.fill('نص تجريبي');
+ await page.evaluate(()=>{window.__asked=[];window.confirm=m=>{window.__asked.push(m);return false;};});await langLink().click();await page.waitForTimeout(400);const dialogText=(await page.evaluate(()=>window.__asked))[0]||'';
+ check(/[؀-ۿ]/.test(dialogText)&&(await html()).lang==='ar'&&await field.inputValue()==='نص تجريبي','Unsaved changes: confirmation in Arabic, cancel keeps the form');
+ await page.evaluate(()=>{window.confirm=()=>true;});await Promise.all([page.waitForNavigation(),langLink().click()]);await page.waitForLoadState('load');
+ check((await html()).lang==='en','Unsaved changes: accepting switches language');
+
+ // Login and logout keep the choice; postbacks in the portal keep it.
+ await page.goto(base+'/Pages/Account/Login.aspx?ui-lang=ar');await page.waitForLoadState('load');check((await html()).dir==='rtl','Login page in Arabic');
+ await page.locator('#txtEmail, input[type=email]').first().fill('student@campus.test');await page.locator('input[type=password]').first().fill('Fixture-pass-2026');
+ await page.locator('[data-public-form] input[type=submit]').click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');
+ h=await html();check(h.lang==='ar'&&h.dir==='rtl','Language survives sign-in');
+ const side=await page.evaluate(()=>{const s=document.querySelector('.uims-sidebar').getBoundingClientRect();return s.left>innerWidth/2;});check(side,'Sidebar on the right in Arabic');
+ check((await page.locator('.uims-user').innerText()).includes('الطالب'),'Role label translated (الطالب)');
+ await page.goto(base+'/Pages/Account/Notifications.aspx');const [portalPost]=await Promise.all([page.waitForRequest(r=>r.isNavigationRequest()&&r.method()==='POST'),page.waitForNavigation(),page.evaluate(()=>HTMLFormElement.prototype.submit.call(document.forms[0]))]);
+ check(portalPost.url().includes('Notifications.aspx')&&(await html()).dir==='rtl','Language survives a portal postback');
+ await page.locator('.uims-sidebar-signout, [id$=btnSignOut]').first().click({force:true});await page.waitForURL('**/Login.aspx**');
+ check((await html()).dir==='rtl','Language survives sign-out');
+
+ // Invalid cookie values fall back to English.
+ for(const value of ['xx','ar-SA','%3Cscript%3E']){await page.context().addCookies([{name:'uims-lang',value,url:base}]);await page.goto(base+'/Default.aspx');check((await html()).lang==='en','Invalid cookie "'+value+'" falls back to English');}
+ check(errors.length===0,'No page errors: '+errors.join(' | '));
+ return {passed:checks.length,checks};
+}

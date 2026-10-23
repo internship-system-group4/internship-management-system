@@ -1,4 +1,5 @@
 ﻿using System;
+using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using System.Linq;
 using InternshipManagementSystem.Data;
@@ -21,7 +22,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             try
             {
                 Student student = new UserRepository().GetStudent(CurrentStudent.Id);
-                if (student == null) { ShowMessage("Student record was not found.", false); btnSave.Enabled = false; return; }
+                if (student == null) { ShowMessage(L.T("Student.DisplayEditProfile.StudentRecordWasNotFound"), false); btnSave.Enabled = false; return; }
                 txtName.Text = student.FullName;
                 txtEmail.Text = student.Email;
                 txtPhone.Text = student.PhoneNumber;
@@ -34,7 +35,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 txtTechnical.Text = ReadSkills(fields, "TechnicalSkills");
                 txtSoft.Text = ReadSkills(fields, "SoftSkills");
             }
-            catch (Exception) { ShowMessage("Unable to load your profile. Please try again.", false); btnSave.Enabled = false; }
+            catch (Exception) { ShowMessage(L.T("Student.DisplayEditProfile.UnableToLoadYourProfilePlease"), false); btnSave.Enabled = false; }
         }
 
         private static string ReadSkills(Dictionary<string, object> fields, string key)
@@ -57,9 +58,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             string phone = (txtPhone.Text ?? "").Trim();
             if (phone.Length > 25 || phone.Any(c => !(char.IsDigit(c) || " +()-".Contains(c))))
-            { ShowMessage("Enter a valid phone number (digits, spaces, +, -, or parentheses).", false); return; }
+            { ShowMessage(L.T("Student.DisplayEditProfile.EnterAValidPhoneNumberDigits"), false); return; }
             if ((txtTechnical.Text ?? "").Length > 1000 || (txtSoft.Text ?? "").Length > 1000)
-            { ShowMessage("Each skills section must be 1000 characters or less.", false); return; }
+            { ShowMessage(L.T("Student.DisplayEditProfile.EachSkillsSectionMustBe1000"), false); return; }
             try
             {
                 // Only allow-listed fields are written. Academic fields are never sent to Firebase.
@@ -70,9 +71,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 };
                 FirebaseContext.Patch(UserPath, updates);
                 LoadProfile();
-                ShowMessage("Your profile has been updated successfully.", true);
+                ShowMessage(L.T("Student.DisplayEditProfile.YourProfileHasBeenUpdatedSuccessfully"), true);
             }
-            catch (Exception) { ShowMessage("Changes could not be saved. Please try again.", false); }
+            catch (Exception) { ShowMessage(L.T("Student.DisplayEditProfile.ChangesCouldNotBeSavedPlease"), false); }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e) { LoadProfile(); }

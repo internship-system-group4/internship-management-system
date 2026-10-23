@@ -1,9 +1,9 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="WorkspaceJourney.ascx.cs" Inherits="InternshipManagementSystem.Layout.WorkspaceJourney" %>
 <% if (Model != null && Model.Stages.Count > 0) { %>
 <section class="ws-journey" data-workspace-journey aria-label="<%: Model.Title %>">
-    <div class="ws-journey-heading"><h3><%: Model.Title %></h3><span>Select a stage for details <span data-ui-icon="next" aria-hidden="true"></span></span></div>
+    <div class="ws-journey-heading"><h3><%: Model.Title %></h3><span><%: L.T("Shared.WorkspaceJourney.SelectAStageForDetails") %> <span data-ui-icon="next" aria-hidden="true"></span></span></div>
     <p class="ws-journey-context"><%: Model.Context %></p>
-    <p class="ws-journey-mobile-help">Swipe through stages. Select one to view its details.</p>
+    <p class="ws-journey-mobile-help"><%: L.T("Shared.WorkspaceJourney.SwipeThroughStagesSelectOneTo") %></p>
     <div class="ws-journey-track" style="--journey-count:<%: Model.Stages.Count %>">
         <div class="ws-journey-marker" aria-hidden="true"></div>
         <% for (int i = 0; i < Model.Stages.Count; i++) { var stage = Model.Stages[i]; %>
@@ -23,9 +23,9 @@
 <% } %>
 <div class="modal fade ws-journey-modal" id="<%: DialogId %>" tabindex="-1" aria-labelledby="<%: DialogId + "_title" %>" aria-hidden="true">
  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
-  <div class="modal-header"><div><p class="ws-dialog-context"><%: Model.Title %></p><h2 class="modal-title" id="<%: DialogId + "_title" %>">Journey details</h2></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close journey details"></button></div>
+  <div class="modal-header"><div><p class="ws-dialog-context"><%: Model.Title %></p><h2 class="modal-title" id="<%: DialogId + "_title" %>"><%: L.T("Shared.WorkspaceJourney.JourneyDetails") %></h2></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Shared.WorkspaceJourney.CloseJourneyDetails") %>"></button></div>
   <div class="modal-body" data-journey-body></div>
-  <div class="modal-footer"><span>Details reflect the current server record.</span><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button></div>
+  <div class="modal-footer"><span><%: L.T("Shared.WorkspaceJourney.DetailsReflectTheCurrentServerRecord") %></span><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Shared.WorkspaceJourney.Close") %></button></div>
  </div></div>
 </div>
 <% } %>

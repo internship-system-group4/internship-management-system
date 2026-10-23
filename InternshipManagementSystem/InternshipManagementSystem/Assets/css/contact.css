@@ -133,5 +133,5 @@ body.uims-public .contact-page .contact-card .public-field :is(input,textarea):f
 }
 @media(prefers-reduced-motion:reduce) {
  .contact-page *, .contact-page *::before { transition:none !important; }
- .contact-card[data-submitting="true"] .contact-submit::before { animation:none; border-color:var(--th-line-ffffff,#fff); border-right-color:transparent; }
+ .contact-card[data-submitting="true"] .contact-submit::before { animation:none; border-color:var(--th-line-ffffff,#fff); border-inline-end-color:transparent; }
 }

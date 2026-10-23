@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Apply.504000CharactersKeepIt" xml:space="preserve"><value>من 50 إلى 4,000 حرف. اجعلها خاصة بهذه الفرصة.</value></data>
+  <data name="Apply.AboutTheInternship" xml:space="preserve"><value>عن فرصة التدريب</value></data>
+  <data name="Apply.ApplyBy" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
+  <data name="Apply.ApplyForAnInternship" xml:space="preserve"><value>التقديم على فرصة تدريب</value></data>
+  <data name="Apply.AvailableSeats" xml:space="preserve"><value>المقاعد المتاحة</value></data>
+  <data name="Apply.CVLink" xml:space="preserve"><value>رابط السيرة الذاتية</value></data>
+  <data name="Apply.CVLinkRequired" xml:space="preserve"><value>رابط السيرة الذاتية (مطلوب)</value></data>
+  <data name="Apply.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="Apply.ChooseAnInternshipFromExploreOpportunities" xml:space="preserve"><value>اختر فرصة تدريب من صفحة استكشاف الفرص لبدء طلبك.</value></data>
+  <data name="Apply.CoverLetter" xml:space="preserve"><value>رسالة التقديم</value></data>
+  <data name="Apply.CoverLetterRequired" xml:space="preserve"><value>رسالة التقديم (مطلوبة)</value></data>
+  <data name="Apply.Duration" xml:space="preserve"><value>المدة</value></data>
+  <data name="Apply.EmailAddress" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="Apply.ExploreOpportunities" xml:space="preserve"><value>→ استكشاف الفرص</value></data>
+  <data name="Apply.FromYourStudentProfile" xml:space="preserve"><value>من ملفك الطلابي.</value></data>
+  <data name="Apply.FullName" xml:space="preserve"><value>الاسم الكامل</value></data>
+  <data name="Apply.IConfirmThatMyInformationIs" xml:space="preserve"><value>أؤكد أن بياناتي صحيحة وأن رابط سيرتي الذاتية متاح للوصول.</value></data>
+  <data name="Apply.Location" xml:space="preserve"><value>الموقع</value></data>
+  <data name="Apply.Major" xml:space="preserve"><value>التخصص</value></data>
+  <data name="Apply.MyApplications" xml:space="preserve"><value>→ طلباتي</value></data>
+  <data name="Apply.MyApplications2" xml:space="preserve"><value>طلباتي ←</value></data>
+  <data name="Apply.MyApplications3" xml:space="preserve"><value>طلباتي</value></data>
+  <data name="Apply.NoCVLinkAvailable" xml:space="preserve"><value>لا يتوفر رابط للسيرة الذاتية.</value></data>
+  <data name="Apply.OpenCV" xml:space="preserve"><value>فتح السيرة الذاتية ↗</value></data>
+  <data name="Apply.RejectionReason" xml:space="preserve"><value>سبب الرفض:</value></data>
+  <data name="Apply.Requirements" xml:space="preserve"><value>المتطلبات</value></data>
+  <data name="Apply.ReviewTheOpportunityAndTellThe" xml:space="preserve"><value>راجع تفاصيل الفرصة، ووضّح للشركة سبب ملاءمتك لها.</value></data>
+  <data name="Apply.SelectedInternship" xml:space="preserve"><value>فرصة التدريب المختارة</value></data>
+  <data name="Apply.ShareRelevantSkillsProjectsAndWhat" xml:space="preserve"><value>اذكر مهاراتك ومشاريعك ذات الصلة، وما تأمل أن تتعلّمه.</value></data>
+  <data name="Apply.Starts" xml:space="preserve"><value>تاريخ البدء</value></data>
+  <data name="Apply.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Apply.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="Apply.SubmitApplication" xml:space="preserve"><value>إرسال الطلب ←</value></data>
+  <data name="Apply.Submitted" xml:space="preserve"><value>تاريخ الإرسال</value></data>
+  <data name="Apply.TheApplicationServiceIsNotConfigured" xml:space="preserve"><value>خدمة الطلبات غير مُعدّة. يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Apply.ThisInternshipCouldNotBeFound" xml:space="preserve"><value>لم يُعثر على فرصة التدريب هذه.</value></data>
+  <data name="Apply.ThisInternshipIsNoLongerAccepting" xml:space="preserve"><value>لم تعد فرصة التدريب هذه تستقبل الطلبات.</value></data>
+  <data name="Apply.ThisInternshipIsNotAvailableFor" xml:space="preserve"><value>فرصة التدريب هذه غير متاحة لكليتك أو تخصصك.</value></data>
+  <data name="Apply.ThisIsWhatYouSentTo" xml:space="preserve"><value>هذا ما أرسلته إلى الشركة. تابع حالة طلبك من هنا.</value></data>
+  <data name="Apply.ToConfirmThisOfferGoTo" xml:space="preserve"><value>لتأكيد هذا العرض، انتقل إلى</value></data>
+  <data name="Apply.UpdateProfile" xml:space="preserve"><value>تحديث الملف الشخصي</value></data>
+  <data name="Apply.UseAnHTTPSLinkToYour" xml:space="preserve"><value>استخدم رابط HTTPS لسيرتك الذاتية، وتأكد من أن الشركة تستطيع فتحه دون طلب صلاحية وصول.</value></data>
+  <data name="Apply.ViewOpportunityDetails" xml:space="preserve"><value>عرض تفاصيل الفرصة ←</value></data>
+  <data name="Apply.WeCouldNotConfirmYourSubmission" xml:space="preserve"><value>تعذّر تأكيد إرسال طلبك. راجع صفحة طلباتي قبل المحاولة مرة أخرى، وما زالت بياناتك في النموذج.</value></data>
+  <data name="Apply.WeCouldNotLoadThisInternship" xml:space="preserve"><value>تعذّر تحميل فرصة التدريب هذه. يُرجى المحاولة بعد قليل.</value></data>
+  <data name="Apply.YouAlreadyHaveAConfirmedInternship" xml:space="preserve"><value>لديك تدريب مؤكَّد بالفعل.</value></data>
+  <data name="Apply.YourApplication" xml:space="preserve"><value>طلبك</value></data>
+  <data name="Apply.YourApplicationWillBeMarkedPending" xml:space="preserve"><value>سيظهر طلبك بحالة «قيد الانتظار» إلى أن تراجعه الشركة.</value></data>
+  <data name="Apply.YourDetails" xml:space="preserve"><value>بياناتك</value></data>
+  <data name="Dashboard.AllApplications" xml:space="preserve"><value>جميع الطلبات</value></data>
+  <data name="Dashboard.Applications" xml:space="preserve"><value>الطلبات</value></data>
+  <data name="Dashboard.ApplicationsPlacement" xml:space="preserve"><value>الطلبات وجهة التدريب</value></data>
+  <data name="Dashboard.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
+  <data name="Dashboard.ApprovedHours2" xml:space="preserve"><value>ساعة معتمدة</value></data>
+  <data name="Dashboard.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
+  <data name="Dashboard.AwaitingApproval" xml:space="preserve"><value>بانتظار الاعتماد</value></data>
+  <data name="Dashboard.CVPortfolio" xml:space="preserve"><value>السيرة الذاتية والملف المهني</value></data>
+  <data name="Dashboard.Due" xml:space="preserve"><value>الاستحقاق</value></data>
+  <data name="Dashboard.ExploreOpportunities" xml:space="preserve"><value>استكشف فرص التدريب</value></data>
+  <data name="Dashboard.FeedbackAvailableToYou" xml:space="preserve"><value>ملاحظات متاحة لك</value></data>
+  <data name="Dashboard.FindAnEligibleOpportunity" xml:space="preserve"><value>ابحث عن فرصة مناسبة لك</value></data>
+  <data name="Dashboard.HoursTargetNotSet" xml:space="preserve"><value> ساعة · لم يُحدَّد الهدف</value></data>
+  <data name="Dashboard.HoursUnit" xml:space="preserve"><value> ساعة</value></data>
+  <data name="Dashboard.KeepYourNextStepInView" xml:space="preserve"><value>، تابع خطوتك التالية من هنا.</value></data>
+  <data name="Dashboard.LinkedToYourPlacement" xml:space="preserve"><value>مرتبطة بجهة تدريبك</value></data>
+  <data name="Dashboard.Meetings" xml:space="preserve"><value>الاجتماعات</value></data>
+  <data name="Dashboard.NoDeadline" xml:space="preserve"><value>بلا موعد نهائي</value></data>
+  <data name="Dashboard.NoOpenTrainingTasks" xml:space="preserve"><value>لا توجد مهام تدريب مفتوحة</value></data>
+  <data name="Dashboard.OnlyApprovedEntriesCountTowardYour" xml:space="preserve"><value>لا تُحتسب ضمن المطلوب إلا الساعات المعتمدة، ويبقى إنهاء التدريب بحاجة إلى موافقة منسّق التدريب.</value></data>
+  <data name="Dashboard.OpenTasks" xml:space="preserve"><value>المهام المفتوحة</value></data>
+  <data name="Dashboard.PendingHoursAreSeparate" xml:space="preserve"><value>الساعات المعلّقة تُحتسب بشكل منفصل</value></data>
+  <data name="Dashboard.RecentDecisionsWithYourOriginalSubmission" xml:space="preserve"><value>أحدث القرارات مع تواريخ التقديم الأصلية.</value></data>
+  <data name="Dashboard.RefreshToTryAgain" xml:space="preserve"><value>حدّث الصفحة للمحاولة مرة أخرى</value></data>
+  <data name="Dashboard.StudentResources" xml:space="preserve"><value>موارد الطالب</value></data>
+  <data name="Dashboard.TargetNotSet" xml:space="preserve"><value>لم يُحدَّد الهدف</value></data>
+  <data name="Dashboard.TasksAndSubmissionsInYourCurrent" xml:space="preserve"><value>المهام والتسليمات في جهة تدريبك الحالية.</value></data>
+  <data name="Dashboard.TasksEvaluated" xml:space="preserve"><value>المهام المقيّمة</value></data>
+  <data name="Dashboard.TasksFromYourCompanySupervisorWill" xml:space="preserve"><value>ستظهر هنا المهام التي يسندها إليك مشرف الشركة.</value></data>
+  <data name="Dashboard.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Dashboard.TrainingTasks" xml:space="preserve"><value>مهام التدريب</value></data>
+  <data name="Dashboard.ViewHoursAndFeedback" xml:space="preserve"><value>عرض الساعات والملاحظات</value></data>
+  <data name="Dashboard.ViewYourTaskRecord" xml:space="preserve"><value>عرض سجل مهامك</value></data>
+  <data name="Dashboard.WeCouldNotLoadYourInternship" xml:space="preserve"><value>تعذّر تحميل سجل تدريبك.</value></data>
+  <data name="Dashboard.YouHaveNotSubmittedAnApplication" xml:space="preserve"><value>لم تقدّم أي طلب بعد.</value></data>
+  <data name="Dashboard.YourInternship" xml:space="preserve"><value>تدريبك</value></data>
+  <data name="Dashboard.YourNextWork" xml:space="preserve"><value>عملك القادم</value></data>
+  <data name="Dashboard.YourProfile" xml:space="preserve"><value>ملفك الشخصي</value></data>
+  <data name="Dashboard.YourSubmittedApplications" xml:space="preserve"><value>الطلبات التي أرسلتها</value></data>
+  <data name="Dashboard.YourTrainingRecord" xml:space="preserve"><value>سجل تدريبك</value></data>
+  <data name="DisplayEditProfile.AcademicInformation" xml:space="preserve"><value>البيانات الأكاديمية</value></data>
+  <data name="DisplayEditProfile.AcademicInformationIsManagedByThe" xml:space="preserve"><value>🔒 يدير منسّق التدريب البيانات الأكاديمية</value></data>
+  <data name="DisplayEditProfile.CancelChanges" xml:space="preserve"><value>إلغاء التغييرات</value></data>
+  <data name="DisplayEditProfile.ChangesCouldNotBeSavedPlease" xml:space="preserve"><value>تعذّر حفظ التغييرات. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="DisplayEditProfile.College" xml:space="preserve"><value>الكلية</value></data>
+  <data name="DisplayEditProfile.EachSkillsSectionMustBe1000" xml:space="preserve"><value>يجب ألا يتجاوز كل قسم من أقسام المهارات 1000 حرف.</value></data>
+  <data name="DisplayEditProfile.EmailAddress" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="DisplayEditProfile.EnterAValidPhoneNumberDigits" xml:space="preserve"><value>أدخل رقم هاتف صحيحًا (أرقام أو مسافات أو + أو - أو أقواس).</value></data>
+  <data name="DisplayEditProfile.FullName" xml:space="preserve"><value>الاسم الكامل</value></data>
+  <data name="DisplayEditProfile.Major" xml:space="preserve"><value>التخصص</value></data>
+  <data name="DisplayEditProfile.MyProfile" xml:space="preserve"><value>ملفي الشخصي</value></data>
+  <data name="DisplayEditProfile.PersonalInformation" xml:space="preserve"><value>البيانات الشخصية</value></data>
+  <data name="DisplayEditProfile.PhoneNumber" xml:space="preserve"><value>رقم الهاتف</value></data>
+  <data name="DisplayEditProfile.ReadOnly" xml:space="preserve"><value>— للعرض فقط</value></data>
+  <data name="DisplayEditProfile.RequiredTrainingHours" xml:space="preserve"><value>ساعات التدريب المطلوبة</value></data>
+  <data name="DisplayEditProfile.SaveChanges" xml:space="preserve"><value>حفظ التغييرات</value></data>
+  <data name="DisplayEditProfile.SeparateSkillsWithCommasForExample" xml:space="preserve"><value>افصل بين المهارات بفواصل، مثل: C#, SQL, HTML, CSS.</value></data>
+  <data name="DisplayEditProfile.SeparateSkillsWithCommasForExample2" xml:space="preserve"><value>افصل بين المهارات بفواصل، مثل: التواصل، العمل الجماعي، حل المشكلات.</value></data>
+  <data name="DisplayEditProfile.SoftSkills" xml:space="preserve"><value>المهارات الشخصية</value></data>
+  <data name="DisplayEditProfile.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="DisplayEditProfile.StudentRecordWasNotFound" xml:space="preserve"><value>لم يُعثر على سجل الطالب.</value></data>
+  <data name="DisplayEditProfile.TechnicalSkills" xml:space="preserve"><value>المهارات التقنية</value></data>
+  <data name="DisplayEditProfile.TheseFieldsAreControlledByThe" xml:space="preserve"><value>يتحكم منسّق التدريب في الجامعة بهذه الحقول.</value></data>
+  <data name="DisplayEditProfile.UnableToLoadYourProfilePlease" xml:space="preserve"><value>تعذّر تحميل ملفك الشخصي. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="DisplayEditProfile.University" xml:space="preserve"><value>الجامعة</value></data>
+  <data name="DisplayEditProfile.ViewYourInformationAndKeepYour" xml:space="preserve"><value>اطّلع على بياناتك، وحدّث ما يُسمح لك بتعديله منها.</value></data>
+  <data name="DisplayEditProfile.YourPhoneNumberCanBeUpdated" xml:space="preserve"><value>يمكنك تحديث رقم هاتفك. تواصل مع منسّق التدريب لتغيير بيانات الحساب.</value></data>
+  <data name="DisplayEditProfile.YourProfileHasBeenUpdatedSuccessfully" xml:space="preserve"><value>تم تحديث ملفك الشخصي بنجاح.</value></data>
+  <data name="DisplayEditProfile.YourSoftSkills" xml:space="preserve"><value>مهاراتك الشخصية</value></data>
+  <data name="DisplayEditProfile.YourTechnicalSkills" xml:space="preserve"><value>مهاراتك التقنية</value></data>
+  <data name="MyApplications.ApplicationSubmittedYourStatusIsPending" xml:space="preserve"><value>أُرسل الطلب. حالته الآن «قيد المراجعة»، ويمكن للشركة مراجعته.</value></data>
+  <data name="MyApplications.ConfirmOffer" xml:space="preserve"><value>تأكيد العرض</value></data>
+  <data name="MyApplications.ConfirmedInternship" xml:space="preserve"><value>التدريب المؤكَّد</value></data>
+  <data name="MyApplications.ExploreOpportunities" xml:space="preserve"><value>استكشف فرص التدريب</value></data>
+  <data name="MyApplications.IUnderstandThatICanConfirm" xml:space="preserve"><value>أدرك أنه لا يمكنني تأكيد أكثر من عرض تدريب واحد.</value></data>
+  <data name="MyApplications.InternshipConfirmedThisIsYourSelected" xml:space="preserve"><value>تم تأكيد التدريب. هذه جهة تدريبك المختارة، ولا يمكن تأكيد عروض أخرى.</value></data>
+  <data name="MyApplications.MyApplications" xml:space="preserve"><value>طلباتي</value></data>
+  <data name="MyApplications.NoApplicationsYet" xml:space="preserve"><value>لا توجد طلبات بعد.</value></data>
+  <data name="MyApplications.ReadyToJoinThisCompany" xml:space="preserve"><value>هل أنت مستعد للانضمام إلى هذه الشركة؟</value></data>
+  <data name="MyApplications.RefreshApplications" xml:space="preserve"><value>تحديث الطلبات</value></data>
+  <data name="MyApplications.RejectionReason" xml:space="preserve"><value>سبب الرفض:</value></data>
+  <data name="MyApplications.Submitted" xml:space="preserve"><value>تاريخ الإرسال</value></data>
+  <data name="MyApplications.SyncConfirmation" xml:space="preserve"><value>مزامنة التأكيد</value></data>
+  <data name="MyApplications.TheApplicationServiceIsNotConfigured" xml:space="preserve"><value>خدمة الطلبات غير مُعدّة. تواصل مع منسّق التدريب.</value></data>
+  <data name="MyApplications.ThisIsYourConfirmedInternship" xml:space="preserve"><value>هذا هو تدريبك المؤكَّد.</value></data>
+  <data name="MyApplications.ToFindYourInternship" xml:space="preserve"><value>للعثور على فرصة تدريبك.</value></data>
+  <data name="MyApplications.TrackYourApplicationsAndChooseOne" xml:space="preserve"><value>تابع طلباتك واختر عرض تدريب واحدًا من العروض المقبولة.</value></data>
+  <data name="MyApplications.ViewApplication" xml:space="preserve"><value>عرض الطلب ←</value></data>
+  <data name="MyApplications.WeCouldNotConfirmTheResult" xml:space="preserve"><value>تعذّر تأكيد النتيجة. حدّث الصفحة للتحقق من جهة تدريبك قبل المحاولة مرة أخرى.</value></data>
+  <data name="MyApplications.WeCouldNotLoadApplicationsRefresh" xml:space="preserve"><value>تعذّر تحميل الطلبات. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
+  <data name="MyApplications.YouCanConfirmOnlyOneInternship" xml:space="preserve"><value>يمكنك تأكيد فرصة تدريب واحدة فقط، فاختر بعناية قبل المتابعة.</value></data>
+  <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>تم تأكيد تدريبك وحفظه، لكن علامة الطلب ما زالت بحاجة إلى مزامنة؛ استخدم «مزامنة التأكيد» أدناه.</value></data>
+  <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>تم حفظ جهة تدريبك، ولا يمكنك تأكيد عرض آخر.</value></data>
+  <data name="MyTasks.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>المهام المسندة</value></data>
+  <data name="MyTasks.Attempt" xml:space="preserve"><value>المحاولة</value></data>
+  <data name="MyTasks.Attempts" xml:space="preserve"><value>المحاولات</value></data>
+  <data name="MyTasks.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="MyTasks.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
+  <data name="MyTasks.Description" xml:space="preserve"><value>الوصف</value></data>
+  <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>أدخل رابط http أو https صحيحًا.</value></data>
+  <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>أدخل نص التسليم أو رابطًا.</value></data>
+  <data name="MyTasks.EvaluationCriteria" xml:space="preserve"><value>معايير التقييم</value></data>
+  <data name="MyTasks.ExampleTask" xml:space="preserve"><value>مهمة نموذجية</value></data>
+  <data name="MyTasks.Feedback" xml:space="preserve"><value>الملاحظات</value></data>
+  <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>رفع الملفات غير متاح حاليًا. سلّم نصًا أو رابطًا قابلًا للمشاركة.</value></data>
+  <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>التعليمات والمتطلبات</value></data>
+  <data name="MyTasks.MyTasks" xml:space="preserve"><value>مهامي</value></data>
+  <data name="MyTasks.NoEvaluationCriteriaProvided" xml:space="preserve"><value>لم تُحدَّد معايير للتقييم.</value></data>
+  <data name="MyTasks.NoSubmissionAttemptsYet" xml:space="preserve"><value>لا توجد محاولات تسليم بعد.</value></data>
+  <data name="MyTasks.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>لم تُسند إليك أي مهام بعد.</value></data>
+  <data name="MyTasks.NotSet" xml:space="preserve"><value>غير محددة</value></data>
+  <data name="MyTasks.NotSubmitted" xml:space="preserve"><value>لم تُسلَّم</value></data>
+  <data name="MyTasks.OfTheTask" xml:space="preserve"><value>% من المهمة)</value></data>
+  <data name="MyTasks.Points" xml:space="preserve"><value>نقطة (</value></data>
+  <data name="MyTasks.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="MyTasks.SubmissionCouldNotBeSaved" xml:space="preserve"><value>تعذّر حفظ التسليم.</value></data>
+  <data name="MyTasks.SubmissionCouldNotBeSavedTry" xml:space="preserve"><value>تعذّر حفظ التسليم. حاول مرة أخرى.</value></data>
+  <data name="MyTasks.SubmissionHistory" xml:space="preserve"><value>سجل التسليمات</value></data>
+  <data name="MyTasks.SubmissionLink" xml:space="preserve"><value>رابط التسليم</value></data>
+  <data name="MyTasks.SubmissionSavedSuccessfully" xml:space="preserve"><value>تم حفظ التسليم بنجاح.</value></data>
+  <data name="MyTasks.SubmissionText" xml:space="preserve"><value>نص التسليم</value></data>
+  <data name="MyTasks.SubmissionWasSavedButTheTask" xml:space="preserve"><value>حُفظ التسليم، لكن تعذّر تحديث حالة المهمة. حدّث الصفحة.</value></data>
+  <data name="MyTasks.SubmitTask" xml:space="preserve"><value>تسليم المهمة</value></data>
+  <data name="MyTasks.SubmitYourWork" xml:space="preserve"><value>سلّم عملك</value></data>
+  <data name="MyTasks.SubmittedAt" xml:space="preserve"><value>وقت التسليم</value></data>
+  <data name="MyTasks.Task" xml:space="preserve"><value>المهمة</value></data>
+  <data name="MyTasks.TaskDetailsAndSubmission" xml:space="preserve"><value>تفاصيل المهمة والتسليم</value></data>
+  <data name="MyTasks.TheSupervisorSInstructionsWillAppear" xml:space="preserve"><value>ستظهر تعليمات المشرف هنا.</value></data>
+  <data name="MyTasks.TheTaskDescriptionWillAppearHere" xml:space="preserve"><value>سيظهر وصف المهمة هنا.</value></data>
+  <data name="MyTasks.ThisTaskIsNotAcceptingSubmissions" xml:space="preserve"><value>لا تستقبل هذه المهمة تسليمات حاليًا.</value></data>
+  <data name="MyTasks.ThisTaskRequiresAFileFile" xml:space="preserve"><value>تتطلب هذه المهمة ملفًا، ورفع الملفات غير متاح حاليًا.</value></data>
+  <data name="MyTasks.ToBeSetBySupervisor" xml:space="preserve"><value>يحدّده المشرف</value></data>
+  <data name="MyTasks.UTC" xml:space="preserve"><value>UTC</value></data>
+  <data name="MyTasks.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
+  <data name="MyTasks.ViewYourAssignedTasksDeadlinesAnd" xml:space="preserve"><value>اطّلع على المهام المسندة إليك ومواعيدها النهائية وحالة تسليمها.</value></data>
+  <data name="MyTasks.YouAlreadySubmittedThisTaskWait" xml:space="preserve"><value>سلّمت هذه المهمة بالفعل. انتظر طلب تعديل.</value></data>
+  <data name="MyTasks.YouCanProvideTextALink" xml:space="preserve"><value>يمكنك تقديم نص أو رابط أو ملف، وتُحفظ كل عملية تسليم جديدة كمحاولة مستقلة.</value></data>
+  <data name="MyTasks.YourConfirmedPlacementWasNotFound" xml:space="preserve"><value>لم يُعثر على جهة تدريبك المؤكَّدة.</value></data>
+  <data name="Opportunities.APPLICATIONDEADLINE" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
+  <data name="Opportunities.AVAILABLESEATS" xml:space="preserve"><value>المقاعد المتاحة</value></data>
+  <data name="Opportunities.AvailableOpportunities" xml:space="preserve"><value>الفرص المتاحة</value></data>
+  <data name="Opportunities.Clear" xml:space="preserve"><value>مسح</value></data>
+  <data name="Opportunities.College" xml:space="preserve"><value>الكلية:</value></data>
+  <data name="Opportunities.DURATION" xml:space="preserve"><value>المدة</value></data>
+  <data name="Opportunities.DiscoverYourNextInternship" xml:space="preserve"><value>اكتشف فرصة تدريبك القادمة</value></data>
+  <data name="Opportunities.ExploreOpportunities" xml:space="preserve"><value>استكشاف فرص التدريب</value></data>
+  <data name="Opportunities.ExploreOpportunitiesFromPartnerCompaniesDiscover" xml:space="preserve"><value>استكشف الفرص لدى الشركات الشريكة، وتعرّف على المهارات التي يمكنك تطويرها، وانطلق نحو خطوتك المهنية التالية.</value></data>
+  <data name="Opportunities.ExploreThisInternshipToLearnMore" xml:space="preserve"><value>استكشف فرصة التدريب هذه لتتعرّف أكثر على الدور.</value></data>
+  <data name="Opportunities.FindInternshipOpportunitiesThatMatchYour" xml:space="preserve"><value>ابحث عن فرص تدريب تناسب برنامجك الأكاديمي.</value></data>
+  <data name="Opportunities.InternshipsForYou" xml:space="preserve"><value>فرص تدريب لك</value></data>
+  <data name="Opportunities.LOCATION" xml:space="preserve"><value>الموقع</value></data>
+  <data name="Opportunities.Major" xml:space="preserve"><value>التخصص:</value></data>
+  <data name="Opportunities.MatchesYourAcademicProgram" xml:space="preserve"><value>✓ تناسب برنامجك الأكاديمي</value></data>
+  <data name="Opportunities.MatchingOpportunities" xml:space="preserve"><value>فرصة مطابقة</value></data>
+  <data name="Opportunities.NoMatchingOpportunities" xml:space="preserve"><value>لا توجد فرص مطابقة</value></data>
+  <data name="Opportunities.NotSpecified" xml:space="preserve"><value>غير محدد</value></data>
+  <data name="Opportunities.Of" xml:space="preserve"><value>من</value></data>
+  <data name="Opportunities.Open" xml:space="preserve"><value>مفتوحة</value></data>
+  <data name="Opportunities.PleaseContactTheInternshipCoordinator" xml:space="preserve"><value>يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Opportunities.PleaseSignInAsAStudent" xml:space="preserve"><value>يُرجى تسجيل الدخول بحساب طالب.</value></data>
+  <data name="Opportunities.PleaseTryAgainLater" xml:space="preserve"><value>يُرجى المحاولة لاحقًا.</value></data>
+  <data name="Opportunities.ResetSearch" xml:space="preserve"><value>إعادة ضبط البحث</value></data>
+  <data name="Opportunities.ResultsAreFilteredAutomaticallyForYour" xml:space="preserve"><value>تُصفّى النتائج تلقائيًا وفق برنامجك.</value></data>
+  <data name="Opportunities.Search" xml:space="preserve"><value>بحث</value></data>
+  <data name="Opportunities.SearchAcademicFilters" xml:space="preserve"><value>البحث والتصفية الأكاديمية</value></data>
+  <data name="Opportunities.SearchByOpportunityCompanyOrLocation" xml:space="preserve"><value>ابحث باسم الفرصة أو الشركة أو الموقع...</value></data>
+  <data name="Opportunities.StatusOpen" xml:space="preserve"><value>الحالة: مفتوحة</value></data>
+  <data name="Opportunities.ThereAreCurrentlyNoAvailableInternships" xml:space="preserve"><value>لا توجد حاليًا فرص تدريب متاحة تطابق برنامجك الأكاديمي وبحثك.</value></data>
+  <data name="Opportunities.TryAnotherSearchOrCheckBack" xml:space="preserve"><value>جرّب بحثًا آخر أو عُد لاحقًا.</value></data>
+  <data name="Opportunities.ViewDetails" xml:space="preserve"><value>عرض التفاصيل ←</value></data>
+  <data name="Opportunities.Weeks" xml:space="preserve"><value>أسابيع</value></data>
+  <data name="OpportunityDetails.APPLICATIONDEADLINE" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
+  <data name="OpportunityDetails.AVAILABLESEATS" xml:space="preserve"><value>المقاعد المتاحة</value></data>
+  <data name="OpportunityDetails.AboutThisOpportunity" xml:space="preserve"><value>عن هذه الفرصة</value></data>
+  <data name="OpportunityDetails.AllMajorsInEligibleCollege" xml:space="preserve"><value>جميع تخصصات الكلية المؤهلة</value></data>
+  <data name="OpportunityDetails.ApplicationsUnavailable" xml:space="preserve"><value>التقديم غير متاح</value></data>
+  <data name="OpportunityDetails.ApplyBefore" xml:space="preserve"><value>التقديم قبل</value></data>
+  <data name="OpportunityDetails.ApplyNow" xml:space="preserve"><value>قدّم الآن ←</value></data>
+  <data name="OpportunityDetails.BackToExploreOpportunities" xml:space="preserve"><value>→ العودة إلى استكشاف الفرص</value></data>
+  <data name="OpportunityDetails.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="OpportunityDetails.DURATION" xml:space="preserve"><value>المدة</value></data>
+  <data name="OpportunityDetails.EligibleCollege" xml:space="preserve"><value>الكلية المؤهلة</value></data>
+  <data name="OpportunityDetails.EligibleMajors" xml:space="preserve"><value>التخصصات المؤهلة</value></data>
+  <data name="OpportunityDetails.ExploreOpportunities" xml:space="preserve"><value>استكشاف فرص التدريب</value></data>
+  <data name="OpportunityDetails.InterestedInThisOpportunityStartYour" xml:space="preserve"><value>هل تهمّك هذه الفرصة؟ ابدأ طلبك وقدّم المعلومات المطلوبة عبر بوابة الطالب.</value></data>
+  <data name="OpportunityDetails.InternshipInformation" xml:space="preserve"><value>معلومات التدريب</value></data>
+  <data name="OpportunityDetails.InternshipOpportunity" xml:space="preserve"><value>فرصة تدريب</value></data>
+  <data name="OpportunityDetails.Location" xml:space="preserve"><value>الموقع</value></data>
+  <data name="OpportunityDetails.LocationCaps" xml:space="preserve"><value>الموقع</value></data>
+  <data name="OpportunityDetails.MyApplications" xml:space="preserve"><value>طلباتي</value></data>
+  <data name="OpportunityDetails.NotSpecified" xml:space="preserve"><value>غير محدد</value></data>
+  <data name="OpportunityDetails.OpportunityNotAvailable" xml:space="preserve"><value>الفرصة غير متاحة</value></data>
+  <data name="OpportunityDetails.PleaseSelectAnOpportunityFromExplore" xml:space="preserve"><value>يُرجى اختيار فرصة من صفحة استكشاف الفرص.</value></data>
+  <data name="OpportunityDetails.PleaseSignInAsAStudent" xml:space="preserve"><value>يُرجى تسجيل الدخول بحساب طالب.</value></data>
+  <data name="OpportunityDetails.PleaseTryAgainLater" xml:space="preserve"><value>يُرجى المحاولة لاحقًا.</value></data>
+  <data name="OpportunityDetails.ReadyToApply" xml:space="preserve"><value>هل أنت مستعد للتقديم؟</value></data>
+  <data name="OpportunityDetails.RemainingSeats" xml:space="preserve"><value>المقاعد المتبقية</value></data>
+  <data name="OpportunityDetails.RequirementsQualifications" xml:space="preserve"><value>المتطلبات والمؤهلات</value></data>
+  <data name="OpportunityDetails.ThisOpportunityCouldNotBeFound" xml:space="preserve"><value>لم يُعثر على هذه الفرصة.</value></data>
+  <data name="OpportunityDetails.ThisOpportunityIsAvailableToStudents" xml:space="preserve"><value>هذه الفرصة متاحة للطلبة الذين تستوفي كليتهم وتخصصهم شروط الأهلية.</value></data>
+  <data name="OpportunityDetails.TrainingDuration" xml:space="preserve"><value>مدة التدريب</value></data>
+  <data name="OpportunityDetails.TrainingStart" xml:space="preserve"><value>بداية التدريب</value></data>
+  <data name="OpportunityDetails.WeCouldnTDisplayThisOpportunity" xml:space="preserve"><value>تعذّر عرض هذه الفرصة. يُرجى العودة إلى استكشاف الفرص واختيار فرصة تدريب أخرى.</value></data>
+  <data name="OpportunityDetails.Weeks" xml:space="preserve"><value>أسابيع</value></data>
+  <data name="OpportunityDetails.WhoCanApply" xml:space="preserve"><value>من يمكنه التقديم؟</value></data>
+  <data name="Profile.9627XXXXXXXX" xml:space="preserve"><value>+962 7X XXX XXXX</value></data>
+  <data name="Profile.AcademicDetailsAreManagedByThe" xml:space="preserve"><value>يدير منسّق التدريب البيانات الأكاديمية. تواصل معه إذا كانت أي معلومة غير صحيحة.</value></data>
+  <data name="Profile.AcademicInformation" xml:space="preserve"><value>البيانات الأكاديمية</value></data>
+  <data name="Profile.Age" xml:space="preserve"><value>العمر</value></data>
+  <data name="Profile.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
+  <data name="Profile.CVAndPortfolioFilesMustBe" xml:space="preserve"><value>يجب أن تكون ملفات السيرة الذاتية والملف المهني بصيغة PDF.</value></data>
+  <data name="Profile.CVProfessionalPortfolio" xml:space="preserve"><value>السيرة الذاتية والملف المهني</value></data>
+  <data name="Profile.ChooseProfilePhoto" xml:space="preserve"><value>اختيار الصورة الشخصية</value></data>
+  <data name="Profile.College" xml:space="preserve"><value>الكلية</value></data>
+  <data name="Profile.CommunicationLeadershipProblemSolvingAndTeamwork" xml:space="preserve"><value>التواصل والقيادة وحل المشكلات والعمل الجماعي.</value></data>
+  <data name="Profile.CurriculumVitaeCV" xml:space="preserve"><value>السيرة الذاتية (CV)</value></data>
+  <data name="Profile.DownloadCurrentCV" xml:space="preserve"><value>تنزيل السيرة الذاتية الحالية ←</value></data>
+  <data name="Profile.DownloadCurrentPortfolio" xml:space="preserve"><value>تنزيل ملف المشاريع الحالي ←</value></data>
+  <data name="Profile.ExampleCASPNETHTMLCSS" xml:space="preserve"><value>مثال: C#, ASP.NET, HTML, CSS, SQL, Git</value></data>
+  <data name="Profile.ExampleTeamworkCommunicationTimeManagement" xml:space="preserve"><value>مثال: العمل الجماعي، التواصل، إدارة الوقت</value></data>
+  <data name="Profile.FullName" xml:space="preserve"><value>الاسم الكامل *</value></data>
+  <data name="Profile.FullNameMustBeBetween2" xml:space="preserve"><value>يجب أن يتكوّن الاسم الكامل من 2 إلى 120 حرفًا.</value></data>
+  <data name="Profile.GermanJordanianUniversity" xml:space="preserve"><value>| الجامعة الألمانية الأردنية</value></data>
+  <data name="Profile.HighlightTheSkillsYouCanOffer" xml:space="preserve"><value>أبرز المهارات التي يمكنك تقديمها للشركات.</value></data>
+  <data name="Profile.JPGOrPNGMaximum2MB" xml:space="preserve"><value>JPG أو PNG، بحد أقصى 2 ميغابايت.</value></data>
+  <data name="Profile.KeepYourCVAndPortfolioUp" xml:space="preserve"><value>حافظ على تحديث سيرتك الذاتية وملفك المهني لتتعرّف الشركات على خبراتك ومشاريعك ومهاراتك.</value></data>
+  <data name="Profile.LinkedInProfile" xml:space="preserve"><value>حساب LinkedIn</value></data>
+  <data name="Profile.MajorSpecialization" xml:space="preserve"><value>التخصص</value></data>
+  <data name="Profile.ManageCVPortfolio" xml:space="preserve"><value>إدارة السيرة الذاتية والملف المهني ←</value></data>
+  <data name="Profile.ManageYourPersonalDetailsAcademicInformation" xml:space="preserve"><value>أدِر بياناتك الشخصية ومعلوماتك الأكاديمية وملفك المهني.</value></data>
+  <data name="Profile.ManageYourProfessionalDocumentsAndOnline" xml:space="preserve"><value>أدِر مستنداتك المهنية وحضورك الإلكتروني.</value></data>
+  <data name="Profile.ManagedByYourUniversityAccount" xml:space="preserve"><value>يُدار من خلال حسابك الجامعي.</value></data>
+  <data name="Profile.MyStudentProfile" xml:space="preserve"><value>ملفي الطلابي</value></data>
+  <data name="Profile.NoUploadedCVAvailable" xml:space="preserve"><value>لا توجد سيرة ذاتية مرفوعة.</value></data>
+  <data name="Profile.NoUploadedPortfolioAvailable" xml:space="preserve"><value>لا يوجد ملف مشاريع مرفوع.</value></data>
+  <data name="Profile.OneOrMoreFieldsExceedThe" xml:space="preserve"><value>حقل واحد أو أكثر يتجاوز الطول المسموح به.</value></data>
+  <data name="Profile.PDFFilesMustBe5MB" xml:space="preserve"><value>يجب ألا يتجاوز حجم ملفات PDF خمسة ميغابايت.</value></data>
+  <data name="Profile.PersonalInformation" xml:space="preserve"><value>البيانات الشخصية</value></data>
+  <data name="Profile.PhoneNumber" xml:space="preserve"><value>رقم الهاتف</value></data>
+  <data name="Profile.PleaseEnterAValidAgeBetween" xml:space="preserve"><value>يُرجى إدخال عمر صحيح بين 16 و100.</value></data>
+  <data name="Profile.PleaseEnterAValidLinkedInProfile" xml:space="preserve"><value>يُرجى إدخال رابط صحيح لحساب LinkedIn.</value></data>
+  <data name="Profile.PleaseEnterValidHTTPOrHTTPS" xml:space="preserve"><value>يُرجى إدخال روابط HTTP أو HTTPS صحيحة.</value></data>
+  <data name="Profile.ProfileError" xml:space="preserve"><value>خطأ في الملف الشخصي: {0}</value></data>
+  <data name="Profile.ProfilePhotoMustBe2MB" xml:space="preserve"><value>يجب ألا يتجاوز حجم الصورة الشخصية 2 ميغابايت.</value></data>
+  <data name="Profile.ProfilePhotoMustBeJPGOr" xml:space="preserve"><value>يجب أن تكون الصورة الشخصية بصيغة JPG أو PNG.</value></data>
+  <data name="Profile.ProgrammingLanguagesFrameworksToolsAndTechnologies" xml:space="preserve"><value>لغات البرمجة وأطر العمل والأدوات والتقنيات.</value></data>
+  <data name="Profile.ProjectPortfolio" xml:space="preserve"><value>ملف المشاريع</value></data>
+  <data name="Profile.ReadOnly" xml:space="preserve"><value>للعرض فقط</value></data>
+  <data name="Profile.RequiredTrainingHours" xml:space="preserve"><value>ساعات التدريب المطلوبة</value></data>
+  <data name="Profile.ShowcaseYourAcademicProjectsPracticalWork" xml:space="preserve"><value>اعرض مشاريعك الأكاديمية وأعمالك التطبيقية وإنجازاتك وخبراتك المهنية.</value></data>
+  <data name="Profile.SkillsCompetencies" xml:space="preserve"><value>المهارات والكفاءات</value></data>
+  <data name="Profile.SoftSkills" xml:space="preserve"><value>المهارات الشخصية</value></data>
+  <data name="Profile.StudentAccountIsUnavailable" xml:space="preserve"><value>حساب الطالب غير متاح.</value></data>
+  <data name="Profile.StudentID" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="Profile.StudentProfileCouldNotBeFound" xml:space="preserve"><value>لم يُعثر على ملف الطالب.</value></data>
+  <data name="Profile.StudentProfilePhoto" xml:space="preserve"><value>صورة الطالب الشخصية</value></data>
+  <data name="Profile.TechnicalSkills" xml:space="preserve"><value>المهارات التقنية</value></data>
+  <data name="Profile.TheSelectedFileIsNotA" xml:space="preserve"><value>الملف المختار ليس ملف PDF صالحًا.</value></data>
+  <data name="Profile.TheSelectedPhotoIsNotA" xml:space="preserve"><value>الصورة المختارة ليست صورة صالحة.</value></data>
+  <data name="Profile.University" xml:space="preserve"><value>الجامعة</value></data>
+  <data name="Profile.UniversityAccountEmail" xml:space="preserve"><value>البريد الجامعي / بريد الحساب</value></data>
+  <data name="Profile.UpdateProfile" xml:space="preserve"><value>تحديث الملف الشخصي</value></data>
+  <data name="Profile.UpdateYourPersonalAndContactInformation" xml:space="preserve"><value>حدّث بياناتك الشخصية ومعلومات التواصل.</value></data>
+  <data name="Profile.UploadYourLatestCVReplaceAn" xml:space="preserve"><value>ارفع أحدث نسخة من سيرتك الذاتية، أو استبدل الملف الحالي، أو أدِر رابطها الإلكتروني.</value></data>
+  <data name="Profile.YourCVOrPortfolioCouldNot" xml:space="preserve"><value>تعذّر تحديث سيرتك الذاتية أو ملفك المهني لأن السجل تغيّر. حدّث الصفحة وحاول مرة أخرى.</value></data>
+  <data name="Profile.YourOfficialUniversityAndTrainingDetails" xml:space="preserve"><value>بياناتك الجامعية والتدريبية الرسمية.</value></data>
+  <data name="Profile.YourProfileHasBeenUpdatedSuccessfully" xml:space="preserve"><value>تم تحديث ملفك الشخصي بنجاح.</value></data>
+  <data name="Profile.YourProfileWasUpdatedElsewherePlease" xml:space="preserve"><value>حُدّث ملفك الشخصي من مكان آخر. يُرجى تحديث الصفحة والمحاولة مرة أخرى.</value></data>
+  <data name="Progress.Approved" xml:space="preserve"><value>معتمدة</value></data>
+  <data name="Progress.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
+  <data name="Progress.ApprovedHoursProgress" xml:space="preserve"><value>تقدّم الساعات المعتمدة</value></data>
+  <data name="Progress.ApprovedOn" xml:space="preserve"><value>تاريخ الاعتماد</value></data>
+  <data name="Progress.Attempt" xml:space="preserve"><value>المحاولة</value></data>
+  <data name="Progress.Attempts" xml:space="preserve"><value>المحاولات</value></data>
+  <data name="Progress.AwaitingReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
+  <data name="Progress.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="Progress.CompanySupervisor" xml:space="preserve"><value>مشرف الشركة</value></data>
+  <data name="Progress.CompletionStatus" xml:space="preserve"><value>حالة الإنهاء</value></data>
+  <data name="Progress.Date" xml:space="preserve"><value>التاريخ</value></data>
+  <data name="Progress.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
+  <data name="Progress.Description" xml:space="preserve"><value>الوصف</value></data>
+  <data name="Progress.Details" xml:space="preserve"><value>التفاصيل</value></data>
+  <data name="Progress.DownloadPrintCompletionReportPDF" xml:space="preserve"><value>تنزيل / طباعة تقرير إنهاء التدريب (PDF)</value></data>
+  <data name="Progress.EachTaskIsGradedOutOf" xml:space="preserve"><value>تُقيَّم كل مهمة من الدرجة القصوى التي يحددها لها مشرف الشركة.</value></data>
+  <data name="Progress.FinalScore" xml:space="preserve"><value>الدرجة النهائية</value></data>
+  <data name="Progress.GoToMyApplications" xml:space="preserve"><value>الانتقال إلى طلباتي</value></data>
+  <data name="Progress.Grade" xml:space="preserve"><value>الدرجة</value></data>
+  <data name="Progress.GradedOutOfAssigned" xml:space="preserve"><value>المقيّمة من أصل المسندة</value></data>
+  <data name="Progress.Hours" xml:space="preserve"><value>الساعات</value></data>
+  <data name="Progress.InternshipCompletionOfficialReport" xml:space="preserve"><value>إنهاء التدريب والتقرير الرسمي</value></data>
+  <data name="Progress.MyInternship" xml:space="preserve"><value>تدريبي</value></data>
+  <data name="Progress.MyProgressEvaluation" xml:space="preserve"><value>تقدّمي وتقييمي</value></data>
+  <data name="Progress.MyTasks" xml:space="preserve"><value>مهامي</value></data>
+  <data name="Progress.NoConfirmedInternshipYet" xml:space="preserve"><value>لا يوجد تدريب مؤكَّد بعد</value></data>
+  <data name="Progress.NoFeedbackYet" xml:space="preserve"><value>لا توجد ملاحظات بعد</value></data>
+  <data name="Progress.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>لم تُسند إليك أي مهام بعد.</value></data>
+  <data name="Progress.NoTrainingHoursHaveBeenRecorded" xml:space="preserve"><value>لم تُسجَّل أي ساعات تدريب بعد.</value></data>
+  <data name="Progress.NotGradedYet" xml:space="preserve"><value>لم تُقيَّم بعد</value></data>
+  <data name="Progress.OfRequiredHours" xml:space="preserve"><value>% من الساعات المطلوبة</value></data>
+  <data name="Progress.OnlyHoursApprovedByYourSupervisor" xml:space="preserve"><value>لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك، وإنجاز المهمة لا يعني اعتماد ساعاتها تلقائيًا.</value></data>
+  <data name="Progress.OpenRevisions" xml:space="preserve"><value>التعديلات المفتوحة</value></data>
+  <data name="Progress.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
+  <data name="Progress.Outcome" xml:space="preserve"><value>النتيجة</value></data>
+  <data name="Progress.PendingApproval" xml:space="preserve"><value>بانتظار الاعتماد</value></data>
+  <data name="Progress.PlacementStatus" xml:space="preserve"><value>حالة جهة التدريب</value></data>
+  <data name="Progress.Rejected" xml:space="preserve"><value>مرفوضة</value></data>
+  <data name="Progress.Result" xml:space="preserve"><value>النتيجة</value></data>
+  <data name="Progress.ReviewerNote" xml:space="preserve"><value>ملاحظة المراجِع</value></data>
+  <data name="Progress.RevisionRequested" xml:space="preserve"><value>مطلوب تعديلها</value></data>
+  <data name="Progress.SomeSectionsCouldNotBeLoaded" xml:space="preserve"><value>تعذّر تحميل بعض الأقسام، وقد تظهر فارغة:</value></data>
+  <data name="Progress.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Progress.SubmissionsRevisionHistory" xml:space="preserve"><value>التسليمات وسجل التعديلات</value></data>
+  <data name="Progress.Submitted" xml:space="preserve"><value>تاريخ الإرسال</value></data>
+  <data name="Progress.SupervisorFeedback" xml:space="preserve"><value>ملاحظات المشرف</value></data>
+  <data name="Progress.Task" xml:space="preserve"><value>المهمة</value></data>
+  <data name="Progress.TaskEvaluations" xml:space="preserve"><value>تقييمات المهام</value></data>
+  <data name="Progress.TaskEvaluationsFeedback" xml:space="preserve"><value>تقييمات المهام والملاحظات</value></data>
+  <data name="Progress.TaskGradeAverage" xml:space="preserve"><value>متوسط درجات المهام</value></data>
+  <data name="Progress.TasksGraded" xml:space="preserve"><value>المهام المقيّمة</value></data>
+  <data name="Progress.TasksWaitingForYourResubmission" xml:space="preserve"><value>مهام بانتظار إعادة تسليمك</value></data>
+  <data name="Progress.TheInternshipCoordinatorIsReviewingYour" xml:space="preserve"><value>يراجع منسّق التدريب طلب إنهاء تدريبك.</value></data>
+  <data name="Progress.TheOfficialCompletionReportIsBeing" xml:space="preserve"><value>يُعدّ منسّق التدريب تقرير الإنهاء الرسمي، وسيتاح للتنزيل هنا قريبًا.</value></data>
+  <data name="Progress.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Progress.TrainingHours2" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Progress.TrainingPeriod" xml:space="preserve"><value>فترة التدريب</value></data>
+  <data name="Progress.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="Progress.WeightedByEachTaskSWeight" xml:space="preserve"><value>موزون حسب وزن كل مهمة</value></data>
+  <data name="Progress.YouHaveNotSubmittedAnyWork" xml:space="preserve"><value>لم تسلّم أي عمل بعد. سلّم المهام من</value></data>
+  <data name="Progress.YourCompletionWasNotApprovedPlease" xml:space="preserve"><value>لم يُعتمد إنهاء تدريبك. يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Progress.YourFinalResultAndTheOfficial" xml:space="preserve"><value>ستظهر هنا نتيجتك النهائية وتقرير إنهاء التدريب الرسمي (PDF) بعد أن يعتمد منسّق التدريب في الجامعة إنهاء تدريبك.</value></data>
+  <data name="Progress.YourInternshipCompletionHasBeenApproved" xml:space="preserve"><value>اعتمد منسّق التدريب في الجامعة إنهاء تدريبك.</value></data>
+  <data name="Progress.YourInternshipIsStillInProgress" xml:space="preserve"><value>ما زال تدريبك قيد التنفيذ.</value></data>
+  <data name="Progress.YourProgressAndEvaluationsWillAppear" xml:space="preserve"><value>سيظهر تقدّمك وتقييماتك هنا بعد تأكيد أحد عروض التدريب المقبولة.</value></data>
+  <data name="Progress.YourProgressCouldNotBeLoaded" xml:space="preserve"><value>تعذّر تحميل تقدّمك الآن. يُرجى تحديث الصفحة أو المحاولة لاحقًا.</value></data>
+  <data name="Progress.YourSupervisorsArePreparingTheirFinal" xml:space="preserve"><value>يُعدّ مشرفوك تقييماتهم النهائية.</value></data>
+  <data name="Progress.YourTaskGradesSupervisorFeedbackApproved" xml:space="preserve"><value>درجات مهامك وملاحظات المشرف وساعات التدريب المعتمدة وحالة إنهاء التدريب.</value></data>
+  <data name="StudentCVPortfolio.AddALinkToYourOnline" xml:space="preserve"><value>أضف رابط سيرتك الذاتية على الإنترنت.</value></data>
+  <data name="StudentCVPortfolio.AddLinksToYourOnlineCV" xml:space="preserve"><value>أضف روابط سيرتك الذاتية وملفك المهني على الإنترنت، ويمكنك تحديثها متى احتجت.</value></data>
+  <data name="StudentCVPortfolio.BackToMyProfile" xml:space="preserve"><value>→ العودة إلى ملفي الشخصي</value></data>
+  <data name="StudentCVPortfolio.BuildYourProfessionalPresenceByManaging" xml:space="preserve"><value>ابنِ حضورك المهني بإدارة سيرتك الذاتية وملف مشاريعك وروابطك الإلكترونية، وحافظ على تحديثها قبل التقديم على فرص التدريب.</value></data>
+  <data name="StudentCVPortfolio.CVLink" xml:space="preserve"><value>رابط السيرة الذاتية</value></data>
+  <data name="StudentCVPortfolio.CVPortfolioLinks" xml:space="preserve"><value>روابط السيرة الذاتية والملف المهني</value></data>
+  <data name="StudentCVPortfolio.ChooseCVFile" xml:space="preserve"><value>اختيار ملف السيرة الذاتية</value></data>
+  <data name="StudentCVPortfolio.ChoosePortfolioFile" xml:space="preserve"><value>اختيار ملف الملف المهني</value></data>
+  <data name="StudentCVPortfolio.DownloadCV" xml:space="preserve"><value>تنزيل السيرة الذاتية</value></data>
+  <data name="StudentCVPortfolio.DownloadPortfolio" xml:space="preserve"><value>تنزيل الملف المهني</value></data>
+  <data name="StudentCVPortfolio.EnterValidHTTPOrHTTPSLinks" xml:space="preserve"><value>أدخل روابط HTTP أو HTTPS صحيحة.</value></data>
+  <data name="StudentCVPortfolio.FileRemovedSuccessfully" xml:space="preserve"><value>تمت إزالة الملف بنجاح.</value></data>
+  <data name="StudentCVPortfolio.GitHubBehanceOrAPersonalWebsite" xml:space="preserve"><value>GitHub أو Behance أو موقع شخصي.</value></data>
+  <data name="StudentCVPortfolio.MyCVPortfolio" xml:space="preserve"><value>سيرتي الذاتية وملفي المهني</value></data>
+  <data name="StudentCVPortfolio.MySavedCVPortfolio" xml:space="preserve"><value>سيرتي الذاتية وملفي المهني المحفوظان</value></data>
+  <data name="StudentCVPortfolio.NoCVFileUploadedYet" xml:space="preserve"><value>لم يُرفع ملف للسيرة الذاتية بعد.</value></data>
+  <data name="StudentCVPortfolio.NoCVLinkAddedYet" xml:space="preserve"><value>لم يُضَف رابط للسيرة الذاتية بعد.</value></data>
+  <data name="StudentCVPortfolio.NoPortfolioFileUploadedYet" xml:space="preserve"><value>لم يُرفع ملف مهني بعد.</value></data>
+  <data name="StudentCVPortfolio.NoPortfolioLinkAddedYet" xml:space="preserve"><value>لم يُضَف رابط للملف المهني بعد.</value></data>
+  <data name="StudentCVPortfolio.OnlyPDFFilesAreSupported" xml:space="preserve"><value>لا تُقبل إلا ملفات PDF.</value></data>
+  <data name="StudentCVPortfolio.PDFFilesMustBe5MB" xml:space="preserve"><value>يجب ألا يتجاوز حجم ملفات PDF خمسة ميغابايت.</value></data>
+  <data name="StudentCVPortfolio.PDFOnlyMaximumFileSize5" xml:space="preserve"><value>PDF فقط، بحد أقصى 5 ميغابايت.</value></data>
+  <data name="StudentCVPortfolio.PortfolioLink" xml:space="preserve"><value>رابط الملف المهني</value></data>
+  <data name="StudentCVPortfolio.Remove" xml:space="preserve"><value>إزالة</value></data>
+  <data name="StudentCVPortfolio.SaveCVPortfolio" xml:space="preserve"><value>حفظ السيرة الذاتية والملف المهني</value></data>
+  <data name="StudentCVPortfolio.SaveYourInformation" xml:space="preserve"><value>حفظ بياناتك</value></data>
+  <data name="StudentCVPortfolio.SaveYourLinksAndSelectedFiles" xml:space="preserve"><value>احفظ روابطك والملفات التي اخترتها، ويمكنك العودة إلى هذه الصفحة لاحقًا لعرضها أو تحديثها.</value></data>
+  <data name="StudentCVPortfolio.StudentAccountIsUnavailable" xml:space="preserve"><value>حساب الطالب غير متاح.</value></data>
+  <data name="StudentCVPortfolio.TheSelectedFileIsNotA" xml:space="preserve"><value>الملف المختار ليس ملف PDF صالحًا.</value></data>
+  <data name="StudentCVPortfolio.UnableToLoadOrSaveYour" xml:space="preserve"><value>تعذّر تحميل سيرتك الذاتية وملفك المهني أو حفظهما.</value></data>
+  <data name="StudentCVPortfolio.UploadAPDFContainingYourProjects" xml:space="preserve"><value>ارفع ملف PDF يضم مشاريعك ومهاراتك وأعمالك السابقة.</value></data>
+  <data name="StudentCVPortfolio.UploadCV" xml:space="preserve"><value>رفع السيرة الذاتية</value></data>
+  <data name="StudentCVPortfolio.UploadPortfolio" xml:space="preserve"><value>رفع الملف المهني</value></data>
+  <data name="StudentCVPortfolio.UploadYourLatestCVAsA" xml:space="preserve"><value>ارفع أحدث نسخة من سيرتك الذاتية بصيغة PDF.</value></data>
+  <data name="StudentCVPortfolio.UploadedCV" xml:space="preserve"><value>السيرة الذاتية المرفوعة</value></data>
+  <data name="StudentCVPortfolio.UploadedPortfolio" xml:space="preserve"><value>الملف المهني المرفوع</value></data>
+  <data name="StudentCVPortfolio.ViewCVLink" xml:space="preserve"><value>عرض رابط السيرة الذاتية</value></data>
+  <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>عرض الملف المهني</value></data>
+  <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>اطّلع على الروابط والمستندات التي حفظتها سابقًا.</value></data>
+  <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>تغيّرت بياناتك. حدّث الصفحة وحاول مرة أخرى.</value></data>
+</root>

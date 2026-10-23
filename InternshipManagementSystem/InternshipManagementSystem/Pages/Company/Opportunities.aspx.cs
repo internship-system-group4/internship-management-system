@@ -62,7 +62,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (CurrentSupervisor == null ||
                 string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
             {
-                ShowError("Your account is not linked to a company.");
+                ShowError(L.T("Company.Opportunities.YourAccountIsNotLinkedTo"));
                 return;
             }
 
@@ -123,13 +123,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 requirements.Length > 3000 ||
                 technologies.Length > 1000)
             {
-                ShowError("One or more fields are too long.");
+                ShowError(L.T("Company.Opportunities.OneOrMoreFieldsAreToo"));
                 return;
             }
 
             if (selectedMajors.Length != eligibleMajors.Count)
             {
-                ShowError("Please select valid specializations.");
+                ShowError(L.T("Company.Opportunities.PleaseSelectValidSpecializations"));
                 return;
             }
 
@@ -145,7 +145,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     !validDuration || duration < 1 || duration > 104 ||
                     !validDeadline || !validStart || !validEnd)
                 {
-                    ShowError("Please complete all required fields.");
+                    ShowError(L.T("Company.Opportunities.PleaseCompleteAllRequiredFields"));
                     return;
                 }
             }
@@ -153,28 +153,28 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if ((validSeats && (seats < 1 || seats > 10000)) ||
                 (validDuration && (duration < 1 || duration > 104)))
             {
-                ShowError("Please enter valid seats and duration.");
+                ShowError(L.T("Company.Opportunities.PleaseEnterValidSeatsAndDuration"));
                 return;
             }
 
             if (validDeadline && validStart &&
                 start.Date <= deadline.Date)
             {
-                ShowError("Start date must be after the deadline.");
+                ShowError(L.T("Company.Opportunities.StartDateMustBeAfterThe"));
                 return;
             }
 
             if (validStart && validEnd &&
                 end.Date <= start.Date)
             {
-                ShowError("End date must be after start date.");
+                ShowError(L.T("Company.Opportunities.EndDateMustBeAfterStart"));
                 return;
             }
 
             if (publish &&
                 deadline.Date < DateTime.Today)
             {
-                ShowError("Application deadline cannot be in the past.");
+                ShowError(L.T("Company.Opportunities.ApplicationDeadlineCannotBeInThe"));
                 return;
             }
 
@@ -183,7 +183,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                  mode != "Hybrid" &&
                  mode != "Remote"))
             {
-                ShowError("Please select a valid opportunity type.");
+                ShowError(L.T("Company.Opportunities.PleaseSelectAValidOpportunityType"));
                 return;
             }
 
@@ -246,7 +246,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 if (!saved)
                 {
-                    ShowError("Unable to save. Please try again.");
+                    ShowError(L.T("Company.Opportunities.UnableToSavePleaseTryAgain"));
                     return;
                 }
 
@@ -255,8 +255,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     Services.NotificationService.OpportunityPublished(id);
 
                 Notice = publish
-                    ? "Opportunity published successfully."
-                    : "Draft saved successfully.";
+                    ? L.T("Company.Opportunities.OpportunityPublishedSuccessfully")
+                    : L.T("Company.Opportunities.DraftSavedSuccessfully");
 
                 IsError = false;
             }
@@ -266,7 +266,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     "Create opportunity: " + ex);
 
                 ShowError(
-                    "Unable to save the opportunity in Firebase.");
+                    L.T("Company.Opportunities.UnableToSaveTheOpportunityIn"));
             }
         }
 

@@ -37,9 +37,9 @@
     <%-- F03: Student tasks / F04: Submission form and attempt history --%>
 
     <div class="mb-4">
-        <h2 class="mb-1">My Tasks</h2>
+        <h2 class="mb-1"><%: L.T("Student.MyTasks.MyTasks") %></h2>
         <p class="text-muted mb-0">
-            View your assigned tasks, deadlines, and submission status.
+            <%: L.T("Student.MyTasks.ViewYourAssignedTasksDeadlinesAnd") %>
         </p>
     </div>
 
@@ -49,17 +49,17 @@
     </div>
     -->
     <div class="uims-card">
-        <h3 class="mb-3">Assigned Tasks</h3>
+        <h3 class="mb-3"><%: L.T("Student.MyTasks.AssignedTasks") %></h3>
 
         <div class="table-responsive">
             <table class="uims-table">
                 <thead>
                     <tr>
-                        <th>Task</th>
-                        <th>Deadline</th>
-                        <th>Status</th>
-                        <th>Attempts</th>
-                        <th>Action</th>
+                        <th><%: L.T("Student.MyTasks.Task") %></th>
+                        <th><%: L.T("Student.MyTasks.Deadline") %></th>
+                        <th><%: L.T("Student.MyTasks.Status") %></th>
+                        <th><%: L.T("Student.MyTasks.Attempts") %></th>
+                        <th><%: L.T("Student.MyTasks.Action") %></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -73,7 +73,7 @@
                 <td>
                     <%# DateTimeOffset
                         .FromUnixTimeMilliseconds(Convert.ToInt64(Eval("Deadline")))
-                        .UtcDateTime.ToString("yyyy-MM-dd HH:mm") %> UTC
+                        .UtcDateTime.ToString("yyyy-MM-dd HH:mm") %> <%: L.T("Student.MyTasks.UTC") %>
                 </td>
                 <td><%#: Eval("Status") %></td>
                 <td>—</td>
@@ -81,7 +81,7 @@
                    <asp:LinkButton ID="lnkViewDetails"
                 runat="server"
                 CssClass="btn btn-outline-secondary btn-sm"
-                Text="View Details"
+                Text="<%$ Resources:Student, MyTasks.ViewDetails %>"
                 CommandName="ViewDetails"
                 CommandArgument='<%# Eval("Id") %>' />
                 </td>
@@ -95,7 +95,7 @@
            runat="server"
            CssClass="alert alert-info mt-3"
            Visible="false">
-    No tasks have been assigned to you yet.
+    <%: L.T("Student.MyTasks.NoTasksHaveBeenAssignedTo") %>
 </asp:Panel>
     </div>
 
@@ -112,15 +112,15 @@
 
             <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
                 <div>
-                    <h3 id="taskDetailsTitle" class="mb-1">Example Task
+                    <h3 id="taskDetailsTitle" class="mb-1"><%: L.T("Student.MyTasks.ExampleTask") %>
                         <asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" />
                     </h3>
-                    <p class="text-muted mb-0">Task details and submission</p>
+                    <p class="text-muted mb-0"><%: L.T("Student.MyTasks.TaskDetailsAndSubmission") %></p>
                 </div>
 
                 <button type="button"
                         class="btn btn-outline-secondary"
-                        aria-label="Close"
+                        aria-label="<%: L.T("Student.MyTasks.Close") %>"
                         onclick="closeTaskDetails()">
                     &times;
                 </button>
@@ -128,48 +128,47 @@
 
             <div class="row mb-3">
                 <div class="col-md-6 mb-2">
-                    <strong>Deadline</strong>
+                    <strong><%: L.T("Student.MyTasks.Deadline") %></strong>
                     <asp:Literal ID="litDeadline" runat="server" Mode="Encode" />
-                    <div class="text-muted">To be set by supervisor</div>
+                    <div class="text-muted"><%: L.T("Student.MyTasks.ToBeSetBySupervisor") %></div>
                 </div>
 
                 <div class="col-md-6 mb-2">
-                    <strong>Status</strong>
+                    <strong><%: L.T("Student.MyTasks.Status") %></strong>
                     <asp:Literal ID="litStatus" runat="server" Mode="Encode" />
                     <div>
-                        <span class="badge bg-secondary">Not submitted</span>
+                        <span class="badge bg-secondary"><%: L.T("Student.MyTasks.NotSubmitted") %></span>
                     </div>
                 </div>
             </div>
 
             <div class="mb-3">
-                <h4 class="h6">Description
+                <h4 class="h6"><%: L.T("Student.MyTasks.Description") %>
                     <asp:Literal ID="litDescription" runat="server" Mode="Encode" />
                 </h4>
                 <p class="text-muted mb-0">
-                    The task description will appear here.
+                    <%: L.T("Student.MyTasks.TheTaskDescriptionWillAppearHere") %>
                 </p>
             </div>
 
             <div class="mb-3">
-                <h4 class="h6">Instructions and Requirements
+                <h4 class="h6"><%: L.T("Student.MyTasks.InstructionsAndRequirements") %>
                     <asp:Literal ID="litInstructions" runat="server" Mode="Encode" />
                 </h4>
                 <p class="text-muted mb-0">
-                    The supervisor's instructions will appear here.
+                    <%: L.T("Student.MyTasks.TheSupervisorSInstructionsWillAppear") %>
                 </p>
             </div>
 
             <div class="mb-3">
-                <h4 class="h6">Evaluation Criteria</h4>
+                <h4 class="h6"><%: L.T("Student.MyTasks.EvaluationCriteria") %></h4>
                 <asp:Repeater ID="rptCriteria" runat="server">
     <ItemTemplate>
         <div class="text-muted mb-2">
             <strong><%#: Eval("Name") %></strong>
             — <%#: Eval("Description") %>
             <div class="small">
-                <%#: Eval("MaxScore", "{0:0.##}") %> points
-                (<%#: Eval("Weight", "{0:0}") %>% of the task)
+                <%#: Eval("MaxScore", "{0:0.##}") %> <%: L.T("Student.MyTasks.Points") %><%#: Eval("Weight", "{0:0}") %><%: L.T("Student.MyTasks.OfTheTask") %>
             </div>
         </div>
     </ItemTemplate>
@@ -178,16 +177,15 @@
 <asp:Label ID="lblNoCriteria"
            runat="server"
            CssClass="text-muted"
-           Text="No evaluation criteria provided."
+           Text="<%$ Resources:Student, MyTasks.NoEvaluationCriteriaProvided %>"
            Visible="false" />
             </div>
 
             <hr class="my-4" />
 
-            <h4 class="mb-2">Submit Your Work</h4>
+            <h4 class="mb-2"><%: L.T("Student.MyTasks.SubmitYourWork") %></h4>
             <p class="text-muted">
-                You can provide text, a link, or a file. Each new submission
-                will be kept as a separate attempt.
+                <%: L.T("Student.MyTasks.YouCanProvideTextALink") %>
             </p>
 
             <div class="mb-3">
@@ -196,7 +194,7 @@
                     runat="server"
                     AssociatedControlID="txtSubmissionText"
                     CssClass="form-label"
-                    Text="Submission Text" />
+                    Text="<%$ Resources:Student, MyTasks.SubmissionText %>" />
 
                 <asp:TextBox
                     ID="txtSubmissionText"
@@ -212,7 +210,7 @@
                     runat="server"
                     AssociatedControlID="txtSubmissionLink"
                     CssClass="form-label"
-                    Text="Submission Link" />
+                    Text="<%$ Resources:Student, MyTasks.SubmissionLink %>" />
 
                 <asp:TextBox
                     ID="txtSubmissionLink"
@@ -222,12 +220,12 @@
             </div>
 
            <div class="alert alert-info">
-    File uploads are not available yet. Submit text or a shareable link.
+    <%: L.T("Student.MyTasks.FileUploadsAreNotAvailableYet") %>
 </div>
 
            <asp:Button ID="btnSubmitTask"
             runat="server"
-            Text="Submit Task"
+            Text="<%$ Resources:Student, MyTasks.SubmitTask %>"
             CssClass="btn btn-brand"
             OnClick="btnSubmitTask_Click"  data-ui-action="submit" data-loading-label="Submitting…"/>
 
@@ -240,16 +238,16 @@
 
             <hr class="my-4" />
 
-            <h4 class="mb-3">Submission History</h4>
+            <h4 class="mb-3"><%: L.T("Student.MyTasks.SubmissionHistory") %></h4>
 
             <div class="table-responsive">
                 <table class="uims-table">
                     <thead>
                         <tr>
-                            <th>Attempt</th>
-                            <th>Submitted At</th>
-                            <th>Status</th>
-                            <th>Feedback</th>
+                            <th><%: L.T("Student.MyTasks.Attempt") %></th>
+                            <th><%: L.T("Student.MyTasks.SubmittedAt") %></th>
+                            <th><%: L.T("Student.MyTasks.Status") %></th>
+                            <th><%: L.T("Student.MyTasks.Feedback") %></th>
                         </tr>
                     </thead>
                    <tbody>
@@ -260,7 +258,7 @@
                 <td>
                     <%# DateTimeOffset
                         .FromUnixTimeMilliseconds(Convert.ToInt64(Eval("SubmittedAt")))
-                        .UtcDateTime.ToString("yyyy-MM-dd HH:mm") %> UTC
+                        .UtcDateTime.ToString("yyyy-MM-dd HH:mm") %> <%: L.T("Student.MyTasks.UTC") %>
                 </td>
                 <td><%#: Eval("Status") %></td>
                 <td>—</td>
@@ -273,7 +271,7 @@
                      Visible="false">
         <tr>
             <td colspan="4" class="text-center text-muted py-4">
-                No submission attempts yet.
+                <%: L.T("Student.MyTasks.NoSubmissionAttemptsYet") %>
             </td>
         </tr>
     </asp:PlaceHolder>
@@ -285,7 +283,7 @@
                 <button type="button"
                         class="btn btn-outline-secondary"
                         onclick="closeTaskDetails()">
-                    Close
+                    <%: L.T("Student.MyTasks.Close") %>
                 </button>
             </div>
 

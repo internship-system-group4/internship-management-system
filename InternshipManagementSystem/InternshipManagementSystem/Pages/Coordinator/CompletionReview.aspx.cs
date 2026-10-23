@@ -52,13 +52,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             {
                 if (IsDetail) LoadReview(); else Queue = new CoordinatorMonitoringRepository().LoadCompletionQueue();
             }
-            catch (FirebaseException) { LoadError = "We could not load completion data. Refresh to try again."; }
+            catch (FirebaseException) { LoadError = L.T("Coordinator.CompletionReview.WeCouldNotLoadCompletionData"); }
             catch (InvalidOperationException ex) { LoadError = ex.Message; }
 
             if (!IsPostBack)
             {
-                if (Request.QueryString["done"] == "approved") Message = "Completion approved. The official report is now available to the student.";
-                if (Request.QueryString["done"] == "returned") Message = "Completion returned to the student with your note.";
+                if (Request.QueryString["done"] == "approved") Message = L.T("Coordinator.CompletionReview.CompletionApprovedTheOfficialReportIs");
+                if (Request.QueryString["done"] == "returned") Message = L.T("Coordinator.CompletionReview.CompletionReturnedToTheStudentWith");
             }
             pnlDecision.Visible = Progress != null && !IsApproved;
             if (pnlDecision.Visible) btnApprove.Enabled = Summary.CanApprove;
@@ -69,7 +69,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             string id = Request.QueryString["id"];
             if (!ApplicationRepository.IsValidKey(id))
             {
-                LoadError = "Choose a student from the completion queue.";
+                LoadError = L.T("Coordinator.CompletionReview.ChooseAStudentFromTheCompletion");
                 return;
             }
             Progress = new CoordinatorMonitoringRepository().LoadDetails(id);
@@ -77,7 +77,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             {
                 Response.StatusCode = 404;
                 Response.TrySkipIisCustomErrors = true;
-                LoadError = "This confirmed placement could not be found.";
+                LoadError = L.T("Coordinator.CompletionReview.ThisConfirmedPlacementCouldNotBe");
                 return;
             }
             Summary = CompletionService.Summarise(Progress);
@@ -109,7 +109,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
             catch (FirebaseException)
             {
-                Message = "The decision could not be saved. Please try again.";
+                Message = L.T("Coordinator.CompletionReview.TheDecisionCouldNotBeSaved");
                 MessageIsError = true;
                 return;
             }
@@ -129,7 +129,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             return maximum > 0
                 ? value.ToString("0.##", CultureInfo.InvariantCulture) + " / " + maximum.ToString("0.##", CultureInfo.InvariantCulture)
-                : "Not scored";
+                : L.T("Coordinator.CompletionReview.NotScored");
         }
 
         protected static string Weighted(double percent, double weight)

@@ -79,9 +79,9 @@
 
     <div class="d-flex justify-content-between align-items-center flex-wrap gap-3 mb-4">
         <div>
-            <h2 class="mb-1">Manage Tasks</h2>
+            <h2 class="mb-1"><%: L.T("Company.Tasks.ManageTasks") %></h2>
             <p class="text-muted mb-0">
-                View and manage tasks assigned to your trainees.
+                <%: L.T("Company.Tasks.ViewAndManageTasksAssignedTo") %>
             </p>
         </div>
 
@@ -89,14 +89,14 @@
                 id="btnOpenCreateTask"
                 class="btn btn-brand"
                 onclick="showTaskForm()">
-            + Create New Task
+            <%: L.T("Company.Tasks.CreateNewTask") %>
         </button>
     </div>
 
     <asp:Label ID="lblPageMessage" runat="server" EnableViewState="false" Visible="false" />
 
     <div class="uims-card">
-        <h3 class="mb-3">Assigned Tasks</h3>
+        <h3 class="mb-3"><%: L.T("Company.Tasks.AssignedTasks") %></h3>
 
         <div class="table-responsive">
             <asp:GridView
@@ -106,14 +106,14 @@
                 CssClass="uims-table"
                 GridLines="None"
                 ShowHeaderWhenEmpty="true"
-                EmptyDataText="No tasks created yet.">
+                EmptyDataText="<%$ Resources:Company, Tasks.NoTasksCreatedYet %>">
                 <Columns>
-                    <asp:BoundField DataField="Title" HeaderText="Task" HtmlEncode="true" />
-                    <asp:BoundField DataField="Trainee" HeaderText="Trainee" HtmlEncode="true" />
-                    <asp:BoundField DataField="Deadline" HeaderText="Deadline" />
-                    <asp:BoundField DataField="Points" HeaderText="Total Points" />
-                    <asp:BoundField DataField="Counts" HeaderText="Counts As" />
-                    <asp:BoundField DataField="Status" HeaderText="Status" />
+                    <asp:BoundField DataField="Title" HeaderText="<%$ Resources:Company, Tasks.Task %>" HtmlEncode="true" />
+                    <asp:BoundField DataField="Trainee" HeaderText="<%$ Resources:Company, Tasks.Trainee %>" HtmlEncode="true" />
+                    <asp:BoundField DataField="Deadline" HeaderText="<%$ Resources:Company, Tasks.Deadline %>" />
+                    <asp:BoundField DataField="Points" HeaderText="<%$ Resources:Company, Tasks.TotalPoints %>" />
+                    <asp:BoundField DataField="Counts" HeaderText="<%$ Resources:Company, Tasks.CountsAs %>" />
+                    <asp:BoundField DataField="Status" HeaderText="<%$ Resources:Company, Tasks.Status %>" />
                 </Columns>
             </asp:GridView>
         </div>
@@ -132,57 +132,57 @@
 
             <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
                 <div>
-                    <h3 id="taskModalTitle" class="mb-1">Create Task</h3>
+                    <h3 id="taskModalTitle" class="mb-1"><%: L.T("Company.Tasks.CreateTask") %></h3>
                     <p class="text-muted mb-0">
-                        Two steps: describe the task, then list what you will grade.
+                        <%: L.T("Company.Tasks.TwoStepsDescribeTheTaskThen") %>
                     </p>
                 </div>
 
                 <button type="button"
                         class="btn btn-outline-secondary"
-                        aria-label="Close"
+                        aria-label="<%: L.T("Company.Tasks.Close") %>"
                         onclick="showTasksList()">
                     &times;
                 </button>
             </div>
 
             <%-- ========== Step 1: task details ========== --%>
-            <h4 class="task-step"><span class="task-step-number">1</span> Task details</h4>
-            <p class="text-muted small mb-3">Fields marked * are required.</p>
+            <h4 class="task-step"><span class="task-step-number">1</span> <%: L.T("Company.Tasks.TaskDetails") %></h4>
+            <p class="text-muted small mb-3"><%: L.T("Company.Tasks.FieldsMarkedAreRequired") %></p>
 
             <div class="mb-3">
                 <asp:Label ID="lblTaskTitle" runat="server" AssociatedControlID="txtTitle"
-                    CssClass="form-label" Text="Task Title *" />
+                    CssClass="form-label" Text="<%$ Resources:Company, Tasks.TaskTitle %>" />
                 <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" MaxLength="150"
-                    placeholder="e.g. Build the login page" />
+                    placeholder="<%$ Resources:Company, Tasks.EGBuildTheLoginPage %>" />
             </div>
 
             <div class="mb-3">
                 <asp:Label ID="lblDescription" runat="server" AssociatedControlID="txtDescription"
-                    CssClass="form-label" Text="Description" />
+                    CssClass="form-label" Text="<%$ Resources:Company, Tasks.Description %>" />
                 <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control"
                     TextMode="MultiLine" Rows="2"
-                    placeholder="What is the task about?" />
+                    placeholder="<%$ Resources:Company, Tasks.WhatIsTheTaskAbout %>" />
             </div>
 
             <div class="mb-3">
                 <asp:Label ID="lblInstructions" runat="server" AssociatedControlID="txtInstructions"
-                    CssClass="form-label" Text="Instructions" />
+                    CssClass="form-label" Text="<%$ Resources:Company, Tasks.Instructions %>" />
                 <asp:TextBox ID="txtInstructions" runat="server" CssClass="form-control"
                     TextMode="MultiLine" Rows="3"
-                    placeholder="Steps, links and what the trainee should hand in." />
+                    placeholder="<%$ Resources:Company, Tasks.StepsLinksAndWhatTheTrainee %>" />
             </div>
 
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <asp:Label ID="lblTrainee" runat="server" AssociatedControlID="ddlTrainee"
-                        CssClass="form-label" Text="Assigned Trainee *" />
+                        CssClass="form-label" Text="<%$ Resources:Company, Tasks.AssignedTrainee %>" />
                     <asp:DropDownList ID="ddlTrainee" runat="server" CssClass="form-select" />
                 </div>
 
                 <div class="col-md-6 mb-3">
                     <asp:Label ID="lblDeadline" runat="server" AssociatedControlID="txtDeadline"
-                        CssClass="form-label" Text="Deadline *" />
+                        CssClass="form-label" Text="<%$ Resources:Company, Tasks.Deadline2 %>" />
                     <asp:TextBox ID="txtDeadline" runat="server" CssClass="form-control"
                         TextMode="DateTimeLocal" />
                 </div>
@@ -190,44 +190,43 @@
 
             <div class="mb-3">
                 <asp:Label ID="lblWeight" runat="server" AssociatedControlID="ddlWeight"
-                    CssClass="form-label" Text="How much does this task count?" />
+                    CssClass="form-label" Text="<%$ Resources:Company, Tasks.HowMuchDoesThisTaskCount %>" />
                 <asp:DropDownList ID="ddlWeight" runat="server" CssClass="form-select">
-                    <asp:ListItem Text="Normal - counts once" Value="1" Selected="True" />
-                    <asp:ListItem Text="Important - counts twice" Value="2" />
-                    <asp:ListItem Text="Major - counts three times" Value="3" />
+                    <asp:ListItem Text="<%$ Resources:Company, Tasks.NormalCountsOnce %>" Value="1" Selected="True" />
+                    <asp:ListItem Text="<%$ Resources:Company, Tasks.ImportantCountsTwice %>" Value="2" />
+                    <asp:ListItem Text="<%$ Resources:Company, Tasks.MajorCountsThreeTimes %>" Value="3" />
                 </asp:DropDownList>
                 <div class="form-text">
-                    Compared with this trainee's other tasks. Choose Normal for most tasks.
+                    <%: L.T("Company.Tasks.ComparedWithThisTraineeSOther") %>
                 </div>
             </div>
 
             <hr class="my-4" />
 
             <%-- ========== Step 2: grading ========== --%>
-            <h4 class="task-step"><span class="task-step-number">2</span> How will you grade it?</h4>
+            <h4 class="task-step"><span class="task-step-number">2</span> <%: L.T("Company.Tasks.HowWillYouGradeIt") %></h4>
             <p class="text-muted small mb-3">
-                Add each thing you will check and how many points it is worth.
-                The task total is the sum of the points.
+                <%: L.T("Company.Tasks.AddEachThingYouWillCheck") %>
             </p>
 
             <div class="criteria-add mb-3">
                 <div class="row g-2 align-items-end">
                     <div class="col-md-6">
                         <asp:Label ID="lblCriterionName" runat="server" AssociatedControlID="txtCriterionName"
-                            CssClass="form-label" Text="What will you check?" />
+                            CssClass="form-label" Text="<%$ Resources:Company, Tasks.WhatWillYouCheck %>" />
                         <asp:TextBox ID="txtCriterionName" runat="server" CssClass="form-control"
-                            MaxLength="100" placeholder="e.g. Code quality" />
+                            MaxLength="100" placeholder="<%$ Resources:Company, Tasks.EGCodeQuality %>" />
                     </div>
 
                     <div class="col-6 col-md-3">
                         <asp:Label ID="lblCriterionPoints" runat="server" AssociatedControlID="txtCriterionPoints"
-                            CssClass="form-label" Text="Points" />
+                            CssClass="form-label" Text="<%$ Resources:Company, Tasks.Points %>" />
                         <asp:TextBox ID="txtCriterionPoints" runat="server" CssClass="form-control"
                             TextMode="Number" min="1" max="100" step="1" placeholder="e.g. 10" />
                     </div>
 
                     <div class="col-6 col-md-3">
-                        <asp:Button ID="btnAddCriterion" runat="server" Text="+ Add"
+                        <asp:Button ID="btnAddCriterion" runat="server" Text="<%$ Resources:Company, Tasks.Add %>"
                             CssClass="btn btn-outline-secondary w-100"
                             CausesValidation="false"
                             OnClientClick="rememberTaskForm();"
@@ -237,19 +236,19 @@
 
                 <div class="mt-2">
                     <asp:Label ID="lblCriterionDescription" runat="server" AssociatedControlID="txtCriterionDescription"
-                        CssClass="form-label small text-muted mb-1" Text="Short note for the trainee (optional)" />
+                        CssClass="form-label small text-muted mb-1" Text="<%$ Resources:Company, Tasks.ShortNoteForTheTraineeOptional %>" />
                     <asp:TextBox ID="txtCriterionDescription" runat="server" CssClass="form-control form-control-sm"
-                        MaxLength="250" placeholder="e.g. Clean, readable and commented code" />
+                        MaxLength="250" placeholder="<%$ Resources:Company, Tasks.EGCleanReadableAndCommented %>" />
                 </div>
             </div>
 
             <asp:Panel ID="pnlStarter" runat="server" CssClass="mb-3">
-                <span class="text-muted small">Not sure where to start?</span>
+                <span class="text-muted small"><%: L.T("Company.Tasks.NotSureWhereToStart") %></span>
                 <asp:LinkButton ID="btnUseStarter" runat="server" CssClass="small ms-1"
                     CausesValidation="false"
                     OnClientClick="rememberTaskForm();"
                     OnClick="btnUseStarter_Click"
-                    Text="Use a simple starter set (Quality 10, Completeness 5, On time 5)" />
+                    Text="<%$ Resources:Company, Tasks.UseASimpleStarterSetQuality %>" />
             </asp:Panel>
 
             <div class="table-responsive">
@@ -259,14 +258,14 @@
                     AutoGenerateColumns="false"
                     CssClass="uims-table"
                     GridLines="None"
-                    EmptyDataText="No criteria yet. Add at least one above."
+                    EmptyDataText="<%$ Resources:Company, Tasks.NoCriteriaYetAddAtLeast %>"
                     ShowHeaderWhenEmpty="true"
                     OnRowCommand="gvCriteria_RowCommand">
                     <Columns>
-                        <asp:BoundField DataField="Name" HeaderText="Criterion" HtmlEncode="true" />
-                        <asp:BoundField DataField="Description" HeaderText="Note" HtmlEncode="true" />
-                        <asp:BoundField DataField="MaxScore" HeaderText="Points" DataFormatString="{0:0}" />
-                        <asp:BoundField DataField="Weight" HeaderText="Share of Task" DataFormatString="{0:0}%" />
+                        <asp:BoundField DataField="Name" HeaderText="<%$ Resources:Company, Tasks.Criterion %>" HtmlEncode="true" />
+                        <asp:BoundField DataField="Description" HeaderText="<%$ Resources:Company, Tasks.Note %>" HtmlEncode="true" />
+                        <asp:BoundField DataField="MaxScore" HeaderText="<%$ Resources:Company, Tasks.Points %>" DataFormatString="{0:0}" />
+                        <asp:BoundField DataField="Weight" HeaderText="<%$ Resources:Company, Tasks.ShareOfTask %>" DataFormatString="{0:0}%" />
                         <asp:TemplateField HeaderText="">
                             <ItemTemplate>
                                 <asp:LinkButton runat="server"
@@ -275,7 +274,7 @@
                                     CausesValidation="false"
                                     OnClientClick="rememberTaskForm();"
                                     CssClass="text-danger small"
-                                    Text="Remove"  data-ui-action="remove" data-loading-label="Updating…" data-ui-validation="none"/>
+                                    Text="<%$ Resources:Company, Tasks.Remove %>"  data-ui-action="remove" data-loading-label="Updating…" data-ui-validation="none"/>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -283,8 +282,8 @@
             </div>
 
             <div class="criteria-total">
-                <span>Task total</span>
-                <asp:Label ID="lblTotalPoints" runat="server" Text="0 points" />
+                <span><%: L.T("Company.Tasks.TaskTotal") %></span>
+                <asp:Label ID="lblTotalPoints" runat="server" Text="<%$ Resources:Company, Tasks.0Points %>" />
             </div>
 
             <div class="mt-3">
@@ -295,10 +294,10 @@
                 <button type="button"
                         class="btn btn-outline-secondary"
                         onclick="showTasksList()">
-                    Cancel
+                    <%: L.T("Company.Tasks.Cancel") %>
                 </button>
 
-                <asp:Button ID="btnCreateTask" runat="server" Text="Create Task"
+                <asp:Button ID="btnCreateTask" runat="server" Text="<%$ Resources:Company, Tasks.CreateTask %>"
                     CssClass="btn btn-brand"
                     OnClientClick="rememberTaskForm();"
                     OnClick="btnCreateTask_Click"  data-ui-action="create" data-loading-label="Creating…"/>

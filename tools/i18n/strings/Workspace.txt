@@ -1,0 +1,712 @@
+
+Record
+en: Record
+
+Pending
+en: Pending
+
+Accepted
+en: Accepted
+
+Rejected
+en: Rejected
+
+Withdrawn
+en: Withdrawn
+
+CurrentDecision
+en: Current decision: 
+
+DecisionUnavailable
+en: Decision unavailable
+
+NotRecorded
+en: Not recorded
+
+ApprovedHoursOverTime
+en: Approved hours over time
+
+ApprovedTrainingEntry
+en: Approved training entry
+
+ApprovedHours
+en: Approved hours
+
+TrainingOverview
+en: Training overview
+
+YourOwnInternshipRecordsCurrentTotalsAnd
+en: Your own internship records. Current totals and dated approval activity.
+
+TasksByStatus
+en: Tasks by status
+
+CurrentStatusOfTasksLinkedToYour
+en: Current status of tasks linked to your placement.
+
+ApplicationDecisions
+en: Application decisions
+
+Assigned
+en: Assigned
+
+Submitted
+en: Submitted
+
+UnderReview
+en: Under review
+
+NeedsRevision
+en: Needs revision
+
+Resubmitted
+en: Resubmitted
+
+Graded
+en: Graded
+
+CurrentStatus
+en: Current status: 
+
+StatusNotRecorded
+en: Status not recorded
+
+Applications
+en: Applications
+
+AllYourCurrentApplicationRecords
+en: All your current application records
+
+Decision
+en: Decision: 
+
+PendingApplications
+en: Pending applications
+
+AwaitingACompanyDecision
+en: Awaiting a company decision
+
+ApprovedInRange
+en: Approved in range
+
+CurrentApprovedTotal
+en: Current approved total: 
+
+TasksAwaitingAction
+en: Tasks awaiting action
+
+AssignedOrReturnedForRevision
+en: Assigned or returned for revision
+
+CompanyActivity
+en: Company activity
+
+YourCompanySTraineesApplicationsAndReview
+en: Your company's trainees, applications and review queues.
+
+WorkAwaitingReview
+en: Work awaiting review
+
+IndependentQueuesATraineeMayAppearIn
+en: Independent queues; a trainee may appear in more than one. Not a part-to-whole chart.
+
+SubmissionAttempt
+en: Submission attempt 
+
+Student
+en: Student: 
+
+CurrentStatus2
+en: ; current status: 
+
+ReportedHoursEntry
+en: Reported hours entry
+
+AwaitingApproval
+en: Awaiting approval
+
+ActiveTrainees
+en: Active trainees
+
+ConfirmedOrActivePlacements
+en: Confirmed or active placements
+
+ApplicationsToReview
+en: Applications to review
+
+CurrentPendingDecisions
+en: Current pending decisions
+
+SubmissionsToEvaluate
+en: Submissions to evaluate
+
+SubmittedOrUnderReview
+en: Submitted or under review
+
+HoursAwaitingApproval
+en: Hours awaiting approval
+
+ReportedHoursNotApproved
+en: Reported hours; not approved
+
+Submissions
+en: Submissions
+
+HourEntries
+en: Hour entries
+
+AssignedStudentOverview
+en: Assigned student overview
+
+OnlyStudentsAssignedToYouHoursTargets
+en: Only students assigned to you. Hours targets do not imply final completion.
+
+TrainingProgress
+en: Training progress
+
+EachAssignedStudentAppearsInExactlyOne
+en: Each assigned student appears in exactly one progress category.
+
+AcademicAssessmentStatus
+en: Academic assessment status
+
+HoursTargetMet
+en: Hours target met
+
+Training
+en: Training
+
+TargetNotSet
+en: Target not set
+
+NoPlacement
+en: No placement
+
+ReadyForAcademicAction
+en: Ready for academic action
+
+AwaitingCompanyFeedback
+en: Awaiting company feedback
+
+AwaitingPlacement
+en: Awaiting placement
+
+AssignedStudents
+en: Assigned students
+
+CurrentAssignmentScope
+en: Current assignment scope
+
+CurrentlyTraining
+en: Currently training
+
+AcademicActionDue
+en: Academic action due
+
+CompanyFeedbackReceivedAcademicNotSubmitted
+en: Company feedback received; academic not submitted
+
+AcademicAssessmentDue
+en: Academic assessment due
+
+DatedCompanyApprovalsForAssignedStudents
+en: Dated company approvals for assigned students
+
+ProgrammeOverview
+en: Programme overview
+
+ProgrammeWideCurrentRecordsAndExplicitCoordinator
+en: Programme-wide current records and explicit coordinator approval events.
+
+CompletionApprovalsOverTime
+en: Completion approvals over time
+
+StudentsByCollege
+en: Students by college
+
+CurrentStudentProfilesMissingCollegesAreLabeled
+en: Current student profiles; missing colleges are labeled explicitly.
+
+CompletionReviewStatus
+en: Completion review status
+
+CurrentStudentProfile
+en: Current student profile
+
+Approved
+en: Approved
+
+Returned
+en: Returned
+
+ReadyForReview
+en: Ready for review
+
+AwaitingCompany
+en: Awaiting company
+
+AwaitingAcademic
+en: Awaiting academic
+
+StudentsInScope
+en: Students in scope
+
+AllCurrentStudentProfiles
+en: All current student profiles
+
+PendingAssignments
+en: Pending assignments
+
+ActiveProfilesWithoutAnAcademicSupervisor
+en: Active profiles without an academic supervisor
+
+AcademicSupervisorNotAssigned
+en: Academic supervisor not assigned
+
+FinalReviewsReady
+en: Final reviews ready
+
+BothAssessmentsReceivedRequirementsStillNeedReview
+en: Both assessments received; requirements still need review
+
+CurrentApprovedCompletions
+en: Current approved completions: 
+
+Complete
+en: Complete
+
+Current
+en: Current
+
+ActionRequired
+en: Action required
+
+Upcoming
+en: Upcoming
+
+HTargetNotSet
+en:  h · target not set
+
+AcademicEvaluationDue
+en: Academic evaluation due
+
+TrainingInProgress
+en: Training in progress
+
+
+YourInternshipJourney
+en: Your internship journey
+
+YourOwnApplicationConfirmedPlacementAndTraining
+en: Your own application, confirmed placement and training record.
+
+Application
+en: Application
+
+Application2
+en:  application
+
+Applications2
+en:  applications
+
+ExploreEligibleOpportunitiesAndFollowTheCompany
+en: Explore eligible opportunities and follow the company’s decision. An accepted offer still needs your confirmation.
+
+ViewApplications
+en: View applications
+
+AwaitingCompanyReview
+en: Awaiting company review
+
+AcceptedOffers
+en: Accepted offers
+
+Placement
+en: Placement
+
+NotConfirmed
+en: Not confirmed
+
+PlacementCancelled
+en: Placement cancelled
+
+ConfirmOneAcceptedOfferToEstablishYour
+en: Confirm one accepted offer to establish your single internship placement.
+
+ThisPlacementHasBeenCancelledContactYour
+en: This placement has been cancelled. Contact your coordinator before continuing.
+
+ThisIsYourConfirmedInternshipYourTraining
+en: This is your confirmed internship. Your training work is linked to this placement.
+
+ReviewOffers
+en: Review offers
+
+ViewPlacement
+en: View placement
+
+Company
+en: Company
+
+Confirmed
+en: Confirmed
+
+NotYet
+en: Not yet
+
+TrainingDates
+en: Training dates
+
+NotSet
+en: Not set
+
+ApprovedHours2
+en:  approved hours
+
+OnlySupervisorApprovedTrainingHoursCountSubmitted
+en: Only supervisor-approved training hours count. Submitted hours remain separate until approved.
+
+OpenTrainingTasks
+en: Open training tasks
+
+PendingHours
+en: Pending hours
+
+RequiredHours
+en: Required hours
+
+TasksGraded
+en: Tasks graded
+
+Of
+en:  of 
+
+Evaluation
+en: Evaluation
+
+AssessmentReceived
+en: Assessment received
+
+SupervisorAssessment
+en: Supervisor assessment
+
+YourSupervisorsManageTheFinalAssessmentsTheir
+en: Your supervisors manage the final assessments. Their internal forms stay private; your released result appears only after coordinator approval.
+
+ViewProgressAndFeedback
+en: View progress and feedback
+
+TaskFeedbackAvailable
+en: Task feedback available
+
+CompletionRecord
+en: Completion record
+
+NotStarted
+en: Not started
+
+UnderCoordinatorReview
+en: Under coordinator review
+
+ReturnedForFollowUp
+en: Returned for follow-up
+
+AwaitingSupervisorAssessment
+en: Awaiting supervisor assessment
+
+Completion
+en: Completion
+
+CoordinatorApproved
+en: Coordinator approved
+
+FollowUpRequired
+en: Follow-up required
+
+CoordinatorApproval
+en: Coordinator approval
+
+MeetingAnHoursTargetDoesNotComplete
+en: Meeting an hours target does not complete an internship. Only the coordinator can approve completion and release the final result.
+
+OpenCompletionStatus
+en: Open completion status
+
+Decision2
+en: Decision
+
+Approved2
+en: Approved 
+
+ReturnedContactYourSupervisor
+en: Returned — contact your supervisor
+
+NotApprovedYet
+en: Not approved yet
+
+CompanyReviewWorkflow
+en: Company review workflow
+
+ApplicationTrainingAndAssessmentQueuesForYour
+en: Application, training and assessment queues for your company.
+
+AwaitingReview
+en:  awaiting review
+
+ReviewCandidatesForYourCompanyAcceptanceIs
+en: Review candidates for your company. Acceptance is an offer; a placement exists only after the student confirms it.
+
+ReviewApplications
+en: Review applications
+
+PendingDecisions
+en: Pending decisions
+
+AllCompanyApplications
+en: All company applications
+
+Trainees
+en:  trainees
+
+FollowYourCompanySConfirmedPlacementsAnd
+en: Follow your company’s confirmed placements and review reported hours. Pending hours are not approved progress.
+
+ViewTraineesAndHours
+en: View trainees and hours
+
+ConfirmedPlacements
+en: Confirmed placements
+
+ToReview
+en:  to review
+
+OpenTheSubmittedWorkGradeAgainstThe
+en: Open the submitted work, grade against the task criteria, or request a revision using the existing review workflow.
+
+ReviewSubmittedWork
+en: Review submitted work
+
+WaitingSubmissions
+en: Waiting submissions
+
+FinalAssessment
+en: Final assessment
+
+NotSubmitted
+en:  not submitted
+
+CompleteYourCompanyAssessmentForTheApplicable
+en: Complete your company assessment for the applicable trainee. This does not replace the academic assessment or coordinator approval.
+
+OpenFinalEvaluations
+en: Open final evaluations
+
+CompanyAssessmentsSubmitted
+en: Company assessments submitted
+
+PlacementsWithoutASubmittedAssessment
+en: Placements without a submitted assessment
+
+AcademicReviewWorkflow
+en: Academic review workflow
+
+FollowUpAndAssessmentQueuesForYour
+en: Follow-up and assessment queues for your assigned students.
+
+Students
+en:  students
+
+OpenAStudentSRecordToReview
+en: Open a student’s record to review the placement, training tasks and academic follow-up. Unassigned students are outside this view.
+
+ViewAssignedStudents
+en: View assigned students
+
+AssignedToYou
+en: Assigned to you
+
+WithConfirmedPlacements
+en: With confirmed placements
+
+HoursTargetMet2
+en:  hours target met
+
+HoursTargetsMet
+en:  hours targets met
+
+ReviewApprovedAndPendingHoursSeparatelyAn
+en: Review approved and pending hours separately. An hours target being met is not a final completion decision.
+
+ReviewTrainingProgress
+en: Review training progress
+
+HoursRequirementsMet
+en: Hours requirements met
+
+HoursAwaitingCompanyApproval
+en: Hours awaiting company approval
+
+CompanyFeedback
+en: Company feedback
+
+AssessmentsReceived
+en:  assessments received
+
+ReadAuthorizedCompanyFeedbackInsideTheAssigned
+en: Read authorized company feedback inside the assigned student’s record. Internal assessments remain restricted.
+
+OpenStudentRecords
+en: Open student records
+
+SubmittedCompanyAssessments
+en: Submitted company assessments
+
+AcademicEvaluation
+en: Academic evaluation
+
+ReadyForFollowUp
+en:  ready for follow-up
+
+CompleteTheAcademicAssessmentThroughTheExisting
+en: Complete the academic assessment through the existing evaluation page. The coordinator makes the final completion decision.
+
+OpenAcademicEvaluations
+en: Open academic evaluations
+
+CompanyAssessmentReceivedAcademicNotSubmitted
+en: Company assessment received; academic not submitted
+
+AcademicAssessmentsSubmitted
+en: Academic assessments submitted
+
+ProgrammeCoordination
+en: Programme coordination
+
+ProgrammeWideWorkQueuesCompletionIsA
+en: Programme-wide work queues. Completion is a separate, coordinator-only decision for each student.
+
+Assignments
+en: Assignments
+
+WithoutASupervisor
+en:  without a supervisor
+
+CheckActiveStudentRecordsAndGroupAssignments
+en: Check active student records and group assignments. This count uses the academic supervisor recorded on each student profile.
+
+ManageAssignments
+en: Manage assignments
+
+TrainingOversight
+en: Training oversight
+
+ActivePlacements
+en:  active placements
+
+MonitorConfirmedTrainingAndExceptionsEachRecord
+en: Monitor confirmed training and exceptions. Each record retains its own company, supervisor and hours requirement.
+
+OpenPlacements
+en: Open placements
+
+ConfirmedOrActive
+en: Confirmed or active
+
+OverdueUngradedTasks
+en: Overdue ungraded tasks
+
+FinalEvaluations
+en: Final evaluations
+
+Submitted2
+en:  submitted
+
+ReviewReceivedAssessmentsInTheAuthorizedCompletion
+en: Review received assessments in the authorized completion workflow. Submitted evaluations do not automatically approve completion.
+
+ReviewEvaluations
+en: Review evaluations
+
+CompanyAssessments
+en: Company assessments
+
+AcademicAssessments
+en: Academic assessments
+
+CompletionReview
+en: Completion review
+
+ReadyForReview2
+en:  ready for review
+
+ReviewTheActualRequirementsAndFinalResult
+en: Review the actual requirements and final result before approving. Only an explicit coordinator decision releases the student’s result and report.
+
+OpenCompletionQueue
+en: Open completion queue
+
+BothEvaluationsReceivedNotApproved
+en: Both evaluations received; not approved
+
+ApprovedCompletions
+en: Approved completions
+
+UnitApplications
+en: applications
+ar: طلبات
+
+UnitCompletions
+en: completions
+ar: حالات إنهاء
+
+UnitHours
+en: hours
+ar: ساعات
+
+UnitItems
+en: items
+ar: عناصر
+
+UnitPlacements
+en: placements
+ar: جهات تدريب
+
+UnitStudents
+en: students
+ar: طلبة
+
+UnitTasks
+en: tasks
+ar: مهام
+
+UnitH
+en: h
+ar: س
+
+RequirementNotConfigured
+en:  · requirement not configured
+ar:  · لم يُحدَّد المطلوب
+
+CoordinatorMonitoringRepository.NotAssigned
+en: Not assigned
+
+CoordinatorMonitoringRepository.AwaitingCompletion
+en: Awaiting completion
+
+CoordinatorMonitoringRepository.Approved
+en: Approved
+
+CoordinatorMonitoringRepository.Returned
+en: Returned
+
+CoordinatorMonitoringRepository.ReadyForReview
+en: Ready for review
+
+CoordinatorMonitoringRepository.AwaitingCompanyEvaluation
+en: Awaiting company evaluation
+
+CoordinatorMonitoringRepository.AwaitingAcademicEvaluation
+en: Awaiting academic evaluation
+
+FirebaseAuthExpiredException.YourSessionHasExpiredPleaseSign
+en: Your session has expired. Please sign in again.

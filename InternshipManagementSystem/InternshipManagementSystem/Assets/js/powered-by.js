@@ -56,7 +56,7 @@ function start() {
   const card = source.querySelector('article').cloneNode(true), name = card.querySelector('.team-member-name');
   name.id = 'teamProfileName'; name.tabIndex = -1;
   profileBody.replaceChildren(card);
-  profileCount.textContent = 'Team member ' + (keys.indexOf(key) + 1) + ' of ' + keys.length;
+  profileCount.textContent = window.uimsT('TeamMemberOf', keys.indexOf(key) + 1, keys.length);
   list.querySelectorAll('button').forEach(button => button.setAttribute('aria-current', String(button.dataset.memberKey === key)));
   profile.hidden = false; root.dataset.profileOpen = ''; profile.scrollTop = 0;
   overviewButton.hidden = false;

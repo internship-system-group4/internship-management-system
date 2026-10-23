@@ -1,10 +1,11 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Company.master.cs" Inherits="InternshipManagementSystem.Layout.CompanyMaster" %>
+<%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
 <%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
 <%@ Register Src="~/Layout/Sidebar.ascx" TagPrefix="uims" TagName="Sidebar" %>
 <%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
 
 <!DOCTYPE html>
-<html lang="en" class="company-portal uims-portal">
+<html lang="<%: L.Lang %>" dir="<%: L.Dir %>" class="company-portal uims-portal">
 <head runat="server">
     <meta charset="utf-8" />
     <%-- Theme: applied before the first paint. Missing or invalid preference -> Light (see Assets/js/theme.js). --%>
@@ -15,9 +16,10 @@
     <link rel="icon" href="~/Assets/images/gju-logo.png" runat="server" />
     <!-- Bootstrap 5 from CDN. If the demo room has no internet, download these
          two files into Assets/css and Assets/js and swap the four links. -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <%-- Bootstrap 5.3.3: the RTL build in Arabic, the LTR build otherwise (never both). --%>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap<%= L.IsArabic ? ".rtl" : "" %>.min.css" />
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-4" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-5" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-4" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-2" runat="server" />
@@ -26,27 +28,31 @@
 <link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-4" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-4" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/reference-analytics.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-2" runat="server" />
+    <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>
+    <script>window.UIMS_I18N=<%= L.ScriptDictionary() %>;window.uimsT=function(k){var d=window.UIMS_I18N,t=Object.prototype.hasOwnProperty.call(d,k)?d[k]:k,a=arguments;return t.replace(/\{(\d+)\}/g,function(m,i){var v=a[+i+1];return v===undefined?m:String(v);});};window.uimsLang='<%= L.Lang %>';</script>
 </head>
 <body data-ui-owner="<%: InternshipManagementSystem.Security.SessionHelper.Current == null ? "" : InternshipManagementSystem.Security.SessionHelper.Current.Id %>" class="company-portal uims-portal">
 <form id="mainForm" runat="server">
     <div class="uims-shell">
-        <aside id="companySidebar" data-portal-sidebar="true" class="uims-sidebar" aria-label="Company navigation" tabindex="-1">
+        <aside id="companySidebar" data-portal-sidebar="true" class="uims-sidebar" aria-label="<%: L.T("Shared.Company.CompanyNavigation") %>" tabindex="-1">
             <uims:Sidebar ID="PortalSidebar" runat="server" />
             <div class="student-logout">
-                <asp:LinkButton ID="btnSignOut" runat="server" OnClick="btnSignOut_Click" CausesValidation="false" CssClass="uims-sidebar-signout" ToolTip="Log out">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h13"/></svg><span class="uims-sidebar-label">Log out</span>
+                <asp:LinkButton ID="btnSignOut" runat="server" OnClick="btnSignOut_Click" CausesValidation="false" CssClass="uims-sidebar-signout" ToolTip="<%$ Resources:Shared, Company.LogOut %>">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4H4v16h5M13 8l4 4-4 4M8 12h13"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Portal.LogOut") %></span>
                 </asp:LinkButton>
             </div>
         </aside>
 
-        <button type="button" class="student-nav-backdrop" aria-label="Close navigation backdrop" tabindex="-1" hidden></button>
+        <button type="button" class="student-nav-backdrop" aria-label="<%: L.T("Shared.Company.CloseNavigationBackdrop") %>" tabindex="-1" hidden></button>
         <div class="uims-content">
             <header class="uims-topbar">
-                <button type="button" class="student-nav-toggle" aria-controls="companySidebar" aria-expanded="false" aria-label="Open navigation">
+                <button type="button" class="student-nav-toggle" aria-controls="companySidebar" aria-expanded="false" aria-label="<%: L.T("Shared.Company.OpenNavigation") %>">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
                 </button>
-                <h1 class="uims-page-title" data-portal-label="Company portal / "><%: Page.Title %></h1>
+                <h1 class="uims-page-title" data-portal-label="<%: L.T("Shared.Company.CompanyPortal") %> / "><%: Page.Title %></h1>
                 <div class="uims-user">
+                    <uims:LanguageSelector runat="server" Variant="link" />
                     <uims:ThemeSelector runat="server" Variant="menu" />
                     <uims:NotificationBell runat="server" />
                     <div class="uims-user-meta">
@@ -65,10 +71,13 @@
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-1") %>"></script>
-<script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-4") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/i18n.js?v=20261023-2") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-5") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
-<script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-4") %>"></script>
-<script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-4") %>"></script>
-<script src="<%: ResolveUrl("~/Assets/js/workspace-charts.js?v=20261023-5") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-5") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-5") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/workspace-charts.js?v=20261023-6") %>"></script>
+<%-- Text that fell back to English on this request (read by the localization tests). --%>
+<script type="application/json" id="uims-i18n-gaps"><%= new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(L.Gaps) %></script>
 </body>
 </html>

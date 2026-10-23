@@ -157,11 +157,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                         .ToString(
                             "MMM dd, yyyy hh:mm tt",
                             CultureInfo.InvariantCulture)
-                    : "Unknown";
+                    : L.T("Coordinator.ContactMessages.Unknown");
             }
             catch
             {
-                return "Unknown";
+                return L.T("Coordinator.ContactMessages.Unknown");
             }
         }
 
@@ -216,7 +216,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             catch (Exception)
             {
                 lblError.Text =
-                    "Unable to load messages. Check Firebase connection and permissions.";
+                    L.T("Coordinator.ContactMessages.UnableToLoadMessagesCheckFirebase");
 
                 lblError.Visible = true;
             }
@@ -287,7 +287,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 }
                 catch (Exception)
                 {
-                    lblError.Text = "Unable to open message details.";
+                    lblError.Text = L.T("Coordinator.ContactMessages.UnableToOpenMessageDetails");
                     lblError.Visible = true;
                 }
             }));
@@ -333,7 +333,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 catch (Exception)
                 {
                     lblError.Text =
-                        "Could not update the message status.";
+                        L.T("Coordinator.ContactMessages.CouldNotUpdateTheMessageStatus");
                     lblError.Visible = true;
                 }
             }));

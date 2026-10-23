@@ -62,9 +62,9 @@
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="uims-card">
-        <h2>Review Submissions</h2>
+        <h2><%: L.T("Company.TaskReview.ReviewSubmissions") %></h2>
         <p class="text-muted">
-            Open a submission to evaluate it or request a new attempt.
+            <%: L.T("Company.TaskReview.OpenASubmissionToEvaluateIt") %>
         </p>
 
         <%-- Example data for the frontend preview. Later: load company submissions from Firebase. --%>
@@ -72,11 +72,11 @@
             <table class="uims-table">
                 <thead>
                     <tr>
-                        <th>Task</th>
-                        <th>Trainee</th>
-                        <th>Attempt</th>
-                        <th>Status</th>
-                        <th>Submitted</th>
+                        <th><%: L.T("Company.TaskReview.Task") %></th>
+                        <th><%: L.T("Company.TaskReview.Trainee") %></th>
+                        <th><%: L.T("Company.TaskReview.Attempt") %></th>
+                        <th><%: L.T("Company.TaskReview.Status") %></th>
+                        <th><%: L.T("Company.TaskReview.Submitted") %></th>
                         <th></th>
                     </tr>
                 </thead>
@@ -85,7 +85,7 @@
     <ItemTemplate>
        <td>
     <asp:LinkButton ID="btnViewDetails" runat="server"
-        Text="View Details"
+        Text="<%$ Resources:Company, TaskReview.ViewDetails %>"
         CssClass="btn btn-outline-primary btn-sm"
         CommandName="ViewDetails"
         CommandArgument='<%# Eval("Id") %>' />
@@ -102,62 +102,62 @@
 
             <div class="d-flex justify-content-between align-items-start mb-3">
                 <div>
-                    <h2 id="reviewTitle">Weekly Progress Report</h2>
+                    <h2 id="reviewTitle"><%: L.T("Company.TaskReview.WeeklyProgressReport") %></h2>
                     <p class="text-muted mb-0">
-                        Example Student · Attempt 2 · Pending Review
+                        <%: L.T("Company.TaskReview.ExampleStudentAttempt2PendingReview") %>
                     </p>
                 </div>
                 <button type="button" class="btn btn-outline-secondary"
-                    onclick="closeReview()" aria-label="Close review">
-                    Close
+                    onclick="closeReview()" aria-label="<%: L.T("Company.TaskReview.CloseReview") %>">
+                    <%: L.T("Company.TaskReview.Close") %>
                 </button>
             </div>
 
             <hr />
 
-            <h4>Submitted Work</h4>
-            <p><strong>Student's text:</strong></p>
+            <h4><%: L.T("Company.TaskReview.SubmittedWork") %></h4>
+            <p><strong><%: L.T("Company.TaskReview.StudentSText") %></strong></p>
             <p class="text-muted">
-                Example submission text will appear here.
+                <%: L.T("Company.TaskReview.ExampleSubmissionTextWillAppearHere") %>
             </p>
             <p>
-                <strong>Link:</strong>
-                <span class="text-muted">No link in this example</span>
+                <strong><%: L.T("Company.TaskReview.Link") %></strong>
+                <span class="text-muted"><%: L.T("Company.TaskReview.NoLinkInThisExample") %></span>
             </p>
             <p>
-                <strong>File:</strong>
-                <span class="text-muted">No file in this example</span>
+                <strong><%: L.T("Company.TaskReview.File") %></strong>
+                <span class="text-muted"><%: L.T("Company.TaskReview.NoFileInThisExample") %></span>
             </p>
 
             <hr />
 
             <%-- The supervisor chooses one action. --%>
             <div id="reviewChoices">
-                <h4>What would you like to do?</h4>
+                <h4><%: L.T("Company.TaskReview.WhatWouldYouLikeToDo") %></h4>
 
                 <div class="row g-3 mt-1">
                     <div class="col-md-6">
                         <div class="review-choice">
-                            <h4>Evaluate Submission</h4>
+                            <h4><%: L.T("Company.TaskReview.EvaluateSubmission") %></h4>
                             <p class="text-muted">
-                                Enter scores for the task criteria and leave feedback.
+                                <%: L.T("Company.TaskReview.EnterScoresForTheTaskCriteria") %>
                             </p>
                             <button type="button" class="btn btn-brand"
                                 onclick="showReviewSection('grade')">
-                                Start Evaluation
+                                <%: L.T("Company.TaskReview.StartEvaluation") %>
                             </button>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="review-choice">
-                            <h4>Request Revision</h4>
+                            <h4><%: L.T("Company.TaskReview.RequestRevision") %></h4>
                             <p class="text-muted">
-                                Explain what the student needs to change before submitting again.
+                                <%: L.T("Company.TaskReview.ExplainWhatTheStudentNeedsTo") %>
                             </p>
                             <button type="button" class="btn btn-outline-secondary"
                                 onclick="showReviewSection('revision')">
-                                Request Revision
+                                <%: L.T("Company.TaskReview.RequestRevision") %>
                             </button>
                         </div>
                     </div>
@@ -168,26 +168,26 @@
             <div id="gradeSection" class="review-section">
                 <button type="button" class="btn btn-link px-0"
                     onclick="showReviewChoices()">
-                    ← Back to choices
+                    <%: L.T("Company.TaskReview.BackToChoices") %>
                 </button>
 
-                <h4>Evaluate Submission</h4>
+                <h4><%: L.T("Company.TaskReview.EvaluateSubmission") %></h4>
                 <p class="text-muted">
-                    The criteria and maximum scores will come from this task.
+                    <%: L.T("Company.TaskReview.TheCriteriaAndMaximumScoresWill") %>
                 </p>
 
                 <div class="table-responsive">
                     <table class="uims-table">
                         <thead>
                             <tr>
-                                <th>Criterion</th>
-                                <th>Maximum Score</th>
-                                <th>Score</th>
+                                <th><%: L.T("Company.TaskReview.Criterion") %></th>
+                                <th><%: L.T("Company.TaskReview.MaximumScore") %></th>
+                                <th><%: L.T("Company.TaskReview.Score") %></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>Report Quality (example)</td>
+                                <td><%: L.T("Company.TaskReview.ReportQualityExample") %></td>
                                 <td>20</td>
                                 <td>
                                     <asp:TextBox ID="txtCriterionScore" runat="server"
@@ -199,35 +199,35 @@
                    <asp:Panel ID="pnlSubmissionDetails" runat="server"
     Visible="false" CssClass="uims-card mt-4">
 
-    <h3>Submission Details</h3>
+    <h3><%: L.T("Company.TaskReview.SubmissionDetails") %></h3>
 
-    <p><strong>Task:</strong>
+    <p><strong><%: L.T("Company.TaskReview.Task2") %></strong>
         <asp:Label ID="lblDetailTask" runat="server" /></p>
 
-    <p><strong>Attempt:</strong>
+    <p><strong><%: L.T("Company.TaskReview.Attempt2") %></strong>
         <asp:Label ID="lblDetailAttempt" runat="server" /></p>
 
-    <p><strong>Student's text:</strong><br />
+    <p><strong><%: L.T("Company.TaskReview.StudentSText") %></strong><br />
         <asp:Label ID="lblDetailText" runat="server" /></p>
 
     <p><asp:HyperLink ID="lnkDetailWork" runat="server"
-        Text="Open submitted link" Target="_blank" Visible="false" /></p>
+        Text="<%$ Resources:Company, TaskReview.OpenSubmittedLink %>" Target="_blank" Visible="false" /></p>
 
     <p><asp:HyperLink ID="lnkDetailFile" runat="server"
-        Text="Open attached file" Target="_blank" Visible="false" /></p>
+        Text="<%$ Resources:Company, TaskReview.OpenAttachedFile %>" Target="_blank" Visible="false" /></p>
 
     <hr class="my-4" />
 
-    <h4>Evaluation</h4>
-    <p class="text-muted">Enter a score for each criterion.</p>
+    <h4><%: L.T("Company.TaskReview.Evaluation") %></h4>
+    <p class="text-muted"><%: L.T("Company.TaskReview.EnterAScoreForEachCriterion") %></p>
 
     <asp:Repeater ID="rptReviewCriteria" runat="server">
         <ItemTemplate>
             <div class="mb-3">
                 <label class="form-label">
                     <%#: Eval("Name") %>
-                    — Max: <%#: Eval("MaxScore") %>
-                    — Weight: <%#: Eval("Weight") %>%
+                    <%: L.T("Company.TaskReview.Max") %> <%#: Eval("MaxScore") %>
+                    <%: L.T("Company.TaskReview.Weight") %> <%#: Eval("Weight") %>%
                 </label>
 
                 <asp:TextBox ID="txtScore" runat="server"
@@ -243,7 +243,7 @@
         <asp:Label ID="Label1" runat="server"
             AssociatedControlID="txtFeedback"
             CssClass="form-label"
-            Text="Feedback for student" />
+            Text="<%$ Resources:Company, TaskReview.FeedbackForStudent %>" />
 
         <asp:TextBox ID="TextBox1" runat="server"
             TextMode="MultiLine"
@@ -252,13 +252,13 @@
     </div>
     <div class="d-flex gap-2">
         <asp:Button ID="btnSaveGrade" runat="server"
-            Text="Save Grade"
+            Text="<%$ Resources:Company, TaskReview.SaveGrade %>"
             CssClass="btn btn-brand"
             OnClick="btnSaveGrade_Click"
             Enabled="false"  data-ui-action="save" data-loading-label="Saving…"/>
 
         <asp:Button ID="Button1" runat="server"
-            Text="Request Revision"
+            Text="<%$ Resources:Company, TaskReview.RequestRevision %>"
             CssClass="btn btn-outline-secondary"
             Enabled="false" />
     </div>
@@ -270,14 +270,14 @@
                 <div class="mb-3 mt-3">
                     <asp:Label ID="lblFeedback" runat="server"
                         AssociatedControlID="txtFeedback"
-                        CssClass="form-label" Text="Feedback" />
+                        CssClass="form-label" Text="<%$ Resources:Company, TaskReview.Feedback %>" />
                     <asp:TextBox ID="txtFeedback" runat="server"
                         CssClass="form-control" TextMode="MultiLine" Rows="4" />
 
                 </div>
 
                 <asp:Button ID="btnSaveEvaluation" runat="server"
-                    Text="Save Evaluation" CssClass="btn btn-brand"
+                    Text="<%$ Resources:Company, TaskReview.SaveEvaluation %>" CssClass="btn btn-brand"
                     OnClientClick="showReviewNotice(); return false;" />
             </div>
 
@@ -285,55 +285,55 @@
             <div id="revisionSection" class="review-section">
                 <button type="button" class="btn btn-link px-0"
                     onclick="showReviewChoices()">
-                    ← Back to choices
+                    <%: L.T("Company.TaskReview.BackToChoices") %>
                 </button>
 
-                <h4>Request Revision</h4>
+                <h4><%: L.T("Company.TaskReview.RequestRevision") %></h4>
                 <p class="text-muted">
-                    Tell the student exactly what to improve in the next attempt.
+                    <%: L.T("Company.TaskReview.TellTheStudentExactlyWhatTo") %>
                 </p>
 
                 <div class="mb-3">
                     <asp:Label ID="lblRevisionInstructions" runat="server"
                         AssociatedControlID="txtRevisionInstructions"
-                        CssClass="form-label" Text="Revision Instructions" />
+                        CssClass="form-label" Text="<%$ Resources:Company, TaskReview.RevisionInstructions %>" />
                     <asp:TextBox ID="txtRevisionInstructions" runat="server"
                         CssClass="form-control" TextMode="MultiLine" Rows="5" />
                 </div>
 
                 <asp:Button ID="btnRequestRevision" runat="server"
-                    Text="Send Revision Request"
+                    Text="<%$ Resources:Company, TaskReview.SendRevisionRequest %>"
                     CssClass="btn btn-brand"
                     OnClientClick="showReviewNotice(); return false;" />
             </div>
 
             <div id="reviewNotice" class="alert alert-info mt-3"
                 style="display: none;" role="status">
-                This is a design preview. Nothing was saved yet.
+                <%: L.T("Company.TaskReview.ThisIsADesignPreviewNothing") %>
             </div>
 
             <%-- F07: all previous attempts remain readable. --%>
             <div class="review-history">
-                <h4>Submission History</h4>
+                <h4><%: L.T("Company.TaskReview.SubmissionHistory") %></h4>
                 <p class="text-muted">
-                    Previous attempts will stay here even after a revision.
+                    <%: L.T("Company.TaskReview.PreviousAttemptsWillStayHereEven") %>
                 </p>
 
                 <details>
-                    <summary>Attempt 2 · Pending Review</summary>
+                    <summary><%: L.T("Company.TaskReview.Attempt2PendingReview") %></summary>
                     <p class="mt-2 mb-0">
-                        Example text for the student's second attempt.
+                        <%: L.T("Company.TaskReview.ExampleTextForTheStudentS") %>
                     </p>
                 </details>
 
                 <details>
-                    <summary>Attempt 1 · Revision Requested</summary>
+                    <summary><%: L.T("Company.TaskReview.Attempt1RevisionRequested") %></summary>
                     <p class="mt-2">
-                        Example text for the student's first attempt.
+                        <%: L.T("Company.TaskReview.ExampleTextForTheStudentS2") %>
                     </p>
                     <p class="mb-0">
-                        <strong>Revision instructions:</strong>
-                        Please add more detail to the report.
+                        <strong><%: L.T("Company.TaskReview.RevisionInstructions2") %></strong>
+                        <%: L.T("Company.TaskReview.PleaseAddMoreDetailToThe") %>
                     </p>
                 </details>
             </div>

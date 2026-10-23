@@ -10,7 +10,9 @@
  var root = document.documentElement;
  var systemDark = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
  var reduce = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : null;
- var LABELS = { light:'Light', dark:'Dark', system:'System' };
+ // Labels come from the shared resources (window.uimsT, Assets/js/i18n.js); English if the dictionary is absent.
+ var t = function (key, fallback) { return typeof window.uimsT === 'function' && window.UIMS_I18N && window.UIMS_I18N[key] ? window.uimsT.apply(null, arguments) : fallback; };
+ var LABELS = { light:t('ThemeLight', 'Light'), dark:t('ThemeDark', 'Dark'), system:t('ThemeSystem', 'System') };
  var changingTimer = 0;
 
  function valid(value) { return VALID.indexOf(value) >= 0 ? value : 'light'; }
@@ -43,7 +45,7 @@
     if (option.getAttribute('role') === 'radio') option.tabIndex = on ? 0 : -1;
    });
    var toggle = control.querySelector('[data-theme-toggle]');
-   if (toggle) toggle.setAttribute('aria-label', 'Colour theme: ' + LABELS[preference] + (preference === 'system' ? ' (' + LABELS[resolve('system')] + ')' : ''));
+   if (toggle) { var name = LABELS[preference] + (preference === 'system' ? ' (' + LABELS[resolve('system')] + ')' : ''); toggle.setAttribute('aria-label', typeof window.uimsT === 'function' && window.UIMS_I18N && window.UIMS_I18N.ThemeLabel ? window.uimsT('ThemeLabel', name) : 'Colour theme: ' + name); }
   });
  }
 

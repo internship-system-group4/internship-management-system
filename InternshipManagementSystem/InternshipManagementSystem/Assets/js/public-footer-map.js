@@ -71,7 +71,7 @@
   if (marker || !map) return;
   var element = document.createElement('div');
   element.className = 'uims-campus-marker';
-  element.innerHTML = '<i></i><span>German Jordanian University</span>';
+  element.innerHTML = '<i></i><span></span>'; element.lastChild.textContent = window.uimsT('MapMarker');
   // Pin on the official coordinate with the name centred below it, so it fits the narrow frame.
   marker = new lib.Marker({ element:element, anchor:'top', offset:[0, -9] }).setLngLat(campus).addTo(map);
   // Reveal once MapLibre has placed it, so it never flashes at the corner first.

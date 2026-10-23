@@ -43,7 +43,7 @@
    if(button.dataset.wsSized)return;button.dataset.wsSized='true';
    const style=getComputedStyle(button),canvas=document.createElement('canvas'),context=canvas.getContext('2d');
    if(!context)return;context.font=style.font;
-   const label=button.dataset.loadingLabel||'Working…';
+   const label=button.dataset.loadingLabel||(typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('Working');
    const needed=Math.ceil(context.measureText(label).width+parseFloat(style.paddingLeft||0)+parseFloat(style.paddingRight||0)+26);
    const rect=button.getBoundingClientRect(),available=button.parentElement.clientWidth;
    if(rect.width<needed&&needed<=available)button.style.minWidth=needed+'px';
@@ -56,7 +56,7 @@
   if(!pending||pending.path!==route||Date.now()-pending.at>60000)return;
   storage.remove(key);
   if(!notices.length)return;
-  const button=document.getElementById(pending.id),labels={save:'Saved',create:'Created',submit:'Submitted',accept:'Accepted',confirm:'Confirmed',update:'Updated',upload:'Uploaded',delete:'Deleted',send:'Sent',add:'Updated'};
+  const button=document.getElementById(pending.id),t=(typeof window.uimsT==='function'?window.uimsT:function(k){return k;}),labels={save:t('DoneSaved'),create:t('DoneCreated'),submit:t('DoneSubmitted'),accept:t('DoneAccepted'),confirm:t('DoneConfirmed'),update:t('DoneUpdated'),upload:t('DoneUploaded'),delete:t('DoneDeleted'),send:t('DoneSent'),add:t('DoneUpdated')};
   if(!button||!labels[pending.action]||button.dataset.uiAction!==pending.action)return;
   const input=button.tagName==='INPUT',original=input?button.value:button.innerHTML;
   if(input)button.value=labels[pending.action];else{button.replaceChildren(UimsUI.icon('approved'),document.createTextNode(' '+labels[pending.action]));}

@@ -35,7 +35,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litEmail.Text = CurrentSupervisor.Email;
 
                 Company company = _companyRepo.GetById(CurrentSupervisor.CompanyId);
-                litCompany.Text = company != null ? company.Name : "Associated Company";
+                litCompany.Text = company != null ? company.Name : L.T("Company.Account.AssociatedCompanyPlaceholder");
 
                 // القيم الافتراضية للحقول التي قد لا تكون في الكلاس لتجنب الخطأ
                 txtPhone.Text = "";
@@ -47,7 +47,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not load profile data: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.Account.CouldNotLoadProfileData", ex.Message), false);
             }
         }
 
@@ -60,7 +60,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 string newName = txtFullName.Text.Trim();
                 if (string.IsNullOrEmpty(newName))
                 {
-                    ShowPopupMessage("Missing Field", "Full Name cannot be empty.", false);
+                    ShowPopupMessage(L.T("Company.Account.MissingField"), L.T("Company.Account.FullNameCannotBeEmpty"), false);
                     return;
                 }
 
@@ -99,8 +99,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litDisplayName.Text = newName;
                 litInitials.Text = GetInitials(newName);
 
-                litPhone.Text = string.IsNullOrEmpty(txtPhone.Text) ? "Not provided" : txtPhone.Text;
-                litJobTitle.Text = string.IsNullOrEmpty(txtJobTitle.Text) ? "Not provided" : txtJobTitle.Text;
+                litPhone.Text = string.IsNullOrEmpty(txtPhone.Text) ? L.T("Company.Account.NotProvided") : txtPhone.Text;
+                litJobTitle.Text = string.IsNullOrEmpty(txtJobTitle.Text) ? L.T("Company.Account.NotProvided") : txtJobTitle.Text;
 
                 // إذا رفع صورة، نظهر الصورة ونخفي دائرة الأحرف
                 if (!string.IsNullOrEmpty(base64Image))
@@ -110,11 +110,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     divInitials.Visible = false;
                 }
 
-                ShowPopupMessage("Profile Updated", "Your account settings and picture have been successfully saved.", true);
+                ShowPopupMessage(L.T("Company.Account.ProfileUpdated"), L.T("Company.Account.YourAccountSettingsAndPictureHave"), true);
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not save changes: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.Account.CouldNotSaveChanges", ex.Message), false);
             }
         }
 
@@ -124,9 +124,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             litModalMessage.Text = message;
 
             if (isSuccess)
-                litModalIcon.Text = "<span data-ui-confirmed='true'><i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i></span>";
+                litModalIcon.Text = L.T("Company.Account.SpanDataUiConfirmedTrueI");
             else
-                litModalIcon.Text = "<i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>";
+                litModalIcon.Text = L.T("Company.Account.IClassBiBiExclamationCircle");
 
             ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", "var myModal = new bootstrap.Modal(document.getElementById('serverMessageModal')); myModal.show();", true);
         }

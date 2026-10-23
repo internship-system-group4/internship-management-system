@@ -22,17 +22,17 @@
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 
     <div class="mb-4">
-        <h2 class="mb-1">My Progress &amp; Evaluation</h2>
-        <p class="text-muted mb-0">Your task grades, supervisor feedback, approved training hours and completion status.</p>
+        <h2 class="mb-1"><%: L.T("Student.Progress.MyProgressEvaluation") %></h2>
+        <p class="text-muted mb-0"><%: L.T("Student.Progress.YourTaskGradesSupervisorFeedbackApproved") %></p>
     </div>
 
     <asp:Panel ID="pnlError" runat="server" Visible="false" CssClass="alert alert-danger">
-        Your progress could not be loaded right now. Please refresh the page or try again later.
+        <%: L.T("Student.Progress.YourProgressCouldNotBeLoaded") %>
         <div class="small mt-2"><asp:Literal ID="litErrorDetail" runat="server" Mode="Encode" /></div>
     </asp:Panel>
 
     <asp:Panel ID="pnlWarning" runat="server" Visible="false" CssClass="alert alert-warning">
-        Some sections could not be loaded and may look empty:
+        <%: L.T("Student.Progress.SomeSectionsCouldNotBeLoaded") %>
         <ul class="mb-0 mt-1">
             <asp:Repeater ID="rptProblems" runat="server">
                 <ItemTemplate><li><%#: Container.DataItem %></li></ItemTemplate>
@@ -41,9 +41,9 @@
     </asp:Panel>
 
     <asp:Panel ID="pnlNoPlacement" runat="server" Visible="false" CssClass="uims-card">
-        <h3>No confirmed internship yet</h3>
-        <p class="text-muted mb-3">Your progress and evaluations will appear here after you confirm an accepted internship offer.</p>
-        <a class="btn btn-brand btn-sm" href="<%: ResolveUrl("~/Pages/Student/MyApplications.aspx") %>">Go to My Applications</a>
+        <h3><%: L.T("Student.Progress.NoConfirmedInternshipYet") %></h3>
+        <p class="text-muted mb-3"><%: L.T("Student.Progress.YourProgressAndEvaluationsWillAppear") %></p>
+        <a class="btn btn-brand btn-sm" href="<%: ResolveUrl("~/Pages/Student/MyApplications.aspx") %>"><%: L.T("Student.Progress.GoToMyApplications") %></a>
     </asp:Panel>
 
     <asp:Panel ID="pnlContent" runat="server">
@@ -52,64 +52,64 @@
         <div class="row g-3 pe-section">
             <div class="col-sm-6 col-lg-3">
                 <div class="uims-card pe-stat">
-                    <div class="pe-label">Approved hours</div>
+                    <div class="pe-label"><%: L.T("Student.Progress.ApprovedHours") %></div>
                     <div class="pe-value"><asp:Literal ID="litSumHours" runat="server" /></div>
                     <div class="progress mt-2" style="height: 6px;">
                         <div id="hoursBar" runat="server" class="progress-bar" role="progressbar"
                              style="width: 0%; background-color: var(--brand);"
-                             aria-valuemin="0" aria-valuemax="100" aria-label="Approved hours progress"></div>
+                             aria-valuemin="0" aria-valuemax="100" aria-label="<%$ Resources:Student, Progress.ApprovedHoursProgress %>"></div>
                     </div>
-                    <div class="pe-muted mt-1"><asp:Literal ID="litSumHoursPercent" runat="server" />% of required hours</div>
+                    <div class="pe-muted mt-1"><asp:Literal ID="litSumHoursPercent" runat="server" /><%: L.T("Student.Progress.OfRequiredHours") %></div>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="uims-card pe-stat">
-                    <div class="pe-label">Tasks graded</div>
+                    <div class="pe-label"><%: L.T("Student.Progress.TasksGraded") %></div>
                     <div class="pe-value"><asp:Literal ID="litSumTasks" runat="server" /></div>
-                    <div class="pe-muted">Graded out of assigned</div>
+                    <div class="pe-muted"><%: L.T("Student.Progress.GradedOutOfAssigned") %></div>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="uims-card pe-stat">
-                    <div class="pe-label">Open revisions</div>
+                    <div class="pe-label"><%: L.T("Student.Progress.OpenRevisions") %></div>
                     <div class="pe-value"><asp:Literal ID="litSumRevisions" runat="server" /></div>
-                    <div class="pe-muted">Tasks waiting for your resubmission</div>
+                    <div class="pe-muted"><%: L.T("Student.Progress.TasksWaitingForYourResubmission") %></div>
                 </div>
             </div>
             <div class="col-sm-6 col-lg-3">
                 <div class="uims-card pe-stat">
-                    <div class="pe-label">Task grade average</div>
+                    <div class="pe-label"><%: L.T("Student.Progress.TaskGradeAverage") %></div>
                     <div class="pe-value"><asp:Literal ID="litSumAverage" runat="server" /></div>
-                    <div class="pe-muted">Weighted by each task's weight</div>
+                    <div class="pe-muted"><%: L.T("Student.Progress.WeightedByEachTaskSWeight") %></div>
                 </div>
             </div>
         </div>
 
         <%-- Internship details --%>
         <div class="uims-card pe-section">
-            <h3>My internship</h3>
+            <h3><%: L.T("Student.Progress.MyInternship") %></h3>
             <div class="row g-3">
-                <div class="col-md-4"><div class="pe-muted">Opportunity</div><asp:Literal ID="litOpportunity" runat="server" Mode="Encode" /></div>
-                <div class="col-md-4"><div class="pe-muted">Company</div><asp:Literal ID="litCompany" runat="server" Mode="Encode" /></div>
-                <div class="col-md-4"><div class="pe-muted">Company supervisor</div><asp:Literal ID="litSupervisor" runat="server" Mode="Encode" /></div>
-                <div class="col-md-4"><div class="pe-muted">Training period</div><asp:Literal ID="litDates" runat="server" Mode="Encode" /></div>
-                <div class="col-md-4"><div class="pe-muted">Placement status</div><asp:Literal ID="litPlacementStatus" runat="server" Mode="Encode" /></div>
+                <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.Opportunity") %></div><asp:Literal ID="litOpportunity" runat="server" Mode="Encode" /></div>
+                <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.Company") %></div><asp:Literal ID="litCompany" runat="server" Mode="Encode" /></div>
+                <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.CompanySupervisor") %></div><asp:Literal ID="litSupervisor" runat="server" Mode="Encode" /></div>
+                <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.TrainingPeriod") %></div><asp:Literal ID="litDates" runat="server" Mode="Encode" /></div>
+                <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.PlacementStatus") %></div><asp:Literal ID="litPlacementStatus" runat="server" Mode="Encode" /></div>
             </div>
         </div>
 
         <%-- Task grades and feedback --%>
         <div class="uims-card pe-section">
-            <h3>Task evaluations &amp; feedback</h3>
+            <h3><%: L.T("Student.Progress.TaskEvaluationsFeedback") %></h3>
             <div class="table-responsive">
                 <table class="uims-table">
                     <thead>
                         <tr>
-                            <th>Task</th>
-                            <th>Deadline</th>
-                            <th>Status</th>
-                            <th>Attempts</th>
-                            <th>Grade</th>
-                            <th>Supervisor feedback</th>
+                            <th><%: L.T("Student.Progress.Task") %></th>
+                            <th><%: L.T("Student.Progress.Deadline") %></th>
+                            <th><%: L.T("Student.Progress.Status") %></th>
+                            <th><%: L.T("Student.Progress.Attempts") %></th>
+                            <th><%: L.T("Student.Progress.Grade") %></th>
+                            <th><%: L.T("Student.Progress.SupervisorFeedback") %></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,23 +135,23 @@
                 </table>
             </div>
             <asp:Panel ID="pnlNoTasks" runat="server" Visible="false" CssClass="alert alert-info mt-3 mb-0">
-                No tasks have been assigned to you yet.
+                <%: L.T("Student.Progress.NoTasksHaveBeenAssignedTo") %>
             </asp:Panel>
-            <p class="pe-muted mt-3 mb-0">Each task is graded out of its own maximum score set by your company supervisor.</p>
+            <p class="pe-muted mt-3 mb-0"><%: L.T("Student.Progress.EachTaskIsGradedOutOf") %></p>
         </div>
 
         <%-- Submission and revision history --%>
         <div class="uims-card pe-section">
-            <h3>Submissions &amp; revision history</h3>
+            <h3><%: L.T("Student.Progress.SubmissionsRevisionHistory") %></h3>
             <div class="table-responsive">
                 <table class="uims-table">
                     <thead>
                         <tr>
-                            <th>Task</th>
-                            <th>Attempt</th>
-                            <th>Submitted</th>
-                            <th>Outcome</th>
-                            <th>Details</th>
+                            <th><%: L.T("Student.Progress.Task") %></th>
+                            <th><%: L.T("Student.Progress.Attempt") %></th>
+                            <th><%: L.T("Student.Progress.Submitted") %></th>
+                            <th><%: L.T("Student.Progress.Outcome") %></th>
+                            <th><%: L.T("Student.Progress.Details") %></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -170,27 +170,27 @@
                 </table>
             </div>
             <asp:Panel ID="pnlNoAttempts" runat="server" Visible="false" CssClass="alert alert-info mt-3 mb-0">
-                You have not submitted any work yet. Submit tasks from <a href="<%: ResolveUrl("~/Pages/Student/MyTasks.aspx") %>">My Tasks</a>.
+                <%: L.T("Student.Progress.YouHaveNotSubmittedAnyWork") %> <a href="<%: ResolveUrl("~/Pages/Student/MyTasks.aspx") %>"><%: L.T("Student.Progress.MyTasks") %></a>.
             </asp:Panel>
         </div>
 
         <%-- Training hours --%>
         <div class="uims-card pe-section">
-            <h3>Training hours</h3>
+            <h3><%: L.T("Student.Progress.TrainingHours") %></h3>
             <div class="d-flex flex-wrap gap-4 mb-3">
-                <div><div class="pe-muted">Approved</div><strong><asp:Literal ID="litHoursApproved" runat="server" /> h</strong></div>
-                <div><div class="pe-muted">Pending approval</div><strong><asp:Literal ID="litHoursPending" runat="server" /> h</strong></div>
-                <div><div class="pe-muted">Rejected</div><strong><asp:Literal ID="litHoursRejected" runat="server" /> h</strong></div>
+                <div><div class="pe-muted"><%: L.T("Student.Progress.Approved") %></div><strong><asp:Literal ID="litHoursApproved" runat="server" /> h</strong></div>
+                <div><div class="pe-muted"><%: L.T("Student.Progress.PendingApproval") %></div><strong><asp:Literal ID="litHoursPending" runat="server" /> h</strong></div>
+                <div><div class="pe-muted"><%: L.T("Student.Progress.Rejected") %></div><strong><asp:Literal ID="litHoursRejected" runat="server" /> h</strong></div>
             </div>
             <div class="table-responsive">
                 <table class="uims-table">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Hours</th>
-                            <th>Description</th>
-                            <th>Status</th>
-                            <th>Reviewer note</th>
+                            <th><%: L.T("Student.Progress.Date") %></th>
+                            <th><%: L.T("Student.Progress.Hours") %></th>
+                            <th><%: L.T("Student.Progress.Description") %></th>
+                            <th><%: L.T("Student.Progress.Status") %></th>
+                            <th><%: L.T("Student.Progress.ReviewerNote") %></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -209,31 +209,31 @@
                 </table>
             </div>
             <asp:Panel ID="pnlNoHours" runat="server" Visible="false" CssClass="alert alert-info mt-3 mb-0">
-                No training hours have been recorded yet.
+                <%: L.T("Student.Progress.NoTrainingHoursHaveBeenRecorded") %>
             </asp:Panel>
-            <p class="pe-muted mt-3 mb-0">Only hours approved by your supervisor count toward your required hours. Completing a task does not approve its hours automatically.</p>
+            <p class="pe-muted mt-3 mb-0"><%: L.T("Student.Progress.OnlyHoursApprovedByYourSupervisor") %></p>
         </div>
 
         <%-- Completion and official report --%>
         <div class="uims-card pe-section">
-            <h3>Internship completion &amp; official report</h3>
+            <h3><%: L.T("Student.Progress.InternshipCompletionOfficialReport") %></h3>
 
             <asp:Panel ID="pnlNotApproved" runat="server" Visible="false">
                 <p class="mb-1"><asp:Literal ID="litCompletionStage" runat="server" Mode="Encode" /></p>
-                <p class="pe-muted mb-0">Your final result and the official Internship Completion Report (PDF) will appear here after the University Internship Coordinator approves your internship completion.</p>
+                <p class="pe-muted mb-0"><%: L.T("Student.Progress.YourFinalResultAndTheOfficial") %></p>
             </asp:Panel>
 
             <asp:Panel ID="pnlApproved" runat="server" Visible="false">
-                <div class="alert alert-success">Your internship completion has been approved by the University Internship Coordinator.</div>
+                <div class="alert alert-success"><%: L.T("Student.Progress.YourInternshipCompletionHasBeenApproved") %></div>
                 <div class="row g-3 mb-3">
-                    <div class="col-md-4"><div class="pe-muted">Final score</div><strong><asp:Literal ID="litFinalScore" runat="server" Mode="Encode" /></strong></div>
-                    <div class="col-md-4"><div class="pe-muted">Result</div><strong><asp:Literal ID="litFinalResult" runat="server" Mode="Encode" /></strong></div>
-                    <div class="col-md-4"><div class="pe-muted">Approved on</div><strong><asp:Literal ID="litApprovedAt" runat="server" Mode="Encode" /></strong></div>
+                    <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.FinalScore") %></div><strong><asp:Literal ID="litFinalScore" runat="server" Mode="Encode" /></strong></div>
+                    <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.Result") %></div><strong><asp:Literal ID="litFinalResult" runat="server" Mode="Encode" /></strong></div>
+                    <div class="col-md-4"><div class="pe-muted"><%: L.T("Student.Progress.ApprovedOn") %></div><strong><asp:Literal ID="litApprovedAt" runat="server" Mode="Encode" /></strong></div>
                 </div>
                 <asp:HyperLink ID="lnkReport" runat="server" Visible="false" Target="_blank"
-                               CssClass="btn btn-brand" Text="Download / print completion report (PDF)" />
+                               CssClass="btn btn-brand" Text="<%$ Resources:Student, Progress.DownloadPrintCompletionReportPDF %>" />
                 <asp:Panel ID="pnlReportPending" runat="server" Visible="false" CssClass="alert alert-info mb-0">
-                    The official completion report is being prepared by the coordinator and will be available to download here soon.
+                    <%: L.T("Student.Progress.TheOfficialCompletionReportIsBeing") %>
                 </asp:Panel>
             </asp:Panel>
         </div>

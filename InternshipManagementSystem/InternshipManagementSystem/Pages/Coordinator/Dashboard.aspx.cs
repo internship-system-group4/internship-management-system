@@ -1,4 +1,5 @@
 ﻿using System;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
@@ -8,7 +9,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
   protected void Page_Load(object sender,EventArgs e)
   {
    try {Workspace=new WorkspaceDashboardRepository().LoadCoordinator();Summary=Workspace.Summary;Journey.Model=Workspace.Journey;Charts.Model=WorkspaceChartFactory.Coordinator(Workspace);}
-   catch(Exception ex){System.Diagnostics.Trace.TraceError("Coordinator workspace: "+ex.Message);LoadError="We could not load the programme work queues. Refresh to try again.";}
+   catch(Exception ex){System.Diagnostics.Trace.TraceError("Coordinator workspace: "+ex.Message);LoadError=L.T("Coordinator.Dashboard.WeCouldNotLoadTheProgramme");}
   }
  }
 }

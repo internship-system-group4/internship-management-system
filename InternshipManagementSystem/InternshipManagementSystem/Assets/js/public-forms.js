@@ -5,9 +5,9 @@
  // data-required-message, data-invalid-message (email) and data-short-message (minlength).
  function fieldMessage(input){
   var value=input.value.trim();
-  if(!value) return input.getAttribute('data-required-message')||'Please fill in this field.';
-  if(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return input.getAttribute('data-invalid-message')||'Enter a valid email address.';
-  if(input.minLength>0&&value.length<input.minLength) return input.getAttribute('data-short-message')||'Please enter at least '+input.minLength+' characters.';
+  if(!value) return input.getAttribute('data-required-message')||window.uimsT('FieldRequired');
+  if(input.type==='email'&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return input.getAttribute('data-invalid-message')||window.uimsT('FieldEmail');
+  if(input.minLength>0&&value.length<input.minLength) return input.getAttribute('data-short-message')||window.uimsT('FieldMinLength',input.minLength);
   return '';
  }
  window.publicFieldMessage=fieldMessage;
@@ -24,8 +24,8 @@
   if(valid){
    form.setAttribute('data-submitting','true');form.setAttribute('aria-busy','true');
    var button=form.querySelector('input[type="submit"]'),status=form.querySelector('[data-submit-status]');
-   if(button){button.dataset.originalText=button.value;button.setAttribute('aria-disabled','true');button.value=form.dataset.publicForm==='contact'?'Sending…':form.dataset.publicForm==='login'?'Signing in…':'Requesting reset link…';}
-   if(status)status.textContent='Sending your message. Please wait for confirmation.';
+   if(button){button.dataset.originalText=button.value;button.setAttribute('aria-disabled','true');button.value=form.dataset.publicForm==='contact'?window.uimsT('Sending'):form.dataset.publicForm==='login'?window.uimsT('SigningIn'):window.uimsT('RequestingReset');}
+   if(status)status.textContent=window.uimsT('SendingStatus');
   }
   return valid;
  }
@@ -38,8 +38,8 @@
  var toggle=field('toggleButton');
  if(toggle)toggle.addEventListener('click',function(){
   var password=field(toggle.getAttribute('aria-controls')),show=password.type==='password';
-  password.type=show?'text':'password';toggle.textContent=show?'Hide':'Show';
-  toggle.setAttribute('aria-pressed',String(show));toggle.setAttribute('aria-label',show?'Hide password':'Show password');
+  password.type=show?'text':'password';toggle.textContent=show?window.uimsT('Hide'):window.uimsT('Show');
+  toggle.setAttribute('aria-pressed',String(show));toggle.setAttribute('aria-label',show?window.uimsT('HidePassword'):window.uimsT('ShowPassword'));
  });
  function resetBusy(){document.querySelectorAll('[data-public-form]').forEach(function(form){
   form.removeAttribute('data-submitting');form.removeAttribute('aria-busy');

@@ -23,9 +23,9 @@
             sidebar.dataset.expanded = String(expanded);
             pin.setAttribute('aria-expanded', String(expanded));
             pin.setAttribute('aria-pressed', String(pinned));
-            pin.setAttribute('aria-label', pinned ? 'Unpin navigation' : 'Pin navigation open');
-            pin.title = pinned ? 'Unpin navigation' : 'Pin navigation open';
-            pin.querySelector('span').textContent = pinned ? 'Unpin navigation' : 'Pin navigation';
+            pin.setAttribute('aria-label', (pinned ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('UnpinNavigation') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PinNavigationOpen')));
+            pin.title = (pinned ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('UnpinNavigation') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PinNavigationOpen'));
+            pin.querySelector('span').textContent = (pinned ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('UnpinNavigation') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PinNavigation'));
         }
         function mobile(value, restoreFocus) {
             opened = value && media.matches;
@@ -37,7 +37,7 @@
             document.body.classList.toggle('student-nav-open', opened);
             document.documentElement.classList.toggle('student-nav-open', opened);
             toggle.setAttribute('aria-expanded', String(opened));
-            toggle.setAttribute('aria-label', opened ? 'Close navigation' : 'Open navigation');
+            toggle.setAttribute('aria-label', (opened ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('CloseNavigation') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('OpenNavigation')));
             backdrop.hidden = !opened;
             sidebar.inert = media.matches && !opened;
             content.inert = opened;

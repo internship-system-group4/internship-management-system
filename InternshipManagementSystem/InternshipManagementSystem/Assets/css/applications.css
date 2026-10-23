@@ -21,7 +21,7 @@
 .application-field-footer span { white-space:nowrap; font-variant-numeric:tabular-nums; }
 .application-help { margin:8px 0 0; }
 .application-confirm { font-size:14px; line-height:1.7; }
-.application-confirm input { margin-right:6px; accent-color:var(--brand-text,var(--brand)); }
+.application-confirm input { margin-inline-end:6px; accent-color:var(--brand-text,var(--brand)); }
 .application-actions { margin-top:24px; display:flex; align-items:center; justify-content:flex-end; gap:24px; }
 .application-actions .btn { padding:11px 20px; }
 .application-opportunity { padding:26px; border-top:3px solid var(--brand); }
@@ -30,11 +30,11 @@
 .application-company { color:var(--brand-text,var(--brand)); font-weight:500; }
 .application-facts { border-block:1px solid var(--line); padding:18px 0; margin:22px 0; }
 .application-facts div { display:flex; justify-content:space-between; gap:16px; padding:6px 0; }
-.application-facts dd { margin:0; text-align:right; font-size:14px; }
+.application-facts dd { margin:0; text-align:end; font-size:14px; }
 .application-opportunity h4 { font-size:14px; margin-top:22px; font-weight:600; }
 .application-description { font-size:14px; line-height:1.7; white-space:pre-line; color:var(--th-fg-586575,#586575); }
 .application-message { padding:16px 20px; border:1px solid var(--th-line-d9b375,#d9b375); border-radius:6px; background:var(--th-bg-fff8ea,#fff8ea); color:var(--th-fg-624715,#624715); margin-bottom:24px; }
-.application-message a { display:inline-block; margin-left:8px; }
+.application-message a { display:inline-block; margin-inline-start:8px; }
 .application-success { background:var(--th-bg-eef7f1,#eef7f1); border-color:var(--th-line-a1c5ac,#a1c5ac); color:var(--th-fg-285b36,#285b36); }
 .application-list { padding:8px 24px; }
 .application-row { padding:24px 0; border-bottom:1px solid var(--line); }
@@ -117,7 +117,7 @@
 /* Candidate details on the company review card. */
 .review-application-details summary { list-style:none; display:inline-flex; align-items:center; gap:10px; flex-wrap:wrap; cursor:pointer; padding:9px 16px 9px 14px; border:1px solid var(--th-line-c9d8e8,#c9d8e8); border-radius:6px; background:var(--brand-light); color:var(--brand-text,var(--brand)); transition:background .15s,border-color .15s; }
 .review-application-details summary::-webkit-details-marker { display:none; }
-.review-application-details summary::before { content:""; width:7px; height:7px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); transition:transform .15s; margin-right:2px; }
+.review-application-details summary::before { content:""; width:7px; height:7px; border-inline-end:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); transition:transform .15s; margin-inline-end:2px; }
 .review-application-details[open] summary::before { transform:rotate(45deg); margin-top:-4px; }
 .review-application-details summary:hover { background:var(--th-bg-dce8f3,#dce8f3); border-color:var(--th-line-a9c2dc,#a9c2dc); }
 .review-application-details summary:focus-visible { outline:3px solid rgba(15,76,129,.25); outline-offset:2px; }

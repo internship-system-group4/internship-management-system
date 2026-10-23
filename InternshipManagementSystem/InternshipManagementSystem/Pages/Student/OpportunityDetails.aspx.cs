@@ -35,7 +35,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (CurrentStudent == null)
             {
-                Notice = "Please sign in as a student.";
+                Notice = L.T("Student.OpportunityDetails.PleaseSignInAsAStudent");
                 return;
             }
 
@@ -45,7 +45,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (!ApplicationRepository.IsValidKey(opportunityId))
             {
                 Notice = "Invalid opportunity link. " +
-                         "Please select an opportunity from Explore Opportunities.";
+                         L.T("Student.OpportunityDetails.PleaseSelectAnOpportunityFromExplore");
                 return;
             }
 
@@ -59,7 +59,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 if (SelectedOpportunity == null)
                 {
-                    Notice = "This opportunity could not be found.";
+                    Notice = L.T("Student.OpportunityDetails.ThisOpportunityCouldNotBeFound");
                     return;
                 }
 
@@ -98,7 +98,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 CanApply = false;
 
                 Notice = "Unable to load opportunity details. " +
-                         "Please try again later.";
+                         L.T("Student.OpportunityDetails.PleaseTryAgainLater");
             }
         }
 
@@ -108,7 +108,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             {
                 if (SelectedOpportunity == null)
                 {
-                    return "Not specified";
+                    return L.T("Student.OpportunityDetails.NotSpecified");
                 }
 
                 return ValueOrDefault(
@@ -121,7 +121,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (string.IsNullOrWhiteSpace(value))
             {
-                return "Not specified";
+                return L.T("Student.OpportunityDetails.NotSpecified");
             }
 
             return value;
@@ -131,7 +131,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (timestamp <= 0)
             {
-                return "Not specified";
+                return L.T("Student.OpportunityDetails.NotSpecified");
             }
 
             return Time.DisplayDate(timestamp);

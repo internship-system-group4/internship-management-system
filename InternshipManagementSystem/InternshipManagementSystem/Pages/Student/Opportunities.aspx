@@ -64,7 +64,7 @@
 .ex-hero:after {
     content: "";
     position: absolute;
-    right: -60px;
+    inset-inline-end: -60px;
     top: -80px;
     width: 210px;
     height: 210px;
@@ -133,7 +133,7 @@
 }
 .ex-search-icon {
     position: absolute;
-    left: 14px;
+    inset-inline-start: 14px;
     top: 12px;
     color: var(--th-fg-8395a8,#8395a8);
     font-size: 16px;
@@ -339,20 +339,19 @@
 
     <div class="ex-heading">
         <div>
-            <h2>Explore Opportunities</h2>
-            <p>Find internship opportunities that match your academic program.</p>
+            <h2><%: L.T("Student.Opportunities.ExploreOpportunities") %></h2>
+            <p><%: L.T("Student.Opportunities.FindInternshipOpportunitiesThatMatchYour") %></p>
         </div>
         <div class="ex-count">
-            Available Opportunities
+            <%: L.T("Student.Opportunities.AvailableOpportunities") %>
             <span class="ex-count-number"><%: AvailableOpportunities.Count %></span>
         </div>
     </div>
 
     <div class="ex-hero">
-        <h3>Discover Your Next Internship</h3>
+        <h3><%: L.T("Student.Opportunities.DiscoverYourNextInternship") %></h3>
         <p>
-            Explore opportunities from partner companies, discover the skills
-            you can develop, and take the next step in your career.
+            <%: L.T("Student.Opportunities.ExploreOpportunitiesFromPartnerCompaniesDiscover") %>
         </p>
     </div>
 
@@ -362,52 +361,51 @@
 
     <div class="ex-filter-panel">
         <div class="ex-filter-top">
-            <strong>Search &amp; Academic Filters</strong>
-            <span>Results are filtered automatically for your program.</span>
+            <strong><%: L.T("Student.Opportunities.SearchAcademicFilters") %></strong>
+            <span><%: L.T("Student.Opportunities.ResultsAreFilteredAutomaticallyForYour") %></span>
         </div>
 
         <div class="ex-search-row">
             <div class="ex-search-box">
                 <span class="ex-search-icon">&#9906;</span>
                 <input id="exSearch" type="search"
-                       placeholder="Search by opportunity, company or location..."
+                       placeholder="<%: L.T("Student.Opportunities.SearchByOpportunityCompanyOrLocation") %>"
                        maxlength="100"
                        value="<%: SearchText %>" />
             </div>
             <button type="button" class="ex-button"
-                    onclick="searchOpportunities()">Search</button>
+                    onclick="searchOpportunities()"><%: L.T("Student.Opportunities.Search") %></button>
             <a class="ex-button ex-button-secondary"
                href="<%: ResolveUrl("~/Pages/Student/Opportunities.aspx") %>">
-                Clear
+                <%: L.T("Student.Opportunities.Clear") %>
             </a>
         </div>
 
         <div class="ex-filter-note">
-            <span class="ex-chip">College: <%: StudentCollege %></span>
-            <span class="ex-chip">Major: <%: StudentMajor %></span>
-            <span class="ex-chip">Status: Open</span>
+            <span class="ex-chip"><%: L.T("Student.Opportunities.College") %> <%: StudentCollege %></span>
+            <span class="ex-chip"><%: L.T("Student.Opportunities.Major") %> <%: StudentMajor %></span>
+            <span class="ex-chip"><%: L.T("Student.Opportunities.StatusOpen") %></span>
         </div>
     </div>
 
     <div class="ex-results-title">
-        <h3>Internships For You</h3>
-        <span><%: AvailableOpportunities.Count %> matching opportunities</span>
+        <h3><%: L.T("Student.Opportunities.InternshipsForYou") %></h3>
+        <span><%: AvailableOpportunities.Count %> <%: L.T("Student.Opportunities.MatchingOpportunities") %></span>
     </div>
 
     <% if (AvailableOpportunities.Count == 0) { %>
 
         <div class="ex-empty">
             <div class="ex-empty-symbol">&#128269;</div>
-            <h3>No Matching Opportunities</h3>
+            <h3><%: L.T("Student.Opportunities.NoMatchingOpportunities") %></h3>
             <p>
-                There are currently no available internships matching
-                your academic program and search.
+                <%: L.T("Student.Opportunities.ThereAreCurrentlyNoAvailableInternships") %>
                 <br />
-                Try another search or check back later.
+                <%: L.T("Student.Opportunities.TryAnotherSearchOrCheckBack") %>
             </p>
             <a class="ex-button ex-button-secondary"
                href="<%: ResolveUrl("~/Pages/Student/Opportunities.aspx") %>">
-                Reset Search
+                <%: L.T("Student.Opportunities.ResetSearch") %>
             </a>
         </div>
 
@@ -426,7 +424,7 @@
                                     : opportunity.CompanyName %>
                             </div>
                         </div>
-                        <span class="ex-status">Open</span>
+                        <span class="ex-status"><%: L.T("Student.Opportunities.Open") %></span>
                     </div>
 
                     <p class="ex-description">
@@ -435,7 +433,7 @@
 
                     <div class="ex-card-details">
                         <div>
-                            <span class="ex-detail-label">LOCATION</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.LOCATION") %></span>
                             <span class="ex-detail-value">
                                 <%: string.IsNullOrWhiteSpace(opportunity.Location)
                                     ? "Not specified"
@@ -443,20 +441,20 @@
                             </span>
                         </div>
                         <div>
-                            <span class="ex-detail-label">DURATION</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.DURATION") %></span>
                             <span class="ex-detail-value">
-                                <%: opportunity.DurationWeeks %> weeks
+                                <%: opportunity.DurationWeeks %> <%: L.T("Student.Opportunities.Weeks") %>
                             </span>
                         </div>
                         <div>
-                            <span class="ex-detail-label">AVAILABLE SEATS</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.AVAILABLESEATS") %></span>
                             <span class="ex-detail-value">
                                 <%: opportunity.RemainingSeats %>
-                                of <%: opportunity.TotalSeats %>
+                                <%: L.T("Student.Opportunities.Of") %> <%: opportunity.TotalSeats %>
                             </span>
                         </div>
                         <div>
-                            <span class="ex-detail-label">APPLICATION DEADLINE</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.APPLICATIONDEADLINE") %></span>
                             <span class="ex-detail-value">
                                 <%: DisplayDate(opportunity.ApplicationDeadline) %>
                             </span>
@@ -465,11 +463,11 @@
 
                     <div class="ex-card-bottom">
                         <span class="ex-available">
-                            &#10003; Matches your academic program
+                            <%: L.T("Student.Opportunities.MatchesYourAcademicProgram") %>
                         </span>
                         <a class="ex-button"
                            href="<%: DetailsUrl(opportunity.Id) %>">
-                            View Details &rarr;
+                            <%: L.T("Student.Opportunities.ViewDetails") %>
                         </a>
                     </div>
 

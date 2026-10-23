@@ -17,7 +17,7 @@
 .completion-checks small { display:block; color:var(--ui-muted); font-size:12px; margin-top:4px; }
 .completion-criteria { width:100%; border-collapse:collapse; font-size:13px; margin:12px 0; }
 .completion-criteria td { padding:8px 0; border-bottom:1px solid var(--line); }
-.completion-criteria td+td { text-align:right; padding-left:16px; white-space:nowrap; color:var(--th-fg-3e5770,#3e5770); }
+.completion-criteria td+td { text-align:end; padding-inline-start:16px; white-space:nowrap; color:var(--th-fg-3e5770,#3e5770); }
 .completion-result { display:flex; flex-wrap:wrap; align-items:flex-end; gap:16px 48px; padding:20px 24px; border-top:1px solid var(--line); background:var(--th-bg-f7f9fc,#f7f9fc); }
 .completion-result span { display:block; font-size:12px; color:var(--ui-muted); }
 .completion-result strong { font-size:28px; font-weight:600; font-variant-numeric:tabular-nums; }

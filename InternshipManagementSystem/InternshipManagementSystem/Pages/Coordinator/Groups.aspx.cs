@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -23,10 +23,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 else
                 {
                     BindChoices(null);
-                    ShowMessage("Invalid group link.", false);
+                    ShowMessage(L.T("Coordinator.Groups.InvalidGroupLink"), false);
                 }
             }
-            catch (FirebaseException) { ShowMessage("Could not load groups and account records. Please try again.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.Groups.CouldNotLoadGroupsAndAccount"), false); }
         }
 
         private void LoadGroup(string id)
@@ -35,7 +35,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (group == null)
             {
                 BindChoices(null);
-                ShowMessage("Group not found.", false);
+                ShowMessage(L.T("Coordinator.Groups.GroupNotFound"), false);
                 return;
             }
             ViewState["EditingGroupId"] = group.Id;
@@ -47,8 +47,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ddlSupervisor.SelectedValue = group.AcademicSupervisorId;
             foreach (ListItem item in cblStudents.Items)
                 item.Selected = group.StudentIds != null && group.StudentIds.Contains(item.Value);
-            lblEditorTitle.Text = "Edit group";
-            btnSave.Text = "Save changes";
+            lblEditorTitle.Text = L.T("Coordinator.Groups.EditGroup");
+            btnSave.Text = L.T("Coordinator.Groups.SaveChanges");
             btnCancel.Visible = true;
         }
 
@@ -60,12 +60,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (name == null || name.Length > 120 || (year != null && year.Length > 30)
                 || (semester != null && semester.Length > 40))
             {
-                ShowMessage("Enter a group name of at most 120 characters and check the academic fields.", false);
+                ShowMessage(L.T("Coordinator.Groups.EnterAGroupNameOfAt"), false);
                 return;
             }
             if (string.IsNullOrEmpty(ddlSupervisor.SelectedValue))
             {
-                ShowMessage("Choose an academic supervisor.", false);
+                ShowMessage(L.T("Coordinator.Groups.ChooseAnAcademicSupervisor"), false);
                 return;
             }
 
@@ -86,7 +86,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Context.ApplicationInstance.CompleteRequest();
             }
             catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
-            catch (FirebaseException) { ShowMessage("Could not save the group. Please try again.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.Groups.CouldNotSaveTheGroupPlease"), false); }
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
@@ -100,7 +100,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             List<Person> people = new UserRepository().GetAllPeople();
             List<StudentGroup> groups = new GroupRepository().GetAll();
             ddlSupervisor.Items.Clear();
-            ddlSupervisor.Items.Add(new ListItem("Select a supervisor", ""));
+            ddlSupervisor.Items.Add(new ListItem(L.T("Coordinator.Groups.SelectASupervisor"), ""));
             foreach (AcademicSupervisor supervisor in people.OfType<AcademicSupervisor>().OrderBy(p => p.FullName))
                 if (supervisor.IsActive) ddlSupervisor.Items.Add(new ListItem(supervisor.FullName + " (" + supervisor.Email + ")", supervisor.Id));
 

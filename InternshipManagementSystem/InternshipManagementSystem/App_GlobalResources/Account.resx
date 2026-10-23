@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AuthService.AnAccountWithThisEmailAlready" xml:space="preserve"><value>An account with this email already exists.</value></data>
+  <data name="AuthService.CouldNotChangeThePassword" xml:space="preserve"><value>Could not change the password.</value></data>
+  <data name="AuthService.CouldNotCreateTheAccount" xml:space="preserve"><value>Could not create the account.</value></data>
+  <data name="AuthService.CouldNotDeleteTheAccount" xml:space="preserve"><value>Could not delete the account.</value></data>
+  <data name="AuthService.CouldNotSendTheResetEmail" xml:space="preserve"><value>Could not send the reset email. Please try again later.</value></data>
+  <data name="AuthService.FirebaseIsNotConfiguredGetThe" xml:space="preserve"><value>Firebase is not configured. Get the latest Web.config from main (git merge origin/main), then stop and restart the project.</value></data>
+  <data name="AuthService.IncorrectEmailOrPassword" xml:space="preserve"><value>Incorrect email or password.</value></data>
+  <data name="AuthService.PleaseSignInAgain" xml:space="preserve"><value>Please sign in again.</value></data>
+  <data name="AuthService.PleaseSignInAgainBeforeChanging" xml:space="preserve"><value>Please sign in again before changing your password.</value></data>
+  <data name="AuthService.ThatEmailAddressIsNotValid" xml:space="preserve"><value>That email address is not valid.</value></data>
+  <data name="AuthService.ThePasswordMustBeAtLeast" xml:space="preserve"><value>The password must be at least 6 characters.</value></data>
+  <data name="AuthService.ThisAccountHasBeenDeactivated" xml:space="preserve"><value>This account has been deactivated.</value></data>
+  <data name="AuthService.TooManyAttemptsPleaseTryAgain" xml:space="preserve"><value>Too many attempts. Please try again later.</value></data>
+  <data name="ChangePassword.AtLeast6Characters" xml:space="preserve"><value>At least 6 characters.</value></data>
+  <data name="ChangePassword.ChangePassword" xml:space="preserve"><value>Change Password</value></data>
+  <data name="ChangePassword.ConfirmNewPassword" xml:space="preserve"><value>Confirm new password</value></data>
+  <data name="ChangePassword.CurrentPassword" xml:space="preserve"><value>Current password</value></data>
+  <data name="ChangePassword.NewPassword" xml:space="preserve"><value>New password</value></data>
+  <data name="ChangePassword.PleaseFillInAllFields" xml:space="preserve"><value>Please fill in all fields.</value></data>
+  <data name="ChangePassword.TheCurrentPasswordIsIncorrect" xml:space="preserve"><value>The current password is incorrect.</value></data>
+  <data name="ChangePassword.TheNewPasswordMustBeAt" xml:space="preserve"><value>The new password must be at least 6 characters.</value></data>
+  <data name="ChangePassword.TheNewPasswordMustBeDifferent" xml:space="preserve"><value>The new password must be different from the current password.</value></data>
+  <data name="ChangePassword.TheNewPasswordsDoNotMatch" xml:space="preserve"><value>The new passwords do not match.</value></data>
+  <data name="ChangePassword.YouAreUsingATemporaryPassword" xml:space="preserve"><value>You are using a temporary password. Please choose a new password to continue.</value></data>
+  <data name="ChangePassword.YourPasswordWasChangedButYour" xml:space="preserve"><value>Your password was changed, but your account could not be updated. Please try again using your new password as the current password.</value></data>
+  <data name="CompletionReport.ThisReportIsNotAvailable" xml:space="preserve"><value>This report is not available.</value></data>
+  <data name="ForgotPassword.BackOnTrack" xml:space="preserve"><value>back on track.</value></data>
+  <data name="ForgotPassword.BackToLogin" xml:space="preserve"><value>Back to Login</value></data>
+  <data name="ForgotPassword.CheckYourInboxAndSpamFolder" xml:space="preserve"><value>Check your inbox and spam folder after requesting a link.</value></data>
+  <data name="ForgotPassword.ContactTheCoordinationTeam" xml:space="preserve"><value>Contact the coordination team</value></data>
+  <data name="ForgotPassword.EmailAddress" xml:space="preserve"><value>Email address</value></data>
+  <data name="ForgotPassword.EnterYourAccountEmailToRequest" xml:space="preserve"><value>Enter your account email to request a reset link.</value></data>
+  <data name="ForgotPassword.EnterYourEmailAddress" xml:space="preserve"><value>Enter your email address.</value></data>
+  <data name="ForgotPassword.ForYourPrivacyTheResponseWill" xml:space="preserve"><value>For your privacy, the response will not confirm whether an account exists for an email address.</value></data>
+  <data name="ForgotPassword.ForgotYourPasswordRequestAReset" xml:space="preserve"><value>Forgot your password? Request a reset link using the email address associated with your internship account.</value></data>
+  <data name="ForgotPassword.IfAnAccountExistsForThis" xml:space="preserve"><value>If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.</value></data>
+  <data name="ForgotPassword.IfYouCannotAccessThatEmail" xml:space="preserve"><value>If you cannot access that email address, your university coordinator can help you with the next step.</value></data>
+  <data name="ForgotPassword.LetSGetYou" xml:space="preserve"><value>Let's get you</value></data>
+  <data name="ForgotPassword.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>Please enter a valid email address.</value></data>
+  <data name="ForgotPassword.PleaseEnterYourEmailAddress" xml:space="preserve"><value>Please enter your email address.</value></data>
+  <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>Reset your password</value></data>
+  <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>Send Reset Link</value></data>
+  <data name="Login.ContactYourCoordinator" xml:space="preserve"><value>Contact your coordinator</value></data>
+  <data name="Login.ContinueToYourPortal" xml:space="preserve"><value>Continue to your portal</value></data>
+  <data name="Login.EmailAddress" xml:space="preserve"><value>Email address</value></data>
+  <data name="Login.EnterYourEmailAddress" xml:space="preserve"><value>Enter your email address.</value></data>
+  <data name="Login.EnterYourPassword" xml:space="preserve"><value>Enter your password.</value></data>
+  <data name="Login.FirebaseIsNotConfiguredYetSee" xml:space="preserve"><value>Firebase is not configured yet. See docs/05-firebase-setup.md.</value></data>
+  <data name="Login.ForgotPassword" xml:space="preserve"><value>Forgot password?</value></data>
+  <data name="Login.GermanJordanianUniversity" xml:space="preserve"><value>German Jordanian University</value></data>
+  <data name="Login.GermanJordanianUniversityGate1" xml:space="preserve"><value>German Jordanian University · Gate 1</value></data>
+  <data name="Login.LogIn" xml:space="preserve"><value>Log in</value></data>
+  <data name="Login.NeedAnAccount" xml:space="preserve"><value>Need an account?</value></data>
+  <data name="Login.Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Login.PauseScene" xml:space="preserve"><value>Pause scene</value></data>
+  <data name="Login.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>Please enter a valid email address.</value></data>
+  <data name="Login.PleaseEnterYourEmailAndPassword" xml:space="preserve"><value>Please enter your email and password.</value></data>
+  <data name="Login.Show" xml:space="preserve"><value>Show</value></data>
+  <data name="Login.ShowPassword" xml:space="preserve"><value>Show password</value></data>
+  <data name="Login.TheSignInServiceIsNot" xml:space="preserve"><value>The sign-in service is not configured. Please contact the coordinator.</value></data>
+  <data name="Login.WeCouldNotLoadYourAccount" xml:space="preserve"><value>We could not load your account. Please try again later.</value></data>
+  <data name="Login.WeCouldNotVerifyYourAccount" xml:space="preserve"><value>We could not verify your account. Please log in again.</value></data>
+  <data name="Login.WeCouldNotVerifyYourAccount2" xml:space="preserve"><value>We could not verify your account access. Please try logging in again.</value></data>
+  <data name="Login.WeCouldNotVerifyYourAccount3" xml:space="preserve"><value>We could not verify your account access. Please contact the coordinator.</value></data>
+  <data name="Login.WelcomeBack" xml:space="preserve"><value>Welcome back.</value></data>
+  <data name="Login.WelcomeYourEntryIsVerified" xml:space="preserve"><value>Welcome. Your entry is verified.</value></data>
+  <data name="Login.YourAccountIsNotActivePlease" xml:space="preserve"><value>Your account is not active. Please contact the coordinator.</value></data>
+  <data name="Login.YourAccountStaysPrivate" xml:space="preserve"><value>Your account stays private.</value></data>
+  <data name="Login.YourNextStepStartsHereSign" xml:space="preserve"><value>Your next step starts here. Sign in to your internship portal.</value></data>
+  <data name="Login.YourSessionHasExpiredPleaseLog" xml:space="preserve"><value>Your session has expired. Please log in again.</value></data>
+  <data name="Notifications.AllNotificationsAreMarkedAsRead" xml:space="preserve"><value>All notifications are marked as read.</value></data>
+  <data name="Notifications.CouldNotUpdateNotificationsPleaseTry" xml:space="preserve"><value>Could not update notifications. Please try again.</value></data>
+  <data name="Notifications.MarkAllAsRead" xml:space="preserve"><value>Mark all as read</value></data>
+  <data name="Notifications.Notifications" xml:space="preserve"><value>Notifications</value></data>
+  <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>Notifications are unavailable right now.</value></data>
+  <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>You're all caught up. New tasks, decisions and updates will appear here.</value></data>
+</root>

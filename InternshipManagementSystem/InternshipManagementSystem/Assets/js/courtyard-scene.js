@@ -46,7 +46,7 @@ export function mountCourtyard(viewport, toggle, status, fallback) {
         }
         cancelAnimationFrame(frame); frame = 0; last = 0;
         host.dataset.sceneState = disposed ? 'disposed' : (paused ? 'paused' : 'ready');
-        toggle.textContent = paused ? 'Resume wheel motion' : 'Pause wheel motion';
+        toggle.textContent = (paused ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('ResumeWheelMotion') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PauseWheelMotion'));
         toggle.setAttribute('aria-pressed', String(paused));
         if (running()) frame = requestAnimationFrame(tick);
     }

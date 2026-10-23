@@ -283,7 +283,7 @@ export async function createCampusScene(host, options) {
  function visibility() { if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTime = 0; } else start(); }
  function snap() { applyPose(1); settling = 0; draw(); }
  function setReducedMotion(value) { reduced = value; pause.hidden = value; if (value) snap(); start(); }
- function togglePause() { paused = !paused; pause.textContent = paused ? 'Resume scene' : 'Pause scene'; pause.setAttribute('aria-pressed',String(paused)); start(); }
+ function togglePause() { paused = !paused; pause.textContent = (paused ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('ResumeScene') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PauseScene')); pause.setAttribute('aria-pressed',String(paused)); start(); }
  function lost(event) { event.preventDefault(); host.removeAttribute('data-scene-ready'); cancelAnimationFrame(raf); raf = 0; pause.hidden = true; resolveEntry?.(); }
  const observer = new ResizeObserver(resize); observer.observe(container);
  document.addEventListener('visibilitychange',visibility); pause.addEventListener('click',togglePause); renderer.domElement.addEventListener('webglcontextlost',lost);

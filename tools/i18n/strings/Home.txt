@@ -1,0 +1,255 @@
+
+Default.AerialPhotographOfGermanJordanianUniversity
+en: Aerial photograph of German Jordanian University's stone buildings and courtyards
+
+Default.CampusLandmarks
+en: Campus landmarks
+
+Default.AboutTheSystem
+en: About the system
+
+Default.Colleges
+en: Colleges
+
+Default.HowItWorks
+en: How it works
+ar: كيف يعمل النظام
+
+Default.Opportunities
+en: Opportunities
+ar: فرص التدريب
+
+Default.CampusStoryChapters
+en: Campus story chapters
+
+Default.Chapter1TheCampus
+en: Chapter 1: The campus
+
+Default.Campus
+en: Campus
+
+Default.Chapter2TheConnection
+en: Chapter 2: The connection
+
+Default.Connect
+en: Connect
+
+Default.Chapter3YourField
+en: Chapter 3: Your field
+
+Default.Study
+en: Study
+
+Default.Chapter4YourJourney
+en: Chapter 4: Your journey
+
+Default.Journey
+en: Journey
+
+Default.Chapter5WhatComesNext
+en: Chapter 5: What comes next
+
+Default.Explore
+en: Explore
+
+Default.GermanJordanianUniversityCampusPhotograph
+en: German Jordanian University · Campus photograph
+
+Default.PauseCampusMotion
+en: Pause campus motion
+
+Default.CampusToday
+en: Campus today.
+
+Default.CareerTomorrow
+en: Career tomorrow.
+
+Default.YourInternshipJourneyAtGermanJordanian
+en: Your internship journey at German Jordanian University. Connect your studies with practical experience, from the first application to final review.
+
+Default.ExploreInternships
+en: Explore internships →
+
+Default.OnThisPage
+en: On this page
+
+Default.ProcessVideo
+en: Process video
+
+Default.ExploreYourCampus
+en: Explore your campus
+
+Default.AShared
+en: A shared
+
+Default.StartingPoint
+en: starting point.
+
+Default.UIMSConnectsStudentsCompaniesAndUniversity
+en: UIMS connects students, companies and university supervisors. Manage applications, follow training tasks and stay connected through every stage of your internship.
+
+Default.AboutTheInternshipSystem
+en: About the internship system →
+
+Default.YourField
+en: Your field.
+
+Default.YourFuture
+en: Your future.
+
+Default.ExploreTheCollegeProgramsAndSpecializations
+en: Explore the college, programs and specializations currently supported by the internship portal.
+
+Default.ProgramsSpecializations
+en: Programs & specializations
+
+Default.Close
+en: Close
+ar: إغلاق
+
+Default.Specializations
+en: Specializations
+
+Default.LearnApply
+en: Learn. Apply.
+
+Default.Grow
+en: Grow.
+
+Default.UnderstandEachStageBeforeYouBegin
+en: Understand each stage before you begin. Your company and academic supervisors guide your progress along the way.
+
+Default.ExploreOpportunities
+en: Explore opportunities
+
+Default.FindInternshipsThatMatchYourCollege
+en: Find internships that match your college and major.
+
+Default.ApplyConfirm
+en: Apply & confirm
+
+Default.ApplyFollowTheCompanyDecisionAnd
+en: Apply, follow the company decision and confirm one accepted offer.
+
+Default.TrainGrow
+en: Train & grow
+
+Default.CompleteTasksSubmitWorkAndLearn
+en: Complete tasks, submit work and learn from your supervisors' feedback.
+
+Default.CompleteYourReview
+en: Complete your review
+
+Default.TrackApprovedHoursAndEvaluationsThrough
+en: Track approved hours and evaluations through the final university review.
+
+Default.WatchTheProcessGuide
+en: Watch the process guide ↓
+
+Default.MakeYour
+en: Make your
+
+Default.NextMove
+en: next move.
+
+Default.DiscoverPublishedInternshipSummariesLogIn
+en: Discover published internship summaries. Log in with your university account to view full details and apply.
+
+Default.ExploreOpportunities2
+en: Explore opportunities ↓
+
+Default.LogInToYourPortal
+en: Log in to your portal
+
+Default.ACampus
+en: A campus
+
+Default.YouKnow
+en: you know.
+
+Default.TheEntranceTheCourtyardAndThe
+en: The entrance, the courtyard and the spaces between. Explore the German Jordanian University landmarks that shape this experience.
+
+Default.TimberCourtyardWaterwheelBesideItsLimestone
+en: Timber courtyard waterwheel beside its limestone support and blue water basin at GJU
+
+Default.TheCourtyardWaterwheel
+en: The courtyard waterwheel
+
+Default.GJUGate1WithItsOriginal
+en: GJU Gate 1 with its original bilingual university sign and metal entrance gates
+
+Default.Gate1GermanJordanianUniversity
+en: Gate 1, German Jordanian University
+
+Default.GlazedUniversityConnectorFramedByLimestone
+en: Glazed university connector framed by limestone buildings, steps and a courtyard tree
+
+Default.StoneGlassAndSharedSpaces
+en: Stone, glass and shared spaces
+
+Default.SeeThePath
+en: See the path
+
+Default.Ahead
+en: ahead.
+
+Default.UnderstandTheInternshipProcessUseThis
+en: Understand the internship process. Use this guide alongside the steps above, and ask your coordinator about university-specific requirements.
+
+Default.ExploreTheFourSteps
+en: Explore the four steps ↑
+
+Default.UniversityInternshipProcessVideo
+en: University internship process video
+
+Default.YourBrowserDoesNotSupportVideo
+en: Your browser does not support video.
+
+Default.OpenTheVideo
+en: Open the video
+
+Default.DevelopmentNoticeCaptionsForThisVideo
+en: Development notice: captions for this video have not been provided.
+
+Default.TheRealGermanJordanianUniversityCourtyard
+en: The real German Jordanian University courtyard, with its timber waterwheel, limestone buildings and glazed connector
+
+Default.OfficialVideoComingHere
+en: Official video coming here.
+
+Default.DevelopmentPlaceholderTheUniversitySInternship
+en: Development placeholder: the university's internship process video and captions have not been provided yet.
+
+Default.ReadTheInternshipSteps
+en: Read the internship steps →
+
+Default.TheNextChapter
+en: The next chapter
+
+Default.IsYours
+en: is yours.
+
+Default.ExperienceInYourFieldStartsWith
+en: Experience in your field starts with a first look. Browse published summaries, then log in to view full details and apply through your student portal.
+
+Default.AvailableInternshipPreviews
+en: Available internship previews
+
+Default.NoPublicInternshipSummariesArePublished
+en: No public internship summaries are published right now. Check back later or log in to view your student portal.
+
+Default.LogInToViewDetails
+en: Log in to view details
+
+Default.OnlyPublishedSummariesArePublicFull
+en: Only published summaries are public. Full details and applications require an authenticated student account.
+
+Default.ReadyForYourNextChapter
+en: Ready for your next chapter?
+
+Default.ContinueWithYourUniversityInternshipAccount
+en: Continue with your university internship account.
+
+Default.LogInToGetStarted
+en: Log in to get started

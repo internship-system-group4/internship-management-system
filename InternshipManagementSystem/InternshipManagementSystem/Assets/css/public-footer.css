@@ -2,7 +2,7 @@
 .uims-public-footer { --footer-bg:var(--brand-dark); --footer-text:#fff; --footer-muted:rgba(255,255,255,.8); --footer-focus:#f2c14e; margin-top:auto; color:var(--footer-text); }
 /* Decorative waves: in document flow above the footer body, never over its content. */
 .uims-public-footer-waves { position:relative; height:clamp(84px,10vw,150px); overflow:hidden; pointer-events:none; margin-bottom:-1px; }
-.uims-public-footer-wave { position:absolute; left:0; bottom:0; width:200%; height:100%; display:block; animation:uims-footer-wave 32s linear infinite; will-change:transform; }
+.uims-public-footer-wave { position:absolute; inset-inline-start:0; bottom:0; width:200%; height:100%; display:block; animation:uims-footer-wave 32s linear infinite; will-change:transform; }
 .uims-public-footer-wave.is-back { fill:rgba(38,79,115,.2); animation-duration:46s; animation-direction:reverse; animation-delay:-17s; }
 .uims-public-footer-wave.is-middle { fill:rgba(0,124,186,.24); animation-duration:34s; animation-delay:-9s; }
 .uims-public-footer-wave.is-front { fill:var(--footer-bg); animation-duration:24s; }
@@ -44,7 +44,7 @@
 .uims-public .uims-public-footer .uims-public-footer-campus-actions a { display:inline-flex; align-items:center; gap:6px; padding-block:6px; font-size:13px; }
 .uims-public-footer-campus-actions svg { width:16px; height:16px; }
 /* Replay / Explore sit on the map, bottom-left, clear of the attribution (i) and the zoom controls. */
-.uims-public .uims-public-footer .uims-public-footer-campus-button { position:absolute; z-index:2; left:8px; bottom:8px; min-height:28px; padding:0 10px; border:1px solid rgba(255,255,255,.35); border-radius:6px; background:rgba(19,61,97,.88); color:#fff; font:600 12px/1.2 "Segoe UI",system-ui,sans-serif; cursor:pointer; box-shadow:0 4px 12px -6px rgba(0,0,0,.5); }
+.uims-public .uims-public-footer .uims-public-footer-campus-button { position:absolute; z-index:2; inset-inline-start:8px; bottom:8px; min-height:28px; padding:0 10px; border:1px solid rgba(255,255,255,.35); border-radius:6px; background:rgba(19,61,97,.88); color:#fff; font:600 12px/1.2 "Segoe UI",system-ui,sans-serif; cursor:pointer; box-shadow:0 4px 12px -6px rgba(0,0,0,.5); }
 .uims-public .uims-public-footer .uims-public-footer-campus-button:hover { filter:brightness(1.12); }
 .uims-public-footer-campus-button[hidden] { display:none !important; }
 /* Campus marker (a MapLibre marker element): a pin with the university's name, revealed when the flight ends. */

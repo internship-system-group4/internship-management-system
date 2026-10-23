@@ -298,7 +298,7 @@ async function loadFigures(compact) {
 export async function createLectureHall({ container, members, logo, reducedMotion, onProgress, onHover, onSelect, onLost, onCamera, onLabels }) {
  const progress = async (value, label) => { onProgress?.(value, label); await new Promise(requestAnimationFrame); };
  const compact = Math.min(innerWidth, innerHeight) < 700 || matchMedia('(pointer: coarse)').matches;
- await progress(.08, 'Preparing the lecture hall');
+ await progress(.08, window.uimsT('HallPreparing'));
  const probe = document.createElement('canvas');
  if (!probe.getContext('webgl2') && !probe.getContext('webgl')) throw new Error('WebGL is not available');
  const renderer = new THREE.WebGLRenderer({ antialias:!compact, powerPreference:'high-performance' });
@@ -321,7 +321,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  const fill = new THREE.DirectionalLight('#e9eefb', .55); fill.position.set(5,9,16); scene.add(fill);
  const accent = new THREE.SpotLight('#ffe9cc', 0, 7, .36, .85, 1.4); scene.add(accent, accent.target);
 
- await progress(.22, 'Building the room');
+ await progress(.22, window.uimsT('HallRoom'));
  const layout = hallLayout();
  const M = {
   carpet: new THREE.MeshStandardMaterial({ color:'#7a8089', map:tex(carpetTexture()), roughness:1 }),
@@ -390,7 +390,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  scene.add(slats);
  for (const z of [-2.6,-6.6,-10.6]) { const strip = new THREE.Mesh(new THREE.BoxGeometry(24,.03,.16), M.glow); strip.position.set(0, CEILING-.1, z); scene.add(strip); }
 
- await progress(.4, 'Setting out the tiers');
+ await progress(.4, window.uimsT('HallTiers'));
  // Tiers: full-height steps under the seating, half steps in the aisles, metal nosings and step lights.
  const tierParts = [], stepLights = [];
  for (const block of layout.blocks) {
@@ -425,7 +425,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  for (const x of [1.2,3.6]) box([.05,.72,.7], [x,.36,-2.6], M.shell);
  box([.34,.015,.24], [2.0,.77,-2.55], M.shell); box([.34,.22,.01], [2.0,.88,-2.68], M.shell, [-.3,0,0]);
 
- await progress(.58, 'Placing the seats');
+ await progress(.58, window.uimsT('HallSeats'));
  // Seats: rounded upholstered cushion and back on a dark shell, standards between seats, contact shadows.
  const seatMap = new Map(layout.seats.map(seat => [seat.id, seat]));
  const teamSeats = assignSeats(members, layout.seats, seatMap);
@@ -452,7 +452,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  layout.seats.forEach((seat, i) => blobs.setMatrixAt(i, seatFrame(seat).multiply(local([0,.006,.05],[-Math.PI/2,0,0]))));
  blobs.renderOrder = 1; scene.add(blobs);
 
- await progress(.74, 'Seating the students');
+ await progress(.74, window.uimsT('HallStudents'));
  // Students: seated Rocketbox figures (MIT, baked by tools/rocketbox), one instanced batch per figure.
  // Team members get a figure from the roster's Character and their own highlighted meshes; they are
  // generic figures, not likenesses, and identity lives in the profile photo. If the models cannot load,
@@ -492,7 +492,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
   scene.add(mesh);
  }
 
- await progress(.88, 'Marking the team seats');
+ await progress(.88, window.uimsT('HallTeam'));
  // Team cues, all depth-tested so nothing shows through people or walls: the figure's rim highlight,
  // a soft light pool on the desk and behind the seat, and the backlit strip on the seat back.
  const poolMap = tex(poolTexture()), people = new Map(), hitboxes = [], occluders = [];
@@ -659,7 +659,7 @@ export async function createLectureHall({ container, members, logo, reducedMotio
  canvas.addEventListener('webglcontextlost', lost);
 
  resize();
- await progress(.96, 'Lighting the hall');
+ await progress(.96, window.uimsT('HallLights'));
  renderer.compile(scene, camera); renderer.render(scene, camera);
  await progress(1);
 

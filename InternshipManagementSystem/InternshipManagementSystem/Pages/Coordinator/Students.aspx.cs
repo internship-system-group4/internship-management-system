@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
@@ -52,7 +52,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Student student = new UserRepository().GetStudent(id);
                 if (student == null)
                 {
-                    ShowError("Student record not found.");
+                    ShowError(L.T("Coordinator.Students.StudentRecordNotFound"));
                     return;
                 }
                 lblStudentName.Text = InternshipManagementSystem.Common.Validators.Safe(student.FullName);
@@ -70,7 +70,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
             catch (FirebaseException)
             {
-                ShowError("Could not load this student. Please try again.");
+                ShowError(L.T("Coordinator.Students.CouldNotLoadThisStudentPlease"));
             }
         }
 
@@ -92,7 +92,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
                 rptStudents.DataSource = students;
                 rptStudents.DataBind();
-                lblNoStudents.Text = search.Length == 0 ? "No students found. Add a student to get started." : "No students match your search.";
+                lblNoStudents.Text = search.Length == 0 ? L.T("Coordinator.Students.NoStudentsFoundAddAStudent") : L.T("Coordinator.Students.NoStudentsMatchYourSearch");
                 lblNoStudents.Visible = students.Count == 0;
             }
             catch (FirebaseException)
@@ -100,7 +100,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 rptStudents.DataSource = new List<Student>();
                 rptStudents.DataBind();
                 lblNoStudents.Visible = false;
-                ShowError("Could not load student records. Please try again.");
+                ShowError(L.T("Coordinator.Students.CouldNotLoadStudentRecordsPlease"));
             }
         }
 

@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
@@ -29,40 +29,40 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
             if (name == null || email.Length == 0 || department == null)
             {
-                ShowCreateMessage("Enter a name, login email, and department.", false);
+                ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.EnterANameLoginEmailAnd"), false);
                 return;
             }
             if (name.Length > 120 || email.Length > 254 || department.Length > 120
                 || (phone != null && phone.Length > 40) || (rank != null && rank.Length > 80))
             {
-                ShowCreateMessage("One or more fields are too long.", false);
+                ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.OneOrMoreFieldsAreToo"), false);
                 return;
             }
             if (!InternshipManagementSystem.Common.Validators.IsEmail(email))
             {
-                ShowCreateMessage("Enter a valid email address.", false);
+                ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.EnterAValidEmailAddress"), false);
                 return;
             }
             if (!InternshipManagementSystem.Common.Validators.IsStrongEnoughPassword(txtPassword.Text))
             {
-                ShowCreateMessage("The temporary password must be at least 6 characters.", false);
+                ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.TheTemporaryPasswordMustBeAt"), false);
                 return;
             }
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
-                ShowCreateMessage("The passwords do not match.", false);
+                ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.ThePasswordsDoNotMatch"), false);
                 return;
             }
             if (!FirebaseContext.IsConfigured)
             {
-                ShowCreateMessage("Firebase is not configured. Ask the project administrator to check the local settings.", false);
+                ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.FirebaseIsNotConfiguredAskThe"), false);
                 return;
             }
 
             AuthResult account = AuthService.CreateAccount(email, txtPassword.Text);
             if (!account.Success || string.IsNullOrEmpty(account.Uid) || string.IsNullOrEmpty(account.IdToken))
             {
-                ShowCreateMessage(account.ErrorMessage ?? "Could not create the account.", false);
+                ShowCreateMessage(account.ErrorMessage ?? L.T("Coordinator.AcademicSupervisors.CouldNotCreateTheAccount"), false);
                 return;
             }
 
@@ -89,16 +89,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 if (!rollback.Success)
                 {
                     System.Diagnostics.Trace.TraceError("Academic supervisor Auth rollback failed for UID {0}: {1}", account.Uid, rollback.ErrorCode);
-                    ShowCreateMessage("The account was created but its profile could not be saved. Contact the administrator before retrying.", false);
+                    ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.TheAccountWasCreatedButIts"), false);
                 }
                 else
                 {
-                    ShowCreateMessage("The supervisor could not be saved. Please try again.", false);
+                    ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.TheSupervisorCouldNotBeSaved"), false);
                 }
                 return;
             }
 
-            ShowCreateMessage("Academic supervisor account created. Share the login credentials privately.", true);
+            ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.AcademicSupervisorAccountCreatedShareThe"), true);
             txtFullName.Text = txtEmail.Text = txtPhone.Text = txtDepartment.Text = txtAcademicRank.Text = "";
             txtPassword.Text = txtConfirmPassword.Text = "";
             BindSupervisors();
@@ -150,7 +150,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 AcademicSupervisor supervisor = new UserRepository().GetAcademicSupervisor(button.CommandArgument);
                 if (supervisor == null)
                 {
-                    ShowListMessage("Supervisor record not found.");
+                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
                     return;
                 }
                 lblRecordName.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.FullName);
@@ -164,7 +164,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
             catch (FirebaseException)
             {
-                ShowListMessage("Could not load this supervisor. Please try again.");
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadThisSupervisorPlease"));
             }
         }
 
@@ -179,14 +179,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 AcademicSupervisor supervisor = new UserRepository().GetAcademicSupervisor(button.CommandArgument);
                 if (supervisor == null)
                 {
-                    ShowManageMessage("Supervisor record not found.");
+                    ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
                     return;
                 }
                 ShowDetails(supervisor);
             }
             catch (FirebaseException)
             {
-                ShowManageMessage("Could not load this supervisor. Please try again.");
+                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadThisSupervisorPlease"));
             }
         }
 
@@ -197,7 +197,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             pnlDetails.Visible = IsValidSupervisorId(id);
             if (!pnlDetails.Visible)
             {
-                ShowManageMessage("Select a supervisor before saving changes.");
+                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SelectASupervisorBeforeSavingChanges"));
                 return;
             }
 
@@ -207,13 +207,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             string rank = InternshipManagementSystem.Common.Validators.Clean(txtEditAcademicRank.Text);
             if (name == null || department == null)
             {
-                ShowDetailsMessage("Enter a name and department.", false);
+                ShowDetailsMessage(L.T("Coordinator.AcademicSupervisors.EnterANameAndDepartment"), false);
                 return;
             }
             if (name.Length > 120 || department.Length > 120
                 || (phone != null && phone.Length > 40) || (rank != null && rank.Length > 80))
             {
-                ShowDetailsMessage("One or more fields are too long.", false);
+                ShowDetailsMessage(L.T("Coordinator.AcademicSupervisors.OneOrMoreFieldsAreToo"), false);
                 return;
             }
 
@@ -226,7 +226,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     pnlDetails.Visible = false;
                     ViewState["EditingSupervisorId"] = null;
                     BindSupervisors();
-                    ShowManageMessage("Supervisor record not found.");
+                    ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
                     return;
                 }
 
@@ -245,11 +245,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 supervisor.AcademicRank = rank;
                 ShowDetails(supervisor);
                 BindSupervisors();
-                ShowDetailsMessage("Supervisor information saved.", true);
+                ShowDetailsMessage(L.T("Coordinator.AcademicSupervisors.SupervisorInformationSaved"), true);
             }
             catch (FirebaseException)
             {
-                ShowDetailsMessage("Could not save supervisor information. Please try again.", false);
+                ShowDetailsMessage(L.T("Coordinator.AcademicSupervisors.CouldNotSaveSupervisorInformationPlease"), false);
             }
         }
 
@@ -260,7 +260,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (!IsValidSupervisorId(id))
             {
                 pnlDetails.Visible = false;
-                ShowManageMessage("Select a supervisor before changing access.");
+                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SelectASupervisorBeforeChangingAccess"));
                 return;
             }
             try
@@ -272,7 +272,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     pnlDetails.Visible = false;
                     ViewState["EditingSupervisorId"] = null;
                     BindSupervisors();
-                    ShowManageMessage("Supervisor record not found.");
+                    ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
                     return;
                 }
                 bool activate = !supervisor.IsActive;
@@ -280,12 +280,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 supervisor.IsActive = activate;
                 ShowDetails(supervisor);
                 BindSupervisors();
-                ShowDetailsMessage(activate ? "Supervisor access restored." : "Supervisor access removed. Assigned groups and history are retained.", true);
+                ShowDetailsMessage(activate ? L.T("Coordinator.AcademicSupervisors.SupervisorAccessRestored") : L.T("Coordinator.AcademicSupervisors.SupervisorAccessRemovedAssignedGroupsAnd"), true);
             }
             catch (FirebaseException)
             {
                 pnlDetails.Visible = true;
-                ShowDetailsMessage("Could not change supervisor access. Please try again.", false);
+                ShowDetailsMessage(L.T("Coordinator.AcademicSupervisors.CouldNotChangeSupervisorAccessPlease"), false);
             }
         }
 
@@ -310,9 +310,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 rptSupervisors.DataBind();
                 rptManageSupervisors.DataSource = manageRecords;
                 rptManageSupervisors.DataBind();
-                lblNoSupervisors.Text = search.Length == 0 ? "No academic supervisors found." : "No supervisors match your search.";
+                lblNoSupervisors.Text = search.Length == 0 ? L.T("Coordinator.AcademicSupervisors.NoAcademicSupervisorsFound") : L.T("Coordinator.AcademicSupervisors.NoSupervisorsMatchYourSearch");
                 lblNoSupervisors.Visible = records.Count == 0;
-                lblNoManageSupervisors.Text = manageSearch.Length == 0 ? "No academic supervisors found." : "No supervisors match your search.";
+                lblNoManageSupervisors.Text = manageSearch.Length == 0 ? L.T("Coordinator.AcademicSupervisors.NoAcademicSupervisorsFound") : L.T("Coordinator.AcademicSupervisors.NoSupervisorsMatchYourSearch");
                 lblNoManageSupervisors.Visible = manageRecords.Count == 0;
             }
             catch (FirebaseException)
@@ -323,8 +323,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 rptManageSupervisors.DataBind();
                 lblNoSupervisors.Visible = false;
                 lblNoManageSupervisors.Visible = false;
-                ShowListMessage("Could not load supervisors. Please try again.");
-                ShowManageMessage("Could not load supervisors. Please try again.");
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry"));
+                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry"));
             }
         }
 
@@ -358,14 +358,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtEditPhone.Text = supervisor.PhoneNumber;
             txtEditDepartment.Text = supervisor.Department;
             txtEditAcademicRank.Text = supervisor.AcademicRank;
-            btnToggleAccess.Text = supervisor.IsActive ? "Remove access" : "Restore access";
+            btnToggleAccess.Text = supervisor.IsActive ? L.T("Coordinator.AcademicSupervisors.RemoveAccess") : L.T("Coordinator.AcademicSupervisors.RestoreAccess");
             btnToggleAccess.CssClass = supervisor.IsActive ? "btn btn-outline-danger" : "btn btn-outline-success";
             btnToggleAccess.OnClientClick = supervisor.IsActive
                 ? "return confirm('Remove this supervisor’s access? Assigned groups and history will be retained.');"
                 : "";
             lblAccessDescription.Text = supervisor.IsActive
-                ? "Removing access blocks sign in. Assigned groups stay linked and may need reassignment."
-                : "This supervisor cannot sign in. Restore access when needed.";
+                ? L.T("Coordinator.AcademicSupervisors.RemovingAccessBlocksSignInAssigned")
+                : L.T("Coordinator.AcademicSupervisors.ThisSupervisorCannotSignInRestore");
         }
 
         private void ShowCreateMessage(string message, bool success)

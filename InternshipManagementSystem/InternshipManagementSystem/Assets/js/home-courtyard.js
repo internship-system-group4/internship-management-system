@@ -16,7 +16,7 @@
         if (started || disposed) return;
         started = true;
         try {
-            const module = await import('./courtyard-scene.js?v=20261021-1');
+            const module = await import('./courtyard-scene.js?v=20261023-i18n');
             if (disposed) return;
             instance = module.mountCourtyard(viewport, button, status, fallback);
             host.courtyardScene = instance;

@@ -48,7 +48,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not load trainees: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadTrainees", ex.Message), false);
             }
         }
 
@@ -74,14 +74,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         litStudentInitials.Text = GetInitials(student.FullName);
                     }
                     litInternshipTitle.Text = placement.OpportunityTitle;
-                    litStatusBadge.Text = "<span class='status-badge-warning'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>In Progress</span>";
+                    litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeWarningI");
 
                     ClearFormFields();
                 }
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not load trainee details: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadTraineeDetails", ex.Message), false);
             }
         }
 
@@ -107,7 +107,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not load drafts: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadDrafts", ex.Message), false);
             }
         }
 
@@ -118,7 +118,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 string placementId = e.CommandArgument.ToString();
                 ddlTrainees.SelectedValue = placementId;
                 DdlTrainees_SelectedIndexChanged(null, null);
-                ShowPopupMessage("Draft Loaded", "Draft data ready. Please open the forms to continue.", true);
+                ShowPopupMessage(L.T("Company.FinalEvaluation.DraftLoaded"), L.T("Company.FinalEvaluation.DraftDataReadyPleaseOpenThe"), true);
             }
         }
 
@@ -127,7 +127,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string placementId = ddlTrainees.SelectedValue;
             if (string.IsNullOrEmpty(placementId))
             {
-                ShowPopupMessage("Select Trainee", "Please select a trainee from the dropdown first.", false);
+                ShowPopupMessage(L.T("Company.FinalEvaluation.SelectTrainee"), L.T("Company.FinalEvaluation.PleaseSelectATraineeFromThe"), false);
                 return;
             }
 
@@ -148,11 +148,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 };
 
                 _placementRepo.Update(placementId, updates);
-                ShowPopupMessage("Draft Saved", "Your evaluation has been safely saved to My Drafts.", true);
+                ShowPopupMessage(L.T("Company.FinalEvaluation.DraftSaved"), L.T("Company.FinalEvaluation.YourEvaluationHasBeenSafelySaved"), true);
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not save draft: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotSaveDraft", ex.Message), false);
             }
         }
 
@@ -161,7 +161,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string placementId = ddlTrainees.SelectedValue;
             if (string.IsNullOrEmpty(placementId))
             {
-                ShowPopupMessage("Select Trainee", "Please select a trainee to evaluate.", false);
+                ShowPopupMessage(L.T("Company.FinalEvaluation.SelectTrainee"), L.T("Company.FinalEvaluation.PleaseSelectATraineeToEvaluate"), false);
                 return;
             }
 
@@ -175,13 +175,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 // تطبيق معايير GJU: (40, 25, 20, 15)
                 if (tech > 40 || work > 25 || prof > 20 || comm > 15)
                 {
-                    ShowPopupMessage("Invalid Scores", "Please check your numbers. Scores cannot exceed the maximum GJU criteria values.", false);
+                    ShowPopupMessage(L.T("Company.FinalEvaluation.InvalidScores"), L.T("Company.FinalEvaluation.PleaseCheckYourNumbersScoresCannot"), false);
                     return;
                 }
 
                 if (string.IsNullOrEmpty(ddlPerformance.SelectedValue) || string.IsNullOrEmpty(ddlRecommendation.SelectedValue) || string.IsNullOrEmpty(txtActualHours.Text))
                 {
-                    ShowPopupMessage("Missing Fields", "Please complete actual hours, feedback, and recommendation fields.", false);
+                    ShowPopupMessage(L.T("Company.FinalEvaluation.MissingFields"), L.T("Company.FinalEvaluation.PleaseCompleteActualHoursFeedbackAnd"), false);
                     return;
                 }
 
@@ -202,15 +202,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 _placementRepo.Update(placementId, updates);
 
-                litStatusBadge.Text = "<span class='status-badge-green'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>Evaluated</span>";
-                ShowPopupMessage("Certificate Issued!", "Success! Evaluation submitted to the GJU Academic Supervisor. You may now print the certificate.", true);
+                litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeGreenI");
+                ShowPopupMessage(L.T("Company.FinalEvaluation.CertificateIssued"), L.T("Company.FinalEvaluation.SuccessEvaluationSubmittedToTheGJU"), true);
 
                 ClearFormFields();
                 LoadTraineesDropdown();
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Could not send evaluation: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotSendEvaluation", ex.Message), false);
             }
         }
 
@@ -220,20 +220,20 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             litModalMessage.Text = message;
 
             if (isSuccess)
-                litModalIcon.Text = "<i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i>";
+                litModalIcon.Text = L.T("Company.FinalEvaluation.IClassBiBiCheckCircle");
             else
-                litModalIcon.Text = "<i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>";
+                litModalIcon.Text = L.T("Company.FinalEvaluation.IClassBiBiExclamationCircle");
 
             ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", "var myModal = new bootstrap.Modal(document.getElementById('serverMessageModal')); myModal.show();", true);
         }
 
         private void ClearTraineeCard()
         {
-            litStudentName.Text = "Select a trainee";
+            litStudentName.Text = L.T("Company.FinalEvaluation.SelectATraineePlaceholder");
             litStudentMajor.Text = "-";
             litStudentInitials.Text = "--";
             litInternshipTitle.Text = "-";
-            litStatusBadge.Text = "<span class='badge bg-secondary'>Pending</span>";
+            litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassBadgeBgSecondaryPending");
         }
 
         private void ClearFormFields()

@@ -11,6 +11,7 @@
 //  like a type". Keep the suffix.
 // =============================================================================
 using System;
+using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Web.UI.WebControls;
@@ -33,7 +34,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             }
             catch (FirebaseException)
             {
-                ShowMessage("Could not load meetings. Please try again.", false);
+                ShowMessage(L.T("Meetings.Schedule.CouldNotLoadMeetingsPleaseTry"), false);
             }
         }
 
@@ -54,7 +55,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         {
             ddlPlacement.Items.Clear();
             ddlPlacement.Items.Add(
-                new ListItem("Select an internship", ""));
+                new ListItem(L.T("Meetings.Schedule.SelectAnInternship"), ""));
 
             foreach (Placement placement in new PlacementRepository().GetAll())
             {
@@ -80,7 +81,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             }
             catch (FirebaseException)
             {
-                ShowMessage("Could not load participants.", false);
+                ShowMessage(L.T("Meetings.Schedule.CouldNotLoadParticipants"), false);
             }
         }
 
@@ -128,7 +129,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                 if (!BelongsToCurrentUser(placement))
                 {
-                    ShowMessage("Select one of your internships.", false);
+                    ShowMessage(L.T("Meetings.Schedule.SelectOneOfYourInternships"), false);
                     return;
                 }
 
@@ -138,7 +139,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                 if (title == "")
                 {
-                    ShowMessage("Enter a meeting title.", false);
+                    ShowMessage(L.T("Meetings.Schedule.EnterAMeetingTitle"), false);
                     return;
                 }
 
@@ -150,7 +151,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     DateTimeStyles.None,
                     out localDate))
                 {
-                    ShowMessage("Enter a valid meeting date and time.", false);
+                    ShowMessage(L.T("Meetings.Schedule.EnterAValidMeetingDateAnd"), false);
                     return;
                 }
 
@@ -161,7 +162,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     offsetMinutes > 840)
                 {
                     ShowMessage(
-                        "Could not read your time zone. Refresh and try again.",
+                        L.T("Meetings.Schedule.CouldNotReadYourTimeZone"),
                         false);
                     return;
                 }
@@ -177,7 +178,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 if (scheduledAt <= DateTimeOffset.UtcNow
                                       .ToUnixTimeMilliseconds())
                 {
-                    ShowMessage("Choose a future date and time.", false);
+                    ShowMessage(L.T("Meetings.Schedule.ChooseAFutureDateAndTime"), false);
                     return;
                 }
 
@@ -185,13 +186,13 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 if (!int.TryParse(ddlDuration.SelectedValue, out duration) ||
                     (duration != 30 && duration != 45 && duration != 60))
                 {
-                    ShowMessage("Select a valid duration.", false);
+                    ShowMessage(L.T("Meetings.Schedule.SelectAValidDuration"), false);
                     return;
                 }
 
                 if (!IsZoomUrl(url))
                 {
-                    ShowMessage("Enter a valid HTTPS Zoom link.", false);
+                    ShowMessage(L.T("Meetings.Schedule.EnterAValidHTTPSZoomLink"), false);
                     return;
                 }
 
@@ -212,7 +213,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                     if (!allowed.Contains(item.Value))
                     {
-                        ShowMessage("Invalid participant selected.", false);
+                        ShowMessage(L.T("Meetings.Schedule.InvalidParticipantSelected"), false);
                         return;
                     }
 
@@ -222,7 +223,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                 if (selected.Count == 0)
                 {
-                    ShowMessage("Select at least one participant.", false);
+                    ShowMessage(L.T("Meetings.Schedule.SelectAtLeastOneParticipant"), false);
                     return;
                 }
 
@@ -242,7 +243,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                 if (string.IsNullOrWhiteSpace(id))
                 {
-                    ShowMessage("Meeting could not be saved.", false);
+                    ShowMessage(L.T("Meetings.Schedule.MeetingCouldNotBeSaved"), false);
                     return;
                 }
 
@@ -253,11 +254,11 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 cblParticipants.ClearSelection();
 
                 LoadMeetings();
-                ShowMessage("Meeting scheduled successfully.", true);
+                ShowMessage(L.T("Meetings.Schedule.MeetingScheduledSuccessfully"), true);
             }
             catch (FirebaseException)
             {
-                ShowMessage("Could not save the meeting. Try again.", false);
+                ShowMessage(L.T("Meetings.Schedule.CouldNotSaveTheMeetingTry"), false);
             }
         }
 
@@ -292,7 +293,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 {
                     pnlMeetingDetails.Visible = false;
                     ShowMessage(
-                        "You do not have access to this meeting.", false);
+                        L.T("Meetings.Schedule.YouDoNotHaveAccessTo"), false);
                     return;
                 }
 
@@ -316,7 +317,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             }
             catch (FirebaseException)
             {
-                ShowMessage("Could not open this meeting.", false);
+                ShowMessage(L.T("Meetings.Schedule.CouldNotOpenThisMeeting"), false);
             }
         }
 
@@ -327,7 +328,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             if (!long.TryParse(Convert.ToString(value),
                                out milliseconds) ||
                 milliseconds <= 0)
-                return "Not set";
+                return L.T("Meetings.Schedule.NotSet");
 
             return DateTimeOffset
                 .FromUnixTimeMilliseconds(milliseconds)

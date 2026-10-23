@@ -1,0 +1,220 @@
+
+MyMeetings.MyMeetings
+en: My Meetings
+ar: اجتماعاتي
+
+MyMeetings.ViewYourScheduledMeetingsAndJoin
+en: View your scheduled meetings and join them from here.
+
+MyMeetings.ScheduleMeeting
+en: + Schedule Meeting
+
+MyMeetings.UpcomingMeetings
+en: Upcoming Meetings
+
+MyMeetings.YouHaveNoUpcomingMeetingsYet
+en: You have no upcoming meetings yet.
+
+MyMeetings.PastMeetings
+en: Past Meetings
+
+MyMeetings.YourPastMeetingsWillAppearHere
+en: Your past meetings will appear here.
+
+MyMeetings.ScheduleAMeeting
+en: Schedule a Meeting
+
+MyMeetings.EnterTheMeetingDetailsAndPaste
+en: Enter the meeting details and paste its Zoom link.
+
+MyMeetings.CloseForm
+en: Close form
+
+MyMeetings.Close
+en: Close
+ar: إغلاق
+
+MyMeetings.MeetingTitle
+en: Meeting Title
+
+MyMeetings.EGInternshipProgressMeeting
+en: e.g. Internship Progress Meeting
+
+MyMeetings.Agenda
+en: Agenda
+
+MyMeetings.WhatWillYouDiscuss
+en: What will you discuss?
+
+MyMeetings.DateAndTime
+en: Date and Time
+
+MyMeetings.Duration
+en: Duration
+
+MyMeetings.30Minutes
+en: 30 minutes
+
+MyMeetings.45Minutes
+en: 45 minutes
+
+MyMeetings.60Minutes
+en: 60 minutes
+
+MyMeetings.Participants
+en: Participants
+
+MyMeetings.AvailableParticipantsWillAppearHereAfter
+en: Available participants will appear here after we connect the page to the project data.
+
+MyMeetings.ZoomMeetingLink
+en: Zoom Meeting Link
+
+MyMeetings.ScheduleMeeting2
+en: Schedule Meeting
+
+MyMeetings.Cancel
+en: Cancel
+
+MyMeetings.ThisIsADesignPreviewNo
+en: This is a design preview. No meeting was saved yet.
+
+Schedule.Meetings
+en: Meetings
+ar: الاجتماعات
+
+Schedule.ScheduleAMeetingAndShareA
+en: Schedule a meeting and share a Zoom link with its participants.
+
+Schedule.ScheduleAMeeting
+en: Schedule a Meeting
+
+Schedule.Internship
+en: Internship
+
+Schedule.MeetingTitle
+en: Meeting Title
+
+Schedule.Agenda
+en: Agenda
+
+Schedule.DateAndTime
+en: Date and Time
+
+Schedule.UseTheLocalTimeOnYour
+en: Use the local time on your device.
+
+Schedule.Duration
+en: Duration
+
+Schedule.30Minutes
+en: 30 minutes
+
+Schedule.45Minutes
+en: 45 minutes
+
+Schedule.60Minutes
+en: 60 minutes
+
+Schedule.Participants
+en: Participants
+
+Schedule.ZoomMeetingLink
+en: Zoom Meeting Link
+
+Schedule.CreateTheMeetingInZoomThen
+en: Create the meeting in Zoom, then paste its link here.
+
+Schedule.ScheduleMeeting
+en: Schedule Meeting
+
+Schedule.MyMeetings
+en: My Meetings
+ar: اجتماعاتي
+
+Schedule.Meeting
+en: Meeting
+
+Schedule.ScheduledAtUTC
+en: Scheduled At (UTC)
+
+Schedule.Min
+en: min
+
+Schedule.ViewDetails
+en: View Details
+
+Schedule.NoMeetingsToShow
+en: No meetings to show.
+
+Schedule.MeetingDetails
+en: Meeting Details
+
+Schedule.Title
+en: Title:
+
+Schedule.Agenda2
+en: Agenda:
+
+Schedule.ScheduledAtUTC2
+en: Scheduled At (UTC):
+
+Schedule.Duration2
+en: Duration:
+
+Schedule.JoinZoomMeeting
+en: Join Zoom Meeting
+
+Schedule.CouldNotLoadMeetingsPleaseTry
+en: Could not load meetings. Please try again.
+
+Schedule.CouldNotLoadParticipants
+en: Could not load participants.
+
+Schedule.SelectOneOfYourInternships
+en: Select one of your internships.
+
+Schedule.EnterAMeetingTitle
+en: Enter a meeting title.
+
+Schedule.EnterAValidMeetingDateAnd
+en: Enter a valid meeting date and time.
+
+Schedule.CouldNotReadYourTimeZone
+en: Could not read your time zone. Refresh and try again.
+
+Schedule.ChooseAFutureDateAndTime
+en: Choose a future date and time.
+
+Schedule.SelectAValidDuration
+en: Select a valid duration.
+
+Schedule.EnterAValidHTTPSZoomLink
+en: Enter a valid HTTPS Zoom link.
+
+Schedule.InvalidParticipantSelected
+en: Invalid participant selected.
+
+Schedule.SelectAtLeastOneParticipant
+en: Select at least one participant.
+
+Schedule.MeetingCouldNotBeSaved
+en: Meeting could not be saved.
+
+Schedule.MeetingScheduledSuccessfully
+en: Meeting scheduled successfully.
+
+Schedule.CouldNotSaveTheMeetingTry
+en: Could not save the meeting. Try again.
+
+Schedule.YouDoNotHaveAccessTo
+en: You do not have access to this meeting.
+
+Schedule.CouldNotOpenThisMeeting
+en: Could not open this meeting.
+
+Schedule.SelectAnInternship
+en: Select an internship
+
+Schedule.NotSet
+en: Not set

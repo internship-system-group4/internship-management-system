@@ -1,4 +1,5 @@
 ﻿using System;
+using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
@@ -51,7 +52,7 @@ namespace InternshipManagementSystem.Pages.Academic
             // 1. جلب اسم الطالب
             UserRepository userRepo = new UserRepository();
             Student student = userRepo.GetStudent(studentId);
-            litModalStudentName.Text = student != null ? student.FullName : "Unknown Student";
+            litModalStudentName.Text = student != null ? student.FullName : L.T("Academic.FinalEvaluation.UnknownStudent");
 
             // 2. جلب تقييم الشركة إن وجد
             EvaluationRepository evalRepo = new EvaluationRepository();
@@ -88,7 +89,7 @@ namespace InternshipManagementSystem.Pages.Academic
                 pnlAlreadySubmitted.Visible = true;
 
                 DateTime submitDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(academicEval.SubmittedAt).ToLocalTime();
-                litAlreadySubmittedText.Text = "Decision submitted successfully on " + submitDate.ToString("dd/MM/yyyy");
+                litAlreadySubmittedText.Text = L.F("Academic.FinalEvaluation.DecisionSubmittedSuccessfullyOn", submitDate.ToString("dd/MM/yyyy"));
             }
             else
             {
@@ -146,7 +147,7 @@ namespace InternshipManagementSystem.Pages.Academic
 
             // إظهار رسالة النجاح في الشاشة الرئيسية (لأن النافذة ستغلق تلقائياً بعد الإرسال)
             pnlSuccessMessage.Visible = true;
-            litSuccessMessage.Text = "Evaluation for the selected student has been submitted to the Coordinator successfully!";
+            litSuccessMessage.Text = L.T("Academic.FinalEvaluation.EvaluationForTheSelectedStudentHas");
         }
         private bool CanEvaluate(string studentId)
         {

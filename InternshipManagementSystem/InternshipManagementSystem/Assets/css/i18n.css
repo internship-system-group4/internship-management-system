@@ -1,0 +1,56 @@
+/* Arabic / English. Loaded last in every master.
+   Layout mirrors through logical properties (tools/i18n/logical-css.py); this file holds only what logical properties
+   cannot express: transforms, script-positioned markers, Arabic typography and the language selector.
+   Nothing here applies in English except the selector styles. */
+
+/* ------------------------------------------------------------------------------------------- language selector */
+.uims-lang-link { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:0 12px; border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-surface); color:var(--ui-ink); font-size:14px; font-weight:600; line-height:1; text-decoration:none; white-space:nowrap; }
+.uims-lang-link:hover { border-color:var(--ui-control-border); color:var(--ui-ink); text-decoration:none; }
+.uims-lang-link [lang="ar"] { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,sans-serif; font-size:15px; }
+.uims-lang-inline { display:grid; gap:8px; }
+.uims-lang-inline-label { font-size:13px; font-weight:650; color:var(--ui-muted); }
+.uims-lang-inline > div { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
+.uims-lang-inline a { display:flex; align-items:center; justify-content:center; min-height:44px; border:1px solid var(--ui-border); border-radius:8px; background:var(--ui-surface); color:var(--ui-ink); font-size:14px; font-weight:500; text-decoration:none; }
+.uims-lang-inline a[lang="ar"] { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,sans-serif; }
+.uims-lang-inline a[aria-current="true"] { border-color:var(--ui-primary); background:var(--ui-primary-soft); font-weight:650; box-shadow:inset 0 0 0 1px var(--ui-primary); }
+/* Public navbar: language and theme sit together before "Log in". */
+body.uims-public .uims-public-nav .public-links { padding-inline-end:290px; }
+body.uims-public .uims-public-nav .public-theme-desktop { display:inline-flex; align-items:center; gap:8px; }
+@media(max-width:1120px) {
+ body.uims-public .uims-public-nav .public-links { padding-inline-end:12px; }
+ body.uims-public .public-theme-mobile { display:grid; gap:14px; }
+}
+body.uims-portal .uims-user .uims-lang-link { min-height:40px; }
+/* Portal: in the header on wide screens; inside the navigation drawer on drawer-sized screens. */
+body.uims-portal .uims-sidebar-lang { display:none; }
+@media(max-width:900px) {
+ body.uims-portal .uims-user .uims-lang-link { display:none; }
+ body.uims-portal .uims-sidebar-lang { display:block; flex:none; margin:12px 0 4px; padding:14px 6px 0; border-top:1px solid var(--ui-border); }
+}
+
+/* --------------------------------------------------------------------------------- Arabic typography */
+:root[lang="ar"] body, :root[lang="ar"] :is(button,input,select,textarea,optgroup) { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,Arial,sans-serif; }
+/* Home's display face (Switzer) has no Arabic glyphs. */
+:root[lang="ar"] .home-page, :root[lang="ar"] .home-page * { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,Arial,sans-serif; }
+/* Letter-spacing breaks Arabic joining; uppercase has no meaning for Arabic letters. */
+:root[lang="ar"] body * { letter-spacing:normal!important; }
+:root[lang="ar"] body :is(.about-eyebrow,.contact-eyebrow,.ui-eyebrow,[class*="eyebrow"],[class*="kicker"],th,.badge,.contact-readiness-label,.uims-theme-inline-label,.uims-lang-inline-label) { text-transform:none!important; }
+/* Room for marks above and below the line: no tight display line-heights. */
+:root[lang="ar"] body { line-height:1.75; }
+:root[lang="ar"] :is(h1,h2,h3,h4,h5,h6) { line-height:1.4!important; }
+:root[lang="ar"] .campus-opening h1, :root[lang="ar"] .home-page .home-section h2, :root[lang="ar"] .campus-copy h2 { line-height:1.3!important; padding-block:.06em; }
+/* Latin-only content stays left-to-right inside Arabic text: emails, URLs, IDs, codes. */
+:root[lang="ar"] :is(input[type="email"],input[type="url"],input[type="tel"],input[type="number"],[data-ltr],.uims-ltr) { direction:ltr; text-align:start; }
+:root[lang="ar"] :is(input[type="email"],input[type="url"],input[type="tel"]) { text-align:end; }
+:root[lang="ar"] :is(input[type="email"],input[type="url"],input[type="tel"])::placeholder { text-align:end; }
+
+/* ------------------------------------------------------------------------------------- RTL mechanics */
+/* Portal drawer (narrow screens): slides in from the right. */
+@media(max-width:900px) {
+ html.student-nav-ready[dir="rtl"] body.uims-portal .uims-sidebar { transform:translateX(100%); }
+ html.student-nav-ready[dir="rtl"] body.uims-portal.student-nav-open .uims-sidebar { transform:none; }
+}
+/* Markers positioned by script with measured (physical) coordinates stay anchored to the physical left. */
+[dir="rtl"] :is(.ws-journey-marker,.ws-journey-connector,.ws-reference .ra-range-marker,.uims-public-nav .uims-public-nav-highlight) { inset-inline-start:auto; inset-inline-end:auto; left:0; }
+/* Directional arrows point the reading direction; icons such as checks, clocks and logos are never mirrored. */
+[dir="rtl"] :is(.ws-row-arrow,[data-dir-icon],.ui-chevron,.bi-arrow-right,.bi-chevron-right,.bi-arrow-left,.bi-chevron-left,.bi-box-arrow-right,.bi-arrow-right-short) { transform:scaleX(-1); display:inline-block; }

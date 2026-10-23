@@ -61,7 +61,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (CurrentStudent == null ||
                 !ValidFirebaseKey(StudentId))
             {
-                ShowError("Student account is unavailable.");
+                ShowError(L.T("Student.StudentCVPortfolio.StudentAccountIsUnavailable"));
                 return;
             }
 
@@ -95,7 +95,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     "Student CV Portfolio: " + ex);
 
                 ShowError(
-                    "Unable to load or save your CV and portfolio.");
+                    L.T("Student.StudentCVPortfolio.UnableToLoadOrSaveYour"));
             }
         }
 
@@ -150,7 +150,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (!updated)
             {
                 ShowError(
-                    "Your information changed. Refresh and try again.");
+                    L.T("Student.StudentCVPortfolio.YourInformationChangedRefreshAndTry"));
             }
 
             return updated;
@@ -193,7 +193,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             if (file.ContentLength > MaxFileBytes)
             {
-                ShowError("PDF files must be 5 MB or smaller.");
+                ShowError(L.T("Student.StudentCVPortfolio.PDFFilesMustBe5MB"));
                 return false;
             }
 
@@ -204,7 +204,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 ".pdf",
                 StringComparison.OrdinalIgnoreCase))
             {
-                ShowError("Only PDF files are supported.");
+                ShowError(L.T("Student.StudentCVPortfolio.OnlyPDFFilesAreSupported"));
                 return false;
             }
 
@@ -219,7 +219,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 System.Text.Encoding.ASCII.GetString(header)
                     != "%PDF-")
             {
-                ShowError("The selected file is not a valid PDF.");
+                ShowError(L.T("Student.StudentCVPortfolio.TheSelectedFileIsNotA"));
                 return false;
             }
 
@@ -247,7 +247,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 !ValidUrl(portfolioUrl))
             {
                 ShowError(
-                    "Enter valid HTTP or HTTPS links.");
+                    L.T("Student.StudentCVPortfolio.EnterValidHTTPOrHTTPSLinks"));
                 return;
             }
 
@@ -331,7 +331,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 // Firebase confirms the update.
                 DeletePhysicalFile(oldStorage);
 
-                Notice = "File removed successfully.";
+                Notice = L.T("Student.StudentCVPortfolio.FileRemovedSuccessfully");
                 NoticeIsError = false;
             }
         }
