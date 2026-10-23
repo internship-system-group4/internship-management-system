@@ -254,6 +254,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 if (publish)
                     Services.NotificationService.OpportunityPublished(id);
 
+                // Homepage visitors see a public summary of open opportunities.
+                if (publish)
+                    new OpportunityRepository().SyncPublicPreview(id);
+
                 Notice = publish
                     ? L.T("Company.Opportunities.OpportunityPublishedSuccessfully")
                     : L.T("Company.Opportunities.DraftSavedSuccessfully");

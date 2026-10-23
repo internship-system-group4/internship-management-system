@@ -482,6 +482,13 @@
     <Compile Include="Pages\Public\PoweredBy.aspx.designer.cs">
       <DependentUpon>PoweredBy.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Public\Journey.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Journey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\Journey.aspx.designer.cs">
+      <DependentUpon>Journey.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Public\AccessDenied.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>AccessDenied.aspx</DependentUpon>
@@ -645,6 +652,7 @@
     <Content Include="Assets\js\public-forms.js" />
     <Content Include="Assets\js\home-courtyard.js" />
     <Content Include="Assets\css\home-story.css" />
+    <Content Include="Assets\css\jisr.css" />
     <Content Include="Assets\css\home-experience.css" />
     <Content Include="Assets\js\home-experience.js" />
     <Content Include="Assets\images\university\4a85f19e-09cd-47d5-b8de-a18f277616a7.png" />
@@ -655,6 +663,16 @@
     <Content Include="Assets\images\university\6753e8dc-1deb-4e1d-848c-79304737fb69.png" />
     <Content Include="Assets\js\home-story.js" />
     <Content Include="Assets\js\home-story-scene.js" />
+    <Content Include="Assets\js\jisr\jisr-campus.js" />
+    <Content Include="Assets\js\jisr\jisr-common.js" />
+    <Content Include="Assets\js\jisr\jisr-hero.js" />
+    <Content Include="Assets\js\jisr\jisr-land.js" />
+    <Content Include="Assets\js\jisr\jisr-layout.js" />
+    <Content Include="Assets\js\jisr\jisr-life.js" />
+    <Content Include="Assets\js\jisr\jisr-post.js" />
+    <Content Include="Assets\js\jisr\jisr-sky.js" />
+    <Content Include="Assets\js\jisr\jisr-storks.js" />
+    <Content Include="Assets\js\jisr\jisr-student.js" />
     <Content Include="Assets\js\home-campus-model.js" />
     <Content Include="Assets\js\home-campus-materials.js" />
     <Content Include="Assets\images\university\materials\stone-albedo.png" />
@@ -717,6 +735,7 @@
     <Content Include="Assets\models\people\LICENSE.md" />
     <Content Include="Assets\models\people\README.md" />
     <Content Include="Assets\models\people\Female_Adult_04.glb" />
+    <Content Include="Assets\models\people\Male_Adult_17_Animated.glb" />
     <Content Include="Assets\models\people\Female_Adult_06.glb" />
     <Content Include="Assets\models\people\Female_Adult_08.glb" />
     <Content Include="Assets\models\people\Female_Adult_09.glb" />
@@ -727,6 +746,7 @@
     <Content Include="Assets\models\people\Male_Adult_17.glb" />
     <Content Include="Assets\models\people\Male_Adult_18.glb" />
     <Content Include="Pages\Public\PoweredBy.aspx" />
+    <Content Include="Pages\Public\Journey.aspx" />
     <Content Include="App_Data\development-team.json" />
     <Content Include="Assets\images\team\Ahmad.png" />
     <Content Include="Assets\images\team\Fatima Tawalbeh.png" />
