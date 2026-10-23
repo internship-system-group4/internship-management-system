@@ -51,15 +51,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.Button btnSaveDraft;
 
         /// <summary>
-        /// btnSendEvaluation control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnSendEvaluation;
-
-        /// <summary>
         /// litStudentInitials control.
         /// </summary>
         /// <remarks>
@@ -112,6 +103,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litCompanySupervisorName;
+
+        /// <summary>
+        /// litReportSupervisorSig control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litReportSupervisorSig;
 
         /// <summary>
         /// txtActualHours control.

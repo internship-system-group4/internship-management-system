@@ -133,7 +133,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             try
             {
-                // حفظ البيانات شاملة الساعات والتوصية
                 var updates = new Dictionary<string, object>
                 {
                     { "EvalTech", txtTechSkills.Text },
@@ -185,6 +184,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     return;
                 }
 
+                // توليد رقم مرجعي فريد للشهادة المعتمدة لتسهيل مشاركتها وتحقق الطالب منها ومن نشرها
+                string certificateId = "GJU-UIMS-CERT-" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+                string issueDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
+
                 var updates = new Dictionary<string, object>
                 {
                     { "Status", "Completed" },
@@ -197,7 +200,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     { "EvalImprovements", txtImprovements.Text },
                     { "FinalScore", (tech + work + prof + comm) },
                     { "ActualHours", txtActualHours.Text },
-                    { "CompanyRecommendation", ddlRecommendation.SelectedValue }
+                    { "CompanyRecommendation", ddlRecommendation.SelectedValue },
+                    { "CertificateId", certificateId },
+                    { "CertificateIssueDate", issueDate }
                 };
 
                 _placementRepo.Update(placementId, updates);

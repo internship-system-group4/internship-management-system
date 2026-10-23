@@ -301,8 +301,8 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\FinalEvaluation.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Company\FinalEvaluation.aspx.designer.cs">
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
@@ -311,13 +311,13 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-		  <SubType>ASPXCodeBehind</SubType>
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
@@ -716,9 +716,6 @@
     <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />
     <Content Include="Assets\images\contact\contact-walkway.jpg" />
-    <Content Include="Assets\images\about\about-gate-1.jpg" />
-    <Content Include="Assets\images\about\about-campus-aerial.jpg" />
-    <Content Include="Assets\images\about\about-students.jpg" />
     <Content Include="Assets\images\about\about-film-poster.jpg" />
     <Content Include="Assets\images\university\materials\-578791943103387727.mp4" />
     <Content Include="Assets\js\public-footer.js" />
