@@ -125,6 +125,7 @@
     <Content Include="Assets\css\interface.css" />
     <Content Include="Assets\css\reference-analytics.css" />
     <Content Include="Assets\js\workspace-charts.js" />
+    <Content Include="Assets\js\company-applications.js" />
     <Content Include="Assets\fonts\notosans-variable.ttf" />
     <Content Include="Assets\fonts\notosansarabic-variable.ttf" />
     <Content Include="Assets\fonts\notosans-OFL.txt" />
@@ -575,10 +576,11 @@
       <DependentUpon>Progress.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\UserNotification.cs" />
-    
     <Compile Include="Layout\NotificationBell.cs" />
     <Compile Include="Pages\Notifications\Feed.ashx.cs" />
-    <Compile Include="Pages\Notifications\Inbox.aspx.cs" />
+    <Compile Include="Pages\Notifications\Inbox.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Services\TaskWorkflowService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcademicPage.cs">
@@ -677,7 +679,6 @@
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
-    
     <Content Include="Assets\css\public-layout.css" />
     <Content Include="Assets\css\public-navbar.css" />
     <Content Include="Assets\css\completion-review.css" />
@@ -735,7 +736,6 @@
     <Content Include="Assets\images\university\b774db96-c900-40dc-b579-3fa681fb49ec.png" />
     <Content Include="Assets\js\portal-layout.js" />
     <Content Include="Assets\images\gju-logo.png" />
-    
     <Content Include="Assets\images\README.txt" />
     <Content Include="Assets\js\site.js" />
     <Content Include="Assets\js\ui-system.js" />
@@ -906,8 +906,13 @@
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <ItemGroup>
-    <Compile Include="Pages\Company\EvaluationReport.aspx.cs"><DependentUpon>EvaluationReport.aspx</DependentUpon></Compile>
-    <Compile Include="Pages\Company\EvaluationReport.aspx.designer.cs"><DependentUpon>EvaluationReport.aspx</DependentUpon></Compile>
+    <Compile Include="Pages\Company\EvaluationReport.aspx.cs">
+      <DependentUpon>EvaluationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Company\EvaluationReport.aspx.designer.cs">
+      <DependentUpon>EvaluationReport.aspx</DependentUpon>
+    </Compile>
     <Content Include="Pages\Company\EvaluationReport.aspx" />
   </ItemGroup>
 </Project>
