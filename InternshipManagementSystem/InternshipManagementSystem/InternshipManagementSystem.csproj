@@ -473,6 +473,11 @@
     <Compile Include="Pages\Student\Progress.aspx.designer.cs">
       <DependentUpon>Progress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserNotification.cs" />
+    <Compile Include="Data\NotificationRepository.cs" />
+    <Compile Include="Layout\NotificationBell.cs" />
+    <Compile Include="Pages\Notifications\Feed.ashx.cs" />
+    <Compile Include="Pages\Notifications\Inbox.aspx.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcademicPage.cs" />
     <Compile Include="Security\CompanyPage.cs" />
@@ -499,6 +504,10 @@
     <Compile Include="Services\StorageService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\js\notifications.js" />
+    <Content Include="Assets\css\notifications.css" />
+    <Content Include="Pages\Notifications\Feed.ashx" />
+    <Content Include="Pages\Notifications\Inbox.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="App_Data\completion-rules.json" />
     <Content Include="Global.asax" />

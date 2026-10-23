@@ -1,5 +1,6 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Academic.master.cs" Inherits="InternshipManagementSystem.Layout.AcademicMaster" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Academic.master.cs" Inherits="InternshipManagementSystem.Layout.AcademicMaster" %>
 
+<%@ Register TagPrefix="uims" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <!DOCTYPE html>
 <html lang="en">
 <head runat="server">
@@ -12,6 +13,7 @@
          two files into Assets/css and Assets/js and swap the four links. -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/notifications.css" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
 <body>
@@ -41,6 +43,7 @@
             <header class="uims-topbar">
                 <h1 class="uims-page-title"><%: Page.Title %></h1>
                 <div class="uims-user">
+                    <uims:NotificationBell ID="NotificationMenu" runat="server" />
                     <div class="uims-user-meta">
                         <asp:Literal ID="litUserName" runat="server" />
                         <small><asp:Literal ID="litRoleName" runat="server" /></small>
@@ -57,6 +60,7 @@
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<%: ResolveUrl("~/Assets/js/notifications.js") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
 </body>
 </html>
