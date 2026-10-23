@@ -293,6 +293,13 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
+	  <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
+		  <SubType>ASPXCodeBehind</SubType>
+		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+	  </Compile>
+	  <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
+		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+	  </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>

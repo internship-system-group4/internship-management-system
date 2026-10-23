@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="Manage Opportunities"
+﻿<%@ Page Title="Manage Opportunities"
     Language="C#"
     MasterPageFile="~/Layout/Company.master"
     AutoEventWireup="true"
@@ -311,6 +310,195 @@
         flex-wrap: wrap;
     }
 }
+
+/* Compact, professional layout improvements */
+
+.mo-page {
+    max-width: 1200px;
+}
+
+.mo-heading {
+    margin-bottom: 16px;
+    gap: 12px;
+}
+
+.mo-heading h2 {
+    margin-bottom: 3px;
+}
+
+.mo-heading .mo-muted {
+    margin-bottom: 0;
+}
+
+.mo-stats {
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.mo-stat {
+    padding: 16px 18px;
+}
+
+.mo-stat strong {
+    font-size: 26px;
+    margin: 5px 0;
+}
+
+.mo-card {
+    padding: 18px 20px;
+    margin-bottom: 16px;
+}
+
+.mo-card h3 {
+    margin-bottom: 5px;
+}
+
+.mo-card > .mo-muted {
+    margin-bottom: 12px;
+}
+
+.mo-table th {
+    padding: 12px 14px;
+    font-weight: 700;
+}
+
+.mo-table td {
+    padding: 12px 14px;
+    line-height: 1.45;
+}
+
+.mo-table tbody tr:hover {
+    background: #f8fafc;
+}
+
+.mo-table td:last-child,
+.mo-table th:last-child {
+    white-space: nowrap;
+}
+
+.mo-actions {
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+.mo-actions .mo-btn {
+    min-width: 55px;
+    text-align: center;
+    padding: 7px 11px;
+}
+
+.mo-btn {
+    transition: background-color .2s ease,
+                border-color .2s ease,
+                box-shadow .2s ease;
+}
+
+.mo-btn:focus-visible {
+    outline: 2px solid #244f77;
+    outline-offset: 2px;
+}
+
+.mo-field {
+    margin-bottom: 14px;
+}
+
+.mo-form-grid {
+    gap: 12px 16px;
+}
+
+.mo-form-footer {
+    margin-top: 12px;
+    padding-top: 16px;
+}
+
+.mo-view-grid {
+    gap: 12px 20px;
+}
+
+.mo-view-block {
+    margin-top: 16px;
+}
+
+@media (max-width: 750px) {
+    .mo-card {
+        padding: 15px;
+    }
+
+    .mo-stat {
+        padding: 14px;
+    }
+
+    .mo-actions {
+        gap: 5px;
+    }
+}
+
+/* Professional bordered table */
+
+.mo-table-wrap {
+    border: 1.5px solid #cbd8e5;
+    border-radius: 10px;
+    overflow-x: auto;
+    background: #ffffff;
+}
+
+.mo-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    font-size: 13px;
+}
+
+.mo-table th {
+    background: #edf3f9;
+    color: #294966;
+    padding: 13px 14px;
+    font-weight: 700;
+    border-bottom: 1.5px solid #cbd8e5;
+}
+
+.mo-table td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e0e8f0;
+    vertical-align: middle;
+}
+
+.mo-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.mo-table tbody tr:hover {
+    background: #f7fafd;
+}
+
+/* Neatly aligned action buttons */
+
+.mo-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: nowrap;
+}
+
+.mo-actions .mo-btn {
+    min-width: 58px;
+    padding: 7px 10px;
+    text-align: center;
+    border-radius: 6px;
+    box-sizing: border-box;
+    white-space: nowrap;
+}
+
+/* Keep the table card compact */
+
+.mo-card {
+    padding: 18px;
+}
+
+.mo-card h3 {
+    margin-bottom: 4px;
+}
+
 </style>
 
 </asp:Content>

@@ -15,6 +15,15 @@
             case "~/pages/company/traineedetails.aspx": current = "~/Pages/Company/Trainees.aspx"; break;
             case "~/pages/coordinator/placementdetails.aspx": current = "~/Pages/Coordinator/Placements.aspx"; break;
             case "~/pages/meetings/schedule.aspx": current = "~/Pages/Meetings/MyMeetings.aspx"; break;
+                
+             case "~/pages/company/opportunities.aspx":
+               current = "~/Pages/Company/ManageOpportunities.aspx";
+                break;
+
+             case "~/pages/company/viewopportunity.aspx":
+               current = "~/Pages/Company/ManageOpportunities.aspx";
+                break;
+
         }
         return string.Equals(current, path, StringComparison.OrdinalIgnoreCase) ? "aria-current=\"page\"" : "";
     }
@@ -80,7 +89,7 @@
     <% } %>
     <% if (SessionHelper.IsInRole(UserRole.CompanySupervisor)) { %>
 <li><a class="uims-side-link" title="Dashboard" href="<%: ResolveUrl("~/Pages/Company/Dashboard.aspx") %>" <%= NavigationAttributes("~/Pages/Company/Dashboard.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="uims-sidebar-label">Dashboard</span></a></li>
-<li><a class="uims-side-link" title="Manage Opportunities" href="<%: ResolveUrl("~/Pages/Company/Opportunities.aspx") %>" <%= NavigationAttributes("~/Pages/Company/Opportunities.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span class="uims-sidebar-label">Manage Opportunities</span></a></li>
+<li><a class="uims-side-link" title="Manage Opportunities" href="<%: ResolveUrl("~/Pages/Company/ManageOpportunities.aspx") %>" <%= NavigationAttributes("~/Pages/Company/ManageOpportunities.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span class="uims-sidebar-label">Manage Opportunities</span></a></li>
 <li><a class="uims-side-link" title="Applications Review" href="<%: ResolveUrl("~/Pages/Company/Applications.aspx") %>" <%= NavigationAttributes("~/Pages/Company/Applications.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="uims-sidebar-label">Applications Review</span></a></li>
 <li><a class="uims-side-link" title="My Trainees" href="<%: ResolveUrl("~/Pages/Company/Trainees.aspx") %>" <%= NavigationAttributes("~/Pages/Company/Trainees.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg><span class="uims-sidebar-label">My Trainees</span></a></li>
 <li><a class="uims-side-link" title="Manage Tasks" href="<%: ResolveUrl("~/Pages/Company/Tasks.aspx") %>" <%= NavigationAttributes("~/Pages/Company/Tasks.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12l2 2 4-4M9 18h6"/></svg><span class="uims-sidebar-label">Manage Tasks</span></a></li>
