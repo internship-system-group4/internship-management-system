@@ -76,14 +76,16 @@ html.uims-public[data-theme="dark"] {
 /* --------------------------------------------------------------------------------- Theme selector */
 .uims-theme { position:relative; display:inline-flex; }
 :is(.uims-theme,.uims-theme-inline)[hidden] { display:none!important; }
-.uims-theme-button { display:inline-grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid var(--ui-border); border-radius:50%; background:var(--ui-surface); color:var(--ui-ink); cursor:pointer; }
+.uims-theme-button { position:relative; display:inline-grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid var(--ui-border); border-radius:50%; background:var(--ui-surface); color:var(--ui-ink); cursor:pointer; }
 .uims-theme-button:hover { border-color:var(--ui-control-border); }
+.uims-theme-button:focus-visible,.uims-theme-option:focus-visible,.uims-theme-inline [role="radio"]:focus-visible { outline:3px solid var(--ui-focus); outline-offset:3px; }
 .uims-theme svg { width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
-.uims-theme-button [data-theme-icon] { display:none; }
+.uims-theme-button [data-theme-icon] { position:absolute; inset:0; margin:auto; opacity:0; transform:scale(.72) rotate(-24deg); }
+.uims-theme-icon-changing .uims-theme-button [data-theme-icon] { transition:opacity 150ms ease,transform 280ms cubic-bezier(.16,1,.3,1); }
 :root[data-theme-preference="light"] .uims-theme-button [data-theme-icon="light"],
 :root[data-theme-preference="dark"] .uims-theme-button [data-theme-icon="dark"],
 :root[data-theme-preference="system"] .uims-theme-button [data-theme-icon="system"],
-:root:not([data-theme-preference]) .uims-theme-button [data-theme-icon="light"] { display:block; }
+:root:not([data-theme-preference]) .uims-theme-button [data-theme-icon="light"] { opacity:1; transform:scale(1) rotate(0); }
 .uims-theme-menu { position:absolute; z-index:1300; inset-block-start:calc(100% + 8px); inset-inline-end:0; min-width:180px; margin:0; padding:6px; border:1px solid var(--ui-border); border-radius:10px; background:var(--ui-surface); box-shadow:0 12px 32px rgb(11 36 51 / 16%); list-style:none; }
 [data-theme="dark"] .uims-theme-menu { background:var(--ui-surface-raised); box-shadow:var(--ui-elevation); }
 .uims-theme-menu[hidden] { display:none; }
@@ -138,8 +140,8 @@ body.uims-public .public-theme-mobile { display:none; }
 }
 html:not(.uims-public-nav-ready) body.uims-public .public-theme-mobile { display:none; }
 /* Portal header: the menu button joins the bell and the account. */
-body.uims-portal .uims-user .uims-theme-button { width:40px; height:40px; }
-@media(max-width:480px) { body.uims-portal .uims-user .uims-theme-button { width:36px; height:36px; } }
+body.uims-portal .uims-user .uims-theme-button { width:44px; height:44px; }
+@media(max-width:480px) { body.uims-portal .uims-user .uims-theme-button { width:44px; height:44px; } }
 
 /* Public navbar surfaces (translucent white in Light). */
 [data-theme="dark"] body.uims-public .uims-public-nav[data-scrolled="true"]:not([data-compact="true"]) .public-header-inner { background:rgb(21 35 49 / 96%); }
@@ -153,6 +155,16 @@ body.uims-portal .uims-user .uims-theme-button { width:40px; height:40px; }
   transition-property:background-color,color,border-color,fill,stroke,outline-color!important; transition-duration:180ms!important; transition-timing-function:ease!important; transition-delay:0s!important;
  }
 }
+
+/* Explicit theme choices use a scoped View Transition; all other theme updates keep the existing path. */
+html.uims-theme-reveal .uims-theme-button[data-theme-toggle] { view-transition-name:uims-theme-control; }
+html.uims-theme-reveal::view-transition-old(root), html.uims-theme-reveal::view-transition-new(root) { animation:none; }
+html.uims-theme-reveal::view-transition-group(uims-theme-control) { z-index:1; }
+html.uims-theme-reveal::view-transition-old(uims-theme-control) { animation:uims-theme-icon-out 150ms ease-in both; }
+html.uims-theme-reveal::view-transition-new(uims-theme-control) { animation:uims-theme-icon-in 280ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes uims-theme-icon-out { to { opacity:0; transform:scale(.72) rotate(-20deg); } }
+@keyframes uims-theme-icon-in { from { opacity:0; transform:scale(.72) rotate(20deg); } to { opacity:1; transform:scale(1) rotate(0); } }
+@media(prefers-reduced-motion:reduce) { .uims-theme-icon-changing .uims-theme-button [data-theme-icon] { transition:none!important; } }
 
 /* ===== generated:start (tools/theme/convert-colors.py) — do not edit by hand ===== */
 :root[data-theme="dark"] {

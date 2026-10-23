@@ -1,22 +1,21 @@
 ﻿<%@ Control Language="C#" %>
-<%-- English / العربية selector (Common/Localization.cs). Plain GET links to the same page with ?ui-lang=; Global.asax
-     saves the choice and redirects back, so nothing is submitted and no POST is replayed. Assets/js/i18n.js asks for
-     confirmation first when a form on the page has unsaved changes. Variant="link" shows the other language (navbar,
-     portal header); Variant="inline" shows both (mobile navigation). Language names are written in their own language. --%>
+<%-- The active option is rendered by the server; both options stay as safe GET links through Localization.SwitchUrl. --%>
 <script runat="server">
     public string Variant { get; set; }
     protected bool Inline { get { return string.Equals(Variant, "inline", StringComparison.OrdinalIgnoreCase); } }
 </script>
+<% var currentLang = L.IsArabic ? "ar" : "en"; %>
 <% if (Inline) { %>
-<div class="uims-lang-inline" role="group" aria-labelledby="<%= ClientID %>_label">
+<div class="uims-lang-inline">
     <span class="uims-lang-inline-label" id="<%= ClientID %>_label"><%: L.T("Shared.Language.Label") %></span>
-    <div>
-        <a href="<%: L.SwitchUrl("en") %>" lang="en" hreflang="en" data-lang-switch="en" <%= L.IsArabic ? "" : "aria-current=\"true\"" %>>English</a>
-        <a href="<%: L.SwitchUrl("ar") %>" lang="ar" hreflang="ar" data-lang-switch="ar" <%= L.IsArabic ? "aria-current=\"true\"" : "" %>>العربية</a>
-    </div>
-</div>
-<% } else if (L.IsArabic) { %>
-<a class="uims-lang-link" href="<%: L.SwitchUrl("en") %>" hreflang="en" data-lang-switch="en" title="<%: L.T("Shared.Language.SwitchToEnglish") %>"><span class="visually-hidden"><%: L.T("Shared.Language.Label") %>: </span><span lang="en">English</span></a>
+    <div class="uims-lang-control" role="group" aria-labelledby="<%= ClientID %>_label" data-current-lang="<%: currentLang %>">
 <% } else { %>
-<a class="uims-lang-link" href="<%: L.SwitchUrl("ar") %>" hreflang="ar" data-lang-switch="ar" title="<%: L.T("Shared.Language.SwitchToArabic") %>"><span class="visually-hidden"><%: L.T("Shared.Language.Label") %>: </span><span lang="ar">العربية</span></a>
+<div class="uims-lang-control" role="group" aria-label="<%: L.T("Shared.Language.Label") %>" data-current-lang="<%: currentLang %>">
+<% } %>
+    <span class="uims-lang-indicator" aria-hidden="true"></span>
+    <a class="uims-lang-option" href="<%: L.SwitchUrl("en") %>" lang="en" hreflang="en" data-lang-switch="en" title="<%: L.IsArabic ? L.T("Shared.Language.SwitchToEnglish") : L.T("Shared.Language.Label") %>" <%= !L.IsArabic ? "aria-current=\"page\"" : "" %>>EN</a>
+    <a class="uims-lang-option" href="<%: L.SwitchUrl("ar") %>" lang="ar" hreflang="ar" data-lang-switch="ar" title="<%: L.IsArabic ? L.T("Shared.Language.Label") : L.T("Shared.Language.SwitchToArabic") %>" <%= L.IsArabic ? "aria-current=\"page\"" : "" %>>عربي</a>
+</div>
+<% if (Inline) { %>
+</div>
 <% } %>

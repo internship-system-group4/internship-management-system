@@ -21,14 +21,14 @@
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-5" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-4" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-2" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-3" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
-<link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-4" runat="server" />
-<link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-4" runat="server" />
-<link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-4" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-5" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/reference-analytics.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-2" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-5" runat="server" />
     <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>
     <script>window.UIMS_I18N=<%= L.ScriptDictionary() %>;window.uimsT=function(k){var d=window.UIMS_I18N,t=Object.prototype.hasOwnProperty.call(d,k)?d[k]:k,a=arguments;return t.replace(/\{(\d+)\}/g,function(m,i){var v=a[+i+1];return v===undefined?m:String(v);});};window.uimsLang='<%= L.Lang %>';</script>
 </head>
@@ -70,7 +70,7 @@
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-2") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/i18n.js?v=20261023-2") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-5") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />

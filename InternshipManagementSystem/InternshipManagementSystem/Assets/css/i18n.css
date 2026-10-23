@@ -4,15 +4,22 @@
    Nothing here applies in English except the selector styles. */
 
 /* ------------------------------------------------------------------------------------------- language selector */
-.uims-lang-link { display:inline-flex; align-items:center; justify-content:center; min-width:44px; min-height:44px; padding:0 12px; border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-surface); color:var(--ui-ink); font-size:14px; font-weight:600; line-height:1; text-decoration:none; white-space:nowrap; }
-.uims-lang-link:hover { border-color:var(--ui-control-border); color:var(--ui-ink); text-decoration:none; }
-.uims-lang-link [lang="ar"] { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,sans-serif; font-size:15px; }
+.uims-lang-control { position:relative; isolation:isolate; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:stretch; box-sizing:border-box; width:120px; height:44px; padding:0 2px; border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-neutral-soft); direction:ltr; }
+.uims-lang-indicator { position:absolute; z-index:0; inset-block:2px; inset-inline-start:2px; width:calc(50% - 3px); border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-surface); transition:transform 250ms cubic-bezier(.2,.7,.2,1); pointer-events:none; }
+.uims-lang-control[data-current-lang="ar"] .uims-lang-indicator { transform:translateX(100%); }
+.uims-lang-option { position:relative; z-index:1; display:grid; place-items:center; min-width:0; min-height:42px; border-radius:999px; color:var(--ui-muted); font:650 12px/1 var(--ui-font); text-decoration:none; transition:color 160ms ease,transform 100ms ease-out; }
+.uims-lang-option[lang="ar"] { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,sans-serif; font-size:13px; }
+.uims-lang-option[aria-current="page"] { color:var(--ui-primary-text); }
+.uims-lang-option:hover { color:var(--ui-ink); text-decoration:none; }
+.uims-lang-option[aria-current="page"]:hover { color:var(--ui-primary-text); }
+.uims-lang-option:active { transform:scale(.97); }
+.uims-lang-option:focus-visible { z-index:2; outline:3px solid var(--ui-focus); outline-offset:2px; }
+/* The public navigation decorates its current page links; the segmented selector owns its own state. */
+.public-links .uims-lang-option,.public-links .uims-lang-option:hover,.public-links .uims-lang-option[aria-current="page"] { padding:0; text-decoration:none; white-space:nowrap; }
 .uims-lang-inline { display:grid; gap:8px; }
 .uims-lang-inline-label { font-size:13px; font-weight:650; color:var(--ui-muted); }
-.uims-lang-inline > div { display:grid; grid-template-columns:1fr 1fr; gap:6px; }
-.uims-lang-inline a { display:flex; align-items:center; justify-content:center; min-height:44px; border:1px solid var(--ui-border); border-radius:8px; background:var(--ui-surface); color:var(--ui-ink); font-size:14px; font-weight:500; text-decoration:none; }
-.uims-lang-inline a[lang="ar"] { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,sans-serif; }
-.uims-lang-inline a[aria-current="true"] { border-color:var(--ui-primary); background:var(--ui-primary-soft); font-weight:650; box-shadow:inset 0 0 0 1px var(--ui-primary); }
+.uims-lang-inline .uims-lang-control { justify-self:start; }
+@media(prefers-reduced-motion:reduce) { .uims-lang-indicator,.uims-lang-option { transition:none!important; } }
 /* Public navbar: language and theme sit together before "Log in". */
 body.uims-public .uims-public-nav .public-links { padding-inline-end:290px; }
 body.uims-public .uims-public-nav .public-theme-desktop { display:inline-flex; align-items:center; gap:8px; }
@@ -20,11 +27,11 @@ body.uims-public .uims-public-nav .public-theme-desktop { display:inline-flex; a
  body.uims-public .uims-public-nav .public-links { padding-inline-end:12px; }
  body.uims-public .public-theme-mobile { display:grid; gap:14px; }
 }
-body.uims-portal .uims-user .uims-lang-link { min-height:40px; }
+body.uims-portal .uims-user .uims-lang-control { flex:none; }
 /* Portal: in the header on wide screens; inside the navigation drawer on drawer-sized screens. */
 body.uims-portal .uims-sidebar-lang { display:none; }
 @media(max-width:900px) {
- body.uims-portal .uims-user .uims-lang-link { display:none; }
+ body.uims-portal .uims-user .uims-lang-control { display:none; }
  body.uims-portal .uims-sidebar-lang { display:block; flex:none; margin:12px 0 4px; padding:14px 6px 0; border-top:1px solid var(--ui-border); }
 }
 

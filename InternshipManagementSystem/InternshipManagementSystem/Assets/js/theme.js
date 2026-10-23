@@ -13,7 +13,7 @@
  // Labels come from the shared resources (window.uimsT, Assets/js/i18n.js); English if the dictionary is absent.
  var t = function (key, fallback) { return typeof window.uimsT === 'function' && window.UIMS_I18N && window.UIMS_I18N[key] ? window.uimsT.apply(null, arguments) : fallback; };
  var LABELS = { light:t('ThemeLight', 'Light'), dark:t('ThemeDark', 'Dark'), system:t('ThemeSystem', 'System') };
- var changingTimer = 0;
+ var changingTimer = 0, iconTimer = 0, transitionRequest = 0, activeTransition = null;
 
  function valid(value) { return VALID.indexOf(value) >= 0 ? value : 'light'; }
  function read() { try { return valid(localStorage.getItem(KEY)); } catch (e) { return 'light'; } }
@@ -21,13 +21,28 @@
  function resolve(preference) { return preference === 'system' ? (systemDark && systemDark.matches ? 'dark' : 'light') : preference; }
  var preference = valid(root.getAttribute('data-theme-preference') || read());
 
- function apply(next, deliberate) {
+ function cancelReveal() {
+  var transition = activeTransition; activeTransition = null;
+  if (transition && typeof transition.skipTransition === 'function') { try { transition.skipTransition(); } catch (e) { /* already finished */ } }
+  root.classList.remove('uims-theme-reveal');
+ }
+
+ function animateIcons() {
+  if (reduce && reduce.matches) return;
+  clearTimeout(iconTimer); root.classList.add('uims-theme-icon-changing');
+  iconTimer = setTimeout(function () { root.classList.remove('uims-theme-icon-changing'); }, 360);
+ }
+
+ function apply(next, deliberate, inReveal, animateIcon) {
+  if (!inReveal && activeTransition) { transitionRequest++; cancelReveal(); }
+  if (!animateIcon) { clearTimeout(iconTimer); root.classList.remove('uims-theme-icon-changing'); }
+  if (reduce && reduce.matches) { clearTimeout(changingTimer); root.classList.remove('uims-theme-changing', 'uims-theme-icon-changing'); }
   preference = valid(next);
   var theme = resolve(preference), before = root.getAttribute('data-theme');
   if (deliberate && before !== theme && !(reduce && reduce.matches)) {
-   root.classList.add('uims-theme-changing');
    clearTimeout(changingTimer);
-   changingTimer = setTimeout(function () { root.classList.remove('uims-theme-changing'); }, 240);
+   if (inReveal) root.classList.remove('uims-theme-changing');
+   else { root.classList.add('uims-theme-changing'); changingTimer = setTimeout(function () { root.classList.remove('uims-theme-changing'); }, 240); }
   }
   root.setAttribute('data-theme-preference', preference);
   root.setAttribute('data-theme', theme);
@@ -49,7 +64,45 @@
   });
  }
 
- function choose(value) { write(valid(value)); apply(value, true); }
+ function originFrom(control) {
+  if (!control || typeof control.getBoundingClientRect !== 'function') return null;
+  var rect = control.getBoundingClientRect();
+  return { x:rect.left + rect.width / 2, y:rect.top + rect.height / 2, width:window.innerWidth, height:window.innerHeight };
+ }
+
+ function reveal(next, origin, request) {
+  root.classList.remove('uims-theme-changing', 'uims-theme-icon-changing'); clearTimeout(changingTimer); clearTimeout(iconTimer);
+  root.classList.add('uims-theme-reveal');
+  var transition;
+  try {
+   transition = document.startViewTransition(function () { if (request === transitionRequest) apply(next, false, true, true); });
+  } catch (error) {
+   root.classList.remove('uims-theme-reveal'); animateIcons(); apply(next, true, false, true); return;
+  }
+  activeTransition = transition;
+  function cleanup() { if (activeTransition === transition) { activeTransition = null; root.classList.remove('uims-theme-reveal'); } }
+  Promise.resolve(transition.ready).then(function () {
+   if (request !== transitionRequest || activeTransition !== transition) return;
+   var radius = Math.hypot(Math.max(origin.x, origin.width - origin.x), Math.max(origin.y, origin.height - origin.y));
+   try {
+    var animation = root.animate({ clipPath:['circle(0px at ' + origin.x + 'px ' + origin.y + 'px)', 'circle(' + radius + 'px at ' + origin.x + 'px ' + origin.y + 'px)'] },
+     { duration:640, easing:'cubic-bezier(.16,1,.3,1)', pseudoElement:'::view-transition-new(root)' });
+    Promise.resolve(animation.finished).catch(function () { /* skipped transitions are expected during rapid choices */ });
+   } catch (error) { cancelReveal(); }
+  }, function () { if (request === transitionRequest && root.getAttribute('data-theme') !== resolve(next)) apply(next, false); });
+  Promise.resolve(transition.updateCallbackDone).catch(function () { if (request === transitionRequest) apply(next, false); });
+  Promise.resolve(transition.finished).then(cleanup, cleanup);
+ }
+
+ function choose(value, control) {
+  var next = valid(value), beforePreference = preference, origin = originFrom(control);
+  write(next); preference = next;
+  var changesAppearance = root.getAttribute('data-theme') !== resolve(next), request = ++transitionRequest;
+  if (activeTransition) cancelReveal();
+  if (changesAppearance && origin && !(reduce && reduce.matches) && typeof document.startViewTransition === 'function') { reveal(next, origin, request); return; }
+  if (control && beforePreference !== next) animateIcons();
+  apply(next, true, false, !!(control && beforePreference !== next));
+ }
 
  // Menu button: Enter/Space/ArrowDown open on the checked item, arrows move, Home/End jump, Escape or Tab close.
  function bindMenu(control) {
@@ -66,7 +119,7 @@
    if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); open(event.key === 'ArrowUp' ? items[items.length - 1] : null); }
   });
   items.forEach(function (item, index) {
-   item.addEventListener('click', function () { choose(item.getAttribute('data-theme-value')); close(true); });
+   item.addEventListener('click', function () { choose(item.getAttribute('data-theme-value'), item); close(true); });
    item.addEventListener('keydown', function (event) {
     var next = null;
     if (event.key === 'ArrowDown') next = items[(index + 1) % items.length];
@@ -86,14 +139,14 @@
  function bindInline(control) {
   var radios = Array.prototype.slice.call(control.querySelectorAll('[role="radio"]'));
   radios.forEach(function (radio, index) {
-   radio.addEventListener('click', function () { choose(radio.getAttribute('data-theme-value')); });
+   radio.addEventListener('click', function () { choose(radio.getAttribute('data-theme-value'), radio); });
    radio.addEventListener('keydown', function (event) {
     var step = event.key === 'ArrowRight' || event.key === 'ArrowDown' ? 1 : event.key === 'ArrowLeft' || event.key === 'ArrowUp' ? -1 : 0;
     if (!step) return;
     if (getComputedStyle(control).direction === 'rtl' && (event.key === 'ArrowRight' || event.key === 'ArrowLeft')) step = -step;
     event.preventDefault();
     var next = radios[(index + step + radios.length) % radios.length];
-    choose(next.getAttribute('data-theme-value')); next.focus();
+    choose(next.getAttribute('data-theme-value'), next); next.focus();
    });
   });
  }
@@ -112,10 +165,22 @@
   var onSystem = function () { if (preference === 'system') apply('system', true); };
   if (systemDark.addEventListener) systemDark.addEventListener('change', onSystem); else systemDark.addListener(onSystem);
  }
+ if (reduce) {
+  var onReducedMotion = function (event) {
+   if (!event.matches) return;
+   transitionRequest++; cancelReveal(); clearTimeout(changingTimer); clearTimeout(iconTimer);
+   root.classList.remove('uims-theme-changing', 'uims-theme-icon-changing'); apply(preference, false);
+  };
+  if (reduce.addEventListener) reduce.addEventListener('change', onReducedMotion); else reduce.addListener(onReducedMotion);
+ }
  // Other tabs.
  window.addEventListener('storage', function (event) { if (event.key === KEY || event.key === null) apply(read(), true); });
  // Back/forward cache: another page may have changed the preference meanwhile.
  window.addEventListener('pageshow', function (event) { if (event.persisted) apply(read(), false); });
+ window.addEventListener('pagehide', function () {
+  if (activeTransition) { transitionRequest++; cancelReveal(); apply(preference, false); }
+  clearTimeout(changingTimer); clearTimeout(iconTimer); root.classList.remove('uims-theme-changing', 'uims-theme-icon-changing', 'uims-theme-reveal');
+ });
 
  window.UimsTheme = {
   bind:bind,
