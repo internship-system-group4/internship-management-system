@@ -140,8 +140,8 @@
                         OnItemCommand="rptSubmissions_ItemCommand">
                         <ItemTemplate>
                             <tr>
-                                <td><%#: Eval("TaskId") %></td>
-                                <td><%#: Eval("StudentId") %></td>
+                                <td><%#: Eval("TaskTitle") %></td>
+                                <td><%#: Eval("TraineeName") %></td>
                                 <td><%#: Eval("AttemptNumber") %></td>
                                 <td><%#: Eval("Status") %></td>
                                 <td>

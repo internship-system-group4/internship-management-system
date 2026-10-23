@@ -5,6 +5,7 @@ using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 
 namespace InternshipManagementSystem.Pages.CompanyArea
@@ -21,18 +22,37 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private void LoadCompanySubmissions()
         {
-            List<Submission> companySubmissions = new List<Submission>();
+            string selectedTaskId = Request.QueryString["taskId"];
+
+            List<object> companySubmissions = new List<object>();
 
             List<InternshipTask> tasks =
                 new TaskRepository().GetAll();
 
             List<Submission> submissions =
                 new SubmissionRepository().GetAll();
-
+            PlacementRepository placementRepository =
+    new PlacementRepository();
             foreach (InternshipTask task in tasks)
             {
                 if (task.CompanyId != CurrentSupervisor.CompanyId)
                     continue;
+
+                if (!string.IsNullOrWhiteSpace(selectedTaskId) &&
+                    task.Id != selectedTaskId)
+                {
+                    continue;
+                }
+                Placement placement =
+    placementRepository.GetById(task.PlacementId);
+
+                string traineeName =
+                    placement != null &&
+                    placement.CompanyId == CurrentSupervisor.CompanyId &&
+                    placement.StudentId == task.StudentId &&
+                    !string.IsNullOrWhiteSpace(placement.StudentName)
+                        ? placement.StudentName
+                        : "Name unavailable";
 
                 foreach (Submission submission in submissions)
                 {
@@ -40,7 +60,17 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         submission.StudentId == task.StudentId &&
                         submission.PlacementId == task.PlacementId)
                     {
-                        companySubmissions.Add(submission);
+                        companySubmissions.Add(new
+                        {
+                            Id = submission.Id,
+                            TaskId = submission.TaskId,
+                            TaskTitle = task.Title,
+                            StudentId = submission.StudentId,
+                            TraineeName = traineeName,
+                            AttemptNumber = submission.AttemptNumber,
+                            Status = submission.Status,
+                            SubmittedAt = submission.SubmittedAt
+                        });
                     }
                 }
             }

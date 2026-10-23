@@ -103,6 +103,7 @@
     </Compile>
     <Compile Include="Pages\Public\NotFound.aspx.cs">
       <DependentUpon>NotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Localization.cs" />
@@ -314,13 +315,13 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-		  <SubType>ASPXCodeBehind</SubType>
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
