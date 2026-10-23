@@ -1,63 +1,240 @@
 <div align="center">
 
-<img src="InternshipManagementSystem/InternshipManagementSystem/Assets/images/gju-logo.png" alt="German Jordanian University logo" width="100">
+<img src="InternshipManagementSystem/InternshipManagementSystem/Assets/images/gju-logo.png" alt="German Jordanian University logo" width="88">
 
-# University Internship Management System
+# UIMS
 
-**UIMS · One workspace for the university internship journey**
+### University Internship Management System
 
-Discover opportunities. Coordinate placements. Review work. Follow progress.
+**From the first opportunity to the final review.**
 
-**Student · Company Supervisor · Academic Supervisor · University Coordinator**
+A shared internship workspace for students, companies, and the university.
 
-ASP.NET Web Forms · C# · .NET Framework 4.7.2 · Firebase · Three.js
+<img alt="ASP.NET Web Forms" src="https://img.shields.io/badge/ASP.NET-Web_Forms-264F73?style=flat-square">
+<img alt="C sharp" src="https://img.shields.io/badge/C%23-.NET_4.7.2-526DB3?style=flat-square">
+<img alt="Firebase REST" src="https://img.shields.io/badge/Firebase-REST-C79A38?style=flat-square">
+<img alt="English and Arabic" src="https://img.shields.io/badge/English-Arabic-168B88?style=flat-square">
+<img alt="Three.js" src="https://img.shields.io/badge/Three.js-r180-8062B3?style=flat-square">
 
-Orange Academy · Group 4 · Academic team project
+<br>
+
+<img src="docs/assets/uims-journey.gif" alt="Illustrative internship journey: discover opportunities, apply for a company decision, confirm one placement, train through tasks and feedback, and review completion requirements." width="100%">
+
+**[Explore](#overview) · [Roles](#roles) · [Workflows](#workflows) · [Setup](#setup) · [Status](#status) · [Reference](#reference)**
+
+<sub>Orange Academy · Group 4 · Academic team project · GJU School of Computing context</sub>
 
 </div>
 
----
+<a id="overview"></a>
 
-## Overview
+## ✨ Built around the internship journey
 
-UIMS connects internship recruitment, supervision, and administration in one bilingual website. Students discover opportunities and follow their work; companies manage recruitment and trainees; academic supervisors monitor assigned students; university coordinators oversee accounts, groups, placements, and completion decisions.
+**UIMS** connects recruitment, placement, task review, and academic oversight in an English/Arabic ASP.NET portal. Each role gets its own dashboard and permissions, within one university-focused interface.
 
-The project combines practical administrative workflows with a university-focused identity: interactive dashboards, English/Arabic layouts, Light/Dark themes, and optional 3D campus experiences. Its current academic configuration targets the **German Jordanian University School of Computing**.
+| Opportunity → placement | Training → review | One consistent workspace |
+| --- | --- | --- |
+| Search, applications, company decisions, and confirmation of one accepted offer. | Task attempts, grades, feedback, revisions, progress, and completion checks. | Interactive analytics, shared sidebar, mobile navigation, Light/Dark themes, and RTL/LTR. |
 
-This README describes the implementation in this repository. Some workflow services still require page-level integration; see [Implementation status](#implementation-status) before planning an end-to-end demonstration or deployment. Academic thresholds in the source are provisional project defaults, not verified university regulations.
-
-## Contents
-
-- [Platform highlights](#platform-highlights)
-- [Four connected role portals](#four-connected-role-portals)
-- [Internship workflow](#internship-workflow)
-- [Public website and shared features](#public-website-and-shared-features)
-- [Design, accessibility, and localization](#design-accessibility-and-localization)
-- [Architecture and technology](#architecture-and-technology)
-- [Data and document handling](#data-and-document-handling)
-- [Authentication and authorization](#authentication-and-authorization)
-- [Getting started](#getting-started)
-- [Configuration and deployment](#configuration-and-deployment)
-- [Verification](#verification)
-- [Implementation status](#implementation-status)
-- [Repository structure](#repository-structure)
-- [Documentation and contribution](#documentation-and-contribution)
-- [Credits and licensing](#credits-and-licensing)
-
-## Platform highlights
-
-| Capability | What UIMS provides |
+| Public experience | Practical detail |
 | --- | --- |
-| Four role-specific workspaces | Separate navigation, dashboards, permissions, and operational pages. |
-| Connected application journey | Opportunity discovery, applications, company decisions, and student confirmation of an accepted offer. |
-| Structured task review | Assignments, submission attempts, criteria, grades, feedback, and revision requests. |
-| Progress visibility | Placement details, task progress, recorded hours, evaluation status, and completion review. |
-| Interactive analytics | Role-scoped data, animated KPIs, chart interactions, and detail views. |
-| Bilingual navigation | Server-side English/Arabic resources, LTR/RTL layouts, and a saved language preference. |
-| Consistent workspace controls | Shared sidebar, mobile navigation, themes, notifications, and account access. |
-| University-inspired presentation | Campus storytelling, security-gate login, team lecture hall, and readable fallbacks. |
+| University-inspired 3D | Campus story, security-gate login, team lecture hall; readable fallbacks. |
+| Role-scoped dashboards | Animated KPIs, chart details, and accessible data views from authorized read models. |
+| Shared coordination | Notifications, meeting requests with external Jitsi links, and a coordinator contact inbox. |
 
-## Four connected role portals
+> **Implementation note:** the portal contains working workflows and pending integrations. Hour-entry/approval page actions and company-final synchronization still need wiring. [See the exact boundaries below.](#status)
+
+<a id="roles"></a>
+
+## 👥 Four roles, one coordinated workspace
+
+| Role | Primary responsibility | Key tools |
+| --- | --- | --- |
+| 🎓 **Student** | Find a placement and complete assigned work. | Profile/CV, opportunities, applications, offer confirmation, submissions, progress. |
+| 🏢 **Company Supervisor** | Recruit and supervise trainees. | Opportunity management, application decisions, tasks, grading, revisions, final-evaluation UI. |
+| 📘 **Academic Supervisor** | Follow assigned students academically. | Assigned-student dashboard, progress, comments, canonical academic final evaluation. |
+| 🧭 **University Coordinator** | Administer accounts and oversee placements. | Students/companies/supervisors, groups, placement monitoring, completion decisions, contact inbox. |
+
+```mermaid
+flowchart TB
+    U[Coordinator] -->|Assignments| A[Academic supervisor]
+    U -->|Records and monitoring| C[Company supervisor]
+    C <-->|Applications, work, feedback| S[Student]
+    A -->|Supervision| S
+    classDef navy fill:#18344C,color:#FFFFFF,stroke:#77B5F1
+    classDef teal fill:#174B50,color:#FFFFFF,stroke:#57D1C1
+    classDef purple fill:#443764,color:#FFFFFF,stroke:#B9A1F5
+    classDef gold fill:#59451E,color:#FFFFFF,stroke:#F3C66E
+    class S navy
+    class C teal
+    class A purple
+    class U gold
+```
+
+<a id="workflows"></a>
+
+## 🔄 How the workflows connect
+
+### 1 · Application decisions and one placement
+
+```mermaid
+flowchart LR
+    O[Apply to opportunity] --> D{Decision}
+    D -->|Reject| R[Rejected with details]
+    D -->|Accept| A[Accepted offer]
+    A --> C[Student confirms]
+    C --> N[One placement per student]
+    classDef blue fill:#18344C,color:#FFFFFF,stroke:#77B5F1
+    class A,C,N blue
+```
+
+Acceptance and confirmation are separate. Ownership checks and conditional writes protect the one-placement rule: an existing different placement blocks confirmation; retrying the same confirmed offer is supported.
+
+### 2 · Task submission, feedback, and resubmission
+
+```mermaid
+flowchart LR
+    T[Assign task and criteria] --> S[Submit text or link]
+    S --> R{Company review}
+    R -->|Grade| G[Grade and feedback]
+    R -->|Revise| F[Revision instructions]
+    F --> U[New submission attempt]
+    U --> R
+    classDef teal fill:#174B50,color:#FFFFFF,stroke:#57D1C1
+    classDef purple fill:#443764,color:#FFFFFF,stroke:#B9A1F5
+    class S,U teal
+    class F,G purple
+```
+
+Attempts and review history are retained. General binary task attachments are not implemented.
+
+### 3 · Completion checks and report release
+
+```mermaid
+flowchart LR
+    H[Required approved hours] --> G{Ready?}
+    E[Both canonical evaluations] --> G
+    P[Passing weighted result] --> G
+    G -->|Not ready| W[Resolve gaps]
+    G -->|Ready| C{Coordinator}
+    C -->|Return with reason| W
+    C -->|Approve| A[Approval and report URLs]
+    A --> R[Authorized PDF download]
+    classDef gold fill:#59451E,color:#FFFFFF,stroke:#F3C66E
+    classDef teal fill:#174B50,color:#FFFFFF,stroke:#57D1C1
+    class H,E,P gold
+    class A,R teal
+```
+
+This is the implemented **completion-service contract**. The hour-entry UI and company-final integration do not yet supply all required records end to end. The gate uses approved-hour entries; completing a task does not automatically approve hours.
+
+<a id="architecture"></a>
+
+## 🏗️ Application architecture
+
+```mermaid
+flowchart TD
+    B[Browser] --> W[Web Forms and master pages]
+    W --> S[SecurePage authorization]
+    W --> V[Services and read models]
+    V --> A[AuthService]
+    A --> F[Firebase Authentication]
+    S --> D[Repositories and FirebaseContext]
+    V --> D
+    D --> R[Realtime Database REST]
+    W --> L[Protected local documents]
+    V --> P[PDF generation]
+    classDef navy fill:#18344C,color:#FFFFFF,stroke:#77B5F1
+    classDef purple fill:#443764,color:#FFFFFF,stroke:#B9A1F5
+    class W,S,V navy
+    class F,R purple
+```
+
+| Layer | Technology |
+| --- | --- |
+| Web application | C#, ASP.NET Web Forms, **.NET Framework 4.7.2**; public + four role masters. |
+| Interface | HTML, CSS, plain JavaScript, **Bootstrap 5.3.3** with RTL support. |
+| Identity / data | Firebase Authentication / **Realtime Database**, both through REST; not Firestore. |
+| Localization / fonts | ASP.NET resources (`en-US`, `ar-JO`); local Noto Sans / Noto Sans Arabic. |
+| Selected visual experiences | **Three.js r180**, GSAP/ScrollTrigger **3.13.0**; lazy-loaded MapLibre campus map. |
+| NuGet | CodeDom compiler provider **2.0.1**; Newtonsoft.Json **13.0.4**. |
+| Files / reports | Private local profile/CV uploads; server-generated PDFs. |
+
+No React, Tailwind, TypeScript, or Node build is needed to run the application.
+
+<a id="setup"></a>
+
+## 🚀 Run locally
+
+| Prerequisite | Requirement |
+| --- | --- |
+| OS / IDE | Windows + Visual Studio with **ASP.NET and web development**. |
+| Runtime / host | **.NET Framework 4.7.2 targeting pack** and IIS Express. |
+| Services | Firebase Authentication + Realtime Database for your environment. |
+| Dependencies | Restore both packages in `packages.config`. |
+
+1. Open the [main Visual Studio solution](InternshipManagementSystem/InternshipManagementSystem.sln).
+2. Restore NuGet packages and verify the web project's `Web.config` settings.
+3. Set `InternshipManagementSystem` as the startup project; build and run with IIS Express.
+4. Open the assigned local URL (`Default.aspx` is the default document).
+5. Sign in with a Firebase identity and a matching active UIMS `users` profile.
+
+From a Visual Studio Developer PowerShell at the repository root, after restore:
+
+```powershell
+msbuild InternshipManagementSystem/InternshipManagementSystem.sln /t:Build /p:Configuration=Debug
+```
+
+This is .NET Framework: `dotnet run` is not the startup command. [Configuration and troubleshooting](#configuration) are below.
+
+<a id="status"></a>
+
+## 🚦 Implementation status
+
+| Area | Status | Exact boundary |
+| --- | --- | --- |
+| Recruitment and placement | **Implemented** | Opportunities, applications, company decisions, one-offer confirmation. |
+| Task lifecycle | **Implemented** | Text/link attempts, grading, feedback, revisions; no general task-file upload. |
+| Dashboards and shared UI | **Implemented** | Role-scoped analytics, sidebar, localization, themes, responsive layouts. |
+| Academic final evaluation | **Implemented** | Writes the canonical academic evaluation record. |
+| Training hours | **Partial integration** | Ledger/services and read views exist; dedicated reporting/approval page actions are pending. |
+| Company final evaluation | **Partial integration** | UI writes legacy placement fields; must write canonical `companyFinalEvaluations` for completion review. |
+| Completion / PDFs | **Implemented gate; dependencies pending** | Approval and authorized release require canonical evaluations and approved-hour entries. |
+| Profile / CV files | **Local storage implemented** | PDF CV limit **5 MiB**, photo limit **2 MiB**; generic `StorageService.Upload` remains a placeholder. |
+| Public opportunity previews | **Deployment dependent** | Requires populated public projections and appropriate deployed Firebase rules. |
+| Home process video | **Asset pending** | Readable steps exist; approved video/caption set is not bundled. |
+| Academic policy | **Provisional** | Hours, eligibility, scales, and grading must be institutionally verified. |
+
+**Project defaults only:** 160 required hours; task/company/academic weights 30% / 45% / 25%; pass mark 60%. Placement/student records can override required hours. `GradingPolicy.cs` marks assumptions as hypothetical—**these are not official GJU regulations**. See [policy questions](docs/01-university-rules.md).
+
+<a id="reference"></a>
+
+## 📚 Technical reference
+
+Expand the sections below for operational detail without leaving the showcase.
+
+<a id="routes"></a>
+
+<details>
+<summary><strong>🗺️ Routes: public pages, shared tools, and all four portals</strong></summary>
+
+| Experience | Purpose | Route |
+| --- | --- | --- |
+| Home | University introduction, campus scroll story, public opportunity previews, and internship process content. | `Default.aspx` |
+| About | Platform and university context. | `Pages/Public/About.aspx` |
+| Contact | Validate/store visitor messages for the coordinator inbox. | `Pages/Public/Contact.aspx` |
+| Powered by | Team presentation through a lecture-hall experience with an HTML fallback. | `Pages/Public/PoweredBy.aspx` |
+| Journey | Alternate Jisr campus experience; separate from the default homepage. | `Pages/Public/Journey.aspx` |
+| Login | University security-gate and identity concept surrounding the sign-in form. | `Pages/Account/Login.aspx` |
+| Password recovery | Firebase Authentication password-reset email request. | `Pages/Account/ForgotPassword.aspx` |
+| Password change | Password updates, including mandatory temporary-password changes. | `Pages/Account/ChangePassword.aspx` |
+| Error pages | Branded access-denied and page-not-found experiences. | `Pages/Public/AccessDenied.aspx`, `Pages/Public/NotFound.aspx` |
+
+- **Notifications:** sidebar access and `Pages/Account/Notifications.aspx` support viewing and marking notifications as read. Services include notification hooks; event coverage depends on the workflow implementation.
+- **Meetings:** `Pages/Meetings/MyMeetings.aspx` supports requests, responses, cancellation, filters, and status/attendance handling. Approved meetings use an allowlisted external Jitsi link. Joining opens 15 minutes before the scheduled start and closes at the scheduled end. Scheduling uses Jordan time. `Pages/Meetings/Schedule.aspx` redirects into this workspace.
+- **Reports:** `Pages/Account/CompletionReport.aspx` generates PDF output for authorized students/coordinators after completion/release checks, including a certificate variant.
+
+Contact stores messages rather than sending email. Video meetings use external Jitsi rather than a conferencing server hosted inside UIMS.
 
 Paths below are relative to the web application root. Short filenames in a row share the preceding role directory. `Company` represents company supervisors; `Academic` represents academic supervisors.
 
@@ -92,7 +269,7 @@ The company portal connects recruitment with the trainee's day-to-day work.
 | Final evaluation | Save drafts and submit evaluation information through the current placement-based implementation. | `Pages/Company/FinalEvaluation.aspx` |
 | Account | Maintain company and contact information. | `Pages/Company/Account.aspx` |
 
-The company final-evaluation page has an integration gap with canonical completion records; see [Implementation status](#implementation-status).
+The company final-evaluation page has an integration gap with canonical completion records; see [Implementation status](#status).
 
 ### Academic Supervisor
 
@@ -123,52 +300,12 @@ The coordinator portal provides administration and cross-placement monitoring.
 | Contact inbox | Read, search, and mark website messages as reviewed. | `Pages/Coordinator/ContactMessages.aspx` |
 | Account | Manage personal information and password. | `Pages/Coordinator/Account.aspx` |
 
-## Internship workflow
+</details>
 
-1. **Prepare accounts and supervision:** the coordinator manages students, companies, supervisors, and group assignments.
-2. **Publish opportunities:** company supervisors create listings and maintain availability.
-3. **Apply and decide:** students apply; companies review applications and record decisions.
-4. **Confirm a placement:** students confirm an accepted offer. Conditional repository writes guard against creating a second confirmed placement for the same student.
-5. **Assign and review work:** companies create tasks; students submit; reviewers grade work or request revisions.
-6. **Monitor progress:** each role sees information appropriate to its permissions and assignments.
-7. **Review completion:** the completion service checks approved hours, both canonical final evaluations, and the calculated passing result; the coordinator records a decision.
-8. **Release reports:** an authorized student or coordinator can request a generated PDF once release conditions are satisfied.
+<a id="experience"></a>
 
-Hour reporting/approval and company-final integration require the work documented below. A completion-review screen alone does not mean every preceding screen supplies its required records.
-
-### Provisional evaluation policy
-
-| Setting | Source default |
-| --- | --- |
-| Required training hours | 160; placement or student records can override the default. |
-| Task component | 30% |
-| Company final component | 45% |
-| Academic final component | 25% |
-| Passing threshold | 60% |
-
-`Common/GradingPolicy.cs` explicitly marks its assumptions as hypothetical and awaiting confirmation. Stored evaluations are normalized against their recorded maximum scores. These values must not be presented as official GJU policy; consult [University rules](docs/01-university-rules.md) and validate requirements before institutional use.
-
-## Public website and shared features
-
-| Experience | Purpose | Route |
-| --- | --- | --- |
-| Home | University introduction, campus scroll story, public opportunity previews, and internship process content. | `Default.aspx` |
-| About | Platform and university context. | `Pages/Public/About.aspx` |
-| Contact | Validate/store visitor messages for the coordinator inbox. | `Pages/Public/Contact.aspx` |
-| Powered by | Team presentation through a lecture-hall experience with an HTML fallback. | `Pages/Public/PoweredBy.aspx` |
-| Journey | Alternate Jisr campus experience; separate from the default homepage. | `Pages/Public/Journey.aspx` |
-| Login | University security-gate and identity concept surrounding the sign-in form. | `Pages/Account/Login.aspx` |
-| Password recovery | Firebase Authentication password-reset email request. | `Pages/Account/ForgotPassword.aspx` |
-| Password change | Password updates, including mandatory temporary-password changes. | `Pages/Account/ChangePassword.aspx` |
-| Error pages | Branded access-denied and page-not-found experiences. | `Pages/Public/AccessDenied.aspx`, `Pages/Public/NotFound.aspx` |
-
-- **Notifications:** sidebar access and `Pages/Account/Notifications.aspx` support viewing and marking notifications as read. Services include notification hooks; event coverage depends on the workflow implementation.
-- **Meetings:** `Pages/Meetings/MyMeetings.aspx` supports requests, responses, cancellation, filters, and status/attendance handling. Approved meetings use an allowlisted external Jitsi link. Joining opens 15 minutes before the scheduled start and closes at the scheduled end. Scheduling uses Jordan time. `Pages/Meetings/Schedule.aspx` redirects into this workspace.
-- **Reports:** `Pages/Account/CompletionReport.aspx` generates PDF output for authorized students/coordinators after completion/release checks, including a certificate variant.
-
-Contact stores messages rather than sending email. Video meetings use external Jitsi rather than a conferencing server hosted inside UIMS.
-
-## Design, accessibility, and localization
+<details>
+<summary><strong>🎨 Themes, localization, accessibility, and 3D fallbacks</strong></summary>
 
 ### A consistent workspace
 
@@ -200,38 +337,20 @@ Selected public pages load Three.js asynchronously: Home's campus story, Login's
 
 These are artistic, procedural interpretations, not a surveyed digital twin or photogrammetric reconstruction. Readable content and fallback visuals support reduced-motion and non-WebGL use. External maps, meetings, and CDN resources still depend on network availability.
 
-## Architecture and technology
+</details>
 
-```mermaid
-flowchart TD
-    Browser[Browser: public website and four portals] --> Web[Web Forms pages and master pages]
-    Web --> Access[Session and role authorization]
-    Web --> Services[Workflow services and dashboard read models]
-    Services --> Data[Repositories and REST clients]
-    Data --> Auth[Firebase Authentication]
-    Data --> Database[Firebase Realtime Database]
-    Web --> Files[Private local student documents]
-    Services --> Reports[Server-generated PDF reports]
-```
+<a id="security"></a>
 
-| Layer | Implementation |
-| --- | --- |
-| Application | C#, ASP.NET Web Forms, .NET Framework 4.7.2. |
-| Composition | Public master page and Student, Company, Academic, Coordinator masters. |
-| Frontend | HTML, CSS, plain JavaScript, Bootstrap 5.3.3 with RTL support. |
-| Localization | ASP.NET global resources, culture selection, direction-aware layouts. |
-| Identity | Firebase Authentication through REST. |
-| Persistence | Firebase Realtime Database REST repositories; not Cloud Firestore. |
-| HTTP/JSON | .NET HTTP APIs, shared JSON helpers, Newtonsoft.Json where used. |
-| Selected visual experiences | Bundled Three.js r180 and GSAP/ScrollTrigger 3.13.0. |
-| Public campus map | Lazy-loaded MapLibre GL JS with OpenFreeMap/OpenStreetMap attribution. |
-| Reports | In-project PDF generation without a separate PDF-generation NuGet package. |
+<details>
+<summary><strong>🔐 Authorization, database conventions, and private documents</strong></summary>
 
-`packages.config` contains **Microsoft.CodeDom.Providers.DotNetCompilerPlatform 2.0.1** and **Newtonsoft.Json 13.0.4**. Restore both before building.
+Sign-in authenticates with Firebase, then loads the UIMS database profile and trusted role. A Firebase identity alone does not grant portal access.
 
-This application does not require React, Next.js, shadcn, Tailwind, or a TypeScript build pipeline. Design references were adapted to the existing Web Forms stack.
+Protected pages inherit role-specific base classes. On protected requests, including postbacks, shared security rechecks the database profile, active status, mandatory password changes, and role. Missing/deactivated profiles and expired authentication return to sign-in. Protected responses disable caching; logout clears the session.
 
-## Data and document handling
+Workflows add placement, company, student, and assignment checks. Company/academic evaluation forms remain confidential to authorized reviewers; students receive the result/report released by the completion workflow. Login only supports safe local continuation, including the student application route, rather than arbitrary external redirects.
+
+Application checks do not replace Firebase rules. Development configuration and database rules require production review for authenticated access, ownership, public projections, and environment settings.
 
 ### Database areas
 
@@ -262,66 +381,12 @@ Keep storage private, writable by the application, persistent across deployment,
 
 The generic `StorageService.Upload` is unimplemented. Working local profile/CV uploads are separate; an empty Firebase Storage setting does not disable them.
 
-## Authentication and authorization
+</details>
 
-Sign-in authenticates with Firebase, then loads the UIMS database profile and trusted role. A Firebase identity alone does not grant portal access.
+<a id="configuration"></a>
 
-Protected pages inherit role-specific base classes. On protected requests, including postbacks, shared security rechecks the database profile, active status, mandatory password changes, and role. Missing/deactivated profiles and expired authentication return to sign-in. Protected responses disable caching; logout clears the session.
-
-Workflows add placement, company, student, and assignment checks. Company/academic evaluation forms remain confidential to authorized reviewers; students receive the result/report released by the completion workflow. Login only supports safe local continuation, including the student application route, rather than arbitrary external redirects.
-
-Application checks do not replace Firebase rules. Development configuration and database rules require production review for authenticated access, ownership, public projections, and environment settings.
-
-## Getting started
-
-### Prerequisites
-
-- Windows and Visual Studio with **ASP.NET and web development** installed.
-- **.NET Framework 4.7.2 targeting/developer pack** and IIS Express.
-- NuGet restore access.
-- Firebase Authentication and Realtime Database configured for the selected environment.
-
-This targets .NET Framework; `dotnet run` is not the startup command.
-
-### Visual Studio
-
-1. Clone the repository and open **`InternshipManagementSystem/InternshipManagementSystem.sln`**.
-2. Restore NuGet packages through the solution context menu or the restore prompt.
-3. Verify the Firebase app settings in the web project's `Web.config`.
-4. Set `InternshipManagementSystem` as the startup project.
-5. Build and start using IIS Express.
-6. Open the assigned local URL; `Default.aspx` is the default document.
-7. Sign in with an identity present in Firebase Authentication and a matching active UIMS `users` profile.
-
-Alternate solution files also exist; the `.sln` above is the documented application entry point.
-
-### Command-line build
-
-From the repository root in a Visual Studio Developer PowerShell, after package restoration:
-
-```powershell
-msbuild InternshipManagementSystem/InternshipManagementSystem.sln /t:Build /p:Configuration=Debug
-```
-
-With the optional NuGet CLI installed:
-
-```powershell
-nuget restore InternshipManagementSystem/InternshipManagementSystem.sln
-```
-
-### Troubleshooting
-
-| Symptom | Check |
-| --- | --- |
-| Missing references/compiler provider | Restore packages; verify the targeting pack and web workload. |
-| Login succeeds but portal access fails | Check matching UID, role, `IsActive`, password-change state, and Firebase rules. |
-| Empty public opportunity previews | Check eligible/published data, the projection, and deployed public rules. |
-| Upload fails | Check type/size and write permissions on private document storage. |
-| Static 3D fallback appears | Check WebGL, reduced motion, asset delivery, and browser console. |
-| Main updates appear absent | Confirm checkout/branch and IIS Express project path; rebuild/reload. |
-| Visual Studio reports external project-file changes | Preserve unsaved IDE changes, then reconcile/reload the disk version; overwriting may discard external changes. |
-
-## Configuration and deployment
+<details>
+<summary><strong>⚙️ Configuration, deployment, and troubleshooting</strong></summary>
 
 | `Web.config` key | Purpose |
 | --- | --- |
@@ -335,7 +400,30 @@ For deployment, publish to IIS supporting .NET Framework 4.7.2, configure HTTPS 
 
 Include required fonts/assets and adjacent Three.js module files. Account for external Bootstrap delivery, map tiles, Firebase, and Jitsi. Exclude development fixtures, private credentials, tokens, service-account files, real personal data, and local deployment settings. Confirm academic policy and finish outstanding workflow integration before relying on completion decisions operationally.
 
-## Verification
+### Troubleshooting
+
+| Symptom | Check |
+| --- | --- |
+| Missing references/compiler provider | Restore packages; verify the targeting pack and web workload. |
+| Login succeeds but portal access fails | Check matching UID, role, `IsActive`, password-change state, and Firebase rules. |
+| Empty public opportunity previews | Check eligible/published data, the projection, and deployed public rules. |
+| Upload fails | Check type/size and write permissions on private document storage. |
+| Static 3D fallback appears | Check WebGL, reduced motion, asset delivery, and browser console. |
+| Main updates appear absent | Confirm checkout/branch and IIS Express project path; rebuild/reload. |
+| Visual Studio reports external project-file changes | Preserve unsaved IDE changes, then reconcile/reload the disk version; overwriting may discard external changes. |
+
+If the optional NuGet CLI is installed, restore with:
+
+```powershell
+nuget restore InternshipManagementSystem/InternshipManagementSystem.sln
+```
+
+</details>
+
+<a id="testing"></a>
+
+<details>
+<summary><strong>🧪 Testing: isolated fixtures, browser scenarios, and limitations</strong></summary>
 
 Scenario-based browser scripts and disposable hosts cover public pages, localization, applications, offer confirmation, monitoring, analytics, sidebars, login lifecycle, and themes.
 
@@ -371,59 +459,12 @@ Host scripts require restored packages, IIS Express, and an appropriate local MS
 
 Simulation checks establish fixture behavior, not live Firebase rule correctness, production readiness, or universal browser support. Generated `tests/artifacts/` screenshots/recordings are ignored local output.
 
-## Implementation status
+</details>
 
-| Area | Current state | Remaining work/dependency |
-| --- | --- | --- |
-| Role portals/recruitment | Implemented account administration, opportunities, applications, decisions, and placement confirmation. | Environment-specific configuration, rules, and data validation. |
-| Task lifecycle | Assignments, text/link submissions, history, grading, and revisions. | General task-file attachments are not implemented. |
-| Training hours | Ledger repositories/report-decision services; hours displayed in dashboards/progress. | Connect dedicated page actions to reporting and approval services. |
-| Company final evaluation | Draft/submit UI updates legacy fields on the placement. | Write canonical `companyFinalEvaluations` records through the evaluation repository used by completion review. |
-| Academic evaluation | Writes the canonical academic final record. | Validate institutional grading requirements. |
-| Completion/PDF release | Requirement gates, coordinator decisions, authorized PDF generation. | Canonical final evaluations and approved-hour entries must be supplied correctly. |
-| Profile/CV uploads | Local uploads and authorized document access. | Generic Firebase Storage upload is still a placeholder; deploy persistent local storage or implement an alternative. |
-| Public previews | Dedicated projection and public UI. | Populate the projection and deploy appropriate rules. |
-| Process video | Readable steps and conditional media support. | Approved video/caption assets are not bundled. |
-| Academic policy | Centralized source defaults. | Confirm eligibility, hours, scales, weights, and thresholds. |
+<a id="documentation"></a>
 
-These distinctions support accurate demonstrations and handover; they do not imply that surrounding implemented features are placeholders.
-
-## Repository structure
-
-```text
-internship-management-system/
-├── README.md
-├── CODEOWNERS
-├── docs/                              Feature notes, model, ownership, verification
-├── postman/                           Local HTTP simulation assets
-├── tests/                             Browser scenarios and disposable hosts
-├── tools/                             Development and asset tooling
-└── InternshipManagementSystem/
-    ├── InternshipManagementSystem.sln  Main Visual Studio solution
-    └── InternshipManagementSystem/    Web application root
-        ├── Default.aspx               Public homepage
-        ├── Web.config                 Configuration
-        ├── packages.config            NuGet manifest
-        ├── App_GlobalResources/       English/Arabic resources
-        ├── App_Data/                  Application data/private documents
-        ├── Assets/                    CSS, scripts, fonts, images, 3D assets
-        ├── Common/                    Constants, enums, policy, helpers
-        ├── Data/                      Repositories, REST access, JSON mapping
-        ├── Layout/                    Public and role master pages
-        ├── Models/                    Domain records and role types
-        ├── Security/                  Session and protected-page infrastructure
-        ├── Services/                  Workflows, reporting, read models
-        └── Pages/
-            ├── Account/
-            ├── Public/
-            ├── Student/
-            ├── Company/
-            ├── Academic/
-            ├── Coordinator/
-            └── Meetings/
-```
-
-## Documentation and contribution
+<details>
+<summary><strong>📖 Documentation map and contribution guide</strong></summary>
 
 | Topic | References |
 | --- | --- |
@@ -439,11 +480,19 @@ internship-management-system/
 
 Feature notes capture different development stages and may contain historical instructions/screenshots. Reconcile them with this README and current source.
 
-Contribute through focused branches and respect `CODEOWNERS` and the team workflow. Explain the affected role/user journey. Preserve server authorization, localization, postbacks, safe navigation, and unsaved-input protection. Check affected UI in both languages/themes and mobile layouts when relevant. Exclude personal records, uploads, fixture output, and private local configuration from commits.
+Contribute through focused branches and respect [CODEOWNERS](.github/CODEOWNERS) and the team workflow. Explain the affected role/user journey. Preserve server authorization, localization, postbacks, safe navigation, and unsaved-input protection. Check affected UI in both languages/themes and mobile layouts when relevant. Exclude personal records, uploads, fixture output, and private local configuration from commits.
 
-## Credits and licensing
+**Source map:** `Pages/` + `Layout/` compose the UI; `Security/` protects requests; `Services/` implements workflows/read models; `Data/` handles repositories/REST; `Models/` defines records; `Common/` holds policy/helpers; `App_GlobalResources/` contains translations; `Assets/` holds client files. All are under `InternshipManagementSystem/InternshipManagementSystem/`.
+
+</details>
+
+<a id="credits"></a>
+
+## 🤝 Team and licensing
 
 UIMS is an **Orange Academy Group 4** team project. Responsibilities appear in [Ownership](docs/03-ownership.md); the application's **Powered by** page presents the team.
+
+**Team, as listed in the ownership guide:** Ahmad · Osama · Sara Rajoub · Sara Dolat · Suja · Fatima · Nada.
 
 Third-party assets retain their terms:
 
@@ -454,3 +503,5 @@ Third-party assets retain their terms:
 - **Microsoft Rocketbox assets:** see [people-model licensing](InternshipManagementSystem/InternshipManagementSystem/Assets/models/people/LICENSE.md) and attribution notes.
 
 No repository-wide license grant is declared here. Third-party terms do not automatically license the entire application or university branding. University identity provides project context and does not imply official endorsement.
+
+The [journey banner](docs/assets/uims-journey.gif) is an original conceptual illustration, not an application screenshot. [Asset notes and regeneration](docs/assets/README.md) describe its source and motion limitations.
