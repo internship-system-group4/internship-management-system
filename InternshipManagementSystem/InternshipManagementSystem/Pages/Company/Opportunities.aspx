@@ -184,6 +184,145 @@
         padding: 17px;
     }
 }
+
+/* =========================================
+   Add Opportunity - Layout Improvements
+   ========================================= */
+
+/* Use available page space */
+.op-page {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+/* Compact page heading */
+.op-heading {
+    margin: 12px 0 18px;
+}
+
+.op-heading h2 {
+    margin-bottom: 4px;
+}
+
+.op-heading p {
+    margin: 0;
+}
+
+/* Wider card with a clearer border */
+.op-card {
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    padding: 24px 28px;
+    border: 1.5px solid #ccd9e7;
+    border-radius: 11px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(23, 52, 81, 0.035);
+}
+
+/* Reduce unnecessary vertical spacing */
+.op-subtitle {
+    margin-bottom: 18px;
+}
+
+.op-grid {
+    gap: 12px 22px;
+}
+
+.op-field {
+    margin-bottom: 12px;
+}
+
+.op-field label {
+    margin-bottom: 6px;
+}
+
+/* Consistent input appearance */
+.op-field input,
+.op-field select,
+.op-field textarea {
+    padding: 10px 12px;
+    border: 1px solid #d0dce8;
+    border-radius: 7px;
+}
+
+/* Compact text areas */
+.op-field textarea {
+    min-height: 95px;
+}
+
+/* Better checkbox spacing */
+.op-majors {
+    gap: 9px;
+    margin-top: 6px;
+}
+
+.op-major {
+    padding: 8px 11px;
+}
+
+/* Align footer buttons */
+.op-footer {
+    margin-top: 12px;
+    padding-top: 18px;
+    gap: 9px;
+}
+
+.op-btn {
+    padding: 10px 18px;
+    border-radius: 7px;
+    transition: background-color 0.2s ease,
+                border-color 0.2s ease;
+}
+
+/* Keep messages aligned with the card */
+.op-notice {
+    max-width: none;
+    box-sizing: border-box;
+}
+
+/* Responsive layout */
+@media (max-width: 900px) {
+    .op-card {
+        padding: 20px;
+    }
+
+    .op-grid {
+        gap: 10px 16px;
+    }
+}
+
+@media (max-width: 650px) {
+    .op-page {
+        width: 100%;
+    }
+
+    .op-card {
+      
+         background: #ffffff;
+    border: 2px solid #b8cadc;
+    border-radius: 12px;
+    padding: 24px 28px;
+
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+
+    box-shadow: 0 3px 12px rgba(23, 52, 81, 0.06);
+    }
+
+    .op-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .op-footer {
+        justify-content: flex-start;
+    }
+}
+
 </style>
 
 </asp:Content>
