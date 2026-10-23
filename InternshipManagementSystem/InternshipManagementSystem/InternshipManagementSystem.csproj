@@ -125,6 +125,7 @@
     <Content Include="Assets\css\interface.css" />
     <Content Include="Assets\css\reference-analytics.css" />
     <Content Include="Assets\js\workspace-charts.js" />
+    <Content Include="Assets\js\company-applications.js" />
     <Content Include="Assets\fonts\notosans-variable.ttf" />
     <Content Include="Assets\fonts\notosansarabic-variable.ttf" />
     <Content Include="Assets\fonts\notosans-OFL.txt" />
