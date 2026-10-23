@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "uims-iisexpress",
+      "runtimeExecutable": "C:\\Program Files\\IIS Express\\iisexpress.exe",
+      "runtimeArgs": ["/path:C:\\Users\\user\\Desktop\\Orange\\Projects\\Projec2\\internship-management-system\\InternshipManagementSystem\\InternshipManagementSystem", "/port:8095"],
+      "port": 8095
+    }
+  ]
+}
