@@ -80,16 +80,16 @@
                         <th></th>
                     </tr>
                 </thead>
-                <asp:Repeater ID="rptSubmissions" runat="server">
+              <asp:Repeater ID="rptSubmissions" runat="server"
+    OnItemCommand="rptSubmissions_ItemCommand">
     <ItemTemplate>
-        <tr>
-            <td><%#: Eval("TaskId") %></td>
-            <td><%#: Eval("StudentId") %></td>
-            <td><%#: Eval("AttemptNumber") %></td>
-            <td><%#: Eval("Status") %></td>
-            <td><%#: Eval("SubmittedAt") %></td>
-            <td>—</td>
-        </tr>
+       <td>
+    <asp:LinkButton ID="btnViewDetails" runat="server"
+        Text="View Details"
+        CssClass="btn btn-outline-primary btn-sm"
+        CommandName="ViewDetails"
+        CommandArgument='<%# Eval("Id") %>' />
+</td>
     </ItemTemplate>
 </asp:Repeater>
             </table>
@@ -196,6 +196,75 @@
                             </tr>
                         </tbody>
                     </table>
+                   <asp:Panel ID="pnlSubmissionDetails" runat="server"
+    Visible="false" CssClass="uims-card mt-4">
+
+    <h3>Submission Details</h3>
+
+    <p><strong>Task:</strong>
+        <asp:Label ID="lblDetailTask" runat="server" /></p>
+
+    <p><strong>Attempt:</strong>
+        <asp:Label ID="lblDetailAttempt" runat="server" /></p>
+
+    <p><strong>Student's text:</strong><br />
+        <asp:Label ID="lblDetailText" runat="server" /></p>
+
+    <p><asp:HyperLink ID="lnkDetailWork" runat="server"
+        Text="Open submitted link" Target="_blank" Visible="false" /></p>
+
+    <p><asp:HyperLink ID="lnkDetailFile" runat="server"
+        Text="Open attached file" Target="_blank" Visible="false" /></p>
+
+    <hr class="my-4" />
+
+    <h4>Evaluation</h4>
+    <p class="text-muted">Enter a score for each criterion.</p>
+
+    <asp:Repeater ID="rptReviewCriteria" runat="server">
+        <ItemTemplate>
+            <div class="mb-3">
+                <label class="form-label">
+                    <%#: Eval("Name") %>
+                    — Max: <%#: Eval("MaxScore") %>
+                    — Weight: <%#: Eval("Weight") %>%
+                </label>
+
+                <asp:TextBox ID="txtScore" runat="server"
+                    TextMode="Number"
+                    CssClass="form-control"
+                    min="0"
+                    step="0.01" />
+            </div>
+        </ItemTemplate>
+    </asp:Repeater>
+
+    <div class="mb-3">
+        <asp:Label ID="Label1" runat="server"
+            AssociatedControlID="txtFeedback"
+            CssClass="form-label"
+            Text="Feedback for student" />
+
+        <asp:TextBox ID="TextBox1" runat="server"
+            TextMode="MultiLine"
+            Rows="4"
+            CssClass="form-control" />
+    </div>
+    <div class="d-flex gap-2">
+        <asp:Button ID="btnSaveGrade" runat="server"
+            Text="Save Grade"
+            CssClass="btn btn-brand"
+            OnClick="btnSaveGrade_Click"
+            Enabled="false" />
+
+        <asp:Button ID="Button1" runat="server"
+            Text="Request Revision"
+            CssClass="btn btn-outline-secondary"
+            Enabled="false" />
+    </div>
+                       <asp:Label ID="lblReviewMessage" runat="server"
+    CssClass="d-block mt-3" />
+</asp:Panel>
                 </div>
 
                 <div class="mb-3 mt-3">
@@ -204,6 +273,7 @@
                         CssClass="form-label" Text="Feedback" />
                     <asp:TextBox ID="txtFeedback" runat="server"
                         CssClass="form-control" TextMode="MultiLine" Rows="4" />
+
                 </div>
 
                 <asp:Button ID="btnSaveEvaluation" runat="server"

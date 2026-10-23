@@ -5,8 +5,13 @@
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="application-page application-theme">
+    <% if (IsViewMode) { %>
+    <a href="MyApplications.aspx" class="application-back">&larr; My applications</a>
+    <div class="application-heading"><h2>Your application</h2><p>This is what you sent to the company. Track its status here.</p></div>
+    <% } else { %>
     <a href="Opportunities.aspx" class="application-back">&larr; Explore opportunities</a>
     <div class="application-heading"><h2>Apply for an internship</h2><p>Review the opportunity and tell the company why you would be a good fit.</p></div>
+    <% } %>
     <asp:Panel ID="ErrorPanel" runat="server" Visible="false" CssClass="application-message" role="alert">
         <asp:Literal ID="ErrorText" runat="server" /> <a href="MyApplications.aspx">My Applications &rarr;</a>
     </asp:Panel>
@@ -35,6 +40,41 @@
                 <p class="application-help">Your application will be marked Pending until the company reviews it.</p>
                 <div class="application-actions"><a href="Opportunities.aspx">Cancel</a><asp:Button ID="SubmitApplication" runat="server" Text="Submit application →" OnClick="Submit_Click" CssClass="btn btn-brand" /></div>
             </div>
+        </asp:Panel>
+        <asp:Panel ID="ViewPanel" runat="server" Visible="false" CssClass="application-sheet">
+            <% if (ExistingApplication != null) { %>
+            <section class="application-section">
+                <h3><span>Status</span></h3>
+                <p><span class="application-status status-<%: ExistingApplication.Status.ToString().ToLowerInvariant() %>"><%: ExistingApplication.Status %></span></p>
+                <p class="application-help">Submitted <%: Time.Display(ExistingApplication.SubmittedAt) %></p>
+                <% if (ExistingApplication.Status == ApplicationStatus.Rejected && !string.IsNullOrEmpty(ExistingApplication.RejectionReason)) { %>
+                <p class="review-rejection-reason"><strong>Rejection reason:</strong> <%: ExistingApplication.RejectionReason %></p>
+                <% } %>
+                <% if (ExistingApplication.Status == ApplicationStatus.Accepted) { %>
+                <p class="application-help">To confirm this offer, go to <a href="MyApplications.aspx">My Applications</a>.</p>
+                <% } %>
+            </section>
+            <section class="application-section">
+                <h3><span>Your details</span></h3>
+                <dl class="application-details">
+                    <div><dt>Full name</dt><dd><%: CurrentStudent.FullName %></dd></div>
+                    <div><dt>Student number</dt><dd><%: CurrentStudent.StudentNumber %></dd></div>
+                    <div><dt>Email address</dt><dd><%: CurrentStudent.Email %></dd></div>
+                    <div><dt>Major</dt><dd><%: CurrentStudent.Major %></dd></div>
+                </dl>
+            </section>
+            <section class="application-section">
+                <h3><span>Your application</span></h3>
+                <span class="application-label">CV link</span>
+                <% if (!string.IsNullOrEmpty(ExistingCvUrl)) { %>
+                <p><a href="<%: ExistingCvUrl %>" target="_blank" rel="noopener noreferrer">Open CV &#8599;</a></p>
+                <% } else { %>
+                <p class="application-help">No CV link available.</p>
+                <% } %>
+                <span class="application-label">Cover letter</span>
+                <p class="application-letter-view"><%: ExistingApplication.CoverLetter %></p>
+            </section>
+            <% } %>
         </asp:Panel>
         <asp:Panel ID="OpportunityPanel" runat="server" Visible="false" CssClass="application-opportunity">
             <% if (SelectedOpportunity != null) { %>

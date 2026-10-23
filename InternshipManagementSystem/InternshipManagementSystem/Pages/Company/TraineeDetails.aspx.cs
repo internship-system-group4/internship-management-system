@@ -23,7 +23,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private void LoadTraineeData()
         {
-            // أخذ الـ ID الممرر في الرابط (وهو معرّف الـ Placement)
             string placementId = Request.QueryString["id"];
 
             if (string.IsNullOrEmpty(placementId))
@@ -34,7 +33,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             try
             {
-                // 1. جلب بيانات التدريب (Placement)
                 Placement placement = _placementRepo.GetById(placementId);
 
                 if (placement == null)
@@ -43,14 +41,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     return;
                 }
 
-                // 2. الحماية: التأكد أن هذا المتدرب يتبع لشركة المشرف المسجل حالياً
                 if (placement.CompanyId != CurrentSupervisor.CompanyId)
                 {
                     ShowError("Access denied. This trainee belongs to another company.");
                     return;
                 }
 
-                // 3. جلب بيانات الطالب من جدول المستخدمين
                 Student student = _userRepo.GetStudent(placement.StudentId);
 
                 if (student != null)
@@ -59,22 +55,40 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     litStudentMajor.Text = student.Major;
                     litStudentEmail.Text = student.Email;
                     litStudentInitials.Text = GetInitials(student.FullName);
+
+                    // فحص رابط السيرة الذاتية أو البورتفوليو
+                    string cvLink = "";
+                    try
+                    {
+                        cvLink = !string.IsNullOrEmpty(student.CvUrl) ? student.CvUrl :
+                                (!string.IsNullOrEmpty(student.PortfolioUrl) ? student.PortfolioUrl : "");
+                    }
+                    catch { }
+
+                    if (!string.IsNullOrEmpty(cvLink))
+                    {
+                        string safeLink = cvLink.Replace("'", "\\'");
+                        string script = $"document.getElementById('btnOpenRealCv').href = '{safeLink}'; document.getElementById('btnOpenRealCv').style.display = 'inline-block'; document.getElementById('divNoCv').style.display = 'none';";
+                        ClientScript.RegisterStartupScript(this.GetType(), "SetCvLink", script, true);
+                    }
+                    else
+                    {
+                        string script = "document.getElementById('btnOpenRealCv').style.display = 'none'; document.getElementById('divNoCv').style.display = 'block';";
+                        ClientScript.RegisterStartupScript(this.GetType(), "HideCvLink", script, true);
+                    }
                 }
 
-                // 4. تعبئة معلومات التدريب 
                 litOpportunityTitle.Text = placement.OpportunityTitle;
                 litStartDate.Text = FormatDate(placement.StartDate);
                 litEndDate.Text = FormatDate(placement.EndDate);
                 litPlacementStatus.Text = placement.Status.ToString();
 
-                // جلب اسم المشرف الأكاديمي إن وُجد
                 if (!string.IsNullOrEmpty(placement.AcademicSupervisorId))
                 {
                     var academicSup = _userRepo.GetAcademicSupervisor(placement.AcademicSupervisorId);
                     if (academicSup != null) litAcademicSupervisor.Text = academicSup.FullName;
                 }
 
-                // حساب نسبة التقدم في الساعات
                 litRequiredHours.Text = placement.RequiredHours.ToString();
                 litApprovedHours.Text = placement.ApprovedHours.ToString();
 
@@ -88,23 +102,19 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litProgressPercentage.Text = progress.ToString();
                 divProgressBar.Style["width"] = progress + "%";
 
-                // 5. جلب المهام المرتبطة بهذا المتدرب (مع تجاوز خطأ الفايربيس)
                 List<InternshipTask> allTasks = _taskRepo.GetAll();
                 List<InternshipTask> traineeTasks = new List<InternshipTask>();
 
                 foreach (InternshipTask t in allTasks)
                 {
-                    // نأخذ فقط المهام التابعة لهذا الـ Placement
                     if (t.PlacementId == placement.Id)
                     {
                         traineeTasks.Add(t);
                     }
                 }
 
-                // ترتيب المهام من الأحدث للأقدم
                 traineeTasks.Sort((a, b) => b.CreatedAt.CompareTo(a.CreatedAt));
 
-                // ربط الجدول بالبيانات
                 gvTraineeTasks.DataSource = traineeTasks;
                 gvTraineeTasks.DataBind();
             }
@@ -128,15 +138,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             return Time.FromUnixMs(ms).ToString("d MMM yyyy");
         }
 
-        // ألوان حالات المهام مطابقة لستايل الموقع
         protected string GetTaskStatusCss(string status)
         {
-            if (status == "Assigned") return "badge bg-primary bg-opacity-10 text-primary px-3 py-2 rounded-pill";
-            if (status == "Submitted") return "badge bg-warning bg-opacity-10 text-warning px-3 py-2 rounded-pill";
-            if (status == "Graded") return "badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill";
-            if (status == "RevisionRequested") return "badge bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill";
+            if (status == "Assigned") return "badge status-assigned px-3 py-2 rounded-pill fw-bold";
+            if (status == "Submitted") return "badge status-submitted px-3 py-2 rounded-pill fw-bold";
+            if (status == "Graded") return "badge status-graded px-3 py-2 rounded-pill fw-bold";
+            if (status == "RevisionRequested") return "badge status-revision px-3 py-2 rounded-pill fw-bold";
 
-            return "badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill";
+            return "badge bg-secondary bg-opacity-10 text-secondary px-3 py-2 rounded-pill fw-bold";
         }
 
         protected string GetInitials(string fullName)

@@ -1,0 +1,99 @@
+{
+  "passed": false,
+  "checks": {
+    "silhouetteIoU": 0.3233,
+    "aspectRatioDelta": 0.1429,
+    "scaleDelta": 0.3898,
+    "bilateralSymmetryError": 0.2934,
+    "colorDelta": {
+      "checked": 18,
+      "maxDeltaE": 23.22,
+      "perComponent": [
+        {
+          "componentId": null,
+          "deltaE": 7.32
+        },
+        {
+          "componentId": null,
+          "deltaE": 16.49
+        },
+        {
+          "componentId": null,
+          "deltaE": 7.32
+        },
+        {
+          "componentId": null,
+          "deltaE": 7.32
+        },
+        {
+          "componentId": null,
+          "deltaE": 16.49
+        },
+        {
+          "componentId": null,
+          "deltaE": 16.49
+        },
+        {
+          "componentId": null,
+          "deltaE": 16.49
+        },
+        {
+          "componentId": null,
+          "deltaE": 16.49
+        },
+        {
+          "componentId": null,
+          "deltaE": 17.24
+        },
+        {
+          "componentId": null,
+          "deltaE": 17.24
+        },
+        {
+          "componentId": null,
+          "deltaE": 7.32
+        },
+        {
+          "componentId": null,
+          "deltaE": 7.32
+        },
+        {
+          "componentId": null,
+          "deltaE": 23.22
+        },
+        {
+          "componentId": null,
+          "deltaE": 10.67
+        },
+        {
+          "componentId": null,
+          "deltaE": 7.32
+        },
+        {
+          "componentId": null,
+          "deltaE": 11.03
+        },
+        {
+          "componentId": null,
+          "deltaE": 17.24
+        },
+        {
+          "componentId": null,
+          "deltaE": 17.24
+        }
+      ],
+      "gated": false
+    }
+  },
+  "failures": [
+    "silhouette IoU 0.323 is below threshold 0.85",
+    "aspect-ratio delta 0.143 exceeds threshold 0.05",
+    "scale delta 0.390 exceeds threshold 0.08"
+  ],
+  "maskWarnings": [
+    "reference: 19.8% of foreground cells lie outside the largest connected blob and were excluded from the bounding box; if the subject really has separated parts in this projection, they are not being measured"
+  ],
+  "renderHash": "23cc870ef29aa02d",
+  "passId": "blockout",
+  "mapStrippedRender": ".img2threejs\\blockout.png"
+}

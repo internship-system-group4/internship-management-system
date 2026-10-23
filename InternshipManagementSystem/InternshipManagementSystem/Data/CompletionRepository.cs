@@ -32,5 +32,20 @@ namespace InternshipManagementSystem.Data
             List<CompletionRecord> found = GetWhere("StudentId", studentId);
             return found.Count > 0 ? found[0] : null;
         }
+
+        // When the coordinator approves or returns a completion record, the
+        // student is notified. Other statuses send nothing.
+        public override string Insert(CompletionRecord entity)
+        {
+            string id = base.Insert(entity);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.CompletionDecided(entity);
+            return id;
+        }
+
+        public override void Save(string id, CompletionRecord entity)
+        {
+            base.Save(id, entity);
+            Services.NotificationService.CompletionDecided(entity);
+        }
     }
 }

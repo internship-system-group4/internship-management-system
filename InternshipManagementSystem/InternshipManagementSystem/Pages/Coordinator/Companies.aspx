@@ -1,22 +1,35 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Companies.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Companies" Title="Manage Companies" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
-        .page-header-title { font-size: 1.75rem; font-weight: 700; color: #0f4c81; }
-        .card-container { background: #ffffff; border: 1px solid #e3e8ee; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-        .card-title-custom { font-size: 1.1rem; font-weight: 700; color: #0f4c81; margin-bottom: 1.5rem; }
+        /* تثبيت زر تسجيل الخروج بأسفل الشاشة */
+        .sidebar, aside { display: flex; flex-direction: column; height: 100vh; }
+        .sidebar-menu { flex-grow: 1; overflow-y: auto; }
+        .logout-container, .logout-box { margin-top: auto !important; border-top: 1px solid #e3e8ee; padding-top: 1rem; }
+
+        /* الألوان والستايلات */
+        .text-brand { color: #0f4c81 !important; }
+        .bg-brand { background-color: #0f4c81 !important; color: white; border: none; transition: 0.2s; }
+        .bg-brand:hover { background-color: #0a365c !important; color: white; transform: translateY(-1px); }
+        .nav-tabs .nav-link { color: #6b7786; font-weight: 500; border: none; background: transparent; }
+        .nav-tabs .nav-link.active { color: #0f4c81; font-weight: bold; border-bottom: 2px solid #0f4c81; }
         
-        .table-custom { width: 100%; border-collapse: collapse; font-size: 0.875rem; border: 1px solid #e3e8ee; }
-        .table-custom th { color: #6b7786; font-size: 0.75rem; text-transform: uppercase; font-weight: 600; padding: 1rem; border-bottom: 1px solid #e3e8ee; }
-        .table-custom td { padding: 1rem; border-bottom: 1px solid #e3e8ee; color: #1d2733; vertical-align: middle; }
+        .company-list-container { max-height: 250px; overflow-y: auto; border: 1px solid #e3e8ee; border-radius: 8px; background: #fff; padding: 0.5rem; }
+        .company-item { padding: 1rem; border: 1px solid transparent; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; margin-bottom: 0.25rem; display: flex; justify-content: space-between; align-items: center; }
+        .company-item:hover { background-color: #f8fafc; border-color: #cce5ff; transform: translateY(-1px); }
         
-        .nav-tabs-custom { border-bottom: 1px solid #e3e8ee; margin-bottom: 1.5rem; }
-        .nav-tabs-custom .nav-link { color: #6b7786; font-weight: 500; font-size: 0.9rem; border: none; padding: 0.5rem 1.5rem; background: transparent; }
-        .nav-tabs-custom .nav-link.active { color: #0f4c81; font-weight: 600; border-bottom: 2px solid #0f4c81; }
-        .form-label-custom { font-size: 0.85rem; font-weight: 600; color: #1d2733; margin-bottom: 0.35rem; }
+        .clean-table { width: 100%; border-collapse: collapse; }
+        .clean-table th { padding: 1rem; border-bottom: 2px solid #e2e8f0; color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
+        .clean-table td { padding: 1rem; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
+        .clean-table tr:hover td { background-color: #f8fafc; }
         
-        .list-item-hover { border: 1px solid #e3e8ee; border-radius: 6px; padding: 0.75rem; margin-bottom: 0.5rem; cursor: pointer; transition: 0.2s; }
-        .list-item-hover:hover { border-color: #0f4c81; background-color: #f8fafc; }
+        .btn-table-action { background-color: #f1f5f9; color: #0f4c81; font-weight: 600; padding: 6px 16px; border-radius: 50px; border: 1px solid #e2e8f0; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+        .btn-table-action:hover { background-color: #0f4c81; color: white; border-color: #0f4c81; }
+        
+        /* ستايل نافذة الـ View - تم إضافة خاصية كسر الكلمات الطويلة هنا */
+        .view-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; margin-bottom: 0.2rem; }
+        .view-value { font-size: 1rem; color: #1e293b; font-weight: 600; margin-bottom: 1.25rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word; }
     </style>
 </asp:Content>
 
@@ -25,55 +38,92 @@
         
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <div class="text-muted small mb-1">Coordinator workspace &gt; <span class="text-dark">Manage companies</span></div>
-                <h2 class="page-header-title mb-0">Manage Companies & Supervisors</h2>
+                <div class="text-muted small mb-1">Coordinator workspace &gt; <span class="text-dark fw-semibold">Manage companies</span></div>
+                <h2 class="fw-bold text-brand mb-0 fs-3">Manage Companies & Supervisors</h2>
             </div>
-            <button type="button" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#addSupervisorModal">
-                Add Company Supervisor
+            <button type="button" class="btn bg-brand px-4 py-2 rounded-pill shadow-sm" data-bs-toggle="modal" data-bs-target="#addSupervisorModal" onclick="resetFormState()">
+                <i class="bi bi-plus-lg me-2"></i>Add Supervisor
             </button>
         </div>
 
-        <asp:Label ID="lblMessage" runat="server" EnableViewState="false" CssClass="d-block mb-3"></asp:Label>
+        <!-- زر التحكم بالجدول (إخفاء / إظهار) -->
+        <div class="card border-0 shadow-sm rounded-4 p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h5 class="fw-bold text-brand mb-0">Existing Company Supervisors</h5>
+                <!-- زر طي الجدول (Collapse Button) -->
+                <button type="button" class="btn btn-sm btn-light border rounded-pill px-3 fw-bold text-muted" data-bs-toggle="collapse" data-bs-target="#tableCollapse" aria-expanded="true" onclick="toggleTableVisibility(this)">
+                    <i class="bi bi-eye-slash-fill me-1"></i><span class="toggle-text">Hide List</span>
+                </button>
+            </div>
 
-        <div class="card-container">
-            <h5 class="card-title-custom">Existing Company Supervisors</h5>
-            
-            <div class="table-responsive">
-                <asp:GridView ID="gvSupervisors" runat="server" CssClass="table-custom" AutoGenerateColumns="False" OnRowCommand="gvSupervisors_RowCommand" DataKeyNames="Id" GridLines="None">
-                    <Columns>
-                        <asp:BoundField DataField="FullName" HeaderText="SUPERVISOR NAME" />
-                        <asp:BoundField DataField="Email" HeaderText="EMAIL" />
-                        <asp:BoundField DataField="CompanyName" HeaderText="COMPANY" />
-                        <asp:BoundField DataField="JobTitle" HeaderText="JOB TITLE" />
-                        <asp:TemplateField HeaderText="STATUS">
-                            <ItemTemplate>
-                                <span class='<%# (bool)Eval("IsActive") ? "badge bg-success" : "badge bg-danger" %>'>
-                                    <%# (bool)Eval("IsActive") ? "Active" : "Inactive" %>
-                                </span>
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                        <asp:TemplateField HeaderText="ACTIONS">
-                            <ItemTemplate>
-                                <asp:Button ID="btnToggle" runat="server" Text='<%# (bool)Eval("IsActive") ? "Deactivate" : "Activate" %>' CommandName="ToggleStatus" CommandArgument='<%# Eval("Id") %>' CssClass='<%# (bool)Eval("IsActive") ? "btn btn-sm btn-outline-danger" : "btn btn-sm btn-outline-success" %>' OnClientClick="return confirm('Are you sure you want to change this supervisor status?');" />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-                    </Columns>
-                </asp:GridView>
+            <!-- تغليف الجدول بالـ Collapse -->
+            <div class="collapse show" id="tableCollapse">
+                <div class="table-responsive">
+                    <asp:GridView ID="gvSupervisors" runat="server" CssClass="clean-table" AutoGenerateColumns="False" OnRowCommand="gvSupervisors_RowCommand" DataKeyNames="Id" GridLines="None">
+                        <Columns>
+                            <asp:TemplateField HeaderText="Supervisor">
+                                <ItemTemplate>
+                                    <div class="d-flex align-items-center gap-3">
+                                        <div class="bg-light text-brand fw-bold rounded-circle d-flex align-items-center justify-content-center border shadow-sm" style="width: 40px; height: 40px;">
+                                            <i class="bi bi-person-fill"></i>
+                                        </div>
+                                        <div>
+                                            <div class="text-dark fw-bold"><%# Eval("FullName") %></div>
+                                            <div class="text-muted small fw-normal"><%# Eval("Email") %></div>
+                                        </div>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                            
+                            <asp:TemplateField HeaderText="Company & Role">
+                                <ItemTemplate>
+                                    <div class="text-dark fw-bold"><%# Eval("CompanyName") %></div>
+                                    <div class="text-muted small fw-normal"><%# Eval("JobTitle") %></div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Status">
+                                <ItemTemplate>
+                                    <span class='<%# (bool)Eval("IsActive") ? "badge bg-success bg-opacity-10 text-success px-3 py-2 rounded-pill fw-bold" : "badge bg-danger bg-opacity-10 text-danger px-3 py-2 rounded-pill fw-bold" %>'>
+                                        <i class='<%# (bool)Eval("IsActive") ? "bi bi-check-circle-fill me-1" : "bi bi-x-circle-fill me-1" %>'></i>
+                                        <%# (bool)Eval("IsActive") ? "Active" : "Inactive" %>
+                                    </span>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+
+                            <asp:TemplateField HeaderText="Actions">
+                                <ItemTemplate>
+                                    <div class="d-flex gap-2">
+                                        <asp:LinkButton ID="btnView" runat="server" CommandName="ViewDetails" CommandArgument='<%# Eval("Id") %>' CssClass="btn-table-action" CausesValidation="false">
+                                            <i class="bi bi-eye"></i> View
+                                        </asp:LinkButton>
+                                        
+                                        <asp:LinkButton ID="btnToggle" runat="server" CssClass="btn-table-action" CausesValidation="false" OnClientClick='<%# "return openConfirmModal(\"" + Eval("Id") + "\");" %>'>
+                                            <i class="bi bi-arrow-repeat"></i> Toggle
+                                        </asp:LinkButton>
+                                    </div>
+                                </ItemTemplate>
+                            </asp:TemplateField>
+                        </Columns>
+                    </asp:GridView>
+                </div>
             </div>
         </div>
-
     </div>
 
+    <asp:HiddenField ID="hfToggleSupervisorId" runat="server" />
+
+    <!-- 1. النافذة المنبثقة (Modal) لإضافة مشرف -->
     <div class="modal fade" id="addSupervisorModal" data-bs-backdrop="static" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-scrollable">
-            <div class="modal-content border-0 shadow-lg">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
                 
-                <div class="modal-header bg-light border-bottom-0 pb-0 pt-4 px-4 d-flex justify-content-between align-items-start">
+                <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
                     <div>
-                        <h5 class="fw-bold mb-1" style="color: #0f4c81;">Add company supervisor</h5>
+                        <h5 class="fw-bold text-brand mb-1">Add company supervisor</h5>
                         <p class="text-muted small mb-0">Create a supervisor account and link it to a training company.</p>
                     </div>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="resetFormState()"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" onclick="resetFormState()"></button>
                 </div>
 
                 <div class="modal-body p-4">
@@ -81,73 +131,44 @@
                     <asp:HiddenField ID="hfExistingCompId" runat="server" />
                     <asp:HiddenField ID="hfExistingCompName" runat="server" />
 
+                    <!-- قسم الشركة -->
                     <div class="mb-4">
-                        <h6 class="fw-bold" style="color: #0f4c81;">Company information</h6>
-                        
-                        <ul class="nav nav-tabs nav-tabs-custom" role="tablist">
-                            <li class="nav-item">
-                                <button class="nav-link active" id="tab-new" data-bs-toggle="tab" data-bs-target="#newCompany" type="button" onclick="setMode('New')">New company</button>
-                            </li>
-                            <li class="nav-item">
-                                <button class="nav-link" id="tab-existing" data-bs-toggle="tab" data-bs-target="#existingCompany" type="button" onclick="setMode('Existing')">Existing company</button>
-                            </li>
+                        <h6 class="fw-bold text-brand mb-3">Company information</h6>
+                        <ul class="nav nav-tabs mb-3">
+                            <li class="nav-item"><button class="nav-link active" id="tab-new" data-bs-toggle="tab" data-bs-target="#newCompany" type="button" onclick="setMode('New')">New company</button></li>
+                            <li class="nav-item"><button class="nav-link" id="tab-existing" data-bs-toggle="tab" data-bs-target="#existingCompany" type="button" onclick="setMode('Existing')">Existing company</button></li>
                         </ul>
 
                         <div class="tab-content">
+                            <!-- شركة جديدة -->
                             <div class="tab-pane fade show active" id="newCompany">
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label-custom">Company name <span class="required-star">*</span></label>
-                                        <asp:TextBox ID="txtCompanyName" runat="server" CssClass="form-control form-control-sm" placeholder="Enter company name"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label-custom">Industry <span class="required-star">*</span></label>
-                                        <asp:TextBox ID="txtIndustry" runat="server" CssClass="form-control form-control-sm" placeholder="Select industry"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label-custom">City <span class="required-star">*</span></label>
-                                        <asp:TextBox ID="txtCity" runat="server" CssClass="form-control form-control-sm" placeholder="Enter city"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label-custom">Company website</label>
-                                        <asp:TextBox ID="txtWebsite" runat="server" CssClass="form-control form-control-sm" placeholder="https://example.com"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
-                                    <div class="col-md-6">
-                                        <label class="form-label-custom">Company Email</label>
-                                        <asp:TextBox ID="txtCompanyEmail" runat="server" CssClass="form-control form-control-sm" TextMode="Email" placeholder="company@domain.com"></asp:TextBox>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label-custom">Company Phone</label>
-                                        <asp:TextBox ID="txtCompanyPhone" runat="server" CssClass="form-control form-control-sm" placeholder="Enter phone number"></asp:TextBox>
-                                    </div>
-                                </div>
-                                <div>
-                                    <label class="form-label-custom">Company address</label>
-                                    <asp:TextBox ID="txtAddress" runat="server" CssClass="form-control form-control-sm" placeholder="Enter street, building, and location details"></asp:TextBox>
+                                <div class="row g-3">
+                                    <div class="col-md-6"><label class="form-label fw-semibold small">Company name *</label><asp:TextBox ID="txtCompanyName" runat="server" CssClass="form-control bg-light" placeholder="e.g. Tech Solutions"></asp:TextBox></div>
+                                    <div class="col-md-6"><label class="form-label fw-semibold small">Industry *</label><asp:TextBox ID="txtIndustry" runat="server" CssClass="form-control bg-light" placeholder="e.g. Software Development"></asp:TextBox></div>
+                                    <div class="col-md-6"><label class="form-label fw-semibold small">City *</label><asp:TextBox ID="txtCity" runat="server" CssClass="form-control bg-light" placeholder="e.g. Amman"></asp:TextBox></div>
+                                    <div class="col-md-6"><label class="form-label fw-semibold small">Website</label><asp:TextBox ID="txtWebsite" runat="server" CssClass="form-control bg-light" placeholder="https://"></asp:TextBox></div>
+                                    <div class="col-md-6"><label class="form-label fw-semibold small">Company Email</label><asp:TextBox ID="txtCompanyEmail" runat="server" CssClass="form-control bg-light" TextMode="Email" placeholder="info@company.com"></asp:TextBox></div>
+                                    <div class="col-md-6"><label class="form-label fw-semibold small">Company Phone</label><asp:TextBox ID="txtCompanyPhone" runat="server" CssClass="form-control bg-light" placeholder="+962..."></asp:TextBox></div>
+                                    <div class="col-12"><label class="form-label fw-semibold small">Full Address</label><asp:TextBox ID="txtAddress" runat="server" CssClass="form-control bg-light" placeholder="Building, Street..."></asp:TextBox></div>
                                 </div>
                             </div>
 
+                            <!-- شركة موجودة -->
                             <div class="tab-pane fade" id="existingCompany">
-                                <div class="alert alert-success d-none d-flex justify-content-between align-items-center mb-3 py-2" id="selectedCompanyAlert">
-                                    <span class="small"><i class="bi bi-check-circle-fill me-2"></i> Selected: <strong id="lblSelectedCompanyNameDisplay"></strong></span>
-                                    <button type="button" class="btn btn-sm btn-outline-success bg-white py-0" onclick="clearExistingSelection()">Change</button>
+                                <div class="alert alert-success d-none d-flex justify-content-between align-items-center mb-3" id="selectedCompanyAlert">
+                                    <span><i class="bi bi-check-circle-fill me-2"></i> Selected: <strong id="lblSelectedCompanyNameDisplay"></strong></span>
+                                    <button type="button" class="btn btn-sm btn-light border fw-bold" onclick="clearExistingSelection()">Change</button>
                                 </div>
-                                
                                 <div id="existingCompanyListArea">
-                                    <p class="text-muted small mb-2">Select a company from the database.</p>
-                                    <div class="border rounded p-2 bg-light" style="max-height: 200px; overflow-y: auto;">
+                                    <div class="company-list-container shadow-sm">
                                         <asp:Repeater ID="rptExistingCompanies" runat="server">
                                             <ItemTemplate>
-                                                <div class="list-item-hover bg-white d-flex justify-content-between align-items-center" onclick="selectCompany('<%# Eval("Id") %>', '<%# Eval("Name").ToString().Replace("'", "\\'") %>')">
+                                                <div class="company-item border-bottom" onclick="selectCompany('<%# Eval("Id") %>', '<%# Eval("Name").ToString().Replace("'", "\\'") %>')">
                                                     <div>
-                                                        <div class="fw-bold text-dark small"><%# Eval("Name") %></div>
-                                                        <div class="text-muted" style="font-size: 0.75rem;"><%# Eval("Industry") %></div>
+                                                        <div class="fw-bold text-dark"><%# Eval("Name") %></div>
+                                                        <div class="text-muted small"><i class="bi bi-building me-1"></i><%# Eval("Industry") %> &bull; <i class="bi bi-geo-alt me-1"></i><%# Eval("Address") %></div>
                                                     </div>
-                                                    <span class="btn btn-sm btn-light border text-muted" style="font-size: 0.75rem;">Select</span>
+                                                    <span class="btn btn-sm btn-outline-primary rounded-pill px-3 fw-bold">Select</span>
                                                 </div>
                                             </ItemTemplate>
                                         </asp:Repeater>
@@ -159,62 +180,159 @@
 
                     <hr class="my-4" />
 
+                    <!-- قسم المشرف -->
                     <div class="mb-4">
-                        <h6 class="fw-bold" style="color: #0f4c81;">Supervisor details</h6>
-                        <div class="row mb-3">
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Full name <span class="required-star">*</span></label>
-                                <asp:TextBox ID="txtSupervisorName" runat="server" CssClass="form-control form-control-sm" placeholder="Enter supervisor's full name"></asp:TextBox>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Job title</label>
-                                <asp:TextBox ID="txtJobTitle" runat="server" CssClass="form-control form-control-sm" placeholder="e.g. Engineering team lead"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Email address <span class="required-star">*</span></label>
-                                <asp:TextBox ID="txtSupervisorEmail" runat="server" CssClass="form-control form-control-sm" TextMode="Email" placeholder="supervisor@company.com"></asp:TextBox>
-                            </div>
-                            <div class="col-md-6">
-                                <label class="form-label-custom">Phone number</label>
-                                <asp:TextBox ID="txtSupervisorPhone" runat="server" CssClass="form-control form-control-sm" placeholder="Enter phone number"></asp:TextBox>
-                            </div>
+                        <h6 class="fw-bold text-brand mb-3">Supervisor details</h6>
+                        <div class="row g-3">
+                            <div class="col-md-6"><label class="form-label fw-semibold small">Full name *</label><asp:TextBox ID="txtSupervisorName" runat="server" CssClass="form-control bg-light" placeholder="e.g. Ahmad Khaled"></asp:TextBox></div>
+                            <div class="col-md-6"><label class="form-label fw-semibold small">Job title</label><asp:TextBox ID="txtJobTitle" runat="server" CssClass="form-control bg-light" placeholder="e.g. HR Manager"></asp:TextBox></div>
+                            <div class="col-md-6"><label class="form-label fw-semibold small">Email address *</label><asp:TextBox ID="txtSupervisorEmail" runat="server" CssClass="form-control bg-light" TextMode="Email" placeholder="name@company.com"></asp:TextBox></div>
+                            <div class="col-md-6"><label class="form-label fw-semibold small">Phone number</label><asp:TextBox ID="txtSupervisorPhone" runat="server" CssClass="form-control bg-light" placeholder="+962..."></asp:TextBox></div>
                         </div>
                     </div>
 
                     <hr class="my-4" />
 
-                    <div class="mb-2">
-                        <h6 class="fw-bold" style="color: #0f4c81;">Account access</h6>
-                        <div class="row mb-3">
+                    <!-- بيانات الدخول -->
+                    <div>
+                        <h6 class="fw-bold text-brand mb-3">Account access</h6>
+                        <div class="row g-3">
                             <div class="col-md-6">
-                                <label class="form-label-custom">Temporary password <span class="required-star">*</span></label>
-                                <asp:TextBox ID="txtTempPassword" runat="server" CssClass="form-control form-control-sm" TextMode="Password" placeholder="Enter temporary password"></asp:TextBox>
-                                <small class="text-muted" style="font-size: 0.7rem;">Use at least 6 characters.</small>
+                                <label class="form-label fw-semibold small">Temporary password *</label>
+                                <asp:TextBox ID="txtTempPassword" runat="server" CssClass="form-control bg-light" TextMode="Password" placeholder="Minimum 6 characters"></asp:TextBox>
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label-custom">Account role</label>
-                                <input type="text" class="form-control form-control-sm bg-light text-muted" value="Company supervisor" readonly />
+                                <label class="form-label fw-semibold small">Account role</label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light border-end-0"><i class="bi bi-shield-lock text-muted"></i></span>
+                                    <input type="text" class="form-control bg-light border-start-0 text-muted" value="Company Supervisor" readonly="readonly" />
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <div class="modal-footer bg-light px-4 border-top-0">
-                    <button type="button" class="btn btn-outline-secondary btn-sm px-4" data-bs-dismiss="modal" onclick="resetFormState()">Cancel</button>
-                    <asp:Button ID="btnSave" runat="server" Text="Create account" CssClass="btn btn-brand btn-sm px-4" OnClientClick="return validateAndConfirm();" OnClick="btnSave_Click" />
+                    <button type="button" class="btn btn-outline-secondary rounded-pill px-4 fw-bold" data-bs-dismiss="modal" onclick="resetFormState()">Cancel</button>
+                    <asp:Button ID="btnSave" runat="server" Text="Create account" CssClass="btn bg-brand rounded-pill px-4 shadow-sm fw-bold" OnClientClick="return validateAndConfirm();" OnClick="btnSave_Click" CausesValidation="false" />
                 </div>
 
             </div>
         </div>
     </div>
 
+    <!-- 2. النافذة المنبثقة للـ View Mode -->
+    <div class="modal fade" id="viewDetailsModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0 shadow-lg">
+                <div class="modal-header border-bottom-0 pb-0 pt-4 px-4 d-flex justify-content-between align-items-center">
+                    <h5 class="fw-bold text-brand mb-0">Supervisor Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    
+                    <h6 class="fw-bold text-muted mb-3 text-uppercase small letter-spacing-1"><i class="bi bi-person-badge text-brand me-2 fs-5"></i>Personal Info</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="view-label">Full Name</div>
+                            <div class="view-value"><asp:Literal ID="litViewSupName" runat="server"></asp:Literal></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="view-label">Job Title</div>
+                            <div class="view-value"><asp:Literal ID="litViewJobTitle" runat="server"></asp:Literal></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="view-label">Email Address</div>
+                            <div class="view-value"><asp:Literal ID="litViewEmail" runat="server"></asp:Literal></div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="view-label">Phone Number</div>
+                            <div class="view-value"><asp:Literal ID="litViewPhone" runat="server"></asp:Literal></div>
+                        </div>
+                    </div>
+
+                    <div class="bg-light rounded-4 p-4 mt-3 border border-light shadow-sm">
+                        <h6 class="fw-bold text-muted mb-3 text-uppercase small letter-spacing-1"><i class="bi bi-building text-brand me-2 fs-5"></i>Company Info</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="view-label">Company Name</div>
+                                <div class="view-value mb-md-0 border-0"><asp:Literal ID="litViewCompName" runat="server"></asp:Literal></div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="view-label">Industry</div>
+                                <div class="view-value mb-0 border-0"><asp:Literal ID="litViewIndustry" runat="server"></asp:Literal></div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer bg-light border-top-0 px-4 rounded-bottom-4">
+                    <button type="button" class="btn bg-brand rounded-pill px-5 fw-bold" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. نافذة التأكيد (Confirmation Modal) -->
+    <div class="modal fade" id="confirmToggleModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content rounded-4 border-0 shadow-lg text-center p-4">
+          <div class="mb-3"><i class='bi bi-question-circle-fill text-warning' style='font-size: 3.5rem;'></i></div>
+          <h5 class="fw-bold mb-2 text-dark">Confirm Action</h5>
+          <p class="text-muted small mb-4">Are you sure you want to change the status of this supervisor?</p>
+          <div class="d-flex gap-2 justify-content-center">
+              <button type="button" class="btn btn-light rounded-pill px-4 fw-bold" data-bs-dismiss="modal">Cancel</button>
+              <asp:Button ID="btnConfirmToggle" runat="server" Text="Yes, I'm sure" CssClass="btn btn-danger rounded-pill px-4 fw-bold" OnClick="btnConfirmToggle_Click" CausesValidation="false" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. نافذة رسائل النظام (Pop-up) -->
+    <div class="modal fade" id="serverMessageModal" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content rounded-4 border-0 shadow-lg text-center p-4">
+          <div class="mb-3"><asp:Literal ID="litModalIcon" runat="server"></asp:Literal></div>
+          <h5 class="fw-bold mb-2 text-dark"><asp:Literal ID="litModalTitle" runat="server"></asp:Literal></h5>
+          <p class="text-muted small mb-4"><asp:Literal ID="litModalMessage" runat="server"></asp:Literal></p>
+          <button type="button" class="btn bg-brand rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal">Okay</button>
+        </div>
+      </div>
+    </div>
+
     <script>
-        function setMode(mode) {
-            document.getElementById('<%= hfCompanyMode.ClientID %>').value = mode;
+        function toggleTableVisibility(btn) {
+            setTimeout(function() {
+                var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+                var icon = btn.querySelector('i');
+                var text = btn.querySelector('.toggle-text');
+                
+                if (isExpanded) {
+                    icon.className = 'bi bi-eye-slash-fill me-1';
+                    text.innerText = 'Hide List';
+                } else {
+                    icon.className = 'bi bi-eye-fill me-1';
+                    text.innerText = 'Show List';
+                }
+            }, 50);
         }
 
+        function openSystemModal(modalId) {
+            setTimeout(function() {
+                var el = document.getElementById(modalId);
+                if(el) { var m = new bootstrap.Modal(el); m.show(); }
+            }, 100);
+        }
+        function hideSystemModal(modalId) {
+            var el = document.getElementById(modalId);
+            if(el) { 
+                var m = bootstrap.Modal.getInstance(el); 
+                if(m) { m.hide(); } 
+            }
+        }
+
+        function setMode(mode) { document.getElementById('<%= hfCompanyMode.ClientID %>').value = mode; }
+        
         function selectCompany(id, name) {
             document.getElementById('<%= hfExistingCompId.ClientID %>').value = id;
             document.getElementById('<%= hfExistingCompName.ClientID %>').value = name;
@@ -232,18 +350,27 @@
 
         function validateAndConfirm() {
             let mode = document.getElementById('<%= hfCompanyMode.ClientID %>').value;
-            if (mode === "Existing" && document.getElementById('<%= hfExistingCompId.ClientID %>').value === "") {
-                alert("Please select a company from the list first.");
+            let existingId = document.getElementById('<%= hfExistingCompId.ClientID %>').value;
+            if (mode === "Existing" && existingId === "") {
+                alert("Please select a company from the list first."); 
                 return false;
             }
-            return confirm("Are you sure you want to create this account?");
+            return true; 
         }
 
-        function resetFormState() {
-            clearExistingSelection();
-            setMode('New');
-            var newTab = new bootstrap.Tab(document.getElementById('tab-new'));
-            newTab.show();
+        function resetFormState() { 
+            clearExistingSelection(); setMode('New'); 
+            document.getElementById('<%= txtCompanyName.ClientID %>').value = '';
+            document.getElementById('<%= txtSupervisorName.ClientID %>').value = '';
+            document.getElementById('<%= txtSupervisorEmail.ClientID %>').value = '';
+            document.getElementById('<%= txtTempPassword.ClientID %>').value = '';
+            new bootstrap.Tab(document.getElementById('tab-new')).show();
+        }
+
+        function openConfirmModal(supervisorId) {
+            document.getElementById('<%= hfToggleSupervisorId.ClientID %>').value = supervisorId;
+            openSystemModal('confirmToggleModal');
+            return false;
         }
     </script>
 </asp:Content>

@@ -9,6 +9,16 @@ namespace InternshipManagementSystem.Pages.StudentArea
     public partial class Apply : Security.StudentPage
     {
         protected Opportunity SelectedOpportunity;
+        protected InternshipApplication ExistingApplication;
+        protected bool IsViewMode { get { return ExistingApplication != null; } }
+        protected string ExistingCvUrl
+        {
+            get
+            {
+                string url = ExistingApplication == null ? "" : ExistingApplication.CvUrl;
+                return ApplicationRepository.IsSafeDocumentUrl(url) ? url : "";
+            }
+        }
         protected string OpportunityId { get { return Request.QueryString["opportunityId"] ?? Request.QueryString["id"]; } }
 
         protected override void OnInit(EventArgs e)
@@ -24,13 +34,23 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 if (!ApplicationRepository.IsValidKey(OpportunityId))
                 { Block("Choose an internship from Explore Opportunities to start your application."); return; }
                 SelectedOpportunity = new OpportunityRepository().GetById(OpportunityId);
+
+                // Already applied: show the submitted application read-only instead of the form.
+                ExistingApplication = new ApplicationRepository().GetByStudent(CurrentStudent.Id)
+                    .FirstOrDefault(a => a.OpportunityId == OpportunityId);
+                if (ExistingApplication != null)
+                {
+                    FormPanel.Visible = false;
+                    ViewPanel.Visible = true;
+                    OpportunityPanel.Visible = SelectedOpportunity != null;
+                    return;
+                }
+
                 if (SelectedOpportunity == null) { Block("This internship could not be found."); return; }
                 OpportunityPanel.Visible = true;
                 if (!SelectedOpportunity.IsOpenForApplications) { Block("This internship is no longer accepting applications."); return; }
                 if (!SelectedOpportunity.IsEligible(CurrentStudent)) { Block("This internship is not available for your college or major."); return; }
                 if (new PlacementRepository().Exists(CurrentStudent.Id)) { Block("You already have a confirmed internship."); return; }
-                if (new ApplicationRepository().GetByStudent(CurrentStudent.Id).Any(a => a.OpportunityId == OpportunityId))
-                { Block("You have already applied to this internship. Track it in My Applications."); return; }
                 FormPanel.Visible = true;
                 if (!IsPostBack) CvUrl.Text = CurrentStudent.CvUrl;
             }
@@ -40,7 +60,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         protected void Submit_Click(object sender, EventArgs e)
         {
-            if (!FormPanel.Visible) return;
+            if (!FormPanel.Visible || IsViewMode) return;
             try
             {
                 new ApplicationRepository().Submit(CurrentStudent, OpportunityId, CoverLetter.Text, CvUrl.Text, Confirm.Checked);

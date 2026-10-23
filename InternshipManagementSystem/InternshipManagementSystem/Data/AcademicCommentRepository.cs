@@ -25,5 +25,13 @@ namespace InternshipManagementSystem.Data
         {
             return GetWhere("StudentId", studentId);
         }
+
+        /// <summary>Saves a comment; a comment visible to the student also notifies them.</summary>
+        public override string Insert(AcademicComment entity)
+        {
+            string id = base.Insert(entity);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.AcademicCommentAdded(entity);
+            return id;
+        }
     }
 }

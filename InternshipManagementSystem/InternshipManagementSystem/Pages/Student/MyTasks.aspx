@@ -168,8 +168,8 @@
             <strong><%#: Eval("Name") %></strong>
             — <%#: Eval("Description") %>
             <div class="small">
-                Maximum score: <%#: Eval("MaxScore") %>
-                | Weight: <%#: Eval("Weight") %>%
+                <%#: Eval("MaxScore", "{0:0.##}") %> points
+                (<%#: Eval("Weight", "{0:0}") %>% of the task)
             </div>
         </div>
     </ItemTemplate>

@@ -15,6 +15,24 @@ namespace InternshipManagementSystem.Pages.CompanyArea
     {
 
         /// <summary>
+        /// lblPageMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblPageMessage;
+
+        /// <summary>
+        /// gvTasks control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvTasks;
+
+        /// <summary>
         /// lblTaskTitle control.
         /// </summary>
         /// <remarks>
@@ -69,24 +87,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.TextBox txtInstructions;
 
         /// <summary>
-        /// lblDeadline control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblDeadline;
-
-        /// <summary>
-        /// txtDeadline control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtDeadline;
-
-        /// <summary>
         /// lblTrainee control.
         /// </summary>
         /// <remarks>
@@ -105,22 +105,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.DropDownList ddlTrainee;
 
         /// <summary>
-        /// lblMaxScore control.
+        /// lblDeadline control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMaxScore;
+        protected global::System.Web.UI.WebControls.Label lblDeadline;
 
         /// <summary>
-        /// txtMaxScore control.
+        /// txtDeadline control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtMaxScore;
+        protected global::System.Web.UI.WebControls.TextBox txtDeadline;
 
         /// <summary>
         /// lblWeight control.
@@ -132,13 +132,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.Label lblWeight;
 
         /// <summary>
-        /// txtWeight control.
+        /// ddlWeight control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtWeight;
+        protected global::System.Web.UI.WebControls.DropDownList ddlWeight;
 
         /// <summary>
         /// lblCriterionName control.
@@ -159,22 +159,31 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.TextBox txtCriterionName;
 
         /// <summary>
-        /// lblCriterionMaxScore control.
+        /// lblCriterionPoints control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCriterionMaxScore;
+        protected global::System.Web.UI.WebControls.Label lblCriterionPoints;
 
         /// <summary>
-        /// txtCriterionMaxScore control.
+        /// txtCriterionPoints control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCriterionMaxScore;
+        protected global::System.Web.UI.WebControls.TextBox txtCriterionPoints;
+
+        /// <summary>
+        /// btnAddCriterion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddCriterion;
 
         /// <summary>
         /// lblCriterionDescription control.
@@ -195,31 +204,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.TextBox txtCriterionDescription;
 
         /// <summary>
-        /// lblCriterionWeight control.
+        /// pnlStarter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCriterionWeight;
+        protected global::System.Web.UI.WebControls.Panel pnlStarter;
 
         /// <summary>
-        /// txtCriterionWeight control.
+        /// btnUseStarter control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCriterionWeight;
-
-        /// <summary>
-        /// btnAddCriterion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAddCriterion;
+        protected global::System.Web.UI.WebControls.LinkButton btnUseStarter;
 
         /// <summary>
         /// gvCriteria control.
@@ -231,13 +231,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.GridView gvCriteria;
 
         /// <summary>
-        /// btnCreateTask control.
+        /// lblTotalPoints control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreateTask;
+        protected global::System.Web.UI.WebControls.Label lblTotalPoints;
 
         /// <summary>
         /// lblMessage control.
@@ -247,5 +247,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblMessage;
+
+        /// <summary>
+        /// btnCreateTask control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCreateTask;
     }
 }

@@ -1,0 +1,9 @@
+version: 1
+name: Campus login Firebase Auth fixture
+slug: campus-login-auth
+protocol: http
+interceptRequests: true
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true
