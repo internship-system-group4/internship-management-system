@@ -11,4 +11,5 @@
 <asp:Label runat="server" AssociatedControlID="txtComments" Text="Confidential supervisor comments" /><asp:TextBox ID="txtComments" runat="server" TextMode="MultiLine" Rows="5" CssClass="form-control mb-3" MaxLength="4000" />
 <asp:Button ID="btnSubmit" runat="server" Text="Submit final evaluation to academic supervisor" CssClass="btn btn-brand" OnClick="btnSubmit_Click" OnClientClick="return confirm('Submit this confidential final evaluation? Submitted evaluations are read-only.');" />
 </asp:Panel><p><asp:Literal ID="litStatus" runat="server" /></p></section>
+<p class="mt-3"><a class="btn btn-outline-primary" href="<%= ResolveUrl("~/Pages/Company/EvaluationReport.aspx") %>">Company evaluation report and certificate tools</a></p>
 </asp:Content>
