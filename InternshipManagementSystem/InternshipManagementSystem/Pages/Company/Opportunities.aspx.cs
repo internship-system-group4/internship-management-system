@@ -1,17 +1,4 @@
-﻿// =============================================================================
-//  Manage Opportunities
-//  Owner : Sara Rajoub
-//  Cards : R01, R02
-//
-//  (Create on this page), edit and close this company's opportunities, with majors, requirements and seat count. A supervisor must not be able to touch another company's rows.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
-
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -62,7 +49,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (CurrentSupervisor == null ||
                 string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
             {
-                ShowError(L.T("Company.Opportunities.YourAccountIsNotLinkedTo"));
+                ShowError(
+                    L.T("Company.Opportunities.YourAccountIsNotLinkedTo")
+                );
                 return;
             }
 
@@ -85,36 +74,45 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             int seats;
             int duration;
+
             DateTime deadline;
             DateTime start;
             DateTime end;
 
             bool validSeats = int.TryParse(
-                Request.Form["opSeats"], out seats);
+                Request.Form["opSeats"],
+                out seats
+            );
 
             bool validDuration = int.TryParse(
-                Request.Form["opDuration"], out duration);
+                Request.Form["opDuration"],
+                out duration
+            );
 
+            // Last Date to Apply
             bool validDeadline = DateTime.TryParseExact(
                 Request.Form["opDeadline"],
                 "yyyy-MM-dd",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.None,
-                out deadline);
+                out deadline
+            );
 
             bool validStart = DateTime.TryParseExact(
                 Request.Form["opStart"],
                 "yyyy-MM-dd",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.None,
-                out start);
+                out start
+            );
 
             bool validEnd = DateTime.TryParseExact(
                 Request.Form["opEnd"],
                 "yyyy-MM-dd",
                 CultureInfo.InvariantCulture,
                 DateTimeStyles.None,
-                out end);
+                out end
+            );
 
             if (title.Length > 160 ||
                 department.Length > 120 ||
@@ -123,16 +121,21 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 requirements.Length > 3000 ||
                 technologies.Length > 1000)
             {
-                ShowError(L.T("Company.Opportunities.OneOrMoreFieldsAreToo"));
+                ShowError(
+                    L.T("Company.Opportunities.OneOrMoreFieldsAreToo")
+                );
                 return;
             }
 
             if (selectedMajors.Length != eligibleMajors.Count)
             {
-                ShowError(L.T("Company.Opportunities.PleaseSelectValidSpecializations"));
+                ShowError(
+                    L.T("Company.Opportunities.PleaseSelectValidSpecializations")
+                );
                 return;
             }
 
+            // All required fields must be valid before publishing.
             if (publish)
             {
                 if (title.Length < 4 ||
@@ -141,40 +144,64 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     description.Length < 20 ||
                     requirements.Length < 5 ||
                     eligibleMajors.Count == 0 ||
-                    !validSeats || seats < 1 || seats > 10000 ||
-                    !validDuration || duration < 1 || duration > 104 ||
-                    !validDeadline || !validStart || !validEnd)
+                    !validSeats ||
+                    seats < 1 ||
+                    seats > 10000 ||
+                    !validDuration ||
+                    duration < 1 ||
+                    duration > 13 ||
+                    !validDeadline ||
+                    !validStart ||
+                    !validEnd)
                 {
-                    ShowError(L.T("Company.Opportunities.PleaseCompleteAllRequiredFields"));
+                    ShowError(
+                        L.T("Company.Opportunities.PleaseCompleteAllRequiredFields")
+                    );
                     return;
                 }
             }
 
-            if ((validSeats && (seats < 1 || seats > 10000)) ||
-                (validDuration && (duration < 1 || duration > 104)))
+            // Validate seats and duration for drafts and publishing.
+            if ((validSeats &&
+                 (seats < 1 || seats > 10000)) ||
+                (validDuration &&
+                 (duration < 1 || duration > 13)))
             {
-                ShowError(L.T("Company.Opportunities.PleaseEnterValidSeatsAndDuration"));
+                ShowError(
+                    L.T("Company.Opportunities.PleaseEnterValidSeatsAndDuration")
+                );
                 return;
             }
 
-            if (validDeadline && validStart &&
+            // Start date must be after the last date to apply.
+            if (validDeadline &&
+                validStart &&
                 start.Date <= deadline.Date)
             {
-                ShowError(L.T("Company.Opportunities.StartDateMustBeAfterThe"));
+                ShowError(
+                    L.T("Company.Opportunities.StartDateMustBeAfterThe")
+                );
                 return;
             }
 
-            if (validStart && validEnd &&
+            // End date must be after the start date.
+            if (validStart &&
+                validEnd &&
                 end.Date <= start.Date)
             {
-                ShowError(L.T("Company.Opportunities.EndDateMustBeAfterStart"));
+                ShowError(
+                    L.T("Company.Opportunities.EndDateMustBeAfterStart")
+                );
                 return;
             }
 
+            // The deadline cannot be in the past when publishing.
             if (publish &&
                 deadline.Date < DateTime.Today)
             {
-                ShowError(L.T("Company.Opportunities.ApplicationDeadlineCannotBeInThe"));
+                ShowError(
+                    L.T("Company.Opportunities.ApplicationDeadlineCannotBeInThe")
+                );
                 return;
             }
 
@@ -183,7 +210,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                  mode != "Hybrid" &&
                  mode != "Remote"))
             {
-                ShowError(L.T("Company.Opportunities.PleaseSelectAValidOpportunityType"));
+                ShowError(
+                    L.T("Company.Opportunities.PleaseSelectAValidOpportunityType")
+                );
                 return;
             }
 
@@ -195,6 +224,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     new CompanyOpportunity();
 
                 opportunity.Id = id;
+
                 opportunity.CompanyId =
                     CurrentSupervisor.CompanyId;
 
@@ -214,6 +244,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 opportunity.DurationWeeks =
                     validDuration ? duration : 0;
 
+                // Keep the existing Firebase property.
                 opportunity.ApplicationDeadline =
                     validDeadline ? ToUnix(deadline) : 0;
 
@@ -239,20 +270,32 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     Constants.Paths.Opportunities + "/" + id;
 
                 string etag;
-                FirebaseContext.GetWithEtag(path, out etag);
+
+                FirebaseContext.GetWithEtag(
+                    path,
+                    out etag
+                );
 
                 bool saved = FirebaseContext.PutIfUnchanged(
-                    path, opportunity, etag);
+                    path,
+                    opportunity,
+                    etag
+                );
 
                 if (!saved)
                 {
-                    ShowError(L.T("Company.Opportunities.UnableToSavePleaseTryAgain"));
+                    ShowError(
+                        L.T("Company.Opportunities.UnableToSavePleaseTryAgain")
+                    );
                     return;
                 }
 
                 // Tell eligible students about a newly published opportunity.
                 if (publish)
-                    Services.NotificationService.OpportunityPublished(id);
+                {
+                    Services.NotificationService
+                        .OpportunityPublished(id);
+                }
 
                 // Homepage visitors see a public summary of open opportunities.
                 if (publish)
@@ -267,10 +310,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceError(
-                    "Create opportunity: " + ex);
+                    "Create opportunity: " + ex
+                );
 
                 ShowError(
-                    L.T("Company.Opportunities.UnableToSaveTheOpportunityIn"));
+                    L.T("Company.Opportunities.UnableToSaveTheOpportunityIn")
+                );
             }
         }
 
@@ -282,7 +327,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         private static long ToUnix(DateTime date)
         {
             return new DateTimeOffset(
-                date.Date).ToUnixTimeMilliseconds();
+                date.Date
+            ).ToUnixTimeMilliseconds();
         }
 
         private void ShowError(string message)
