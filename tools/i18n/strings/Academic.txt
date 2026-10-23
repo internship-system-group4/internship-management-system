@@ -374,3 +374,59 @@ en: Unknown Student
 
 StudentProgress.Pending
 en: Pending
+
+Dashboard.AcademicWorkspace
+en: Academic workspace
+ar: مساحة العمل الأكاديمية
+
+Dashboard.WorkspaceSummary
+en: Follow your assigned students, training hours, and academic work.
+ar: تابع الطلاب المعيّنين لك وساعات تدريبهم والعمل الأكاديمي.
+
+Dashboard.SearchWorkspace
+en: Search by student name, number, email, or major
+ar: ابحث باسم الطالب أو رقمه أو بريده أو تخصصه
+
+Dashboard.AssignedGroups
+en: Supervision groups
+ar: مجموعات الإشراف
+
+Dashboard.GroupsWithStudents
+en: Groups represented in your student list
+ar: المجموعات الممثّلة في قائمة طلابك
+
+Dashboard.HoursTargetHelp
+en: Hours target reached; other requirements still apply
+ar: تحقق هدف الساعات؛ تبقى المتطلبات الأخرى
+
+Dashboard.Major
+en: Major
+ar: التخصص
+
+Dashboard.ApprovedRequiredHours
+en: Approved / required hours
+ar: الساعات المعتمدة / المطلوبة
+
+Dashboard.ViewProgressFor
+en: View progress for
+ar: عرض تقدّم
+
+Dashboard.NoAssignedStudents
+en: No students assigned yet. Your coordinator manages supervision assignments.
+ar: لم يُعيّن لك طلاب بعد. يتولى المنسق توزيع مجموعات الإشراف.
+
+Dashboard.StudentRecordsHelp
+en: View training progress and student records.
+ar: تابع تقدّم التدريب وسجلات الطلاب.
+
+Dashboard.EvaluationHelp
+en: Review and submit academic assessments.
+ar: راجع التقييمات الأكاديمية وأرسلها.
+
+Dashboard.Meetings
+en: Meetings
+ar: الاجتماعات
+
+Dashboard.MeetingsHelp
+en: View your scheduled meetings.
+ar: تابع اجتماعاتك المجدولة.

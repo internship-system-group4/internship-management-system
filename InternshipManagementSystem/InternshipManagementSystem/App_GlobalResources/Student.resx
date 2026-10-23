@@ -430,4 +430,9 @@
   <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>View Portfolio</value></data>
   <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>View your previously saved links and documents.</value></data>
   <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>Your information changed. Refresh and try again.</value></data>
+  <data name="Dashboard.StudentWorkspace" xml:space="preserve"><value>Student workspace</value></data>
+  <data name="Dashboard.SearchWorkspace" xml:space="preserve"><value>Search recent tasks, applications, or companies</value></data>
+  <data name="Dashboard.ProfileHelp" xml:space="preserve"><value>Keep your university details up to date.</value></data>
+  <data name="Dashboard.DocumentsHelp" xml:space="preserve"><value>Manage your CV and portfolio.</value></data>
+  <data name="Dashboard.MeetingsHelp" xml:space="preserve"><value>View your scheduled meetings.</value></data>
 </root>

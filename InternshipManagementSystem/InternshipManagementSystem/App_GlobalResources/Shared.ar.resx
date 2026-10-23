@@ -341,4 +341,7 @@
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>اختر مرحلة لعرض تفاصيلها</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.</value></data>
   <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>الصفحة غير موجودة | UIMS</value></data>
+  <data name="SimpleWorkspace.ClearSearch" xml:space="preserve"><value>مسح البحث</value></data>
+  <data name="SimpleWorkspace.MatchCount" xml:space="preserve"><value>عرض {0} من {1} سجل</value></data>
+  <data name="SimpleWorkspace.NoMatches" xml:space="preserve"><value>لا توجد سجلات مطابقة. جرّب بحثًا آخر أو امسح حقل البحث.</value></data>
 </root>

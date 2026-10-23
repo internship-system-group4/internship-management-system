@@ -1,16 +1,27 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.AcademicArea.Dashboard" Title="Academic Dashboard" %>
-
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"></asp:Content>
+<%@ Page CodePage="65001" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.AcademicArea.Dashboard" Title="Academic Dashboard" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/simple-workspace.css?v=20261024-1") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="container-fluid px-0">
-        <h2 class="h4 mb-3">My assigned students</h2>
-        <asp:Label ID="lblMessage" runat="server" Visible="false" CssClass="alert alert-danger d-block" role="alert" />
-        <div class="table-responsive"><table class="table table-striped table-hover align-middle">
-            <thead><tr><th scope="col">Name</th><th scope="col">Student number</th><th scope="col">Email</th><th scope="col">Major</th><th scope="col">Approved / required hours</th></tr></thead>
-            <tbody><asp:Repeater ID="rptStudents" runat="server"><ItemTemplate>
-                <tr><td><%#: Eval("FullName") %></td><td><%#: Eval("StudentNumber") %></td><td><%#: Eval("Email") %></td><td><%#: Eval("Major") %></td><td><%#: Eval("ApprovedHours") %> / <%#: Eval("RequiredHours") %></td></tr>
-            </ItemTemplate></asp:Repeater></tbody>
-        </table></div>
-        <asp:Label ID="lblNoStudents" runat="server" Visible="false" CssClass="text-muted" Text="No students have been assigned to you yet." />
-    </div>
+<div class="simple-workspace" data-simple-workspace>
+<header class="sw-heading"><div><h1><span data-ui-icon="people" aria-hidden="true"></span><%: L.T("Academic.Dashboard.AcademicWorkspace") %></h1><p><%: L.T("Academic.Dashboard.WorkspaceSummary") %></p></div><a class="btn btn-brand" href="StudentProgress.aspx"><span data-ui-icon="people" aria-hidden="true"></span><%: L.T("Academic.Dashboard.ReviewStudentRecords") %></a></header>
+<asp:Label ID="lblMessage" runat="server" Visible="false" CssClass="alert alert-danger d-block" role="alert" />
+<div class="sw-search" data-workspace-search hidden>
+ <label for="workspaceSearch" class="visually-hidden"><%: L.T("Academic.Dashboard.SearchWorkspace") %></label>
+ <div class="sw-search-field"><span data-ui-icon="search" aria-hidden="true"></span><input id="workspaceSearch" type="search" maxlength="200" placeholder="<%: L.T("Academic.Dashboard.SearchWorkspace") %>" aria-controls="workspaceRecords" autocomplete="off" /><button type="button" class="sw-search-clear" aria-label="<%: L.T("Shared.SimpleWorkspace.ClearSearch") %>" hidden><span data-ui-icon="close" aria-hidden="true"></span></button></div>
+ <output class="sw-search-count" aria-live="polite" data-search-count data-template="<%: L.T("Shared.SimpleWorkspace.MatchCount") %>" hidden></output>
+</div>
+<dl class="sw-metrics"><div class="sw-metric"><dt><%: L.T("Academic.Dashboard.AssignedStudents") %></dt><dd><%: Loaded ? StudentCount.ToString() : "—" %></dd><small><%: L.T("Academic.Dashboard.YourSupervisionGroup") %></small></div>
+<div class="sw-metric"><dt><%: L.T("Academic.Dashboard.AssignedGroups") %></dt><dd><%: Loaded ? GroupCount.ToString() : "—" %></dd><small><%: L.T("Academic.Dashboard.GroupsWithStudents") %></small></div>
+<div class="sw-metric"><dt><%: L.T("Academic.Dashboard.ApprovedHours") %></dt><dd><%: Loaded ? TotalApprovedHours.ToString() : "—" %></dd><small><%: L.T("Academic.Dashboard.ApprovedEntriesOnly") %></small></div>
+<div class="sw-metric"><dt><%: L.T("Academic.Dashboard.HoursRequirementMet") %></dt><dd><%: Loaded ? HoursMetCount.ToString() : "—" %></dd><small><%: L.T("Academic.Dashboard.HoursTargetHelp") %></small></div>
+</dl><div class="sw-layout"><div class="sw-main" id="workspaceRecords"><section class="sw-panel" data-search-group><div class="sw-section-heading"><h2><%: L.T("Academic.Dashboard.AssignedStudents") %></h2><a href="StudentProgress.aspx"><%: L.T("Academic.Dashboard.ViewProgress") %> <span data-ui-icon="next" aria-hidden="true"></span></a></div>
+<p class="sw-section-help"><%: L.T("Academic.Dashboard.StudentsAssignedToTheSignedIn") %></p>
+<asp:Panel ID="pnlStudentTable" runat="server" CssClass="sw-table-wrap"><table class="sw-table"><caption class="visually-hidden"><%: L.T("Academic.Dashboard.AssignedStudents") %></caption><thead><tr><th scope="col"><%: L.T("Academic.Dashboard.Student") %></th><th scope="col"><%: L.T("Academic.Dashboard.Major") %></th><th scope="col"><%: L.T("Academic.Dashboard.ApprovedRequiredHours") %></th><th scope="col"><span class="visually-hidden"><%: L.T("Academic.Dashboard.ViewProgress") %></span></th></tr></thead>
+<tbody><asp:Repeater ID="rptStudents" runat="server"><ItemTemplate><tr data-search-item><td><a class="sw-student-name" href='StudentProgress.aspx?id=<%#: Server.UrlEncode(Convert.ToString(Eval("Id"))) %>'><%#: Eval("FullName") %></a><small class="sw-student-number"><%#: Eval("StudentNumber") %></small><small class="sw-student-email"><%#: Eval("Email") %></small></td><td><%#: Eval("Major") %></td><td><span class="sw-hours-ratio"><%#: Eval("ApprovedHours") %> / <%#: Eval("RequiredHours") %></span></td><td><a class="sw-row-action" href='StudentProgress.aspx?id=<%#: Server.UrlEncode(Convert.ToString(Eval("Id"))) %>' aria-label='<%#: L.T("Academic.Dashboard.ViewProgressFor") + " " + Convert.ToString(Eval("FullName")) %>'><span data-ui-icon="next" aria-hidden="true"></span></a></td></tr></ItemTemplate></asp:Repeater></tbody></table></asp:Panel>
+<asp:Label ID="lblNoStudents" runat="server" Visible="false" CssClass="sw-empty d-block" Text="<%$ Resources:Academic, Dashboard.NoAssignedStudents %>" />
+<p class="sw-empty" data-search-empty hidden><%: L.T("Shared.SimpleWorkspace.NoMatches") %></p></section></div><aside class="sw-side"><nav class="sw-panel sw-workflows" aria-label="<%: L.T("Academic.Dashboard.AcademicWork") %>"><h2><%: L.T("Academic.Dashboard.AcademicWork") %></h2>
+<a class="sw-workflow" href="StudentProgress.aspx"><span class="sw-workflow-icon"><span data-ui-icon="people" aria-hidden="true"></span></span><span><strong><%: L.T("Academic.Dashboard.ReviewStudentRecords") %></strong><small><%: L.T("Academic.Dashboard.StudentRecordsHelp") %></small></span><span data-ui-icon="next" aria-hidden="true"></span></a>
+<a class="sw-workflow" href="FinalEvaluation.aspx"><span class="sw-workflow-icon"><span data-ui-icon="study" aria-hidden="true"></span></span><span><strong><%: L.T("Academic.Dashboard.OpenAcademicEvaluations") %></strong><small><%: L.T("Academic.Dashboard.EvaluationHelp") %></small></span><span data-ui-icon="next" aria-hidden="true"></span></a>
+<a class="sw-workflow" href="../Meetings/MyMeetings.aspx"><span class="sw-workflow-icon"><span data-ui-icon="calendar" aria-hidden="true"></span></span><span><strong><%: L.T("Academic.Dashboard.Meetings") %></strong><small><%: L.T("Academic.Dashboard.MeetingsHelp") %></small></span><span data-ui-icon="next" aria-hidden="true"></span></a>
+</nav><section class="sw-note"><h2><%: L.T("Academic.Dashboard.AssessmentAndFollowUpStayLinked") %></h2><p><%: L.T("Academic.Dashboard.InternalEvaluationFormsRemainRestrictedStudents") %></p></section></aside></div></div>
 </asp:Content>
+<asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server"><script src="<%: ResolveUrl("~/Assets/js/simple-workspace.js?v=20261024-1") %>"></script></asp:Content>
