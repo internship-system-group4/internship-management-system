@@ -51,15 +51,9 @@ namespace InternshipManagementSystem.Services
 
             try
             {
-                new NotificationRepository().Add(new Notification
-                {
-                    RecipientId = recipientId,
-                    Type = type,
-                    Title = title,
-                    Message = message,
-                    Link = link,
-                    IsRead = false
-                });
+                var recipient = new UserRepository().GetPerson(recipientId);
+                if (recipient == null || !recipient.IsActive) return;
+                EmailNotificationService.DeliverChannels(recipient, title, message, (link ?? "").TrimStart('~', '/'));
             }
             catch (Exception ex)
             {
@@ -237,11 +231,10 @@ namespace InternshipManagementSystem.Services
                         groupName + " is now assigned to you with " + total + (total == 1 ? " student." : " students."),
                         "~/Pages/Academic/Dashboard.aspx");
                 }
-                else if (addedStudentIds.Count > 0)
+                else if (addedStudentIds.Count > 0 || removedStudentIds.Count > 0)
                 {
-                    Send(supervisor.Id, TypeGroup, "New students in your group",
-                        addedStudentIds.Count + (addedStudentIds.Count == 1 ? " student was" : " students were")
-                        + " added to " + groupName + ".",
+                    Send(supervisor.Id, TypeGroup, "Group membership updated",
+                        groupName + " now has " + total + " students. " + addedStudentIds.Count + " added; " + removedStudentIds.Count + " removed.",
                         "~/Pages/Academic/Dashboard.aspx");
                 }
 

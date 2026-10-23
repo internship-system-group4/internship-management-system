@@ -1,0 +1,89 @@
+{
+  "rules": {
+    "companyFinalEvaluations": {
+      ".read": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && (root.child('users').child(auth.uid).child('Role').val() === 4 || query.orderByChild === 'PlacementId' && (root.child('users').child(auth.uid).child('Role').val() === 3 && root.child('placements').child(query.equalTo).child('AcademicSupervisorId').val() === auth.uid || root.child('users').child(auth.uid).child('Role').val() === 2 && root.child('placements').child(query.equalTo).child('CompanySupervisorId').val() === auth.uid && root.child('placements').child(query.equalTo).child('CompanyId').val() === root.child('users').child(auth.uid).child('CompanyId').val()))",
+      ".indexOn": [
+        "PlacementId"
+      ],
+      "$evaluationId": {
+        ".write": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && newData.exists() && !data.child('IsSubmitted').val() && (root.child('placements').child(newData.child('PlacementId').val()).child('CompanySupervisorId').val() === auth.uid && root.child('placements').child(newData.child('PlacementId').val()).child('CompanyId').val() === root.child('users').child(auth.uid).child('CompanyId').val() && root.child('users').child(auth.uid).child('Role').val() === 2) && (newData.child('StudentId').val() === root.child('placements').child(newData.child('PlacementId').val()).child('StudentId').val()) && newData.child('SupervisorId').val() === auth.uid && (!data.exists() || data.child('PlacementId').val() === newData.child('PlacementId').val()) && (root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 4 && root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 5 && root.child('placements').child(newData.child('PlacementId').val()).child('Status').val() !== 4)",
+        ".validate": "newData.hasChildren(['PlacementId','StudentId','SupervisorId','IsSubmitted']) && (!newData.child('IsSubmitted').val() || newData.child('SubmittedAt').isNumber() && newData.child('SubmittedAt').val() > 0 && newData.child('SubmittedAt').val() <= now + 60000) && newData.child('TotalScore').isNumber() && newData.child('MaxScore').isNumber() && newData.child('TotalScore').val() >= 0 && newData.child('MaxScore').val() >= newData.child('TotalScore').val()",
+        ".read": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && (root.child('users').child(auth.uid).child('Role').val() === 4 || root.child('users').child(auth.uid).child('Role').val() === 3 && root.child('placements').child(data.exists() ? data.child('PlacementId').val() : $evaluationId).child('AcademicSupervisorId').val() === auth.uid || root.child('users').child(auth.uid).child('Role').val() === 2 && root.child('placements').child(data.exists() ? data.child('PlacementId').val() : $evaluationId).child('CompanySupervisorId').val() === auth.uid && root.child('placements').child(data.exists() ? data.child('PlacementId').val() : $evaluationId).child('CompanyId').val() === root.child('users').child(auth.uid).child('CompanyId').val())"
+      }
+    },
+    "academicFinalEvaluations": {
+      ".read": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && (root.child('users').child(auth.uid).child('Role').val() === 4 || query.orderByChild === 'PlacementId' && (root.child('users').child(auth.uid).child('Role').val() === 3 && root.child('placements').child(query.equalTo).child('AcademicSupervisorId').val() === auth.uid))",
+      ".indexOn": [
+        "PlacementId"
+      ],
+      "$evaluationId": {
+        ".write": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && newData.exists() && !data.child('IsSubmitted').val() && (root.child('placements').child(newData.child('PlacementId').val()).child('AcademicSupervisorId').val() === auth.uid && root.child('users').child(auth.uid).child('Role').val() === 3) && (newData.child('StudentId').val() === root.child('placements').child(newData.child('PlacementId').val()).child('StudentId').val()) && newData.child('AcademicSupervisorId').val() === auth.uid && (!data.exists() || data.child('PlacementId').val() === newData.child('PlacementId').val()) && (root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 4 && root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 5 && root.child('placements').child(newData.child('PlacementId').val()).child('Status').val() !== 4)",
+        ".validate": "newData.hasChildren(['PlacementId','StudentId','AcademicSupervisorId','IsSubmitted']) && (!newData.child('IsSubmitted').val() || newData.child('SubmittedAt').isNumber() && newData.child('SubmittedAt').val() > 0 && newData.child('SubmittedAt').val() <= now + 60000) && newData.child('TotalScore').isNumber() && newData.child('MaxScore').isNumber() && newData.child('TotalScore').val() >= 0 && newData.child('MaxScore').val() >= newData.child('TotalScore').val()",
+        ".read": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && (root.child('users').child(auth.uid).child('Role').val() === 4 || root.child('users').child(auth.uid).child('Role').val() === 3 && root.child('placements').child(data.exists() ? data.child('PlacementId').val() : $evaluationId).child('AcademicSupervisorId').val() === auth.uid)"
+      }
+    },
+    "completions": {
+      ".read": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && (root.child('users').child(auth.uid).child('Role').val() === 4 || root.child('users').child(auth.uid).child('Role').val() === 1 && query.orderByChild === 'StudentId' && query.equalTo === auth.uid || query.orderByChild === 'PlacementId' && (root.child('users').child(auth.uid).child('Role').val() === 3 && root.child('placements').child(query.equalTo).child('AcademicSupervisorId').val() === auth.uid || root.child('users').child(auth.uid).child('Role').val() === 2 && root.child('placements').child(query.equalTo).child('CompanySupervisorId').val() === auth.uid))",
+      ".indexOn": [
+        "StudentId",
+        "PlacementId"
+      ],
+      "$completionId": {
+        ".read": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 4)",
+        ".write": "((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 4)) && newData.exists() && data.child('Status').val() !== 4 && data.child('Status').val() !== 5 && newData.child('ReviewedByCoordinatorId').val() === auth.uid && (newData.child('StudentId').val() === root.child('placements').child(newData.child('PlacementId').val()).child('StudentId').val()) && (!data.exists() || data.child('PlacementId').val() === newData.child('PlacementId').val() && data.child('StudentId').val() === newData.child('StudentId').val())",
+        ".validate": "newData.hasChildren(['PlacementId','StudentId','Status','ReviewedAt','ReviewedByCoordinatorId']) && newData.child('Status').isNumber() && newData.child('Status').val() >= 0 && newData.child('Status').val() <= 6 && (newData.child('Status').val() !== 4 || newData.hasChildren(['EvaluationRuleSnapshot','DocumentSnapshot','Verifications','AuditTrail','ApprovedAt','ReportFileUrl']) && newData.child('ApprovedAt').val() > 0 && newData.child('ReportFileUrl').val() === '~/Pages/Student/Progress.aspx?report=1')"
+      }
+    },
+    "users": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true",
+      "$uid": {
+        ".write": "(((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 4)) || (auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && auth.uid === $uid) || ((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 3 && data.child('AcademicSupervisorId').val() === auth.uid)",
+        ".validate": "(((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 4)) || (newData.child('Role').val() === data.child('Role').val() && newData.child('IsActive').val() === data.child('IsActive').val() && newData.child('CompanyId').val() === data.child('CompanyId').val() && newData.child('AcademicSupervisorId').val() === data.child('AcademicSupervisorId').val() && newData.child('University').val() === data.child('University').val() && newData.child('College').val() === data.child('College').val() && newData.child('Major').val() === data.child('Major').val() && newData.child('StudentNumber').val() === data.child('StudentNumber').val() && newData.child('RequiredHours').val() === data.child('RequiredHours').val() && newData.child('GroupId').val() === data.child('GroupId').val() && newData.child('ApprovedHours').val() === data.child('ApprovedHours').val())) || (((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 3 && data.child('AcademicSupervisorId').val() === auth.uid) && newData.child('Role').val() === data.child('Role').val() && newData.child('IsActive').val() === data.child('IsActive').val() && newData.child('CompanyId').val() === data.child('CompanyId').val() && newData.child('AcademicSupervisorId').val() === data.child('AcademicSupervisorId').val() && newData.child('University').val() === data.child('University').val() && newData.child('College').val() === data.child('College').val() && newData.child('Major').val() === data.child('Major').val() && newData.child('StudentNumber').val() === data.child('StudentNumber').val() && newData.child('RequiredHours').val() === data.child('RequiredHours').val() && newData.child('GroupId').val() === data.child('GroupId').val() && newData.child('FullName').val() === data.child('FullName').val() && newData.child('Email').val() === data.child('Email').val() && newData.child('PhoneNumber').val() === data.child('PhoneNumber').val() && newData.child('ProfileImageUrl').val() === data.child('ProfileImageUrl').val() && newData.child('MustChangePassword').val() === data.child('MustChangePassword').val() && newData.child('CreatedAt').val() === data.child('CreatedAt').val() && newData.child('ApprovedHours').isNumber())"
+      }
+    },
+    "placements": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true",
+      ".indexOn": [
+        "CompanyId",
+        "AcademicSupervisorId"
+      ],
+      "$studentId": {
+        ".write": "((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 4)) || (auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && !data.exists() && $studentId === auth.uid && newData.child('StudentId').val() === auth.uid && newData.child('Status').val() === 1",
+        "ApprovedHours": {
+          ".write": "(auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 3 && data.parent().child('AcademicSupervisorId').val() === auth.uid"
+        }
+      }
+    },
+    "trainingHours": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true",
+      ".indexOn": [
+        "PlacementId"
+      ],
+      "$entryId": {
+        ".write": "newData.exists() && (newData.child('StudentId').val() === root.child('placements').child(newData.child('PlacementId').val()).child('StudentId').val()) && (root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 4 && root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 5 && root.child('placements').child(newData.child('PlacementId').val()).child('Status').val() !== 4) && ((((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 4)) || (auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 3 && root.child('placements').child(newData.child('PlacementId').val()).child('AcademicSupervisorId').val() === auth.uid) && newData.child('ReviewedById').val() === auth.uid || (auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 1 && !data.exists() && newData.child('StudentId').val() === auth.uid && newData.child('Status').val() === 0)",
+        ".validate": "newData.child('Hours').isNumber() && newData.child('Hours').val() > 0 && newData.child('Status').val() >= 0 && newData.child('Status').val() <= 2 && (newData.child('Status').val() !== 1 || newData.child('ReviewedAt').isNumber() && newData.child('ReviewedAt').val() > 0) && (!data.exists() || data.child('PlacementId').val() === newData.child('PlacementId').val() && data.child('StudentId').val() === newData.child('StudentId').val() && data.child('Hours').val() === newData.child('Hours').val() && data.child('WorkDate').val() === newData.child('WorkDate').val())"
+      }
+    },
+    "taskEvaluations": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true",
+      ".indexOn": [
+        "PlacementId",
+        "StudentId"
+      ],
+      "$evaluationId": {
+        ".write": "((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 2 && root.child('placements').child(newData.child('PlacementId').val()).child('CompanySupervisorId').val() === auth.uid && root.child('placements').child(newData.child('PlacementId').val()).child('CompanyId').val() === root.child('users').child(auth.uid).child('CompanyId').val()) && newData.exists() && newData.child('EvaluatedBySupervisorId').val() === auth.uid && newData.child('StudentId').val() === root.child('placements').child(newData.child('PlacementId').val()).child('StudentId').val() && (root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 4 && root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 5 && root.child('placements').child(newData.child('PlacementId').val()).child('Status').val() !== 4)",
+        ".validate": "newData.hasChildren(['TaskId','SubmissionId','PlacementId','StudentId','EvaluatedBySupervisorId','EvaluatedAt']) && root.child('tasks').child(newData.child('TaskId').val()).child('PlacementId').val() === newData.child('PlacementId').val() && root.child('submissions').child(newData.child('SubmissionId').val()).child('TaskId').val() === newData.child('TaskId').val() && (!data.exists() || data.child('PlacementId').val() === newData.child('PlacementId').val() && data.child('StudentId').val() === newData.child('StudentId').val())"
+      }
+    },
+    "tasks": {
+      ".read": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true",
+      ".indexOn": [
+        "PlacementId"
+      ],
+      "$taskId": {
+        ".write": "newData.exists() && (((auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 2 && root.child('placements').child(newData.child('PlacementId').val()).child('CompanySupervisorId').val() === auth.uid && root.child('placements').child(newData.child('PlacementId').val()).child('CompanyId').val() === root.child('users').child(auth.uid).child('CompanyId').val()) || (auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true) && root.child('users').child(auth.uid).child('Role').val() === 4) && newData.child('StudentId').val() === root.child('placements').child(newData.child('PlacementId').val()).child('StudentId').val() && (root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 4 && root.child('completions').child(newData.child('PlacementId').val()).child('Status').val() !== 5 && root.child('placements').child(newData.child('PlacementId').val()).child('Status').val() !== 4)",
+        ".validate": "newData.hasChildren(['PlacementId','StudentId']) && (!data.exists() || data.child('PlacementId').val() === newData.child('PlacementId').val() && data.child('StudentId').val() === newData.child('StudentId').val())"
+      }
+    }
+  }
+}

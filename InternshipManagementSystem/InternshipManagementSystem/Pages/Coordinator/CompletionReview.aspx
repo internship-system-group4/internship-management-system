@@ -1,167 +1,36 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="CompletionReview.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.CompletionReview" Title="Final Completion Review" %>
-<%@ Import Namespace="InternshipManagementSystem.Services" %>
-
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="CompletionReview.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.CompletionReview" Title="Final Completion Review" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css") %>" />
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/completion-review.css") %>" />
+<style>
+.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.review-fact{border-top:1px solid var(--line);padding-top:.75rem}.review-fact small{display:block;color:var(--muted)}.review-fact strong{display:block;overflow-wrap:anywhere}.review-muted{color:var(--muted)}.review-comments{white-space:pre-wrap;overflow-wrap:anywhere}.review-actions{display:flex;flex-wrap:wrap;gap:.6rem}.review-verification{border-top:1px solid var(--line);padding:1rem 0}.review-verification label{display:block}.review-badge{display:inline-block;border:1px solid var(--line);border-radius:1rem;padding:.2rem .7rem}.review-grid input,.review-grid select{max-width:100%}@media(max-width:700px){.review-grid{grid-template-columns:1fr}}
+</style>
 </asp:Content>
-
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="monitor-page completion-page">
-
-<% if (!IsDetail) { %>
-    <%-- ================= Queue: every placement and its completion stage ================= --%>
-    <div class="monitor-heading">
-        <div>
-            <h2><%: L.T("Coordinator.CompletionReview.FinalCompletionReview") %></h2>
-            <p><%: L.T("Coordinator.CompletionReview.ReviewBothFinalEvaluationsAndThe") %></p>
-        </div>
-    </div>
-
-    <% if (LoadError != null) { %><div class="monitor-error" role="alert"><%: LoadError %> <a href="CompletionReview.aspx"><%: L.T("Coordinator.CompletionReview.Retry") %></a></div><% } else { %>
-    <div class="monitor-metrics">
-        <div class="monitor-metric"><span><%: L.T("Coordinator.CompletionReview.ReadyForReview") %></span><strong><%: CountWhere(r => r.IsReady) %></strong><small><%: L.T("Coordinator.CompletionReview.BothFinalEvaluationsSubmitted") %></small></div>
-        <div class="monitor-metric"><span><%: L.T("Coordinator.CompletionReview.AwaitingEvaluations") %></span><strong><%: CountWhere(r => !r.IsApproved && !r.IsReady) %></strong><small><%: L.T("Coordinator.CompletionReview.CompanyOrAcademicFormMissing") %></small></div>
-        <div class="monitor-metric"><span><%: L.T("Coordinator.CompletionReview.Approved") %></span><strong><%: CountWhere(r => r.IsApproved) %></strong><small><%: L.T("Coordinator.CompletionReview.ReportReleasedToTheStudent") %></small></div>
-    </div>
-
-    <section class="monitor-panel">
-        <div class="monitor-panel-heading"><h3><%: L.T("Coordinator.CompletionReview.CompletionQueue") %></h3><span><%: Queue.Count %> <%: L.T("Coordinator.CompletionReview.Placements") %></span></div>
-        <% if (Queue.Count == 0) { %><div class="monitor-empty"><%: L.T("Coordinator.CompletionReview.NoConfirmedPlacementsYet") %></div><% } else { %>
-        <div class="monitor-table-scroll"><table class="monitor-table">
-            <caption class="visually-hidden"><%: L.T("Coordinator.CompletionReview.PlacementsAndTheirCompletionStage") %></caption>
-            <thead><tr><th scope="col"><%: L.T("Coordinator.CompletionReview.Student") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.Company") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.ApprovedHours") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.FinalEvaluations") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.Stage") %></th><th scope="col"><span class="visually-hidden"><%: L.T("Coordinator.CompletionReview.Action") %></span></th></tr></thead>
-            <tbody>
-            <% foreach (var row in Queue) { %>
-                <tr>
-                    <td><strong><%: row.Overview.StudentName %></strong><small><%: row.Overview.StudentNumber %></small></td>
-                    <td><%: row.Overview.Placement.CompanyName %><small><%: row.Overview.Placement.OpportunityTitle %></small></td>
-                    <td><%: row.Overview.HoursText %><progress value="<%: row.Overview.HoursPercent %>" max="100" aria-label="<%: L.T("Coordinator.CompletionReview.ApprovedHours") %>"><%: row.Overview.HoursPercent %>%</progress></td>
-                    <td><small class="completion-flag <%: row.CompanySubmitted ? "is-ok" : "" %>"><%: L.T("Coordinator.CompletionReview.Company2") %> <%: row.CompanySubmitted ? "submitted" : "not yet" %></small>
-                        <small class="completion-flag <%: row.AcademicSubmitted ? "is-ok" : "" %>"><%: L.T("Coordinator.CompletionReview.Academic") %> <%: row.AcademicSubmitted ? "submitted" : "not yet" %></small></td>
-                    <td><span class="<%: StageCss(row) %>"><%: row.StageText %></span></td>
-                    <td><a class="completion-open" href="CompletionReview.aspx?id=<%: Server.UrlEncode(row.Overview.Placement.Id) %>"><%: row.IsReady ? "Review" : "View" %></a></td>
-                </tr>
-            <% } %>
-            </tbody>
-        </table></div>
-        <% } %>
-    </section>
-    <% } %>
-
-<% } else { %>
-    <%-- ================= Review of one placement ================= --%>
-    <a href="CompletionReview.aspx"><%: L.T("Coordinator.CompletionReview.CompletionQueue2") %></a>
-
-    <% if (LoadError != null) { %><div class="monitor-error" role="alert" style="margin-top:24px"><%: LoadError %></div><% } else {
-           var row = Progress.Overview; var placement = row.Placement; var record = Progress.Completion; %>
-
-    <div class="monitor-heading" style="margin-top:24px">
-        <div><h2><%: row.StudentName %></h2><p><%: row.StudentNumber %> &middot; <%: row.Major %> &middot; <%: placement.CompanyName %></p></div>
-        <% if (IsApproved) { %><span class="completion-pill is-done"><%: L.T("Coordinator.CompletionReview.CompletionApproved") %></span>
-        <% } else if (record != null && record.Status == CompletionStatus.Rejected) { %><span class="completion-pill is-returned"><%: L.T("Coordinator.CompletionReview.Returned") %></span>
-        <% } else if (Summary.CanApprove) { %><span class="completion-pill is-ready"><%: L.T("Coordinator.CompletionReview.ReadyToApprove") %></span>
-        <% } else { %><span class="completion-pill"><%: L.T("Coordinator.CompletionReview.RequirementsNotMet") %></span><% } %>
-    </div>
-
-    <% if (Message != null) { %><div class="<%: MessageIsError ? "monitor-error" : "completion-success" %>" role="status"><%: Message %></div><% } %>
-
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.CompletionReview.Internship") %></h3><a href="PlacementDetails.aspx?id=<%: Server.UrlEncode(placement.Id) %>"><%: L.T("Coordinator.CompletionReview.FullProgressHistory") %></a></div>
-        <div class="monitor-panel-body"><dl class="monitor-profile">
-            <div><dt><%: L.T("Coordinator.CompletionReview.Opportunity") %></dt><dd><%: placement.OpportunityTitle %></dd></div>
-            <div><dt><%: L.T("Coordinator.CompletionReview.CompanySupervisor") %></dt><dd><%: Progress.CompanySupervisorName %></dd></div>
-            <div><dt><%: L.T("Coordinator.CompletionReview.AcademicSupervisor") %></dt><dd><%: Progress.AcademicSupervisorName %></dd></div>
-            <div><dt><%: L.T("Coordinator.CompletionReview.TrainingPeriod") %></dt><dd><%: Time.DisplayDate(placement.StartDate) %> &ndash; <%: Time.DisplayDate(placement.EndDate) %></dd></div>
-            <div><dt><%: L.T("Coordinator.CompletionReview.TasksGraded") %></dt><dd><%: Summary.TasksGraded %> <%: L.T("Coordinator.CompletionReview.Of") %> <%: Summary.TasksTotal %></dd></div>
-            <div><dt><%: L.T("Coordinator.CompletionReview.StudentEmail") %></dt><dd><%: row.Student == null ? "Profile unavailable" : row.Student.Email %></dd></div>
-        </dl></div>
-    </section>
-
-    <%-- University requirements --%>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.CompletionReview.UniversityRequirements") %></h3><span><%: L.T("Coordinator.CompletionReview.AllMustBeMetBeforeApproval") %></span></div>
-        <ul class="completion-checks">
-            <li class="<%: Summary.CompanySubmitted ? "is-ok" : "is-missing" %>"><span aria-hidden="true"><%: Summary.CompanySubmitted ? "✓" : "✕" %></span>
-                <div><strong><%: L.T("Coordinator.CompletionReview.CompanyFinalEvaluationSubmitted") %></strong><small><%: Summary.CompanySubmitted ? "Submitted " + Time.Display(Progress.CompanyFinal.SubmittedAt) : (Progress.CompanyFinal == null ? "Not started by the company supervisor" : "Saved as a draft, not submitted yet") %></small></div></li>
-            <li class="<%: Summary.AcademicSubmitted ? "is-ok" : "is-missing" %>"><span aria-hidden="true"><%: Summary.AcademicSubmitted ? "✓" : "✕" %></span>
-                <div><strong><%: L.T("Coordinator.CompletionReview.AcademicFinalEvaluationSubmitted") %></strong><small><%: Summary.AcademicSubmitted ? "Submitted " + Time.Display(Progress.AcademicFinal.SubmittedAt) : (Progress.AcademicFinal == null ? "Not started by the academic supervisor" : "Saved as a draft, not submitted yet") %></small></div></li>
-            <li class="<%: Summary.HoursMet ? "is-ok" : "is-missing" %>"><span aria-hidden="true"><%: Summary.HoursMet ? "✓" : "✕" %></span>
-                <div><strong><%: L.T("Coordinator.CompletionReview.RequiredTrainingHoursApproved") %></strong><small><%: Summary.ApprovedHours %> <%: L.T("Coordinator.CompletionReview.Of") %> <%: Summary.RequiredHours %> <%: L.T("Coordinator.CompletionReview.HoursApproved") %><%: row.PendingHours > 0 ? " · " + row.PendingHours + " h still awaiting approval" : "" %><%: L.T("Coordinator.CompletionReview.OnlyApprovedEntriesCount") %></small></div></li>
-            <li class="<%: Summary.Passing ? "is-ok" : "is-missing" %>"><span aria-hidden="true"><%: Summary.Passing ? "✓" : "✕" %></span>
-                <div><strong><%: L.T("Coordinator.CompletionReview.PassingFinalResult") %><%: GradingPolicy.PassMarkPercent %><%: L.T("Coordinator.CompletionReview.OrMore") %></strong><small><%: Summary.EvaluationsReady ? "Final score " + Percent(Summary.FinalPercent) : "Calculated once both final evaluations are submitted" %></small></div></li>
-        </ul>
-    </section>
-
-    <%-- Both final evaluations (confidential: coordinator access only) --%>
-    <div class="monitor-evaluation-grid">
-        <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.CompletionReview.CompanyFinalEvaluation") %></h3><span><%: L.T("Coordinator.CompletionReview.Confidential") %></span></div>
-            <% if (!Summary.CompanySubmitted) { %><div class="monitor-empty"><%: L.T("Coordinator.CompletionReview.TheCompanyFinalEvaluationHasNot") %></div><% } else { var final = Progress.CompanyFinal; %>
-            <div class="monitor-entry"><h4><%: Score(final.TotalScore, final.MaxScore) %> &middot; <%: Percent(Summary.CompanyPercent) %></h4><small><%: Progress.CompanySupervisorName %> &middot; <%: final.ReportedTotalHours %> <%: L.T("Coordinator.CompletionReview.HReportedByTheCompany") %></small>
-                <table class="completion-criteria"><tbody>
-                <% foreach (var c in Components(final.Components)) { %><tr><td><%: c.Name %></td><td><%: Score(c.Score, c.MaxScore) %></td><td><%: c.Weight %>%</td></tr><% } %>
-                </tbody></table>
-                <p><strong><%: L.T("Coordinator.CompletionReview.Strengths") %></strong> <%: Text(final.Strengths) %></p>
-                <p><strong><%: L.T("Coordinator.CompletionReview.AreasForImprovement") %></strong> <%: Text(final.AreasForImprovement) %></p>
-                <p><strong><%: L.T("Coordinator.CompletionReview.OverallComment") %></strong> <%: Text(final.OverallComment) %></p>
-            </div><% } %>
-        </section>
-        <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.CompletionReview.AcademicFinalEvaluation") %></h3><span><%: L.T("Coordinator.CompletionReview.Confidential") %></span></div>
-            <% if (!Summary.AcademicSubmitted) { %><div class="monitor-empty"><%: L.T("Coordinator.CompletionReview.TheAcademicFinalEvaluationHasNot") %></div><% } else { var final = Progress.AcademicFinal; %>
-            <div class="monitor-entry"><h4><%: Score(final.TotalScore, final.MaxScore) %> &middot; <%: Percent(Summary.AcademicPercent) %></h4><small><%: Progress.AcademicSupervisorName %></small>
-                <table class="completion-criteria"><tbody>
-                <% foreach (var c in Components(final.Components)) { %><tr><td><%: c.Name %></td><td><%: Score(c.Score, c.MaxScore) %></td><td><%: c.Weight %>%</td></tr><% } %>
-                </tbody></table>
-                <p><strong><%: L.T("Coordinator.CompletionReview.AcademicComments") %></strong> <%: Text(final.AcademicComments) %></p>
-                <p><strong><%: L.T("Coordinator.CompletionReview.RemarksOnTheCompanyEvaluation") %></strong> <%: Text(final.CompanyEvaluationRemarks) %></p>
-            </div><% } %>
-        </section>
-    </div>
-
-    <%-- Final result --%>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.CompletionReview.FinalResult") %></h3><span><%: L.T("Coordinator.CompletionReview.CalculatedWithTheUniversityGradingPolicy") %></span></div>
-        <div class="monitor-table-scroll"><table class="monitor-table">
-            <thead><tr><th scope="col"><%: L.T("Coordinator.CompletionReview.Component") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.Score") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.Weight") %></th><th scope="col"><%: L.T("Coordinator.CompletionReview.Points") %></th></tr></thead>
-            <tbody>
-                <tr><td><%: L.T("Coordinator.CompletionReview.GradedTasks") %></td><td><%: Percent(Summary.TaskPercent) %></td><td><%: GradingPolicy.TaskComponentWeight %>%</td><td><%: Weighted(Summary.TaskPercent, GradingPolicy.TaskComponentWeight) %></td></tr>
-                <tr><td><%: L.T("Coordinator.CompletionReview.CompanyFinalEvaluation") %></td><td><%: Summary.CompanySubmitted ? Percent(Summary.CompanyPercent) : "—" %></td><td><%: GradingPolicy.CompanyFinalWeight %>%</td><td><%: Weighted(Summary.CompanyPercent, GradingPolicy.CompanyFinalWeight) %></td></tr>
-                <tr><td><%: L.T("Coordinator.CompletionReview.AcademicFinalEvaluation") %></td><td><%: Summary.AcademicSubmitted ? Percent(Summary.AcademicPercent) : "—" %></td><td><%: GradingPolicy.AcademicFinalWeight %>%</td><td><%: Weighted(Summary.AcademicPercent, GradingPolicy.AcademicFinalWeight) %></td></tr>
-            </tbody>
-        </table></div>
-        <div class="completion-result">
-            <div><span><%: L.T("Coordinator.CompletionReview.FinalScore") %></span><strong><%: Percent(Summary.FinalPercent) %></strong></div>
-            <div><span><%: L.T("Coordinator.CompletionReview.Result") %></span><strong class="<%: Summary.Passing ? "is-pass" : "is-fail" %>"><%: Summary.EvaluationsReady ? Summary.Result : "Pending" %></strong></div>
-            <p class="monitor-note"><%: L.T("Coordinator.CompletionReview.PassMark") %> <%: GradingPolicy.PassMarkPercent %><%: L.T("Coordinator.CompletionReview.TheStudentSeesOnlyTheFinal") %></p>
-        </div>
-    </section>
-
-    <%-- Decision / official documents --%>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: IsApproved ? "Official documents" : "Coordinator decision" %></h3>
-        <% if (record != null) { %><span><%: L.T("Coordinator.CompletionReview.LastDecisionBy") %> <%: CoordinatorName(record.ReviewedByCoordinatorId) %></span><% } %></div>
-        <div class="monitor-panel-body">
-        <% if (IsApproved) { %>
-            <p><%: L.T("Coordinator.CompletionReview.ApprovedOn") %> <strong><%: Time.Display(record.ApprovedAt) %></strong> <%: L.T("Coordinator.CompletionReview.WithAFinalResultOf") %> <strong><%: record.Result %></strong> (<%: Percent(record.FinalScore) %>).</p>
-            <% if (!string.IsNullOrWhiteSpace(record.CoordinatorNote)) { %><p class="monitor-note"><%: L.T("Coordinator.CompletionReview.NoteOnTheReport") %> <%: record.CoordinatorNote %></p><% } %>
-            <div class="completion-actions">
-                <a class="btn btn-brand" href="<%: ResolveUrl(PdfReportService.ReportUrl(record.Id)) %>" target="_blank" rel="noopener"><%: L.T("Coordinator.CompletionReview.OpenCompletionReportPDF") %></a>
-                <a class="btn btn-outline-secondary" href="<%: ResolveUrl(PdfReportService.CertificateUrl(record.Id)) %>" target="_blank" rel="noopener"><%: L.T("Coordinator.CompletionReview.PrintCertificatePDF") %></a>
-            </div>
-            <p class="monitor-note"><%: L.T("Coordinator.CompletionReview.TheReportHasBeenSentTo") %></p>
-        <% } else { %>
-            <% if (record != null && record.Status == CompletionStatus.Rejected) { %><p class="monitor-note"><%: L.T("Coordinator.CompletionReview.ReturnedOnTheLastReview") %> <%: record.CoordinatorNote %></p><% } %>
-            <% if (!Summary.CanApprove) { %><p class="monitor-note"><%: L.T("Coordinator.CompletionReview.ApprovalIsLockedUntilEveryRequirement") %></p><% } %>
-        <% } %>
-        <asp:Panel ID="pnlDecision" runat="server">
-            <label for="<%= txtNote.ClientID %>" class="completion-label"><%: L.T("Coordinator.CompletionReview.NoteToTheStudent") %></label>
-            <asp:TextBox ID="txtNote" runat="server" TextMode="MultiLine" Rows="3" MaxLength="1000" CssClass="form-control"
-                placeholder="<%$ Resources:Coordinator, CompletionReview.OptionalWhenApprovingShownOnThe %>" />
-            <div class="completion-actions">
-                <asp:Button ID="btnApprove" runat="server" Text="<%$ Resources:Coordinator, CompletionReview.ApproveCompletion %>" CssClass="btn btn-brand" OnClick="Approve_Click"
-                    OnClientClick="return confirm('Approve internship completion? The official report will be released to the student.');"  data-ui-action="approve" data-loading-label="Approving…"/>
-                <asp:Button ID="btnReturn" runat="server" Text="<%$ Resources:Coordinator, CompletionReview.ReturnToStudent %>" CssClass="btn btn-outline-secondary" OnClick="Return_Click"  data-ui-action="return" data-loading-label="Returning…"/>
-            </div>
-        </asp:Panel>
-        </div>
-    </section>
-    <% } %>
-<% } %>
-</div>
+<h2>Final Completion Review</h2>
+<p class="review-muted">Review confidential evaluations and verified training evidence before recording the final completion decision.</p>
+<asp:Label ID="lblMessage" runat="server" Visible="false" role="alert" />
+<section class="uims-card" aria-labelledby="queueHeading">
+<h3 id="queueHeading">Internship Completion Reviews</h3>
+<p class="review-muted">Workflow statuses are application statuses. A confirmed placement does not establish completion.</p>
+<div class="review-grid mb-3">
+<div><asp:Label runat="server" AssociatedControlID="txtSearch" Text="Search student, number, program or company" /><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" MaxLength="150" /></div>
+<div><asp:Label runat="server" AssociatedControlID="ddlStatus" Text="Completion review status" /><asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-select"><asp:ListItem Value="">All statuses</asp:ListItem><asp:ListItem>In Progress</asp:ListItem><asp:ListItem>Awaiting Evaluations</asp:ListItem><asp:ListItem>Ready for Review</asp:ListItem><asp:ListItem>Needs Corrections</asp:ListItem><asp:ListItem>Approved</asp:ListItem><asp:ListItem>Rejected</asp:ListItem></asp:DropDownList></div>
+</div><asp:Button ID="btnFilter" runat="server" Text="Apply filters" CssClass="btn btn-outline-primary mb-3" OnClick="btnFilter_Click" CausesValidation="false" />
+<div class="table-responsive"><table class="uims-table"><thead><tr><th scope="col">Student</th><th scope="col">Student number</th><th scope="col">Academic program</th><th scope="col">Company</th><th scope="col">Internship type</th><th scope="col">Training status</th><th scope="col">Evaluation status</th><th scope="col">Completion review status</th><th scope="col">Review</th></tr></thead><tbody>
+<asp:Repeater ID="rptPlacements" runat="server"><ItemTemplate><tr><td><%#: Eval("StudentName") %></td><td><%#: Eval("StudentNumber") %></td><td><%#: Eval("Program") %></td><td><%#: Eval("Company") %></td><td><%#: Eval("InternshipType") %></td><td><%#: Eval("TrainingStatus") %></td><td><%#: Eval("EvaluationStatus") %></td><td><span class="review-badge"><%#: Eval("Status") %></span></td><td><asp:HyperLink runat="server" NavigateUrl='<%# Eval("ReviewUrl") %>' Text="View details" /></td></tr></ItemTemplate></asp:Repeater>
+</tbody></table></div><asp:Panel ID="pnlNoPlacements" runat="server" Visible="false"><p>No internships match these filters.</p></asp:Panel>
+</section>
+<asp:Panel ID="pnlSelect" runat="server" CssClass="uims-card"><h3>Select a student</h3><p>Use View details to review an internship.</p></asp:Panel>
+<asp:Panel ID="pnlReview" runat="server" Visible="false">
+<section class="uims-card"><h3>Student &amp; Internship Information</h3><h4><asp:Literal ID="litStudent" runat="server" /></h4><div class="review-grid"><asp:Literal ID="litFacts" runat="server" /></div></section>
+<section class="uims-card"><h3>Evaluation Evidence</h3><p class="review-muted">Final supervisor evaluations and comments are confidential and remain available only to authorized staff.</p><div class="review-grid"><div><h4>Company Final Evaluation</h4><asp:Literal ID="litCompanyEvidence" runat="server" /><p class="review-comments"><asp:Literal ID="litCompanyComments" runat="server" /></p></div><div><h4>Academic Final Evaluation</h4><asp:Literal ID="litAcademicEvidence" runat="server" /><p class="review-comments"><asp:Literal ID="litAcademicComments" runat="server" /></p></div></div><asp:Literal ID="litTasks" runat="server" /></section>
+<section class="uims-card"><h3>Training Requirements &amp; Documents</h3><asp:Literal ID="litRule" runat="server" /><asp:Panel ID="pnlConfiguration" runat="server"><asp:Label runat="server" AssociatedControlID="ddlRule" Text="Applicable evaluation and training rule" /><asp:DropDownList ID="ddlRule" runat="server" CssClass="form-select mb-2" /><asp:Button ID="btnRule" runat="server" Text="Save review configuration" CssClass="btn btn-outline-primary" OnClick="btnRule_Click" CausesValidation="false" /><p class="review-muted">Select the actual internship type. Changing configuration clears earlier evidence confirmations. Missing rules must be configured by the application administrator.</p></asp:Panel><asp:Literal ID="litIssues" runat="server" /></section>
+<section class="uims-card"><h3>Coordinator Verification</h3><p>Inspect the supporting records before confirming each requirement. Record a document identifier, secure archive location or other traceable evidence reference. Save verification before approving.</p>
+<asp:Repeater ID="rptRequirements" runat="server"><ItemTemplate><div class="review-verification"><asp:HiddenField ID="requirementKey" runat="server" Value='<%# Eval("Key") %>' /><asp:CheckBox ID="confirmed" runat="server" Checked='<%# Eval("Confirmed") %>' Enabled='<%# Eval("Editable") %>' Text='<%# Server.HtmlEncode((string)Eval("Label")) %>' /><p class="review-muted"><%#: Eval("Source") %></p><asp:Label runat="server" AssociatedControlID="evidenceReference" Text="Supporting evidence reference" /><asp:TextBox ID="evidenceReference" runat="server" CssClass="form-control" Text='<%# Eval("Reference") %>' MaxLength="1000" Enabled='<%# Eval("Editable") %>' /><asp:Panel runat="server" Visible='<%# Eval("NeedsDate") %>'><asp:Label runat="server" AssociatedControlID="evidenceDate" Text="Date of school approval (before training)" /><asp:TextBox ID="evidenceDate" runat="server" TextMode="Date" CssClass="form-control" Text='<%# Eval("Date") %>' Enabled='<%# Eval("Editable") %>' /></asp:Panel><p class="review-muted"><%#: Eval("Audit") %></p></div></ItemTemplate></asp:Repeater>
+<asp:Button ID="btnVerify" runat="server" Text="Save evidence verification" CssClass="btn btn-outline-primary" OnClick="btnVerify_Click" CausesValidation="false" /></section>
+<section class="uims-card"><h3>Final Decision</h3><p>Final Completion Status: <strong><asp:Literal ID="litReviewStatus" runat="server" /></strong></p><p>Provisional Evaluation Result: <strong><asp:Literal ID="litProposedResult" runat="server" /></strong></p><asp:Panel ID="pnlInternalScore" runat="server"><p>Internal configured score: <asp:Literal ID="litInternalScore" runat="server" /></p></asp:Panel><p class="review-muted">A passing evaluation does not approve completion. Only the coordinator can approve after verifying all applicable requirements.</p><asp:Literal ID="litSavedNote" runat="server" />
+<asp:Panel ID="pnlDecision" runat="server"><asp:Label runat="server" AssociatedControlID="txtCoordinatorNote" Text="Coordinator note (required for corrections or rejection)" /><asp:TextBox ID="txtCoordinatorNote" runat="server" CssClass="form-control mb-3" TextMode="MultiLine" Rows="3" MaxLength="2000" /><div class="review-actions"><asp:Button ID="btnApprove" runat="server" Text="Approve Internship Completion" CssClass="btn btn-brand" OnClick="btnApprove_Click" CausesValidation="false" OnClientClick="return confirm('Approve completion and release the student report? This decision will be read-only.');" /><asp:Button ID="btnCorrections" runat="server" Text="Return for Corrections" CssClass="btn btn-outline-primary" OnClick="btnCorrections_Click" CausesValidation="false" /><asp:Button ID="btnReject" runat="server" Text="Reject Completion" CssClass="btn btn-outline-danger" OnClick="btnReject_Click" CausesValidation="false" OnClientClick="return confirm('Reject completion with the documented reason? This decision will be read-only.');" /></div></asp:Panel>
+</section>
+<asp:Panel ID="pnlDownloads" runat="server" CssClass="uims-card" Visible="false"><h3>Approved Documents</h3><p>The report is released to the approved student. The separate certificate can be generated and printed by the coordinator.</p><asp:HyperLink ID="lnkReport" runat="server" Text="Download Internship Completion Report" CssClass="btn btn-outline-primary" /><asp:HyperLink ID="lnkCertificate" runat="server" Text="Generate Internship Completion Certificate" CssClass="btn btn-outline-primary" /></asp:Panel>
+<section class="uims-card"><h3>Review history</h3><asp:Literal ID="litAudit" runat="server" /></section>
+</asp:Panel>
 </asp:Content>

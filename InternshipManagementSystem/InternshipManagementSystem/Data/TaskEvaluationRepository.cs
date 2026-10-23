@@ -4,7 +4,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class TaskEvaluationRepository : RepositoryBase<TaskEvaluation>
+    public class TaskEvaluationRepository : NotifyingRepositoryBase<TaskEvaluation>
     {
         protected override string Collection
         {

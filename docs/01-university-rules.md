@@ -7,8 +7,8 @@ Owner: Suja — card X01. Confirm the remaining assumptions before the demo.
 | University | German Jordanian University — الجامعة الألمانية الأردنية |
 | College | School of Computing |
 | Website | https://www.gju.edu.jo |
-| Required local training | **160 hours**, confirmed by the [official GJU local training page](https://www.gju.edu.jo/content/local-training-14456). |
-| Final result | **Pass / Fail**, as required by this project's GJU brief. |
+| Required local training | **160 contact hours** for School of Computing, confirmed by its [local field training rules](https://gju.edu.jo/content/local-training-14477). |
+| Released final result | **Pass / Fail** in this project. The [CS391 study plan](https://www.gju.edu.jo/sites/default/files/Computer%20Science/programs/study_plan_all_tracks_2023-2024_updated.pdf) lists field training as 0 credit hours, but an official School of Computing pass threshold or score distribution has not been verified. |
 
 ## Programs and tracks
 
@@ -31,10 +31,19 @@ rejects entries (S04). `HoursService.RecomputeTotals` totals approved entries.
 Completing a task never automatically approves hours. This approval workflow is
 **HYPOTHETICAL as university policy, awaiting X01**.
 
-The proposed completion gate is 160 approved hours, both final evaluations,
-a passing result, and coordinator approval. These criteria beyond the confirmed
-hour total are **HYPOTHETICAL, awaiting X01**. Company and academic final
-forms remain confidential; students see the released result.
+The [School of Computing rules](https://gju.edu.jo/content/local-training-14477)
+also require prior school approval, training in a related company during an
+allowed period, signed and stamped training forms with a task list, and
+department review followed by dean endorsement. The coordinator review page
+records explicit verification of these conditions. The project's electronic
+approval substitutes for neither the physical forms nor the university signoff.
+Company and academic final forms remain confidential; students see only the
+released Pass / Fail result and completion report.
+
+The additional requirement that every task has a current grade and both final
+evaluations have numeric scores is a **project workflow rule**, not a verified
+GJU policy. It can be revised when the official School of Computing evaluation
+form is confirmed.
 
 ## Evaluation — HYPOTHETICAL, awaiting X01
 
@@ -45,10 +54,20 @@ forms remain confidential; students see the released result.
 | Academic final evaluation | 50 | 25% |
 
 All criteria, scales, weights and the **60% pass threshold are HYPOTHETICAL**.
-They are implementation defaults, not verified GJU policy. X01 must confirm or
-replace them before the demo. Weights must total 100; the service rejects an
+They are project proposals, not verified GJU policy. Completion review now requires
+an explicitly selected server-managed rule; it does not silently apply these values.
+X01 must confirm or replace them. Weights must total 100; the service rejects an
 invalid total. Detailed evaluation criteria await X01.
 
 Worked hypothetical example: tasks 80%, company 70/100, academic 40/50:
 `80 × 0.30 + 70 × 0.45 + 80 × 0.25 = 75.5%`, giving `Result = "Pass"`.
-The stored result is always `"Pass"` or `"Fail"`, with the numeric score retained.
+Weighted provisional results are `"Pass"` or `"Fail"`; evidence-only completion can
+record `"Completed"`. Administrative corrections/rejection do not assign academic Fail. The numeric score is retained
+only as an internal proposed calculation; student-facing results and PDFs show
+Pass / Fail without presenting the score as an official GJU grade.
+
+See [completion review configuration, sources and migration](11-completion-review.md).
+The live local-training source contains inconsistent credit-hour prerequisites;
+no numeric credit eligibility rule is inferred. International requirements need
+their own verified configuration. The four legacy checkboxes alone are no longer
+sufficient evidence for a new approval.

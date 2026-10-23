@@ -59,11 +59,13 @@ Paste this exact development rule set into **Realtime Database → Rules**:
     },
     "companyFinalEvaluations": {
       ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
-      ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1"
+      ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
+      ".indexOn": ["PlacementId"]
     },
     "academicFinalEvaluations": {
       ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
-      ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1"
+      ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
+      ".indexOn": ["PlacementId"]
     },
     "contactMessages": {
       ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() === 4",
@@ -72,30 +74,20 @@ Paste this exact development rule set into **Realtime Database → Rules**:
     "companies":        { ".read": "auth != null", ".write": "auth != null" },
     "studentGroups":    { ".read": "auth != null", ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() === 4" },
     "opportunities":    { ".read": "auth != null", ".write": "auth != null" },
-    "applications":     { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "CompanyId"] },
+    "applications":     { ".read": "auth != null", ".write": "auth != null" },
     "placements":       { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["CompanyId", "AcademicSupervisorId"] },
-    "tasks":            { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "CompanyId", "PlacementId"] },
-    "submissions":      { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "TaskId", "PlacementId"] },
+    "tasks":            { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["PlacementId"] },
+    "submissions":      { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["PlacementId"] },
     "taskEvaluations":  { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "PlacementId"] },
-    "academicComments": { ".read": "auth != null", ".write": "auth != null" },
-    "trainingHours":    { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "PlacementId"] },
+    "academicComments": { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["PlacementId", "StudentId"] },
+    "trainingHours":    { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["PlacementId"] },
     "completions":      { ".read": "auth != null", ".write": "auth != null", ".indexOn": ["StudentId", "PlacementId"] },
-    "meetings":         { ".read": "auth != null", ".write": "auth != null" },
-    "notifications": {
-      "$uid": {
-        ".read":  "auth != null && auth.uid === $uid",
-        ".write": "auth != null"
-      }
-    }
+    "meetings":         { ".read": "auth != null", ".write": "auth != null" }
   }
 }
 ```
 
-`notifications/{uid}` feeds the bell in every portal's top bar. People can read
-only their own list; any signed-in user can add to another person's list,
-because the person who acts (for example a company supervisor creating a task)
-is the one who notifies the student. Without this rule the bell shows
-"Notifications are unavailable right now" and every other page keeps working.
+For the live notification inbox, merge [the notification rules fragment](firebase-notifications-rules.patch.json) into the existing rules. It adds recipient-only inbox reads, the `CreatedAt` index, immutable notification content and the assigned student's task-status transitions. See [notification setup](10-email-notifications.md). The fragment must be merged without replacing unrelated rules.
 
 There is no blanket root rule: Firebase access grants cascade downward and cannot
 be revoked deeper. A root `.read` would expose the two confidential evaluation
@@ -104,13 +96,11 @@ academic comments must be checked by student pages, and is not enforced by these
 
 ### Filtered queries
 
-The application node above indexes `StudentId` and `CompanyId` for O01's student
-and company lists, plus placement queries by company or academic supervisor.
-Apply these indexes to the team's database before testing those pages.
-Other Firebase REST `GetWhere` queries need
-an `.indexOn` for each queried field, or they can fail with `Index not defined`.
-Before using filtered pages, have Ahmad add indexes under the existing nodes
-without changing their access rules. For example, add
+The rules above index the student progress queries as well as placements by
+company and academic supervisor. Other
+Firebase REST `GetWhere` queries need an `.indexOn` for each queried field, or
+they can fail with `Index not defined`. Before using other filtered pages, add
+indexes under the existing nodes without changing their access rules. For example, add
 `".indexOn": ["PlacementId", "StudentId"]` to `academicComments`.
 Use the repository's `GetWhere` field names for other collections; the main ones
 are `CompanyId`, `AcademicSupervisorId`, `StudentId`, `PlacementId`, `TaskId`,
@@ -122,6 +112,16 @@ with `if-match: null_etag` to prevent concurrent confirmations overwriting data.
 Create placements only through `Confirm`; use `Update` for later field changes.
 
 ## Troubleshooting
+
+### Completion review authorization update
+
+The development grants above are insufficient for the corrected completion workflow.
+Merge [the scoped rules fragment](firebase-completion-rules.patch.json) by replacing
+the corresponding nodes, preserving unrelated rules/indexes. Do not upload the
+fragment as an entire application's rules file. Follow the [migration and validation
+notes](11-completion-review.md#additive-firebase-changes-and-deployment), including
+testing the merged rules in Firebase's simulator/emulator before deployment.
+
 
 | Symptom | Check |
 | --- | --- |

@@ -1,9 +1,11 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Academic.master.cs" Inherits="InternshipManagementSystem.Layout.AcademicMaster" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Academic.master.cs" Inherits="InternshipManagementSystem.Layout.AcademicMaster" %>
 <%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
 <%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
 <%@ Register Src="~/Layout/Sidebar.ascx" TagPrefix="uims" TagName="Sidebar" %>
 <%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
 
+<%@ Register TagPrefix="uims" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
+<%@ Register TagPrefix="live" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <!DOCTYPE html>
 <html lang="<%: L.Lang %>" dir="<%: L.Dir %>" class="academic-portal uims-portal">
 <head runat="server">
@@ -54,7 +56,7 @@
                 <div class="uims-user">
                     <uims:LanguageSelector runat="server" Variant="link" />
                     <uims:ThemeSelector runat="server" Variant="menu" />
-                    <uims:NotificationBell runat="server" />
+                    <live:ActivityBell ID="NotificationMenu" runat="server" />
                     <div class="uims-user-meta">
                         <asp:Literal ID="litUserName" runat="server" />
                         <small><asp:Literal ID="litRoleName" runat="server" /></small>
@@ -73,6 +75,7 @@
 <script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-2") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/i18n.js?v=20261023-2") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-5") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/notifications.js") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
 <script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-5") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-5") %>"></script>
