@@ -160,6 +160,8 @@ Use the seven-step spacing scale. Authenticated content has a 1560px outer maxim
 
 The student dashboard pairs next tasks with approved hours, then application history. Company pairs the applications table with its review desk and trainee list. Academic pairs assigned-student oversight with assessment follow-up. Coordinator pairs the completion queue with assignments and exception totals. These are the four recomposed surfaces; legacy work pages keep their functional structures.
 
+The shared sidebar pairs the original GJU mark with the existing UIMS name and a compact pin control. Primary-soft marks the active route, while a neutral utility strip groups language, theme and notifications above a bordered account link. Sidebar links retain 16px text; local secondary context uses 12px and account names use 13px. Link corners use the 8px control token and the two footer groups use 12px corners.
+
 Navigation is a light gray 264px panel, initially pinned when no preference exists. An explicit unpin permits a 76px rail with pointer/keyboard expansion. The stored pin preference remains authoritative. At 900px and below, a drawer up to 360px wide leaves a 28px viewport margin and retains its focus trap, inert background and Escape handling. Public navigation keeps its separate 1120px collapse point.
 
 Below 760px, major legacy work columns stack. Reference analytics has its own 1000px breakpoint: the primary charts stack and four KPIs become two columns. At 1200px the donut explanation moves below its chart and legend; below 600px the donut, legend and explanation stack, card padding reduces to 18px 16px and sparklines are hidden. Journey stages use a local horizontal scroller with visible guidance and the current stage initially centered; the shared stage width is 160px, reduced to 142px on reference dashboards below 600px. Wide tables stay inside keyboard-accessible, labeled local scroll regions; do not force the entire page wider than the viewport. Preserve native navigation, history and the public scene layout.
@@ -312,7 +314,7 @@ new visual direction.
 
 
 
-- Neutral `#f5f5f5` sidebar and white top bar; very pale blue content background `#f6f8ff`.
+- Neutral `#f5f5f5` sidebar owns portal context and account utilities; very pale blue content background `#f6f8ff`.
 
 - Primary buttons: `#264f73`; hover `#173f62`. Active sidebar links use navy ink on a quiet `#e3e8ec` surface.
 
@@ -366,17 +368,15 @@ people, hours, dates and company names are not product facts.
 
 
 
-At widths above 900px, navigation begins as a 60px rail and expands to 300px
-
-on pointer hover or keyboard focus, or while pinned. Only the pin preference is
-
-stored locally. Content resizes alongside it. At 900px and below, one compact
-
-menu button opens the same panel full-screen with an RTL-aware transition,
-
-focus trapping, Escape/selection close, background inertness and scroll locking.
-
-Without JavaScript, the expanded navigation remains available in normal flow.
+At widths above 900px, navigation uses a 76px rail and expands to 264px on
+pointer hover or keyboard focus, or while pinned. Only the pin preference is
+stored locally. The shared sidebar owns page/portal context, language, theme,
+notifications and the trusted account/avatar, followed by the existing logout.
+The desktop top bar is removed. Navigation still scrolls independently, with its
+scrollbar hidden. At 900px and below, a compact menu button opens the same panel
+as a drawer up to 360px wide, with RTL entry, focus trapping, background inertness
+and scroll locking. Escape closes notifications before closing the drawer.
+Without JavaScript, expanded navigation remains available in normal flow.
 
 See `docs/20-shared-sidebar.md` for reference adaptation and verification limits.
 

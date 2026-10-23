@@ -4,7 +4,18 @@
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/about.css?v=20261022-5") %>" />
 <%-- Entrance reveals pre-hide content only when motion is welcome and about.js actually starts; if it has not
      started within 3 s, everything is shown as normal. --%>
-<script>(function(d){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;d.classList.add('about-motion');setTimeout(function(){if(!d.classList.contains('about-ready'))d.classList.remove('about-motion');},3000);}(document.documentElement));</script>
+<script>(function (d) { if (matchMedia('(prefers-reduced-motion: reduce)').matches) return; d.classList.add('about-motion'); setTimeout(function () { if (!d.classList.contains('about-ready')) d.classList.remove('about-motion'); }, 3000); }(document.documentElement));</script>
+<style>
+    /* تنسيق الفيديوهات داخل الحاويات لتبدو كأنها صور احترافية متحركة */
+    .about-figure video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 16px;
+        display: block;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+</style>
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <%-- About Us. University facts were checked against gju.edu.jo (About the University, University Identity, Programs) on
@@ -13,8 +24,8 @@
 <div class="public-page about-page">
 
  <%-- Opening: the university film. On wide screens it fills the viewport under the navbar (muted preview, cropped to fill);
-      on narrow or portrait screens it keeps its own 2.38:1 frame above the text. The full film always opens uncropped,
-      with native controls and sound, in the dialog below. --%>
+     on narrow or portrait screens it keeps its own 2.38:1 frame above the text. The full film always opens uncropped,
+     with native controls and sound, in the dialog below. --%>
  <section class="about-opening" id="campus-film" aria-labelledby="about-title" data-film>
   <div class="about-opening-stage">
    <div class="about-opening-frame" data-film-frame>
@@ -62,8 +73,12 @@
     </ul>
     <a class="about-official" href="<%: Constants.UniversityWebsite %>" target="_blank" rel="noopener noreferrer"><%: L.T("Public.About.VisitTheOfficialGJUWebsite") %><span class="visually-hidden"> <%: L.T("Public.About.OpensInANewTab") %></span> <span aria-hidden="true">&#8599;</span></a>
    </div>
+   <%-- فيديو البوابة الأول: aboutGate.mp4 --%>
    <figure class="about-figure" data-reveal="clip" data-parallax>
-    <img src="<%: ResolveUrl("~/Assets/images/about/about-gate-1.jpg") %>" alt="<%: L.T("Public.About.Gate1OfTheGermanJordanian") %>" width="1080" height="810" loading="lazy" decoding="async" />
+    <video autoplay muted loop playsinline preload="metadata">
+     <source src="<%: ResolveUrl("~/Assets/video/aboutGate.mp4") %>" type="video/mp4" />
+     Your browser does not support the video tag.
+    </video>
    </figure>
   </div>
  </section>
@@ -144,8 +159,12 @@
     <p class="about-note"><%: L.T("Public.About.ThisListDescribesTheUniversityUIMS") %> <%: Constants.CollegeName %> <%: L.T("Public.About.Only") %></p>
     <a class="about-official" href="https://www.gju.edu.jo/gju-programs" target="_blank" rel="noopener noreferrer"><%: L.T("Public.About.ExploreGJUProgramsOnTheOfficial") %><span class="visually-hidden"> <%: L.T("Public.About.OpensInANewTab") %></span> <span aria-hidden="true">&#8599;</span></a>
    </div>
+   <%-- فيديو المجتمع الأكاديمي: Academic Community.mp4 --%>
    <figure class="about-figure" data-reveal="clip">
-    <img src="<%: ResolveUrl("~/Assets/images/about/about-campus-aerial.jpg") %>" alt="<%: L.T("Public.About.AerialViewOfTheGermanJordanian") %>" width="1280" height="720" loading="lazy" decoding="async" />
+    <video autoplay muted loop playsinline preload="metadata">
+     <source src="<%: ResolveUrl("~/Assets/video/Academic Community.mp4") %>" type="video/mp4" />
+     Your browser does not support the video tag.
+    </video>
    </figure>
   </div>
  </section>
@@ -164,8 +183,12 @@
      <p><%: L.T("Public.About.ItsPurposeIsToMakeThe") %></p>
      <p class="about-note"><%: L.T("Public.About.UIMSIsAGroup4Student") %></p>
     </div>
+    <%-- فيديو مشروع UIMS: About UIMS.mp4 --%>
     <figure class="about-figure" data-reveal="clip">
-     <img src="<%: ResolveUrl("~/Assets/images/about/about-students.jpg") %>" alt="<%: L.T("Public.About.StudentsTalkingOnAPathBetween") %>" width="960" height="685" loading="lazy" decoding="async" />
+     <video autoplay muted loop playsinline preload="metadata">
+      <source src="<%: ResolveUrl("~/Assets/video/About UIMS.mp4") %>" type="video/mp4" />
+      Your browser does not support the video tag.
+     </video>
     </figure>
    </div>
    <h3 class="about-subhead" data-reveal><%: L.T("Public.About.ProjectObjectives") %></h3>

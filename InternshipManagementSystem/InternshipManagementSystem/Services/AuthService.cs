@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using System.IO;
@@ -70,6 +70,9 @@ namespace InternshipManagementSystem.Services
             };
             return Call("delete", body, L.T("Account.AuthService.CouldNotDeleteTheAccount"));
         }
+
+        /// <summary>Remove a newly created Auth account if its profile cannot be saved.</summary>
+
 
         /// <summary>Card A03: send the password-reset email.</summary>
         public static AuthResult SendPasswordResetEmail(string email)

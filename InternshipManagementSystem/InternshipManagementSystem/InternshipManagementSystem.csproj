@@ -72,6 +72,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Data.DataSetExtensions" />
     <!-- System.Web.Extensions carries JavaScriptSerializer, which is how
          Data/Json.cs reads and writes Firebase JSON with no NuGet package. -->
@@ -100,6 +101,10 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\NotFound.aspx.cs">
+      <DependentUpon>NotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\Constants.cs" />
     <Compile Include="Common\Localization.cs" />
@@ -131,6 +136,8 @@
     <Compile Include="Data\CompletionRepository.cs" />
     <Compile Include="Data\ContactRepository.cs" />
     <Compile Include="Data\EvaluationRepository.cs" />
+    <Compile Include="Data\NotifyingRepositoryBase.cs" />
+    <Compile Include="Services\EmailNotificationService.cs" />
     <Compile Include="Data\FirebaseAuthExpiredException.cs" />
     <Compile Include="Data\FirebaseContext.cs" />
     <Compile Include="Data\GroupRepository.cs" />
@@ -200,6 +207,7 @@
     <Compile Include="Models\InternshipTask.cs" />
     <Compile Include="Models\Meeting.cs" />
     <Compile Include="Models\Notification.cs" />
+    <Compile Include="Services\ZoomMeetingService.cs" />
     <Compile Include="Models\Opportunity.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonFactory.cs" />
@@ -301,8 +309,8 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\FinalEvaluation.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Company\FinalEvaluation.aspx.designer.cs">
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
@@ -311,13 +319,13 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-		  <SubType>ASPXCodeBehind</SubType>
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
@@ -489,6 +497,13 @@
     <Compile Include="Pages\Public\PoweredBy.aspx.designer.cs">
       <DependentUpon>PoweredBy.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Public\Journey.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>Journey.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Public\Journey.aspx.designer.cs">
+      <DependentUpon>Journey.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Public\AccessDenied.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>AccessDenied.aspx</DependentUpon>
@@ -559,6 +574,12 @@
     <Compile Include="Pages\Student\Progress.aspx.designer.cs">
       <DependentUpon>Progress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\UserNotification.cs" />
+    
+    <Compile Include="Layout\NotificationBell.cs" />
+    <Compile Include="Pages\Notifications\Feed.ashx.cs" />
+    <Compile Include="Pages\Notifications\Inbox.aspx.cs" />
+    <Compile Include="Services\TaskWorkflowService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\AcademicPage.cs">
       <SubType>ASPXCodeBehind</SubType>
@@ -579,6 +600,18 @@
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\CompletionService.cs" />
     <Compile Include="Services\GradingService.cs" />
+    <Compile Include="Services\CompletionReviewService.cs" />
+    <Compile Include="Models\CompletionRule.cs" />
+    <Compile Include="Data\CompletionRuleRepository.cs" />
+    <Compile Include="Services\GradeResultsService.cs" />
+    <Compile Include="Services\ExcelExportService.cs" />
+    <Compile Include="Pages\Reports\Grades.aspx.cs">
+      <DependentUpon>Grades.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Reports\Grades.aspx.designer.cs">
+      <DependentUpon>Grades.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Services\HoursService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PdfReportService.cs" />
@@ -586,7 +619,13 @@
     <Compile Include="Services\StudentDocumentService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\js\notifications.js" />
+    <Content Include="Assets\css\notifications.css" />
+    <Content Include="Pages\Notifications\Feed.ashx" />
+    <Content Include="Pages\Notifications\Inbox.aspx" />
+    <Content Include="Assets\css\task-workflow.css" />
     <Content Include="Default.aspx" />
+    <Content Include="App_Data\completion-rules.json" />
     <Content Include="Global.asax" />
     <Content Include="App_GlobalResources\Workspace.ar.resx" />
     <Content Include="App_GlobalResources\Workspace.resx" />
@@ -626,6 +665,7 @@
     <Content Include="Pages\Public\404.aspx" />
     <Content Include="Pages\Student\DisplayEditProfile.aspx" />
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
+    <Content Include="Pages\Reports\Grades.aspx" />
     <Content Include="Web.config" />
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\theme.css" />
@@ -637,7 +677,7 @@
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
-    <Content Include="Assets\css\notifications.css" />
+    
     <Content Include="Assets\css\public-layout.css" />
     <Content Include="Assets\css\public-navbar.css" />
     <Content Include="Assets\css\completion-review.css" />
@@ -653,6 +693,7 @@
     <Content Include="Assets\js\public-forms.js" />
     <Content Include="Assets\js\home-courtyard.js" />
     <Content Include="Assets\css\home-story.css" />
+    <Content Include="Assets\css\jisr.css" />
     <Content Include="Assets\css\home-experience.css" />
     <Content Include="Assets\js\home-experience.js" />
     <Content Include="Assets\images\university\4a85f19e-09cd-47d5-b8de-a18f277616a7.png" />
@@ -663,6 +704,16 @@
     <Content Include="Assets\images\university\6753e8dc-1deb-4e1d-848c-79304737fb69.png" />
     <Content Include="Assets\js\home-story.js" />
     <Content Include="Assets\js\home-story-scene.js" />
+    <Content Include="Assets\js\jisr\jisr-campus.js" />
+    <Content Include="Assets\js\jisr\jisr-common.js" />
+    <Content Include="Assets\js\jisr\jisr-hero.js" />
+    <Content Include="Assets\js\jisr\jisr-land.js" />
+    <Content Include="Assets\js\jisr\jisr-layout.js" />
+    <Content Include="Assets\js\jisr\jisr-life.js" />
+    <Content Include="Assets\js\jisr\jisr-post.js" />
+    <Content Include="Assets\js\jisr\jisr-sky.js" />
+    <Content Include="Assets\js\jisr\jisr-storks.js" />
+    <Content Include="Assets\js\jisr\jisr-student.js" />
     <Content Include="Assets\js\home-campus-model.js" />
     <Content Include="Assets\js\home-campus-materials.js" />
     <Content Include="Assets\images\university\materials\stone-albedo.png" />
@@ -684,6 +735,7 @@
     <Content Include="Assets\images\university\b774db96-c900-40dc-b579-3fa681fb49ec.png" />
     <Content Include="Assets\js\portal-layout.js" />
     <Content Include="Assets\images\gju-logo.png" />
+    
     <Content Include="Assets\images\README.txt" />
     <Content Include="Assets\js\site.js" />
     <Content Include="Assets\js\ui-system.js" />
@@ -706,9 +758,6 @@
     <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />
     <Content Include="Assets\images\contact\contact-walkway.jpg" />
-    <Content Include="Assets\images\about\about-gate-1.jpg" />
-    <Content Include="Assets\images\about\about-campus-aerial.jpg" />
-    <Content Include="Assets\images\about\about-students.jpg" />
     <Content Include="Assets\images\about\about-film-poster.jpg" />
     <Content Include="Assets\images\university\materials\-578791943103387727.mp4" />
     <Content Include="Assets\js\public-footer.js" />
@@ -725,6 +774,7 @@
     <Content Include="Assets\models\people\LICENSE.md" />
     <Content Include="Assets\models\people\README.md" />
     <Content Include="Assets\models\people\Female_Adult_04.glb" />
+    <Content Include="Assets\models\people\Male_Adult_17_Animated.glb" />
     <Content Include="Assets\models\people\Female_Adult_06.glb" />
     <Content Include="Assets\models\people\Female_Adult_08.glb" />
     <Content Include="Assets\models\people\Female_Adult_09.glb" />
@@ -735,6 +785,7 @@
     <Content Include="Assets\models\people\Male_Adult_17.glb" />
     <Content Include="Assets\models\people\Male_Adult_18.glb" />
     <Content Include="Pages\Public\PoweredBy.aspx" />
+    <Content Include="Pages\Public\Journey.aspx" />
     <Content Include="App_Data\development-team.json" />
     <Content Include="Assets\images\team\Ahmad.png" />
     <Content Include="Assets\images\team\Fatima Tawalbeh.png" />
@@ -793,6 +844,9 @@
     <Content Include="Pages\Coordinator\ManageStudents.aspx" />
     <Content Include="Pages\Meetings\MyMeetings.aspx" />
     <Content Include="Pages\Meetings\Schedule.aspx" />
+    <Content Include="Pages\Public\NotFound.aspx" />
+    <Content Include="Assets\css\not-found.css" />
+    <Content Include="Assets\js\not-found.js" />
     <Content Include="Pages\Public\About.aspx" />
     <Content Include="Pages\Public\AccessDenied.aspx" />
     <Content Include="Pages\Public\Contact.aspx" />
@@ -845,4 +899,9 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <ItemGroup>
+    <Compile Include="Pages\Company\EvaluationReport.aspx.cs"><DependentUpon>EvaluationReport.aspx</DependentUpon></Compile>
+    <Compile Include="Pages\Company\EvaluationReport.aspx.designer.cs"><DependentUpon>EvaluationReport.aspx</DependentUpon></Compile>
+    <Content Include="Pages\Company\EvaluationReport.aspx" />
+  </ItemGroup>
 </Project>

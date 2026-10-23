@@ -1,39 +1,26 @@
 async page => {
- const base='http://localhost:57992',path='/Pages/Account/Login.aspx';let endpoint;
- const checks=[];const check=(ok,name)=>{if(!ok)throw Error(name);checks.push(name);};
- await page.context().clearCookies();await page.emulateMedia({reducedMotion:'no-preference'});
- await page.exposeFunction('recordCampusEndpoint',value=>{endpoint=value;});
- // Observe the real rendered geometry without adding a debug interface to the app.
- await page.route('**/login-campus-scene.js*',async route=>{
-  const response=await route.fetch();let source=await response.text();
-  source=source.replace('return {\n  setState(value)', 'window.__campusReview={scene,camera,leaves,guard,visitor};\n return {\n  setState(value)');
-  source=source.replace('if(progress===1){', 'if(progress===1){window.recordCampusEndpoint({cameraZ:camera.position.z,leafX:leaves.map(leaf=>leaf.position.x),duration:now-entryStart,portalX:gate.parts.get("limestone-portal").position.x});');
-  await route.fulfill({response,body:source});
- });
- await page.goto(base+path);await page.waitForFunction(()=>!!window.__campusReview);
- const original=await page.evaluate(()=>window.__campusReview.leaves.map(leaf=>leaf.position.x));
- check(original[0]===-2.5&&original[1]===2.5,'Actual closed leaf positions');
- await page.evaluate(()=>document.querySelector('form').addEventListener('submit',e=>e.preventDefault(),{once:true}));
- await page.getByLabel('Email address',{exact:true}).fill('student@campus.test');await page.getByLabel('Password',{exact:true}).fill('Fixture-pass-2026');
- await page.locator('[data-public-form] input[type=submit]').click();
- await page.waitForFunction(()=>document.querySelector('[data-login-campus]').dataset.state==='submitting');
- // Poses ease toward their targets; wait for the restrained gesture to settle.
- await page.waitForFunction(()=>window.__campusReview.visitor.arms[1].rotation.x<-.9);
- const pending=await page.evaluate(()=>({leaves:window.__campusReview.leaves.map(leaf=>leaf.position.x),arm:window.__campusReview.visitor.arms[1].rotation.x}));
- check(JSON.stringify(pending.leaves)===JSON.stringify(original)&&pending.arm<-.5,'Present pass while actual gates stay closed');
- await page.evaluate(()=>window.dispatchEvent(new Event('pageshow')));
- await page.locator('[data-public-form] input[type=submit]').click();await page.waitForURL('**/Pages/Student/Dashboard.aspx');
- check(endpoint&&endpoint.cameraZ<.5&&endpoint.leafX.every(x=>Math.abs(x)>7)&&endpoint.portalX===0,'Camera crosses gate plane, leaves clear passage, portal stationary');
- check(endpoint.duration>=1250&&endpoint.duration<1500,'Measured entry animation 1.25–1.5 seconds');
- await page.context().clearCookies();await page.goto(base+path);await page.waitForSelector('[data-scene-ready]');
+ const base=new URL(page.url()).origin,path='/Pages/Account/Login.aspx',checks=[];
+ const check=(ok,name)=>{if(!ok)throw Error(name);checks.push(name);};
+ const snapshot=()=>page.evaluate(()=>document.querySelector('[data-login-campus]').campusScene.snapshot());
+ await page.setViewportSize({width:1440,height:1000});await page.goto(base+path);await page.locator('[data-scene-ready]').waitFor();
+ const root=page.locator('[data-login-campus]'),pause=page.locator('[data-campus-pause]');
+ await page.evaluate(()=>document.querySelector('[data-public-form]').dataset.submitting='true');await page.waitForTimeout(450);
+ const pending=await snapshot();check(pending.state==='submitting'&&pending.leaves.join(',')==='-2.5,2.5','Pending authentication never opens the security gate');
+ await page.evaluate(()=>delete document.querySelector('[data-public-form]').dataset.submitting);await page.waitForTimeout(100);check((await snapshot()).state==='idle','Cancelled checking returns to idle');
  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
- check(await page.locator('[data-campus-canvas] canvas').count()===0&&await page.locator('.login-campus-photo').isVisible(),'Pagehide disposes canvas and exposes photo');
- await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
- await page.waitForSelector('[data-scene-ready]');check(await page.locator('[data-campus-canvas] canvas').count()===1,'Persisted pageshow reconstructs exactly one canvas');
- await page.locator('[data-campus-pause]').click();check(await page.locator('[data-campus-pause]').getAttribute('aria-pressed')==='true','Restored pause control works');
- await page.evaluate(()=>{const canvas=document.querySelector('canvas');const gl=canvas.getContext('webgl2');gl.getExtension('WEBGL_lose_context').loseContext();});
- await page.waitForFunction(()=>!document.querySelector('[data-login-campus]').hasAttribute('data-scene-ready'));
- check(await page.locator('.login-campus-photo').isVisible()&&!await page.locator('[data-campus-pause]').isVisible(),'Actual WebGL context loss shows photographic fallback');
- await page.unroute('**/login-campus-scene.js*');
- return {passed:checks.length,checks,endpoint};
+ check(await page.locator('[data-campus-canvas] canvas').count()===0&&!await root.getAttribute('data-initialized'),'Pagehide disposes renderer and exposes fallback');
+ for(let i=0;i<2;i++){
+  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));await page.locator('[data-scene-ready]').waitFor();
+  check(await page.locator('[data-campus-canvas] canvas').count()===1,'Restoration creates exactly one scene: '+i);
+  await pause.click();check((await snapshot()).paused,'Restored pause has one handler: '+i);await pause.click();
+  if(i===0)await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
+ }
+ await page.emulateMedia({reducedMotion:'reduce'});await page.waitForTimeout(120);const before=await snapshot();await page.waitForTimeout(160);const after=await snapshot();
+ check(before.reduced&&before.draws===after.draws&&!await pause.isVisible(),'Runtime reduced-motion change stops rendering');
+ await page.emulateMedia({reducedMotion:'no-preference'});await page.waitForTimeout(180);check(await pause.isVisible()&&(await snapshot()).draws>after.draws,'Ambient motion can resume');
+ await page.setViewportSize({width:1024,height:768});await page.waitForTimeout(100);check(await page.locator('[data-campus-canvas] canvas').count()===1,'Resize preserves one renderer');
+ await page.getByLabel('Email address',{exact:true}).fill('student@campus.test');await page.locator('.public-menu-toggle').click();await page.waitForTimeout(250);await page.evaluate(()=>window.confirm=()=>false);const initial=page.url();await page.locator('[data-lang-switch]:visible').click();check(page.url()===initial&&await page.getByLabel('Email address',{exact:true}).inputValue()==='student@campus.test','Language-switch cancellation preserves unsaved login input');
+ await page.evaluate(()=>{const c=document.querySelector('[data-campus-canvas] canvas');c.getContext('webgl2').getExtension('WEBGL_lose_context').loseContext();});await page.waitForTimeout(200);
+ check(!await root.getAttribute('data-scene-ready')&&await root.getAttribute('data-visual-mode')==='photo'&&!await pause.isVisible(),'Real WebGL context loss returns to campus photograph');
+ return {passed:checks.length,checks};
 }

@@ -1,12 +1,12 @@
 async page => {
  // Language switching behaviour against the disposable host (57992) and the campus-login simulation (4910).
  // Writes only to the simulation (reset first); never to a live service.
- const base='http://localhost:57992',db='http://127.0.0.1:4910/firebase';
+ const base=new URL(page.url()).origin,db='http://127.0.0.1:4910/firebase';
  const checks=[];const check=(ok,name)=>{if(!ok)throw Error(name);checks.push(name);};
  const errors=[];page.on('pageerror',e=>errors.push(e.message));
  const html=async()=>page.evaluate(()=>({lang:document.documentElement.lang,dir:document.documentElement.dir,rtlCss:[...document.styleSheets].some(s=>/bootstrap\.rtl\.min\.css/.test(s.href||'')),ltrCss:[...document.styleSheets].some(s=>/bootstrap\.min\.css/.test(s.href||''))}));
  const langControl=()=>page.locator('.uims-lang-control:visible').first();
- const langLink=()=>langControl().locator('[data-lang-switch]:not([aria-current="page"])').first();
+ const langLink=()=>langControl();
  await page.request.post(db+'/__reset');
  await page.context().clearCookies();await page.setViewportSize({width:1440,height:1000});
 
@@ -14,8 +14,8 @@ async page => {
  await page.goto(base+'/Pages/Public/Contact.aspx?topic=general');let h=await html();
  check(h.lang==='en'&&h.dir==='ltr'&&h.ltrCss&&!h.rtlCss,'English default with the LTR Bootstrap build only');
  const controlBox=await langControl().boundingBox();
- check(await langControl().getAttribute('role')==='group'&&await langControl().getAttribute('data-current-lang')==='en'&&await langControl().locator('.uims-lang-option').count()===2&&await langControl().locator('[aria-current="page"]').getAttribute('data-lang-switch')==='en'&&controlBox.width>=112&&controlBox.width<=132&&controlBox.height>=40&&controlBox.height<=44,'Segmented control has two accessible options, English selected, and compact 120×44 sizing');
- check(await page.evaluate(()=>getComputedStyle(document.querySelector('.uims-lang-control')).direction)==='ltr'&&await langControl().locator('[data-lang-switch="ar"]').innerText()==='عربي','Option order stays EN then Arabic in LTR');
+ check(await langControl().getAttribute('data-current-lang')==='en'&&await langLink().getAttribute('data-lang-switch')==='ar'&&!!await langLink().getAttribute('aria-label')&&controlBox.width===44&&controlBox.height===44,'Direct accessible 44px circular toggle targets Arabic');
+ check(await langLink().innerText()==='AR','English page names the target Arabic language');
 
  // A failed postback (server validation) stays a POST; switching language afterwards is a GET to the same page.
  const posts=[];page.on('request',r=>{if(r.method()==='POST'&&r.url().includes('/Contact.aspx'))posts.push(r.url());});
@@ -27,7 +27,7 @@ async page => {
  check(req.method()==='GET'&&posts.length===postsBefore,'Language switch is a GET and does not replay the POST');
  check(new URL(page.url()).pathname==='/Pages/Public/Contact.aspx'&&new URL(page.url()).searchParams.get('topic')==='general'&&!page.url().includes('ui-lang'),'Same page, safe query kept, switch parameter removed');
  h=await html();check(h.lang==='ar'&&h.dir==='rtl'&&h.rtlCss&&!h.ltrCss,'Arabic with the RTL Bootstrap build only');
- check(await langControl().getAttribute('data-current-lang')==='ar'&&await langControl().locator('[aria-current="page"]').getAttribute('data-lang-switch')==='ar'&&await langLink().getAttribute('hreflang')==='en','Language toggle updates its selected state and target after switching');
+ check(await langControl().getAttribute('data-current-lang')==='ar'&&await langLink().getAttribute('hreflang')==='en'&&await langLink().innerText()==='EN','Arabic page toggles directly to English');
  const cookie=(await page.context().cookies()).find(c=>c.name==='uims-lang');check(cookie&&cookie.value==='ar'&&cookie.httpOnly&&cookie.sameSite==='Lax','First-party HttpOnly SameSite=Lax cookie');
 
  // Arabic client validation messages.
@@ -57,9 +57,9 @@ async page => {
  // The narrow public navigation uses the same single toggle.
  await page.setViewportSize({width:390,height:844});await page.goto(base+'/Default.aspx');await page.locator('.public-menu-toggle').click();
  const mobileControl=page.locator('.public-theme-mobile .uims-lang-control');
- check(await mobileControl.count()===1&&await mobileControl.getAttribute('data-current-lang')==='ar'&&await mobileControl.locator('.uims-lang-option').count()===2&&await mobileControl.locator('[aria-current="page"]').getAttribute('data-lang-switch')==='ar','Mobile menu has one accessible Arabic-selected segmented control');
- const mobileBox=await mobileControl.boundingBox();check(mobileBox.width>=112&&mobileBox.width<=132&&mobileBox.height>=40&&mobileBox.height<=44,'Mobile language control keeps its compact touch-friendly dimensions');
- await Promise.all([page.waitForNavigation(),mobileControl.locator('[data-lang-switch="en"]').click()]);
+ check(await mobileControl.count()===1&&await mobileControl.getAttribute('data-current-lang')==='ar'&&await mobileControl.getAttribute('data-lang-switch')==='en','Mobile menu has one direct toggle targeting English');
+ const mobileBox=await mobileControl.boundingBox();check(mobileBox.width===44&&mobileBox.height===44,'Mobile language toggle matches the theme button dimensions');
+ await Promise.all([page.waitForNavigation(),mobileControl.click()]);
  check((await html()).lang==='en'&&await page.locator('.public-theme-mobile .uims-lang-control').getAttribute('data-current-lang')==='en','Mobile control switches back to English');
 
  // Invalid cookie values fall back to English.

@@ -1,17 +1,14 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Coordinator.master.cs" Inherits="InternshipManagementSystem.Layout.CoordinatorMaster" %>
-<%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
-<%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Coordinator.master.cs" Inherits="InternshipManagementSystem.Layout.CoordinatorMaster" %>
 <%@ Register Src="~/Layout/Sidebar.ascx" TagPrefix="uims" TagName="Sidebar" %>
-<%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
 
+<%@ Register TagPrefix="live" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <!DOCTYPE html>
 <html lang="<%: L.Lang %>" dir="<%: L.Dir %>" class="coordinator-portal uims-portal">
 <head runat="server">
     <meta charset="utf-8" />
     <%-- Theme: applied before the first paint. Missing or invalid preference -> Light (see Assets/js/theme.js). --%>
-    <script>(function(r){var p='light';try{var s=localStorage.getItem('uims-theme');if(s==='dark'||s==='system')p=s;}catch(e){}var t=p==='dark'||(p==='system'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';r.setAttribute('data-theme-preference',p);r.setAttribute('data-theme',t);r.setAttribute('data-bs-theme',t);r.style.colorScheme=t;}(document.documentElement));</script>
+    <script>(function(r){var p='light';try{var s=localStorage.getItem('uims-theme');if(s==='dark')p=s;else if(s==='system'){p=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';localStorage.setItem('uims-theme',p);}}catch(e){}var t=p;r.setAttribute('data-theme-preference',p);r.setAttribute('data-theme',t);r.setAttribute('data-bs-theme',t);r.style.colorScheme=t;}(document.documentElement));</script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <%-- Page titles come from each page's Title attribute. --%>
     <title></title>
     <link rel="icon" href="~/Assets/images/gju-logo.png" runat="server" />
     <!-- Bootstrap 5 from CDN. If the demo room has no internet, download these
@@ -19,22 +16,42 @@
     <%-- Bootstrap 5.3.3: the RTL build in Arabic, the LTR build otherwise (never both). --%>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap<%= L.IsArabic ? ".rtl" : "" %>.min.css" />
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-sidebar-7" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-3" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/portal-motion.css?v=20261023-team-sync" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/portal-motion.css?v=20261023-theme-reveal-2" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/reference-analytics.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-sidebar-10" runat="server" />
     <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>
     <script>window.UIMS_I18N=<%= L.ScriptDictionary() %>;window.uimsT=function(k){var d=window.UIMS_I18N,t=Object.prototype.hasOwnProperty.call(d,k)?d[k]:k,a=arguments;return t.replace(/\{(\d+)\}/g,function(m,i){var v=a[+i+1];return v===undefined?m:String(v);});};window.uimsLang='<%= L.Lang %>';</script>
 </head>
 <body data-ui-owner="<%: InternshipManagementSystem.Security.SessionHelper.Current == null ? "" : InternshipManagementSystem.Security.SessionHelper.Current.Id %>" class="coordinator-portal uims-portal">
 <form id="mainForm" runat="server">
+    <% if (UseDashboardTheme) { %>
+    <a href="#workspace-content" class="theme-skip-link">Skip to content</a>
+    <% } %>
+    <svg width="0" height="0" style="position:absolute;overflow:hidden" aria-hidden="true" focusable="false">
+        <defs>
+            <symbol id="icon-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
+            <symbol id="icon-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m20 0v-2a4 4 0 0 0-3-3.87M15 3.13a4 4 0 0 1 0 7.75"/><circle cx="9" cy="7" r="4"/></symbol>
+            <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+            <symbol id="icon-building" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M9 21v-4h6v4M8 7h1m6 0h1m-8 4h1m6 0h1"/></symbol>
+            <symbol id="icon-cap" viewBox="0 0 24 24"><path d="m2 9 10-5 10 5-10 5L2 9Zm4 2v6c4 3 8 3 12 0v-6m4-2v7"/></symbol>
+            <symbol id="icon-briefcase" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V4h8v3M3 12c6 4 12 4 18 0m-9 0v4"/></symbol>
+            <symbol id="icon-check" viewBox="0 0 24 24"><path d="m8 12 3 3 5-6"/><rect x="4" y="3" width="16" height="18" rx="2"/></symbol>
+            <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 3v17h17M9 16v-4m5 4V8m5 8V4"/></symbol>
+            <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/></symbol>
+            <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m-12 4h1m4 0h1"/></symbol>
+            <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></symbol>
+            <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-5-5 5 5-5 5"/></symbol>
+            <symbol id="icon-shield" viewBox="0 0 24 24"><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6l8-3Z"/><path d="m8 12 3 3 5-6"/></symbol>
+        </defs>
+    </svg>
     <div class="uims-shell">
         <aside id="coordinatorSidebar" data-portal-sidebar="true" class="uims-sidebar" aria-label="<%: L.T("Shared.Coordinator.CoordinatorNavigation") %>" tabindex="-1">
             <uims:Sidebar ID="PortalSidebar" runat="server" />
@@ -51,17 +68,6 @@
                 <button type="button" class="student-nav-toggle" aria-controls="coordinatorSidebar" aria-expanded="false" aria-label="<%: L.T("Shared.Coordinator.OpenNavigation") %>">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg>
                 </button>
-                <h1 class="uims-page-title" data-portal-label="<%: L.T("Shared.Coordinator.CoordinatorPortal") %> / "><%: Page.Title %></h1>
-                <div class="uims-user">
-                    <uims:LanguageSelector runat="server" Variant="link" />
-                    <uims:ThemeSelector runat="server" Variant="menu" />
-                    <uims:NotificationBell runat="server" />
-                    <div class="uims-user-meta">
-                        <asp:Literal ID="litUserName" runat="server" />
-                        <small><asp:Literal ID="litRoleName" runat="server" /></small>
-                    </div>
-                    <span class="student-avatar" aria-hidden="true"><%: UserInitials %></span>
-                </div>
             </header>
 
             <main id="workspace-content" class="uims-main-inner" tabindex="-1">
@@ -71,10 +77,11 @@
     </div>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-<script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-2") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-4") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/i18n.js?v=20261023-2") %>"></script>
-<script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-5") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261023-sidebar-7") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/portal-motion.js?v=20261023-motion-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/notifications.js") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
 <script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-5") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-5") %>"></script>

@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 
 namespace InternshipManagementSystem.Models
 {
+    /// <summary>
+    /// A scheduled Zoom meeting with access limited to its creator and participants.
+    /// </summary>
     public class Meeting
     {
         public string Id { get; set; }
@@ -22,6 +25,7 @@ namespace InternshipManagementSystem.Models
         public int DurationMinutes { get; set; }
 
         public string JoinUrl { get; set; }
+        public string ZoomMeetingId { get; set; }
 
         public MeetingStatus Status { get; set; }
 

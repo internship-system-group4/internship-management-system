@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  UIMS - Group 4   |   Owner: Fatima  (Trello card F04)
 //  Submission attempts, append-only (cards F04, F06, F07).
 // =============================================================================
@@ -9,7 +9,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class SubmissionRepository : RepositoryBase<Submission>
+    public class SubmissionRepository : NotifyingRepositoryBase<Submission>
     {
         protected override string Collection
         {
@@ -21,17 +21,11 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        public List<Submission> GetByTask(string taskId)
+        public List<Submission> GetByPlacement(string placementId)
         {
-            return GetWhere("TaskId", taskId);
+            return GetWhere("PlacementId", placementId);
         }
-
-        /// <summary>Saves a new attempt and tells the company supervisor.</summary>
-        public override string Insert(Submission entity)
-        {
-            string id = base.Insert(entity);
-            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskSubmitted(entity);
-            return id;
-        }
+        public List<Submission> GetByTask(string id) { return GetWhere("TaskId", id); }
+        public List<Submission> GetByStudent(string id) { return GetWhere("StudentId", id); }
     }
 }
