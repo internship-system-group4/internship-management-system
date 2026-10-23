@@ -28,13 +28,13 @@
             max-height: calc(100vh - 32px);
             overflow-y: auto;
             padding: 28px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
 
         .meeting-participants {
-            border: 1px solid #dee2e6;
+            border: 1px solid var(--th-line-dee2e6,#dee2e6);
             border-radius: 8px;
             padding: 16px;
         }

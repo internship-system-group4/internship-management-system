@@ -37,6 +37,33 @@
  function webglAvailable() {
   try { var probe = document.createElement('canvas'); return !!(probe.getContext('webgl2') || probe.getContext('webgl')); } catch (e) { return false; }
  }
+ // Map style follows the site theme: OpenFreeMap "liberty" in Light, "dark" in Dark. The dark style has no 3D buildings,
+ // so Liberty's building-3d layer (same OpenMapTiles source) is added to it with a dark fill.
+ var STYLE = 'https://tiles.openfreemap.org/styles/', styles = {};
+ function siteTheme() { return document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light'; }
+ function getStyle(name) {
+  if (!styles[name]) styles[name] = fetch(STYLE + name).then(function (r) { if (!r.ok) throw new Error('Map style ' + r.status); return r.json(); });
+  return styles[name];
+ }
+ function styleFor(theme) {
+  if (theme !== 'dark') return getStyle('liberty').then(function (liberty) { return clean(liberty); });
+  return Promise.all([getStyle('dark'), getStyle('liberty')]).then(function (both) {
+   var dark = clean(both[0]), buildings = both[1].layers.filter(function (layer) { return layer.id === 'building-3d'; })[0];
+   if (buildings && !dark.layers.some(function (layer) { return layer.id === 'building-3d'; })) {
+    var copy = JSON.parse(JSON.stringify(buildings));
+    copy.paint = Object.assign({}, copy.paint, { 'fill-extrusion-color':'#34475b', 'fill-extrusion-opacity':.85 });
+    var labels = dark.layers.findIndex(function (layer) { return layer.type === 'symbol'; });
+    dark.layers.splice(labels < 0 ? dark.layers.length : labels, 0, copy);
+   }
+   return dark;
+  });
+ }
+ // US route-shield layers are irrelevant here and use filters MapLibre 6 rejects; leave them out.
+ function clean(style) {
+  var copy = JSON.parse(JSON.stringify(style));
+  copy.layers = copy.layers.filter(function (layer) { return !/shield/.test(layer.id); });
+  return copy;
+ }
  function once(eventName) { return new Promise(function (resolve) { map.once(eventName, resolve); }); }
  function view(v) { return { center:v.center, zoom:v.zoom, pitch:v.pitch, bearing:v.bearing }; }
 
@@ -82,12 +109,11 @@
     var link = document.createElement('link'); link.rel = 'stylesheet'; link.href = section.dataset.stylesheet; link.dataset.maplibreCss = '';
     document.head.appendChild(link);
    }
-   var loaded = await Promise.all([import(section.dataset.runtime), fetch('https://tiles.openfreemap.org/styles/liberty').then(function (r) { if (!r.ok) throw new Error('Map style ' + r.status); return r.json(); })]);
+   var styleTheme = siteTheme();
+   var loaded = await Promise.all([import(section.dataset.runtime), styleFor(styleTheme)]);
    lib = loaded[0];
    if (state !== 'loading') return;
-   // US route-shield layers are irrelevant here and use filters MapLibre 6 rejects; leave them out.
    var style = loaded[1];
-   style.layers = style.layers.filter(function (layer) { return !/shield/.test(layer.id); });
    map = new lib.Map({
     container:canvas, style:style,
     center:FINAL.center, zoom:FINAL.zoom, pitch:FINAL.pitch, bearing:FINAL.bearing, maxPitch:60,
@@ -127,6 +153,12 @@
  replay.addEventListener('click', play);
  motion.addEventListener('change', function () { if (motion.matches) { land(); replay.hidden = true; } else if (played) replay.hidden = false; });
  document.addEventListener('visibilitychange', function () { if (document.hidden) land(); });
+ // Theme change: swap the style in place. Camera, marker, flight state and controls stay as they are.
+ document.addEventListener('uims:themechange', function () {
+  if (!map || state === 'fallback') return;
+  var wanted = siteTheme();
+  styleFor(wanted).then(function (next) { if (map && siteTheme() === wanted) map.setStyle(next); }).catch(function () { /* keep the current style */ });
+ });
 
  if (!('IntersectionObserver' in window)) { load(); return; }
  // Load shortly before the section arrives; play once when a meaningful part of it is in view.

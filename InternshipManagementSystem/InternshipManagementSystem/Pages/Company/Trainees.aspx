@@ -5,32 +5,32 @@
 
     <style>
         /* الألوان الأساسية وتوحيد الثيم */
-        .text-brand { color: #0f4c81 !important; }
-        .bg-brand-light { background-color: #f0f4f8 !important; color: #0f4c81 !important; border: 1px solid #e3e8ee; }
-        .page-header-title { font-size: 1.75rem; font-weight: 700; color: #0f4c81; }
+        .text-brand { color: var(--th-fg-0f4c81,#0f4c81) !important; }
+        .bg-brand-light { background-color: var(--th-bg-f0f4f8,#f0f4f8) !important; color: var(--th-fg-0f4c81,#0f4c81) !important; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); }
+        .page-header-title { font-size: 1.75rem; font-weight: 700; color: var(--th-fg-0f4c81,#0f4c81); }
 
         /* تأثيرات البطاقات */
-        .hover-card { transition: all 0.2s ease-in-out; border: 1px solid #e3e8ee; cursor: default; background: #fff; }
-        .hover-card:hover { transform: translateY(-3px); border-color: #0f4c81 !important; box-shadow: 0 4px 15px rgba(15, 76, 129, 0.08) !important; }
+        .hover-card { transition: all 0.2s ease-in-out; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); cursor: default; background: var(--ui-surface,#fff); }
+        .hover-card:hover { transform: translateY(-3px); border-color: var(--th-line-0f4c81,#0f4c81) !important; box-shadow: 0 4px 15px rgba(15, 76, 129, 0.08) !important; }
 
         /* تصميم الجدول النظيف والمتناسق */
         .clean-table { width: 100%; border-collapse: collapse; }
-        .clean-table th { padding: 1rem; border-bottom: 2px solid #e2e8f0; color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
-        .clean-table td { padding: 1rem; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
-        .clean-table tr:hover td { background-color: #f8fafc; }
+        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--th-fg-64748b,#64748b); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
+        .clean-table td { padding: 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
+        .clean-table tr:hover td { background-color: var(--th-bg-f8fafc,#f8fafc); }
 
         /* تم تصغير الزر ومنع انقسام النص على سطرين */
-        .btn-view-details { background-color: #f1f5f9; color: #0f4c81; font-weight: 700; padding: 5px 16px; border-radius: 50px; border: 1px solid #e2e8f0; transition: 0.2s; text-decoration: none; display: inline-block; font-size: 0.8rem; white-space: nowrap; }
-        .btn-view-details:hover { background-color: #e2e8f0; color: #0a365c; border-color: #cbd5e1; }
+        .btn-view-details { background-color: var(--th-bg-f1f5f9,#f1f5f9); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 700; padding: 5px 16px; border-radius: 50px; border: 1px solid var(--th-line-e2e8f0,#e2e8f0); transition: 0.2s; text-decoration: none; display: inline-block; font-size: 0.8rem; white-space: nowrap; }
+        .btn-view-details:hover { background-color: var(--th-bg-e2e8f0,#e2e8f0); color: var(--th-fg-0a365c,#0a365c); border-color: var(--th-line-cbd5e1,#cbd5e1); }
 
         /* أدوات الفلترة */
-        .filter-input { background-color: #f8fafc; border: 1px solid #e3e8ee; color: #1d2733; font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 50px; transition: 0.2s; }
-        .filter-input:focus { border-color: #0f4c81; box-shadow: none; background-color: #fff; }
+        .filter-input { background-color: var(--th-bg-f8fafc,#f8fafc); border: 1px solid var(--th-line-e3e8ee,#e3e8ee); color: var(--th-fg-1d2733,#1d2733); font-size: 0.85rem; padding: 0.5rem 1rem; border-radius: 50px; transition: 0.2s; }
+        .filter-input:focus { border-color: var(--th-line-0f4c81,#0f4c81); box-shadow: none; background-color: var(--ui-surface,#fff); }
 
-        .student-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #f0f4f8; color: #0f4c81; font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1px solid #e3e8ee; }
+        .student-avatar { width: 40px; height: 40px; border-radius: 50%; background-color: var(--th-bg-f0f4f8,#f0f4f8); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 700; display: flex; align-items: center; justify-content: center; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); }
 
-        .progress-container { width: 100px; background-color: #e2e8f0; border-radius: 10px; height: 6px; overflow: hidden; margin-top: 4px; }
-        .progress-fill { height: 100%; background-color: #0f4c81; border-radius: 10px; }
+        .progress-container { width: 100px; background-color: var(--th-bg-e2e8f0,#e2e8f0); border-radius: 10px; height: 6px; overflow: hidden; margin-top: 4px; }
+        .progress-fill { height: 100%; background-color: var(--th-bg-0f4c81,#0f4c81); border-radius: 10px; }
     </style>
 </asp:Content>
 

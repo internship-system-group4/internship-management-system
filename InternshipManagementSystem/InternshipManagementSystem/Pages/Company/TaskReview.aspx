@@ -22,12 +22,12 @@
             max-width: 850px;
             margin: 30px auto;
             padding: 28px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border-radius: 16px;
         }
 
         .review-choice {
-            border: 1px solid #dee2e6;
+            border: 1px solid var(--th-line-dee2e6,#dee2e6);
             border-radius: 12px;
             padding: 20px;
             height: 100%;
@@ -43,13 +43,13 @@
 
         .review-history {
             margin-top: 28px;
-            border-top: 1px solid #dee2e6;
+            border-top: 1px solid var(--th-line-dee2e6,#dee2e6);
             padding-top: 22px;
         }
 
         .review-history details {
             padding: 12px 0;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--th-line-eeeeee,#eee);
         }
 
         .review-history summary {

@@ -4,27 +4,27 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
-        .page-header-title { font-size: 1.75rem; font-weight: 700; color: var(--ui-primary); }
+        .page-header-title { font-size: 1.75rem; font-weight: 700; color: var(--ui-primary-text,var(--ui-primary)); }
         
-        .profile-card { border: none; border-radius: 1.25rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; background: #fff; }
-        .profile-cover { background: linear-gradient(135deg, var(--ui-primary) 0%, #2b4560 100%); height: 140px; position: relative; }
+        .profile-card { border: none; border-radius: 1.25rem; box-shadow: 0 4px 20px rgba(0,0,0,0.05); overflow: hidden; background: var(--ui-surface,#fff); }
+        .profile-cover { background: linear-gradient(135deg, var(--ui-primary) 0%, var(--th-bg-2b4560,#2b4560) 100%); height: 140px; position: relative; }
         
         .profile-avatar-wrapper { position: relative; margin-top: -70px; text-align: center; }
-        .profile-avatar { width: 140px; height: 140px; border-radius: 50%; border: 5px solid #fff; background-color: #e8f0f7; color: var(--ui-primary); font-size: 2.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: cover; }
+        .profile-avatar { width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--th-line-ffffff,#fff); background-color: var(--th-bg-e8f0f7,#e8f0f7); color: var(--ui-primary-text,var(--ui-primary)); font-size: 2.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: cover; }
         
-        .info-group { margin-bottom: 1.5rem; text-align: left; background: #f8fafc; padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid #e3e8ee; }
-        .info-label { font-size: 0.75rem; color: #6b7786; text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
-        .info-value { font-size: 1rem; color: #1d2733; font-weight: 600; margin: 0; }
+        .info-group { margin-bottom: 1.5rem; text-align: left; background: var(--th-bg-f8fafc,#f8fafc); padding: 1rem 1.5rem; border-radius: 12px; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); }
+        .info-label { font-size: 0.75rem; color: var(--th-fg-6b7786,#6b7786); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
+        .info-value { font-size: 1rem; color: var(--th-fg-1d2733,#1d2733); font-weight: 600; margin: 0; }
         
-        .btn-edit { background-color: white; color: var(--ui-primary); border: 1px solid var(--ui-primary); font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 50rem; transition: all 0.2s; position: absolute; top: 1rem; right: 1rem; }
-        .btn-edit:hover { background-color: #f0f4f8; }
+        .btn-edit { background-color: var(--ui-surface,#ffffff); color: var(--ui-primary-text,var(--ui-primary)); border: 1px solid var(--ui-primary); font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 50rem; transition: all 0.2s; position: absolute; top: 1rem; right: 1rem; }
+        .btn-edit:hover { background-color: var(--th-bg-f0f4f8,#f0f4f8); }
         .btn-save { background-color: var(--ui-primary); color: white; border: none; font-weight: 600; }
-        .btn-save:hover { background-color: #0a365c; }
+        .btn-save:hover { background-color: var(--th-bg-0a365c,#0a365c); }
         
         .file-upload-wrapper { position: relative; overflow: hidden; display: inline-block; cursor: pointer; }
         .file-upload-wrapper input[type=file] { font-size: 100px; position: absolute; left: 0; top: 0; opacity: 0; cursor: pointer; }
-        .upload-btn { background: #f8fafc; border: 1px dashed var(--ui-primary); color: var(--ui-primary); padding: 1rem; border-radius: 12px; font-weight: 600; display: block; text-align: center; transition: all 0.2s; }
-        .upload-btn:hover { background: #e8f0f7; }
+        .upload-btn { background: var(--th-bg-f8fafc,#f8fafc); border: 1px dashed var(--ui-primary); color: var(--ui-primary-text,var(--ui-primary)); padding: 1rem; border-radius: 12px; font-weight: 600; display: block; text-align: center; transition: all 0.2s; }
+        .upload-btn:hover { background: var(--th-bg-e8f0f7,#e8f0f7); }
     </style>
 
     <script type="text/javascript">
@@ -65,7 +65,7 @@
                     </div>
 
                     <div class="text-center mt-3 mb-5 px-4">
-                        <h3 class="fw-bold mb-1" style="color: var(--ui-primary);"><asp:Literal ID="litDisplayName" runat="server">Supervisor Name</asp:Literal></h3>
+                        <h3 class="fw-bold mb-1" style="color: var(--ui-primary-text,var(--ui-primary));"><asp:Literal ID="litDisplayName" runat="server">Supervisor Name</asp:Literal></h3>
                         <span class="badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2 mb-4">Company Supervisor</span>
                         
                         <div class="row g-3 text-start">
@@ -104,7 +104,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
-            <h5 class="modal-title fw-bold" style="color: var(--ui-primary);">Update Profile</h5>
+            <h5 class="modal-title fw-bold" style="color: var(--ui-primary-text,var(--ui-primary));">Update Profile</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body p-4">

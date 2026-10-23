@@ -14,12 +14,12 @@
 .vo-page {
     max-width: 1150px;
     margin: 0 auto;
-    color: #173451;
+    color: var(--th-fg-173451,#173451);
 }
 
 .vo-back {
     display: inline-block;
-    color: #244f77;
+    color: var(--th-fg-244f77,#244f77);
     text-decoration: none;
     font-weight: 650;
     font-size: 13px;
@@ -41,14 +41,14 @@
 }
 
 .vo-muted {
-    color: #718298;
+    color: var(--th-fg-718298,#718298);
     font-size: 13px;
     line-height: 1.7;
 }
 
 .vo-card {
-    background: #fff;
-    border: 1px solid #dce5ef;
+    background: var(--ui-surface,#fff);
+    border: 1px solid var(--th-line-dce5ef,#dce5ef);
     border-radius: 11px;
     padding: 23px;
     margin-bottom: 20px;
@@ -74,7 +74,7 @@
     display: block;
     font-size: 12px;
     font-weight: 700;
-    color: #718298;
+    color: var(--th-fg-718298,#718298);
     margin-bottom: 7px;
 }
 
@@ -97,25 +97,25 @@
     display: inline-block;
     border-radius: 20px;
     padding: 6px 12px;
-    background: #e5f5ec;
-    color: #17603a;
+    background: var(--th-bg-e5f5ec,#e5f5ec);
+    color: var(--th-fg-17603a,#17603a);
     font-size: 12px;
     font-weight: 750;
 }
 
 .vo-badge.draft {
-    background: #edf2f8;
-    color: #526985;
+    background: var(--th-bg-edf2f8,#edf2f8);
+    color: var(--th-fg-526985,#526985);
 }
 
 .vo-badge.closed {
-    background: #f2eeee;
-    color: #815b5b;
+    background: var(--th-bg-f2eeee,#f2eeee);
+    color: var(--th-fg-815b5b,#815b5b);
 }
 
 .vo-notice {
-    background: #fff0ed;
-    color: #a3392b;
+    background: var(--th-bg-fff0ed,#fff0ed);
+    color: var(--th-fg-a3392b,#a3392b);
     padding: 15px;
     border-radius: 9px;
 }
@@ -124,8 +124,8 @@
     display: inline-block;
     padding: 7px 11px;
     margin: 0 7px 7px 0;
-    background: #f3f7fb;
-    border: 1px solid #dce5ef;
+    background: var(--th-bg-f3f7fb,#f3f7fb);
+    border: 1px solid var(--th-line-dce5ef,#dce5ef);
     border-radius: 7px;
     font-size: 13px;
 }

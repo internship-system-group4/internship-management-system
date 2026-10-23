@@ -61,7 +61,7 @@
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header" style="background-color: var(--brand-light);">
-                    <h5 class="modal-title" id="evaluationModalLabel" style="color: var(--brand-dark); font-weight: 700;">
+                    <h5 class="modal-title" id="evaluationModalLabel" style="color: var(--brand-text,var(--brand-dark)); font-weight: 700;">
                         Evaluate: <asp:Literal ID="litModalStudentName" runat="server"></asp:Literal>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -72,14 +72,14 @@
                     <asp:HiddenField ID="hfSelectedStudentId" runat="server" />
 
                     <!-- 1. Company Evaluation (Read-Only) -->
-                    <h5 style="color: var(--brand-dark); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;">1. Company Supervisor Evaluation</h5>
+                    <h5 style="color: var(--brand-text,var(--brand-dark)); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;">1. Company Supervisor Evaluation</h5>
                     
                     <asp:Panel ID="pnlCompanyEvalExists" runat="server" Visible="false" CssClass="mb-4">
                         <div class="row mt-3">
                             <div class="col-md-3">
                                 <div class="score-box">
                                     <div class="text-muted" style="font-size: 0.85rem; font-weight: 600;">Total Score</div>
-                                    <h3 style="color: var(--brand); margin: 0;">
+                                    <h3 style="color: var(--brand-text,var(--brand)); margin: 0;">
                                         <asp:Literal ID="litCompanyScore" runat="server"></asp:Literal> / <asp:Literal ID="litCompanyMaxScore" runat="server"></asp:Literal>
                                     </h3>
                                 </div>
@@ -97,7 +97,7 @@
                     </asp:Panel>
 
                     <!-- 2. Academic Evaluation Form (Pass/Fail) -->
-                    <h5 style="color: var(--brand-dark); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;">2. Academic Final Decision</h5>
+                    <h5 style="color: var(--brand-text,var(--brand-dark)); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;">2. Academic Final Decision</h5>
                     <p class="text-muted mb-3" style="font-size: 0.9rem;">Submit your final decision. Once submitted, it will be sent to the Coordinator.</p>
                     
                     <div class="row mb-3">

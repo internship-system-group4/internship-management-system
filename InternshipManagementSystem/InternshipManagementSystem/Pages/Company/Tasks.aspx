@@ -27,7 +27,7 @@
             max-width: 820px;
             max-height: calc(100vh - 32px);
             overflow-y: auto;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
@@ -47,7 +47,7 @@
             width: 26px;
             height: 26px;
             border-radius: 50%;
-            background: #1f3a5f;
+            background: var(--th-bg-1f3a5f,#1f3a5f);
             color: #fff;
             font-size: 0.85rem;
             font-weight: 600;
@@ -55,9 +55,9 @@
 
         .criteria-add {
             padding: 16px;
-            border: 1px dashed #c8cfd8;
+            border: 1px dashed var(--th-line-c8cfd8,#c8cfd8);
             border-radius: 10px;
-            background: #f8fafc;
+            background: var(--th-bg-f8fafc,#f8fafc);
         }
 
         .criteria-total {
@@ -67,7 +67,7 @@
             margin-top: 8px;
             padding: 10px 14px;
             border-radius: 8px;
-            background: #eef3f8;
+            background: var(--th-bg-eef3f8,#eef3f8);
             font-weight: 600;
         }
     </style>

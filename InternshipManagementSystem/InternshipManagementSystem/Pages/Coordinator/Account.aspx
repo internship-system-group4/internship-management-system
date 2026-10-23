@@ -8,7 +8,7 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
         .ca-page {
-            color: #143d61;
+            color: var(--th-fg-143d61,#143d61);
             font-family: "Segoe UI", Arial, sans-serif;
         }
 
@@ -25,13 +25,13 @@
         .ca-heading p,
         .ca-card p {
             font-size: 13px;
-            color: #66809a;
+            color: var(--th-fg-66809a,#66809a);
             margin: 0;
         }
 
         .ca-card {
-            background: #fff;
-            border: 1px solid #dbe5f1;
+            background: var(--ui-surface,#fff);
+            border: 1px solid var(--th-line-dbe5f1,#dbe5f1);
             border-radius: 9px;
             padding: 22px;
         }
@@ -52,24 +52,24 @@
         .ca-card .form-control {
             font-size: 13px;
             min-height: 40px;
-            border: 1px solid #dce6f2;
+            border: 1px solid var(--th-line-dce6f2,#dce6f2);
             border-radius: 6px;
         }
 
         .ca-card .form-control:focus {
-            border-color: #315d84;
+            border-color: var(--th-line-315d84,#315d84);
             box-shadow: 0 0 0 .16rem rgba(37, 78, 116, .13);
         }
 
         .ca-readonly {
-            background: #eaf1fc !important;
-            color: #50627a;
+            background: var(--th-bg-eaf1fc,#eaf1fc) !important;
+            color: var(--th-fg-50627a,#50627a);
         }
 
         .ca-status {
             border-radius: 16px;
-            background: #e8f5ed;
-            color: #27734c;
+            background: var(--th-bg-e8f5ed,#e8f5ed);
+            color: var(--th-fg-27734c,#27734c);
             font-size: 11px;
             font-weight: 700;
             padding: 5px 10px;
@@ -77,7 +77,7 @@
         }
 
         .ca-footer {
-            border-top: 1px solid #dce6f2;
+            border-top: 1px solid var(--th-line-dce6f2,#dce6f2);
             margin-top: 22px;
             padding-top: 19px;
             display: flex;
@@ -89,22 +89,22 @@
         .ca-footer small,
         .ca-field small {
             font-size: 11px;
-            color: #69819c;
+            color: var(--th-fg-69819c,#69819c);
         }
 
         .ca-page .btn-primary {
-            background: #254e75;
-            border-color: #254e75;
+            background: var(--th-bg-254e75,#254e75);
+            border-color: var(--th-line-254e75,#254e75);
         }
 
         .ca-page .btn-primary:hover {
-            background: #173b5e;
-            border-color: #173b5e;
+            background: var(--th-bg-173b5e,#173b5e);
+            border-color: var(--th-line-173b5e,#173b5e);
         }
 
         .ca-page .btn-outline-primary {
-            color: #254e75;
-            border-color: #254e75;
+            color: var(--th-fg-254e75,#254e75);
+            border-color: var(--th-line-254e75,#254e75);
         }
 
         .ca-page .btn {
@@ -127,7 +127,7 @@
         }
 
         .ca-info {
-            background: #e0edff;
+            background: var(--th-bg-e0edff,#e0edff);
             border-radius: 7px;
             margin-top: 15px;
             padding: 16px;
@@ -146,7 +146,7 @@
 
         .ca-info p {
             margin: 4px 0 0;
-            color: #435971;
+            color: var(--th-fg-435971,#435971);
         }
 
         .ca-notice {
@@ -158,18 +158,18 @@
         }
 
         .ca-notice-error {
-            background: #fff0f0;
-            color: #a42121;
+            background: var(--th-bg-fff0f0,#fff0f0);
+            color: var(--th-fg-a42121,#a42121);
         }
 
         .ca-notice-success {
-            background: #e8f6ef;
-            color: #216d47;
+            background: var(--th-bg-e8f6ef,#e8f6ef);
+            color: var(--th-fg-216d47,#216d47);
         }
 
         .ca-error {
             font-size: 11px;
-            color: #b42318;
+            color: var(--th-fg-b42318,#b42318);
             display: block;
             margin-top: 5px;
         }

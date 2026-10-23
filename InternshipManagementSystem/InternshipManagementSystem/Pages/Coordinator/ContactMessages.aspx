@@ -17,8 +17,8 @@
         .cm-page {
             --cm-navy: #092e68;
             --cm-blue: #164b84;
-            --cm-border: #d6e5f6;
-            color: var(--cm-navy);
+            --cm-border: var(--th-line-d6e5f6,#d6e5f6);
+            color: var(--ui-primary-text,var(--cm-navy));
             width: 100%;
             max-width: 1600px;
             margin: 0 auto;
@@ -39,11 +39,11 @@
             font-size: 28px;
             font-weight: 700;
             margin: 0 0 6px;
-            color: var(--cm-navy);
+            color: var(--ui-primary-text,var(--cm-navy));
         }
 
         .cm-page .page-subtitle {
-            color: #43669c;
+            color: var(--th-fg-43669c,#43669c);
             font-size: 15px;
             margin: 0;
         }
@@ -55,7 +55,7 @@
             align-items: center;
             gap: 18px;
             padding: 20px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border: 1px solid var(--cm-border);
             border-radius: 10px;
             min-height: 110px;
@@ -73,36 +73,36 @@
         }
 
         .cm-page .summary-icon.total {
-            background: #e4f0ff;
-            color: #1254a1;
+            background: var(--th-bg-e4f0ff,#e4f0ff);
+            color: var(--th-fg-1254a1,#1254a1);
         }
 
         .cm-page .summary-icon.new {
-            background: #fff1d2;
+            background: var(--th-bg-fff1d2,#fff1d2);
             color: #f0a000;
         }
 
         .cm-page .summary-icon.reviewed {
-            background: #def8ed;
-            color: #009e73;
+            background: var(--th-bg-def8ed,#def8ed);
+            color: var(--th-fg-009e73,#009e73);
         }
 
         .cm-page .summary-label {
             font-size: 14px;
             font-weight: 600;
-            color: #294d83;
+            color: var(--th-fg-294d83,#294d83);
         }
 
         .cm-page .summary-value {
             font-size: 30px;
             font-weight: 700;
-            color: var(--cm-navy);
+            color: var(--ui-primary-text,var(--cm-navy));
         }
 
         /* Panels */
 
         .cm-page .content-panel {
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border: 1px solid var(--cm-border);
             border-radius: 10px;
             padding: 20px;
@@ -113,7 +113,7 @@
             font-size: 19px;
             font-weight: 700;
             margin-bottom: 15px;
-            color: var(--cm-navy);
+            color: var(--ui-primary-text,var(--cm-navy));
         }
 
         /* Search */
@@ -122,25 +122,25 @@
             font-weight: 600;
             font-size: 13px;
             margin-bottom: 7px;
-            color: #294d83;
+            color: var(--th-fg-294d83,#294d83);
         }
 
         .cm-page .form-control,
         .cm-page .form-select,
         .cm-page .input-group-text {
             min-height: 44px;
-            border-color: #ccddf2;
+            border-color: var(--th-line-ccddf2,#ccddf2);
             font-size: 13px;
         }
 
         .cm-page .input-group-text {
-            background: #fff;
-            color: #456a9e;
+            background: var(--ui-surface,#fff);
+            color: var(--th-fg-456a9e,#456a9e);
         }
 
         .cm-page .btn-main {
-            background: #104784;
-            border: 1px solid #104784;
+            background: var(--th-bg-104784,#104784);
+            border: 1px solid var(--th-line-104784,#104784);
             color: #fff;
             min-height: 44px;
             font-size: 13px;
@@ -148,7 +148,7 @@
         }
 
         .cm-page .btn-main:hover {
-            background: #08346a;
+            background: var(--th-bg-08346a,#08346a);
             color: #fff;
         }
 
@@ -162,31 +162,31 @@
 
         .cm-page .messages-table .table {
             margin-bottom: 0;
-            --bs-table-color: #173d76;
+            --bs-table-color: var(--th-fg-173d76,#173d76);
         }
 
         .cm-page .messages-table th {
-            background: #edf5fd;
+            background: var(--th-bg-edf5fd,#edf5fd);
             font-size: 13px;
             font-weight: 700;
             padding: 14px;
             white-space: nowrap;
-            color: #173d76;
+            color: var(--th-fg-173d76,#173d76);
         }
 
         .cm-page .messages-table td {
             padding: 13px 14px;
             font-size: 13px;
-            border-color: #e4edf8;
+            border-color: var(--th-line-e4edf8,#e4edf8);
             vertical-align: middle;
         }
 
         .cm-page .messages-table tr:hover td {
-            background: #f3f9ff;
+            background: var(--th-bg-f3f9ff,#f3f9ff);
         }
 
         .cm-page .email-text {
-            color: #5272a1;
+            color: var(--th-fg-5272a1,#5272a1);
             font-size: 12px;
         }
 
@@ -201,23 +201,23 @@
         }
 
         .cm-page .status-badge.new {
-            color: #a46b00;
-            background: #fff0cc;
+            color: var(--th-fg-a46b00,#a46b00);
+            background: var(--th-bg-fff0cc,#fff0cc);
         }
 
         .cm-page .status-badge.reviewed {
-            color: #008b64;
-            background: #def7e9;
+            color: var(--th-fg-008b64,#008b64);
+            background: var(--th-bg-def7e9,#def7e9);
         }
 
         /* View button */
 
         .cm-page .action-button {
             display: inline-block;
-            border: 1px solid #cfe0f6;
+            border: 1px solid var(--th-line-cfe0f6,#cfe0f6);
             border-radius: 7px;
-            background: #f5faff;
-            color: #164b84;
+            background: var(--th-bg-f5faff,#f5faff);
+            color: var(--th-fg-164b84,#164b84);
             padding: 7px 16px;
             text-decoration: none;
             font-size: 12px;
@@ -225,8 +225,8 @@
         }
 
         .cm-page .action-button:hover {
-            background: #e3f0ff;
-            color: #092e68;
+            background: var(--th-bg-e3f0ff,#e3f0ff);
+            color: var(--th-fg-092e68,#092e68);
         }
 
         /* Message details */
@@ -245,14 +245,14 @@
         }
 
         .cm-page .details-row:nth-child(odd) {
-            background: #f1f7fd;
+            background: var(--th-bg-f1f7fd,#f1f7fd);
         }
 
         .cm-page .details-label {
             width: 90px;
             flex-shrink: 0;
             font-weight: 700;
-            color: #173d76;
+            color: var(--th-fg-173d76,#173d76);
         }
 
         .cm-page .details-value {
@@ -262,7 +262,7 @@
 
         .cm-page .message-box {
             min-height: 140px;
-            background: #f2f7fd;
+            background: var(--th-bg-f2f7fd,#f2f7fd);
             border: 1px solid var(--cm-border);
             border-radius: 8px;
             padding: 18px;
@@ -272,13 +272,13 @@
         }
 
         .cm-page .btn-reviewed {
-            background: #104784;
-            border: 1px solid #104784;
+            background: var(--th-bg-104784,#104784);
+            border: 1px solid var(--th-line-104784,#104784);
             color: #fff;
         }
 
         .cm-page .btn-reviewed:hover {
-            background: #08346a;
+            background: var(--th-bg-08346a,#08346a);
             color: #fff;
         }
 
@@ -311,7 +311,7 @@
 
         #messageModal .message-modal-box {
             position: relative;
-            background: #ffffff;
+            background: var(--ui-surface,#ffffff);
             width: 100%;
             max-width: 950px;
             max-height: 90vh;
@@ -336,7 +336,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #d6e5f6;
+            border-bottom: 1px solid var(--th-line-d6e5f6,#d6e5f6);
             padding-bottom: 15px;
             margin-bottom: 22px;
         }
@@ -344,14 +344,14 @@
         #messageModal .popup-title {
             font-size: 22px;
             font-weight: 700;
-            color: #092e68;
+            color: var(--th-fg-092e68,#092e68);
             margin: 0;
         }
 
         #messageModal .popup-close {
             border: none;
-            background: #edf5fd;
-            color: #092e68;
+            background: var(--th-bg-edf5fd,#edf5fd);
+            color: var(--th-fg-092e68,#092e68);
             border-radius: 8px;
             width: 36px;
             height: 36px;
@@ -360,7 +360,7 @@
         }
 
         #messageModal .popup-close:hover {
-            background: #dceafa;
+            background: var(--th-bg-dceafa,#dceafa);
         }
 
         /* Responsive */

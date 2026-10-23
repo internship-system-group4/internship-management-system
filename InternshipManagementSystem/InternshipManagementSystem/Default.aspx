@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-story.css?v=20261022-campus-5") %>" />
 <link rel="preload" href="<%: ResolveUrl("~/Assets/fonts/switzer-600.woff2") %>" as="font" type="font/woff2" crossorigin="anonymous" />
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-experience.css?v=20261022-taste-2") %>" />
-<script defer src="<%: ResolveUrl("~/Assets/js/home-story.js?v=20261022-navbar-1") %>"></script>
+<script defer src="<%: ResolveUrl("~/Assets/js/home-story.js?v=20261023-theme-1") %>"></script>
 <script defer src="<%: ResolveUrl("~/Assets/js/home-experience.js?v=20261022-navbar-1") %>"></script>
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">

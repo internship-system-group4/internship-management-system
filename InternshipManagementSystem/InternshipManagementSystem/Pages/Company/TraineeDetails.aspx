@@ -4,33 +4,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 
     <style>
-        .text-brand { color: #0f4c81 !important; }
-        .bg-brand { background-color: #0f4c81 !important; color: white; border: none; transition: 0.2s; }
-        .bg-brand:hover { background-color: #0a365c !important; color: white; transform: translateY(-1px); }
-        .page-header-title { font-size: 1.75rem; font-weight: 700; color: #0f4c81; }
+        .text-brand { color: var(--th-fg-0f4c81,#0f4c81) !important; }
+        .bg-brand { background-color: var(--th-bg-0f4c81,#0f4c81) !important; color: white; border: none; transition: 0.2s; }
+        .bg-brand:hover { background-color: var(--th-bg-0a365c,#0a365c) !important; color: white; transform: translateY(-1px); }
+        .page-header-title { font-size: 1.75rem; font-weight: 700; color: var(--th-fg-0f4c81,#0f4c81); }
 
-        .student-avatar-large { width: 70px; height: 70px; border-radius: 50%; background-color: #f0f4f8; color: #0f4c81; font-weight: 700; font-size: 1.75rem; display: flex; align-items: center; justify-content: center; border: 2px solid #e3e8ee; }
-        .progress-wrapper { background-color: #e2e8f0; border-radius: 50px; height: 8px; overflow: hidden; width: 100%; }
-        .progress-fill { height: 100%; background-color: #0f4c81; border-radius: 50px; transition: width 0.5s ease; }
+        .student-avatar-large { width: 70px; height: 70px; border-radius: 50%; background-color: var(--th-bg-f0f4f8,#f0f4f8); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 700; font-size: 1.75rem; display: flex; align-items: center; justify-content: center; border: 2px solid var(--th-line-e3e8ee,#e3e8ee); }
+        .progress-wrapper { background-color: var(--th-bg-e2e8f0,#e2e8f0); border-radius: 50px; height: 8px; overflow: hidden; width: 100%; }
+        .progress-fill { height: 100%; background-color: var(--th-bg-0f4c81,#0f4c81); border-radius: 50px; transition: width 0.5s ease; }
 
-        .info-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
-        .info-value { font-size: 0.95rem; color: #1e293b; font-weight: 600; margin-bottom: 0; }
+        .info-label { font-size: 0.75rem; color: var(--th-fg-64748b,#64748b); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
+        .info-value { font-size: 0.95rem; color: var(--th-fg-1e293b,#1e293b); font-weight: 600; margin-bottom: 0; }
 
         .clean-table { width: 100%; border-collapse: collapse; }
-        .clean-table th { padding: 1rem; border-bottom: 2px solid #e2e8f0; color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
-        .clean-table td { padding: 1rem; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
-        .clean-table tr:hover td { background-color: #f8fafc; }
+        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--th-fg-64748b,#64748b); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
+        .clean-table td { padding: 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
+        .clean-table tr:hover td { background-color: var(--th-bg-f8fafc,#f8fafc); }
 
-        .btn-table-action { background-color: #f1f5f9; color: #0f4c81; font-weight: 700; padding: 6px 18px; border-radius: 50px; border: 1px solid #e2e8f0; transition: 0.2s; text-decoration: none; display: inline-block; font-size: 0.85rem; white-space: nowrap; }
-        .btn-table-action:hover { background-color: #e2e8f0; color: #0a365c; border-color: #cbd5e1; }
+        .btn-table-action { background-color: var(--th-bg-f1f5f9,#f1f5f9); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 700; padding: 6px 18px; border-radius: 50px; border: 1px solid var(--th-line-e2e8f0,#e2e8f0); transition: 0.2s; text-decoration: none; display: inline-block; font-size: 0.85rem; white-space: nowrap; }
+        .btn-table-action:hover { background-color: var(--th-bg-e2e8f0,#e2e8f0); color: var(--th-fg-0a365c,#0a365c); border-color: var(--th-line-cbd5e1,#cbd5e1); }
 
-        .status-assigned { background-color: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
-        .status-submitted { background-color: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd; }
-        .status-graded { background-color: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
-        .status-revision { background-color: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+        .status-assigned { background-color: var(--th-bg-eff6ff,#eff6ff); color: var(--th-fg-1d4ed8,#1d4ed8); border: 1px solid var(--th-line-bfdbfe,#bfdbfe); }
+        .status-submitted { background-color: var(--th-bg-e0f2fe,#e0f2fe); color: var(--th-fg-0369a1,#0369a1); border: 1px solid var(--th-line-bae6fd,#bae6fd); }
+        .status-graded { background-color: var(--th-bg-f0fdf4,#f0fdf4); color: var(--th-fg-15803d,#15803d); border: 1px solid var(--th-line-bbf7d0,#bbf7d0); }
+        .status-revision { background-color: var(--th-bg-fef2f2,#fef2f2); color: var(--th-fg-b91c1c,#b91c1c); border: 1px solid var(--th-line-fecaca,#fecaca); }
 
-        .cv-btn-theme { background-color: #0f4c81 !important; color: white !important; font-weight: 700; padding: 10px 24px; border-radius: 50px; text-decoration: none; display: inline-block; box-shadow: 0 4px 10px rgba(15, 76, 129, 0.2); transition: 0.2s; }
-        .cv-btn-theme:hover { background-color: #0a365c !important; color: white !important; transform: translateY(-1px); }
+        .cv-btn-theme { background-color: var(--th-bg-0f4c81,#0f4c81) !important; color: white !important; font-weight: 700; padding: 10px 24px; border-radius: 50px; text-decoration: none; display: inline-block; box-shadow: 0 4px 10px rgba(15, 76, 129, 0.2); transition: 0.2s; }
+        .cv-btn-theme:hover { background-color: var(--th-bg-0a365c,#0a365c) !important; color: white !important; transform: translateY(-1px); }
     </style>
 </asp:Content>
 

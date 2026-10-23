@@ -13,7 +13,7 @@
 .mo-page {
     max-width: 1150px;
     margin: 0 auto;
-    color: #173451;
+    color: var(--th-fg-173451,#173451);
 }
 
 .mo-heading {
@@ -31,15 +31,15 @@
 }
 
 .mo-muted {
-    color: #718298;
+    color: var(--th-fg-718298,#718298);
     font-size: 13px;
 }
 
 .mo-btn {
     display: inline-block;
     padding: 10px 17px;
-    border: 1px solid #244f77;
-    background: #244f77;
+    border: 1px solid var(--th-line-244f77,#244f77);
+    background: var(--th-bg-244f77,#244f77);
     color: white;
     text-decoration: none;
     border-radius: 7px;
@@ -54,17 +54,17 @@
 }
 
 .mo-btn-light {
-    background: #fff;
-    color: #244f77;
+    background: var(--ui-surface,#fff);
+    color: var(--th-fg-244f77,#244f77);
 }
 
 .mo-btn-light:hover {
-    color: #244f77;
+    color: var(--th-fg-244f77,#244f77);
 }
 
 .mo-btn-danger {
-    background: #b42318;
-    border-color: #b42318;
+    background: var(--th-bg-b42318,#b42318);
+    border-color: var(--th-line-b42318,#b42318);
 }
 
 .mo-stats {
@@ -76,8 +76,8 @@
 
 .mo-stat,
 .mo-card {
-    background: #fff;
-    border: 1px solid #dce5ef;
+    background: var(--ui-surface,#fff);
+    border: 1px solid var(--th-line-dce5ef,#dce5ef);
     border-radius: 11px;
     padding: 20px;
 }
@@ -85,7 +85,7 @@
 .mo-stat strong {
     display: block;
     font-size: 29px;
-    color: #163e62;
+    color: var(--th-fg-163e62,#163e62);
     margin: 7px 0;
 }
 
@@ -111,14 +111,14 @@
 
 .mo-table th {
     text-align: left;
-    background: #f3f7fb;
-    color: #48627d;
+    background: var(--th-bg-f3f7fb,#f3f7fb);
+    color: var(--th-fg-48627d,#48627d);
     padding: 13px;
     white-space: nowrap;
 }
 
 .mo-table td {
-    border-bottom: 1px solid #e6edf3;
+    border-bottom: 1px solid var(--th-line-e6edf3,#e6edf3);
     padding: 14px 13px;
     vertical-align: middle;
 }
@@ -129,27 +129,27 @@
 
 .mo-title {
     font-weight: 750;
-    color: #173451;
+    color: var(--th-fg-173451,#173451);
 }
 
 .mo-badge {
     display: inline-block;
     padding: 5px 10px;
     border-radius: 20px;
-    background: #e5f5ec;
-    color: #17603a;
+    background: var(--th-bg-e5f5ec,#e5f5ec);
+    color: var(--th-fg-17603a,#17603a);
     font-size: 12px;
     font-weight: 700;
 }
 
 .mo-badge.draft {
-    background: #edf2f8;
-    color: #526985;
+    background: var(--th-bg-edf2f8,#edf2f8);
+    color: var(--th-fg-526985,#526985);
 }
 
 .mo-badge.closed {
-    background: #f2eeee;
-    color: #815b5b;
+    background: var(--th-bg-f2eeee,#f2eeee);
+    color: var(--th-fg-815b5b,#815b5b);
 }
 
 .mo-actions {
@@ -164,16 +164,16 @@
 }
 
 .mo-notice {
-    background: #e5f5ec;
-    color: #17603a;
+    background: var(--th-bg-e5f5ec,#e5f5ec);
+    color: var(--th-fg-17603a,#17603a);
     padding: 13px 16px;
     border-radius: 8px;
     margin-bottom: 20px;
 }
 
 .mo-notice.error {
-    background: #fff0ed;
-    color: #a3392b;
+    background: var(--th-bg-fff0ed,#fff0ed);
+    color: var(--th-fg-a3392b,#a3392b);
 }
 
 .mo-form-grid {
@@ -198,7 +198,7 @@
 .mo-field textarea {
     width: 100%;
     padding: 11px 12px;
-    border: 1px solid #d6e1eb;
+    border: 1px solid var(--th-line-d6e1eb,#d6e1eb);
     border-radius: 7px;
     font: inherit;
     font-size: 14px;
@@ -218,8 +218,8 @@
 }
 
 .mo-major {
-    background: #f7f9fc;
-    border: 1px solid #dce5ef;
+    background: var(--th-bg-f7f9fc,#f7f9fc);
+    border: 1px solid var(--th-line-dce5ef,#dce5ef);
     padding: 9px 12px;
     border-radius: 7px;
     font-size: 13px;
@@ -231,7 +231,7 @@
 }
 
 .mo-form-footer {
-    border-top: 1px solid #e6edf3;
+    border-top: 1px solid var(--th-line-e6edf3,#e6edf3);
     margin-top: 15px;
     padding-top: 20px;
     display: flex;
@@ -259,7 +259,7 @@
     max-width: 420px;
     padding: 25px;
     border-radius: 12px;
-    background: #fff;
+    background: var(--ui-surface,#fff);
     box-shadow: 0 12px 40px rgba(0, 0, 0, .15);
 }
 
@@ -285,7 +285,7 @@
 .mo-view-block p {
     margin: 4px 0 0;
     font-size: 14px;
-    color: #173451;
+    color: var(--th-fg-173451,#173451);
     white-space: pre-line;
     overflow-wrap: anywhere;
 }

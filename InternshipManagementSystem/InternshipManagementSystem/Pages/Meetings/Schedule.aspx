@@ -14,7 +14,7 @@
     <style>
         .meeting-page { max-width: 850px; margin: 0 auto; }
         .meeting-participants {
-            border: 1px solid #dee2e6;
+            border: 1px solid var(--th-line-dee2e6,#dee2e6);
             border-radius: 8px;
             padding: 16px;
         }

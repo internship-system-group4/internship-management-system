@@ -19,7 +19,7 @@
 .uims-public .uims-public-footer a:hover { color:var(--footer-text); text-decoration:underline; }
 .uims-public .uims-public-footer :focus-visible { outline:3px solid var(--footer-focus); outline-offset:3px; border-radius:2px; }
 .uims-public-footer-identity p { max-width:340px; margin-top:12px; }
-.uims-public .uims-public-footer .uims-public-footer-logo { display:inline-flex; padding:8px 10px; margin-bottom:18px; background:#fff; border-radius:6px; }
+.uims-public .uims-public-footer .uims-public-footer-logo { display:inline-flex; padding:8px 10px; margin-bottom:18px; background:var(--ui-surface,#fff); border-radius:6px; }
 .uims-public-footer-logo img { width:56px; height:auto; display:block; }
 .uims-public .uims-public-footer .uims-public-footer-official { display:inline-flex; align-items:center; gap:10px; }
 .uims-public-footer-official svg { width:20px; height:20px; flex-shrink:0; }
@@ -32,7 +32,7 @@
 .uims-public-footer-campus h2 { margin-bottom:4px; }
 .uims-public-footer-campus address { margin:0 0 10px; }
 .uims-public-footer .uims-public-footer-campus address p { font-size:13px; line-height:1.5; }
-.uims-public-footer-campus-map { position:relative; width:280px; height:180px; border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden; background:#1f4466; isolation:isolate; }
+.uims-public-footer-campus-map { position:relative; width:280px; height:180px; border:1px solid rgba(255,255,255,.18); border-radius:10px; overflow:hidden; background:var(--th-bg-1f4466,#1f4466); isolation:isolate; }
 .uims-public-footer-campus-canvas, .uims-public-footer-campus-embed { position:absolute; inset:0; width:100%; height:100%; border:0; }
 .uims-public-footer-campus[data-footer-map-state]:not([data-footer-map-state="fallback"]) .uims-public-footer-campus-embed { display:none; }
 .uims-public-footer-campus-loading { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); padding:6px 12px; border-radius:999px; background:rgba(19,61,97,.85); white-space:nowrap; }
@@ -50,12 +50,12 @@
 /* Campus marker (a MapLibre marker element): a pin with the university's name, revealed when the flight ends. */
 .uims-campus-marker { display:flex; flex-direction:column; align-items:center; gap:4px; pointer-events:none; opacity:0; }
 .uims-campus-marker.is-shown { opacity:1; animation:uims-campus-marker 360ms ease-out both; }
-.uims-campus-marker span { padding:3px 8px; border-radius:5px; background:#fff; color:var(--ui-ink); font:650 12px/1.3 "Segoe UI",system-ui,sans-serif; white-space:nowrap; box-shadow:0 6px 16px -6px rgba(0,0,0,.45); }
-.uims-campus-marker i { flex-shrink:0; width:18px; height:18px; border:3px solid #fff; border-radius:50%; background:#0091d1; box-shadow:0 0 0 4px rgba(0,145,209,.28),0 3px 8px rgba(0,0,0,.35); }
+.uims-campus-marker span { padding:3px 8px; border-radius:5px; background:var(--ui-surface,#fff); color:var(--ui-ink); font:650 12px/1.3 "Segoe UI",system-ui,sans-serif; white-space:nowrap; box-shadow:0 6px 16px -6px rgba(0,0,0,.45); }
+.uims-campus-marker i { flex-shrink:0; width:18px; height:18px; border:3px solid var(--th-line-ffffff,#fff); border-radius:50%; background:var(--th-bg-0091d1,#0091d1); box-shadow:0 0 0 4px rgba(0,145,209,.28),0 3px 8px rgba(0,0,0,.35); }
 @keyframes uims-campus-marker { from { opacity:0; transform:translateY(4px); } }
 /* MapLibre's own controls and attribution keep readable map colours inside the dark footer. */
-.uims-public .uims-public-footer .maplibregl-ctrl, .uims-public .uims-public-footer .maplibregl-ctrl a { color:#333; font-size:12px; }
-.uims-public .uims-public-footer .maplibregl-ctrl a:hover { color:#000; text-decoration:underline; }
+.uims-public .uims-public-footer .maplibregl-ctrl, .uims-public .uims-public-footer .maplibregl-ctrl a { color:var(--th-fg-333333,#333); font-size:12px; }
+.uims-public .uims-public-footer .maplibregl-ctrl a:hover { color:var(--th-fg-000000,#000); text-decoration:underline; }
 .uims-public-footer-bottom { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px 24px; padding-block:20px 28px; border-top:1px solid rgba(255,255,255,.16); }
 .uims-public-footer-bottom p { font-size:13px; }
 .uims-public-footer-actions { display:flex; align-items:center; flex-wrap:wrap; gap:10px; }

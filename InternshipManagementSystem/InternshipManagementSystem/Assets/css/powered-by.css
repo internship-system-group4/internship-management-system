@@ -14,14 +14,14 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
  background:var(--overlay); -webkit-backdrop-filter:blur(10px); backdrop-filter:blur(10px); box-shadow:0 1px 2px rgba(20,24,30,.12),0 12px 32px -14px rgba(20,24,30,.45);
 }
 .team-heading { position:absolute; z-index:2; top:118px; left:var(--edge); max-width:360px; padding:16px 18px 14px; border-radius:10px; }
-.team-eyebrow { margin:0 0 2px; font-size:12px; font-weight:650; letter-spacing:.08em; text-transform:uppercase; color:var(--brand); }
+.team-eyebrow { margin:0 0 2px; font-size:12px; font-weight:650; letter-spacing:.08em; text-transform:uppercase; color:var(--brand-text,var(--brand)); }
 .team-heading h1 { margin:0; font-size:28px; line-height:1.15; font-weight:650; letter-spacing:-.02em; color:var(--ink); }
 .team-lede { margin:8px 0 0; font-size:14px; line-height:1.55; color:var(--muted); }
 .team-credit { margin:8px 0 0; font-size:12px; line-height:1.5; color:var(--muted); }
 
 .team-loading { position:absolute; z-index:1; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:#f4efe8; font-size:14px; letter-spacing:.02em; transition:opacity 400ms ease; }
 .team-loading-bar { width:180px; height:2px; background:rgba(255,255,255,.18); border-radius:2px; overflow:hidden; }
-.team-loading-bar span { display:block; width:0; height:100%; background:#f2c14e; transition:width 260ms ease; }
+.team-loading-bar span { display:block; width:0; height:100%; background:var(--th-bg-f2c14e,#f2c14e); transition:width 260ms ease; }
 .team-experience[data-mode="ready"] .team-loading { opacity:0; pointer-events:none; }
 .team-experience[data-mode="fallback"] .team-loading, .team-experience[data-mode="fallback"] .team-stage { display:none; }
 
@@ -29,8 +29,8 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-experience:not([data-mode="ready"]) .team-controls, .team-experience:not([data-mode="ready"]) .team-profile, .team-experience:not([data-mode="ready"]) .team-hover { display:none; }
 .team-finder { position:relative; }
 .team-finder-toggle, .team-overview { display:inline-flex; align-items:center; gap:8px; min-height:44px; padding:0 18px 0 14px; border:0; border-radius:999px; color:var(--ink); font-size:14px; font-weight:600; cursor:pointer; }
-.team-finder-toggle svg, .team-overview svg { width:18px; height:18px; color:var(--brand); }
-.team-finder-toggle[aria-expanded="true"] { background:#fff; }
+.team-finder-toggle svg, .team-overview svg { width:18px; height:18px; color:var(--brand-text,var(--brand)); }
+.team-finder-toggle[aria-expanded="true"] { background:var(--ui-surface,#fff); }
 .team-overview[hidden] { display:none; }
 .team-finder-list { position:absolute; left:0; bottom:calc(100% + 8px); width:300px; max-height:min(420px,calc(100svh - 260px)); overflow:auto; margin:0; padding:6px; list-style:none; border-radius:12px; }
 .team-finder-list[hidden] { display:none; }
@@ -41,7 +41,7 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-finder-text small { font-size:12px; font-weight:400; color:var(--muted); }
 
 /* Photos always sit on top of initials, so a failed image falls back cleanly. */
-.team-avatar, .team-portrait { position:relative; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; overflow:hidden; background:var(--brand-light); color:var(--brand); font-weight:650; }
+.team-avatar, .team-portrait { position:relative; flex-shrink:0; display:inline-flex; align-items:center; justify-content:center; overflow:hidden; background:var(--brand-light); color:var(--brand-text,var(--brand)); font-weight:650; }
 .team-avatar { width:36px; height:36px; border-radius:50%; font-size:13px; }
 .team-avatar img, .team-portrait img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
 
@@ -57,13 +57,13 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-label { position:absolute; transform:translate(-50%,-100%); padding:3px 9px; border:1px solid rgba(47,143,208,.55); border-radius:999px; background:rgba(255,255,255,.9); color:var(--ink); font-size:12px; font-weight:650; line-height:1.4; white-space:nowrap; pointer-events:auto; cursor:pointer; box-shadow:0 2px 8px -3px rgba(20,24,30,.45); transition:background-color 150ms ease,border-color 150ms ease,box-shadow 150ms ease; }
 .team-label[hidden] { display:none; }
 .team-label::after { content:''; position:absolute; left:50%; top:100%; width:1px; height:var(--lead,0px); background:rgba(47,143,208,.75); }
-.team-label.is-active { background:#fff; border-color:#2f8fd0; box-shadow:0 0 0 3px rgba(47,143,208,.28),0 4px 12px -4px rgba(20,24,30,.5); }
+.team-label.is-active { background:var(--ui-surface,#fff); border-color:var(--th-line-2f8fd0,#2f8fd0); box-shadow:0 0 0 3px rgba(47,143,208,.28),0 4px 12px -4px rgba(20,24,30,.5); }
 /* Profile: compact side panel on desktop, bottom sheet on phones. */
 .team-profile { position:absolute; z-index:4; top:118px; right:var(--edge); width:360px; max-height:calc(100% - 142px); overflow:auto; border-radius:12px; overscroll-behavior:contain; }
 .team-profile[hidden] { display:none; }
 .team-profile-bar { position:sticky; top:0; z-index:1; display:flex; align-items:center; gap:4px; padding:8px 8px 8px 18px; background:rgba(255,255,255,.96); }
 .team-profile-count { flex:1; font-size:12px; font-weight:650; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
-.team-profile-bar button { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; color:var(--brand); }
+.team-profile-bar button { display:inline-flex; align-items:center; justify-content:center; width:40px; height:40px; border-radius:8px; color:var(--brand-text,var(--brand)); }
 .team-profile-bar button:hover { background:var(--brand-light); }
 .team-profile-bar svg { width:20px; height:20px; }
 .team-profile-body { padding:4px 22px 22px; }
@@ -75,12 +75,12 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 
 /* Member details (profile panel and fallback list). */
 .team-member-name { margin:0; font-size:19px; line-height:1.3; font-weight:650; color:var(--ink); }
-.team-member-role { margin:2px 0 0; font-size:14px; font-weight:600; color:var(--brand); }
+.team-member-role { margin:2px 0 0; font-size:14px; font-weight:600; color:var(--brand-text,var(--brand)); }
 .team-member-bio { margin:10px 0 0; font-size:15px; color:var(--muted); }
 .team-email { display:inline-flex; align-items:center; gap:8px; margin-top:14px; padding-block:6px; font-size:14px; overflow-wrap:anywhere; }
 .team-email svg { width:18px; height:18px; flex-shrink:0; }
 .team-links { list-style:none; display:flex; flex-wrap:wrap; gap:8px; margin:12px 0 0; padding:0; }
-.team-links a { display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:0 14px 0 10px; border:1px solid var(--line); border-radius:8px; color:var(--brand); font-size:14px; font-weight:600; text-decoration:none; }
+.team-links a { display:inline-flex; align-items:center; gap:8px; min-height:40px; padding:0 14px 0 10px; border:1px solid var(--line); border-radius:8px; color:var(--brand-text,var(--brand)); font-size:14px; font-weight:600; text-decoration:none; }
 .team-links a:hover { background:var(--brand-light); }
 .team-links svg { width:18px; height:18px; }
 
@@ -96,9 +96,9 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-roster-section { margin-top:40px; }
 .team-roster-section h2 { font-size:22px; margin:0 0 16px; }
 .team-roster { list-style:none; margin:0; padding:0; display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:16px; }
-.team-roster .team-member-card { display:flex; gap:18px; padding:22px; border:1px solid var(--line); border-radius:8px; background:#fff; }
+.team-roster .team-member-card { display:flex; gap:18px; padding:22px; border:1px solid var(--line); border-radius:8px; background:var(--ui-surface,#fff); }
 .team-roster .team-portrait { width:72px; height:72px; border-radius:50%; font-size:22px; }
-.team-empty { padding:24px; background:var(--canvas); border:1px dashed #b9c9dc; border-radius:8px; color:var(--muted); }
+.team-empty { padding:24px; background:var(--canvas); border:1px dashed var(--th-line-b9c9dc,#b9c9dc); border-radius:8px; color:var(--muted); }
 
 @media (max-width:700px) {
  .team-experience { --edge:12px; }

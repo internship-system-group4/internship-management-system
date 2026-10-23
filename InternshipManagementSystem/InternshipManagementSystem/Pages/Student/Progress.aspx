@@ -11,9 +11,9 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
         .pe-stat { height: 100%; }
-        .pe-stat .pe-label { color: #6b7280; font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; }
-        .pe-stat .pe-value { font-size: 1.6rem; font-weight: 700; color: var(--brand-dark); }
-        .pe-muted { color: #6b7280; font-size: .85rem; }
+        .pe-stat .pe-label { color: var(--th-fg-6b7280,#6b7280); font-size: .8rem; text-transform: uppercase; letter-spacing: .03em; }
+        .pe-stat .pe-value { font-size: 1.6rem; font-weight: 700; color: var(--brand-text,var(--brand-dark)); }
+        .pe-muted { color: var(--th-fg-6b7280,#6b7280); font-size: .85rem; }
         .pe-feedback { max-width: 320px; white-space: pre-line; }
         .pe-section { margin-bottom: 1.5rem; }
     </style>

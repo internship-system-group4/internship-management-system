@@ -6,30 +6,30 @@
         /* تثبيت زر تسجيل الخروج بأسفل الشاشة */
         .sidebar, aside { display: flex; flex-direction: column; height: 100vh; }
         .sidebar-menu { flex-grow: 1; overflow-y: auto; }
-        .logout-container, .logout-box { margin-top: auto !important; border-top: 1px solid #e3e8ee; padding-top: 1rem; }
+        .logout-container, .logout-box { margin-top: auto !important; border-top: 1px solid var(--th-line-e3e8ee,#e3e8ee); padding-top: 1rem; }
 
         /* الألوان والستايلات */
-        .text-brand { color: #0f4c81 !important; }
-        .bg-brand { background-color: #0f4c81 !important; color: white; border: none; transition: 0.2s; }
-        .bg-brand:hover { background-color: #0a365c !important; color: white; transform: translateY(-1px); }
-        .nav-tabs .nav-link { color: #6b7786; font-weight: 500; border: none; background: transparent; }
-        .nav-tabs .nav-link.active { color: #0f4c81; font-weight: bold; border-bottom: 2px solid #0f4c81; }
+        .text-brand { color: var(--th-fg-0f4c81,#0f4c81) !important; }
+        .bg-brand { background-color: var(--th-bg-0f4c81,#0f4c81) !important; color: white; border: none; transition: 0.2s; }
+        .bg-brand:hover { background-color: var(--th-bg-0a365c,#0a365c) !important; color: white; transform: translateY(-1px); }
+        .nav-tabs .nav-link { color: var(--th-fg-6b7786,#6b7786); font-weight: 500; border: none; background: transparent; }
+        .nav-tabs .nav-link.active { color: var(--th-fg-0f4c81,#0f4c81); font-weight: bold; border-bottom: 2px solid var(--th-line-0f4c81,#0f4c81); }
 
-        .company-list-container { max-height: 250px; overflow-y: auto; border: 1px solid #e3e8ee; border-radius: 8px; background: #fff; padding: 0.5rem; }
+        .company-list-container { max-height: 250px; overflow-y: auto; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); border-radius: 8px; background: var(--ui-surface,#fff); padding: 0.5rem; }
         .company-item { padding: 1rem; border: 1px solid transparent; border-radius: 6px; cursor: pointer; transition: all 0.2s ease; margin-bottom: 0.25rem; display: flex; justify-content: space-between; align-items: center; }
-        .company-item:hover { background-color: #f8fafc; border-color: #cce5ff; transform: translateY(-1px); }
+        .company-item:hover { background-color: var(--th-bg-f8fafc,#f8fafc); border-color: var(--th-line-cce5ff,#cce5ff); transform: translateY(-1px); }
 
         .clean-table { width: 100%; border-collapse: collapse; }
-        .clean-table th { padding: 1rem; border-bottom: 2px solid #e2e8f0; color: #64748b; font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
-        .clean-table td { padding: 1rem; border-bottom: 1px solid #f1f5f9; color: #334155; font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
-        .clean-table tr:hover td { background-color: #f8fafc; }
+        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--th-fg-64748b,#64748b); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: left; letter-spacing: 0.5px; }
+        .clean-table td { padding: 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
+        .clean-table tr:hover td { background-color: var(--th-bg-f8fafc,#f8fafc); }
 
-        .btn-table-action { background-color: #f1f5f9; color: #0f4c81; font-weight: 600; padding: 6px 16px; border-radius: 50px; border: 1px solid #e2e8f0; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
-        .btn-table-action:hover { background-color: #0f4c81; color: white; border-color: #0f4c81; }
+        .btn-table-action { background-color: var(--th-bg-f1f5f9,#f1f5f9); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 600; padding: 6px 16px; border-radius: 50px; border: 1px solid var(--th-line-e2e8f0,#e2e8f0); transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+        .btn-table-action:hover { background-color: var(--th-bg-0f4c81,#0f4c81); color: white; border-color: var(--th-line-0f4c81,#0f4c81); }
 
         /* ستايل نافذة الـ View - تم إضافة خاصية كسر الكلمات الطويلة هنا */
-        .view-label { font-size: 0.75rem; color: #64748b; text-transform: uppercase; font-weight: 700; margin-bottom: 0.2rem; }
-        .view-value { font-size: 1rem; color: #1e293b; font-weight: 600; margin-bottom: 1.25rem; border-bottom: 1px dashed #e2e8f0; padding-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word; }
+        .view-label { font-size: 0.75rem; color: var(--th-fg-64748b,#64748b); text-transform: uppercase; font-weight: 700; margin-bottom: 0.2rem; }
+        .view-value { font-size: 1rem; color: var(--th-fg-1e293b,#1e293b); font-weight: 600; margin-bottom: 1.25rem; border-bottom: 1px dashed var(--th-line-e2e8f0,#e2e8f0); padding-bottom: 0.5rem; word-wrap: break-word; overflow-wrap: break-word; }
     </style>
 </asp:Content>
 

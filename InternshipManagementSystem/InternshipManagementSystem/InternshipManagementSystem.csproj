@@ -660,6 +660,9 @@
     <Content Include="Assets\css\about.css" />
     <Content Include="Assets\js\about.js" />
     <Content Include="Assets\css\contact.css" />
+    <Content Include="Assets\css\theme.css" />
+    <Content Include="Assets\js\theme.js" />
+    <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />
     <Content Include="Assets\images\contact\contact-walkway.jpg" />
     <Content Include="Assets\images\about\about-gate-1.jpg" />

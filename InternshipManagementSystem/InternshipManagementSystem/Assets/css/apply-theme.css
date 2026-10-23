@@ -10,20 +10,20 @@
 .application-theme .application-sheet,.application-theme .application-opportunity { border:1px solid var(--line); border-radius:7px; box-shadow:none; }
 .application-theme .application-opportunity { padding:24px; }
 .application-theme .application-opportunity h3 { font-size:20px; line-height:1.35; margin-top:10px; }
-.application-theme .application-company { font-size:13px; color:#526e87; }
+.application-theme .application-company { font-size:13px; color:var(--th-fg-526e87,#526e87); }
 .application-theme .application-eyebrow { font-size:12px; color:var(--ui-muted); }
 .application-theme .application-help { font-size:12px; color:var(--ui-muted); }
 .application-theme .application-details dt { font-size:12px; }
 .application-theme .application-details dd { font-size:14px; }
 .application-theme .application-label { font-size:13px; }
-.application-theme .form-control { border-color:#d8e3f0; font-size:13px; color:var(--ui-primary-hover); padding:10px 12px; caret-color:var(--ui-primary); }
-.application-theme .form-control::placeholder { color:#60758b; opacity:1; }
+.application-theme .form-control { border-color:var(--th-line-d8e3f0,#d8e3f0); font-size:13px; color:var(--ui-primary-text,var(--ui-primary-hover)); padding:10px 12px; caret-color:var(--ui-primary-text,var(--ui-primary)); }
+.application-theme .form-control::placeholder { color:var(--th-fg-60758b,#60758b); opacity:1; }
 .application-theme .application-letter { min-height:148px; }
 .application-theme .application-confirm { font-size:13px; }
 .application-theme .application-confirm label { display:inline; }
 .application-theme .btn-brand { background:var(--ui-primary); border-color:var(--ui-primary); color:#fff; border-radius:5px; font-size:13px; }
 .application-theme .btn-brand:hover { background:var(--ui-primary-hover); }
-.application-theme .application-description { font-size:13px; color:#526e87; }
+.application-theme .application-description { font-size:13px; color:var(--th-fg-526e87,#526e87); }
 .application-theme .application-facts dt,.application-theme .application-facts dd { font-size:12px; }
 .application-theme .application-facts { margin:20px 0; padding:14px 0; }
 @media(max-width:1100px) { .application-theme .application-layout { grid-template-columns:1fr; } .application-theme .application-opportunity { grid-row:auto; } }

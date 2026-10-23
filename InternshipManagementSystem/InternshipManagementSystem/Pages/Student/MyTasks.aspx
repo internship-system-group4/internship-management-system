@@ -25,7 +25,7 @@
             max-width: 800px;
             max-height: calc(100vh - 32px);
             overflow-y: auto;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }

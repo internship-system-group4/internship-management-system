@@ -27,19 +27,19 @@
 .campus-chapter-nav a>span:first-child{font-size:13px;opacity:1}
 .campus-chapter-nav a[aria-current="step"]{color:#fff;background:var(--campus-blue)}
 .campus-chapter-nav a[aria-current="step"]>span:first-child{opacity:1}
-.campus-hotspots a{border:0;border-radius:0;background:#fff;color:var(--campus-ink);font-size:13px;font-weight:600;padding:12px 16px;min-height:44px}
+.campus-hotspots a{border:0;border-radius:0;background:var(--ui-surface,#fff);color:var(--campus-ink);font-size:13px;font-weight:600;padding:12px 16px;min-height:44px}
 .campus-scene-controls{inset-inline:var(--campus-gutter);bottom:20px}
-.home-story-toggle{border:0;border-radius:0;background:#fff;color:var(--campus-ink);font:400 13px Switzer,sans-serif;padding:10px 16px;min-height:44px}
+.home-story-toggle{border:0;border-radius:0;background:var(--ui-surface,#fff);color:var(--campus-ink);font:400 13px Switzer,sans-serif;padding:10px 16px;min-height:44px}
 .campus-scene-controls span{background:var(--campus-ground);color:var(--campus-secondary)}
 .home-college{border:0;background:transparent}
 .home-college summary{padding:16px 0;color:var(--campus-ink)}
 .home-college summary strong{font-size:24px}.home-college summary small{font-size:16px;color:var(--campus-secondary)}
 .campus-copy .home-programs{gap:24px}.campus-copy .home-program h3{font-size:16px;line-height:1.3}.campus-copy .home-program ul{font-size:16px;line-height:1.65}.campus-copy .home-program li{color:var(--campus-secondary)}
 .campus-process .home-steps{gap:16px}.campus-process .home-steps h3{font-size:16px;font-weight:600}.campus-process .home-steps p{font-size:16px;line-height:1.5;color:var(--campus-secondary)}
-.campus-process .home-steps li:before{color:var(--campus-blue);font-variant-numeric:tabular-nums}
+.campus-process .home-steps li:before{color:var(--ui-primary-text,var(--campus-blue));font-variant-numeric:tabular-nums}
 .home-page>.home-section{max-width:none;width:100%;margin:0;padding:120px var(--campus-gutter);scroll-margin-top:0}
 .home-page .home-section h2{font-size:clamp(46px,5.5vw,80px);font-weight:600;line-height:1;letter-spacing:-.04em;color:var(--campus-ink)}
-.home-page .home-video{grid-template-columns:.36fr .64fr;gap:64px;background:#fff;align-items:center}
+.home-page .home-video{grid-template-columns:.36fr .64fr;gap:64px;background:var(--ui-surface,#fff);align-items:center}
 .home-video-intro>p{font-size:16px;line-height:1.6;max-width:32ch;margin-bottom:26px!important;color:var(--campus-secondary)}
 .home-video-visual{position:relative;min-width:0;background:var(--campus-ground)}
 .home-video-visual>img{width:100%;height:440px;object-fit:cover;display:block}
@@ -50,13 +50,13 @@
 .home-page #opportunities .home-section-heading{grid-template-columns:1.05fr .7fr;align-items:end;gap:80px;margin-bottom:54px}
 .home-page #opportunities h2{color:#fff;margin:0}.home-page #opportunities .home-section-heading p{color:#d1dde4;font-size:16px;max-width:36ch}
 .home-page #opportunities .home-preview-title{font-size:16px;font-weight:400;color:#d1dde4;margin:0 0 24px}
-.home-page #opportunities .public-preview-notice{border-radius:0;border:0;background:#204b62;color:#fff;padding:32px;font-size:16px;line-height:1.6}
+.home-page #opportunities .public-preview-notice{border-radius:0;border:0;background:var(--th-bg-204b62,#204b62);color:#fff;padding:32px;font-size:16px;line-height:1.6}
 .home-page #opportunities .home-access-note{color:#d1dde4;font-size:16px;margin-top:26px}
-.home-page .home-preview{background:#fff;border:0;border-radius:0;padding:32px;box-shadow:none}
+.home-page .home-preview{background:var(--ui-surface,#fff);border:0;border-radius:0;padding:32px;box-shadow:none}
 .home-page .home-preview h3{font-size:24px;font-weight:600;line-height:1.2;color:var(--campus-ink)}
 .home-page .home-preview p{color:var(--campus-secondary);font-size:16px}.home-page .home-preview .home-preview-meta{font-size:16px}
 .home-page .home-preview-grid{display:block}
-.home-page .home-preview{display:grid;grid-template-columns:1fr .7fr 1.35fr auto;align-items:start;gap:24px;background:#204b62;margin-top:16px;color:#fff}
+.home-page .home-preview{display:grid;grid-template-columns:1fr .7fr 1.35fr auto;align-items:start;gap:24px;background:var(--th-bg-204b62,#204b62);margin-top:16px;color:#fff}
 .home-page .home-preview h3{color:#fff;font-size:24px;margin:0}.home-page .home-preview p{color:#fff;margin:0}.home-page .home-preview .public-text-link{color:#fff}
 .home-page>.home-cta{width:100%;max-width:none;border-radius:0;margin:0;padding:100px var(--campus-gutter);background:var(--campus-ground);gap:64px}
 .home-page .home-cta h2{font-size:clamp(42px,5vw,76px);font-weight:600;line-height:1.02;letter-spacing:-.04em;color:var(--campus-ink);max-width:15ch}
@@ -104,7 +104,7 @@
 @media(prefers-reduced-motion:reduce){.campus-chapter-nav{display:none}.campus-copy{background:transparent}.campus-opening h1{font-size:clamp(34px,7.5vw,100px)}}
 
 /* Real campus photography carries the same subject beyond the animated story. */
-.home-page .home-gallery{background:#fff}
+.home-page .home-gallery{background:var(--ui-surface,#fff)}
 .home-gallery .home-section-heading{grid-template-columns:1fr 1fr;align-items:end;gap:64px;margin-bottom:48px}
 .home-gallery .home-section-heading>p{font-size:16px;line-height:1.6;color:var(--campus-ink);max-width:42ch}
 .home-gallery-layout{display:grid;grid-template-columns:1.35fr 1fr;gap:28px 40px;align-items:start}
@@ -115,11 +115,11 @@
 .home-gallery figcaption{font-size:16px;line-height:1.5;color:var(--campus-ink);margin-top:14px}
 .campus-story.is-static .campus-chapters{background:var(--campus-ground)}
 body.uims-public:has(.home-page) .public-header{border:0}
-body.uims-public:has(.home-page) .public-menu-toggle{border:0;background:#f1f3f2}
+body.uims-public:has(.home-page) .public-menu-toggle{border:0;background:var(--th-bg-f1f3f2,#f1f3f2)}
 .home-page .public-revealed{animation:none}
 .home-page a,.home-page button{transition:background-color .18s ease,color .18s ease,transform .18s ease}
 .home-page .public-button:active,.home-page .home-story-toggle:active{transform:translateY(2px)}
-.campus-chapter-nav a:not([aria-current]):hover{background:#dde5e6;color:var(--campus-ink)}
+.campus-chapter-nav a:not([aria-current]):hover{background:var(--th-bg-dde5e6,#dde5e6);color:var(--campus-ink)}
 @media(prefers-reduced-motion:no-preference){
  .home-page .home-arrived{animation:home-part-arrival .65s cubic-bezier(.16,1,.3,1) both;animation-delay:var(--arrival-delay,0ms)}
  @keyframes home-part-arrival{from{opacity:.65;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}

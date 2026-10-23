@@ -3,9 +3,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .back-link { text-decoration: none; color: var(--muted); font-weight: 600; font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
-        .back-link:hover { color: var(--brand); }
-        .btn-outline-brand { border: 1px solid var(--brand); color: var(--brand); background: transparent; font-weight: 600; padding: 0.4rem 1rem; border-radius: 6px; }
-        .btn-outline-brand:hover { background-color: var(--brand-light); color: var(--brand-dark); }
+        .back-link:hover { color: var(--brand-text,var(--brand)); }
+        .btn-outline-brand { border: 1px solid var(--brand); color: var(--brand-text,var(--brand)); background: transparent; font-weight: 600; padding: 0.4rem 1rem; border-radius: 6px; }
+        .btn-outline-brand:hover { background-color: var(--brand-light); color: var(--brand-text,var(--brand-dark)); }
     </style>
 </asp:Content>
 
@@ -63,7 +63,7 @@
         <div class="uims-card mb-4" style="border-top: 4px solid var(--brand);">
             <div class="d-flex justify-content-between align-items-center">
                 <div>
-                    <h2 class="mb-1" style="color: var(--brand-dark); font-weight: 700;">
+                    <h2 class="mb-1" style="color: var(--brand-text,var(--brand-dark)); font-weight: 700;">
                         <asp:Literal ID="litStudentName" runat="server"></asp:Literal>
                     </h2>
                     <div class="text-muted">
@@ -87,7 +87,7 @@
             <!-- Section 1: Placement Details -->
             <div class="accordion-item mb-3" style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;">
                 <h2 class="accordion-header" id="headingCompany">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCompany" aria-expanded="true" aria-controls="collapseCompany" style="font-weight: 600; color: var(--brand-dark);">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCompany" aria-expanded="true" aria-controls="collapseCompany" style="font-weight: 600; color: var(--brand-text,var(--brand-dark));">
                         Placement & Company Details
                     </button>
                 </h2>
@@ -118,7 +118,7 @@
             <!-- Section 2: Tasks -->
             <div class="accordion-item mb-3" style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;">
                 <h2 class="accordion-header" id="headingTasks">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTasks" aria-expanded="false" aria-controls="collapseTasks" style="font-weight: 600; color: var(--brand-dark);">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTasks" aria-expanded="false" aria-controls="collapseTasks" style="font-weight: 600; color: var(--brand-text,var(--brand-dark));">
                         Tasks & Submissions
                     </button>
                 </h2>
@@ -158,7 +158,7 @@
             <!-- Section 3: Academic Comments -->
             <div class="accordion-item mb-3" style="border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden;">
                 <h2 class="accordion-header" id="headingComments">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments" style="font-weight: 600; color: var(--brand-dark);">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseComments" aria-expanded="false" aria-controls="collapseComments" style="font-weight: 600; color: var(--brand-text,var(--brand-dark));">
                         Academic Comments & Feedback
                     </button>
                 </h2>
