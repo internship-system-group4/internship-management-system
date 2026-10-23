@@ -1,5 +1,4 @@
-﻿
-<%@ Page Title="Manage Opportunities"
+﻿<%@ Page Title="Manage Opportunities"
     Language="C#"
     MasterPageFile="~/Layout/Company.master"
     AutoEventWireup="true"
