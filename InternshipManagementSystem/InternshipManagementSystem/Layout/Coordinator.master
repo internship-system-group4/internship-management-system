@@ -16,9 +16,10 @@
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261022-sidebar-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/portal-motion.css?v=20261023-motion-1" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 </head>
-<body class="coordinator-portal uims-portal">
+<body class="coordinator-portal uims-portal uims-theme">
 <form id="mainForm" runat="server">
     <div class="uims-shell">
         <aside id="coordinatorSidebar" data-portal-sidebar="true" class="uims-sidebar" aria-label="Coordinator navigation" tabindex="-1">
@@ -47,7 +48,7 @@
                 </div>
             </header>
 
-            <main class="uims-main-inner">
+            <main id="workspace-content" class="uims-main-inner" tabindex="-1">
                 <asp:ContentPlaceHolder ID="MainContent" runat="server" />
             </main>
         </div>
@@ -55,6 +56,7 @@
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<%: ResolveUrl("~/Assets/js/portal-layout.js?v=20261022-sidebar-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/portal-motion.js?v=20261023-motion-1") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
 </body>
 </html>
