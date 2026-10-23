@@ -472,6 +472,13 @@
     <Compile Include="Pages\Meetings\Schedule.aspx.designer.cs">
       <DependentUpon>Schedule.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Public\404.aspx.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Public\404.aspx.designer.cs">
+      <DependentUpon>404.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Public\About.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>About.aspx</DependentUpon>
@@ -651,6 +658,7 @@
     </Compile>
     <Compile Include="Pages\Student\exploreOpport.aspx.designer.cs" />
     <Content Include="Pages\Company\ViewOpportunity.aspx" />
+    <Content Include="Pages\Public\404.aspx" />
     <Content Include="Pages\Student\DisplayEditProfile.aspx" />
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
     <Content Include="Pages\Reports\Grades.aspx" />
