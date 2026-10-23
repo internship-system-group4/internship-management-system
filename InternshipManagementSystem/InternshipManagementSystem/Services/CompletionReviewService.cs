@@ -24,6 +24,7 @@ namespace InternshipManagementSystem.Services
         public List<string> Issues = new List<string>();
         public List<string> EvaluationIssues = new List<string>();
         public int ApprovedHours;
+        public int RequiredHours;
         public int CompletedTasks;
         public double? TaskPercent;
         public double? CompanyPercent;
@@ -55,6 +56,25 @@ namespace InternshipManagementSystem.Services
         private static bool Finite(double value) { return !double.IsNaN(value) && !double.IsInfinity(value); }
         public static bool ValidScore(double score, double max)
         { return Finite(score) && Finite(max) && max > 0 && score >= 0 && score <= max; }
+
+        // A saved profile or rule can raise the minimum, but cannot waive it.
+        public static int RequiredHours(Placement placement, Student student, CompletionRule rule = null)
+        {
+            return Math.Max(Constants.DefaultRequiredHours, Math.Max(rule == null ? 0 : rule.RequiredHours,
+                Math.Max(placement == null ? 0 : placement.RequiredHours, student == null ? 0 : student.RequiredHours)));
+        }
+
+        public static bool CountsAsApproved(TrainingHoursEntry entry, Placement placement, long now)
+        {
+            return entry != null && placement != null && entry.PlacementId == placement.Id &&
+                entry.StudentId == placement.StudentId && entry.Status == HoursStatus.Approved && entry.Hours > 0 &&
+                entry.ReviewedAt > 0 && entry.ReviewedAt <= now && !string.IsNullOrWhiteSpace(entry.ReviewedById) &&
+                placement.StartDate > 0 && placement.EndDate > placement.StartDate &&
+                entry.WorkDate >= placement.StartDate && entry.WorkDate <= placement.EndDate && entry.WorkDate <= now;
+        }
+
+        public static long ApprovedHours(IEnumerable<TrainingHoursEntry> entries, Placement placement, long now)
+        { return entries.Where(h => CountsAsApproved(h, placement, now)).Sum(h => (long)h.Hours); }
 
         public static string ConfigurationIssue(CompletionRule rule, Student student)
         {
@@ -93,6 +113,9 @@ namespace InternshipManagementSystem.Services
             var p = evidence.Placement;
             if (p == null || evidence.Student == null || p.StudentId != evidence.Student.Id)
             { a.Issues.Add("Student and placement must exist and match."); return a; }
+            a.RequiredHours = RequiredHours(p, evidence.Student, evidence.Rule);
+            if (string.IsNullOrWhiteSpace(p.CompanyId) || string.IsNullOrWhiteSpace(p.CompanyName))
+                a.Issues.Add("The placement must identify the training company and its name before completion can be approved.");
             string configurationIssue = ConfigurationIssue(evidence.Rule, evidence.Student);
             if (configurationIssue != null) a.EvaluationIssues.Add(configurationIssue);
             var c = evidence.Company;
@@ -132,20 +155,17 @@ namespace InternshipManagementSystem.Services
             }
             a.Issues.AddRange(a.EvaluationIssues);
             if (a.Result == "Fail") a.Issues.Add("The provisional evaluation does not meet the configured passing criteria. Completion remains a separate decision.");
-            if (p.Status == PlacementStatus.Offered || p.Status == PlacementStatus.Cancelled)
+            if (!Enum.IsDefined(typeof(PlacementStatus), p.Status) || p.Status == PlacementStatus.Offered || p.Status == PlacementStatus.Cancelled)
                 a.Issues.Add("This placement is not eligible for completion review.");
             if (p.StartDate <= 0 || p.EndDate <= p.StartDate || p.EndDate > now)
                 a.Issues.Add("Training must have valid dates and have ended before completion can be approved.");
             // Hours are independently approved; task completion never adds hours.
-            long hours = evidence.Hours.Where(h => h.PlacementId == p.Id && h.StudentId == p.StudentId &&
-                h.Status == HoursStatus.Approved && h.Hours > 0 && h.ReviewedAt > 0 && h.ReviewedAt <= now &&
-                !string.IsNullOrEmpty(h.ReviewedById) && h.WorkDate >= p.StartDate && h.WorkDate <= p.EndDate)
-                .Sum(h => (long)h.Hours);
+            long hours = ApprovedHours(evidence.Hours, p, now);
             a.ApprovedHours = (int)Math.Min(int.MaxValue, hours);
+            if (a.ApprovedHours < a.RequiredHours)
+                a.Issues.Add("Independently approved training hours are below the required minimum of " + a.RequiredHours + ".");
             if (configurationIssue == null)
             {
-                if (a.ApprovedHours < evidence.Rule.RequiredHours)
-                    a.Issues.Add("Independently approved training hours are below the configured requirement of " + evidence.Rule.RequiredHours + ".");
                 if (evidence.Rule.RequiredDurationDays > 0 &&
                     (p.EndDate - p.StartDate) / 86400000.0 + 1 < evidence.Rule.RequiredDurationDays)
                     a.Issues.Add("The recorded training period is shorter than the configured duration.");

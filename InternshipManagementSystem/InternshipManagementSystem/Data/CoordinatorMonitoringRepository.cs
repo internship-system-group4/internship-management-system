@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Data
 {
@@ -45,7 +46,7 @@ namespace InternshipManagementSystem.Data
             return ApplicationRepository.IsValidKey(p.Id) && p.Id == p.StudentId
                 && Enum.IsDefined(typeof(PlacementStatus), p.Status) && p.Status != PlacementStatus.Offered;
         }
-        private List<PlacementOverview> BuildRows(List<Placement> placements, List<Student> students, List<TrainingHoursEntry> hours)
+        private List<PlacementOverview> BuildRows(List<Placement> placements, List<Student> students, List<TrainingHoursEntry> hours, List<CompletionRecord> completions = null)
         {
             var profiles = students.ToDictionary(s => s.Id);
             return placements.Where(IsPlacement).Select(p =>
@@ -53,10 +54,12 @@ namespace InternshipManagementSystem.Data
                 Student student;
                 profiles.TryGetValue(p.StudentId, out student);
                 var linked = hours.Where(h => h.PlacementId == p.Id && h.StudentId == p.StudentId && h.Hours > 0).ToList();
+                var completion = completions == null ? null : completions.FirstOrDefault(c => c.PlacementId == p.Id && c.StudentId == p.StudentId);
                 return new PlacementOverview
                 {
                     Placement = p, Student = student,
-                    ApprovedHours = linked.Where(h => h.Status == HoursStatus.Approved).Sum(h => (long)h.Hours),
+                    RequiredHours = CompletionReviewService.RequiredHours(p, student, completion == null ? null : completion.EvaluationRuleSnapshot),
+                    ApprovedHours = CompletionReviewService.ApprovedHours(linked, p, Time.NowMs()),
                     PendingHours = linked.Where(h => h.Status == HoursStatus.Reported).Sum(h => (long)h.Hours)
                 };
             }).OrderByDescending(r => r.Placement.ConfirmedAt).ToList();
@@ -64,7 +67,7 @@ namespace InternshipManagementSystem.Data
         public List<PlacementOverview> LoadPlacements()
         {
             return BuildRows(new PlacementRepository().GetAll(), new UserRepository().GetAllPeople().OfType<Student>().ToList(),
-                new HoursRepository().GetAll());
+                new HoursRepository().GetAll(), new CompletionRepository().GetAll());
         }
         public CoordinatorDashboardData LoadDashboard()
         {
@@ -79,6 +82,7 @@ namespace InternshipManagementSystem.Data
             var submissions = Read<Submission>(Constants.Paths.Submissions).Where(s => taskIds.ContainsKey(s.TaskId ?? "")
                 && s.PlacementId == taskIds[s.TaskId].PlacementId && s.StudentId == taskIds[s.TaskId].StudentId).ToDictionary(s => s.Id);
             var hours = new HoursRepository().GetAll();
+            var completions = new CompletionRepository().GetAll();
             var companyFinals = Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations).Where(e => e.IsSubmitted && byId.ContainsKey(e.PlacementId ?? "") && e.StudentId == byId[e.PlacementId].StudentId && e.CompanyId == byId[e.PlacementId].CompanyId).ToList();
             var academicFinals = Read<FinalAcademicEvaluation>(Constants.Paths.AcademicEvaluations).Where(e => e.IsSubmitted && byId.ContainsKey(e.PlacementId ?? "") && e.StudentId == byId[e.PlacementId].StudentId && e.AcademicSupervisorId == byId[e.PlacementId].AcademicSupervisorId).ToList();
             var taskEvaluations = Read<TaskEvaluation>(Constants.Paths.TaskEvaluations).Where(e => submissions.ContainsKey(e.SubmissionId ?? "") && e.StudentId == submissions[e.SubmissionId].StudentId
@@ -93,7 +97,7 @@ namespace InternshipManagementSystem.Data
                 AwaitingCompletion = placements.Count(p => p.Status == PlacementStatus.AwaitingCompletion),
                 OverdueTasks = tasks.Count(t => t.IsOverdue),
                 PendingHours = hours.Where(h => byId.ContainsKey(h.PlacementId ?? "") && h.StudentId == byId[h.PlacementId].StudentId && h.Status == HoursStatus.Reported && h.Hours > 0).Sum(h => (long)h.Hours),
-                Recent = BuildRows(placements, students, hours).Take(5).ToList()
+                Recent = BuildRows(placements, students, hours, completions).Take(5).ToList()
             };
         }
         public PlacementProgressData LoadDetails(string id)
@@ -122,7 +126,8 @@ namespace InternshipManagementSystem.Data
                 .Where(c => c.StudentId == placement.StudentId).OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt).FirstOrDefault();
             return new PlacementProgressData
             {
-                Overview = BuildRows(new List<Placement> { placement }, student == null ? new List<Student>() : new List<Student> { student }, hours)[0],
+                Overview = BuildRows(new List<Placement> { placement }, student == null ? new List<Student>() : new List<Student> { student }, hours,
+                    completion == null ? null : new List<CompletionRecord> { completion })[0],
                 Tasks = tasks, Submissions = submissions, Evaluations = evaluations, Hours = hours,
                 CompanyFinal = companyFinal, AcademicFinal = academicFinal, Completion = completion,
                 CompanySupervisorName = Name(placement.CompanySupervisorId, placement.CompanySupervisorName),
@@ -134,22 +139,36 @@ namespace InternshipManagementSystem.Data
         /// state, for the Final Completion Review queue (card A10).</summary>
         public List<CompletionQueueRow> LoadCompletionQueue()
         {
-            var rows = LoadPlacements().Where(r => r.Placement.Status != PlacementStatus.Cancelled).ToList();
-            var companyDone = new HashSet<string>(Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations)
-                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId));
-            var academicDone = new HashSet<string>(Read<FinalAcademicEvaluation>(Constants.Paths.AcademicEvaluations)
-                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId));
+            var companies = Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations);
+            var academics = Read<FinalAcademicEvaluation>(Constants.Paths.AcademicEvaluations);
             var completions = Read<CompletionRecord>(Constants.Paths.Completions);
+            var tasks = new TaskRepository().GetAll();
+            var evaluations = Read<TaskEvaluation>(Constants.Paths.TaskEvaluations);
+            var submissions = Read<Submission>(Constants.Paths.Submissions);
+            var hours = new HoursRepository().GetAll();
+            var rows = BuildRows(new PlacementRepository().GetAll(), new UserRepository().GetAllPeople().OfType<Student>().ToList(), hours, completions)
+                .Where(r => r.Placement.Status != PlacementStatus.Cancelled).ToList();
             return rows.Select(r =>
             {
-                string key = r.Placement.Id + "|" + r.Placement.StudentId;
+                var p = r.Placement;
+                var record = completions.Where(c => c.PlacementId == p.Id && c.StudentId == p.StudentId)
+                    .OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt).FirstOrDefault();
+                var assessment = CompletionReviewService.Assess(new CompletionReviewEvidence {
+                    Placement = p, Student = r.Student, Record = record, Rule = record == null ? null : record.EvaluationRuleSnapshot,
+                    Company = companies.Where(c => c.PlacementId == p.Id && c.StudentId == p.StudentId && c.CompanyId == p.CompanyId && c.SupervisorId == p.CompanySupervisorId)
+                        .OrderByDescending(c => c.IsSubmitted).ThenByDescending(c => c.SubmittedAt).FirstOrDefault(),
+                    Academic = academics.Where(a => a.PlacementId == p.Id && a.StudentId == p.StudentId && a.AcademicSupervisorId == p.AcademicSupervisorId)
+                        .OrderByDescending(a => a.IsSubmitted).ThenByDescending(a => a.SubmittedAt).FirstOrDefault(),
+                    Tasks = tasks.Where(t => t.PlacementId == p.Id && t.StudentId == p.StudentId && t.CompanyId == p.CompanyId).ToList(),
+                    TaskEvaluations = evaluations, Submissions = submissions, Hours = hours
+                }, Time.NowMs());
                 return new CompletionQueueRow
                 {
                     Overview = r,
-                    CompanySubmitted = companyDone.Contains(key),
-                    AcademicSubmitted = academicDone.Contains(key),
-                    Completion = completions.Where(c => c.PlacementId == r.Placement.Id && c.StudentId == r.Placement.StudentId)
-                        .OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt).FirstOrDefault()
+                    CompanySubmitted = assessment.CompanySubmitted,
+                    AcademicSubmitted = assessment.AcademicSubmitted,
+                    RequirementsMet = assessment.CanApprove,
+                    Completion = record
                 };
             }).OrderBy(q => q.SortOrder).ThenBy(q => q.Overview.StudentName).ToList();
         }
@@ -166,21 +185,23 @@ namespace InternshipManagementSystem.Data
         public Student Student { get; set; }
         public long ApprovedHours { get; set; }
         public long PendingHours { get; set; }
+        public int RequiredHours { get; set; }
         public string StudentName { get { return Student == null ? Placement.StudentName : Student.FullName; } }
         public string StatusText { get { return Placement.Status == PlacementStatus.AwaitingCompletion ? L.T("Workspace.CoordinatorMonitoringRepository.AwaitingCompletion") : L.Value("PlacementStatus", Placement.Status); } }
         public string StudentNumber { get { return Student == null ? "—" : Student.StudentNumber; } }
         public string Major { get { return Student == null ? "—" : Student.Major; } }
-        public int HoursPercent { get { return Placement.RequiredHours <= 0 ? 0 : (int)Math.Min(100, ApprovedHours * 100 / Placement.RequiredHours); } }
-        public string HoursText { get { return Placement.RequiredHours > 0 ? ApprovedHours + " / " + Placement.RequiredHours + " " + L.T("Workspace.UnitH") : ApprovedHours + " " + L.T("Workspace.UnitH") + L.T("Workspace.RequirementNotConfigured"); } }
+        public int HoursPercent { get { return RequiredHours <= 0 ? 0 : (int)Math.Min(100, ApprovedHours * 100 / RequiredHours); } }
+        public string HoursText { get { return ApprovedHours + " / " + RequiredHours + " " + L.T("Workspace.UnitH"); } }
     }
     public class CompletionQueueRow
     {
         public PlacementOverview Overview;
         public bool CompanySubmitted, AcademicSubmitted;
+        public bool RequirementsMet;
         public CompletionRecord Completion;
         public bool IsApproved { get { return Completion != null && Completion.Status == CompletionStatus.Approved; } }
-        public bool IsReturned { get { return Completion != null && Completion.Status == CompletionStatus.Rejected; } }
-        public bool IsReady { get { return !IsApproved && CompanySubmitted && AcademicSubmitted; } }
+        public bool IsReturned { get { return Completion != null && (Completion.Status == CompletionStatus.Rejected || Completion.Status == CompletionStatus.NeedsCorrections); } }
+        public bool IsReady { get { return !IsApproved && !IsReturned && RequirementsMet; } }
         public string StageText
         {
             get
@@ -189,11 +210,12 @@ namespace InternshipManagementSystem.Data
                 if (IsReturned) return L.T("Workspace.CoordinatorMonitoringRepository.Returned");
                 if (IsReady) return L.T("Workspace.CoordinatorMonitoringRepository.ReadyForReview");
                 if (!CompanySubmitted) return L.T("Workspace.CoordinatorMonitoringRepository.AwaitingCompanyEvaluation");
-                return L.T("Workspace.CoordinatorMonitoringRepository.AwaitingAcademicEvaluation");
+                if (!AcademicSubmitted) return L.T("Workspace.CoordinatorMonitoringRepository.AwaitingAcademicEvaluation");
+                return Overview.StatusText;
             }
         }
         // Ready first, then returned, then waiting for evaluations, approved last.
-        public int SortOrder { get { return IsApproved ? 3 : IsReady ? (IsReturned ? 1 : 0) : 2; } }
+        public int SortOrder { get { return IsApproved ? 3 : IsReturned ? 1 : IsReady ? 0 : 2; } }
     }
     public class CoordinatorDashboardData
     {

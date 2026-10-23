@@ -2,45 +2,53 @@
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/configured-groups.css?v=20261024-1") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="students-page">
-        <div class="students-intro">
-            <div><span class="students-eyebrow"><%: L.T("Coordinator.ConfiguredGroups.CoordinatorGroups") %></span><h2><%: L.T("Coordinator.ConfiguredGroups.ConfiguredGroups") %></h2><p><%: L.T("Coordinator.ConfiguredGroups.ReviewGroupMembershipAndSupervisorAssignments") %></p></div>
-            <a class="btn btn-primary" href="<%= ResolveUrl("~/Pages/Coordinator/Groups.aspx") %>"><%: L.T("Coordinator.ConfiguredGroups.CreateGroup") %></a>
+    <div class="students-page configured-groups">
+        <div class="groups-intro">
+            <div class="groups-title"><span class="groups-title-icon" aria-hidden="true"><i class="groups-icon groups-icon-people"></i></span><div><h2><%: L.T("Coordinator.ConfiguredGroups.ConfiguredGroups") %></h2><p><%: L.T("Coordinator.ConfiguredGroups.ReviewGroupMembershipAndSupervisorAssignments") %></p></div></div>
+            <a class="btn groups-primary groups-create" href="<%= ResolveUrl("~/Pages/Coordinator/Groups.aspx") %>"><i data-ui-icon="plus" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.CreateGroupLabel") %></a>
         </div>
         <nav class="students-tabs" aria-label="<%: L.T("Coordinator.ConfiguredGroups.GroupPages") %>">
-            <a href="<%= ResolveUrl("~/Pages/Coordinator/Groups.aspx") %>"><%: L.T("Coordinator.ConfiguredGroups.CreateEditGroup") %></a>
-            <a class="active" aria-current="page" href="<%= ResolveUrl("~/Pages/Coordinator/ConfiguredGroups.aspx") %>"><%: L.T("Coordinator.ConfiguredGroups.ConfiguredGroups") %></a>
+            <a href="<%= ResolveUrl("~/Pages/Coordinator/Groups.aspx") %>"><i data-ui-icon="edit" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.CreateEditGroup") %></a>
+            <a class="active" aria-current="page" href="<%= ResolveUrl("~/Pages/Coordinator/ConfiguredGroups.aspx") %>"><i class="groups-icon groups-icon-people" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.ConfiguredGroups") %></a>
         </nav>
 
         <section class="students-card" aria-labelledby="groups-heading">
-            <div class="students-card-heading"><div><h3 id="groups-heading"><%: L.T("Coordinator.ConfiguredGroups.Groups") %></h3><p><%: L.T("Coordinator.ConfiguredGroups.SearchByGroupNameAcademicYear") %></p></div></div>
+            <div class="students-card-heading"><div><h3 id="groups-heading"><%: L.T("Coordinator.ConfiguredGroups.Groups") %></h3><p><%: L.T("Coordinator.ConfiguredGroups.SearchByGroupNameAcademicYear") %></p></div><div class="groups-total"><span class="groups-total-icon" aria-hidden="true"><i class="groups-icon groups-icon-people"></i></span><div><span><%: L.T("Coordinator.ConfiguredGroups.TotalGroups") %></span><strong><asp:Literal ID="litTotalGroups" runat="server" Text="0" /></strong></div></div></div>
             <asp:Label ID="lblMessage" runat="server" Visible="false" role="alert" />
-            <div class="students-search">
+            <asp:Panel ID="pnlSearch" runat="server" CssClass="groups-filters" DefaultButton="btnSearch">
+                <div class="groups-search-field">
                 <label for="<%= txtSearch.ClientID %>" class="visually-hidden"><%: L.T("Coordinator.ConfiguredGroups.SearchConfiguredGroups") %></label>
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" MaxLength="120" placeholder="<%$ Resources:Coordinator, ConfiguredGroups.SearchConfiguredGroups %>" />
-                <asp:Button ID="btnSearch" runat="server" Text="<%$ Resources:Coordinator, ConfiguredGroups.Search %>" CssClass="btn btn-primary" OnClick="btnSearch_Click" CausesValidation="false" />
-                <asp:Button ID="btnClearSearch" runat="server" Text="<%$ Resources:Coordinator, ConfiguredGroups.Clear %>" CssClass="btn btn-outline-secondary" OnClick="btnClearSearch_Click" CausesValidation="false" />
-            </div>
+                <i data-ui-icon="search" aria-hidden="true"></i><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" MaxLength="120" placeholder="<%$ Resources:Coordinator, ConfiguredGroups.SearchPlaceholder %>" />
+                </div>
+                <div class="groups-filter"><label for="<%= ddlYear.ClientID %>"><%: L.T("Coordinator.ConfiguredGroups.AcademicYear") %></label><asp:DropDownList ID="ddlYear" runat="server" CssClass="form-select" /></div>
+                <div class="groups-filter"><label for="<%= ddlSemester.ClientID %>"><%: L.T("Coordinator.ConfiguredGroups.Semester") %></label><asp:DropDownList ID="ddlSemester" runat="server" CssClass="form-select" /></div>
+                <div class="groups-filter"><label for="<%= ddlSupervisor.ClientID %>"><%: L.T("Coordinator.ConfiguredGroups.Supervisor") %></label><asp:DropDownList ID="ddlSupervisor" runat="server" CssClass="form-select" /></div>
+                <asp:LinkButton ID="btnSearch" runat="server" CssClass="btn groups-primary" OnClick="btnSearch_Click" CausesValidation="false"><i data-ui-icon="search" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.Search") %></asp:LinkButton>
+                <asp:LinkButton ID="btnClearSearch" runat="server" CssClass="btn groups-clear" OnClick="btnClearSearch_Click" CausesValidation="false"><i class="groups-icon groups-icon-refresh" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.Clear") %></asp:LinkButton>
+            </asp:Panel>
             <div class="table-responsive">
-                <table class="table students-table align-middle">
-                    <thead><tr><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Group") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.AcademicYear") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Semester") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Supervisor") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Students") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Actions") %></th></tr></thead>
+                <table class="table students-table groups-table align-middle">
+                    <thead><tr><th scope="col">#</th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Group") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.AcademicYear") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Semester") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Supervisor") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Students") %></th><th scope="col"><%: L.T("Coordinator.ConfiguredGroups.Actions") %></th></tr></thead>
                     <tbody><asp:Repeater ID="rptGroups" runat="server"><ItemTemplate><tr>
-                        <td><strong><%#: Eval("Name") %></strong></td>
-                        <td><%#: Eval("AcademicYear") %></td>
-                        <td><%#: Eval("Semester") %></td>
-                        <td><%#: Eval("AcademicSupervisorName") %></td>
-                        <td><%#: ((InternshipManagementSystem.Models.StudentGroup)Container.DataItem).StudentIds == null ? 0 : ((InternshipManagementSystem.Models.StudentGroup)Container.DataItem).StudentIds.Count %></td>
-                        <td><div class="d-flex flex-wrap gap-2">
-                            <asp:LinkButton ID="btnView" runat="server" Text="<%$ Resources:Coordinator, ConfiguredGroups.View %>" CssClass="btn btn-sm btn-outline-secondary" CommandArgument='<%# Eval("Id") %>' OnClick="btnView_Click" CausesValidation="false" />
-                            <asp:LinkButton ID="btnEdit" runat="server" Text="<%$ Resources:Coordinator, ConfiguredGroups.EditGroup %>" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnEdit_Click" CausesValidation="false" />
-                            <asp:LinkButton ID="btnDelete" runat="server" Text="<%$ Resources:Coordinator, ConfiguredGroups.Delete %>" CssClass="btn btn-sm btn-outline-danger" CommandArgument='<%# Eval("Id") %>' OnClick="btnDelete_Click" CausesValidation="false" OnClientClick="return confirm('Delete this group? Its students will become unassigned.');"  data-ui-action="delete" data-loading-label="Deleting…" data-ui-validation="none"/>
+                        <td><%# PageIndex * PageSize + Container.ItemIndex + 1 %></td>
+                        <td><div class="groups-name"><span class='groups-initials tone-<%# Container.ItemIndex % 3 %>' aria-hidden="true"><%#: GroupInitials((string)Eval("Name")) %></span><strong><%#: Eval("Name") %></strong></div></td>
+                        <td class="groups-term"><%#: DisplayValue((string)Eval("AcademicYear")) %></td>
+                        <td class="groups-term"><%#: DisplayValue((string)Eval("Semester")) %></td>
+                        <td><div class="groups-supervisor"><span class="groups-person" aria-hidden="true"><i class="groups-icon groups-icon-person"></i></span><span><%#: DisplayValue((string)Eval("AcademicSupervisorName")) %></span></div></td>
+                        <td><span class="groups-student-count"><i class="groups-icon groups-icon-people" aria-hidden="true"></i><%#: ((InternshipManagementSystem.Models.StudentGroup)Container.DataItem).StudentIds == null ? 0 : ((InternshipManagementSystem.Models.StudentGroup)Container.DataItem).StudentIds.Count %></span></td>
+                        <td><div class="groups-actions">
+                            <asp:LinkButton ID="btnView" runat="server" CssClass="btn groups-view" CommandArgument='<%# Eval("Id") %>' OnClick="btnView_Click" CausesValidation="false"><i data-ui-icon="eye" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.View") %></asp:LinkButton>
+                            <asp:LinkButton ID="btnEdit" runat="server" CssClass="btn groups-edit" CommandArgument='<%# Eval("Id") %>' OnClick="btnEdit_Click" CausesValidation="false"><i data-ui-icon="edit" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.Edit") %></asp:LinkButton>
+                            <asp:LinkButton ID="btnDelete" runat="server" CssClass="btn groups-delete" CommandArgument='<%# Eval("Id") %>' OnClick="btnDelete_Click" CausesValidation="false" OnClientClick="return confirm('Delete this group? Its students will become unassigned.');" data-ui-action="delete" data-loading-label="Deleting…" data-ui-validation="none"><i data-ui-icon="trash" aria-hidden="true"></i><%: L.T("Coordinator.ConfiguredGroups.Delete") %></asp:LinkButton>
                         </div></td>
                     </tr></ItemTemplate></asp:Repeater></tbody>
                 </table>
             </div>
             <asp:Label ID="lblNoGroups" runat="server" CssClass="students-empty" Visible="false" />
+            <div class="groups-footer"><asp:Label ID="lblResults" runat="server" role="status" /><nav class="groups-pagination" aria-label="<%: L.T("Coordinator.ConfiguredGroups.Pagination") %>"><asp:LinkButton ID="btnPrevious" runat="server" CssClass="btn groups-page-arrow" OnClick="btnPrevious_Click" CausesValidation="false" ToolTip="<%$ Resources:Coordinator, ConfiguredGroups.Previous %>"><i class="groups-icon groups-icon-back" aria-hidden="true"></i></asp:LinkButton><span class="groups-current-page" aria-current="page"><asp:Literal ID="litPage" runat="server" Text="1" /></span><asp:LinkButton ID="btnNext" runat="server" CssClass="btn groups-page-arrow" OnClick="btnNext_Click" CausesValidation="false" ToolTip="<%$ Resources:Coordinator, ConfiguredGroups.Next %>"><i data-ui-icon="next" aria-hidden="true"></i></asp:LinkButton></nav></div>
         </section>
 
         <asp:Panel ID="pnlView" runat="server" Visible="false" CssClass="modal fade" ClientIDMode="Static" tabindex="-1" aria-labelledby="groupModalTitle" aria-hidden="true">

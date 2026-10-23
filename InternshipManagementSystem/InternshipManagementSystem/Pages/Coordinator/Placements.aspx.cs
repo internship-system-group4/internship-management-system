@@ -30,20 +30,20 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             string search = (txtSearch.Text ?? "").Trim();
             try
             {
-                List<PlacementRow> rows = new PlacementRepository().GetAll()
-                    .Where(p => p != null && p.Status != PlacementStatus.Cancelled &&
-                                !string.IsNullOrEmpty(p.StudentId))
-                    .Where(p => search.Length == 0 || Contains(p.StudentName, search) ||
-                                Contains(p.CompanyName, search) || Contains(p.OpportunityTitle, search))
-                    .OrderBy(p => p.StudentName).Select(p => new PlacementRow
+                List<PlacementRow> rows = new CoordinatorMonitoringRepository().LoadPlacements()
+                    .Where(r => r.Placement.Status != PlacementStatus.Cancelled)
+                    .Select(r => new { Overview = r, Placement = r.Placement })
+                    .Where(r => search.Length == 0 || Contains(r.Overview.StudentName, search) ||
+                                Contains(r.Placement.CompanyName, search) || Contains(r.Placement.OpportunityTitle, search))
+                    .OrderBy(r => r.Overview.StudentName).Select(r => new PlacementRow
                     {
-                        Student = string.IsNullOrWhiteSpace(p.StudentName) ? "Unnamed student" : p.StudentName,
-                        Company = string.IsNullOrWhiteSpace(p.CompanyName) ? "Company not recorded" : p.CompanyName,
-                        Opportunity = string.IsNullOrWhiteSpace(p.OpportunityTitle) ? "Internship" : p.OpportunityTitle,
-                        Status = p.Status.ToString(),
-                        Hours = p.ApprovedHours + " / " + p.RequiredHours,
+                        Student = string.IsNullOrWhiteSpace(r.Overview.StudentName) ? "Unnamed student" : r.Overview.StudentName,
+                        Company = string.IsNullOrWhiteSpace(r.Placement.CompanyName) ? "Company not recorded" : r.Placement.CompanyName,
+                        Opportunity = string.IsNullOrWhiteSpace(r.Placement.OpportunityTitle) ? "Internship" : r.Placement.OpportunityTitle,
+                        Status = r.Placement.Status.ToString(),
+                        Hours = r.Overview.ApprovedHours + " / " + r.Overview.RequiredHours,
                         DetailsUrl = ResolveUrl("~/Pages/Coordinator/PlacementDetails.aspx?id=" +
-                            Server.UrlEncode(p.StudentId))
+                            Server.UrlEncode(r.Placement.StudentId))
                     }).ToList();
                 rptPlacements.DataSource = rows;
                 rptPlacements.DataBind();

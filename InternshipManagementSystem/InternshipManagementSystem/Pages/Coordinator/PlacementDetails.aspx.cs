@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
@@ -33,6 +34,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 return;
             }
             Student student = new UserRepository().GetStudent(studentId);
+            CompletionRecord completion = new CompletionRepository().GetByPlacement(placement.Id);
             pnlMissing.Visible = false;
             pnlDetails.Visible = true;
             litStudent.Text = Encode(student == null ? placement.StudentName : student.FullName);
@@ -50,12 +52,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Server.UrlEncode(studentId));
 
             List<InternshipTask> tasks = new TaskRepository().GetByPlacement(placement.Id)
-                .Where(t => t.StudentId == studentId && !string.IsNullOrEmpty(t.Id)).ToList();
+                .Where(t => t.StudentId == studentId && t.CompanyId == placement.CompanyId && !string.IsNullOrEmpty(t.Id)).ToList();
             HashSet<string> taskIds = new HashSet<string>(tasks.Select(t => t.Id), StringComparer.Ordinal);
             List<Submission> submissions = new SubmissionRepository().GetByPlacement(placement.Id)
                 .Where(s => s.StudentId == studentId && taskIds.Contains(s.TaskId)).ToList();
             List<TaskEvaluation> evaluations = new EvaluationRepository().GetTaskEvaluationsForPlacement(placement.Id)
-                .Where(e => e.StudentId == studentId && taskIds.Contains(e.TaskId)).ToList();
+                .Where(e => e.StudentId == studentId && e.EvaluatedBySupervisorId == placement.CompanySupervisorId && taskIds.Contains(e.TaskId)).ToList();
             List<TaskRow> taskRows = tasks.OrderBy(t => t.Deadline == 0 ? long.MaxValue : t.Deadline)
                 .Select(t => BuildTaskRow(t, submissions, evaluations)).ToList();
             rptTasks.DataSource = taskRows;
@@ -67,10 +69,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
             List<TrainingHoursEntry> hours = new HoursRepository().GetByPlacement(placement.Id)
                 .Where(h => h.StudentId == studentId).ToList();
-            int approved = hours.Where(h => h.Status == HoursStatus.Approved).Sum(h => Math.Max(0, h.Hours));
-            int pending = hours.Where(h => h.Status == HoursStatus.Reported).Sum(h => Math.Max(0, h.Hours));
-            int required = Math.Max(Constants.DefaultRequiredHours,
-                placement.RequiredHours > 0 ? placement.RequiredHours : student == null ? 0 : student.RequiredHours);
+            long approved = CompletionReviewService.ApprovedHours(hours, placement, Time.NowMs());
+            long pending = hours.Where(h => h.Status == HoursStatus.Reported && h.Hours > 0).Sum(h => (long)h.Hours);
+            int required = CompletionReviewService.RequiredHours(placement, student, completion == null ? null : completion.EvaluationRuleSnapshot);
             litHours.Text = approved.ToString(CultureInfo.InvariantCulture) + " / " +
                             required.ToString(CultureInfo.InvariantCulture);
             litPendingHours.Text = pending.ToString(CultureInfo.InvariantCulture);
@@ -92,13 +93,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             EvaluationRepository finalEvaluations = new EvaluationRepository();
             FinalCompanyEvaluation company = finalEvaluations.GetCompanyFinalForPlacement(placement.Id);
             FinalAcademicEvaluation academicFinal = finalEvaluations.GetAcademicFinalForPlacement(placement.Id);
-            litCompanyEvaluation.Text = company != null && company.IsSubmitted ? "Submitted" : "Pending";
-            litAcademicEvaluation.Text = academicFinal != null && academicFinal.IsSubmitted ? "Submitted" : "Pending";
-            CompletionRecord completion = new CompletionRepository().GetByPlacement(placement.Id);
+            var assessment = CompletionReviewService.Assess(new CompletionReviewEvidence { Placement = placement, Student = student,
+                Record = completion, Rule = completion == null ? null : completion.EvaluationRuleSnapshot,
+                Company = company, Academic = academicFinal, Tasks = tasks, Submissions = submissions, TaskEvaluations = evaluations, Hours = hours }, Time.NowMs());
+            litCompanyEvaluation.Text = assessment.CompanySubmitted ? "Submitted" : "Pending";
+            litAcademicEvaluation.Text = assessment.AcademicSubmitted ? "Submitted" : "Pending";
             litCompletion.Text = completion == null ? "Not reviewed" :
                 completion.Status == CompletionStatus.Approved ? "Approved - Pass" :
                 completion.Status == CompletionStatus.Rejected ?
-                    (completion.Result == "Fail" ? "Reviewed - Fail" : "Rejected") : "Awaiting review";
+                    (completion.Result == "Fail" ? "Reviewed - Fail" : "Rejected") :
+                completion.Status == CompletionStatus.NeedsCorrections ? "Needs Corrections" : "Awaiting review";
         }
 
         private static TaskRow BuildTaskRow(InternshipTask task, List<Submission> submissions,
@@ -108,8 +112,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             TaskEvaluation latest = evaluations.Where(e => e.TaskId == task.Id)
                 .OrderByDescending(e => e.EvaluatedAt).FirstOrDefault();
             Submission lastAttempt = attempts.OrderByDescending(s => s.SubmittedAt).FirstOrDefault();
-            bool graded = latest != null && !latest.RevisionRequested && latest.MaxScore > 0 &&
-                          lastAttempt != null && latest.EvaluatedAt >= lastAttempt.SubmittedAt;
+            bool graded = latest != null && !latest.RevisionRequested && CompletionReviewService.ValidScore(latest.TotalScore, latest.MaxScore) &&
+                          lastAttempt != null && latest.SubmissionId == lastAttempt.Id && latest.EvaluatedAt >= lastAttempt.SubmittedAt;
             return new TaskRow
             {
                 Title = string.IsNullOrWhiteSpace(task.Title) ? "Untitled task" : task.Title,
@@ -135,7 +139,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             litMissing.Text = Encode(message);
         }
 
-        private string Encode(string value) { return Server.HtmlEncode(value ?? "—"); }
+        private string Encode(string value) { return Server.HtmlEncode(First(value, "Not recorded")); }
         private static string First(string value, string fallback)
         { return string.IsNullOrWhiteSpace(value) ? fallback : value; }
 

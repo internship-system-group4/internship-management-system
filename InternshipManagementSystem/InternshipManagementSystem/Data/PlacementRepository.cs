@@ -5,6 +5,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
@@ -20,6 +21,39 @@ namespace InternshipManagementSystem.Data
         protected override void SetId(Placement entity, string id)
         {
             entity.Id = id;
+        }
+
+        public override Placement GetById(string id)
+        {
+            var placement = base.GetById(id);
+            if (placement != null) ResolveCompanyNames(new List<Placement> { placement });
+            return placement;
+        }
+
+        public override List<Placement> GetAll()
+        {
+            var placements = base.GetAll();
+            ResolveCompanyNames(placements);
+            return placements;
+        }
+
+        public override List<Placement> GetWhere(string field, string value)
+        {
+            var placements = base.GetWhere(field, value);
+            ResolveCompanyNames(placements);
+            return placements;
+        }
+
+        // Resolve legacy/missing snapshots on read without rewriting historical records.
+        private static void ResolveCompanyNames(List<Placement> placements)
+        {
+            var companies = new CompanyRepository();
+            foreach (var group in placements.Where(p => ApplicationRepository.IsValidKey(p.CompanyId)).GroupBy(p => p.CompanyId))
+            {
+                var company = companies.GetById(group.Key);
+                if (company == null || string.IsNullOrWhiteSpace(company.Name)) continue;
+                foreach (var placement in group) placement.CompanyName = company.Name.Trim();
+            }
         }
 
         public bool Exists(string studentUid)
@@ -79,14 +113,17 @@ namespace InternshipManagementSystem.Data
             if (supervisor == null || supervisor.CompanyId != application.CompanyId)
                 throw new InvalidOperationException("The company supervisor is unavailable. Contact the coordinator.");
 
+            var company = ApplicationRepository.IsValidKey(opportunity.CompanyId)
+                ? new CompanyRepository().GetById(opportunity.CompanyId) : null;
             var placement = existing ?? new Placement
             {
                 Id = student.Id, StudentId = student.Id, StudentName = student.FullName,
                 ApplicationId = applicationId, OpportunityId = opportunity.Id,
                 OpportunityTitle = opportunity.Title, CompanyId = opportunity.CompanyId,
-                CompanyName = opportunity.CompanyName, CompanySupervisorId = supervisor.Id,
+                CompanyName = company != null && !string.IsNullOrWhiteSpace(company.Name) ? company.Name.Trim() : opportunity.CompanyName,
+                CompanySupervisorId = supervisor.Id,
                 CompanySupervisorName = supervisor.FullName, AcademicSupervisorId = student.AcademicSupervisorId,
-                RequiredHours = student.RequiredHours, ApprovedHours = 0,
+                RequiredHours = Math.Max(Constants.DefaultRequiredHours, student.RequiredHours), ApprovedHours = 0,
                 StartDate = opportunity.StartDate,
                 EndDate = opportunity.StartDate > 0 && opportunity.DurationWeeks > 0
                     ? opportunity.StartDate + (long)opportunity.DurationWeeks * 7 * 24 * 60 * 60 * 1000 : 0,

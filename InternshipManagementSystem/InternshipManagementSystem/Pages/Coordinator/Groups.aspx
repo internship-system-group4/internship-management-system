@@ -20,7 +20,10 @@
                 <div class="col-md-6"><label for="<%= txtName.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.GroupName") %></label><asp:TextBox ID="txtName" runat="server" CssClass="form-control" MaxLength="120" /></div>
                 <div class="col-md-3"><label for="<%= txtAcademicYear.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.AcademicYearOptional") %></label><asp:TextBox ID="txtAcademicYear" runat="server" CssClass="form-control" MaxLength="30" /></div>
                 <div class="col-md-3"><label for="<%= txtSemester.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.SemesterOptional") %></label><asp:TextBox ID="txtSemester" runat="server" CssClass="form-control" MaxLength="40" /></div>
-                <div class="col-md-6"><label for="<%= ddlSupervisor.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.AcademicSupervisor") %></label><asp:DropDownList ID="ddlSupervisor" runat="server" CssClass="form-select" /></div>
+                <div class="col-12">
+                    <span id="group-supervisor-label" class="form-label d-block"><%: L.T("Coordinator.Groups.AcademicSupervisor") %></span>
+                    <asp:RadioButtonList ID="rblSupervisor" runat="server" CssClass="d-block" RepeatLayout="Flow" role="radiogroup" aria-labelledby="group-supervisor-label" />
+                </div>
                 <div class="col-12">
                     <span class="form-label d-block"><%: L.T("Coordinator.Groups.Students") %></span>
                     <p class="small text-muted mb-2"><%: L.T("Coordinator.Groups.OnlyUnassignedStudentsAreAvailableWhen") %></p>

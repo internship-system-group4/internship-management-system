@@ -6,7 +6,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
@@ -22,6 +21,9 @@ namespace InternshipManagementSystem.Services
         public int RequiredHours;
         public int TasksTotal;
         public int TasksGraded;
+        public bool RequirementsMet;
+        public string ProvisionalResult;
+        public double? ProvisionalScore;
 
         public double TaskPercent;
         public double CompanyPercent;
@@ -30,12 +32,12 @@ namespace InternshipManagementSystem.Services
 
         public bool HoursMet { get { return RequiredHours > 0 && ApprovedHours >= RequiredHours; } }
         public bool EvaluationsReady { get { return CompanySubmitted && AcademicSubmitted; } }
-        public bool Passing { get { return EvaluationsReady && GradingService.IsPassing(FinalPercent); } }
-        public string Result { get { return Passing ? "Pass" : "Fail"; } }
+        public bool Passing { get { return ProvisionalResult == "Pass"; } }
+        public string Result { get { return ProvisionalResult == "Evidence complete" ? "Completed" : ProvisionalResult; } }
 
         /// <summary>The university's completion gate: both final evaluations,
         /// the required approved hours and a passing result.</summary>
-        public bool CanApprove { get { return EvaluationsReady && HoursMet && Passing; } }
+        public bool CanApprove { get { return RequirementsMet && EvaluationsReady && HoursMet; } }
     }
 
     public static class CompletionService
@@ -45,47 +47,36 @@ namespace InternshipManagementSystem.Services
             CompletionSummary summary = new CompletionSummary();
             if (progress == null) return summary;
 
-            Placement placement = progress.Overview.Placement;
-            Student student = progress.Overview.Student;
-
-            summary.CompanySubmitted = progress.CompanyFinal != null && progress.CompanyFinal.IsSubmitted;
-            summary.AcademicSubmitted = progress.AcademicFinal != null && progress.AcademicFinal.IsSubmitted;
-
-            // Hours come from the approved entries themselves, never from a counter.
-            summary.ApprovedHours = progress.Overview.ApprovedHours;
-            summary.RequiredHours = placement.RequiredHours > 0 ? placement.RequiredHours
-                : (student != null && student.RequiredHours > 0 ? student.RequiredHours : Constants.DefaultRequiredHours);
-
+            var assessment = CompletionReviewService.Assess(Evidence(progress), Time.NowMs());
+            summary.CompanySubmitted = assessment.CompanySubmitted;
+            summary.AcademicSubmitted = assessment.AcademicSubmitted;
+            summary.ApprovedHours = assessment.ApprovedHours;
+            summary.RequiredHours = assessment.RequiredHours;
+            summary.RequirementsMet = assessment.CanApprove;
+            summary.ProvisionalResult = assessment.Result;
+            summary.ProvisionalScore = assessment.Score;
             summary.TasksTotal = progress.Tasks.Count;
-            summary.TasksGraded = progress.Tasks.Count(t => t.Status == InternshipTaskStatus.Graded);
-
-            // Only the newest evaluation of each task counts (Evaluations is newest first).
-            List<TaskEvaluation> latest = progress.Evaluations
-                .GroupBy(e => e.TaskId)
-                .Select(g => g.First())
-                .ToList();
-            summary.TaskPercent = GradingService.TaskComponentPercent(progress.Tasks, latest);
-
-            if (summary.CompanySubmitted)
-            {
-                summary.CompanyPercent = PercentOf(progress.CompanyFinal.TotalScore,
-                    progress.CompanyFinal.MaxScore, progress.CompanyFinal.Components);
-            }
-            if (summary.AcademicSubmitted)
-            {
-                summary.AcademicPercent = PercentOf(progress.AcademicFinal.TotalScore,
-                    progress.AcademicFinal.MaxScore, progress.AcademicFinal.Components);
-            }
-
-            summary.FinalPercent = GradingService.FinalPercent(
-                summary.TaskPercent, summary.CompanyPercent, summary.AcademicPercent);
+            summary.TasksGraded = assessment.CompletedTasks;
+            summary.TaskPercent = assessment.TaskPercent ?? 0;
+            summary.CompanyPercent = assessment.CompanyPercent ?? 0;
+            summary.AcademicPercent = assessment.AcademicPercent ?? 0;
+            summary.FinalPercent = assessment.Score ?? 0;
             return summary;
+        }
+
+        private static CompletionReviewEvidence Evidence(PlacementProgressData progress)
+        {
+            return new CompletionReviewEvidence { Placement = progress.Overview.Placement, Student = progress.Overview.Student,
+                Record = progress.Completion, Rule = progress.Completion == null ? null : progress.Completion.EvaluationRuleSnapshot,
+                Company = progress.CompanyFinal, Academic = progress.AcademicFinal, Tasks = progress.Tasks,
+                TaskEvaluations = progress.Evaluations, Submissions = progress.Submissions, Hours = progress.Hours };
         }
 
         /// <summary>Approves completion. Checks the gate again on the server,
         /// so a stale page can never approve a placement that is not ready.</summary>
         public static CompletionRecord Approve(PlacementProgressData progress, Coordinator coordinator, string note)
         {
+            CompletionReviewService.ValidateDecision(coordinator, Evidence(progress), CompletionStatus.Approved, note, Time.NowMs());
             CompletionSummary summary = Summarise(progress);
             if (!summary.CanApprove)
                 throw new InvalidOperationException("This internship does not meet all completion requirements yet.");
@@ -94,6 +85,11 @@ namespace InternshipManagementSystem.Services
             record.ApprovedAt = Time.NowMs();
             record.ReportFileUrl = PdfReportService.ReportUrl(record.Id);
             record.CertificateFileUrl = PdfReportService.CertificateUrl(record.Id);
+            var placement = progress.Overview.Placement;
+            var student = progress.Overview.Student;
+            record.DocumentSnapshot = new CompletionDocumentSnapshot { StudentName = student.FullName, StudentNumber = student.StudentNumber,
+                Program = student.Major, CompanyName = placement.CompanyName, InternshipType = record.EvaluationRuleSnapshot.InternshipType,
+                StartDate = placement.StartDate, EndDate = placement.EndDate };
 
             new CompletionRepository().Save(record.Id, record);   // also notifies the student
 
@@ -108,11 +104,13 @@ namespace InternshipManagementSystem.Services
         /// coordinator can review it again later.</summary>
         public static CompletionRecord Return(PlacementProgressData progress, Coordinator coordinator, string note)
         {
+            CompletionReviewService.ValidateDecision(coordinator, Evidence(progress), CompletionStatus.NeedsCorrections, note, Time.NowMs());
             if (string.IsNullOrWhiteSpace(note))
                 throw new InvalidOperationException("Write a note explaining why the completion is returned.");
 
             CompletionSummary summary = Summarise(progress);
-            CompletionRecord record = BuildRecord(progress, summary, coordinator, note, CompletionStatus.Rejected);
+            CompletionRecord record = BuildRecord(progress, summary, coordinator, note, CompletionStatus.NeedsCorrections);
+            record.ReportFileUrl = null; record.CertificateFileUrl = null; record.ApprovedAt = 0;
             new CompletionRepository().Save(record.Id, record);   // also notifies the student
             return record;
         }
@@ -136,11 +134,14 @@ namespace InternshipManagementSystem.Services
             record.CompanyScorePercent = Round(summary.CompanyPercent);
             record.AcademicScorePercent = Round(summary.AcademicPercent);
             record.FinalScore = Round(summary.FinalPercent);
-            record.Result = summary.Result;
+            record.Result = status == CompletionStatus.Approved ? summary.Result : null;
+            record.ProvisionalResult = summary.ProvisionalResult;
+            record.ProvisionalScore = summary.ProvisionalScore;
             record.ApprovedHours = (int)summary.ApprovedHours;
             record.RequiredHours = summary.RequiredHours;
             record.Status = status;
             record.ReviewedByCoordinatorId = coordinator.Id;
+            record.ReviewedAt = Time.NowMs();
             record.CoordinatorNote = string.IsNullOrWhiteSpace(note) ? null : note.Trim();
             return record;
         }

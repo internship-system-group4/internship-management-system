@@ -39,7 +39,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 ? completion.EvaluationRuleSnapshot : null;
             litPlacement.Text = Server.HtmlEncode(string.IsNullOrWhiteSpace(placement.OpportunityTitle)
                 ? "Your internship" : placement.OpportunityTitle);
-            litCompany.Text = Server.HtmlEncode(placement.CompanyName ?? "Company not specified");
+            litCompany.Text = Server.HtmlEncode(string.IsNullOrWhiteSpace(placement.CompanyName) ? "Company not recorded" : placement.CompanyName);
 
             List<InternshipTask> tasks = new TaskRepository().GetByPlacement(placement.Id)
                 .Where(t => t.StudentId == student.Id && !string.IsNullOrEmpty(t.Id)).ToList();
@@ -62,7 +62,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             List<TrainingHoursEntry> entries = new HoursRepository().GetByPlacement(placement.Id)
                 .Where(h => h.StudentId == student.Id).ToList();
-            List<HoursRow> approved = entries.Where(h => h.Status == HoursStatus.Approved)
+            List<HoursRow> approved = entries.Where(h => CompletionReviewService.CountsAsApproved(h, placement, Time.NowMs()))
                 .OrderByDescending(h => h.WorkDate).ThenByDescending(h => h.ReportedAt)
                 .Select(h => new HoursRow
                 {
@@ -70,10 +70,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     Description = string.IsNullOrWhiteSpace(h.Description) ? "Training hours" : h.Description,
                     Hours = h.Hours.ToString(CultureInfo.InvariantCulture)
                 }).ToList();
-            int approvedHours = entries.Where(h => h.Status == HoursStatus.Approved).Sum(h => Math.Max(0, h.Hours));
-            int pendingHours = entries.Where(h => h.Status == HoursStatus.Reported).Sum(h => Math.Max(0, h.Hours));
-            int requiredHours = completionRule != null ? completionRule.RequiredHours :
-                placement.RequiredHours > 0 ? placement.RequiredHours : student.RequiredHours;
+            long approvedHours = CompletionReviewService.ApprovedHours(entries, placement, Time.NowMs());
+            long pendingHours = entries.Where(h => h.Status == HoursStatus.Reported && h.Hours > 0).Sum(h => (long)h.Hours);
+            int requiredHours = CompletionReviewService.RequiredHours(placement, student, completionRule);
             int percent = requiredHours > 0
                 ? (int)Math.Min(100, (approvedHours * 100L) / requiredHours) : 0;
             litHours.Text = approvedHours.ToString(CultureInfo.InvariantCulture);

@@ -7,7 +7,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected global::System.Web.UI.WebControls.TextBox txtName;
         protected global::System.Web.UI.WebControls.TextBox txtAcademicYear;
         protected global::System.Web.UI.WebControls.TextBox txtSemester;
-        protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblSupervisor;
         protected global::System.Web.UI.WebControls.CheckBoxList cblStudents;
         protected global::System.Web.UI.WebControls.Label lblNoAvailableStudents;
         protected global::System.Web.UI.WebControls.Button btnSave;

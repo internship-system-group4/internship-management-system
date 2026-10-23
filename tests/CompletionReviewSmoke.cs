@@ -40,7 +40,7 @@ class CompletionReviewSmoke
                 Verifications=policy.Requirements.Select(q=>new RequirementVerification {Key=q.Key,Confirmed=true,EvidenceReference="Synthetic fixture evidence",EvidenceDate=p.StartDate-86400000,CoordinatorId=actor.Id,VerifiedAt=now-1000}).ToList()},
             Company=new FinalCompanyEvaluation {Id="ce",PlacementId=p.Id,StudentId=p.StudentId,CompanyId=p.CompanyId,SupervisorId=p.CompanySupervisorId,IsSubmitted=true,SubmittedAt=now-2000,TotalScore=9,MaxScore=10,OverallComment="<img src=x onerror=alert('fixture')>CONFIDENTIAL COMPANY"},
             Academic=new FinalAcademicEvaluation {Id="ae",PlacementId=p.Id,StudentId=p.StudentId,AcademicSupervisorId=p.AcademicSupervisorId,IsSubmitted=true,SubmittedAt=now-1000,TotalScore=40,MaxScore=50,AcademicComments="CONFIDENTIAL ACADEMIC"},
-            Tasks=new List<InternshipTask> {new InternshipTask {Id="task",PlacementId=p.Id,StudentId=p.StudentId,Weight=2}},
+            Tasks=new List<InternshipTask> {new InternshipTask {Id="task",PlacementId=p.Id,StudentId=p.StudentId,CompanyId=p.CompanyId,Weight=2}},
             TaskEvaluations=new List<TaskEvaluation> {new TaskEvaluation {Id="te",TaskId="task",SubmissionId="submission",PlacementId=p.Id,StudentId=p.StudentId,EvaluatedBySupervisorId=p.CompanySupervisorId,EvaluatedAt=now-3000,TotalScore=4,MaxScore=5}},
             Submissions=new List<Submission> {new Submission {Id="submission",TaskId="task",PlacementId=p.Id,StudentId=p.StudentId,SubmittedAt=now-4000}},
             Hours=new List<TrainingHoursEntry> {new TrainingHoursEntry {Id="hours",PlacementId=p.Id,StudentId=p.StudentId,Hours=160,WorkDate=p.StartDate+86400000,Status=HoursStatus.Approved,ReviewedById="academic",ReviewedAt=now-5000}}
@@ -66,7 +66,28 @@ class CompletionReviewSmoke
         Denied(()=>CompletionReviewService.ValidateDecision(new AcademicSupervisor {Id="academic"},Evidence(),CompletionStatus.Approved,"",now),"Academic approval accepted");
         e=Evidence();e.Rule=null;a=CompletionReviewService.Assess(e,now);Check(!a.CanApprove&&!a.Score.HasValue&&a.Issues.Any(x=>x.Contains("No default")),"Missing configuration silently defaulted");
         e=Evidence();e.Rule.RequiredHours=300;e.Rule.RequiredDurationDays=140;e.Rule.InternshipType="Synthetic International";Check(!CompletionReviewService.Assess(e,now).CanApprove,"International duration ignored");
-        e=Evidence();e.Rule.RequiredHours=80;e.Rule.RequiredDurationDays=0;e.Hours[0].Hours=80;Check(CompletionReviewService.Assess(e,now).CanApprove,"Universal 160-hour minimum imposed");
+        foreach(int worked in new[]{0,80,159}) {
+            e=Evidence();e.Placement.RequiredHours=e.Student.RequiredHours=e.Rule.RequiredHours=80;e.Rule.RequiredDurationDays=0;e.Hours[0].Hours=worked;
+            a=CompletionReviewService.Assess(e,now);Check(!a.CanApprove&&a.RequiredHours==160,"Sub-160 requirement bypassed minimum");
+            Denied(()=>CompletionReviewService.ValidateDecision(actor,e,CompletionStatus.Approved,"",now),"Server approved fewer than 160 hours");
+        }
+        e=Evidence();e.Rule.RequiredHours=0;e.Rule.RequiredDurationDays=28;e.Hours.Clear();Check(!CompletionReviewService.Assess(e,now).CanApprove,"Duration-only rule bypassed hours");
+        e=Evidence();e.Placement.RequiredHours=240;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Higher placement requirement ignored");
+        e=Evidence();e.Student.RequiredHours=240;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Higher student requirement ignored");
+        e=Evidence();e.Rule.RequiredHours=240;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Higher rule requirement ignored");
+        e=Evidence();e.Placement.RequiredHours=e.Student.RequiredHours=e.Rule.RequiredHours=80;Check(CompletionReviewService.Assess(e,now).CanApprove,"Exactly 160 approved hours blocked");
+        e=Evidence();e.Hours[0].ReviewedAt=now+1;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Future approval counted");
+        e=Evidence();e.Hours[0].WorkDate=e.Placement.StartDate-1;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Out-of-period work counted");
+        e=Evidence();e.Hours[0].StudentId="other";Check(!CompletionReviewService.Assess(e,now).CanApprove,"Another student's hours counted");
+        e=Evidence();e.Hours[0].PlacementId="other";Check(!CompletionReviewService.Assess(e,now).CanApprove,"Another placement's hours counted");
+        e=Evidence();e.Hours[0].Hours=-160;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Negative hours counted");
+        e=Evidence();e.Placement.CompanyName=" ";Check(!CompletionReviewService.Assess(e,now).CanApprove,"Missing company name approved");
+        e=Evidence();e.Company.SupervisorId="other";Check(!CompletionReviewService.Assess(e,now).CanApprove,"Wrong company supervisor accepted");
+        e=Evidence();e.Academic.AcademicSupervisorId="other";Check(!CompletionReviewService.Assess(e,now).CanApprove,"Wrong academic supervisor accepted");
+        e=Evidence();e.Hours[0].Hours=159;
+        var progress=new PlacementProgressData {Overview=new PlacementOverview {Placement=e.Placement,Student=e.Student,ApprovedHours=999},Completion=e.Record,
+            CompanyFinal=e.Company,AcademicFinal=e.Academic,Tasks=e.Tasks,Evaluations=e.TaskEvaluations,Submissions=e.Submissions,Hours=e.Hours};
+        Check(!CompletionService.Summarise(progress).CanApprove&&CompletionService.Summarise(progress).ApprovedHours==159,"Legacy service trusted cached hours");
         e=Evidence();e.Rule.EvaluationMethod="EvidenceOnly";e.Rule.RequireCurrentTaskGrades=false;e.Company.MaxScore=e.Academic.MaxScore=0;e.Tasks.Clear();a=CompletionReviewService.Assess(e,now);Check(a.CanApprove&&!a.Score.HasValue,"Evidence-only method imposed numeric grade");
         e=Evidence();e.Company.TotalScore=double.NaN;Check(!CompletionReviewService.Assess(e,now).CanApprove,"NaN accepted");
         e=Evidence();e.Rule.PassingPercent=null;Check(!CompletionReviewService.Assess(e,now).CanApprove,"Missing passing criterion defaulted");
@@ -89,6 +110,10 @@ class CompletionReviewSmoke
     static void Seed()
     {
         var e=Evidence();
+        e.Placement.CompanyName=null;e.Placement.RequiredHours=80;e.Placement.ApprovedHours=999;
+        db["companies"]=new Dictionary<string,object>{{"company",new Company {Id="company",Name="Fixture & Company"}}};
+        db["opportunities"]=new Dictionary<string,object>();
+        db["applications"]=new Dictionary<string,object>();
         db["users"]=new Dictionary<string,object>{{"student",e.Student},{"coord",actor},{"academic",new AcademicSupervisor {Id="academic",FullName="Fixture Academic"}},{"companyUser",new CompanySupervisor {Id="companyUser",CompanyId="company",FullName="Fixture Company Supervisor"}}};
         db["placements"]=new Dictionary<string,object>{{"student",e.Placement}};
         db["completions"]=new Dictionary<string,object>();
@@ -115,7 +140,7 @@ class CompletionReviewSmoke
                 string path=url.AbsolutePath.Trim('/').Replace(".json","");string[] parts=path.Split('/');int v;versions.TryGetValue(path,out v);string etag="\""+v+"\"",status="200 OK",result="null";
                 Dictionary<string,object> collection;if(!db.TryGetValue(parts[0],out collection))collection=new Dictionary<string,object>();
                 if(request[0]=="PUT"||request[0]=="PATCH") {
-                    string match;if(headers.TryGetValue("if-match",out match)&&match!=etag)status="412 Precondition Failed";
+                    string match;if(headers.TryGetValue("if-match",out match)&&match!=etag&&!(match=="null_etag"&&!collection.ContainsKey(parts[1])))status="412 Precondition Failed";
                     else {object value=Json.ToMap(body);if(request[0]=="PATCH"&&collection.ContainsKey(parts[1])){var old=Map(collection[parts[1]]);foreach(var kv in (Dictionary<string,object>)value)old[kv.Key]=kv.Value;value=old;}collection[parts[1]]=value;db[parts[0]]=collection;versions[path]=v+1;result=Json.Serialize(value);}
                 } else if(parts.Length>1){object value;if(collection.TryGetValue(parts[1],out value))result=Json.Serialize(value);}
                 else {string order=(query["orderBy"]??"").Trim('"'),equal=(query["equalTo"]??"").Trim('"');result=Json.Serialize(collection.Where(kv=>order.Length==0||(Map(kv.Value).ContainsKey(order)&&Convert.ToString(Map(kv.Value)[order],CultureInfo.InvariantCulture)==equal)).ToDictionary(kv=>kv.Key,kv=>kv.Value));}
@@ -144,15 +169,50 @@ class CompletionReviewSmoke
         string page="/Pages/Coordinator/CompletionReview.aspx?id=student";
         var student=Login(root,"student");using(var denied=Request(root,student,page))Check(denied.StatusCode==HttpStatusCode.Redirect&&denied.Headers["Location"].Contains("AccessDenied"),"Student accessed coordinator review");
         var company=Login(root,"companyUser");using(var denied=Request(root,company,page))Check(denied.StatusCode==HttpStatusCode.Redirect,"Company accessed coordinator review");
+        string createPage="/Pages/Company/Opportunities.aspx";
+        string create=Body(Request(root,company,createPage));
+        string saved=Body(Request(root,company,createPage,Form(create,"noop")+"&opAction=draft&opTitle=Synthetic+draft&opType=Internship&opMode=On-site"));
+        Check(db["opportunities"].Count==1,"Opportunity draft creation failed");
+        var opportunity=Json.Deserialize<Opportunity>(Json.Serialize(db["opportunities"].Values.Single()));
+        Check(opportunity.CompanyName=="Fixture & Company"&&opportunity.CreatedBySupervisorId=="companyUser","New opportunity lost company name or creator");
+        db["users"]["offerStudent"]=new Student {Id="offerStudent",FullName="Offer Student",RequiredHours=80};
+        opportunity.CompanyName=null;db["opportunities"][opportunity.Id]=opportunity;
+        db["applications"]["offer"]=new InternshipApplication {Id="offer",StudentId="offerStudent",OpportunityId=opportunity.Id,CompanyId="company",Status=ApplicationStatus.Accepted};
+        var offerCookies=Login(root,"offerStudent");
+        string confirmed=Body(Request(root,offerCookies,"/FixtureConfirm.aspx"));
+        var confirmedPlacement=Json.Deserialize<Placement>(Json.Serialize(db["placements"]["offerStudent"]));
+        Check(confirmedPlacement.CompanyName=="Fixture & Company"&&confirmedPlacement.RequiredHours==160,"Offer confirmation lost company name or minimum hours");
+        db["placements"].Remove("offerStudent");db["users"].Remove("offerStudent");db["applications"].Remove("offer");
         string companyHtml=Body(Request(root,company,"/Pages/Company/FinalEvaluation.aspx?id=student"));Check(companyHtml.Contains("Final evaluation submitted")&&!companyHtml.Contains("CONFIDENTIAL ACADEMIC"),"Company evaluation workflow failed");
         var academic=Login(root,"academic");Check(Body(Request(root,academic,"/Pages/Academic/FinalEvaluation.aspx?id=student")).Contains("CONFIDENTIAL COMPANY"),"Academic workflow did not receive company evaluation");
         var cookies=Login(root,"coord");string html=Body(Request(root,cookies,page));File.WriteAllText(Path.Combine(output,"review-initial.html"),html);
+        foreach(string route in new[]{"/Pages/Coordinator/Placements.aspx","/Pages/Coordinator/PlacementDetails.aspx?id=student","/Pages/Student/Progress.aspx",page}) {
+            string screen=Body(Request(root,route.Contains("/Student/")?student:cookies,route));
+            Check(screen.Contains("Fixture &amp; Company"),"Canonical company missing on "+route);
+            Check(!screen.Contains("999 / 80"),"Cached progress displayed on "+route);
+        }
+        var legacyPlacement=(Placement)db["placements"]["student"];legacyPlacement.CompanyName="Outdated Company";
+        Check(Body(Request(root,cookies,page)).Contains("Fixture &amp; Company"),"Stale company snapshot was not resolved");
+        legacyPlacement.CompanyName=null;
         Check(html.Contains("No default evaluation policy")&&html.Contains("&lt;script&gt;")&&!html.Contains("<script>alert('fixture')"),"Missing configuration or HTML encoding failed");
+        Check(Body(Request(root,cookies,"/FixtureQueue.aspx")).StartsWith("False|"),"Dashboard marked unconfigured completion ready");
         html=Body(Request(root,cookies,page,Form(html,"btnRule",new Dictionary<string,string>{{"ddlRule",rule.Id}})));
         Check(html.Contains("Review configuration saved")&&html.Contains("Project-Proposed"),"Configuration save failed");
         var fields=new Dictionary<string,string>();foreach(Match m in Regex.Matches(html,"<input[^>]+type=\"checkbox\"[^>]*>")){string name=Regex.Match(m.Value,"name=\"([^\"]+)\"").Groups[1].Value;fields[name]="on";fields[name.Replace("confirmed","evidenceReference")]="Synthetic archive evidence";string dateName=name.Replace("confirmed","evidenceDate");if(html.Contains("name=\""+dateName+"\""))fields[dateName]=Time.FromUnixMs(now-45L*86400000).ToString("yyyy-MM-dd");}
         html=Body(Request(root,cookies,page,Form(html,"btnVerify",fields)));Check(html.Contains("Evidence verification saved"),"Verification postback failed");
         Check(Stored().Verifications.Count==rule.Requirements.Count&&Stored().Verifications.All(v=>v.CoordinatorId==actor.Id&&v.VerifiedAt>0),"Evidence audit missing");
+        Check(Body(Request(root,cookies,"/FixtureQueue.aspx")).StartsWith("True|"),"Dashboard did not recognize eligible completion");
+        foreach(int worked in new[]{0,80,159}) {
+            var entry=Evidence().Hours[0];entry.Hours=worked;db["trainingHours"]["hours"]=entry;
+            string blocked=Body(Request(root,cookies,page));
+            Check(blocked.Contains("required minimum of 160")&&blocked.Contains("In Progress"),"Under-hours queue marked ready");
+            Check(Body(Request(root,cookies,page,Form(blocked,"btnApprove"))).Contains("required minimum of 160")&&Stored().Status!=CompletionStatus.Approved,"HTTP approval bypassed 160-hour gate");
+            string details=Body(Request(root,cookies,"/Pages/Coordinator/PlacementDetails.aspx?id=student"));
+            Check(details.Contains(worked+" / 160"),"Progress and final review disagree on hours");
+            Check(Body(Request(root,cookies,"/FixtureQueue.aspx")).StartsWith("False|"),"Dashboard marked under-hours completion ready");
+        }
+        db["trainingHours"]["hours"]=Evidence().Hours[0];
+        html=Body(Request(root,cookies,page));
         string stale=html;Check(Body(Request(root,cookies,page,Form(html,"btnCorrections"))).Contains("A reason is required"),"HTTP corrections accepted missing reason");
         html=Body(Request(root,cookies,page,Form(html,"btnCorrections",new Dictionary<string,string>{{"txtCoordinatorNote","Synthetic corrections reason"}})));
         Check(Stored().Status==CompletionStatus.NeedsCorrections&&Stored().Result==null&&Stored().ReportFileUrl==null&&Stored().CertificateFileUrl==null,"Corrections released PDF or academic failure");
@@ -161,6 +221,7 @@ class CompletionReviewSmoke
         Check(Body(Request(root,cookies,page,Form(stale,"btnApprove"))).Contains("review has changed"),"Stale form overwrote review");
         html=Body(Request(root,cookies,page,Form(html,"btnApprove")));var approved=Stored();
         Check(approved.Status==CompletionStatus.Approved&&approved.ApprovedAt>0&&approved.ReviewedByCoordinatorId==actor.Id&&approved.ReportFileUrl!=null&&approved.DocumentSnapshot!=null,"Eligible HTTP approval failed");
+        Check(approved.RequiredHours==160&&approved.ApprovedHours==160&&approved.DocumentSnapshot.CompanyName=="Fixture & Company","Approval snapshot lost enforced hours or canonical company");
         Check(!html.Contains("value=\"Approve Internship Completion\"")&&html.Contains("Approved Documents"),"Approved record is editable");
         Check(Body(Request(root,cookies,page,Form(stale,"btnApprove"))).Contains("final decision")&&Stored().AuditTrail.Count==approved.AuditTrail.Count,"Duplicate approval modified record");
         string progress=Body(Request(root,student,"/Pages/Student/Progress.aspx"));Check(!progress.Contains("CONFIDENTIAL COMPANY")&&!progress.Contains("CONFIDENTIAL ACADEMIC"),"Student viewed confidential evaluations");
@@ -192,6 +253,8 @@ class CompletionReviewSmoke
             File.WriteAllText(Path.Combine(host,"Web.config"),"<configuration><appSettings><add key='Firebase.DatabaseUrl' value='http://localhost:19083'/><add key='Firebase.ApiKey' value='fixture'/></appSettings><system.web><compilation debug='true' targetFramework='4.7.2'/><pages><namespaces><add namespace='InternshipManagementSystem.Common'/></namespaces></pages><httpRuntime targetFramework='4.7.2'/><customErrors mode='Off'/></system.web></configuration>");
             File.WriteAllText(Path.Combine(host,"FixtureLogin.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){SessionHelper.SignIn(new UserRepository().GetPerson(Request.QueryString[\"id\"]),Request.QueryString[\"id\"]);Response.Write(\"Fixture ready\");}</script>");
             File.WriteAllText(Path.Combine(host,"FixtureConfidential.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){try{new EvaluationRepository().GetCompanyFinalForPlacement(\"student\");Response.Write(\"EXPOSED\");}catch(UnauthorizedAccessException){Response.Write(\"DENIED\");}}</script>");
+            File.WriteAllText(Path.Combine(host,"FixtureConfirm.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><%@ Import Namespace=\"InternshipManagementSystem.Models\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){var result=new PlacementRepository().ConfirmAcceptedOffer((Student)SessionHelper.Current,\"offer\");Response.Write(result.Placement.CompanyName);}</script>");
+            File.WriteAllText(Path.Combine(host,"FixtureQueue.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){var row=new CoordinatorMonitoringRepository().LoadCompletionQueue()[0];Response.Write(row.IsReady+\"|\"+row.Overview.HoursText);}</script>");
             var log=new StringBuilder();
             iis=Process.Start(new ProcessStartInfo {FileName=@"C:\Program Files\IIS Express\iisexpress.exe",Arguments="/path:\""+host+"\" /port:19084 /systray:false",UseShellExecute=false,CreateNoWindow=true,RedirectStandardOutput=true,RedirectStandardError=true});
             iis.OutputDataReceived+=(s,e)=>{lock(log)log.AppendLine(e.Data);};iis.ErrorDataReceived+=(s,e)=>{lock(log)log.AppendLine(e.Data);};iis.BeginOutputReadLine();iis.BeginErrorReadLine();bool ready=false;

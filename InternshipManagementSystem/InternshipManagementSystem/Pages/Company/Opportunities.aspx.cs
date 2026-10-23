@@ -228,6 +228,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 opportunity.CompanyId =
                     CurrentSupervisor.CompanyId;
 
+                var company = new CompanyRepository().GetById(CurrentSupervisor.CompanyId);
+                opportunity.CompanyName = company != null && !string.IsNullOrWhiteSpace(company.Name)
+                    ? company.Name.Trim() : CurrentSupervisor.CompanyName;
+                if (string.IsNullOrWhiteSpace(opportunity.CompanyName))
+                    throw new InvalidOperationException("The linked company needs a name before creating an opportunity.");
+                opportunity.CreatedBySupervisorId = CurrentSupervisor.Id;
+
                 opportunity.Title = title;
                 opportunity.Location = location;
                 opportunity.Description = description;

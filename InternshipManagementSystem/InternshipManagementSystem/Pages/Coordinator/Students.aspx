@@ -33,8 +33,8 @@
                         <td><strong><%#: Eval("FullName") %></strong><small><%#: Eval("Email") %></small></td>
                         <td><%#: Eval("StudentNumber") %></td><td><%#: Eval("Major") %></td>
                         <td><%#: Eval("ApprovedHours") %> / <%#: Eval("RequiredHours") %></td>
-                        <td><span class='<%# (bool)Eval("IsActive") ? "students-status is-active" : "students-status is-inactive" %>'><%# (bool)Eval("IsActive") ? "Active" : "Inactive" %></span></td>
-                        <td><asp:LinkButton ID="btnView" runat="server" Text="<%$ Resources:Coordinator, Students.ViewRecord %>" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnView_Click" CausesValidation="false" /></td>
+                        <td><span class='<%# (bool)Eval("IsActive") ? "students-status is-active" : "students-status is-inactive" %>'><%# L.T((bool)Eval("IsActive") ? "Coordinator.AccountAccess.Active" : "Coordinator.AccountAccess.Blocked") %></span></td>
+                        <td><asp:LinkButton ID="btnView" runat="server" Text="<%$ Resources:Coordinator, Students.ViewRecord %>" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnView_Click" CausesValidation="false" /><asp:LinkButton ID="btnBlock" runat="server" Text='<%# L.T((bool)Eval("IsActive") ? "Coordinator.AccountAccess.Block" : "Coordinator.AccountAccess.Unblock") %>' CssClass='<%# (bool)Eval("IsActive") ? "btn btn-sm btn-outline-danger ms-1" : "btn btn-sm btn-outline-success ms-1" %>' CommandArgument='<%# Eval("Id") %>' CommandName='<%# (bool)Eval("IsActive") ? "Block" : "Unblock" %>' OnClick="btnToggleAccess_Click" OnClientClick='<%# AccessConfirmation((bool)Eval("IsActive"), (string)Eval("FullName")) %>' CausesValidation="false" data-ui-action="update" data-ui-validation="none" /></td>
                     </tr></ItemTemplate></asp:Repeater></tbody>
                 </table>
             </div>

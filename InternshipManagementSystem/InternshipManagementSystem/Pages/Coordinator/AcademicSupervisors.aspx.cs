@@ -159,7 +159,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 lblRecordDepartment.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.Department);
                 lblRecordRank.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.AcademicRank ?? "—");
                 lblRecordGroups.Text = supervisor.GroupIds == null ? "0" : supervisor.GroupIds.Count.ToString();
-                lblRecordStatus.Text = supervisor.IsActive ? "Active" : "Inactive";
+                lblRecordStatus.Text = L.T(supervisor.IsActive ? "Coordinator.AccountAccess.Active" : "Coordinator.AccountAccess.Blocked");
                 pnlRecord.Visible = true;
             }
             catch (FirebaseException)
@@ -255,8 +255,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void btnToggleAccess_Click(object sender, EventArgs e)
         {
-            hdnActiveTab.Value = "manage";
-            string id = ViewState["EditingSupervisorId"] as string;
+            var action = sender as System.Web.UI.WebControls.IButtonControl;
+            var rowButton = sender as System.Web.UI.WebControls.LinkButton;
+            string id = rowButton != null ? rowButton.CommandArgument : ViewState["EditingSupervisorId"] as string;
+            if (action == null || (action.CommandName != "Block" && action.CommandName != "Unblock")) return;
             if (!IsValidSupervisorId(id))
             {
                 pnlDetails.Visible = false;
@@ -275,12 +277,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
                     return;
                 }
-                bool activate = !supervisor.IsActive;
+                bool activate = action.CommandName == "Unblock";
                 users.SetActive(id, activate);
                 supervisor.IsActive = activate;
                 ShowDetails(supervisor);
                 BindSupervisors();
-                ShowDetailsMessage(activate ? L.T("Coordinator.AcademicSupervisors.SupervisorAccessRestored") : L.T("Coordinator.AcademicSupervisors.SupervisorAccessRemovedAssignedGroupsAnd"), true);
+                if (pnlRecord.Visible) pnlRecord.Visible = false;
+                ShowDetailsMessage(L.T(activate ? "Coordinator.AccountAccess.SupervisorUnblocked" : "Coordinator.AccountAccess.SupervisorBlocked"), true);
             }
             catch (FirebaseException)
             {
@@ -358,11 +361,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtEditPhone.Text = supervisor.PhoneNumber;
             txtEditDepartment.Text = supervisor.Department;
             txtEditAcademicRank.Text = supervisor.AcademicRank;
-            btnToggleAccess.Text = supervisor.IsActive ? L.T("Coordinator.AcademicSupervisors.RemoveAccess") : L.T("Coordinator.AcademicSupervisors.RestoreAccess");
+            btnToggleAccess.Text = L.T(supervisor.IsActive ? "Coordinator.AccountAccess.Block" : "Coordinator.AccountAccess.Unblock");
+            btnToggleAccess.CommandName = supervisor.IsActive ? "Block" : "Unblock";
             btnToggleAccess.CssClass = supervisor.IsActive ? "btn btn-outline-danger" : "btn btn-outline-success";
-            btnToggleAccess.OnClientClick = supervisor.IsActive
-                ? "return confirm('Remove this supervisor’s access? Assigned groups and history will be retained.');"
-                : "";
+            btnToggleAccess.OnClientClick = AccessConfirmation(supervisor.IsActive, supervisor.FullName);
             lblAccessDescription.Text = supervisor.IsActive
                 ? L.T("Coordinator.AcademicSupervisors.RemovingAccessBlocksSignInAssigned")
                 : L.T("Coordinator.AcademicSupervisors.ThisSupervisorCannotSignInRestore");

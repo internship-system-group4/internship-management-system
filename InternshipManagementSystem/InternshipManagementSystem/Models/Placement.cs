@@ -58,7 +58,7 @@ namespace InternshipManagementSystem.Models
         [ScriptIgnore]
         public bool HoursRequirementMet
         {
-            get { return RequiredHours > 0 && ApprovedHours >= RequiredHours; }
+            get { return ApprovedHours >= System.Math.Max(Constants.DefaultRequiredHours, RequiredHours); }
         }
     }
 }

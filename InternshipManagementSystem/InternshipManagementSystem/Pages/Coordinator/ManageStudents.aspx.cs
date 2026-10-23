@@ -106,7 +106,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void btnToggleAccess_Click(object sender, EventArgs e)
         {
-            string id = ViewState["EditingStudentId"] as string;
+            var action = sender as System.Web.UI.WebControls.IButtonControl;
+            var rowButton = sender as System.Web.UI.WebControls.LinkButton;
+            string id = rowButton != null ? rowButton.CommandArgument : ViewState["EditingStudentId"] as string;
+            if (action == null || (action.CommandName != "Block" && action.CommandName != "Unblock")) return;
             if (!IsValidStudentId(id))
             {
                 ClearSelection();
@@ -124,12 +127,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     ShowListMessage(L.T("Coordinator.ManageStudents.StudentRecordNotFound"));
                     return;
                 }
-                bool activate = !student.IsActive;
+                bool activate = action.CommandName == "Unblock";
                 users.SetActive(id, activate);
                 student.IsActive = activate;
                 ShowDetails(student);
                 BindStudents();
-                ShowDetailsMessage(activate ? L.T("Coordinator.ManageStudents.StudentAccessRestored") : L.T("Coordinator.ManageStudents.StudentAccessRemovedTheRecordAnd"), true);
+                ShowDetailsMessage(L.T(activate ? "Coordinator.AccountAccess.StudentUnblocked" : "Coordinator.AccountAccess.StudentBlocked"), true);
             }
             catch (FirebaseException)
             {
@@ -172,11 +175,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             ddlEditMajor.SelectedValue = student.Major;
             txtEditRequiredHours.Text = student.RequiredHours.ToString();
             lnkRecord.NavigateUrl = ResolveUrl("~/Pages/Coordinator/Students.aspx?id=" + Server.UrlEncode(student.Id));
-            btnToggleAccess.Text = student.IsActive ? L.T("Coordinator.ManageStudents.RemoveAccess") : L.T("Coordinator.ManageStudents.RestoreAccess");
+            btnToggleAccess.Text = L.T(student.IsActive ? "Coordinator.AccountAccess.Block" : "Coordinator.AccountAccess.Unblock");
+            btnToggleAccess.CommandName = student.IsActive ? "Block" : "Unblock";
             btnToggleAccess.CssClass = student.IsActive ? "btn btn-outline-danger" : "btn btn-outline-success";
-            btnToggleAccess.OnClientClick = student.IsActive
-                ? "return confirm('Remove this student’s access? Their record and training history will be retained.');"
-                : "";
+            btnToggleAccess.OnClientClick = AccessConfirmation(student.IsActive, student.FullName);
             lblAccessDescription.Text = student.IsActive
                 ? L.T("Coordinator.ManageStudents.RemovingAccessBlocksSignInWhile")
                 : L.T("Coordinator.ManageStudents.ThisStudentCannotSignInRestore");

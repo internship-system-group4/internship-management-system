@@ -45,6 +45,36 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             LoadStudent(button.CommandArgument);
         }
 
+        protected void btnToggleAccess_Click(object sender, EventArgs e)
+        {
+            var button = sender as System.Web.UI.WebControls.LinkButton;
+            if (button == null || !IsValidStudentId(button.CommandArgument)
+                || (button.CommandName != "Block" && button.CommandName != "Unblock")) return;
+            try
+            {
+                UserRepository users = new UserRepository();
+                Student student = users.GetStudent(button.CommandArgument);
+                if (student == null)
+                {
+                    pnlDetails.Visible = false;
+                    BindStudents();
+                    ShowError(L.T("Coordinator.Students.StudentRecordNotFound"));
+                    return;
+                }
+                bool activate = button.CommandName == "Unblock";
+                users.SetActive(student.Id, activate);
+                BindStudents();
+                if (pnlDetails.Visible) LoadStudent(student.Id);
+                lblListMessage.Text = L.T(activate ? "Coordinator.AccountAccess.StudentUnblocked" : "Coordinator.AccountAccess.StudentBlocked");
+                lblListMessage.CssClass = "alert alert-success d-block";
+                lblListMessage.Visible = true;
+            }
+            catch (FirebaseException)
+            {
+                ShowError(L.T("Coordinator.ManageStudents.CouldNotChangeStudentAccessPlease"));
+            }
+        }
+
         private void LoadStudent(string id)
         {
             try
@@ -64,7 +94,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 lblMajor.Text = InternshipManagementSystem.Common.Validators.Safe(student.Major);
                 lblApprovedHours.Text = student.ApprovedHours.ToString();
                 lblRequiredHours.Text = student.RequiredHours.ToString();
-                lblStatus.Text = student.IsActive ? "Active" : "Inactive";
+                lblStatus.Text = L.T(student.IsActive ? "Coordinator.AccountAccess.Active" : "Coordinator.AccountAccess.Blocked");
                 lnkManage.NavigateUrl = ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx?id=" + Server.UrlEncode(student.Id));
                 pnlDetails.Visible = true;
             }

@@ -43,8 +43,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtName.Text = group.Name;
             txtAcademicYear.Text = group.AcademicYear;
             txtSemester.Text = group.Semester;
-            if (ddlSupervisor.Items.FindByValue(group.AcademicSupervisorId) != null)
-                ddlSupervisor.SelectedValue = group.AcademicSupervisorId;
+            if (rblSupervisor.Items.FindByValue(group.AcademicSupervisorId) != null)
+                rblSupervisor.SelectedValue = group.AcademicSupervisorId;
             foreach (ListItem item in cblStudents.Items)
                 item.Selected = group.StudentIds != null && group.StudentIds.Contains(item.Value);
             lblEditorTitle.Text = L.T("Coordinator.Groups.EditGroup");
@@ -63,7 +63,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ShowMessage(L.T("Coordinator.Groups.EnterAGroupNameOfAt"), false);
                 return;
             }
-            if (string.IsNullOrEmpty(ddlSupervisor.SelectedValue))
+            if (string.IsNullOrEmpty(rblSupervisor.SelectedValue))
             {
                 ShowMessage(L.T("Coordinator.Groups.ChooseAnAcademicSupervisor"), false);
                 return;
@@ -75,7 +75,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Name = name,
                 AcademicYear = year,
                 Semester = semester,
-                AcademicSupervisorId = ddlSupervisor.SelectedValue
+                AcademicSupervisorId = rblSupervisor.SelectedValue
             };
             List<string> selected = cblStudents.Items.Cast<ListItem>()
                 .Where(item => item.Selected).Select(item => item.Value).ToList();
@@ -99,10 +99,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             List<Person> people = new UserRepository().GetAllPeople();
             List<StudentGroup> groups = new GroupRepository().GetAll();
-            ddlSupervisor.Items.Clear();
-            ddlSupervisor.Items.Add(new ListItem(L.T("Coordinator.Groups.SelectASupervisor"), ""));
+            rblSupervisor.Items.Clear();
             foreach (AcademicSupervisor supervisor in people.OfType<AcademicSupervisor>().OrderBy(p => p.FullName))
-                if (supervisor.IsActive) ddlSupervisor.Items.Add(new ListItem(supervisor.FullName + " (" + supervisor.Email + ")", supervisor.Id));
+                if (supervisor.IsActive) rblSupervisor.Items.Add(new ListItem(supervisor.FullName + " (" + supervisor.Email + ")", supervisor.Id));
 
             cblStudents.Items.Clear();
             foreach (Student student in people.OfType<Student>().OrderBy(p => p.FullName))

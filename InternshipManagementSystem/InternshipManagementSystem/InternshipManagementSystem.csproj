@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
   ===========================================================================
   UIMS - Group 4
@@ -834,6 +834,12 @@
     <Content Include="Pages\Coordinator\ContactMessages.aspx" />
     <Content Include="Pages\Coordinator\Dashboard.aspx" />
     <Content Include="Pages\Coordinator\Groups.aspx" />
+    <Content Include="Assets\images\group-icons\people-fill.svg" />
+    <Content Include="Assets\images\group-icons\person-fill.svg" />
+    <Content Include="Assets\images\group-icons\arrow-clockwise.svg" />
+    <Content Include="Assets\images\group-icons\chevron-left.svg" />
+    <Content Include="Assets\images\group-icons\LICENSE.txt" />
+    <Content Include="Assets\css\configured-groups.css" />
     <Content Include="Pages\Coordinator\ConfiguredGroups.aspx" />
     <Content Include="Pages\Coordinator\PlacementDetails.aspx" />
     <Content Include="Pages\Coordinator\Placements.aspx" />

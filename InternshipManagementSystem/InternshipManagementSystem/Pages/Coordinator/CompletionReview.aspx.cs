@@ -67,7 +67,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Rule = record == null ? null : record.EvaluationRuleSnapshot,
                 Company = repository.GetCompanyFinalForPlacement(placement.Id),
                 Academic = repository.GetAcademicFinalForPlacement(placement.Id),
-                Tasks = new TaskRepository().GetByPlacement(placement.Id).Where(t => t.StudentId == studentId && !string.IsNullOrEmpty(t.Id)).ToList(),
+                Tasks = new TaskRepository().GetByPlacement(placement.Id).Where(t => t.StudentId == studentId && t.CompanyId == placement.CompanyId && !string.IsNullOrEmpty(t.Id)).ToList(),
                 TaskEvaluations = repository.GetTaskEvaluationsForPlacement(placement.Id).Where(t => t.StudentId == studentId && t.EvaluatedBySupervisorId == placement.CompanySupervisorId).ToList(),
                 Submissions = new SubmissionRepository().GetByPlacement(placement.Id).Where(s => s.StudentId == studentId).ToList(),
                 Hours = new HoursRepository().GetByPlacement(placement.Id).Where(h => h.StudentId == studentId).ToList()
@@ -109,8 +109,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (e.Record != null && e.Record.Status == CompletionStatus.Rejected) return "Rejected";
             if (e.Record != null && e.Record.Status == CompletionStatus.NeedsCorrections) return "Needs Corrections";
             if (e.Placement.EndDate <= 0 || e.Placement.EndDate > Time.NowMs()) return "In Progress";
-            if (e.Rule != null && a.ApprovedHours < e.Rule.RequiredHours) return "In Progress";
-            return a.EvaluationIssues.Count > 0 ? "Awaiting Evaluations" : "Ready for Review";
+            if (a.ApprovedHours < a.RequiredHours) return "In Progress";
+            return a.CanApprove ? "Ready for Review" : "Awaiting Evaluations";
         }
         private void DisplayReview(CompletionReviewEvidence e, string version)
         {
@@ -130,7 +130,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Fact("Placement status", e.Placement.Status.ToString()) +
                 Fact("School approval before training", PriorApprovalLabel(e)) +
                 Fact("Approved training hours", a.ApprovedHours.ToString(CultureInfo.InvariantCulture)) +
-                Fact("Required hours / duration", e.Rule == null ? "Configuration required" : e.Rule.RequiredHours + " hours / " + e.Rule.RequiredDurationDays + " days (where configured)");
+                Fact("Required hours / duration", a.RequiredHours + " hours" + (e.Rule == null ? " · Evaluation configuration required" : " / " + e.Rule.RequiredDurationDays + " days (where configured)"));
             litCompanyEvidence.Text = Fact("Submission status", a.CompanySubmitted ? "Submitted" : "Missing, draft or invalid submission") +
                 Fact("Evaluation on submitted scale", a.CompanySubmitted ? Score(e.Company.TotalScore, e.Company.MaxScore) : "Not submitted") +
                 Fact("Company supervisor", e.Placement.CompanySupervisorName) + Fact("Submission date", a.CompanySubmitted ? Time.Display(e.Company.SubmittedAt) : "Not submitted");
@@ -280,7 +280,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 r.ProvisionalScore = a.Score; r.ProvisionalResult = a.Result;
                 r.CompanyEvaluationId = e.Company == null ? null : e.Company.Id;
                 r.AcademicEvaluationId = e.Academic == null ? null : e.Academic.Id;
-                r.ApprovedHours = a.ApprovedHours; r.RequiredHours = e.Rule == null ? 0 : e.Rule.RequiredHours;
+                r.ApprovedHours = a.ApprovedHours; r.RequiredHours = a.RequiredHours;
                 r.TaskScorePercent = a.TaskPercent ?? 0; r.CompanyScorePercent = a.CompanyPercent ?? 0; r.AcademicScorePercent = a.AcademicPercent ?? 0;
                 r.FinalScore = a.Score ?? 0;
                 // Administrative rejection/corrections never assign an academic Fail.

@@ -5,6 +5,7 @@ using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
@@ -48,6 +49,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 var opportunities = new OpportunityRepository().GetAll();
                 var placements = new PlacementRepository().GetAll();
                 var completions = new CompletionRepository().GetAll();
+                var hours = new HoursRepository().GetAll();
+                foreach (var placement in placements)
+                {
+                    var student = students.OfType<Student>().FirstOrDefault(s => s.Id == placement.StudentId);
+                    var completion = completions.FirstOrDefault(c => c.PlacementId == placement.Id && c.StudentId == placement.StudentId);
+                    placement.ApprovedHours = (int)Math.Min(int.MaxValue, CompletionReviewService.ApprovedHours(hours, placement, Time.NowMs()));
+                    placement.RequiredHours = CompletionReviewService.RequiredHours(placement, student, completion == null ? null : completion.EvaluationRuleSnapshot);
+                }
 
                 StudentCount = Count(students.Count);
                 CompanyCount = Count(companies.Count);
