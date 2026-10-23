@@ -1,9 +1,7 @@
-﻿// =============================================================================
-//  UIMS - Group 4   |   Owner: Fatima  (Trello card F08)
-//  OPTIONAL - Zoom meeting records (cards F08-F10).
-// =============================================================================
-
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
@@ -13,7 +11,10 @@ namespace InternshipManagementSystem.Data
     {
         protected override string Collection
         {
-            get { return Constants.Paths.Meetings; }
+            get
+            {
+                return Constants.Paths.Meetings;
+            }
         }
 
         protected override void SetId(Meeting entity, string id)
@@ -21,16 +22,301 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        /// <summary>Saves a new meeting and tells the other participants.</summary>
-        public override string Insert(Meeting entity)
+        // تحميل الميتنجات التي أنشأها المستخدم
+        // أو التي تم إرسالها إليه فقط.
+        public List<Meeting> GetMine(string personId)
         {
-            string id = base.Insert(entity);
-            if (!string.IsNullOrEmpty(id)) Services.NotificationService.MeetingScheduled(entity);
-            return id;
+            if (string.IsNullOrEmpty(personId))
+            {
+                return new List<Meeting>();
+            }
+
+            return GetWhere("CreatedById", personId)
+                .Concat(GetWhere("RequestedToId", personId))
+                .GroupBy(meeting => meeting.Id)
+                .Select(group => group.First())
+                .Where(meeting => meeting.CanBeViewedBy(personId))
+                .OrderByDescending(meeting => meeting.ScheduledAt)
+                .ToList();
         }
 
-        // Add the queries your pages need here, as named methods.
-        // Keep raw field names out of the pages: if the field is ever
-        // renamed, this file is the only one that has to change.
+        public override string Insert(Meeting entity)
+        {
+            var actor =
+                InternshipManagementSystem.Security.SessionHelper.Current;
+
+            if (actor == null)
+            {
+                throw new InvalidOperationException(
+                    "Please sign in again.");
+            }
+
+            return CreateRequest(entity, actor.Id);
+        }
+
+        // إنشاء طلب جديد بانتظار موافقة المدعو.
+        public string CreateRequest(
+            Meeting meeting,
+            string actorId)
+        {
+            if (meeting == null
+                || string.IsNullOrEmpty(actorId)
+                || meeting.CreatedById != actorId
+                || meeting.RequestedToId == actorId
+                || string.IsNullOrEmpty(meeting.RequestedToId))
+            {
+                throw new InvalidOperationException(
+                    "Choose another person to invite.");
+            }
+
+            Person person = new UserRepository()
+                .GetById(meeting.RequestedToId);
+
+            if (person == null || !person.CanLogin())
+            {
+                throw new InvalidOperationException(
+                    "This account is unavailable.");
+            }
+
+            if (string.IsNullOrWhiteSpace(meeting.Title)
+                || meeting.Title.Length > 150
+                || (meeting.Agenda ?? "").Length > 3000)
+            {
+                throw new InvalidOperationException(
+                    "Check the title and agenda lengths.");
+            }
+
+            if (meeting.ScheduledAt <= Time.NowMs())
+            {
+                throw new InvalidOperationException(
+                    "Choose a future date and time.");
+            }
+
+            if (!new[] { 15, 30, 45, 60 }
+                .Contains(meeting.DurationMinutes))
+            {
+                throw new InvalidOperationException(
+                    "Choose a valid duration.");
+            }
+
+            if (string.IsNullOrEmpty(meeting.Id))
+            {
+                meeting.Id = Guid.NewGuid().ToString("N");
+            }
+
+            if (!System.Text.RegularExpressions.Regex.IsMatch(
+                meeting.Id,
+                "^[a-f0-9]{32}$"))
+            {
+                throw new InvalidOperationException(
+                    "Invalid request identifier. Refresh the page.");
+            }
+
+            meeting.Agenda = meeting.Agenda ?? "";
+
+            meeting.ParticipantIds = new List<string>
+            {
+                meeting.RequestedToId
+            };
+
+            meeting.ApprovalState = "Pending";
+
+            meeting.Status = MeetingStatus.Scheduled;
+
+            meeting.RespondedAt = 0;
+
+            // غرفة مستقلة لكل طلب.
+            meeting.JoinUrl =
+                "https://meet.jit.si/UIMS-" + meeting.Id;
+
+            meeting.CreatedAt = Time.NowMs();
+
+            // نفس إرسال النموذج يستخدم نفس المفتاح،
+            // لمنع إنشاء طلب مكرر عند إعادة الإرسال.
+            bool created = FirebaseContext.PutIfEmpty(
+                Collection + "/" + meeting.Id,
+                meeting);
+
+            if (!created)
+            {
+                Meeting existing = GetById(meeting.Id);
+
+                if (existing == null
+                    || existing.CreatedById != actorId)
+                {
+                    throw new InvalidOperationException(
+                        "Could not save the request. Refresh and try again.");
+                }
+
+                return existing.Id;
+            }
+
+            Notify(
+                meeting,
+                actorId,
+                meeting.RequestedToId,
+                "New meeting request",
+                "You have a meeting request: " + meeting.Title);
+
+            return meeting.Id;
+        }
+
+        // تنفيذ الموافقة أو الرفض أو الإنهاء أو الإلغاء.
+        public void ApplyAction(
+            string id,
+            string actorId,
+            string action)
+        {
+            string etag;
+
+            string raw = FirebaseContext.GetWithEtag(
+                Collection + "/" + id,
+                out etag);
+
+            Meeting meeting = Json.Deserialize<Meeting>(raw);
+
+            if (meeting == null
+                || !meeting.CanBeViewedBy(actorId))
+            {
+                throw new InvalidOperationException(
+                    "Meeting not found or access denied.");
+            }
+
+            long now = Time.NowMs();
+
+            string recipient;
+            string title;
+
+            if (action == "Accept" || action == "Reject")
+            {
+                // المدعو فقط يستطيع الرد،
+                // طالما الطلب معلق ولم تنتهِ مدة الميتنج.
+                if (meeting.RequestedToId != actorId
+                    || meeting.ApprovalState != "Pending"
+                    || meeting.Status != MeetingStatus.Scheduled
+                    || meeting.EndsAt() <= now)
+                {
+                    throw new InvalidOperationException(
+                        "This request is no longer awaiting your response.");
+                }
+
+                meeting.ApprovalState =
+                    action == "Accept"
+                        ? "Accepted"
+                        : "Rejected";
+
+                meeting.RespondedAt = now;
+
+                recipient = meeting.CreatedById;
+
+                title = action == "Accept"
+                    ? "Meeting accepted"
+                    : "Meeting declined";
+            }
+            else if (action == "Complete")
+            {
+                // صاحب الطلب فقط يسجل اكتمال الميتنج
+                // بعد بداية موعده، بشرط أن يكون مقبولًا.
+                if (meeting.CreatedById != actorId
+                    || !meeting.IsApproved()
+                    || meeting.ScheduledAt > now)
+                {
+                    throw new InvalidOperationException(
+                        "Only the requester can complete an approved meeting after its start.");
+                }
+
+                meeting.Status = MeetingStatus.Completed;
+
+                recipient = meeting.RequestedToId;
+
+                title = "Meeting marked completed";
+            }
+            else if (action == "Cancel")
+            {
+                // صاحب الطلب يستطيع إلغاء الطلب المعلق
+                // أو الميتنج المقبول قبل انتهاء مدته.
+                if (meeting.CreatedById != actorId
+                    || meeting.Status != MeetingStatus.Scheduled
+                    || (
+                        meeting.ApprovalState != "Pending"
+                        && meeting.ApprovalState != "Accepted"
+                    )
+                    || meeting.EndsAt() <= now)
+                {
+                    throw new InvalidOperationException(
+                        "This meeting can no longer be cancelled.");
+                }
+
+                meeting.Status = MeetingStatus.Cancelled;
+
+                recipient = meeting.RequestedToId;
+
+                title = "Meeting cancelled";
+            }
+            else
+            {
+                throw new InvalidOperationException(
+                    "Unsupported meeting action.");
+            }
+
+            // يمنع استبدال قرار أحدث إذا حصل تعديل متزامن.
+            bool updated = FirebaseContext.PutIfUnchanged(
+                Collection + "/" + id,
+                meeting,
+                etag);
+
+            if (!updated)
+            {
+                throw new InvalidOperationException(
+                    "The meeting changed. Refresh and try again.");
+            }
+
+            Notify(
+                meeting,
+                actorId,
+                recipient,
+                title,
+                title + ": " + meeting.Title);
+        }
+
+        // إرسال إشعار مرتبط بالميتنج للطرف الآخر.
+        private void Notify(
+            Meeting meeting,
+            string actorId,
+            string recipientId,
+            string title,
+            string message)
+        {
+            try
+            {
+                FirebaseContext.Push(
+                    Constants.Paths.Notifications + "/" + recipientId,
+                    new Dictionary<string, object>
+                    {
+                        { "RecipientId", recipientId },
+                        { "SenderId", actorId },
+                        { "MeetingId", meeting.Id },
+                        { "Type", "Meeting" },
+                        { "Title", title },
+                        { "Message", message },
+                        {
+                            "Link",
+                            "~/Pages/Meetings/MyMeetings.aspx"
+                        },
+                        { "IsRead", false },
+                        { "CreatedAt", Time.NowMs() }
+                    });
+            }
+            catch (FirebaseAuthExpiredException)
+            {
+                throw;
+            }
+            catch (FirebaseException ex)
+            {
+                Trace.TraceWarning(
+                    "Meeting saved; notification failed: {0}",
+                    ex.Message);
+            }
+        }
     }
 }
