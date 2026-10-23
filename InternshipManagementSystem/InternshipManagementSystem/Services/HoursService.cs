@@ -4,6 +4,8 @@
 // =============================================================================
 
 using System.Collections.Generic;
+using System;
+using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
@@ -38,6 +40,14 @@ namespace InternshipManagementSystem.Services
             HoursRepository hours = new HoursRepository();
             TrainingHoursEntry entry = hours.GetById(entryId);
             if (entry == null) return;
+            var actor = SessionHelper.Current;
+            var placement = new PlacementRepository().GetById(entry.PlacementId);
+            if (actor == null || !actor.IsActive || actor.Id != reviewerId || placement == null ||
+                placement.StudentId != entry.StudentId ||
+                (actor.Role != UserRole.Coordinator && (actor.Role != UserRole.AcademicSupervisor || placement.AcademicSupervisorId != actor.Id)))
+                throw new UnauthorizedAccessException("Only the assigned academic supervisor or coordinator may review training hours.");
+            if (CompletionReviewService.IsFinal(new CompletionRepository().GetByPlacement(entry.PlacementId)))
+                throw new InvalidOperationException("Completion is finalized; its approved hours are read-only.");
 
             hours.Update(entryId, new Dictionary<string, object>
             {

@@ -10,9 +10,7 @@ using InternshipManagementSystem.Common;
 namespace InternshipManagementSystem.Models
 {
     /// <summary>
-    /// Optional feature. Scope note from the plan: UIMS stores a Zoom join link
-    /// that someone pasted in - it does not create meetings through the Zoom
-    /// API. Do not let this block any core card.
+    /// A scheduled Zoom meeting with access limited to its creator and participants.
     /// </summary>
     public class Meeting
     {
@@ -32,6 +30,7 @@ namespace InternshipManagementSystem.Models
         public int DurationMinutes { get; set; }
 
         public string JoinUrl { get; set; }
+        public string ZoomMeetingId { get; set; }
 
         public MeetingStatus Status { get; set; }
         public long CreatedAt { get; set; }

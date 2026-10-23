@@ -9,5 +9,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class Placements
     {
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
+        protected global::System.Web.UI.WebControls.Button btnSearch;
+        protected global::System.Web.UI.WebControls.Button btnClear;
+        protected global::System.Web.UI.WebControls.Repeater rptPlacements;
+        protected global::System.Web.UI.WebControls.Panel pnlEmpty;
+        protected global::System.Web.UI.WebControls.Literal litEmpty;
     }
 }

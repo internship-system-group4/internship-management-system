@@ -9,5 +9,33 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class PlacementDetails
     {
+        protected global::System.Web.UI.WebControls.Panel pnlMissing;
+        protected global::System.Web.UI.WebControls.Literal litMissing;
+        protected global::System.Web.UI.WebControls.Panel pnlDetails;
+        protected global::System.Web.UI.WebControls.Literal litStudent;
+        protected global::System.Web.UI.WebControls.HyperLink lnkFinalReview;
+        protected global::System.Web.UI.WebControls.Literal litStudentNumber;
+        protected global::System.Web.UI.WebControls.Literal litProgram;
+        protected global::System.Web.UI.WebControls.Literal litStatus;
+        protected global::System.Web.UI.WebControls.Literal litCompany;
+        protected global::System.Web.UI.WebControls.Literal litOpportunity;
+        protected global::System.Web.UI.WebControls.Literal litCompanySupervisor;
+        protected global::System.Web.UI.WebControls.Literal litAcademicSupervisor;
+        protected global::System.Web.UI.WebControls.Literal litPeriod;
+        protected global::System.Web.UI.WebControls.Literal litTaskCount;
+        protected global::System.Web.UI.WebControls.Literal litSubmissionCount;
+        protected global::System.Web.UI.WebControls.Literal litGradedCount;
+        protected global::System.Web.UI.WebControls.Repeater rptTasks;
+        protected global::System.Web.UI.WebControls.Panel pnlNoTasks;
+        protected global::System.Web.UI.WebControls.Literal litHours;
+        protected global::System.Web.UI.WebControls.Literal litPendingHours;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hoursProgress;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hoursBar;
+        protected global::System.Web.UI.WebControls.Literal litHoursPercent;
+        protected global::System.Web.UI.WebControls.Repeater rptHours;
+        protected global::System.Web.UI.WebControls.Panel pnlNoHours;
+        protected global::System.Web.UI.WebControls.Literal litCompanyEvaluation;
+        protected global::System.Web.UI.WebControls.Literal litAcademicEvaluation;
+        protected global::System.Web.UI.WebControls.Literal litCompletion;
     }
 }

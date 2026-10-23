@@ -17,7 +17,7 @@ namespace InternshipManagementSystem.Data
     /// one node means one read and no chance of two nodes drifting apart. The
     /// subclass is rebuilt from the Role field by Models/PersonFactory.cs.
     /// </summary>
-    public class UserRepository : RepositoryBase<Person>
+    public class UserRepository : NotifyingRepositoryBase<Person>
     {
         protected override string Collection
         {
@@ -122,7 +122,7 @@ namespace InternshipManagementSystem.Data
         public void SavePerson(Person person)
         {
             if (person == null || string.IsNullOrEmpty(person.Id)) return;
-            FirebaseContext.Put(Collection + "/" + person.Id, person);
+            Save(person.Id, person);
         }
 
         public List<Person> GetByRole(UserRole role)

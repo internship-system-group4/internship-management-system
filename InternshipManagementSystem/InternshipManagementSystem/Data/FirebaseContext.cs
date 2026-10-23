@@ -66,6 +66,11 @@ namespace InternshipManagementSystem.Data
             return Send("GET", path, null);
         }
 
+        public static string GetRecent(string path, int limit)
+        {
+            return Send("GET", path, null, "orderBy=%22CreatedAt%22&limitToLast=" + Math.Max(1, Math.Min(100, limit)));
+        }
+
         /// <summary>Reads children of <paramref name="path"/> whose
         /// <paramref name="field"/> equals <paramref name="value"/>.
         /// Requires an .indexOn rule for that field; see docs/05-firebase-setup.md.</summary>
@@ -110,8 +115,23 @@ namespace InternshipManagementSystem.Data
             return Send("PUT", path, Json.Serialize(value), onlyIfEmpty: true) != null;
         }
 
+        public static string GetVersioned(string path, out string etag)
+        {
+            string version = null;
+            string json = Send("GET", path, null, captureETag: value => version = value);
+            etag = version;
+            return json;
+        }
+
+        public static bool PutIfVersion(string path, object value, string etag)
+        {
+            if (string.IsNullOrEmpty(etag)) throw new InvalidOperationException("Missing Firebase version; reload the review.");
+            return Send("PUT", path, Json.Serialize(value), ifMatch: etag) != null;
+        }
+
         private static string Send(string method, string path, string body, string query = null,
-                                   bool onlyIfEmpty = false, bool retried = false)
+                                   bool onlyIfEmpty = false, bool retried = false,
+                                   string ifMatch = null, Action<string> captureETag = null)
         {
             string url = BuildUrl(path, query);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
@@ -121,6 +141,8 @@ namespace InternshipManagementSystem.Data
             request.Timeout = 30000;
             request.KeepAlive = true;
             if (onlyIfEmpty) request.Headers["if-match"] = "null_etag";
+            if (ifMatch != null) request.Headers["if-match"] = ifMatch;
+            if (captureETag != null) request.Headers["X-Firebase-ETag"] = "true";
 
             try
             {
@@ -136,6 +158,7 @@ namespace InternshipManagementSystem.Data
                 using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
                 using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
                 {
+                    if (captureETag != null) captureETag(response.Headers["ETag"]);
                     string text = reader.ReadToEnd();
                     return text == "null" ? null : text;
                 }
@@ -143,7 +166,7 @@ namespace InternshipManagementSystem.Data
             catch (WebException ex)
             {
                 HttpWebResponse response = ex.Response as HttpWebResponse;
-                if (onlyIfEmpty && response != null && response.StatusCode == HttpStatusCode.PreconditionFailed)
+                if ((onlyIfEmpty || ifMatch != null) && response != null && response.StatusCode == HttpStatusCode.PreconditionFailed)
                 {
                     response.Dispose();
                     return null;
@@ -158,7 +181,7 @@ namespace InternshipManagementSystem.Data
                     if (!refreshed.Success || session == null) throw new FirebaseAuthExpiredException();
                     session[Common.Constants.SessionTokenKey] = refreshed.IdToken;
                     session[Common.Constants.SessionRefreshTokenKey] = refreshed.RefreshToken;
-                    return Send(method, path, body, query, onlyIfEmpty, true);
+                    return Send(method, path, body, query, onlyIfEmpty, true, ifMatch, captureETag);
                 }
                 throw new FirebaseException(method + " " + Scrub(url) + " failed: " + ReadError(ex), ex);
             }

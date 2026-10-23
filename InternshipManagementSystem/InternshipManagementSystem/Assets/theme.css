@@ -1,0 +1,202 @@
+/* ============================================================================
+   UIMS THEME / TEAM REFERENCE                                      Version 1.0
+   ============================================================================
+   A calm, professional workspace: ink navy, warm paper, teal actions, and amber
+   accents. This file is the source of truth for shared visual decisions.
+
+   INSTALL
+   Load Bootstrap, then site.css, then Assets/theme.css. Add class="uims-theme"
+   to the body (or a containing element). Load page layout CSS after this file.
+   Currently enabled on the coordinator dashboard; other roles can opt in.
+   No font downloads, icon packages, or new JavaScript dependencies are needed.
+
+   TEAM RULES
+   1. Use the semantic tokens below instead of copying hex values into pages.
+   2. Keep reusable components here; page composition belongs in page CSS.
+   3. Use one solid primary action per section. Secondary actions are outlined;
+      quiet navigation uses text links. Red is reserved for destructive actions.
+   4. Write headings in sentence case, labels in plain language, numbers clearly.
+   5. Always pair status colors with readable text; color alone is insufficient.
+   6. Preserve visible keyboard focus, labels, contrast, and reduced motion.
+   7. Use real records in production. Preview fixture data must be labeled.
+
+   COMPONENT CHEAT SHEET
+   Primary    : class="btn btn-brand"          teal background / white text
+   Secondary  : class="btn btn-outline-secondary" white / navy text + border
+   Quiet      : class="theme-link"             teal text / transparent
+   Danger     : class="btn btn-danger"         red background / white text
+   Small      : add btn-sm                     minimum 36px target height
+   Disabled   : native disabled; links also need aria-disabled + no action
+   Card       : class="theme-card"             paper surface / subtle border
+   Field      : class="form-control" + a visible associated <label>
+   Help       : class="theme-muted"            secondary explanatory text
+   Status     : theme-badge + is-success / is-warning / is-danger / is-info
+   Table      : class="uims-table" inside class="theme-table-scroll"
+   Empty      : class="theme-empty" + explanation + useful next action
+   Error      : class="theme-alert" role="alert" + recovery instructions
+
+   TYPE: system font stack; body 14px/1.6; labels 12px; headings 20-34px;
+   weights 400 body, 500 labels, 600 controls, 700 headings and numeric emphasis.
+   SPACE: 4px base; 8/12px component gaps; 16/24px card padding; 24/32px sections.
+   SHAPE: 8px controls; 14px cards; fully rounded badges. Avoid heavy shadows.
+   MOTION: 160ms color/border changes only; no decorative looping animations.
+   RESPONSIVE: layouts should stack at 1100px/760px; remain usable at 320px.
+   ========================================================================== */
+
+.uims-theme {
+    /* Brand: primary actions, links, navigation, decorative highlights. */
+    --theme-primary: #087f75;
+    --theme-primary-hover: #06685f;
+    --theme-primary-soft: #e8f5f1;
+    --theme-on-primary: #ffffff;
+    --theme-navy: #172c35;
+    --theme-navy-soft: #243e48;
+    --theme-accent: #edb669;
+    --theme-accent-soft: #fff4e3;
+
+    /* Content hierarchy: headings/body, secondary copy, separators/surfaces. */
+    --theme-text: #20333b;
+    --theme-muted: #62747b;
+    --theme-border: #dfe6e5;
+    --theme-surface: #ffffff;
+    --theme-surface-subtle: #f7f9f8;
+    --theme-canvas: #f4f6f5;
+
+    /* Status pairs: foreground and background must be used together. */
+    --theme-success: #236448;
+    --theme-success-bg: #e9f5ed;
+    --theme-warning: #82520d;
+    --theme-warning-bg: #fff3df;
+    --theme-danger: #b5373e;
+    --theme-danger-bg: #fff0f0;
+    --theme-info: #365f91;
+    --theme-info-bg: #edf2fc;
+    --theme-focus: #087f75;
+    --theme-disabled-bg: #e8edeb;
+    --theme-disabled-text: #63736d;
+
+    --theme-font: "Segoe UI", -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+    --theme-text-xs: .75rem;
+    --theme-text-sm: .8125rem;
+    --theme-text-base: .875rem;
+    --theme-text-lg: 1.125rem;
+    --theme-text-xl: 1.375rem;
+    --theme-text-display: clamp(1.75rem, 2.8vw, 2.125rem);
+    --theme-space-1: .25rem;
+    --theme-space-2: .5rem;
+    --theme-space-3: .75rem;
+    --theme-space-4: 1rem;
+    --theme-space-5: 1.5rem;
+    --theme-space-6: 2rem;
+    --theme-space-7: 3rem;
+    --theme-radius-sm: .5rem;
+    --theme-radius: .875rem;
+    --theme-radius-pill: 999px;
+    --theme-shadow: 0 2px 5px rgb(23 44 53 / 3%);
+    --theme-transition: 160ms ease;
+
+    /* Compatibility aliases for existing UIMS components. */
+    --brand: var(--theme-primary);
+    --brand-dark: var(--theme-navy);
+    --brand-light: var(--theme-primary-soft);
+    --accent: var(--theme-accent);
+    --ink: var(--theme-text);
+    --muted: var(--theme-muted);
+    --line: var(--theme-border);
+    --surface: var(--theme-surface);
+    --canvas: var(--theme-canvas);
+    --radius: var(--theme-radius);
+    --shadow: var(--theme-shadow);
+
+    font-family: var(--theme-font);
+    font-size: var(--theme-text-base);
+    line-height: 1.6;
+    color: var(--theme-text);
+    background: var(--theme-canvas);
+    -webkit-font-smoothing: antialiased;
+}
+
+.uims-theme *, .uims-theme *::before, .uims-theme *::after { box-sizing: border-box; }
+.uims-theme h1, .uims-theme h2, .uims-theme h3 { color: var(--theme-text); font-weight: 700; line-height: 1.25; }
+.uims-theme a { text-underline-offset: .2em; }
+.uims-theme :focus-visible { outline: 3px solid var(--theme-focus); outline-offset: 4px; }
+.uims-theme ::selection { background: var(--theme-primary-soft); color: var(--theme-navy); }
+.uims-theme .theme-muted { color: var(--theme-muted); }
+.uims-theme .theme-icon { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.uims-theme .theme-link { color: var(--theme-primary-hover); font-size: var(--theme-text-sm); font-weight: 600; text-decoration: none; }
+.uims-theme .theme-link:hover { text-decoration: underline; }
+.uims-theme .theme-eyebrow { font-size: .6875rem; font-weight: 700; text-transform: uppercase; letter-spacing: .13em; }
+
+/* Buttons: explicit Bootstrap variables keep hover/focus/active consistent. */
+.uims-theme .btn {
+    --bs-btn-font-size: .8125rem;
+    --bs-btn-font-weight: 600;
+    --bs-btn-border-radius: var(--theme-radius-sm);
+    display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+    min-height: 42px; padding: .6rem 1rem;
+    font-family: inherit; font-size: var(--bs-btn-font-size); font-weight: 600;
+    line-height: 1.4; border-radius: var(--theme-radius-sm); text-decoration: none;
+    transition: background-color var(--theme-transition), border-color var(--theme-transition), color var(--theme-transition);
+}
+.uims-theme .btn-brand, .uims-theme .btn-primary {
+    --bs-btn-color: var(--theme-on-primary); --bs-btn-bg: var(--theme-primary);
+    --bs-btn-border-color: var(--theme-primary);
+    --bs-btn-hover-color: var(--theme-on-primary); --bs-btn-hover-bg: var(--theme-primary-hover);
+    --bs-btn-hover-border-color: var(--theme-primary-hover);
+    --bs-btn-active-color: var(--theme-on-primary); --bs-btn-active-bg: var(--theme-primary-hover);
+    --bs-btn-active-border-color: var(--theme-primary-hover);
+    color: var(--theme-on-primary); background: var(--theme-primary); border: 1px solid var(--theme-primary);
+}
+.uims-theme .btn-brand:hover, .uims-theme .btn-brand:active, .uims-theme .btn-brand:focus-visible { color: var(--theme-on-primary); background: var(--theme-primary-hover); border-color: var(--theme-primary-hover); }
+.uims-theme .btn-outline-secondary {
+    --bs-btn-color: var(--theme-text); --bs-btn-bg: var(--theme-surface);
+    --bs-btn-border-color: var(--theme-border); --bs-btn-hover-color: var(--theme-text);
+    --bs-btn-hover-bg: var(--theme-surface-subtle); --bs-btn-hover-border-color: var(--theme-muted);
+    --bs-btn-active-color: var(--theme-text); --bs-btn-active-bg: var(--theme-surface-subtle);
+    --bs-btn-active-border-color: var(--theme-muted);
+    color: var(--theme-text); background: var(--theme-surface); border: 1px solid var(--theme-border);
+}
+.uims-theme .btn-outline-secondary:hover { color: var(--theme-text); background: var(--theme-surface-subtle); border-color: var(--theme-muted); }
+.uims-theme .btn-danger {
+    --bs-btn-color: #fff; --bs-btn-bg: var(--theme-danger); --bs-btn-border-color: var(--theme-danger);
+    --bs-btn-hover-color: #fff; --bs-btn-hover-bg: #952b32; --bs-btn-hover-border-color: #952b32;
+    --bs-btn-active-color: #fff; --bs-btn-active-bg: #952b32; --bs-btn-active-border-color: #952b32;
+}
+.uims-theme .btn-sm { min-height: 36px; padding: .4rem .75rem; font-size: var(--theme-text-xs); }
+.uims-theme .btn:disabled, .uims-theme .btn.disabled, .uims-theme .btn[aria-disabled="true"] {
+    color: var(--theme-disabled-text); background: var(--theme-disabled-bg);
+    border-color: var(--theme-border); cursor: not-allowed; opacity: 1;
+}
+
+/* Cards, forms, validation, feedback, and tabular data. */
+.uims-theme .theme-card, .uims-theme .uims-card { background: var(--theme-surface); border: 1px solid var(--theme-border); border-radius: var(--theme-radius); box-shadow: var(--theme-shadow); }
+.uims-theme label, .uims-theme .form-label { color: var(--theme-text); font-size: var(--theme-text-sm); font-weight: 600; margin-bottom: .5rem; }
+.uims-theme .form-control, .uims-theme .form-select {
+    min-height: 44px; padding: .65rem .875rem; border: 1px solid var(--theme-border);
+    border-radius: var(--theme-radius-sm); background-color: var(--theme-surface);
+    color: var(--theme-text); font: inherit;
+}
+.uims-theme .form-control::placeholder { color: var(--theme-muted); opacity: 1; }
+.uims-theme .form-control:focus, .uims-theme .form-select:focus { border-color: var(--theme-focus); box-shadow: 0 0 0 3px var(--theme-primary-soft); }
+.uims-theme .form-control[aria-invalid="true"], .uims-theme .form-control.is-invalid { border-color: var(--theme-danger); }
+.uims-theme .invalid-feedback { color: var(--theme-danger); }
+.uims-theme .form-control:disabled, .uims-theme .form-select:disabled { background-color: var(--theme-disabled-bg); color: var(--theme-disabled-text); cursor: not-allowed; }
+.uims-theme input[type="checkbox"], .uims-theme input[type="radio"] { accent-color: var(--theme-primary); }
+.uims-theme .theme-badge, .uims-theme .uims-pill { display: inline-flex; align-items: center; gap: .35rem; padding: .23rem .65rem; border-radius: var(--theme-radius-pill); font-size: .6875rem; font-weight: 600; white-space: nowrap; }
+.uims-theme .is-success, .uims-theme .uims-pill-accepted { color: var(--theme-success); background: var(--theme-success-bg); }
+.uims-theme .is-warning, .uims-theme .uims-pill-pending { color: var(--theme-warning); background: var(--theme-warning-bg); }
+.uims-theme .is-danger, .uims-theme .uims-pill-rejected { color: var(--theme-danger); background: var(--theme-danger-bg); }
+.uims-theme .is-info, .uims-theme .uims-pill-info { color: var(--theme-info); background: var(--theme-info-bg); }
+.uims-theme .theme-table-scroll { position: relative; overflow-x: auto; }
+.uims-theme .uims-table { width: 100%; border-collapse: collapse; }
+.uims-theme .uims-table th { background: var(--theme-surface-subtle); color: var(--theme-muted); font-size: .65rem; letter-spacing: .07em; font-weight: 600; text-transform: uppercase; }
+.uims-theme .uims-table th, .uims-theme .uims-table td { text-align: start; padding: .95rem 1.4rem; border-bottom: 1px solid var(--theme-border); }
+.uims-theme .uims-table td { font-size: var(--theme-text-sm); }
+.uims-theme .uims-table tbody tr:last-child td { border-bottom: 0; }
+.uims-theme .uims-table tbody tr:hover { background: var(--theme-surface-subtle); }
+.uims-theme .theme-empty { padding: var(--theme-space-7) var(--theme-space-5); text-align: center; color: var(--theme-muted); }
+.uims-theme .theme-empty h3 { font-size: var(--theme-text-lg); }
+.uims-theme .theme-alert { padding: 1rem 1.25rem; margin-bottom: 1.5rem; color: var(--theme-warning); background: var(--theme-warning-bg); border: 1px solid #e5cfaa; border-radius: var(--theme-radius-sm); }
+.uims-theme .theme-skip-link { position: absolute; inset-inline-start: 1rem; top: -100px; z-index: 100; padding: .75rem; color: #fff; background: var(--theme-navy); border-radius: var(--theme-radius-sm); }
+.uims-theme .theme-skip-link:focus { top: 1rem; }
+@media (prefers-reduced-motion: reduce) { .uims-theme *, .uims-theme *::before, .uims-theme *::after { transition: none !important; animation: none !important; scroll-behavior: auto !important; } }

@@ -58,6 +58,16 @@ namespace InternshipManagementSystem.Services
             return Call("signUp", body, "Could not create the account.");
         }
 
+        /// <summary>Remove a newly created Auth account if its profile cannot be saved.</summary>
+        public static AuthResult DeleteAccount(string idToken)
+        {
+            Dictionary<string, object> body = new Dictionary<string, object>
+            {
+                { "idToken", idToken }
+            };
+            return Call("delete", body, "Could not remove the incomplete account.");
+        }
+
         /// <summary>Card A03: send the password-reset email.</summary>
         public static AuthResult SendPasswordResetEmail(string email)
         {

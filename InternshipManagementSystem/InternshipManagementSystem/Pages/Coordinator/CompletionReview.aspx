@@ -1,22 +1,36 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="CompletionReview.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.CompletionReview" Title="Final Completion Review" %>
-
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="CompletionReview.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.CompletionReview" Title="Final Completion Review" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+<style>
+.review-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem}.review-fact{border-top:1px solid var(--line);padding-top:.75rem}.review-fact small{display:block;color:var(--muted)}.review-fact strong{display:block;overflow-wrap:anywhere}.review-muted{color:var(--muted)}.review-comments{white-space:pre-wrap;overflow-wrap:anywhere}.review-actions{display:flex;flex-wrap:wrap;gap:.6rem}.review-verification{border-top:1px solid var(--line);padding:1rem 0}.review-verification label{display:block}.review-badge{display:inline-block;border:1px solid var(--line);border-radius:1rem;padding:.2rem .7rem}.review-grid input,.review-grid select{max-width:100%}@media(max-width:700px){.review-grid{grid-template-columns:1fr}}
+</style>
 </asp:Content>
-
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-
-    <%-- ===================================================================
-         Final Completion Review
-         Owner : Ahmad
-         Cards : A10 - A14
-         Delete the placeholder below and build the page here.
-         =================================================================== --%>
-
-    <div class="uims-stub">
-        <span class="uims-stub-badge">A10 - A14</span>
-        <h2>Final Completion Review</h2>
-        <p>The last step of the whole workflow: show both final evaluations, approved hours and the university's conditions; compute the final result with GradingService; approve completion; then generate the official PDF report and the certificate. Nothing may be marked complete without this approval.</p>
-        <p class="uims-stub-owner">Assigned to <strong>Ahmad</strong></p>
-    </div>
-
+<h2>Final Completion Review</h2>
+<p class="review-muted">Review confidential evaluations and verified training evidence before recording the final completion decision.</p>
+<asp:Label ID="lblMessage" runat="server" Visible="false" role="alert" />
+<section class="uims-card" aria-labelledby="queueHeading">
+<h3 id="queueHeading">Internship Completion Reviews</h3>
+<p class="review-muted">Workflow statuses are application statuses. A confirmed placement does not establish completion.</p>
+<div class="review-grid mb-3">
+<div><asp:Label runat="server" AssociatedControlID="txtSearch" Text="Search student, number, program or company" /><asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" MaxLength="150" /></div>
+<div><asp:Label runat="server" AssociatedControlID="ddlStatus" Text="Completion review status" /><asp:DropDownList ID="ddlStatus" runat="server" CssClass="form-select"><asp:ListItem Value="">All statuses</asp:ListItem><asp:ListItem>In Progress</asp:ListItem><asp:ListItem>Awaiting Evaluations</asp:ListItem><asp:ListItem>Ready for Review</asp:ListItem><asp:ListItem>Needs Corrections</asp:ListItem><asp:ListItem>Approved</asp:ListItem><asp:ListItem>Rejected</asp:ListItem></asp:DropDownList></div>
+</div><asp:Button ID="btnFilter" runat="server" Text="Apply filters" CssClass="btn btn-outline-primary mb-3" OnClick="btnFilter_Click" CausesValidation="false" />
+<div class="table-responsive"><table class="uims-table"><thead><tr><th scope="col">Student</th><th scope="col">Student number</th><th scope="col">Academic program</th><th scope="col">Company</th><th scope="col">Internship type</th><th scope="col">Training status</th><th scope="col">Evaluation status</th><th scope="col">Completion review status</th><th scope="col">Review</th></tr></thead><tbody>
+<asp:Repeater ID="rptPlacements" runat="server"><ItemTemplate><tr><td><%#: Eval("StudentName") %></td><td><%#: Eval("StudentNumber") %></td><td><%#: Eval("Program") %></td><td><%#: Eval("Company") %></td><td><%#: Eval("InternshipType") %></td><td><%#: Eval("TrainingStatus") %></td><td><%#: Eval("EvaluationStatus") %></td><td><span class="review-badge"><%#: Eval("Status") %></span></td><td><asp:HyperLink runat="server" NavigateUrl='<%# Eval("ReviewUrl") %>' Text="View details" /></td></tr></ItemTemplate></asp:Repeater>
+</tbody></table></div><asp:Panel ID="pnlNoPlacements" runat="server" Visible="false"><p>No internships match these filters.</p></asp:Panel>
+</section>
+<asp:Panel ID="pnlSelect" runat="server" CssClass="uims-card"><h3>Select a student</h3><p>Use View details to review an internship.</p></asp:Panel>
+<asp:Panel ID="pnlReview" runat="server" Visible="false">
+<section class="uims-card"><h3>Student &amp; Internship Information</h3><h4><asp:Literal ID="litStudent" runat="server" /></h4><div class="review-grid"><asp:Literal ID="litFacts" runat="server" /></div></section>
+<section class="uims-card"><h3>Evaluation Evidence</h3><p class="review-muted">Final supervisor evaluations and comments are confidential and remain available only to authorized staff.</p><div class="review-grid"><div><h4>Company Final Evaluation</h4><asp:Literal ID="litCompanyEvidence" runat="server" /><p class="review-comments"><asp:Literal ID="litCompanyComments" runat="server" /></p></div><div><h4>Academic Final Evaluation</h4><asp:Literal ID="litAcademicEvidence" runat="server" /><p class="review-comments"><asp:Literal ID="litAcademicComments" runat="server" /></p></div></div><asp:Literal ID="litTasks" runat="server" /></section>
+<section class="uims-card"><h3>Training Requirements &amp; Documents</h3><asp:Literal ID="litRule" runat="server" /><asp:Panel ID="pnlConfiguration" runat="server"><asp:Label runat="server" AssociatedControlID="ddlRule" Text="Applicable evaluation and training rule" /><asp:DropDownList ID="ddlRule" runat="server" CssClass="form-select mb-2" /><asp:Button ID="btnRule" runat="server" Text="Save review configuration" CssClass="btn btn-outline-primary" OnClick="btnRule_Click" CausesValidation="false" /><p class="review-muted">Select the actual internship type. Changing configuration clears earlier evidence confirmations. Missing rules must be configured by the application administrator.</p></asp:Panel><asp:Literal ID="litIssues" runat="server" /></section>
+<section class="uims-card"><h3>Coordinator Verification</h3><p>Inspect the supporting records before confirming each requirement. Record a document identifier, secure archive location or other traceable evidence reference. Save verification before approving.</p>
+<asp:Repeater ID="rptRequirements" runat="server"><ItemTemplate><div class="review-verification"><asp:HiddenField ID="requirementKey" runat="server" Value='<%# Eval("Key") %>' /><asp:CheckBox ID="confirmed" runat="server" Checked='<%# Eval("Confirmed") %>' Enabled='<%# Eval("Editable") %>' Text='<%# Server.HtmlEncode((string)Eval("Label")) %>' /><p class="review-muted"><%#: Eval("Source") %></p><asp:Label runat="server" AssociatedControlID="evidenceReference" Text="Supporting evidence reference" /><asp:TextBox ID="evidenceReference" runat="server" CssClass="form-control" Text='<%# Eval("Reference") %>' MaxLength="1000" Enabled='<%# Eval("Editable") %>' /><asp:Panel runat="server" Visible='<%# Eval("NeedsDate") %>'><asp:Label runat="server" AssociatedControlID="evidenceDate" Text="Date of school approval (before training)" /><asp:TextBox ID="evidenceDate" runat="server" TextMode="Date" CssClass="form-control" Text='<%# Eval("Date") %>' Enabled='<%# Eval("Editable") %>' /></asp:Panel><p class="review-muted"><%#: Eval("Audit") %></p></div></ItemTemplate></asp:Repeater>
+<asp:Button ID="btnVerify" runat="server" Text="Save evidence verification" CssClass="btn btn-outline-primary" OnClick="btnVerify_Click" CausesValidation="false" /></section>
+<section class="uims-card"><h3>Final Decision</h3><p>Final Completion Status: <strong><asp:Literal ID="litReviewStatus" runat="server" /></strong></p><p>Provisional Evaluation Result: <strong><asp:Literal ID="litProposedResult" runat="server" /></strong></p><asp:Panel ID="pnlInternalScore" runat="server"><p>Internal configured score: <asp:Literal ID="litInternalScore" runat="server" /></p></asp:Panel><p class="review-muted">A passing evaluation does not approve completion. Only the coordinator can approve after verifying all applicable requirements.</p><asp:Literal ID="litSavedNote" runat="server" />
+<asp:Panel ID="pnlDecision" runat="server"><asp:Label runat="server" AssociatedControlID="txtCoordinatorNote" Text="Coordinator note (required for corrections or rejection)" /><asp:TextBox ID="txtCoordinatorNote" runat="server" CssClass="form-control mb-3" TextMode="MultiLine" Rows="3" MaxLength="2000" /><div class="review-actions"><asp:Button ID="btnApprove" runat="server" Text="Approve Internship Completion" CssClass="btn btn-brand" OnClick="btnApprove_Click" CausesValidation="false" OnClientClick="return confirm('Approve completion and release the student report? This decision will be read-only.');" /><asp:Button ID="btnCorrections" runat="server" Text="Return for Corrections" CssClass="btn btn-outline-primary" OnClick="btnCorrections_Click" CausesValidation="false" /><asp:Button ID="btnReject" runat="server" Text="Reject Completion" CssClass="btn btn-outline-danger" OnClick="btnReject_Click" CausesValidation="false" OnClientClick="return confirm('Reject completion with the documented reason? This decision will be read-only.');" /></div></asp:Panel>
+</section>
+<asp:Panel ID="pnlDownloads" runat="server" CssClass="uims-card" Visible="false"><h3>Approved Documents</h3><p>The report is released to the approved student. The separate certificate can be generated and printed by the coordinator.</p><asp:HyperLink ID="lnkReport" runat="server" Text="Download Internship Completion Report" CssClass="btn btn-outline-primary" /><asp:HyperLink ID="lnkCertificate" runat="server" Text="Generate Internship Completion Certificate" CssClass="btn btn-outline-primary" /></asp:Panel>
+<section class="uims-card"><h3>Review history</h3><asp:Literal ID="litAudit" runat="server" /></section>
+</asp:Panel>
 </asp:Content>

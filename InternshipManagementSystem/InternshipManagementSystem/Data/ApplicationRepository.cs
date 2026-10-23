@@ -9,7 +9,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class ApplicationRepository : RepositoryBase<InternshipApplication>
+    public class ApplicationRepository : NotifyingRepositoryBase<InternshipApplication>
     {
         protected override string Collection
         {

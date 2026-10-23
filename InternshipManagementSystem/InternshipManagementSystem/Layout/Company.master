@@ -34,6 +34,7 @@
                     <li><a class="uims-side-link" href="<%: ResolveUrl("~/Pages/Company/Tasks.aspx") %>">Manage Tasks</a></li>
                     <li><a class="uims-side-link" href="<%: ResolveUrl("~/Pages/Company/TaskReview.aspx") %>">Review Submissions</a></li>
                     <li><a class="uims-side-link" href="<%: ResolveUrl("~/Pages/Company/FinalEvaluation.aspx") %>">Final Evaluation</a></li>
+                    <li><a class="uims-side-link" href="<%: ResolveUrl("~/Pages/Reports/Grades.aspx") %>">Grades &amp; Results</a></li>
                     <li><a class="uims-side-link" href="<%: ResolveUrl("~/Pages/Company/Account.aspx") %>">My Account</a></li>
                     <li><a class="uims-side-link" href="<%: ResolveUrl("~/Pages/Meetings/MyMeetings.aspx") %>">Meetings</a></li>
                 </ul>

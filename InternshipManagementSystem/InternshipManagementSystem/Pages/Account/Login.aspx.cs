@@ -1,30 +1,55 @@
-﻿// =============================================================================
-//  Login
-//  Owner : Ahmad
-//  Cards : A01, A02
-//
-//  Email and password, show/hide password, validation, clear errors. On success call AuthService.SignIn, load the account with UserRepository.GetPerson, then SessionHelper.SignIn and redirect to user.DashboardUrl.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
 using System;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.AccountArea
 {
     public partial class Login : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        protected void btnSignIn_Click(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
+            string email = (txtEmail.Text ?? "").Trim();
+            if (!InternshipManagementSystem.Common.Validators.IsEmail(email) || string.IsNullOrEmpty(txtPassword.Text))
+            {
+                ShowMessage("Enter a valid email and password.");
+                return;
+            }
 
-            // TODO(Ahmad, A01, A02): build this page.
+            AuthResult result = AuthService.SignIn(email, txtPassword.Text);
+            if (!result.Success)
+            {
+                ShowMessage(result.ErrorMessage ?? "Could not sign in.");
+                return;
+            }
+
+            try
+            {
+                Person person = new UserRepository().GetPerson(result.Uid);
+                if (person == null || !person.CanLogin() || !string.Equals(person.Email, email, StringComparison.OrdinalIgnoreCase))
+                {
+                    SessionHelper.SignOut();
+                    ShowMessage("This account is not available. Contact your coordinator.");
+                    return;
+                }
+
+                SessionHelper.SignIn(person, result.IdToken);
+                Response.Redirect(ResolveUrl(person.MustChangePassword ? Constants.Routes.ChangePassword : person.DashboardUrl), false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (FirebaseException)
+            {
+                SessionHelper.SignOut();
+                ShowMessage("Could not load the account. Please try again.");
+            }
+        }
+
+        private void ShowMessage(string message)
+        {
+            lblMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            lblMessage.Visible = true;
         }
     }
 }

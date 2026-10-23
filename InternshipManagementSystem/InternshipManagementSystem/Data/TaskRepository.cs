@@ -9,7 +9,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class TaskRepository : RepositoryBase<InternshipTask>
+    public class TaskRepository : NotifyingRepositoryBase<InternshipTask>
     {
         protected override string Collection
         {
@@ -21,8 +21,9 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        // Add the queries your pages need here, as named methods.
-        // Keep raw field names out of the pages: if the field is ever
-        // renamed, this file is the only one that has to change.
+        public List<InternshipTask> GetByPlacement(string placementId)
+        {
+            return GetWhere("PlacementId", placementId);
+        }
     }
 }

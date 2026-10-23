@@ -1,131 +1,1611 @@
 {
+  "seedInfo": {
+    "Dataset": "GJU SEIT - UIMS professional demonstration seed",
+    "Version": "2.0.0",
+    "Purpose": "DEMONSTRATION DATA ONLY - not official university records",
+    "GeneratedOn": "2026-10-21",
+    "Database": "Firebase Realtime Database",
+    "TimeFormat": "Unix epoch milliseconds in Asia/Amman for wall-clock test events",
+    "ScenarioDescriptions": {
+      "internship-2026-001": "Full cycle: coordinator account setup -> application -> student confirmation -> placement -> tasks & resubmission -> supervisor review -> weekly hours -> company and academic final evaluations -> coordinator approval -> completion report sample",
+      "internship-2026-002": "Final-review scenario: confirmed placement, tasks & hours completed, both evaluations submitted, coordinator holds approval until missing completion-letter evidence is supplied",
+      "student-03": "Negative/open scenario: rejected application and a later pending application, with no internship or tasks until acceptance and confirmation"
+    },
+    "CriticalNotes": [
+      "All people and company names are fictional, not a representation of GJU or actual employers.",
+      "Four pre-existing Firebase Auth UIDs/emails from the input are preserved to limit breaking existing logins; display names are demonstration placeholders and should be checked.",
+      "Three REPLACE_WITH_FIREBASE_AUTH_UID_* keys must be replaced with Auth UIDs after accounts are actually created; all references must be replaced too.",
+      "Firebase Realtime Database import does not create Firebase Authentication users or passwords.",
+      "New nodes model required workflows but may require corresponding ASP.NET pages/models and Firebase security rules.",
+      "Grading policy and some workflow decisions are explicitly hypothetical; no claim of an officially approved GJU grade split.",
+      "Completion PDF sample is a separate non-official illustrative file. Upload it to Firebase Storage and set PdfUrl before the application can genuinely serve it."
+    ]
+  },
+  "roleDefinitions": {
+    "1": "Student",
+    "2": "Company Supervisor",
+    "3": "Academic Supervisor",
+    "4": "University Internship Coordinator"
+  },
+  "statusDefinitions": {
+    "Application": {
+      "0": "Pending",
+      "1": "Accepted",
+      "2": "Rejected",
+      "3": "Withdrawn"
+    },
+    "Opportunity": {
+      "1": "Open",
+      "2": "Closed"
+    },
+    "Internship": ["Active", "AwaitingCoordinatorReview", "Completed"]
+  },
+  "universities": {
+    "gju": {
+      "Id": "gju",
+      "Name": "German Jordanian University",
+      "NameArabic": "الجامعة الألمانية الأردنية",
+      "Website": "https://www.gju.edu.jo/",
+      "College": "School of Electrical Engineering and Information Technology",
+      "CollegeArabic": "كلية الهندسة الكهربائية وتكنولوجيا المعلومات",
+      "CollegeCode": "SEIT",
+      "Majors": ["Computer Science", "Computer Engineering"],
+      "StudentEmailDomain": "gju.edu.jo",
+      "TrainingPolicyId": "gju-seit-local-training-2026",
+      "GradingPolicyId": "gju-seit-proposed-grading-2026",
+      "DataScope": "Demonstration of local Jordan field training, NOT the separate German-year industry internship"
+    }
+  },
+  "trainingPolicies": {
+    "gju-seit-local-training-2026": {
+      "Id": "gju-seit-local-training-2026",
+      "UniversityId": "gju",
+      "College": "School of Electrical Engineering and Information Technology",
+      "RequiredHours": 160,
+      "ExpectedContinuousWeeks": 4,
+      "ApplicableMajors": ["Computer Science", "Computer Engineering"],
+      "PlacementGuidance": "Complete supervised local field training in an industry-relevant company, ordinarily over four continuous working weeks outside registered-semester conflicts.",
+      "PriorDepartmentApprovalRequired": true,
+      "ApprovalEvidenceType": "Recorded departmental email/approval",
+      "HoursApprovalProcedure": {
+        "Source": "Demonstration-specific implementation, not claimed as official GJU workflow",
+        "ProposedApproverRole": 2,
+        "CoordinatorFinalVerification": true,
+        "AutoApproveOnTaskCompletion": false
+      },
+      "CompletionRequires": [
+        "One confirmed application for the placement",
+        "Pre-training departmental approval recorded",
+        "160 individually approved and traceable hours",
+        "Company final evaluation submitted",
+        "Academic final evaluation sent to coordinator",
+        "Required completion letter/evidence checked",
+        "Coordinator explicit approval"
+      ],
+      "SourceUrls": [
+        "https://gju.edu.jo/content/faqs-14846",
+        "https://ns1.gju.edu.jo/ar/content/التدريب-المحلي-14477"
+      ],
+      "OfficialVsProposed": "160-hour and prior approval basis informed by public GJU sources; application-specific implementation decisions are illustrative"
+    }
+  },
+  "gradingPolicies": {
+    "gju-seit-proposed-grading-2026": {
+      "Id": "gju-seit-proposed-grading-2026",
+      "UniversityId": "gju",
+      "Name": "Proposed local internship evaluation method",
+      "IsOfficialUniversityPolicy": false,
+      "Explanation": "Hypothetical scoring model for the project because the assignment does not specify official GJU weights. Task, report, and rubric scores retain their native maximums.",
+      "Components": [
+        {
+          "Key": "CompanyFinal",
+          "Weight": 0.6,
+          "NativeMaximum": 20
+        },
+        {
+          "Key": "AcademicFinal",
+          "Weight": 0.4,
+          "NativeMaximum": 10
+        }
+      ],
+      "Formula": "FinalPercent = 100 * (0.60 * CompanyScore/20 + 0.40 * AcademicScore/10)",
+      "ReleaseRule": "Do not release the final result to student before coordinator approves completion.",
+      "TaskScales": "Per-task EvaluationMaxScore is individually specified; never assume every task is graded /100"
+    }
+  },
   "users": {
     "YIswkxh3bBQqucIRH1gPRYWkmO33": {
       "Id": "YIswkxh3bBQqucIRH1gPRYWkmO33",
-      "FullName": "Internship Coordinator",
-      "Email": "coordinator@gju.edu.jo",
+      "FullName": "Salman",
+      "FullNameArabic": "سلمان",
+      "Email": "ahmad@gmail.com",
       "Role": 4,
       "IsActive": true,
       "MustChangePassword": false,
-      "College": "School of Computing",
-      "CreatedAt": 1792540800000
+      "CreatedAt": 1761037200000,
+      "AccountCreatedByCoordinatorId": "",
+      "IsDemoAccount": true,
+      "College": "School of Electrical Engineering and Information Technology",
+      "JobTitle": "University Internship Coordinator",
+      "ManagedUniversityId": "gju"
     },
-    "PASTE_UID_HERE_1": {
-      "Id": "PASTE_UID_HERE_1",
-      "FullName": "Development CE Student",
-      "Email": "student.ce@example.com",
-      "Role": 1,
-      "IsActive": true,
-      "MustChangePassword": false,
-      "StudentNumber": "DEV-CE-001",
-      "University": "German Jordanian University",
-      "College": "School of Computing",
-      "Major": "Computer Engineering",
-      "RequiredHours": 160,
-      "ApprovedHours": 0,
-      "CreatedAt": 1792540800000
-    },
-    "PASTE_UID_HERE_2": {
-      "Id": "PASTE_UID_HERE_2",
-      "FullName": "Development CS Student",
-      "Email": "student.cs@example.com",
-      "Role": 1,
-      "IsActive": true,
-      "MustChangePassword": false,
-      "StudentNumber": "DEV-CS-001",
-      "University": "German Jordanian University",
-      "College": "School of Computing",
-      "Major": "Computer Science",
-      "RequiredHours": 160,
-      "ApprovedHours": 0,
-      "CreatedAt": 1792540800000
-    },
-    "PASTE_UID_HERE_3": {
-      "Id": "PASTE_UID_HERE_3",
-      "FullName": "Development Company Supervisor",
-      "Email": "company.supervisor@example.com",
-      "Role": 2,
-      "IsActive": true,
-      "MustChangePassword": false,
-      "CompanyId": "dev-company-1",
-      "CompanyName": "Demo Software Company",
-      "JobTitle": "Training Supervisor",
-      "CreatedAt": 1792540800000
-    },
-    "PASTE_UID_HERE_4": {
-      "Id": "PASTE_UID_HERE_4",
-      "FullName": "Development Academic Supervisor",
+    "Q00ThpmGTIfGkDaXnnrEo4PsArE3": {
+      "Id": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "FullName": "Dr. Hala Mahmoud Al-Hassan",
+      "FullNameArabic": "د. هالة محمود الحسن",
       "Email": "academic.supervisor@example.com",
       "Role": 3,
       "IsActive": true,
       "MustChangePassword": false,
-      "Department": "School of Computing",
-      "AcademicRank": "Development Supervisor",
-      "GroupIds": [],
-      "CreatedAt": 1792540800000
+      "CreatedAt": 1761037200000,
+      "AccountCreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsDemoAccount": true,
+      "Department": "School of Electrical Engineering and Information Technology",
+      "AcademicRank": "Assistant Professor (demonstration)",
+      "GroupIds": ["gju-seit-local-2026"]
+    },
+    "koO9Ayu6ssdDR9tNXrSuYzwiVJz1": {
+      "Id": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "FullName": "Khaled Mahmoud Al-Zoubi",
+      "FullNameArabic": "خالد محمود الزعبي",
+      "Email": "company.supervisor@example.com",
+      "Role": 2,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "CreatedAt": 1761037200000,
+      "AccountCreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsDemoAccount": true,
+      "CompanyId": "amman-software-studio",
+      "CompanyName": "Amman Software Studio",
+      "JobTitle": "Software Engineering Training Supervisor"
+    },
+    "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02": {
+      "Id": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "FullName": "Lina Fadi Al-Shami",
+      "FullNameArabic": "لينا فادي الشامي",
+      "Email": "lina.alshami.supervisor@example.com",
+      "Role": 2,
+      "IsActive": true,
+      "MustChangePassword": true,
+      "CreatedAt": 1779267600000,
+      "AccountCreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsDemoAccount": true,
+      "CompanyId": "levant-cloud-systems",
+      "CompanyName": "Levant Cloud Systems",
+      "JobTitle": "Software Engineering Training Supervisor"
+    },
+    "0shFizlYj6U3Ey4w5c8y3959pig2": {
+      "Id": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "FullName": "Ahmad Omar Al-Khatib",
+      "FullNameArabic": "أحمد عمر الخطيب",
+      "Email": "student.cs@example.com",
+      "Role": 1,
+      "IsActive": true,
+      "MustChangePassword": false,
+      "CreatedAt": 1779267600000,
+      "AccountCreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsDemoAccount": true,
+      "StudentNumber": "GJU-DEMO-2601",
+      "University": "German Jordanian University",
+      "UniversityId": "gju",
+      "College": "School of Electrical Engineering and Information Technology",
+      "Major": "Computer Science",
+      "RequiredHours": 160,
+      "ApprovedHours": 160,
+      "GroupId": "gju-seit-local-2026",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "CompletedCreditHours": 108,
+      "CvUrl": "",
+      "PortfolioUrl": "",
+      "ConfirmedInternshipId": "internship-2026-001",
+      "InternshipCompletionStatus": "Approved"
+    },
+    "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02": {
+      "Id": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "FullName": "Layan Samer Al-Masri",
+      "FullNameArabic": "ليان سامر المصري",
+      "Email": "layan.almasri.demo@example.com",
+      "Role": 1,
+      "IsActive": true,
+      "MustChangePassword": true,
+      "CreatedAt": 1779267600000,
+      "AccountCreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsDemoAccount": true,
+      "StudentNumber": "GJU-DEMO-2602",
+      "University": "German Jordanian University",
+      "UniversityId": "gju",
+      "College": "School of Electrical Engineering and Information Technology",
+      "Major": "Computer Engineering",
+      "RequiredHours": 160,
+      "ApprovedHours": 160,
+      "GroupId": "gju-seit-local-2026",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "CompletedCreditHours": 114,
+      "CvUrl": "",
+      "PortfolioUrl": "",
+      "ConfirmedInternshipId": "internship-2026-002",
+      "InternshipCompletionStatus": "UnderCoordinatorReview"
+    },
+    "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_03": {
+      "Id": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_03",
+      "FullName": "Yousef Nasser Al-Rawashdeh",
+      "FullNameArabic": "يوسف ناصر الرواشدة",
+      "Email": "yousef.rawashdeh.demo@example.com",
+      "Role": 1,
+      "IsActive": true,
+      "MustChangePassword": true,
+      "CreatedAt": 1779267600000,
+      "AccountCreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsDemoAccount": true,
+      "StudentNumber": "GJU-DEMO-2603",
+      "University": "German Jordanian University",
+      "UniversityId": "gju",
+      "College": "School of Electrical Engineering and Information Technology",
+      "Major": "Computer Science",
+      "RequiredHours": 160,
+      "ApprovedHours": 0,
+      "GroupId": "gju-seit-local-2026",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "CompletedCreditHours": 96,
+      "CvUrl": "",
+      "PortfolioUrl": "",
+      "ConfirmedInternshipId": "",
+      "InternshipCompletionStatus": "NotPlaced"
     }
   },
   "companies": {
-    "dev-company-1": {
-      "Id": "dev-company-1",
-      "Name": "Demo Software Company",
-      "Industry": "Software",
-      "Address": "Amman",
+    "amman-software-studio": {
+      "Id": "amman-software-studio",
+      "Name": "Amman Software Studio",
+      "NameArabic": "استوديو عمّان للبرمجيات",
+      "Industry": "Software engineering",
+      "Address": "Amman, Jordan",
+      "IsActive": true,
+      "PrimarySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "SupervisorIds": ["koO9Ayu6ssdDR9tNXrSuYzwiVJz1"],
       "ContactEmail": "company.supervisor@example.com",
-      "IsActive": true,
-      "CreatedAt": 1792540800000
+      "CreatedAt": 1779440400000,
+      "CreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsFictionalDemoCompany": true
     },
-    "dev-company-2": {
-      "Id": "dev-company-2",
-      "Name": "Demo Robotics Company",
-      "Industry": "Robotics",
-      "Address": "Amman",
-      "ContactEmail": "robotics@example.com",
+    "levant-cloud-systems": {
+      "Id": "levant-cloud-systems",
+      "Name": "Levant Cloud Systems",
+      "NameArabic": "أنظمة ليفانت السحابية",
+      "Industry": "Cloud solutions",
+      "Address": "Amman, Jordan",
       "IsActive": true,
-      "CreatedAt": 1792540800000
+      "PrimarySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "SupervisorIds": ["REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02"],
+      "ContactEmail": "lina.alshami.supervisor@example.com",
+      "CreatedAt": 1779440400000,
+      "CreatedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "IsFictionalDemoCompany": true
+    }
+  },
+  "studentGroups": {
+    "gju-seit-local-2026": {
+      "Id": "gju-seit-local-2026",
+      "Name": "SEIT Local Internship - Summer 2026",
+      "UniversityId": "gju",
+      "College": "School of Electrical Engineering and Information Technology",
+      "AcademicYear": "2025/2026",
+      "Semester": "Summer Break",
+      "StudentIds": [
+        "0shFizlYj6U3Ey4w5c8y3959pig2",
+        "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+        "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_03"
+      ],
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "AcademicSupervisorName": "Dr. Hala Mahmoud Al-Hassan",
+      "AssignedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "AssignedAt": 1779345000000,
+      "CreatedAt": 1779264000000
     }
   },
   "opportunities": {
-    "dev-opportunity-1": {
-      "Id": "dev-opportunity-1",
-      "CompanyId": "dev-company-1",
-      "CompanyName": "Demo Software Company",
-      "Title": "Software Development Internship",
-      "Description": "Fictional development fixture: build and test a small web application.",
-      "Requirements": "C# and basic database skills.",
-      "Location": "Amman",
-      "EligibleCollege": "School of Computing",
-      "EligibleMajors": [
-        "Computer Science",
-        "Computer Engineering"
-      ],
+    "opp-2026-001": {
+      "Id": "opp-2026-001",
+      "CompanyId": "amman-software-studio",
+      "CompanyName": "Amman Software Studio",
+      "CreatedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "Title": "ASP.NET Web Development - Local Internship",
+      "Description": "Fictional UIMS project placement at Amman Software Studio: mentored real-world software engineering tasks and weekly check-ins.",
+      "Requirements": "Fundamentals of C#, version control, APIs, testing, and professional communication.",
+      "Location": "Amman, Jordan",
+      "EligibleCollege": "School of Electrical Engineering and Information Technology",
+      "EligibleMajors": ["Computer Science", "Computer Engineering"],
       "TotalSeats": 2,
-      "FilledSeats": 0,
+      "FilledSeats": 1,
       "DurationWeeks": 4,
-      "StartDate": 0,
-      "ApplicationDeadline": 0,
-      "Status": 1,
-      "CreatedAt": 1792540800000
+      "RequiredHours": 160,
+      "ApplicationDeadline": 1782853140000,
+      "StartDate": 1783231200000,
+      "Status": 2,
+      "CreatedAt": 1780293600000,
+      "ApprovalDisclaimer": "FICTIONAL EDUCATIONAL LISTING - NOT A REAL JOB POSTING"
     },
-    "dev-opportunity-2": {
-      "Id": "dev-opportunity-2",
-      "CompanyId": "dev-company-2",
-      "CompanyName": "Demo Robotics Company",
-      "Title": "Computer Engineering Internship",
-      "Description": "Fictional development fixture: prototype and test a robotics component.",
-      "Requirements": "Programming and electronics basics.",
-      "Location": "Amman",
-      "EligibleCollege": "School of Computing",
-      "EligibleMajors": [
-        "Computer Engineering"
-      ],
+    "opp-2026-002": {
+      "Id": "opp-2026-002",
+      "CompanyId": "levant-cloud-systems",
+      "CompanyName": "Levant Cloud Systems",
+      "CreatedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "Title": "Cloud Infrastructure & QA Internship",
+      "Description": "Fictional UIMS project placement at Levant Cloud Systems: mentored real-world software engineering tasks and weekly check-ins.",
+      "Requirements": "Fundamentals of C#, version control, APIs, testing, and professional communication.",
+      "Location": "Amman, Jordan",
+      "EligibleCollege": "School of Electrical Engineering and Information Technology",
+      "EligibleMajors": ["Computer Science", "Computer Engineering"],
       "TotalSeats": 2,
-      "FilledSeats": 0,
+      "FilledSeats": 1,
       "DurationWeeks": 4,
-      "StartDate": 0,
-      "ApplicationDeadline": 0,
+      "RequiredHours": 160,
+      "ApplicationDeadline": 1785272340000,
+      "StartDate": 1785650400000,
+      "Status": 2,
+      "CreatedAt": 1782885600000,
+      "ApprovalDisclaimer": "FICTIONAL EDUCATIONAL LISTING - NOT A REAL JOB POSTING"
+    },
+    "opp-2026-003": {
+      "Id": "opp-2026-003",
+      "CompanyId": "amman-software-studio",
+      "CompanyName": "Amman Software Studio",
+      "CreatedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "Title": "Backend APIs Internship - Autumn Intake",
+      "Description": "Fictional UIMS project placement at Amman Software Studio: mentored real-world software engineering tasks and weekly check-ins.",
+      "Requirements": "Fundamentals of C#, version control, APIs, testing, and professional communication.",
+      "Location": "Amman, Jordan",
+      "EligibleCollege": "School of Electrical Engineering and Information Technology",
+      "EligibleMajors": ["Computer Science", "Computer Engineering"],
+      "TotalSeats": 1,
+      "FilledSeats": 1,
+      "DurationWeeks": 4,
+      "RequiredHours": 160,
+      "ApplicationDeadline": 1793653140000,
+      "StartDate": 1794117600000,
       "Status": 1,
-      "CreatedAt": 1792540800000
+      "CreatedAt": 1792044000000,
+      "ApprovalDisclaimer": "FICTIONAL EDUCATIONAL LISTING - NOT A REAL JOB POSTING"
+    }
+  },
+  "applications": {
+    "app-2026-001": {
+      "Id": "app-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "StudentName": "Ahmad Omar Al-Khatib",
+      "StudentMajor": "Computer Science",
+      "OpportunityId": "opp-2026-001",
+      "OpportunityTitle": "ASP.NET Web Development - Local Internship",
+      "CompanyId": "amman-software-studio",
+      "CompanyName": "Amman Software Studio",
+      "CoverLetter": "Interested in backend development and code quality.",
+      "CvUrl": "",
+      "Status": 1,
+      "RejectionReason": "",
+      "DecidedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "DecidedAt": 1781438400000,
+      "IsConfirmedByStudent": true,
+      "ConfirmedAt": 1781506800000,
+      "SubmittedAt": 1781169000000
+    },
+    "app-2026-002": {
+      "Id": "app-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "StudentName": "Layan Samer Al-Masri",
+      "StudentMajor": "Computer Engineering",
+      "OpportunityId": "opp-2026-002",
+      "OpportunityTitle": "Cloud Infrastructure & QA Internship",
+      "CompanyId": "levant-cloud-systems",
+      "CompanyName": "Levant Cloud Systems",
+      "CoverLetter": "Interested in engineering, cloud systems, and meaningful internship training.",
+      "CvUrl": "",
+      "Status": 1,
+      "RejectionReason": "",
+      "DecidedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "DecidedAt": 1783672200000,
+      "IsConfirmedByStudent": true,
+      "ConfirmedAt": 1783751400000,
+      "SubmittedAt": 1783508400000
+    },
+    "app-2026-003": {
+      "Id": "app-2026-003",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_03",
+      "StudentName": "Yousef Nasser Al-Rawashdeh",
+      "StudentMajor": "Computer Science",
+      "OpportunityId": "opp-2026-002",
+      "OpportunityTitle": "Cloud Infrastructure & QA Internship",
+      "CompanyId": "levant-cloud-systems",
+      "CompanyName": "Levant Cloud Systems",
+      "CoverLetter": "Interested in engineering, cloud systems, and meaningful internship training.",
+      "CvUrl": "",
+      "Status": 2,
+      "RejectionReason": "Current intake prioritizes applicants with previous cloud platform project experience.",
+      "DecidedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "DecidedAt": 1783776600000,
+      "IsConfirmedByStudent": false,
+      "ConfirmedAt": 0,
+      "SubmittedAt": 1783588800000
+    },
+    "app-2026-004": {
+      "Id": "app-2026-004",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_03",
+      "StudentName": "Yousef Nasser Al-Rawashdeh",
+      "StudentMajor": "Computer Science",
+      "OpportunityId": "opp-2026-003",
+      "OpportunityTitle": "Backend APIs Internship - Autumn Intake",
+      "CompanyId": "amman-software-studio",
+      "CompanyName": "Amman Software Studio",
+      "CoverLetter": "Interested in engineering, cloud systems, and meaningful internship training.",
+      "CvUrl": "",
+      "Status": 0,
+      "RejectionReason": "",
+      "DecidedBySupervisorId": "",
+      "DecidedAt": 0,
+      "IsConfirmedByStudent": false,
+      "ConfirmedAt": 0,
+      "SubmittedAt": 1792404300000
+    }
+  },
+  "internships": {
+    "internship-2026-001": {
+      "Id": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "ApplicationId": "app-2026-001",
+      "OpportunityId": "opp-2026-001",
+      "CompanyId": "amman-software-studio",
+      "CompanySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "CoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "GroupId": "gju-seit-local-2026",
+      "Status": "Completed",
+      "RequiredHours": 160,
+      "ApprovedHours": 160,
+      "ConfirmedAt": 1781506800000,
+      "StartedAt": 1783231200000,
+      "EndedAt": 1785420000000,
+      "DepartmentApproval": {
+        "Required": true,
+        "Status": "Recorded",
+        "ApprovedAt": 1781769600000,
+        "ApprovedBy": "SEIT department office (simulated off-system evidence)",
+        "EvidenceType": "ApprovalEmail",
+        "IsRealDocument": false
+      },
+      "CompanyFinalEvaluationId": "company-eval-001",
+      "AcademicFinalEvaluationId": "academic-eval-001",
+      "CoordinatorReviewId": "review-001",
+      "CompletionReportId": "completion-001",
+      "CompletionApprovedAt": 1785999600000,
+      "TrainingPeriodCompliance": "Four consecutive Sunday-Thursday working weeks, 8 hours per day",
+      "CreatedAt": 1781506800000
+    },
+    "internship-2026-002": {
+      "Id": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "ApplicationId": "app-2026-002",
+      "OpportunityId": "opp-2026-002",
+      "CompanyId": "levant-cloud-systems",
+      "CompanySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "CoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "GroupId": "gju-seit-local-2026",
+      "Status": "AwaitingCoordinatorReview",
+      "RequiredHours": 160,
+      "ApprovedHours": 160,
+      "ConfirmedAt": 1783751400000,
+      "StartedAt": 1785650400000,
+      "EndedAt": 1787839200000,
+      "DepartmentApproval": {
+        "Required": true,
+        "Status": "Recorded",
+        "ApprovedAt": 1784102400000,
+        "ApprovedBy": "SEIT department office (simulated off-system evidence)",
+        "EvidenceType": "ApprovalEmail",
+        "IsRealDocument": false
+      },
+      "CompanyFinalEvaluationId": "company-eval-002",
+      "AcademicFinalEvaluationId": "academic-eval-002",
+      "CoordinatorReviewId": "review-002",
+      "CompletionReportId": "",
+      "CompletionApprovedAt": 0,
+      "TrainingPeriodCompliance": "Four consecutive Sunday-Thursday working weeks, 8 hours per day",
+      "CreatedAt": 1783751400000
+    }
+  },
+  "tasks": {
+    "task-001": {
+      "Id": "task-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "CreatedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "Title": "Design the internship project database",
+      "Description": "Deliver a reproducible artifact and explain design decisions, testing evidence, and limitations.",
+      "EvaluationCriteria": [
+        "Correctness",
+        "Testing evidence",
+        "Maintainability"
+      ],
+      "EvaluationMaxScore": 10,
+      "Deadline": 1783605600000,
+      "CreatedAt": 1783233000000,
+      "Status": "Evaluated",
+      "FinalScore": 9,
+      "EvaluatedAt": 1783607400000,
+      "LatestFeedback": "Reviewed: normalized entity relationships correctly.",
+      "HasRequestedRevision": false,
+      "SubmissionIds": ["submission-001"],
+      "LatestSubmissionId": "submission-001",
+      "RevisionCount": 0,
+      "EvaluationsHistory": [
+        {
+          "SubmissionId": "submission-001",
+          "Score": 9,
+          "MaxScore": 10,
+          "Feedback": "ER diagram and SQL model reviewed.",
+          "ReviewedAt": 1783607400000,
+          "Status": "Accepted"
+        }
+      ]
+    },
+    "task-002": {
+      "Id": "task-002",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "CreatedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "Title": "Implement authenticated REST endpoints",
+      "Description": "Deliver a reproducible artifact and explain design decisions, testing evidence, and limitations.",
+      "EvaluationCriteria": [
+        "Correctness",
+        "Testing evidence",
+        "Maintainability"
+      ],
+      "EvaluationMaxScore": 15,
+      "Deadline": 1784210400000,
+      "CreatedAt": 1783837800000,
+      "Status": "Evaluated",
+      "FinalScore": 13,
+      "EvaluatedAt": 1784271600000,
+      "LatestFeedback": "Good improvement after strengthening role-based validation.",
+      "HasRequestedRevision": true,
+      "SubmissionIds": ["submission-002", "submission-003"],
+      "LatestSubmissionId": "submission-003",
+      "RevisionCount": 1,
+      "EvaluationsHistory": [
+        {
+          "SubmissionId": "submission-002",
+          "Score": null,
+          "MaxScore": 15,
+          "Feedback": "Add server-side authorization and request validation.",
+          "ReviewedAt": 1784102400000,
+          "Status": "RevisionRequested"
+        },
+        {
+          "SubmissionId": "submission-003",
+          "Score": 13,
+          "MaxScore": 15,
+          "Feedback": "Role authorization added and test cases passed.",
+          "ReviewedAt": 1784271600000,
+          "Status": "Accepted"
+        }
+      ]
+    },
+    "task-003": {
+      "Id": "task-003",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "CreatedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "Title": "Integrate UI and perform final tests",
+      "Description": "Deliver a reproducible artifact and explain design decisions, testing evidence, and limitations.",
+      "EvaluationCriteria": [
+        "Correctness",
+        "Testing evidence",
+        "Maintainability"
+      ],
+      "EvaluationMaxScore": 25,
+      "Deadline": 1785420000000,
+      "CreatedAt": 1784442600000,
+      "Status": "Evaluated",
+      "FinalScore": 23,
+      "EvaluatedAt": 1785567600000,
+      "LatestFeedback": "Most acceptance tests pass; documentation is clear.",
+      "HasRequestedRevision": false,
+      "SubmissionIds": ["submission-004"],
+      "LatestSubmissionId": "submission-004",
+      "RevisionCount": 0,
+      "EvaluationsHistory": [
+        {
+          "SubmissionId": "submission-004",
+          "Score": 23,
+          "MaxScore": 25,
+          "Feedback": "Final integration and regression checklist accepted.",
+          "ReviewedAt": 1785567600000,
+          "Status": "Accepted"
+        }
+      ]
+    },
+    "task-004": {
+      "Id": "task-004",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CompanyId": "levant-cloud-systems",
+      "CreatedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "Title": "Create cloud deployment runbook",
+      "Description": "Deliver a reproducible artifact and explain design decisions, testing evidence, and limitations.",
+      "EvaluationCriteria": [
+        "Correctness",
+        "Testing evidence",
+        "Maintainability"
+      ],
+      "EvaluationMaxScore": 10,
+      "Deadline": 1786629600000,
+      "CreatedAt": 1785652200000,
+      "Status": "Evaluated",
+      "FinalScore": 8,
+      "EvaluatedAt": 1786689000000,
+      "LatestFeedback": "Deployment steps are clear and reproducible.",
+      "HasRequestedRevision": false,
+      "SubmissionIds": ["submission-005"],
+      "LatestSubmissionId": "submission-005",
+      "RevisionCount": 0,
+      "EvaluationsHistory": [
+        {
+          "SubmissionId": "submission-005",
+          "Score": 8,
+          "MaxScore": 10,
+          "Feedback": "Runbook is reproducible.",
+          "ReviewedAt": 1786689000000,
+          "Status": "Accepted"
+        }
+      ]
+    },
+    "task-005": {
+      "Id": "task-005",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CompanyId": "levant-cloud-systems",
+      "CreatedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "Title": "Add monitoring and automated QA",
+      "Description": "Deliver a reproducible artifact and explain design decisions, testing evidence, and limitations.",
+      "EvaluationCriteria": [
+        "Correctness",
+        "Testing evidence",
+        "Maintainability"
+      ],
+      "EvaluationMaxScore": 20,
+      "Deadline": 1787839200000,
+      "CreatedAt": 1786861800000,
+      "Status": "Evaluated",
+      "FinalScore": 18,
+      "EvaluatedAt": 1787918400000,
+      "LatestFeedback": "Validated alerts and improved coverage in revised submission.",
+      "HasRequestedRevision": true,
+      "SubmissionIds": ["submission-006", "submission-007"],
+      "LatestSubmissionId": "submission-007",
+      "RevisionCount": 1,
+      "EvaluationsHistory": [
+        {
+          "SubmissionId": "submission-006",
+          "Score": null,
+          "MaxScore": 20,
+          "Feedback": "Monitoring alerts need failure-path tests.",
+          "ReviewedAt": 1787727600000,
+          "Status": "RevisionRequested"
+        },
+        {
+          "SubmissionId": "submission-007",
+          "Score": 18,
+          "MaxScore": 20,
+          "Feedback": "Negative-path QA added; accepted.",
+          "ReviewedAt": 1787918400000,
+          "Status": "Accepted"
+        }
+      ]
+    }
+  },
+  "taskSubmissions": {
+    "submission-001": {
+      "Id": "submission-001",
+      "TaskId": "task-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "Attempt": 1,
+      "SubmissionText": "Attempt 1: submitted project work and test notes for design the internship project database.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1783515600000,
+      "ReviewStatus": "Accepted",
+      "ReviewedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ReviewedAt": 1783607400000,
+      "Score": 9,
+      "Feedback": "ER diagram and SQL model reviewed.",
+      "IsFinalAcceptedVersion": true
+    },
+    "submission-002": {
+      "Id": "submission-002",
+      "TaskId": "task-002",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "Attempt": 1,
+      "SubmissionText": "Attempt 1: submitted project work and test notes for implement authenticated rest endpoints.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1784035200000,
+      "ReviewStatus": "RevisionRequested",
+      "ReviewedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ReviewedAt": 1784102400000,
+      "Score": null,
+      "Feedback": "Add server-side authorization and request validation.",
+      "IsFinalAcceptedVersion": false
+    },
+    "submission-003": {
+      "Id": "submission-003",
+      "TaskId": "task-002",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "Attempt": 2,
+      "SubmissionText": "Attempt 2: submitted project work and test notes for implement authenticated rest endpoints.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1784203200000,
+      "ReviewStatus": "Accepted",
+      "ReviewedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ReviewedAt": 1784271600000,
+      "Score": 13,
+      "Feedback": "Role authorization added and test cases passed.",
+      "IsFinalAcceptedVersion": true
+    },
+    "submission-004": {
+      "Id": "submission-004",
+      "TaskId": "task-003",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "Attempt": 1,
+      "SubmissionText": "Attempt 1: submitted project work and test notes for integrate ui and perform final tests.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1785328200000,
+      "ReviewStatus": "Accepted",
+      "ReviewedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ReviewedAt": 1785567600000,
+      "Score": 23,
+      "Feedback": "Final integration and regression checklist accepted.",
+      "IsFinalAcceptedVersion": true
+    },
+    "submission-005": {
+      "Id": "submission-005",
+      "TaskId": "task-004",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "Attempt": 1,
+      "SubmissionText": "Attempt 1: submitted project work and test notes for create cloud deployment runbook.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1786536000000,
+      "ReviewStatus": "Accepted",
+      "ReviewedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ReviewedAt": 1786689000000,
+      "Score": 8,
+      "Feedback": "Runbook is reproducible.",
+      "IsFinalAcceptedVersion": true
+    },
+    "submission-006": {
+      "Id": "submission-006",
+      "TaskId": "task-005",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "Attempt": 1,
+      "SubmissionText": "Attempt 1: submitted project work and test notes for add monitoring and automated qa.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1787663700000,
+      "ReviewStatus": "RevisionRequested",
+      "ReviewedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ReviewedAt": 1787727600000,
+      "Score": null,
+      "Feedback": "Monitoring alerts need failure-path tests.",
+      "IsFinalAcceptedVersion": false
+    },
+    "submission-007": {
+      "Id": "submission-007",
+      "TaskId": "task-005",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "Attempt": 2,
+      "SubmissionText": "Attempt 2: submitted project work and test notes for add monitoring and automated qa.",
+      "WorkLink": "",
+      "FileUrl": "",
+      "SubmittedAt": 1787833800000,
+      "ReviewStatus": "Accepted",
+      "ReviewedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ReviewedAt": 1787918400000,
+      "Score": 18,
+      "Feedback": "Negative-path QA added; accepted.",
+      "IsFinalAcceptedVersion": true
+    }
+  },
+  "trainingHours": {
+    "hours-001-week-01": {
+      "Id": "hours-001-week-01",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "WeekNumber": 1,
+      "PeriodStart": 1783231200000,
+      "PeriodEnd": 1783605600000,
+      "DailyEntries": [
+        {
+          "Date": 1783231200000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1783317600000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1783404000000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1783490400000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1783576800000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1783663200000,
+      "ApprovedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ApprovedAt": 1783753200000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-001-week-02": {
+      "Id": "hours-001-week-02",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "WeekNumber": 2,
+      "PeriodStart": 1783836000000,
+      "PeriodEnd": 1784210400000,
+      "DailyEntries": [
+        {
+          "Date": 1783836000000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1783922400000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784008800000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784095200000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784181600000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1784268000000,
+      "ApprovedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ApprovedAt": 1784358000000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-001-week-03": {
+      "Id": "hours-001-week-03",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "WeekNumber": 3,
+      "PeriodStart": 1784440800000,
+      "PeriodEnd": 1784815200000,
+      "DailyEntries": [
+        {
+          "Date": 1784440800000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784527200000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784613600000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784700000000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1784786400000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1784872800000,
+      "ApprovedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ApprovedAt": 1784962800000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-001-week-04": {
+      "Id": "hours-001-week-04",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CompanyId": "amman-software-studio",
+      "WeekNumber": 4,
+      "PeriodStart": 1785045600000,
+      "PeriodEnd": 1785420000000,
+      "DailyEntries": [
+        {
+          "Date": 1785045600000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1785132000000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1785218400000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1785304800000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        },
+        {
+          "Date": 1785391200000,
+          "Hours": 8,
+          "Activity": "Code review, development and supervised learning"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1785477600000,
+      "ApprovedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ApprovedAt": 1785567600000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-002-week-01": {
+      "Id": "hours-002-week-01",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CompanyId": "levant-cloud-systems",
+      "WeekNumber": 1,
+      "PeriodStart": 1785650400000,
+      "PeriodEnd": 1786024800000,
+      "DailyEntries": [
+        {
+          "Date": 1785650400000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1785736800000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1785823200000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1785909600000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1785996000000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1786082400000,
+      "ApprovedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ApprovedAt": 1786172400000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-002-week-02": {
+      "Id": "hours-002-week-02",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CompanyId": "levant-cloud-systems",
+      "WeekNumber": 2,
+      "PeriodStart": 1786255200000,
+      "PeriodEnd": 1786629600000,
+      "DailyEntries": [
+        {
+          "Date": 1786255200000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1786341600000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1786428000000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1786514400000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1786600800000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1786687200000,
+      "ApprovedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ApprovedAt": 1786777200000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-002-week-03": {
+      "Id": "hours-002-week-03",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CompanyId": "levant-cloud-systems",
+      "WeekNumber": 3,
+      "PeriodStart": 1786860000000,
+      "PeriodEnd": 1787234400000,
+      "DailyEntries": [
+        {
+          "Date": 1786860000000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1786946400000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787032800000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787119200000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787205600000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1787292000000,
+      "ApprovedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ApprovedAt": 1787382000000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    },
+    "hours-002-week-04": {
+      "Id": "hours-002-week-04",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CompanyId": "levant-cloud-systems",
+      "WeekNumber": 4,
+      "PeriodStart": 1787464800000,
+      "PeriodEnd": 1787839200000,
+      "DailyEntries": [
+        {
+          "Date": 1787464800000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787551200000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787637600000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787724000000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        },
+        {
+          "Date": 1787810400000,
+          "Hours": 8,
+          "Activity": "Deployment, QA and supervised cloud operations"
+        }
+      ],
+      "SubmittedHours": 40,
+      "ApprovedHours": 40,
+      "Status": "Approved",
+      "SubmittedAt": 1787896800000,
+      "ApprovedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ApprovedAt": 1787986800000,
+      "ApprovalComment": "Verified attendance with supervisor timesheet.",
+      "AutomaticallyApprovedFromTaskCompletion": false
+    }
+  },
+  "trainingReports": {
+    "report-001": {
+      "Id": "report-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "Title": "Local Training Final Reflection - ASP.NET Project",
+      "ReportType": "Final",
+      "SubmittedAt": 1785578400000,
+      "ReviewedBySupervisorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "ReviewedAt": 1785657600000,
+      "Score": 18,
+      "MaxScore": 20,
+      "Status": "Reviewed",
+      "Feedback": "Detailed account of project decisions and learning.",
+      "ContributionToGrade": "Evidence for the academic final rubric; not added as a third weighted component.",
+      "FileUrl": ""
+    },
+    "report-002": {
+      "Id": "report-002",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "Title": "Local Training Reflection - Cloud and QA",
+      "ReportType": "Final",
+      "SubmittedAt": 1787983200000,
+      "ReviewedBySupervisorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "ReviewedAt": 1787994000000,
+      "Score": 17,
+      "MaxScore": 20,
+      "Status": "Reviewed",
+      "Feedback": "Clear summary of testing methodology and incident simulations.",
+      "ContributionToGrade": "Evidence for the academic final rubric; not added as a third weighted component.",
+      "FileUrl": ""
+    }
+  },
+  "academicComments": {
+    "comment-001": {
+      "Id": "comment-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Comment": "Weekly progress, assigned tasks, and documented hours were verified before final assessment.",
+      "CreatedAt": 1785740400000
+    },
+    "comment-002": {
+      "Id": "comment-002",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "AcademicSupervisorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Comment": "Final report and technical evidence reviewed; await missing employer completion letter before coordinator sign-off.",
+      "CreatedAt": 1788073200000
+    }
+  },
+  "companyFinalEvaluations": {
+    "company-eval-001": {
+      "Id": "company-eval-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "EvaluatorId": "koO9Ayu6ssdDR9tNXrSuYzwiVJz1",
+      "Criteria": [
+        {
+          "Criterion": "Technical skills",
+          "Score": 7,
+          "MaxScore": 8
+        },
+        {
+          "Criterion": "Reliability",
+          "Score": 3.5,
+          "MaxScore": 4
+        },
+        {
+          "Criterion": "Teamwork",
+          "Score": 3.5,
+          "MaxScore": 4
+        },
+        {
+          "Criterion": "Professional conduct",
+          "Score": 3.5,
+          "MaxScore": 4
+        }
+      ],
+      "Score": 17.5,
+      "MaxScore": 20,
+      "SubmittedAt": 1785672000000,
+      "SubmittedToId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Status": "Submitted",
+      "Visibility": "Restricted: company/academic supervisor and coordinator; student cannot view raw final evaluation",
+      "Comments": "Solid software delivery and professional conduct.",
+      "IsOfficialUniversityRubric": false,
+      "GradingPolicyId": "gju-seit-proposed-grading-2026"
+    },
+    "company-eval-002": {
+      "Id": "company-eval-002",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "EvaluatorId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "Criteria": [
+        {
+          "Criterion": "Technical skills",
+          "Score": 6.5,
+          "MaxScore": 8
+        },
+        {
+          "Criterion": "Reliability",
+          "Score": 3.5,
+          "MaxScore": 4
+        },
+        {
+          "Criterion": "Teamwork",
+          "Score": 3,
+          "MaxScore": 4
+        },
+        {
+          "Criterion": "Professional conduct",
+          "Score": 3.5,
+          "MaxScore": 4
+        }
+      ],
+      "Score": 16.5,
+      "MaxScore": 20,
+      "SubmittedAt": 1788008400000,
+      "SubmittedToId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Status": "Submitted",
+      "Visibility": "Restricted: company/academic supervisor and coordinator; student cannot view raw final evaluation",
+      "Comments": "Reliable internship performance with strong QA improvement.",
+      "IsOfficialUniversityRubric": false,
+      "GradingPolicyId": "gju-seit-proposed-grading-2026"
+    }
+  },
+  "academicFinalEvaluations": {
+    "academic-eval-001": {
+      "Id": "academic-eval-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "EvaluatorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Criteria": [
+        {
+          "Criterion": "Training report",
+          "Score": 4.5,
+          "MaxScore": 5
+        },
+        {
+          "Criterion": "Critical reflection",
+          "Score": 2.5,
+          "MaxScore": 3
+        },
+        {
+          "Criterion": "Academic communication",
+          "Score": 2,
+          "MaxScore": 2
+        }
+      ],
+      "Score": 9.0,
+      "MaxScore": 10,
+      "SubmittedAt": 1785826800000,
+      "SubmittedToId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "Status": "SubmittedToCoordinator",
+      "Visibility": "Restricted: company/academic supervisor and coordinator; student cannot view raw final evaluation",
+      "Comments": "Final academic evaluation supported by weekly logs and reports.",
+      "IsOfficialUniversityRubric": false,
+      "GradingPolicyId": "gju-seit-proposed-grading-2026"
+    },
+    "academic-eval-002": {
+      "Id": "academic-eval-002",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "EvaluatorId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Criteria": [
+        {
+          "Criterion": "Training report",
+          "Score": 4,
+          "MaxScore": 5
+        },
+        {
+          "Criterion": "Critical reflection",
+          "Score": 2.5,
+          "MaxScore": 3
+        },
+        {
+          "Criterion": "Academic communication",
+          "Score": 2,
+          "MaxScore": 2
+        }
+      ],
+      "Score": 8.5,
+      "MaxScore": 10,
+      "SubmittedAt": 1788161400000,
+      "SubmittedToId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "Status": "SubmittedToCoordinator",
+      "Visibility": "Restricted: company/academic supervisor and coordinator; student cannot view raw final evaluation",
+      "Comments": "Academic review complete, external employer completion letter not yet uploaded.",
+      "IsOfficialUniversityRubric": false,
+      "GradingPolicyId": "gju-seit-proposed-grading-2026"
+    }
+  },
+  "coordinatorReviews": {
+    "review-001": {
+      "Id": "review-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "CoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "CompanyFinalEvaluationId": "company-eval-001",
+      "AcademicFinalEvaluationId": "academic-eval-001",
+      "GradingPolicyId": "gju-seit-proposed-grading-2026",
+      "ApprovedHoursVerified": 160,
+      "RequiredHours": 160,
+      "Checks": {
+        "ApplicationConfirmed": true,
+        "DepartmentApprovalRecorded": true,
+        "HoursFullyApproved": true,
+        "CompanyEvaluationReceived": true,
+        "AcademicEvaluationReceived": true,
+        "CompletionLetterRecorded": true
+      },
+      "CompanyScore": 17.5,
+      "CompanyMaxScore": 20,
+      "AcademicScore": 9.0,
+      "AcademicMaxScore": 10,
+      "FinalGradePercent": 88.5,
+      "Status": "Approved",
+      "ReviewNote": "All illustrated local-training conditions satisfied; final report authorized.",
+      "ReviewedAt": 1785916800000,
+      "ApprovedAt": 1785999600000,
+      "CanStudentViewFinalResult": true
+    },
+    "review-002": {
+      "Id": "review-002",
+      "InternshipId": "internship-2026-002",
+      "StudentId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "CoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "CompanyFinalEvaluationId": "company-eval-002",
+      "AcademicFinalEvaluationId": "academic-eval-002",
+      "GradingPolicyId": "gju-seit-proposed-grading-2026",
+      "ApprovedHoursVerified": 160,
+      "RequiredHours": 160,
+      "Checks": {
+        "ApplicationConfirmed": true,
+        "DepartmentApprovalRecorded": true,
+        "HoursFullyApproved": true,
+        "CompanyEvaluationReceived": true,
+        "AcademicEvaluationReceived": true,
+        "CompletionLetterRecorded": false
+      },
+      "CompanyScore": 16.5,
+      "CompanyMaxScore": 20,
+      "AcademicScore": 8.5,
+      "AcademicMaxScore": 10,
+      "FinalGradePercent": null,
+      "InternalProvisionalGradePercent": 83.5,
+      "Status": "OnHold",
+      "ReviewNote": "Missing company completion letter; do not approve or release final grade until evidence is recorded.",
+      "ReviewedAt": 1788249600000,
+      "ApprovedAt": 0,
+      "CanStudentViewFinalResult": false
+    }
+  },
+  "completionReports": {
+    "completion-001": {
+      "Id": "completion-001",
+      "InternshipId": "internship-2026-001",
+      "StudentId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "StudentName": "Ahmad Omar Al-Khatib",
+      "StudentNumber": "GJU-DEMO-2601",
+      "UniversityId": "gju",
+      "College": "School of Electrical Engineering and Information Technology",
+      "CompanyId": "amman-software-studio",
+      "CompanyName": "Amman Software Studio",
+      "ApprovedTrainingHours": 160,
+      "RequiredTrainingHours": 160,
+      "FinalGradePercent": 88.5,
+      "ApprovedByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ApprovedAt": 1785999600000,
+      "IssuedAt": 1786001400000,
+      "Status": "IssuedDemo",
+      "ReportNumber": "UIMS-GJU-DEMO-2026-001",
+      "PdfFileName": "DEMO_GJU_Completion_Report_2026_001.pdf",
+      "PdfStoragePath": "completion-reports/2026/DEMO_GJU_Completion_Report_2026_001.pdf",
+      "PdfUrl": "",
+      "PdfUploadStatus": "RequiresFirebaseStorageUpload",
+      "InAppAvailability": "RequiresPdfUrl after storage upload",
+      "IsOfficialUniversityCertificate": false,
+      "IsSimulated": true,
+      "Footer": "EDUCATIONAL DEMONSTRATION ONLY - not an official GJU certificate"
+    }
+  },
+  "contactMessages": {
+    "contact-001": {
+      "Id": "contact-001",
+      "Name": "Maha Ibrahim",
+      "Email": "maha.inquiry@example.com",
+      "Subject": "Internship registration requirements",
+      "Message": "Which documents must be prepared before local field training?",
+      "Status": "Resolved",
+      "CreatedAt": 1792134000000,
+      "HandledByCoordinatorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "RepliedAt": 1792220400000,
+      "ResolutionNote": "Referred to official SEIT training guidance and departmental approval."
+    },
+    "contact-002": {
+      "Id": "contact-002",
+      "Name": "Tareq Salem",
+      "Email": "tareq.sal@example.com",
+      "Subject": "Training letter request",
+      "Message": "Can I obtain a training introduction letter for a company?",
+      "Status": "New",
+      "CreatedAt": 1792485900000,
+      "HandledByCoordinatorId": "",
+      "RepliedAt": 0,
+      "ResolutionNote": ""
+    }
+  },
+  "notifications": {
+    "notification-001": {
+      "Id": "notification-001",
+      "UserId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "RelatedEntityType": "completionReports",
+      "RelatedEntityId": "completion-001",
+      "Type": "TrainingCompletionApproved",
+      "Title": "Your local internship has been approved",
+      "Body": "The coordinator approved your internship. Your demonstration report becomes downloadable after its PDF is uploaded.",
+      "Status": "DemoRecord",
+      "CreatedAt": 1786001520000,
+      "ReadAt": 0
+    },
+    "notification-002": {
+      "Id": "notification-002",
+      "UserId": "REPLACE_WITH_FIREBASE_AUTH_UID_STUDENT_02",
+      "RelatedEntityType": "coordinatorReviews",
+      "RelatedEntityId": "review-002",
+      "Type": "MissingTrainingEvidence",
+      "Title": "Additional training evidence is required",
+      "Body": "Please supply the employer completion letter; the coordinator cannot finalize your placement yet.",
+      "Status": "DemoRecord",
+      "CreatedAt": 1788250200000,
+      "ReadAt": 0
+    }
+  },
+  "auditLogs": {
+    "audit-001": {
+      "Id": "audit-001",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "CreatedStudentAccounts",
+      "EntityType": "users",
+      "EntityId": "0shFizlYj6U3Ey4w5c8y3959pig2",
+      "Timestamp": 1779260400000,
+      "Details": "Account creation modeled; actual Firebase Auth accounts must exist independently."
+    },
+    "audit-002": {
+      "Id": "audit-002",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "CreatedAcademicSupervisor",
+      "EntityType": "users",
+      "EntityId": "Q00ThpmGTIfGkDaXnnrEo4PsArE3",
+      "Timestamp": 1779262200000,
+      "Details": "Academic supervisor created and university assigned."
+    },
+    "audit-003": {
+      "Id": "audit-003",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "CreatedCompanySupervisor",
+      "EntityType": "users",
+      "EntityId": "REPLACE_WITH_FIREBASE_AUTH_UID_COMPANY_SUPERVISOR_02",
+      "Timestamp": 1779264000000,
+      "Details": "Company supervisor account created for second company."
+    },
+    "audit-004": {
+      "Id": "audit-004",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "AssignedStudentGroup",
+      "EntityType": "studentGroups",
+      "EntityId": "gju-seit-local-2026",
+      "Timestamp": 1779345000000,
+      "Details": "All three students linked to the same academic supervisor."
+    },
+    "audit-005": {
+      "Id": "audit-005",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "VerifiedFinalDocuments",
+      "EntityType": "coordinatorReviews",
+      "EntityId": "review-001",
+      "Timestamp": 1785916800000,
+      "Details": "Reviewed the two final evaluations and training-hour evidence."
+    },
+    "audit-006": {
+      "Id": "audit-006",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "ApprovedInternship",
+      "EntityType": "internships",
+      "EntityId": "internship-2026-001",
+      "Timestamp": 1785999600000,
+      "Details": "Final completion approved for student 01."
+    },
+    "audit-007": {
+      "Id": "audit-007",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "IssuedCompletionReport",
+      "EntityType": "completionReports",
+      "EntityId": "completion-001",
+      "Timestamp": 1786001400000,
+      "Details": "Local demo report prepared; PDF requires Firebase Storage upload."
+    },
+    "audit-008": {
+      "Id": "audit-008",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "RequestedMissingDocument",
+      "EntityType": "coordinatorReviews",
+      "EntityId": "review-002",
+      "Timestamp": 1788249600000,
+      "Details": "Held completion until company letter is supplied."
+    },
+    "audit-009": {
+      "Id": "audit-009",
+      "ActorId": "YIswkxh3bBQqucIRH1gPRYWkmO33",
+      "ActorRole": 4,
+      "Action": "ResolvedContactMessage",
+      "EntityType": "contactMessages",
+      "EntityId": "contact-001",
+      "Timestamp": 1792220400000,
+      "Details": "Resolved help-desk inquiry."
     }
   }
 }

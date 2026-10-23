@@ -30,6 +30,15 @@ namespace InternshipManagementSystem.Security
             get { return Current != null; }
         }
 
+        public static string IdToken
+        {
+            get
+            {
+                if (HttpContext.Current == null || HttpContext.Current.Session == null) return null;
+                return HttpContext.Current.Session[Constants.SessionTokenKey] as string;
+            }
+        }
+
         /// <summary>Called by Login.aspx once Firebase has verified the
         /// password (card A02).</summary>
         public static void SignIn(Person person, string idToken)

@@ -4,7 +4,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class AcademicCommentRepository : RepositoryBase<AcademicComment>
+    public class AcademicCommentRepository : NotifyingRepositoryBase<AcademicComment>
     {
         protected override string Collection
         {

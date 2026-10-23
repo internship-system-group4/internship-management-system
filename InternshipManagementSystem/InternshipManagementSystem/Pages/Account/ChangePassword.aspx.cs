@@ -1,37 +1,57 @@
-﻿// =============================================================================
-//  Change Password
-//  Owner : Ahmad
-//  Cards : A04
-//
-//  Forced on first login. This is the one page that overrides AllowWhilePasswordChangePending, otherwise the guard would redirect to itself for ever. After AuthService.ChangePassword succeeds, call UserRepository.ClearMustChangePassword and refresh the session copy.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
 using System;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
-using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.AccountArea
 {
-    public partial class ChangePassword : InternshipManagementSystem.Security.AuthenticatedPage
+    public partial class ChangePassword : AuthenticatedPage
     {
-        /// <summary>This page must stay reachable while the user still has a
-        /// temporary password - it is the page that clears the flag.</summary>
         protected override bool AllowWhilePasswordChangePending
         {
             get { return true; }
         }
 
-        protected void Page_Load(object sender, EventArgs e)
+        protected void btnChange_Click(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
+            if (!InternshipManagementSystem.Common.Validators.IsStrongEnoughPassword(txtNewPassword.Text))
+            {
+                ShowMessage("The new password must be at least 6 characters.");
+                return;
+            }
+            if (txtNewPassword.Text != txtConfirmPassword.Text)
+            {
+                ShowMessage("The passwords do not match.");
+                return;
+            }
 
-            // TODO(Ahmad, A04): build this page.
+            AuthResult result = AuthService.ChangePassword(SessionHelper.IdToken, txtNewPassword.Text);
+            if (!result.Success)
+            {
+                ShowMessage(result.ErrorMessage ?? "Could not change the password.");
+                return;
+            }
+
+            try
+            {
+                new UserRepository().ClearMustChangePassword(CurrentUser.Id);
+                CurrentUser.MustChangePassword = false;
+                SessionHelper.Refresh(CurrentUser);
+                Response.Redirect(ResolveUrl(CurrentUser.DashboardUrl), false);
+                Context.ApplicationInstance.CompleteRequest();
+            }
+            catch (FirebaseException)
+            {
+                ShowMessage("Password changed, but the account could not be updated. Please try again or contact your coordinator.");
+            }
+        }
+
+        private void ShowMessage(string message)
+        {
+            lblMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            lblMessage.CssClass = "alert alert-danger d-block";
+            lblMessage.Visible = true;
         }
     }
 }

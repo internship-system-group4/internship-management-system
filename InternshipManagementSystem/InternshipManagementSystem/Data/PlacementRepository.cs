@@ -9,7 +9,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class PlacementRepository : RepositoryBase<Placement>
+    public class PlacementRepository : NotifyingRepositoryBase<Placement>
     {
         protected override string Collection
         {
@@ -44,7 +44,9 @@ namespace InternshipManagementSystem.Data
             if (Exists(studentUid)) return false;
             placement.Id = studentUid;
             placement.StudentId = studentUid;
-            return FirebaseContext.PutIfEmpty(Collection + "/" + studentUid, placement);
+            bool confirmed = FirebaseContext.PutIfEmpty(Collection + "/" + studentUid, placement);
+            if (confirmed) Services.EmailNotificationService.Saved(null, placement);
+            return confirmed;
         }
 
         public override string Insert(Placement entity)

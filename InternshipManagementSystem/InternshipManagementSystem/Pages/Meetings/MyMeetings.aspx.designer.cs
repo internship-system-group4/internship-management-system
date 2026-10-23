@@ -9,5 +9,8 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 {
     public partial class MyMeetings
     {
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.Panel pnlEmpty;
+        protected global::System.Web.UI.WebControls.Repeater rptMeetings;
     }
 }

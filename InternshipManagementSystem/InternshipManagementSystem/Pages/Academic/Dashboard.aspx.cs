@@ -1,30 +1,31 @@
-﻿// =============================================================================
-//  Academic Dashboard
-//  Owner : Suja
-//  Cards : S01
-//
-//  Students assigned to this supervisor by the coordinator, with internship status and progress. UserRepository.GetStudentsBySupervisor does the filtering.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
 using System;
-using InternshipManagementSystem.Common;
+using System.Collections.Generic;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.AcademicArea
 {
-    public partial class Dashboard : InternshipManagementSystem.Security.AcademicPage
+    public partial class Dashboard : AcademicPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-
-            // TODO(Suja, S01): build this page.
+            try
+            {
+                List<Student> students = new UserRepository().GetStudentsBySupervisor(CurrentSupervisor.Id);
+                List<string> groupIds = CurrentSupervisor.GroupIds ?? new List<string>();
+                students.RemoveAll(student => !groupIds.Contains(student.GroupId));
+                students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
+                rptStudents.DataSource = students;
+                rptStudents.DataBind();
+                lblNoStudents.Visible = students.Count == 0;
+            }
+            catch (FirebaseException)
+            {
+                lblMessage.Text = "Could not load your assigned students. Please try again.";
+                lblMessage.Visible = true;
+            }
         }
     }
 }
