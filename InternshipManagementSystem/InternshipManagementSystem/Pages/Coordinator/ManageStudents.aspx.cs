@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
@@ -52,7 +52,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             pnlDetails.Visible = IsValidStudentId(id);
             if (!pnlDetails.Visible)
             {
-                ShowListMessage("Select a student before saving changes.");
+                ShowListMessage(L.T("Coordinator.ManageStudents.SelectAStudentBeforeSavingChanges"));
                 return;
             }
 
@@ -62,17 +62,17 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             int requiredHours;
             if (university == null || college == null || major == null)
             {
-                ShowDetailsMessage("Complete all academic information fields.", false);
+                ShowDetailsMessage(L.T("Coordinator.ManageStudents.CompleteAllAcademicInformationFields"), false);
                 return;
             }
             if (university.Length > 120 || college.Length > 120 || major.Length > 120)
             {
-                ShowDetailsMessage("One or more academic information fields are too long.", false);
+                ShowDetailsMessage(L.T("Coordinator.ManageStudents.OneOrMoreAcademicInformationFields"), false);
                 return;
             }
             if (!int.TryParse(txtEditRequiredHours.Text, out requiredHours) || requiredHours <= 0)
             {
-                ShowDetailsMessage("Required training hours must be a positive whole number.", false);
+                ShowDetailsMessage(L.T("Coordinator.ManageStudents.RequiredTrainingHoursMustBeA"), false);
                 return;
             }
 
@@ -83,7 +83,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 {
                     ClearSelection();
                     BindStudents();
-                    ShowListMessage("Student record not found.");
+                    ShowListMessage(L.T("Coordinator.ManageStudents.StudentRecordNotFound"));
                     return;
                 }
                 users.Update(id, new Dictionary<string, object>
@@ -96,11 +96,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ddlEditMajor.SelectedValue = major;
                 txtEditRequiredHours.Text = requiredHours.ToString();
                 BindStudents();
-                ShowDetailsMessage("Student academic information saved.", true);
+                ShowDetailsMessage(L.T("Coordinator.ManageStudents.StudentAcademicInformationSaved"), true);
             }
             catch (FirebaseException)
             {
-                ShowDetailsMessage("Could not save student information. Please try again.", false);
+                ShowDetailsMessage(L.T("Coordinator.ManageStudents.CouldNotSaveStudentInformationPlease"), false);
             }
         }
 
@@ -110,7 +110,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (!IsValidStudentId(id))
             {
                 ClearSelection();
-                ShowListMessage("Select a student before changing access.");
+                ShowListMessage(L.T("Coordinator.ManageStudents.SelectAStudentBeforeChangingAccess"));
                 return;
             }
             try
@@ -121,7 +121,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 {
                     ClearSelection();
                     BindStudents();
-                    ShowListMessage("Student record not found.");
+                    ShowListMessage(L.T("Coordinator.ManageStudents.StudentRecordNotFound"));
                     return;
                 }
                 bool activate = !student.IsActive;
@@ -129,12 +129,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 student.IsActive = activate;
                 ShowDetails(student);
                 BindStudents();
-                ShowDetailsMessage(activate ? "Student access restored." : "Student access removed. The record and training history are retained.", true);
+                ShowDetailsMessage(activate ? L.T("Coordinator.ManageStudents.StudentAccessRestored") : L.T("Coordinator.ManageStudents.StudentAccessRemovedTheRecordAnd"), true);
             }
             catch (FirebaseException)
             {
                 pnlDetails.Visible = true;
-                ShowDetailsMessage("Could not change student access. Please try again.", false);
+                ShowDetailsMessage(L.T("Coordinator.ManageStudents.CouldNotChangeStudentAccessPlease"), false);
             }
         }
 
@@ -146,14 +146,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 if (student == null)
                 {
                     ClearSelection();
-                    ShowListMessage("Student record not found.");
+                    ShowListMessage(L.T("Coordinator.ManageStudents.StudentRecordNotFound"));
                     return;
                 }
                 ShowDetails(student);
             }
             catch (FirebaseException)
             {
-                ShowListMessage("Could not load this student. Please try again.");
+                ShowListMessage(L.T("Coordinator.ManageStudents.CouldNotLoadThisStudentPlease"));
             }
         }
 
@@ -172,14 +172,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             ddlEditMajor.SelectedValue = student.Major;
             txtEditRequiredHours.Text = student.RequiredHours.ToString();
             lnkRecord.NavigateUrl = ResolveUrl("~/Pages/Coordinator/Students.aspx?id=" + Server.UrlEncode(student.Id));
-            btnToggleAccess.Text = student.IsActive ? "Remove access" : "Restore access";
+            btnToggleAccess.Text = student.IsActive ? L.T("Coordinator.ManageStudents.RemoveAccess") : L.T("Coordinator.ManageStudents.RestoreAccess");
             btnToggleAccess.CssClass = student.IsActive ? "btn btn-outline-danger" : "btn btn-outline-success";
             btnToggleAccess.OnClientClick = student.IsActive
                 ? "return confirm('Remove this student’s access? Their record and training history will be retained.');"
                 : "";
             lblAccessDescription.Text = student.IsActive
-                ? "Removing access blocks sign in while keeping the record and training history. You can restore access later."
-                : "This student cannot sign in. Restore access when needed.";
+                ? L.T("Coordinator.ManageStudents.RemovingAccessBlocksSignInWhile")
+                : L.T("Coordinator.ManageStudents.ThisStudentCannotSignInRestore");
         }
 
         private void ClearSelection()
@@ -206,7 +206,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
                 rptStudents.DataSource = students;
                 rptStudents.DataBind();
-                lblNoStudents.Text = search.Length == 0 ? "No students found." : "No students match your search.";
+                lblNoStudents.Text = search.Length == 0 ? L.T("Coordinator.ManageStudents.NoStudentsFound") : L.T("Coordinator.ManageStudents.NoStudentsMatchYourSearch");
                 lblNoStudents.Visible = students.Count == 0;
             }
             catch (FirebaseException)
@@ -214,7 +214,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 rptStudents.DataSource = new List<Student>();
                 rptStudents.DataBind();
                 lblNoStudents.Visible = false;
-                ShowListMessage("Could not load student records. Please try again.");
+                ShowListMessage(L.T("Coordinator.ManageStudents.CouldNotLoadStudentRecordsPlease"));
             }
         }
 

@@ -26,12 +26,12 @@ namespace InternshipManagementSystem.Pages.PublicArea
 
             if (user != null)
             {
-                lnkBack.Text = "Go to my dashboard";
+                lnkBack.Text = L.T("Public.AccessDenied.GoToMyDashboard");
                 lnkBack.NavigateUrl = user.DashboardUrl;
             }
             else
             {
-                lnkBack.Text = "Go to login";
+                lnkBack.Text = L.T("Public.AccessDenied.GoToLogin");
                 lnkBack.NavigateUrl = Constants.Routes.Login;
             }
         }

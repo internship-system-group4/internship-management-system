@@ -7,14 +7,14 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 <style>
 .explore-page {
-    --ex-navy: #183d63;
+    --ex-navy: var(--ui-primary);
     --ex-blue: #28547d;
-    --ex-muted: #71839a;
-    --ex-line: #e0e8f2;
+    --ex-muted: var(--th-fg-71839a,#71839a);
+    --ex-line: var(--th-line-e0e8f2,#e0e8f2);
     max-width: 1200px;
     margin: 0 auto;
     padding-bottom: 35px;
-    color: #1b3551;
+    color: var(--th-fg-1b3551,#1b3551);
 }
 .explore-page * { box-sizing: border-box; }
 .ex-heading {
@@ -28,7 +28,7 @@
 .ex-heading h2 {
     font-size: 27px;
     font-weight: 800;
-    color: var(--ex-navy);
+    color: var(--ui-primary-text,var(--ex-navy));
     margin: 0 0 7px;
 }
 .ex-heading p {
@@ -40,22 +40,22 @@
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    background: #eaf2fb;
-    color: #24537e;
+    background: var(--th-bg-eaf2fb,#eaf2fb);
+    color: var(--th-fg-24537e,#24537e);
     padding: 10px 15px;
     border-radius: 30px;
     font-size: 12px;
     font-weight: 800;
 }
 .ex-count-number {
-    background: #fff;
+    background: var(--ui-surface,#fff);
     border-radius: 50px;
     padding: 3px 9px;
 }
 .ex-hero {
     position: relative;
     overflow: hidden;
-    background: linear-gradient(110deg, #183e64, #316a99);
+    background: linear-gradient(110deg, var(--th-bg-183e64,#183e64), var(--th-bg-316a99,#316a99));
     border-radius: 15px;
     padding: 27px 29px;
     color: #fff;
@@ -64,7 +64,7 @@
 .ex-hero:after {
     content: "";
     position: absolute;
-    right: -60px;
+    inset-inline-end: -60px;
     top: -80px;
     width: 210px;
     height: 210px;
@@ -85,7 +85,7 @@
     max-width: 650px;
 }
 .ex-filter-panel {
-    background: #fff;
+    background: var(--ui-surface,#fff);
     border: 1px solid var(--ex-line);
     border-radius: 13px;
     padding: 21px;
@@ -101,7 +101,7 @@
 }
 .ex-filter-top strong {
     font-size: 14px;
-    color: var(--ex-navy);
+    color: var(--ui-primary-text,var(--ex-navy));
 }
 .ex-filter-top span {
     color: var(--ex-muted);
@@ -120,22 +120,22 @@
 .ex-search-box input {
     width: 100%;
     padding: 12px 14px 12px 41px;
-    border: 1px solid #d7e1ed;
+    border: 1px solid var(--th-line-d7e1ed,#d7e1ed);
     border-radius: 9px;
     outline: none;
     font: inherit;
     font-size: 13px;
-    background: #fbfdff;
+    background: var(--th-bg-fbfdff,#fbfdff);
 }
 .ex-search-box input:focus {
-    border-color: #5187b9;
+    border-color: var(--th-line-5187b9,#5187b9);
     box-shadow: 0 0 0 3px rgba(55,113,167,.10);
 }
 .ex-search-icon {
     position: absolute;
-    left: 14px;
+    inset-inline-start: 14px;
     top: 12px;
-    color: #8395a8;
+    color: var(--th-fg-8395a8,#8395a8);
     font-size: 16px;
 }
 .ex-button {
@@ -152,12 +152,12 @@
     text-decoration: none !important;
     cursor: pointer;
 }
-.ex-button:hover { background: #102e4d; }
+.ex-button:hover { background: var(--th-bg-102e4d,#102e4d); }
 .ex-button-secondary {
-    background: #eef3f9;
-    color: #28547d !important;
+    background: var(--th-bg-eef3f9,#eef3f9);
+    color: var(--th-fg-28547d,#28547d) !important;
 }
-.ex-button-secondary:hover { background: #e0eaf5; }
+.ex-button-secondary:hover { background: var(--th-bg-e0eaf5,#e0eaf5); }
 .ex-filter-note {
     display: flex;
     gap: 9px;
@@ -168,8 +168,8 @@
     display: inline-block;
     padding: 7px 11px;
     border-radius: 30px;
-    background: #eef5fd;
-    color: #315d88;
+    background: var(--th-bg-eef5fd,#eef5fd);
+    color: var(--th-fg-315d88,#315d88);
     font-size: 11px;
     font-weight: 700;
 }
@@ -181,7 +181,7 @@
     margin: 0 0 16px;
 }
 .ex-results-title h3 {
-    color: var(--ex-navy);
+    color: var(--ui-primary-text,var(--ex-navy));
     font-size: 17px;
     margin: 0;
     font-weight: 800;
@@ -201,14 +201,14 @@
     min-width: 0;
     padding: 22px;
     border-radius: 13px;
-    background: #fff;
+    background: var(--ui-surface,#fff);
     border: 1px solid var(--ex-line);
     box-shadow: 0 4px 16px rgba(22,52,82,.035);
     transition: .2s ease;
 }
 .ex-card:hover {
     transform: translateY(-2px);
-    border-color: #afc9e2;
+    border-color: var(--th-line-afc9e2,#afc9e2);
     box-shadow: 0 10px 25px rgba(22,52,82,.075);
 }
 .ex-card-header {
@@ -218,7 +218,7 @@
     gap: 10px;
 }
 .ex-card h3 {
-    color: var(--ex-navy);
+    color: var(--ui-primary-text,var(--ex-navy));
     font-size: 17px;
     font-weight: 800;
     line-height: 1.45;
@@ -226,13 +226,13 @@
     overflow-wrap: anywhere;
 }
 .ex-company {
-    color: #52718e;
+    color: var(--th-fg-52718e,#52718e);
     font-size: 12px;
     font-weight: 700;
 }
 .ex-status {
-    background: #e7f6ed;
-    color: #247449;
+    background: var(--th-bg-e7f6ed,#e7f6ed);
+    color: var(--th-fg-247449,#247449);
     padding: 6px 10px;
     border-radius: 30px;
     font-size: 10px;
@@ -241,7 +241,7 @@
 }
 .ex-description {
     margin: 17px 0;
-    color: #687c92;
+    color: var(--th-fg-687c92,#687c92);
     font-size: 12px;
     line-height: 1.85;
     overflow-wrap: anywhere;
@@ -252,19 +252,19 @@
     gap: 15px;
     margin-top: auto;
     padding: 17px 0;
-    border-top: 1px solid #edf1f6;
-    border-bottom: 1px solid #edf1f6;
+    border-top: 1px solid var(--th-line-edf1f6,#edf1f6);
+    border-bottom: 1px solid var(--th-line-edf1f6,#edf1f6);
 }
 .ex-detail-label {
     display: block;
-    color: #8191a5;
+    color: var(--th-fg-8191a5,#8191a5);
     font-size: 10px;
     font-weight: 700;
     margin-bottom: 5px;
 }
 .ex-detail-value {
     display: block;
-    color: #284766;
+    color: var(--th-fg-284766,#284766);
     font-size: 12px;
     font-weight: 800;
     overflow-wrap: anywhere;
@@ -279,21 +279,21 @@
 }
 .ex-available {
     font-size: 11px;
-    color: #54728b;
+    color: var(--th-fg-54728b,#54728b);
     font-weight: 700;
 }
 .ex-notice {
     padding: 15px 18px;
     margin-bottom: 20px;
-    background: #fff7e7;
-    border: 1px solid #f1d9ab;
+    background: var(--th-bg-fff7e7,#fff7e7);
+    border: 1px solid var(--th-line-f1d9ab,#f1d9ab);
     border-radius: 10px;
-    color: #805817;
+    color: var(--th-fg-805817,#805817);
     font-size: 13px;
 }
 .ex-empty {
-    background: #fff;
-    border: 1px dashed #cfdeed;
+    background: var(--ui-surface,#fff);
+    border: 1px dashed var(--th-line-cfdeed,#cfdeed);
     border-radius: 13px;
     padding: 55px 25px;
     text-align: center;
@@ -304,13 +304,13 @@
     display: grid;
     place-items: center;
     border-radius: 50%;
-    background: #edf4fc;
-    color: #315f8a;
+    background: var(--th-bg-edf4fc,#edf4fc);
+    color: var(--th-fg-315f8a,#315f8a);
     font-size: 26px;
     margin: 0 auto 17px;
 }
 .ex-empty h3 {
-    color: var(--ex-navy);
+    color: var(--ui-primary-text,var(--ex-navy));
     font-size: 18px;
     margin: 0 0 10px;
 }
@@ -339,20 +339,19 @@
 
     <div class="ex-heading">
         <div>
-            <h2>Explore Opportunities</h2>
-            <p>Find internship opportunities that match your academic program.</p>
+            <h2><%: L.T("Student.Opportunities.ExploreOpportunities") %></h2>
+            <p><%: L.T("Student.Opportunities.FindInternshipOpportunitiesThatMatchYour") %></p>
         </div>
         <div class="ex-count">
-            Available Opportunities
+            <%: L.T("Student.Opportunities.AvailableOpportunities") %>
             <span class="ex-count-number"><%: AvailableOpportunities.Count %></span>
         </div>
     </div>
 
     <div class="ex-hero">
-        <h3>Discover Your Next Internship</h3>
+        <h3><%: L.T("Student.Opportunities.DiscoverYourNextInternship") %></h3>
         <p>
-            Explore opportunities from partner companies, discover the skills
-            you can develop, and take the next step in your career.
+            <%: L.T("Student.Opportunities.ExploreOpportunitiesFromPartnerCompaniesDiscover") %>
         </p>
     </div>
 
@@ -362,52 +361,51 @@
 
     <div class="ex-filter-panel">
         <div class="ex-filter-top">
-            <strong>Search &amp; Academic Filters</strong>
-            <span>Results are filtered automatically for your program.</span>
+            <strong><%: L.T("Student.Opportunities.SearchAcademicFilters") %></strong>
+            <span><%: L.T("Student.Opportunities.ResultsAreFilteredAutomaticallyForYour") %></span>
         </div>
 
         <div class="ex-search-row">
             <div class="ex-search-box">
                 <span class="ex-search-icon">&#9906;</span>
                 <input id="exSearch" type="search"
-                       placeholder="Search by opportunity, company or location..."
+                       placeholder="<%: L.T("Student.Opportunities.SearchByOpportunityCompanyOrLocation") %>"
                        maxlength="100"
                        value="<%: SearchText %>" />
             </div>
             <button type="button" class="ex-button"
-                    onclick="searchOpportunities()">Search</button>
+                    onclick="searchOpportunities()"><%: L.T("Student.Opportunities.Search") %></button>
             <a class="ex-button ex-button-secondary"
                href="<%: ResolveUrl("~/Pages/Student/Opportunities.aspx") %>">
-                Clear
+                <%: L.T("Student.Opportunities.Clear") %>
             </a>
         </div>
 
         <div class="ex-filter-note">
-            <span class="ex-chip">College: <%: StudentCollege %></span>
-            <span class="ex-chip">Major: <%: StudentMajor %></span>
-            <span class="ex-chip">Status: Open</span>
+            <span class="ex-chip"><%: L.T("Student.Opportunities.College") %> <%: StudentCollege %></span>
+            <span class="ex-chip"><%: L.T("Student.Opportunities.Major") %> <%: StudentMajor %></span>
+            <span class="ex-chip"><%: L.T("Student.Opportunities.StatusOpen") %></span>
         </div>
     </div>
 
     <div class="ex-results-title">
-        <h3>Internships For You</h3>
-        <span><%: AvailableOpportunities.Count %> matching opportunities</span>
+        <h3><%: L.T("Student.Opportunities.InternshipsForYou") %></h3>
+        <span><%: AvailableOpportunities.Count %> <%: L.T("Student.Opportunities.MatchingOpportunities") %></span>
     </div>
 
     <% if (AvailableOpportunities.Count == 0) { %>
 
         <div class="ex-empty">
             <div class="ex-empty-symbol">&#128269;</div>
-            <h3>No Matching Opportunities</h3>
+            <h3><%: L.T("Student.Opportunities.NoMatchingOpportunities") %></h3>
             <p>
-                There are currently no available internships matching
-                your academic program and search.
+                <%: L.T("Student.Opportunities.ThereAreCurrentlyNoAvailableInternships") %>
                 <br />
-                Try another search or check back later.
+                <%: L.T("Student.Opportunities.TryAnotherSearchOrCheckBack") %>
             </p>
             <a class="ex-button ex-button-secondary"
                href="<%: ResolveUrl("~/Pages/Student/Opportunities.aspx") %>">
-                Reset Search
+                <%: L.T("Student.Opportunities.ResetSearch") %>
             </a>
         </div>
 
@@ -426,7 +424,7 @@
                                     : opportunity.CompanyName %>
                             </div>
                         </div>
-                        <span class="ex-status">Open</span>
+                        <span class="ex-status"><%: L.T("Student.Opportunities.Open") %></span>
                     </div>
 
                     <p class="ex-description">
@@ -435,7 +433,7 @@
 
                     <div class="ex-card-details">
                         <div>
-                            <span class="ex-detail-label">LOCATION</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.LOCATION") %></span>
                             <span class="ex-detail-value">
                                 <%: string.IsNullOrWhiteSpace(opportunity.Location)
                                     ? "Not specified"
@@ -443,20 +441,20 @@
                             </span>
                         </div>
                         <div>
-                            <span class="ex-detail-label">DURATION</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.DURATION") %></span>
                             <span class="ex-detail-value">
-                                <%: opportunity.DurationWeeks %> weeks
+                                <%: opportunity.DurationWeeks %> <%: L.T("Student.Opportunities.Weeks") %>
                             </span>
                         </div>
                         <div>
-                            <span class="ex-detail-label">AVAILABLE SEATS</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.AVAILABLESEATS") %></span>
                             <span class="ex-detail-value">
                                 <%: opportunity.RemainingSeats %>
-                                of <%: opportunity.TotalSeats %>
+                                <%: L.T("Student.Opportunities.Of") %> <%: opportunity.TotalSeats %>
                             </span>
                         </div>
                         <div>
-                            <span class="ex-detail-label">APPLICATION DEADLINE</span>
+                            <span class="ex-detail-label"><%: L.T("Student.Opportunities.APPLICATIONDEADLINE") %></span>
                             <span class="ex-detail-value">
                                 <%: DisplayDate(opportunity.ApplicationDeadline) %>
                             </span>
@@ -465,11 +463,11 @@
 
                     <div class="ex-card-bottom">
                         <span class="ex-available">
-                            &#10003; Matches your academic program
+                            <%: L.T("Student.Opportunities.MatchesYourAcademicProgram") %>
                         </span>
                         <a class="ex-button"
                            href="<%: DetailsUrl(opportunity.Id) %>">
-                            View Details &rarr;
+                            <%: L.T("Student.Opportunities.ViewDetails") %>
                         </a>
                     </div>
 

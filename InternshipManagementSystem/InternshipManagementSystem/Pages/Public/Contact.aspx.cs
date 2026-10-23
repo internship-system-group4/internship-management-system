@@ -1,5 +1,6 @@
-
+﻿
 using System;
+using InternshipManagementSystem.Common;
 using System.Configuration;
 using System.Net.Http;
 using System.Text;
@@ -13,6 +14,18 @@ namespace InternshipManagementSystem.Pages.PublicArea
 {
     public partial class Contact : System.Web.UI.Page
     {
+        // One-time flag set after Firebase confirms the save; the redirected GET shows "Message sent" once.
+        private const string SentFlag = "UIMS.Contact.Sent";
+
+        // Limits shared with the markup (minlength/maxlength) and the client checks in public-forms.js.
+        private const int NameMin = 2, NameMax = 100;
+        private const int EmailMax = 254;
+        private const int SubjectMin = 5, SubjectMax = 150;
+        private const int MessageMin = 20, MessageMax = 4000;
+
+        protected bool SentConfirmed;
+        protected string NameError = "", EmailError = "", SubjectError = "", MessageError = "";
+
         private string FirebaseUrl
         {
             get
@@ -25,9 +38,17 @@ namespace InternshipManagementSystem.Pages.PublicArea
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            txtMessage.Attributes["placeholder"] = L.T("Public.Contact.MessagePlaceholder");
+
             if (!IsPostBack)
             {
                 lblMessage.Visible = false;
+
+                if (Session[SentFlag] != null)
+                {
+                    Session.Remove(SentFlag);
+                    SentConfirmed = true;
+                }
             }
         }
 
@@ -47,55 +68,47 @@ namespace InternshipManagementSystem.Pages.PublicArea
             string subject = (txtSubject.Text ?? "").Trim();
             string message = (txtMessage.Text ?? "").Trim();
 
-            // Validate name
-            if (name.Length < 2 || name.Length > 100)
-            {
-                ShowMessage(
-                    "Please enter a valid full name (2–100 characters).",
-                    true);
-                return;
-            }
+            // Check every field so each error appears beside its own field.
+            if (name.Length == 0)
+                NameError = L.T("Public.Contact.EnterYourFullName");
+            else if (name.Length < NameMin || name.Length > NameMax)
+                NameError = L.T("Public.Contact.YourNameNeeds2To100");
 
-            // Validate email
-            if (email.Length == 0 ||
-                email.Length > 254 ||
+            if (email.Length == 0)
+                EmailError = L.T("Public.Contact.EnterYourEmailAddress");
+            else if (email.Length > EmailMax ||
                 !Regex.IsMatch(
                     email,
                     @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
-            {
-                ShowMessage(
-                    "Please enter a valid email address.",
-                    true);
-                return;
-            }
+                EmailError = L.T("Public.Contact.EnterAnEmailAddressLikeName");
 
-            // Validate subject
-            if (subject.Length < 3 || subject.Length > 150)
-            {
-                ShowMessage(
-                    "Please enter a subject (3–150 characters).",
-                    true);
-                return;
-            }
+            if (subject.Length == 0)
+                SubjectError = L.T("Public.Contact.EnterASubjectForYourMessage");
+            else if (subject.Length < SubjectMin || subject.Length > SubjectMax)
+                SubjectError = L.T("Public.Contact.YourSubjectNeeds5To150");
 
-            // Validate message
-            if (message.Length < 10 || message.Length > 5000)
+            if (message.Length == 0)
+                MessageError = L.T("Public.Contact.EnterYourMessage");
+            else if (message.Length < MessageMin || message.Length > MessageMax)
+                MessageError = L.T("Public.Contact.YourMessageNeeds20To4");
+
+            MarkInvalid(txtName, NameError);
+            MarkInvalid(txtEmail, EmailError);
+            MarkInvalid(txtSubject, SubjectError);
+            MarkInvalid(txtMessage, MessageError);
+
+            if (NameError.Length + EmailError.Length + SubjectError.Length + MessageError.Length > 0)
             {
                 ShowMessage(
-                    "Please enter a message (10–5000 characters).",
-                    true);
+                    L.T("Public.Contact.SomeDetailsNeedAttentionCheckThe"));
                 return;
             }
 
             try
             {
                 if (string.IsNullOrWhiteSpace(FirebaseUrl))
-                {
-                    ShowMessage(
-                        "Firebase Database URL is not configured.",
-                        true);
-                    return;
-                }
+                    throw new InvalidOperationException(
+                        "Firebase.DatabaseUrl is not configured.");
 
                 // Message data saved to Firebase
                 var contactMessage = new
@@ -124,41 +137,42 @@ namespace InternshipManagementSystem.Pages.PublicArea
                     content))
                 {
                     if (!response.IsSuccessStatusCode)
-                    {
-                        ShowMessage(
-                            "Unable to save your message to Firebase. " +
-                            "Please check the database permissions.",
-                            true);
-                        return;
-                    }
+                        throw new HttpRequestException(
+                            "Firebase rejected the contact message: " +
+                            (int)response.StatusCode);
                 }
-
-                ShowMessage(
-                    "Your message has been sent successfully!",
-                    false);
-
-                // Clear fields after successful submission
-                txtName.Text = "";
-                txtEmail.Text = "";
-                txtSubject.Text = "";
-                txtMessage.Text = "";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                // The visitor keeps everything they typed; the technical reason goes to the trace log only.
+                Trace.Warn("Contact", "Message not saved", ex);
                 ShowMessage(
-                    "Unable to send your message. Please try again.",
-                    true);
+                    L.T("Public.Contact.YourMessageCouldNotBeSent"));
+                return;
             }
+
+            // Saved. Post/redirect/get: a refresh cannot send it twice, and the form starts empty. The query only
+            // gives the confirmation its own URL, so "Send another message" is a real page load; the one-time
+            // session flag, not the query, decides whether "Message sent" appears.
+            Session[SentFlag] = true;
+            Response.Redirect(
+                ResolveUrl("~/Pages/Public/Contact.aspx") + "?sent=1#contact-form",
+                false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
-        private void ShowMessage(string text, bool isError)
+        private static void MarkInvalid(System.Web.UI.WebControls.TextBox box, string error)
+        {
+            if (error.Length > 0)
+                box.Attributes["aria-invalid"] = "true";
+            else
+                box.Attributes.Remove("aria-invalid");
+        }
+
+        private void ShowMessage(string text)
         {
             lblMessage.Text = HttpUtility.HtmlEncode(text);
-
-            lblMessage.CssClass = isError
-                ? "contact-alert contact-alert-error"
-                : "contact-alert contact-alert-success";
-
+            lblMessage.CssClass = "contact-alert contact-alert-error";
             lblMessage.Visible = true;
         }
     }

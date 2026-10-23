@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Academic.AcademicNavigation" xml:space="preserve"><value>القائمة الأكاديمية</value></data>
+  <data name="Academic.AcademicSupervisorPortal" xml:space="preserve"><value>بوابة المشرف الأكاديمي</value></data>
+  <data name="Academic.CloseNavigationBackdrop" xml:space="preserve"><value>إغلاق خلفية التنقّل</value></data>
+  <data name="Academic.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
+  <data name="Academic.OpenNavigation" xml:space="preserve"><value>فتح قائمة التنقّل</value></data>
+  <data name="Company.CloseNavigationBackdrop" xml:space="preserve"><value>إغلاق خلفية التنقّل</value></data>
+  <data name="Company.CompanyNavigation" xml:space="preserve"><value>قائمة الشركة</value></data>
+  <data name="Company.CompanyPortal" xml:space="preserve"><value>بوابة الشركة</value></data>
+  <data name="Company.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
+  <data name="Company.OpenNavigation" xml:space="preserve"><value>فتح قائمة التنقّل</value></data>
+  <data name="Coordinator.CloseNavigationBackdrop" xml:space="preserve"><value>إغلاق خلفية التنقّل</value></data>
+  <data name="Coordinator.CoordinatorNavigation" xml:space="preserve"><value>قائمة منسّق التدريب</value></data>
+  <data name="Coordinator.CoordinatorPortal" xml:space="preserve"><value>بوابة منسّق التدريب</value></data>
+  <data name="Coordinator.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
+  <data name="Coordinator.OpenNavigation" xml:space="preserve"><value>فتح قائمة التنقّل</value></data>
+  <data name="Js.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
+  <data name="Js.ChartCoordinatorNote" xml:space="preserve"><value>اعتمادات صريحة في السجلات المحفوظة حاليًا.</value></data>
+  <data name="Js.ChartCurrentSnapshot" xml:space="preserve"><value>الوضع الحالي · {0} UTC</value></data>
+  <data name="Js.ChartFailed" xml:space="preserve"><value>تعذّر عرض التحليلات. حدّث الصفحة لإعادة المحاولة، وما زالت السجلات الحالية متاحة أدناه.</value></data>
+  <data name="Js.ChartHistoryMissing" xml:space="preserve"><value>السجل التاريخي غير متاح: تواريخ الاعتماد مفقودة</value></data>
+  <data name="Js.ChartHistoryUnavailable" xml:space="preserve"><value>النشاط التاريخي غير متاح، فالسجلات المعتمدة لا تحمل تواريخ اعتماد صالحة.</value></data>
+  <data name="Js.ChartMonthScope" xml:space="preserve"><value>الاعتمادات المؤرّخة الفعلية في هذا الشهر المسجّل.</value></data>
+  <data name="Js.ChartNoCategoryRecords" xml:space="preserve"><value>لا توجد سجلات حالية في الفئات.</value></data>
+  <data name="Js.ChartNoDatedInPeriod" xml:space="preserve"><value>لا توجد اعتمادات مؤرّخة في هذه الفترة، ولم تُختلق أي نقاط تاريخية.</value></data>
+  <data name="Js.ChartNoDatedWindow" xml:space="preserve"><value>لا توجد سجلات اعتماد مؤرّخة في هذه الفترة.</value></data>
+  <data name="Js.ChartNoPercentage" xml:space="preserve"><value>لا توجد نسبة: الفترة السابقة بلا اعتمادات مؤرّخة</value></data>
+  <data name="Js.ChartOneMonth" xml:space="preserve"><value>شهر مسجّل واحد، دون استنتاج أي سجل تاريخي. </value></data>
+  <data name="Js.ChartOnlyMonths" xml:space="preserve"><value>لا تُرسم إلا الأشهر التي فيها اعتمادات مؤرّخة. </value></data>
+  <data name="Js.ChartOpenRecord" xml:space="preserve"><value>فتح السجل المرتبط</value></data>
+  <data name="Js.ChartRangeCaption" xml:space="preserve"><value>{0} – {1} · UTC. يغيّر النطاق الاعتمادات المؤرّخة فقط، أما الفئات فتمثّل الوضع الحالي.</value></data>
+  <data name="Js.ChartRangeScope" xml:space="preserve"><value>{0} – {1} · الاعتمادات المؤرّخة المتاحة فقط</value></data>
+  <data name="Js.ChartRecordRange" xml:space="preserve"><value>{0}–{1} من {2}</value></data>
+  <data name="Js.ChartReviewDateNote" xml:space="preserve"><value>الإدخالات المعتمدة حاليًا حسب تاريخ المراجعة، لا لقطات تاريخية للحالة.</value></data>
+  <data name="Js.ChartTrendSubtitle" xml:space="preserve"><value>{0} المؤرّخة المتاحة حسب شهر الاعتماد المسجّل</value></data>
+  <data name="Js.ChartUndatedMany" xml:space="preserve"><value>استُبعدت {0} سجلات اعتماد غير مؤرّخة</value></data>
+  <data name="Js.ChartUndatedNoDates" xml:space="preserve"><value>السجل التاريخي غير متاح: هذه الاعتمادات الحالية بلا تواريخ صالحة.</value></data>
+  <data name="Js.ChartUndatedOne" xml:space="preserve"><value>استُبعد {0} سجل اعتماد غير مؤرّخ</value></data>
+  <data name="Js.ChartUndatedScope" xml:space="preserve"><value>مستبعدة من جميع النطاقات الزمنية، وتشمل السجلات المعتمدة حاليًا فقط.</value></data>
+  <data name="Js.ChartUndatedTitle" xml:space="preserve"><value>اعتمادات غير مؤرّخة</value></data>
+  <data name="Js.ChartViewRecords" xml:space="preserve"><value>عرض السجلات</value></data>
+  <data name="Js.ChartViewRecordsFor" xml:space="preserve"><value>عرض سجلات {0}</value></data>
+  <data name="Js.ChartVsPrevious" xml:space="preserve"><value>{0}% مقارنةً بالفترة السابقة المماثلة</value></data>
+  <data name="Js.ChartZeroRecords" xml:space="preserve"><value>0 سجلات</value></data>
+  <data name="Js.CheckField" xml:space="preserve"><value>تحقّق من هذا الحقل.</value></data>
+  <data name="Js.CheckFields" xml:space="preserve"><value>يُرجى مراجعة الحقول التالية.</value></data>
+  <data name="Js.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="Js.CloseMainMenu" xml:space="preserve"><value>إغلاق القائمة الرئيسية</value></data>
+  <data name="Js.CloseNavigation" xml:space="preserve"><value>إغلاق القائمة</value></data>
+  <data name="Js.ContactReadiness" xml:space="preserve"><value>{0} من {1} حقول جاهزة</value></data>
+  <data name="Js.DismissNotification" xml:space="preserve"><value>إغلاق الإشعار</value></data>
+  <data name="Js.DoneAccepted" xml:space="preserve"><value>تم القبول</value></data>
+  <data name="Js.DoneConfirmed" xml:space="preserve"><value>تم التأكيد</value></data>
+  <data name="Js.DoneCreated" xml:space="preserve"><value>تم الإنشاء</value></data>
+  <data name="Js.DoneDeleted" xml:space="preserve"><value>تم الحذف</value></data>
+  <data name="Js.DoneSaved" xml:space="preserve"><value>تم الحفظ</value></data>
+  <data name="Js.DoneSent" xml:space="preserve"><value>تم الإرسال</value></data>
+  <data name="Js.DoneSubmitted" xml:space="preserve"><value>تم الإرسال</value></data>
+  <data name="Js.DoneUpdated" xml:space="preserve"><value>تم التحديث</value></data>
+  <data name="Js.DoneUploaded" xml:space="preserve"><value>تم الرفع</value></data>
+  <data name="Js.FieldEmail" xml:space="preserve"><value>أدخل بريدًا إلكترونيًا صحيحًا.</value></data>
+  <data name="Js.FieldMinLength" xml:space="preserve"><value>يُرجى إدخال {0} أحرف على الأقل.</value></data>
+  <data name="Js.FieldRequired" xml:space="preserve"><value>يُرجى تعبئة هذا الحقل.</value></data>
+  <data name="Js.FilmFailed" xml:space="preserve"><value>تعذّر تحميل الفيلم.</value></data>
+  <data name="Js.FilmLoading" xml:space="preserve"><value>جارٍ تحميل الفيلم…</value></data>
+  <data name="Js.HallLights" xml:space="preserve"><value>جارٍ إضاءة القاعة</value></data>
+  <data name="Js.HallPreparing" xml:space="preserve"><value>جارٍ تجهيز قاعة المحاضرات</value></data>
+  <data name="Js.HallRoom" xml:space="preserve"><value>جارٍ بناء القاعة</value></data>
+  <data name="Js.HallSeats" xml:space="preserve"><value>جارٍ وضع المقاعد</value></data>
+  <data name="Js.HallStudents" xml:space="preserve"><value>جارٍ إجلاس الطلبة</value></data>
+  <data name="Js.HallTeam" xml:space="preserve"><value>جارٍ تحديد مقاعد الفريق</value></data>
+  <data name="Js.HallTiers" xml:space="preserve"><value>جارٍ ترتيب المدرّجات</value></data>
+  <data name="Js.Hide" xml:space="preserve"><value>إخفاء</value></data>
+  <data name="Js.HideList" xml:space="preserve"><value>إخفاء القائمة</value></data>
+  <data name="Js.HidePassword" xml:space="preserve"><value>إخفاء كلمة المرور</value></data>
+  <data name="Js.HoursTargetNotSet" xml:space="preserve"><value>لم يُحدَّد هدف ساعات التدريب. اسأل منسّق التدريب.</value></data>
+  <data name="Js.HoursValueNoTarget" xml:space="preserve"><value>{0} ساعة معتمدة. لم يُحدَّد هدف ساعات التدريب.</value></data>
+  <data name="Js.HoursValueText" xml:space="preserve"><value>{0} ساعة معتمدة من أصل {1} ساعة مطلوبة</value></data>
+  <data name="Js.LanguageUnsavedConfirm" xml:space="preserve"><value>لديك تغييرات غير محفوظة في هذه الصفحة. هل تريد تغيير اللغة وفقدانها؟</value></data>
+  <data name="Js.LoginChecking" xml:space="preserve"><value>جارٍ التحقق من حسابك. يُرجى الانتظار…</value></data>
+  <data name="Js.LoginOpening" xml:space="preserve"><value>أهلًا بك. جارٍ فتح بوابتك…</value></data>
+  <data name="Js.MapMarker" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="Js.OpenMainMenu" xml:space="preserve"><value>فتح القائمة الرئيسية</value></data>
+  <data name="Js.OpenNavigation" xml:space="preserve"><value>فتح القائمة</value></data>
+  <data name="Js.PauseCampusMotion" xml:space="preserve"><value>إيقاف حركة الحرم الجامعي</value></data>
+  <data name="Js.PausePreview" xml:space="preserve"><value>إيقاف المعاينة</value></data>
+  <data name="Js.PauseScene" xml:space="preserve"><value>إيقاف المشهد</value></data>
+  <data name="Js.PauseWaves" xml:space="preserve"><value>إيقاف الأمواج</value></data>
+  <data name="Js.PauseWheelMotion" xml:space="preserve"><value>إيقاف حركة الناعورة</value></data>
+  <data name="Js.PinNavigation" xml:space="preserve"><value>تثبيت القائمة</value></data>
+  <data name="Js.PinNavigationOpen" xml:space="preserve"><value>تثبيت القائمة مفتوحة</value></data>
+  <data name="Js.PlayPreview" xml:space="preserve"><value>تشغيل المعاينة</value></data>
+  <data name="Js.PlayWaves" xml:space="preserve"><value>تشغيل الأمواج</value></data>
+  <data name="Js.PwChooseDifferent" xml:space="preserve"><value>اختر كلمة مرور مختلفة.</value></data>
+  <data name="Js.PwCompleteAll" xml:space="preserve"><value>يُرجى إكمال جميع حقول كلمة المرور.</value></data>
+  <data name="Js.PwDifferent" xml:space="preserve"><value>يجب أن تختلف كلمة المرور الجديدة عن الحالية.</value></data>
+  <data name="Js.PwFieldsMissing" xml:space="preserve"><value>تعذّر العثور على حقول كلمة المرور.</value></data>
+  <data name="Js.PwFillAll" xml:space="preserve"><value>يُرجى تعبئة جميع الحقول.</value></data>
+  <data name="Js.PwMin6" xml:space="preserve"><value>يجب أن تتكوّن كلمة المرور الجديدة من 6 أحرف على الأقل.</value></data>
+  <data name="Js.PwMismatch" xml:space="preserve"><value>كلمتا المرور الجديدتان غير متطابقتين.</value></data>
+  <data name="Js.PwNewMismatch" xml:space="preserve"><value>كلمتا المرور الجديدتان غير متطابقتين.</value></data>
+  <data name="Js.RequestingReset" xml:space="preserve"><value>جارٍ طلب رابط إعادة التعيين…</value></data>
+  <data name="Js.ResumeCampusMotion" xml:space="preserve"><value>استئناف حركة الحرم الجامعي</value></data>
+  <data name="Js.ResumeScene" xml:space="preserve"><value>استئناف المشهد</value></data>
+  <data name="Js.ResumeWheelMotion" xml:space="preserve"><value>استئناف حركة الناعورة</value></data>
+  <data name="Js.ScrollTableHint" xml:space="preserve"><value>مرّر أفقيًا لرؤية جميع الأعمدة والإجراءات.</value></data>
+  <data name="Js.ScrollableTable" xml:space="preserve"><value>جدول نتائج قابل للتمرير</value></data>
+  <data name="Js.SelectATrainee" xml:space="preserve"><value>اختر متدرّبًا</value></data>
+  <data name="Js.SelectCompanyFirst" xml:space="preserve"><value>يُرجى اختيار شركة من القائمة أولًا.</value></data>
+  <data name="Js.SelectTraineeForCertificate" xml:space="preserve"><value>يُرجى اختيار متدرّب أولًا لإنشاء الشهادة.</value></data>
+  <data name="Js.Sending" xml:space="preserve"><value>جارٍ الإرسال…</value></data>
+  <data name="Js.SendingStatus" xml:space="preserve"><value>جارٍ الإرسال. يُرجى انتظار التأكيد.</value></data>
+  <data name="Js.Show" xml:space="preserve"><value>إظهار</value></data>
+  <data name="Js.ShowList" xml:space="preserve"><value>إظهار القائمة</value></data>
+  <data name="Js.ShowPassword" xml:space="preserve"><value>إظهار كلمة المرور</value></data>
+  <data name="Js.SigningIn" xml:space="preserve"><value>جارٍ تسجيل الدخول…</value></data>
+  <data name="Js.SoundOff" xml:space="preserve"><value>كتم الصوت</value></data>
+  <data name="Js.SoundOn" xml:space="preserve"><value>تشغيل الصوت</value></data>
+  <data name="Js.StoryStatus" xml:space="preserve"><value>الجامعة الألمانية الأردنية | مجسّم معماري</value></data>
+  <data name="Js.TeamMemberOf" xml:space="preserve"><value>العضو {0} من {1}</value></data>
+  <data name="Js.ThemeDark" xml:space="preserve"><value>داكن</value></data>
+  <data name="Js.ThemeLabel" xml:space="preserve"><value>سمة الألوان: {0}</value></data>
+  <data name="Js.ThemeLight" xml:space="preserve"><value>فاتح</value></data>
+  <data name="Js.ThemeSystem" xml:space="preserve"><value>حسب النظام</value></data>
+  <data name="Js.UnpinNavigation" xml:space="preserve"><value>إلغاء تثبيت القائمة</value></data>
+  <data name="Js.Working" xml:space="preserve"><value>جارٍ التنفيذ…</value></data>
+  <data name="Language.Label" xml:space="preserve"><value>اللغة</value></data>
+  <data name="Language.SwitchToArabic" xml:space="preserve"><value>عرض هذه الصفحة بالعربية</value></data>
+  <data name="Language.SwitchToEnglish" xml:space="preserve"><value>عرض هذه الصفحة بالإنجليزية</value></data>
+  <data name="NotificationBell.JustNow" xml:space="preserve"><value>الآن</value></data>
+  <data name="NotificationBell.New" xml:space="preserve"><value>جديدة</value></data>
+  <data name="NotificationBell.Notifications" xml:space="preserve"><value>الإشعارات</value></data>
+  <data name="NotificationBell.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>الإشعارات غير متاحة حاليًا.</value></data>
+  <data name="NotificationBell.ViewAllNotifications" xml:space="preserve"><value>عرض كل الإشعارات</value></data>
+  <data name="NotificationBell.YouReAllCaughtUpNew" xml:space="preserve"><value>لا يوجد جديد. ستظهر هنا المهام والقرارات والتحديثات الجديدة.</value></data>
+  <data name="Popup.Error" xml:space="preserve"><value>خطأ</value></data>
+  <data name="Portal.LogIn" xml:space="preserve"><value>تسجيل الدخول</value></data>
+  <data name="Portal.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
+  <data name="Portal.MyDashboard" xml:space="preserve"><value>لوحة التحكم</value></data>
+  <data name="Public.AboutUs" xml:space="preserve"><value>من نحن</value></data>
+  <data name="Public.AmmanMadabaStreetAmmanJordan" xml:space="preserve"><value>شارع عمّان–مادبا، عمّان، الأردن</value></data>
+  <data name="Public.ConnectingStudentsUniversitySupervisorsAndCompanies" xml:space="preserve"><value>يربط الطلبة والمشرفين الأكاديميين والشركات طوال رحلة التدريب الميداني في الجامعة الألمانية الأردنية.</value></data>
+  <data name="Public.Contact" xml:space="preserve"><value>التواصل</value></data>
+  <data name="Public.ContactUs" xml:space="preserve"><value>تواصل معنا</value></data>
+  <data name="Public.ExploreCampus" xml:space="preserve"><value>استكشف الحرم الجامعي</value></data>
+  <data name="Public.ForAccountAccessAndInternshipGuidance" xml:space="preserve"><value>للحصول على حساب أو إرشاد حول التدريب، تواصل مع منسّق التدريب في الجامعة.</value></data>
+  <data name="Public.GJUOfficialWebsite" xml:space="preserve"><value>الموقع الرسمي للجامعة</value></data>
+  <data name="Public.GermanJordanianUniversity" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="Public.GetDirections" xml:space="preserve"><value>الاتجاهات</value></data>
+  <data name="Public.GoogleMaps" xml:space="preserve"><value>خرائط Google</value></data>
+  <data name="Public.Home" xml:space="preserve"><value>الرئيسية</value></data>
+  <data name="Public.HowItWorks" xml:space="preserve"><value>كيف يعمل النظام</value></data>
+  <data name="Public.InternshipManagementSystem" xml:space="preserve"><value>نظام إدارة التدريب الميداني</value></data>
+  <data name="Public.LoadingMap" xml:space="preserve"><value>جارٍ تحميل الخريطة…</value></data>
+  <data name="Public.MainNavigation" xml:space="preserve"><value>التنقّل الرئيسي</value></data>
+  <data name="Public.MapOfTheGermanJordanianUniversity" xml:space="preserve"><value>خريطة الحرم الرئيسي للجامعة الألمانية الأردنية، شارع عمّان–مادبا، الأردن</value></data>
+  <data name="Public.MessageTheCoordinationTeam" xml:space="preserve"><value>راسل فريق التنسيق</value></data>
+  <data name="Public.OfficialLinks" xml:space="preserve"><value>روابط رسمية</value></data>
+  <data name="Public.OpenMainMenu" xml:space="preserve"><value>فتح القائمة الرئيسية</value></data>
+  <data name="Public.OpensInANewTab" xml:space="preserve"><value>(يُفتح في علامة تبويب جديدة)</value></data>
+  <data name="Public.Opportunities" xml:space="preserve"><value>فرص التدريب</value></data>
+  <data name="Public.PauseWaves" xml:space="preserve"><value>إيقاف الأمواج</value></data>
+  <data name="Public.PoweredBy" xml:space="preserve"><value>فريق التطوير</value></data>
+  <data name="Public.PoweredByMeetTheDevelopmentTeam" xml:space="preserve"><value>فريق التطوير — تعرّف على الفريق</value></data>
+  <data name="Public.QuickLinks" xml:space="preserve"><value>روابط سريعة</value></data>
+  <data name="Public.ReplayFlight" xml:space="preserve"><value>إعادة الجولة</value></data>
+  <data name="Public.SkipToContent" xml:space="preserve"><value>انتقل إلى المحتوى</value></data>
+  <data name="Public.UIMSGroup4StudentProjectGJU" xml:space="preserve"><value>نظام إدارة التدريب · المجموعة 4 · مشروع طلابي · هوية بصرية مستوحاة من الجامعة</value></data>
+  <data name="Public.UIMSHome" xml:space="preserve"><value>الصفحة الرئيسية لنظام إدارة التدريب</value></data>
+  <data name="Public.UniversityLocation" xml:space="preserve"><value>موقع الجامعة</value></data>
+  <data name="Public.ViewOn" xml:space="preserve"><value>عرض على</value></data>
+  <data name="Role.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
+  <data name="Role.CompanySupervisor" xml:space="preserve"><value>مشرف الشركة</value></data>
+  <data name="Role.Coordinator" xml:space="preserve"><value>منسّق التدريب</value></data>
+  <data name="Role.Student" xml:space="preserve"><value>الطالب</value></data>
+  <data name="Sidebar.AcademicSupervisors" xml:space="preserve"><value>المشرفون الأكاديميون</value></data>
+  <data name="Sidebar.ApplicationsReview" xml:space="preserve"><value>مراجعة الطلبات</value></data>
+  <data name="Sidebar.CloseNavigation" xml:space="preserve"><value>إغلاق التنقّل</value></data>
+  <data name="Sidebar.ContactMessages" xml:space="preserve"><value>رسائل التواصل</value></data>
+  <data name="Sidebar.Dashboard" xml:space="preserve"><value>لوحة التحكم</value></data>
+  <data name="Sidebar.ExploreOpportunities" xml:space="preserve"><value>استكشاف فرص التدريب</value></data>
+  <data name="Sidebar.FinalAcademicEvaluation" xml:space="preserve"><value>التقييم الأكاديمي النهائي</value></data>
+  <data name="Sidebar.FinalCompletionReview" xml:space="preserve"><value>مراجعة إتمام التدريب</value></data>
+  <data name="Sidebar.FinalEvaluation" xml:space="preserve"><value>التقييم النهائي</value></data>
+  <data name="Sidebar.GermanJordanianUniversity" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="Sidebar.GroupsAssignments" xml:space="preserve"><value>المجموعات والإسناد</value></data>
+  <data name="Sidebar.InternshipManagementSystem" xml:space="preserve"><value>نظام إدارة التدريب الميداني</value></data>
+  <data name="Sidebar.ManageCompanies" xml:space="preserve"><value>إدارة الشركات</value></data>
+  <data name="Sidebar.ManageOpportunities" xml:space="preserve"><value>إدارة فرص التدريب</value></data>
+  <data name="Sidebar.ManageStudents" xml:space="preserve"><value>إدارة الطلبة</value></data>
+  <data name="Sidebar.ManageTasks" xml:space="preserve"><value>إدارة المهام</value></data>
+  <data name="Sidebar.Meetings" xml:space="preserve"><value>الاجتماعات</value></data>
+  <data name="Sidebar.MyAccount" xml:space="preserve"><value>حسابي</value></data>
+  <data name="Sidebar.MyAccountTitle" xml:space="preserve"><value>حسابي</value></data>
+  <data name="Sidebar.MyApplications" xml:space="preserve"><value>طلباتي</value></data>
+  <data name="Sidebar.MyProfile" xml:space="preserve"><value>ملفي الشخصي</value></data>
+  <data name="Sidebar.MyProgressEvaluation" xml:space="preserve"><value>تقدّمي وتقييمي</value></data>
+  <data name="Sidebar.MyTasks" xml:space="preserve"><value>مهامي</value></data>
+  <data name="Sidebar.MyTrainees" xml:space="preserve"><value>المتدرّبون</value></data>
+  <data name="Sidebar.PinNavigation" xml:space="preserve"><value>تثبيت القائمة</value></data>
+  <data name="Sidebar.PinNavigationOpen" xml:space="preserve"><value>تثبيت قائمة التنقّل مفتوحة</value></data>
+  <data name="Sidebar.PlacementsProgress" xml:space="preserve"><value>أماكن التدريب والتقدّم</value></data>
+  <data name="Sidebar.Portal" xml:space="preserve"><value>البوابة</value></data>
+  <data name="Sidebar.ReviewSubmissions" xml:space="preserve"><value>مراجعة التسليمات</value></data>
+  <data name="Sidebar.StudentProgress" xml:space="preserve"><value>تقدّم الطلبة</value></data>
+  <data name="Student.CloseNavigationBackdrop" xml:space="preserve"><value>إغلاق خلفية التنقّل</value></data>
+  <data name="Student.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
+  <data name="Student.OpenNavigation" xml:space="preserve"><value>فتح قائمة التنقّل</value></data>
+  <data name="Student.StudentNavigation" xml:space="preserve"><value>قائمة الطالب</value></data>
+  <data name="Student.StudentPortal" xml:space="preserve"><value>بوابة الطالب</value></data>
+  <data name="ThemeSelector.ColourTheme" xml:space="preserve"><value>سمة الألوان</value></data>
+  <data name="ThemeSelector.ColourThemeLight" xml:space="preserve"><value>سمة الألوان: فاتح</value></data>
+  <data name="ThemeSelector.Dark" xml:space="preserve"><value>داكن</value></data>
+  <data name="ThemeSelector.Light" xml:space="preserve"><value>فاتح</value></data>
+  <data name="ThemeSelector.System" xml:space="preserve"><value>حسب النظام</value></data>
+  <data name="ThemeSelector.Theme" xml:space="preserve"><value>السمة</value></data>
+  <data name="Title.Default" xml:space="preserve"><value>الرئيسية | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Academic.Account" xml:space="preserve"><value>حسابي</value></data>
+  <data name="Title.Pages.Academic.Dashboard" xml:space="preserve"><value>لوحة التحكم الأكاديمية</value></data>
+  <data name="Title.Pages.Academic.FinalEvaluation" xml:space="preserve"><value>التقييم النهائي</value></data>
+  <data name="Title.Pages.Academic.StudentProgress" xml:space="preserve"><value>تقدّم الطلبة</value></data>
+  <data name="Title.Pages.Account.ChangePassword" xml:space="preserve"><value>تغيير كلمة المرور</value></data>
+  <data name="Title.Pages.Account.ForgotPassword" xml:space="preserve"><value>استعادة كلمة المرور | نظام إدارة التدريب</value></data>
+  <data name="Title.Pages.Account.Login" xml:space="preserve"><value>تسجيل الدخول | نظام إدارة التدريب</value></data>
+  <data name="Title.Pages.Account.Notifications" xml:space="preserve"><value>الإشعارات</value></data>
+  <data name="Title.Pages.Company.Account" xml:space="preserve"><value>حسابي</value></data>
+  <data name="Title.Pages.Company.ApplicantDocument" xml:space="preserve"><value>مستند المتقدّم</value></data>
+  <data name="Title.Pages.Company.Applications" xml:space="preserve"><value>مراجعة الطلبات</value></data>
+  <data name="Title.Pages.Company.Dashboard" xml:space="preserve"><value>لوحة تحكم الشركة</value></data>
+  <data name="Title.Pages.Company.FinalEvaluation" xml:space="preserve"><value>التقييم النهائي</value></data>
+  <data name="Title.Pages.Company.ManageOpportunities" xml:space="preserve"><value>إدارة فرص التدريب</value></data>
+  <data name="Title.Pages.Company.Opportunities" xml:space="preserve"><value>إضافة فرصة تدريب</value></data>
+  <data name="Title.Pages.Company.TaskReview" xml:space="preserve"><value>مراجعة التسليمات</value></data>
+  <data name="Title.Pages.Company.Tasks" xml:space="preserve"><value>إدارة المهام</value></data>
+  <data name="Title.Pages.Company.TraineeDetails" xml:space="preserve"><value>تفاصيل المتدرّب</value></data>
+  <data name="Title.Pages.Company.Trainees" xml:space="preserve"><value>المتدرّبون</value></data>
+  <data name="Title.Pages.Company.ViewOpportunity" xml:space="preserve"><value>عرض فرصة التدريب</value></data>
+  <data name="Title.Pages.Coordinator.AcademicSupervisors" xml:space="preserve"><value>المشرفون الأكاديميون</value></data>
+  <data name="Title.Pages.Coordinator.Account" xml:space="preserve"><value>حسابي</value></data>
+  <data name="Title.Pages.Coordinator.AddStudent" xml:space="preserve"><value>إضافة طالب</value></data>
+  <data name="Title.Pages.Coordinator.Companies" xml:space="preserve"><value>إدارة الشركات</value></data>
+  <data name="Title.Pages.Coordinator.CompletionReview" xml:space="preserve"><value>مراجعة إتمام التدريب</value></data>
+  <data name="Title.Pages.Coordinator.ConfiguredGroups" xml:space="preserve"><value>المجموعات المُعدّة</value></data>
+  <data name="Title.Pages.Coordinator.ContactMessages" xml:space="preserve"><value>رسائل التواصل</value></data>
+  <data name="Title.Pages.Coordinator.Dashboard" xml:space="preserve"><value>لوحة تحكم منسّق التدريب</value></data>
+  <data name="Title.Pages.Coordinator.Groups" xml:space="preserve"><value>المجموعات والإسناد</value></data>
+  <data name="Title.Pages.Coordinator.ManageStudents" xml:space="preserve"><value>إدارة الطلبة</value></data>
+  <data name="Title.Pages.Coordinator.PlacementDetails" xml:space="preserve"><value>تفاصيل مكان التدريب</value></data>
+  <data name="Title.Pages.Coordinator.Placements" xml:space="preserve"><value>أماكن التدريب والتقدّم</value></data>
+  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>سجلات الطلبة</value></data>
+  <data name="Title.Pages.Meetings.MyMeetings" xml:space="preserve"><value>اجتماعاتي</value></data>
+  <data name="Title.Pages.Meetings.Schedule" xml:space="preserve"><value>الاجتماعات</value></data>
+  <data name="Title.Pages.Public.About" xml:space="preserve"><value>من نحن | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Public.AccessDenied" xml:space="preserve"><value>الوصول مرفوض | نظام إدارة التدريب</value></data>
+  <data name="Title.Pages.Public.Contact" xml:space="preserve"><value>تواصل معنا | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Public.PoweredBy" xml:space="preserve"><value>تعرّف على الفريق | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Student.Apply" xml:space="preserve"><value>طلب التدريب</value></data>
+  <data name="Title.Pages.Student.Dashboard" xml:space="preserve"><value>لوحة تحكم الطالب</value></data>
+  <data name="Title.Pages.Student.MyApplications" xml:space="preserve"><value>طلباتي</value></data>
+  <data name="Title.Pages.Student.MyTasks" xml:space="preserve"><value>مهامي</value></data>
+  <data name="Title.Pages.Student.Opportunities" xml:space="preserve"><value>استكشاف فرص التدريب</value></data>
+  <data name="Title.Pages.Student.OpportunityDetails" xml:space="preserve"><value>تفاصيل فرصة التدريب</value></data>
+  <data name="Title.Pages.Student.Profile" xml:space="preserve"><value>ملفي الشخصي</value></data>
+  <data name="Title.Pages.Student.Progress" xml:space="preserve"><value>تقدّمي وتقييمي</value></data>
+  <data name="Title.Pages.Student.StudentCVPortfolio" xml:space="preserve"><value>السيرة الذاتية وملف الأعمال</value></data>
+  <data name="Value.ApplicationStatus.Accepted" xml:space="preserve"><value>مقبول</value></data>
+  <data name="Value.ApplicationStatus.Pending" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="Value.ApplicationStatus.Rejected" xml:space="preserve"><value>مرفوض</value></data>
+  <data name="Value.ApplicationStatus.Withdrawn" xml:space="preserve"><value>مسحوب</value></data>
+  <data name="Value.CompletionStatus.Approved" xml:space="preserve"><value>معتمد</value></data>
+  <data name="Value.CompletionStatus.AwaitingAcademicEvaluation" xml:space="preserve"><value>بانتظار التقييم الأكاديمي</value></data>
+  <data name="Value.CompletionStatus.AwaitingCompanyEvaluation" xml:space="preserve"><value>بانتظار تقييم الشركة</value></data>
+  <data name="Value.CompletionStatus.NotReady" xml:space="preserve"><value>غير جاهز</value></data>
+  <data name="Value.CompletionStatus.Rejected" xml:space="preserve"><value>مُعاد</value></data>
+  <data name="Value.CompletionStatus.UnderCoordinatorReview" xml:space="preserve"><value>قيد مراجعة منسّق التدريب</value></data>
+  <data name="Value.ContactMessageStatus.New" xml:space="preserve"><value>جديدة</value></data>
+  <data name="Value.ContactMessageStatus.Reviewed" xml:space="preserve"><value>تمت مراجعتها</value></data>
+  <data name="Value.HoursStatus.Approved" xml:space="preserve"><value>معتمدة</value></data>
+  <data name="Value.HoursStatus.Rejected" xml:space="preserve"><value>مرفوضة</value></data>
+  <data name="Value.HoursStatus.Reported" xml:space="preserve"><value>مُبلَّغ عنها</value></data>
+  <data name="Value.MeetingStatus.Cancelled" xml:space="preserve"><value>ملغى</value></data>
+  <data name="Value.MeetingStatus.Completed" xml:space="preserve"><value>منعقد</value></data>
+  <data name="Value.MeetingStatus.Scheduled" xml:space="preserve"><value>مجدول</value></data>
+  <data name="Value.OpportunityStatus.Closed" xml:space="preserve"><value>مغلقة</value></data>
+  <data name="Value.OpportunityStatus.Draft" xml:space="preserve"><value>مسودة</value></data>
+  <data name="Value.OpportunityStatus.Open" xml:space="preserve"><value>مفتوحة</value></data>
+  <data name="Value.OpportunityType.Internship" xml:space="preserve"><value>تدريب عملي</value></data>
+  <data name="Value.PlacementStatus.Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="Value.PlacementStatus.AwaitingCompletion" xml:space="preserve"><value>بانتظار الإتمام</value></data>
+  <data name="Value.PlacementStatus.Cancelled" xml:space="preserve"><value>ملغى</value></data>
+  <data name="Value.PlacementStatus.Completed" xml:space="preserve"><value>مكتمل</value></data>
+  <data name="Value.PlacementStatus.Confirmed" xml:space="preserve"><value>مؤكَّد</value></data>
+  <data name="Value.PlacementStatus.Offered" xml:space="preserve"><value>معروض</value></data>
+  <data name="Value.TaskStatus.Assigned" xml:space="preserve"><value>مُسندة</value></data>
+  <data name="Value.TaskStatus.Graded" xml:space="preserve"><value>مُقيَّمة</value></data>
+  <data name="Value.TaskStatus.Resubmitted" xml:space="preserve"><value>أُعيد تسليمها</value></data>
+  <data name="Value.TaskStatus.RevisionRequested" xml:space="preserve"><value>مطلوب تعديلها</value></data>
+  <data name="Value.TaskStatus.Submitted" xml:space="preserve"><value>مُسلَّمة</value></data>
+  <data name="Value.TaskStatus.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="Value.TrainingMode.Hybrid" xml:space="preserve"><value>مدمج</value></data>
+  <data name="Value.TrainingMode.Onsite" xml:space="preserve"><value>حضوري</value></data>
+  <data name="Value.TrainingMode.Remote" xml:space="preserve"><value>عن بُعد</value></data>
+  <data name="WorkspaceChart.12Months" xml:space="preserve"><value>12 شهرًا</value></data>
+  <data name="WorkspaceChart.6Months" xml:space="preserve"><value>6 أشهر</value></data>
+  <data name="WorkspaceChart.ActivityDataAndRecordDetails" xml:space="preserve"><value>بيانات النشاط وتفاصيل السجلات</value></data>
+  <data name="WorkspaceChart.ApprovalActivityRange" xml:space="preserve"><value>نطاق نشاط الاعتماد</value></data>
+  <data name="WorkspaceChart.AvailableApprovalEventsByMonthUTC" xml:space="preserve"><value>أحداث الاعتماد المتاحة حسب الشهر (UTC)</value></data>
+  <data name="WorkspaceChart.AvailableDatedRecordsCurrentCategoriesAre" xml:space="preserve"><value>السجلات المؤرخة المتاحة؛ الفئات الحالية لقطة للوضع الراهن.</value></data>
+  <data name="WorkspaceChart.AvailableDatedRecordsOnly" xml:space="preserve"><value>، السجلات المؤرخة المتاحة فقط</value></data>
+  <data name="WorkspaceChart.BreakdownData" xml:space="preserve"><value>بيانات التوزيع</value></data>
+  <data name="WorkspaceChart.Category" xml:space="preserve"><value>الفئة</value></data>
+  <data name="WorkspaceChart.CategoryDataAndRecordDetails" xml:space="preserve"><value>بيانات الفئات وتفاصيل السجلات</value></data>
+  <data name="WorkspaceChart.CloseDetails" xml:space="preserve"><value>إغلاق التفاصيل</value></data>
+  <data name="WorkspaceChart.CurrentSnapshot" xml:space="preserve"><value>، لقطة حالية</value></data>
+  <data name="WorkspaceChart.CurrentSnapshotIn" xml:space="preserve"><value>، لقطة حالية ضمن</value></data>
+  <data name="WorkspaceChart.CurrentSnapshotLabel" xml:space="preserve"><value>الوضع الحالي</value></data>
+  <data name="WorkspaceChart.CurrentSnapshotMutuallyExclusiveCategories" xml:space="preserve"><value>لقطة حالية · فئات غير متداخلة</value></data>
+  <data name="WorkspaceChart.DatedRecordsOnly" xml:space="preserve"><value>السجلات المؤرّخة فقط</value></data>
+  <data name="WorkspaceChart.Details" xml:space="preserve"><value>التفاصيل</value></data>
+  <data name="WorkspaceChart.Done" xml:space="preserve"><value>تم</value></data>
+  <data name="WorkspaceChart.JavaScriptEnablesChartsRangeFilteringAnd" xml:space="preserve"><value>تتيح JavaScript الرسوم البيانية وتصفية النطاق وعرض التفاصيل. تبقى القيم الحالية وجداول البيانات أعلاه متاحة.</value></data>
+  <data name="WorkspaceChart.Month" xml:space="preserve"><value>الشهر</value></data>
+  <data name="WorkspaceChart.Next" xml:space="preserve"><value>التالي</value></data>
+  <data name="WorkspaceChart.NoMatchingRecordsInThisScope" xml:space="preserve"><value>لا توجد سجلات مطابقة ضمن هذا النطاق.</value></data>
+  <data name="WorkspaceChart.PreparingBreakdown" xml:space="preserve"><value>جارٍ تجهيز التوزيع…</value></data>
+  <data name="WorkspaceChart.PreparingCurrentCategories" xml:space="preserve"><value>جارٍ تجهيز الفئات الحالية…</value></data>
+  <data name="WorkspaceChart.PreparingDatedActivity" xml:space="preserve"><value>جارٍ تجهيز النشاط المؤرخ…</value></data>
+  <data name="WorkspaceChart.Previous" xml:space="preserve"><value>السابق</value></data>
+  <data name="WorkspaceChart.SelectACategoryToInspectIts" xml:space="preserve"><value>اختر فئة لعرض السجلات المصرّح بها التي تتكوّن منها. يغيّر اختيار النطاق النشاط المؤرخ فقط، ويعرض هذا التوزيع السجلات الحالية.</value></data>
+  <data name="WorkspaceChart.ViewData" xml:space="preserve"><value>عرض البيانات</value></data>
+  <data name="WorkspaceChart.ViewRecords" xml:space="preserve"><value>عرض السجلات</value></data>
+  <data name="WorkspaceJourney.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="WorkspaceJourney.CloseJourneyDetails" xml:space="preserve"><value>إغلاق تفاصيل المسار</value></data>
+  <data name="WorkspaceJourney.DetailsReflectTheCurrentServerRecord" xml:space="preserve"><value>تعكس التفاصيل السجل الحالي على الخادم.</value></data>
+  <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>تفاصيل المسار</value></data>
+  <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>اختر مرحلة لعرض تفاصيلها</value></data>
+  <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.</value></data>
+  <data name="Js.DashboardRefresh" xml:space="preserve"><value>تحديث النظرة العامة</value></data>
+  <data name="Js.DashboardReady" xml:space="preserve"><value>النظرة العامة محدّثة</value></data>
+  <data name="Js.DashboardLoading" xml:space="preserve"><value>جارٍ تحميل النظرة العامة للبرنامج</value></data>
+  <data name="Js.DashboardUnavailable" xml:space="preserve"><value>النظرة العامة غير متاحة</value></data>
+  <data name="Js.DashboardFull" xml:space="preserve"><value>فتح لوحة التحكم كاملة</value></data>
+  <data name="Js.DashboardFailed" xml:space="preserve"><value>تعذّر تحميل النظرة العامة.</value></data>
+  <data name="Js.DashboardFailedHelp" xml:space="preserve"><value>تحقّق من الاتصال وأعد المحاولة. لم تتغير سجلاتك.</value></data>
+  <data name="Js.DashboardRetry" xml:space="preserve"><value>إعادة المحاولة</value></data>
+  <data name="Js.DashboardRefreshing" xml:space="preserve"><value>جارٍ تحديث النظرة العامة</value></data>
+  <data name="Js.DashboardLoadingProgram" xml:space="preserve"><value>جارٍ تحميل النظرة العامة للبرنامج</value></data>
+  <data name="Js.DashboardRefreshingProgram" xml:space="preserve"><value>جارٍ تحديث النظرة العامة للبرنامج</value></data>
+  <data name="Js.DashboardSlow" xml:space="preserve"><value>التحميل مستمر. يستغرق الاتصال وقتًا أطول قليلًا.</value></data>
+  <data name="Js.DashboardRefreshFailed" xml:space="preserve"><value>تعذّر التحديث. ما زالت النظرة العامة السابقة معروضة.</value></data>
+</root>

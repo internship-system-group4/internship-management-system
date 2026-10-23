@@ -11,7 +11,7 @@
  function render() {
   if (paused || !visible) footer.setAttribute('data-waves-paused', ''); else footer.removeAttribute('data-waves-paused');
   button.hidden = motion.matches;
-  button.textContent = paused ? 'Play waves' : 'Pause waves';
+  button.textContent = paused ? window.uimsT('PlayWaves') : window.uimsT('PauseWaves');
   button.setAttribute('aria-pressed', String(paused));
  }
  button.addEventListener('click', function () {

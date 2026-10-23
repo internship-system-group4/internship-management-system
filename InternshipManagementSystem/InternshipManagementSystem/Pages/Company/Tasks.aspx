@@ -27,7 +27,7 @@
             max-width: 820px;
             max-height: calc(100vh - 32px);
             overflow-y: auto;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border-radius: 12px;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
         }
@@ -101,7 +101,7 @@
     </div>
 
     <!-- Popup with blurred background -->
-    <div id="taskModal"
+    <div id="taskModal" data-ui-dialog="" data-ui-close="showTasksList"
          class="task-modal-overlay"
          style="display: none;"
          role="dialog"
@@ -320,7 +320,7 @@
                 CssClass="btn btn-outline-secondary mb-3"
                 CausesValidation="false"
                 OnClientClick="rememberTaskForm();"
-                OnClick="btnAddCriterion_Click" />
+                OnClick="btnAddCriterion_Click" data-ui-action="add" data-loading-label="Updating…" data-ui-validation="none" />
 
             <div class="table-responsive">
                 <asp:GridView
@@ -367,7 +367,7 @@
                     Text="Create Task"
                     CssClass="btn btn-brand"
                     OnClientClick="rememberTaskForm();"
-                    OnClick="btnCreateTask_Click" />
+                    OnClick="btnCreateTask_Click" data-ui-action="create" data-loading-label="Creating…" />
             </div>
 
             <div class="mt-3">

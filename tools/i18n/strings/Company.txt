@@ -1,0 +1,1666 @@
+
+Account.MyAccount
+en: My Account
+ar: حسابي
+
+Account.ManageYourPersonalProfileAndView
+en: Manage your personal profile and view your system associations.
+
+Account.EditProfile
+en: Edit Profile
+
+Account.CompanySupervisor
+en: Company Supervisor
+
+Account.EmailAddressReadOnly
+en: Email Address (Read-Only)
+
+Account.CompanyAssociationReadOnly
+en: Company Association (Read-Only)
+
+Account.PhoneNumber
+en: Phone Number
+
+Account.JobTitleDepartment
+en: Job Title / Department
+
+Account.UpdateProfile
+en: Update Profile
+
+Account.Close
+en: Close
+ar: إغلاق
+
+Account.ProfilePicture
+en: Profile Picture
+
+Account.ChooseANewPhoto
+en: Choose a new photo
+
+Account.JPGOrPNGAllowed
+en: JPG or PNG allowed
+
+Account.FullName
+en: Full Name
+ar: الاسم الكامل
+
+Account.EGHRManager
+en: e.g. HR Manager
+
+Account.Cancel
+en: Cancel
+
+Account.SaveChanges
+en: Save Changes
+
+Account.Okay
+en: Okay
+
+ApplicantDocument.BackToApplications
+en: ← Back to applications
+
+Applications.ApplicationsReview
+en: Applications review
+
+Applications.ReviewApplicationsForYourCompanyAnd
+en: Review applications for your company and let students know your decision.
+
+Applications.RefreshApplications
+en: Refresh applications
+
+Applications.StudentApplications
+en: Student applications
+
+Applications.Total
+en: total
+
+Applications.NoApplicationsYetNewStudentApplications
+en: No applications yet. New student applications for your company will appear here.
+
+Applications.AppliedFor
+en: Applied for
+
+Applications.Submitted
+en: Submitted
+
+Applications.ViewCandidateDetails
+en: View candidate details
+
+Applications.HideCandidateDetails
+en: Hide candidate details
+
+Applications.ProfileCoverLetterAndCV
+en: Profile, cover letter and CV
+
+Applications.StudentNumber
+en: Student number
+
+Applications.Major
+en: Major
+
+Applications.College
+en: College
+
+Applications.University
+en: University
+
+Applications.Email
+en: Email
+ar: البريد الإلكتروني
+
+Applications.Phone
+en: Phone
+
+Applications.TechnicalSkills
+en: Technical skills
+
+Applications.SoftSkills
+en: Soft skills
+
+Applications.CoverLetter
+en: Cover letter
+
+Applications.DocumentsAndLinks
+en: Documents and links
+
+Applications.OpenCV
+en: Open CV
+
+Applications.OpenPortfolio
+en: Open portfolio
+
+Applications.LinkedInProfile
+en: LinkedIn profile
+
+Applications.ThisStudentHasNotSharedA
+en: This student has not shared a CV that can be opened yet.
+
+Applications.ReadyToMakeADecision
+en: Ready to make a decision?
+
+Applications.AcceptanceOffersAPlaceTheStudent
+en: Acceptance offers a place. The student still needs to confirm one offer.
+
+Applications.Reject
+en: Reject
+
+Applications.AcceptApplication
+en: Accept application
+
+Applications.ReasonForRejectionRequired
+en: Reason for rejection (required)
+
+Applications.ExplainTheDecisionSoTheStudent
+en: Explain the decision so the student knows why their application was rejected.
+
+Applications.ThisReasonWillBeVisibleTo
+en: This reason will be visible to the student. Up to 2,000 characters.
+
+Applications.Cancel
+en: Cancel
+
+Applications.ConfirmRejection
+en: Confirm rejection
+
+Applications.On
+en: on
+
+Applications.ReasonGiven
+en: Reason given:
+
+Dashboard.CompanyWorkspace
+en: Company workspace
+
+Dashboard.ReviewCandidatesSupportTraineesKeepDecisions
+en: Review candidates. Support trainees. Keep decisions moving.
+
+Dashboard.CreateOpportunity
+en: Create opportunity
+
+Dashboard.OpeningsOpportunities
+en: Openings & opportunities
+
+Dashboard.AllCompanyOpportunities
+en: All company opportunities
+
+Dashboard.Applications
+en: Applications
+
+Dashboard.AwaitingADecision
+en: awaiting a decision
+
+Dashboard.ConfirmedTrainees
+en: Confirmed trainees
+
+Dashboard.ConfirmedPlacementRecords
+en: confirmed placement records
+
+Dashboard.WorkToReview
+en: Work to review
+
+Dashboard.SubmittedTrainingWork
+en: Submitted training work
+
+Dashboard.ApplicationReview
+en: Application review
+
+Dashboard.PendingDecisionsFirstThenRecentApplications
+en: Pending decisions first, then recent applications.
+
+Dashboard.OpenReviewQueue
+en: Open review queue
+
+Dashboard.NoApplicationsYetNewCandidatesFor
+en: No applications yet. New candidates for your company will appear here.
+
+Dashboard.Candidate
+en: Candidate
+
+Dashboard.Opportunity
+en: Opportunity
+
+Dashboard.Decision
+en: Decision
+
+Dashboard.ReviewDesk
+en: Review desk
+
+Dashboard.GoDirectlyToTheWorkThat
+en: Go directly to the work that needs your attention.
+
+Dashboard.SubmittedWork
+en: Submitted work
+
+Dashboard.SubmissionsWaiting
+en: submissions waiting
+
+Dashboard.ReportedHours
+en: Reported hours
+
+Dashboard.HAwaitingApproval
+en: h awaiting approval
+
+Dashboard.FinalAssessments
+en: Final assessments
+
+Dashboard.NotYetSubmitted
+en: not yet submitted
+
+Dashboard.TrainingInYourCompany
+en: Training in your company
+
+Dashboard.ApprovedProgressStaysSeparateFromReported
+en: Approved progress stays separate from reported hours.
+
+Dashboard.AllTrainees
+en: All trainees
+
+Dashboard.HPending
+en: h pending
+
+Dashboard.ConfirmedTraineesWillAppearAfterA
+en: Confirmed trainees will appear after a student accepts your offer.
+
+Dashboard.ReviewApplications
+en: Review applications
+
+FinalEvaluation.FinalEvaluation
+en: Final evaluation
+
+FinalEvaluation.SelectATraineeAndCompleteTheir
+en: Select a trainee and complete their final internship assessment.
+
+FinalEvaluation.1SelectTrainee
+en: 1. Select Trainee
+
+FinalEvaluation.SelectATraineeToEvaluate
+en: -- Select a trainee to evaluate --
+
+FinalEvaluation.2EvaluationForms
+en: 2. Evaluation Forms
+
+FinalEvaluation.FillOutBothSectionsBelowAccording
+en: Fill out both sections below according to GJU criteria before sending the final evaluation.
+
+FinalEvaluation.NumericalScoresHoursGJUCriteria
+en: Numerical Scores & Hours (GJU Criteria)
+
+FinalEvaluation.OverallFeedbackRecommendation
+en: Overall Feedback & Recommendation
+
+FinalEvaluation.ScoreSummary
+en: Score Summary
+
+FinalEvaluation.PreviewCertificate
+en: Preview Certificate
+
+FinalEvaluation.SaveAsDraft
+en: Save as draft
+
+FinalEvaluation.SendEvaluationApprove
+en: Send Evaluation & Approve
+
+FinalEvaluation.TraineeDetails
+en: Trainee Details
+ar: تفاصيل المتدرّب
+
+FinalEvaluation.Internship
+en: Internship
+
+FinalEvaluation.Status
+en: Status
+
+FinalEvaluation.CertificateOfCompletion
+en: Certificate of Completion
+
+FinalEvaluation.InternshipProgram
+en: Internship Program
+
+FinalEvaluation.ThisIsToProudlyCertifyThat
+en: This is to proudly certify that
+
+FinalEvaluation.StudentName
+en: Student Name
+
+FinalEvaluation.HasSuccessfullyCompleted
+en: has successfully completed
+
+FinalEvaluation.HoursOfPracticalTraining
+en: hours of practical training
+
+FinalEvaluation.AsA
+en: as a
+
+FinalEvaluation.Trainee
+en: Trainee
+
+FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism
+en: Their dedication, technical skills, and professionalism
+
+FinalEvaluation.HaveMetTheHighestStandardsOf
+en: have met the highest standards of our organization.
+
+FinalEvaluation.Date
+en: Date
+
+FinalEvaluation.DateOfIssue
+en: Date of Issue
+
+FinalEvaluation.Official
+en: Official
+
+FinalEvaluation.Company
+en: Company
+
+FinalEvaluation.Seal
+en: Seal
+
+FinalEvaluation.AuthorizedSignature
+en: Authorized Signature
+
+FinalEvaluation.Close
+en: Close
+ar: إغلاق
+
+FinalEvaluation.PrintCertificate
+en: Print Certificate
+
+FinalEvaluation.TechSkillsApplication
+en: Tech. Skills & Application
+
+FinalEvaluation.QualityOfWorkLogic
+en: Quality of Work & Logic
+
+FinalEvaluation.ProfessionalismEthics
+en: Professionalism & Ethics
+
+FinalEvaluation.CommunicationTeamwork
+en: Communication & Teamwork
+
+FinalEvaluation.CalculatedTotal
+en: Calculated Total:
+
+FinalEvaluation.ScoresAttendance
+en: Scores & Attendance
+
+FinalEvaluation.ActualTrainingHours
+en: Actual Training Hours
+
+FinalEvaluation.EnterTheTotalHoursCompletedBy
+en: Enter the total hours completed by the trainee.
+
+FinalEvaluation.EvaluationFormGJUCriteria
+en: Evaluation Form (GJU Criteria)
+
+FinalEvaluation.TotalScore
+en: Total score
+
+FinalEvaluation.SaveScores
+en: Save Scores
+
+FinalEvaluation.FeedbackRecommendation
+en: Feedback & Recommendation
+
+FinalEvaluation.PerformanceLevel
+en: Performance level
+
+FinalEvaluation.SelectPerformanceLevel
+en: Select performance level
+
+FinalEvaluation.ExcellentA
+en: Excellent (A)
+
+FinalEvaluation.VeryGoodB
+en: Very Good (B)
+
+FinalEvaluation.GoodC
+en: Good (C)
+
+FinalEvaluation.NeedsImprovementD
+en: Needs Improvement (D)
+
+FinalEvaluation.CompanyRecommendation
+en: Company Recommendation
+
+FinalEvaluation.SelectRecommendation
+en: Select recommendation
+
+FinalEvaluation.HighlyRecommendedForHire
+en: Highly Recommended for Hire
+
+FinalEvaluation.Recommended
+en: Recommended
+
+FinalEvaluation.RecommendWithReservations
+en: Recommend with Reservations
+
+FinalEvaluation.DoNotRecommend
+en: Do Not Recommend
+
+FinalEvaluation.Strengths
+en: Strengths
+
+FinalEvaluation.DescribeTheTraineeSMainStrengths
+en: Describe the trainee's main strengths...
+
+FinalEvaluation.AreasForImprovement
+en: Areas for improvement
+
+FinalEvaluation.DescribeAreasTheTraineeShouldDevelop
+en: Describe areas the trainee should develop...
+
+FinalEvaluation.SaveFeedback
+en: Save Feedback
+
+FinalEvaluation.MySavedDrafts
+en: My Saved Drafts
+
+FinalEvaluation.YouHaveNoSavedDrafts
+en: You have no saved drafts.
+
+FinalEvaluation.TraineeName
+en: Trainee Name
+
+FinalEvaluation.Action
+en: Action
+
+FinalEvaluation.Okay
+en: Okay
+
+ManageOpportunities.ManageOpportunities
+en: Manage opportunities
+
+ManageOpportunities.CreateUpdateAndTrackYourInternship
+en: Create, update and track your internship postings.
+
+ManageOpportunities.AddOpportunity
+en: + Add opportunity
+
+ManageOpportunities.OpenOpportunities
+en: Open opportunities
+
+ManageOpportunities.AcceptingApplications
+en: Accepting applications
+
+ManageOpportunities.Drafts
+en: Drafts
+
+ManageOpportunities.NotPublished
+en: Not published
+
+ManageOpportunities.ClosedOpportunities
+en: Closed opportunities
+
+ManageOpportunities.NoLongerAcceptingApplications
+en: No longer accepting applications
+
+ManageOpportunities.AllOpportunities
+en: All opportunities
+
+ManageOpportunities.PostingsInTotal
+en: postings in total
+
+ManageOpportunities.Opportunity
+en: Opportunity
+
+ManageOpportunities.Specialization
+en: Specialization
+
+ManageOpportunities.Seats
+en: Seats
+
+ManageOpportunities.Deadline
+en: Deadline
+
+ManageOpportunities.Status
+en: Status
+
+ManageOpportunities.Actions
+en: Actions
+
+ManageOpportunities.View
+en: View
+
+ManageOpportunities.Edit
+en: Edit
+
+ManageOpportunities.Close
+en: Close
+ar: إغلاق
+
+ManageOpportunities.NoOpportunitiesCreatedYet
+en: No opportunities created yet.
+
+ManageOpportunities.CloseThisOpportunity
+en: Close this opportunity?
+
+ManageOpportunities.WillNoLongerAcceptNewApplications
+en: will no longer accept new applications. Existing applications will remain saved.
+
+ManageOpportunities.Cancel
+en: Cancel
+
+ManageOpportunities.CloseOpportunity
+en: Close opportunity
+
+ManageOpportunities.BackToOpportunities
+en: ← Back to opportunities
+
+ManageOpportunities.OpportunityInformation
+en: Opportunity information
+
+ManageOpportunities.Department
+en: Department
+
+ManageOpportunities.TrainingMode
+en: Training mode
+
+ManageOpportunities.Location
+en: Location
+
+ManageOpportunities.EligibleCollege
+en: Eligible college
+
+ManageOpportunities.EligibleSpecializations
+en: Eligible specializations
+
+ManageOpportunities.TechnologiesUsed
+en: Technologies used
+
+ManageOpportunities.Description
+en: Description
+
+ManageOpportunities.Requirements
+en: Requirements
+
+ManageOpportunities.SeatsAndDates
+en: Seats and dates
+
+ManageOpportunities.SeatsFilledTotal
+en: Seats (filled / total)
+
+ManageOpportunities.Duration
+en: Duration
+
+ManageOpportunities.Weeks
+en: weeks
+
+ManageOpportunities.ApplicationDeadline
+en: Application deadline
+
+ManageOpportunities.StartDate
+en: Start date
+
+ManageOpportunities.EndDate
+en: End date
+
+ManageOpportunities.EditOpportunity
+en: Edit opportunity
+
+ManageOpportunities.UpdateTheDetailsAndSaveYour
+en: Update the details and save your changes.
+
+ManageOpportunities.ProvideTheMainDetailsOfThis
+en: Provide the main details of this opportunity.
+
+ManageOpportunities.OpportunityTitle
+en: Opportunity title *
+
+ManageOpportunities.Department2
+en: Department *
+
+ManageOpportunities.Location2
+en: Location *
+
+ManageOpportunities.EligibleSpecializations2
+en: Eligible specializations *
+
+ManageOpportunities.Description2
+en: Description *
+
+ManageOpportunities.Requirements2
+en: Requirements *
+
+ManageOpportunities.AvailableSeats
+en: Available seats *
+
+ManageOpportunities.DurationWeeks
+en: Duration (weeks) *
+
+ManageOpportunities.ApplicationDeadline2
+en: Application deadline *
+
+ManageOpportunities.StartDate2
+en: Start date *
+
+ManageOpportunities.EndDate2
+en: End date *
+
+ManageOpportunities.SaveChanges
+en: Save changes
+
+Opportunities.BackToOpportunities
+en: ← Back to opportunities
+
+Opportunities.AddNewOpportunity
+en: Add new opportunity
+
+Opportunities.CompleteTheDetailsBelowToCreate
+en: Complete the details below to create an internship opportunity.
+
+Opportunities.BasicInformation
+en: Basic information
+
+Opportunities.ProvideTheMainDetailsOfThis
+en: Provide the main details of this opportunity.
+
+Opportunities.OpportunityTitle
+en: Opportunity title *
+
+Opportunities.EGWebDeveloperIntern
+en: e.g. Web Developer Intern
+
+Opportunities.Department
+en: Department *
+
+Opportunities.EGInformationTechnology
+en: e.g. Information Technology
+
+Opportunities.EligibleCollege
+en: Eligible college
+
+Opportunities.OpportunityType
+en: Opportunity type
+
+Opportunities.Location
+en: Location *
+
+Opportunities.EGAmmanJordan
+en: e.g. Amman, Jordan
+
+Opportunities.TrainingMode
+en: Training mode
+
+Opportunities.EligibleSpecializations
+en: Eligible specializations *
+
+Opportunities.SelectTheUniversityMajorsEligibleTo
+en: Select the university majors eligible to apply.
+
+Opportunities.Description
+en: Description *
+
+Opportunities.DescribeTheRoleResponsibilitiesAndLearning
+en: Describe the role, responsibilities and learning objectives...
+
+Opportunities.Requirements
+en: Requirements *
+
+Opportunities.ListTheSkillsQualificationsAndRequirements
+en: List the skills, qualifications and requirements...
+
+Opportunities.TechnologiesUsed
+en: Technologies used
+
+Opportunities.EGCASPNETSQL
+en: e.g. C#, ASP.NET, SQL, HTML, CSS
+
+Opportunities.AvailableSeats
+en: Available seats *
+
+Opportunities.DurationWeeks
+en: Duration (weeks) *
+
+Opportunities.ApplicationDeadline
+en: Application deadline *
+
+Opportunities.StartDate
+en: Start date *
+
+Opportunities.EndDate
+en: End date *
+
+Opportunities.Cancel
+en: Cancel
+
+Opportunities.SaveDraft
+en: Save draft
+
+Opportunities.Publish
+en: Publish
+
+TaskReview.ReviewSubmissions
+en: Review Submissions
+ar: مراجعة التسليمات
+
+TaskReview.OpenASubmissionToEvaluateIt
+en: Open a submission to evaluate it or request a new attempt.
+
+TaskReview.Task
+en: Task
+
+TaskReview.Trainee
+en: Trainee
+
+TaskReview.Attempt
+en: Attempt
+
+TaskReview.Status
+en: Status
+
+TaskReview.Submitted
+en: Submitted
+
+TaskReview.ViewDetails
+en: View Details
+
+TaskReview.WeeklyProgressReport
+en: Weekly Progress Report
+
+TaskReview.ExampleStudentAttempt2PendingReview
+en: Example Student · Attempt 2 · Pending Review
+
+TaskReview.CloseReview
+en: Close review
+
+TaskReview.Close
+en: Close
+ar: إغلاق
+
+TaskReview.SubmittedWork
+en: Submitted Work
+
+TaskReview.StudentSText
+en: Student's text:
+
+TaskReview.ExampleSubmissionTextWillAppearHere
+en: Example submission text will appear here.
+
+TaskReview.Link
+en: Link:
+
+TaskReview.NoLinkInThisExample
+en: No link in this example
+
+TaskReview.File
+en: File:
+
+TaskReview.NoFileInThisExample
+en: No file in this example
+
+TaskReview.WhatWouldYouLikeToDo
+en: What would you like to do?
+
+TaskReview.EvaluateSubmission
+en: Evaluate Submission
+
+TaskReview.EnterScoresForTheTaskCriteria
+en: Enter scores for the task criteria and leave feedback.
+
+TaskReview.StartEvaluation
+en: Start Evaluation
+
+TaskReview.RequestRevision
+en: Request Revision
+
+TaskReview.ExplainWhatTheStudentNeedsTo
+en: Explain what the student needs to change before submitting again.
+
+TaskReview.BackToChoices
+en: ← Back to choices
+
+TaskReview.TheCriteriaAndMaximumScoresWill
+en: The criteria and maximum scores will come from this task.
+
+TaskReview.Criterion
+en: Criterion
+
+TaskReview.MaximumScore
+en: Maximum Score
+
+TaskReview.Score
+en: Score
+
+TaskReview.ReportQualityExample
+en: Report Quality (example)
+
+TaskReview.SubmissionDetails
+en: Submission Details
+
+TaskReview.Task2
+en: Task:
+
+TaskReview.Attempt2
+en: Attempt:
+
+TaskReview.OpenSubmittedLink
+en: Open submitted link
+
+TaskReview.OpenAttachedFile
+en: Open attached file
+
+TaskReview.Evaluation
+en: Evaluation
+
+TaskReview.EnterAScoreForEachCriterion
+en: Enter a score for each criterion.
+
+TaskReview.Max
+en: — Max:
+
+TaskReview.Weight
+en: — Weight:
+
+TaskReview.FeedbackForStudent
+en: Feedback for student
+
+TaskReview.SaveGrade
+en: Save Grade
+
+TaskReview.Feedback
+en: Feedback
+
+TaskReview.SaveEvaluation
+en: Save Evaluation
+
+TaskReview.TellTheStudentExactlyWhatTo
+en: Tell the student exactly what to improve in the next attempt.
+
+TaskReview.RevisionInstructions
+en: Revision Instructions
+
+TaskReview.SendRevisionRequest
+en: Send Revision Request
+
+TaskReview.ThisIsADesignPreviewNothing
+en: This is a design preview. Nothing was saved yet.
+
+TaskReview.SubmissionHistory
+en: Submission History
+
+TaskReview.PreviousAttemptsWillStayHereEven
+en: Previous attempts will stay here even after a revision.
+
+TaskReview.Attempt2PendingReview
+en: Attempt 2 · Pending Review
+
+TaskReview.ExampleTextForTheStudentS
+en: Example text for the student's second attempt.
+
+TaskReview.Attempt1RevisionRequested
+en: Attempt 1 · Revision Requested
+
+TaskReview.ExampleTextForTheStudentS2
+en: Example text for the student's first attempt.
+
+TaskReview.RevisionInstructions2
+en: Revision instructions:
+
+TaskReview.PleaseAddMoreDetailToThe
+en: Please add more detail to the report.
+
+Tasks.ManageTasks
+en: Manage Tasks
+ar: إدارة المهام
+
+Tasks.ViewAndManageTasksAssignedTo
+en: View and manage tasks assigned to your trainees.
+
+Tasks.CreateNewTask
+en: + Create New Task
+
+Tasks.AssignedTasks
+en: Assigned Tasks
+
+Tasks.NoTasksCreatedYet
+en: No tasks created yet.
+
+Tasks.Task
+en: Task
+
+Tasks.Trainee
+en: Trainee
+
+Tasks.Deadline
+en: Deadline
+
+Tasks.TotalPoints
+en: Total Points
+
+Tasks.CountsAs
+en: Counts As
+
+Tasks.Status
+en: Status
+
+Tasks.CreateTask
+en: Create Task
+
+Tasks.TwoStepsDescribeTheTaskThen
+en: Two steps: describe the task, then list what you will grade.
+
+Tasks.Close
+en: Close
+ar: إغلاق
+
+Tasks.TaskDetails
+en: Task details
+
+Tasks.FieldsMarkedAreRequired
+en: Fields marked * are required.
+
+Tasks.TaskTitle
+en: Task Title *
+
+Tasks.EGBuildTheLoginPage
+en: e.g. Build the login page
+
+Tasks.Description
+en: Description
+
+Tasks.WhatIsTheTaskAbout
+en: What is the task about?
+
+Tasks.Instructions
+en: Instructions
+
+Tasks.StepsLinksAndWhatTheTrainee
+en: Steps, links and what the trainee should hand in.
+
+Tasks.AssignedTrainee
+en: Assigned Trainee *
+
+Tasks.Deadline2
+en: Deadline *
+
+Tasks.HowMuchDoesThisTaskCount
+en: How much does this task count?
+
+Tasks.NormalCountsOnce
+en: Normal - counts once
+
+Tasks.ImportantCountsTwice
+en: Important - counts twice
+
+Tasks.MajorCountsThreeTimes
+en: Major - counts three times
+
+Tasks.ComparedWithThisTraineeSOther
+en: Compared with this trainee's other tasks. Choose Normal for most tasks.
+
+Tasks.HowWillYouGradeIt
+en: How will you grade it?
+
+Tasks.AddEachThingYouWillCheck
+en: Add each thing you will check and how many points it is worth. The task total is the sum of the points.
+
+Tasks.WhatWillYouCheck
+en: What will you check?
+
+Tasks.EGCodeQuality
+en: e.g. Code quality
+
+Tasks.Points
+en: Points
+
+Tasks.Add
+en: + Add
+
+Tasks.ShortNoteForTheTraineeOptional
+en: Short note for the trainee (optional)
+
+Tasks.EGCleanReadableAndCommented
+en: e.g. Clean, readable and commented code
+
+Tasks.NotSureWhereToStart
+en: Not sure where to start?
+
+Tasks.UseASimpleStarterSetQuality
+en: Use a simple starter set (Quality 10, Completeness 5, On time 5)
+
+Tasks.NoCriteriaYetAddAtLeast
+en: No criteria yet. Add at least one above.
+
+Tasks.Criterion
+en: Criterion
+
+Tasks.Note
+en: Note
+
+Tasks.ShareOfTask
+en: Share of Task
+
+Tasks.Remove
+en: Remove
+
+Tasks.TaskTotal
+en: Task total
+
+Tasks.0Points
+en: 0 points
+
+Tasks.Cancel
+en: Cancel
+
+TraineeDetails.CompanyPortal
+en: Company portal >
+
+TraineeDetails.MyTrainees
+en: My trainees
+
+TraineeDetails.TraineeDetails
+en: Trainee details
+
+TraineeDetails.TraineeDetailsProgress
+en: Trainee Details & Progress
+
+TraineeDetails.BackToList
+en: Back to list
+
+TraineeDetails.ViewTraineeCV
+en: View Trainee CV
+
+TraineeDetails.OverallProgress
+en: Overall Progress
+
+TraineeDetails.HrsApproved
+en: hrs approved
+
+TraineeDetails.HrsRequired
+en: hrs required
+
+TraineeDetails.InternshipInformation
+en: Internship Information
+
+TraineeDetails.Opportunity
+en: Opportunity
+
+TraineeDetails.StartDate
+en: Start Date
+
+TraineeDetails.EndDate
+en: End Date
+
+TraineeDetails.AcademicSupervisor
+en: Academic Supervisor
+
+TraineeDetails.PlacementStatus
+en: Placement Status
+
+TraineeDetails.AssignedTasks
+en: Assigned Tasks
+
+TraineeDetails.AssignNewTask
+en: Assign New Task
+
+TraineeDetails.NoTasksAssignedToThisTrainee
+en: No tasks assigned to this trainee yet.
+
+TraineeDetails.TaskTitle
+en: Task Title
+
+TraineeDetails.Deadline
+en: Deadline
+
+TraineeDetails.EstHours
+en: Est. Hours
+
+TraineeDetails.Hrs
+en: hrs
+
+TraineeDetails.Status
+en: Status
+
+TraineeDetails.Action
+en: Action
+
+TraineeDetails.Review
+en: Review
+
+TraineeDetails.TraineeCVPortfolio
+en: Trainee CV / Portfolio
+
+TraineeDetails.Close
+en: Close
+ar: إغلاق
+
+TraineeDetails.YouCanAccessTheTraineeS
+en: You can access the trainee's submitted CV or portfolio using the button below:
+
+TraineeDetails.OpenCVInNewTab
+en: Open CV in New Tab
+
+TraineeDetails.NoCVOrPortfolioWasProvided
+en: No CV or portfolio was provided by this trainee.
+
+Trainees.MyTrainees
+en: My trainees
+
+Trainees.TrackAcceptedStudentsTrainingInformationAnd
+en: Track accepted students, training information, and their progress.
+
+Trainees.ActiveTraining
+en: Active training
+
+Trainees.CurrentlyInProgress
+en: Currently in progress
+
+Trainees.NearCompletion
+en: Near completion
+
+Trainees.Above80Progress
+en: Above 80% progress
+
+Trainees.Completed
+en: Completed
+
+Trainees.SuccessfullyFinished
+en: Successfully finished
+
+Trainees.TraineeDirectory
+en: Trainee directory
+
+Trainees.AcceptedStudents
+en: accepted students
+
+Trainees.HideList
+en: Hide List
+
+Trainees.SearchByName
+en: Search by name...
+
+Trainees.AllDepartments
+en: All departments
+
+Trainees.SoftwareEngineering
+en: Software Engineering
+
+Trainees.ComputerScience
+en: Computer Science
+
+Trainees.ComputerInformationSystems
+en: Computer Information Systems
+
+Trainees.AllTrainingStatuses
+en: All training statuses
+
+Trainees.InProgress079
+en: In progress (0-79%)
+
+Trainees.NearFinish8099
+en: Near finish (80-99%)
+
+Trainees.Completed100
+en: Completed (100%)
+
+Trainees.NoTraineesMatchYourSearchCriteria
+en: No trainees match your search criteria.
+
+Trainees.Trainee
+en: Trainee
+
+Trainees.Opportunity
+en: Opportunity
+
+Trainees.InternshipProgram
+en: Internship Program
+
+Trainees.TrainingPeriod
+en: Training period
+
+Trainees.Progress
+en: Progress
+
+Trainees.Status
+en: Status
+
+Trainees.Action
+en: Action
+
+Trainees.ViewDetails
+en: View details
+
+ViewOpportunity.BackToOpportunities
+en: ← Back to opportunities
+
+ViewOpportunity.OpportunityDetailsReadOnlyView
+en: Opportunity details - Read-only view
+
+ViewOpportunity.OpportunityInformation
+en: Opportunity Information
+
+ViewOpportunity.OpportunityTitle
+en: Opportunity Title
+
+ViewOpportunity.Department
+en: Department
+
+ViewOpportunity.TrainingMode
+en: Training Mode
+
+ViewOpportunity.Location
+en: Location
+
+ViewOpportunity.EligibleCollege
+en: Eligible College
+
+ViewOpportunity.TechnologiesUsed
+en: Technologies Used
+
+ViewOpportunity.OpportunityID
+en: Opportunity ID
+
+ViewOpportunity.Status
+en: Status
+
+ViewOpportunity.EligibleSpecializations
+en: Eligible Specializations
+
+ViewOpportunity.NotSpecified
+en: Not specified
+
+ViewOpportunity.Description
+en: Description
+
+ViewOpportunity.Requirements
+en: Requirements
+
+ViewOpportunity.SeatsSchedule
+en: Seats & Schedule
+
+ViewOpportunity.TotalSeats
+en: Total Seats
+
+ViewOpportunity.FilledSeats
+en: Filled Seats
+
+ViewOpportunity.Duration
+en: Duration
+
+ViewOpportunity.Weeks
+en: weeks
+
+ViewOpportunity.ApplicationDeadline
+en: Application Deadline
+
+ViewOpportunity.StartDate
+en: Start Date
+
+ViewOpportunity.EndDate
+en: End Date
+
+Account.SupervisorNamePlaceholder
+en: Supervisor Name
+ar: اسم المشرف
+
+Account.AssociatedCompanyPlaceholder
+en: Associated Company
+ar: الشركة المرتبطة
+
+Account.NotProvided
+en: Not provided
+ar: غير مُدخل
+
+TraineeDetails.TraineeNamePlaceholder
+en: Trainee Name
+ar: اسم المتدرّب
+
+TraineeDetails.MajorPlaceholder
+en: Major
+ar: التخصص
+
+TraineeDetails.NotAssigned
+en: Not Assigned
+ar: غير مُسند
+
+TraineeDetails.ConfirmedStatus
+en: Confirmed
+ar: مؤكَّد
+
+FinalEvaluation.MyDrafts
+en: My Drafts
+ar: مسوداتي
+
+FinalEvaluation.SelectATraineePlaceholder
+en: Select a trainee
+ar: اختر متدرّبًا
+
+FinalEvaluation.PendingBadge
+en: <span class="badge bg-secondary">Pending</span>
+ar: <span class="badge bg-secondary">قيد الانتظار</span>
+
+FinalEvaluation.ContinueDraft
+en: Continue
+ar: متابعة
+
+Account.MissingField
+en: Missing Field
+
+Account.ProfileUpdated
+en: Profile Updated
+
+Account.SpanDataUiConfirmedTrueI
+en: <span data-ui-confirmed='true'><i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i></span>
+
+Account.IClassBiBiExclamationCircle
+en: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>
+
+ApplicantDocument.WeCouldNotLoadThisApplication
+en: We could not load this application. Please try again.
+
+ApplicantDocument.ThisApplicationIsNotAvailableTo
+en: This application is not available to your company.
+
+Applications.WeCouldNotLoadApplicationsRefresh
+en: We could not load applications. Refresh to try again.
+
+Applications.TheApplicationServiceIsNotConfigured
+en: The application service is not configured. Please contact the coordinator.
+
+Applications.WeCouldNotConfirmTheDecision
+en: We could not confirm the decision. Your reason is still here. Refresh to check the current status before trying again.
+
+Dashboard.WeCouldNotLoadYourCompany
+en: We could not load your company work queues. Refresh to try again.
+
+FinalEvaluation.DraftLoaded
+en: Draft Loaded
+
+FinalEvaluation.SelectTrainee
+en: Select Trainee
+
+FinalEvaluation.DraftSaved
+en: Draft Saved
+
+FinalEvaluation.InvalidScores
+en: Invalid Scores
+
+FinalEvaluation.MissingFields
+en: Missing Fields
+
+FinalEvaluation.CertificateIssued
+en: Certificate Issued!
+
+FinalEvaluation.SpanClassStatusBadgeWarningI
+en: <span class='status-badge-warning'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>In Progress</span>
+
+FinalEvaluation.SpanClassStatusBadgeGreenI
+en: <span class='status-badge-green'><i class='bi bi-circle-fill me-1' style='font-size: 0.4rem;'></i>Evaluated</span>
+
+FinalEvaluation.IClassBiBiCheckCircle
+en: <i class='bi bi-check-circle-fill text-success' style='font-size: 3rem;'></i>
+
+FinalEvaluation.IClassBiBiExclamationCircle
+en: <i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3rem;'></i>
+
+FinalEvaluation.SpanClassBadgeBgSecondaryPending
+en: <span class='badge bg-secondary'>Pending</span>
+
+ManageOpportunities.YourAccountIsNotLinkedTo
+en: Your account is not linked to a company.
+
+ManageOpportunities.UnableToLoadOrUpdateOpportunities
+en: Unable to load or update opportunities.
+
+ManageOpportunities.InvalidOpportunityID
+en: Invalid opportunity ID.
+
+ManageOpportunities.OpportunityNotFound
+en: Opportunity not found.
+
+ManageOpportunities.YouCannotManageAnotherCompanyS
+en: You cannot manage another company's opportunity.
+
+ManageOpportunities.ThisOpportunityIsAlreadyClosed
+en: This opportunity is already closed.
+
+ManageOpportunities.OpportunityChangedPleaseRefreshAndTry
+en: Opportunity changed. Please refresh and try again.
+
+ManageOpportunities.PleaseCheckAllOpportunityFields
+en: Please check all opportunity fields.
+
+ManageOpportunities.SeatsCannotBeLessThanFilled
+en: Seats cannot be less than filled seats.
+
+ManageOpportunities.StartDateMustFollowTheDeadline
+en: Start date must follow the deadline, and end date must follow start date.
+
+ManageOpportunities.InvalidTrainingMode
+en: Invalid training mode.
+
+ManageOpportunities.OpportunityChangedRefreshAndTryAgain
+en: Opportunity changed. Refresh and try again.
+
+Opportunities.YourAccountIsNotLinkedTo
+en: Your account is not linked to a company.
+
+Opportunities.OneOrMoreFieldsAreToo
+en: One or more fields are too long.
+
+Opportunities.PleaseSelectValidSpecializations
+en: Please select valid specializations.
+
+Opportunities.PleaseCompleteAllRequiredFields
+en: Please complete all required fields.
+
+Opportunities.PleaseEnterValidSeatsAndDuration
+en: Please enter valid seats and duration.
+
+Opportunities.StartDateMustBeAfterThe
+en: Start date must be after the deadline.
+
+Opportunities.EndDateMustBeAfterStart
+en: End date must be after start date.
+
+Opportunities.ApplicationDeadlineCannotBeInThe
+en: Application deadline cannot be in the past.
+
+Opportunities.PleaseSelectAValidOpportunityType
+en: Please select a valid opportunity type.
+
+Opportunities.UnableToSavePleaseTryAgain
+en: Unable to save. Please try again.
+
+TaskReview.ThisTaskIsNotWaitingFor
+en: This task is not waiting for grading.
+
+TaskReview.ThisTaskHasNoValidGrading
+en: This task has no valid grading criteria.
+
+TaskReview.PleaseEnterFeedbackForTheStudent
+en: Please enter feedback for the student.
+
+TaskReview.ANewerSubmissionAttemptExistsReview
+en: A newer submission attempt exists. Review that one instead.
+
+TaskReview.ThisSubmissionHasAlreadyBeenReviewed
+en: This submission has already been reviewed.
+
+TaskReview.TheGradeCouldNotBeSaved
+en: The grade could not be saved.
+
+TaskReview.TheGradeWasSavedButThe
+en: The grade was saved, but the task status was not updated. Check Firebase before trying again.
+
+TaskReview.GradeSavedSuccessfully
+en: Grade saved successfully.
+
+TaskReview.CouldNotLoadOrSaveThe
+en: Could not load or save the evaluation. Please try again.
+
+Tasks.WriteWhatYouWillCheckFor
+en: Write what you will check, for example "Code quality".
+
+Tasks.PleaseEnterATaskTitle
+en: Please enter a task title.
+
+Tasks.PleaseChooseATrainee
+en: Please choose a trainee.
+
+Tasks.PleaseChooseADeadline
+en: Please choose a deadline.
+
+Tasks.TheDeadlineMustBeInThe
+en: The deadline must be in the future.
+
+Tasks.AddAtLeastOneCriterionIn
+en: Add at least one criterion in step 2 so you can grade this task.
+
+Tasks.TheTaskCouldNotBeSaved
+en: The task could not be saved. Please try again.
+
+Tasks.YourSessionExpiredPleaseReloadThe
+en: Your session expired. Please reload the page and try again.
+
+Tasks.MajorX3
+en: Major (x3)
+
+Tasks.ImportantX2
+en: Important (x2)
+
+Tasks.NormalX1
+en: Normal (x1)
+
+TraineeDetails.InvalidTraineeID
+en: Invalid trainee ID.
+
+TraineeDetails.TraineeRecordNotFound
+en: Trainee record not found.
+
+TraineeDetails.AccessDeniedThisTraineeBelongsTo
+en: Access denied. This trainee belongs to another company.
+
+Trainees.NearFinish
+en: Near finish
+
+Trainees.InProgress
+en: In progress
+
+ViewOpportunity.YourAccountIsNotLinkedTo
+en: Your account is not linked to a company.
+
+ViewOpportunity.InvalidOpportunityID
+en: Invalid opportunity ID.
+
+ViewOpportunity.OpportunityNotFound
+en: Opportunity not found.
+
+ViewOpportunity.OpportunityNotFoundOrAccessDenied
+en: Opportunity not found or access denied.
+
+ViewOpportunity.UnableToLoadOpportunityDetails
+en: Unable to load opportunity details.
+
+Account.CouldNotLoadProfileData
+en: Could not load profile data: {0}
+ar: تعذّر تحميل بيانات الملف الشخصي: {0}
+
+Account.CouldNotSaveChanges
+en: Could not save changes: {0}
+ar: تعذّر حفظ التغييرات: {0}
+
+Account.FullNameCannotBeEmpty
+en: Full Name cannot be empty.
+ar: لا يمكن ترك الاسم الكامل فارغًا.
+
+Account.YourAccountSettingsAndPictureHave
+en: Your account settings and picture have been successfully saved.
+ar: تم حفظ إعدادات حسابك وصورتك بنجاح.
+
+FinalEvaluation.CouldNotLoadTrainees
+en: Could not load trainees: {0}
+ar: تعذّر تحميل المتدرّبين: {0}
+
+FinalEvaluation.CouldNotLoadTraineeDetails
+en: Could not load trainee details: {0}
+ar: تعذّر تحميل تفاصيل المتدرّب: {0}
+
+FinalEvaluation.CouldNotLoadDrafts
+en: Could not load drafts: {0}
+ar: تعذّر تحميل المسودات: {0}
+
+FinalEvaluation.CouldNotSaveDraft
+en: Could not save draft: {0}
+ar: تعذّر حفظ المسودة: {0}
+
+FinalEvaluation.CouldNotSendEvaluation
+en: Could not send evaluation: {0}
+ar: تعذّر إرسال التقييم: {0}
+
+FinalEvaluation.DraftDataReadyPleaseOpenThe
+en: Draft data ready. Please open the forms to continue.
+ar: بيانات المسودة جاهزة. يُرجى فتح النماذج للمتابعة.
+
+FinalEvaluation.PleaseSelectATraineeFromThe
+en: Please select a trainee from the dropdown first.
+ar: يُرجى اختيار متدرّب من القائمة أولًا.
+
+FinalEvaluation.YourEvaluationHasBeenSafelySaved
+en: Your evaluation has been safely saved to My Drafts.
+ar: حُفظ تقييمك بأمان في مسوداتي.
+
+FinalEvaluation.PleaseSelectATraineeToEvaluate
+en: Please select a trainee to evaluate.
+ar: يُرجى اختيار متدرّب لتقييمه.
+
+FinalEvaluation.PleaseCheckYourNumbersScoresCannot
+en: Please check your numbers. Scores cannot exceed the maximum GJU criteria values.
+ar: يُرجى مراجعة الأرقام، فلا يمكن أن تتجاوز الدرجات الحد الأقصى لمعايير الجامعة الألمانية الأردنية.
+
+FinalEvaluation.PleaseCompleteActualHoursFeedbackAnd
+en: Please complete actual hours, feedback, and recommendation fields.
+ar: يُرجى إكمال حقول الساعات الفعلية والملاحظات والتوصية.
+
+FinalEvaluation.SuccessEvaluationSubmittedToTheGJU
+en: Success! Evaluation submitted to the GJU Academic Supervisor. You may now print the certificate.
+ar: تم بنجاح! أُرسل التقييم إلى المشرف الأكاديمي في الجامعة الألمانية الأردنية، ويمكنك الآن طباعة الشهادة.
+
+TraineeDetails.ErrorLoadingDetails
+en: Error loading details: {0}
+ar: خطأ في تحميل التفاصيل: {0}
+
+Trainees.ErrorLoadingTrainees
+en: Error loading trainees: {0}
+ar: خطأ في تحميل المتدرّبين: {0}
+
+TaskReview.EnterAValidScoreFor
+en: Enter a valid score for: {0}
+ar: أدخل درجة صحيحة للمعيار: {0}
+
+Tasks.PointsMustBeAWholeNumberFrom
+en: Points must be a whole number from {0} to {1}.
+ar: يجب أن تكون النقاط عددًا صحيحًا من {0} إلى {1}.
+
+ApplicantDocument.ThisStudentHasNotSharedA
+en: This student has not shared a CV that can be opened. Ask them to upload a PDF or add a public CV link on their profile.
+
+ApplicantDocument.ThisStudentHasNotSharedA2
+en: This student has not shared a portfolio.
+
+ManageOpportunities.OpportunityClosedSuccessfully
+en: Opportunity closed successfully.
+
+ManageOpportunities.OpportunityUpdatedSuccessfully
+en: Opportunity updated successfully.
+
+Opportunities.OpportunityPublishedSuccessfully
+en: Opportunity published successfully.
+
+Opportunities.DraftSavedSuccessfully
+en: Draft saved successfully.
+
+Opportunities.UnableToSaveTheOpportunityIn
+en: Unable to save the opportunity in Firebase.
+
+TaskReview.NoTextSubmitted
+en: No text submitted.
+
+Tasks.SelectATrainee
+en: Select a trainee
+
+Tasks.UnderReview
+en: Under review
+
+Tasks.RevisionRequested
+en: Revision requested

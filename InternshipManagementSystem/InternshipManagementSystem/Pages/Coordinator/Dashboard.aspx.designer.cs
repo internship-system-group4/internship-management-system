@@ -9,5 +9,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class Dashboard
     {
+        protected global::InternshipManagementSystem.Layout.WorkspaceChart Charts;
+        protected global::InternshipManagementSystem.Layout.WorkspaceJourney Journey;
     }
 }

@@ -27,7 +27,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (string.IsNullOrEmpty(placementId))
             {
-                ShowError("Invalid trainee ID.");
+                ShowError(L.T("Company.TraineeDetails.InvalidTraineeID"));
                 return;
             }
 
@@ -37,13 +37,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 if (placement == null)
                 {
-                    ShowError("Trainee record not found.");
+                    ShowError(L.T("Company.TraineeDetails.TraineeRecordNotFound"));
                     return;
                 }
 
                 if (placement.CompanyId != CurrentSupervisor.CompanyId)
                 {
-                    ShowError("Access denied. This trainee belongs to another company.");
+                    ShowError(L.T("Company.TraineeDetails.AccessDeniedThisTraineeBelongsTo"));
                     return;
                 }
 
@@ -81,7 +81,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litOpportunityTitle.Text = placement.OpportunityTitle;
                 litStartDate.Text = FormatDate(placement.StartDate);
                 litEndDate.Text = FormatDate(placement.EndDate);
-                litPlacementStatus.Text = placement.Status.ToString();
+                litPlacementStatus.Text = L.Value("PlacementStatus", placement.Status);
 
                 if (!string.IsNullOrEmpty(placement.AcademicSupervisorId))
                 {
@@ -120,7 +120,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (Exception ex)
             {
-                ShowError("Error loading details: " + ex.Message);
+                ShowError(L.F("Company.TraineeDetails.ErrorLoadingDetails", ex.Message));
             }
         }
 

@@ -1,10 +1,9 @@
 ﻿using System;
-
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Services;
-using System.Web.Services.Description;
 
 namespace InternshipManagementSystem.Pages.Academic
 {
@@ -30,7 +29,7 @@ namespace InternshipManagementSystem.Pages.Academic
             if (CurrentSupervisor != null)
             {
                 litProfileName.Text = CurrentSupervisor.FullName;
-                litProfileDept.Text = string.IsNullOrEmpty(CurrentSupervisor.Major) ? "Academic Staff" : CurrentSupervisor.Major;
+                litProfileDept.Text = string.IsNullOrEmpty(CurrentSupervisor.Major) ? L.T("Academic.Account.AcademicStaff") : CurrentSupervisor.Major;
 
                 if (!string.IsNullOrEmpty(CurrentSupervisor.FullName))
                 {
@@ -70,11 +69,11 @@ namespace InternshipManagementSystem.Pages.Academic
                 SessionHelper.Refresh(CurrentSupervisor);
                 LoadAccountData();
 
-                ShowMessage("Your profile information has been updated successfully.", true);
+                ShowMessage(L.T("Academic.Account.YourProfileInformationHasBeenUpdated"), true);
             }
             catch (Exception ex)
             {
-                ShowMessage("Error: " + ex.Message, false);
+                ShowMessage(L.F("Academic.Account.Error", ex.Message), false);
             }
         }
 
@@ -97,21 +96,21 @@ namespace InternshipManagementSystem.Pages.Academic
                         string fullPath = folderPath + fileName;
                         fuProfileImage.SaveAs(fullPath);
 
-                        ShowMessage("Profile photo uploaded successfully.", true);
+                        ShowMessage(L.T("Academic.Account.ProfilePhotoUploadedSuccessfully"), true);
                     }
                     else
                     {
-                        ShowMessage("Only .jpg, .jpeg or .png files are allowed.", false);
+                        ShowMessage(L.T("Academic.Account.OnlyJpgJpegOrPngFiles"), false);
                     }
                 }
                 catch (Exception ex)
                 {
-                    ShowMessage("Error uploading file: " + ex.Message, false);
+                    ShowMessage(L.F("Academic.Account.ErrorUploadingFile", ex.Message), false);
                 }
             }
             else
             {
-                ShowMessage("Please select an image file first.", false);
+                ShowMessage(L.T("Academic.Account.PleaseSelectAnImageFileFirst"), false);
             }
         }
 
@@ -122,13 +121,13 @@ namespace InternshipManagementSystem.Pages.Academic
 
             if (newPass != confirmPass)
             {
-                ShowMessage("Passwords do not match. Please try again.", false);
+                ShowMessage(L.T("Academic.Account.PasswordsDoNotMatchPleaseTry"), false);
                 return;
             }
 
             if (newPass.Length < 6)
             {
-                ShowMessage("Password must be at least 6 characters.", false);
+                ShowMessage(L.T("Academic.Account.PasswordMustBeAtLeast6"), false);
                 return;
             }
 
@@ -136,7 +135,7 @@ namespace InternshipManagementSystem.Pages.Academic
 
             if (string.IsNullOrEmpty(idToken))
             {
-                ShowMessage("Session expired. Please log out and log in again.", false);
+                ShowMessage(L.T("Academic.Account.SessionExpiredPleaseLogOutAnd"), false);
                 return;
             }
 
@@ -144,7 +143,7 @@ namespace InternshipManagementSystem.Pages.Academic
 
             if (result.Success)
             {
-                ShowMessage("Your password has been changed successfully.", true);
+                ShowMessage(L.T("Academic.Account.YourPasswordHasBeenChangedSuccessfully"), true);
                 txtNewPassword.Text = "";
                 txtConfirmPassword.Text = "";
             }

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Default.ACampus" xml:space="preserve"><value>A campus</value></data>
+  <data name="Default.AShared" xml:space="preserve"><value>A shared</value></data>
+  <data name="Default.AboutTheInternshipSystem" xml:space="preserve"><value>About the internship system →</value></data>
+  <data name="Default.AboutTheSystem" xml:space="preserve"><value>About the system</value></data>
+  <data name="Default.AerialPhotographOfGermanJordanianUniversity" xml:space="preserve"><value>Aerial photograph of German Jordanian University's stone buildings and courtyards</value></data>
+  <data name="Default.Ahead" xml:space="preserve"><value>ahead.</value></data>
+  <data name="Default.ApplyConfirm" xml:space="preserve"><value>Apply &amp; confirm</value></data>
+  <data name="Default.ApplyFollowTheCompanyDecisionAnd" xml:space="preserve"><value>Apply, follow the company decision and confirm one accepted offer.</value></data>
+  <data name="Default.AvailableInternshipPreviews" xml:space="preserve"><value>Available internship previews</value></data>
+  <data name="Default.Campus" xml:space="preserve"><value>Campus</value></data>
+  <data name="Default.CampusLandmarks" xml:space="preserve"><value>Campus landmarks</value></data>
+  <data name="Default.CampusStoryChapters" xml:space="preserve"><value>Campus story chapters</value></data>
+  <data name="Default.CampusToday" xml:space="preserve"><value>Campus today.</value></data>
+  <data name="Default.CareerTomorrow" xml:space="preserve"><value>Career tomorrow.</value></data>
+  <data name="Default.Chapter1TheCampus" xml:space="preserve"><value>Chapter 1: The campus</value></data>
+  <data name="Default.Chapter2TheConnection" xml:space="preserve"><value>Chapter 2: The connection</value></data>
+  <data name="Default.Chapter3YourField" xml:space="preserve"><value>Chapter 3: Your field</value></data>
+  <data name="Default.Chapter4YourJourney" xml:space="preserve"><value>Chapter 4: Your journey</value></data>
+  <data name="Default.Chapter5WhatComesNext" xml:space="preserve"><value>Chapter 5: What comes next</value></data>
+  <data name="Default.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Default.Colleges" xml:space="preserve"><value>Colleges</value></data>
+  <data name="Default.CompleteTasksSubmitWorkAndLearn" xml:space="preserve"><value>Complete tasks, submit work and learn from your supervisors' feedback.</value></data>
+  <data name="Default.CompleteYourReview" xml:space="preserve"><value>Complete your review</value></data>
+  <data name="Default.Connect" xml:space="preserve"><value>Connect</value></data>
+  <data name="Default.ContinueWithYourUniversityInternshipAccount" xml:space="preserve"><value>Continue with your university internship account.</value></data>
+  <data name="Default.DevelopmentNoticeCaptionsForThisVideo" xml:space="preserve"><value>Development notice: captions for this video have not been provided.</value></data>
+  <data name="Default.DevelopmentPlaceholderTheUniversitySInternship" xml:space="preserve"><value>Development placeholder: the university's internship process video and captions have not been provided yet.</value></data>
+  <data name="Default.DiscoverPublishedInternshipSummariesLogIn" xml:space="preserve"><value>Discover published internship summaries. Log in with your university account to view full details and apply.</value></data>
+  <data name="Default.ExperienceInYourFieldStartsWith" xml:space="preserve"><value>Experience in your field starts with a first look. Browse published summaries, then log in to view full details and apply through your student portal.</value></data>
+  <data name="Default.Explore" xml:space="preserve"><value>Explore</value></data>
+  <data name="Default.ExploreInternships" xml:space="preserve"><value>Explore internships →</value></data>
+  <data name="Default.ExploreOpportunities" xml:space="preserve"><value>Explore opportunities</value></data>
+  <data name="Default.ExploreOpportunities2" xml:space="preserve"><value>Explore opportunities ↓</value></data>
+  <data name="Default.ExploreTheCollegeProgramsAndSpecializations" xml:space="preserve"><value>Explore the college, programs and specializations currently supported by the internship portal.</value></data>
+  <data name="Default.ExploreTheFourSteps" xml:space="preserve"><value>Explore the four steps ↑</value></data>
+  <data name="Default.ExploreYourCampus" xml:space="preserve"><value>Explore your campus</value></data>
+  <data name="Default.FindInternshipsThatMatchYourCollege" xml:space="preserve"><value>Find internships that match your college and major.</value></data>
+  <data name="Default.GJUGate1WithItsOriginal" xml:space="preserve"><value>GJU Gate 1 with its original bilingual university sign and metal entrance gates</value></data>
+  <data name="Default.Gate1GermanJordanianUniversity" xml:space="preserve"><value>Gate 1, German Jordanian University</value></data>
+  <data name="Default.GermanJordanianUniversityCampusPhotograph" xml:space="preserve"><value>German Jordanian University · Campus photograph</value></data>
+  <data name="Default.GlazedUniversityConnectorFramedByLimestone" xml:space="preserve"><value>Glazed university connector framed by limestone buildings, steps and a courtyard tree</value></data>
+  <data name="Default.Grow" xml:space="preserve"><value>Grow.</value></data>
+  <data name="Default.HowItWorks" xml:space="preserve"><value>How it works</value></data>
+  <data name="Default.IsYours" xml:space="preserve"><value>is yours.</value></data>
+  <data name="Default.Journey" xml:space="preserve"><value>Journey</value></data>
+  <data name="Default.LearnApply" xml:space="preserve"><value>Learn. Apply.</value></data>
+  <data name="Default.LogInToGetStarted" xml:space="preserve"><value>Log in to get started</value></data>
+  <data name="Default.LogInToViewDetails" xml:space="preserve"><value>Log in to view details</value></data>
+  <data name="Default.LogInToYourPortal" xml:space="preserve"><value>Log in to your portal</value></data>
+  <data name="Default.MakeYour" xml:space="preserve"><value>Make your</value></data>
+  <data name="Default.NextMove" xml:space="preserve"><value>next move.</value></data>
+  <data name="Default.NoPublicInternshipSummariesArePublished" xml:space="preserve"><value>No public internship summaries are published right now. Check back later or log in to view your student portal.</value></data>
+  <data name="Default.OfficialVideoComingHere" xml:space="preserve"><value>Official video coming here.</value></data>
+  <data name="Default.OnThisPage" xml:space="preserve"><value>On this page</value></data>
+  <data name="Default.OnlyPublishedSummariesArePublicFull" xml:space="preserve"><value>Only published summaries are public. Full details and applications require an authenticated student account.</value></data>
+  <data name="Default.OpenTheVideo" xml:space="preserve"><value>Open the video</value></data>
+  <data name="Default.Opportunities" xml:space="preserve"><value>Opportunities</value></data>
+  <data name="Default.PauseCampusMotion" xml:space="preserve"><value>Pause campus motion</value></data>
+  <data name="Default.ProcessVideo" xml:space="preserve"><value>Process video</value></data>
+  <data name="Default.ProgramsSpecializations" xml:space="preserve"><value>Programs &amp; specializations</value></data>
+  <data name="Default.ReadTheInternshipSteps" xml:space="preserve"><value>Read the internship steps →</value></data>
+  <data name="Default.ReadyForYourNextChapter" xml:space="preserve"><value>Ready for your next chapter?</value></data>
+  <data name="Default.SeeThePath" xml:space="preserve"><value>See the path</value></data>
+  <data name="Default.Specializations" xml:space="preserve"><value>Specializations</value></data>
+  <data name="Default.StartingPoint" xml:space="preserve"><value>starting point.</value></data>
+  <data name="Default.StoneGlassAndSharedSpaces" xml:space="preserve"><value>Stone, glass and shared spaces</value></data>
+  <data name="Default.Study" xml:space="preserve"><value>Study</value></data>
+  <data name="Default.TheCourtyardWaterwheel" xml:space="preserve"><value>The courtyard waterwheel</value></data>
+  <data name="Default.TheEntranceTheCourtyardAndThe" xml:space="preserve"><value>The entrance, the courtyard and the spaces between. Explore the German Jordanian University landmarks that shape this experience.</value></data>
+  <data name="Default.TheNextChapter" xml:space="preserve"><value>The next chapter</value></data>
+  <data name="Default.TheRealGermanJordanianUniversityCourtyard" xml:space="preserve"><value>The real German Jordanian University courtyard, with its timber waterwheel, limestone buildings and glazed connector</value></data>
+  <data name="Default.TimberCourtyardWaterwheelBesideItsLimestone" xml:space="preserve"><value>Timber courtyard waterwheel beside its limestone support and blue water basin at GJU</value></data>
+  <data name="Default.TrackApprovedHoursAndEvaluationsThrough" xml:space="preserve"><value>Track approved hours and evaluations through the final university review.</value></data>
+  <data name="Default.TrainGrow" xml:space="preserve"><value>Train &amp; grow</value></data>
+  <data name="Default.UIMSConnectsStudentsCompaniesAndUniversity" xml:space="preserve"><value>UIMS connects students, companies and university supervisors. Manage applications, follow training tasks and stay connected through every stage of your internship.</value></data>
+  <data name="Default.UnderstandEachStageBeforeYouBegin" xml:space="preserve"><value>Understand each stage before you begin. Your company and academic supervisors guide your progress along the way.</value></data>
+  <data name="Default.UnderstandTheInternshipProcessUseThis" xml:space="preserve"><value>Understand the internship process. Use this guide alongside the steps above, and ask your coordinator about university-specific requirements.</value></data>
+  <data name="Default.UniversityInternshipProcessVideo" xml:space="preserve"><value>University internship process video</value></data>
+  <data name="Default.WatchTheProcessGuide" xml:space="preserve"><value>Watch the process guide ↓</value></data>
+  <data name="Default.YouKnow" xml:space="preserve"><value>you know.</value></data>
+  <data name="Default.YourBrowserDoesNotSupportVideo" xml:space="preserve"><value>Your browser does not support video.</value></data>
+  <data name="Default.YourField" xml:space="preserve"><value>Your field.</value></data>
+  <data name="Default.YourFuture" xml:space="preserve"><value>Your future.</value></data>
+  <data name="Default.YourInternshipJourneyAtGermanJordanian" xml:space="preserve"><value>Your internship journey at German Jordanian University. Connect your studies with practical experience, from the first application to final review.</value></data>
+</root>

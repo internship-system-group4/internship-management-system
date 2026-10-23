@@ -1,36 +1,51 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="InternshipManagementSystem.Layout.PublicMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="InternshipManagementSystem.Layout.PublicMaster" %>
+<%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
+<%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
 <!DOCTYPE html>
-<html lang="en" class="uims-public">
+<html lang="<%: L.Lang %>" dir="<%: L.Dir %>" class="uims-public">
 <head runat="server">
     <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <%-- Theme: applied before the first paint. Missing or invalid preference -> Light (see Assets/js/theme.js). --%>
+    <script>(function(r){var p='light';try{var s=localStorage.getItem('uims-theme');if(s==='dark'||s==='system')p=s;}catch(e){}var t=p==='dark'||(p==='system'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches)?'dark':'light';r.setAttribute('data-theme-preference',p);r.setAttribute('data-theme',t);r.setAttribute('data-bs-theme',t);r.style.colorScheme=t;}(document.documentElement));</script>
     <title></title>
     <link rel="icon" href="~/Assets/images/gju-logo.png" runat="server" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    <%-- Bootstrap 5.3.3: the RTL build in Arabic, the LTR build otherwise (never both). --%>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap<%= L.IsArabic ? ".rtl" : "" %>.min.css" />
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/public-layout.css?v=20261021-4" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-3" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/public-navbar.css?v=20261022-2" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/public-footer.css?v=20261022-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/public-footer.css?v=20261022-10" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-5" runat="server" />
+<link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-5" runat="server" />
+    <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>
+    <script>window.UIMS_I18N=<%= L.ScriptDictionary() %>;window.uimsT=function(k){var d=window.UIMS_I18N,t=Object.prototype.hasOwnProperty.call(d,k)?d[k]:k,a=arguments;return t.replace(/\{(\d+)\}/g,function(m,i){var v=a[+i+1];return v===undefined?m:String(v);});};window.uimsLang='<%= L.Lang %>';</script>
 </head>
 <body class="uims-public">
 <form id="mainForm" runat="server">
-    <a class="public-skip" href="#public-content">Skip to content</a>
+    <a class="public-skip" href="#public-content"><%: L.T("Shared.Public.SkipToContent") %></a>
     <header class="public-header uims-public-nav" data-public-navbar>
         <div class="public-container public-header-inner">
-            <a class="public-brand" href="<%: ResolveUrl("~/Default.aspx") %>" aria-label="UIMS home">
-                <img src="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" alt="German Jordanian University" width="64" height="48" />
-                <span><strong>UIMS</strong><small>German Jordanian University</small></span>
+            <a class="public-brand" href="<%: ResolveUrl("~/Default.aspx") %>" aria-label="<%: L.T("Shared.Public.UIMSHome") %>">
+                <img src="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" alt="<%: L.T("Shared.Public.GermanJordanianUniversity") %>" width="64" height="48" />
+                <span><strong>UIMS</strong><small><%: L.T("Shared.Public.GermanJordanianUniversity") %></small></span>
             </a>
-            <nav class="public-navigation" aria-label="Main navigation">
-                <button class="public-menu-toggle" type="button" aria-controls="publicNav" aria-expanded="false" aria-label="Open main menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
+            <nav class="public-navigation" aria-label="<%: L.T("Shared.Public.MainNavigation") %>">
+                <button class="public-menu-toggle" type="button" aria-controls="publicNav" aria-expanded="false" aria-label="<%: L.T("Shared.Public.OpenMainMenu") %>"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16" /></svg></button>
                 <div class="public-links" id="publicNav">
                     <span class="uims-public-nav-highlight" aria-hidden="true"></span>
-                    <a href="<%: ResolveUrl("~/Default.aspx") %>" <%= NavigationAttributes("~/Default.aspx") %>>Home</a>
-                    <a href="<%: ResolveUrl("~/Pages/Public/About.aspx") %>" <%= NavigationAttributes("~/Pages/Public/About.aspx") %>>About us</a>
-                    <a href="<%: ResolveUrl("~/Default.aspx") %>#opportunities">Opportunities</a>
-                    <a href="<%: ResolveUrl("~/Default.aspx") %>#how-it-works">How it works</a>
-                    <a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>" <%= NavigationAttributes("~/Pages/Public/Contact.aspx") %>>Contact us</a>
+                    <a href="<%: ResolveUrl("~/Default.aspx") %>" <%= NavigationAttributes("~/Default.aspx") %>><%: L.T("Shared.Public.Home") %></a>
+                    <a href="<%: ResolveUrl("~/Pages/Public/About.aspx") %>" <%= NavigationAttributes("~/Pages/Public/About.aspx") %>><%: L.T("Shared.Public.AboutUs") %></a>
+                    <a href="<%: ResolveUrl("~/Default.aspx") %>#opportunities"><%: L.T("Shared.Public.Opportunities") %></a>
+                    <a href="<%: ResolveUrl("~/Default.aspx") %>#how-it-works"><%: L.T("Shared.Public.HowItWorks") %></a>
+                    <a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>" <%= NavigationAttributes("~/Pages/Public/Contact.aspx") %>><%: L.T("Shared.Public.ContactUs") %></a>
+                    <span class="public-theme-desktop"><uims:LanguageSelector runat="server" Variant="link" /><uims:ThemeSelector runat="server" Variant="menu" /></span>
                     <a class="public-login" href="<%: PortalActionUrl %>" <%= NavigationAttributes(Constants.Routes.Login) %>><%: PortalActionText %></a>
+                    <div class="public-theme-mobile"><uims:LanguageSelector runat="server" Variant="inline" /><uims:ThemeSelector runat="server" Variant="inline" /></div>
                 </div>
             </nav>
         </div>
@@ -44,51 +59,78 @@
             <svg class="uims-public-footer-wave is-front" viewBox="0 0 2880 160" preserveAspectRatio="none" focusable="false"><path d="M0 108 C180 86 540 86 720 108 C900 130 1260 130 1440 108 C1620 86 1980 86 2160 108 C2340 130 2700 130 2880 108 V160 H0 Z" /></svg>
         </div>
         <div class="uims-public-footer-body">
-            <div class="public-container uims-public-footer-grid">
-                <section class="uims-public-footer-identity" aria-labelledby="footerIdentityTitle">
-                    <a class="uims-public-footer-logo" href="<%: ResolveUrl("~/Default.aspx") %>" aria-label="UIMS home"><img src="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" alt="" width="64" height="48" /></a>
-                    <h2 id="footerIdentityTitle">Internship Management System</h2>
-                    <p>Connecting students, university supervisors and companies throughout the internship journey at German Jordanian University.</p>
-                </section>
-                <nav aria-labelledby="footerLinksTitle">
-                    <h2 id="footerLinksTitle">Quick links</h2>
-                    <ul>
-                        <li><a href="<%: ResolveUrl("~/Default.aspx") %>">Home</a></li>
-                        <li><a href="<%: ResolveUrl("~/Pages/Public/About.aspx") %>">About us</a></li>
-                        <li><a href="<%: ResolveUrl("~/Default.aspx") %>#opportunities">Opportunities</a></li>
-                        <li><a href="<%: ResolveUrl("~/Default.aspx") %>#how-it-works">How it works</a></li>
-                        <li><a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>">Contact us</a></li>
-                        <li><a href="<%: PortalActionUrl %>"><%: PortalActionText %></a></li>
-                    </ul>
-                </nav>
-                <section aria-labelledby="footerContactTitle">
-                    <h2 id="footerContactTitle">Contact</h2>
-                    <address>
-                        <p>For account access and internship guidance, contact your university coordinator.</p>
-                        <a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>">Message the coordination team</a>
-                    </address>
-                </section>
-                <section aria-labelledby="footerOfficialTitle">
-                    <h2 id="footerOfficialTitle">Official links</h2>
-                    <ul>
-                        <li><a class="uims-public-footer-official" href="<%: Constants.UniversityWebsite %>" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" /></svg><span>GJU official website<span class="visually-hidden"> (opens in a new tab)</span></span></a></li>
-                    </ul>
+            <div class="public-container uims-public-footer-main">
+                <div class="uims-public-footer-grid">
+                    <section class="uims-public-footer-identity" aria-labelledby="footerIdentityTitle">
+                        <a class="uims-public-footer-logo" href="<%: ResolveUrl("~/Default.aspx") %>" aria-label="<%: L.T("Shared.Public.UIMSHome") %>"><img src="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" alt="" width="64" height="48" /></a>
+                        <h2 id="footerIdentityTitle"><%: L.T("Shared.Public.InternshipManagementSystem") %></h2>
+                        <p><%: L.T("Shared.Public.ConnectingStudentsUniversitySupervisorsAndCompanies") %></p>
+                    </section>
+                    <nav aria-labelledby="footerLinksTitle">
+                        <h2 id="footerLinksTitle"><%: L.T("Shared.Public.QuickLinks") %></h2>
+                        <ul>
+                            <li><a href="<%: ResolveUrl("~/Default.aspx") %>"><%: L.T("Shared.Public.Home") %></a></li>
+                            <li><a href="<%: ResolveUrl("~/Pages/Public/About.aspx") %>"><%: L.T("Shared.Public.AboutUs") %></a></li>
+                            <li><a href="<%: ResolveUrl("~/Default.aspx") %>#opportunities"><%: L.T("Shared.Public.Opportunities") %></a></li>
+                            <li><a href="<%: ResolveUrl("~/Default.aspx") %>#how-it-works"><%: L.T("Shared.Public.HowItWorks") %></a></li>
+                            <li><a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>"><%: L.T("Shared.Public.ContactUs") %></a></li>
+                            <li><a href="<%: PortalActionUrl %>"><%: PortalActionText %></a></li>
+                        </ul>
+                    </nav>
+                    <section aria-labelledby="footerContactTitle">
+                        <h2 id="footerContactTitle"><%: L.T("Shared.Public.Contact") %></h2>
+                        <address>
+                            <p><%: L.T("Shared.Public.ForAccountAccessAndInternshipGuidance") %></p>
+                            <a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>"><%: L.T("Shared.Public.MessageTheCoordinationTeam") %></a>
+                        </address>
+                    </section>
+                    <section aria-labelledby="footerOfficialTitle">
+                        <h2 id="footerOfficialTitle"><%: L.T("Shared.Public.OfficialLinks") %></h2>
+                        <ul>
+                            <li><a class="uims-public-footer-official" href="<%: Constants.UniversityWebsite %>" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9" /><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.6-3.8-9S9.5 5.6 12 3z" /></svg><span><%: L.T("Shared.Public.GJUOfficialWebsite") %><span class="visually-hidden"> <%: L.T("Shared.Public.OpensInANewTab") %></span></span></a></li>
+                        </ul>
+                    </section>
+                </div>
+                <%-- Campus map: a MapLibre flight to the verified main campus (public-footer-map.js). The Google embed is the
+                     no-script view and the fallback when WebGL or the map cannot load; the address and links always remain. --%>
+                <section class="uims-public-footer-campus" aria-labelledby="footerLocationTitle" data-footer-map
+                    data-runtime="<%: ResolveUrl("~/Assets/js/vendor/maplibre/maplibre-gl.mjs") %>" data-stylesheet="<%: ResolveUrl("~/Assets/js/vendor/maplibre/maplibre-gl.css") %>" data-lat="<%: Constants.CampusLatitude %>" data-lng="<%: Constants.CampusLongitude %>">
+                    <h2 id="footerLocationTitle"><%: L.T("Shared.Public.UniversityLocation") %></h2>
+                    <address><p><%: L.T("Shared.Public.AmmanMadabaStreetAmmanJordan") %></p></address>
+                    <div class="uims-public-footer-campus-map" data-footer-map-stage>
+                        <div class="uims-public-footer-campus-canvas" data-footer-map-canvas></div>
+                        <iframe class="uims-public-footer-campus-embed" data-footer-map-embed src="<%: Constants.UniversityMapEmbedUrl %>" title="<%: L.T("Shared.Public.MapOfTheGermanJordanianUniversity") %>" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <p class="uims-public-footer-campus-loading" data-footer-map-loading role="status" hidden><%: L.T("Shared.Public.LoadingMap") %></p>
+                        <button type="button" class="uims-public-footer-campus-button" data-footer-map-explore hidden><%: L.T("Shared.Public.ExploreCampus") %></button>
+                        <button type="button" class="uims-public-footer-campus-button" data-footer-map-replay hidden><%: L.T("Shared.Public.ReplayFlight") %></button>
+                    </div>
+                    <div class="uims-public-footer-campus-actions">
+                        <a href="<%: Constants.UniversityDirectionsUrl %>" target="_blank" rel="noopener noreferrer" data-footer-map-directions><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z" /><circle cx="12" cy="10" r="2.4" /></svg><%: L.T("Shared.Public.GetDirections") %><span class="visually-hidden"> <%: L.T("Shared.Public.OpensInANewTab") %></span></a>
+                        <a href="<%: Constants.UniversityMapUrl %>" target="_blank" rel="noopener noreferrer"><span class="visually-hidden"><%: L.T("Shared.Public.ViewOn") %> </span><%: L.T("Shared.Public.GoogleMaps") %><span class="visually-hidden"> <%: L.T("Shared.Public.OpensInANewTab") %></span></a>
+                    </div>
                 </section>
             </div>
             <div class="public-container uims-public-footer-bottom">
-                <p>&copy; <%: DateTime.UtcNow.Year %> UIMS &middot; Group 4 &middot; Student project &middot; GJU-inspired visual theme</p>
+                <p>&copy; <%: DateTime.UtcNow.Year %> <%: L.T("Shared.Public.UIMSGroup4StudentProjectGJU") %></p>
                 <div class="uims-public-footer-actions">
-                    <button type="button" class="uims-public-footer-pause" data-footer-wave-pause aria-pressed="false" hidden>Pause waves</button>
-                    <a class="uims-public-footer-powered" href="<%: ResolveUrl("~/Pages/Public/PoweredBy.aspx") %>" aria-label="Powered by &mdash; Meet the development team">Powered by</a>
+                    <button type="button" class="uims-public-footer-pause" data-footer-wave-pause aria-pressed="false" hidden><%: L.T("Shared.Public.PauseWaves") %></button>
+                    <a class="uims-public-footer-powered" href="<%: ResolveUrl("~/Pages/Public/PoweredBy.aspx") %>" aria-label="<%: L.T("Shared.Public.PoweredByMeetTheDevelopmentTeam") %>"><%: L.T("Shared.Public.PoweredBy") %></a>
                 </div>
             </div>
         </div>
     </footer>
 </form>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="<%: ResolveUrl("~/Assets/js/i18n.js?v=20261023-2") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/theme.js?v=20261023-2") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/public-layout.js?v=20261022-5") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/public-navbar.js?v=20261022-2") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/public-footer.js?v=20261022-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/public-footer-map.js?v=20261023-theme-1") %>"></script>
 <asp:ContentPlaceHolder ID="scripts" runat="server" />
+<script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-5") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-5") %>"></script>
+<%-- Text that fell back to English on this request (read by the localization tests). --%>
+<script type="application/json" id="uims-i18n-gaps"><%= new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(L.Gaps) %></script>
 </body>
 </html>

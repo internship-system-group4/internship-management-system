@@ -56,11 +56,11 @@ function start() {
   const card = source.querySelector('article').cloneNode(true), name = card.querySelector('.team-member-name');
   name.id = 'teamProfileName'; name.tabIndex = -1;
   profileBody.replaceChildren(card);
-  profileCount.textContent = 'Team member ' + (keys.indexOf(key) + 1) + ' of ' + keys.length;
+  profileCount.textContent = window.uimsT('TeamMemberOf', keys.indexOf(key) + 1, keys.length);
   list.querySelectorAll('button').forEach(button => button.setAttribute('aria-current', String(button.dataset.memberKey === key)));
   profile.hidden = false; root.dataset.profileOpen = ''; profile.scrollTop = 0;
   overviewButton.hidden = false;
-  name.focus({ preventScroll:true });
+  name.focus({ preventScroll:true }); emphasis();
   hall?.focus(key, insets());
  }
  function closeProfile() {
@@ -76,7 +76,7 @@ function start() {
  $('[data-team-close]').addEventListener('click', closeProfile);
  overviewButton.addEventListener('click', () => {
   const wasOpen = !profile.hidden;
-  profile.hidden = true; delete root.dataset.profileOpen; current = null; opener = null;
+  profile.hidden = true; delete root.dataset.profileOpen; current = null; opener = null; emphasis();
   list.querySelectorAll('button').forEach(button => button.setAttribute('aria-current', 'false'));
   overviewButton.hidden = true; toggle.focus();
   hall?.overview({ right:0, bottom:0 });
@@ -88,8 +88,50 @@ function start() {
   else if (!profile.hidden) { event.preventDefault(); closeProfile(); }
  });
 
+ // ---- Name markers ---------------------------------------------------------------------
+ // Decorative copies of names already in the finder and profile (aria-hidden); pointer users can click them.
+ const markerLayer = document.createElement('div'); markerLayer.className = 'team-labels'; markerLayer.setAttribute('aria-hidden', 'true');
+ const markers = new Map(members.map(member => {
+  const marker = document.createElement('span'); marker.className = 'team-label'; marker.dir = 'auto'; marker.textContent = member.name; marker.hidden = true;
+  marker.addEventListener('click', () => openProfile(member.key, toggle));
+  marker.addEventListener('mouseenter', () => hall?.preview(member.key));
+  marker.addEventListener('mouseleave', () => hall?.preview(null));
+  markerLayer.append(marker); return [member.key, marker];
+ }));
+ $('.team-stage').after(markerLayer);
+ let hoveredKey = null;
+ function emphasis() { for (const [key, marker] of markers) marker.classList.toggle('is-active', key === hoveredKey || key === current); }
+ // Place each visible marker above its member; nudge upward around earlier markers so none overlap.
+ function placeMarkers(list) {
+  markerLayer.classList.toggle('is-moving', !list);
+  if (!list) return;
+  const placed = [], stage = root.getBoundingClientRect();
+  for (const item of [...list].sort((a, b) => b.y - a.y)) {
+   const marker = markers.get(item.key);
+   if (!item.visible) { marker.hidden = true; continue; }
+   marker.hidden = false;
+   const width = marker.offsetWidth, height = marker.offsetHeight;
+   let x = Math.min(Math.max(item.x, width/2 + 8), stage.width - width/2 - 8), y = item.y, box;
+   for (let attempt = 0; attempt < 5; attempt++) {
+    box = { left:x - width/2 - 3, right:x + width/2 + 3, top:y - height - 3, bottom:y + 3 };
+    const clash = placed.find(other => box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top);
+    if (!clash) break;
+    y = clash.top - 2;
+   }
+   if (placed.some(other => box.left < other.right && box.right > other.left && box.top < other.bottom && box.bottom > other.top)) { marker.hidden = true; continue; }
+   // A nudged marker keeps a thin leader line down to its member.
+   placed.push(box); marker.style.left = x + 'px'; marker.style.top = y + 'px'; marker.style.setProperty('--lead', Math.max(0, item.y - y) + 'px');
+  }
+ }
+ // Keyboard focus or pointer over a finder entry previews that member in the hall.
+ list.addEventListener('focusin', event => { const key = event.target.closest('[data-member-key]')?.dataset.memberKey; if (key) hall?.preview(key); });
+ list.addEventListener('focusout', () => hall?.preview(null));
+ list.addEventListener('mouseover', event => { const key = event.target.closest('[data-member-key]')?.dataset.memberKey; if (key) hall?.preview(key); });
+ list.addEventListener('mouseleave', () => hall?.preview(null));
+
  // ---- Hover label --------------------------------------------------------------------
  function showHover(key, point) {
+  hoveredKey = key; emphasis();
   if (!key || !point) { hover.hidden = true; return; }
   const member = byKey.get(key);
   hover.querySelector('strong').textContent = member.name;
@@ -111,9 +153,12 @@ function start() {
     onHover: showHover,
     onSelect: key => openProfile(key, toggle),
     onLost: fail,
-    onCamera: state => { root.dataset.camera = state; }
+    onCamera: state => { root.dataset.camera = state; },
+    onLabels: placeMarkers
    });
    if (disposed) { hall.dispose(); hall = null; return; }
+   // Which generic figure and seat each member received (read by the verification suite).
+   for (const [key, marker] of markers) { marker.dataset.key = key; marker.dataset.figure = hall.figureOf(key) || ''; marker.dataset.seat = hall.seatOf(key) || ''; }
    root.dataset.mode = 'ready';
    hall.intro();
   } catch (error) {

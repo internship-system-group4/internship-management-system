@@ -126,7 +126,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (!ValidKey(StudentId))
             {
-                ShowError("Student account is unavailable.");
+                ShowError(L.T("Student.Profile.StudentAccountIsUnavailable"));
                 return;
             }
 
@@ -136,7 +136,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 if (student == null)
                 {
-                    ShowError("Student profile could not be found.");
+                    ShowError(L.T("Student.Profile.StudentProfileCouldNotBeFound"));
                     return;
                 }
 
@@ -169,7 +169,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     "Student Profile Error: " + ex.ToString());
 
                 ShowError(
-                    "Profile Error: " + ex.Message);
+                    L.F("Student.Profile.ProfileError", ex.Message));
 
                 if (student != null)
                     DisplayProfile();
@@ -312,7 +312,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             if (fullName.Length < 2 || fullName.Length > 120)
             {
-                ShowError("Full name must be between 2 and 120 characters.");
+                ShowError(L.T("Student.Profile.FullNameMustBeBetween2"));
                 return;
             }
 
@@ -320,7 +320,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 technical.Length > 1500 ||
                 soft.Length > 1500)
             {
-                ShowError("One or more fields exceed the allowed length.");
+                ShowError(L.T("Student.Profile.OneOrMoreFieldsExceedThe"));
                 return;
             }
 
@@ -328,7 +328,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 (!int.TryParse(ageText, out age) ||
                  age < 16 || age > 100))
             {
-                ShowError("Please enter a valid age between 16 and 100.");
+                ShowError(L.T("Student.Profile.PleaseEnterAValidAgeBetween"));
                 return;
             }
 
@@ -336,7 +336,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 !ValidUrl(portfolioUrl) ||
                 !ValidUrl(cvUrl))
             {
-                ShowError("Please enter valid HTTP or HTTPS links.");
+                ShowError(L.T("Student.Profile.PleaseEnterValidHTTPOrHTTPS"));
                 return;
             }
 
@@ -351,7 +351,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                         ".linkedin.com",
                         StringComparison.OrdinalIgnoreCase))
                 {
-                    ShowError("Please enter a valid LinkedIn profile URL.");
+                    ShowError(L.T("Student.Profile.PleaseEnterAValidLinkedInProfile"));
                     return;
                 }
             }
@@ -442,8 +442,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     ExtraPath, updatedExtra, extraEtag))
                 {
                     ShowError(
-                        "Your profile was updated elsewhere. " +
-                        "Please refresh and try again.");
+                        L.T("Student.Profile.YourProfileWasUpdatedElsewherePlease"));
                     return;
                 }
 
@@ -491,8 +490,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     documentsEtag))
                 {
                     ShowError(
-                        "Your CV or portfolio could not be updated " +
-                        "because the record changed. Refresh and try again.");
+                        L.T("Student.Profile.YourCVOrPortfolioCouldNot"));
                     return;
                 }
 
@@ -504,7 +502,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 Session[Constants.SessionUserKey] = student;
 
-                Notice = "Your profile has been updated successfully.";
+                Notice = L.T("Student.Profile.YourProfileHasBeenUpdatedSuccessfully");
                 NoticeIsError = false;
             }
             catch
@@ -536,7 +534,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             if (file.ContentLength > MaxPhotoSize)
             {
-                ShowError("Profile photo must be 2 MB or smaller.");
+                ShowError(L.T("Student.Profile.ProfilePhotoMustBe2MB"));
                 return false;
             }
 
@@ -547,7 +545,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 extension != ".jpeg" &&
                 extension != ".png")
             {
-                ShowError("Profile photo must be JPG or PNG.");
+                ShowError(L.T("Student.Profile.ProfilePhotoMustBeJPGOr"));
                 return false;
             }
 
@@ -579,7 +577,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             if (!valid)
             {
-                ShowError("The selected photo is not a valid image.");
+                ShowError(L.T("Student.Profile.TheSelectedPhotoIsNotA"));
                 return false;
             }
 
@@ -593,7 +591,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             if (file.ContentLength > MaxPdfSize)
             {
-                ShowError("PDF files must be 5 MB or smaller.");
+                ShowError(L.T("Student.Profile.PDFFilesMustBe5MB"));
                 return false;
             }
 
@@ -602,7 +600,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 ".pdf",
                 StringComparison.OrdinalIgnoreCase))
             {
-                ShowError("CV and portfolio files must be PDF.");
+                ShowError(L.T("Student.Profile.CVAndPortfolioFilesMustBe"));
                 return false;
             }
 
@@ -615,7 +613,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (count != 5 ||
                 Encoding.ASCII.GetString(header) != "%PDF-")
             {
-                ShowError("The selected file is not a valid PDF.");
+                ShowError(L.T("Student.Profile.TheSelectedFileIsNotA"));
                 return false;
             }
 

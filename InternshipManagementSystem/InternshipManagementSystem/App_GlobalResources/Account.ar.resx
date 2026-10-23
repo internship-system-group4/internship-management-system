@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AuthService.AnAccountWithThisEmailAlready" xml:space="preserve"><value>يوجد حساب مرتبط بهذا البريد الإلكتروني بالفعل.</value></data>
+  <data name="AuthService.CouldNotChangeThePassword" xml:space="preserve"><value>تعذّر تغيير كلمة المرور.</value></data>
+  <data name="AuthService.CouldNotCreateTheAccount" xml:space="preserve"><value>تعذّر إنشاء الحساب.</value></data>
+  <data name="AuthService.CouldNotDeleteTheAccount" xml:space="preserve"><value>تعذّر حذف الحساب.</value></data>
+  <data name="AuthService.CouldNotSendTheResetEmail" xml:space="preserve"><value>تعذّر إرسال بريد إعادة التعيين. يُرجى المحاولة لاحقًا.</value></data>
+  <data name="AuthService.FirebaseIsNotConfiguredGetThe" xml:space="preserve"><value>لم تُعدّ Firebase بعد. احصل على أحدث Web.config من الفرع main ‏(git merge origin/main)، ثم أوقف المشروع وأعد تشغيله.</value></data>
+  <data name="AuthService.IncorrectEmailOrPassword" xml:space="preserve"><value>البريد الإلكتروني أو كلمة المرور غير صحيحة.</value></data>
+  <data name="AuthService.PleaseSignInAgain" xml:space="preserve"><value>يُرجى تسجيل الدخول مرة أخرى.</value></data>
+  <data name="AuthService.PleaseSignInAgainBeforeChanging" xml:space="preserve"><value>يُرجى تسجيل الدخول مرة أخرى قبل تغيير كلمة المرور.</value></data>
+  <data name="AuthService.ThatEmailAddressIsNotValid" xml:space="preserve"><value>هذا البريد الإلكتروني غير صالح.</value></data>
+  <data name="AuthService.ThePasswordMustBeAtLeast" xml:space="preserve"><value>يجب أن تتكوّن كلمة المرور من 6 أحرف على الأقل.</value></data>
+  <data name="AuthService.ThisAccountHasBeenDeactivated" xml:space="preserve"><value>تم إيقاف هذا الحساب.</value></data>
+  <data name="AuthService.TooManyAttemptsPleaseTryAgain" xml:space="preserve"><value>محاولات كثيرة جدًا. يُرجى المحاولة لاحقًا.</value></data>
+  <data name="ChangePassword.AtLeast6Characters" xml:space="preserve"><value>6 أحرف على الأقل.</value></data>
+  <data name="ChangePassword.ChangePassword" xml:space="preserve"><value>تغيير كلمة المرور</value></data>
+  <data name="ChangePassword.ConfirmNewPassword" xml:space="preserve"><value>تأكيد كلمة المرور الجديدة</value></data>
+  <data name="ChangePassword.CurrentPassword" xml:space="preserve"><value>كلمة المرور الحالية</value></data>
+  <data name="ChangePassword.NewPassword" xml:space="preserve"><value>كلمة المرور الجديدة</value></data>
+  <data name="ChangePassword.PleaseFillInAllFields" xml:space="preserve"><value>يُرجى تعبئة جميع الحقول.</value></data>
+  <data name="ChangePassword.TheCurrentPasswordIsIncorrect" xml:space="preserve"><value>كلمة المرور الحالية غير صحيحة.</value></data>
+  <data name="ChangePassword.TheNewPasswordMustBeAt" xml:space="preserve"><value>يجب أن تتكوّن كلمة المرور الجديدة من 6 أحرف على الأقل.</value></data>
+  <data name="ChangePassword.TheNewPasswordMustBeDifferent" xml:space="preserve"><value>يجب أن تختلف كلمة المرور الجديدة عن الحالية.</value></data>
+  <data name="ChangePassword.TheNewPasswordsDoNotMatch" xml:space="preserve"><value>كلمتا المرور الجديدتان غير متطابقتين.</value></data>
+  <data name="ChangePassword.YouAreUsingATemporaryPassword" xml:space="preserve"><value>أنت تستخدم كلمة مرور مؤقتة. يُرجى اختيار كلمة مرور جديدة للمتابعة.</value></data>
+  <data name="ChangePassword.YourPasswordWasChangedButYour" xml:space="preserve"><value>تم تغيير كلمة المرور، لكن تعذّر تحديث حسابك. يُرجى المحاولة مرة أخرى باستخدام كلمة المرور الجديدة بوصفها كلمة المرور الحالية.</value></data>
+  <data name="CompletionReport.ThisReportIsNotAvailable" xml:space="preserve"><value>هذا التقرير غير متاح.</value></data>
+  <data name="ForgotPassword.BackOnTrack" xml:space="preserve"><value>إلى المسار.</value></data>
+  <data name="ForgotPassword.BackToLogin" xml:space="preserve"><value>العودة إلى تسجيل الدخول</value></data>
+  <data name="ForgotPassword.CheckYourInboxAndSpamFolder" xml:space="preserve"><value>تحقّق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها بعد طلب الرابط.</value></data>
+  <data name="ForgotPassword.ContactTheCoordinationTeam" xml:space="preserve"><value>تواصل مع فريق التنسيق</value></data>
+  <data name="ForgotPassword.EmailAddress" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="ForgotPassword.EnterYourAccountEmailToRequest" xml:space="preserve"><value>أدخل البريد الإلكتروني لحسابك لطلب رابط إعادة التعيين.</value></data>
+  <data name="ForgotPassword.EnterYourEmailAddress" xml:space="preserve"><value>أدخل بريدك الإلكتروني.</value></data>
+  <data name="ForgotPassword.ForYourPrivacyTheResponseWill" xml:space="preserve"><value>حرصًا على خصوصيتك، لن يؤكّد الرد وجود حساب مرتبط بالبريد الإلكتروني من عدمه.</value></data>
+  <data name="ForgotPassword.ForgotYourPasswordRequestAReset" xml:space="preserve"><value>نسيت كلمة المرور؟ اطلب رابطًا لإعادة تعيينها باستخدام البريد الإلكتروني المرتبط بحسابك في نظام التدريب.</value></data>
+  <data name="ForgotPassword.IfAnAccountExistsForThis" xml:space="preserve"><value>إن كان هناك حساب مرتبط بهذا البريد، فقد أُرسل إليه رابط لإعادة تعيين كلمة المرور. يُرجى التحقق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها.</value></data>
+  <data name="ForgotPassword.IfYouCannotAccessThatEmail" xml:space="preserve"><value>إن لم تتمكن من الوصول إلى ذلك البريد، يمكن لمنسّق التدريب في الجامعة مساعدتك في الخطوة التالية.</value></data>
+  <data name="ForgotPassword.LetSGetYou" xml:space="preserve"><value>لنُعِدك</value></data>
+  <data name="ForgotPassword.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريد إلكتروني صحيح.</value></data>
+  <data name="ForgotPassword.PleaseEnterYourEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريدك الإلكتروني.</value></data>
+  <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>إعادة تعيين كلمة المرور</value></data>
+  <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>إرسال رابط إعادة التعيين</value></data>
+  <data name="Login.ContactYourCoordinator" xml:space="preserve"><value>تواصل مع منسّق التدريب</value></data>
+  <data name="Login.ContinueToYourPortal" xml:space="preserve"><value>المتابعة إلى بوابتك</value></data>
+  <data name="Login.EmailAddress" xml:space="preserve"><value>البريد الإلكتروني</value></data>
+  <data name="Login.EnterYourEmailAddress" xml:space="preserve"><value>أدخل بريدك الإلكتروني.</value></data>
+  <data name="Login.EnterYourPassword" xml:space="preserve"><value>أدخل كلمة المرور.</value></data>
+  <data name="Login.FirebaseIsNotConfiguredYetSee" xml:space="preserve"><value>لم تُعدّ Firebase بعد. راجع docs/05-firebase-setup.md.</value></data>
+  <data name="Login.ForgotPassword" xml:space="preserve"><value>نسيت كلمة المرور؟</value></data>
+  <data name="Login.GermanJordanianUniversity" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="Login.GermanJordanianUniversityGate1" xml:space="preserve"><value>الجامعة الألمانية الأردنية · البوابة 1</value></data>
+  <data name="Login.LogIn" xml:space="preserve"><value>تسجيل الدخول</value></data>
+  <data name="Login.NeedAnAccount" xml:space="preserve"><value>تحتاج إلى حساب؟</value></data>
+  <data name="Login.Password" xml:space="preserve"><value>كلمة المرور</value></data>
+  <data name="Login.PauseScene" xml:space="preserve"><value>إيقاف المشهد</value></data>
+  <data name="Login.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريد إلكتروني صحيح.</value></data>
+  <data name="Login.PleaseEnterYourEmailAndPassword" xml:space="preserve"><value>يُرجى إدخال البريد الإلكتروني وكلمة المرور.</value></data>
+  <data name="Login.Show" xml:space="preserve"><value>إظهار</value></data>
+  <data name="Login.ShowPassword" xml:space="preserve"><value>إظهار كلمة المرور</value></data>
+  <data name="Login.TheSignInServiceIsNot" xml:space="preserve"><value>خدمة تسجيل الدخول غير مُعدّة. يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Login.WeCouldNotLoadYourAccount" xml:space="preserve"><value>تعذّر تحميل حسابك. يُرجى المحاولة لاحقًا.</value></data>
+  <data name="Login.WeCouldNotVerifyYourAccount" xml:space="preserve"><value>تعذّر التحقق من حسابك. يُرجى تسجيل الدخول مرة أخرى.</value></data>
+  <data name="Login.WeCouldNotVerifyYourAccount2" xml:space="preserve"><value>تعذّر التحقق من صلاحية الوصول إلى حسابك. يُرجى تسجيل الدخول مرة أخرى.</value></data>
+  <data name="Login.WeCouldNotVerifyYourAccount3" xml:space="preserve"><value>تعذّر التحقق من صلاحية الوصول إلى حسابك. يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Login.WelcomeBack" xml:space="preserve"><value>مرحبًا بعودتك.</value></data>
+  <data name="Login.WelcomeYourEntryIsVerified" xml:space="preserve"><value>أهلًا بك. تم التحقق من دخولك.</value></data>
+  <data name="Login.YourAccountIsNotActivePlease" xml:space="preserve"><value>حسابك غير مفعّل. يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Login.YourAccountStaysPrivate" xml:space="preserve"><value>يبقى حسابك خاصًا.</value></data>
+  <data name="Login.YourNextStepStartsHereSign" xml:space="preserve"><value>خطوتك التالية تبدأ هنا. سجّل الدخول إلى بوابة التدريب.</value></data>
+  <data name="Login.YourSessionHasExpiredPleaseLog" xml:space="preserve"><value>انتهت جلستك. يُرجى تسجيل الدخول مرة أخرى.</value></data>
+  <data name="Notifications.AllNotificationsAreMarkedAsRead" xml:space="preserve"><value>تم تعليم جميع الإشعارات كمقروءة.</value></data>
+  <data name="Notifications.CouldNotUpdateNotificationsPleaseTry" xml:space="preserve"><value>تعذّر تحديث الإشعارات. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="Notifications.MarkAllAsRead" xml:space="preserve"><value>تعليم الكل كمقروء</value></data>
+  <data name="Notifications.Notifications" xml:space="preserve"><value>الإشعارات</value></data>
+  <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>الإشعارات غير متاحة حاليًا.</value></data>
+  <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>لا يوجد جديد. ستظهر هنا المهام والقرارات والتحديثات الجديدة.</value></data>
+</root>

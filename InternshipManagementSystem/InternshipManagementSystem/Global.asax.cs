@@ -22,6 +22,23 @@ namespace InternshipManagementSystem
             // Firebase hands back self-describing JSON; no extra setup needed.
         }
 
+        // Interface language (Common/Localization.cs): a GET with ?ui-lang=en|ar saves the choice and redirects to the
+        // same page; every request then renders in the cookie's language, before any page code runs.
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            if (Common.L.HandleSwitch(Context)) return;
+            Common.L.Apply(Context);
+        }
+
+        // Applied again just before the page runs, in case anything in the pipeline reset the thread culture.
+        protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)
+        {
+            Common.L.Apply(Context);
+            // Page titles come from each page directive (English); the translated title is looked up by route.
+            var page = Context.Handler as System.Web.UI.Page;
+            if (page != null) page.PreRenderComplete += (s, args) => page.Title = Common.L.PageTitle(page);
+        }
+
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception error = Server.GetLastError();

@@ -18,7 +18,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             pnlView.Visible = false;
             if (IsPostBack) return;
             if (BindGroups() && Request.QueryString["saved"] == "1")
-                ShowMessage("Group and assignments saved.", true);
+                ShowMessage(L.T("Coordinator.ConfiguredGroups.GroupAndAssignmentsSaved"), true);
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             LinkButton button = sender as LinkButton;
             if (button == null || !Regex.IsMatch(button.CommandArgument ?? "", @"^[A-Za-z0-9_-]+$"))
             {
-                ShowMessage("Invalid group link.", false);
+                ShowMessage(L.T("Coordinator.ConfiguredGroups.InvalidGroupLink"), false);
                 return;
             }
             Response.Redirect(ResolveUrl("~/Pages/Coordinator/Groups.aspx?edit=" + Server.UrlEncode(button.CommandArgument)), false);
@@ -53,13 +53,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 StudentGroup group = new GroupRepository().GetById(id);
                 if (group == null)
                 {
-                    ShowMessage("Group not found. It may have been deleted.", false);
+                    ShowMessage(L.T("Coordinator.ConfiguredGroups.GroupNotFoundItMayHave"), false);
                     BindGroups();
                     return;
                 }
                 ShowGroupDetails(group);
             }
-            catch (FirebaseException) { ShowMessage("Could not load the group details. Please try again.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.ConfiguredGroups.CouldNotLoadTheGroupDetails"), false); }
         }
 
         protected void btnDelete_Click(object sender, EventArgs e)
@@ -69,10 +69,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             try
             {
                 new GroupRepository().DeleteGroup(id);
-                ShowMessage("Group deleted. Its students are now unassigned.", true);
+                ShowMessage(L.T("Coordinator.ConfiguredGroups.GroupDeletedItsStudentsAreNow"), true);
             }
             catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
-            catch (FirebaseException) { ShowMessage("Could not delete the group. Please try again.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.ConfiguredGroups.CouldNotDeleteTheGroupPlease"), false); }
             BindGroups();
         }
 
@@ -94,7 +94,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Placement placement;
                 placements.TryGetValue(student.Id, out placement);
                 string internship = placement == null
-                    ? "No internship yet"
+                    ? L.T("Coordinator.ConfiguredGroups.NoInternshipYet")
                     : (placement.CompanyName ?? "Company") + " (" + placement.Status + ")";
                 return new
                 {
@@ -115,7 +115,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             lblViewName.Text = group.Name;
             lblViewSummary.Text = members.Count + (members.Count == 1 ? " student" : " students")
                 + ", " + placed + " with an internship";
-            lblViewSupervisor.Text = supervisor != null ? supervisor.FullName : (group.AcademicSupervisorName ?? "Not assigned");
+            lblViewSupervisor.Text = supervisor != null ? supervisor.FullName : (group.AcademicSupervisorName ?? L.T("Coordinator.ConfiguredGroups.NotAssigned"));
             lblViewSupervisorEmail.Text = supervisor != null ? supervisor.Email : "";
             lblViewTerm.Text = (string.IsNullOrEmpty(group.AcademicYear) ? "-" : group.AcademicYear)
                 + " / " + (string.IsNullOrEmpty(group.Semester) ? "-" : group.Semester);
@@ -132,7 +132,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             LinkButton button = sender as LinkButton;
             if (button == null || !Regex.IsMatch(button.CommandArgument ?? "", @"^[A-Za-z0-9_-]+$"))
             {
-                ShowMessage("Invalid group link.", false);
+                ShowMessage(L.T("Coordinator.ConfiguredGroups.InvalidGroupLink"), false);
                 return null;
             }
             return button.CommandArgument;
@@ -152,13 +152,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 groups.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
                 rptGroups.DataSource = groups;
                 rptGroups.DataBind();
-                lblNoGroups.Text = search.Length > 0 ? "No groups match your search." : "No groups have been created yet.";
+                lblNoGroups.Text = search.Length > 0 ? L.T("Coordinator.ConfiguredGroups.NoGroupsMatchYourSearch") : L.T("Coordinator.ConfiguredGroups.NoGroupsHaveBeenCreatedYet");
                 lblNoGroups.Visible = groups.Count == 0;
                 return true;
             }
             catch (FirebaseException)
             {
-                ShowMessage("Could not load configured groups. Please try again.", false);
+                ShowMessage(L.T("Coordinator.ConfiguredGroups.CouldNotLoadConfiguredGroupsPlease"), false);
                 return false;
             }
         }

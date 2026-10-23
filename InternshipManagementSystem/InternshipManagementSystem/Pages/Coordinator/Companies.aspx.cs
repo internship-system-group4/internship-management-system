@@ -56,7 +56,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
             if (supName == "" || supEmail == "" || tempPass == "")
             {
-                ShowPopupMessage("Missing Fields", "Please fill in all required supervisor fields (*).", false);
+                ShowPopupMessage(L.T("Coordinator.Companies.MissingFields"), L.T("Coordinator.Companies.PleaseFillInAllRequiredSupervisor"), false);
                 return;
             }
 
@@ -73,7 +73,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                     if (finalCompanyId == "")
                     {
-                        ShowPopupMessage("Action Required", "Please select an existing company from the list.", false);
+                        ShowPopupMessage(L.T("Coordinator.Companies.ActionRequired"), L.T("Coordinator.Companies.PleaseSelectAnExistingCompanyFrom"), false);
                         return;
                     }
                 }
@@ -85,7 +85,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                     if (compName == "" || compInd == "" || compCity == "")
                     {
-                        ShowPopupMessage("Missing Fields", "Please fill in the required company fields (*).", false);
+                        ShowPopupMessage(L.T("Coordinator.Companies.MissingFields"), L.T("Coordinator.Companies.PleaseFillInTheRequiredCompany"), false);
                         return;
                     }
 
@@ -108,7 +108,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                 if (authResult.Success == false)
                 {
-                    ShowPopupMessage("Creation Failed", authResult.ErrorMessage, false);
+                    ShowPopupMessage(L.T("Coordinator.Companies.CreationFailed"), authResult.ErrorMessage, false);
                     return;
                 }
 
@@ -130,14 +130,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 BindSupervisors();
 
                 litModalTitle.Text = "Success!";
-                litModalMessage.Text = "Account created successfully! Supervisor is linked to " + finalCompanyName;
-                litModalIcon.Text = "<i class='bi bi-check-circle-fill text-success' style='font-size: 3.5rem;'></i>";
+                litModalMessage.Text = L.F("Coordinator.Companies.AccountCreatedSuccessfullySupervisorIsLinked", finalCompanyName);
+                litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiCheckCircle");
 
                 ClientScript.RegisterStartupScript(this.GetType(), "ShowSuccess", "hideSystemModal('addSupervisorModal'); openSystemModal('serverMessageModal');", true);
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Error processing request: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Coordinator.Companies.ErrorProcessingRequest", ex.Message), false);
             }
         }
 
@@ -154,20 +154,20 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     if (supervisor != null)
                     {
                         litViewSupName.Text = supervisor.FullName;
-                        litViewJobTitle.Text = string.IsNullOrEmpty(supervisor.JobTitle) ? "Not Provided" : supervisor.JobTitle;
+                        litViewJobTitle.Text = string.IsNullOrEmpty(supervisor.JobTitle) ? L.T("Coordinator.Companies.NotProvided") : supervisor.JobTitle;
                         litViewEmail.Text = supervisor.Email;
-                        litViewPhone.Text = string.IsNullOrEmpty(supervisor.PhoneNumber) ? "Not Provided" : supervisor.PhoneNumber;
+                        litViewPhone.Text = string.IsNullOrEmpty(supervisor.PhoneNumber) ? L.T("Coordinator.Companies.NotProvided") : supervisor.PhoneNumber;
 
                         Company comp = _companyRepo.GetById(supervisor.CompanyId);
                         if (comp != null)
                         {
                             litViewCompName.Text = comp.Name;
-                            litViewIndustry.Text = string.IsNullOrEmpty(comp.Industry) ? "Not Provided" : comp.Industry;
+                            litViewIndustry.Text = string.IsNullOrEmpty(comp.Industry) ? L.T("Coordinator.Companies.NotProvided") : comp.Industry;
                         }
                         else
                         {
                             litViewCompName.Text = supervisor.CompanyName;
-                            litViewIndustry.Text = "Not Provided";
+                            litViewIndustry.Text = L.T("Coordinator.Companies.NotProvided");
                         }
 
                         ClientScript.RegisterStartupScript(this.GetType(), "OpenView", "openSystemModal('viewDetailsModal');", true);
@@ -175,7 +175,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 }
                 catch (Exception ex)
                 {
-                    ShowPopupMessage("Error", "Error loading details: " + ex.Message, false);
+                    ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Coordinator.Companies.ErrorLoadingDetails", ex.Message), false);
                 }
             }
         }
@@ -196,9 +196,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                         string statusWord = newStatus ? "Activated" : "Deactivated";
 
-                        litModalTitle.Text = "Status Updated";
+                        litModalTitle.Text = L.T("Coordinator.Companies.StatusUpdated");
                         litModalMessage.Text = $"The supervisor account has been {statusWord} successfully.";
-                        litModalIcon.Text = "<i class='bi bi-check-circle-fill text-success' style='font-size: 3.5rem;'></i>";
+                        litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiCheckCircle");
 
                         ClientScript.RegisterStartupScript(this.GetType(), "ToggleSuccess", "hideSystemModal('confirmToggleModal'); openSystemModal('serverMessageModal');", true);
                     }
@@ -206,7 +206,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
             catch (Exception ex)
             {
-                ShowPopupMessage("Error", "Error updating status: " + ex.Message, false);
+                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Coordinator.Companies.ErrorUpdatingStatus", ex.Message), false);
             }
         }
 
@@ -216,9 +216,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             litModalMessage.Text = message;
 
             if (isSuccess)
-                litModalIcon.Text = "<i class='bi bi-check-circle-fill text-success' style='font-size: 3.5rem;'></i>";
+                litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiCheckCircle");
             else
-                litModalIcon.Text = "<i class='bi bi-exclamation-circle-fill text-danger' style='font-size: 3.5rem;'></i>";
+                litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiExclamationCircle");
 
             ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", "openSystemModal('serverMessageModal');", true);
         }

@@ -37,7 +37,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (CurrentSupervisor == null ||
                 string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
             {
-                ShowError("Your account is not linked to a company.");
+                ShowError(L.T("Company.ManageOpportunities.YourAccountIsNotLinkedTo"));
                 return;
             }
 
@@ -71,7 +71,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     "Manage opportunities: " + ex);
 
                 ShowError(
-                    "Unable to load or update opportunities.");
+                    L.T("Company.ManageOpportunities.UnableToLoadOrUpdateOpportunities"));
             }
         }
 
@@ -110,7 +110,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (!ValidId(id))
             {
-                ShowError("Invalid opportunity ID.");
+                ShowError(L.T("Company.ManageOpportunities.InvalidOpportunityID"));
                 return null;
             }
 
@@ -123,7 +123,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (string.IsNullOrWhiteSpace(json) ||
                 json.Trim() == "null")
             {
-                ShowError("Opportunity not found.");
+                ShowError(L.T("Company.ManageOpportunities.OpportunityNotFound"));
                 return null;
             }
 
@@ -135,7 +135,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 item.CompanyId != CurrentSupervisor.CompanyId)
             {
                 ShowError(
-                    "You cannot manage another company's opportunity.");
+                    L.T("Company.ManageOpportunities.YouCannotManageAnotherCompanyS"));
                 return null;
             }
 
@@ -173,7 +173,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (item.Status == OpportunityStatus.Closed)
             {
-                ShowError("This opportunity is already closed.");
+                ShowError(L.T("Company.ManageOpportunities.ThisOpportunityIsAlreadyClosed"));
                 return;
             }
 
@@ -187,13 +187,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
-                Notice = "Opportunity closed successfully.";
+                Notice = L.T("Company.ManageOpportunities.OpportunityClosedSuccessfully");
                 IsError = false;
             }
             else
             {
                 ShowError(
-                    "Opportunity changed. Please refresh and try again.");
+                    L.T("Company.ManageOpportunities.OpportunityChangedPleaseRefreshAndTry"));
             }
         }
 
@@ -271,14 +271,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 !validDuration || duration < 1 || duration > 104 ||
                 !validDeadline || !validStart || !validEnd)
             {
-                ShowError("Please check all opportunity fields.");
+                ShowError(L.T("Company.ManageOpportunities.PleaseCheckAllOpportunityFields"));
                 return;
             }
 
             if (seats < item.FilledSeats)
             {
                 ShowError(
-                    "Seats cannot be less than filled seats.");
+                    L.T("Company.ManageOpportunities.SeatsCannotBeLessThanFilled"));
                 return;
             }
 
@@ -286,8 +286,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 end.Date <= start.Date)
             {
                 ShowError(
-                    "Start date must follow the deadline, " +
-                    "and end date must follow start date.");
+                    L.T("Company.ManageOpportunities.StartDateMustFollowTheDeadline"));
                 return;
             }
 
@@ -295,7 +294,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 mode != "Hybrid" &&
                 mode != "Remote")
             {
-                ShowError("Invalid training mode.");
+                ShowError(L.T("Company.ManageOpportunities.InvalidTrainingMode"));
                 return;
             }
 
@@ -325,13 +324,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
-                Notice = "Opportunity updated successfully.";
+                Notice = L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
                 IsError = false;
             }
             else
             {
                 ShowError(
-                    "Opportunity changed. Refresh and try again.");
+                    L.T("Company.ManageOpportunities.OpportunityChangedRefreshAndTryAgain"));
             }
         }
 
@@ -368,7 +367,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected string StatusText(Opportunity item)
         {
-            return item.Status.ToString();
+            return L.Value("OpportunityStatus", item.Status);
         }
 
         private void ShowError(string message)

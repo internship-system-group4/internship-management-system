@@ -1,0 +1,73 @@
+async page => {
+ const base='http://localhost:58001',db='http://localhost:4920/firebase';
+ page.setDefaultTimeout(6000);page.setDefaultNavigationTimeout(20000);
+ const checks=[];const check=(ok,name)=>{if(!ok)throw Error(name);checks.push(name);};
+ const get=async p=>(await page.request.get(db+'/'+p+'.json')).json();
+ const put=async(p,data)=>page.request.put(db+'/'+p+'.json',{data});
+ const login=async id=>{await page.context().clearCookies();await page.goto(base+'/__fixture.aspx?user='+id);};
+ await page.request.post(db+'/__reset');await login('student-one');
+ const letter='I enjoy building accessible web applications with C# and HTML and would love to develop my skills through this internship.';
+ await page.getByLabel('Cover letter (required)',{exact:true}).fill(letter);
+ await page.getByLabel('CV link (required)',{exact:true}).fill('https://example.com/cv.pdf');
+ await page.getByRole('checkbox').check();await page.request.post(db+'/__fail-writes');
+ await page.getByRole('button',{name:'Submit application'}).click();
+ check((await page.getByRole('alert').innerText()).includes('could not confirm'),'Student real write failure remains persistent');
+ check(await page.getByLabel('Cover letter (required)',{exact:true}).inputValue()===letter,'Student failure preserves input');
+ check((await page.locator('[data-ui-action]').getAttribute('data-ui-state'))!=='loading','Failure restores actionable submit');
+ await page.screenshot({path:'tests/artifacts/ui-write-failure-mobile.png',fullPage:true});
+ await page.request.post(db+'/__restore-writes');await page.getByRole('button',{name:'Submit application'}).click();
+ check(page.url().includes('MyApplications'),'Retry follows actual application success');
+ const saved=Object.values(await get('applications'));check(saved.length===1&&saved[0].Status===0,'Exactly one pending application stored');
+ await login('supervisor-one');
+ const reject=page.locator('.review-reject-toggle');await reject.click();
+ const reason='Please add a C# project and apply for our next opening.';
+ await page.getByLabel('Reason for rejection (required)').fill(reason);
+ await page.request.post(db+'/__fail-writes');await page.getByRole('button',{name:'Confirm rejection'}).click();
+ check((await page.getByRole('alert').innerText()).includes('could not confirm'),'Company real failure stays visible');
+ check(await page.getByLabel('Reason for rejection (required)').inputValue()===reason,'Company preserves failure reason');
+ await page.request.post(db+'/__restore-writes');await page.getByRole('button',{name:'Confirm rejection'}).click();
+ check(Object.values(await get('applications'))[0].Status===2,'Company rejection confirmed by stored result');
+ check((await page.getByRole('status').innerText()).includes('rejected'),'Company success announced after confirmation');
+ // Native file multipart postback and submit name/value are preserved.
+ await login('student-one');await page.goto(base+'/Pages/Student/StudentCVPortfolio.aspx');
+ await page.locator('input[name="cvFile"]').setInputFiles('tests/fixtures/ui-fixture.pdf');
+ await page.locator('button[name="cvAction"][value="save"]').click();
+ check((await page.locator('body').innerText()).includes('CV and portfolio saved successfully.'),'Native PDF upload survives shared submit behavior');
+ check((await page.locator('body').innerText()).includes('ui-fixture.pdf'),'Stored file name is rendered');
+ // Bootstrap modal is opened through an actual postback; existing Bootstrap owns the trap.
+ await put('users/coordinator-one',{Id:'coordinator-one',Role:4,FullName:'UI coordinator',Email:'ui-coordinator@example.test',IsActive:true,MustChangePassword:false});
+ await login('coordinator-one');await page.goto(base+'/Pages/Coordinator/ManageStudents.aspx');
+ await page.getByRole('link',{name:'Manage',exact:true}).first().click();
+ const modal=page.locator('#pnlDetails');await modal.waitFor({state:'visible'});
+ await page.waitForTimeout(300);
+ check(await modal.getAttribute('role')==='dialog','Bootstrap modal retains dialog semantics');
+ await page.keyboard.press('Shift+Tab');
+ check(await modal.evaluate(el=>el.contains(document.activeElement)),'Bootstrap contains keyboard focus');
+ await page.keyboard.press('Escape');await modal.waitFor({state:'hidden'});await page.waitForFunction(()=>!document.body.classList.contains('modal-open')&&!document.querySelector('.modal-backdrop'));
+ check(await page.evaluate(()=>!document.body.classList.contains('modal-open')&&!document.querySelector('.modal-backdrop')),'Bootstrap restores scroll and removes backdrop');
+ check(await page.locator('[data-ui-modal-opener]').first().evaluate(el=>el===document.activeElement),'Server-opened Bootstrap modal restores its pre-postback opener');
+ await page.goto(base+'/Pages/Coordinator/AcademicSupervisors.aspx');
+ await page.locator('#supervisor-records-tab').focus();await page.keyboard.press('ArrowRight');
+ check(await page.locator('#supervisor-add-tab').evaluate(el=>el===document.activeElement&&el.getAttribute('aria-selected')==='true'),'Existing tab arrows execute once');
+ await page.keyboard.press('End');check(await page.locator('#supervisor-manage-tab').getAttribute('aria-selected')==='true','Shared End key selects last tab');
+ await page.keyboard.press('Home');check(await page.locator('#supervisor-records-tab').getAttribute('aria-selected')==='true','Shared Home key selects first tab');
+ await page.goto(base+'/Pages/Coordinator/Companies.aspx');await page.locator('button[data-bs-target="#addSupervisorModal"]').click();await page.waitForTimeout(300);
+ await page.locator('#tab-new').focus();await page.keyboard.press('ArrowRight');
+ check(await page.locator('#tab-existing').getAttribute('aria-selected')==='true','Bootstrap tab role and keyboard behavior remain synchronized');
+ check(await page.locator('#existingCompany').getAttribute('role')==='tabpanel','Bootstrap tab content is associated');
+ await page.screenshot({path:'tests/artifacts/ui-bootstrap-tabs-mobile.png',fullPage:true});
+ await page.locator('#addSupervisorModal button.btn-close').click();await page.locator('#addSupervisorModal').waitFor({state:'hidden'});
+ // Twelve canonical placements exercise actual server paging and retained filters.
+ const placement={StudentName:'Paging fixture',CompanyId:'company-one',CompanyName:'Training Company',CompanySupervisorId:'supervisor-one',AcademicSupervisorId:'academic-one',OpportunityId:'internship-one',OpportunityTitle:'Software Development Intern',RequiredHours:160,Status:2,ConfirmedAt:Date.now()};
+ const placements={};
+ for(let i=0;i<12;i++){const id='paging-student-'+i;await put('users/'+id,{Id:id,Role:1,FullName:'Paging student '+i,StudentNumber:'P'+i,RequiredHours:160,IsActive:true});placements[id]={...placement,Id:id,StudentId:id};}
+ await put('placements',placements);
+ await page.goto(base+'/Pages/Coordinator/Placements.aspx?q=Training%20Company&status=2');
+ check(await page.locator('[data-student-id]').count()===10,'First page shows ten actual rows');
+ await page.getByRole('link',{name:'Next',exact:true}).click();
+ check(await page.locator('[data-student-id]').count()===2&&page.url().includes('status=2')&&page.url().includes('page=2'),'Next page preserves filter and shows remaining rows');
+ await page.getByRole('link',{name:'Previous',exact:true}).click();
+ check(await page.locator('[data-student-id]').count()===10,'Previous returns to first result page');
+ await page.goBack();check(page.url().includes('page=2'),'Native browser Back retains paging context');
+ return {passed:checks.length,checks,scope:'Local Postman + disposable Web Forms host only; uploaded fixture stays in disposable temp app.'};
+}

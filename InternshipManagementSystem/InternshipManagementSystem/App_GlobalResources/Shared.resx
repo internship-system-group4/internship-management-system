@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Academic.AcademicNavigation" xml:space="preserve"><value>Academic navigation</value></data>
+  <data name="Academic.AcademicSupervisorPortal" xml:space="preserve"><value>Academic supervisor portal</value></data>
+  <data name="Academic.CloseNavigationBackdrop" xml:space="preserve"><value>Close navigation backdrop</value></data>
+  <data name="Academic.LogOut" xml:space="preserve"><value>Log out</value></data>
+  <data name="Academic.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
+  <data name="Company.CloseNavigationBackdrop" xml:space="preserve"><value>Close navigation backdrop</value></data>
+  <data name="Company.CompanyNavigation" xml:space="preserve"><value>Company navigation</value></data>
+  <data name="Company.CompanyPortal" xml:space="preserve"><value>Company portal</value></data>
+  <data name="Company.LogOut" xml:space="preserve"><value>Log out</value></data>
+  <data name="Company.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
+  <data name="Coordinator.CloseNavigationBackdrop" xml:space="preserve"><value>Close navigation backdrop</value></data>
+  <data name="Coordinator.CoordinatorNavigation" xml:space="preserve"><value>Coordinator navigation</value></data>
+  <data name="Coordinator.CoordinatorPortal" xml:space="preserve"><value>Coordinator portal</value></data>
+  <data name="Coordinator.LogOut" xml:space="preserve"><value>Log out</value></data>
+  <data name="Coordinator.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
+  <data name="Js.ApprovedTrainingHours" xml:space="preserve"><value>Approved training hours</value></data>
+  <data name="Js.ChartCoordinatorNote" xml:space="preserve"><value>Explicit approvals in current retained records.</value></data>
+  <data name="Js.ChartCurrentSnapshot" xml:space="preserve"><value>Current snapshot · {0} UTC</value></data>
+  <data name="Js.ChartFailed" xml:space="preserve"><value>Analytics could not be displayed. Refresh to retry; current records remain available below.</value></data>
+  <data name="Js.ChartHistoryMissing" xml:space="preserve"><value>History unavailable: approval dates missing</value></data>
+  <data name="Js.ChartHistoryUnavailable" xml:space="preserve"><value>Historical activity is unavailable. Approved records do not have valid approval dates.</value></data>
+  <data name="Js.ChartMonthScope" xml:space="preserve"><value>Actual dated approvals in this recorded month.</value></data>
+  <data name="Js.ChartNoCategoryRecords" xml:space="preserve"><value>No current category records.</value></data>
+  <data name="Js.ChartNoDatedInPeriod" xml:space="preserve"><value>No dated approvals in this period. No historical points have been invented.</value></data>
+  <data name="Js.ChartNoDatedWindow" xml:space="preserve"><value>No dated approval records in this window.</value></data>
+  <data name="Js.ChartNoPercentage" xml:space="preserve"><value>No percentage: previous window has no dated approvals</value></data>
+  <data name="Js.ChartOneMonth" xml:space="preserve"><value>One recorded month; no inferred history. </value></data>
+  <data name="Js.ChartOnlyMonths" xml:space="preserve"><value>Only months with dated approvals are plotted. </value></data>
+  <data name="Js.ChartOpenRecord" xml:space="preserve"><value>Open related record</value></data>
+  <data name="Js.ChartRangeCaption" xml:space="preserve"><value>{0} – {1} · UTC. Range changes dated approvals only; categories are current snapshots.</value></data>
+  <data name="Js.ChartRangeScope" xml:space="preserve"><value>{0} – {1} · available dated approvals only</value></data>
+  <data name="Js.ChartRecordRange" xml:space="preserve"><value>{0}–{1} of {2}</value></data>
+  <data name="Js.ChartReviewDateNote" xml:space="preserve"><value>Currently approved entries by review date, not historical status snapshots.</value></data>
+  <data name="Js.ChartTrendSubtitle" xml:space="preserve"><value>Available dated {0}, by recorded approval month</value></data>
+  <data name="Js.ChartUndatedMany" xml:space="preserve"><value>{0} undated approval records excluded</value></data>
+  <data name="Js.ChartUndatedNoDates" xml:space="preserve"><value>History unavailable: these current approvals have no valid dates.</value></data>
+  <data name="Js.ChartUndatedOne" xml:space="preserve"><value>{0} undated approval record excluded</value></data>
+  <data name="Js.ChartUndatedScope" xml:space="preserve"><value>Excluded from every date range. Current approved records only.</value></data>
+  <data name="Js.ChartUndatedTitle" xml:space="preserve"><value>Undated approvals</value></data>
+  <data name="Js.ChartViewRecords" xml:space="preserve"><value>View records</value></data>
+  <data name="Js.ChartViewRecordsFor" xml:space="preserve"><value>View records for {0}</value></data>
+  <data name="Js.ChartVsPrevious" xml:space="preserve"><value>{0}% vs previous equal-length window</value></data>
+  <data name="Js.ChartZeroRecords" xml:space="preserve"><value>0 records</value></data>
+  <data name="Js.CheckField" xml:space="preserve"><value>Check this field.</value></data>
+  <data name="Js.CheckFields" xml:space="preserve"><value>Please check the following fields.</value></data>
+  <data name="Js.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Js.CloseMainMenu" xml:space="preserve"><value>Close main menu</value></data>
+  <data name="Js.CloseNavigation" xml:space="preserve"><value>Close navigation</value></data>
+  <data name="Js.ContactReadiness" xml:space="preserve"><value>{0} of {1} fields ready</value></data>
+  <data name="Js.DismissNotification" xml:space="preserve"><value>Dismiss notification</value></data>
+  <data name="Js.DoneAccepted" xml:space="preserve"><value>Accepted</value></data>
+  <data name="Js.DoneConfirmed" xml:space="preserve"><value>Confirmed</value></data>
+  <data name="Js.DoneCreated" xml:space="preserve"><value>Created</value></data>
+  <data name="Js.DoneDeleted" xml:space="preserve"><value>Deleted</value></data>
+  <data name="Js.DoneSaved" xml:space="preserve"><value>Saved</value></data>
+  <data name="Js.DoneSent" xml:space="preserve"><value>Sent</value></data>
+  <data name="Js.DoneSubmitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Js.DoneUpdated" xml:space="preserve"><value>Updated</value></data>
+  <data name="Js.DoneUploaded" xml:space="preserve"><value>Uploaded</value></data>
+  <data name="Js.FieldEmail" xml:space="preserve"><value>Enter a valid email address.</value></data>
+  <data name="Js.FieldMinLength" xml:space="preserve"><value>Please enter at least {0} characters.</value></data>
+  <data name="Js.FieldRequired" xml:space="preserve"><value>Please fill in this field.</value></data>
+  <data name="Js.FilmFailed" xml:space="preserve"><value>The film could not be loaded.</value></data>
+  <data name="Js.FilmLoading" xml:space="preserve"><value>Loading the film…</value></data>
+  <data name="Js.HallLights" xml:space="preserve"><value>Lighting the hall</value></data>
+  <data name="Js.HallPreparing" xml:space="preserve"><value>Preparing the lecture hall</value></data>
+  <data name="Js.HallRoom" xml:space="preserve"><value>Building the room</value></data>
+  <data name="Js.HallSeats" xml:space="preserve"><value>Placing the seats</value></data>
+  <data name="Js.HallStudents" xml:space="preserve"><value>Seating the students</value></data>
+  <data name="Js.HallTeam" xml:space="preserve"><value>Marking the team seats</value></data>
+  <data name="Js.HallTiers" xml:space="preserve"><value>Setting out the tiers</value></data>
+  <data name="Js.Hide" xml:space="preserve"><value>Hide</value></data>
+  <data name="Js.HideList" xml:space="preserve"><value>Hide List</value></data>
+  <data name="Js.HidePassword" xml:space="preserve"><value>Hide password</value></data>
+  <data name="Js.HoursTargetNotSet" xml:space="preserve"><value>Training hours target is not set. Ask your coordinator.</value></data>
+  <data name="Js.HoursValueNoTarget" xml:space="preserve"><value>{0} approved hours. Training hours target is not set.</value></data>
+  <data name="Js.HoursValueText" xml:space="preserve"><value>{0} approved hours of {1} required hours</value></data>
+  <data name="Js.LanguageUnsavedConfirm" xml:space="preserve"><value>You have unsaved changes on this page. Switch language and lose them?</value></data>
+  <data name="Js.LoginChecking" xml:space="preserve"><value>Checking your account. Please wait…</value></data>
+  <data name="Js.LoginOpening" xml:space="preserve"><value>Welcome. Opening your portal…</value></data>
+  <data name="Js.MapMarker" xml:space="preserve"><value>German Jordanian University</value></data>
+  <data name="Js.OpenMainMenu" xml:space="preserve"><value>Open main menu</value></data>
+  <data name="Js.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
+  <data name="Js.PauseCampusMotion" xml:space="preserve"><value>Pause campus motion</value></data>
+  <data name="Js.PausePreview" xml:space="preserve"><value>Pause preview</value></data>
+  <data name="Js.PauseScene" xml:space="preserve"><value>Pause scene</value></data>
+  <data name="Js.PauseWaves" xml:space="preserve"><value>Pause waves</value></data>
+  <data name="Js.PauseWheelMotion" xml:space="preserve"><value>Pause wheel motion</value></data>
+  <data name="Js.PinNavigation" xml:space="preserve"><value>Pin navigation</value></data>
+  <data name="Js.PinNavigationOpen" xml:space="preserve"><value>Pin navigation open</value></data>
+  <data name="Js.PlayPreview" xml:space="preserve"><value>Play preview</value></data>
+  <data name="Js.PlayWaves" xml:space="preserve"><value>Play waves</value></data>
+  <data name="Js.PwChooseDifferent" xml:space="preserve"><value>Choose a different password.</value></data>
+  <data name="Js.PwCompleteAll" xml:space="preserve"><value>Please complete all password fields.</value></data>
+  <data name="Js.PwDifferent" xml:space="preserve"><value>The new password must be different from the current password.</value></data>
+  <data name="Js.PwFieldsMissing" xml:space="preserve"><value>Password fields could not be found.</value></data>
+  <data name="Js.PwFillAll" xml:space="preserve"><value>Please fill in all fields.</value></data>
+  <data name="Js.PwMin6" xml:space="preserve"><value>The new password must be at least 6 characters.</value></data>
+  <data name="Js.PwMismatch" xml:space="preserve"><value>The new passwords do not match.</value></data>
+  <data name="Js.PwNewMismatch" xml:space="preserve"><value>New passwords do not match.</value></data>
+  <data name="Js.RequestingReset" xml:space="preserve"><value>Requesting reset link…</value></data>
+  <data name="Js.ResumeCampusMotion" xml:space="preserve"><value>Resume campus motion</value></data>
+  <data name="Js.ResumeScene" xml:space="preserve"><value>Resume scene</value></data>
+  <data name="Js.ResumeWheelMotion" xml:space="preserve"><value>Resume wheel motion</value></data>
+  <data name="Js.ScrollTableHint" xml:space="preserve"><value>Scroll horizontally to see all columns and actions.</value></data>
+  <data name="Js.ScrollableTable" xml:space="preserve"><value>Scrollable results table</value></data>
+  <data name="Js.SelectATrainee" xml:space="preserve"><value>Select a trainee</value></data>
+  <data name="Js.SelectCompanyFirst" xml:space="preserve"><value>Please select a company from the list first.</value></data>
+  <data name="Js.SelectTraineeForCertificate" xml:space="preserve"><value>Please select a trainee first to generate the certificate.</value></data>
+  <data name="Js.Sending" xml:space="preserve"><value>Sending…</value></data>
+  <data name="Js.SendingStatus" xml:space="preserve"><value>Sending your message. Please wait for confirmation.</value></data>
+  <data name="Js.Show" xml:space="preserve"><value>Show</value></data>
+  <data name="Js.ShowList" xml:space="preserve"><value>Show List</value></data>
+  <data name="Js.ShowPassword" xml:space="preserve"><value>Show password</value></data>
+  <data name="Js.SigningIn" xml:space="preserve"><value>Signing in…</value></data>
+  <data name="Js.SoundOff" xml:space="preserve"><value>Turn sound off</value></data>
+  <data name="Js.SoundOn" xml:space="preserve"><value>Turn sound on</value></data>
+  <data name="Js.StoryStatus" xml:space="preserve"><value>GJU | Architectural miniature</value></data>
+  <data name="Js.TeamMemberOf" xml:space="preserve"><value>Team member {0} of {1}</value></data>
+  <data name="Js.ThemeDark" xml:space="preserve"><value>Dark</value></data>
+  <data name="Js.ThemeLabel" xml:space="preserve"><value>Colour theme: {0}</value></data>
+  <data name="Js.ThemeLight" xml:space="preserve"><value>Light</value></data>
+  <data name="Js.ThemeSystem" xml:space="preserve"><value>System</value></data>
+  <data name="Js.UnpinNavigation" xml:space="preserve"><value>Unpin navigation</value></data>
+  <data name="Js.Working" xml:space="preserve"><value>Working…</value></data>
+  <data name="Language.Label" xml:space="preserve"><value>Language</value></data>
+  <data name="Language.SwitchToArabic" xml:space="preserve"><value>View this page in Arabic</value></data>
+  <data name="Language.SwitchToEnglish" xml:space="preserve"><value>View this page in English</value></data>
+  <data name="NotificationBell.JustNow" xml:space="preserve"><value>Just now</value></data>
+  <data name="NotificationBell.New" xml:space="preserve"><value>new</value></data>
+  <data name="NotificationBell.Notifications" xml:space="preserve"><value>Notifications</value></data>
+  <data name="NotificationBell.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>Notifications are unavailable right now.</value></data>
+  <data name="NotificationBell.ViewAllNotifications" xml:space="preserve"><value>View all notifications</value></data>
+  <data name="NotificationBell.YouReAllCaughtUpNew" xml:space="preserve"><value>You're all caught up. New tasks, decisions and updates will appear here.</value></data>
+  <data name="Popup.Error" xml:space="preserve"><value>Error</value></data>
+  <data name="Portal.LogIn" xml:space="preserve"><value>Log in</value></data>
+  <data name="Portal.LogOut" xml:space="preserve"><value>Log out</value></data>
+  <data name="Portal.MyDashboard" xml:space="preserve"><value>My dashboard</value></data>
+  <data name="Public.AboutUs" xml:space="preserve"><value>About us</value></data>
+  <data name="Public.AmmanMadabaStreetAmmanJordan" xml:space="preserve"><value>Amman Madaba Street, Amman, Jordan</value></data>
+  <data name="Public.ConnectingStudentsUniversitySupervisorsAndCompanies" xml:space="preserve"><value>Connecting students, university supervisors and companies throughout the internship journey at German Jordanian University.</value></data>
+  <data name="Public.Contact" xml:space="preserve"><value>Contact</value></data>
+  <data name="Public.ContactUs" xml:space="preserve"><value>Contact us</value></data>
+  <data name="Public.ExploreCampus" xml:space="preserve"><value>Explore campus</value></data>
+  <data name="Public.ForAccountAccessAndInternshipGuidance" xml:space="preserve"><value>For account access and internship guidance, contact your university coordinator.</value></data>
+  <data name="Public.GJUOfficialWebsite" xml:space="preserve"><value>GJU official website</value></data>
+  <data name="Public.GermanJordanianUniversity" xml:space="preserve"><value>German Jordanian University</value></data>
+  <data name="Public.GetDirections" xml:space="preserve"><value>Get directions</value></data>
+  <data name="Public.GoogleMaps" xml:space="preserve"><value>Google Maps</value></data>
+  <data name="Public.Home" xml:space="preserve"><value>Home</value></data>
+  <data name="Public.HowItWorks" xml:space="preserve"><value>How it works</value></data>
+  <data name="Public.InternshipManagementSystem" xml:space="preserve"><value>Internship Management System</value></data>
+  <data name="Public.LoadingMap" xml:space="preserve"><value>Loading map…</value></data>
+  <data name="Public.MainNavigation" xml:space="preserve"><value>Main navigation</value></data>
+  <data name="Public.MapOfTheGermanJordanianUniversity" xml:space="preserve"><value>Map of the German Jordanian University main campus, Amman Madaba Street, Jordan</value></data>
+  <data name="Public.MessageTheCoordinationTeam" xml:space="preserve"><value>Message the coordination team</value></data>
+  <data name="Public.OfficialLinks" xml:space="preserve"><value>Official links</value></data>
+  <data name="Public.OpenMainMenu" xml:space="preserve"><value>Open main menu</value></data>
+  <data name="Public.OpensInANewTab" xml:space="preserve"><value>(opens in a new tab)</value></data>
+  <data name="Public.Opportunities" xml:space="preserve"><value>Opportunities</value></data>
+  <data name="Public.PauseWaves" xml:space="preserve"><value>Pause waves</value></data>
+  <data name="Public.PoweredBy" xml:space="preserve"><value>Powered by</value></data>
+  <data name="Public.PoweredByMeetTheDevelopmentTeam" xml:space="preserve"><value>Powered by — Meet the development team</value></data>
+  <data name="Public.QuickLinks" xml:space="preserve"><value>Quick links</value></data>
+  <data name="Public.ReplayFlight" xml:space="preserve"><value>Replay flight</value></data>
+  <data name="Public.SkipToContent" xml:space="preserve"><value>Skip to content</value></data>
+  <data name="Public.UIMSGroup4StudentProjectGJU" xml:space="preserve"><value>UIMS · Group 4 · Student project · GJU-inspired visual theme</value></data>
+  <data name="Public.UIMSHome" xml:space="preserve"><value>UIMS home</value></data>
+  <data name="Public.UniversityLocation" xml:space="preserve"><value>University Location</value></data>
+  <data name="Public.ViewOn" xml:space="preserve"><value>View on</value></data>
+  <data name="Role.AcademicSupervisor" xml:space="preserve"><value>Academic Supervisor</value></data>
+  <data name="Role.CompanySupervisor" xml:space="preserve"><value>Company Supervisor</value></data>
+  <data name="Role.Coordinator" xml:space="preserve"><value>Internship Coordinator</value></data>
+  <data name="Role.Student" xml:space="preserve"><value>Student</value></data>
+  <data name="Sidebar.AcademicSupervisors" xml:space="preserve"><value>Academic Supervisors</value></data>
+  <data name="Sidebar.ApplicationsReview" xml:space="preserve"><value>Applications Review</value></data>
+  <data name="Sidebar.CloseNavigation" xml:space="preserve"><value>Close navigation</value></data>
+  <data name="Sidebar.ContactMessages" xml:space="preserve"><value>Contact Messages</value></data>
+  <data name="Sidebar.Dashboard" xml:space="preserve"><value>Dashboard</value></data>
+  <data name="Sidebar.ExploreOpportunities" xml:space="preserve"><value>Explore Opportunities</value></data>
+  <data name="Sidebar.FinalAcademicEvaluation" xml:space="preserve"><value>Final Academic Evaluation</value></data>
+  <data name="Sidebar.FinalCompletionReview" xml:space="preserve"><value>Final Completion Review</value></data>
+  <data name="Sidebar.FinalEvaluation" xml:space="preserve"><value>Final Evaluation</value></data>
+  <data name="Sidebar.GermanJordanianUniversity" xml:space="preserve"><value>German Jordanian University</value></data>
+  <data name="Sidebar.GroupsAssignments" xml:space="preserve"><value>Groups &amp; Assignments</value></data>
+  <data name="Sidebar.InternshipManagementSystem" xml:space="preserve"><value>Internship Management System</value></data>
+  <data name="Sidebar.ManageCompanies" xml:space="preserve"><value>Manage Companies</value></data>
+  <data name="Sidebar.ManageOpportunities" xml:space="preserve"><value>Manage Opportunities</value></data>
+  <data name="Sidebar.ManageStudents" xml:space="preserve"><value>Manage Students</value></data>
+  <data name="Sidebar.ManageTasks" xml:space="preserve"><value>Manage Tasks</value></data>
+  <data name="Sidebar.Meetings" xml:space="preserve"><value>Meetings</value></data>
+  <data name="Sidebar.MyAccount" xml:space="preserve"><value>My Account</value></data>
+  <data name="Sidebar.MyAccountTitle" xml:space="preserve"><value>My account</value></data>
+  <data name="Sidebar.MyApplications" xml:space="preserve"><value>My Applications</value></data>
+  <data name="Sidebar.MyProfile" xml:space="preserve"><value>My Profile</value></data>
+  <data name="Sidebar.MyProgressEvaluation" xml:space="preserve"><value>My Progress &amp; Evaluation</value></data>
+  <data name="Sidebar.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
+  <data name="Sidebar.MyTrainees" xml:space="preserve"><value>My Trainees</value></data>
+  <data name="Sidebar.PinNavigation" xml:space="preserve"><value>Pin navigation</value></data>
+  <data name="Sidebar.PinNavigationOpen" xml:space="preserve"><value>Pin navigation open</value></data>
+  <data name="Sidebar.PlacementsProgress" xml:space="preserve"><value>Placements &amp; Progress</value></data>
+  <data name="Sidebar.Portal" xml:space="preserve"><value>Portal</value></data>
+  <data name="Sidebar.ReviewSubmissions" xml:space="preserve"><value>Review Submissions</value></data>
+  <data name="Sidebar.StudentProgress" xml:space="preserve"><value>Student Progress</value></data>
+  <data name="Student.CloseNavigationBackdrop" xml:space="preserve"><value>Close navigation backdrop</value></data>
+  <data name="Student.LogOut" xml:space="preserve"><value>Log out</value></data>
+  <data name="Student.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
+  <data name="Student.StudentNavigation" xml:space="preserve"><value>Student navigation</value></data>
+  <data name="Student.StudentPortal" xml:space="preserve"><value>Student portal</value></data>
+  <data name="ThemeSelector.ColourTheme" xml:space="preserve"><value>Colour theme</value></data>
+  <data name="ThemeSelector.ColourThemeLight" xml:space="preserve"><value>Colour theme: Light</value></data>
+  <data name="ThemeSelector.Dark" xml:space="preserve"><value>Dark</value></data>
+  <data name="ThemeSelector.Light" xml:space="preserve"><value>Light</value></data>
+  <data name="ThemeSelector.System" xml:space="preserve"><value>System</value></data>
+  <data name="ThemeSelector.Theme" xml:space="preserve"><value>Theme</value></data>
+  <data name="Title.Default" xml:space="preserve"><value>Home | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Academic.Account" xml:space="preserve"><value>My Account</value></data>
+  <data name="Title.Pages.Academic.Dashboard" xml:space="preserve"><value>Academic Dashboard</value></data>
+  <data name="Title.Pages.Academic.FinalEvaluation" xml:space="preserve"><value>Final Evaluation</value></data>
+  <data name="Title.Pages.Academic.StudentProgress" xml:space="preserve"><value>Student Progress</value></data>
+  <data name="Title.Pages.Account.ChangePassword" xml:space="preserve"><value>Change Password</value></data>
+  <data name="Title.Pages.Account.ForgotPassword" xml:space="preserve"><value>Password Recovery | UIMS</value></data>
+  <data name="Title.Pages.Account.Login" xml:space="preserve"><value>Login | UIMS</value></data>
+  <data name="Title.Pages.Account.Notifications" xml:space="preserve"><value>Notifications</value></data>
+  <data name="Title.Pages.Company.Account" xml:space="preserve"><value>My Account</value></data>
+  <data name="Title.Pages.Company.ApplicantDocument" xml:space="preserve"><value>Applicant Document</value></data>
+  <data name="Title.Pages.Company.Applications" xml:space="preserve"><value>Applications Review</value></data>
+  <data name="Title.Pages.Company.Dashboard" xml:space="preserve"><value>Company Dashboard</value></data>
+  <data name="Title.Pages.Company.FinalEvaluation" xml:space="preserve"><value>Final Evaluation</value></data>
+  <data name="Title.Pages.Company.ManageOpportunities" xml:space="preserve"><value>Manage Opportunities</value></data>
+  <data name="Title.Pages.Company.Opportunities" xml:space="preserve"><value>Add Opportunity</value></data>
+  <data name="Title.Pages.Company.TaskReview" xml:space="preserve"><value>Review Submissions</value></data>
+  <data name="Title.Pages.Company.Tasks" xml:space="preserve"><value>Manage Tasks</value></data>
+  <data name="Title.Pages.Company.TraineeDetails" xml:space="preserve"><value>Trainee Details</value></data>
+  <data name="Title.Pages.Company.Trainees" xml:space="preserve"><value>My Trainees</value></data>
+  <data name="Title.Pages.Company.ViewOpportunity" xml:space="preserve"><value>View Opportunity</value></data>
+  <data name="Title.Pages.Coordinator.AcademicSupervisors" xml:space="preserve"><value>Academic Supervisors</value></data>
+  <data name="Title.Pages.Coordinator.Account" xml:space="preserve"><value>My Account</value></data>
+  <data name="Title.Pages.Coordinator.AddStudent" xml:space="preserve"><value>Add student</value></data>
+  <data name="Title.Pages.Coordinator.Companies" xml:space="preserve"><value>Manage Companies</value></data>
+  <data name="Title.Pages.Coordinator.CompletionReview" xml:space="preserve"><value>Final Completion Review</value></data>
+  <data name="Title.Pages.Coordinator.ConfiguredGroups" xml:space="preserve"><value>Configured groups</value></data>
+  <data name="Title.Pages.Coordinator.ContactMessages" xml:space="preserve"><value>Contact Messages</value></data>
+  <data name="Title.Pages.Coordinator.Dashboard" xml:space="preserve"><value>Coordinator Dashboard</value></data>
+  <data name="Title.Pages.Coordinator.Groups" xml:space="preserve"><value>Groups &amp; Assignments</value></data>
+  <data name="Title.Pages.Coordinator.ManageStudents" xml:space="preserve"><value>Manage students</value></data>
+  <data name="Title.Pages.Coordinator.PlacementDetails" xml:space="preserve"><value>Placement Details</value></data>
+  <data name="Title.Pages.Coordinator.Placements" xml:space="preserve"><value>Placements &amp; Progress</value></data>
+  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>Student records</value></data>
+  <data name="Title.Pages.Meetings.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
+  <data name="Title.Pages.Meetings.Schedule" xml:space="preserve"><value>Meetings</value></data>
+  <data name="Title.Pages.Public.About" xml:space="preserve"><value>About | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Public.AccessDenied" xml:space="preserve"><value>Access Denied | UIMS</value></data>
+  <data name="Title.Pages.Public.Contact" xml:space="preserve"><value>Contact | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Public.PoweredBy" xml:space="preserve"><value>Meet the Team | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Student.Apply" xml:space="preserve"><value>Internship Application</value></data>
+  <data name="Title.Pages.Student.Dashboard" xml:space="preserve"><value>Student Dashboard</value></data>
+  <data name="Title.Pages.Student.MyApplications" xml:space="preserve"><value>My Applications</value></data>
+  <data name="Title.Pages.Student.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
+  <data name="Title.Pages.Student.Opportunities" xml:space="preserve"><value>Explore Opportunities</value></data>
+  <data name="Title.Pages.Student.OpportunityDetails" xml:space="preserve"><value>Opportunity Details</value></data>
+  <data name="Title.Pages.Student.Profile" xml:space="preserve"><value>My Profile</value></data>
+  <data name="Title.Pages.Student.Progress" xml:space="preserve"><value>My Progress &amp; Evaluation</value></data>
+  <data name="Title.Pages.Student.StudentCVPortfolio" xml:space="preserve"><value>Student CV &amp; Portfolio</value></data>
+  <data name="Value.ApplicationStatus.Accepted" xml:space="preserve"><value>Accepted</value></data>
+  <data name="Value.ApplicationStatus.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Value.ApplicationStatus.Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Value.ApplicationStatus.Withdrawn" xml:space="preserve"><value>Withdrawn</value></data>
+  <data name="Value.CompletionStatus.Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Value.CompletionStatus.AwaitingAcademicEvaluation" xml:space="preserve"><value>Awaiting academic evaluation</value></data>
+  <data name="Value.CompletionStatus.AwaitingCompanyEvaluation" xml:space="preserve"><value>Awaiting company evaluation</value></data>
+  <data name="Value.CompletionStatus.NotReady" xml:space="preserve"><value>Not ready</value></data>
+  <data name="Value.CompletionStatus.Rejected" xml:space="preserve"><value>Returned</value></data>
+  <data name="Value.CompletionStatus.UnderCoordinatorReview" xml:space="preserve"><value>Under coordinator review</value></data>
+  <data name="Value.ContactMessageStatus.New" xml:space="preserve"><value>New</value></data>
+  <data name="Value.ContactMessageStatus.Reviewed" xml:space="preserve"><value>Reviewed</value></data>
+  <data name="Value.HoursStatus.Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Value.HoursStatus.Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Value.HoursStatus.Reported" xml:space="preserve"><value>Reported</value></data>
+  <data name="Value.MeetingStatus.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Value.MeetingStatus.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Value.MeetingStatus.Scheduled" xml:space="preserve"><value>Scheduled</value></data>
+  <data name="Value.OpportunityStatus.Closed" xml:space="preserve"><value>Closed</value></data>
+  <data name="Value.OpportunityStatus.Draft" xml:space="preserve"><value>Draft</value></data>
+  <data name="Value.OpportunityStatus.Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Value.OpportunityType.Internship" xml:space="preserve"><value>Internship</value></data>
+  <data name="Value.PlacementStatus.Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Value.PlacementStatus.AwaitingCompletion" xml:space="preserve"><value>Awaiting completion</value></data>
+  <data name="Value.PlacementStatus.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Value.PlacementStatus.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Value.PlacementStatus.Confirmed" xml:space="preserve"><value>Confirmed</value></data>
+  <data name="Value.PlacementStatus.Offered" xml:space="preserve"><value>Offered</value></data>
+  <data name="Value.TaskStatus.Assigned" xml:space="preserve"><value>Assigned</value></data>
+  <data name="Value.TaskStatus.Graded" xml:space="preserve"><value>Graded</value></data>
+  <data name="Value.TaskStatus.Resubmitted" xml:space="preserve"><value>Resubmitted</value></data>
+  <data name="Value.TaskStatus.RevisionRequested" xml:space="preserve"><value>Revision requested</value></data>
+  <data name="Value.TaskStatus.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Value.TaskStatus.UnderReview" xml:space="preserve"><value>Under review</value></data>
+  <data name="Value.TrainingMode.Hybrid" xml:space="preserve"><value>Hybrid</value></data>
+  <data name="Value.TrainingMode.Onsite" xml:space="preserve"><value>On-site</value></data>
+  <data name="Value.TrainingMode.Remote" xml:space="preserve"><value>Remote</value></data>
+  <data name="WorkspaceChart.12Months" xml:space="preserve"><value>12 months</value></data>
+  <data name="WorkspaceChart.6Months" xml:space="preserve"><value>6 months</value></data>
+  <data name="WorkspaceChart.ActivityDataAndRecordDetails" xml:space="preserve"><value>Activity data and record details</value></data>
+  <data name="WorkspaceChart.ApprovalActivityRange" xml:space="preserve"><value>Approval activity range</value></data>
+  <data name="WorkspaceChart.AvailableApprovalEventsByMonthUTC" xml:space="preserve"><value>Available approval events by month, UTC</value></data>
+  <data name="WorkspaceChart.AvailableDatedRecordsCurrentCategoriesAre" xml:space="preserve"><value>Available dated records; current categories are a snapshot.</value></data>
+  <data name="WorkspaceChart.AvailableDatedRecordsOnly" xml:space="preserve"><value>, available dated records only</value></data>
+  <data name="WorkspaceChart.BreakdownData" xml:space="preserve"><value>Breakdown data</value></data>
+  <data name="WorkspaceChart.Category" xml:space="preserve"><value>Category</value></data>
+  <data name="WorkspaceChart.CategoryDataAndRecordDetails" xml:space="preserve"><value>Category data and record details</value></data>
+  <data name="WorkspaceChart.CloseDetails" xml:space="preserve"><value>Close details</value></data>
+  <data name="WorkspaceChart.CurrentSnapshot" xml:space="preserve"><value>, current snapshot</value></data>
+  <data name="WorkspaceChart.CurrentSnapshotIn" xml:space="preserve"><value>, current snapshot in</value></data>
+  <data name="WorkspaceChart.CurrentSnapshotLabel" xml:space="preserve"><value>Current snapshot</value></data>
+  <data name="WorkspaceChart.CurrentSnapshotMutuallyExclusiveCategories" xml:space="preserve"><value>Current snapshot · mutually exclusive categories</value></data>
+  <data name="WorkspaceChart.DatedRecordsOnly" xml:space="preserve"><value>Dated records only</value></data>
+  <data name="WorkspaceChart.Details" xml:space="preserve"><value>Details</value></data>
+  <data name="WorkspaceChart.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="WorkspaceChart.JavaScriptEnablesChartsRangeFilteringAnd" xml:space="preserve"><value>JavaScript enables charts, range filtering and drill-down. Current values and data tables above remain available.</value></data>
+  <data name="WorkspaceChart.Month" xml:space="preserve"><value>Month</value></data>
+  <data name="WorkspaceChart.Next" xml:space="preserve"><value>Next</value></data>
+  <data name="WorkspaceChart.NoMatchingRecordsInThisScope" xml:space="preserve"><value>No matching records in this scope.</value></data>
+  <data name="WorkspaceChart.PreparingBreakdown" xml:space="preserve"><value>Preparing breakdown…</value></data>
+  <data name="WorkspaceChart.PreparingCurrentCategories" xml:space="preserve"><value>Preparing current categories…</value></data>
+  <data name="WorkspaceChart.PreparingDatedActivity" xml:space="preserve"><value>Preparing dated activity…</value></data>
+  <data name="WorkspaceChart.Previous" xml:space="preserve"><value>Previous</value></data>
+  <data name="WorkspaceChart.SelectACategoryToInspectIts" xml:space="preserve"><value>Select a category to inspect its underlying authorized records. The range selector changes dated activity only; this breakdown shows current records.</value></data>
+  <data name="WorkspaceChart.ViewData" xml:space="preserve"><value>View data</value></data>
+  <data name="WorkspaceChart.ViewRecords" xml:space="preserve"><value>View records</value></data>
+  <data name="WorkspaceJourney.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="WorkspaceJourney.CloseJourneyDetails" xml:space="preserve"><value>Close journey details</value></data>
+  <data name="WorkspaceJourney.DetailsReflectTheCurrentServerRecord" xml:space="preserve"><value>Details reflect the current server record.</value></data>
+  <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>Journey details</value></data>
+  <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>Select a stage for details</value></data>
+  <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>Swipe through stages. Select one to view its details.</value></data>
+  <data name="Js.DashboardRefresh" xml:space="preserve"><value>Refresh overview</value></data>
+  <data name="Js.DashboardReady" xml:space="preserve"><value>Overview up to date</value></data>
+  <data name="Js.DashboardLoading" xml:space="preserve"><value>Loading your program overview</value></data>
+  <data name="Js.DashboardUnavailable" xml:space="preserve"><value>Overview unavailable</value></data>
+  <data name="Js.DashboardFull" xml:space="preserve"><value>Open full dashboard</value></data>
+  <data name="Js.DashboardFailed" xml:space="preserve"><value>Your overview could not be loaded.</value></data>
+  <data name="Js.DashboardFailedHelp" xml:space="preserve"><value>Check your connection and try again. Your records have not changed.</value></data>
+  <data name="Js.DashboardRetry" xml:space="preserve"><value>Try again</value></data>
+  <data name="Js.DashboardRefreshing" xml:space="preserve"><value>Refreshing your overview</value></data>
+  <data name="Js.DashboardLoadingProgram" xml:space="preserve"><value>Loading program overview</value></data>
+  <data name="Js.DashboardRefreshingProgram" xml:space="preserve"><value>Refreshing program overview</value></data>
+  <data name="Js.DashboardSlow" xml:space="preserve"><value>Still loading. Your connection is taking a little longer.</value></data>
+  <data name="Js.DashboardRefreshFailed" xml:space="preserve"><value>Refresh failed. Previous overview retained.</value></data>
+</root>

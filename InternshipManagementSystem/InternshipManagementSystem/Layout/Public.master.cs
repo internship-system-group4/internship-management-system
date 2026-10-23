@@ -11,7 +11,7 @@ namespace InternshipManagementSystem.Layout
         {
             get { return ResolveUrl(SessionHelper.Current == null ? Constants.Routes.Login : SessionHelper.Current.DashboardUrl); }
         }
-        protected string PortalActionText { get { return SessionHelper.Current == null ? "Log in" : "My dashboard"; } }
+        protected string PortalActionText { get { return SessionHelper.Current == null ? L.T("Shared.Portal.LogIn") : L.T("Shared.Portal.MyDashboard"); } }
         protected string NavigationAttributes(string path)
         {
             return string.Equals(Request.AppRelativeCurrentExecutionFilePath,path,StringComparison.OrdinalIgnoreCase) ? "aria-current=\"page\"" : "";

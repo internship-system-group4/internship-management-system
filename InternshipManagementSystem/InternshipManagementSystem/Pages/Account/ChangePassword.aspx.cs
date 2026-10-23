@@ -47,25 +47,25 @@ namespace InternshipManagementSystem.Pages.AccountArea
             // Check the input again on the server (JavaScript can be turned off)
             if (currentPassword == "" || newPassword == "" || confirmPassword == "")
             {
-                ShowError("Please fill in all fields.");
+                ShowError(L.T("Account.ChangePassword.PleaseFillInAllFields"));
                 return;
             }
 
             if (!Common.Validators.IsStrongEnoughPassword(newPassword))
             {
-                ShowError("The new password must be at least 6 characters.");
+                ShowError(L.T("Account.ChangePassword.TheNewPasswordMustBeAt"));
                 return;
             }
 
             if (newPassword != confirmPassword)
             {
-                ShowError("The new passwords do not match.");
+                ShowError(L.T("Account.ChangePassword.TheNewPasswordsDoNotMatch"));
                 return;
             }
 
             if (newPassword == currentPassword)
             {
-                ShowError("The new password must be different from the current password.");
+                ShowError(L.T("Account.ChangePassword.TheNewPasswordMustBeDifferent"));
                 return;
             }
 
@@ -77,7 +77,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 if (signIn.ErrorCode != null
                     && (signIn.ErrorCode.StartsWith("INVALID_PASSWORD") || signIn.ErrorCode.StartsWith("INVALID_LOGIN_CREDENTIALS")))
                 {
-                    ShowError("The current password is incorrect.");
+                    ShowError(L.T("Account.ChangePassword.TheCurrentPasswordIsIncorrect"));
                 }
                 else
                 {
@@ -101,8 +101,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
             }
             catch (FirebaseException)
             {
-                ShowError("Your password was changed, but your account could not be updated. "
-                    + "Please try again using your new password as the current password.");
+                ShowError(L.T("Account.ChangePassword.YourPasswordWasChangedButYour"));
                 return;
             }
 

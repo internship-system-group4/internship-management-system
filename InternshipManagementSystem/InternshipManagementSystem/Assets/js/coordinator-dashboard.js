@@ -2,6 +2,7 @@
    No fake waiting, data cache, alternate login, postback interception, or libraries. */
 (function () {
     'use strict';
+    function text(key, fallback) { return window.uimsT ? window.uimsT(key) : fallback; }
     var data = document.getElementById('dashboard-data');
     if (!data) return;
     var status = document.querySelector('[data-dashboard-status]');
@@ -21,15 +22,15 @@
         box.className = 'theme-alert dashboard-load-error';
         box.setAttribute('role', 'alert');
         var title = document.createElement('strong');
-        title.textContent = 'Your overview could not be loaded.';
+        title.textContent = text("DashboardFailed", "Your overview could not be loaded.");
         var text = document.createElement('p');
-        text.textContent = 'Check your connection and try again. Your records have not changed.';
+        text.textContent = text("DashboardFailedHelp", "Check your connection and try again. Your records have not changed.");
         var retry = document.createElement('button');
         retry.type = 'button'; retry.className = 'btn btn-brand btn-sm';
-        retry.dataset.dashboardRetry = 'true'; retry.textContent = 'Try again';
+        retry.dataset.dashboardRetry = 'true'; retry.textContent = text("DashboardRetry", "Try again");
         var full = document.createElement('a');
         full.className = 'theme-link'; full.href = 'Dashboard.aspx?dashboardView=full';
-        full.textContent = 'Open full dashboard';
+        full.textContent = text("DashboardFull", "Open full dashboard");
         var actions = document.createElement('div');
         actions.className = 'dashboard-error-actions'; actions.append(retry, full);
         box.append(title, text, actions);
@@ -40,13 +41,13 @@
         loading = true;
         var requestId = ++requestSequence;
         var restoreRefreshFocus = document.activeElement === refresh;
-        var hadContent = !!data.querySelector('.dashboard-stat[data-metric]');
-        var token = motion ? motion.begin(hadContent ? 'Refreshing program overview' : 'Loading program overview') : null;
-        state('loading', hadContent ? 'Refreshing your overview' : 'Loading your program overview');
+        var hadContent = !!data.querySelector('[data-reference-analytics], [data-metric]');
+        var token = motion ? motion.begin(hadContent ? text("DashboardRefreshingProgram", "Refreshing program overview") : text("DashboardLoadingProgram", "Loading program overview")) : null;
+        state('loading', hadContent ? text("DashboardRefreshing", "Refreshing your overview") : text("DashboardLoading", "Loading your program overview"));
         var requestController = new AbortController();
         controller = requestController;
         var timeout = setTimeout(function () { requestController.abort(); }, 25000);
-        slowTimer = setTimeout(function () { status.textContent = 'Still loading. Your connection is taking a little longer.'; }, 8000);
+        slowTimer = setTimeout(function () { status.textContent = text("DashboardSlow", "Still loading. Your connection is taking a little longer."); }, 8000);
         try {
             var url = new URL(location.href);
             url.hash = ''; url.searchParams.set('dashboardView', 'content');
@@ -70,7 +71,10 @@
                 return document.importNode(node, true);
             }));
             state(incomingState === 'ready' ? 'ready' : 'error',
-                incomingState === 'ready' ? 'Overview up to date' : 'Overview unavailable');
+                incomingState === 'ready' ? text("DashboardReady", "Overview up to date") : text("DashboardUnavailable", "Overview unavailable"));
+            if (window.UimsUI) window.UimsUI.refresh(data);
+            if (window.UimsWorkspace) window.UimsWorkspace.refresh(data);
+            if (window.UimsCharts) window.UimsCharts.refresh();
             if (motion && incomingState === 'ready') motion.animateDashboard(data);
             if (restoreFocus) {
                 var heading = data.querySelector('#overview-title') || data.querySelector('[role="alert"]');
@@ -83,7 +87,7 @@
                 data.querySelectorAll('.dashboard-load-error').forEach(function (node) { node.remove(); });
                 data.prepend(errorPanel());
             }
-            state('error', hadContent ? 'Refresh failed. Previous overview retained.' : 'Overview unavailable');
+            state('error', hadContent ? text("DashboardRefreshFailed", "Refresh failed. Previous overview retained.") : text("DashboardUnavailable", "Overview unavailable"));
             if (restoreFocus) data.querySelector('[data-dashboard-retry]').focus({ preventScroll: true });
         } finally {
             clearTimeout(timeout); clearTimeout(slowTimer);

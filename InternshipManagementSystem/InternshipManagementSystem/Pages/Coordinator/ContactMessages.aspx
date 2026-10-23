@@ -17,8 +17,8 @@
         .cm-page {
             --cm-navy: #092e68;
             --cm-blue: #164b84;
-            --cm-border: #d6e5f6;
-            color: var(--cm-navy);
+            --cm-border: var(--th-line-d6e5f6,#d6e5f6);
+            color: var(--ui-primary-text,var(--cm-navy));
             width: 100%;
             max-width: 1600px;
             margin: 0 auto;
@@ -39,11 +39,11 @@
             font-size: 28px;
             font-weight: 700;
             margin: 0 0 6px;
-            color: var(--cm-navy);
+            color: var(--ui-primary-text,var(--cm-navy));
         }
 
         .cm-page .page-subtitle {
-            color: #43669c;
+            color: var(--th-fg-43669c,#43669c);
             font-size: 15px;
             margin: 0;
         }
@@ -55,7 +55,7 @@
             align-items: center;
             gap: 18px;
             padding: 20px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border: 1px solid var(--cm-border);
             border-radius: 10px;
             min-height: 110px;
@@ -73,36 +73,36 @@
         }
 
         .cm-page .summary-icon.total {
-            background: #e4f0ff;
-            color: #1254a1;
+            background: var(--th-bg-e4f0ff,#e4f0ff);
+            color: var(--th-fg-1254a1,#1254a1);
         }
 
         .cm-page .summary-icon.new {
-            background: #fff1d2;
+            background: var(--th-bg-fff1d2,#fff1d2);
             color: #f0a000;
         }
 
         .cm-page .summary-icon.reviewed {
-            background: #def8ed;
-            color: #009e73;
+            background: var(--th-bg-def8ed,#def8ed);
+            color: var(--th-fg-009e73,#009e73);
         }
 
         .cm-page .summary-label {
             font-size: 14px;
             font-weight: 600;
-            color: #294d83;
+            color: var(--th-fg-294d83,#294d83);
         }
 
         .cm-page .summary-value {
             font-size: 30px;
             font-weight: 700;
-            color: var(--cm-navy);
+            color: var(--ui-primary-text,var(--cm-navy));
         }
 
         /* Panels */
 
         .cm-page .content-panel {
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border: 1px solid var(--cm-border);
             border-radius: 10px;
             padding: 20px;
@@ -113,7 +113,7 @@
             font-size: 19px;
             font-weight: 700;
             margin-bottom: 15px;
-            color: var(--cm-navy);
+            color: var(--ui-primary-text,var(--cm-navy));
         }
 
         /* Search */
@@ -122,25 +122,25 @@
             font-weight: 600;
             font-size: 13px;
             margin-bottom: 7px;
-            color: #294d83;
+            color: var(--th-fg-294d83,#294d83);
         }
 
         .cm-page .form-control,
         .cm-page .form-select,
         .cm-page .input-group-text {
             min-height: 44px;
-            border-color: #ccddf2;
+            border-color: var(--th-line-ccddf2,#ccddf2);
             font-size: 13px;
         }
 
         .cm-page .input-group-text {
-            background: #fff;
-            color: #456a9e;
+            background: var(--ui-surface,#fff);
+            color: var(--th-fg-456a9e,#456a9e);
         }
 
         .cm-page .btn-main {
-            background: #104784;
-            border: 1px solid #104784;
+            background: var(--th-bg-104784,#104784);
+            border: 1px solid var(--th-line-104784,#104784);
             color: #fff;
             min-height: 44px;
             font-size: 13px;
@@ -148,7 +148,7 @@
         }
 
         .cm-page .btn-main:hover {
-            background: #08346a;
+            background: var(--th-bg-08346a,#08346a);
             color: #fff;
         }
 
@@ -162,31 +162,31 @@
 
         .cm-page .messages-table .table {
             margin-bottom: 0;
-            --bs-table-color: #173d76;
+            --bs-table-color: var(--th-fg-173d76,#173d76);
         }
 
         .cm-page .messages-table th {
-            background: #edf5fd;
+            background: var(--th-bg-edf5fd,#edf5fd);
             font-size: 13px;
             font-weight: 700;
             padding: 14px;
             white-space: nowrap;
-            color: #173d76;
+            color: var(--th-fg-173d76,#173d76);
         }
 
         .cm-page .messages-table td {
             padding: 13px 14px;
             font-size: 13px;
-            border-color: #e4edf8;
+            border-color: var(--th-line-e4edf8,#e4edf8);
             vertical-align: middle;
         }
 
         .cm-page .messages-table tr:hover td {
-            background: #f3f9ff;
+            background: var(--th-bg-f3f9ff,#f3f9ff);
         }
 
         .cm-page .email-text {
-            color: #5272a1;
+            color: var(--th-fg-5272a1,#5272a1);
             font-size: 12px;
         }
 
@@ -201,23 +201,23 @@
         }
 
         .cm-page .status-badge.new {
-            color: #a46b00;
-            background: #fff0cc;
+            color: var(--th-fg-a46b00,#a46b00);
+            background: var(--th-bg-fff0cc,#fff0cc);
         }
 
         .cm-page .status-badge.reviewed {
-            color: #008b64;
-            background: #def7e9;
+            color: var(--th-fg-008b64,#008b64);
+            background: var(--th-bg-def7e9,#def7e9);
         }
 
         /* View button */
 
         .cm-page .action-button {
             display: inline-block;
-            border: 1px solid #cfe0f6;
+            border: 1px solid var(--th-line-cfe0f6,#cfe0f6);
             border-radius: 7px;
-            background: #f5faff;
-            color: #164b84;
+            background: var(--th-bg-f5faff,#f5faff);
+            color: var(--th-fg-164b84,#164b84);
             padding: 7px 16px;
             text-decoration: none;
             font-size: 12px;
@@ -225,8 +225,8 @@
         }
 
         .cm-page .action-button:hover {
-            background: #e3f0ff;
-            color: #092e68;
+            background: var(--th-bg-e3f0ff,#e3f0ff);
+            color: var(--th-fg-092e68,#092e68);
         }
 
         /* Message details */
@@ -245,14 +245,14 @@
         }
 
         .cm-page .details-row:nth-child(odd) {
-            background: #f1f7fd;
+            background: var(--th-bg-f1f7fd,#f1f7fd);
         }
 
         .cm-page .details-label {
             width: 90px;
             flex-shrink: 0;
             font-weight: 700;
-            color: #173d76;
+            color: var(--th-fg-173d76,#173d76);
         }
 
         .cm-page .details-value {
@@ -262,7 +262,7 @@
 
         .cm-page .message-box {
             min-height: 140px;
-            background: #f2f7fd;
+            background: var(--th-bg-f2f7fd,#f2f7fd);
             border: 1px solid var(--cm-border);
             border-radius: 8px;
             padding: 18px;
@@ -272,13 +272,13 @@
         }
 
         .cm-page .btn-reviewed {
-            background: #104784;
-            border: 1px solid #104784;
+            background: var(--th-bg-104784,#104784);
+            border: 1px solid var(--th-line-104784,#104784);
             color: #fff;
         }
 
         .cm-page .btn-reviewed:hover {
-            background: #08346a;
+            background: var(--th-bg-08346a,#08346a);
             color: #fff;
         }
 
@@ -311,7 +311,7 @@
 
         #messageModal .message-modal-box {
             position: relative;
-            background: #ffffff;
+            background: var(--ui-surface,#ffffff);
             width: 100%;
             max-width: 950px;
             max-height: 90vh;
@@ -336,7 +336,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #d6e5f6;
+            border-bottom: 1px solid var(--th-line-d6e5f6,#d6e5f6);
             padding-bottom: 15px;
             margin-bottom: 22px;
         }
@@ -344,14 +344,14 @@
         #messageModal .popup-title {
             font-size: 22px;
             font-weight: 700;
-            color: #092e68;
+            color: var(--th-fg-092e68,#092e68);
             margin: 0;
         }
 
         #messageModal .popup-close {
             border: none;
-            background: #edf5fd;
-            color: #092e68;
+            background: var(--th-bg-edf5fd,#edf5fd);
+            color: var(--th-fg-092e68,#092e68);
             border-radius: 8px;
             width: 36px;
             height: 36px;
@@ -360,7 +360,7 @@
         }
 
         #messageModal .popup-close:hover {
-            background: #dceafa;
+            background: var(--th-bg-dceafa,#dceafa);
         }
 
         /* Responsive */
@@ -416,12 +416,11 @@
         <div class="page-heading">
 
             <h2 class="page-title">
-                Contact Messages
+                <%: L.T("Coordinator.ContactMessages.ContactMessages") %>
             </h2>
 
             <p class="page-subtitle">
-                View and manage messages submitted through
-                the Contact Us form.
+                <%: L.T("Coordinator.ContactMessages.ViewAndManageMessagesSubmittedThrough") %>
             </p>
 
         </div>
@@ -447,7 +446,7 @@
 
                     <div>
                         <div class="summary-label">
-                            Total Messages
+                            <%: L.T("Coordinator.ContactMessages.TotalMessages") %>
                         </div>
 
                         <div class="summary-value">
@@ -468,7 +467,7 @@
 
                     <div>
                         <div class="summary-label">
-                            New Messages
+                            <%: L.T("Coordinator.ContactMessages.NewMessages") %>
                         </div>
 
                         <div class="summary-value">
@@ -489,7 +488,7 @@
 
                     <div>
                         <div class="summary-label">
-                            Reviewed Messages
+                            <%: L.T("Coordinator.ContactMessages.ReviewedMessages") %>
                         </div>
 
                         <div class="summary-value">
@@ -514,7 +513,7 @@
 
                     <label class="form-label"
                         for="<%= txtSearch.ClientID %>">
-                        Search
+                        <%: L.T("Coordinator.ContactMessages.Search") %>
                     </label>
 
                     <div class="input-group">
@@ -526,7 +525,7 @@
                         <asp:TextBox ID="txtSearch"
                             runat="server"
                             CssClass="form-control"
-                            placeholder="Search by name, email, subject or message..." />
+                            placeholder="<%$ Resources:Coordinator, ContactMessages.SearchByNameEmailSubjectOr %>" />
 
                     </div>
 
@@ -536,24 +535,18 @@
 
                     <label class="form-label"
                         for="<%= ddlStatus.ClientID %>">
-                        Status
+                        <%: L.T("Coordinator.ContactMessages.Status") %>
                     </label>
 
                     <asp:DropDownList ID="ddlStatus"
                         runat="server"
                         CssClass="form-select">
 
-                        <asp:ListItem Value="All">
-                            All Messages
-                        </asp:ListItem>
+                        <asp:ListItem Value="All" Text="<%$ Resources:Coordinator, ContactMessages.AllMessages %>" />
 
-                        <asp:ListItem Value="New">
-                            New
-                        </asp:ListItem>
+                        <asp:ListItem Value="New" Text="<%$ Resources:Shared, Value.ContactMessageStatus.New %>" />
 
-                        <asp:ListItem Value="Reviewed">
-                            Reviewed
-                        </asp:ListItem>
+                        <asp:ListItem Value="Reviewed" Text="<%$ Resources:Shared, Value.ContactMessageStatus.Reviewed %>" />
 
                     </asp:DropDownList>
 
@@ -563,7 +556,7 @@
 
                     <asp:Button ID="btnSearch"
                         runat="server"
-                        Text="Search"
+                        Text="<%$ Resources:Coordinator, ContactMessages.Search %>"
                         CssClass="btn btn-main w-100"
                         OnClick="btnSearch_Click" />
 
@@ -579,7 +572,7 @@
         <div class="content-panel">
 
             <h3 class="section-title">
-                Contact Messages
+                <%: L.T("Coordinator.ContactMessages.ContactMessages") %>
             </h3>
 
             <div class="table-responsive messages-table">
@@ -590,18 +583,18 @@
                     CssClass="table align-middle"
                     GridLines="None"
                     ShowHeaderWhenEmpty="true"
-                    EmptyDataText="No messages found."
+                    EmptyDataText="<%$ Resources:Coordinator, ContactMessages.NoMessagesFound %>"
                     OnRowCommand="gvMessages_RowCommand">
 
                     <Columns>
 
-                        <asp:TemplateField HeaderText="Name">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Name %>">
                             <ItemTemplate>
                                 <%#: Eval("Name") %>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Email">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Email %>">
                             <ItemTemplate>
                                 <span class="email-text">
                                     <%#: Eval("Email") %>
@@ -609,7 +602,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Subject">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Subject %>">
                             <ItemTemplate>
                                 <%#: Eval("Subject") %>
                             </ItemTemplate>
@@ -617,10 +610,10 @@
 
                         <asp:BoundField
                             DataField="FormattedDate"
-                            HeaderText="Date"
+                            HeaderText="<%$ Resources:Coordinator, ContactMessages.Date %>"
                             HtmlEncode="true" />
 
-                        <asp:TemplateField HeaderText="Status">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Status %>">
                             <ItemTemplate>
                                 <span class='<%# Convert.ToString(Eval("Status")) == "Reviewed" ? "status-badge reviewed" : "status-badge new" %>'>
                                     <%#: Eval("Status") %>
@@ -628,7 +621,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Actions">
+                        <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Actions %>">
                             <ItemTemplate>
 
                                 <asp:LinkButton
@@ -637,9 +630,9 @@
                                     CssClass="action-button"
                                     CommandName="Details"
                                     CommandArgument='<%# Eval("Id") %>'
-                                    ToolTip="View Message Details"
+                                    ToolTip="<%$ Resources:Coordinator, ContactMessages.ViewMessageDetails %>"
                                     CausesValidation="false">
-                                   Review
+                                   <%# L.T("Coordinator.ContactMessages.ReviewAction") %>
                                 </asp:LinkButton>
 
                             </ItemTemplate>
@@ -660,7 +653,7 @@
             class="message-modal-overlay"
             role="dialog"
             aria-modal="true"
-            aria-label="Message Details">
+            aria-label="<%: L.T("Coordinator.ContactMessages.MessageDetails") %>">
 
             <div class="message-modal-box">
 
@@ -675,13 +668,13 @@
 
                         <h3 class="popup-title">
                             <i class="bi bi-envelope-open me-2"></i>
-                            Message Details
+                            <%: L.T("Coordinator.ContactMessages.MessageDetails") %>
                         </h3>
 
                         <button type="button"
                             class="popup-close"
                             onclick="closeMessageModal()"
-                            aria-label="Close">
+                            aria-label="<%: L.T("Coordinator.ContactMessages.Close") %>">
                             &times;
                         </button>
 
@@ -695,7 +688,7 @@
 
                             <h3 class="section-title">
                                 <i class="bi bi-person-lines-fill me-2"></i>
-                                Sender Information
+                                <%: L.T("Coordinator.ContactMessages.SenderInformation") %>
                             </h3>
 
                             <div class="details-info">
@@ -703,7 +696,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Name:
+                                        <%: L.T("Coordinator.ContactMessages.Name2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -716,7 +709,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Email:
+                                        <%: L.T("Coordinator.ContactMessages.Email2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -729,7 +722,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Subject:
+                                        <%: L.T("Coordinator.ContactMessages.Subject2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -742,7 +735,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Date:
+                                        <%: L.T("Coordinator.ContactMessages.Date2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -755,7 +748,7 @@
                                 <div class="details-row">
 
                                     <span class="details-label">
-                                        Status:
+                                        <%: L.T("Coordinator.ContactMessages.Status2") %>
                                     </span>
 
                                     <span class="details-value">
@@ -776,7 +769,7 @@
 
                             <h3 class="section-title">
                                 <i class="bi bi-file-text me-2"></i>
-                                Message Content
+                                <%: L.T("Coordinator.ContactMessages.MessageContent") %>
                             </h3>
 
                             <div class="message-box">
@@ -793,13 +786,13 @@
 
                                 <asp:Button ID="btnMarkReviewed"
                                     runat="server"
-                                    Text="Mark as Reviewed"
+                                    Text="<%$ Resources:Coordinator, ContactMessages.MarkAsReviewed %>"
                                     CssClass="btn btn-reviewed"
-                                    OnClick="btnMarkReviewed_Click" />
+                                    OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="Updating…"/>
 
                                 <asp:Button ID="btnClose"
                                     runat="server"
-                                    Text="Close"
+                                    Text="<%$ Resources:Coordinator, ContactMessages.Close %>"
                                     CssClass="btn btn-outline-secondary"
                                     OnClick="btnClose_Click"
                                     CausesValidation="false" />

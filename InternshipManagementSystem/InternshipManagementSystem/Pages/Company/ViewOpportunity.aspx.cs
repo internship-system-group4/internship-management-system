@@ -25,7 +25,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     CurrentSupervisor.CompanyId))
             {
                 ErrorMessage =
-                    "Your account is not linked to a company.";
+                    L.T("Company.ViewOpportunity.YourAccountIsNotLinkedTo");
 
                 return;
             }
@@ -39,7 +39,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     new char[] { '.', '#', '$', '[', ']', '/' }
                 ) >= 0)
             {
-                ErrorMessage = "Invalid opportunity ID.";
+                ErrorMessage = L.T("Company.ViewOpportunity.InvalidOpportunityID");
                 return;
             }
 
@@ -55,7 +55,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 if (string.IsNullOrWhiteSpace(json) ||
                     json.Trim() == "null")
                 {
-                    ErrorMessage = "Opportunity not found.";
+                    ErrorMessage = L.T("Company.ViewOpportunity.OpportunityNotFound");
                     return;
                 }
 
@@ -72,7 +72,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         CurrentSupervisor.CompanyId)
                 {
                     ErrorMessage =
-                        "Opportunity not found or access denied.";
+                        L.T("Company.ViewOpportunity.OpportunityNotFoundOrAccessDenied");
 
                     return;
                 }
@@ -91,7 +91,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     "View opportunity: " + ex);
 
                 ErrorMessage =
-                    "Unable to load opportunity details.";
+                    L.T("Company.ViewOpportunity.UnableToLoadOpportunityDetails");
             }
         }
 
@@ -99,7 +99,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected static string DateText(long value)
         {
             if (value <= 0)
-                return "Not specified";
+                return L.T("Company.ViewOpportunity.NotSpecified");
 
             try
             {
@@ -110,7 +110,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (ArgumentOutOfRangeException)
             {
-                return "Not specified";
+                return L.T("Company.ViewOpportunity.NotSpecified");
             }
         }
 
@@ -118,7 +118,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected static string Display(string value)
         {
             return string.IsNullOrWhiteSpace(value)
-                ? "Not specified"
+                ? L.T("Company.ViewOpportunity.NotSpecified")
                 : value;
         }
     }

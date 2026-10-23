@@ -25,7 +25,7 @@
             max-width: 820px;
             max-height: calc(100vh - 32px);
             overflow-y: auto;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border-radius: 16px;
             padding: 26px;
             box-shadow: 0 24px 65px rgba(0, 0, 0, .24);
@@ -33,8 +33,8 @@
 
         .review-summary {
             padding: 16px;
-            background: #f8fafc;
-            border: 1px solid #e5e7eb;
+            background: var(--th-bg-f8fafc,#f8fafc);
+            border: 1px solid var(--ui-border,#e5e7eb);
             border-radius: 10px;
         }
 
@@ -49,7 +49,7 @@
             flex-wrap: wrap;
             gap: 8px;
             padding: 6px;
-            background: #f3f4f6;
+            background: var(--ui-neutral-soft,#f3f4f6);
             border-radius: 12px;
             margin: 20px 0;
         }
@@ -63,18 +63,18 @@
             text-align: center;
             font-weight: 600;
             cursor: pointer;
-            color: #475569;
+            color: var(--ui-muted,#475569);
         }
 
         .review-tab-buttons label:hover {
-            background: #e7ebef;
+            background: var(--ui-neutral-soft,#e7ebef);
         }
 
         #reviewTabDetails:checked ~ .review-tab-buttons label[for="reviewTabDetails"],
         #reviewTabGrade:checked ~ .review-tab-buttons label[for="reviewTabGrade"],
         #reviewTabRevision:checked ~ .review-tab-buttons label[for="reviewTabRevision"] {
-            background: #fff;
-            color: #0b7a75;
+            background: var(--ui-surface,#fff);
+            color: var(--ui-primary-text,#0b7a75);
             box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
         }
 
@@ -310,7 +310,7 @@
                         runat="server"
                         Text="Save Grade"
                         CssClass="btn btn-brand"
-                        OnClick="btnSaveGrade_Click" />
+                        OnClick="btnSaveGrade_Click" data-ui-action="save" data-loading-label="Saving…" />
                 </div>
 
                 <%-- التبويب الثالث: طلب إعادة التسليم --%>
@@ -340,7 +340,7 @@
                         runat="server"
                         Text="Send Revision Request"
                         CssClass="btn btn-brand"
-                        OnClick="btnRequestRevision_Click" />
+                        OnClick="btnRequestRevision_Click" data-ui-action="save" data-loading-label="Sending…" />
                 </div>
 
             </div>

@@ -33,6 +33,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
         {
             public string Key { get; set; }
             public string Seat { get; set; }
+            public string Character { get; set; }
             public string Name { get; set; }
             public string Role { get; set; }
             public string Bio { get; set; }
@@ -69,6 +70,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
                     while (!used.Add(candidate)) candidate = key + "-" + n++;
                     member.Key = candidate;
                     member.Seat = ValidSeat(member.Seat);
+                    member.Character = member.Character == "male" || member.Character == "female" ? member.Character : null;
                 }
                 return members;
             }
@@ -129,7 +131,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
         // Escaped so the JSON can sit inside a <script type="application/json"> block.
         protected string TeamJson()
         {
-            var data = Members.Select(m => new { key = m.Key, seat = m.Seat, name = m.Name, role = m.Role });
+            var data = Members.Select(m => new { key = m.Key, seat = m.Seat, character = m.Character, name = m.Name, role = m.Role });
             return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(data)
                 .Replace("<", "\\u003c").Replace(">", "\\u003e").Replace("&", "\\u0026");
         }

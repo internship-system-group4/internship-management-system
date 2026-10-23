@@ -1,48 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using InternshipManagementSystem.Models;
-using InternshipManagementSystem.Security;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
-
+using InternshipManagementSystem.Security;
 namespace InternshipManagementSystem.Pages.Academic
 {
-    // Inherit from AcademicPage to secure this page
-    public partial class Dashboard : AcademicPage
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                LoadDashboardData();
-            }
-        }
-
-        private void LoadDashboardData()
-        {
-            // 1. Display the currently logged-in supervisor's full name
-            litSupervisorName.Text = CurrentSupervisor.FullName;
-
-            // 2. Fetch students assigned to this supervisor
-            UserRepository userRepo = new UserRepository();
-            List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
-
-            // 3. Calculate and display statistics
-            litTotalStudents.Text = myStudents.Count.ToString();
-
-            int completedCount = myStudents.Count(s => s.HoursProgressPercent >= 100);
-            litCompletedStudents.Text = completedCount.ToString();
-
-            // 4. Bind the student list to the HTML Repeater
-            if (myStudents.Count > 0)
-            {
-                rptStudents.DataSource = myStudents;
-                rptStudents.DataBind();
-            }
-            else
-            {
-                litNoData.Visible = true;
-            }
-        }
-    }
+ public partial class Dashboard : AcademicPage
+ {
+  protected WorkspaceAcademicData Workspace;protected string LoadError;
+  protected void Page_Load(object sender,EventArgs e)
+  {
+   litSupervisorName.Text=System.Web.HttpUtility.HtmlEncode(CurrentSupervisor.FullName);litTotalStudents.Text=litCompletedStudents.Text="—";
+   try {Workspace=new WorkspaceDashboardRepository().LoadAcademic(CurrentSupervisor.Id);Journey.Model=Workspace.Journey;Charts.Model=WorkspaceChartFactory.Academic(Workspace);litTotalStudents.Text=Workspace.Students.Count.ToString();litCompletedStudents.Text=Workspace.HoursMet.ToString();rptStudents.DataSource=Workspace.Students;rptStudents.DataBind();litNoData.Visible=Workspace.Students.Count==0;}
+   catch(Exception ex){System.Diagnostics.Trace.TraceError("Academic workspace: "+ex.Message);LoadError=L.T("Academic.Dashboard.WeCouldNotLoadYourAssigned");}
+  }
+ }
 }

@@ -31,13 +31,13 @@ namespace InternshipManagementSystem.Pages.AccountArea
             // Check the input again on the server (JavaScript can be turned off)
             if (email == "")
             {
-                ShowMessage("Please enter your email address.", false);
+                ShowMessage(L.T("Account.ForgotPassword.PleaseEnterYourEmailAddress"), false);
                 return;
             }
 
             if (!Common.Validators.IsEmail(email))
             {
-                ShowMessage("Please enter a valid email address.", false);
+                ShowMessage(L.T("Account.ForgotPassword.PleaseEnterAValidEmailAddress"), false);
                 return;
             }
 
@@ -47,8 +47,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
             {
                 // Same message for every email, so nobody can find out
                 // which addresses have an account.
-                ShowMessage("If an account exists for this email, a password reset link has been sent. "
-                    + "Please check your inbox and spam folder.", true);
+                ShowMessage(L.T("Account.ForgotPassword.IfAnAccountExistsForThis"), true);
                 txtEmail.Text = "";
             }
             else

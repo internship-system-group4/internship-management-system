@@ -94,12 +94,13 @@ namespace InternshipManagementSystem.Pages.AccountArea
             try
             {
                 new NotificationRepository().MarkAllRead(CurrentUser.Id);
-                ShowMessage("All notifications are marked as read.");
+                ShowMessage(L.T("Account.Notifications.AllNotificationsAreMarkedAsRead"));
+                lblMessage.Attributes["data-ui-toast"] = "true";
             }
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceWarning("Could not mark notifications read: " + ex.Message);
-                ShowMessage("Could not update notifications. Please try again.");
+                ShowMessage(L.T("Account.Notifications.CouldNotUpdateNotificationsPleaseTry"));
             }
         }
 
@@ -113,7 +114,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
             {
                 System.Diagnostics.Trace.TraceWarning("Could not load notifications: " + ex.Message);
                 Entries = new List<Notification>();
-                ShowMessage("Notifications are unavailable right now.");
+                ShowMessage(L.T("Account.Notifications.NotificationsAreUnavailableRightNow"));
             }
             UnreadCount = Entries.Count(n => !n.IsRead);
             btnMarkAllRead.Visible = UnreadCount > 0;
@@ -121,6 +122,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
         private void ShowMessage(string text)
         {
+            lblMessage.Attributes.Remove("data-ui-toast");
             lblMessage.Text = HttpUtility.HtmlEncode(text);
             lblMessage.Visible = true;
         }

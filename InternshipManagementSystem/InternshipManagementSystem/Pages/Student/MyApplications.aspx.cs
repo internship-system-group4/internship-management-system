@@ -19,7 +19,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             var message = Session["OfferConfirmationNotice"] as string;
             Session.Remove("OfferConfirmationNotice");
             if (Session["ApplicationSubmitted"] is bool && (bool)Session["ApplicationSubmitted"])
-                message = "Application submitted. Your status is Pending and the company can now review it.";
+                message = L.T("Student.MyApplications.ApplicationSubmittedYourStatusIsPending");
             Session.Remove("ApplicationSubmitted");
             NoticeText.Text = message;
             NoticePanel.Visible = !string.IsNullOrEmpty(message);
@@ -37,8 +37,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 ApplicationRepeater.DataBind();
                 EmptyPanel.Visible = applications.Count == 0;
             }
-            catch (FirebaseException) { ShowError("We could not load applications. Refresh to try again."); }
-            catch (InvalidOperationException) { ShowError("The application service is not configured. Contact the coordinator."); }
+            catch (FirebaseException) { ShowError(L.T("Student.MyApplications.WeCouldNotLoadApplicationsRefresh")); }
+            catch (InvalidOperationException) { ShowError(L.T("Student.MyApplications.TheApplicationServiceIsNotConfigured")); }
         }
         protected bool CanConfirm(object item)
         {
@@ -64,13 +64,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     throw new InvalidOperationException("Confirm that you understand you can choose only one internship.");
                 var result = new PlacementRepository().ConfirmAcceptedOffer(CurrentStudent, Convert.ToString(e.CommandArgument));
                 Session["OfferConfirmationNotice"] = result.ApplicationSyncPending
-                    ? "Your internship is confirmed and saved. The application flag still needs syncing; use Sync confirmation below."
-                    : "Internship confirmed. This is your selected placement; other offers cannot be confirmed.";
+                    ? L.T("Student.MyApplications.YourInternshipIsConfirmedAndSaved")
+                    : L.T("Student.MyApplications.InternshipConfirmedThisIsYourSelected");
                 Response.Redirect("MyApplications.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }
             catch (InvalidOperationException ex) { ShowError(ex.Message); }
-            catch (FirebaseException) { ShowError("We could not confirm the result. Refresh to check your placement before trying again."); }
+            catch (FirebaseException) { ShowError(L.T("Student.MyApplications.WeCouldNotConfirmTheResult")); }
         }
         private void ShowError(string message) { ErrorPanel.Visible = true; ErrorText.Text = message; }
     }

@@ -10,9 +10,9 @@
    TODO(Nada, card N01 + Suja, card X01): replace these four values with the
    assigned university's real colours, then everything below follows. */
 :root {
-    --brand: #0f4c81;
-    --brand-dark: #0a3457;
-    --brand-light: #e8f0f7;
+    --brand: var(--ui-primary);
+    --brand-dark: var(--ui-primary-hover);
+    --brand-light: var(--ui-primary-soft);
     --accent: #c8a349;
 
     --ink: #1d2733;
@@ -41,7 +41,7 @@ body {
 
 .uims-navbar .navbar-brand {
     font-weight: 700;
-    color: var(--brand);
+    color: var(--brand-text,var(--brand));
 }
 
 .uims-navbar .nav-link {
@@ -50,7 +50,7 @@ body {
 }
 
 .uims-navbar .nav-link:hover {
-    color: var(--brand);
+    color: var(--brand-text,var(--brand));
 }
 
 .btn-brand {
@@ -124,14 +124,14 @@ body {
     padding: .6rem 1.25rem;
     color: #cfddea;
     text-decoration: none;
-    border-left: 3px solid transparent;
+    border-inline-start: 3px solid transparent;
     font-size: .94rem;
 }
 
 .uims-side-link:hover {
     background: rgba(255, 255, 255, .07);
     color: #fff;
-    border-left-color: var(--accent);
+    border-inline-start-color: var(--accent);
 }
 
 .uims-content {
@@ -164,7 +164,7 @@ body {
 }
 
 .uims-user-meta {
-    text-align: right;
+    text-align: end;
     line-height: 1.2;
 }
 
@@ -204,7 +204,7 @@ body {
 .uims-table td {
     padding: .65rem .75rem;
     border-bottom: 1px solid var(--line);
-    text-align: left;
+    text-align: start;
     font-size: .92rem;
 }
 
@@ -225,16 +225,16 @@ body {
     font-weight: 600;
 }
 
-.uims-pill-pending { background: #fff4e0; color: #8a5a00; }
-.uims-pill-accepted { background: #e3f6ea; color: #1b6b3a; }
-.uims-pill-rejected { background: #fdeaea; color: #9b1c1c; }
-.uims-pill-info { background: var(--brand-light); color: var(--brand-dark); }
+.uims-pill-pending { background: var(--th-bg-fff4e0,#fff4e0); color: var(--th-fg-8a5a00,#8a5a00); }
+.uims-pill-accepted { background: var(--th-bg-e3f6ea,#e3f6ea); color: var(--th-fg-1b6b3a,#1b6b3a); }
+.uims-pill-rejected { background: var(--th-bg-fdeaea,#fdeaea); color: var(--th-fg-9b1c1c,#9b1c1c); }
+.uims-pill-info { background: var(--brand-light); color: var(--brand-text,var(--brand-dark)); }
 
 /* ---- the placeholder blocks in the page stubs -------------------------
    Delete this rule once no stub is left. */
 .uims-stub {
     background: var(--surface);
-    border: 1px dashed #c3ccd6;
+    border: 1px dashed var(--th-line-c3ccd6,#c3ccd6);
     border-radius: var(--radius);
     padding: 1.75rem;
     max-width: 760px;
@@ -243,7 +243,7 @@ body {
 .uims-stub-badge {
     display: inline-block;
     background: var(--brand-light);
-    color: var(--brand-dark);
+    color: var(--brand-text,var(--brand-dark));
     border-radius: 999px;
     padding: .2rem .7rem;
     font-size: .76rem;
@@ -274,15 +274,10 @@ body {
     .uims-shell { flex-direction: column; }
     .uims-sidebar { width: 100%; flex: 0 0 auto; }
     .uims-side-nav { display: flex; flex-wrap: wrap; }
-    .uims-side-link { border-left: 0; border-bottom: 3px solid transparent; }
+    .uims-side-link { border-inline-start: 0; border-bottom: 3px solid transparent; }
 }
 
 /* ---- Arabic / RTL ----------------------------------------------------
-   If the team decides to present the UI in Arabic, set lang="ar" dir="rtl"
-   on the <html> element in the master pages and add the Bootstrap RTL
-   stylesheet instead of the default one. These rules cover the custom parts. */
-[dir="rtl"] .uims-side-link { border-left: 0; border-right: 3px solid transparent; }
-[dir="rtl"] .uims-side-link:hover { border-right-color: var(--accent); }
-[dir="rtl"] .uims-table th,
-[dir="rtl"] .uims-table td { text-align: right; }
-[dir="rtl"] .uims-user-meta { text-align: left; }
+   Arabic sets lang="ar" dir="rtl" on <html> and loads Bootstrap's RTL build (see the masters). Layout uses logical
+   properties (margin-inline-start, text-align:start, ...), so it mirrors without per-rule overrides here; the few
+   direction-specific rules live in Assets/css/i18n.css. */

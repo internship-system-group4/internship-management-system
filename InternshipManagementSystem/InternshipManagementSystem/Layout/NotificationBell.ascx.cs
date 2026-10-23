@@ -74,7 +74,7 @@ namespace InternshipManagementSystem.Layout
         {
             if (createdAt <= 0) return "";
             TimeSpan age = TimeSpan.FromMilliseconds(Math.Max(0, Time.NowMs() - createdAt));
-            if (age.TotalMinutes < 1) return "Just now";
+            if (age.TotalMinutes < 1) return L.T("Shared.NotificationBell.JustNow");
             if (age.TotalHours < 1) return (int)age.TotalMinutes + " min ago";
             if (age.TotalDays < 1) return (int)age.TotalHours + " h ago";
             if (age.TotalDays < 2) return "Yesterday";

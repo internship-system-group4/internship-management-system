@@ -14,7 +14,7 @@
 .cv-page {
     max-width: 1080px;
     margin: 0 auto;
-    color: #20314b;
+    color: var(--th-fg-20314b,#20314b);
 }
 
 .cv-heading {
@@ -28,13 +28,13 @@
 }
 
 .cv-muted {
-    color: #64748b;
+    color: var(--th-fg-64748b,#64748b);
     line-height: 1.7;
 }
 
 .cv-panel {
-    background: #fff;
-    border: 1px solid #e0e6ee;
+    background: var(--ui-surface,#fff);
+    border: 1px solid var(--th-line-e0e6ee,#e0e6ee);
     border-radius: 15px;
     padding: 25px;
     margin-bottom: 20px;
@@ -64,24 +64,24 @@
 
 .cv-input {
     width: 100%;
-    border: 1px solid #cbd5e1;
+    border: 1px solid var(--th-line-cbd5e1,#cbd5e1);
     border-radius: 9px;
     padding: 12px;
-    background: white;
-    color: #20314b;
+    background: var(--ui-surface,#ffffff);
+    color: var(--th-fg-20314b,#20314b);
 }
 
 .cv-help {
     display: block;
-    color: #718096;
+    color: var(--th-fg-718096,#718096);
     font-size: .85rem;
     margin-top: 7px;
 }
 
 .cv-upload {
-    border: 2px dashed #cbd8e7;
+    border: 2px dashed var(--th-line-cbd8e7,#cbd8e7);
     border-radius: 12px;
-    background: #f8fbff;
+    background: var(--th-bg-f8fbff,#f8fbff);
     padding: 20px;
 }
 
@@ -90,7 +90,7 @@
     padding: 12px 20px;
     border: 0;
     border-radius: 9px;
-    background: #285aa0;
+    background: var(--th-bg-285aa0,#285aa0);
     color: #fff;
     font-weight: 700;
     cursor: pointer;
@@ -98,28 +98,28 @@
 }
 
 .cv-btn:hover {
-    background: #1c477e;
+    background: var(--th-bg-1c477e,#1c477e);
     color: #fff;
 }
 
 .cv-btn-outline {
-    background: #edf3fb;
-    color: #285aa0;
+    background: var(--th-bg-edf3fb,#edf3fb);
+    color: var(--th-fg-285aa0,#285aa0);
 }
 
 .cv-btn-outline:hover {
-    background: #dfeafa;
-    color: #285aa0;
+    background: var(--th-bg-dfeafa,#dfeafa);
+    color: var(--th-fg-285aa0,#285aa0);
 }
 
 .cv-btn-danger {
-    background: #fff1f1;
-    color: #a02d39;
+    background: var(--th-bg-fff1f1,#fff1f1);
+    color: var(--th-fg-a02d39,#a02d39);
 }
 
 .cv-btn-danger:hover {
-    background: #ffe1e1;
-    color: #a02d39;
+    background: var(--th-bg-ffe1e1,#ffe1e1);
+    color: var(--th-fg-a02d39,#a02d39);
 }
 
 .cv-actions {
@@ -130,7 +130,7 @@
 }
 
 .cv-saved {
-    border: 1px solid #e3eaf2;
+    border: 1px solid var(--th-line-e3eaf2,#e3eaf2);
     border-radius: 11px;
     padding: 17px;
     margin-top: 15px;
@@ -143,11 +143,11 @@
 }
 
 .cv-saved a {
-    color: #285aa0;
+    color: var(--th-fg-285aa0,#285aa0);
 }
 
 .cv-empty {
-    color: #7b8797;
+    color: var(--th-fg-7b8797,#7b8797);
     font-size: .9rem;
 }
 
@@ -155,13 +155,13 @@
     padding: 14px 17px;
     margin-bottom: 20px;
     border-radius: 10px;
-    background: #e7f5ed;
-    color: #17603a;
+    background: var(--th-bg-e7f5ed,#e7f5ed);
+    color: var(--th-fg-17603a,#17603a);
 }
 
 .cv-notice.error {
-    background: #fff0ed;
-    color: #a13d2d;
+    background: var(--th-bg-fff0ed,#fff0ed);
+    color: var(--th-fg-a13d2d,#a13d2d);
 }
 
 .cv-footer {
@@ -200,23 +200,20 @@
     
 <div style="margin-bottom:22px;">
     <a href="<%: ResolveUrl("~/Pages/Student/Profile.aspx") %>"
-       style="color:#28547d;
+       style="color:var(--th-fg-28547d,#28547d);
               text-decoration:none;
               font-size:13px;
               font-weight:700;">
-        &larr; Back to My Profile
+        <%: L.T("Student.StudentCVPortfolio.BackToMyProfile") %>
     </a>
 </div>
 
     
 <div class="cv-heading">
-    <h2>My CV &amp; Portfolio</h2>
+    <h2><%: L.T("Student.StudentCVPortfolio.MyCVPortfolio") %></h2>
 
     <p class="cv-muted">
-        Build your professional presence by managing
-        your CV, project portfolio and online links.
-        Keep everything updated before applying
-        for internship opportunities.
+        <%: L.T("Student.StudentCVPortfolio.BuildYourProfessionalPresenceByManaging") %>
     </p>
 </div>
 
@@ -234,11 +231,10 @@
 
     <div class="cv-panel">
 
-        <h3>CV &amp; Portfolio Links</h3>
+        <h3><%: L.T("Student.StudentCVPortfolio.CVPortfolioLinks") %></h3>
 
         <p class="cv-muted">
-            Add links to your online CV and portfolio.
-            You can update them whenever needed.
+            <%: L.T("Student.StudentCVPortfolio.AddLinksToYourOnlineCV") %>
         </p>
 
         <div class="cv-grid">
@@ -246,7 +242,7 @@
             <div class="cv-field">
 
                 <label for="cvUrl">
-                    CV Link
+                    <%: L.T("Student.StudentCVPortfolio.CVLink") %>
                 </label>
 
                 <input type="url"
@@ -258,7 +254,7 @@
                        value="<%: Saved.CvUrl %>" />
 
                 <span class="cv-help">
-                    Add a link to your online CV.
+                    <%: L.T("Student.StudentCVPortfolio.AddALinkToYourOnline") %>
                 </span>
 
             </div>
@@ -266,7 +262,7 @@
             <div class="cv-field">
 
                 <label for="portfolioUrl">
-                    Portfolio Link
+                    <%: L.T("Student.StudentCVPortfolio.PortfolioLink") %>
                 </label>
 
                 <input type="url"
@@ -278,7 +274,7 @@
                        value="<%: Saved.PortfolioUrl %>" />
 
                 <span class="cv-help">
-                    GitHub, Behance, or a personal website.
+                    <%: L.T("Student.StudentCVPortfolio.GitHubBehanceOrAPersonalWebsite") %>
                 </span>
 
             </div>
@@ -293,16 +289,16 @@
 
         <div class="cv-panel">
 
-            <h3>Upload CV</h3>
+            <h3><%: L.T("Student.StudentCVPortfolio.UploadCV") %></h3>
 
             <p class="cv-muted">
-                Upload your latest CV as a PDF document.
+                <%: L.T("Student.StudentCVPortfolio.UploadYourLatestCVAsA") %>
             </p>
 
             <div class="cv-field cv-upload">
 
                 <label for="cvFile">
-                    Choose CV File
+                    <%: L.T("Student.StudentCVPortfolio.ChooseCVFile") %>
                 </label>
 
                 <input type="file"
@@ -312,7 +308,7 @@
                        accept=".pdf,application/pdf" />
 
                 <span class="cv-help">
-                    PDF only. Maximum file size: 5 MB.
+                    <%: L.T("Student.StudentCVPortfolio.PDFOnlyMaximumFileSize5") %>
                 </span>
 
             </div>
@@ -321,17 +317,16 @@
 
         <div class="cv-panel">
 
-            <h3>Upload Portfolio</h3>
+            <h3><%: L.T("Student.StudentCVPortfolio.UploadPortfolio") %></h3>
 
             <p class="cv-muted">
-                Upload a PDF containing your projects,
-                skills, and previous work.
+                <%: L.T("Student.StudentCVPortfolio.UploadAPDFContainingYourProjects") %>
             </p>
 
             <div class="cv-field cv-upload">
 
                 <label for="portfolioFile">
-                    Choose Portfolio File
+                    <%: L.T("Student.StudentCVPortfolio.ChoosePortfolioFile") %>
                 </label>
 
                 <input type="file"
@@ -341,7 +336,7 @@
                        accept=".pdf,application/pdf" />
 
                 <span class="cv-help">
-                    PDF only. Maximum file size: 5 MB.
+                    <%: L.T("Student.StudentCVPortfolio.PDFOnlyMaximumFileSize5") %>
                 </span>
 
             </div>
@@ -354,12 +349,10 @@
 
     <div class="cv-panel">
 
-        <h3>Save Your Information</h3>
+        <h3><%: L.T("Student.StudentCVPortfolio.SaveYourInformation") %></h3>
 
         <p class="cv-muted">
-            Save your links and selected files.
-            You can return to this page later
-            to view or update them.
+            <%: L.T("Student.StudentCVPortfolio.SaveYourLinksAndSelectedFiles") %>
         </p>
 
         <div class="cv-footer">
@@ -367,8 +360,8 @@
             <button type="submit"
                     name="cvAction"
                     value="save"
-                    class="cv-btn">
-                Save CV &amp; Portfolio
+                    class="cv-btn" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
+                <%: L.T("Student.StudentCVPortfolio.SaveCVPortfolio") %>
             </button>
 
         </div>
@@ -379,10 +372,10 @@
 
     <div class="cv-panel">
 
-        <h3>My Saved CV &amp; Portfolio</h3>
+        <h3><%: L.T("Student.StudentCVPortfolio.MySavedCVPortfolio") %></h3>
 
         <p class="cv-muted">
-            View your previously saved links and documents.
+            <%: L.T("Student.StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd") %>
         </p>
 
         <div class="cv-grid">
@@ -391,20 +384,20 @@
 
                 <div class="cv-saved">
 
-                    <strong>CV Link</strong>
+                    <strong><%: L.T("Student.StudentCVPortfolio.CVLink") %></strong>
 
                     <% if (!string.IsNullOrWhiteSpace(Saved.CvUrl)) { %>
 
                         <a href="<%: Saved.CvUrl %>"
                            target="_blank"
                            rel="noopener noreferrer">
-                            View CV Link
+                            <%: L.T("Student.StudentCVPortfolio.ViewCVLink") %>
                         </a>
 
                     <% } else { %>
 
                         <span class="cv-empty">
-                            No CV link added yet.
+                            <%: L.T("Student.StudentCVPortfolio.NoCVLinkAddedYet") %>
                         </span>
 
                     <% } %>
@@ -413,7 +406,7 @@
 
                 <div class="cv-saved">
 
-                    <strong>Uploaded CV</strong>
+                    <strong><%: L.T("Student.StudentCVPortfolio.UploadedCV") %></strong>
 
                     <% if (!string.IsNullOrWhiteSpace(
                         Saved.CvStorageName)) { %>
@@ -426,15 +419,15 @@
 
                             <a class="cv-btn cv-btn-outline"
                                href="StudentCVPortfolio.aspx?download=cv">
-                                Download CV
+                                <%: L.T("Student.StudentCVPortfolio.DownloadCV") %>
                             </a>
 
                             <button type="submit"
                                     name="cvAction"
                                     value="removeCv"
                                     class="cv-btn cv-btn-danger"
-                                    onclick="return confirm('Remove your CV file?');">
-                                Remove
+                                    onclick="return confirm('Remove your CV file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="Deleting…">
+                                <%: L.T("Student.StudentCVPortfolio.Remove") %>
                             </button>
 
                         </div>
@@ -442,7 +435,7 @@
                     <% } else { %>
 
                         <span class="cv-empty">
-                            No CV file uploaded yet.
+                            <%: L.T("Student.StudentCVPortfolio.NoCVFileUploadedYet") %>
                         </span>
 
                     <% } %>
@@ -455,7 +448,7 @@
 
                 <div class="cv-saved">
 
-                    <strong>Portfolio Link</strong>
+                    <strong><%: L.T("Student.StudentCVPortfolio.PortfolioLink") %></strong>
 
                     <% if (!string.IsNullOrWhiteSpace(
                         Saved.PortfolioUrl)) { %>
@@ -463,13 +456,13 @@
                         <a href="<%: Saved.PortfolioUrl %>"
                            target="_blank"
                            rel="noopener noreferrer">
-                            View Portfolio
+                            <%: L.T("Student.StudentCVPortfolio.ViewPortfolio") %>
                         </a>
 
                     <% } else { %>
 
                         <span class="cv-empty">
-                            No portfolio link added yet.
+                            <%: L.T("Student.StudentCVPortfolio.NoPortfolioLinkAddedYet") %>
                         </span>
 
                     <% } %>
@@ -478,7 +471,7 @@
 
                 <div class="cv-saved">
 
-                    <strong>Uploaded Portfolio</strong>
+                    <strong><%: L.T("Student.StudentCVPortfolio.UploadedPortfolio") %></strong>
 
                     <% if (!string.IsNullOrWhiteSpace(
                         Saved.PortfolioStorageName)) { %>
@@ -491,15 +484,15 @@
 
                             <a class="cv-btn cv-btn-outline"
                                href="StudentCVPortfolio.aspx?download=portfolio">
-                                Download Portfolio
+                                <%: L.T("Student.StudentCVPortfolio.DownloadPortfolio") %>
                             </a>
 
                             <button type="submit"
                                     name="cvAction"
                                     value="removePortfolio"
                                     class="cv-btn cv-btn-danger"
-                                    onclick="return confirm('Remove your portfolio file?');">
-                                Remove
+                                    onclick="return confirm('Remove your portfolio file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="Deleting…">
+                                <%: L.T("Student.StudentCVPortfolio.Remove") %>
                             </button>
 
                         </div>
@@ -507,7 +500,7 @@
                     <% } else { %>
 
                         <span class="cv-empty">
-                            No portfolio file uploaded yet.
+                            <%: L.T("Student.StudentCVPortfolio.NoPortfolioFileUploadedYet") %>
                         </span>
 
                     <% } %>

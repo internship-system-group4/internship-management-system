@@ -8,7 +8,7 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
         .ca-page {
-            color: #143d61;
+            color: var(--th-fg-143d61,#143d61);
             font-family: "Segoe UI", Arial, sans-serif;
         }
 
@@ -25,13 +25,13 @@
         .ca-heading p,
         .ca-card p {
             font-size: 13px;
-            color: #66809a;
+            color: var(--th-fg-66809a,#66809a);
             margin: 0;
         }
 
         .ca-card {
-            background: #fff;
-            border: 1px solid #dbe5f1;
+            background: var(--ui-surface,#fff);
+            border: 1px solid var(--th-line-dbe5f1,#dbe5f1);
             border-radius: 9px;
             padding: 22px;
         }
@@ -52,24 +52,24 @@
         .ca-card .form-control {
             font-size: 13px;
             min-height: 40px;
-            border: 1px solid #dce6f2;
+            border: 1px solid var(--th-line-dce6f2,#dce6f2);
             border-radius: 6px;
         }
 
         .ca-card .form-control:focus {
-            border-color: #315d84;
+            border-color: var(--th-line-315d84,#315d84);
             box-shadow: 0 0 0 .16rem rgba(37, 78, 116, .13);
         }
 
         .ca-readonly {
-            background: #eaf1fc !important;
-            color: #50627a;
+            background: var(--th-bg-eaf1fc,#eaf1fc) !important;
+            color: var(--th-fg-50627a,#50627a);
         }
 
         .ca-status {
             border-radius: 16px;
-            background: #e8f5ed;
-            color: #27734c;
+            background: var(--th-bg-e8f5ed,#e8f5ed);
+            color: var(--th-fg-27734c,#27734c);
             font-size: 11px;
             font-weight: 700;
             padding: 5px 10px;
@@ -77,7 +77,7 @@
         }
 
         .ca-footer {
-            border-top: 1px solid #dce6f2;
+            border-top: 1px solid var(--th-line-dce6f2,#dce6f2);
             margin-top: 22px;
             padding-top: 19px;
             display: flex;
@@ -89,22 +89,22 @@
         .ca-footer small,
         .ca-field small {
             font-size: 11px;
-            color: #69819c;
+            color: var(--th-fg-69819c,#69819c);
         }
 
         .ca-page .btn-primary {
-            background: #254e75;
-            border-color: #254e75;
+            background: var(--th-bg-254e75,#254e75);
+            border-color: var(--th-line-254e75,#254e75);
         }
 
         .ca-page .btn-primary:hover {
-            background: #173b5e;
-            border-color: #173b5e;
+            background: var(--th-bg-173b5e,#173b5e);
+            border-color: var(--th-line-173b5e,#173b5e);
         }
 
         .ca-page .btn-outline-primary {
-            color: #254e75;
-            border-color: #254e75;
+            color: var(--th-fg-254e75,#254e75);
+            border-color: var(--th-line-254e75,#254e75);
         }
 
         .ca-page .btn {
@@ -127,7 +127,7 @@
         }
 
         .ca-info {
-            background: #e0edff;
+            background: var(--th-bg-e0edff,#e0edff);
             border-radius: 7px;
             margin-top: 15px;
             padding: 16px;
@@ -146,7 +146,7 @@
 
         .ca-info p {
             margin: 4px 0 0;
-            color: #435971;
+            color: var(--th-fg-435971,#435971);
         }
 
         .ca-notice {
@@ -158,18 +158,18 @@
         }
 
         .ca-notice-error {
-            background: #fff0f0;
-            color: #a42121;
+            background: var(--th-bg-fff0f0,#fff0f0);
+            color: var(--th-fg-a42121,#a42121);
         }
 
         .ca-notice-success {
-            background: #e8f6ef;
-            color: #216d47;
+            background: var(--th-bg-e8f6ef,#e8f6ef);
+            color: var(--th-fg-216d47,#216d47);
         }
 
         .ca-error {
             font-size: 11px;
-            color: #b42318;
+            color: var(--th-fg-b42318,#b42318);
             display: block;
             margin-top: 5px;
         }
@@ -191,8 +191,8 @@
     <div class="ca-page">
 
         <div class="ca-heading">
-            <h2>Account settings</h2>
-            <p>Manage your profile information and account security.</p>
+            <h2><%: L.T("Coordinator.Account.AccountSettings") %></h2>
+            <p><%: L.T("Coordinator.Account.ManageYourProfileInformationAndAccount") %></p>
         </div>
 
         <asp:Label ID="lblNotice" runat="server"
@@ -206,8 +206,8 @@
 
                     <div class="d-flex justify-content-between align-items-start gap-2">
                         <div>
-                            <h3>Profile information</h3>
-                            <p>Update your name and contact information.</p>
+                            <h3><%: L.T("Coordinator.Account.ProfileInformation") %></h3>
+                            <p><%: L.T("Coordinator.Account.UpdateYourNameAndContactInformation") %></p>
                         </div>
 
                         <asp:Label ID="lblStatus" runat="server"
@@ -217,7 +217,7 @@
                     <div class="row g-3 mt-1">
 
                         <div class="col-md-6">
-                            <label for="<%= txtName.ClientID %>">Full name *</label>
+                            <label for="<%= txtName.ClientID %>"><%: L.T("Coordinator.Account.FullName") %></label>
                             <asp:TextBox ID="txtName" runat="server"
                                 CssClass="form-control" MaxLength="100" />
 
@@ -226,42 +226,42 @@
                                 runat="server"
                                 ControlToValidate="txtName"
                                 ValidationGroup="profile"
-                                ErrorMessage="Full name is required."
+                                ErrorMessage="<%$ Resources:Coordinator, Account.FullNameIsRequired %>"
                                 CssClass="ca-error"
                                 Display="Dynamic" />
                         </div>
 
                         <div class="col-md-6">
-                            <label for="<%= txtPhone.ClientID %>">Phone number</label>
+                            <label for="<%= txtPhone.ClientID %>"><%: L.T("Coordinator.Account.PhoneNumber") %></label>
                             <asp:TextBox ID="txtPhone" runat="server"
                                 CssClass="form-control"
                                 MaxLength="25"
-                                placeholder="Enter phone number" />
+                                placeholder="<%$ Resources:Coordinator, Account.EnterPhoneNumber %>" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>Email address</label>
+                            <label><%: L.T("Coordinator.Account.EmailAddress") %></label>
                             <asp:TextBox ID="txtEmail" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>Staff ID</label>
+                            <label><%: L.T("Coordinator.Account.StaffID") %></label>
                             <asp:TextBox ID="txtStaffId" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>University</label>
+                            <label><%: L.T("Coordinator.Account.University") %></label>
                             <asp:TextBox ID="txtUniversity" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
                         </div>
 
                         <div class="col-md-6">
-                            <label>College</label>
+                            <label><%: L.T("Coordinator.Account.College") %></label>
                             <asp:TextBox ID="txtCollege" runat="server"
                                 CssClass="form-control ca-readonly"
                                 ReadOnly="true" />
@@ -271,21 +271,21 @@
 
                     <div class="ca-footer">
                         <small>
-                            University and role information are managed by the system.
+                            <%: L.T("Coordinator.Account.UniversityAndRoleInformationAreManaged") %>
                         </small>
 
                         <div class="d-flex gap-2">
                             <asp:Button ID="btnCancel" runat="server"
-                                Text="Cancel"
+                                Text="<%$ Resources:Coordinator, Account.Cancel %>"
                                 CssClass="btn btn-outline-primary"
                                 CausesValidation="false"
                                 OnClick="btnCancel_Click" />
 
                             <asp:Button ID="btnSave" runat="server"
-                                Text="Save changes"
+                                Text="<%$ Resources:Coordinator, Account.SaveChanges %>"
                                 CssClass="btn btn-primary"
                                 ValidationGroup="profile"
-                                OnClick="btnSave_Click" />
+                                OnClick="btnSave_Click"  data-ui-action="save" data-loading-label="Saving…"/>
                         </div>
                     </div>
 
@@ -296,12 +296,12 @@
             <div class="col-lg-5">
 
                 <section class="ca-card">
-                    <h3>Change password</h3>
-                    <p>Enter your current password to set a new one.</p>
+                    <h3><%: L.T("Coordinator.Account.ChangePassword") %></h3>
+                    <p><%: L.T("Coordinator.Account.EnterYourCurrentPasswordToSet") %></p>
 
                     <div class="ca-field">
                         <label for="<%= txtCurrentPassword.ClientID %>">
-                            Current password *
+                            <%: L.T("Coordinator.Account.CurrentPassword") %>
                         </label>
 
                         <asp:TextBox ID="txtCurrentPassword"
@@ -313,7 +313,7 @@
 
                     <div class="ca-field">
                         <label for="<%= txtNewPassword.ClientID %>">
-                            New password *
+                            <%: L.T("Coordinator.Account.NewPassword") %>
                         </label>
 
                         <asp:TextBox ID="txtNewPassword"
@@ -322,12 +322,12 @@
                             CssClass="form-control"
                             autocomplete="new-password" />
 
-                        <small>Use at least 8 characters.</small>
+                        <small><%: L.T("Coordinator.Account.UseAtLeast8Characters") %></small>
                     </div>
 
                     <div class="ca-field">
                         <label for="<%= txtConfirmPassword.ClientID %>">
-                            Confirm new password *
+                            <%: L.T("Coordinator.Account.ConfirmNewPassword") %>
                         </label>
 
                         <asp:TextBox ID="txtConfirmPassword"
@@ -339,10 +339,10 @@
 
                     <asp:Button ID="btnChangePassword"
                         runat="server"
-                        Text="Update password"
+                        Text="<%$ Resources:Coordinator, Account.UpdatePassword %>"
                         CssClass="btn btn-primary w-100"
                         CausesValidation="false"
-                        OnClick="btnChangePassword_Click" />
+                        OnClick="btnChangePassword_Click"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/>
 
                 </section>
 
@@ -395,7 +395,7 @@
                 confirmInput === null
             ) {
                 event.preventDefault();
-                alert("Password fields could not be found.");
+                alert(window.uimsT('PwFieldsMissing'));
                 return;
             }
 
@@ -412,16 +412,16 @@
             var message = "";
 
             if (!currentValue || !newValue || !confirmValue) {
-                message = "Please complete all password fields.";
+                message = window.uimsT('PwCompleteAll');
             }
             else if (newValue.length < 8 || newValue.length > 128) {
                 message = "Password must contain 8 to 128 characters.";
             }
             else if (newValue !== confirmValue) {
-                message = "New passwords do not match.";
+                message = window.uimsT('PwNewMismatch');
             }
             else if (currentValue === newValue) {
-                message = "Choose a different password.";
+                message = window.uimsT('PwChooseDifferent');
             }
 
             if (message !== "") {

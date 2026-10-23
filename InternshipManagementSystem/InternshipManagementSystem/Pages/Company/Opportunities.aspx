@@ -13,12 +13,12 @@
 .op-page {
     max-width: 1120px;
     margin: 0 auto;
-    color: #173451;
+    color: var(--th-fg-173451,#173451);
     font-family: inherit;
 }
 
 .op-back {
-    color: #285781;
+    color: var(--th-fg-285781,#285781);
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
@@ -35,13 +35,13 @@
 }
 
 .op-heading p {
-    color: #718298;
+    color: var(--th-fg-718298,#718298);
     font-size: 14px;
 }
 
 .op-card {
-    background: #fff;
-    border: 1px solid #dce5ef;
+    background: var(--ui-surface,#fff);
+    border: 1px solid var(--th-line-dce5ef,#dce5ef);
     border-radius: 12px;
     padding: 26px;
     max-width: 850px;
@@ -54,7 +54,7 @@
 }
 
 .op-subtitle {
-    color: #718298;
+    color: var(--th-fg-718298,#718298);
     font-size: 13px;
     margin-bottom: 24px;
 }
@@ -81,10 +81,10 @@
 .op-field textarea {
     width: 100%;
     padding: 11px 12px;
-    border: 1px solid #d6e1eb;
+    border: 1px solid var(--th-line-d6e1eb,#d6e1eb);
     border-radius: 7px;
-    background: #fff;
-    color: #173451;
+    background: var(--ui-surface,#fff);
+    color: var(--th-fg-173451,#173451);
     font: inherit;
     font-size: 14px;
     box-sizing: border-box;
@@ -98,14 +98,14 @@
 .op-field input:focus,
 .op-field select:focus,
 .op-field textarea:focus {
-    outline: 2px solid #9ec3e8;
-    border-color: #4979a8;
+    outline: 2px solid var(--th-line-9ec3e8,#9ec3e8);
+    border-color: var(--th-line-4979a8,#4979a8);
 }
 
 .op-hint {
     display: block;
     margin-top: 6px;
-    color: #7a8ba0;
+    color: var(--th-fg-7a8ba0,#7a8ba0);
     font-size: 12px;
 }
 
@@ -117,20 +117,20 @@
 }
 
 .op-major {
-    border: 1px solid #dbe5ef;
+    border: 1px solid var(--th-line-dbe5ef,#dbe5ef);
     border-radius: 8px;
     padding: 9px 12px;
     font-size: 13px;
-    background: #f8fafc;
+    background: var(--th-bg-f8fafc,#f8fafc);
 }
 
 .op-major input {
     width: auto;
-    margin-right: 6px;
+    margin-inline-end: 6px;
 }
 
 .op-footer {
-    border-top: 1px solid #e5ebf1;
+    border-top: 1px solid var(--th-line-e5ebf1,#e5ebf1);
     padding-top: 20px;
     margin-top: 14px;
     display: flex;
@@ -147,14 +147,14 @@
     font-weight: 700;
     cursor: pointer;
     text-decoration: none;
-    border: 1px solid #244f77;
-    background: #244f77;
+    border: 1px solid var(--th-line-244f77,#244f77);
+    background: var(--th-bg-244f77,#244f77);
     color: #fff;
 }
 
 .op-btn-light {
-    background: #fff;
-    color: #244f77;
+    background: var(--ui-surface,#fff);
+    color: var(--th-fg-244f77,#244f77);
 }
 
 .op-btn:hover {
@@ -164,15 +164,15 @@
 .op-notice {
     padding: 13px 16px;
     border-radius: 8px;
-    background: #e6f5ed;
-    color: #17613d;
+    background: var(--th-bg-e6f5ed,#e6f5ed);
+    color: var(--th-fg-17613d,#17613d);
     margin-bottom: 20px;
     max-width: 850px;
 }
 
 .op-notice.error {
-    background: #fff0ed;
-    color: #a3392b;
+    background: var(--th-bg-fff0ed,#fff0ed);
+    color: var(--th-fg-a3392b,#a3392b);
 }
 
 @media (max-width: 650px) {
@@ -333,14 +333,13 @@
 <div class="op-page">
 
     <a class="op-back" href="ManageOpportunities.aspx">
-        &larr; Back to opportunities
+        <%: L.T("Company.Opportunities.BackToOpportunities") %>
     </a>
 
     <div class="op-heading">
-        <h2>Add new opportunity</h2>
+        <h2><%: L.T("Company.Opportunities.AddNewOpportunity") %></h2>
         <p>
-            Complete the details below to create
-            an internship opportunity.
+            <%: L.T("Company.Opportunities.CompleteTheDetailsBelowToCreate") %>
         </p>
     </div>
 
@@ -352,63 +351,63 @@
 
     <div class="op-card">
 
-        <h3>Basic information</h3>
+        <h3><%: L.T("Company.Opportunities.BasicInformation") %></h3>
         <p class="op-subtitle">
-            Provide the main details of this opportunity.
+            <%: L.T("Company.Opportunities.ProvideTheMainDetailsOfThis") %>
         </p>
 
         <div class="op-grid">
 
             <div class="op-field">
-                <label for="opTitle">Opportunity title *</label>
+                <label for="opTitle"><%: L.T("Company.Opportunities.OpportunityTitle") %></label>
                 <input id="opTitle" name="opTitle"
                     maxlength="160"
-                    placeholder="e.g. Web Developer Intern"
+                    placeholder="<%: L.T("Company.Opportunities.EGWebDeveloperIntern") %>"
                     value="<%: Request.Form["opTitle"] %>" />
             </div>
 
             <div class="op-field">
-                <label for="opDepartment">Department *</label>
+                <label for="opDepartment"><%: L.T("Company.Opportunities.Department") %></label>
                 <input id="opDepartment" name="opDepartment"
                     maxlength="120"
-                    placeholder="e.g. Information Technology"
+                    placeholder="<%: L.T("Company.Opportunities.EGInformationTechnology") %>"
                     value="<%: Request.Form["opDepartment"] %>" />
             </div>
 
             <div class="op-field">
-                <label>Eligible college</label>
+                <label><%: L.T("Company.Opportunities.EligibleCollege") %></label>
                 <input value="<%: CollegeName %>"
                     readonly="readonly" />
             </div>
 
             <div class="op-field">
-                <label for="opType">Opportunity type</label>
+                <label for="opType"><%: L.T("Company.Opportunities.OpportunityType") %></label>
                 <select id="opType" name="opType">
-                    <option value="Internship">Internship</option>
+                    <option value="Internship"><%: L.T("Shared.Value.OpportunityType.Internship") %></option>
                 </select>
             </div>
 
             <div class="op-field">
-                <label for="opLocation">Location *</label>
+                <label for="opLocation"><%: L.T("Company.Opportunities.Location") %></label>
                 <input id="opLocation" name="opLocation"
                     maxlength="160"
-                    placeholder="e.g. Amman, Jordan"
+                    placeholder="<%: L.T("Company.Opportunities.EGAmmanJordan") %>"
                     value="<%: Request.Form["opLocation"] %>" />
             </div>
 
             <div class="op-field">
-                <label for="opMode">Training mode</label>
+                <label for="opMode"><%: L.T("Company.Opportunities.TrainingMode") %></label>
                 <select id="opMode" name="opMode">
-                    <option value="On-site">On-site</option>
-                    <option value="Hybrid">Hybrid</option>
-                    <option value="Remote">Remote</option>
+                    <option value="On-site"><%: L.T("Shared.Value.TrainingMode.Onsite") %></option>
+                    <option value="Hybrid"><%: L.T("Shared.Value.TrainingMode.Hybrid") %></option>
+                    <option value="Remote"><%: L.T("Shared.Value.TrainingMode.Remote") %></option>
                 </select>
             </div>
 
         </div>
 
         <div class="op-field">
-            <label>Eligible specializations *</label>
+            <label><%: L.T("Company.Opportunities.EligibleSpecializations") %></label>
 
             <div class="op-majors">
                 <% foreach (string major in Majors) { %>
@@ -422,41 +421,41 @@
             </div>
 
             <span class="op-hint">
-                Select the university majors eligible to apply.
+                <%: L.T("Company.Opportunities.SelectTheUniversityMajorsEligibleTo") %>
             </span>
         </div>
 
         <div class="op-field">
-            <label for="opDescription">Description *</label>
+            <label for="opDescription"><%: L.T("Company.Opportunities.Description") %></label>
             <textarea id="opDescription"
                 name="opDescription"
                 maxlength="5000"
-                placeholder="Describe the role, responsibilities and learning objectives..."><%: Request.Form["opDescription"] %></textarea>
+                placeholder="<%: L.T("Company.Opportunities.DescribeTheRoleResponsibilitiesAndLearning") %>"><%: Request.Form["opDescription"] %></textarea>
         </div>
 
         <div class="op-field">
-            <label for="opRequirements">Requirements *</label>
+            <label for="opRequirements"><%: L.T("Company.Opportunities.Requirements") %></label>
             <textarea id="opRequirements"
                 name="opRequirements"
                 maxlength="3000"
-                placeholder="List the skills, qualifications and requirements..."><%: Request.Form["opRequirements"] %></textarea>
+                placeholder="<%: L.T("Company.Opportunities.ListTheSkillsQualificationsAndRequirements") %>"><%: Request.Form["opRequirements"] %></textarea>
         </div>
 
         <div class="op-field">
             <label for="opTechnologies">
-                Technologies used
+                <%: L.T("Company.Opportunities.TechnologiesUsed") %>
             </label>
             <input id="opTechnologies"
                 name="opTechnologies"
                 maxlength="1000"
-                placeholder="e.g. C#, ASP.NET, SQL, HTML, CSS"
+                placeholder="<%: L.T("Company.Opportunities.EGCASPNETSQL") %>"
                 value="<%: Request.Form["opTechnologies"] %>" />
         </div>
 
         <div class="op-grid">
 
             <div class="op-field">
-                <label for="opSeats">Available seats *</label>
+                <label for="opSeats"><%: L.T("Company.Opportunities.AvailableSeats") %></label>
                 <input id="opSeats" name="opSeats"
                     type="number" min="1" max="10000"
                     placeholder="e.g. 5"
@@ -465,7 +464,7 @@
 
             <div class="op-field">
                 <label for="opDuration">
-                    Duration (weeks) *
+                    <%: L.T("Company.Opportunities.DurationWeeks") %>
                 </label>
                 <input id="opDuration" name="opDuration"
                     type="number" min="1" max="104"
@@ -475,7 +474,7 @@
 
             <div class="op-field">
                 <label for="opDeadline">
-                    Application deadline *
+                    <%: L.T("Company.Opportunities.ApplicationDeadline") %>
                 </label>
                 <input id="opDeadline" name="opDeadline"
                     type="date"
@@ -483,14 +482,14 @@
             </div>
 
             <div class="op-field">
-                <label for="opStart">Start date *</label>
+                <label for="opStart"><%: L.T("Company.Opportunities.StartDate") %></label>
                 <input id="opStart" name="opStart"
                     type="date"
                     value="<%: Request.Form["opStart"] %>" />
             </div>
 
             <div class="op-field">
-                <label for="opEnd">End date *</label>
+                <label for="opEnd"><%: L.T("Company.Opportunities.EndDate") %></label>
                 <input id="opEnd" name="opEnd"
                     type="date"
                     value="<%: Request.Form["opEnd"] %>" />
@@ -501,17 +500,17 @@
         <div class="op-footer">
             <a class="op-btn op-btn-light"
                 href="ManageOpportunities.aspx">
-                Cancel
+                <%: L.T("Company.Opportunities.Cancel") %>
             </a>
 
             <button class="op-btn op-btn-light"
-                type="submit" name="opAction" value="draft">
-                Save draft
+                type="submit" name="opAction" value="draft" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
+                <%: L.T("Company.Opportunities.SaveDraft") %>
             </button>
 
             <button class="op-btn"
-                type="submit" name="opAction" value="publish">
-                Publish
+                type="submit" name="opAction" value="publish" data-ui-action="publish" data-ui-validation="none" data-loading-label="Publishing…">
+                <%: L.T("Company.Opportunities.Publish") %>
             </button>
         </div>
 

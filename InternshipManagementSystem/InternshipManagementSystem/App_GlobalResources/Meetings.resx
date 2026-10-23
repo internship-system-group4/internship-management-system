@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="MyMeetings.30Minutes" xml:space="preserve"><value>30 minutes</value></data>
+  <data name="MyMeetings.45Minutes" xml:space="preserve"><value>45 minutes</value></data>
+  <data name="MyMeetings.60Minutes" xml:space="preserve"><value>60 minutes</value></data>
+  <data name="MyMeetings.Agenda" xml:space="preserve"><value>Agenda</value></data>
+  <data name="MyMeetings.AvailableParticipantsWillAppearHereAfter" xml:space="preserve"><value>Available participants will appear here after we connect the page to the project data.</value></data>
+  <data name="MyMeetings.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="MyMeetings.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="MyMeetings.CloseForm" xml:space="preserve"><value>Close form</value></data>
+  <data name="MyMeetings.DateAndTime" xml:space="preserve"><value>Date and Time</value></data>
+  <data name="MyMeetings.Duration" xml:space="preserve"><value>Duration</value></data>
+  <data name="MyMeetings.EGInternshipProgressMeeting" xml:space="preserve"><value>e.g. Internship Progress Meeting</value></data>
+  <data name="MyMeetings.EnterTheMeetingDetailsAndPaste" xml:space="preserve"><value>Enter the meeting details and paste its Zoom link.</value></data>
+  <data name="MyMeetings.MeetingTitle" xml:space="preserve"><value>Meeting Title</value></data>
+  <data name="MyMeetings.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
+  <data name="MyMeetings.Participants" xml:space="preserve"><value>Participants</value></data>
+  <data name="MyMeetings.PastMeetings" xml:space="preserve"><value>Past Meetings</value></data>
+  <data name="MyMeetings.ScheduleAMeeting" xml:space="preserve"><value>Schedule a Meeting</value></data>
+  <data name="MyMeetings.ScheduleMeeting" xml:space="preserve"><value>+ Schedule Meeting</value></data>
+  <data name="MyMeetings.ScheduleMeeting2" xml:space="preserve"><value>Schedule Meeting</value></data>
+  <data name="MyMeetings.ThisIsADesignPreviewNo" xml:space="preserve"><value>This is a design preview. No meeting was saved yet.</value></data>
+  <data name="MyMeetings.UpcomingMeetings" xml:space="preserve"><value>Upcoming Meetings</value></data>
+  <data name="MyMeetings.ViewYourScheduledMeetingsAndJoin" xml:space="preserve"><value>View your scheduled meetings and join them from here.</value></data>
+  <data name="MyMeetings.WhatWillYouDiscuss" xml:space="preserve"><value>What will you discuss?</value></data>
+  <data name="MyMeetings.YouHaveNoUpcomingMeetingsYet" xml:space="preserve"><value>You have no upcoming meetings yet.</value></data>
+  <data name="MyMeetings.YourPastMeetingsWillAppearHere" xml:space="preserve"><value>Your past meetings will appear here.</value></data>
+  <data name="MyMeetings.ZoomMeetingLink" xml:space="preserve"><value>Zoom Meeting Link</value></data>
+  <data name="Schedule.30Minutes" xml:space="preserve"><value>30 minutes</value></data>
+  <data name="Schedule.45Minutes" xml:space="preserve"><value>45 minutes</value></data>
+  <data name="Schedule.60Minutes" xml:space="preserve"><value>60 minutes</value></data>
+  <data name="Schedule.Agenda" xml:space="preserve"><value>Agenda</value></data>
+  <data name="Schedule.Agenda2" xml:space="preserve"><value>Agenda:</value></data>
+  <data name="Schedule.ChooseAFutureDateAndTime" xml:space="preserve"><value>Choose a future date and time.</value></data>
+  <data name="Schedule.CouldNotLoadMeetingsPleaseTry" xml:space="preserve"><value>Could not load meetings. Please try again.</value></data>
+  <data name="Schedule.CouldNotLoadParticipants" xml:space="preserve"><value>Could not load participants.</value></data>
+  <data name="Schedule.CouldNotOpenThisMeeting" xml:space="preserve"><value>Could not open this meeting.</value></data>
+  <data name="Schedule.CouldNotReadYourTimeZone" xml:space="preserve"><value>Could not read your time zone. Refresh and try again.</value></data>
+  <data name="Schedule.CouldNotSaveTheMeetingTry" xml:space="preserve"><value>Could not save the meeting. Try again.</value></data>
+  <data name="Schedule.CreateTheMeetingInZoomThen" xml:space="preserve"><value>Create the meeting in Zoom, then paste its link here.</value></data>
+  <data name="Schedule.DateAndTime" xml:space="preserve"><value>Date and Time</value></data>
+  <data name="Schedule.Duration" xml:space="preserve"><value>Duration</value></data>
+  <data name="Schedule.Duration2" xml:space="preserve"><value>Duration:</value></data>
+  <data name="Schedule.EnterAMeetingTitle" xml:space="preserve"><value>Enter a meeting title.</value></data>
+  <data name="Schedule.EnterAValidHTTPSZoomLink" xml:space="preserve"><value>Enter a valid HTTPS Zoom link.</value></data>
+  <data name="Schedule.EnterAValidMeetingDateAnd" xml:space="preserve"><value>Enter a valid meeting date and time.</value></data>
+  <data name="Schedule.Internship" xml:space="preserve"><value>Internship</value></data>
+  <data name="Schedule.InvalidParticipantSelected" xml:space="preserve"><value>Invalid participant selected.</value></data>
+  <data name="Schedule.JoinZoomMeeting" xml:space="preserve"><value>Join Zoom Meeting</value></data>
+  <data name="Schedule.Meeting" xml:space="preserve"><value>Meeting</value></data>
+  <data name="Schedule.MeetingCouldNotBeSaved" xml:space="preserve"><value>Meeting could not be saved.</value></data>
+  <data name="Schedule.MeetingDetails" xml:space="preserve"><value>Meeting Details</value></data>
+  <data name="Schedule.MeetingScheduledSuccessfully" xml:space="preserve"><value>Meeting scheduled successfully.</value></data>
+  <data name="Schedule.MeetingTitle" xml:space="preserve"><value>Meeting Title</value></data>
+  <data name="Schedule.Meetings" xml:space="preserve"><value>Meetings</value></data>
+  <data name="Schedule.Min" xml:space="preserve"><value>min</value></data>
+  <data name="Schedule.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
+  <data name="Schedule.NoMeetingsToShow" xml:space="preserve"><value>No meetings to show.</value></data>
+  <data name="Schedule.NotSet" xml:space="preserve"><value>Not set</value></data>
+  <data name="Schedule.Participants" xml:space="preserve"><value>Participants</value></data>
+  <data name="Schedule.ScheduleAMeeting" xml:space="preserve"><value>Schedule a Meeting</value></data>
+  <data name="Schedule.ScheduleAMeetingAndShareA" xml:space="preserve"><value>Schedule a meeting and share a Zoom link with its participants.</value></data>
+  <data name="Schedule.ScheduleMeeting" xml:space="preserve"><value>Schedule Meeting</value></data>
+  <data name="Schedule.ScheduledAtUTC" xml:space="preserve"><value>Scheduled At (UTC)</value></data>
+  <data name="Schedule.ScheduledAtUTC2" xml:space="preserve"><value>Scheduled At (UTC):</value></data>
+  <data name="Schedule.SelectAValidDuration" xml:space="preserve"><value>Select a valid duration.</value></data>
+  <data name="Schedule.SelectAnInternship" xml:space="preserve"><value>Select an internship</value></data>
+  <data name="Schedule.SelectAtLeastOneParticipant" xml:space="preserve"><value>Select at least one participant.</value></data>
+  <data name="Schedule.SelectOneOfYourInternships" xml:space="preserve"><value>Select one of your internships.</value></data>
+  <data name="Schedule.Title" xml:space="preserve"><value>Title:</value></data>
+  <data name="Schedule.UseTheLocalTimeOnYour" xml:space="preserve"><value>Use the local time on your device.</value></data>
+  <data name="Schedule.ViewDetails" xml:space="preserve"><value>View Details</value></data>
+  <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>You do not have access to this meeting.</value></data>
+  <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>Zoom Meeting Link</value></data>
+</root>

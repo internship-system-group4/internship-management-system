@@ -4,7 +4,7 @@ async page => {
  await page.context().clearCookies();await page.emulateMedia({reducedMotion:'no-preference'});
  await page.exposeFunction('recordCampusEndpoint',value=>{endpoint=value;});
  // Observe the real rendered geometry without adding a debug interface to the app.
- await page.route('**/login-campus-scene.js',async route=>{
+ await page.route('**/login-campus-scene.js*',async route=>{
   const response=await route.fetch();let source=await response.text();
   source=source.replace('return {\n  setState(value)', 'window.__campusReview={scene,camera,leaves,guard,visitor};\n return {\n  setState(value)');
   source=source.replace('if(progress===1){', 'if(progress===1){window.recordCampusEndpoint({cameraZ:camera.position.z,leafX:leaves.map(leaf=>leaf.position.x),duration:now-entryStart,portalX:gate.parts.get("limestone-portal").position.x});');
@@ -27,13 +27,13 @@ async page => {
  check(endpoint.duration>=1250&&endpoint.duration<1500,'Measured entry animation 1.25–1.5 seconds');
  await page.context().clearCookies();await page.goto(base+path);await page.waitForSelector('[data-scene-ready]');
  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pagehide',{persisted:true})));
- check(await page.locator('canvas').count()===0&&await page.locator('.login-campus-photo').isVisible(),'Pagehide disposes canvas and exposes photo');
+ check(await page.locator('[data-campus-canvas] canvas').count()===0&&await page.locator('.login-campus-photo').isVisible(),'Pagehide disposes canvas and exposes photo');
  await page.evaluate(()=>window.dispatchEvent(new PageTransitionEvent('pageshow',{persisted:true})));
- await page.waitForSelector('[data-scene-ready]');check(await page.locator('canvas').count()===1,'Persisted pageshow reconstructs exactly one canvas');
+ await page.waitForSelector('[data-scene-ready]');check(await page.locator('[data-campus-canvas] canvas').count()===1,'Persisted pageshow reconstructs exactly one canvas');
  await page.locator('[data-campus-pause]').click();check(await page.locator('[data-campus-pause]').getAttribute('aria-pressed')==='true','Restored pause control works');
  await page.evaluate(()=>{const canvas=document.querySelector('canvas');const gl=canvas.getContext('webgl2');gl.getExtension('WEBGL_lose_context').loseContext();});
  await page.waitForFunction(()=>!document.querySelector('[data-login-campus]').hasAttribute('data-scene-ready'));
  check(await page.locator('.login-campus-photo').isVisible()&&!await page.locator('[data-campus-pause]').isVisible(),'Actual WebGL context loss shows photographic fallback');
- await page.unroute('**/login-campus-scene.js');
+ await page.unroute('**/login-campus-scene.js*');
  return {passed:checks.length,checks,endpoint};
 }

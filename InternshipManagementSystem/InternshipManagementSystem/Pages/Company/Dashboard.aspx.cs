@@ -1,119 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
+using InternshipManagementSystem.Common;
+using System.Linq;
 using InternshipManagementSystem.Data;
-using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
-
 namespace InternshipManagementSystem.Pages.CompanyArea
 {
-    public partial class Dashboard : InternshipManagementSystem.Security.CompanyPage
-    {
-        private readonly OpportunityRepository _opportunityRepo = new OpportunityRepository();
-        private readonly ApplicationRepository _applicationRepo = new ApplicationRepository();
-        private readonly PlacementRepository _placementRepo = new PlacementRepository();
-        private readonly UserRepository _userRepo = new UserRepository();
-
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!IsPostBack)
-            {
-                if (CurrentSupervisor != null)
-                {
-                    LoadCompanyDashboardData();
-                }
-            }
-        }
-
-        private void LoadCompanyDashboardData()
-        {
-            string companyId = CurrentSupervisor.CompanyId;
-            if (string.IsNullOrEmpty(companyId)) return;
-
-            try
-            {
-                // 1. حساب إحصائيات الفرص (تجاوز خطأ الفايربيس)
-                List<Opportunity> allOpportunities = _opportunityRepo.GetAll();
-                List<Opportunity> companyOpportunities = new List<Opportunity>();
-                List<string> oppIds = new List<string>();
-
-                foreach (Opportunity opp in allOpportunities)
-                {
-                    if (opp.CompanyId == companyId)
-                    {
-                        companyOpportunities.Add(opp);
-                        if (!string.IsNullOrEmpty(opp.Id)) oppIds.Add(opp.Id);
-                    }
-                }
-                litTotalOpportunities.Text = companyOpportunities.Count.ToString();
-
-                // 2. حساب إحصائيات الطلبات
-                List<InternshipApplication> allApps = _applicationRepo.GetAll();
-                int totalApps = 0;
-                int pendingAppsCount = 0;
-                var recentAppsList = new List<RecentAppViewModel>();
-
-                foreach (InternshipApplication app in allApps)
-                {
-                    if (app.CompanyId == companyId)
-                    {
-                        totalApps++;
-                        if (app.Status.ToString() == "Pending")
-                        {
-                            pendingAppsCount++;
-                        }
-
-                        var student = _userRepo.GetStudent(app.StudentId);
-                        string studentName = student != null ? student.FullName : "Student";
-                        string oppTitle = companyOpportunities.Find(o => o.Id == app.OpportunityId)?.Title ?? "Opportunity";
-
-                        recentAppsList.Add(new RecentAppViewModel
-                        {
-                            StudentName = studentName,
-                            Major = app.StudentMajor,
-                            OpportunityTitle = oppTitle,
-                            Status = app.Status.ToString(),
-                            SubmittedAt = app.SubmittedAt
-                        });
-                    }
-                }
-
-                // 3. حساب إحصائيات المتدربين المقبولين
-                List<Placement> allPlacements = _placementRepo.GetAll();
-                int totalTrainees = 0;
-
-                foreach (Placement p in allPlacements)
-                {
-                    if (p.CompanyId == companyId)
-                    {
-                        totalTrainees++;
-                    }
-                }
-
-                // تعبئة الأرقام في البطاقات
-                litTotalApplications.Text = totalApps.ToString();
-                litTotalTrainees.Text = totalTrainees.ToString();
-                litPendingApps.Text = pendingAppsCount.ToString();
-                litActiveTrainees.Text = totalTrainees.ToString();
-
-                // 4. ترتيب أحدث 5 طلبات
-                recentAppsList.Sort((a, b) => b.SubmittedAt.CompareTo(a.SubmittedAt));
-
-                List<RecentAppViewModel> top5Apps = new List<RecentAppViewModel>();
-                for (int i = 0; i < recentAppsList.Count; i++)
-                {
-                    if (i < 5) top5Apps.Add(recentAppsList[i]);
-                }
-
-                gvRecentApplications.DataSource = top5Apps;
-                gvRecentApplications.DataBind();
-            }
-            catch (Exception ex)
-            {
-                lblMessage.Text = "Error: " + ex.Message;
-                lblMessage.CssClass = "alert alert-danger d-block";
-            }
-        }
-
+ public partial class Dashboard : CompanyPage
+ {
+  protected WorkspaceCompanyData Workspace;
+  protected void Page_Load(object sender, EventArgs e)
+  {
+   litTotalOpportunities.Text=litTotalApplications.Text=litTotalTrainees.Text=litPendingApps.Text=litActiveTrainees.Text="—";
+   try {
+    if(string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))throw new InvalidOperationException("Company assignment is missing.");
+    Workspace=new WorkspaceDashboardRepository().LoadCompany(CurrentSupervisor.CompanyId);Journey.Model=Workspace.Journey;Charts.Model=WorkspaceChartFactory.Company(Workspace);
+    litTotalOpportunities.Text=Workspace.Opportunities.ToString();litTotalApplications.Text=Workspace.Applications.Count.ToString();litTotalTrainees.Text=Workspace.Trainees.Count.ToString();litPendingApps.Text=Workspace.PendingApplications.ToString();litActiveTrainees.Text=Workspace.Trainees.Count.ToString();
+    gvRecentApplications.DataSource=Workspace.Applications.OrderBy(a=>a.Status==InternshipManagementSystem.Common.ApplicationStatus.Pending?0:1).ThenByDescending(a=>a.SubmittedAt).Take(5).Select(a=>new RecentAppViewModel { StudentName=a.StudentName,Major=a.StudentMajor,OpportunityTitle=a.OpportunityTitle,Status=a.Status.ToString(),SubmittedAt=a.SubmittedAt });gvRecentApplications.DataBind();lblMessage.Visible=false;
+   }catch(Exception ex){System.Diagnostics.Trace.TraceError("Company workspace: "+ex.Message);lblMessage.Text=L.T("Company.Dashboard.WeCouldNotLoadYourCompany");lblMessage.CssClass="alert alert-danger d-block";lblMessage.Attributes["role"]="alert";}
+  }
         protected string GetStatusCss(string status)
         {
             if (status == "Accepted") return "badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2";

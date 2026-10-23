@@ -6,6 +6,15 @@
         public const string UniversityNameArabic = "الجامعة الألمانية الأردنية";
         public const string CollegeName = "School of Computing";
         public const string UniversityWebsite = "https://www.gju.edu.jo";
+        // Main campus on Amman Madaba Street: the "Location map" link published on gju.edu.jo
+        // (Google Maps place "German Jordanian University - New Campus", 31.776843, 35.802555).
+        // Official main-campus map pin from gju.edu.jo (OpenStreetMap's campus area, way 588418001, centres ~120 m away).
+        public const string CampusLatitude = "31.776843";
+        public const string CampusLongitude = "35.802555";
+        public const string UniversityDirectionsUrl = "https://www.google.com/maps/dir/?api=1&destination=31.776843,35.802555";
+        // Google's keyless embed endpoint for the same point; it allows framing, unlike the place page above.
+        public const string UniversityMapEmbedUrl = "https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1s31.776843,35.802555!6i15!3m1!1sen!5m1!1sen";
+        public const string UniversityMapUrl = "https://www.google.jo/maps/place/German+Jordanian+University+-+New+Campus/@31.776843,35.802555,17z/data=!3m1!4b1!4m2!3m1!1s0x151cac23316fd607:0xbcc3e00aab7f6fa9";
         public const string LogoPath = "~/Assets/images/logo.png";
 
         public const int DefaultRequiredHours = 160;

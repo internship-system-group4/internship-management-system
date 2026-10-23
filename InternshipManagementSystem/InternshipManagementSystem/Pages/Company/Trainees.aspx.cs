@@ -122,7 +122,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             catch (Exception ex)
             {
-                lblMessage.Text = "Error loading trainees: " + ex.Message;
+                lblMessage.Text = L.F("Company.Trainees.ErrorLoadingTrainees", ex.Message);
                 lblMessage.CssClass = "alert alert-danger d-block";
             }
         }
@@ -139,8 +139,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             int progress = Convert.ToInt32(progressStr);
             if (progress == 100) return "Completed";
-            if (progress >= 80) return "Near finish";
-            return "In progress";
+            if (progress >= 80) return L.T("Company.Trainees.NearFinish");
+            return L.T("Company.Trainees.InProgress");
         }
 
         protected string GetStatusCss(string progressStr)

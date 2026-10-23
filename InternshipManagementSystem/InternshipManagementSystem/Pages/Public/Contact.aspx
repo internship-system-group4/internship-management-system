@@ -1,670 +1,113 @@
-
-<%@ Page Language="C#"
-    MasterPageFile="~/Layout/Public.master"
-    AutoEventWireup="true"
-    Async="true"
-    CodeBehind="Contact.aspx.cs"
-    Inherits="InternshipManagementSystem.Pages.PublicArea.Contact"
-    Title="Contact Us" %>
-
-<asp:Content ID="Head"
-    ContentPlaceHolderID="head"
-    runat="server">
-
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-
-    <style>
-
-        /* ===============================
-           CONTACT PAGE BACKGROUND
-        =============================== */
-
-        .contact-page {
-            --contact-navy: #153e69;
-            --contact-border: #dce6f1;
-
-            width: 100%;
-            max-width: none;
-            min-height: 100vh;
-            margin: 0;
-            padding: 45px max(24px, calc((100% - 1200px) / 2)) 75px;
-
-            background: #f3f7fc;
-            box-sizing: border-box;
-
-            font-family: "Segoe UI", Arial, sans-serif;
-            color: #173d68;
-        }
-
-        /* ===============================
-           PAGE HEADING
-        =============================== */
-
-        .contact-heading {
-            text-align: center;
-            max-width: 1200px;
-            margin: 0 auto 35px;
-        }
-
-        .contact-heading h1 {
-            font-size: 34px;
-            font-weight: 700;
-            color: #123d68;
-            margin-bottom: 12px;
-        }
-
-        .contact-heading p {
-            color: #607c9b;
-            font-size: 15px;
-            line-height: 1.7;
-        }
-
-        /* ===============================
-           PAGE LAYOUT
-        =============================== */
-
-        .contact-layout {
-            display: grid;
-            grid-template-columns:
-                minmax(0, 1.6fr)
-                minmax(270px, 1fr);
-
-            gap: 25px;
-            align-items: start;
-
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* ===============================
-           CONTACT FORM CARD
-        =============================== */
-
-        .contact-card {
-            background: #ffffff;
-            border: 1px solid var(--contact-border);
-            border-radius: 15px;
-
-            box-shadow:
-                0 8px 30px rgba(17, 57, 100, 0.06);
-
-            padding: 35px;
-            width: 100%;
-            min-width: 0;
-            box-sizing: border-box;
-        }
-
-        .contact-card-title {
-            font-size: 21px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            color: #123d68;
-        }
-
-        /* ===============================
-           FORM FIELDS
-        =============================== */
-
-        .contact-field {
-            margin-bottom: 21px;
-        }
-
-        .contact-field label {
-            display: block;
-            font-size: 13px;
-            font-weight: 600;
-            color: #244e78;
-            margin-bottom: 8px;
-        }
-
-        .contact-input {
-            display: block;
-            width: 100%;
-            padding: 12px 14px;
-            min-height: 46px;
-
-            border: 1px solid #d1deed;
-            border-radius: 7px;
-
-            background: #ffffff;
-            font-size: 14px;
-            color: #173d68;
-            box-sizing: border-box;
-        }
-
-        .contact-input:focus {
-            border-color: #245b91;
-            outline: none;
-
-            box-shadow:
-                0 0 0 3px rgba(36, 91, 145, 0.10);
-        }
-
-        .contact-textarea {
-            min-height: 145px;
-            resize: vertical;
-        }
-
-        /* ===============================
-           SEND BUTTON
-        =============================== */
-
-        .contact-send {
-            background: #194a78;
-            border: 1px solid #194a78;
-            border-radius: 7px;
-
-            color: #ffffff;
-            padding: 13px 30px;
-
-            font-size: 14px;
-            font-weight: 600;
-
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .contact-send:hover {
-            background: #10365b;
-        }
-
-        /* ===============================
-           SUCCESS / ERROR MESSAGES
-        =============================== */
-
-        .contact-alert {
-            display: block;
-            padding: 14px 17px;
-            border-radius: 8px;
-            margin-bottom: 22px;
-            font-size: 14px;
-        }
-
-        .contact-alert-success {
-            background: #e3f6ed;
-            color: #13734c;
-            border: 1px solid #b8e5cf;
-        }
-
-        .contact-alert-error {
-            background: #fff0f0;
-            color: #a52929;
-            border: 1px solid #f3c4c4;
-        }
-
-        .contact-note {
-            font-size: 12px;
-            color: #7c8fa5;
-            margin-top: 14px;
-            text-align: center;
-        }
-
-        /* ===============================
-           CONTACT INFORMATION CARD
-        =============================== */
-
-        .contact-info-card {
-            background: #ffffff;
-            border: 1px solid #dce6f1;
-            border-radius: 15px;
-
-            padding: 30px 25px;
-
-            box-shadow:
-                0 8px 30px rgba(17, 57, 100, 0.06);
-
-            box-sizing: border-box;
-            min-width: 0;
-        }
-
-        .contact-info-card h2 {
-            font-size: 21px;
-            font-weight: 700;
-            color: #123d68;
-            margin: 0 0 12px;
-        }
-
-        .contact-info-intro {
-            color: #607c9b;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        /* ===============================
-           CONTACT INFORMATION ITEMS
-        =============================== */
-
-        .contact-info-item {
-            margin-bottom: 20px;
-        }
-
-        .contact-info-heading {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 8px;
-        }
-
-        /* Icons */
-
-        .contact-info-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            width: 36px;
-            height: 36px;
-            min-width: 36px;
-
-            background: #edf4fb;
-            color: #194a78;
-
-            border-radius: 9px;
-            font-size: 17px;
-        }
-
-        .contact-info-heading h3 {
-            margin: 0;
-            font-size: 14px;
-            font-weight: 600;
-            color: #173d68;
-        }
-
-        .contact-info-details {
-            margin-left: 46px;
-        }
-
-        .contact-info-details p,
-        .contact-info-details a {
-            color: #607c9b;
-            font-size: 13px;
-            line-height: 1.8;
-            overflow-wrap: anywhere;
-        }
-
-        .contact-info-details p {
-            margin: 0;
-        }
-
-        .contact-info-details a {
-            text-decoration: none;
-        }
-
-        .contact-info-details a:hover {
-            color: #194a78;
-            text-decoration: underline;
-        }
-
-        .contact-info-divider {
-            border: 0;
-            border-top: 1px solid #dce6f1;
-            margin: 20px 0;
-        }
-
-        /* ===============================
-           RESPONSIVE DESIGN
-        =============================== */
-
-        @media (max-width: 850px) {
-
-            .contact-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-card,
-            .contact-info-card {
-                padding: 22px;
-            }
-        }
-
-        @media (max-width: 768px) {
-
-            .contact-page {
-                padding: 30px 16px 50px;
-            }
-
-            .contact-heading h1 {
-                font-size: 27px;
-            }
-        }
-
-/* Full Page Background */
-
-html,
-body {
-    min-height: 100%;
-}
-
-body {
-    background-color: #f3f7fc !important;
-}
-
-/* Fill the entire Contact Us page */
-.contact-page {
-    background-color: #f3f7fc !important;
-
-    width: 100%;
-    max-width: none;
-    min-height: 100vh;
-
-    margin: 0;
-    padding: 45px max(24px, calc((100% - 1200px) / 2)) 75px;
-
-    box-sizing: border-box;
-}
-
-/* Keep the form and information centered */
-.contact-layout {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-/* Keep cards white */
-.contact-card,
-.contact-info-card {
-    background-color: #ffffff;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .contact-page {
-        padding: 30px 16px 50px;
-    }
-}
-
-    </style>
-
+<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master" AutoEventWireup="true" Async="true" CodeBehind="Contact.aspx.cs" Inherits="InternshipManagementSystem.Pages.PublicArea.Contact" Title="Contact | GJU Internship Management System" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+<meta name="description" content="Send a question about using UIMS, the GJU internship management student project." />
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/contact.css?v=20261023-3") %>" />
 </asp:Content>
-
-
-<asp:Content ID="Body"
-    ContentPlaceHolderID="MainContent"
-    runat="server">
-
-    <div class="contact-page">
-
-        <!-- PAGE HEADING -->
-
-        <div class="contact-heading">
-
-            <h1>Contact Us</h1>
-
-            <p>
-                Have a question about internship opportunities
-                or the internship management system?
-                We're here to help.
-            </p>
-
-        </div>
-
-
-        <div class="contact-layout">
-
-            <!-- =========================
-                 LEFT: CONTACT FORM
-            ========================== -->
-
-            <div class="contact-card">
-
-                <h2 class="contact-card-title">
-                    Send Us a Message
-                </h2>
-
-                <asp:Label ID="lblMessage"
-                    runat="server"
-                    Visible="false" />
-
-
-                <!-- Full Name -->
-
-                <div class="contact-field">
-
-                    <label for="<%= txtName.ClientID %>">
-                        Full Name *
-                    </label>
-
-                    <asp:TextBox ID="txtName"
-                        runat="server"
-                        CssClass="contact-input"
-                        MaxLength="100"
-                        placeholder="Enter your full name" />
-
-                </div>
-
-
-                <!-- Email Address -->
-
-                <div class="contact-field">
-
-                    <label for="<%= txtEmail.ClientID %>">
-                        Email Address *
-                    </label>
-
-                    <asp:TextBox ID="txtEmail"
-                        runat="server"
-                        TextMode="Email"
-                        CssClass="contact-input"
-                        MaxLength="254"
-                        placeholder="Enter your email address" />
-
-                </div>
-
-
-                <!-- Subject -->
-
-                <div class="contact-field">
-
-                    <label for="<%= txtSubject.ClientID %>">
-                        Subject *
-                    </label>
-
-                    <asp:TextBox ID="txtSubject"
-                        runat="server"
-                        CssClass="contact-input"
-                        MaxLength="150"
-                        placeholder="Enter message subject" />
-
-                </div>
-
-
-                <!-- Message -->
-
-                <div class="contact-field">
-
-                    <label for="<%= txtMessage.ClientID %>">
-                        Message *
-                    </label>
-
-                    <asp:TextBox ID="txtMessage"
-                        runat="server"
-                        TextMode="MultiLine"
-                        Rows="6"
-                        CssClass="contact-input contact-textarea"
-                        placeholder="Write your message here..." />
-
-                </div>
-
-
-                <!-- Send Message Button -->
-
-                <asp:Button ID="btnSend"
-                    runat="server"
-                    Text="Send Message"
-                    CssClass="contact-send"
-                    OnClick="btnSend_Click" />
-
-
-                <p class="contact-note">
-                    All fields are required.
-                    Your message will be reviewed by the internship coordinator.
-                </p>
-
-            </div>
-
-
-            <!-- =========================
-                 RIGHT: CONTACT INFORMATION
-            ========================== -->
-
-            <div class="contact-info-card">
-
-                <h2>Contact Information</h2>
-
-                <p class="contact-info-intro">
-                    Get in touch with German Jordanian University
-                    for general inquiries and internship-related support.
-                </p>
-
-
-                <!-- University Address -->
-
-                <div class="contact-info-item">
-
-                    <div class="contact-info-heading">
-
-                        <span class="contact-info-icon">
-                            <i class="bi bi-geo-alt"></i>
-                        </span>
-
-                        <h3>University Address</h3>
-
-                    </div>
-
-                    <div class="contact-info-details">
-                        <p>
-                            German Jordanian University (GJU)<br />
-                            Amman-Madaba Street<br />
-                            Jordan
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <hr class="contact-info-divider" />
-
-
-                <!-- Phone Number -->
-
-                <div class="contact-info-item">
-
-                    <div class="contact-info-heading">
-
-                        <span class="contact-info-icon">
-                            <i class="bi bi-telephone"></i>
-                        </span>
-
-                        <h3>Phone Number</h3>
-
-                    </div>
-
-                    <div class="contact-info-details">
-
-                        <a href="tel:+96264294444">
-                            +962 6 429 4444
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <hr class="contact-info-divider" />
-
-
-                <!-- General Email -->
-
-                <div class="contact-info-item">
-
-                    <div class="contact-info-heading">
-
-                        <span class="contact-info-icon">
-                            <i class="bi bi-envelope"></i>
-                        </span>
-
-                        <h3>General Email</h3>
-
-                    </div>
-
-                    <div class="contact-info-details">
-
-                        <a href="mailto:info@gju.edu.jo">
-                            info@gju.edu.jo
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <hr class="contact-info-divider" />
-
-
-                <!-- Internship Support -->
-
-                <div class="contact-info-item">
-
-                    <div class="contact-info-heading">
-
-                        <span class="contact-info-icon">
-                            <i class="bi bi-mortarboard"></i>
-                        </span>
-
-                        <h3>Internship Support</h3>
-
-                    </div>
-
-                    <div class="contact-info-details">
-
-                        <a href="mailto:IO.Internship.Team@gju.edu.jo">
-                            IO.Internship.Team@gju.edu.jo
-                        </a>
-
-                    </div>
-
-                </div>
-
-
-                <hr class="contact-info-divider" />
-
-
-                <!-- Official Website -->
-
-                <div class="contact-info-item">
-
-                    <div class="contact-info-heading">
-
-                        <span class="contact-info-icon">
-                            <i class="bi bi-globe"></i>
-                        </span>
-
-                        <h3>Official Website</h3>
-
-                    </div>
-
-                    <div class="contact-info-details">
-
-                        <a href="https://www.gju.edu.jo/"
-                           target="_blank"
-                           rel="noopener noreferrer">
-
-                            www.gju.edu.jo
-
-                        </a>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
+<asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
+<%-- Contact Us. Messages are saved to Firebase /ContactMessages (Name, Email, Subject, Message, Status "New", SubmittedAt)
+     and read by Pages/Coordinator/ContactMessages.aspx. Styles: Assets/css/contact.css; behaviour: Assets/js/contact.js
+     on top of the shared Assets/js/public-forms.js (validation, busy state, duplicate-send guard). --%>
+<div class="public-page contact-page">
+ <div class="contact-layout">
+  <div class="contact-intro">
+   <p class="contact-eyebrow"><%: L.T("Public.Contact.ContactUIMS") %></p>
+   <h1 id="contact-title"><%: L.T("Public.Contact.LetSStartAConversation") %></h1>
+   <p class="contact-lead"><%: L.T("Public.Contact.HaveAQuestionAboutUsingUIMS") %></p>
+  </div>
+
+  <figure class="contact-figure">
+   <img src="<%: ResolveUrl("~/Assets/images/contact/contact-walkway.jpg") %>" alt="<%: L.T("Public.Contact.APavedWalkwayBetweenLimestoneBuildings") %>" width="1000" height="678" fetchpriority="high" />
+   <%-- Decorative: the letter rises as the form becomes ready (contact.js sets --ready). --%>
+   <span class="contact-envelope-tile" aria-hidden="true">
+    <svg class="contact-envelope" data-contact-envelope viewBox="0 0 96 72" focusable="false">
+     <path class="contact-envelope-flap" d="M10 31 48 6l38 25z" />
+     <rect class="contact-envelope-back" x="10" y="30" width="76" height="38" rx="4" />
+     <g class="contact-envelope-letter"><rect x="20" y="16" width="56" height="42" rx="2" /><path d="M28 26h40M28 33h40M28 40h26" /></g>
+     <path class="contact-envelope-front" d="M10 33 48 53l38-20v31a4 4 0 0 1-4 4H14a4 4 0 0 1-4-4z" />
+    </svg>
+   </span>
+  </figure>
+
+  <aside class="contact-university" aria-labelledby="university-info-title">
+   <h2 id="university-info-title"><%: L.T("Public.Contact.UniversityInformation") %></h2>
+   <p><%: L.T("Public.Contact.ThisFormReachesTheUIMSCoordination") %></p>
+   <ul>
+    <li><a href="<%: Constants.UniversityWebsite %>" target="_blank" rel="noopener noreferrer"><%: L.T("Public.Contact.OfficialGJUWebsite") %><span class="visually-hidden"> <%: L.T("Public.Contact.OpensInANewTab") %></span> <span aria-hidden="true">&#8599;</span></a></li>
+    <li><a href="<%: Constants.UniversityMapUrl %>" target="_blank" rel="noopener noreferrer"><%: L.T("Public.Contact.MainCampusLocationAmmanMadabaStreet") %><span class="visually-hidden"> <%: L.T("Public.Contact.OpensGoogleMapsInANew") %></span> <span aria-hidden="true">&#8599;</span></a></li>
+   </ul>
+  </aside>
+
+  <section class="public-form contact-card" id="contact-form" data-public-form="contact" data-contact-form aria-labelledby="message-title">
+<% if (SentConfirmed) { %>
+   <%-- Shown only after Firebase confirmed the save (post/redirect/get with a one-time session flag). --%>
+   <div class="contact-sent" role="status">
+    <svg class="contact-sent-envelope" viewBox="0 0 96 72" aria-hidden="true" focusable="false">
+     <rect class="contact-sent-back" x="10" y="14" width="76" height="50" rx="4" />
+     <path class="contact-sent-flap" d="M10 15 48 42l38-27" />
+     <circle class="contact-sent-badge" cx="78" cy="58" r="13" />
+     <path class="contact-sent-check" d="M71.5 58.5 76 63l8.5-9" />
+    </svg>
+    <h2 id="message-title" tabindex="-1"><%: L.T("Public.Contact.MessageSent") %></h2>
+    <p><%: L.T("Public.Contact.YourMessageHasBeenReceivedThank") %></p>
+    <a class="public-button" href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>#contact-form"><%: L.T("Public.Contact.SendAnotherMessage") %></a>
+   </div>
+<% } else { %>
+   <div class="contact-card-head">
+    <h2 id="message-title"><%: L.T("Public.Contact.SendAMessage") %></h2>
+    <p id="requiredNote"><%: L.T("Public.Contact.AllFieldsAreRequired") %><span aria-hidden="true"> (*)</span>.</p>
+   </div>
+   <div class="contact-readiness" data-contact-readiness hidden>
+    <span class="contact-readiness-label"><%: L.T("Public.Contact.FormReadiness") %></span>
+    <span class="contact-readiness-bar" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="contact-readiness-count" data-readiness-text><%: L.T("Public.Contact.0Of4FieldsReady") %></span>
+   </div>
+   <asp:Label ID="lblMessage" runat="server" Visible="false" role="alert" />
+   <div class="public-field">
+    <label for="<%= txtName.ClientID %>"><%: L.T("Public.Contact.FullName") %> <span class="contact-required" aria-hidden="true">*</span></label>
+    <asp:TextBox ID="txtName" runat="server" MaxLength="100" minlength="2" autocomplete="name" dir="auto" placeholder="<%$ Resources:Public, Contact.YourFullName %>" aria-required="true" data-public-required="" data-required-message="<%$ Resources:Public, Contact.EnterYourFullName %>" data-short-message="<%$ Resources:Public, Contact.YourNameNeedsAtLeast2 %>" aria-describedby="nameError" />
+    <span id="nameError" class="public-field-error" aria-live="polite"><%: NameError %></span>
+   </div>
+   <div class="public-field">
+    <label for="<%= txtEmail.ClientID %>"><%: L.T("Public.Contact.EmailAddress") %> <span class="contact-required" aria-hidden="true">*</span></label>
+    <asp:TextBox ID="txtEmail" runat="server" TextMode="Email" MaxLength="254" autocomplete="email" inputmode="email" spellcheck="false" placeholder="you@example.com" aria-required="true" data-public-required="" data-required-message="<%$ Resources:Public, Contact.EnterYourEmailAddress %>" data-invalid-message="<%$ Resources:Public, Contact.EnterAnEmailAddressLikeName %>" aria-describedby="contactEmailError" />
+    <span id="contactEmailError" class="public-field-error" aria-live="polite"><%: EmailError %></span>
+   </div>
+   <div class="public-field">
+    <label for="<%= txtSubject.ClientID %>"><%: L.T("Public.Contact.Subject") %> <span class="contact-required" aria-hidden="true">*</span></label>
+    <asp:TextBox ID="txtSubject" runat="server" MaxLength="150" minlength="5" dir="auto" placeholder="<%$ Resources:Public, Contact.WhatWouldYouLikeToDiscuss %>" aria-required="true" data-public-required="" data-required-message="<%$ Resources:Public, Contact.EnterASubjectForYourMessage %>" data-short-message="<%$ Resources:Public, Contact.YourSubjectNeedsAtLeast5 %>" aria-describedby="subjectError" />
+    <span id="subjectError" class="public-field-error" aria-live="polite"><%: SubjectError %></span>
+   </div>
+   <div class="public-field">
+    <label for="<%= txtMessage.ClientID %>"><%: L.T("Public.Contact.Message") %> <span class="contact-required" aria-hidden="true">*</span></label>
+    <asp:TextBox ID="txtMessage" runat="server" TextMode="MultiLine" Rows="7" maxlength="4000" minlength="20" dir="auto" aria-required="true" data-public-required="" data-required-message="<%$ Resources:Public, Contact.EnterYourMessage %>" data-short-message="<%$ Resources:Public, Contact.YourMessageNeedsAtLeast20 %>" aria-describedby="messageError messageHint" />
+    <span id="messageError" class="public-field-error" aria-live="polite"><%: MessageError %></span>
+    <span class="contact-message-meta">
+     <small id="messageHint" class="public-hint"><%: L.T("Public.Contact.204000CharactersShareEnough") %></small>
+     <span class="contact-counter" data-contact-counter aria-hidden="true" hidden>0 / 4,000</span>
+    </span>
+   </div>
+   <div class="public-honeypot" aria-hidden="true"><label for="<%= Website.ClientID %>"><%: L.T("Public.Contact.LeaveThisFieldEmpty") %></label><asp:TextBox ID="Website" runat="server" tabindex="-1" autocomplete="off" /></div>
+   <p class="contact-sensitive"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="5" y="10.5" width="14" height="10" rx="2" /><path d="M8.5 10.5V8a3.5 3.5 0 0 1 7 0v2.5" /></svg><%: L.T("Public.Contact.PleaseDoNotIncludePasswordsOr") %></p>
+   <span class="contact-submit">
+    <asp:Button ID="btnSend" runat="server" Text="<%$ Resources:Public, Contact.SendMessage %>" CssClass="public-button" OnClientClick="return validateContact();" OnClick="btnSend_Click" />
+   </span>
+   <p data-submit-status="" role="status" aria-live="polite" class="public-form-note"></p>
+   <p class="public-form-note"><%: L.T("Public.Contact.YourMessageAndEmailAddressAre") %></p>
+<% } %>
+  </section>
+ </div>
+
+ <section class="contact-help" aria-labelledby="help-title">
+  <h2 id="help-title"><%: L.T("Public.Contact.BeforeYouWrite") %></h2>
+  <div class="contact-help-list">
+   <details><summary><%: L.T("Public.Contact.INeedAnInternshipAccount") %></summary><p><%: L.T("Public.Contact.AccountsAreProvidedForYourRole") %></p></details>
+   <details><summary><%: L.T("Public.Contact.IForgotMyPassword") %></summary><p><%: L.T("Public.Contact.YouCan") %> <a href="<%: ResolveUrl("~/Pages/Account/ForgotPassword.aspx") %>"><%: L.T("Public.Contact.RequestAResetLink") %></a> <%: L.T("Public.Contact.UsingYourAccountEmailIfYou") %></p></details>
+   <details><summary><%: L.T("Public.Contact.IHaveAQuestionAboutMy") %></summary><p><%: L.T("Public.Contact.ForTaskFeedbackOrTrainingDecisions") %></p></details>
+  </div>
+ </section>
+</div>
+</asp:Content>
+<asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
+<script src="<%: ResolveUrl("~/Assets/js/public-forms.js?v=20261022-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/contact.js?v=20261022-2") %>"></script>
 </asp:Content>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
+  <resheader name="version"><value>2.0</value></resheader>
+  <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="Default.ACampus" xml:space="preserve"><value>حرمٌ جامعي</value></data>
+  <data name="Default.AShared" xml:space="preserve"><value>نقطة انطلاق</value></data>
+  <data name="Default.AboutTheInternshipSystem" xml:space="preserve"><value>عن نظام التدريب ←</value></data>
+  <data name="Default.AboutTheSystem" xml:space="preserve"><value>عن النظام</value></data>
+  <data name="Default.AerialPhotographOfGermanJordanianUniversity" xml:space="preserve"><value>صورة جوية لمباني الجامعة الألمانية الأردنية الحجرية وساحاتها</value></data>
+  <data name="Default.Ahead" xml:space="preserve"><value>أمامك.</value></data>
+  <data name="Default.ApplyConfirm" xml:space="preserve"><value>تقدّم وأكِّد</value></data>
+  <data name="Default.ApplyFollowTheCompanyDecisionAnd" xml:space="preserve"><value>قدّم طلبك، وتابع قرار الشركة، وأكِّد عرضًا مقبولًا واحدًا.</value></data>
+  <data name="Default.AvailableInternshipPreviews" xml:space="preserve"><value>ملخّصات فرص التدريب المتاحة</value></data>
+  <data name="Default.Campus" xml:space="preserve"><value>الحرم</value></data>
+  <data name="Default.CampusLandmarks" xml:space="preserve"><value>معالم الحرم الجامعي</value></data>
+  <data name="Default.CampusStoryChapters" xml:space="preserve"><value>فصول قصة الحرم الجامعي</value></data>
+  <data name="Default.CampusToday" xml:space="preserve"><value>حرمٌ جامعي اليوم.</value></data>
+  <data name="Default.CareerTomorrow" xml:space="preserve"><value>مسيرة مهنية غدًا.</value></data>
+  <data name="Default.Chapter1TheCampus" xml:space="preserve"><value>الفصل 1: الحرم الجامعي</value></data>
+  <data name="Default.Chapter2TheConnection" xml:space="preserve"><value>الفصل 2: الصلة</value></data>
+  <data name="Default.Chapter3YourField" xml:space="preserve"><value>الفصل 3: تخصّصك</value></data>
+  <data name="Default.Chapter4YourJourney" xml:space="preserve"><value>الفصل 4: مسارك</value></data>
+  <data name="Default.Chapter5WhatComesNext" xml:space="preserve"><value>الفصل 5: الخطوة التالية</value></data>
+  <data name="Default.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="Default.Colleges" xml:space="preserve"><value>الكليات</value></data>
+  <data name="Default.CompleteTasksSubmitWorkAndLearn" xml:space="preserve"><value>أنجز المهام، وسلّم أعمالك، واستفد من ملاحظات مشرفيك.</value></data>
+  <data name="Default.CompleteYourReview" xml:space="preserve"><value>أتمّ مراجعتك</value></data>
+  <data name="Default.Connect" xml:space="preserve"><value>التواصل</value></data>
+  <data name="Default.ContinueWithYourUniversityInternshipAccount" xml:space="preserve"><value>تابع باستخدام حسابك الجامعي في نظام التدريب.</value></data>
+  <data name="Default.DevelopmentNoticeCaptionsForThisVideo" xml:space="preserve"><value>ملاحظة تطوير: لم تُوفَّر ترجمة نصية لهذا الفيديو.</value></data>
+  <data name="Default.DevelopmentPlaceholderTheUniversitySInternship" xml:space="preserve"><value>عنصر مؤقت للتطوير: لم يُوفَّر بعد فيديو خطوات التدريب الخاص بالجامعة وترجمته النصية.</value></data>
+  <data name="Default.DiscoverPublishedInternshipSummariesLogIn" xml:space="preserve"><value>اطّلع على ملخّصات فرص التدريب المنشورة. سجّل الدخول بحسابك الجامعي لعرض التفاصيل كاملة والتقدّم.</value></data>
+  <data name="Default.ExperienceInYourFieldStartsWith" xml:space="preserve"><value>تبدأ الخبرة في تخصّصك بنظرة أولى. تصفّح الملخّصات المنشورة، ثم سجّل الدخول لعرض التفاصيل كاملة والتقدّم عبر بوابة الطالب.</value></data>
+  <data name="Default.Explore" xml:space="preserve"><value>استكشف</value></data>
+  <data name="Default.ExploreInternships" xml:space="preserve"><value>استكشف فرص التدريب ←</value></data>
+  <data name="Default.ExploreOpportunities" xml:space="preserve"><value>استكشف فرص التدريب</value></data>
+  <data name="Default.ExploreOpportunities2" xml:space="preserve"><value>استكشف فرص التدريب ↓</value></data>
+  <data name="Default.ExploreTheCollegeProgramsAndSpecializations" xml:space="preserve"><value>تعرّف على الكلية والبرامج والمسارات التي تدعمها بوابة التدريب حاليًا.</value></data>
+  <data name="Default.ExploreTheFourSteps" xml:space="preserve"><value>استكشف الخطوات الأربع ↑</value></data>
+  <data name="Default.ExploreYourCampus" xml:space="preserve"><value>استكشف حرمك الجامعي</value></data>
+  <data name="Default.FindInternshipsThatMatchYourCollege" xml:space="preserve"><value>اعثر على فرص تدريب تناسب كليتك وتخصّصك.</value></data>
+  <data name="Default.GJUGate1WithItsOriginal" xml:space="preserve"><value>البوابة 1 للجامعة الألمانية الأردنية بلافتتها الأصلية ثنائية اللغة وبواباتها المعدنية</value></data>
+  <data name="Default.Gate1GermanJordanianUniversity" xml:space="preserve"><value>البوابة 1، الجامعة الألمانية الأردنية</value></data>
+  <data name="Default.GermanJordanianUniversityCampusPhotograph" xml:space="preserve"><value>الجامعة الألمانية الأردنية · صورة للحرم الجامعي</value></data>
+  <data name="Default.GlazedUniversityConnectorFramedByLimestone" xml:space="preserve"><value>ممرّ زجاجي في الجامعة تحيط به مبانٍ من الحجر الجيري ودرجات وشجرة في الساحة</value></data>
+  <data name="Default.Grow" xml:space="preserve"><value>تطوّر.</value></data>
+  <data name="Default.HowItWorks" xml:space="preserve"><value>كيف يعمل النظام</value></data>
+  <data name="Default.IsYours" xml:space="preserve"><value>لك.</value></data>
+  <data name="Default.Journey" xml:space="preserve"><value>المسار</value></data>
+  <data name="Default.LearnApply" xml:space="preserve"><value>تعلّم. تقدّم.</value></data>
+  <data name="Default.LogInToGetStarted" xml:space="preserve"><value>سجّل الدخول للبدء</value></data>
+  <data name="Default.LogInToViewDetails" xml:space="preserve"><value>سجّل الدخول لعرض التفاصيل</value></data>
+  <data name="Default.LogInToYourPortal" xml:space="preserve"><value>سجّل الدخول إلى بوابتك</value></data>
+  <data name="Default.MakeYour" xml:space="preserve"><value>اخطُ</value></data>
+  <data name="Default.NextMove" xml:space="preserve"><value>خطوتك التالية.</value></data>
+  <data name="Default.NoPublicInternshipSummariesArePublished" xml:space="preserve"><value>لا توجد ملخّصات منشورة لفرص التدريب حاليًا. عُد لاحقًا أو سجّل الدخول لعرض بوابة الطالب.</value></data>
+  <data name="Default.OfficialVideoComingHere" xml:space="preserve"><value>سيُعرض الفيديو الرسمي هنا.</value></data>
+  <data name="Default.OnThisPage" xml:space="preserve"><value>في هذه الصفحة</value></data>
+  <data name="Default.OnlyPublishedSummariesArePublicFull" xml:space="preserve"><value>الملخّصات المنشورة فقط متاحة للعموم. تتطلّب التفاصيل الكاملة والتقدّم حساب طالب مسجّلًا.</value></data>
+  <data name="Default.OpenTheVideo" xml:space="preserve"><value>فتح الفيديو</value></data>
+  <data name="Default.Opportunities" xml:space="preserve"><value>فرص التدريب</value></data>
+  <data name="Default.PauseCampusMotion" xml:space="preserve"><value>إيقاف حركة الحرم الجامعي</value></data>
+  <data name="Default.ProcessVideo" xml:space="preserve"><value>فيديو الخطوات</value></data>
+  <data name="Default.ProgramsSpecializations" xml:space="preserve"><value>البرامج والمسارات</value></data>
+  <data name="Default.ReadTheInternshipSteps" xml:space="preserve"><value>اقرأ خطوات التدريب ←</value></data>
+  <data name="Default.ReadyForYourNextChapter" xml:space="preserve"><value>هل أنت مستعد لفصلك التالي؟</value></data>
+  <data name="Default.SeeThePath" xml:space="preserve"><value>تعرّف على الطريق</value></data>
+  <data name="Default.Specializations" xml:space="preserve"><value>المسارات</value></data>
+  <data name="Default.StartingPoint" xml:space="preserve"><value>مشتركة.</value></data>
+  <data name="Default.StoneGlassAndSharedSpaces" xml:space="preserve"><value>حجر وزجاج ومساحات مشتركة</value></data>
+  <data name="Default.Study" xml:space="preserve"><value>الدراسة</value></data>
+  <data name="Default.TheCourtyardWaterwheel" xml:space="preserve"><value>ناعورة الساحة</value></data>
+  <data name="Default.TheEntranceTheCourtyardAndThe" xml:space="preserve"><value>المدخل والساحة والمساحات بينهما. استكشف معالم الجامعة الألمانية الأردنية التي تصنع هذه التجربة.</value></data>
+  <data name="Default.TheNextChapter" xml:space="preserve"><value>الفصل التالي</value></data>
+  <data name="Default.TheRealGermanJordanianUniversityCourtyard" xml:space="preserve"><value>ساحة الجامعة الألمانية الأردنية الحقيقية بناعورتها الخشبية ومبانيها من الحجر الجيري وممرّها الزجاجي</value></data>
+  <data name="Default.TimberCourtyardWaterwheelBesideItsLimestone" xml:space="preserve"><value>الناعورة الخشبية في ساحة الجامعة بجانب دعامتها من الحجر الجيري وحوض الماء الأزرق</value></data>
+  <data name="Default.TrackApprovedHoursAndEvaluationsThrough" xml:space="preserve"><value>تابع الساعات المعتمدة والتقييمات حتى المراجعة النهائية في الجامعة.</value></data>
+  <data name="Default.TrainGrow" xml:space="preserve"><value>تدرّب وتطوّر</value></data>
+  <data name="Default.UIMSConnectsStudentsCompaniesAndUniversity" xml:space="preserve"><value>يربط نظام إدارة التدريب الطلبة والشركات والمشرفين الأكاديميين. أدِر طلباتك، وتابع مهام التدريب، وابقَ على تواصل في كل مرحلة من مراحل تدريبك.</value></data>
+  <data name="Default.UnderstandEachStageBeforeYouBegin" xml:space="preserve"><value>افهم كل مرحلة قبل أن تبدأ. يرافقك مشرف الشركة والمشرف الأكاديمي في تقدّمك طوال الطريق.</value></data>
+  <data name="Default.UnderstandTheInternshipProcessUseThis" xml:space="preserve"><value>افهم خطوات التدريب الميداني. استخدم هذا الدليل مع الخطوات أعلاه، واسأل منسّق التدريب عن متطلبات الجامعة الخاصة.</value></data>
+  <data name="Default.UniversityInternshipProcessVideo" xml:space="preserve"><value>فيديو خطوات التدريب في الجامعة</value></data>
+  <data name="Default.WatchTheProcessGuide" xml:space="preserve"><value>شاهد دليل الخطوات ↓</value></data>
+  <data name="Default.YouKnow" xml:space="preserve"><value>تعرفه.</value></data>
+  <data name="Default.YourBrowserDoesNotSupportVideo" xml:space="preserve"><value>لا يدعم متصفحك تشغيل الفيديو.</value></data>
+  <data name="Default.YourField" xml:space="preserve"><value>تخصّصك.</value></data>
+  <data name="Default.YourFuture" xml:space="preserve"><value>مستقبلك.</value></data>
+  <data name="Default.YourInternshipJourneyAtGermanJordanian" xml:space="preserve"><value>رحلتك في التدريب الميداني في الجامعة الألمانية الأردنية. اربط دراستك بالخبرة العملية، من أول طلب حتى المراجعة النهائية.</value></data>
+</root>

@@ -1,0 +1,232 @@
+
+Login.GermanJordanianUniversity
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+Login.WelcomeBack
+en: Welcome back.
+
+Login.YourNextStepStartsHereSign
+en: Your next step starts here. Sign in to your internship portal.
+
+Login.EmailAddress
+en: Email address
+
+Login.EnterYourEmailAddress
+en: Enter your email address.
+
+Login.Password
+en: Password
+
+Login.EnterYourPassword
+en: Enter your password.
+
+Login.ShowPassword
+en: Show password
+
+Login.Show
+en: Show
+
+Login.YourAccountStaysPrivate
+en: Your account stays private.
+
+Login.LogIn
+en: Log in
+
+Login.NeedAnAccount
+en: Need an account?
+
+Login.ContactYourCoordinator
+en: Contact your coordinator
+
+Login.ContinueToYourPortal
+en: Continue to your portal
+
+Login.WelcomeYourEntryIsVerified
+en: Welcome. Your entry is verified.
+
+Login.GermanJordanianUniversityGate1
+en: German Jordanian University · Gate 1
+
+Login.PauseScene
+en: Pause scene
+
+ForgotPassword.LetSGetYou
+en: Let's get you
+
+ForgotPassword.BackOnTrack
+en: back on track.
+
+ForgotPassword.ForgotYourPasswordRequestAReset
+en: Forgot your password? Request a reset link using the email address associated with your internship account.
+
+ForgotPassword.IfYouCannotAccessThatEmail
+en: If you cannot access that email address, your university coordinator can help you with the next step.
+
+ForgotPassword.ContactTheCoordinationTeam
+en: Contact the coordination team
+
+ForgotPassword.ResetYourPassword
+en: Reset your password
+
+ForgotPassword.EnterYourAccountEmailToRequest
+en: Enter your account email to request a reset link.
+
+ForgotPassword.EmailAddress
+en: Email address
+
+ForgotPassword.EnterYourEmailAddress
+en: Enter your email address.
+
+ForgotPassword.CheckYourInboxAndSpamFolder
+en: Check your inbox and spam folder after requesting a link.
+
+ForgotPassword.SendResetLink
+en: Send Reset Link
+
+ForgotPassword.ForYourPrivacyTheResponseWill
+en: For your privacy, the response will not confirm whether an account exists for an email address.
+
+ForgotPassword.BackToLogin
+en: Back to Login
+
+ChangePassword.ChangePassword
+en: Change Password
+ar: تغيير كلمة المرور
+
+ChangePassword.YouAreUsingATemporaryPassword
+en: You are using a temporary password. Please choose a new password to continue.
+
+ChangePassword.CurrentPassword
+en: Current password
+
+ChangePassword.NewPassword
+en: New password
+
+ChangePassword.AtLeast6Characters
+en: At least 6 characters.
+
+ChangePassword.ConfirmNewPassword
+en: Confirm new password
+
+Notifications.Notifications
+en: Notifications
+ar: الإشعارات
+
+Notifications.MarkAllAsRead
+en: Mark all as read
+
+Notifications.YouReAllCaughtUpNew
+en: You're all caught up. New tasks, decisions and updates will appear here.
+ar: لا يوجد جديد. ستظهر هنا المهام والقرارات والتحديثات الجديدة.
+
+Login.ForgotPassword
+en: Forgot password?
+
+Login.YourAccountIsNotActivePlease
+en: Your account is not active. Please contact the coordinator.
+
+Login.YourSessionHasExpiredPleaseLog
+en: Your session has expired. Please log in again.
+
+Login.WeCouldNotVerifyYourAccount
+en: We could not verify your account. Please log in again.
+
+Login.TheSignInServiceIsNot
+en: The sign-in service is not configured. Please contact the coordinator.
+
+Login.PleaseEnterYourEmailAndPassword
+en: Please enter your email and password.
+
+Login.PleaseEnterAValidEmailAddress
+en: Please enter a valid email address.
+
+Login.WeCouldNotLoadYourAccount
+en: We could not load your account. Please try again later.
+
+Login.WeCouldNotVerifyYourAccount2
+en: We could not verify your account access. Please try logging in again.
+
+Login.WeCouldNotVerifyYourAccount3
+en: We could not verify your account access. Please contact the coordinator.
+
+ForgotPassword.PleaseEnterYourEmailAddress
+en: Please enter your email address.
+
+ForgotPassword.PleaseEnterAValidEmailAddress
+en: Please enter a valid email address.
+
+ForgotPassword.IfAnAccountExistsForThis
+en: If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.
+
+ChangePassword.PleaseFillInAllFields
+en: Please fill in all fields.
+
+ChangePassword.TheNewPasswordMustBeAt
+en: The new password must be at least 6 characters.
+
+ChangePassword.TheNewPasswordsDoNotMatch
+en: The new passwords do not match.
+
+ChangePassword.TheNewPasswordMustBeDifferent
+en: The new password must be different from the current password.
+
+ChangePassword.TheCurrentPasswordIsIncorrect
+en: The current password is incorrect.
+
+ChangePassword.YourPasswordWasChangedButYour
+en: Your password was changed, but your account could not be updated. Please try again using your new password as the current password.
+
+Notifications.AllNotificationsAreMarkedAsRead
+en: All notifications are marked as read.
+
+Notifications.CouldNotUpdateNotificationsPleaseTry
+en: Could not update notifications. Please try again.
+
+Notifications.NotificationsAreUnavailableRightNow
+en: Notifications are unavailable right now.
+
+AuthService.PleaseSignInAgain
+en: Please sign in again.
+
+AuthService.FirebaseIsNotConfiguredGetThe
+en: Firebase is not configured. Get the latest Web.config from main (git merge origin/main), then stop and restart the project.
+
+AuthService.IncorrectEmailOrPassword
+en: Incorrect email or password.
+
+AuthService.CouldNotCreateTheAccount
+en: Could not create the account.
+
+AuthService.CouldNotDeleteTheAccount
+en: Could not delete the account.
+
+AuthService.CouldNotSendTheResetEmail
+en: Could not send the reset email. Please try again later.
+
+AuthService.CouldNotChangeThePassword
+en: Could not change the password.
+
+AuthService.AnAccountWithThisEmailAlready
+en: An account with this email already exists.
+
+AuthService.ThePasswordMustBeAtLeast
+en: The password must be at least 6 characters.
+
+AuthService.ThatEmailAddressIsNotValid
+en: That email address is not valid.
+
+AuthService.ThisAccountHasBeenDeactivated
+en: This account has been deactivated.
+
+AuthService.TooManyAttemptsPleaseTryAgain
+en: Too many attempts. Please try again later.
+
+AuthService.PleaseSignInAgainBeforeChanging
+en: Please sign in again before changing your password.
+
+CompletionReport.ThisReportIsNotAvailable
+en: This report is not available.
+
+Login.FirebaseIsNotConfiguredYetSee
+en: Firebase is not configured yet. See docs/05-firebase-setup.md.

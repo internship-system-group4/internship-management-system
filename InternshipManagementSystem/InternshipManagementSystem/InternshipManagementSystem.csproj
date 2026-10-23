@@ -102,6 +102,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Common\Constants.cs" />
+    <Compile Include="Common\Localization.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\GradingPolicy.cs" />
     <Compile Include="Common\Time.cs" />
@@ -110,6 +111,23 @@
     <Compile Include="Data\ApplicationRepository.cs" />
     <Compile Include="Data\CompanyRepository.cs" />
     <Compile Include="Data\CoordinatorMonitoringRepository.cs" />
+    <Compile Include="Data\WorkspaceDashboardRepository.cs" />
+    <Compile Include="Data\WorkspaceChartFactory.cs" />
+    <Compile Include="Layout\WorkspaceChart.ascx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Content Include="Layout\WorkspaceChart.ascx" />
+    <Content Include="Assets\css\interface.css" />
+    <Content Include="Assets\css\reference-analytics.css" />
+    <Content Include="Assets\js\workspace-charts.js" />
+    <Content Include="Assets\fonts\notosans-variable.ttf" />
+    <Content Include="Assets\fonts\notosansarabic-variable.ttf" />
+    <Content Include="Assets\fonts\notosans-OFL.txt" />
+    <Content Include="Assets\fonts\notosansarabic-OFL.txt" />
+    <Compile Include="Layout\WorkspaceJourney.ascx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Content Include="Layout\WorkspaceJourney.ascx" />
     <Compile Include="Data\CompletionRepository.cs" />
     <Compile Include="Data\ContactRepository.cs" />
     <Compile Include="Data\EvaluationRepository.cs" />
@@ -563,7 +581,36 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="App_GlobalResources\Workspace.ar.resx" />
+    <Content Include="App_GlobalResources\Workspace.resx" />
+    <Content Include="App_GlobalResources\Student.ar.resx" />
+    <Content Include="App_GlobalResources\Student.resx" />
+    <Content Include="App_GlobalResources\Meetings.ar.resx" />
+    <Content Include="App_GlobalResources\Meetings.resx" />
+    <Content Include="App_GlobalResources\Coordinator.ar.resx" />
+    <Content Include="App_GlobalResources\Coordinator.resx" />
+    <Content Include="App_GlobalResources\Company.ar.resx" />
+    <Content Include="App_GlobalResources\Company.resx" />
+    <Content Include="App_GlobalResources\Academic.ar.resx" />
+    <Content Include="App_GlobalResources\Academic.resx" />
+    <Content Include="App_GlobalResources\Public.ar.resx" />
+    <Content Include="App_GlobalResources\Public.resx" />
+    <Content Include="App_GlobalResources\Home.ar.resx" />
+    <Content Include="App_GlobalResources\Home.resx" />
+    <Content Include="App_GlobalResources\Account.ar.resx" />
+    <Content Include="App_GlobalResources\Account.resx" />
+    <Content Include="App_GlobalResources\Shared.ar.resx" />
+    <Content Include="App_GlobalResources\Shared.resx" />
     <Content Include="Pages\Company\ManageOpportunities.aspx" />
+    <Compile Include="Pages\Student\DisplayEditProfile.aspx.designer.cs" />
+    <Compile Include="Pages\Student\StudentCVPortfolio.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\StudentCVPortfolio.aspx.designer.cs" />
+    <Compile Include="Pages\Student\exploreOpport.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Student\exploreOpport.aspx.designer.cs" />
     <Content Include="Pages\Company\ViewOpportunity.aspx" />
     <Content Include="Pages\Student\DisplayEditProfile.aspx" />
     <Content Include="Pages\Student\StudentCVPortfolio.aspx" />
@@ -627,11 +674,37 @@
     <Content Include="Assets\images\gju-logo.png" />
     <Content Include="Assets\images\README.txt" />
     <Content Include="Assets\js\site.js" />
+    <Content Include="Assets\js\ui-system.js" />
+    <Content Include="Assets\css\ui-system.css" />
+    <Content Include="Assets\css\workspace.css" />
+    <Content Include="Assets\js\workspace.js" />
+    <Content Include="Assets\css\ui-tokens.css" />
     <Content Include="Assets\css\login-campus.css" />
     <Content Include="Assets\js\login-campus.js" />
     <Content Include="Assets\js\login-campus-scene.js" />
     <Content Include="Assets\css\public-footer.css" />
+    <Content Include="Assets\css\about.css" />
+    <Content Include="Assets\js\about.js" />
+    <Content Include="Assets\css\contact.css" />
+    <Content Include="Assets\css\theme.css" />
+    <Content Include="Assets\css\i18n.css" />
+    <Content Include="Assets\js\i18n.js" />
+    <Content Include="Layout\LanguageSelector.ascx" />
+    <Content Include="Assets\js\theme.js" />
+    <Content Include="Layout\ThemeSelector.ascx" />
+    <Content Include="Assets\js\contact.js" />
+    <Content Include="Assets\images\contact\contact-walkway.jpg" />
+    <Content Include="Assets\images\about\about-gate-1.jpg" />
+    <Content Include="Assets\images\about\about-campus-aerial.jpg" />
+    <Content Include="Assets\images\about\about-students.jpg" />
+    <Content Include="Assets\images\about\about-film-poster.jpg" />
+    <Content Include="Assets\images\university\materials\-578791943103387727.mp4" />
     <Content Include="Assets\js\public-footer.js" />
+    <Content Include="Assets\js\public-footer-map.js" />
+    <Content Include="Assets\js\vendor\maplibre\maplibre-gl.mjs" />
+    <Content Include="Assets\js\vendor\maplibre\maplibre-gl-worker.mjs" />
+    <Content Include="Assets\js\vendor\maplibre\maplibre-gl.css" />
+    <Content Include="Assets\js\vendor\maplibre\LICENSE.txt" />
     <Content Include="Assets\css\powered-by.css" />
     <Content Include="Assets\js\powered-by-hall.js" />
     <Content Include="Assets\js\powered-by.js" />

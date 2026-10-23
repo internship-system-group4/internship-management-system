@@ -17,7 +17,7 @@
  if (approved) {
   // Start before importing anything; unavailable WebGL never holds up login.
   setTimeout(navigate, 1700);
-  status.textContent = 'Welcome. Opening your portal…';
+  status.textContent = window.uimsT('LoginOpening');
   if (motion.matches) { navigate(); return; }
  }
  function setPreference() { preference.value = motion.matches ? '0' : '1'; }
@@ -25,7 +25,7 @@
  function submitting() {
   if (form.dataset.submitting !== 'true' || approved) return;
   root.dataset.state = 'submitting';
-  status.textContent = 'Checking your account. Please wait…';
+  status.textContent = window.uimsT('LoginChecking');
   scene?.setState('submitting');
  }
  // Observe the existing validator's accepted state; do not replace its postback logic.
@@ -44,7 +44,7 @@
  function changeMotion() { setPreference(); scene?.setReducedMotion(motion.matches); if (approved && motion.matches) navigate(); }
  motion.addEventListener('change', changeMotion);
  // The form is usable before this dynamic import starts.
- import(new URL('./login-campus-scene.js', scriptUrl).href).then(async module => {
+ import(new URL('./login-campus-scene.js?v=20261023-i18n', scriptUrl).href).then(async module => {
   if (disposed || completed) return;
   scene = await module.createCampusScene(root, { reducedMotion:motion.matches });
   if (disposed || completed) { scene.dispose(); return; }

@@ -31,7 +31,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
             if (!PdfReportService.MayDownload(record, CurrentUser))
             {
-                Fail(404, "This report is not available.");
+                Fail(404, L.T("Account.CompletionReport.ThisReportIsNotAvailable"));
                 return;
             }
 
@@ -47,7 +47,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 : PdfReportService.GenerateCompletionReport(record, student, placement, coordinatorName);
             if (pdf == null)
             {
-                Fail(404, "This report is not available.");
+                Fail(404, L.T("Account.CompletionReport.ThisReportIsNotAvailable"));
                 return;
             }
 

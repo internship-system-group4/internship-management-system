@@ -113,7 +113,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             // Match evaluations by the student's own task IDs.
             HashSet<string> taskIds = new HashSet<string>(tasks.Where(t => t.Id != null).Select(t => t.Id));
             EvaluationRepository evaluationRepo = new EvaluationRepository();
-            List<TaskEvaluation> evaluations = LoadSafely("Task evaluations",
+            List<TaskEvaluation> evaluations = LoadSafely(L.T("Student.Progress.TaskEvaluations"),
                     () => evaluationRepo.GetTaskEvaluationsForStudent(id),
                     evaluationRepo.GetAllTaskEvaluations, ev => ev.StudentId == id)
                 .Where(ev => ev.TaskId != null && taskIds.Contains(ev.TaskId))
@@ -126,13 +126,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 .ToList();
 
             HoursRepository hoursRepo = new HoursRepository();
-            List<TrainingHoursEntry> hours = LoadSafely("Training hours",
+            List<TrainingHoursEntry> hours = LoadSafely(L.T("Student.Progress.TrainingHours2"),
                     () => hoursRepo.GetByStudent(id), hoursRepo.GetAll, h => h.StudentId == id)
                 .Where(h => h.PlacementId == placement.Id)
                 .ToList();
 
             CompletionRepository completionRepo = new CompletionRepository();
-            CompletionRecord completion = LoadSafely("Completion status",
+            CompletionRecord completion = LoadSafely(L.T("Student.Progress.CompletionStatus"),
                     () => completionRepo.GetWhere("StudentId", id), completionRepo.GetAll, c => c.StudentId == id)
                 .FirstOrDefault(c => c.PlacementId == placement.Id);
 
@@ -151,7 +151,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             litCompany.Text = TextOrDash(placement.CompanyName);
             litSupervisor.Text = TextOrDash(placement.CompanySupervisorName);
             litDates.Text = Time.DisplayDate(placement.StartDate) + " to " + Time.DisplayDate(placement.EndDate);
-            litPlacementStatus.Text = placement.Status.ToString();
+            litPlacementStatus.Text = L.Value("PlacementStatus", placement.Status);
         }
 
         // ---- per-task grades and feedback ---------------------------------
@@ -190,7 +190,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 }
                 else
                 {
-                    row.Grade = "Not graded yet";
+                    row.Grade = L.T("Student.Progress.NotGradedYet");
                     row.Criteria = "";
                 }
 
@@ -207,7 +207,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 }
                 else
                 {
-                    row.Feedback = "No feedback yet";
+                    row.Feedback = L.T("Student.Progress.NoFeedbackYet");
                 }
 
                 rows.Add(row);
@@ -245,13 +245,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 if (evaluation == null)
                 {
-                    row.Outcome = "Awaiting review";
+                    row.Outcome = L.T("Student.Progress.AwaitingReview");
                     row.OutcomeCss = "uims-pill-pending";
                     row.Details = "";
                 }
                 else if (evaluation.RevisionRequested)
                 {
-                    row.Outcome = "Revision requested";
+                    row.Outcome = L.T("Student.Progress.RevisionRequested");
                     row.OutcomeCss = "uims-pill-rejected";
                     row.Details = TextOrDash(evaluation.RevisionInstructions);
                 }
@@ -290,7 +290,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     Date = Time.DisplayDate(h.WorkDate > 0 ? h.WorkDate : h.ReportedAt),
                     Hours = h.Hours,
                     Description = TextOrDash(h.Description),
-                    Status = h.Status == HoursStatus.Reported ? "Pending approval" : h.Status.ToString(),
+                    Status = h.Status == HoursStatus.Reported ? L.T("Student.Progress.PendingApproval") : L.Value("HoursStatus", h.Status),
                     StatusCss = h.Status == HoursStatus.Approved ? "uims-pill-accepted"
                               : h.Status == HoursStatus.Rejected ? "uims-pill-rejected"
                               : "uims-pill-pending",
@@ -315,6 +315,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
             litSumHoursPercent.Text = percent.ToString();
             hoursBar.Style["width"] = percent + "%";
             hoursBar.Attributes["aria-valuenow"] = percent.ToString();
+            hoursBar.Attributes["data-ui-progress"] = "";
+            hoursBar.Attributes["data-ui-approved"] = approvedHours.ToString();
+            hoursBar.Attributes["data-ui-target"] = required.ToString();
+            hoursBar.Attributes["aria-valuetext"] = required > 0
+                ? approvedHours + " approved hours of " + required + " required hours"
+                : approvedHours + " approved hours. Training hours target is not set.";
+            if (required <= 0) hoursBar.Attributes.Remove("aria-valuenow");
 
             int graded = tasks.Count(t => t.Status == InternshipTaskStatus.Graded);
             litSumTasks.Text = graded + " / " + tasks.Count;
@@ -364,18 +371,18 @@ namespace InternshipManagementSystem.Pages.StudentArea
         // ---- helpers ------------------------------------------------------
         private static string CompletionStageText(CompletionRecord completion)
         {
-            if (completion == null) return "Your internship is still in progress.";
+            if (completion == null) return L.T("Student.Progress.YourInternshipIsStillInProgress");
             switch (completion.Status)
             {
                 case CompletionStatus.AwaitingCompanyEvaluation:
                 case CompletionStatus.AwaitingAcademicEvaluation:
-                    return "Your supervisors are preparing their final evaluations.";
+                    return L.T("Student.Progress.YourSupervisorsArePreparingTheirFinal");
                 case CompletionStatus.UnderCoordinatorReview:
-                    return "The internship coordinator is reviewing your completion.";
+                    return L.T("Student.Progress.TheInternshipCoordinatorIsReviewingYour");
                 case CompletionStatus.Rejected:
-                    return "Your completion was not approved. Please contact the internship coordinator.";
+                    return L.T("Student.Progress.YourCompletionWasNotApprovedPlease");
                 default:
-                    return "Your internship is still in progress.";
+                    return L.T("Student.Progress.YourInternshipIsStillInProgress");
             }
         }
 
@@ -390,8 +397,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             switch (status)
             {
-                case InternshipTaskStatus.UnderReview: return "Under review";
-                case InternshipTaskStatus.RevisionRequested: return "Revision requested";
+                case InternshipTaskStatus.UnderReview: return L.T("Student.Progress.UnderReview");
+                case InternshipTaskStatus.RevisionRequested: return L.T("Student.Progress.RevisionRequested");
                 default: return status.ToString();
             }
         }

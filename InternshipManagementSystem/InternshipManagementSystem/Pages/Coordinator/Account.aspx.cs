@@ -50,14 +50,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtCollege.Text = user.College ?? "";
 
             lblStatus.Text = user.IsActive
-                ? "● Active"
-                : "● Inactive";
+                ? "Active"
+                : "Inactive";
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
             LoadProfile();
-            Notice("Changes discarded.", false);
+            Notice(L.T("Coordinator.Account.ChangesDiscarded"), false);
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
@@ -71,7 +71,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (name.Length < 2 || name.Length > 100)
             {
                 Notice(
-                    "Enter a valid full name (2–100 characters).",
+                    L.T("Coordinator.Account.EnterAValidFullName2"),
                     true
                 );
                 return;
@@ -80,7 +80,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (phone.Length > 0 &&
                 !Regex.IsMatch(phone, @"^\+?[0-9\s()\-]{7,25}$"))
             {
-                Notice("Enter a valid phone number.", true);
+                Notice(L.T("Coordinator.Account.EnterAValidPhoneNumber"), true);
                 return;
             }
 
@@ -105,12 +105,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                 SessionHelper.Refresh(user);
 
-                Notice("Profile updated successfully.", false);
+                Notice(L.T("Coordinator.Account.ProfileUpdatedSuccessfully"), false, true);
             }
             catch (Exception)
             {
                 Notice(
-                    "Could not save profile. Please try again.",
+                    L.T("Coordinator.Account.CouldNotSaveProfilePleaseTry"),
                     true
                 );
             }
@@ -126,14 +126,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 next.Length == 0 ||
                 confirm.Length == 0)
             {
-                Notice("Complete all password fields.", true);
+                Notice(L.T("Coordinator.Account.CompleteAllPasswordFields"), true);
                 return;
             }
 
             if (next.Length < 8 || next.Length > 128)
             {
                 Notice(
-                    "New password must contain 8–128 characters.",
+                    L.T("Coordinator.Account.NewPasswordMustContain8128"),
                     true
                 );
                 return;
@@ -142,7 +142,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (next != confirm)
             {
                 Notice(
-                    "New passwords do not match.",
+                    L.T("Coordinator.Account.NewPasswordsDoNotMatch"),
                     true
                 );
                 return;
@@ -151,7 +151,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (current == next)
             {
                 Notice(
-                    "Choose a password different from the current one.",
+                    L.T("Coordinator.Account.ChooseAPasswordDifferentFromThe"),
                     true
                 );
                 return;
@@ -173,7 +173,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 if (!verified.Success || verified.Uid != user.Id)
                 {
                     Notice(
-                        "Current password is incorrect. Please try again.",
+                        L.T("Coordinator.Account.CurrentPasswordIsIncorrectPleaseTry"),
                         true
                     );
                     return;
@@ -188,29 +188,32 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 if (!updated.Success)
                 {
                     Notice(
-                        updated.ErrorMessage ?? "Password update failed.",
+                        updated.ErrorMessage ?? L.T("Coordinator.Account.PasswordUpdateFailed"),
                         true
                     );
                     return;
                 }
 
                 Notice(
-                    "Password updated successfully.",
-                    false
+                    L.T("Coordinator.Account.PasswordUpdatedSuccessfully"),
+                    false, true
                 );
             }
             catch (Exception)
             {
                 Notice(
-                    "Could not change password. Please try again.",
+                    L.T("Coordinator.Account.CouldNotChangePasswordPleaseTry"),
                     true
                 );
             }
         }
 
-        private void Notice(string message, bool error)
+        private void Notice(string message, bool error, bool confirmedWrite = false)
         {
             lblNotice.Text = HttpUtility.HtmlEncode(message);
+            lblNotice.Attributes["role"] = error ? "alert" : "status";
+            if (confirmedWrite) lblNotice.Attributes["data-ui-confirmed"] = "true";
+            else lblNotice.Attributes.Remove("data-ui-confirmed");
 
             lblNotice.CssClass = error
                 ? "ca-notice ca-notice-error"

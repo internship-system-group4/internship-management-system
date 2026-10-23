@@ -1,0 +1,1178 @@
+
+Public.SkipToContent
+en: Skip to content
+
+Public.UIMSHome
+en: UIMS home
+
+Public.GermanJordanianUniversity
+en: German Jordanian University
+
+Public.MainNavigation
+en: Main navigation
+
+Public.OpenMainMenu
+en: Open main menu
+
+Public.Home
+en: Home
+
+Public.AboutUs
+en: About us
+
+Public.Opportunities
+en: Opportunities
+
+Public.HowItWorks
+en: How it works
+
+Public.ContactUs
+en: Contact us
+
+Public.InternshipManagementSystem
+en: Internship Management System
+
+Public.ConnectingStudentsUniversitySupervisorsAndCompanies
+en: Connecting students, university supervisors and companies throughout the internship journey at German Jordanian University.
+
+Public.QuickLinks
+en: Quick links
+
+Public.Contact
+en: Contact
+
+Public.ForAccountAccessAndInternshipGuidance
+en: For account access and internship guidance, contact your university coordinator.
+
+Public.MessageTheCoordinationTeam
+en: Message the coordination team
+
+Public.OfficialLinks
+en: Official links
+
+Public.GJUOfficialWebsite
+en: GJU official website
+
+Public.OpensInANewTab
+en: (opens in a new tab)
+
+Public.UniversityLocation
+en: University Location
+
+Public.AmmanMadabaStreetAmmanJordan
+en: Amman Madaba Street, Amman, Jordan
+
+Public.MapOfTheGermanJordanianUniversity
+en: Map of the German Jordanian University main campus, Amman Madaba Street, Jordan
+
+Public.LoadingMap
+en: Loading map…
+
+Public.ExploreCampus
+en: Explore campus
+
+Public.ReplayFlight
+en: Replay flight
+
+Public.GetDirections
+en: Get directions
+
+Public.ViewOn
+en: View on
+
+Public.GoogleMaps
+en: Google Maps
+
+Public.UIMSGroup4StudentProjectGJU
+en: UIMS · Group 4 · Student project · GJU-inspired visual theme
+
+Public.PauseWaves
+en: Pause waves
+
+Public.PoweredByMeetTheDevelopmentTeam
+en: Powered by — Meet the development team
+
+Public.PoweredBy
+en: Powered by
+
+Sidebar.GermanJordanianUniversity
+en: German Jordanian University
+
+Sidebar.InternshipManagementSystem
+en: Internship Management System
+
+Sidebar.CloseNavigation
+en: Close navigation
+
+Sidebar.PinNavigationOpen
+en: Pin navigation open
+
+Sidebar.PinNavigation
+en: Pin navigation
+
+Sidebar.Portal
+en: Portal
+
+Sidebar.Dashboard
+en: Dashboard
+
+Sidebar.ExploreOpportunities
+en: Explore Opportunities
+
+Sidebar.MyApplications
+en: My Applications
+
+Sidebar.MyTasks
+en: My Tasks
+
+Sidebar.MyProgressEvaluation
+en: My Progress & Evaluation
+
+Sidebar.Meetings
+en: Meetings
+
+Sidebar.ManageOpportunities
+en: Manage Opportunities
+
+Sidebar.ApplicationsReview
+en: Applications Review
+
+Sidebar.MyTrainees
+en: My Trainees
+
+Sidebar.ManageTasks
+en: Manage Tasks
+
+Sidebar.ReviewSubmissions
+en: Review Submissions
+
+Sidebar.FinalEvaluation
+en: Final Evaluation
+
+Sidebar.StudentProgress
+en: Student Progress
+
+Sidebar.FinalAcademicEvaluation
+en: Final Academic Evaluation
+
+Sidebar.ManageStudents
+en: Manage Students
+
+Sidebar.ManageCompanies
+en: Manage Companies
+
+Sidebar.AcademicSupervisors
+en: Academic Supervisors
+
+Sidebar.GroupsAssignments
+en: Groups & Assignments
+
+Sidebar.PlacementsProgress
+en: Placements & Progress
+
+Sidebar.FinalCompletionReview
+en: Final Completion Review
+
+Sidebar.ContactMessages
+en: Contact Messages
+
+NotificationBell.Notifications
+en: Notifications
+
+NotificationBell.New
+en: new
+
+NotificationBell.NotificationsAreUnavailableRightNow
+en: Notifications are unavailable right now.
+
+NotificationBell.YouReAllCaughtUpNew
+en: You're all caught up. New tasks, decisions and updates will appear here.
+
+NotificationBell.ViewAllNotifications
+en: View all notifications
+
+ThemeSelector.Theme
+en: Theme
+
+ThemeSelector.Light
+en: Light
+
+ThemeSelector.Dark
+en: Dark
+
+ThemeSelector.System
+en: System
+
+ThemeSelector.ColourThemeLight
+en: Colour theme: Light
+
+ThemeSelector.ColourTheme
+en: Colour theme
+
+WorkspaceChart.AvailableDatedRecordsCurrentCategoriesAre
+en: Available dated records; current categories are a snapshot.
+
+WorkspaceChart.ApprovalActivityRange
+en: Approval activity range
+
+WorkspaceChart.6Months
+en: 6 months
+
+WorkspaceChart.12Months
+en: 12 months
+
+WorkspaceChart.AvailableApprovalEventsByMonthUTC
+en: Available approval events by month, UTC
+
+WorkspaceChart.ViewData
+en: View data
+
+WorkspaceChart.PreparingDatedActivity
+en: Preparing dated activity…
+
+WorkspaceChart.ActivityDataAndRecordDetails
+en: Activity data and record details
+
+WorkspaceChart.AvailableDatedRecordsOnly
+en: , available dated records only
+
+WorkspaceChart.Month
+en: Month
+
+WorkspaceChart.Details
+en: Details
+
+WorkspaceChart.PreparingCurrentCategories
+en: Preparing current categories…
+
+WorkspaceChart.CategoryDataAndRecordDetails
+en: Category data and record details
+
+WorkspaceChart.CurrentSnapshotIn
+en: , current snapshot in
+
+WorkspaceChart.Category
+en: Category
+
+WorkspaceChart.ViewRecords
+en: View records
+
+WorkspaceChart.CurrentSnapshotMutuallyExclusiveCategories
+en: Current snapshot · mutually exclusive categories
+
+WorkspaceChart.PreparingBreakdown
+en: Preparing breakdown…
+
+WorkspaceChart.SelectACategoryToInspectIts
+en: Select a category to inspect its underlying authorized records. The range selector changes dated activity only; this breakdown shows current records.
+
+WorkspaceChart.BreakdownData
+en: Breakdown data
+
+WorkspaceChart.CurrentSnapshot
+en: , current snapshot
+
+WorkspaceChart.JavaScriptEnablesChartsRangeFilteringAnd
+en: JavaScript enables charts, range filtering and drill-down. Current values and data tables above remain available.
+
+WorkspaceChart.CloseDetails
+en: Close details
+
+WorkspaceChart.NoMatchingRecordsInThisScope
+en: No matching records in this scope.
+
+WorkspaceChart.Previous
+en: Previous
+
+WorkspaceChart.Next
+en: Next
+
+WorkspaceChart.Done
+en: Done
+
+WorkspaceJourney.SelectAStageForDetails
+en: Select a stage for details
+
+WorkspaceJourney.SwipeThroughStagesSelectOneTo
+en: Swipe through stages. Select one to view its details.
+
+WorkspaceJourney.JourneyDetails
+en: Journey details
+
+WorkspaceJourney.CloseJourneyDetails
+en: Close journey details
+
+WorkspaceJourney.DetailsReflectTheCurrentServerRecord
+en: Details reflect the current server record.
+
+WorkspaceJourney.Close
+en: Close
+
+Student.StudentNavigation
+en: Student navigation
+
+Student.LogOut
+en: Log out
+
+Student.CloseNavigationBackdrop
+en: Close navigation backdrop
+
+Student.OpenNavigation
+en: Open navigation
+
+Student.StudentPortal
+en: Student portal
+
+Company.CompanyNavigation
+en: Company navigation
+
+Company.LogOut
+en: Log out
+
+Company.CloseNavigationBackdrop
+en: Close navigation backdrop
+
+Company.OpenNavigation
+en: Open navigation
+
+Company.CompanyPortal
+en: Company portal
+
+Academic.AcademicNavigation
+en: Academic navigation
+
+Academic.LogOut
+en: Log out
+
+Academic.CloseNavigationBackdrop
+en: Close navigation backdrop
+
+Academic.OpenNavigation
+en: Open navigation
+
+Academic.AcademicSupervisorPortal
+en: Academic supervisor portal
+
+Coordinator.CoordinatorNavigation
+en: Coordinator navigation
+
+Coordinator.LogOut
+en: Log out
+
+Coordinator.CloseNavigationBackdrop
+en: Close navigation backdrop
+
+Coordinator.OpenNavigation
+en: Open navigation
+
+Coordinator.CoordinatorPortal
+en: Coordinator portal
+
+Portal.LogOut
+en: Log out
+
+Title.Default
+en: Home | GJU Internship Management System
+
+Title.Pages.Academic.Account
+en: My Account
+
+Title.Pages.Academic.Dashboard
+en: Academic Dashboard
+
+Title.Pages.Academic.FinalEvaluation
+en: Final Evaluation
+
+Title.Pages.Academic.StudentProgress
+en: Student Progress
+
+Title.Pages.Account.ChangePassword
+en: Change Password
+
+Title.Pages.Account.ForgotPassword
+en: Password Recovery | UIMS
+
+Title.Pages.Account.Login
+en: Login | UIMS
+
+Title.Pages.Account.Notifications
+en: Notifications
+
+Title.Pages.Company.Account
+en: My Account
+
+Title.Pages.Company.ApplicantDocument
+en: Applicant Document
+
+Title.Pages.Company.Applications
+en: Applications Review
+
+Title.Pages.Company.Dashboard
+en: Company Dashboard
+
+Title.Pages.Company.FinalEvaluation
+en: Final Evaluation
+
+Title.Pages.Company.ManageOpportunities
+en: Manage Opportunities
+
+Title.Pages.Company.Opportunities
+en: Add Opportunity
+
+Title.Pages.Company.TaskReview
+en: Review Submissions
+
+Title.Pages.Company.Tasks
+en: Manage Tasks
+
+Title.Pages.Company.TraineeDetails
+en: Trainee Details
+
+Title.Pages.Company.Trainees
+en: My Trainees
+
+Title.Pages.Company.ViewOpportunity
+en: View Opportunity
+
+Title.Pages.Coordinator.AcademicSupervisors
+en: Academic Supervisors
+
+Title.Pages.Coordinator.Account
+en: My Account
+
+Title.Pages.Coordinator.AddStudent
+en: Add student
+
+Title.Pages.Coordinator.Companies
+en: Manage Companies
+
+Title.Pages.Coordinator.CompletionReview
+en: Final Completion Review
+
+Title.Pages.Coordinator.ConfiguredGroups
+en: Configured groups
+
+Title.Pages.Coordinator.ContactMessages
+en: Contact Messages
+
+Title.Pages.Coordinator.Dashboard
+en: Coordinator Dashboard
+
+Title.Pages.Coordinator.Groups
+en: Groups & Assignments
+
+Title.Pages.Coordinator.ManageStudents
+en: Manage students
+
+Title.Pages.Coordinator.PlacementDetails
+en: Placement Details
+
+Title.Pages.Coordinator.Placements
+en: Placements & Progress
+
+Title.Pages.Coordinator.Students
+en: Student records
+
+Title.Pages.Meetings.MyMeetings
+en: My Meetings
+
+Title.Pages.Meetings.Schedule
+en: Meetings
+
+Title.Pages.Public.About
+en: About | GJU Internship Management System
+
+Title.Pages.Public.AccessDenied
+en: Access Denied | UIMS
+
+Title.Pages.Public.Contact
+en: Contact | GJU Internship Management System
+
+Title.Pages.Public.PoweredBy
+en: Meet the Team | GJU Internship Management System
+
+Title.Pages.Student.Apply
+en: Internship Application
+
+Title.Pages.Student.Dashboard
+en: Student Dashboard
+
+Title.Pages.Student.MyApplications
+en: My Applications
+
+Title.Pages.Student.MyTasks
+en: My Tasks
+
+Title.Pages.Student.Opportunities
+en: Explore Opportunities
+
+Title.Pages.Student.OpportunityDetails
+en: Opportunity Details
+
+Title.Pages.Student.Profile
+en: My Profile
+
+Title.Pages.Student.Progress
+en: My Progress & Evaluation
+
+Title.Pages.Student.StudentCVPortfolio
+en: Student CV & Portfolio
+
+# ---------------------------------------------------------------- language selector
+Language.Label
+en: Language
+ar: اللغة
+
+Language.SwitchToArabic
+en: View this page in Arabic
+ar: عرض هذه الصفحة بالعربية
+
+Language.SwitchToEnglish
+en: View this page in English
+ar: عرض هذه الصفحة بالإنجليزية
+
+# ---------------------------------------------------------------- roles (display only; stored role codes never change)
+Role.Student
+en: Student
+ar: الطالب
+
+Role.CompanySupervisor
+en: Company Supervisor
+ar: مشرف الشركة
+
+Role.AcademicSupervisor
+en: Academic Supervisor
+ar: المشرف الأكاديمي
+
+Role.Coordinator
+en: Internship Coordinator
+ar: منسّق التدريب
+
+# ---------------------------------------------------------------- stored values -> display labels
+Value.ApplicationStatus.Pending
+en: Pending
+ar: قيد المراجعة
+
+Value.ApplicationStatus.Accepted
+en: Accepted
+ar: مقبول
+
+Value.ApplicationStatus.Rejected
+en: Rejected
+ar: مرفوض
+
+Value.ApplicationStatus.Withdrawn
+en: Withdrawn
+ar: مسحوب
+
+Value.OpportunityStatus.Draft
+en: Draft
+ar: مسودة
+
+Value.OpportunityStatus.Open
+en: Open
+ar: مفتوحة
+
+Value.OpportunityStatus.Closed
+en: Closed
+ar: مغلقة
+
+Value.PlacementStatus.Offered
+en: Offered
+ar: معروض
+
+Value.PlacementStatus.Confirmed
+en: Confirmed
+ar: مؤكَّد
+
+Value.PlacementStatus.Active
+en: Active
+ar: نشط
+
+Value.PlacementStatus.AwaitingCompletion
+en: Awaiting completion
+ar: بانتظار الإتمام
+
+Value.PlacementStatus.Completed
+en: Completed
+ar: مكتمل
+
+Value.PlacementStatus.Cancelled
+en: Cancelled
+ar: ملغى
+
+Value.TaskStatus.Assigned
+en: Assigned
+ar: مُسندة
+
+Value.TaskStatus.Submitted
+en: Submitted
+ar: مُسلَّمة
+
+Value.TaskStatus.UnderReview
+en: Under review
+ar: قيد المراجعة
+
+Value.TaskStatus.RevisionRequested
+en: Revision requested
+ar: مطلوب تعديلها
+
+Value.TaskStatus.Resubmitted
+en: Resubmitted
+ar: أُعيد تسليمها
+
+Value.TaskStatus.Graded
+en: Graded
+ar: مُقيَّمة
+
+Value.HoursStatus.Reported
+en: Reported
+ar: مُبلَّغ عنها
+
+Value.HoursStatus.Approved
+en: Approved
+ar: معتمدة
+
+Value.HoursStatus.Rejected
+en: Rejected
+ar: مرفوضة
+
+Value.CompletionStatus.NotReady
+en: Not ready
+ar: غير جاهز
+
+Value.CompletionStatus.AwaitingCompanyEvaluation
+en: Awaiting company evaluation
+ar: بانتظار تقييم الشركة
+
+Value.CompletionStatus.AwaitingAcademicEvaluation
+en: Awaiting academic evaluation
+ar: بانتظار التقييم الأكاديمي
+
+Value.CompletionStatus.UnderCoordinatorReview
+en: Under coordinator review
+ar: قيد مراجعة منسّق التدريب
+
+Value.CompletionStatus.Approved
+en: Approved
+ar: معتمد
+
+Value.CompletionStatus.Rejected
+en: Returned
+ar: مُعاد
+
+Value.ContactMessageStatus.New
+en: New
+ar: جديدة
+
+Value.ContactMessageStatus.Reviewed
+en: Reviewed
+ar: تمت مراجعتها
+
+Value.MeetingStatus.Scheduled
+en: Scheduled
+ar: مجدول
+
+Value.MeetingStatus.Completed
+en: Completed
+ar: منعقد
+
+Value.MeetingStatus.Cancelled
+en: Cancelled
+ar: ملغى
+
+# ---------------------------------------------------------------- script text (window.UIMS_I18N)
+Js.LanguageUnsavedConfirm
+en: You have unsaved changes on this page. Switch language and lose them?
+ar: لديك تغييرات غير محفوظة في هذه الصفحة. هل تريد تغيير اللغة وفقدانها؟
+
+Js.ThemeLabel
+en: Colour theme: {0}
+ar: سمة الألوان: {0}
+
+Js.ThemeLight
+en: Light
+ar: فاتح
+
+Js.ThemeDark
+en: Dark
+ar: داكن
+
+Js.ThemeSystem
+en: System
+ar: حسب النظام
+
+Sidebar.MyAccount
+en: My Account
+
+Sidebar.MyProfile
+en: My Profile
+
+Js.FieldRequired
+en: Please fill in this field.
+ar: يُرجى تعبئة هذا الحقل.
+
+Js.FieldEmail
+en: Enter a valid email address.
+ar: أدخل بريدًا إلكترونيًا صحيحًا.
+
+Js.FieldMinLength
+en: Please enter at least {0} characters.
+ar: يُرجى إدخال {0} أحرف على الأقل.
+
+Js.Sending
+en: Sending…
+ar: جارٍ الإرسال…
+
+Js.SigningIn
+en: Signing in…
+ar: جارٍ تسجيل الدخول…
+
+Js.RequestingReset
+en: Requesting reset link…
+ar: جارٍ طلب رابط إعادة التعيين…
+
+Js.SendingStatus
+en: Sending your message. Please wait for confirmation.
+ar: جارٍ الإرسال. يُرجى انتظار التأكيد.
+
+Js.Hide
+en: Hide
+ar: إخفاء
+
+Js.Show
+en: Show
+ar: إظهار
+
+Js.HidePassword
+en: Hide password
+ar: إخفاء كلمة المرور
+
+Js.ShowPassword
+en: Show password
+ar: إظهار كلمة المرور
+
+Js.ContactReadiness
+en: {0} of {1} fields ready
+ar: {0} من {1} حقول جاهزة
+
+Js.PausePreview
+en: Pause preview
+ar: إيقاف المعاينة
+
+Js.PlayPreview
+en: Play preview
+ar: تشغيل المعاينة
+
+Js.SoundOn
+en: Turn sound on
+ar: تشغيل الصوت
+
+Js.SoundOff
+en: Turn sound off
+ar: كتم الصوت
+
+Js.FilmLoading
+en: Loading the film…
+ar: جارٍ تحميل الفيلم…
+
+Js.FilmFailed
+en: The film could not be loaded.
+ar: تعذّر تحميل الفيلم.
+
+Js.PlayWaves
+en: Play waves
+ar: تشغيل الأمواج
+
+Js.PauseWaves
+en: Pause waves
+ar: إيقاف الأمواج
+
+Js.CloseMainMenu
+en: Close main menu
+ar: إغلاق القائمة الرئيسية
+
+Js.OpenMainMenu
+en: Open main menu
+ar: فتح القائمة الرئيسية
+
+Js.LoginOpening
+en: Welcome. Opening your portal…
+ar: أهلًا بك. جارٍ فتح بوابتك…
+
+Js.LoginChecking
+en: Checking your account. Please wait…
+ar: جارٍ التحقق من حسابك. يُرجى الانتظار…
+
+Js.TeamMemberOf
+en: Team member {0} of {1}
+ar: العضو {0} من {1}
+
+Js.MapMarker
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+Js.HallPreparing
+en: Preparing the lecture hall
+ar: جارٍ تجهيز قاعة المحاضرات
+
+Js.HallRoom
+en: Building the room
+ar: جارٍ بناء القاعة
+
+Js.HallTiers
+en: Setting out the tiers
+ar: جارٍ ترتيب المدرّجات
+
+Js.HallSeats
+en: Placing the seats
+ar: جارٍ وضع المقاعد
+
+Js.HallStudents
+en: Seating the students
+ar: جارٍ إجلاس الطلبة
+
+Js.HallTeam
+en: Marking the team seats
+ar: جارٍ تحديد مقاعد الفريق
+
+Js.HallLights
+en: Lighting the hall
+ar: جارٍ إضاءة القاعة
+
+Value.TrainingMode.Onsite
+en: On-site
+ar: حضوري
+
+Value.TrainingMode.Hybrid
+en: Hybrid
+ar: مدمج
+
+Value.TrainingMode.Remote
+en: Remote
+ar: عن بُعد
+
+Value.OpportunityType.Internship
+en: Internship
+ar: تدريب عملي
+
+Popup.Error
+en: Error
+ar: خطأ
+
+WorkspaceChart.DatedRecordsOnly
+en: Dated records only
+ar: السجلات المؤرّخة فقط
+
+WorkspaceChart.CurrentSnapshotLabel
+en: Current snapshot
+ar: الوضع الحالي
+
+# workspace-charts.js
+
+Js.ChartCurrentSnapshot
+en: Current snapshot · {0} UTC
+ar: الوضع الحالي · {0} UTC
+
+Js.ChartOpenRecord
+en: Open related record
+ar: فتح السجل المرتبط
+
+Js.ChartRecordRange
+en: {0}–{1} of {2}
+ar: {0}–{1} من {2}
+
+Js.ChartZeroRecords
+en: 0 records
+ar: 0 سجلات
+
+Js.ChartHistoryUnavailable
+en: Historical activity is unavailable. Approved records do not have valid approval dates.
+ar: النشاط التاريخي غير متاح، فالسجلات المعتمدة لا تحمل تواريخ اعتماد صالحة.
+
+Js.ChartNoDatedInPeriod
+en: No dated approvals in this period. No historical points have been invented.
+ar: لا توجد اعتمادات مؤرّخة في هذه الفترة، ولم تُختلق أي نقاط تاريخية.
+
+Js.ChartNoCategoryRecords
+en: No current category records.
+ar: لا توجد سجلات حالية في الفئات.
+
+Js.ChartRangeCaption
+en: {0} – {1} · UTC. Range changes dated approvals only; categories are current snapshots.
+ar: {0} – {1} · UTC. يغيّر النطاق الاعتمادات المؤرّخة فقط، أما الفئات فتمثّل الوضع الحالي.
+
+Js.ChartTrendSubtitle
+en: Available dated {0}, by recorded approval month
+ar: {0} المؤرّخة المتاحة حسب شهر الاعتماد المسجّل
+
+Js.ChartHistoryMissing
+en: History unavailable: approval dates missing
+ar: السجل التاريخي غير متاح: تواريخ الاعتماد مفقودة
+
+Js.ChartVsPrevious
+en: {0}% vs previous equal-length window
+ar: {0}% مقارنةً بالفترة السابقة المماثلة
+
+Js.ChartNoPercentage
+en: No percentage: previous window has no dated approvals
+ar: لا توجد نسبة: الفترة السابقة بلا اعتمادات مؤرّخة
+
+Js.ChartOneMonth
+en: One recorded month; no inferred history. 
+ar: شهر مسجّل واحد، دون استنتاج أي سجل تاريخي. 
+
+Js.ChartOnlyMonths
+en: Only months with dated approvals are plotted. 
+ar: لا تُرسم إلا الأشهر التي فيها اعتمادات مؤرّخة. 
+
+Js.ChartCoordinatorNote
+en: Explicit approvals in current retained records.
+ar: اعتمادات صريحة في السجلات المحفوظة حاليًا.
+
+Js.ChartReviewDateNote
+en: Currently approved entries by review date, not historical status snapshots.
+ar: الإدخالات المعتمدة حاليًا حسب تاريخ المراجعة، لا لقطات تاريخية للحالة.
+
+Js.ChartUndatedOne
+en: {0} undated approval record excluded
+ar: استُبعد {0} سجل اعتماد غير مؤرّخ
+
+Js.ChartUndatedMany
+en: {0} undated approval records excluded
+ar: استُبعدت {0} سجلات اعتماد غير مؤرّخة
+
+Js.ChartViewRecords
+en: View records
+ar: عرض السجلات
+
+Js.ChartViewRecordsFor
+en: View records for {0}
+ar: عرض سجلات {0}
+
+Js.ChartNoDatedWindow
+en: No dated approval records in this window.
+ar: لا توجد سجلات اعتماد مؤرّخة في هذه الفترة.
+
+Js.ChartUndatedNoDates
+en: History unavailable: these current approvals have no valid dates.
+ar: السجل التاريخي غير متاح: هذه الاعتمادات الحالية بلا تواريخ صالحة.
+
+Js.ChartRangeScope
+en: {0} – {1} · available dated approvals only
+ar: {0} – {1} · الاعتمادات المؤرّخة المتاحة فقط
+
+Js.ChartUndatedTitle
+en: Undated approvals
+ar: اعتمادات غير مؤرّخة
+
+Js.ChartUndatedScope
+en: Excluded from every date range. Current approved records only.
+ar: مستبعدة من جميع النطاقات الزمنية، وتشمل السجلات المعتمدة حاليًا فقط.
+
+Js.ChartMonthScope
+en: Actual dated approvals in this recorded month.
+ar: الاعتمادات المؤرّخة الفعلية في هذا الشهر المسجّل.
+
+Js.ChartFailed
+en: Analytics could not be displayed. Refresh to retry; current records remain available below.
+ar: تعذّر عرض التحليلات. حدّث الصفحة لإعادة المحاولة، وما زالت السجلات الحالية متاحة أدناه.
+
+# ui-system.js, workspace.js
+
+Js.Working
+en: Working…
+ar: جارٍ التنفيذ…
+
+Js.CheckField
+en: Check this field.
+ar: تحقّق من هذا الحقل.
+
+Js.CheckFields
+en: Please check the following fields.
+ar: يُرجى مراجعة الحقول التالية.
+
+Js.ApprovedTrainingHours
+en: Approved training hours
+ar: ساعات التدريب المعتمدة
+
+Js.HoursValueText
+en: {0} approved hours of {1} required hours
+ar: {0} ساعة معتمدة من أصل {1} ساعة مطلوبة
+
+Js.HoursValueNoTarget
+en: {0} approved hours. Training hours target is not set.
+ar: {0} ساعة معتمدة. لم يُحدَّد هدف ساعات التدريب.
+
+Js.HoursTargetNotSet
+en: Training hours target is not set. Ask your coordinator.
+ar: لم يُحدَّد هدف ساعات التدريب. اسأل منسّق التدريب.
+
+Js.ScrollTableHint
+en: Scroll horizontally to see all columns and actions.
+ar: مرّر أفقيًا لرؤية جميع الأعمدة والإجراءات.
+
+Js.ScrollableTable
+en: Scrollable results table
+ar: جدول نتائج قابل للتمرير
+
+Js.Close
+en: Close
+ar: إغلاق
+
+Js.DismissNotification
+en: Dismiss notification
+ar: إغلاق الإشعار
+
+Js.DoneSaved
+en: Saved
+ar: تم الحفظ
+
+Js.DoneCreated
+en: Created
+ar: تم الإنشاء
+
+Js.DoneSubmitted
+en: Submitted
+ar: تم الإرسال
+
+Js.DoneAccepted
+en: Accepted
+ar: تم القبول
+
+Js.DoneConfirmed
+en: Confirmed
+ar: تم التأكيد
+
+Js.DoneUpdated
+en: Updated
+ar: تم التحديث
+
+Js.DoneUploaded
+en: Uploaded
+ar: تم الرفع
+
+Js.DoneDeleted
+en: Deleted
+ar: تم الحذف
+
+Js.DoneSent
+en: Sent
+ar: تم الإرسال
+
+# inline page scripts
+
+Js.PwFillAll
+en: Please fill in all fields.
+ar: يُرجى تعبئة جميع الحقول.
+
+Js.PwMin6
+en: The new password must be at least 6 characters.
+ar: يجب أن تتكوّن كلمة المرور الجديدة من 6 أحرف على الأقل.
+
+Js.PwDifferent
+en: The new password must be different from the current password.
+ar: يجب أن تختلف كلمة المرور الجديدة عن الحالية.
+
+Js.PwMismatch
+en: The new passwords do not match.
+ar: كلمتا المرور الجديدتان غير متطابقتين.
+
+Js.SelectTraineeForCertificate
+en: Please select a trainee first to generate the certificate.
+ar: يُرجى اختيار متدرّب أولًا لإنشاء الشهادة.
+
+Js.SelectATrainee
+en: Select a trainee
+ar: اختر متدرّبًا
+
+Js.HideList
+en: Hide List
+ar: إخفاء القائمة
+
+Js.ShowList
+en: Show List
+ar: إظهار القائمة
+
+Js.PwChooseDifferent
+en: Choose a different password.
+ar: اختر كلمة مرور مختلفة.
+
+Js.PwNewMismatch
+en: New passwords do not match.
+ar: كلمتا المرور الجديدتان غير متطابقتين.
+
+Js.PwFieldsMissing
+en: Password fields could not be found.
+ar: تعذّر العثور على حقول كلمة المرور.
+
+Js.PwCompleteAll
+en: Please complete all password fields.
+ar: يُرجى إكمال جميع حقول كلمة المرور.
+
+Js.SelectCompanyFirst
+en: Please select a company from the list first.
+ar: يُرجى اختيار شركة من القائمة أولًا.
+
+Js.UnpinNavigation
+en: Unpin navigation
+ar: إلغاء تثبيت القائمة
+
+Js.PinNavigationOpen
+en: Pin navigation open
+ar: تثبيت القائمة مفتوحة
+
+Js.PinNavigation
+en: Pin navigation
+ar: تثبيت القائمة
+
+Js.CloseNavigation
+en: Close navigation
+ar: إغلاق القائمة
+
+Js.OpenNavigation
+en: Open navigation
+ar: فتح القائمة
+
+Js.ResumeWheelMotion
+en: Resume wheel motion
+ar: استئناف حركة الناعورة
+
+Js.PauseWheelMotion
+en: Pause wheel motion
+ar: إيقاف حركة الناعورة
+
+Js.ResumeScene
+en: Resume scene
+ar: استئناف المشهد
+
+Js.PauseScene
+en: Pause scene
+ar: إيقاف المشهد
+
+Js.ResumeCampusMotion
+en: Resume campus motion
+ar: استئناف حركة الحرم الجامعي
+
+Js.PauseCampusMotion
+en: Pause campus motion
+ar: إيقاف حركة الحرم الجامعي
+
+Js.StoryStatus
+en: GJU | Architectural miniature
+ar: الجامعة الألمانية الأردنية | مجسّم معماري
+
+Portal.LogIn
+en: Log in
+ar: تسجيل الدخول
+
+Portal.MyDashboard
+en: My dashboard
+ar: لوحة التحكم
+
+Sidebar.MyAccountTitle
+en: My account
+ar: حسابي
+
+NotificationBell.JustNow
+en: Just now

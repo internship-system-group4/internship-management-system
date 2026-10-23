@@ -88,7 +88,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             lblDetailText.Text = Server.HtmlEncode(
                 string.IsNullOrWhiteSpace(submission.DescriptionText)
-                    ? "No text submitted."
+                    ? L.T("Company.TaskReview.NoTextSubmitted")
                     : submission.DescriptionText);
 
             Uri link;
@@ -151,7 +151,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 task.Status != InternshipTaskStatus.Resubmitted)
             {
                 lblReviewMessage.Text =
-                    "This task is not waiting for grading.";
+                    L.T("Company.TaskReview.ThisTaskIsNotWaitingFor");
                 return;
             }
 
@@ -160,7 +160,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 task.MaxScore <= 0)
             {
                 lblReviewMessage.Text =
-                    "This task has no valid grading criteria.";
+                    L.T("Company.TaskReview.ThisTaskHasNoValidGrading");
                 return;
             }
 
@@ -169,7 +169,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (feedback == "")
             {
                 lblReviewMessage.Text =
-                    "Please enter feedback for the student.";
+                    L.T("Company.TaskReview.PleaseEnterFeedbackForTheStudent");
                 return;
             }
 
@@ -185,8 +185,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                             submission.AttemptNumber)
                     {
                         lblReviewMessage.Text =
-                            "A newer submission attempt exists. " +
-                            "Review that one instead.";
+                            L.T("Company.TaskReview.ANewerSubmissionAttemptExistsReview");
                         return;
                     }
                 }
@@ -201,7 +200,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     if (previous.SubmissionId == submission.Id)
                     {
                         lblReviewMessage.Text =
-                            "This submission has already been reviewed.";
+                            L.T("Company.TaskReview.ThisSubmissionHasAlreadyBeenReviewed");
                         return;
                     }
                 }
@@ -249,8 +248,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         score > criterion.MaxScore)
                     {
                         lblReviewMessage.Text =
-                            "Enter a valid score for: " +
-                            Server.HtmlEncode(criterion.Name);
+                            L.F("Company.TaskReview.EnterAValidScoreFor", Server.HtmlEncode(criterion.Name));
                         return;
                     }
 
@@ -279,7 +277,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 if (string.IsNullOrEmpty(evaluationId))
                 {
                     lblReviewMessage.Text =
-                        "The grade could not be saved.";
+                        L.T("Company.TaskReview.TheGradeCouldNotBeSaved");
                     return;
                 }
 
@@ -298,22 +296,19 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 catch (FirebaseException)
                 {
                     lblReviewMessage.Text =
-                        "The grade was saved, but the task status " +
-                        "was not updated. Check Firebase before " +
-                        "trying again.";
+                        L.T("Company.TaskReview.TheGradeWasSavedButThe");
                     return;
                 }
 
                 lblReviewMessage.CssClass =
                     "text-success d-block mt-3";
                 lblReviewMessage.Text =
-                    "Grade saved successfully.";
+                    L.T("Company.TaskReview.GradeSavedSuccessfully");
             }
             catch (FirebaseException)
             {
                 lblReviewMessage.Text =
-                    "Could not load or save the evaluation. " +
-                    "Please try again.";
+                    L.T("Company.TaskReview.CouldNotLoadOrSaveThe");
             }
         }
         protected void btnRequestRevision_Click(object sender, EventArgs e)

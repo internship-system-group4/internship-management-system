@@ -126,7 +126,7 @@ namespace InternshipManagementSystem.Data
                 Tasks = tasks, Submissions = submissions, Evaluations = evaluations, Hours = hours,
                 CompanyFinal = companyFinal, AcademicFinal = academicFinal, Completion = completion,
                 CompanySupervisorName = Name(placement.CompanySupervisorId, placement.CompanySupervisorName),
-                AcademicSupervisorName = Name(placement.AcademicSupervisorId, "Not assigned"),
+                AcademicSupervisorName = Name(placement.AcademicSupervisorId, L.T("Workspace.CoordinatorMonitoringRepository.NotAssigned")),
                 Comments = Read<AcademicComment>(Constants.Paths.AcademicComments, "PlacementId", id).Where(c => c.StudentId == placement.StudentId).OrderByDescending(c => c.CreatedAt).ToList()
             };
         }
@@ -167,11 +167,11 @@ namespace InternshipManagementSystem.Data
         public long ApprovedHours { get; set; }
         public long PendingHours { get; set; }
         public string StudentName { get { return Student == null ? Placement.StudentName : Student.FullName; } }
-        public string StatusText { get { return Placement.Status == PlacementStatus.AwaitingCompletion ? "Awaiting completion" : Placement.Status.ToString(); } }
+        public string StatusText { get { return Placement.Status == PlacementStatus.AwaitingCompletion ? L.T("Workspace.CoordinatorMonitoringRepository.AwaitingCompletion") : L.Value("PlacementStatus", Placement.Status); } }
         public string StudentNumber { get { return Student == null ? "—" : Student.StudentNumber; } }
         public string Major { get { return Student == null ? "—" : Student.Major; } }
         public int HoursPercent { get { return Placement.RequiredHours <= 0 ? 0 : (int)Math.Min(100, ApprovedHours * 100 / Placement.RequiredHours); } }
-        public string HoursText { get { return Placement.RequiredHours > 0 ? ApprovedHours + " / " + Placement.RequiredHours + " h" : ApprovedHours + " h · requirement not configured"; } }
+        public string HoursText { get { return Placement.RequiredHours > 0 ? ApprovedHours + " / " + Placement.RequiredHours + " " + L.T("Workspace.UnitH") : ApprovedHours + " " + L.T("Workspace.UnitH") + L.T("Workspace.RequirementNotConfigured"); } }
     }
     public class CompletionQueueRow
     {
@@ -185,11 +185,11 @@ namespace InternshipManagementSystem.Data
         {
             get
             {
-                if (IsApproved) return "Approved";
-                if (IsReturned) return "Returned";
-                if (IsReady) return "Ready for review";
-                if (!CompanySubmitted) return "Awaiting company evaluation";
-                return "Awaiting academic evaluation";
+                if (IsApproved) return L.T("Workspace.CoordinatorMonitoringRepository.Approved");
+                if (IsReturned) return L.T("Workspace.CoordinatorMonitoringRepository.Returned");
+                if (IsReady) return L.T("Workspace.CoordinatorMonitoringRepository.ReadyForReview");
+                if (!CompanySubmitted) return L.T("Workspace.CoordinatorMonitoringRepository.AwaitingCompanyEvaluation");
+                return L.T("Workspace.CoordinatorMonitoringRepository.AwaitingAcademicEvaluation");
             }
         }
         // Ready first, then returned, then waiting for evaluations, approved last.

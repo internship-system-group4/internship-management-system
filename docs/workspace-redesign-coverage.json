@@ -1,0 +1,1548 @@
+{
+  "date": "2026-10-23",
+  "environment": "Disposable ASP.NET Web Forms copy + local Postman dependencies only",
+  "routeCount": 52,
+  "recomposedDashboards": 4,
+  "visits": 98,
+  "routes": [
+    {
+      "route": "Default.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared public refinement; original scene preserved",
+      "runtime": [
+        {
+          "route": "Default.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Home | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Default.aspx"
+        },
+        {
+          "route": "Default.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Home | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Default.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Academic/Account.aspx",
+      "master": "~/Layout/Academic.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Academic/Account.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Account",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/Account.aspx"
+        },
+        {
+          "route": "Pages/Academic/Account.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Account",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/Account.aspx"
+        }
+      ],
+      "pageLocalActions": 3,
+      "journey": false
+    },
+    {
+      "route": "Pages/Academic/Dashboard.aspx",
+      "master": "~/Layout/Academic.master",
+      "scope": "Dashboard recomposed + interactive role journey",
+      "runtime": [
+        {
+          "route": "Pages/Academic/Dashboard.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Academic Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/Dashboard.aspx"
+        },
+        {
+          "route": "Pages/Academic/Dashboard.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Academic Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/Dashboard.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": true
+    },
+    {
+      "route": "Pages/Academic/FinalEvaluation.aspx",
+      "master": "~/Layout/Academic.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Academic/FinalEvaluation.aspx?id=student-one",
+          "width": 1440,
+          "status": 200,
+          "title": "Final Evaluation",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/FinalEvaluation.aspx"
+        },
+        {
+          "route": "Pages/Academic/FinalEvaluation.aspx?id=student-one",
+          "width": 390,
+          "status": 200,
+          "title": "Final Evaluation",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/FinalEvaluation.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Academic/StudentProgress.aspx",
+      "master": "~/Layout/Academic.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Academic/StudentProgress.aspx?id=student-one",
+          "width": 1440,
+          "status": 200,
+          "title": "Student Progress",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/StudentProgress.aspx"
+        },
+        {
+          "route": "Pages/Academic/StudentProgress.aspx?id=student-one",
+          "width": 390,
+          "status": 200,
+          "title": "Student Progress",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Academic/StudentProgress.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Account/ChangePassword.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Account/ChangePassword.aspx",
+          "width": 390,
+          "status": 200,
+          "foundation": true,
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Account/ChangePassword.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Account/CompletionReport.aspx",
+      "master": "dynamic/endpoint",
+      "scope": "Document authorization negative check; no visual redesign",
+      "runtime": [
+        {
+          "route": "Pages/Account/CompletionReport.aspx?id=student-one",
+          "width": 390,
+          "status": 404,
+          "kind": "authorization/document negative check",
+          "url": "/Pages/Account/CompletionReport.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Account/ForgotPassword.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Account/ForgotPassword.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Password Recovery | UIMS",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Account/ForgotPassword.aspx"
+        },
+        {
+          "route": "Pages/Account/ForgotPassword.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Password Recovery | UIMS",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Account/ForgotPassword.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Account/Login.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared public refinement; original scene preserved",
+      "runtime": [
+        {
+          "route": "Pages/Account/Login.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Login | UIMS",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Account/Login.aspx"
+        },
+        {
+          "route": "Pages/Account/Login.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Login | UIMS",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Account/Login.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Account/Notifications.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Account/Notifications.aspx",
+          "width": 390,
+          "status": 200,
+          "foundation": true,
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Account/Notifications.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/Account.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/Account.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Account",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Account.aspx"
+        },
+        {
+          "route": "Pages/Company/Account.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Account",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Account.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/ApplicantDocument.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Document authorization negative check; no visual redesign",
+      "runtime": [
+        {
+          "route": "Pages/Company/ApplicantDocument.aspx?id=missing&type=portfolio",
+          "width": 390,
+          "status": 200,
+          "kind": "authorization/document negative check",
+          "url": "/Pages/Public/AccessDenied.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/Applications.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/Applications.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Applications Review",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Applications.aspx"
+        },
+        {
+          "route": "Pages/Company/Applications.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Applications Review",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Applications.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/Dashboard.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Dashboard recomposed + interactive role journey",
+      "runtime": [
+        {
+          "route": "Pages/Company/Dashboard.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Company Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Dashboard.aspx"
+        },
+        {
+          "route": "Pages/Company/Dashboard.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Company Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Dashboard.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": true
+    },
+    {
+      "route": "Pages/Company/FinalEvaluation.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/FinalEvaluation.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Final Evaluation",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/FinalEvaluation.aspx"
+        },
+        {
+          "route": "Pages/Company/FinalEvaluation.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Final Evaluation",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/FinalEvaluation.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/ManageOpportunities.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/ManageOpportunities.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Manage Opportunities",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/ManageOpportunities.aspx"
+        },
+        {
+          "route": "Pages/Company/ManageOpportunities.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Manage Opportunities",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/ManageOpportunities.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/Opportunities.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/Opportunities.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Add Opportunity",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Opportunities.aspx"
+        },
+        {
+          "route": "Pages/Company/Opportunities.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Add Opportunity",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Opportunities.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/TaskReview.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/TaskReview.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Review Submissions",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/TaskReview.aspx"
+        },
+        {
+          "route": "Pages/Company/TaskReview.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Review Submissions",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/TaskReview.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/Tasks.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/Tasks.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Manage Tasks",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Tasks.aspx"
+        },
+        {
+          "route": "Pages/Company/Tasks.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Manage Tasks",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Tasks.aspx"
+        }
+      ],
+      "pageLocalActions": 3,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/TraineeDetails.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/TraineeDetails.aspx?id=student-one",
+          "width": 1440,
+          "status": 200,
+          "title": "Trainee Details",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/TraineeDetails.aspx"
+        },
+        {
+          "route": "Pages/Company/TraineeDetails.aspx?id=student-one",
+          "width": 390,
+          "status": 200,
+          "title": "Trainee Details",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/TraineeDetails.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/Trainees.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/Trainees.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Trainees",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Trainees.aspx"
+        },
+        {
+          "route": "Pages/Company/Trainees.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Trainees",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/Trainees.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Company/ViewOpportunity.aspx",
+      "master": "~/Layout/Company.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Company/ViewOpportunity.aspx?id=internship-one",
+          "width": 1440,
+          "status": 200,
+          "title": "View Opportunity",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/ViewOpportunity.aspx"
+        },
+        {
+          "route": "Pages/Company/ViewOpportunity.aspx?id=internship-one",
+          "width": 390,
+          "status": 200,
+          "title": "View Opportunity",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Company/ViewOpportunity.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/AcademicSupervisors.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/AcademicSupervisors.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Academic Supervisors",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/AcademicSupervisors.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/AcademicSupervisors.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Academic Supervisors",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/AcademicSupervisors.aspx"
+        }
+      ],
+      "pageLocalActions": 3,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/Account.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/Account.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Account",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Account.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/Account.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Account",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Account.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/AddStudent.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/AddStudent.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Add student",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/AddStudent.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/AddStudent.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Add student",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/AddStudent.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/Companies.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/Companies.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Manage Companies",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Companies.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/Companies.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Manage Companies",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Companies.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/CompletionReview.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/CompletionReview.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Final Completion Review",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/CompletionReview.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/CompletionReview.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Final Completion Review",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/CompletionReview.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/ConfiguredGroups.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/ConfiguredGroups.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Configured groups",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/ConfiguredGroups.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/ConfiguredGroups.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Configured groups",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/ConfiguredGroups.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/ContactMessages.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/ContactMessages.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Contact Messages",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/ContactMessages.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/ContactMessages.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Contact Messages",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/ContactMessages.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/Dashboard.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Dashboard recomposed + interactive role journey",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/Dashboard.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Coordinator Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Dashboard.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/Dashboard.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Coordinator Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Dashboard.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": true
+    },
+    {
+      "route": "Pages/Coordinator/Groups.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/Groups.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Groups & Assignments",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Groups.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/Groups.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Groups & Assignments",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Groups.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/ManageStudents.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/ManageStudents.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Manage students",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/ManageStudents.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/ManageStudents.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Manage students",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/ManageStudents.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/PlacementDetails.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/PlacementDetails.aspx?id=student-one",
+          "width": 1440,
+          "status": 200,
+          "title": "Placement Details",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/PlacementDetails.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/PlacementDetails.aspx?id=student-one",
+          "width": 390,
+          "status": 200,
+          "title": "Placement Details",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/PlacementDetails.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/Placements.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/Placements.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Placements & Progress",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Placements.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/Placements.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Placements & Progress",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Placements.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Coordinator/Students.aspx",
+      "master": "~/Layout/Coordinator.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Coordinator/Students.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Student records",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Students.aspx"
+        },
+        {
+          "route": "Pages/Coordinator/Students.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Student records",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Coordinator/Students.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Meetings/MyMeetings.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Meetings/MyMeetings.aspx",
+          "width": 390,
+          "status": 200,
+          "foundation": true,
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Meetings/MyMeetings.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Meetings/Schedule.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Meetings/Schedule.aspx",
+          "width": 390,
+          "status": 200,
+          "foundation": true,
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Meetings/Schedule.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Public/About.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared public refinement; original scene preserved",
+      "runtime": [
+        {
+          "route": "Pages/Public/About.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "About | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/About.aspx"
+        },
+        {
+          "route": "Pages/Public/About.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "About | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/About.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Public/AccessDenied.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared public refinement; original scene preserved",
+      "runtime": [
+        {
+          "route": "Pages/Public/AccessDenied.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Access Denied | UIMS",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/AccessDenied.aspx"
+        },
+        {
+          "route": "Pages/Public/AccessDenied.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Access Denied | UIMS",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/AccessDenied.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Public/Contact.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared public refinement; original scene preserved",
+      "runtime": [
+        {
+          "route": "Pages/Public/Contact.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Contact | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/Contact.aspx"
+        },
+        {
+          "route": "Pages/Public/Contact.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Contact | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/Contact.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Public/PoweredBy.aspx",
+      "master": "~/Layout/Public.master",
+      "scope": "Shared public refinement; original scene preserved",
+      "runtime": [
+        {
+          "route": "Pages/Public/PoweredBy.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Meet the Team | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/PoweredBy.aspx"
+        },
+        {
+          "route": "Pages/Public/PoweredBy.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Meet the Team | GJU Internship Management System",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Public/PoweredBy.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/Apply.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/Apply.aspx?opportunityId=internship-one",
+          "width": 1440,
+          "status": 200,
+          "title": "Internship Application",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Apply.aspx"
+        },
+        {
+          "route": "Pages/Student/Apply.aspx?opportunityId=internship-one",
+          "width": 390,
+          "status": 200,
+          "title": "Internship Application",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Apply.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/Dashboard.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Dashboard recomposed + interactive role journey",
+      "runtime": [
+        {
+          "route": "Pages/Student/Dashboard.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Student Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Dashboard.aspx"
+        },
+        {
+          "route": "Pages/Student/Dashboard.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Student Dashboard",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Dashboard.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": true
+    },
+    {
+      "route": "Pages/Student/DisplayEditProfile.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/DisplayEditProfile.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/DisplayEditProfile.aspx"
+        },
+        {
+          "route": "Pages/Student/DisplayEditProfile.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/DisplayEditProfile.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/exploreOpport.aspx",
+      "master": "dynamic/endpoint",
+      "scope": "Existing bookmark redirect; refined target Opportunities.aspx",
+      "runtime": [
+        {
+          "route": "Pages/Student/exploreOpport.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Explore Opportunities",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Opportunities.aspx"
+        },
+        {
+          "route": "Pages/Student/exploreOpport.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Explore Opportunities",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Opportunities.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/MyApplications.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/MyApplications.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Applications",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/MyApplications.aspx"
+        },
+        {
+          "route": "Pages/Student/MyApplications.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Applications",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/MyApplications.aspx"
+        }
+      ],
+      "pageLocalActions": 2,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/MyTasks.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/MyTasks.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Tasks",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/MyTasks.aspx"
+        },
+        {
+          "route": "Pages/Student/MyTasks.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Tasks",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/MyTasks.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/Opportunities.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/Opportunities.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Explore Opportunities",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Opportunities.aspx"
+        },
+        {
+          "route": "Pages/Student/Opportunities.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Explore Opportunities",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Opportunities.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/OpportunityDetails.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/OpportunityDetails.aspx?id=internship-one",
+          "width": 1440,
+          "status": 200,
+          "title": "Opportunity Details",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/OpportunityDetails.aspx"
+        },
+        {
+          "route": "Pages/Student/OpportunityDetails.aspx?id=internship-one",
+          "width": 390,
+          "status": 200,
+          "title": "Opportunity Details",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/OpportunityDetails.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/Profile.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/Profile.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Profile",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Profile.aspx"
+        },
+        {
+          "route": "Pages/Student/Profile.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Profile",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Profile.aspx"
+        }
+      ],
+      "pageLocalActions": 1,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/Progress.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/Progress.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "My Progress & Evaluation",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Progress.aspx"
+        },
+        {
+          "route": "Pages/Student/Progress.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "My Progress & Evaluation",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/Progress.aspx"
+        }
+      ],
+      "pageLocalActions": 0,
+      "journey": false
+    },
+    {
+      "route": "Pages/Student/StudentCVPortfolio.aspx",
+      "master": "~/Layout/Student.master",
+      "scope": "Shared shell/type/controls refinement; existing composition",
+      "runtime": [
+        {
+          "route": "Pages/Student/StudentCVPortfolio.aspx",
+          "width": 1440,
+          "status": 200,
+          "title": "Student CV & Portfolio",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/StudentCVPortfolio.aspx"
+        },
+        {
+          "route": "Pages/Student/StudentCVPortfolio.aspx",
+          "width": 390,
+          "status": 200,
+          "title": "Student CV & Portfolio",
+          "foundation": true,
+          "tokens": "#264f73",
+          "overflow": false,
+          "serverError": false,
+          "url": "/Pages/Student/StudentCVPortfolio.aspx"
+        }
+      ],
+      "pageLocalActions": 3,
+      "journey": false
+    }
+  ],
+  "checks": {
+    "workspace": 226,
+    "routes": 3,
+    "workflows": 24,
+    "offers": 24,
+    "actions": 20,
+    "contracts": 15,
+    "motion": 1
+  }
+}

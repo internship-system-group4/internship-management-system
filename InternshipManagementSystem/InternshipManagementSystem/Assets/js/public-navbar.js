@@ -16,7 +16,7 @@
    opened=!!value&&small.matches;
    if(!opened&&restore)toggle.focus();
    menu.classList.toggle('is-open',opened);
-   toggle.setAttribute('aria-expanded',String(opened));toggle.setAttribute('aria-label',opened?'Close main menu':'Open main menu');
+   toggle.setAttribute('aria-expanded',String(opened));toggle.setAttribute('aria-label',opened?window.uimsT('CloseMainMenu'):window.uimsT('OpenMainMenu'));
    menu.inert=small.matches&&!opened;
    if(small.matches&&!opened)menu.setAttribute('aria-hidden','true');else menu.removeAttribute('aria-hidden');
    // Explicit SVG paths work in browsers without support for CSS path interpolation.

@@ -39,7 +39,7 @@ namespace InternshipManagementSystem.Pages.Academic
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNoStudents;
+        protected global::System.Web.UI.WebControls.PlaceHolder litNoStudents;
 
         /// <summary>
         /// pnlProgressDetails control.
@@ -156,7 +156,7 @@ namespace InternshipManagementSystem.Pages.Academic
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNoTasks;
+        protected global::System.Web.UI.WebControls.PlaceHolder litNoTasks;
 
         /// <summary>
         /// rptComments control.
@@ -174,7 +174,7 @@ namespace InternshipManagementSystem.Pages.Academic
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litNoComments;
+        protected global::System.Web.UI.WebControls.PlaceHolder litNoComments;
 
         /// <summary>
         /// txtNewComment control.

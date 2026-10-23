@@ -1,16 +1,15 @@
-using System;
+﻿using System;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
-    public partial class Dashboard : Security.CoordinatorPage
-    {
-        protected CoordinatorDashboardData Summary;
-        protected string LoadError;
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            try { Summary = new CoordinatorMonitoringRepository().LoadDashboard(); }
-            catch (FirebaseException) { LoadError = "We could not load the dashboard. Refresh to try again."; }
-            catch (InvalidOperationException) { LoadError = "Firebase is not configured. Contact the project administrator."; }
-        }
-    }
+ public partial class Dashboard : Security.CoordinatorPage
+ {
+  protected CoordinatorDashboardData Summary;protected WorkspaceCoordinatorData Workspace;protected string LoadError;
+  protected void Page_Load(object sender,EventArgs e)
+  {
+   try {Workspace=new WorkspaceDashboardRepository().LoadCoordinator();Summary=Workspace.Summary;Journey.Model=Workspace.Journey;Charts.Model=WorkspaceChartFactory.Coordinator(Workspace);}
+   catch(Exception ex){System.Diagnostics.Trace.TraceError("Coordinator workspace: "+ex.Message);LoadError=L.T("Coordinator.Dashboard.WeCouldNotLoadTheProgramme");}
+  }
+ }
 }
