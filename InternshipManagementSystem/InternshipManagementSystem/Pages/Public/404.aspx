@@ -26,6 +26,15 @@ protected override void OnLoad(System.EventArgs e){base.OnLoad(e);Response.Statu
 @media(min-width:541px) and (max-width:1000px){#gju404 .guard-copy{padding-top:62px;max-width:52%;margin-right:4%}#gju404 h1{font-size:32px}#gju404 .guard-copy p{font-size:12px;max-width:340px}#gju404 .guard-controls a,#gju404 .guard-controls button{font-size:10px;padding:10px 12px}#gju404 .guard-tag{font-size:7px;letter-spacing:.9px}#gju404 .guard-label{font-size:7px;letter-spacing:1.6px}}
 @media(max-width:540px){#gju404 .guard-scene{height:765px}#gju404 .guard-copy{padding-top:392px;max-width:88%;margin:0 auto}#gju404 h1{font-size:28px;line-height:1.2}#gju404 .guard-copy p{font-size:12px;max-width:310px;margin:0 auto 22px}#gju404 .guard-controls{justify-content:center;gap:7px;margin-bottom:10px}#gju404 .guard-controls a,#gju404 .guard-controls button{padding:10px 11px;font-size:10px}#gju404 .guard-status{text-align:center;font-size:9px;min-height:35px}#gju404 .guard-label{font-size:7px;letter-spacing:1.3px}#gju404 .guard-tag{font-size:7px;letter-spacing:.9px}}
 #gju404 .guard-controls button{background:#123d58;color:#e7f5ff}
+#gju404 {
+    padding-top: 32px;
+}
+
+@media (max-width: 540px) {
+    #gju404 {
+        padding-top: 24px;
+    }
+}
 </style></asp:Content>
 <asp:Content ID="GuardBody" ContentPlaceHolderID="MainContent" runat="server"><section id="gju404" aria-labelledby="guard-title">
 <div class="guard-scene">
