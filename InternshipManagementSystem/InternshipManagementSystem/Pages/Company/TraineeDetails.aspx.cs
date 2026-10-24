@@ -17,6 +17,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             if (IsPostBack == false)
             {
+                if (CurrentSupervisor == null || string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
+                {
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
+
                 LoadTraineeData();
             }
         }
@@ -56,7 +62,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     litStudentEmail.Text = student.Email;
                     litStudentInitials.Text = GetInitials(student.FullName);
 
-                    // فحص رابط السيرة الذاتية أو البورتفوليو
                     string cvLink = "";
                     try
                     {
@@ -105,11 +110,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 List<InternshipTask> allTasks = _taskRepo.GetAll();
                 List<InternshipTask> traineeTasks = new List<InternshipTask>();
 
-                foreach (InternshipTask t in allTasks)
+                if (allTasks != null)
                 {
-                    if (t.PlacementId == placement.Id)
+                    foreach (InternshipTask t in allTasks)
                     {
-                        traineeTasks.Add(t);
+                        if (t.PlacementId == placement.Id)
+                        {
+                            traineeTasks.Add(t);
+                        }
                     }
                 }
 
@@ -132,6 +140,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected string FormatDate(object timestampObj)
         {
+            if (timestampObj == null) return "N/A";
             long ms = Convert.ToInt64(timestampObj);
             if (ms <= 0) return "N/A";
 

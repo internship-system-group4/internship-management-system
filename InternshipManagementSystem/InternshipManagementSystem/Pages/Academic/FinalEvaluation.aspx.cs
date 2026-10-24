@@ -15,6 +15,10 @@ namespace InternshipManagementSystem.Pages.Academic
             if (!IsPostBack)
             {
                 LoadStudentsTable();
+
+                // Opened from a notification (FinalEvaluation.aspx?id={studentId}): open that student's evaluation.
+                string fromLink = Request.QueryString["id"];
+                if (!string.IsNullOrEmpty(fromLink)) OpenEvaluation(fromLink);
             }
         }
 
@@ -70,10 +74,13 @@ namespace InternshipManagementSystem.Pages.Academic
 
         protected void btnOpenModal_Click(object sender, EventArgs e)
         {
-            pnlSuccessMessage.Visible = false;
-
             System.Web.UI.WebControls.LinkButton btn = (System.Web.UI.WebControls.LinkButton)sender;
-            string studentId = btn.CommandArgument;
+            OpenEvaluation(btn.CommandArgument);
+        }
+
+        private void OpenEvaluation(string studentId)
+        {
+            pnlSuccessMessage.Visible = false;
 
             // حماية منطقية: التأكد من إمكانية التقييم
             if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }

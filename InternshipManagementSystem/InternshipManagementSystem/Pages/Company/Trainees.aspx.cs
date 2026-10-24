@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -17,9 +18,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             if (!IsPostBack)
             {
-                if (CurrentSupervisor != null)
+                if (CurrentSupervisor != null && !string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
                 {
                     LoadTraineesData();
+                }
+                else
+                {
+                    lblMessage.Text = "User session expired or Company assignment is missing.";
+                    lblMessage.CssClass = "alert alert-danger d-block";
                 }
             }
         }
@@ -31,27 +37,16 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private void LoadTraineesData()
         {
+            if (CurrentSupervisor == null || string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId)) return;
             string companyId = CurrentSupervisor.CompanyId;
-            if (string.IsNullOrEmpty(companyId)) return;
 
             try
             {
-                List<Placement> allPlacements = _placementRepo.GetAll();
-                List<Placement> companyPlacements = new List<Placement>();
+                var allPlacements = _placementRepo.GetAll() ?? new List<Placement>();
+                var companyPlacements = allPlacements.Where(p => p.CompanyId == companyId).ToList();
 
-                foreach (Placement p in allPlacements)
-                {
-                    if (p.CompanyId == companyId)
-                    {
-                        companyPlacements.Add(p);
-                    }
-                }
-
-                int activeCount = 0;
-                int nearCompleteCount = 0;
-                int completedCount = 0;
-
-                List<TraineeViewModel> allTraineesList = new List<TraineeViewModel>();
+                var allTraineesList = new List<TraineeViewModel>();
+                int activeCount = 0, nearCompleteCount = 0, completedCount = 0;
 
                 // Speed: read every trainee's profile at the same time before the loop.
                 List<FirebaseRead> profiles = new List<FirebaseRead>();
@@ -65,7 +60,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 foreach (Placement p in companyPlacements)
                 {
                     var student = _userRepo.GetStudent(p.StudentId);
-                    string major = student != null ? student.Major : "General";
+                    string major = student != null && !string.IsNullOrWhiteSpace(student.Major) ? student.Major : "General";
 
                     int progress = 0;
                     if (p.RequiredHours > 0)
@@ -81,16 +76,16 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     allTraineesList.Add(new TraineeViewModel
                     {
                         Id = p.Id,
-                        StudentName = p.StudentName,
+                        StudentName = p.StudentName ?? "Unknown Student",
                         StudentMajor = major,
-                        OpportunityTitle = p.OpportunityTitle,
+                        OpportunityTitle = p.OpportunityTitle ?? "N/A",
                         StartDate = p.StartDate,
                         EndDate = p.EndDate,
                         ProgressPercentage = progress
                     });
                 }
 
-                litTotalCount.Text = companyPlacements.Count.ToString();
+                // تحديث البطاقات الإحصائية (تمت إزالة litTotalCount لتطابق الواجهة الجديدة)
                 litActiveTrainees.Text = activeCount.ToString();
                 litNearCompletion.Text = nearCompleteCount.ToString();
                 litCompleted.Text = completedCount.ToString();
@@ -99,45 +94,32 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 string selectedDept = ddlDepartment.SelectedValue;
                 string selectedStatus = ddlStatus.SelectedValue;
 
-                List<TraineeViewModel> filteredList = new List<TraineeViewModel>();
-
-                foreach (TraineeViewModel t in allTraineesList)
-                {
-                    bool nameMatches = true;
-                    if (searchText != "")
-                    {
-                        if (t.StudentName.ToLower().Contains(searchText) == false) nameMatches = false;
-                    }
-
-                    bool deptMatches = true;
-                    if (selectedDept != "All")
-                    {
-                        if (t.StudentMajor != selectedDept) deptMatches = false;
-                    }
-
-                    bool statusMatches = true;
-                    if (selectedStatus == "Completed" && t.ProgressPercentage != 100) statusMatches = false;
-                    if (selectedStatus == "NearFinish" && (t.ProgressPercentage < 80 || t.ProgressPercentage == 100)) statusMatches = false;
-                    if (selectedStatus == "InProgress" && t.ProgressPercentage >= 80) statusMatches = false;
-
-                    if (nameMatches && deptMatches && statusMatches)
-                    {
-                        filteredList.Add(t);
-                    }
-                }
+                var filteredList = allTraineesList.Where(t =>
+                    (string.IsNullOrEmpty(searchText) || t.StudentName.ToLower().Contains(searchText)) &&
+                    (selectedDept == "All" || t.StudentMajor == selectedDept) &&
+                    (selectedStatus == "All" ||
+                    (selectedStatus == "Completed" && t.ProgressPercentage == 100) ||
+                    (selectedStatus == "NearFinish" && t.ProgressPercentage >= 80 && t.ProgressPercentage < 100) ||
+                    (selectedStatus == "InProgress" && t.ProgressPercentage < 80))
+                ).ToList();
 
                 gvTrainees.DataSource = filteredList;
                 gvTrainees.DataBind();
+                lblMessage.Visible = false;
             }
             catch (Exception ex)
             {
+                System.Diagnostics.Trace.TraceError("Trainees error: " + ex.Message);
                 lblMessage.Text = L.F("Company.Trainees.ErrorLoadingTrainees", ex.Message);
-                lblMessage.CssClass = "alert alert-danger d-block";
+                lblMessage.CssClass = "alert alert-danger d-block mt-3";
+                lblMessage.Visible = true;
             }
         }
 
         protected string FormatDate(object timestampObj)
         {
+            if (timestampObj == null) return "N/A";
+
             long ms = Convert.ToInt64(timestampObj);
             if (ms <= 0) return "N/A";
 
@@ -146,7 +128,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected string GetStatusText(string progressStr)
         {
-            int progress = Convert.ToInt32(progressStr);
+            if (!int.TryParse(progressStr, out int progress)) return "Unknown";
+
             if (progress == 100) return "Completed";
             if (progress >= 80) return L.T("Company.Trainees.NearFinish");
             return L.T("Company.Trainees.InProgress");
@@ -154,7 +137,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected string GetStatusCss(string progressStr)
         {
-            int progress = Convert.ToInt32(progressStr);
+            if (!int.TryParse(progressStr, out int progress)) return "badge bg-secondary bg-opacity-10 text-secondary rounded-pill px-3 py-2";
+
             if (progress == 100) return "badge bg-success bg-opacity-10 text-success rounded-pill px-3 py-2";
             if (progress >= 80) return "badge bg-warning bg-opacity-10 text-warning rounded-pill px-3 py-2";
             return "badge bg-primary bg-opacity-10 text-primary rounded-pill px-3 py-2";

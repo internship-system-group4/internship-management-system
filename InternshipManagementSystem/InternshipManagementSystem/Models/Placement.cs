@@ -22,6 +22,19 @@ namespace InternshipManagementSystem.Models
     /// </summary>
     public class Placement
     {
+
+      
+        public int EvalTech { get; set; }
+        public int EvalWork { get; set; }
+        public int EvalProf { get; set; }
+        public int EvalComm { get; set; }
+        public int ActualHours { get; set; }
+        public string EvalPerformance { get; set; }
+        public string CompanyRecommendation { get; set; }
+        public string EvalStrengths { get; set; }
+        public string EvalImprovements { get; set; }
+
+
         public string Id { get; set; }
 
         public string StudentId { get; set; }
