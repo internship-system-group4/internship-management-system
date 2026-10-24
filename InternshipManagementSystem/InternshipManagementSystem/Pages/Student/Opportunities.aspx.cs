@@ -1,18 +1,4 @@
-﻿// =============================================================================
-//  Explore Opportunities
-//  Owner : Sara Rajoub
-//  Cards : R03
-//
-//  Open opportunities matching the student's college and major. Opportunity.IsEligible(student) and Opportunity.IsOpenForApplications already hold that logic.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
-
-
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,49 +15,69 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected List<Opportunity> AvailableOpportunities =
             new List<Opportunity>();
 
+        protected Placement ConfirmedPlacement;
+
         protected string SearchText = "";
         protected string Notice = "";
         protected string StudentCollege = "";
         protected string StudentMajor = "";
 
+        protected bool HasConfirmedInternship
+        {
+            get { return ConfirmedPlacement != null; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (CurrentStudent == null)
             {
-                Notice = L.T("Student.Opportunities.PleaseSignInAsAStudent");
+                Notice = L.T(
+                    "Student.Opportunities.PleaseSignInAsAStudent");
                 return;
             }
 
-            // Academic information is read from the logged-in student.
-            // Students cannot change their college or major here.
             StudentCollege = CurrentStudent.College ?? "";
             StudentMajor = CurrentStudent.Major ?? "";
 
-            if (string.IsNullOrWhiteSpace(StudentCollege) ||
-                string.IsNullOrWhiteSpace(StudentMajor))
-            {
-                Notice = "Your college or major is missing. " +
-                         L.T("Student.Opportunities.PleaseContactTheInternshipCoordinator");
-                return;
-            }
-
-            SearchText = (Request.QueryString["q"] ?? "").Trim();
-
-            if (SearchText.Length > 100)
-            {
-                SearchText = SearchText.Substring(0, 100);
-            }
-
             try
             {
+                // Check whether the student has already
+                // confirmed an internship placement.
+                ConfirmedPlacement = new PlacementRepository()
+                    .GetById(CurrentStudent.Id);
+
+                // If confirmed, do not load other opportunities.
+                if (HasConfirmedInternship)
+                {
+                    AvailableOpportunities.Clear();
+                    return;
+                }
+
+                if (string.IsNullOrWhiteSpace(StudentCollege) ||
+                    string.IsNullOrWhiteSpace(StudentMajor))
+                {
+                    Notice = "Your college or major is missing. " +
+                        L.T(
+                            "Student.Opportunities.PleaseContactTheInternshipCoordinator");
+                    return;
+                }
+
+                SearchText =
+                    (Request.QueryString["q"] ?? "").Trim();
+
+                if (SearchText.Length > 100)
+                {
+                    SearchText = SearchText.Substring(0, 100);
+                }
+
                 OpportunityRepository repository =
                     new OpportunityRepository();
 
                 List<Opportunity> allOpportunities =
                     repository.GetAll();
 
-                // R03: Only open opportunities that match the student's
-                // college and major can be displayed.
+                // Show only open opportunities matching
+                // the student's academic program.
                 AvailableOpportunities = allOpportunities
                     .Where(o =>
                         o != null &&
@@ -80,7 +86,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     .OrderByDescending(o => o.CreatedAt)
                     .ToList();
 
-                // Optional search within eligible opportunities only.
+                // Search only within eligible opportunities.
                 if (!string.IsNullOrWhiteSpace(SearchText))
                 {
                     AvailableOpportunities =
@@ -96,45 +102,50 @@ namespace InternshipManagementSystem.Pages.StudentArea
             catch (Exception ex)
             {
                 System.Diagnostics.Trace.TraceError(
-                    "Explore Opportunities Error: " + ex.ToString()
-                );
+                    "Explore Opportunities Error: " + ex);
 
                 AvailableOpportunities.Clear();
 
                 Notice = "Unable to load opportunities right now. " +
-                         L.T("Student.Opportunities.PleaseTryAgainLater");
+                    L.T(
+                        "Student.Opportunities.PleaseTryAgainLater");
             }
         }
 
-        private static bool ContainsText(string source, string search)
+        private static bool ContainsText(
+            string source,
+            string search)
         {
             return !string.IsNullOrWhiteSpace(source) &&
                    source.IndexOf(
                        search,
-                       StringComparison.OrdinalIgnoreCase
-                   ) >= 0;
+                       StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         protected static string DisplayDate(long timestamp)
         {
             if (timestamp <= 0)
             {
-                return L.T("Student.Opportunities.NotSpecified");
+                return L.T(
+                    "Student.Opportunities.NotSpecified");
             }
 
             return Time.DisplayDate(timestamp);
         }
 
-        protected static string ShortDescription(string description)
+        protected static string ShortDescription(
+            string description)
         {
             if (string.IsNullOrWhiteSpace(description))
             {
-                return L.T("Student.Opportunities.ExploreThisInternshipToLearnMore");
+                return L.T(
+                    "Student.Opportunities.ExploreThisInternshipToLearnMore");
             }
 
             if (description.Length > 155)
             {
-                return description.Substring(0, 155).TrimEnd() + "...";
+                return description.Substring(0, 155)
+                    .TrimEnd() + "...";
             }
 
             return description;
@@ -143,7 +154,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected static string DetailsUrl(string id)
         {
             return "OpportunityDetails.aspx?id=" +
-                   System.Web.HttpUtility.UrlEncode(id ?? "");
+                System.Web.HttpUtility.UrlEncode(id ?? "");
         }
     }
 }

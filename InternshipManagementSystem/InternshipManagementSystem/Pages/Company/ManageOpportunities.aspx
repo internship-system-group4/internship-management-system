@@ -1,188 +1,251 @@
-﻿<%@ Page Title="Manage Opportunities"
+﻿
+<%@ Page Title="Manage Opportunities"
     Language="C#"
     MasterPageFile="~/Layout/Company.master"
     AutoEventWireup="true"
     CodeBehind="ManageOpportunities.aspx.cs"
     Inherits="InternshipManagementSystem.Pages.CompanyArea.ManageOpportunities" %>
 
-<asp:Content ID="Head" ContentPlaceHolderID="head"
-    runat="server">
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 
 <style>
 .mo-page {
-    max-width: 1150px;
+    max-width: 1200px;
     margin: 0 auto;
-    color: var(--th-fg-173451,#173451);
+    color: var(--th-fg-173451, #173451);
 }
 
 .mo-heading {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     gap: 15px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 }
 
 .mo-heading h2 {
     font-size: 26px;
     font-weight: 750;
-    margin-bottom: 5px;
+    margin: 0 0 5px;
 }
 
 .mo-muted {
-    color: var(--th-fg-718298,#718298);
+    color: var(--th-fg-718298, #718298);
     font-size: 13px;
+    line-height: 1.6;
+}
+
+.mo-heading .mo-muted {
+    margin: 0;
 }
 
 .mo-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
     padding: 10px 17px;
-    border: 1px solid var(--th-line-244f77,#244f77);
-    background: var(--th-bg-244f77,#244f77);
-    color: white;
+    border: 1px solid var(--th-line-244f77, #244f77);
+    background: var(--th-bg-244f77, #244f77);
+    color: #fff;
     text-decoration: none;
     border-radius: 7px;
+    font: inherit;
     font-size: 13px;
     font-weight: 700;
     cursor: pointer;
+    white-space: nowrap;
+    transition:
+        background-color .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        transform .2s ease;
 }
 
 .mo-btn:hover {
-    filter: brightness(.94);
-    color: white;
+    filter: brightness(.95);
+    color: #fff;
+}
+
+.mo-btn:focus-visible {
+    outline: 2px solid #244f77;
+    outline-offset: 3px;
 }
 
 .mo-btn-light {
-    background: var(--ui-surface,#fff);
-    color: var(--th-fg-244f77,#244f77);
+    background: var(--ui-surface, #fff);
+    color: var(--th-fg-244f77, #244f77);
 }
 
 .mo-btn-light:hover {
-    color: var(--th-fg-244f77,#244f77);
+    color: var(--th-fg-244f77, #244f77);
 }
 
 .mo-btn-danger {
-    background: var(--th-bg-b42318,#b42318);
-    border-color: var(--th-line-b42318,#b42318);
+    background: #b42318;
+    border-color: #b42318;
+    color: #fff;
+}
+
+.mo-btn-success {
+    background: #17603a;
+    border-color: #17603a;
+    color: #fff;
+}
+
+.mo-btn-success:hover {
+    background: #124d2e;
+    border-color: #124d2e;
+}
+
+.mo-small {
+    padding: 7px 11px;
+    font-size: 12px;
 }
 
 .mo-stats {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-bottom: 23px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
 }
 
 .mo-stat,
 .mo-card {
-    background: var(--ui-surface,#fff);
-    border: 1px solid var(--th-line-dce5ef,#dce5ef);
+    background: var(--ui-surface, #fff);
+    border: 1px solid var(--th-line-dce5ef, #dce5ef);
     border-radius: 11px;
-    padding: 20px;
+}
+
+.mo-stat {
+    padding: 18px 20px;
 }
 
 .mo-stat strong {
     display: block;
     font-size: 29px;
-    color: var(--th-fg-163e62,#163e62);
-    margin: 7px 0;
+    color: var(--th-fg-163e62, #163e62);
+    margin: 6px 0;
 }
 
 .mo-card {
-    margin-bottom: 20px;
+    padding: 20px;
+    margin-bottom: 18px;
 }
 
 .mo-card h3 {
     font-size: 17px;
     font-weight: 750;
-    margin-bottom: 7px;
+    margin: 0 0 6px;
+}
+
+.mo-card > .mo-muted {
+    margin: 0 0 15px;
 }
 
 .mo-table-wrap {
     overflow-x: auto;
+    border: 1.5px solid #cbd8e5;
+    border-radius: 10px;
+    background: #fff;
 }
 
 .mo-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     font-size: 13px;
 }
 
 .mo-table th {
     text-align: start;
-    background: var(--th-bg-f3f7fb,#f3f7fb);
-    color: var(--th-fg-48627d,#48627d);
-    padding: 13px;
+    background: #edf3f9;
+    color: #294966;
+    padding: 13px 14px;
+    font-weight: 700;
+    border-bottom: 1.5px solid #cbd8e5;
     white-space: nowrap;
 }
 
 .mo-table td {
-    border-bottom: 1px solid var(--th-line-e6edf3,#e6edf3);
-    padding: 14px 13px;
+    padding: 13px 14px;
+    border-bottom: 1px solid #e0e8f0;
     vertical-align: middle;
+    line-height: 1.5;
 }
 
-.mo-table tr:last-child td {
+.mo-table tbody tr:last-child td {
     border-bottom: 0;
+}
+
+.mo-table tbody tr:hover {
+    background: #f7fafd;
 }
 
 .mo-title {
     font-weight: 750;
-    color: var(--th-fg-173451,#173451);
+    color: var(--th-fg-173451, #173451);
+    margin-bottom: 3px;
 }
 
 .mo-badge {
-    display: inline-block;
-    padding: 5px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 11px;
     border-radius: 20px;
-    background: var(--th-bg-e5f5ec,#e5f5ec);
-    color: var(--th-fg-17603a,#17603a);
+    background: #e5f5ec;
+    color: #17603a;
     font-size: 12px;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .mo-badge.draft {
-    background: var(--th-bg-edf2f8,#edf2f8);
-    color: var(--th-fg-526985,#526985);
+    background: #edf2f8;
+    color: #526985;
 }
 
-.mo-badge.closed {
-    background: var(--th-bg-f2eeee,#f2eeee);
-    color: var(--th-fg-815b5b,#815b5b);
+.mo-badge.inactive {
+    background: #fff3e6;
+    color: #a15c16;
 }
 
 .mo-actions {
     display: flex;
-    gap: 8px;
     align-items: center;
+    gap: 7px;
+    flex-wrap: nowrap;
 }
 
-.mo-small {
-    padding: 7px 12px;
-    font-size: 12px;
+.mo-actions .mo-btn {
+    min-width: 58px;
+    box-sizing: border-box;
 }
 
 .mo-notice {
-    background: var(--th-bg-e5f5ec,#e5f5ec);
-    color: var(--th-fg-17603a,#17603a);
+    background: #e5f5ec;
+    color: #17603a;
     padding: 13px 16px;
     border-radius: 8px;
     margin-bottom: 20px;
+    font-size: 14px;
 }
 
 .mo-notice.error {
-    background: var(--th-bg-fff0ed,#fff0ed);
-    color: var(--th-fg-a3392b,#a3392b);
+    background: #fff0ed;
+    color: #a3392b;
 }
 
 .mo-form-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 16px;
+    gap: 14px 18px;
 }
 
 .mo-field {
-    margin-bottom: 18px;
+    margin-bottom: 17px;
+    min-width: 0;
 }
 
 .mo-field label {
@@ -197,15 +260,30 @@
 .mo-field textarea {
     width: 100%;
     padding: 11px 12px;
-    border: 1px solid var(--th-line-d6e1eb,#d6e1eb);
+    border: 1px solid var(--th-line-d6e1eb, #d6e1eb);
     border-radius: 7px;
+    background: var(--ui-surface, #fff);
+    color: var(--th-fg-173451, #173451);
     font: inherit;
     font-size: 14px;
     box-sizing: border-box;
+    outline: none;
+}
+
+.mo-field input:focus,
+.mo-field select:focus,
+.mo-field textarea:focus {
+    border-color: #244f77;
+    box-shadow: 0 0 0 3px rgba(36,79,119,.10);
+}
+
+.mo-field input[readonly] {
+    background: #f5f7fa;
+    color: #526985;
 }
 
 .mo-field textarea {
-    min-height: 100px;
+    min-height: 110px;
     resize: vertical;
 }
 
@@ -217,20 +295,27 @@
 }
 
 .mo-major {
-    background: var(--th-bg-f7f9fc,#f7f9fc);
-    border: 1px solid var(--th-line-dce5ef,#dce5ef);
+    display: inline-flex !important;
+    align-items: center;
+    gap: 7px;
+    background: #f7f9fc;
+    border: 1px solid #dce5ef;
     padding: 9px 12px;
     border-radius: 7px;
     font-size: 13px;
+    font-weight: 500 !important;
+    cursor: pointer;
+    margin: 0 !important;
 }
 
 .mo-major input {
     width: auto;
-    margin-inline-end: 5px;
+    margin: 0;
+    accent-color: #244f77;
 }
 
 .mo-form-footer {
-    border-top: 1px solid var(--th-line-e6edf3,#e6edf3);
+    border-top: 1px solid #e6edf3;
     margin-top: 15px;
     padding-top: 20px;
     display: flex;
@@ -242,7 +327,7 @@
     position: fixed;
     inset: 0;
     z-index: 10000;
-    background: rgba(18, 43, 69, .43);
+    background: rgba(18,43,69,.48);
     display: none;
     align-items: center;
     justify-content: center;
@@ -255,22 +340,46 @@
 
 .mo-dialog-box {
     width: 100%;
-    max-width: 420px;
-    padding: 25px;
+    max-width: 450px;
+    padding: 28px;
+    border-radius: 14px;
+    background: var(--ui-surface, #fff);
+    box-shadow: 0 18px 55px rgba(0,0,0,.17);
+    box-sizing: border-box;
+}
+
+.mo-dialog-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 12px;
-    background: var(--ui-surface,#fff);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, .15);
+    background: #fff3e6;
+    color: #a15c16;
+    font-size: 23px;
+    margin-bottom: 16px;
+}
+
+.mo-dialog-icon.activate {
+    background: #e5f5ec;
+    color: #17603a;
 }
 
 .mo-dialog-box h3 {
-    margin-bottom: 10px;
+    font-size: 19px;
+    margin: 0 0 10px;
+}
+
+.mo-dialog-box p {
+    margin: 0;
 }
 
 .mo-dialog-actions {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 24px;
 }
 
 .mo-view-grid {
@@ -284,7 +393,7 @@
 .mo-view-block p {
     margin: 4px 0 0;
     font-size: 14px;
-    color: var(--th-fg-173451,#173451);
+    color: var(--th-fg-173451, #173451);
     white-space: pre-line;
     overflow-wrap: anywhere;
 }
@@ -293,271 +402,137 @@
     margin-top: 20px;
 }
 
+.mo-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.mo-required {
+    color: #b42318;
+    font-weight: 700;
+}
+
+.mo-empty {
+    text-align: center;
+    padding: 35px 20px !important;
+    color: #718298;
+}
+
 @media (max-width: 750px) {
-    .mo-stats {
-        grid-template-columns: 1fr;
+    .mo-heading {
+        flex-wrap: wrap;
     }
 
+    .mo-stats,
+    .mo-form-grid,
     .mo-view-grid {
         grid-template-columns: 1fr;
     }
 
-    .mo-form-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .mo-heading {
-        flex-wrap: wrap;
-    }
-}
-
-/* Compact, professional layout improvements */
-
-.mo-page {
-    max-width: 1200px;
-}
-
-.mo-heading {
-    margin-bottom: 16px;
-    gap: 12px;
-}
-
-.mo-heading h2 {
-    margin-bottom: 3px;
-}
-
-.mo-heading .mo-muted {
-    margin-bottom: 0;
-}
-
-.mo-stats {
-    gap: 12px;
-    margin-bottom: 16px;
-}
-
-.mo-stat {
-    padding: 16px 18px;
-}
-
-.mo-stat strong {
-    font-size: 26px;
-    margin: 5px 0;
-}
-
-.mo-card {
-    padding: 18px 20px;
-    margin-bottom: 16px;
-}
-
-.mo-card h3 {
-    margin-bottom: 5px;
-}
-
-.mo-card > .mo-muted {
-    margin-bottom: 12px;
-}
-
-.mo-table th {
-    padding: 12px 14px;
-    font-weight: 700;
-}
-
-.mo-table td {
-    padding: 12px 14px;
-    line-height: 1.45;
-}
-
-.mo-table tbody tr:hover {
-    background: #f8fafc;
-}
-
-.mo-table td:last-child,
-.mo-table th:last-child {
-    white-space: nowrap;
-}
-
-.mo-actions {
-    gap: 6px;
-    flex-wrap: nowrap;
-}
-
-.mo-actions .mo-btn {
-    min-width: 55px;
-    text-align: center;
-    padding: 7px 11px;
-}
-
-.mo-btn {
-    transition: background-color .2s ease,
-                border-color .2s ease,
-                box-shadow .2s ease;
-}
-
-.mo-btn:focus-visible {
-    outline: 2px solid #244f77;
-    outline-offset: 2px;
-}
-
-.mo-field {
-    margin-bottom: 14px;
-}
-
-.mo-form-grid {
-    gap: 12px 16px;
-}
-
-.mo-form-footer {
-    margin-top: 12px;
-    padding-top: 16px;
-}
-
-.mo-view-grid {
-    gap: 12px 20px;
-}
-
-.mo-view-block {
-    margin-top: 16px;
-}
-
-@media (max-width: 750px) {
     .mo-card {
         padding: 15px;
     }
 
     .mo-stat {
-        padding: 14px;
+        padding: 15px;
     }
 
-    .mo-actions {
-        gap: 5px;
+    .mo-dialog-box {
+        padding: 22px;
     }
 }
-
-/* Professional bordered table */
-
-.mo-table-wrap {
-    border: 1.5px solid #cbd8e5;
-    border-radius: 10px;
-    overflow-x: auto;
-    background: #ffffff;
-}
-
-.mo-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    font-size: 13px;
-}
-
-.mo-table th {
-    background: #edf3f9;
-    color: #294966;
-    padding: 13px 14px;
-    font-weight: 700;
-    border-bottom: 1.5px solid #cbd8e5;
-}
-
-.mo-table td {
-    padding: 12px 14px;
-    border-bottom: 1px solid #e0e8f0;
-    vertical-align: middle;
-}
-
-.mo-table tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.mo-table tbody tr:hover {
-    background: #f7fafd;
-}
-
-/* Neatly aligned action buttons */
-
-.mo-actions {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    flex-wrap: nowrap;
-}
-
-.mo-actions .mo-btn {
-    min-width: 58px;
-    padding: 7px 10px;
-    text-align: center;
-    border-radius: 6px;
-    box-sizing: border-box;
-    white-space: nowrap;
-}
-
-/* Keep the table card compact */
-
-.mo-card {
-    padding: 18px;
-}
-
-.mo-card h3 {
-    margin-bottom: 4px;
-}
-
 </style>
 
 </asp:Content>
 
-<asp:Content ID="Body" ContentPlaceHolderID="MainContent"
+<asp:Content ID="Body"
+    ContentPlaceHolderID="MainContent"
     runat="server">
 
 <div class="mo-page">
 
     <% if (!string.IsNullOrEmpty(Notice)) { %>
-        <div class='mo-notice <%= IsError ? "error" : "" %>'>
+        <div class='mo-notice <%= IsError ? "error" : "" %>'
+             role="alert">
             <%: Notice %>
         </div>
     <% } %>
 
     <% if (Editing == null && Viewing == null) { %>
 
-        <!-- Manage List -->
+        <!-- =============================== -->
+        <!-- MANAGE OPPORTUNITIES LIST       -->
+        <!-- =============================== -->
 
         <div class="mo-heading">
             <div>
-                <h2><%: L.T("Company.ManageOpportunities.ManageOpportunities") %></h2>
+                <h2>
+                    <%: L.T("Company.ManageOpportunities.ManageOpportunities") %>
+                </h2>
+
                 <p class="mo-muted">
                     <%: L.T("Company.ManageOpportunities.CreateUpdateAndTrackYourInternship") %>
                 </p>
             </div>
 
             <a href="Opportunities.aspx" class="mo-btn">
-                <%: L.T("Company.ManageOpportunities.AddOpportunity") %>
+                + <%: L.T("Company.ManageOpportunities.AddOpportunity") %>
             </a>
         </div>
+
+        <!-- STATISTICS -->
 
         <div class="mo-stats">
 
             <div class="mo-stat">
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.OpenOpportunities") %></span>
-                <strong><%: OpenCount %></strong>
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.AcceptingApplications") %></span>
-            </div>
-
-            <div class="mo-stat">
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.Drafts") %></span>
-                <strong><%: DraftCount %></strong>
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.NotPublished") %></span>
-            </div>
-
-            <div class="mo-stat">
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.ClosedOpportunities") %></span>
-                <strong><%: ClosedCount %></strong>
                 <span class="mo-muted">
-                    <%: L.T("Company.ManageOpportunities.NoLongerAcceptingApplications") %>
+                    <%: L.T("Company.ManageOpportunities.OpenOpportunities") %>
+                </span>
+
+                <strong><%: OpenCount %></strong>
+
+                <span class="mo-muted">
+                    <%: L.T("Company.ManageOpportunities.AcceptingApplications") %>
+                </span>
+            </div>
+
+            <div class="mo-stat">
+                <span class="mo-muted">
+                    <%: L.T("Company.ManageOpportunities.Drafts") %>
+                </span>
+
+                <strong><%: DraftCount %></strong>
+
+                <span class="mo-muted">
+                    <%: L.T("Company.ManageOpportunities.NotPublished") %>
+                </span>
+            </div>
+
+            <div class="mo-stat">
+                <span class="mo-muted">
+                    Inactive Opportunities
+                </span>
+
+                <strong><%: ClosedCount %></strong>
+
+                <span class="mo-muted">
+                    Temporarily hidden from students
                 </span>
             </div>
 
         </div>
 
+        <!-- OPPORTUNITIES TABLE -->
+
         <div class="mo-card">
 
-            <h3><%: L.T("Company.ManageOpportunities.AllOpportunities") %></h3>
+            <h3>
+                <%: L.T("Company.ManageOpportunities.AllOpportunities") %>
+            </h3>
+
             <p class="mo-muted">
                 <%: OpportunityItems.Count %>
                 <%: L.T("Company.ManageOpportunities.PostingsInTotal") %>
@@ -569,12 +544,29 @@
 
                     <thead>
                         <tr>
-                            <th><%: L.T("Company.ManageOpportunities.Opportunity") %></th>
-                            <th><%: L.T("Company.ManageOpportunities.Specialization") %></th>
-                            <th><%: L.T("Company.ManageOpportunities.Seats") %></th>
-                            <th><%: L.T("Company.ManageOpportunities.Deadline") %></th>
-                            <th><%: L.T("Company.ManageOpportunities.Status") %></th>
-                            <th><%: L.T("Company.ManageOpportunities.Actions") %></th>
+                            <th>
+                                <%: L.T("Company.ManageOpportunities.Opportunity") %>
+                            </th>
+
+                            <th>
+                                <%: L.T("Company.ManageOpportunities.Specialization") %>
+                            </th>
+
+                            <th>
+                                <%: L.T("Company.ManageOpportunities.Seats") %>
+                            </th>
+
+                            <th>
+                                Last Date to Apply
+                            </th>
+
+                            <th>
+                                <%: L.T("Company.ManageOpportunities.Status") %>
+                            </th>
+
+                            <th>
+                                <%: L.T("Company.ManageOpportunities.Actions") %>
+                            </th>
                         </tr>
                     </thead>
 
@@ -588,6 +580,7 @@
                                 <div class="mo-title">
                                     <%: item.Title %>
                                 </div>
+
                                 <span class="mo-muted">
                                     <%: item.Id %>
                                 </span>
@@ -612,7 +605,7 @@
                             <td>
                                 <span class='mo-badge <%=
                                     item.Status == OpportunityStatus.Closed
-                                    ? "closed"
+                                    ? "inactive"
                                     : item.Status == OpportunityStatus.Draft
                                     ? "draft"
                                     : ""
@@ -622,35 +615,54 @@
                             </td>
 
                             <td>
-                                
-                    <div class="mo-actions">
 
-                             <!-- View Opportunity -->
-                                   <a class="mo-btn mo-btn-light mo-small"
+                                <div class="mo-actions">
+
+                                    <!-- VIEW -->
+
+                                    <a class="mo-btn mo-btn-light mo-small"
                                        href="ViewOpportunity.aspx?id=<%: Server.UrlEncode(item.Id) %>">
-                                              <%: L.T("Company.ManageOpportunities.View") %>
-                                               </a>
 
-                                        <!-- Edit Opportunity -->
-                                               <a class="mo-btn mo-btn-light mo-small"
-                                               href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(item.Id) %>">
-                                                     <%: L.T("Company.ManageOpportunities.Edit") %>
-                                            </a>
+                                        <%: L.T("Company.ManageOpportunities.View") %>
 
+                                    </a>
 
-                                    <% if (item.Status != OpportunityStatus.Closed) { %>
+                                    <!-- EDIT -->
+
+                                    <a class="mo-btn mo-btn-light mo-small"
+                                       href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(item.Id) %>">
+
+                                        <%: L.T("Company.ManageOpportunities.Edit") %>
+
+                                    </a>
+
+                                    <!-- ACTIVATE / DEACTIVATE -->
+
+                                    <% if (item.Status == OpportunityStatus.Open ||
+                                           item.Status == OpportunityStatus.Closed) { %>
 
                                         <button type="button"
-                                           class="mo-btn mo-btn-light mo-small"
-                                               data-id="<%: item.Id %>"
-                                                       data-title="<%: item.Title %>"
-                                             onclick="showCloseDialog(this.getAttribute('data-id'), this.getAttribute('data-title'))">
-                                                                <%: L.T("Company.ManageOpportunities.Close") %>
-                                                       </button>
+                                            class="mo-btn mo-btn-light mo-small"
+                                            data-id="<%: item.Id %>"
+                                            data-title="<%: item.Title %>"
+                                            data-action="<%= item.Status == OpportunityStatus.Open
+                                                ? "deactivate"
+                                                : "activate" %>"
+                                            onclick="showToggleDialog(
+                                                this.getAttribute('data-id'),
+                                                this.getAttribute('data-title'),
+                                                this.getAttribute('data-action'))">
 
-                                              <% } %>
+                                            <%= item.Status == OpportunityStatus.Open
+                                                ? "Deactivate"
+                                                : "Activate" %>
+
+                                        </button>
+
+                                    <% } %>
 
                                 </div>
+
                             </td>
 
                         </tr>
@@ -658,11 +670,13 @@
                     <% } %>
 
                     <% if (OpportunityItems.Count == 0) { %>
+
                         <tr>
-                            <td colspan="6" style="text-align:center;padding:30px;">
+                            <td colspan="6" class="mo-empty">
                                 <%: L.T("Company.ManageOpportunities.NoOpportunitiesCreatedYet") %>
                             </td>
                         </tr>
+
                     <% } %>
 
                     </tbody>
@@ -673,37 +687,52 @@
 
         </div>
 
-        <!-- Close Confirmation Dialog -->
+        <!-- =============================== -->
+        <!-- ACTIVATE / DEACTIVATE DIALOG    -->
+        <!-- =============================== -->
 
-        <div id="moDialog" data-ui-dialog="" data-ui-close="hideCloseDialog" class="mo-dialog"
-            role="dialog" aria-modal="true"
-            aria-labelledby="moDialogTitle">
+        <div id="moDialog"
+             class="mo-dialog"
+             role="dialog"
+             aria-modal="true"
+             aria-labelledby="moDialogTitle"
+             aria-hidden="true">
 
             <div class="mo-dialog-box">
 
+                <div id="moDialogIcon" class="mo-dialog-icon"
+                     aria-hidden="true">
+                    ↻
+                </div>
+
                 <h3 id="moDialogTitle">
-                    <%: L.T("Company.ManageOpportunities.CloseThisOpportunity") %>
+                    Confirm Action
                 </h3>
 
-                <p class="mo-muted">
-                    <strong id="moCloseTitle"></strong>
-                    <%: L.T("Company.ManageOpportunities.WillNoLongerAcceptNewApplications") %>
+                <p class="mo-muted"
+                   id="moDialogMessage">
                 </p>
 
                 <div class="mo-dialog-actions">
 
                     <button type="button"
-                        class="mo-btn mo-btn-light"
-                        onclick="hideCloseDialog()">
+                            class="mo-btn mo-btn-light"
+                            onclick="hideToggleDialog()">
+
                         <%: L.T("Company.ManageOpportunities.Cancel") %>
+
                     </button>
 
                     <button type="submit"
-                        class="mo-btn mo-btn-danger"
-                        name="moAction"
-                        value="close"
-                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="Closing…">
-                        <%: L.T("Company.ManageOpportunities.CloseOpportunity") %>
+                            class="mo-btn mo-btn-danger"
+                            id="moConfirmButton"
+                            name="moAction"
+                            value="toggle"
+                            data-ui-action="toggle"
+                            data-ui-validation="none">
+
+                        Confirm
+
                     </button>
 
                 </div>
@@ -712,81 +741,127 @@
 
         </div>
 
-        <input type="hidden" name="moId"
-            id="moCloseId" value="" />
+        <input type="hidden"
+               name="moId"
+               id="moToggleId"
+               value="" />
 
     <% } else if (Viewing != null) { %>
 
-        <!-- View Opportunity (read only) -->
+        <!-- =============================== -->
+        <!-- VIEW OPPORTUNITY DETAILS        -->
+        <!-- =============================== -->
 
-        <a href="ManageOpportunities.aspx" class="mo-muted">
-            <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+        <a href="ManageOpportunities.aspx"
+           class="mo-muted mo-back">
+
+            ← <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+
         </a>
 
-        <div class="mo-heading" style="margin-top:15px;">
+        <div class="mo-heading">
+
             <div>
                 <h2><%: Viewing.Title %></h2>
                 <p class="mo-muted"><%: Viewing.Id %></p>
             </div>
 
             <div class="mo-actions">
+
                 <span class='mo-badge <%=
                     Viewing.Status == OpportunityStatus.Closed
-                    ? "closed"
+                    ? "inactive"
                     : Viewing.Status == OpportunityStatus.Draft
                     ? "draft"
                     : ""
                 %>'>
+
                     <%: StatusText(Viewing) %>
+
                 </span>
 
                 <a class="mo-btn"
                    href="ManageOpportunities.aspx?edit=<%: Server.UrlEncode(Viewing.Id) %>">
+
                     <%: L.T("Company.ManageOpportunities.Edit") %>
+
                 </a>
+
             </div>
+
         </div>
 
         <div class="mo-card">
 
-            <h3><%: L.T("Company.ManageOpportunities.OpportunityInformation") %></h3>
+            <h3>
+                <%: L.T("Company.ManageOpportunities.OpportunityInformation") %>
+            </h3>
 
             <div class="mo-view-grid">
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.Department") %></span>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.Department") %>
+                    </span>
                     <p><%: TextOrDash(Viewing.Department) %></p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.TrainingMode") %></span>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.TrainingMode") %>
+                    </span>
                     <p><%: TextOrDash(Viewing.TrainingMode) %></p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.Location") %></span>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.Location") %>
+                    </span>
                     <p><%: TextOrDash(Viewing.Location) %></p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.EligibleCollege") %></span>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.EligibleCollege") %>
+                    </span>
                     <p><%: TextOrDash(Viewing.EligibleCollege) %></p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.EligibleSpecializations") %></span>
-                    <p><%: Viewing.EligibleMajors == null || Viewing.EligibleMajors.Count == 0
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.EligibleSpecializations") %>
+                    </span>
+
+                    <p>
+                        <%:
+                            Viewing.EligibleMajors == null ||
+                            Viewing.EligibleMajors.Count == 0
                             ? "-"
-                            : string.Join(", ", Viewing.EligibleMajors) %></p>
+                            : string.Join(", ", Viewing.EligibleMajors)
+                        %>
+                    </p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.TechnologiesUsed") %></span>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.TechnologiesUsed") %>
+                    </span>
                     <p><%: TextOrDash(Viewing.TechnologiesUsed) %></p>
                 </div>
+
             </div>
 
             <div class="mo-view-block">
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.Description") %></span>
+                <span class="mo-muted">
+                    <%: L.T("Company.ManageOpportunities.Description") %>
+                </span>
                 <p><%: TextOrDash(Viewing.Description) %></p>
             </div>
 
             <div class="mo-view-block">
-                <span class="mo-muted"><%: L.T("Company.ManageOpportunities.Requirements") %></span>
+                <span class="mo-muted">
+                    <%: L.T("Company.ManageOpportunities.Requirements") %>
+                </span>
                 <p><%: TextOrDash(Viewing.Requirements) %></p>
             </div>
 
@@ -794,207 +869,361 @@
 
         <div class="mo-card">
 
-            <h3><%: L.T("Company.ManageOpportunities.SeatsAndDates") %></h3>
+            <h3>
+                <%: L.T("Company.ManageOpportunities.SeatsAndDates") %>
+            </h3>
 
             <div class="mo-view-grid">
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.SeatsFilledTotal") %></span>
-                    <p><%: Viewing.FilledSeats %> / <%: Viewing.TotalSeats %></p>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.SeatsFilledTotal") %>
+                    </span>
+                    <p>
+                        <%: Viewing.FilledSeats %> /
+                        <%: Viewing.TotalSeats %>
+                    </p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.Duration") %></span>
-                    <p><%: Viewing.DurationWeeks %> <%: L.T("Company.ManageOpportunities.Weeks") %></p>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.Duration") %>
+                    </span>
+                    <p>
+                        <%: Viewing.DurationWeeks %>
+                        <%: L.T("Company.ManageOpportunities.Weeks") %>
+                    </p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.ApplicationDeadline") %></span>
-                    <p><%: TextOrDash(DateText(Viewing.ApplicationDeadline)) %></p>
+                    <span class="mo-muted">
+                        Last Date to Apply
+                    </span>
+                    <p>
+                        <%: TextOrDash(DateText(Viewing.ApplicationDeadline)) %>
+                    </p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.StartDate") %></span>
-                    <p><%: TextOrDash(DateText(Viewing.StartDate)) %></p>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.StartDate") %>
+                    </span>
+                    <p>
+                        <%: TextOrDash(DateText(Viewing.StartDate)) %>
+                    </p>
                 </div>
+
                 <div>
-                    <span class="mo-muted"><%: L.T("Company.ManageOpportunities.EndDate") %></span>
-                    <p><%: TextOrDash(DateText(Viewing.EndDate)) %></p>
+                    <span class="mo-muted">
+                        <%: L.T("Company.ManageOpportunities.EndDate") %>
+                    </span>
+                    <p>
+                        <%: TextOrDash(DateText(Viewing.EndDate)) %>
+                    </p>
                 </div>
+
             </div>
 
         </div>
 
     <% } else { %>
 
-        <!-- Edit Opportunity -->
+        <!-- =============================== -->
+        <!-- EDIT OPPORTUNITY                -->
+        <!-- =============================== -->
 
-        <a href="ManageOpportunities.aspx" class="mo-muted">
-            <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+        <a href="ManageOpportunities.aspx"
+           class="mo-muted mo-back">
+
+            ← <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+
         </a>
 
-        <div class="mo-heading" style="margin-top:15px;">
+        <div class="mo-heading">
+
             <div>
-                <h2><%: L.T("Company.ManageOpportunities.EditOpportunity") %></h2>
+                <h2>
+                    <%: L.T("Company.ManageOpportunities.EditOpportunity") %>
+                </h2>
+
                 <p class="mo-muted">
                     <%: L.T("Company.ManageOpportunities.UpdateTheDetailsAndSaveYour") %>
                 </p>
             </div>
 
-            <span class="mo-badge">
-                <%: Editing.Status.ToString() %>
+            <span class='mo-badge <%=
+                Editing.Status == OpportunityStatus.Closed
+                ? "inactive"
+                : Editing.Status == OpportunityStatus.Draft
+                ? "draft"
+                : ""
+            %>'>
+
+                <%: StatusText(Editing) %>
+
             </span>
+
         </div>
 
         <div class="mo-card">
 
-            <h3><%: L.T("Company.ManageOpportunities.OpportunityInformation") %></h3>
-            <p class="mo-muted" style="margin-bottom:22px;">
+            <h3>
+                <%: L.T("Company.ManageOpportunities.OpportunityInformation") %>
+            </h3>
+
+            <p class="mo-muted">
                 <%: L.T("Company.ManageOpportunities.ProvideTheMainDetailsOfThis") %>
             </p>
 
-            <input type="hidden" name="moId"
-                value="<%: Editing.Id %>" />
+            <input type="hidden"
+                   name="moId"
+                   value="<%: Editing.Id %>" />
 
             <div class="mo-form-grid">
 
+                <!-- TITLE -->
+
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.OpportunityTitle") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.OpportunityTitle") %>
+                    </label>
+
                     <input name="moTitle"
-                        maxlength="160"
-                        value="<%: Editing.Title %>" />
+                           maxlength="160"
+                           value="<%: Editing.Title %>" />
                 </div>
 
+                <!-- DEPARTMENT -->
+
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.Department2") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.Department2") %>
+                    </label>
+
                     <input name="moDepartment"
-                        maxlength="120"
-                        value="<%: Editing.Department %>" />
+                           maxlength="120"
+                           value="<%: Editing.Department %>" />
                 </div>
 
+                <!-- COLLEGE -->
+
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.EligibleCollege") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.EligibleCollege") %>
+                    </label>
+
                     <input readonly="readonly"
-                        value="<%: CollegeName %>" />
+                           value="<%: CollegeName %>" />
                 </div>
 
+                <!-- TRAINING MODE -->
+
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.TrainingMode") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.TrainingMode") %>
+                    </label>
+
                     <select name="moMode">
+
                         <option value="On-site"
-                            <%= Editing.TrainingMode == "On-site" ? "selected" : "" %>>
+                            <%= Editing.TrainingMode == "On-site"
+                                ? "selected" : "" %>>
+
                             <%: L.T("Shared.Value.TrainingMode.Onsite") %>
+
                         </option>
+
                         <option value="Hybrid"
-                            <%= Editing.TrainingMode == "Hybrid" ? "selected" : "" %>>
+                            <%= Editing.TrainingMode == "Hybrid"
+                                ? "selected" : "" %>>
+
                             <%: L.T("Shared.Value.TrainingMode.Hybrid") %>
+
                         </option>
+
                         <option value="Remote"
-                            <%= Editing.TrainingMode == "Remote" ? "selected" : "" %>>
+                            <%= Editing.TrainingMode == "Remote"
+                                ? "selected" : "" %>>
+
                             <%: L.T("Shared.Value.TrainingMode.Remote") %>
+
                         </option>
+
                     </select>
                 </div>
 
-                <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.Location2") %></label>
-                    <input name="moLocation"
-                        maxlength="160"
-                        value="<%: Editing.Location %>" />
-                </div>
+                <!-- LOCATION -->
 
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.TechnologiesUsed") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.Location2") %>
+                    </label>
+
+                    <input name="moLocation"
+                           maxlength="160"
+                           value="<%: Editing.Location %>" />
+                </div>
+
+                <!-- TECHNOLOGIES -->
+
+                <div class="mo-field">
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.TechnologiesUsed") %>
+                    </label>
+
                     <input name="moTechnologies"
-                        maxlength="1000"
-                        value="<%: Editing.TechnologiesUsed %>" />
+                           maxlength="1000"
+                           value="<%: Editing.TechnologiesUsed %>" />
                 </div>
 
             </div>
 
+            <!-- ELIGIBLE MAJORS -->
+
             <div class="mo-field">
-                <label><%: L.T("Company.ManageOpportunities.EligibleSpecializations2") %></label>
+
+                <label>
+                    <%: L.T("Company.ManageOpportunities.EligibleSpecializations2") %>
+                </label>
 
                 <div class="mo-majors">
 
                     <% foreach (string major in Majors) { %>
 
                         <label class="mo-major">
+
                             <input type="checkbox"
-                                name="moMajors"
-                                value="<%: major %>"
-                                <%= IsMajorSelected(major) ? "checked" : "" %> />
+                                   name="moMajors"
+                                   value="<%: major %>"
+                                   <%= IsMajorSelected(major)
+                                       ? "checked" : "" %> />
+
                             <%: major %>
+
                         </label>
 
                     <% } %>
 
                 </div>
+
             </div>
 
+            <!-- DESCRIPTION -->
+
             <div class="mo-field">
-                <label><%: L.T("Company.ManageOpportunities.Description2") %></label>
+                <label>
+                    <%: L.T("Company.ManageOpportunities.Description2") %>
+                </label>
+
                 <textarea name="moDescription"
-                    maxlength="5000"><%: Editing.Description %></textarea>
+                          maxlength="5000"><%: Editing.Description %></textarea>
             </div>
 
+            <!-- REQUIREMENTS -->
+
             <div class="mo-field">
-                <label><%: L.T("Company.ManageOpportunities.Requirements2") %></label>
+                <label>
+                    <%: L.T("Company.ManageOpportunities.Requirements2") %>
+                </label>
+
                 <textarea name="moRequirements"
-                    maxlength="3000"><%: Editing.Requirements %></textarea>
+                          maxlength="3000"><%: Editing.Requirements %></textarea>
             </div>
+
+            <!-- SEATS AND DURATION -->
 
             <div class="mo-form-grid">
 
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.AvailableSeats") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.AvailableSeats") %>
+                    </label>
+
                     <input type="number"
-                        name="moSeats"
-                        min="1"
-                        max="10000"
-                        value="<%: Editing.TotalSeats %>" />
+                           name="moSeats"
+                           min="1"
+                           max="10000"
+                           value="<%: Editing.TotalSeats %>" />
                 </div>
 
                 <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.DurationWeeks") %></label>
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.DurationWeeks") %>
+                    </label>
+
                     <input type="number"
-                        name="moDuration"
-                        min="1"
-                        max="104"
-                        value="<%: Editing.DurationWeeks %>" />
-                </div>
-
-                <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.ApplicationDeadline2") %></label>
-                    <input type="date"
-                        name="moDeadline"
-                        value="<%: DateText(Editing.ApplicationDeadline) %>" />
-                </div>
-
-                <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.StartDate2") %></label>
-                    <input type="date"
-                        name="moStart"
-                        value="<%: DateText(Editing.StartDate) %>" />
-                </div>
-
-                <div class="mo-field">
-                    <label><%: L.T("Company.ManageOpportunities.EndDate2") %></label>
-                    <input type="date"
-                        name="moEnd"
-                        value="<%: DateText(Editing.EndDate) %>" />
+                           name="moDuration"
+                           min="1"
+                           max="13"
+                           value="<%: Editing.DurationWeeks %>" />
                 </div>
 
             </div>
 
+            <!-- START AND END DATES -->
+
+            <div class="mo-form-grid">
+
+                <div class="mo-field">
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.StartDate2") %>
+                    </label>
+
+                    <input type="date"
+                           name="moStart"
+                           value="<%: DateText(Editing.StartDate) %>" />
+                </div>
+
+                <div class="mo-field">
+                    <label>
+                        <%: L.T("Company.ManageOpportunities.EndDate2") %>
+                    </label>
+
+                    <input type="date"
+                           name="moEnd"
+                           value="<%: DateText(Editing.EndDate) %>" />
+                </div>
+
+            </div>
+
+            <!-- LAST DATE TO APPLY -->
+
+            <div class="mo-form-grid">
+
+                <div class="mo-field">
+                    <label>
+                        Last Date to Apply
+                        <span class="mo-required">*</span>
+                    </label>
+
+                    <input type="date"
+                           name="moDeadline"
+                           value="<%: DateText(Editing.ApplicationDeadline) %>" />
+                </div>
+
+            </div>
+
+            <!-- FOOTER -->
+
             <div class="mo-form-footer">
 
                 <a class="mo-btn mo-btn-light"
-                    href="ManageOpportunities.aspx">
+                   href="ManageOpportunities.aspx">
+
                     <%: L.T("Company.ManageOpportunities.Cancel") %>
+
                 </a>
 
                 <button type="submit"
-                    class="mo-btn"
-                    name="moAction"
-                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
+                        class="mo-btn"
+                        name="moAction"
+                        value="save"
+                        data-ui-action="save"
+                        data-ui-validation="none"
+                        data-loading-label="Saving…">
+
                     <%: L.T("Company.ManageOpportunities.SaveChanges") %>
+
                 </button>
 
             </div>
@@ -1005,30 +1234,97 @@
 
 </div>
 
-
 <script type="text/javascript">
 
-    var selectedOpportunityId = "";
-
-    function showCloseDialog(id, title) {
-
-        selectedOpportunityId = id;
-
-        var titleElement =
-            document.getElementById("moCloseTitle");
+    function showToggleDialog(id, title, action) {
 
         var dialog =
             document.getElementById("moDialog");
 
-        if (titleElement && dialog) {
+        var dialogTitle =
+            document.getElementById("moDialogTitle");
 
-            titleElement.textContent = title;
+        var message =
+            document.getElementById("moDialogMessage");
 
-            dialog.classList.add("show");
+        var confirmButton =
+            document.getElementById("moConfirmButton");
+
+        var hiddenId =
+            document.getElementById("moToggleId");
+
+        var dialogIcon =
+            document.getElementById("moDialogIcon");
+
+        if (!dialog ||
+            !dialogTitle ||
+            !message ||
+            !confirmButton ||
+            !hiddenId) {
+            return;
         }
+
+        hiddenId.value = id;
+
+        if (action === "deactivate") {
+
+            dialogTitle.textContent =
+                "Deactivate Opportunity";
+
+            message.textContent =
+                'Are you sure you want to deactivate "' +
+                title +
+                '"? This opportunity will no longer be available for new student applications. Existing applications will be preserved.';
+
+            confirmButton.textContent =
+                "Deactivate";
+
+            confirmButton.classList.remove(
+                "mo-btn-success"
+            );
+
+            confirmButton.classList.add(
+                "mo-btn-danger"
+            );
+
+            if (dialogIcon) {
+                dialogIcon.textContent = "−";
+                dialogIcon.classList.remove("activate");
+            }
+
+        } else {
+
+            dialogTitle.textContent =
+                "Activate Opportunity";
+
+            message.textContent =
+                'Are you sure you want to activate "' +
+                title +
+                '"? Students will be able to apply again if the application deadline has not passed and seats are available.';
+
+            confirmButton.textContent =
+                "Activate";
+
+            confirmButton.classList.remove(
+                "mo-btn-danger"
+            );
+
+            confirmButton.classList.add(
+                "mo-btn-success"
+            );
+
+            if (dialogIcon) {
+                dialogIcon.textContent = "✓";
+                dialogIcon.classList.add("activate");
+            }
+        }
+
+        dialog.classList.add("show");
+        dialog.setAttribute("aria-hidden", "false");
+        confirmButton.focus();
     }
 
-    function hideCloseDialog() {
+    function hideToggleDialog() {
 
         var dialog =
             document.getElementById("moDialog");
@@ -1036,21 +1332,33 @@
         if (dialog) {
 
             dialog.classList.remove("show");
+            dialog.setAttribute("aria-hidden", "true");
         }
     }
 
-    function prepareClose() {
+    document.addEventListener(
+        "keydown",
+        function (event) {
 
-        var hiddenInput =
-            document.getElementById("moCloseId");
-
-        if (hiddenInput) {
-
-            hiddenInput.value = selectedOpportunityId;
+            if (event.key === "Escape") {
+                hideToggleDialog();
+            }
         }
-    }
+    );
+
+    document.addEventListener(
+        "click",
+        function (event) {
+
+            var dialog =
+                document.getElementById("moDialog");
+
+            if (dialog && event.target === dialog) {
+                hideToggleDialog();
+            }
+        }
+    );
 
 </script>
-
 
 </asp:Content>
