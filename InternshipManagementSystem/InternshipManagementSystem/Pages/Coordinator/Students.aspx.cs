@@ -1,10 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Text.RegularExpressions;
-using InternshipManagementSystem.Common;
+﻿using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Web.UI.WebControls;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
@@ -51,6 +52,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
+        protected void gvStudents_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            // دالة فارغة لتجاوز خطأ الكومبايلر
+        }
         protected static string Show(string value)
         {
             return string.IsNullOrWhiteSpace(value) ? L.T("Coordinator.ManageStudents.NotRecorded") : value;
