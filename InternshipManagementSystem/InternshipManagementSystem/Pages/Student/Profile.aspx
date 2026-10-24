@@ -622,8 +622,8 @@
                     </div>
 
                     <div class="sp-field">
-                        <label><%: L.T("Student.Profile.UniversityAccountEmail") %></label>
-                        <input class="sp-input"
+                        <label for="spAccountEmail"><%: L.T("Student.Profile.UniversityAccountEmail") %></label>
+                        <input id="spAccountEmail" class="sp-input"
                                type="email"
                                value="<%: StudentEmail %>"
                                readonly />

@@ -162,6 +162,7 @@ namespace InternshipManagementSystem.Data
             }
 
             Services.NotificationService.MeetingChanged(meeting, actorId, meeting.RequestedToId, "MeetingRequest");
+            Services.EmailNotificationService.Saved(null, meeting, false);
 
             return meeting.Id;
         }
@@ -343,6 +344,7 @@ namespace InternshipManagementSystem.Data
             }
 
             Services.NotificationService.MeetingChanged(meeting, actorId, recipient, title);
+            Services.EmailNotificationService.Saved(Json.Deserialize<Meeting>(raw), meeting, false);
         }
     }
 }

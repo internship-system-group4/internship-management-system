@@ -816,4 +816,12 @@
   <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>هل تريد إيقاف «{0}»؟ سيتوقف استقبال الطلبات الجديدة مع الاحتفاظ بالطلبات الحالية.</value></data>
   <data name="Applications.LoadingDetails" xml:space="preserve"><value>جارٍ تحميل تفاصيل المتقدم…</value></data>
   <data name="Applications.DetailsLoadFailed" xml:space="preserve"><value>تعذّر تحميل التفاصيل. حاول مجددًا باستخدام الرابط أدناه.</value></data>
+  <data name="FinalEvaluation.SelectTraineePrompt" xml:space="preserve"><value>-- اختر متدربًا للتقييم --</value></data>
+  <data name="FinalEvaluation.UnassignedPlacement" xml:space="preserve"><value>هذا المتدرب غير مرتبط بإشرافك.</value></data>
+  <data name="FinalEvaluation.SubmittedStatus" xml:space="preserve"><value>تم إرسال التقييم النهائي</value></data>
+  <data name="FinalEvaluation.SubmittedTitle" xml:space="preserve"><value>تم إرسال التقييم</value></data>
+  <data name="FinalEvaluation.SubmittedMessage" xml:space="preserve"><value>تم إرسال تقييم الشركة إلى المشرف الأكاديمي. إكمال التدريب وإصدار التقرير ما زالا يتطلبان موافقة المنسق.</value></data>
+  <data name="FinalEvaluation.InvalidScoreRange" xml:space="preserve"><value>أدخل درجات صحيحة من الصفر حتى الحد الأعلى الموضح لكل معيار.</value></data>
+  <data name="FinalEvaluation.PreviewNotice" xml:space="preserve"><value>معاينة مسودة فقط؛ هذه ليست وثيقة إكمال معتمدة. التقارير النهائية تتطلب موافقة المنسق.</value></data>
+  <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>معايير التقييم (مشروع UIMS)</value></data>
 </root>

@@ -786,7 +786,7 @@
     <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />
     <Content Include="Assets\images\contact\contact-walkway.jpg" />
-    <Content Include="Assets\images\about\about-film-poster.jpg" />
+    <Content Include="Assets\video\about-film-poster.jpg" />
     <Content Include="Assets\images\university\materials\-578791943103387727.mp4" />
     <Content Include="Assets\js\public-footer.js" />
     <Content Include="Assets\js\public-footer-map.js" />

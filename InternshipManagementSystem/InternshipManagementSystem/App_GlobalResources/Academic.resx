@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -159,4 +159,5 @@
   <data name="StudentProgress.UniversityID" xml:space="preserve"><value>University ID</value></data>
   <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>View Progress</value></data>
   <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>Write your observation or feedback here...</value></data>
+  <data name="FinalEvaluation.SaveFailedRetry" xml:space="preserve"><value>The evaluation could not be saved. Your input is retained; refresh the record before retrying.</value></data>
 </root>

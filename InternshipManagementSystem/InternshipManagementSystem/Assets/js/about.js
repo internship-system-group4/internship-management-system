@@ -122,9 +122,11 @@
 
   media.add('(min-width:961px) and ' + MOTION, function () {
    // A small parallax on the first campus picture; it is scaled up so no edge ever shows.
-   var figure = page.querySelector('[data-parallax]'), picture = figure.querySelector('img');
-   gsap.set(picture, { scale:1.08 });
-   gsap.fromTo(picture, { yPercent:-3 }, { yPercent:3, ease:'none', scrollTrigger:{ trigger:figure, start:'top bottom', end:'bottom top', scrub:true } });
+   var figure = page.querySelector('[data-parallax]'), picture = figure && figure.querySelector('img, video');
+   if (picture) {
+    gsap.set(picture, { scale:1.08 });
+    gsap.fromTo(picture, { yPercent:-3 }, { yPercent:3, ease:'none', scrollTrigger:{ trigger:figure, start:'top bottom', end:'bottom top', scrub:true } });
+   }
 
    // Journey: one line runs from step to step with the section's scroll; each step appears as the line reaches it.
    var track = page.querySelector('[data-journey]'), line = track.querySelector('[data-journey-line]');

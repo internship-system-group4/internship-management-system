@@ -40,7 +40,7 @@ namespace InternshipManagementSystem.Services
                 ex.GetType().Name);
         }
 
-        internal static void Saved(object previous, object current)
+        internal static void Saved(object previous, object current, bool includeInbox = true)
         {
             var addresses = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             TryNotify(() => new NotificationDispatcher(
@@ -48,16 +48,16 @@ namespace InternshipManagementSystem.Services
                 role => new UserRepository().GetByRole(role),
                 id => new PlacementRepository().GetById(id),
                 (recipient, subject, detail, page) => DeliverChannels(recipient, subject, detail, page,
-                    addresses.Add((recipient.Email ?? "").Trim())), false).Saved(previous, current));
+                    addresses.Add((recipient.Email ?? "").Trim()), includeInbox), false).Saved(previous, current));
         }
 
-        internal static void DeliverChannels(Person recipient, string subject, string detail, string page, bool sendEmail = true)
+        internal static void DeliverChannels(Person recipient, string subject, string detail, string page, bool sendEmail = true, bool storeInbox = true)
         {
             UserNotification item = new UserNotification { RecipientId = recipient.Id, Title = subject,
                 SenderId = Security.SessionHelper.Current == null ? null : Security.SessionHelper.Current.Id,
                 Detail = detail, Page = page, CreatedAt = Time.NowMs(), EmailStatus = !Enabled ? "Disabled" : sendEmail ? "Pending" : "Duplicate" };
             bool stored = false;
-            try { if (InboxEnabled) { new NotificationRepository().Add(item); stored = true; } }
+            try { if (InboxEnabled && storeInbox) { new NotificationRepository().Add(item); stored = true; } }
             catch (Exception ex) { LogFailure(ex); }
             if (!Enabled || !sendEmail) return;
             string status = "Sent";

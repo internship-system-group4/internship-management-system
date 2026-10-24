@@ -29,7 +29,7 @@
  <section class="about-opening" id="campus-film" aria-labelledby="about-title" data-film>
   <div class="about-opening-stage">
    <div class="about-opening-frame" data-film-frame>
-    <video class="about-opening-video" data-film-preview muted playsinline loop preload="none" width="1280" height="538" poster="<%: ResolveUrl("~/Assets/images/about/about-film-poster.jpg") %>" aria-label="<%: L.T("Public.About.MutedPreviewOfTheGermanJordanian") %>">
+    <video class="about-opening-video" data-film-preview muted playsinline loop preload="none" width="1280" height="538" poster="<%: ResolveUrl("~/Assets/video/about-film-poster.jpg") %>" aria-label="<%: L.T("Public.About.MutedPreviewOfTheGermanJordanian") %>">
      <source src="<%: ResolveUrl(FilmPath) %>" type='video/mp4; codecs="avc1.64001F, mp4a.40.2"' />
     </video>
     <div class="about-opening-shade" aria-hidden="true"></div>
@@ -239,7 +239,7 @@
    <button type="button" class="about-film-close" data-film-close><%: L.T("Public.About.Close") %><span class="visually-hidden"> <%: L.T("Public.About.TheFilm") %></span></button>
   </div>
   <div class="about-film-dialog-frame">
-   <video data-film-full controls playsinline preload="none" width="1280" height="538" poster="<%: ResolveUrl("~/Assets/images/about/about-film-poster.jpg") %>" aria-labelledby="film-dialog-title">
+   <video data-film-full controls playsinline preload="none" width="1280" height="538" poster="<%: ResolveUrl("~/Assets/video/about-film-poster.jpg") %>" aria-labelledby="film-dialog-title">
     <source src="<%: ResolveUrl(FilmPath) %>" type='video/mp4; codecs="avc1.64001F, mp4a.40.2"' />
     <p><%: L.T("Public.About.YourBrowserCannotPlayThisVideo") %> <a href="<%: ResolveUrl(FilmPath) %>"><%: L.T("Public.About.OpenTheCampusFilmMP413") %></a>.</p>
    </video>
@@ -252,5 +252,5 @@
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
 <script src="<%: ResolveUrl("~/Assets/js/vendor/gsap.min.js") %>" defer></script>
 <script src="<%: ResolveUrl("~/Assets/js/vendor/ScrollTrigger.min.js") %>" defer></script>
-<script src="<%: ResolveUrl("~/Assets/js/about.js?v=20261022-2") %>" defer></script>
+<script src="<%: ResolveUrl("~/Assets/js/about.js?v=20261024-qa-3") %>" defer></script>
 </asp:Content>

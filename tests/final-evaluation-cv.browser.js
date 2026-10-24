@@ -6,7 +6,7 @@ async page => {
  await page.request.post(db+'/__reset');
  for(const [id,name,cv] of [['cv','Candidate with CV','https://example.com/cv.pdf'],['none','Candidate without CV',''],['unsafe','Candidate with unsafe URL','javascript:alert(1)']]){
   await page.request.put(db+'/users/eval-'+id+'.json',{data:{Id:'eval-'+id,FullName:name,Role:1,IsActive:true,Major:'Computer Science',CvUrl:cv}});
-  await page.request.put(db+'/placements/eval-'+id+'.json',{data:{Id:'eval-'+id,StudentId:'eval-'+id,StudentName:name,CompanyId:'company-one',CompanyName:'Training Company',OpportunityId:'internship-one',OpportunityTitle:'Synthetic internship',Status:0}});
+  await page.request.put(db+'/placements/eval-'+id+'.json',{data:{Id:'eval-'+id,StudentId:'eval-'+id,StudentName:name,CompanyId:'company-one',CompanySupervisorId:'supervisor-one',CompanyName:'Training Company',OpportunityId:'internship-one',OpportunityTitle:'Synthetic internship',Status:0}});
  }
  const ctx=await page.context().browser().newContext(),p=await ctx.newPage();
  const errors=[];p.on('pageerror',e=>errors.push(e.message));

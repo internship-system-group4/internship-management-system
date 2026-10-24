@@ -1,4 +1,4 @@
-/* =============================================================================
+﻿/* =============================================================================
    My Progress & Evaluation (cards A15, A16). Scoped to .pg-page; the shared
    look comes from review-system.css (.rv-*). Text sizes follow the portal
    scale in interface.css (18px body, 15px small text).
@@ -198,3 +198,10 @@
   .pg-line span { transform:scaleX(var(--pg-fill, 0)) !important; }
   .pg-log:not([open]) > *:not(summary) { display:block; }
 }
+
+/* End-point hints stay within the journey instead of widening the page. */
+.pg-step:first-child .pg-hint { left:0;right:auto;transform:translate(0,4px); }
+.pg-step:last-child .pg-hint { left:auto;right:0;transform:translate(0,4px); }
+.pg-step:is(:first-child,:last-child):is(:hover,:focus-visible) .pg-hint { transform:translate(0,0); }
+html[dir=rtl] .pg-step:first-child .pg-hint { left:auto;right:0; }
+html[dir=rtl] .pg-step:last-child .pg-hint { left:0;right:auto; }

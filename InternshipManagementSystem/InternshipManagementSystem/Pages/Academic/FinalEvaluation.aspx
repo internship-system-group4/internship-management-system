@@ -1,4 +1,4 @@
-<%@ Page Title="Final Evaluation" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="FinalEvaluation.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.FinalEvaluation" %>
+﻿<%@ Page Title="Final Evaluation" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="FinalEvaluation.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.FinalEvaluation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -82,7 +82,7 @@
             <div class="modal-content">
                 <div class="modal-header" style="background-color: var(--brand-light);">
                     <h5 class="modal-title" id="evaluationModalLabel" style="color: var(--brand-text,var(--brand-dark)); font-weight: 700;">
-                        <%: L.T("Academic.FinalEvaluation.Evaluate") %> <asp:Literal ID="litModalStudentName" runat="server"></asp:Literal>
+                        <%: L.T("Academic.FinalEvaluation.Evaluate") %> <asp:Literal ID="litModalStudentName" runat="server" Mode="Encode"></asp:Literal>
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Academic.FinalEvaluation.Close") %>"></button>
                 </div>
@@ -104,9 +104,9 @@
                                 </div>
                             </div>
                             <div class="col-md-9">
-                                <p class="mb-1"><strong class="text-muted"><%: L.T("Academic.FinalEvaluation.Strengths") %></strong> <asp:Literal ID="litStrengths" runat="server"></asp:Literal></p>
-                                <p class="mb-1"><strong class="text-muted"><%: L.T("Academic.FinalEvaluation.AreasForImprovement") %></strong> <asp:Literal ID="litImprovements" runat="server"></asp:Literal></p>
-                                <p class="mb-0"><strong class="text-muted"><%: L.T("Academic.FinalEvaluation.OverallComment") %></strong> <asp:Literal ID="litCompanyComment" runat="server"></asp:Literal></p>
+                                <p class="mb-1"><strong class="text-muted"><%: L.T("Academic.FinalEvaluation.Strengths") %></strong> <asp:Literal ID="litStrengths" runat="server" Mode="Encode"></asp:Literal></p>
+                                <p class="mb-1"><strong class="text-muted"><%: L.T("Academic.FinalEvaluation.AreasForImprovement") %></strong> <asp:Literal ID="litImprovements" runat="server" Mode="Encode"></asp:Literal></p>
+                                <p class="mb-0"><strong class="text-muted"><%: L.T("Academic.FinalEvaluation.OverallComment") %></strong> <asp:Literal ID="litCompanyComment" runat="server" Mode="Encode"></asp:Literal></p>
                             </div>
                         </div>
                     </asp:Panel>
@@ -136,7 +136,7 @@
                     </div>
 
                     <asp:Panel ID="pnlAlreadySubmitted" runat="server" Visible="false" CssClass="alert alert-success mt-3 mb-0">
-                        <asp:Literal ID="litAlreadySubmittedText" runat="server"></asp:Literal>
+                        <asp:Literal ID="litAlreadySubmittedText" runat="server" Mode="Encode"></asp:Literal>
                     </asp:Panel>
 
                 </div>

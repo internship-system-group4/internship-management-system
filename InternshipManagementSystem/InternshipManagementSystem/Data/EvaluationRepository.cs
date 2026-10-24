@@ -1,4 +1,4 @@
-// =============================================================================
+﻿// =============================================================================
 //  UIMS - Group 4   |   Owner: Ahmad  (Trello card X02)
 //  Task evaluations and the two confidential final evaluations.
 // =============================================================================
@@ -87,6 +87,8 @@ namespace InternshipManagementSystem.Data
 
         public string SaveCompanyFinal(FinalCompanyEvaluation evaluation)
         {
+            if (evaluation == null || evaluation.IsSubmitted && !Services.CompletionReviewService.ValidScore(evaluation.TotalScore, evaluation.MaxScore))
+                throw new InvalidOperationException("Enter a valid evaluation score and maximum.");
             var placement = AuthorizeFinalWrite(evaluation.PlacementId, false);
             if (evaluation.StudentId != placement.StudentId || evaluation.CompanyId != placement.CompanyId || evaluation.SupervisorId != SessionHelper.Current.Id)
                 throw new UnauthorizedAccessException("Company evaluation identity does not match this placement.");
@@ -117,6 +119,8 @@ namespace InternshipManagementSystem.Data
 
         public string SaveAcademicFinal(FinalAcademicEvaluation evaluation)
         {
+            if (evaluation == null || evaluation.IsSubmitted && !Services.CompletionReviewService.ValidScore(evaluation.TotalScore, evaluation.MaxScore))
+                throw new InvalidOperationException("Enter a valid evaluation score and maximum.");
             var placement = AuthorizeFinalWrite(evaluation.PlacementId, true);
             if (evaluation.StudentId != placement.StudentId || evaluation.AcademicSupervisorId != SessionHelper.Current.Id)
                 throw new UnauthorizedAccessException("Academic evaluation identity does not match this placement.");

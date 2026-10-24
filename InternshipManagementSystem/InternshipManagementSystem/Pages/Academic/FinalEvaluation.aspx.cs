@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using InternshipManagementSystem.Common;
 using System.Collections.Generic;
@@ -46,8 +46,8 @@ namespace InternshipManagementSystem.Pages.Academic
                 if (!string.IsNullOrEmpty(searchQuery))
                 {
                     validStudentsForEvaluation = validStudentsForEvaluation.Where(s =>
-                        s.FullName.ToLower().Contains(searchQuery) ||
-                        s.StudentNumber.ToLower().Contains(searchQuery)
+                        (s.FullName ?? "").ToLower().Contains(searchQuery) ||
+                        (s.StudentNumber ?? "").ToLower().Contains(searchQuery)
                     ).ToList();
                 }
 
@@ -176,10 +176,20 @@ namespace InternshipManagementSystem.Pages.Academic
             };
 
             EvaluationRepository evalRepo = new EvaluationRepository();
-            evalRepo.SaveAcademicFinal(eval);
+            try { evalRepo.SaveAcademicFinal(eval); }
+            catch (InvalidOperationException) { ShowSaveFailure(); return; }
+            catch (UnauthorizedAccessException) { ShowSaveFailure(); return; }
+            catch (FirebaseException) { ShowSaveFailure(); return; }
 
             pnlSuccessMessage.Visible = true;
             litSuccessMessage.Text = L.T("Academic.FinalEvaluation.EvaluationForTheSelectedStudentHas");
+        }
+
+        private void ShowSaveFailure()
+        {
+            pnlSuccessMessage.Visible = true;
+            pnlSuccessMessage.CssClass = "alert alert-danger";
+            litSuccessMessage.Text = L.T("Academic.FinalEvaluation.SaveFailedRetry");
         }
 
         private bool CanEvaluate(string studentId)
@@ -187,9 +197,12 @@ namespace InternshipManagementSystem.Pages.Academic
             if (!ApplicationRepository.IsValidKey(studentId)) return false;
             var student = new UserRepository().GetStudent(studentId);
             var placement = new PlacementRepository().GetById(studentId);
-            return student != null && student.AcademicSupervisorId == CurrentSupervisor.Id
+            bool assigned = student != null && student.AcademicSupervisorId == CurrentSupervisor.Id
                 && placement != null && placement.StudentId == studentId
                 && placement.AcademicSupervisorId == CurrentSupervisor.Id;
+            if (!assigned) return false;
+            var company = new EvaluationRepository().GetCompanyFinalForPlacement(placement.Id);
+            return company != null && company.IsSubmitted;
         }
     }
 }

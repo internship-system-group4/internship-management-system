@@ -7,7 +7,6 @@
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using InternshipManagementSystem.Common;
-using System.Collections.Generic;
 
 namespace InternshipManagementSystem.Models
 {

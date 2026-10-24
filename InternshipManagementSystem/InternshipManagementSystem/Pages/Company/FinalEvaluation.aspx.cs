@@ -1,278 +1,192 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
-using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.CompanyArea
 {
-    public partial class FinalEvaluation : InternshipManagementSystem.Security.CompanyPage
+    public partial class FinalEvaluation : Security.CompanyPage
     {
         private readonly PlacementRepository _placementRepo = new PlacementRepository();
         private readonly UserRepository _userRepo = new UserRepository();
+        private readonly EvaluationRepository _evaluations = new EvaluationRepository();
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack == false)
+            if (IsPostBack) return;
+            LoadTraineesDropdown();
+            litCompanySupervisorName.Text = CurrentSupervisor.FullName;
+            string requested = Request.QueryString["id"];
+            if (!string.IsNullOrEmpty(requested) && ddlTrainees.Items.FindByValue(requested) != null)
             {
-                if (CurrentSupervisor == null || string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
-                {
-                    Response.Redirect("~/Login.aspx");
-                    return;
-                }
-
-                LoadTraineesDropdown();
-
-                if (CurrentSupervisor != null)
-                {
-                    litCompanySupervisorName.Text = CurrentSupervisor.FullName;
-                }
+                ddlTrainees.SelectedValue = requested;
+                DdlTrainees_SelectedIndexChanged(null, null);
             }
+        }
+
+        private List<Placement> MyPlacements()
+        {
+            return _placementRepo.GetByCompany(CurrentSupervisor.CompanyId)
+                .Where(p => p.CompanySupervisorId == CurrentSupervisor.Id && p.Status != PlacementStatus.Cancelled).ToList();
+        }
+
+        private Placement SelectedPlacement()
+        {
+            string id = ddlTrainees.SelectedValue;
+            var placement = ApplicationRepository.IsValidKey(id) ? _placementRepo.GetById(id) : null;
+            if (placement == null || placement.CompanyId != CurrentSupervisor.CompanyId ||
+                placement.CompanySupervisorId != CurrentSupervisor.Id)
+                throw new InvalidOperationException(L.T("Company.FinalEvaluation.UnassignedPlacement"));
+            return placement;
         }
 
         private void LoadTraineesDropdown()
         {
             try
             {
-                List<Placement> allPlacements = _placementRepo.GetAll();
                 ddlTrainees.Items.Clear();
-                ddlTrainees.Items.Add(new ListItem("-- Select a trainee to evaluate --", ""));
-
-                foreach (Placement p in allPlacements)
-                {
-                    if (p.CompanyId == CurrentSupervisor.CompanyId)
-                    {
-                        if (p.Status.ToString() != "Completed")
-                        {
-                            ddlTrainees.Items.Add(new ListItem(p.StudentName, p.Id));
-                        }
-                    }
-                }
+                ddlTrainees.Items.Add(new ListItem(L.T("Company.FinalEvaluation.SelectTraineePrompt"), ""));
+                foreach (var placement in MyPlacements())
+                    ddlTrainees.Items.Add(new ListItem(placement.StudentName, placement.Id));
             }
-            catch (Exception ex)
-            {
-                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadTrainees", ex.Message), false);
-            }
+            catch (Exception ex) { ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadTrainees", ex.Message), false); }
         }
 
         protected void DdlTrainees_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string placementId = ddlTrainees.SelectedValue;
-            ClearTraineeCard();
-            if (string.IsNullOrEmpty(placementId))
-            {
-                return;
-            }
-
+            ClearTraineeCard(); ClearFormFields();
+            btnSaveDraft.Enabled = true; btnSendCert.Enabled = true;
+            if (string.IsNullOrEmpty(ddlTrainees.SelectedValue)) return;
             try
             {
-                Placement placement = _placementRepo.GetById(placementId);
-                if (placement != null)
+                var placement = SelectedPlacement();
+                var student = _userRepo.GetStudent(placement.StudentId);
+                litStudentName.Text = student == null ? placement.StudentName : student.FullName;
+                litStudentMajor.Text = student == null ? "-" : student.Major;
+                litStudentInitials.Text = GetInitials(litStudentName.Text);
+                string cv = student == null ? "" : ApplicationRepository.IsSafeDocumentUrl(student.CvUrl) ? student.CvUrl :
+                    ApplicationRepository.IsSafeDocumentUrl(student.PortfolioUrl) ? student.PortfolioUrl : "";
+                hlViewCV.NavigateUrl = cv; divCvContainer.Visible = !string.IsNullOrEmpty(cv);
+                litInternshipTitle.Text = placement.OpportunityTitle;
+                var evaluation = _evaluations.GetCompanyFinalForPlacement(placement.Id);
+                if (evaluation == null)
                 {
-                    Student student = _userRepo.GetStudent(placement.StudentId);
-                    if (student != null)
-                    {
-                        litStudentName.Text = student.FullName;
-                        litStudentMajor.Text = student.Major;
-                        litStudentInitials.Text = GetInitials(student.FullName);
-
-                        // منطق جلب السيرة الذاتية (CV) المطابق لصفحة التفاصيل
-                        string cvLink = "";
-                        try
-                        {
-                            cvLink = !string.IsNullOrEmpty(student.CvUrl) ? student.CvUrl :
-                                    (!string.IsNullOrEmpty(student.PortfolioUrl) ? student.PortfolioUrl : "");
-                        }
-                        catch { }
-
-                        // إظهار أو إخفاء زر الـ CV وتعيين الرابط
-                        if (ApplicationRepository.IsSafeDocumentUrl(cvLink))
-                        {
-                            hlViewCV.NavigateUrl = cvLink;
-                            divCvContainer.Visible = true;
-                        }
-                        else
-                        {
-                            divCvContainer.Visible = false;
-                            hlViewCV.NavigateUrl = "";
-                        }
-                    }
-                    
-                    litInternshipTitle.Text = placement.OpportunityTitle;
-                    litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeWarningI");
-
-                    // جلب وتعبئة بيانات المسودة المحفوظة إن وجدت باستخدام التحويل الآمن
-                    txtTechSkills.Text = placement.EvalTech > 0 ? placement.EvalTech.ToString() : "";
-                    txtWorkQuality.Text = placement.EvalWork > 0 ? placement.EvalWork.ToString() : "";
-                    txtProfessionalism.Text = placement.EvalProf > 0 ? placement.EvalProf.ToString() : "";
-                    txtCommunication.Text = placement.EvalComm > 0 ? placement.EvalComm.ToString() : "";
-                    
-                    string hours = Convert.ToString(placement.ActualHours);
-                    txtActualHours.Text = (!string.IsNullOrEmpty(hours) && hours != "0") ? hours : "";
-
-                    if (!string.IsNullOrEmpty(placement.EvalPerformance))
-                        ddlPerformance.SelectedValue = placement.EvalPerformance;
-                    else
-                        ddlPerformance.SelectedIndex = 0;
-
-                    if (!string.IsNullOrEmpty(placement.CompanyRecommendation))
-                        ddlRecommendation.SelectedValue = placement.CompanyRecommendation;
-                    else
-                        ddlRecommendation.SelectedIndex = 0;
-
+                    // Keep legacy drafts readable, but all new saves use the confidential collection.
+                    txtTechSkills.Text = placement.EvalTech.ToString();
+                    txtWorkQuality.Text = placement.EvalWork.ToString();
+                    txtProfessionalism.Text = placement.EvalProf.ToString();
+                    txtCommunication.Text = placement.EvalComm.ToString();
+                    txtActualHours.Text = placement.ActualHours > 0 ? placement.ActualHours.ToString() : "";
+                    SelectValue(ddlPerformance, placement.EvalPerformance);
+                    SelectValue(ddlRecommendation, placement.CompanyRecommendation);
                     txtStrengths.Text = placement.EvalStrengths ?? "";
                     txtImprovements.Text = placement.EvalImprovements ?? "";
                 }
+                else
+                {
+                    var components = evaluation.Components ?? new List<GradeComponent>();
+                    TextBox[] fields = { txtTechSkills, txtWorkQuality, txtProfessionalism, txtCommunication };
+                    for (int i = 0; i < fields.Length; i++) fields[i].Text = i < components.Count ? components[i].Score.ToString(System.Globalization.CultureInfo.InvariantCulture) : "";
+                    txtActualHours.Text = evaluation.ReportedTotalHours.ToString();
+                    txtStrengths.Text = evaluation.Strengths ?? "";
+                    txtImprovements.Text = evaluation.AreasForImprovement ?? "";
+                    SelectValue(ddlPerformance, evaluation.Performance);
+                    SelectValue(ddlRecommendation, evaluation.Recommendation);
+                    if (evaluation.IsSubmitted)
+                    {
+                        btnSaveDraft.Enabled = false; btnSendCert.Enabled = false;
+                        litStatusBadge.Text = "<span class=\"badge bg-success\">" + Server.HtmlEncode(L.T("Company.FinalEvaluation.SubmittedStatus")) + "</span>";
+                        return;
+                    }
+                }
+                litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeWarningI");
             }
-            catch (Exception ex)
-            {
-                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadTraineeDetails", ex.Message), false);
-            }
+            catch (Exception ex) { ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadTraineeDetails", ex.Message), false); }
+        }
+
+        private static void SelectValue(DropDownList list, string value)
+        {
+            list.SelectedIndex = 0;
+            if (value != null && list.Items.FindByValue(value) != null) list.SelectedValue = value;
         }
 
         protected void BtnMyDrafts_Click(object sender, EventArgs e)
         {
             try
             {
-                List<Placement> allPlacements = _placementRepo.GetAll();
-                List<Placement> drafts = new List<Placement>();
-
-                foreach (Placement p in allPlacements)
-                {
-                    if (p.CompanyId == CurrentSupervisor.CompanyId && p.Status.ToString() != "Completed")
-                    {
-                        drafts.Add(p);
-                    }
-                }
-
-                gvDrafts.DataSource = drafts;
+                gvDrafts.DataSource = MyPlacements().Where(p => {
+                    var evaluation = _evaluations.GetCompanyFinalForPlacement(p.Id);
+                    return evaluation != null ? !evaluation.IsSubmitted : p.EvalTech > 0 || p.EvalWork > 0 || p.EvalProf > 0 || p.EvalComm > 0;
+                }).ToList();
                 gvDrafts.DataBind();
-
-                ClientScript.RegisterStartupScript(this.GetType(), "ShowDrafts", "var draftModal = new bootstrap.Modal(document.getElementById('draftsModal')); draftModal.show();", true);
+                ClientScript.RegisterStartupScript(GetType(), "ShowDrafts", "bootstrap.Modal.getOrCreateInstance(document.getElementById('draftsModal')).show();", true);
             }
-            catch (Exception ex)
-            {
-                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadDrafts", ex.Message), false);
-            }
+            catch (Exception ex) { ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotLoadDrafts", ex.Message), false); }
         }
 
         protected void GvDrafts_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "LoadDraft")
+            if (e.CommandName != "LoadDraft") return;
+            string id = Convert.ToString(e.CommandArgument);
+            if (ddlTrainees.Items.FindByValue(id) == null) return;
+            ddlTrainees.SelectedValue = id; DdlTrainees_SelectedIndexChanged(null, null);
+        }
+
+        private int ReadScore(TextBox field, int maximum, bool submitted)
+        {
+            int value;
+            if (!submitted && string.IsNullOrWhiteSpace(field.Text)) return 0;
+            if (!int.TryParse(field.Text, out value) || value < 0 || value > maximum)
+                throw new InvalidOperationException(L.T("Company.FinalEvaluation.InvalidScoreRange"));
+            return value;
+        }
+
+        private void SaveEvaluation(bool submitted)
+        {
+            try
             {
-                string placementId = e.CommandArgument.ToString();
-                ddlTrainees.SelectedValue = placementId;
+                var placement = SelectedPlacement();
+                int tech = ReadScore(txtTechSkills, 40, submitted), work = ReadScore(txtWorkQuality, 25, submitted),
+                    prof = ReadScore(txtProfessionalism, 20, submitted), comm = ReadScore(txtCommunication, 15, submitted);
+                int hours;
+                if (string.IsNullOrWhiteSpace(txtActualHours.Text) && !submitted) hours = 0;
+                else if (!int.TryParse(txtActualHours.Text, out hours) || hours < 0 || submitted && hours == 0)
+                    throw new InvalidOperationException(L.T("Company.FinalEvaluation.PleaseCompleteActualHoursFeedbackAnd"));
+                if (submitted && (string.IsNullOrEmpty(ddlPerformance.SelectedValue) || string.IsNullOrEmpty(ddlRecommendation.SelectedValue)))
+                    throw new InvalidOperationException(L.T("Company.FinalEvaluation.PleaseCompleteActualHoursFeedbackAnd"));
+                var previous = _evaluations.GetCompanyFinalForPlacement(placement.Id);
+                if (previous != null && previous.IsSubmitted)
+                    throw new InvalidOperationException(L.T("Company.FinalEvaluation.SubmittedStatus"));
+                var evaluation = new FinalCompanyEvaluation {
+                    Id = previous == null ? null : previous.Id, PlacementId = placement.Id, StudentId = placement.StudentId,
+                    CompanyId = placement.CompanyId, SupervisorId = CurrentSupervisor.Id,
+                    TotalScore = tech + work + prof + comm, MaxScore = 100,
+                    Strengths = txtStrengths.Text, AreasForImprovement = txtImprovements.Text,
+                    Performance = ddlPerformance.SelectedValue, Recommendation = ddlRecommendation.SelectedValue,
+                    OverallComment = ddlPerformance.SelectedValue + "; " + ddlRecommendation.SelectedValue,
+                    ReportedTotalHours = hours, IsSubmitted = submitted, SubmittedAt = submitted ? Time.NowMs() : 0,
+                    CreatedAt = previous == null ? Time.NowMs() : previous.CreatedAt,
+                    Components = new List<GradeComponent> {
+                        new GradeComponent { Name="Technical skills", Score=tech, MaxScore=40, Weight=40 },
+                        new GradeComponent { Name="Quality of work", Score=work, MaxScore=25, Weight=25 },
+                        new GradeComponent { Name="Professionalism", Score=prof, MaxScore=20, Weight=20 },
+                        new GradeComponent { Name="Communication", Score=comm, MaxScore=15, Weight=15 }
+                    }
+                };
+                _evaluations.SaveCompanyFinal(evaluation);
+                if (submitted) Services.NotificationService.CompanyEvaluationSent(placement.Id);
                 DdlTrainees_SelectedIndexChanged(null, null);
-                ShowPopupMessage(L.T("Company.FinalEvaluation.DraftLoaded"), L.T("Company.FinalEvaluation.DraftDataReadyPleaseOpenThe"), true);
+                ShowPopupMessage(L.T(submitted ? "Company.FinalEvaluation.SubmittedTitle" : "Company.FinalEvaluation.DraftSaved"),
+                    L.T(submitted ? "Company.FinalEvaluation.SubmittedMessage" : "Company.FinalEvaluation.YourEvaluationHasBeenSafelySaved"), true);
             }
+            catch (Exception ex) { ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotSendEvaluation", ex.Message), false); }
         }
 
-        protected void BtnSaveDraft_Click(object sender, EventArgs e)
-        {
-            string placementId = ddlTrainees.SelectedValue;
-            if (string.IsNullOrEmpty(placementId))
-            {
-                ShowPopupMessage(L.T("Company.FinalEvaluation.SelectTrainee"), L.T("Company.FinalEvaluation.PleaseSelectATraineeFromThe"), false);
-                return;
-            }
-
-            try
-            {
-                int.TryParse(txtTechSkills.Text, out int tech);
-                int.TryParse(txtWorkQuality.Text, out int work);
-                int.TryParse(txtProfessionalism.Text, out int prof);
-                int.TryParse(txtCommunication.Text, out int comm);
-                int.TryParse(txtActualHours.Text, out int hours);
-
-                var updates = new Dictionary<string, object>
-                {
-                    { "EvalTech", tech },
-                    { "EvalWork", work },
-                    { "EvalProf", prof },
-                    { "EvalComm", comm },
-                    { "EvalPerformance", ddlPerformance.SelectedValue },
-                    { "EvalStrengths", txtStrengths.Text },
-                    { "EvalImprovements", txtImprovements.Text },
-                    { "ActualHours", hours },
-                    { "CompanyRecommendation", ddlRecommendation.SelectedValue }
-                };
-
-                _placementRepo.Update(placementId, updates);
-                ShowPopupMessage(L.T("Company.FinalEvaluation.DraftSaved"), L.T("Company.FinalEvaluation.YourEvaluationHasBeenSafelySaved"), true);
-            }
-            catch (Exception ex)
-            {
-                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotSaveDraft", ex.Message), false);
-            }
-        }
-
-        protected void BtnSendEvaluation_Click(object sender, EventArgs e)
-        {
-            string placementId = ddlTrainees.SelectedValue;
-            if (string.IsNullOrEmpty(placementId))
-            {
-                ShowPopupMessage(L.T("Company.FinalEvaluation.SelectTrainee"), L.T("Company.FinalEvaluation.PleaseSelectATraineeToEvaluate"), false);
-                return;
-            }
-
-            try
-            {
-                int.TryParse(txtTechSkills.Text, out int tech);
-                int.TryParse(txtWorkQuality.Text, out int work);
-                int.TryParse(txtProfessionalism.Text, out int prof);
-                int.TryParse(txtCommunication.Text, out int comm);
-                int.TryParse(txtActualHours.Text, out int hours);
-
-                if (tech > 40 || work > 25 || prof > 20 || comm > 15)
-                {
-                    ShowPopupMessage(L.T("Company.FinalEvaluation.InvalidScores"), L.T("Company.FinalEvaluation.PleaseCheckYourNumbersScoresCannot"), false);
-                    return;
-                }
-
-                if (string.IsNullOrEmpty(ddlPerformance.SelectedValue) || string.IsNullOrEmpty(ddlRecommendation.SelectedValue) || hours == 0)
-                {
-                    ShowPopupMessage(L.T("Company.FinalEvaluation.MissingFields"), L.T("Company.FinalEvaluation.PleaseCompleteActualHoursFeedbackAnd"), false);
-                    return;
-                }
-
-                string certificateId = "GJU-UIMS-CERT-" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
-                string issueDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
-
-                var updates = new Dictionary<string, object>
-                {
-                    { "Status", "Completed" },
-                    { "EvalTech", tech },
-                    { "EvalWork", work },
-                    { "EvalProf", prof },
-                    { "EvalComm", comm },
-                    { "EvalPerformance", ddlPerformance.SelectedValue },
-                    { "EvalStrengths", txtStrengths.Text },
-                    { "EvalImprovements", txtImprovements.Text },
-                    { "FinalScore", (tech + work + prof + comm) },
-                    { "ActualHours", hours },
-                    { "CompanyRecommendation", ddlRecommendation.SelectedValue },
-                    { "CertificateId", certificateId },
-                    { "CertificateIssueDate", issueDate }
-                };
-
-                _placementRepo.Update(placementId, updates);
-
-                // The academic supervisor's final evaluation is now due.
-                Services.NotificationService.CompanyEvaluationSent(placementId);
-
-                litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeGreenI");
-                ShowPopupMessage(L.T("Company.FinalEvaluation.CertificateIssued"), L.T("Company.FinalEvaluation.SuccessEvaluationSubmittedToTheGJU"), true);
-
-                ClearFormFields();
-                LoadTraineesDropdown();
-            }
-            catch (Exception ex)
-            {
-                ShowPopupMessage(L.T("Shared.Popup.Error"), L.F("Company.FinalEvaluation.CouldNotSendEvaluation", ex.Message), false);
-            }
-        }
+        protected void BtnSaveDraft_Click(object sender, EventArgs e) { SaveEvaluation(false); }
+        protected void BtnSendEvaluation_Click(object sender, EventArgs e) { SaveEvaluation(true); }
 
         private void ShowPopupMessage(string title, string message, bool isSuccess)
         {

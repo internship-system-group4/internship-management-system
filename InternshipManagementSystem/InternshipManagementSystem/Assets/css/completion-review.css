@@ -1,4 +1,4 @@
-/* =============================================================================
+﻿/* =============================================================================
    Final Completion Review (cards A10 - A14). Page-only styles, scoped to
    .cr-page; the shared look comes from review-system.css (.rv-*). Text sizes
    follow the portal scale in interface.css (18px body, 15px small text).
@@ -295,3 +295,6 @@ body.uims-portal .uims-main-inner:has(.cr-page) { max-width:1920px; }
   .cr-page .rv-card { border-color:var(--th-line-cccccc,#ccc); }
   .cr-hero::before, .cr-decision::before { display:none; }
 }
+
+/* Long policy labels must wrap on narrow screens in both languages. */
+.rv-scope .rv-source { max-width:100%;white-space:normal;overflow-wrap:anywhere; }

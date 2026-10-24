@@ -403,6 +403,7 @@
                 <span class="ex-search-icon">&#9906;</span>
 
                 <input id="exSearch"
+                       aria-label="<%: L.T("Student.Opportunities.SearchByOpportunityCompanyOrLocation") %>"
                        type="search"
                        placeholder="<%: L.T("Student.Opportunities.SearchByOpportunityCompanyOrLocation") %>"
                        maxlength="100"

@@ -27,6 +27,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
             }
             else
             {
+                if (Session["TaskSubmissionNotice"] is bool && (bool)Session["TaskSubmissionNotice"])
+                    ShowMessage(L.T("Student.MyTasks.YourTaskWasSubmittedSuccessfully"), true);
+                Session.Remove("TaskSubmissionNotice");
                 // Opened from a notification (MyTasks.aspx?task={id}): show that task straight away.
                 string fromLink = Request.QueryString["task"];
                 if (ApplicationRepository.IsValidKey(fromLink))
@@ -159,11 +162,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 return;
             }
 
-            txtSubmissionText.Text = "";
-            txtSubmissionLink.Text = "";
-            ViewState["SelectedTaskId"] = task.Id;
-            LoadTasks();
-            ShowMessage(L.T("Student.MyTasks.YourTaskWasSubmittedSuccessfully"), true);
+            Session["TaskSubmissionNotice"] = true;
+            Response.Redirect("MyTasks.aspx?task=" + Uri.EscapeDataString(task.Id), false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         private InternshipTask GetSelectedTask()
