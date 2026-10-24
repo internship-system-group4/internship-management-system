@@ -4,7 +4,7 @@ body.nf-page { background:var(--ui-canvas); color:var(--ui-ink); }
 .nf-scene { position:relative; isolation:isolate; min-height:100vh; min-height:100svh; }
 .nf-header { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:20px; max-width:1440px; margin:auto; padding:28px 48px; }
 .nf-brand { display:inline-flex; align-items:center; gap:12px; color:var(--ui-ink); text-decoration:none; }
-.nf-brand img { object-fit:contain; background:#fff; border-radius:5px; }
+.nf-brand img { object-fit:contain; background:var(--ui-surface,#fff); border-radius:5px; }
 .nf-brand strong { display:block; font-size:16px; font-weight:650; line-height:1.4; }
 .nf-brand small { display:block; color:var(--ui-muted); font-size:12px; line-height:1.5; }
 .nf-controls { display:flex; align-items:center; gap:8px; flex:none; }

@@ -13,12 +13,21 @@
         .progress-container { width: 100%; background-color: var(--th-bg-e2e8f0,#e2e8f0); border-radius: 10px; height: 5px; overflow: hidden; margin-top: 5px; }
         .progress-fill { height: 100%; background-color: var(--th-bg-0f4c81,#0f4c81); border-radius: 10px; }
 
+<<<<<<< HEAD
         .info-label { font-size: 0.7rem; color: var(--th-fg-64748b,#64748b); text-transform: uppercase; font-weight: 700; margin-bottom: 0.2rem; letter-spacing: 0.5px; }
         .info-value { font-size: 0.85rem; color: var(--th-fg-334155,#334155); font-weight: 600; margin-bottom: 0; }
 
         .clean-table { width: 100%; border-collapse: collapse; }
         .clean-table th { padding: 0.75rem 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--th-fg-64748b,#64748b); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; text-align: start; letter-spacing: 0.5px; }
         .clean-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.85rem; font-weight: 500; vertical-align: middle; }
+=======
+        .info-label { font-size: 0.75rem; color: var(--ui-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
+        .info-value { font-size: 0.95rem; color: var(--th-fg-1e293b,#1e293b); font-weight: 600; margin-bottom: 0; }
+
+        .clean-table { width: 100%; border-collapse: collapse; }
+        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--ui-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: start; letter-spacing: 0.5px; }
+        .clean-table td { padding: 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
+>>>>>>> 347845ac34e0073173baf41671d1d4290e7bffa8
         .clean-table tr:hover td { background-color: var(--th-bg-f8fafc,#f8fafc); }
 
         /* كلاس موحد قياسي يفرس نفس المقاس والحجم تماماً لكل أزرار الصفحة بدون استثناء */

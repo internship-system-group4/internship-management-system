@@ -39,7 +39,7 @@
 
 .sp-heading p {
     font-size: 13px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin: 0;
 }
 
@@ -125,7 +125,7 @@
 
 .sp-person p {
     font-size: 13px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin: 0 0 12px;
 }
 
@@ -171,7 +171,7 @@
 }
 
 .sp-section-toggle:focus-visible {
-    outline: 3px solid #7aa6cf;
+    outline: 3px solid var(--th-line-7aa6cf,#7aa6cf);
     outline-offset: -3px;
 }
 
@@ -190,7 +190,7 @@
 .sp-section-title small {
     display: block;
     font-size: 11px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin-top: 4px;
 }
 
@@ -214,7 +214,7 @@
 
 .sp-chevron {
     transition: transform .2s;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
 }
 
 .sp-open .sp-chevron {
@@ -252,7 +252,7 @@
     display: block;
     font-size: 11px;
     font-weight: 750;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin-bottom: 7px;
 }
 
@@ -282,7 +282,7 @@
 
 .sp-help {
     font-size: 11px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     display: block;
     margin-top: 7px;
 }
@@ -304,7 +304,7 @@
 
 .sp-file-row p {
     font-size: 12px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin: 0 0 7px;
 }
 
@@ -317,7 +317,7 @@
 .sp-readonly-badge {
     font-size: 10px;
     font-weight: 700;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     background: var(--th-bg-f0f4f8,#f0f4f8);
     padding: 6px 9px;
     border-radius: 20px;
@@ -410,7 +410,7 @@
     border: 0;
     background: transparent;
     font-size: 25px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     cursor: pointer;
 }
 

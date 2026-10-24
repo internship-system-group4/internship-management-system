@@ -11,7 +11,7 @@
 .od-page {
     --od-navy: var(--ui-primary);
     --od-blue: #28547d;
-    --od-muted: var(--th-fg-71839a,#71839a);
+    --od-muted: var(--ui-muted);
     --od-border: var(--th-line-e0e8f2,#e0e8f2);
     max-width: 1200px;
     margin: 0 auto;
@@ -100,7 +100,7 @@
     display: block;
     font-size: 10px;
     font-weight: 700;
-    color: var(--th-fg-7b8ca1,#7b8ca1);
+    color: var(--ui-muted);
     margin-bottom: 7px;
 }
 .od-highlight-value {
@@ -151,7 +151,7 @@
     padding-bottom: 0;
 }
 .od-info-label {
-    color: var(--th-fg-75869b,#75869b);
+    color: var(--ui-muted);
     font-size: 12px;
 }
 .od-info-value {
@@ -180,7 +180,7 @@
     background: var(--th-bg-f7fbff,#f7fbff);
 }
 .od-apply-panel p {
-    color: var(--th-fg-6a7e94,#6a7e94);
+    color: var(--ui-muted);
     font-size: 12px;
     line-height: 1.8;
     margin: 0 0 18px;
@@ -211,7 +211,7 @@
     display: block;
     padding: 13px;
     background: var(--th-bg-e9edf2,#e9edf2);
-    color: var(--th-fg-64748b,#64748b);
+    color: var(--ui-muted);
     border-radius: 9px;
     font-size: 12px;
     font-weight: 800;

@@ -1176,3 +1176,15 @@ ar: حسابي
 
 NotificationBell.JustNow
 en: Just now
+
+SimpleWorkspace.ClearSearch
+en: Clear search
+ar: مسح البحث
+
+SimpleWorkspace.MatchCount
+en: {0} of {1} records shown
+ar: عرض {0} من {1} سجل
+
+SimpleWorkspace.NoMatches
+en: No matching records. Try another search or clear the search field.
+ar: لا توجد سجلات مطابقة. جرّب بحثًا آخر أو امسح حقل البحث.

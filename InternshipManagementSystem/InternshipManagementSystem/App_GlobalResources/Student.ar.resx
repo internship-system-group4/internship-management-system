@@ -430,4 +430,9 @@
   <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>عرض الملف المهني</value></data>
   <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>اطّلع على الروابط والمستندات التي حفظتها سابقًا.</value></data>
   <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>تغيّرت بياناتك. حدّث الصفحة وحاول مرة أخرى.</value></data>
+  <data name="Dashboard.StudentWorkspace" xml:space="preserve"><value>مساحة عمل الطالب</value></data>
+  <data name="Dashboard.SearchWorkspace" xml:space="preserve"><value>ابحث في المهام والطلبات الأخيرة أو الشركات</value></data>
+  <data name="Dashboard.ProfileHelp" xml:space="preserve"><value>حدّث بياناتك الجامعية.</value></data>
+  <data name="Dashboard.DocumentsHelp" xml:space="preserve"><value>أدر سيرتك الذاتية وملف أعمالك.</value></data>
+  <data name="Dashboard.MeetingsHelp" xml:space="preserve"><value>تابع اجتماعاتك المجدولة.</value></data>
 </root>

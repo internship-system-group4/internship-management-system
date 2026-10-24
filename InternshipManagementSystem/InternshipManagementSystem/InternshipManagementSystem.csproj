@@ -125,6 +125,13 @@
     <Content Include="Assets\css\interface.css" />
     <Content Include="Assets\css\reference-analytics.css" />
     <Content Include="Assets\js\workspace-charts.js" />
+    <Content Include="Assets\js\company-applications.js" />
+    <Content Include="Assets\css\simple-workspace.css" />
+    <Content Include="Assets\css\home-discovery.css" />
+    <Content Include="Assets\css\home-video-zoom.css" />
+    <Content Include="Assets\js\home-video-zoom.js" />
+    <Content Include="Assets\js\home-discovery.js" />
+    <Content Include="Assets\js\simple-workspace.js" />
     <Content Include="Assets\fonts\notosans-variable.ttf" />
     <Content Include="Assets\fonts\notosansarabic-variable.ttf" />
     <Content Include="Assets\fonts\notosans-OFL.txt" />
@@ -232,15 +239,15 @@
       <DependentUpon>Dashboard.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\FinalEvaluation.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\FinalEvaluation.aspx.designer.cs">
       <DependentUpon>FinalEvaluation.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Academic\StudentProgress.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>StudentProgress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Academic\StudentProgress.aspx.designer.cs">
       <DependentUpon>StudentProgress.aspx</DependentUpon>
@@ -898,4 +905,17 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+</Project>
+
+
+  <ItemGroup>
+    <Compile Include="Pages\Company\EvaluationReport.aspx.cs">
+      <DependentUpon>EvaluationReport.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Company\EvaluationReport.aspx.designer.cs">
+      <DependentUpon>EvaluationReport.aspx</DependentUpon>
+    </Compile>
+    <Content Include="Pages\Company\EvaluationReport.aspx" />
+  </ItemGroup>
 </Project>

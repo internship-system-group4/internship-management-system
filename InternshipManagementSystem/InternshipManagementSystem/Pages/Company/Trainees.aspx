@@ -17,8 +17,13 @@
         .card-custom { border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; margin-bottom: 1.5rem; background: #fff; }
 
         .clean-table { width: 100%; border-collapse: collapse; }
+<<<<<<< HEAD
         .clean-table th { padding: 0.75rem 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--th-fg-64748b,#64748b); font-size: 0.7rem; text-transform: uppercase; font-weight: 700; text-align: start; letter-spacing: 0.5px; }
         .clean-table td { padding: 0.75rem 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.85rem; font-weight: 500; vertical-align: middle; }
+=======
+        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--ui-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: start; letter-spacing: 0.5px; }
+        .clean-table td { padding: 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
+>>>>>>> 347845ac34e0073173baf41671d1d4290e7bffa8
         .clean-table tr:hover td { background-color: var(--th-bg-f8fafc,#f8fafc); }
 
         /* قياس موحد لأزرار الصفحة */

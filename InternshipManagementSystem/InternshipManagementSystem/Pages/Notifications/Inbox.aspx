@@ -1,4 +1,4 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inbox.aspx.cs" Inherits="InternshipManagementSystem.Pages.Notifications.Inbox" Title="Notifications" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Inbox.aspx.cs" Inherits="InternshipManagementSystem.Pages.Notifications.Inbox" Title="Notifications" %>
 <%@ Register TagPrefix="uims" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">

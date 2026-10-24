@@ -28,7 +28,7 @@
 }
 
 .cv-muted {
-    color: var(--th-fg-64748b,#64748b);
+    color: var(--ui-muted);
     line-height: 1.7;
 }
 
@@ -73,7 +73,7 @@
 
 .cv-help {
     display: block;
-    color: var(--th-fg-718096,#718096);
+    color: var(--ui-muted);
     font-size: .85rem;
     margin-top: 7px;
 }
@@ -147,7 +147,7 @@
 }
 
 .cv-empty {
-    color: var(--th-fg-7b8797,#7b8797);
+    color: var(--ui-muted);
     font-size: .9rem;
 }
 

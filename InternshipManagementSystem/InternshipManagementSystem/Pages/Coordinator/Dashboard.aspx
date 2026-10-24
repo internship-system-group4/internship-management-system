@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-dashboard.css") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="coordinator-dashboard">
+    <div class="coordinator-dashboard uims-theme">
         <section class="dashboard-heading" aria-labelledby="dashboard-title">
             <div>
                 <div class="theme-eyebrow">Your coordinator workspace</div>

@@ -1295,3 +1295,23 @@ ar:  ساعة
 Dashboard.HoursTargetNotSet
 en:  hours · target not set
 ar:  ساعة · لم يُحدَّد الهدف
+
+Dashboard.StudentWorkspace
+en: Student workspace
+ar: مساحة عمل الطالب
+
+Dashboard.SearchWorkspace
+en: Search recent tasks, applications, or companies
+ar: ابحث في المهام والطلبات الأخيرة أو الشركات
+
+Dashboard.ProfileHelp
+en: Keep your university details up to date.
+ar: حدّث بياناتك الجامعية.
+
+Dashboard.DocumentsHelp
+en: Manage your CV and portfolio.
+ar: أدر سيرتك الذاتية وملف أعمالك.
+
+Dashboard.MeetingsHelp
+en: View your scheduled meetings.
+ar: تابع اجتماعاتك المجدولة.

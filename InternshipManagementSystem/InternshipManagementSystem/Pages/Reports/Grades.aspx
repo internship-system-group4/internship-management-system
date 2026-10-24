@@ -6,16 +6,16 @@
         .grades-heading h2 { font-size: 1.5rem; margin: 0 0 .4rem; }
         .grades-muted { color: var(--muted); }
         .grades-summary { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .75rem; margin-bottom: 1rem; }
-        .grades-scope { display: inline-block; padding: .35rem .7rem; border-radius: 100px; background: var(--brand-light); color: var(--brand-dark); font-size: .85rem; }
+        .grades-scope { display: inline-block; padding: .35rem .7rem; border-radius: 100px; background: var(--brand-light); color: var(--brand-text,var(--brand-dark)); font-size: .85rem; }
         .grades-filters { display: flex; align-items: end; gap: .75rem; flex-wrap: wrap; }
         .grades-search { flex: 1 1 260px; }
         .grades-status { flex: 0 1 180px; }
         .grades-table { min-width: 1100px; }
         .grades-table th { white-space: nowrap; }
         .grades-student { display: block; font-weight: 600; }
-        .grades-result { display: inline-block; border-radius: 100px; padding: .25rem .65rem; font-size: .8rem; font-weight: 600; background: #f0f2f5; color: #4b5563; }
-        .grades-result[data-result="Pass"] { background: #e5f5ec; color: #17603a; }
-        .grades-result[data-result="Fail"] { background: #fdebed; color: #9d2334; }
+        .grades-result { display: inline-block; border-radius: 100px; padding: .25rem .65rem; font-size: .8rem; font-weight: 600; background: var(--th-bg-f0f2f5,#f0f2f5); color: var(--th-fg-4b5563,#4b5563); }
+        .grades-result[data-result="Pass"] { background: var(--th-bg-e5f5ec,#e5f5ec); color: var(--th-fg-17603a,#17603a); }
+        .grades-result[data-result="Fail"] { background: var(--th-bg-fdebed,#fdebed); color: var(--th-fg-9d2334,#9d2334); }
         .grades-empty { padding: 2.5rem 1rem; text-align: center; }
         .grades-empty h3 { font-size: 1.1rem; }
         .grades-note { font-size: .85rem; margin-top: 1rem; }
