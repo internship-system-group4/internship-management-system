@@ -576,7 +576,7 @@
   <data name="Dashboard.YourEverydayActionsOneClickAway" xml:space="preserve"><value>إجراءاتك اليومية على بعد نقرة واحدة.</value></data>
   <data name="Dashboard.YourProgramAtAGlance" xml:space="preserve"><value>برنامجك في لمحة</value></data>
   <data name="Groups.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
-  <data name="Groups.AcademicYearOptional" xml:space="preserve"><value>العام الأكاديمي (اختياري)</value></data>
+  <data name="Groups.AcademicYearOptional" xml:space="preserve"><value>العام الأكاديمي</value></data>
   <data name="Groups.CancelEdit" xml:space="preserve"><value>إلغاء التعديل</value></data>
   <data name="Groups.ChooseASupervisorAndAssignAvailable" xml:space="preserve"><value>اختر مشرفًا وأسند إليه الطلبة المتاحين.</value></data>
   <data name="Groups.ChooseAnAcademicSupervisor" xml:space="preserve"><value>اختر مشرفًا أكاديميًا.</value></data>
@@ -588,7 +588,7 @@
   <data name="Groups.CreateGroup" xml:space="preserve"><value>إنشاء مجموعة</value></data>
   <data name="Groups.EachStudentCanBelongToOne" xml:space="preserve"><value>يمكن أن ينتمي كل طالب إلى مجموعة واحدة فقط في الوقت نفسه.</value></data>
   <data name="Groups.EditGroup" xml:space="preserve"><value>تعديل المجموعة</value></data>
-  <data name="Groups.EnterAGroupNameOfAt" xml:space="preserve"><value>أدخل اسمًا للمجموعة لا يتجاوز 120 حرفًا، وراجع الحقول الأكاديمية.</value></data>
+  <data name="Groups.EnterAGroupNameOfAt" xml:space="preserve"><value>أدخل اسم المجموعة والعام الأكاديمي والفصل الدراسي ضمن حدود الأحرف المسموحة.</value></data>
   <data name="Groups.GroupDetails" xml:space="preserve"><value>تفاصيل المجموعة</value></data>
   <data name="Groups.GroupName" xml:space="preserve"><value>اسم المجموعة</value></data>
   <data name="Groups.GroupNotFound" xml:space="preserve"><value>لم يُعثر على المجموعة.</value></data>
@@ -598,7 +598,7 @@
   <data name="Groups.OnlyUnassignedStudentsAreAvailableWhen" xml:space="preserve"><value>لا يظهر إلا الطلبة غير المسندين، وعند تعديل مجموعة يظهر طلبتها الحاليون أيضًا.</value></data>
   <data name="Groups.SaveChanges" xml:space="preserve"><value>حفظ التغييرات</value></data>
   <data name="Groups.SelectASupervisor" xml:space="preserve"><value>اختر مشرفًا</value></data>
-  <data name="Groups.SemesterOptional" xml:space="preserve"><value>الفصل الدراسي (اختياري)</value></data>
+  <data name="Groups.SemesterOptional" xml:space="preserve"><value>الفصل الدراسي</value></data>
   <data name="Groups.Students" xml:space="preserve"><value>الطلبة</value></data>
   <data name="I18n.AwaitingEvaluations" xml:space="preserve"><value>بانتظار التقييمات</value></data>
   <data name="I18n.Complete" xml:space="preserve"><value>مكتمل</value></data>

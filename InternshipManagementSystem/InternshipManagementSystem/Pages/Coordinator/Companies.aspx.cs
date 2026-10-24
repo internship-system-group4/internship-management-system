@@ -1,9 +1,10 @@
-﻿using InternshipManagementSystem.Common;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
@@ -50,7 +51,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 }
             }
 
-            gvSupervisors.DataSource = supervisorsList;
+            gvSupervisors.DataSource = supervisorsList.OrderBy(supervisor => supervisor.CreatedAt).ThenBy(supervisor => supervisor.Id, StringComparer.Ordinal).ToList();
             gvSupervisors.DataBind();
         }
 

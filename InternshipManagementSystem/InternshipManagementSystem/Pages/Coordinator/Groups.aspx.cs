@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -73,8 +73,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             string name = InternshipManagementSystem.Common.Validators.Clean(txtName.Text);
             string year = InternshipManagementSystem.Common.Validators.Clean(txtAcademicYear.Text);
             string semester = InternshipManagementSystem.Common.Validators.Clean(txtSemester.Text);
-            if (name == null || name.Length > 120 || (year != null && year.Length > 30)
-                || (semester != null && semester.Length > 40))
+            if (name == null || name.Length > 120 || year == null || year.Length > 30
+                || semester == null || semester.Length > 40)
             {
                 ShowMessage(L.T("Coordinator.Groups.EnterAGroupNameOfAt"), false);
                 return;

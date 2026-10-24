@@ -576,7 +576,7 @@
   <data name="Dashboard.YourEverydayActionsOneClickAway" xml:space="preserve"><value>Your everyday actions, one click away.</value></data>
   <data name="Dashboard.YourProgramAtAGlance" xml:space="preserve"><value>Your program at a glance</value></data>
   <data name="Groups.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
-  <data name="Groups.AcademicYearOptional" xml:space="preserve"><value>Academic year (optional)</value></data>
+  <data name="Groups.AcademicYearOptional" xml:space="preserve"><value>Academic year</value></data>
   <data name="Groups.CancelEdit" xml:space="preserve"><value>Cancel edit</value></data>
   <data name="Groups.ChooseASupervisorAndAssignAvailable" xml:space="preserve"><value>Choose a supervisor and assign available students.</value></data>
   <data name="Groups.ChooseAnAcademicSupervisor" xml:space="preserve"><value>Choose an academic supervisor.</value></data>
@@ -588,7 +588,7 @@
   <data name="Groups.CreateGroup" xml:space="preserve"><value>Create group</value></data>
   <data name="Groups.EachStudentCanBelongToOne" xml:space="preserve"><value>Each student can belong to one group at a time.</value></data>
   <data name="Groups.EditGroup" xml:space="preserve"><value>Edit group</value></data>
-  <data name="Groups.EnterAGroupNameOfAt" xml:space="preserve"><value>Enter a group name of at most 120 characters and check the academic fields.</value></data>
+  <data name="Groups.EnterAGroupNameOfAt" xml:space="preserve"><value>Enter a group name, academic year, and semester within the allowed lengths.</value></data>
   <data name="Groups.GroupDetails" xml:space="preserve"><value>Group details</value></data>
   <data name="Groups.GroupName" xml:space="preserve"><value>Group name</value></data>
   <data name="Groups.GroupNotFound" xml:space="preserve"><value>Group not found.</value></data>
@@ -598,7 +598,7 @@
   <data name="Groups.OnlyUnassignedStudentsAreAvailableWhen" xml:space="preserve"><value>Only unassigned students are available. When editing a group, its current students are also shown.</value></data>
   <data name="Groups.SaveChanges" xml:space="preserve"><value>Save changes</value></data>
   <data name="Groups.SelectASupervisor" xml:space="preserve"><value>Select a supervisor</value></data>
-  <data name="Groups.SemesterOptional" xml:space="preserve"><value>Semester (optional)</value></data>
+  <data name="Groups.SemesterOptional" xml:space="preserve"><value>Semester</value></data>
   <data name="Groups.Students" xml:space="preserve"><value>Students</value></data>
   <data name="I18n.AwaitingEvaluations" xml:space="preserve"><value>Awaiting Evaluations</value></data>
   <data name="I18n.Complete" xml:space="preserve"><value>Complete</value></data>
