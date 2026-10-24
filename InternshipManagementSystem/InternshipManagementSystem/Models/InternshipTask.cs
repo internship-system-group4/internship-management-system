@@ -22,7 +22,9 @@ namespace InternshipManagementSystem.Models
         public string StudentId { get; set; }
         public string CompanyId { get; set; }
         public string CreatedBySupervisorId { get; set; }
-
+        public long StartDate { get; set; }
+        public string AttachmentUrl { get; set; }
+        public string AttachmentName { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Instructions { get; set; }

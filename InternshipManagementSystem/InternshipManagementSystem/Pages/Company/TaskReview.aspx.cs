@@ -5,6 +5,7 @@ using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Services;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.UI.WebControls;
 
 namespace InternshipManagementSystem.Pages.CompanyArea
@@ -21,18 +22,40 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private void LoadCompanySubmissions()
         {
-            List<Submission> companySubmissions = new List<Submission>();
+            string selectedTaskId = Request.QueryString["taskId"];
+
+            List<object> companySubmissions = new List<object>();
 
             List<InternshipTask> tasks =
                 new TaskRepository().GetAll();
 
             List<Submission> submissions =
                 new SubmissionRepository().GetAll();
-
+            PlacementRepository placementRepository =
+    new PlacementRepository();
+            List<TaskEvaluation> evaluations =
+                new TaskEvaluationRepository().GetAll();
             foreach (InternshipTask task in tasks)
             {
                 if (task.CompanyId != CurrentSupervisor.CompanyId)
                     continue;
+
+
+                if (!string.IsNullOrWhiteSpace(selectedTaskId) &&
+                    task.Id != selectedTaskId)
+                {
+                    continue;
+                }
+                Placement placement =
+    placementRepository.GetById(task.PlacementId);
+
+                string traineeName =
+                    placement != null &&
+                    placement.CompanyId == CurrentSupervisor.CompanyId &&
+                    placement.StudentId == task.StudentId &&
+                    !string.IsNullOrWhiteSpace(placement.StudentName)
+                        ? placement.StudentName
+                        : "Name unavailable";
 
                 foreach (Submission submission in submissions)
                 {
@@ -40,7 +63,24 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         submission.StudentId == task.StudentId &&
                         submission.PlacementId == task.PlacementId)
                     {
-                        companySubmissions.Add(submission);
+                        companySubmissions.Add(new
+                        {
+                            Id = submission.Id,
+                            TaskId = submission.TaskId,
+                            TaskTitle = task.Title,
+                            StudentId = submission.StudentId,
+                            TraineeName = traineeName,
+                            AttemptNumber = submission.AttemptNumber,
+                            Status = GetSubmissionStatusLabel(submission, evaluations),
+                            StatusKey = GetSubmissionStatusLabel(submission, evaluations),
+                            StatusCss = GetSubmissionStatusCss(
+                                GetSubmissionStatusLabel(submission, evaluations)),
+                            CanReview = IsReviewableSubmission(
+                                submission, task, submissions, evaluations),
+                            ActionLabel = GetSubmissionActionLabel(
+                                submission, task, submissions, evaluations),
+                            SubmittedAt = submission.SubmittedAt
+                        });
                     }
                 }
             }
@@ -74,17 +114,91 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
 
             ViewState["SelectedSubmissionId"] = submission.Id;
+            List<Submission> taskAttempts =
+                new SubmissionRepository().GetByTask(task.Id);
+            List<TaskEvaluation> taskEvaluations =
+                new TaskEvaluationRepository().GetByTask(task.Id);
+            TaskEvaluation existingEvaluation =
+                FindEvaluationForSubmission(taskEvaluations, submission.Id);
+            bool canReview = IsReviewableSubmission(
+                submission, task, taskAttempts, taskEvaluations);
 
-            rptReviewCriteria.DataSource =
-                task.Criteria ?? new List<GradeComponent>();
-            rptReviewCriteria.DataBind();
-
+            btnSaveGrade.Visible = canReview;
+            btnRequestRevision.Visible = canReview;
+            txtCodeQuality.Enabled = canReview;
+            txtFunctionality.Enabled = canReview;
+            txtDesignUsability.Enabled = canReview;
+            txtDocumentation.Enabled = canReview;
+            txtFeedback.Enabled = canReview;
+            lblReviewStatus.Text = GetSubmissionStatusLabel(
+                submission, taskEvaluations);
+            lblReviewStatus.CssClass = canReview
+                ? "review-pending-badge"
+                : existingEvaluation != null && existingEvaluation.RevisionRequested
+                    ? "review-pending-badge review-revision-badge"
+                    : "review-pending-badge review-complete-badge";
+            pnlSubmissionDirectory.Visible = false;
             pnlSubmissionDetails.Visible = true;
+            lblReviewMessage.CssClass = canReview
+                ? "review-message"
+                : "review-message text-muted";
             lblReviewMessage.Text = "";
+            if (existingEvaluation != null)
+            {
+                string recordedFeedback = existingEvaluation.RevisionRequested
+                    ? existingEvaluation.RevisionInstructions
+                    : existingEvaluation.Feedback;
+                string reviewSummary = existingEvaluation.RevisionRequested
+                    ? "A resubmission was requested. Instructions: "
+                    : "This submission was evaluated: " +
+                      existingEvaluation.TotalScore.ToString("0.##") + " / " +
+                      existingEvaluation.MaxScore.ToString("0.##") +
+                      ". Feedback: ";
+                lblReviewMessage.Text = Server.HtmlEncode(
+                    reviewSummary + (recordedFeedback ?? ""));
+            }
+            else if (!canReview)
+            {
+                lblReviewMessage.Text =
+                    "A newer submission attempt is available. Review that attempt instead.";
+            }
 
             lblDetailTask.Text = Server.HtmlEncode(task.Title ?? "");
+            lblTaskMaxScore.Text = task.MaxScore.ToString(
+                "0.##", System.Globalization.CultureInfo.InvariantCulture);
             lblDetailAttempt.Text =
                 submission.AttemptNumber.ToString();
+            if (existingEvaluation != null && existingEvaluation.Components != null)
+            {
+                foreach (GradeComponent component in existingEvaluation.Components)
+                {
+                    if (component == null) continue;
+                    string score = component.Score.ToString(
+                        "0.##", System.Globalization.CultureInfo.InvariantCulture);
+                    if (component.Name == "Code quality") txtCodeQuality.Text = score;
+                    else if (component.Name == "Functionality") txtFunctionality.Text = score;
+                    else if (component.Name == "Design & usability") txtDesignUsability.Text = score;
+                    else if (component.Name == "Documentation") txtDocumentation.Text = score;
+                }
+
+                txtFeedback.Text = existingEvaluation.RevisionRequested
+                    ? existingEvaluation.RevisionInstructions ?? ""
+                    : existingEvaluation.Feedback ?? "";
+            }
+            Placement placement = new PlacementRepository()
+                .GetById(submission.PlacementId);
+            lblDetailTrainee.Text = Server.HtmlEncode(
+                placement != null && !string.IsNullOrWhiteSpace(placement.StudentName)
+                    ? placement.StudentName
+                    : submission.StudentId);
+            lblDetailSubmittedAt.Text = DateTimeOffset
+                .FromUnixTimeMilliseconds(submission.SubmittedAt)
+                .ToLocalTime()
+                .ToString("dd MMM yyyy, h:mm tt");
+            lblDetailDeadline.Text = task.Deadline > 0
+                ? DateTimeOffset.FromUnixTimeMilliseconds(task.Deadline)
+                    .ToLocalTime().ToString("dd MMM yyyy, h:mm tt")
+                : "Not set";
 
             lblDetailText.Text = Server.HtmlEncode(
                 string.IsNullOrWhiteSpace(submission.DescriptionText)
@@ -112,39 +226,497 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (lnkDetailFile.Visible)
             {
                 lnkDetailFile.NavigateUrl = submission.FileUrl;
+                lnkDetailFile.Text = string.IsNullOrWhiteSpace(submission.FileName)
+                    ? "View submission file"
+                    : "View " + Server.HtmlEncode(submission.FileName);
             }
         }
 
-        protected void btnSaveGrade_Click(object sender, EventArgs e) { SaveReview(false); }
-        protected void btnRequestRevision_Click(object sender, EventArgs e) { SaveReview(true); }
-        private void SaveReview(bool revision)
+        private static TaskEvaluation FindEvaluationForSubmission(
+            List<TaskEvaluation> evaluations, string submissionId)
         {
-            pnlSubmissionDetails.Visible = true;
-            lblReviewMessage.CssClass = "text-danger d-block mt-3";
-            try {
-                string id = ViewState["SelectedSubmissionId"] as string;
-                var submission = new SubmissionRepository().GetById(id);
-                var task = submission == null ? null : new TaskRepository().GetById(submission.TaskId);
-                if (task == null) throw new InvalidOperationException("Select a submission first.");
-                var scores = new List<double>();
-                if (!revision) {
-                    rptReviewCriteria.DataSource = task.Criteria; rptReviewCriteria.DataBind();
-                    foreach (RepeaterItem item in rptReviewCriteria.Items) {
-                        var box = (TextBox)item.FindControl("txtScore"); double score;
-                        if (!double.TryParse(Request.Form[box.UniqueID], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out score))
-                            throw new InvalidOperationException("Enter a numeric mark for each criterion.");
-                        scores.Add(score);
+            if (evaluations == null) return null;
+
+            foreach (TaskEvaluation evaluation in evaluations)
+            {
+                if (evaluation != null &&
+                    evaluation.SubmissionId == submissionId)
+                {
+                    return evaluation;
+                }
+            }
+
+            return null;
+        }
+
+        private static string GetSubmissionStatusLabel(
+            Submission submission, List<TaskEvaluation> evaluations)
+        {
+            TaskEvaluation evaluation =
+                FindEvaluationForSubmission(evaluations, submission.Id);
+
+            if (evaluation != null)
+            {
+                return evaluation.RevisionRequested
+                    ? "Revision requested"
+                    : "Reviewed";
+            }
+
+            switch (submission.Status)
+            {
+                case SubmissionStatus.Submitted:
+                    return "Awaiting review";
+                case SubmissionStatus.UnderReview:
+                    return "Under review";
+                case SubmissionStatus.RevisionRequested:
+                    return "Revision requested";
+                case SubmissionStatus.Accepted:
+                    return "Accepted";
+                default:
+                    return submission.Status.ToString();
+            }
+        }
+
+        private static string GetSubmissionStatusCss(string status)
+        {
+            switch (status)
+            {
+                case "Awaiting review": return "submission-status status-awaiting";
+                case "Under review": return "submission-status status-under-review";
+                case "Revision requested": return "submission-status status-revision";
+                case "Reviewed": return "submission-status status-reviewed";
+                case "Accepted": return "submission-status status-reviewed";
+                default: return "submission-status";
+            }
+        }
+
+        private string GetSubmissionActionLabel(
+            Submission submission,
+            InternshipTask task,
+            List<Submission> attempts,
+            List<TaskEvaluation> evaluations)
+        {
+            if (IsReviewableSubmission(submission, task, attempts, evaluations))
+            {
+                return submission.Status == SubmissionStatus.UnderReview
+                    ? "Continue review"
+                    : "Review submission";
+            }
+
+            TaskEvaluation evaluation =
+                FindEvaluationForSubmission(evaluations, submission.Id);
+            if (evaluation != null)
+            {
+                return evaluation.RevisionRequested
+                    ? "View revision request"
+                    : "View evaluation";
+            }
+
+            return "View attempt";
+        }
+        private bool IsReviewableSubmission(
+            Submission submission,
+            InternshipTask task,
+            List<Submission> attempts,
+            List<TaskEvaluation> evaluations)
+        {
+            if (submission == null ||
+                task == null ||
+                task.CompanyId != CurrentSupervisor.CompanyId ||
+                task.StudentId != submission.StudentId ||
+                task.PlacementId != submission.PlacementId ||
+                submission.TaskId != task.Id ||
+                (submission.Status != SubmissionStatus.Submitted &&
+                 submission.Status != SubmissionStatus.UnderReview) ||
+                FindEvaluationForSubmission(evaluations, submission.Id) != null)
+            {
+                return false;
+            }
+
+            // Keep older attempts available for viewing, but only allow actions
+            // on the latest attempt. Existing evaluations can be updated.
+            if (attempts != null)
+            {
+                foreach (Submission attempt in attempts)
+                {
+                    if (attempt != null &&
+                        attempt.StudentId == submission.StudentId &&
+                        attempt.PlacementId == submission.PlacementId &&
+                        (attempt.AttemptNumber > submission.AttemptNumber ||
+                         (attempt.AttemptNumber == submission.AttemptNumber &&
+                          attempt.SubmittedAt > submission.SubmittedAt)))
+                    {
+                        return false;
                     }
                 }
-                TaskWorkflowService.Review(id, revision, scores, revision ? txtRevisionInstructions.Text.Trim() : txtFeedback.Text.Trim());
+            }
+
+            return true;
+        }
+        protected void btnSaveGrade_Click(object sender, EventArgs e)
+        {
+            string submissionId =
+                ViewState["SelectedSubmissionId"] as string;
+
+            if (string.IsNullOrEmpty(submissionId)) return;
+
+            SubmissionRepository submissionRepository =
+                new SubmissionRepository();
+
+            Submission submission =
+                submissionRepository.GetById(submissionId);
+
+            if (submission == null) return;
+
+            TaskRepository taskRepository = new TaskRepository();
+            InternshipTask task =
+                taskRepository.GetById(submission.TaskId);
+
+            // نعيد فحص الصلاحية عند الحفظ، حتى لو فُتحت التفاصيل سابقًا.
+            if (task == null ||
+                task.CompanyId != CurrentSupervisor.CompanyId ||
+                task.StudentId != submission.StudentId ||
+                task.PlacementId != submission.PlacementId)
+            {
+                return;
+            }
+
+            pnlSubmissionDetails.Visible = true;
+            lblReviewMessage.CssClass = "text-danger d-block mt-3";
+            lblReviewMessage.Text = "";
+            if (!IsReviewableSubmission(
+                    submission,
+                    task,
+                    submissionRepository.GetByTask(task.Id),
+                    new TaskEvaluationRepository().GetByTask(task.Id)))
+            {
+                lblReviewMessage.Text = "This submission is already reviewed or is not the latest attempt."; 
+                return;
+            }
+
+            if (task.MaxScore <= 0)
+            {
+                lblReviewMessage.Text =
+                    L.T("Company.TaskReview.ThisTaskHasNoValidGrading");
+                return;
+            }
+
+            string feedback = txtFeedback.Text.Trim();
+
+            if (feedback == "")
+            {
+                lblReviewMessage.Text =
+                    L.T("Company.TaskReview.PleaseEnterFeedbackForTheStudent");
+                return;
+            }
+
+            try
+            {
+                // نقيّم أحدث محاولة فقط.
+                foreach (Submission attempt in
+                    submissionRepository.GetByTask(task.Id))
+                {
+                    if (attempt.StudentId == submission.StudentId &&
+                        attempt.PlacementId == submission.PlacementId &&
+                        attempt.AttemptNumber >
+                            submission.AttemptNumber)
+                    {
+                        lblReviewMessage.Text =
+                            L.T("Company.TaskReview.ANewerSubmissionAttemptExistsReview");
+                        return;
+                    }
+                }
+
+                TaskEvaluationRepository evaluationRepository =
+                    new TaskEvaluationRepository();
+
+                TaskEvaluation evaluation = FindEvaluationForSubmission(
+                    evaluationRepository.GetByTask(task.Id), submission.Id);
+                bool isUpdatingEvaluation = evaluation != null;
+                if (evaluation == null)
+                {
+                    evaluation = new TaskEvaluation();
+                }
+
+                // Use the task's saved rubric and update an existing review in place.
+                evaluation.TaskId = task.Id;
+                evaluation.SubmissionId = submission.Id;
+                evaluation.PlacementId = submission.PlacementId;
+                evaluation.StudentId = submission.StudentId;
+                evaluation.EvaluatedBySupervisorId = CurrentSupervisor.Id;
+                evaluation.Feedback = feedback;
+                evaluation.MaxScore = task.MaxScore;
+                evaluation.Components = new List<GradeComponent>();
+                evaluation.RevisionRequested = false;
+                evaluation.RevisionInstructions = "";
+
+                List<GradeComponent> rubric = CreateUniversityRubric();
+                TextBox[] scoreInputs =
+                {
+                    txtCodeQuality,
+                    txtFunctionality,
+                    txtDesignUsability,
+                    txtDocumentation
+                };
+
+                for (int i = 0; i < rubric.Count; i++)
+                {
+                    GradeComponent criterion = rubric[i];
+                    string enteredScore = scoreInputs[i].Text.Trim();
+
+                    double score;
+                    bool validScore = double.TryParse(
+                        enteredScore,
+                        System.Globalization.NumberStyles.Float,
+                        System.Globalization.CultureInfo
+                            .InvariantCulture,
+                        out score);
+
+                    if (!validScore ||
+                        double.IsNaN(score) ||
+                        double.IsInfinity(score) ||
+                        score < 0 ||
+                        score > criterion.MaxScore)
+                    {
+                        lblReviewMessage.Text = "Enter a valid score for " +
+                            Server.HtmlEncode(criterion.Name) + " (0 to " +
+                            criterion.MaxScore.ToString(
+                                "0.##", System.Globalization.CultureInfo.InvariantCulture) + ").";
+                        return;
+                    }
+
+                    evaluation.Components.Add(
+                        new GradeComponent
+                        {
+                            Name = criterion.Name,
+                            Description =
+                                criterion.Description,
+                            MaxScore = criterion.MaxScore,
+                            Weight = criterion.Weight,
+                            Score = score
+                        });
+                }
+
+                // PercentOf يرجع نسبة؛ نحولها لعلامة من MaxScore
+                // الخاص بهذه المهمة، وليس دائمًا من 100.
+                evaluation.TotalScore =
+                    GradingService.PercentOf(
+                        evaluation.Components)
+                    * task.MaxScore / 100.0;
+
+                bool evaluationSaved;
+                if (isUpdatingEvaluation)
+                {
+                    evaluation.EvaluatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                    evaluationRepository.Update(
+                        evaluation.Id,
+                        new Dictionary<string, object>
+                        {
+                            { "TaskId", evaluation.TaskId },
+                            { "SubmissionId", evaluation.SubmissionId },
+                            { "PlacementId", evaluation.PlacementId },
+                            { "StudentId", evaluation.StudentId },
+                            { "EvaluatedBySupervisorId", evaluation.EvaluatedBySupervisorId },
+                            { "Components", evaluation.Components },
+                            { "TotalScore", evaluation.TotalScore },
+                            { "MaxScore", evaluation.MaxScore },
+                            { "Feedback", evaluation.Feedback },
+                            { "RevisionRequested", false },
+                            { "RevisionInstructions", "" },
+                            { "EvaluatedAt", evaluation.EvaluatedAt }
+                        });
+                    evaluationSaved = true;
+                }
+                else
+                {
+                    evaluationSaved = !string.IsNullOrEmpty(
+                        evaluationRepository.Insert(evaluation));
+                }
+
+                if (!evaluationSaved)
+                {
+                    lblReviewMessage.Text =
+                        L.T("Company.TaskReview.TheGradeCouldNotBeSaved");
+                    return;
+                }
+
+                try
+                {
+                    taskRepository.Update(
+                        task.Id,
+                        new Dictionary<string, object>
+                        {
+                            {
+                                "Status",
+                                InternshipTaskStatus.Graded
+                            }
+                        });
+                }
+                catch (FirebaseException)
+                {
+                    lblReviewMessage.Text =
+                        L.T("Company.TaskReview.TheGradeWasSavedButThe");
+                    return;
+                }
+
+                lblReviewMessage.CssClass =
+                    "text-success d-block mt-3";
+                lblReviewMessage.Text =
+                    L.T("Company.TaskReview.GradeSavedSuccessfully");
+            }
+            catch (FirebaseException)
+            {
+                lblReviewMessage.Text =
+                    L.T("Company.TaskReview.CouldNotLoadOrSaveThe");
+            }
+        }
+        private static List<GradeComponent> CreateUniversityRubric()
+        {
+            return new List<GradeComponent>
+            {
+                new GradeComponent { Name = "Code quality", MaxScore = 25, Weight = 25 },
+                new GradeComponent { Name = "Functionality", MaxScore = 35, Weight = 35 },
+                new GradeComponent { Name = "Design & usability", MaxScore = 25, Weight = 25 },
+                new GradeComponent { Name = "Documentation", MaxScore = 15, Weight = 15 }
+            };
+        }
+
+        protected void btnRequestRevision_Click(object sender, EventArgs e)
+        {
+            lblReviewMessage.CssClass = "text-danger d-block mt-3";
+            pnlSubmissionDetails.Visible = true;
+
+            string submissionId = ViewState["SelectedSubmissionId"] as string;
+            if (string.IsNullOrEmpty(submissionId))
+            {
+                lblReviewMessage.Text = "Open a submission first.";
+                return;
+            }
+
+            Submission submission =
+                new SubmissionRepository().GetById(submissionId);
+
+            if (submission == null)
+            {
+                lblReviewMessage.Text = "Submission was not found.";
+                return;
+            }
+
+            InternshipTask task =
+                new TaskRepository().GetById(submission.TaskId);
+
+            // نتأكد على السيرفر أن هذا التسليم تابع لشركة المشرف.
+            if (task == null ||
+                task.CompanyId != CurrentSupervisor.CompanyId ||
+                task.StudentId != submission.StudentId ||
+                task.PlacementId != submission.PlacementId)
+            {
+                lblReviewMessage.Text = "You cannot review this submission.";
+                return;
+            }
+
+            if (!IsReviewableSubmission(
+                    submission,
+                    task,
+                    new SubmissionRepository().GetByTask(task.Id),
+                    new TaskEvaluationRepository().GetByTask(task.Id)))
+            {
+                lblReviewMessage.Text = "This submission is already reviewed or is not the latest attempt."; 
+                return;
+            }
+
+            string instructions = txtFeedback.Text.Trim();
+
+            if (instructions == "")
+            {
+                lblReviewMessage.Text = "Tell the student what needs to be changed.";
+                return;
+            }
+
+            TaskEvaluationRepository evaluationRepository =
+                new TaskEvaluationRepository();
+            TaskEvaluation revision = FindEvaluationForSubmission(
+                evaluationRepository.GetByTask(task.Id), submission.Id);
+            bool isUpdatingEvaluation = revision != null;
+            if (revision == null)
+            {
+                revision = new TaskEvaluation();
+            }
+
+            revision.TaskId = task.Id;
+            revision.SubmissionId = submission.Id;
+            revision.PlacementId = submission.PlacementId;
+            revision.StudentId = submission.StudentId;
+            revision.EvaluatedBySupervisorId = CurrentSupervisor.Id;
+            revision.RevisionRequested = true;
+            revision.RevisionInstructions = instructions;
+            revision.Feedback = "";
+            revision.Components = new List<GradeComponent>();
+            revision.TotalScore = 0;
+            revision.MaxScore = task.MaxScore;
+
+            try
+            {
+                bool revisionSaved;
+                if (isUpdatingEvaluation)
+                {
+                    revision.EvaluatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
+                    evaluationRepository.Update(
+                        revision.Id,
+                        new Dictionary<string, object>
+                        {
+                            { "TaskId", revision.TaskId },
+                            { "SubmissionId", revision.SubmissionId },
+                            { "PlacementId", revision.PlacementId },
+                            { "StudentId", revision.StudentId },
+                            { "EvaluatedBySupervisorId", revision.EvaluatedBySupervisorId },
+                            { "Components", revision.Components },
+                            { "TotalScore", 0 },
+                            { "MaxScore", revision.MaxScore },
+                            { "Feedback", "" },
+                            { "RevisionRequested", true },
+                            { "RevisionInstructions", revision.RevisionInstructions },
+                            { "EvaluatedAt", revision.EvaluatedAt }
+                        });
+                    revisionSaved = true;
+                }
+                else
+                {
+                    revisionSaved = !string.IsNullOrEmpty(
+                        evaluationRepository.Insert(revision));
+                }
+
+                if (!revisionSaved)
+                {
+                    lblReviewMessage.Text = "The revision request could not be saved. Please try again.";
+                    return;
+                }
+
+                new TaskRepository().Update(
+                    task.Id,
+                    new Dictionary<string, object>
+                    {
+                { "Status", InternshipTaskStatus.RevisionRequested }
+                    });
+
                 lblReviewMessage.CssClass = "text-success d-block mt-3";
-                lblReviewMessage.Text = revision ? "Revision requested successfully." : L.T("Company.TaskReview.GradeSavedSuccessfully");
-                txtRevisionInstructions.Text = txtFeedback.Text = "";
+                lblReviewMessage.Text = "Revision requested successfully.";
+                txtFeedback.Text = "";
                 LoadCompanySubmissions();
-            } catch (Exception ex) {
-                EmailNotificationService.LogFailure(ex);
-                lblReviewMessage.Text = Server.HtmlEncode(ex is InvalidOperationException || ex is UnauthorizedAccessException ? ex.Message : "Could not save this review. Please try again.");
+            }
+            catch (FirebaseException)
+            {
+                lblReviewMessage.Text =
+                    "Could not complete the revision request. Check Firebase before trying again.";
             }
         }
     }
 }
+
+
+
+
+
+
+
+
