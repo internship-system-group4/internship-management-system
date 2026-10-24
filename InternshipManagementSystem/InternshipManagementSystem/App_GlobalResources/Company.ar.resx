@@ -807,4 +807,11 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل الفرصة.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>أسابيع</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>حسابك غير مرتبط بأي شركة.</value></data>
+  <data name="ManageOpportunities.ConfirmAction" xml:space="preserve"><value>تأكيد الإجراء</value></data>
+  <data name="ManageOpportunities.ActivateTitle" xml:space="preserve"><value>تفعيل الفرصة</value></data>
+  <data name="ManageOpportunities.DeactivateTitle" xml:space="preserve"><value>إيقاف الفرصة</value></data>
+  <data name="ManageOpportunities.ActivateLabel" xml:space="preserve"><value>تفعيل</value></data>
+  <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>إيقاف</value></data>
+  <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>هل تريد تفعيل «{0}»؟ يمكن للطلاب التقديم مجددًا إذا لم ينتهِ الموعد النهائي وكانت هناك مقاعد متاحة.</value></data>
+  <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>هل تريد إيقاف «{0}»؟ سيتوقف استقبال الطلبات الجديدة مع الاحتفاظ بالطلبات الحالية.</value></data>
 </root>

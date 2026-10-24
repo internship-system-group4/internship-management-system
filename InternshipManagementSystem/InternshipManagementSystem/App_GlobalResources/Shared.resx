@@ -704,4 +704,20 @@
   <data name="Js.NotifyDismiss" xml:space="preserve"><value>Dismiss</value></data>
   <data name="Js.NotifyUnread" xml:space="preserve"><value>{0} new</value></data>
   <data name="Js.NotifyBellLabel" xml:space="preserve"><value>Notifications, {0} unread</value></data>
+  <data name="Js.SupervisorProgress" xml:space="preserve"><value>Training progress</value></data>
+  <data name="Js.MeetingSearchLabel" xml:space="preserve"><value>Search meetings</value></data>
+  <data name="Js.MeetingSearchPlaceholder" xml:space="preserve"><value>Search by meeting title or person</value></data>
+  <data name="Js.MeetingClearSearch" xml:space="preserve"><value>Clear meeting search</value></data>
+  <data name="Js.MeetingSearchResults" xml:space="preserve"><value>Showing {0} of {1} meetings</value></data>
+  <data name="Js.MeetingSearchEmpty" xml:space="preserve"><value>No meetings match this search and view.</value></data>
+  <data name="SupervisorAccount.Title" xml:space="preserve"><value>My Account</value></data>
+  <data name="SupervisorAccount.Intro" xml:space="preserve"><value>Manage your profile and view your account associations.</value></data>
+  <data name="SupervisorAccount.EditProfile" xml:space="preserve"><value>Edit profile</value></data>
+  <data name="SupervisorAccount.ReadOnly" xml:space="preserve"><value>Read-only</value></data>
+  <data name="SupervisorAccount.NotProvided" xml:space="preserve"><value>Not provided</value></data>
+  <data name="SupervisorAccount.PhotoUploadHint" xml:space="preserve"><value>Choose a JPG or PNG photo. Selecting a file uploads it immediately.</value></data>
+  <data name="SupervisorAccount.PersonalTitle" xml:space="preserve"><value>Personal details</value></data>
+  <data name="SupervisorAccount.PersonalHelp" xml:space="preserve"><value>Your contact information and profile details.</value></data>
+  <data name="SupervisorAccount.OrganizationTitle" xml:space="preserve"><value>Organization &amp; association</value></data>
+  <data name="SupervisorAccount.OrganizationHelp" xml:space="preserve"><value>Official account details managed by your university.</value></data>
 </root>

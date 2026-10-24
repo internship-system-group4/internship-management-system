@@ -128,7 +128,7 @@
                 <p class="tasks-stat-number"><asp:Literal ID="litPendingReview" runat="server" /></p>
                 <p class="tasks-stat-note"><%: L.T("Company.Tasks.AwaitingYourEvaluation") %></p>
             </div>
-            <span class="tasks-stat-icon" aria-hidden="true">&#9719;</span>
+            <span class="tasks-stat-icon" data-ui-icon="clock" aria-hidden="true"></span>
         </article>
         <article class="tasks-stat-card">
             <div>
@@ -136,7 +136,7 @@
                 <p class="tasks-stat-number"><asp:Literal ID="litReviewedTasks" runat="server" /></p>
                 <p class="tasks-stat-note"><%: L.T("Company.Tasks.EvaluationsCompleted") %></p>
             </div>
-            <span class="tasks-stat-icon" aria-hidden="true">&#10003;</span>
+            <span class="tasks-stat-icon" data-ui-icon="approved" aria-hidden="true"></span>
         </article>
         <article class="tasks-stat-card">
             <div>
@@ -144,7 +144,7 @@
                 <p class="tasks-stat-number"><asp:Literal ID="litOverdueTasks" runat="server" /></p>
                 <p class="tasks-stat-note"><%: L.T("Company.Tasks.PastTheirDueDate") %></p>
             </div>
-            <span class="tasks-stat-icon" aria-hidden="true">!</span>
+            <span class="tasks-stat-icon" data-ui-icon="warning" aria-hidden="true"></span>
         </article>
     </section>
 

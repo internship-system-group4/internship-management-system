@@ -807,4 +807,11 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>Unable to load opportunity details.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>weeks</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>Your account is not linked to a company.</value></data>
+  <data name="ManageOpportunities.ConfirmAction" xml:space="preserve"><value>Confirm action</value></data>
+  <data name="ManageOpportunities.ActivateTitle" xml:space="preserve"><value>Activate opportunity</value></data>
+  <data name="ManageOpportunities.DeactivateTitle" xml:space="preserve"><value>Deactivate opportunity</value></data>
+  <data name="ManageOpportunities.ActivateLabel" xml:space="preserve"><value>Activate</value></data>
+  <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>Activate “{0}”? Students can apply again if the deadline has not passed and seats are available.</value></data>
+  <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>Deactivate “{0}”? New applications will stop. Existing applications will be preserved.</value></data>
 </root>

@@ -765,6 +765,8 @@
     <Content Include="Assets\js\site.js" />
     <Content Include="Assets\js\ui-system.js" />
     <Content Include="Assets\css\ui-system.css" />
+    <Content Include="Assets\css\supervisor-ui.css" />
+    <Content Include="Assets\js\supervisor-ui.js" />
     <Content Include="Assets\css\workspace.css" />
     <Content Include="Assets\js\workspace.js" />
     <Content Include="Assets\css\ui-tokens.css" />

@@ -32,7 +32,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litDisplayName.Text = CurrentSupervisor.FullName;
                 litInitials.Text = GetInitials(CurrentSupervisor.FullName);
 
-                litEmail.Text = CurrentSupervisor.Email;
+                litEmail.Text = string.IsNullOrWhiteSpace(CurrentSupervisor.Email)
+                    ? L.T("Company.Account.NotProvided") : CurrentSupervisor.Email;
 
                 Company company = _companyRepo.GetById(CurrentSupervisor.CompanyId);
                 litCompany.Text = company != null ? company.Name : L.T("Company.Account.AssociatedCompanyPlaceholder");

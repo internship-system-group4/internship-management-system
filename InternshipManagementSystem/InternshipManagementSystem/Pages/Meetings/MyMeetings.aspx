@@ -1,4 +1,4 @@
-<%@ Page Language="C#"
+<%@ Page CodePage="65001" Language="C#"
     MasterPageFile="~/Layout/Public.master"
     AutoEventWireup="true"
     CodeBehind="MyMeetings.aspx.cs"
@@ -706,7 +706,7 @@
 
                         <asp:TemplateField HeaderText="<%$ Resources:Meetings, MyMeetings.Meeting %>">
                             <ItemTemplate>
-                                <strong><%#: Eval("Title") %></strong>
+                                <strong data-meeting-views='<%#: Eval("ViewGroups") %>' data-initial-view='<%#: Eval("MatchesView") %>'><%#: Eval("Title") %></strong>
 
                                 <div class="meeting-subtext">
                                     <%#: Eval("DurationText") %>
@@ -850,7 +850,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('requestDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseRequestForm") %>">
-                    ×
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -969,7 +969,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('filterDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseViewSelector") %>">
-                    ×
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1027,7 +1027,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('confirmDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseConfirmation") %>">
-                    ×
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1065,7 +1065,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('detailsDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseMeetingDetails") %>">
-                    ×
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1124,7 +1124,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('noticeDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseMessage") %>">
-                    ×
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1163,7 +1163,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('roomDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.LeaveAndCloseMeeting") %>">
-                    ×
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
