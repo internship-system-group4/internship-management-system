@@ -1,5 +1,5 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Placements.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Placements" Title="Placements & Progress" %>
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css?v=20261024-perf") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css?v=20261024-theme-7") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="monitor-page">
     <div class="monitor-heading"><div><h2><%: L.T("Coordinator.Placements.PlacementsProgress") %></h2><p><%: L.T("Coordinator.Placements.FindAStudentSConfirmedInternship") %></p></div><a class="btn btn-outline-secondary monitor-btn" href="Dashboard.aspx"><span data-ui-icon="back" aria-hidden="true"></span><%: L.T("Coordinator.Placements.BackToDashboard") %></a></div>

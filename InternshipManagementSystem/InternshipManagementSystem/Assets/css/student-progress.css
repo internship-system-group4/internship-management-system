@@ -11,7 +11,7 @@
 .pg-empty { display:flex; gap:24px; align-items:center; padding:32px; }
 .pg-empty h3 { font-size:24px; font-weight:650; margin:0 0 8px; }
 .pg-empty p { color:var(--ui-muted); margin:0 0 16px; }
-.pg-empty-art { width:84px; height:84px; flex:none; display:grid; place-items:center; border-radius:22px; background:var(--ui-primary-soft); color:var(--ui-primary); }
+.pg-empty-art { width:84px; height:84px; flex:none; display:grid; place-items:center; border-radius:22px; background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary)); }
 .pg-empty-art svg { width:40px; height:40px; stroke:currentColor; fill:none; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
 /* ---- the journey ------------------------------------------------------------- */
@@ -40,9 +40,9 @@
 .pg-step.is-done .pg-node { border:2px solid var(--ui-success); background:var(--ui-success-soft); color:var(--ui-success); }
 .pg-step.is-done .pg-state-dot { background:var(--ui-success); }
 .pg-step.is-done .pg-step-state { color:var(--ui-success); }
-.pg-step.is-active .pg-node { border:2px solid var(--ui-primary); background:var(--ui-primary-soft); color:var(--ui-primary); box-shadow:0 0 0 6px color-mix(in srgb, var(--ui-primary) 12%, transparent); }
+.pg-step.is-active .pg-node { border:2px solid var(--ui-primary); background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary)); box-shadow:0 0 0 6px color-mix(in srgb, var(--ui-primary) 12%, transparent); }
 .pg-step.is-active .pg-state-dot { background:var(--ui-primary); }
-.pg-step.is-active .pg-step-state { color:var(--ui-primary); }
+.pg-step.is-active .pg-step-state { color:var(--ui-primary-text,var(--ui-primary)); }
 .pg-step.is-attention .pg-node { border:2px solid var(--ui-warning); background:var(--ui-warning-soft); color:var(--ui-warning); }
 .pg-step.is-attention .pg-state-dot { background:var(--ui-warning); }
 .pg-step.is-attention .pg-step-state { color:var(--ui-warning); }
@@ -90,7 +90,7 @@
 .pg-due.is-overdue { color:var(--ui-danger) !important; background:var(--ui-danger-soft); }
 .pg-due.is-soon { color:var(--ui-warning) !important; background:var(--ui-warning-soft); }
 .pg-grade strong { font-size:21px; }
-.pg-percent { display:inline-block; margin-inline-start:8px; padding:2px 10px; border-radius:8px; font-size:15px; font-weight:700; color:var(--ui-primary); background:var(--ui-primary-soft); vertical-align:2px; }
+.pg-percent { display:inline-block; margin-inline-start:8px; padding:2px 10px; border-radius:8px; font-size:15px; font-weight:700; color:var(--ui-primary-text,var(--ui-primary)); background:var(--ui-primary-soft); vertical-align:2px; }
 .pg-criteria { list-style:none; margin:10px 0 0; padding:0; display:flex; flex-wrap:wrap; gap:6px; max-width:300px; }
 .pg-criteria li { font-size:14px; padding:3px 10px; border-radius:7px; background:var(--ui-neutral-soft); color:var(--ui-muted); }
 .pg-feedback { max-width:460px; white-space:pre-line; }
@@ -125,7 +125,7 @@
 .pg-hours-split > .is-rejected { border-color:var(--ui-danger); }
 .pg-hours-split dt { font-size:15px !important; color:var(--ui-muted); font-weight:500; }
 .pg-hours-split dd { margin:4px 0 0; font-weight:700; font-size:26px !important; }
-.pg-log summary { cursor:pointer; font-weight:650; font-size:18px; color:var(--ui-primary-text, var(--ui-primary)); padding:8px 0 14px; }
+.pg-log summary { cursor:pointer; font-weight:650; font-size:18px; color:var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary))); padding:8px 0 14px; }
 
 /* ---- documents ------------------------------------------------------------------------- */
 .pg-docs { list-style:none; margin:0; padding:0; }

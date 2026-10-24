@@ -11,8 +11,8 @@
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <script>document.documentElement.classList.add('rv-js');setTimeout(function(){if(!window.UimsReview)document.documentElement.classList.remove('rv-js');},2500);</script>
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261023-rv6") %>" />
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/student-progress.css?v=20261024-perf") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261024-theme-7") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/student-progress.css?v=20261024-theme-7") %>" />
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">

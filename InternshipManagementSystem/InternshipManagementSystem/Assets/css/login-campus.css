@@ -54,3 +54,6 @@ body.uims-public:has(.login-campus) .uims-main > .public-container { width:100%;
 html[data-login-veil] .login-campus-veil { opacity:1; visibility:visible; transition:opacity 420ms cubic-bezier(.4,0,.2,1); }
 html[data-login-veil] .login-campus-welcome { opacity:0; transition:opacity 200ms ease; }
 @media(prefers-reduced-motion:reduce) { .login-campus-veil, html[data-login-veil] .login-campus-veil { transition:none; } }
+
+/* The campus caption follows the selected surface instead of retaining a white glass panel. */
+[data-theme="dark"] .login-campus-caption { background:rgb(21 35 49 / 88%); }

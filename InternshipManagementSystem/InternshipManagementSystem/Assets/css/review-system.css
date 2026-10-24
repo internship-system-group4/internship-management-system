@@ -35,10 +35,10 @@
 .rv-scope .rv-card-head { display:flex; align-items:flex-start; justify-content:space-between; gap:16px; flex-wrap:wrap; padding:22px 28px; border-bottom:1px solid var(--ui-border); }
 .rv-scope .rv-card-head h3 { display:flex; align-items:center; gap:12px; font-size:23px; font-weight:650; margin:0; color:var(--ui-ink); letter-spacing:-.01em; }
 .rv-scope .rv-card-head p { margin:6px 0 0; font-size:16px; color:var(--ui-muted); line-height:1.55; }
-.rv-scope .rv-card-head > a, .rv-scope .rv-card-head .rv-link { font-size:16px; font-weight:600; color:var(--ui-primary-text, var(--ui-primary)); text-underline-offset:3px; }
+.rv-scope .rv-card-head > a, .rv-scope .rv-card-head .rv-link { font-size:16px; font-weight:600; color:var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary))); text-underline-offset:3px; }
 .rv-scope .rv-card-body { padding:24px 28px; }
 .rv-scope .rv-card-foot { padding:16px 28px; border-top:1px solid var(--ui-border); font-size:15px; color:var(--ui-muted); line-height:1.6; }
-.rv-scope .rv-icon { width:42px; height:42px; flex:none; display:inline-grid; place-items:center; border-radius:12px; background:var(--ui-primary-soft); color:var(--ui-primary); transition:transform 240ms var(--rv-ease), background-color 240ms ease, color 240ms ease; }
+.rv-scope .rv-icon { width:42px; height:42px; flex:none; display:inline-grid; place-items:center; border-radius:12px; background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary)); transition:transform 240ms var(--rv-ease), background-color 240ms ease, color 240ms ease; }
 .rv-scope .rv-icon svg { width:22px; height:22px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 
 /* ---- status badges -------------------------------------------------------- */

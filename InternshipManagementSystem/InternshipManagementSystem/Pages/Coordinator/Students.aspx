@@ -2,7 +2,7 @@
 <%-- Student profile (opened from "View profile" on the Students page). --%>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-perf") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-theme-7") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page dir-page dir-profile">
@@ -10,7 +10,7 @@
 
         <% if (LoadError != null) { %>
         <div class="dir-card dir-empty-card"><span data-ui-icon="warning" aria-hidden="true"></span><p role="alert"><%: LoadError %></p><a class="btn btn-brand" href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>"><%: L.T("Coordinator.Students.AllStudents") %></a></div>
-        <% } else { %>
+        <% } else if (Row != null) { %>
         <section class="dir-card dir-profile-hero" aria-labelledby="profileName">
             <span class="dir-avatar dir-avatar-xl" aria-hidden="true"><%: Row.Initials %></span>
             <div class="dir-hero-text">

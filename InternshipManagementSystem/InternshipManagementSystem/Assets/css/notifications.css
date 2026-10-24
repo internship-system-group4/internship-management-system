@@ -78,7 +78,7 @@
 .uims-notify-readall {
     border: 0; background: none; padding: 4px 6px; border-radius: 6px;
     font-size: 12.5px; font-weight: 600;
-    color: var(--brand, var(--ui-primary-text, var(--ui-primary)));
+    color: var(--brand, var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary))));
     cursor: pointer;
 }
 .uims-notify-readall:hover { background: var(--brand-light, var(--ui-primary-soft, #e5efff)); }
@@ -142,10 +142,10 @@
 .uims-notify-all {
     display: block; padding: 11px 16px;
     text-align: center; font-size: 13px; font-weight: 600;
-    color: var(--brand, var(--ui-primary-text, var(--ui-primary))); text-decoration: none;
+    color: var(--brand, var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary)))); text-decoration: none;
     border-top: 1px solid var(--line, var(--ui-border));
 }
-.uims-notify-all:hover { background: var(--th-bg-f6f8fc, #f6f8fc); color: var(--brand-dark, var(--ui-primary-text, var(--ui-primary-hover))); }
+.uims-notify-all:hover { background: var(--th-bg-f6f8fc, #f6f8fc); color: var(--brand-dark, var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary-hover)))); }
 
 /* ---- toast for a new notification ---- */
 .uims-ntoast-region {
@@ -184,7 +184,7 @@
 }
 .uims-ntoast-open { background: var(--brand, var(--ui-primary)); color: #fff; }
 .uims-ntoast-open:hover { background: var(--brand-dark, var(--ui-primary-hover)); color: #fff; }
-.uims-ntoast-all { color: var(--brand, var(--ui-primary-text, var(--ui-primary))); border: 1px solid var(--line, var(--ui-border)); }
+.uims-ntoast-all { color: var(--brand, var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary)))); border: 1px solid var(--line, var(--ui-border)); }
 .uims-ntoast-all:hover { background: var(--brand-light, var(--ui-primary-soft, #e5efff)); }
 .uims-ntoast-open:focus-visible, .uims-ntoast-all:focus-visible, .uims-ntoast-close:focus-visible { outline: 2px solid var(--brand, var(--ui-primary)); outline-offset: 2px; }
 .uims-ntoast-close {
@@ -241,7 +241,7 @@
 .uims-notify-go {
     flex: none; align-self: center;
     font-size: 12.5px; font-weight: 600; white-space: nowrap;
-    color: var(--brand, var(--ui-primary-text, var(--ui-primary)));
+    color: var(--brand, var(--ui-primary-text, var(--ui-primary-text,var(--ui-primary))));
 }
 .uims-notify-go::after { content: " →"; }
 [dir="rtl"] .uims-notify-go::after { content: " ←"; }

@@ -6,7 +6,7 @@
         .dashboard-header { padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--th-line-e3e8ee, #e3e8ee); }
         .dashboard-header h3 { font-size: 1.4rem; font-weight: 700; color: var(--th-fg-0f4c81,#0f4c81); margin-bottom: 0.2rem; }
         
-        .card-custom { border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); background: #fff; margin-bottom: 1.5rem; overflow: hidden; }
+        .card-custom { border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); background: var(--ui-surface,#fff); margin-bottom: 1.5rem; overflow: hidden; }
 
         .student-avatar-large { width: 48px; height: 48px; border-radius: 50%; background-color: var(--th-bg-f0f4f8,#f0f4f8); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 700; font-size: 1rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); flex-shrink: 0; }
         

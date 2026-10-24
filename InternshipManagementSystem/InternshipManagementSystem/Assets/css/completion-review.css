@@ -5,7 +5,7 @@
    ============================================================================= */
 /* Uses the full content width the portal gives (up to 1560px), no extra cap. */
 .cr-page { width:100%; }
-.cr-page .rv-icon.is-active { background:var(--ui-primary-soft); color:var(--ui-primary); }
+.cr-page .rv-icon.is-active { background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary)); }
 .cr-page .rv-icon.is-attention, .cr-page .rv-icon.is-pending { background:var(--ui-warning-soft); color:var(--ui-warning); }
 .cr-page .rv-icon.is-done { background:var(--ui-success-soft); color:var(--ui-success); }
 
@@ -25,7 +25,7 @@
 .cr-chips { display:flex; flex-wrap:wrap; gap:10px; }
 .cr-chip { display:inline-flex; align-items:center; gap:9px; min-height:44px; padding:8px 16px; border-radius:999px; border:1px solid var(--ui-control-border, var(--ui-border)); background:var(--ui-surface); color:var(--ui-ink); font-size:16px; font-weight:600; cursor:pointer; transition:background-color 180ms ease, color 180ms ease, border-color 180ms ease, transform 120ms ease, box-shadow 180ms ease; }
 .cr-chip b { font-weight:700; font-variant-numeric:tabular-nums; min-width:26px; padding:0 8px; border-radius:999px; background:var(--ui-neutral-soft); color:var(--ui-ink); font-size:14px; line-height:1.75; text-align:center; }
-.cr-chip:hover { border-color:var(--ui-primary); color:var(--ui-primary); box-shadow:0 4px 12px -6px color-mix(in srgb, var(--ui-primary) 50%, transparent); }
+.cr-chip:hover { border-color:var(--ui-primary); color:var(--ui-primary-text,var(--ui-primary)); box-shadow:0 4px 12px -6px color-mix(in srgb, var(--ui-primary) 50%, transparent); }
 .cr-chip:active { transform:scale(.97); }
 .cr-chip[aria-pressed="true"] { background:var(--ui-primary); border-color:var(--ui-primary); color:#fff; }
 .cr-chip[aria-pressed="true"] b { background:rgb(255 255 255 / 22%); color:#fff; }
@@ -63,7 +63,7 @@ body.uims-portal .uims-main-inner:has(.cr-page) { max-width:1920px; }
 .cr-hero .rv-eyebrow { margin-bottom:8px; }
 .cr-hero-meta { display:flex; flex-wrap:wrap; gap:10px; margin:0; padding:0; list-style:none; }
 .cr-hero-meta li { display:inline-flex; align-items:center; gap:8px; padding:7px 14px; border-radius:999px; background:var(--ui-surface); border:1px solid var(--ui-border); color:var(--ui-ink); font-size:16px; font-weight:600; line-height:1.3; }
-.cr-hero-meta svg { width:18px; height:18px; flex:none; fill:none; stroke:var(--ui-primary); stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+.cr-hero-meta svg { width:18px; height:18px; flex:none; fill:none; stroke:var(--ui-primary-text,var(--ui-primary)); stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
 .cr-hero-actions { display:flex; flex-wrap:wrap; align-items:center; justify-content:flex-end; gap:12px 14px; }
 .cr-hero-link { display:inline-flex; align-items:center; gap:9px; text-decoration:none; }
 .cr-status-badge { font-size:18px; padding:10px 20px; }
@@ -82,7 +82,7 @@ body.uims-portal .uims-main-inner:has(.cr-page) { max-width:1920px; }
 .cr-ring { width:68px; height:68px; flex:none; transform:rotate(-90deg); }
 .cr-ring circle { fill:none; stroke-width:5; }
 .cr-ring-track { stroke:var(--ui-neutral-soft); }
-.cr-ring-value { stroke:var(--ui-primary); stroke-linecap:round; transition:stroke-dasharray 900ms var(--ui-ease); }
+.cr-ring-value { stroke:var(--ui-primary-text,var(--ui-primary)); stroke-linecap:round; transition:stroke-dasharray 900ms var(--ui-ease); }
 .cr-ring.is-complete .cr-ring-value { stroke:var(--ui-success); }
 .cr-stat.is-result { background:color-mix(in srgb, var(--ui-neutral-soft) 60%, transparent); }
 .cr-stat.is-result.is-pass { background:var(--ui-success-soft); }
@@ -292,6 +292,6 @@ body.uims-portal .uims-main-inner:has(.cr-page) { max-width:1920px; }
    or the editing controls. The PDF buttons print the official documents. */
 @media print {
   .uims-sidebar, .uims-topbar, .student-nav-toggle, .student-nav-backdrop, .cr-back, .cr-toolbar, .cr-type-form, .cr-manual, .cr-decision-form, .cr-docs .rv-actions, .cr-stamp-stage, .cr-action-cell { display:none !important; }
-  .cr-page .rv-card { border-color:#ccc; }
+  .cr-page .rv-card { border-color:var(--th-line-cccccc,#ccc); }
   .cr-hero::before, .cr-decision::before { display:none; }
 }

@@ -8,7 +8,7 @@
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <script>document.documentElement.classList.add('rv-js');setTimeout(function(){if(!window.UimsReview)document.documentElement.classList.remove('rv-js');},2500);</script>
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261023-rv6") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261024-theme-7") %>" />
     <style>
         .demo-page { width:100%; }
         .demo-grid { display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,1fr); gap:24px; align-items:start; }

@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="InternshipManagementSystem.Pages.AccountArea.Login" Title="Login | UIMS" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/login-campus.css?v=20261024-handoff") %>" />
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/login-campus.css?v=20261024-theme-7") %>" />
 <% if (VerifiedDestination != null) { %><meta name="robots" content="noindex" /><% } %>
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">

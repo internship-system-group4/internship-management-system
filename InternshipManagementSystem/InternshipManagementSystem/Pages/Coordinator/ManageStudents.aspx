@@ -3,7 +3,7 @@
 <%@ Register Src="StudentCreation.ascx" TagPrefix="uims" TagName="StudentCreation" %>
 <%@ Import Namespace="InternshipManagementSystem.Common" %>
 
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-perf") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-theme-7") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page dir-page">
         <header class="dir-head">

@@ -8,10 +8,10 @@
         .dashboard-header p { font-size: 0.85rem; margin-bottom: 0; }
         
         /* تصميم شريط البحث المطابق للصورة */
-        .search-container { background: #fff; padding: 1.25rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid var(--th-line-e3e8ee, #e3e8ee); margin-bottom: 1.5rem; }
+        .search-container { background: var(--ui-surface,#fff); padding: 1.25rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid var(--th-line-e3e8ee, #e3e8ee); margin-bottom: 1.5rem; }
         .search-input-group { max-width: 600px; }
         .search-input-group .form-control { border-radius: 8px; padding-top: 0.6rem; padding-bottom: 0.6rem; font-size: 0.9rem; }
-        .search-input-group .input-group-text { background: transparent; border-inline-end: none; border-radius: 8px 0 0 8px; color: var(--th-fg-6c757d,#6c757d); }
+        .search-input-group .input-group-text { background: transparent; border-inline-end: none; border-radius: 8px 0 0 8px; color: var(--ui-muted); }
         .search-input-group .form-control { border-inline-start: none; }
         .search-input-group .form-control:focus { box-shadow: none; border-color: var(--th-line-dee2e6,#dee2e6); }
 
@@ -19,14 +19,14 @@
         .metric-card:hover { transform: translateY(-3px); }
         .metric-card .title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--ui-muted); letter-spacing: 0.5px; margin-bottom: 0.5rem; }
         .metric-card .value { font-size: 1.5rem; font-weight: 800; color: var(--th-fg-1d2733,#1d2733); margin-bottom: 0.2rem; }
-        .metric-card .desc { font-size: 0.75rem; color: var(--th-fg-888888,#888); }
+        .metric-card .desc { font-size: 0.75rem; color: var(--ui-muted); }
 
         .card-custom { border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); overflow: hidden; margin-bottom: 1.5rem; }
-        .card-custom-header { background: #fff; padding: 1.25rem 1.5rem 0.5rem; border-bottom: none; display: flex; justify-content: space-between; align-items: center; }
+        .card-custom-header { background: var(--ui-surface,#fff); padding: 1.25rem 1.5rem 0.5rem; border-bottom: none; display: flex; justify-content: space-between; align-items: center; }
         .card-custom-header h6 { font-size: 1rem; font-weight: 700; color: var(--th-fg-0f4c81,#0f4c81); margin: 0; }
         .card-custom-header a { font-size: 0.8rem; text-decoration: none; font-weight: 600; }
 
-        .workflow-link { background: #fff; border: 1px solid var(--th-line-e3e8ee, #e3e8ee); border-radius: 12px; padding: 1rem; display: flex; align-items: center; justify-content: space-between; text-decoration: none; transition: 0.2s; margin-bottom: 0.75rem; }
+        .workflow-link { background: var(--ui-surface,#fff); border: 1px solid var(--th-line-e3e8ee, #e3e8ee); border-radius: 12px; padding: 1rem; display: flex; align-items: center; justify-content: space-between; text-decoration: none; transition: 0.2s; margin-bottom: 0.75rem; }
         .workflow-link:hover { border-color: var(--th-bg-0f4c81,#0f4c81); background: var(--th-bg-f8fafc,#f8fafc); }
         .workflow-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; justify-content: center; align-items: center; font-size: 1.2rem; }
         .avatar-circle { width: 38px; height: 38px; border-radius: 50%; background: var(--th-bg-f0f4f8,#f0f4f8); color: var(--th-fg-0f4c81,#0f4c81); display: flex; justify-content: center; align-items: center; font-weight: 700; font-size: 0.85rem; }

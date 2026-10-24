@@ -13,7 +13,7 @@
         .btn-action { background-color: var(--th-bg-f8fafc,#f8fafc); border: 1px solid var(--th-line-e3e8ee,#e3e8ee); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 600; text-align: start; transition: all 0.2s; font-size: 0.85rem; padding: 0.75rem !important; }
         .btn-action:hover { background-color: var(--th-bg-e8f0f7,#e8f0f7); border-color: var(--th-line-0f4c81,#0f4c81); }
         
-        .btn-preview { color: var(--th-fg-b8860b,#b8860b); font-weight: 700; background: none; border: none; transition: 0.2s; font-size: 0.75rem; }
+        .btn-preview { color: var(--ui-warning); font-weight: 700; background: none; border: none; transition: 0.2s; font-size: 0.75rem; }
         .btn-preview:hover { color: #daa520; transform: scale(1.05); }
 
         .status-badge-green { background-color: var(--th-bg-e6f4ea,#e6f4ea); color: var(--th-fg-1e7e34,#1e7e34); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
@@ -51,7 +51,7 @@
         .cert-subtitle { font-size: 1rem; color: var(--th-fg-666666,#666); letter-spacing: 4px; margin-bottom: 30px; text-transform: uppercase; }
         .cert-name { font-size: 2.5rem; font-style: italic; font-weight: bold; color: var(--th-fg-1d2733,#1d2733); margin: 15px 0; border-bottom: 2px solid var(--th-line-b8860b,#b8860b); display: inline-block; padding: 0 40px; }
         .cert-body { font-size: 1.1rem; color: var(--th-fg-444444,#444); line-height: 1.8; margin-bottom: 40px; padding: 0 20px; }
-        .gold-seal { width: 110px; height: 110px; background: radial-gradient(circle, var(--th-bg-ffd700,#ffd700) 0%, var(--th-bg-daa520,#daa520) 100%); border-radius: 50%; border: 3px dashed var(--th-line-ffffff,#fff); box-shadow: 0 0 0 4px #b8860b, 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: bold; font-size: 0.75rem; text-align: center; position: absolute; bottom: 30px; inset-inline-end: 40px; text-transform: uppercase; transform: rotate(-5deg); z-index: 10; }
+        .gold-seal { width: 110px; height: 110px; background: radial-gradient(circle, #ffd700 0%, #daa520 100%); border-radius: 50%; border: 3px dashed var(--th-line-ffffff,#fff); box-shadow: 0 0 0 4px #b8860b, 0 5px 15px rgba(0,0,0,0.3); display: flex; align-items: center; justify-content: center; color: #3d2c08; font-weight: bold; font-size: 0.75rem; text-align: center; position: absolute; bottom: 30px; inset-inline-end: 40px; text-transform: uppercase; transform: rotate(-5deg); z-index: 10; }
         .gold-seal::after, .gold-seal::before { content: ''; position: absolute; bottom: -30px; border-inline-start: 20px solid transparent; border-inline-end: 20px solid transparent; border-top: 40px solid var(--th-line-b8860b,#b8860b); z-index: -1; }
         .gold-seal::after { inset-inline-end: 20px; transform: rotate(-15deg); }
         .gold-seal::before { inset-inline-start: 20px; transform: rotate(15deg); }
@@ -284,12 +284,12 @@
                   <div class="cert-signature-area">
                       <div class="cert-signature-line">
                           <span id="certDate"><%: L.T("Company.FinalEvaluation.Date") %></span><br />
-                          <span style="font-size: 0.75rem; color: var(--th-fg-888888,#888);"><%: L.T("Company.FinalEvaluation.DateOfIssue") %></span>
+                          <span style="font-size: 0.75rem; color: var(--ui-muted);"><%: L.T("Company.FinalEvaluation.DateOfIssue") %></span>
                       </div>
                       <div class="gold-seal"><%: L.T("Company.FinalEvaluation.Official") %><br/><%: L.T("Company.FinalEvaluation.Company") %><br/><%: L.T("Company.FinalEvaluation.Seal") %></div>
                       <div class="cert-signature-line">
                           <asp:Literal ID="litCompanySupervisorName" runat="server">Company Supervisor</asp:Literal><br />
-                          <span style="font-size: 0.75rem; color: var(--th-fg-888888,#888);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
+                          <span style="font-size: 0.75rem; color: var(--ui-muted);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
                       </div>
                   </div>
               </div>
@@ -419,7 +419,7 @@
                       <strong class="text-dark" style="font-size: 0.85rem;" id="repDate">--</strong>
                   </div>
                   <div class="text-end">
-                      <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 1rem; color: #0f4c81;" class="mb-1">
+                      <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 1rem; color: var(--th-fg-0f4c81,#0f4c81);" class="mb-1">
                           <asp:Literal ID="litReportSupervisorSig" runat="server">Company Supervisor</asp:Literal>
                       </div>
                       <div class="border-top border-dark pt-1" style="width: 200px;">
