@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -69,14 +69,24 @@ namespace InternshipManagementSystem.Data
                     "Choose another person to invite.");
             }
 
-            Person person = new UserRepository()
-                .GetById(meeting.RequestedToId);
+            UserRepository users = new UserRepository();
+            Person requester = users.GetPerson(actorId);
+            Person person = users.GetPerson(meeting.RequestedToId);
+            Placement meetingPlacement;
 
-            if (person == null || !person.CanLogin())
+            if (requester == null || !requester.CanLogin() ||
+                requester.Id != actorId || person == null || !person.CanLogin())
+            {
+                throw new InvalidOperationException("This account is unavailable.");
+            }
+
+            if (!IsAllowedMeetingPair(requester, person, out meetingPlacement))
             {
                 throw new InvalidOperationException(
-                    "This account is unavailable.");
+                    "You can only request meetings with students or supervisors assigned to your account.");
             }
+
+            meeting.PlacementId = meetingPlacement == null ? "" : meetingPlacement.Id;
 
             if (string.IsNullOrWhiteSpace(meeting.Title)
                 || meeting.Title.Length > 150
@@ -159,6 +169,74 @@ namespace InternshipManagementSystem.Data
                 "You have a meeting request: " + meeting.Title);
 
             return meeting.Id;
+        }
+
+        private static bool IsAllowedMeetingPair(
+            Person requester,
+            Person recipient,
+            out Placement matchedPlacement)
+        {
+            matchedPlacement = null;
+            PlacementRepository placements = new PlacementRepository();
+            Student recipientStudent = recipient as Student;
+            CompanySupervisor requesterCompany = requester as CompanySupervisor;
+            if (requesterCompany != null && recipientStudent != null)
+            {
+                Placement placement = placements.GetById(recipientStudent.Id);
+                if (!IsCurrentPlacement(placement) || placement.StudentId != recipientStudent.Id ||
+                    placement.CompanyId != requesterCompany.CompanyId) return false;
+                matchedPlacement = placement;
+                return true;
+            }
+
+            AcademicSupervisor requesterAcademic = requester as AcademicSupervisor;
+            if (requesterAcademic != null && recipientStudent != null)
+            {
+                Placement placement = placements.GetById(recipientStudent.Id);
+                bool assigned = recipientStudent.AcademicSupervisorId == requesterAcademic.Id ||
+                    (IsCurrentPlacement(placement) && placement.AcademicSupervisorId == requesterAcademic.Id);
+                if (!assigned) return false;
+                matchedPlacement = IsCurrentPlacement(placement) ? placement : null;
+                return true;
+            }
+
+            Student requesterStudent = requester as Student;
+            if (requesterStudent != null)
+            {
+                Placement placement = placements.GetById(requesterStudent.Id);
+                bool hasCurrentPlacement = IsCurrentPlacement(placement) &&
+                    placement.StudentId == requesterStudent.Id;
+
+                AcademicSupervisor academicRecipient = recipient as AcademicSupervisor;
+                if (academicRecipient != null)
+                {
+                    bool assigned = requesterStudent.AcademicSupervisorId == academicRecipient.Id ||
+                        (hasCurrentPlacement && placement.AcademicSupervisorId == academicRecipient.Id);
+                    if (!assigned) return false;
+                    matchedPlacement = hasCurrentPlacement ? placement : null;
+                    return true;
+                }
+
+                CompanySupervisor companyRecipient = recipient as CompanySupervisor;
+                if (companyRecipient != null && hasCurrentPlacement &&
+                    placement.CompanySupervisorId == companyRecipient.Id &&
+                    placement.CompanyId == companyRecipient.CompanyId)
+                {
+                    matchedPlacement = placement;
+                    return true;
+                }
+            }
+
+            // Coordinators and unrelated roles cannot create meeting requests.
+            return false;
+        }
+
+        private static bool IsCurrentPlacement(Placement placement)
+        {
+            return placement != null &&
+                (placement.Status == PlacementStatus.Confirmed ||
+                 placement.Status == PlacementStatus.Active ||
+                 placement.Status == PlacementStatus.AwaitingCompletion);
         }
 
         // تنفيذ الموافقة أو الرفض أو الإنهاء أو الإلغاء.
@@ -320,3 +398,4 @@ namespace InternshipManagementSystem.Data
         }
     }
 }
+

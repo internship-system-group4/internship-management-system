@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     MasterPageFile="~/Layout/Company.master"
     AutoEventWireup="true"
     CodeBehind="TaskReview.aspx.cs"
@@ -7,79 +7,355 @@
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
-        .review-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
+        .submission-page {
+            color: #123f63;
+        }
+
+        .submission-header {
+            margin-bottom: 22px;
+        }
+
+        .submission-title {
+            margin: 0 0 5px;
+            color: #123f63;
+            font-size: clamp(1.5rem, 2.4vw, 2rem);
+            font-weight: 750;
+        }
+
+        .submission-subtitle {
+            margin: 0;
+            color: #59728d;
+            font-size: .92rem;
+        }
+
+        .submission-card {
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #d9e5f2;
+            border-radius: 11px;
+        }
+
+        .submission-card-header {
+            padding: 18px 20px;
+        }
+
+        .submission-card-title {
+            margin: 0 0 4px;
+            color: #123f63;
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .submission-card-description {
+            margin: 0;
+            color: #59728d;
+            font-size: .82rem;
+        }
+
+        .submission-table-wrap {
+            overflow-x: auto;
+            border-top: 1px solid #d9e5f2;
+        }
+
+        .submission-table {
+            width: 100%;
+            min-width: 700px;
+            margin: 0;
+            border-collapse: collapse;
+        }
+
+        .submission-table th {
+            padding: 11px 13px;
+            color: #123f63;
+            background: #edf4fd;
+            border-bottom: 1px solid #d9e5f2;
+            font-size: .77rem;
+            font-weight: 700;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .submission-table td {
+            padding: 12px 13px;
+            color: #4b5563;
+            border-bottom: 1px solid #e2eaf3;
+            font-size: .8rem;
+            vertical-align: middle;
+        }
+
+        .submission-table tr:last-child td {
+            border-bottom: 0;
+        }
+
+        .submission-task-name,
+        .submission-trainee-name {
+            color: #123f63;
+            font-weight: 650;
+        }
+
+        .submission-status {
+            display: inline-block;
+            padding: 4px 9px;
+            color: #24547c;
+            background: #e3efff;
+            border-radius: 999px;
+            font-size: .72rem;
+            font-weight: 650;
+            white-space: nowrap;
+        }
+
+        .submission-view-button {
+            padding: 7px 12px;
+            color: #fff;
+            background: #28567e;
+            border: 1px solid #28567e;
+            border-radius: 7px;
+            font-size: .76rem;
+            font-weight: 650;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .status-awaiting { color:#24547c; background:#e3efff; }
+        .status-under-review { color:#75510a; background:#fff4d6; }
+        .status-revision { color:#8a4b00; background:#fff1df; }
+        .status-reviewed { color:#176447; background:#e7f5ec; }
+
+        .submission-view-button:hover,
+        .submission-view-button:focus-visible {
+            color: #fff;
+            background: #194568;
+            border-color: #194568;
+        }
+
+        .submission-empty {
+            padding: 18px 20px;
+            color: #59728d;
+            font-size: .86rem;
+        }
+
+        .submission-filters {
+            display: grid;
+            grid-template-columns: minmax(220px, 1.5fr) minmax(170px, 1fr) minmax(160px, 1fr);
+            gap: 10px;
+            padding: 0 20px 16px;
+        }
+
+        .submission-filter-control {
+            width: 100%;
+            min-height: 40px;
+            padding: 8px 11px;
+            color: #344b60;
+            background: #fff;
+            border: 1px solid #d9e5f2;
+            border-radius: 7px;
+            font-size: .82rem;
+        }
+
+        .submission-filter-summary {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 16px;
-            background: rgba(17, 24, 39, .52);
-            -webkit-backdrop-filter: blur(6px);
-            backdrop-filter: blur(6px);
+            justify-content: space-between;
+            gap: 12px;
+            padding: 10px 20px;
+            color: #59728d;
+            border-top: 1px solid #e2eaf3;
+            font-size: .78rem;
+        }
+
+        @media (max-width: 700px) {
+            .submission-filters { grid-template-columns: 1fr; }
+        }
+
+        .review-overlay {
+            display: block;
+            padding: 0;
         }
 
         .review-dialog {
             width: 100%;
-            max-width: 820px;
-            max-height: calc(100vh - 32px);
-            overflow-y: auto;
-            background: var(--ui-surface,#fff);
-            border-radius: 16px;
-            padding: 26px;
-            box-shadow: 0 24px 65px rgba(0, 0, 0, .24);
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0;
+            color: #123f63;
+        }
+
+        .review-back-link {
+            display: inline-block;
+            margin: 0 0 14px;
+            color: #365c7e;
+            font-size: .8rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .review-back-link:hover { color: #123f63; text-decoration: underline; }
+
+        .review-page-heading { margin-bottom: 18px; }
+        .review-page-heading .review-dialog-title { display: inline-block; margin-right: 8px; }
+        .review-complete-badge { color: #176447; background: #e7f5ec; }
+.review-revision-badge { color: #8a4b00; background: #fff1df; }
+        .review-pending-badge { display: inline-block; padding: 4px 9px; color: #24547c; background: #e3efff; border-radius: 999px; font-size: .7rem; font-weight: 650; vertical-align: 3px; }
+
+        .review-columns {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .review-card {
+            padding: 18px;
+            background: #fff;
+            border: 1px solid #d9e5f2;
+            border-radius: 10px;
+        }
+
+        .review-card-title { margin: 0 0 4px; color: #123f63; font-size: 1rem; font-weight: 700; }
+        .review-card-note { margin: 0 0 15px; color: #59728d; font-size: .76rem; }
+
+        .review-details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 13px 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #e2eaf3;
+        }
+
+        .review-detail-label { display: block; margin-bottom: 3px; color: #71869a; font-size: .68rem; }
+        .review-detail-value { color: #294e70; font-size: .78rem; font-weight: 600; overflow-wrap: anywhere; }
+        .review-work-area { padding-top: 13px; }
+        .review-work-link { display: inline-block; margin-top: 8px; color: #215982; font-size: .8rem; font-weight: 650; }
+
+        .review-rubric-row {
+            display: grid;
+            grid-template-columns: 1fr 96px;
+            gap: 12px;
+            align-items: center;
+            padding: 9px 0;
+            border-bottom: 1px solid #edf1f5;
+        }
+        .review-rubric-row:last-of-type { border-bottom: 0; }
+        .review-rubric-label { color: #294e70; font-size: .77rem; font-weight: 600; }
+        .review-rubric-label span { color: #71869a; font-size: .68rem; font-weight: 500; }
+        .review-score-input { min-height: 34px; padding: 5px 8px; }
+        .review-total { display: flex; justify-content: space-between; gap: 12px; margin: 12px 0; padding: 10px 12px; color: #365c7e; background: #edf4fd; border-radius: 7px; font-size: .78rem; font-weight: 700; }
+        .review-total small { display: block; color: #71869a; font-size: .65rem; font-weight: 400; }
+        .review-actions { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+        .review-secondary-button { padding: 8px 12px; color: #28567e; background: #fff; border: 1px solid #28567e; border-radius: 7px; font-size: .78rem; font-weight: 650; }
+
+        @media (max-width: 760px) {
+            .review-columns { grid-template-columns: 1fr; }
+        }
+
+        .review-dialog-header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+
+        .review-dialog-title {
+            margin: 0 0 4px;
+            color: #123f63;
+            font-size: 1.35rem;
+            font-weight: 700;
+        }
+
+        .review-dialog-subtitle {
+            margin: 0;
+            color: #59728d;
+            font-size: .84rem;
+        }
+
+        .review-close-button {
+            display: inline-flex;
+            width: 36px;
+            height: 36px;
+            flex: 0 0 36px;
+            align-items: center;
+            justify-content: center;
+            color: #45627c;
+            background: #fff;
+            border: 1px solid #d9e5f2;
+            border-radius: 8px;
+            font-size: 1.25rem;
+            line-height: 1;
+            text-decoration: none;
+        }
+
+        .review-close-button:hover {
+            color: #123f63;
+            background: #f3f7fc;
         }
 
         .review-summary {
-            padding: 16px;
-            background: var(--th-bg-f8fafc,#f8fafc);
-            border: 1px solid var(--ui-border,#e5e7eb);
-            border-radius: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 28px;
+            padding: 14px 16px;
+            background: #f5f8fc;
+            border: 1px solid #d9e5f2;
+            border-radius: 9px;
+        }
+
+        .review-summary-item {
+            color: #45627c;
+            font-size: .85rem;
+        }
+
+        .review-summary-item strong {
+            margin-right: 5px;
+            color: #123f63;
         }
 
         .review-tabs > input {
             position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
             opacity: 0;
             pointer-events: none;
         }
 
         .review-tab-buttons {
             display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            padding: 6px;
-            background: var(--ui-neutral-soft,#f3f4f6);
-            border-radius: 12px;
-            margin: 20px 0;
+            gap: 7px;
+            margin: 18px 0;
+            padding: 5px;
+            background: #f0f4f8;
+            border: 1px solid #e1e9f2;
+            border-radius: 9px;
         }
 
         .review-tab-buttons label {
             flex: 1;
-            min-width: 150px;
             margin: 0;
-            padding: 11px 14px;
-            border-radius: 9px;
+            padding: 10px 12px;
+            color: #526b82;
+            border-radius: 7px;
+            font-size: .82rem;
+            font-weight: 650;
             text-align: center;
-            font-weight: 600;
             cursor: pointer;
-            color: var(--ui-muted,#475569);
         }
 
         .review-tab-buttons label:hover {
-            background: var(--ui-neutral-soft,#e7ebef);
+            color: #123f63;
+            background: #e7eef7;
         }
 
         #reviewTabDetails:checked ~ .review-tab-buttons label[for="reviewTabDetails"],
         #reviewTabGrade:checked ~ .review-tab-buttons label[for="reviewTabGrade"],
         #reviewTabRevision:checked ~ .review-tab-buttons label[for="reviewTabRevision"] {
-            background: var(--ui-surface,#fff);
-            color: var(--ui-primary-text,#0b7a75);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, .12);
+            color: #194568;
+            background: #fff;
+            box-shadow: 0 1px 4px rgba(18, 63, 99, .14);
         }
 
         .review-tab-content {
             display: none;
+            padding: 4px 1px;
         }
 
         #reviewTabDetails:checked ~ #reviewDetailsContent,
@@ -88,83 +364,202 @@
             display: block;
         }
 
+        .review-section-title {
+            margin: 0 0 5px;
+            color: #123f63;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .review-section-help {
+            margin: 0 0 15px;
+            color: #59728d;
+            font-size: .82rem;
+        }
+
+        .review-work-card,
+        .review-criterion-card {
+            margin-bottom: 12px;
+            padding: 15px;
+            background: #fff;
+            border: 1px solid #d9e5f2;
+            border-radius: 9px;
+        }
+
         .review-work-text {
+            margin-top: 8px;
+            color: #374b5e;
             white-space: pre-wrap;
             overflow-wrap: anywhere;
         }
 
-        @media (max-width: 576px) {
-            .review-dialog {
-                padding: 18px;
-            }
+        .review-work-link {
+            display: inline-block;
+            margin-top: 9px;
+            color: #215982;
+            font-size: .84rem;
+            font-weight: 650;
+        }
 
-            .review-tab-buttons {
-                display: block;
-            }
+        .review-criterion-heading {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 5px 14px;
+            margin-bottom: 6px;
+        }
 
-            .review-tab-buttons label {
-                display: block;
-                width: 100%;
+        .review-criterion-name {
+            color: #123f63;
+            font-weight: 700;
+        }
+
+        .review-criterion-meta,
+        .review-criterion-description {
+            color: #59728d;
+            font-size: .8rem;
+        }
+
+        .review-criterion-description {
+            margin-bottom: 12px;
+        }
+
+        .review-form-label {
+            display: block;
+            margin-bottom: 6px;
+            color: #294e70;
+            font-size: .84rem;
+            font-weight: 650;
+        }
+
+        .review-dialog .form-control {
+            border-color: #d9e5f2;
+            border-radius: 7px;
+        }
+
+        .review-primary-button {
+            padding: 9px 16px;
+            color: #fff;
+            background: #28567e;
+            border: 1px solid #28567e;
+            border-radius: 7px;
+            font-weight: 650;
+        }
+
+        .review-primary-button:hover,
+        .review-primary-button:focus-visible {
+            color: #fff;
+            background: #194568;
+            border-color: #194568;
+        }
+
+        .review-message {
+            display: block;
+            margin-top: 12px;
+        }
+
+        .review-dialog-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 18px;
+            padding-top: 14px;
+            border-top: 1px solid #e2eaf3;
+        }
+
+        @media (max-width: 600px) {
+            .review-summary {
+                flex-direction: column;
+                gap: 7px;
             }
         }
     </style>
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
+    <asp:Panel ID="pnlSubmissionDirectory" runat="server">
+    <div class="submission-page">
+        <header class="submission-header">
+            <h2 class="submission-title">Review submissions</h2>
+            <p class="submission-subtitle">
+                Review trainee work, provide an evaluation, or request a revision.
+            </p>
+        </header>
 
-    <div class="mb-4">
-        <h2 class="mb-1">Review Submissions</h2>
-        <p class="text-muted mb-0">
-            Review student work, give a grade, or request another attempt.
-        </p>
+        <section class="submission-card" aria-labelledby="submissionListTitle">
+            <div class="submission-card-header">
+                <h3 id="submissionListTitle" class="submission-card-title">Student submissions</h3>
+                <p class="submission-card-description">
+                    Open a submission to review the trainee's work and choose the next action.
+                </p>
+            </div>
+
+            <div class="submission-filters" role="search">
+                <input id="submissionSearch" type="search" class="submission-filter-control"
+                       placeholder="Search tasks or trainees" aria-label="Search submissions"
+                       oninput="filterCompanySubmissions()" />
+                <select id="submissionTraineeFilter" class="submission-filter-control"
+                        aria-label="Filter by trainee" onchange="filterCompanySubmissions()">
+                    <option value="">All trainees</option>
+                </select>
+                <select id="submissionStatusFilter" class="submission-filter-control" aria-label="Filter by submission status" onchange="filterCompanySubmissions()">
+                    <option value="">All statuses</option>
+                    <option value="Awaiting review">Awaiting review</option>
+                    <option value="Under review">Under review</option>
+                    <option value="Revision requested">Revision requested</option>
+                    <option value="Reviewed">Reviewed</option>
+                    <option value="Accepted">Accepted</option>
+                </select>
+            </div>
+
+            <div class="submission-table-wrap">
+                <table class="submission-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Task</th>
+                            <th scope="col">Trainee</th>
+                            <th scope="col">Attempt</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Submitted at</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <asp:Repeater ID="rptSubmissions"
+                            runat="server"
+                            OnItemCommand="rptSubmissions_ItemCommand">
+                            <ItemTemplate>
+                                <tr data-review-task='<%#: Eval("TaskTitle") %>' data-review-trainee='<%#: Eval("TraineeName") %>' data-review-status='<%#: Eval("StatusKey") %>'>
+                                    <td class="submission-task-name"><%#: Eval("TaskTitle") %></td>
+                                    <td class="submission-trainee-name"><%#: Eval("TraineeName") %></td>
+                                    <td><%#: Eval("AttemptNumber") %></td>
+                                    <td><span class="<%#: Eval("StatusCss") %>"><%#: Eval("Status") %></span></td>
+                                    <td>
+                                        <%# DateTimeOffset
+                                            .FromUnixTimeMilliseconds(Convert.ToInt64(Eval("SubmittedAt")))
+                                            .ToLocalTime()
+                                            .ToString("yyyy-MM-dd HH:mm") %>
+                                    </td>
+                                    <td>
+                                        <asp:LinkButton ID="btnViewDetails"
+                                            runat="server"
+                                            Text='<%#: Eval("ActionLabel") %>'
+                                            CssClass="submission-view-button"
+                                            CommandName="ViewDetails"
+                                            CommandArgument='<%# Eval("Id") %>' />
+                                    </td>
+                                </tr>
+                            </ItemTemplate>
+                        </asp:Repeater>
+                    </tbody>
+                </table>
+            </div>
+            <div class="submission-filter-summary">
+                <span id="submissionFilterSummary" aria-live="polite"></span>
+                <span id="submissionNoMatches" hidden>No submissions match these filters.</span>
+            </div>
+        </section>
     </div>
-
-    <div class="uims-card">
-        <h3 class="mb-3">Student Submissions</h3>
-
-        <div class="table-responsive">
-            <table class="uims-table">
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th>Trainee</th>
-                        <th>Attempt</th>
-                        <th>Status</th>
-                        <th>Submitted At</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <asp:Repeater ID="rptSubmissions"
-                        runat="server"
-                        OnItemCommand="rptSubmissions_ItemCommand">
-                        <ItemTemplate>
-                            <tr>
-                                <td><%#: Eval("TaskTitle") %></td>
-                                <td><%#: Eval("TraineeName") %></td>
-                                <td><%#: Eval("AttemptNumber") %></td>
-                                <td><%#: Eval("Status") %></td>
-                                <td>
-                                    <%# DateTimeOffset
-                                        .FromUnixTimeMilliseconds(Convert.ToInt64(Eval("SubmittedAt")))
-                                        .ToLocalTime()
-                                        .ToString("yyyy-MM-dd HH:mm") %>
-                                </td>
-                                <td>
-                                    <asp:LinkButton ID="btnViewDetails"
-                                        runat="server"
-                                        Text="View Details"
-                                        CssClass="btn btn-outline-secondary btn-sm"
-                                        CommandName="ViewDetails"
-                                        CommandArgument='<%# Eval("Id") %>' />
-                                </td>
-                            </tr>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </tbody>
-            </table>
-        </div>
-    </div>
+    </asp:Panel>
 
     <asp:Panel ID="pnlSubmissionDetails"
         runat="server"
@@ -172,187 +567,114 @@
         CssClass="review-overlay">
 
         <div class="review-dialog">
-
-            <div class="d-flex justify-content-between align-items-start gap-3 mb-4">
-                <div>
-                    <h3 class="mb-1">Review Submission</h3>
-                    <p class="text-muted mb-0">
-                        Choose what you want to do with this attempt.
-                    </p>
-                </div>
-
-                <a href="TaskReview.aspx"
-                    class="btn btn-outline-secondary"
-                    aria-label="Close">
-                    &times;
-                </a>
+    <a href="Tasks.aspx" class="review-back-link">&larr; Back to tasks</a>
+    <div class="review-page-heading">
+        <h3 class="review-dialog-title">Review submission</h3>
+        <asp:Label ID="lblReviewStatus" runat="server" CssClass="review-pending-badge" />
+        <p class="review-dialog-subtitle">Evaluate the trainee's work and give constructive feedback.</p>
+    </div>
+    <asp:Label ID="lblReviewMessage" runat="server" EnableViewState="false" CssClass="review-message" />
+    <div class="review-columns">
+        <section class="review-card" aria-labelledby="submissionDetailsTitle">
+            <h4 id="submissionDetailsTitle" class="review-card-title">Submission details</h4>
+            <div class="review-details-grid">
+                <div><span class="review-detail-label">Trainee</span><span class="review-detail-value"><asp:Label ID="lblDetailTrainee" runat="server" /></span></div>
+                <div><span class="review-detail-label">Task title</span><span class="review-detail-value"><asp:Label ID="lblDetailTask" runat="server" /></span></div>
+                <div><span class="review-detail-label">Submitted</span><span class="review-detail-value"><asp:Label ID="lblDetailSubmittedAt" runat="server" /></span></div>
+                <div><span class="review-detail-label">Due date</span><span class="review-detail-value"><asp:Label ID="lblDetailDeadline" runat="server" /></span></div>
+                <div><span class="review-detail-label">Attempt</span><span class="review-detail-value"><asp:Label ID="lblDetailAttempt" runat="server" /></span></div>
             </div>
-
-            <div class="review-summary">
-                <div>
-                    <strong>Task:</strong>
-                    <asp:Label ID="lblDetailTask" runat="server" />
-                </div>
-
-                <div class="mt-1">
-                    <strong>Attempt:</strong>
-                    <asp:Label ID="lblDetailAttempt" runat="server" />
-                </div>
+            <div class="review-work-area">
+                <span class="review-detail-label">Submitted work</span>
+                <div class="review-work-text"><asp:Label ID="lblDetailText" runat="server" /></div>
+                <asp:HyperLink ID="lnkDetailWork" runat="server" Text="Open submitted link" Target="_blank" Visible="false" CssClass="review-work-link" />
+                <asp:HyperLink ID="lnkDetailFile" runat="server" Text="Open attached file" Target="_blank" Visible="false" CssClass="review-work-link" />
             </div>
-
-            <asp:Label ID="lblReviewMessage"
-                runat="server"
-                EnableViewState="false"
-                CssClass="d-block mt-3" />
-
-            <div class="review-tabs">
-
-                <input type="radio"
-                    name="reviewAction"
-                    id="reviewTabDetails"
-                    checked="checked" />
-
-                <input type="radio"
-                    name="reviewAction"
-                    id="reviewTabGrade" />
-
-                <input type="radio"
-                    name="reviewAction"
-                    id="reviewTabRevision" />
-
-                <div class="review-tab-buttons">
-                    <label for="reviewTabDetails">View Details</label>
-                    <label for="reviewTabGrade">Give Grade</label>
-                    <label for="reviewTabRevision">Request Revision</label>
-                </div>
-
-                <%-- التبويب الأول: التفاصيل --%>
-                <div id="reviewDetailsContent"
-                    class="review-tab-content">
-
-                    <h4 class="mb-3">Submitted Work</h4>
-
-                    <div class="border rounded p-3 mb-3">
-                        <strong>Student's Text</strong>
-
-                        <div class="review-work-text mt-2">
-                            <asp:Label ID="lblDetailText" runat="server" />
-                        </div>
-                    </div>
-
-                    <div class="mb-2">
-                        <asp:HyperLink ID="lnkDetailWork"
-                            runat="server"
-                            Text="Open submitted link"
-                            Target="_blank"
-                            Visible="false" />
-                    </div>
-
-                    <div>
-                        <asp:HyperLink ID="lnkDetailFile"
-                            runat="server"
-                            Text="Open attached file"
-                            Target="_blank"
-                            Visible="false" />
-                    </div>
-                </div>
-
-                <%-- التبويب الثاني: التقييم --%>
-                <div id="reviewGradeContent"
-                    class="review-tab-content">
-
-                    <h4 class="mb-2">Give Grade</h4>
-                    <p class="text-muted">
-                        Enter a score for each criterion and leave feedback.
-                    </p>
-
-                    <asp:Repeater ID="rptReviewCriteria" runat="server">
-                        <ItemTemplate>
-                            <div class="border rounded p-3 mb-3">
-                                <div class="mb-2">
-                                    <strong><%#: Eval("Name") %></strong>
-                                    <span class="text-muted">
-                                        — Maximum: <%#: Eval("MaxScore") %>,
-                                        Weight: <%#: Eval("Weight") %>%
-                                    </span>
-                                </div>
-
-                                <div class="text-muted mb-2">
-                                    <%#: Eval("Description") %>
-                                </div>
-
-                                <asp:TextBox ID="txtScore"
-                                    runat="server"
-                                    CssClass="form-control"
-                                    TextMode="Number"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="Enter score" />
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
-
-                    <div class="mb-3">
-                        <asp:Label ID="lblFeedback"
-                            runat="server"
-                            AssociatedControlID="txtFeedback"
-                            CssClass="form-label"
-                            Text="Feedback for Student" />
-
-                        <asp:TextBox ID="txtFeedback"
-                            runat="server"
-                            CssClass="form-control"
-                            TextMode="MultiLine"
-                            Rows="4" />
-                    </div>
-
-                    <asp:Button ID="btnSaveGrade"
-                        runat="server"
-                        Text="Save Grade"
-                        CssClass="btn btn-brand"
-                        OnClick="btnSaveGrade_Click" data-ui-action="save" data-loading-label="Saving…" />
-                </div>
-
-                <%-- التبويب الثالث: طلب إعادة التسليم --%>
-                <div id="reviewRevisionContent"
-                    class="review-tab-content">
-
-                    <h4 class="mb-2">Request Revision</h4>
-                    <p class="text-muted">
-                        Explain what the student needs to change.
-                    </p>
-
-                    <div class="mb-3">
-                        <asp:Label ID="lblRevisionInstructions"
-                            runat="server"
-                            AssociatedControlID="txtRevisionInstructions"
-                            CssClass="form-label"
-                            Text="Revision Instructions" />
-
-                        <asp:TextBox ID="txtRevisionInstructions"
-                            runat="server"
-                            CssClass="form-control"
-                            TextMode="MultiLine"
-                            Rows="4" />
-                    </div>
-
-                    <asp:Button ID="btnRequestRevision"
-                        runat="server"
-                        Text="Send Revision Request"
-                        CssClass="btn btn-brand"
-                        OnClick="btnRequestRevision_Click" data-ui-action="save" data-loading-label="Sending…" />
-                </div>
-
+        </section>
+        <section class="review-card" aria-labelledby="evaluationTitle">
+            <h4 id="evaluationTitle" class="review-card-title">Evaluation and feedback</h4>
+            <p class="review-card-note">Assess the submission with the university criteria.</p>
+            <div class="review-rubric-row"><label for="<%= txtCodeQuality.ClientID %>" class="review-rubric-label">Code quality <span>/ 25</span></label><asp:TextBox ID="txtCodeQuality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-rubric-row"><label for="<%= txtFunctionality.ClientID %>" class="review-rubric-label">Functionality <span>/ 35</span></label><asp:TextBox ID="txtFunctionality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="35" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-rubric-row"><label for="<%= txtDesignUsability.ClientID %>" class="review-rubric-label">Design &amp; usability <span>/ 25</span></label><asp:TextBox ID="txtDesignUsability" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-rubric-row"><label for="<%= txtDocumentation.ClientID %>" class="review-rubric-label">Documentation <span>/ 15</span></label><asp:TextBox ID="txtDocumentation" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="15" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-total"><span>Total evaluation score<small>Enter scores to calculate the total.</small></span><span><strong id="reviewComputedScore">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
+            <div class="mb-2">
+                <asp:Label ID="lblFeedback" runat="server" AssociatedControlID="txtFeedback" CssClass="review-form-label" Text="Feedback for trainee" />
+                <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Add feedback and suggestions..." />
             </div>
-
-            <div class="text-end mt-4">
-                <a href="TaskReview.aspx"
-                    class="btn btn-outline-secondary">
-                    Close
-                </a>
+            <div class="review-actions">
+                <asp:Button ID="btnRequestRevision" runat="server" Text="Request changes" CssClass="review-secondary-button" OnClick="btnRequestRevision_Click" />
+                <asp:Button ID="btnSaveGrade" runat="server" Text="Submit evaluation" CssClass="review-primary-button" OnClick="btnSaveGrade_Click" />
             </div>
+        </section>
+    </div>
+</div>
+</asp:Panel>
+<script type="text/javascript">
+    function filterCompanySubmissions() {
+        var rows = document.querySelectorAll(".submission-table tbody tr[data-review-task]");
+        var search = (document.getElementById("submissionSearch").value || "").toLowerCase().trim();
+        var trainee = document.getElementById("submissionTraineeFilter").value;
+        var status = document.getElementById("submissionStatusFilter").value;
+        var visibleCount = 0;
+        var names = {};
 
-        </div>
-    </asp:Panel>
+        for (var i = 0; i < rows.length; i++) {
+            var rowTrainee = rows[i].getAttribute("data-review-trainee") || "";
+            var rowTask = rows[i].getAttribute("data-review-task") || "";
+            var rowStatus = rows[i].getAttribute("data-review-status") || "";
+            names[rowTrainee] = true;
+            var matches = (!search || (rowTask + " " + rowTrainee).toLowerCase().indexOf(search) >= 0)
+                && (!trainee || trainee === rowTrainee)
+                && (!status || status === rowStatus);
+            rows[i].style.display = matches ? "" : "none";
+            if (matches) visibleCount++;
+        }
 
+        var traineeSelect = document.getElementById("submissionTraineeFilter");
+        if (traineeSelect.options.length === 1) {
+            Object.keys(names).sort().forEach(function (name) {
+                var option = document.createElement("option");
+                option.value = name;
+                option.textContent = name;
+                traineeSelect.appendChild(option);
+            });
+        }
+
+        document.getElementById("submissionFilterSummary").textContent =
+            "Showing " + visibleCount + " of " + rows.length + " submissions";
+        document.getElementById("submissionNoMatches").hidden =
+            visibleCount !== 0;
+    }
+
+    function updateReviewTotal() {
+        var scores = document.querySelectorAll(".review-score");
+        var limits = [25, 35, 25, 15];
+        var total = 0;
+        var hasValue = false;
+        for (var i = 0; i < scores.length; i++) {
+            if (scores[i].value !== "") {
+                total += Math.min(limits[i], Math.max(0, parseFloat(scores[i].value) || 0));
+                hasValue = true;
+            }
+        }
+        var maxLabel = document.getElementById("<%= lblTaskMaxScore.ClientID %>");
+        var maxScore = maxLabel ? parseFloat(maxLabel.textContent || maxLabel.innerText) : 100;
+        document.getElementById("reviewComputedScore").textContent = hasValue
+            ? (total * maxScore / 100).toFixed(2).replace(/\.00$/, "")
+            : "-";
+    }
+    filterCompanySubmissions();
+    updateReviewTotal();
+</script>
 </asp:Content>
+
+
+
+
+
+
+
+
+

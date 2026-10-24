@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -53,26 +53,14 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                     selected.Selected = true;
                 }
-
-                Recipient.Items.Add(
-                    new ListItem("Select a person", ""));
-
-                List<Person> people =
-                    new UserRepository().GetAll();
-
-                foreach (Person person in people
-                    .Where(p =>
-                        p.Id != CurrentUser.Id
-                        && p.CanLogin())
-                    .OrderBy(p => p.FullName))
+                LoadAllowedRecipients();
+                if (Recipient.Items.Count <= 1)
                 {
-                    Recipient.Items.Add(
-                        new ListItem(
-                            person.FullName
-                                + " - "
-                                + person.RoleDisplayName,
-                            person.Id));
+                    Recipient.Items[0].Text = CurrentUser.Role == UserRole.Coordinator
+                        ? "Meeting requests are not available for this role"
+                        : "No assigned contacts available";
                 }
+                SendRequest.Enabled = Recipient.Items.Count > 1;
 
                 BindMeetings();
 
@@ -100,6 +88,75 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     "Check your connection and Firebase rules, then refresh.",
                     false);
             }
+        }
+
+        private void LoadAllowedRecipients()
+        {
+            Recipient.Items.Clear();
+            Recipient.Items.Add(new ListItem("Select a person", ""));
+            UserRepository users = new UserRepository();
+            PlacementRepository placements = new PlacementRepository();
+            Dictionary<string, Person> allowed = new Dictionary<string, Person>(StringComparer.Ordinal);
+
+            CompanySupervisor company = CurrentUser as CompanySupervisor;
+            if (company != null && !string.IsNullOrWhiteSpace(company.CompanyId))
+            {
+                foreach (Placement placement in placements.GetByCompany(company.CompanyId))
+                {
+                    if (!IsMeetingPlacement(placement) || placement.CompanyId != company.CompanyId) continue;
+                    Student student = users.GetStudent(placement.StudentId);
+                    if (student != null && student.CanLogin()) allowed[student.Id] = student;
+                }
+            }
+
+            AcademicSupervisor academic = CurrentUser as AcademicSupervisor;
+            if (academic != null)
+            {
+                foreach (Student student in users.GetStudentsBySupervisor(academic.Id))
+                {
+                    if (student != null && student.CanLogin()) allowed[student.Id] = student;
+                }
+                foreach (Placement placement in placements.GetByAcademicSupervisor(academic.Id))
+                {
+                    if (!IsMeetingPlacement(placement)) continue;
+                    Student student = users.GetStudent(placement.StudentId);
+                    if (student != null && student.CanLogin()) allowed[student.Id] = student;
+                }
+            }
+
+            Student currentStudent = CurrentUser as Student;
+            if (currentStudent != null)
+            {
+                Placement placement = placements.GetById(currentStudent.Id);
+                string academicSupervisorId = currentStudent.AcademicSupervisorId;
+                if (string.IsNullOrWhiteSpace(academicSupervisorId) && IsMeetingPlacement(placement))
+                    academicSupervisorId = placement.AcademicSupervisorId;
+                if (!string.IsNullOrWhiteSpace(academicSupervisorId))
+                {
+                    AcademicSupervisor supervisor = users.GetAcademicSupervisor(academicSupervisorId);
+                    if (supervisor != null && supervisor.CanLogin()) allowed[supervisor.Id] = supervisor;
+                }
+                if (IsMeetingPlacement(placement) && placement.StudentId == currentStudent.Id &&
+                    !string.IsNullOrWhiteSpace(placement.CompanySupervisorId))
+                {
+                    CompanySupervisor supervisor = users.GetCompanySupervisor(placement.CompanySupervisorId);
+                    if (supervisor != null && supervisor.CanLogin() && supervisor.CompanyId == placement.CompanyId)
+                        allowed[supervisor.Id] = supervisor;
+                }
+            }
+
+            foreach (Person person in allowed.Values.OrderBy(p => p.FullName))
+            {
+                Recipient.Items.Add(new ListItem(person.FullName + " - " + person.RoleDisplayName, person.Id));
+            }
+        }
+
+        private static bool IsMeetingPlacement(Placement placement)
+        {
+            return placement != null &&
+                (placement.Status == PlacementStatus.Confirmed ||
+                 placement.Status == PlacementStatus.Active ||
+                 placement.Status == PlacementStatus.AwaitingCompletion);
         }
 
         // إرسال طلب ميتنج جديد.
@@ -656,3 +713,5 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         }
     }
 }
+
+

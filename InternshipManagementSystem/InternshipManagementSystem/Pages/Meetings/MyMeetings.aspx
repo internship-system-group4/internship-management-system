@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     MasterPageFile="~/Layout/Public.master"
     AutoEventWireup="true"
     CodeBehind="MyMeetings.aspx.cs"
@@ -13,7 +13,7 @@
         .meetings-page {
             --ink: #1b3046;
             --muted: #62748a;
-            --primary: #24636b;
+            --primary: #28567e;
             --border: #e0e8ef;
             color: var(--ink);
             max-width: 1240px;
@@ -33,9 +33,9 @@
             gap: 24px;
             padding: 30px;
             margin-bottom: 24px;
-            border: 1px solid #dce9e8;
+            border: 1px solid #d9e5f2;
             border-radius: 22px;
-            background: linear-gradient(120deg, #eaf5f2, #f4f7fc);
+            background: linear-gradient(120deg, #edf4fd, #f5f8ff);
         }
 
         .meeting-eyebrow {
@@ -91,7 +91,7 @@
         }
 
         .meeting-btn-primary:hover {
-            background: #194e56;
+            background: #194568;
             color: #fff;
         }
 
@@ -112,7 +112,7 @@
         }
 
         .meetings-page :is(button, input, textarea, select, a):focus-visible {
-            outline: 3px solid #69a8b5;
+            outline: 3px solid #8db8df;
             outline-offset: 3px;
         }
 
@@ -156,7 +156,7 @@
         }
 
         .meeting-stat:nth-child(3) .meeting-stat-number {
-            color: #246b52;
+            color: #28567e;
         }
 
         .meeting-panel {
@@ -286,8 +286,8 @@
         }
 
         .meeting-status[data-state="Approved"] {
-            background: #e7f5ee;
-            color: #246b4d;
+            background: #e3efff;
+            color: #24547c;
         }
 
         .meeting-status[data-state="Declined"],
@@ -441,9 +441,9 @@
         .meeting-help {
             padding: 13px 16px;
             border-radius: 10px;
-            background: #f0f7f6;
+            background: #edf4fd;
             font-size: 12px;
-            color: #42666b;
+            color: #345d81;
             line-height: 1.8;
         }
 
@@ -942,9 +942,8 @@
                 </div>
 
                 <div class="meeting-wide meeting-help">
-                    One request invites one person.
-                    Your meeting stays pending until they accept.
-                    Each request gets its own Jitsi room.
+                    Only people linked to your internship or academic supervision assignment are listed.
+                    Each request invites one person and stays pending until they accept.
                 </div>
 
             </div>
@@ -1492,3 +1491,4 @@
     </div>
 
 </asp:Content>
+
