@@ -807,4 +807,23 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>Unable to load opportunity details.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>weeks</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>Your account is not linked to a company.</value></data>
+  <data name="TaskReview.AttemptFact" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="TaskReview.RequestChangesHelp" xml:space="preserve"><value>Tell {0} what to fix in "{1}". The task goes back to them so they can resubmit.</value></data>
+  <data name="TaskReview.ResubmissionOf" xml:space="preserve"><value>Resubmission · Attempt {0} — what you asked to change</value></data>
+  <data name="TaskReview.NoEarlierRequest" xml:space="preserve"><value>No instructions were saved with the earlier request.</value></data>
+  <data name="TaskReview.ChangesRequestedTitle" xml:space="preserve"><value>Changes requested</value></data>
+  <data name="TaskReview.EvaluationSavedTitle" xml:space="preserve"><value>Evaluation saved</value></data>
+  <data name="TaskReview.ChangesRequestedText" xml:space="preserve"><value>{0} was notified and can now resubmit "{1}". The new attempt will appear in your submissions list.</value></data>
+  <data name="TaskReview.EvaluationSavedText" xml:space="preserve"><value>The grade and feedback for "{1}" are now visible to {0}.</value></data>
+  <data name="TaskReview.ScoreFact" xml:space="preserve"><value>Score {0} / {1}</value></data>
+  <data name="TaskReview.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="TaskReview.ChangesToMake" xml:space="preserve"><value>Changes the trainee should make</value></data>
+  <data name="TaskReview.ChangesPlaceholder" xml:space="preserve"><value>For example: add input validation to the form and explain how you tested it.</value></data>
+  <data name="TaskReview.ChangesHelp" xml:space="preserve"><value>Be specific — the trainee sees this text exactly as you write it.</value></data>
+  <data name="TaskReview.WhatHappensNext" xml:space="preserve"><value>What happens next</value></data>
+  <data name="TaskReview.RequestChangesNext" xml:space="preserve"><value>The trainee is notified, the task becomes "Revision requested", and this attempt stays in the history.</value></data>
+  <data name="TaskReview.SendRequest" xml:space="preserve"><value>Send request</value></data>
+  <data name="TaskReview.Saving" xml:space="preserve"><value>Saving…</value></data>
+  <data name="TaskReview.BackToSubmissions" xml:space="preserve"><value>Back to submissions</value></data>
+  <data name="TaskReview.Done" xml:space="preserve"><value>Done</value></data>
 </root>

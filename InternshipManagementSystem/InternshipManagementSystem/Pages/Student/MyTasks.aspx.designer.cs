@@ -247,5 +247,21 @@ namespace InternshipManagementSystem.Pages.StudentArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.PlaceHolder phNoAttempts;
+
+        // Submit / resubmit popup and its result popup.
+        protected global::System.Web.UI.WebControls.PlaceHolder phRevisionNote;
+        protected global::System.Web.UI.WebControls.Literal litRevisionNote;
+        protected global::System.Web.UI.WebControls.Literal litOpenSubmitLabel;
+        protected global::System.Web.UI.WebControls.PlaceHolder phSubmitDialog;
+        protected global::System.Web.UI.WebControls.Literal litDialogEyebrow;
+        protected global::System.Web.UI.WebControls.Literal litDialogTitle;
+        protected global::System.Web.UI.WebControls.Literal litDialogTask;
+        protected global::System.Web.UI.WebControls.PlaceHolder phDialogRevisionNote;
+        protected global::System.Web.UI.WebControls.Literal litDialogRevisionNote;
+        protected global::System.Web.UI.WebControls.Literal litDialogNext;
+        protected global::System.Web.UI.WebControls.PlaceHolder phResultDialog;
+        protected global::System.Web.UI.WebControls.Literal litResultTitle;
+        protected global::System.Web.UI.WebControls.Literal litResultMessage;
+        protected global::System.Web.UI.WebControls.Literal litResultAttempt;
     }
 }

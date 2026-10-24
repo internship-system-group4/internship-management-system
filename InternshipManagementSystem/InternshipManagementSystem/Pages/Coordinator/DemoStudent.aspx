@@ -39,14 +39,14 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="rv-scope demo-page">
-    <header class="rv-heading" data-rv-reveal>
+<div class="rv-scope demo-page dir-page">
+    <header class="dir-head">
         <div>
-            <span class="rv-eyebrow"><%: L.T("Coordinator.Demo.Eyebrow") %></span>
+            <div class="dir-crumb"><%: L.T("Coordinator.Demo.Eyebrow") %></div>
             <h2><%: L.T("Coordinator.Demo.Title") %></h2>
             <p><%: L.T("Coordinator.Demo.Intro") %></p>
         </div>
-        <a class="btn btn-outline-secondary rv-btn-icon" href="CompletionReview.aspx"><%: L.T("Coordinator.Demo.OpenQueue") %></a>
+        <a class="btn btn-brand dir-add" href="CompletionReview.aspx"><span data-ui-icon="approved" aria-hidden="true"></span> <%: L.T("Coordinator.Demo.OpenQueue") %></a>
     </header>
 
     <div class="rv-alert is-info" role="note" data-rv-reveal><div><strong><%: L.T("Coordinator.Demo.SafetyTitle") %></strong><br /><%: L.T("Coordinator.Demo.SafetyText") %></div></div>

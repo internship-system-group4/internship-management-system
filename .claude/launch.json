@@ -6,6 +6,12 @@
       "runtimeExecutable": "C:\\Program Files\\IIS Express\\iisexpress.exe",
       "runtimeArgs": ["/path:C:\\Users\\user\\Desktop\\Orange\\Projects\\Projec2\\internship-management-system\\InternshipManagementSystem\\InternshipManagementSystem", "/port:8095"],
       "port": 8095
+    },
+    {
+      "name": "uims-perf-check",
+      "runtimeExecutable": "C:\\Program Files\\IIS Express\\iisexpress.exe",
+      "runtimeArgs": ["/path:C:\\Users\\user\\Desktop\\Orange\\Projects\\Projec2\\internship-management-system\\InternshipManagementSystem\\InternshipManagementSystem", "/port:8097"],
+      "port": 8097
     }
   ]
 }

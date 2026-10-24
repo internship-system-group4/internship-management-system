@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ===========================================================================
   UIMS - Group 4
@@ -442,7 +442,6 @@
       <DependentUpon>PlacementDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Placements.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Placements.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Placements.aspx.designer.cs">
@@ -454,6 +453,13 @@
     </Compile>
     <Compile Include="Pages\Coordinator\Students.aspx.designer.cs">
       <DependentUpon>Students.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\SupervisorProfile.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SupervisorProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\SupervisorProfile.aspx.designer.cs">
+      <DependentUpon>SupervisorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\StudentCreation.ascx.cs">
       <DependentUpon>StudentCreation.ascx</DependentUpon>
@@ -647,6 +653,8 @@
     <Content Include="Pages\Notifications\Feed.ashx" />
     <Content Include="Pages\Notifications\Inbox.aspx" />
     <Content Include="Assets\css\task-workflow.css" />
+    <Content Include="Assets\css\task-dialogs.css" />
+    <Content Include="Assets\js\task-dialogs.js" />
     <Content Include="Default.aspx" />
     <Content Include="App_Data\completion-rules.json" />
     <Content Include="Global.asax" />
@@ -693,10 +701,12 @@
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\theme.css" />
     <Content Include="Assets\css\coordinator-dashboard.css" />
+    <Content Include="Assets\css\coordinator-sidebar.css" />
     <Content Include="Assets\css\portal-motion.css" />
     <Content Include="Assets\js\portal-motion.js" />
     <Content Include="Assets\js\coordinator-dashboard.js" />
     <Content Include="Assets\css\students.css" />
+    <Content Include="Assets\css\coordinator-ui.css" />
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
@@ -772,6 +782,9 @@
     <Content Include="Assets\js\login-campus.js" />
     <Content Include="Assets\js\login-campus-scene.js" />
     <Content Include="Assets\js\login-campus-actors.js" />
+    <Content Include="Assets\css\recovery-campus.css" />
+    <Content Include="Assets\js\recovery-campus.js" />
+    <Content Include="Assets\js\recovery-terminal.js" />
     <Content Include="Assets\css\public-footer.css" />
     <Content Include="Assets\css\about.css" />
     <Content Include="Assets\js\about.js" />
@@ -872,6 +885,7 @@
     <Content Include="Pages\Coordinator\PlacementDetails.aspx" />
     <Content Include="Pages\Coordinator\Placements.aspx" />
     <Content Include="Pages\Coordinator\Students.aspx" />
+    <Content Include="Pages\Coordinator\SupervisorProfile.aspx" />
     <Content Include="Pages\Coordinator\StudentCreation.ascx" />
     <Content Include="Assets\js\account-creation-modal.js" />
     <Content Include="Assets\js\directory.js" />

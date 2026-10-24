@@ -22,6 +22,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
+        /// <summary>Puts the header row in a real &lt;thead&gt; so the shared
+        /// directory table styles (and the mobile card layout) work.</summary>
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+            if (gvSupervisors.HeaderRow != null)
+                gvSupervisors.HeaderRow.TableSection = TableRowSection.TableHeader;
+        }
+
         private void BindExistingCompanies()
         {
             rptExistingCompanies.DataSource = _companyRepo.GetAll();
@@ -153,20 +161,24 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
                     if (supervisor != null)
                     {
-                        litViewSupName.Text = supervisor.FullName;
-                        litViewJobTitle.Text = string.IsNullOrEmpty(supervisor.JobTitle) ? L.T("Coordinator.Companies.NotProvided") : supervisor.JobTitle;
-                        litViewEmail.Text = supervisor.Email;
-                        litViewPhone.Text = string.IsNullOrEmpty(supervisor.PhoneNumber) ? L.T("Coordinator.Companies.NotProvided") : supervisor.PhoneNumber;
+                        // Literals do not encode, so every value is HTML-encoded here.
+                        litViewInitials.Text = InternshipManagementSystem.Common.Validators.Safe(StudentDirectoryRow.MakeInitials(supervisor.FullName));
+                        litViewSupName.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.FullName);
+                        litViewEmailHero.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.Email);
+                        litViewJobTitle.Text = InternshipManagementSystem.Common.Validators.Safe(string.IsNullOrEmpty(supervisor.JobTitle) ? L.T("Coordinator.Companies.NotProvided") : supervisor.JobTitle);
+                        litViewEmail.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.Email);
+                        litViewPhone.Text = InternshipManagementSystem.Common.Validators.Safe(string.IsNullOrEmpty(supervisor.PhoneNumber) ? L.T("Coordinator.Companies.NotProvided") : supervisor.PhoneNumber);
+                        lnkViewProfile.NavigateUrl = ResolveUrl("~/Pages/Coordinator/SupervisorProfile.aspx?id=" + Uri.EscapeDataString(supervisor.Id ?? supervisorId));
 
                         Company comp = _companyRepo.GetById(supervisor.CompanyId);
                         if (comp != null)
                         {
-                            litViewCompName.Text = comp.Name;
-                            litViewIndustry.Text = string.IsNullOrEmpty(comp.Industry) ? L.T("Coordinator.Companies.NotProvided") : comp.Industry;
+                            litViewCompName.Text = InternshipManagementSystem.Common.Validators.Safe(comp.Name);
+                            litViewIndustry.Text = InternshipManagementSystem.Common.Validators.Safe(string.IsNullOrEmpty(comp.Industry) ? L.T("Coordinator.Companies.NotProvided") : comp.Industry);
                         }
                         else
                         {
-                            litViewCompName.Text = supervisor.CompanyName;
+                            litViewCompName.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.CompanyName);
                             litViewIndustry.Text = L.T("Coordinator.Companies.NotProvided");
                         }
 

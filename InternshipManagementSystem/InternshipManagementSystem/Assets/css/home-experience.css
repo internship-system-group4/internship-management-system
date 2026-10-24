@@ -46,12 +46,6 @@
 .home-video-visual .home-video-placeholder{border:0;border-radius:0;padding:30px 32px;background:var(--campus-ground)}
 .home-video-placeholder strong{font-size:24px;font-weight:600;color:var(--campus-ink)}
 .home-video-placeholder p{font-size:16px;line-height:1.6;max-width:58ch;color:var(--campus-secondary);margin-top:12px}
-.home-page #opportunities{background:var(--campus-ink);color:#fff;padding-block:110px}
-.home-page #opportunities .home-section-heading{grid-template-columns:1.05fr .7fr;align-items:end;gap:80px;margin-bottom:54px}
-.home-page #opportunities h2{color:#fff;margin:0}.home-page #opportunities .home-section-heading p{color:#d1dde4;font-size:16px;max-width:36ch}
-.home-page #opportunities .home-preview-title{font-size:16px;font-weight:400;color:#d1dde4;margin:0 0 24px}
-.home-page #opportunities .public-preview-notice{border-radius:0;border:0;background:var(--th-bg-204b62,#204b62);color:#fff;padding:32px;font-size:16px;line-height:1.6}
-.home-page #opportunities .home-access-note{color:#d1dde4;font-size:16px;margin-top:26px}
 .home-page .home-preview{background:var(--ui-surface,#fff);border:0;border-radius:0;padding:32px;box-shadow:none}
 .home-page .home-preview h3{font-size:24px;font-weight:600;line-height:1.2;color:var(--campus-ink)}
 .home-page .home-preview p{color:var(--campus-secondary);font-size:16px}.home-page .home-preview .home-preview-meta{font-size:16px}
@@ -73,7 +67,7 @@
  .campus-opening-intro{max-width:330px}.campus-opening-intro>p{font-size:16px}.campus-chapter-nav{top:30px;inset-inline-end:28px}
  .campus-chapter-nav .campus-nav-label{display:block}.campus-chapter-nav a{min-height:44px;padding:8px 12px}
  .home-page .home-video{grid-template-columns:1fr;gap:36px}.home-video-intro{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px}.home-video-intro .public-text-link{grid-column:2}
- .home-page>.home-section{padding-block:80px}.home-page #opportunities .home-section-heading{gap:40px}.home-page #opportunities .home-section-heading p{font-size:16px}
+ .home-page>.home-section{padding-block:80px}
  .home-page .home-preview{grid-template-columns:1fr 1fr;gap:20px 32px}
 }
 @media(max-width:680px){
@@ -94,8 +88,6 @@
  .home-page>.home-section{width:100%;padding:64px 20px}.home-page .home-section h2{font-size:44px}
  .home-video-intro{display:block}.home-video-intro>p{font-size:16px;margin-bottom:20px!important;max-width:40ch}
  .home-video-visual>img{height:280px}.home-video-visual .home-video-placeholder{padding:24px}.home-video-placeholder strong{font-size:24px}
- .home-page #opportunities{padding-block:64px}.home-page #opportunities .home-section-heading{display:block;margin-bottom:34px}
- .home-page #opportunities .home-section-heading p{margin-top:26px;max-width:40ch}.home-page #opportunities .public-preview-notice{padding:24px;font-size:16px}
  .home-page .home-preview{padding:26px}.home-page .home-preview h3{font-size:24px}
  .home-page .home-preview{grid-template-columns:1fr;gap:16px}
  .home-page>.home-cta{padding:64px 20px;gap:28px}.home-page .home-cta h2{font-size:44px}.home-page .home-cta p{font-size:16px}

@@ -190,7 +190,9 @@ export async function createCampus({ logoUrl, stoneUrl, groundHeight }) {
  for (let i = 0; i < 4000; i++) { pg.fillStyle = `rgba(100,90,75,${random() * .08})`; pg.fillRect(random() * 512, random() * 512, 2, 2); }
  const paveMap = canvasTexture(paveCanvas); paveMap.repeat.set(1, 1);
  const pavingMaterial = new THREE.MeshStandardMaterial({ map: paveMap, roughness: .92 });
+ const walkSurfaces = [];
  const paved = (x0, x1, z0, z1, y, scale) => {
+  walkSurfaces.push({ x0, x1, z0, z1, y });
   const g = new THREE.PlaneGeometry(x1 - x0, z1 - z0); g.rotateX(-Math.PI / 2);
   const uv = g.attributes.uv; for (let i = 0; i < uv.count; i++) uv.setXY(i, uv.getX(i) * (x1 - x0) / scale, uv.getY(i) * (z1 - z0) / scale);
   const m = new THREE.Mesh(g, pavingMaterial); m.position.set((x0 + x1) / 2, y, (z0 + z1) / 2); m.receiveShadow = true; root.add(m); return m;
@@ -250,6 +252,12 @@ export async function createCampus({ logoUrl, stoneUrl, groundHeight }) {
 
  return {
   root, courtyardSize: cSize.multiplyScalar(cScale),
+  // Feet stand on the paving, which sits above the underlying terrain.
+  surfaceHeight(x, z) {
+   let y = groundHeight(x, z);
+   for (const s of walkSurfaces) if (x >= s.x0 && x <= s.x1 && z >= s.z0 && z <= s.z1) y = Math.max(y, s.y);
+   return y;
+  },
   update(time, lights) {
    courtyard.wheel.rotation.z -= .0045;
    gate?.updateCloth(time, .9);

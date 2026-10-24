@@ -36,6 +36,24 @@ namespace InternshipManagementSystem.Data
             return GetWhere("CompanyId", companyId).OrderByDescending(a => a.SubmittedAt).ToList();
         }
 
+        /// <summary>A new application tells the company's supervisors; an accept or
+        /// reject tells the student. Used by Submit, Decide and generic saves.</summary>
+        protected override bool SendNotice(InternshipApplication previous, InternshipApplication current)
+        {
+            if (previous == null && current.Status == ApplicationStatus.Pending)
+            {
+                Services.NotificationService.ApplicationSubmitted(current);
+                return true;
+            }
+            bool decided = current.Status == ApplicationStatus.Accepted || current.Status == ApplicationStatus.Rejected;
+            if ((previous == null || previous.Status != current.Status) && decided)
+            {
+                Services.NotificationService.ApplicationDecided(current, current.Status);
+                return true;
+            }
+            return false;
+        }
+
         public static bool IsValidKey(string key)
         {
             return !string.IsNullOrWhiteSpace(key) && key.Length <= 128
@@ -78,7 +96,7 @@ namespace InternshipManagementSystem.Data
             if (!FirebaseContext.PutIfUnchanged(path, record, etag))
                 throw new InvalidOperationException("This application changed during review. Refresh before making another decision.");
 
-            Services.EmailNotificationService.Saved(Json.Deserialize<InternshipApplication>(json), Json.Deserialize<InternshipApplication>(Json.Serialize(record)));
+            NotifySaved(Json.Deserialize<InternshipApplication>(json), Json.Deserialize<InternshipApplication>(Json.Serialize(record)));
         }
 
         public static bool IsSafeDocumentUrl(string value)
@@ -137,7 +155,7 @@ namespace InternshipManagementSystem.Data
             if (!FirebaseContext.PutIfEmpty(Collection + "/" + id, application))
                 throw new InvalidOperationException("You have already applied to this internship. Check My Applications.");
 
-            Services.EmailNotificationService.Saved(null, application);
+            NotifySaved(null, application);
             return application;
         }
     }

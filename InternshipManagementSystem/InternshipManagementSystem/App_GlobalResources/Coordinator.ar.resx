@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -1308,6 +1308,9 @@
   <data name="Dashboard.NeedsAttention" xml:space="preserve"><value>تحتاج متابعة</value></data>
   <data name="Dashboard.NoFollowUp" xml:space="preserve"><value>لا توجد حالات معلّقة</value></data>
   <data name="Dashboard.ViewAffectedRecords" xml:space="preserve"><value>عرض السجلات المعنية</value></data>
+  <data name="Dashboard.SearchRelatedRecords" xml:space="preserve"><value>ابحث في هذه السجلات</value></data>
+  <data name="Dashboard.NoRelatedRecordsMatch" xml:space="preserve"><value>لا توجد سجلات تطابق بحثك.</value></data>
+  <data name="Dashboard.Records" xml:space="preserve"><value>سجل</value></data>
   <data name="Dashboard.MajorScopeDescription" xml:space="preserve"><value>جميع ملفات الطلاب، بما فيها غير النشطة والتخصصات غير المسجّلة.</value></data>
   <data name="Dashboard.NoStudents" xml:space="preserve"><value>لا يوجد طلاب في هذا التخصص</value></data>
   <data name="Dashboard.CompletionStages" xml:space="preserve"><value>مراحل مراجعة الإكمال</value></data>
@@ -1353,4 +1356,58 @@
   <data name="PlacementDetails.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
   <data name="PlacementDetails.PlacementDetails" xml:space="preserve"><value>تفاصيل التدريب</value></data>
   <data name="PlacementDetails.PlacementNotFound" xml:space="preserve"><value>لم يتم العثور على التدريب.</value></data>
+  <data name="SupervisorProfile.AllAcademicSupervisors" xml:space="preserve"><value>كل المشرفين الأكاديميين</value></data>
+  <data name="SupervisorProfile.AllCompanySupervisors" xml:space="preserve"><value>كل مشرفي الشركات</value></data>
+  <data name="SupervisorProfile.AcademicProfile" xml:space="preserve"><value>ملف المشرف الأكاديمي</value></data>
+  <data name="SupervisorProfile.CompanyProfile" xml:space="preserve"><value>ملف مشرف الشركة</value></data>
+  <data name="SupervisorProfile.SendEmail" xml:space="preserve"><value>إرسال بريد إلكتروني</value></data>
+  <data name="SupervisorProfile.Groups" xml:space="preserve"><value>المجموعات المسندة</value></data>
+  <data name="SupervisorProfile.Students" xml:space="preserve"><value>الطلاب</value></data>
+  <data name="SupervisorProfile.WithPlacement" xml:space="preserve"><value>لديهم تدريب</value></data>
+  <data name="SupervisorProfile.Department" xml:space="preserve"><value>القسم</value></data>
+  <data name="SupervisorProfile.ContactInformation" xml:space="preserve"><value>معلومات التواصل</value></data>
+  <data name="SupervisorProfile.LoginEmail" xml:space="preserve"><value>البريد الإلكتروني للدخول</value></data>
+  <data name="SupervisorProfile.Phone" xml:space="preserve"><value>الهاتف</value></data>
+  <data name="SupervisorProfile.AccountStatus" xml:space="preserve"><value>حالة الحساب</value></data>
+  <data name="SupervisorProfile.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
+  <data name="SupervisorProfile.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
+  <data name="SupervisorProfile.AcademicRank" xml:space="preserve"><value>الرتبة الأكاديمية</value></data>
+  <data name="SupervisorProfile.NoGroups" xml:space="preserve"><value>لا توجد مجموعات مسندة بعد.</value></data>
+  <data name="SupervisorProfile.SupervisedStudents" xml:space="preserve"><value>الطلاب تحت الإشراف</value></data>
+  <data name="SupervisorProfile.SupervisedStudentsHelp" xml:space="preserve"><value>الطلاب المسندون لهذا المشرف مع تدريبهم وساعاتهم المعتمدة.</value></data>
+  <data name="SupervisorProfile.NoStudents" xml:space="preserve"><value>لا يوجد طلاب مسندون لهذا المشرف بعد.</value></data>
+  <data name="SupervisorProfile.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="SupervisorProfile.JobTitle" xml:space="preserve"><value>المسمى الوظيفي</value></data>
+  <data name="SupervisorProfile.Interns" xml:space="preserve"><value>المتدربون</value></data>
+  <data name="SupervisorProfile.CompanyInformation" xml:space="preserve"><value>معلومات الشركة</value></data>
+  <data name="SupervisorProfile.Industry" xml:space="preserve"><value>القطاع</value></data>
+  <data name="SupervisorProfile.Address" xml:space="preserve"><value>العنوان</value></data>
+  <data name="SupervisorProfile.Website" xml:space="preserve"><value>الموقع الإلكتروني</value></data>
+  <data name="SupervisorProfile.CompanyContact" xml:space="preserve"><value>تواصل الشركة</value></data>
+  <data name="SupervisorProfile.CompanyInterns" xml:space="preserve"><value>المتدربون تحت الإشراف</value></data>
+  <data name="SupervisorProfile.CompanyInternsHelp" xml:space="preserve"><value>الطلاب الذين يحدد تدريبهم هذا المشرف مع ساعاتهم المعتمدة.</value></data>
+  <data name="SupervisorProfile.NoInterns" xml:space="preserve"><value>لا يوجد متدربون مرتبطون بهذا المشرف بعد.</value></data>
+  <data name="SupervisorProfile.Student" xml:space="preserve"><value>الطالب</value></data>
+  <data name="SupervisorProfile.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="SupervisorProfile.Placement" xml:space="preserve"><value>التدريب</value></data>
+  <data name="SupervisorProfile.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="SupervisorProfile.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="SupervisorProfile.NotFound" xml:space="preserve"><value>لم يتم العثور على سجل المشرف.</value></data>
+  <data name="SupervisorProfile.LoadError" xml:space="preserve"><value>تعذر تحميل بيانات المشرف. حاول مرة أخرى.</value></data>
+  <data name="Companies.Crumb" xml:space="preserve"><value>منسّق التدريب / الشركات</value></data>
+  <data name="Companies.DirectoryIntro" xml:space="preserve"><value>أنشئ حسابات مشرفي الشركات واربطها بشركة، وتحكّم في صلاحية دخولهم.</value></data>
+  <data name="Companies.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ واعرض التفاصيل أو غيّر صلاحية دخول أي مشرف.</value></data>
+  <data name="Companies.SearchPlaceholder" xml:space="preserve"><value>ابحث بالاسم أو البريد أو الشركة</value></data>
+  <data name="Companies.NoMatch" xml:space="preserve"><value>لا يوجد مشرفون مطابقون لبحثك.</value></data>
+  <data name="Companies.NoSupervisorsYet" xml:space="preserve"><value>لا يوجد مشرفو شركات بعد. أضف أول مشرف.</value></data>
+  <data name="Companies.Deactivate" xml:space="preserve"><value>إيقاف</value></data>
+  <data name="Companies.Activate" xml:space="preserve"><value>تفعيل</value></data>
+  <data name="Companies.CompanySupervisorRole" xml:space="preserve"><value>مشرف شركة</value></data>
+  <data name="Dashboard.Crumb" xml:space="preserve"><value>منسّق التدريب / لوحة التحكم</value></data>
+  <data name="Placements.Crumb" xml:space="preserve"><value>منسّق التدريب / التدريبات</value></data>
+  <data name="Placements.ViewProgress" xml:space="preserve"><value>عرض التقدم</value></data>
+  <data name="ContactMessages.Crumb" xml:space="preserve"><value>منسّق التدريب / الرسائل</value></data>
+  <data name="ContactMessages.DirectoryHelp" xml:space="preserve"><value>ابحث باسم المرسل أو الموضوع، ثم افتح الرسالة لمراجعتها.</value></data>
+  <data name="CompletionReview.Crumb" xml:space="preserve"><value>منسّق التدريب / مراجعة الإنجاز</value></data>
+  <data name="CompletionReview.ReadEvaluations" xml:space="preserve"><value>قراءة التقييمات</value></data>
 </root>

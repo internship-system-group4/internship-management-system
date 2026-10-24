@@ -99,24 +99,58 @@ body.uims-portal .coordination-desk .desk-data-table thead th{font-size:12px!imp
 .coordination-desk .desk-table-action{border:0;background:transparent;color:var(--desk-action);text-decoration:underline;min-height:38px;font-size:13px;cursor:pointer}
 .coordination-desk .desk-programme-facts{display:flex;flex-wrap:wrap;gap:12px 24px;padding:10px 2px;font-size:12px;color:var(--desk-muted)}
 .coordination-desk .desk-programme-facts a{color:var(--desk-action)}
-body.uims-portal .desk-record-modal .modal-dialog{max-width:640px}
-body.uims-portal .desk-record-modal .modal-content{background:var(--desk-surface);color:var(--desk-ink);border-color:var(--desk-line)}
-body.uims-portal .desk-record-modal .modal-title{font-size:20px;line-height:1.5;overflow-wrap:anywhere;color:var(--desk-ink)}
-body.uims-portal .desk-record-modal #desk-record-context{font-size:13px;color:var(--desk-muted);margin:4px 0 0;line-height:1.6}
-body.uims-portal .desk-record-modal :is(.modal-header,.modal-footer){border-color:var(--desk-line);gap:12px}
-.desk-record-modal .modal-header{align-items:flex-start}
-.desk-record-modal .desk-record-list{margin:0;padding-inline-start:24px}
-.desk-record-modal .desk-record-list li{padding:14px 0;border-bottom:1px solid var(--desk-line);font-size:14px;overflow-wrap:anywhere}
-.desk-record-modal .desk-record-list small{display:block;color:var(--desk-muted);font-size:12px;margin-top:4px}
-.desk-record-modal .desk-record-list a{display:inline-block;color:var(--desk-action);font-size:13px;padding-block:8px;min-height:36px}
-.desk-record-modal .modal-footer{justify-content:space-between;flex-wrap:wrap}
-.desk-record-modal .desk-record-pagination{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12px;flex-wrap:wrap}
+body.uims-portal .desk-record-modal .modal-dialog{max-width:760px;padding:12px}
+body.uims-portal .desk-record-modal .modal-content{overflow:hidden;border:1px solid var(--desk-line);border-radius:22px;background:var(--desk-surface);color:var(--desk-ink);box-shadow:0 24px 70px #11263d33}
+.desk-record-modal.fade .modal-dialog{opacity:0;transform:translateY(20px) scale(.975);transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .27s ease}
+.desk-record-modal.show .modal-dialog{opacity:1;transform:translateY(0) scale(1)}
+body.uims-portal .desk-record-modal .desk-record-header{display:flex;align-items:flex-start;gap:18px;padding:26px 30px 23px;border:0;background:linear-gradient(125deg,var(--desk-soft),var(--desk-surface) 78%)}
+.desk-record-modal .desk-record-heading{min-width:0;flex:1}
+.desk-record-modal .desk-record-eyebrow{display:inline-flex;align-items:center;gap:8px;margin-bottom:10px;color:var(--desk-action);font-size:11px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+.desk-record-modal .desk-record-eyebrow i{font-size:15px;line-height:1}
+body.uims-portal .desk-record-modal .modal-title{font-size:clamp(21px,2.6vw,27px);line-height:1.25;font-weight:750;overflow-wrap:anywhere;color:var(--desk-ink)}
+body.uims-portal .desk-record-modal #desk-record-context{font-size:13px;color:var(--desk-muted);margin:8px 0 0;line-height:1.6}
+.desk-record-modal .desk-record-close{flex:none;margin:0;padding:8px;opacity:.8}
+.desk-record-modal .desk-record-close:hover{opacity:1}
+.desk-record-modal .desk-record-toolbar{display:flex;align-items:center;gap:14px;padding:16px 30px;border-block:1px solid var(--desk-line);background:var(--desk-surface)}
+.desk-record-modal .desk-record-toolbar[hidden]{display:none}
+.desk-record-modal .desk-record-search{position:relative;display:block;flex:1;max-width:420px}
+.desk-record-modal .desk-record-search i{position:absolute;inset-inline-start:14px;top:50%;transform:translateY(-50%);color:var(--desk-muted);pointer-events:none}
+body.uims-portal .desk-record-modal .desk-record-search input[type="search"]{display:block;width:100%;min-height:43px;padding:9px 14px;padding-inline-start:42px;border:1px solid var(--desk-line);border-radius:10px;background:var(--desk-soft);color:var(--desk-ink);font:inherit;font-size:14px!important;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+body.uims-portal .desk-record-modal .desk-record-search input[type="search"]:focus{border-color:var(--desk-action);background:var(--desk-surface);box-shadow:0 0 0 3px #3183d326}
+body.uims-portal .desk-record-modal .desk-record-search input[type="search"]::placeholder{color:var(--desk-muted);opacity:1}
+.desk-record-modal .desk-record-count{margin-inline-start:auto;white-space:nowrap;padding:7px 10px;border-radius:999px;background:var(--desk-soft);color:var(--desk-blue);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+body.uims-portal .desk-record-modal .desk-record-body{padding:18px 30px 26px;min-height:170px;background:var(--desk-surface)}
+.desk-record-modal .desk-record-list{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.desk-record-modal .desk-record-list li{display:flex;align-items:center;gap:14px;min-width:0;padding:13px 14px;border:1px solid var(--desk-line);border-radius:12px;background:var(--desk-surface);transition:border-color .18s,background .18s,transform .18s;animation:deskRecordEnter .28s both;animation-delay:calc(var(--record-index,0) * 28ms)}
+.desk-record-modal .desk-record-list li:hover{border-color:var(--desk-action);background:var(--desk-soft);transform:translateY(-1px)}
+.desk-record-modal .desk-record-number{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:10px;background:var(--desk-soft);color:var(--desk-blue);font-size:12px;font-weight:750;font-variant-numeric:tabular-nums}
+.desk-record-modal .desk-record-item-text{flex:1;min-width:0;overflow-wrap:anywhere}
+.desk-record-modal .desk-record-item-text strong{display:block;font-size:14px;line-height:1.45;color:var(--desk-ink)}
+.desk-record-modal .desk-record-item-text small{display:block;margin-top:3px;color:var(--desk-muted);font-size:12px;line-height:1.5}
+.desk-record-modal .desk-record-item-text small:empty{display:none}
+.desk-record-modal .desk-record-list a{display:inline-flex;align-items:center;gap:7px;flex:none;min-height:38px;padding:8px 11px;border:1px solid var(--desk-line);border-radius:8px;color:var(--desk-action);font-size:12px;font-weight:650;text-decoration:none;white-space:nowrap}
+.desk-record-modal .desk-record-list a:hover{background:var(--desk-action);border-color:var(--desk-action);color:#fff}
+.desk-record-modal .desk-record-empty:not([hidden]){display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;min-height:150px;padding:20px;text-align:center;color:var(--desk-muted)}
+.desk-record-modal .desk-record-empty i{font-size:28px;color:var(--desk-blue)}
+.desk-record-modal .desk-record-empty p{margin:0;font-size:13px;line-height:1.6}
+body.uims-portal .desk-record-modal .desk-record-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:16px 30px;border:0;border-top:1px solid var(--desk-line);background:var(--desk-soft)}
+.desk-record-modal .desk-record-pagination{display:flex;align-items:center;gap:10px;min-height:42px;color:var(--desk-muted);font-size:12px;font-weight:650;font-variant-numeric:tabular-nums}
+.desk-record-modal .desk-record-pagination[hidden]{display:none}
+.desk-record-modal .desk-record-page{display:inline-flex;align-items:center;gap:5px;min-height:36px;padding:7px 10px;border:1px solid var(--desk-line);border-radius:8px;background:var(--desk-surface);color:var(--desk-ink);font:inherit;font-size:12px;cursor:pointer}
+.desk-record-modal .desk-record-page:hover:enabled{border-color:var(--desk-action);color:var(--desk-action)}
+.desk-record-modal .desk-record-page:disabled{opacity:.45;cursor:default}
+.desk-record-modal .desk-record-done{min-height:40px;padding:9px 19px;border:1px solid var(--desk-action);border-radius:9px;background:var(--desk-action);color:#fff;font:inherit;font-size:13px;font-weight:700;cursor:pointer}
+.desk-record-modal .desk-record-done:hover{filter:brightness(.9)}
+@keyframes deskRecordEnter{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .coordination-desk :is(a,button,summary):focus-visible,.desk-record-modal :is(a,button):focus-visible{outline:3px solid var(--th-line-7aa9dc,#7aa9dc);outline-offset:3px}
 [dir=rtl] .coordination-desk .icon-next{transform:rotate(180deg)}
 [data-theme=dark] body.uims-portal :is(.coordination-desk,.desk-record-modal){--desk-ink:#e1ecf6;--desk-muted:#afc1d1;--desk-blue:#8fb6dd;--desk-action:#a0caff;--desk-surface:#182538;--desk-soft:#223349;--desk-line:#34465b;--desk-warning:#efc58a;--desk-warning-bg:#3b3023}
+[data-theme=dark] .desk-record-modal .desk-record-close{filter:invert(1)}
+[data-theme=dark] .desk-record-modal .desk-record-list a:hover{background:#345e89;border-color:#345e89;color:#fff}
+[data-theme=dark] .desk-record-modal .desk-record-done{background:#345e89;border-color:#345e89;color:#fff}
 [data-theme=dark] .coordination-desk .desk-title-icon{background:var(--desk-soft)}
 [data-theme=dark] .coordination-desk .desk-review-link{background:var(--th-bg-345e89,#345e89);color:#fff}
 @media(max-width:1200px){.coordination-desk .desk-stats,.coordination-desk .desk-followup-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.coordination-desk .desk-heading{align-items:flex-start}.coordination-desk .desk-title-icon{display:none}}
 @media(max-width:800px){.coordination-desk .desk-charts{grid-template-columns:1fr}.coordination-desk .desk-heading{flex-wrap:wrap;gap:14px}.coordination-desk .desk-chart-card{padding:18px}.coordination-desk .desk-chart-heading{flex-wrap:wrap;gap:8px}}
-@media(max-width:480px){body.uims-portal .coordination-desk .desk-title h2{font-size:25px}.coordination-desk .desk-stats,.coordination-desk .desk-followup-grid{gap:10px}.coordination-desk .desk-stat-body{padding:16px 12px}.coordination-desk .desk-stat-icon{display:none}.coordination-desk .desk-stat-action{padding:12px;font-size:12px}.coordination-desk .desk-followup{padding:13px}.coordination-desk .desk-followup-top{gap:6px}.coordination-desk .desk-followup-label{font-size:13px}.coordination-desk .desk-followup-top strong{font-size:23px}.coordination-desk .desk-major-heading{gap:12px}.coordination-desk .desk-major-count{gap:8px}.coordination-desk .desk-major-name{font-size:13px}.coordination-desk .desk-total{white-space:normal}.desk-record-modal .desk-record-pagination{width:100%}}
-@media(prefers-reduced-motion:reduce){.coordination-desk *{scroll-behavior:auto!important}}
+@media(max-width:480px){body.uims-portal .coordination-desk .desk-title h2{font-size:25px}.coordination-desk .desk-stats,.coordination-desk .desk-followup-grid{gap:10px}.coordination-desk .desk-stat-body{padding:16px 12px}.coordination-desk .desk-stat-icon{display:none}.coordination-desk .desk-stat-action{padding:12px;font-size:12px}.coordination-desk .desk-followup{padding:13px}.coordination-desk .desk-followup-top{gap:6px}.coordination-desk .desk-followup-label{font-size:13px}.coordination-desk .desk-followup-top strong{font-size:23px}.coordination-desk .desk-major-heading{gap:12px}.coordination-desk .desk-major-count{gap:8px}.coordination-desk .desk-major-name{font-size:13px}.coordination-desk .desk-total{white-space:normal}body.uims-portal .desk-record-modal .desk-record-header{padding:22px 20px 18px}.desk-record-modal .desk-record-toolbar{padding:13px 20px}.desk-record-modal .desk-record-count{display:none}body.uims-portal .desk-record-modal .desk-record-body{padding:16px 20px 20px}.desk-record-modal .desk-record-list li{align-items:flex-start;flex-wrap:wrap;gap:9px}.desk-record-modal .desk-record-list a{margin-inline-start:43px}body.uims-portal .desk-record-modal .desk-record-footer{padding:13px 20px}.desk-record-modal .desk-record-pagination{width:100%;justify-content:space-between;order:2}.desk-record-modal .desk-record-done{width:100%}}
+@media(prefers-reduced-motion:reduce){.coordination-desk *{scroll-behavior:auto!important}.desk-record-modal.fade .modal-dialog{transition:none;transform:none}.desk-record-modal .desk-record-list li{animation:none;transition:none}}

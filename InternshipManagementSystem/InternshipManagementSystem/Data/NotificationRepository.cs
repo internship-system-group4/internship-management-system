@@ -55,11 +55,19 @@ namespace InternshipManagementSystem.Data
             foreach (KeyValuePair<Notification, string> pair in keys) pair.Key.Id = pair.Value;
         }
 
-        /// <summary>The newest notifications first.</summary>
+        /// <summary>People may read only their own notifications.</summary>
+        private static void RequireOwner(string userId)
+        {
+            var user = Security.SessionHelper.Current;
+            if (user == null || user.Id != userId) throw new System.UnauthorizedAccessException();
+        }
+
+        /// <summary>The signed-in person's newest notifications first.</summary>
         public List<Notification> GetLatest(string userId, int count)
         {
             List<Notification> list = new List<Notification>();
             if (string.IsNullOrEmpty(userId)) return list;
+            RequireOwner(userId);
 
             string json = FirebaseContext.GetLast(UserPath(userId), count);
             if (string.IsNullOrWhiteSpace(json) || json == "null") return list;
@@ -78,6 +86,7 @@ namespace InternshipManagementSystem.Data
         public Notification GetById(string userId, string id)
         {
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(id)) return null;
+            RequireOwner(userId);
             Notification item = Json.Deserialize<Notification>(FirebaseContext.Get(UserPath(userId) + "/" + id));
             if (item != null) item.Id = id;
             return item;

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using InternshipManagementSystem.Common;
@@ -41,9 +41,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 txtPhone.Text = "";
                 txtJobTitle.Text = "";
 
-                // تركنا التحكم بالصورة مبدئياً على الدائرة النصية
-                imgAvatar.Visible = false;
-                divInitials.Visible = true;
+                string savedPhoto = CurrentSupervisor.ProfileImageBase64;
+                bool hasPhoto = !string.IsNullOrEmpty(savedPhoto) &&
+                    (savedPhoto.StartsWith("data:image/jpeg;base64,", StringComparison.OrdinalIgnoreCase) ||
+                     savedPhoto.StartsWith("data:image/png;base64,", StringComparison.OrdinalIgnoreCase));
+                imgAvatar.Visible = hasPhoto;
+                if (hasPhoto) imgAvatar.ImageUrl = savedPhoto;
+                divInitials.Visible = !hasPhoto;
             }
             catch (Exception ex)
             {
@@ -94,6 +98,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 // 3. تحديث الفايربيس
                 _userRepo.Update(CurrentSupervisor.Id, updates);
+
+                CurrentSupervisor.FullName = newName;
+                if (!string.IsNullOrEmpty(base64Image))
+                    CurrentSupervisor.ProfileImageBase64 = base64Image;
+                SessionHelper.Refresh(CurrentSupervisor);
 
                 // 4. تحديث الواجهة فوراً ليرى المستخدم التغيير بدون Refresh
                 litDisplayName.Text = newName;

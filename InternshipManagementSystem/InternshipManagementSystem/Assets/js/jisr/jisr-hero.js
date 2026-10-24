@@ -2,10 +2,10 @@ import * as THREE from '../vendor/three.module.min.js';
 import { WORLD } from './jisr-common.js';
 import { createSky, timeOfDay } from './jisr-sky.js';
 import { createLand } from './jisr-land.js';
-import { createCampus } from './jisr-campus.js';
+import { createCampus } from './jisr-campus.js?v=20261024-grounding';
 import { createLife } from './jisr-life.js';
 import { createPost } from './jisr-post.js';
-import { createStudent } from './jisr-student.js';
+import { createStudent } from './jisr-student.js?v=20261024-grounding';
 import { createStorkFlight, FLOCK_SECONDS, FILL } from './jisr-storks.js';
 
 // Part 1 - the aerial opening (scroll 0 .. CUT). Unchanged: these shots, copy beats and pacing
@@ -206,7 +206,7 @@ export async function mountJisr(host) {
    const arrived = d > L - .6 ? 1 : 0;
    lookUp = smooth(p, LOOK_UP[0], LOOK_UP[1]) * arrived;
    const gazeTarget = lookUp > .01 ? skyGaze : gazeAnchor;
-   if (!paused || p > CUT) student.update(p > CUT ? dt || .016 : 0, distanceFor(p), { target: gazeTarget, weight: Math.max(gazeWeight, lookUp) }, land.groundHeight);
+   if (!paused || p > CUT) student.update(p > CUT ? dt || .016 : 0, distanceFor(p), { target: gazeTarget, weight: Math.max(gazeWeight, lookUp) }, campus.surfaceHeight);
    student.root.visible = p > CUT - .02;
    if (blend > 0) {
     studentCamera(dt || .016, lookUp, gazeAim, gazeWeight);

@@ -417,6 +417,31 @@
             color: var(--ink);
         }
 
+        .meeting-recipient-list {
+            min-height: 180px;
+            margin-top: 8px;
+            padding: 5px;
+        }
+
+        .meeting-recipient-list option {
+            padding: 10px 12px;
+            border-radius: 7px;
+        }
+
+        .meeting-recipient-list option:checked {
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .meeting-search {
+            max-width: 270px;
+        }
+
+        .meeting-search-empty {
+            padding: 14px 24px;
+            color: var(--muted);
+        }
+
         textarea.meeting-control {
             min-height: 110px;
             resize: vertical;
@@ -665,6 +690,11 @@
                 </div>
 
                 <div class="meeting-toolbar">
+                    <label class="meeting-search">
+                        <span class="visually-hidden"><%: L.T("Meetings.MyMeetings.SearchMeetings") %></span>
+                        <input id="meetingSearch" type="search" class="meeting-control"
+                            autocomplete="off" placeholder="<%: L.T("Meetings.MyMeetings.SearchMeetings") %>" />
+                    </label>
                     <button type="button"
                         class="meeting-btn"
                         onclick="showMeetingDialog('filterDialog')">
@@ -825,6 +855,8 @@
 
             </div>
 
+            <p id="meetingSearchEmpty" class="meeting-search-empty" hidden><%: L.T("Meetings.MyMeetings.NoMeetingsMatch") %></p>
+
             <p class="meeting-footer-note">
                 <%: L.T("Meetings.MyMeetings.RequestsNeedTheInvitedPersonS") %>
             </p>
@@ -875,9 +907,15 @@
                         CssClass="meeting-label"
                         Text="<%$ Resources:Meetings, MyMeetings.WhoWouldYouLikeToMeet %>" />
 
+                    <label for="recipientSearch" class="visually-hidden"><%: L.T("Meetings.MyMeetings.SearchPeople") %></label>
+                    <input id="recipientSearch" type="search" class="meeting-control"
+                        autocomplete="off" placeholder="<%: L.T("Meetings.MyMeetings.SearchPeople") %>" />
+
                     <asp:DropDownList ID="Recipient"
                         runat="server"
-                        CssClass="meeting-control" />
+                        CssClass="meeting-control meeting-recipient-list"
+                        size="6" />
+                    <span id="recipientCount" class="meeting-hint" aria-live="polite"></span>
                 </div>
 
                 <div>
@@ -1205,6 +1243,48 @@
                 let activeApi = null;
 
                 let roomVersion = 0;
+
+                const recipient = document.getElementById('<%= Recipient.ClientID %>');
+                const recipientSearch = document.getElementById('recipientSearch');
+                const recipientCount = document.getElementById('recipientCount');
+                const recipientOptions = Array.from(recipient.options).map(function (option) {
+                    return { value: option.value, text: option.text };
+                });
+
+                function filterRecipients() {
+                    const query = recipientSearch.value.trim().toLocaleLowerCase();
+                    const selected = recipient.value;
+                    const matches = recipientOptions.filter(function (option) {
+                        return option.value && option.text.toLocaleLowerCase().includes(query);
+                    });
+                    recipient.replaceChildren();
+                    recipient.add(new Option(recipientOptions[0].text, ''));
+                    matches.forEach(function (option) {
+                        recipient.add(new Option(option.text, option.value));
+                    });
+                    recipient.value = matches.some(function (option) { return option.value === selected; })
+                        ? selected : '';
+                    recipientCount.textContent = matches.length + ' <%: L.T("Meetings.MyMeetings.PeopleAvailable") %>';
+                }
+
+                recipientSearch.addEventListener('input', filterRecipients);
+                filterRecipients();
+
+                const meetingSearch = document.getElementById('meetingSearch');
+                const meetingRows = Array.from(document.querySelectorAll('#<%= MeetingGrid.ClientID %> tr'))
+                    .filter(function (row) { return row.querySelector('td') && !row.querySelector('.meeting-empty'); });
+                const meetingSearchEmpty = document.getElementById('meetingSearchEmpty');
+                meetingSearch.addEventListener('input', function () {
+                    const query = meetingSearch.value.trim().toLocaleLowerCase();
+                    let visible = 0;
+                    meetingRows.forEach(function (row) {
+                        const matches = row.textContent.toLocaleLowerCase().includes(query);
+                        row.hidden = !matches;
+                        if (matches) visible++;
+                    });
+                    meetingSearchEmpty.hidden = !query || visible > 0 || meetingRows.length === 0;
+                });
+
 
                 window.showMeetingDialog = function (id) {
                     const dialog = document.getElementById(id);

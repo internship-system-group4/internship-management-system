@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
@@ -92,9 +93,15 @@ namespace InternshipManagementSystem.Pages.Academic
                             System.IO.Directory.CreateDirectory(folderPath);
                         }
 
-                        string fileName = CurrentSupervisor.Id + "_" + System.IO.Path.GetFileName(fuProfileImage.FileName);
-                        string fullPath = folderPath + fileName;
+                        string fileName = Guid.NewGuid().ToString("N") + extension;
+                        string fullPath = System.IO.Path.Combine(folderPath, fileName);
                         fuProfileImage.SaveAs(fullPath);
+
+                        string photoUrl = "~/Assets/Uploads/" + fileName;
+                        new UserRepository().Update(CurrentSupervisor.Id,
+                            new Dictionary<string, object> { { "ProfileImageUrl", photoUrl } });
+                        CurrentSupervisor.ProfileImageUrl = photoUrl;
+                        SessionHelper.Refresh(CurrentSupervisor);
 
                         ShowMessage(L.T("Academic.Account.ProfilePhotoUploadedSuccessfully"), true);
                     }

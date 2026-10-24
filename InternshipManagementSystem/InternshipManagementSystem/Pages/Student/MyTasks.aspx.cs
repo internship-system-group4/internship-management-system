@@ -16,6 +16,15 @@ namespace InternshipManagementSystem.Pages.StudentArea
     {
         private const int MaxFileBytes = 10 * 1024 * 1024;
 
+        /// <summary>Which popup opens when the page loads: "submit", "result" or "" (none).</summary>
+        protected string OpenDialog = "";
+
+        /// <summary>True when the selected task was returned for changes (popup shows the resubmit look).</summary>
+        protected bool IsResubmission;
+
+        /// <summary>Colour class for the status badge in the task details panel.</summary>
+        protected string SelectedStatusClass = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.Form != null) Page.Form.Enctype = "multipart/form-data";
@@ -72,6 +81,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 row.ActionLabel = task.AcceptsSubmission
                     ? (task.Status == InternshipTaskStatus.RevisionRequested ? "Resubmit" : "Submit")
                     : "Details";
+                // Submit / Resubmit opens the popup straight away; Details only selects the task.
+                row.CommandName = task.AcceptsSubmission ? "OpenSubmit" : "SelectTask";
                 row.RowClass = selected != null && selected.Id == task.Id ? "is-selected" : "";
                 rows.Add(row);
             }
@@ -86,11 +97,12 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         protected void rptTasks_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if (e.CommandName != "SelectTask") return;
+            if (e.CommandName != "SelectTask" && e.CommandName != "OpenSubmit") return;
             InternshipTask task = new TaskRepository().GetById(Convert.ToString(e.CommandArgument));
             if (!OwnsTask(task)) return;
             ViewState["SelectedTaskId"] = task.Id;
             LoadTasks();
+            if (e.CommandName == "OpenSubmit" && task.AcceptsSubmission) OpenDialog = "submit";
         }
 
         protected void btnSubmitTask_Click(object sender, EventArgs e)
@@ -163,7 +175,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             txtSubmissionLink.Text = "";
             ViewState["SelectedTaskId"] = task.Id;
             LoadTasks();
-            ShowMessage(L.T("Student.MyTasks.YourTaskWasSubmittedSuccessfully"), true);
+            ShowResult(task, submission.AttemptNumber);
         }
 
         private InternshipTask GetSelectedTask()
@@ -185,7 +197,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             pnlSelectedTask.Visible = true;
             pnlSelectTask.Visible = false;
             litTaskTitle.Text = task.Title ?? "";
-            litStatus.Text = FriendlyStatus(task.Status);
+            litStatus.Text = L.Value("Ui", FriendlyStatus(task.Status));
+            SelectedStatusClass = StatusClass(task.Status);
             litDescription.Text = string.IsNullOrWhiteSpace(task.Description) ? L.T("Student.MyTasks.NoDescriptionWasProvided") : task.Description;
             litInstructions.Text = string.IsNullOrWhiteSpace(task.Instructions) ? L.T("Student.MyTasks.NoAdditionalInstructionsWereProvided") : task.Instructions;
             litDeadline.Text = task.Deadline > 0 ? FormatDate(task.Deadline) : L.T("Student.MyTasks.NotSet");
@@ -203,7 +216,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             pnlSubmissionForm.Visible = task.AcceptsSubmission;
             pnlSubmissionClosed.Visible = !task.AcceptsSubmission;
-            btnSubmitTask.Text = task.Status == InternshipTaskStatus.RevisionRequested ? L.T("Student.MyTasks.ResubmitTask") : L.T("Student.MyTasks.SubmitTask2");
+            BindSubmitDialog(task);
             bool storageReady = !string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["Firebase.StorageBucket"]);
             fuSubmission.Enabled = storageReady;
             litFileRequirement.Text = !storageReady
@@ -215,6 +228,49 @@ namespace InternshipManagementSystem.Pages.StudentArea
             rptCriteria.DataBind();
             lblNoCriteria.Visible = task.Criteria == null || task.Criteria.Count == 0;
             BindHistory(task);
+        }
+
+        /// <summary>Fills the submit / resubmit popup for the selected task.</summary>
+        private void BindSubmitDialog(InternshipTask task)
+        {
+            IsResubmission = task.Status == InternshipTaskStatus.RevisionRequested;
+            int nextAttempt = CountAttempts(new SubmissionRepository().GetByTask(task.Id), task) + 1;
+            string note = IsResubmission ? LatestRevisionNote(task) : "";
+
+            phSubmitDialog.Visible = task.AcceptsSubmission;
+            litOpenSubmitLabel.Text = IsResubmission ? L.T("Student.MyTasks.ResubmitTask") : L.T("Student.MyTasks.SubmitTask2");
+            phRevisionNote.Visible = note.Length > 0;
+            litRevisionNote.Text = note;
+            phDialogRevisionNote.Visible = note.Length > 0;
+            litDialogRevisionNote.Text = note;
+
+            litDialogEyebrow.Text = L.F(IsResubmission ? "Student.MyTasks.ResubmissionAttempt" : "Student.MyTasks.NewSubmissionAttempt", nextAttempt);
+            litDialogTitle.Text = IsResubmission ? L.T("Student.MyTasks.ResubmitWork") : L.T("Student.MyTasks.SubmitWork");
+            litDialogTask.Text = (task.Title ?? "") + (task.Deadline > 0 ? " · " + L.T("Student.MyTasks.Deadline2") + " " + FormatDate(task.Deadline) : "");
+            litDialogNext.Text = L.F("Student.MyTasks.WhatHappensNextText", nextAttempt);
+            btnSubmitTask.Text = IsResubmission ? L.T("Student.MyTasks.SendResubmission") : L.T("Student.MyTasks.SendSubmission");
+        }
+
+        /// <summary>The supervisor's most recent "please change this" note for the task.</summary>
+        private string LatestRevisionNote(InternshipTask task)
+        {
+            TaskEvaluation latest = null;
+            foreach (TaskEvaluation e in new TaskEvaluationRepository().GetByTask(task.Id))
+                if (e != null && e.RevisionRequested && e.StudentId == CurrentStudent.Id &&
+                    e.PlacementId == task.PlacementId && (latest == null || e.EvaluatedAt > latest.EvaluatedAt)) latest = e;
+            if (latest == null) return "";
+            string note = string.IsNullOrWhiteSpace(latest.RevisionInstructions) ? latest.Feedback : latest.RevisionInstructions;
+            return (note ?? "").Trim();
+        }
+
+        /// <summary>Shows the "work sent" popup after the server saved the attempt.</summary>
+        private void ShowResult(InternshipTask task, int attempt)
+        {
+            phResultDialog.Visible = true;
+            litResultTitle.Text = attempt > 1 ? L.T("Student.MyTasks.ResubmissionSent") : L.T("Student.MyTasks.SubmissionSent");
+            litResultMessage.Text = L.F("Student.MyTasks.SentText", attempt, task.Title ?? "");
+            litResultAttempt.Text = L.F("Student.MyTasks.AttemptNumber", attempt);
+            OpenDialog = "result";
         }
 
         private void BindHistory(InternshipTask task)
@@ -372,8 +428,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
         private void ShowMessage(string message, bool success)
         {
             lblSubmitMessage.Text = Server.HtmlEncode(message);
-            lblSubmitMessage.CssClass = success ? "alert alert-success d-block mt-3" : "alert alert-danger d-block mt-3";
+            lblSubmitMessage.CssClass = success ? "task-dialog-callout is-info" : "task-dialog-alert";
             lblSubmitMessage.Visible = true;
+            // Errors show inside the popup, so open it again with the student's text kept.
+            if (!success) OpenDialog = "submit";
         }
 
         public class StudentTaskRow
@@ -386,6 +444,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             public string StatusClass { get; set; }
             public string AttemptsLabel { get; set; }
             public string ActionLabel { get; set; }
+            public string CommandName { get; set; }
             public string RowClass { get; set; }
         }
 

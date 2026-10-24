@@ -26,6 +26,12 @@ namespace InternshipManagementSystem.Data
             return GetWhere("StudentId", studentId);
         }
 
-        /// <summary>Saves a comment; a comment visible to the student also notifies them.</summary>
+        /// <summary>A new comment that the student may see notifies the student.</summary>
+        protected override bool SendNotice(AcademicComment previous, AcademicComment current)
+        {
+            if (previous != null) return false;
+            Services.NotificationService.AcademicCommentAdded(current);
+            return true;
+        }
     }
 }

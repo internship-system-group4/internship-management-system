@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  My Profile
 //  Owner : Sara Rajoub
 //  Cards : R06, R07
@@ -499,6 +499,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 student.PhoneNumber = phone;
                 student.CvUrl = cvUrl;
                 student.PortfolioUrl = portfolioUrl;
+                if (!string.IsNullOrEmpty(updatedExtra.PhotoStorageName))
+                    student.ProfileImageUrl = "~/Pages/Student/Profile.aspx?photo=1&v=" + updatedExtra.UpdatedAt;
 
                 Session[Constants.SessionUserKey] = student;
 

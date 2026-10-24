@@ -678,4 +678,21 @@
   <data name="Progress.DownloadReport" xml:space="preserve"><value>Download completion report (PDF)</value></data>
   <data name="Progress.PrintReport" xml:space="preserve"><value>Print report</value></data>
   <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>Replaced by the released result</value></data>
+  <data name="MyTasks.SupervisorRequestedChanges" xml:space="preserve"><value>Changes requested by your supervisor</value></data>
+  <data name="MyTasks.SubmitWork" xml:space="preserve"><value>Submit your work</value></data>
+  <data name="MyTasks.ResubmitWork" xml:space="preserve"><value>Resubmit your work</value></data>
+  <data name="MyTasks.NewSubmissionAttempt" xml:space="preserve"><value>New submission · Attempt {0}</value></data>
+  <data name="MyTasks.ResubmissionAttempt" xml:space="preserve"><value>Resubmission · Attempt {0}</value></data>
+  <data name="MyTasks.WhatHappensNext" xml:space="preserve"><value>What happens next</value></data>
+  <data name="MyTasks.WhatHappensNextText" xml:space="preserve"><value>Your company supervisor is notified and reviews attempt {0}. Earlier attempts stay in your submission history.</value></data>
+  <data name="MyTasks.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="MyTasks.SendSubmission" xml:space="preserve"><value>Send submission</value></data>
+  <data name="MyTasks.SendResubmission" xml:space="preserve"><value>Send resubmission</value></data>
+  <data name="MyTasks.Sending" xml:space="preserve"><value>Sending…</value></data>
+  <data name="MyTasks.SubmissionSent" xml:space="preserve"><value>Work submitted</value></data>
+  <data name="MyTasks.ResubmissionSent" xml:space="preserve"><value>Resubmission sent</value></data>
+  <data name="MyTasks.SentText" xml:space="preserve"><value>Attempt {0} of "{1}" is now with your supervisor for review.</value></data>
+  <data name="MyTasks.AttemptNumber" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="MyTasks.WaitingForReview" xml:space="preserve"><value>Waiting for review</value></data>
+  <data name="MyTasks.Done" xml:space="preserve"><value>Done</value></data>
 </root>

@@ -194,6 +194,15 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litViewSupName;
 
+        /// <summary>Supervisor initials in the view pop-up.</summary>
+        protected global::System.Web.UI.WebControls.Literal litViewInitials;
+
+        /// <summary>Supervisor email under the name in the view pop-up.</summary>
+        protected global::System.Web.UI.WebControls.Literal litViewEmailHero;
+
+        /// <summary>"View profile" link in the view pop-up.</summary>
+        protected global::System.Web.UI.WebControls.HyperLink lnkViewProfile;
+
         /// <summary>
         /// litViewJobTitle control.
         /// </summary>

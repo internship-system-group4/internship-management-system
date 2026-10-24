@@ -153,7 +153,6 @@ html.company-portal[data-theme="dark"] .workflow-link:hover { background-color:v
 
 /* Ink tokens used as navy fills keep a navy fill in Dark (their text use becomes light). */
 [data-theme="dark"] .about-page { --about-deep:#17344f; }
-[data-theme="dark"] .home-page #opportunities { background:#14304a; }
 /* White actions over the About film stay white: they sit on footage, not on the page. */
 [data-theme="dark"] .uims-public .about-page a.about-film-play { background:#f2f6fa; border-color:#f2f6fa; color:#133d61; }
 [data-theme="dark"] .uims-public .about-page a.about-film-play:hover { background:#dfe8f1; border-color:#dfe8f1; color:#133d61; }

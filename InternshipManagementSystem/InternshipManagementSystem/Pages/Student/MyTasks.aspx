@@ -1,5 +1,6 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="MyTasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.MyTasks" Title="My Tasks" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="MyTasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.MyTasks" Title="My Tasks" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261024-3") %>" />
 <style>
 .student-tasks-page{color:var(--th-fg-183f60,#183f60)}.student-tasks-heading{margin-bottom:22px}.student-tasks-heading h2{margin:0 0 6px;font-size:1.8rem;font-weight:700;color:var(--th-fg-123d60,#123d60)}.student-tasks-heading p{margin:0;color:var(--ui-muted)}
 .student-tasks-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.85fr);gap:18px;align-items:start}.student-task-card,.student-submit-card{background:var(--ui-surface,#fff);border:1px solid var(--th-line-d8e4f1,#d8e4f1);border-radius:12px;overflow:hidden}
@@ -28,7 +29,7 @@
                         <tr class='<%# Eval("RowClass") %>'>
                             <td><span class="student-task-title"><%#: Eval("Title") %></span><span class="student-task-subtitle"><%#: Eval("StartLabel") %></span></td>
                             <td><%#: Eval("DeadlineLabel") %></td><td><span class='student-status <%#: Eval("StatusClass") %>'><%#: L.Value("Ui", Eval("StatusLabel")) %></span></td><td><%#: Eval("AttemptsLabel") %></td>
-                            <td><asp:LinkButton ID="lnkSelectTask" runat="server" CssClass="student-select-button" Text='<%# L.Value("Ui", Eval("ActionLabel")) %>' CommandName="SelectTask" CommandArgument='<%# Eval("Id") %>' CausesValidation="false" /></td>
+                            <td><asp:LinkButton ID="lnkSelectTask" runat="server" CssClass="student-select-button" Text='<%# L.Value("Ui", Eval("ActionLabel")) %>' CommandName='<%# Eval("CommandName") %>' CommandArgument='<%# Eval("Id") %>' CausesValidation="false" /></td>
                         </tr>
                     </ItemTemplate></asp:Repeater>
                     <asp:PlaceHolder ID="phNoTaskRows" runat="server" Visible="false"><tr><td colspan="5" class="text-center py-4"><%: L.T("Student.MyTasks.NoTasksHaveBeenAssignedTo2") %></td></tr></asp:PlaceHolder>
@@ -41,16 +42,18 @@
             <asp:Panel ID="pnlSelectedTask" runat="server" Visible="false">
                 <div class="student-card-heading"><h3 id="submitTaskHeading"><%: L.T("Student.MyTasks.TaskDetailsAndSubmission") %></h3><p><%: L.T("Student.MyTasks.SubmitYourWorkHereEachResubmission") %></p></div>
                 <div class="student-submit-body">
-                    <div class="student-selected-meta"><div><h4><asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" /></h4><p><%: L.T("Student.MyTasks.Deadline2") %> <asp:Literal ID="litDeadline" runat="server" Mode="Encode" /></p></div><span class="student-status"><asp:Literal ID="litStatus" runat="server" Mode="Encode" /></span></div>
+                    <div class="student-selected-meta"><div><h4><asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" /></h4><p><%: L.T("Student.MyTasks.Deadline2") %> <asp:Literal ID="litDeadline" runat="server" Mode="Encode" /></p></div><span class="student-status <%: SelectedStatusClass %>"><asp:Literal ID="litStatus" runat="server" Mode="Encode" /></span></div>
                     <div class="student-detail-block"><h5><%: L.T("Student.MyTasks.Description") %></h5><p><asp:Literal ID="litDescription" runat="server" Mode="Encode" /></p></div>
                     <div class="student-detail-block"><h5><%: L.T("Student.MyTasks.Instructions") %></h5><p><asp:Literal ID="litInstructions" runat="server" Mode="Encode" /></p><asp:HyperLink ID="lnkTaskAttachment" runat="server" CssClass="student-attachment-link" Target="_blank" Visible="false" /></div>
                     <asp:Panel ID="pnlSubmissionForm" runat="server" CssClass="student-submit-form">
                         <h4><%: L.T("Student.MyTasks.SubmitOrResubmitWork") %></h4><p class="text-muted small mb-3"><%: L.T("Student.MyTasks.AddANoteALinkOr") %></p>
-                        <div class="mb-3"><asp:Label ID="lblSubmissionText" runat="server" AssociatedControlID="txtSubmissionText" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.DescriptionOrNoteOptional %>" /><asp:TextBox ID="txtSubmissionText" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="2000" /></div>
-                        <div class="mb-3"><asp:Label ID="lblSubmissionLink" runat="server" AssociatedControlID="txtSubmissionLink" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.LinkOptional %>" /><asp:TextBox ID="txtSubmissionLink" runat="server" CssClass="form-control" TextMode="Url" MaxLength="2000" /><div class="student-file-help"><%: L.T("Student.MyTasks.UseAFullLinkBeginningWith") %></div></div>
-                        <div class="mb-2"><asp:Label ID="lblSubmissionFile" runat="server" AssociatedControlID="fuSubmission" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.AttachmentOptional %>" /><asp:FileUpload ID="fuSubmission" runat="server" CssClass="form-control" /><div class="student-file-help"><%: L.T("Student.MyTasks.PDFWordZIPOrImageFile") %></div><asp:Literal ID="litFileRequirement" runat="server" Mode="Encode" /></div>
-                        <asp:Label ID="lblSubmitMessage" runat="server" Visible="false" EnableViewState="false" />
-                        <asp:Button ID="btnSubmitTask" runat="server" Text="<%$ Resources:Student, MyTasks.SubmitTask2 %>" CssClass="btn btn-brand student-submit-button" OnClick="btnSubmitTask_Click" />
+                        <asp:PlaceHolder ID="phRevisionNote" runat="server" Visible="false">
+                            <div class="task-dialog-callout"><strong><%: L.T("Student.MyTasks.SupervisorRequestedChanges") %></strong><p><asp:Literal ID="litRevisionNote" runat="server" Mode="Encode" /></p></div>
+                        </asp:PlaceHolder>
+                        <button type="button" id="btnOpenSubmitDialog" class="task-dialog-btn task-dialog-btn-primary task-dialog-open" data-task-dialog="submitWorkDialog">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5M4 17v4h16v-4" /></svg>
+                            <asp:Literal ID="litOpenSubmitLabel" runat="server" Mode="Encode" />
+                        </button>
                     </asp:Panel>
                     <asp:Panel ID="pnlSubmissionClosed" runat="server" CssClass="alert alert-info mt-3" Visible="false"><%: L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions2") %></asp:Panel>
                     <div class="student-criteria"><h4><%: L.T("Student.MyTasks.TaskCriteria") %></h4><asp:Repeater ID="rptCriteria" runat="server"><ItemTemplate><div class="student-criterion"><strong><%#: Eval("Name") %></strong> <span><%#: Eval("Description") %></span><div><%#: Eval("MaxScore", "{0:0.##}") %> <%: L.T("Student.MyTasks.Points2") %></div></div></ItemTemplate></asp:Repeater><asp:Label ID="lblNoCriteria" runat="server" CssClass="text-muted small" Text="<%$ Resources:Student, MyTasks.NoAdditionalCriteriaWereProvided %>" Visible="false" /></div>
@@ -65,4 +68,55 @@
         </section>
     </div>
 </div>
+
+<%-- Submit / resubmit popup (shared design: Assets/css/task-dialogs.css). --%>
+<asp:PlaceHolder ID="phSubmitDialog" runat="server" Visible="false">
+<div class="modal fade uims-task-dialog" id="submitWorkDialog" tabindex="-1" aria-labelledby="submitWorkTitle" aria-hidden="true" data-open="<%= OpenDialog == "submit" ? "true" : "false" %>">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="task-dialog-header">
+                <span class="task-dialog-icon <%= IsResubmission ? "is-warning" : "" %>" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 16V4m-5 5 5-5 5 5M4 17v4h16v-4" /></svg></span>
+                <div class="task-dialog-heading">
+                    <span class="task-dialog-eyebrow <%= IsResubmission ? "is-warning" : "" %>"><asp:Literal ID="litDialogEyebrow" runat="server" Mode="Encode" /></span>
+                    <h2 class="modal-title" id="submitWorkTitle"><asp:Literal ID="litDialogTitle" runat="server" Mode="Encode" /></h2>
+                    <p class="task-dialog-sub"><asp:Literal ID="litDialogTask" runat="server" Mode="Encode" /></p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Student.MyTasks.Cancel") %>"></button>
+            </div>
+            <div class="modal-body">
+                <asp:Label ID="lblSubmitMessage" runat="server" Visible="false" EnableViewState="false" CssClass="task-dialog-alert" role="alert" />
+                <asp:PlaceHolder ID="phDialogRevisionNote" runat="server" Visible="false">
+                    <div class="task-dialog-callout"><strong><%: L.T("Student.MyTasks.SupervisorRequestedChanges") %></strong><p><asp:Literal ID="litDialogRevisionNote" runat="server" Mode="Encode" /></p></div>
+                </asp:PlaceHolder>
+                <div class="task-dialog-field"><asp:Label ID="lblSubmissionText" runat="server" AssociatedControlID="txtSubmissionText" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.DescriptionOrNoteOptional %>" /><asp:TextBox ID="txtSubmissionText" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" MaxLength="2000" /></div>
+                <div class="task-dialog-field"><asp:Label ID="lblSubmissionLink" runat="server" AssociatedControlID="txtSubmissionLink" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.LinkOptional %>" /><asp:TextBox ID="txtSubmissionLink" runat="server" CssClass="form-control" TextMode="Url" MaxLength="2000" /><div class="task-dialog-help"><%: L.T("Student.MyTasks.UseAFullLinkBeginningWith") %></div></div>
+                <div class="task-dialog-field"><asp:Label ID="lblSubmissionFile" runat="server" AssociatedControlID="fuSubmission" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.AttachmentOptional %>" /><asp:FileUpload ID="fuSubmission" runat="server" CssClass="form-control" /><div class="task-dialog-help"><%: L.T("Student.MyTasks.PDFWordZIPOrImageFile") %></div><asp:Literal ID="litFileRequirement" runat="server" Mode="PassThrough" /></div>
+                <div class="task-dialog-callout is-info"><strong><%: L.T("Student.MyTasks.WhatHappensNext") %></strong><p><asp:Literal ID="litDialogNext" runat="server" Mode="Encode" /></p></div>
+            </div>
+            <div class="task-dialog-footer">
+                <button type="button" class="task-dialog-btn task-dialog-btn-secondary" data-bs-dismiss="modal"><%: L.T("Student.MyTasks.Cancel") %></button>
+                <asp:Button ID="btnSubmitTask" runat="server" Text="<%$ Resources:Student, MyTasks.SubmitTask2 %>" CssClass="task-dialog-btn task-dialog-btn-primary" OnClick="btnSubmitTask_Click" data-ui-action="submit" data-loading-label="<%$ Resources:Student, MyTasks.Sending %>" />
+            </div>
+        </div>
+    </div>
+</div>
+</asp:PlaceHolder>
+
+<%-- Result popup shown after the server saved the submission. --%>
+<asp:PlaceHolder ID="phResultDialog" runat="server" Visible="false">
+<div class="modal fade uims-task-dialog task-result" id="submitResultDialog" tabindex="-1" aria-labelledby="submitResultTitle" aria-hidden="true" data-open="<%= OpenDialog == "result" ? "true" : "false" %>">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="task-result-body" role="status">
+                <span class="task-dialog-icon is-success" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.2 4.2L19 7" /></svg></span>
+                <h2 id="submitResultTitle"><asp:Literal ID="litResultTitle" runat="server" Mode="Encode" /></h2>
+                <p><asp:Literal ID="litResultMessage" runat="server" Mode="Encode" /></p>
+                <ul class="task-result-facts"><li><asp:Literal ID="litResultAttempt" runat="server" Mode="Encode" /></li><li><%: L.T("Student.MyTasks.WaitingForReview") %></li></ul>
+                <button type="button" class="task-dialog-btn task-dialog-btn-primary" data-bs-dismiss="modal"><%: L.T("Student.MyTasks.Done") %></button>
+            </div>
+        </div>
+    </div>
+</div>
+</asp:PlaceHolder>
+<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261024-3") %>"></script>
 </asp:Content>

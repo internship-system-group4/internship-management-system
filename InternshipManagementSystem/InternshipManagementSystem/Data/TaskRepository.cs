@@ -22,6 +22,15 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
+        /// <summary>A new task tells the student (bilingual, opens the task).
+        /// Edits and reassignments keep the email service's notice.</summary>
+        protected override bool SendNotice(InternshipTask previous, InternshipTask current)
+        {
+            if (previous != null) return false;
+            Services.NotificationService.TaskAssigned(current);
+            return true;
+        }
+
         public List<InternshipTask> GetByPlacement(string placementId)
         {
             return GetWhere("PlacementId", placementId);

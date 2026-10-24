@@ -1,4 +1,4 @@
-﻿<%@ Page Title="My Account" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Account" %>
+<%@ Page Title="My Account" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Account" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -6,7 +6,8 @@
         
         /* Profile Avatar with Edit Badge */
         .profile-avatar-wrapper { position: relative; width: 100px; height: 100px; margin-top: -50px; margin-inline-start: 2rem; margin-bottom: 1rem; }
-        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background-color: var(--th-bg-e8f0f7,#e8f0f7); color: var(--brand-text,var(--brand-dark)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; border: 4px solid var(--surface); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background-color: var(--th-bg-e8f0f7,#e8f0f7); color: var(--brand-text,var(--brand-dark)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; border: 4px solid var(--surface); box-shadow: 0 4px 6px rgba(0,0,0,0.1); overflow: hidden; }
+        .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
         .edit-badge { position: absolute; bottom: 0; inset-inline-end: 0; background-color: var(--brand); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--th-line-ffffff,#fff); cursor: pointer; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
         .edit-badge:hover { background-color: var(--brand-dark); }
         
@@ -27,7 +28,11 @@
         <!-- Avatar overlapping cover nicely -->
         <div class="profile-avatar-wrapper">
             <div class="profile-avatar">
+                <% if (CurrentSupervisor != null && !string.IsNullOrEmpty(CurrentSupervisor.ProfileImageUrl) && CurrentSupervisor.ProfileImageUrl.StartsWith("~/Assets/Uploads/", System.StringComparison.Ordinal)) { %>
+                <img src="<%: ResolveUrl(CurrentSupervisor.ProfileImageUrl) %>" alt="" />
+                <% } else { %>
                 <asp:Literal ID="litAvatarInitials" runat="server">Dr</asp:Literal>
+                <% } %>
             </div>
             <!-- Clickable Pencil Icon -->
             <label for="<%= fuProfileImage.ClientID %>" class="edit-badge" title="<%: L.T("Academic.Account.ChangeProfilePhoto") %>">

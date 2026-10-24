@@ -1,13 +1,17 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Dashboard" Title="Coordinator Dashboard" %>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Dashboard" Title="Coordinator Dashboard" %>
 <%@ Import Namespace="System.Linq" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-dashboard.css?v=20261024-theme-7") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-dashboard.css?v=20261024-record-modal-1") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="coordination-desk" data-coordination-desk>
-    <header class="desk-heading">
-        <div class="desk-title"><span class="desk-title-icon" aria-hidden="true"><i class="desk-icon icon-cap"></i></span><div><h2><%: Text("CoordinationDesk") %></h2><p><%: Text("DeskDescription") %></p></div></div>
-        <a class="desk-review-link" href="<%: ResolveUrl("~/Pages/Coordinator/CompletionReview.aspx") %>"><%: Text("OpenCompletionReview") %><i class="desk-icon icon-next" aria-hidden="true"></i></a>
+<div class="coordination-desk dir-page" data-coordination-desk>
+    <header class="dir-head">
+        <div>
+            <div class="dir-crumb"><%: L.T("Coordinator.Dashboard.Crumb") %></div>
+            <h2><%: Text("CoordinationDesk") %></h2>
+            <p><%: Text("DeskDescription") %></p>
+        </div>
+        <a class="btn btn-brand dir-add" href="<%: ResolveUrl("~/Pages/Coordinator/CompletionReview.aspx") %>"><span data-ui-icon="approved" aria-hidden="true"></span> <%: Text("OpenCompletionReview") %></a>
     </header>
     <% if(Model == null) { %>
     <div class="alert alert-warning" role="alert"><%: Text("WeCouldNotLoadTheProgramme") %> <a href="<%: ResolveUrl("~/Pages/Coordinator/Dashboard.aspx") %>"><%: Text("Retry") %></a></div>
@@ -77,12 +81,47 @@
         </tbody></table></div><% } %>
     </section>
     <div class="desk-programme-facts"><span><%: Text("ProgrammeDirectory") %></span><a href="<%: ResolveUrl("~/Pages/Coordinator/Companies.aspx") %>"><%: string.Format(Text("CompanyCount"), Summary.Companies, Summary.ActiveCompanies) %></a><span><%: string.Format(Text("OpportunityCount"), Summary.Opportunities, Summary.OpenOpportunities) %></span></div>
-    <div class="modal fade desk-record-modal" id="deskRecords" tabindex="-1" aria-labelledby="desk-record-title" aria-describedby="desk-record-context" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><div><h3 class="modal-title" id="desk-record-title"></h3><p id="desk-record-context"></p></div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Shared.WorkspaceChart.CloseDetails") %>"></button></div><div class="modal-body"><ol class="desk-record-list"></ol><p data-desk-no-records hidden><%: L.T("Shared.WorkspaceChart.NoMatchingRecordsInThisScope") %></p></div><div class="modal-footer"><div class="desk-record-pagination"><button type="button" class="btn btn-outline-primary" data-desk-page="-1"><%: L.T("Shared.WorkspaceChart.Previous") %></button><span data-desk-page-label role="status" aria-live="polite"></span><button type="button" class="btn btn-outline-primary" data-desk-page="1"><%: L.T("Shared.WorkspaceChart.Next") %></button></div><button type="button" class="btn btn-primary" data-bs-dismiss="modal"><%: L.T("Shared.WorkspaceChart.Done") %></button></div></div></div></div>
+        <div class="modal fade desk-record-modal" id="deskRecords" tabindex="-1" aria-labelledby="desk-record-title" aria-describedby="desk-record-context" aria-hidden="true" data-record-count-label="<%: Text("Records") %>">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header desk-record-header">
+                        <div class="desk-record-heading">
+                            <span class="desk-record-eyebrow"><i class="bi bi-collection" aria-hidden="true"></i><%: Text("ViewAffectedRecords") %></span>
+                            <h5 class="modal-title" id="desk-record-title"></h5>
+                            <p id="desk-record-context"></p>
+                        </div>
+                        <button type="button" class="btn-close desk-record-close" data-bs-dismiss="modal" aria-label="<%: L.T("Shared.WorkspaceChart.CloseDetails") %>"></button>
+                    </div>
+                    <div class="desk-record-toolbar">
+                        <label class="desk-record-search">
+                            <i class="bi bi-search" aria-hidden="true"></i>
+                            <span class="visually-hidden"><%: Text("SearchRelatedRecords") %></span>
+                            <input type="search" data-desk-record-search autocomplete="off" placeholder="<%: Text("SearchRelatedRecords") %>" />
+                        </label>
+                        <span class="desk-record-count" data-desk-record-count aria-live="polite"></span>
+                    </div>
+                    <div class="modal-body desk-record-body">
+                        <ol class="desk-record-list"></ol>
+                        <div data-desk-no-records hidden class="desk-record-empty"><i class="bi bi-folder2-open" aria-hidden="true"></i><p><%: L.T("Shared.WorkspaceChart.NoMatchingRecordsInThisScope") %></p></div>
+                        <div data-desk-no-search-results hidden class="desk-record-empty"><i class="bi bi-search" aria-hidden="true"></i><p><%: Text("NoRelatedRecordsMatch") %></p></div>
+                    </div>
+                    <div class="modal-footer desk-record-footer">
+                        <div class="desk-record-pagination">
+                            <button type="button" class="desk-record-page" data-desk-page="-1"><i class="bi bi-chevron-left" aria-hidden="true"></i><%: L.T("Shared.WorkspaceChart.Previous") %></button>
+                            <span data-desk-page-label role="status" aria-live="polite"></span>
+                            <button type="button" class="desk-record-page" data-desk-page="1"><%: L.T("Shared.WorkspaceChart.Next") %><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+                        </div>
+                        <button type="button" class="desk-record-done" data-bs-dismiss="modal"><%: L.T("Shared.WorkspaceChart.Done") %></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     <noscript><p><%: Text("ScriptHelp") %></p><style>.coordination-desk .desk-stat-action,.coordination-desk .desk-followup-action,.coordination-desk .desk-major-action{display:none}.coordination-desk .desk-followup,.coordination-desk .desk-major,.coordination-desk .desk-stage{pointer-events:none}</style></noscript>
     <% } %>
 </div>
 </asp:Content>
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
     <script src="<%: ResolveUrl("~/Assets/js/chart.umd.js") %>"></script>
-    <script src="<%: ResolveUrl("~/Assets/js/coordinator-dashboard.js?v=20261024-desk-live-3") %>"></script>
+    <script src="<%: ResolveUrl("~/Assets/js/coordinator-dashboard.js?v=20261024-record-modal-1") %>"></script>
 </asp:Content>

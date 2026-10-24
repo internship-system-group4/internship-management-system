@@ -187,6 +187,7 @@
   <data name="Js.PwMismatch" xml:space="preserve"><value>كلمتا المرور الجديدتان غير متطابقتين.</value></data>
   <data name="Js.PwNewMismatch" xml:space="preserve"><value>كلمتا المرور الجديدتان غير متطابقتين.</value></data>
   <data name="Js.RequestingReset" xml:space="preserve"><value>جارٍ طلب رابط إعادة التعيين…</value></data>
+  <data name="Js.RecoveryOffline" xml:space="preserve"><value>تعذّر الوصول إلى الخادم. تحقّق من اتصالك وحاول مجددًا.</value></data>
   <data name="Js.ResumeCampusMotion" xml:space="preserve"><value>استئناف حركة الحرم الجامعي</value></data>
   <data name="Js.ResumeScene" xml:space="preserve"><value>استئناف المشهد</value></data>
   <data name="Js.ResumeWheelMotion" xml:space="preserve"><value>استئناف حركة الناعورة</value></data>
@@ -680,6 +681,8 @@
   <data name="Notify.CompletionApproved.Message" xml:space="preserve"><value>نتيجة تدريبك: {0}. افتح صفحة تقدّمي لرؤية التفاصيل وتحميل التقرير.</value></data>
   <data name="Notify.CompletionApprovedSupervisor.Title" xml:space="preserve"><value>اكتمل التدريب</value></data>
   <data name="Notify.CompletionApprovedSupervisor.Message" xml:space="preserve"><value>اعتمد المنسق إنهاء تدريب الطالب {0}.</value></data>
+  <data name="Notify.CompletionApprovedNoResult.Title" xml:space="preserve"><value>صدرت نتيجتك النهائية</value></data>
+  <data name="Notify.CompletionApprovedNoResult.Message" xml:space="preserve"><value>اعتمد المنسق إنهاء تدريبك. افتح صفحة تقدّمي لرؤية نتيجتك وتنزيل تقريرك.</value></data>
   <data name="Notify.CompletionRejected.Title" xml:space="preserve"><value>لم يُعتمد إنهاء التدريب</value></data>
   <data name="Notify.CompletionRejected.Message" xml:space="preserve"><value>ملاحظة المنسق: {0}</value></data>
   <data name="Notify.CompletionRejectedNoNote.Title" xml:space="preserve"><value>لم يُعتمد إنهاء التدريب</value></data>

@@ -40,24 +40,29 @@ namespace InternshipManagementSystem.Services
                 ex.GetType().Name);
         }
 
-        internal static void Saved(object previous, object current)
+        /// <summary>Sends the email (and, when <paramref name="writeInbox"/> is true, the
+        /// English inbox entry) for a saved record. Pass writeInbox = false when the
+        /// caller already sent the bilingual notice through NotificationService,
+        /// so the person does not get the same event twice in the bell.</summary>
+        internal static void Saved(object previous, object current, bool writeInbox = true)
         {
+            if (!writeInbox && !Enabled) return;
             var addresses = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             TryNotify(() => new NotificationDispatcher(
                 id => new UserRepository().GetPerson(id),
                 role => new UserRepository().GetByRole(role),
                 id => new PlacementRepository().GetById(id),
                 (recipient, subject, detail, page) => DeliverChannels(recipient, subject, detail, page,
-                    addresses.Add((recipient.Email ?? "").Trim())), false).Saved(previous, current));
+                    addresses.Add((recipient.Email ?? "").Trim()), writeInbox), false).Saved(previous, current));
         }
 
-        internal static void DeliverChannels(Person recipient, string subject, string detail, string page, bool sendEmail = true)
+        internal static void DeliverChannels(Person recipient, string subject, string detail, string page, bool sendEmail = true, bool writeInbox = true)
         {
             UserNotification item = new UserNotification { RecipientId = recipient.Id, Title = subject,
                 SenderId = Security.SessionHelper.Current == null ? null : Security.SessionHelper.Current.Id,
                 Detail = detail, Page = page, CreatedAt = Time.NowMs(), EmailStatus = !Enabled ? "Disabled" : sendEmail ? "Pending" : "Duplicate" };
             bool stored = false;
-            try { if (InboxEnabled) { new NotificationRepository().Add(item); stored = true; } }
+            try { if (InboxEnabled && writeInbox) { new NotificationRepository().Add(item); stored = true; } }
             catch (Exception ex) { LogFailure(ex); }
             if (!Enabled || !sendEmail) return;
             string status = "Sent";
@@ -66,6 +71,16 @@ namespace InternshipManagementSystem.Services
             if (stored)
                 try { new NotificationRepository().SetEmailStatus(item, status); }
                 catch (Exception ex) { LogFailure(ex); }
+        }
+
+        /// <summary>Only the email (no inbox entry), for events whose bell notice comes
+        /// from NotificationService. <paramref name="link"/> may start with "~/".
+        /// A failure is only logged.</summary>
+        internal static void EmailOnly(Person recipient, string subject, string detail, string link)
+        {
+            if (!Enabled || recipient == null || string.IsNullOrWhiteSpace(recipient.Email)) return;
+            try { Send(recipient, subject, detail, (link ?? "").TrimStart('~', '/')); }
+            catch (Exception ex) { LogFailure(ex); }
         }
 
         private static string Setting(string name)

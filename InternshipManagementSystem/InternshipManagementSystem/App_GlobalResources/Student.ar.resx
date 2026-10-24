@@ -678,4 +678,21 @@
   <data name="Progress.DownloadReport" xml:space="preserve"><value>تنزيل تقرير الإتمام (PDF)</value></data>
   <data name="Progress.PrintReport" xml:space="preserve"><value>طباعة التقرير</value></data>
   <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>استُبدل بالنتيجة المعلنة</value></data>
+  <data name="MyTasks.SupervisorRequestedChanges" xml:space="preserve"><value>التعديلات التي طلبها مشرفك</value></data>
+  <data name="MyTasks.SubmitWork" xml:space="preserve"><value>تسليم عملك</value></data>
+  <data name="MyTasks.ResubmitWork" xml:space="preserve"><value>إعادة تسليم عملك</value></data>
+  <data name="MyTasks.NewSubmissionAttempt" xml:space="preserve"><value>تسليم جديد · المحاولة {0}</value></data>
+  <data name="MyTasks.ResubmissionAttempt" xml:space="preserve"><value>إعادة تسليم · المحاولة {0}</value></data>
+  <data name="MyTasks.WhatHappensNext" xml:space="preserve"><value>ماذا يحدث بعد ذلك</value></data>
+  <data name="MyTasks.WhatHappensNextText" xml:space="preserve"><value>يصل إشعار إلى مشرف الشركة ليراجع المحاولة {0}. تبقى المحاولات السابقة في سجل التسليمات.</value></data>
+  <data name="MyTasks.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="MyTasks.SendSubmission" xml:space="preserve"><value>إرسال التسليم</value></data>
+  <data name="MyTasks.SendResubmission" xml:space="preserve"><value>إرسال إعادة التسليم</value></data>
+  <data name="MyTasks.Sending" xml:space="preserve"><value>جارٍ الإرسال…</value></data>
+  <data name="MyTasks.SubmissionSent" xml:space="preserve"><value>تم تسليم العمل</value></data>
+  <data name="MyTasks.ResubmissionSent" xml:space="preserve"><value>تم إرسال إعادة التسليم</value></data>
+  <data name="MyTasks.SentText" xml:space="preserve"><value>المحاولة {0} من "{1}" الآن لدى مشرفك للمراجعة.</value></data>
+  <data name="MyTasks.AttemptNumber" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="MyTasks.WaitingForReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
+  <data name="MyTasks.Done" xml:space="preserve"><value>تم</value></data>
 </root>

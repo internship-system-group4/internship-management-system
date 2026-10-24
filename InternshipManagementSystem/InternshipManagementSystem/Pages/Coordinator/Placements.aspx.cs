@@ -5,6 +5,23 @@ using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
+    /// <summary>The status pill colour for a placement on coordinator pages.</summary>
+    public static class PlacementStatusStyle
+    {
+        public static string Css(PlacementStatus status)
+        {
+            switch (status)
+            {
+                case PlacementStatus.Active:
+                case PlacementStatus.Completed: return "dir-status is-active";
+                case PlacementStatus.AwaitingCompletion: return "dir-status is-warning";
+                case PlacementStatus.Cancelled: return "dir-status is-inactive";
+                case PlacementStatus.Confirmed: return "dir-status is-info";
+                default: return "dir-status is-neutral";
+            }
+        }
+    }
+
     public partial class Placements : Security.CoordinatorPage
     {
         protected List<PlacementOverview> Rows = new List<PlacementOverview>();

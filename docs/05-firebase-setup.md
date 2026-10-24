@@ -67,7 +67,7 @@ Paste this exact development rule set into **Realtime Database → Rules**:
       ".write": "auth != null && root.child('users/' + auth.uid + '/Role').val() !== 1",
       ".indexOn": ["PlacementId"]
     },
-    "contactMessages": {
+    "ContactMessages": {
       ".read":  "auth != null && root.child('users/' + auth.uid + '/Role').val() === 4",
       ".write": true
     },

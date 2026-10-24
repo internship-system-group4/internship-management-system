@@ -46,6 +46,19 @@
   <data name="ForgotPassword.PleaseEnterYourEmailAddress" xml:space="preserve"><value>Please enter your email address.</value></data>
   <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>Reset your password</value></data>
   <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>Send Reset Link</value></data>
+  <data name="ForgotPassword.CheckYourEmail" xml:space="preserve"><value>Check your email</value></data>
+  <data name="ForgotPassword.EnterYourUniversityEmailAddress" xml:space="preserve"><value>Enter your university email address and we'll send you a link to reset your password.</value></data>
+  <data name="ForgotPassword.PasswordRecovery" xml:space="preserve"><value>Password recovery</value></data>
+  <data name="ForgotPassword.PleaseWaitAMomentBefore" xml:space="preserve"><value>Please wait a moment before requesting another link.</value></data>
+  <data name="ForgotPassword.RecoverYourAccess" xml:space="preserve"><value>Recover your access.</value></data>
+  <data name="ForgotPassword.RememberedItBackToLogin" xml:space="preserve"><value>Remembered it? Back to Login</value></data>
+  <data name="ForgotPassword.ScreenProcessing" xml:space="preserve"><value>Processing…</value></data>
+  <data name="ForgotPassword.ScreenReady" xml:space="preserve"><value>Password Recovery</value></data>
+  <data name="ForgotPassword.ScreenReadyHint" xml:space="preserve"><value>Ready for your request</value></data>
+  <data name="ForgotPassword.ScreenRetry" xml:space="preserve"><value>Please try again</value></data>
+  <data name="ForgotPassword.ScreenSent" xml:space="preserve"><value>Reset Link Sent</value></data>
+  <data name="ForgotPassword.UseADifferentEmail" xml:space="preserve"><value>Use a different email</value></data>
+  <data name="ForgotPassword.UseTheEmailRegisteredWithUims" xml:space="preserve"><value>Use the email address registered with UIMS (e.g. @gju.edu.jo).</value></data>
   <data name="Login.ContactYourCoordinator" xml:space="preserve"><value>Contact your coordinator</value></data>
   <data name="Login.ContinueToYourPortal" xml:space="preserve"><value>Continue to your portal</value></data>
   <data name="Login.EmailAddress" xml:space="preserve"><value>Email address</value></data>

@@ -807,4 +807,23 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل الفرصة.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>أسابيع</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>حسابك غير مرتبط بأي شركة.</value></data>
+  <data name="TaskReview.AttemptFact" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="TaskReview.RequestChangesHelp" xml:space="preserve"><value>أخبر {0} بما يجب تعديله في "{1}". تعود المهمة إليه ليعيد تسليمها.</value></data>
+  <data name="TaskReview.ResubmissionOf" xml:space="preserve"><value>إعادة تسليم · المحاولة {0} — التعديلات التي طلبتها</value></data>
+  <data name="TaskReview.NoEarlierRequest" xml:space="preserve"><value>لم تُحفظ تعليمات مع الطلب السابق.</value></data>
+  <data name="TaskReview.ChangesRequestedTitle" xml:space="preserve"><value>تم طلب التعديلات</value></data>
+  <data name="TaskReview.EvaluationSavedTitle" xml:space="preserve"><value>تم حفظ التقييم</value></data>
+  <data name="TaskReview.ChangesRequestedText" xml:space="preserve"><value>تم إشعار {0} ويمكنه الآن إعادة تسليم "{1}". ستظهر المحاولة الجديدة في قائمة التسليمات.</value></data>
+  <data name="TaskReview.EvaluationSavedText" xml:space="preserve"><value>أصبحت العلامة والملاحظات الخاصة بـ "{1}" ظاهرة لـ {0}.</value></data>
+  <data name="TaskReview.ScoreFact" xml:space="preserve"><value>العلامة {0} / {1}</value></data>
+  <data name="TaskReview.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="TaskReview.ChangesToMake" xml:space="preserve"><value>التعديلات المطلوبة من المتدرب</value></data>
+  <data name="TaskReview.ChangesPlaceholder" xml:space="preserve"><value>مثال: أضف التحقق من المدخلات في النموذج واشرح كيف اختبرته.</value></data>
+  <data name="TaskReview.ChangesHelp" xml:space="preserve"><value>كن محددًا — يرى المتدرب هذا النص كما تكتبه تمامًا.</value></data>
+  <data name="TaskReview.WhatHappensNext" xml:space="preserve"><value>ماذا يحدث بعد ذلك</value></data>
+  <data name="TaskReview.RequestChangesNext" xml:space="preserve"><value>يصل إشعار إلى المتدرب، وتصبح حالة المهمة "مطلوب تعديلها"، وتبقى هذه المحاولة في السجل.</value></data>
+  <data name="TaskReview.SendRequest" xml:space="preserve"><value>إرسال الطلب</value></data>
+  <data name="TaskReview.Saving" xml:space="preserve"><value>جارٍ الحفظ…</value></data>
+  <data name="TaskReview.BackToSubmissions" xml:space="preserve"><value>العودة إلى التسليمات</value></data>
+  <data name="TaskReview.Done" xml:space="preserve"><value>تم</value></data>
 </root>

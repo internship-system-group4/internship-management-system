@@ -21,6 +21,24 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
+        /// <summary>Reported hours tell the academic supervisor; an approval or
+        /// rejection tells the student. (HoursService saves through here.)</summary>
+        protected override bool SendNotice(TrainingHoursEntry previous, TrainingHoursEntry current)
+        {
+            if (previous == null && current.Status == HoursStatus.Reported)
+            {
+                Services.NotificationService.HoursReported(current);
+                return true;
+            }
+            bool decided = current.Status == HoursStatus.Approved || current.Status == HoursStatus.Rejected;
+            if (previous != null && previous.Status != current.Status && decided)
+            {
+                Services.NotificationService.HoursDecided(current, current.Status == HoursStatus.Approved);
+                return true;
+            }
+            return false;
+        }
+
         public List<TrainingHoursEntry> GetByPlacement(string placementId)
         {
             return GetWhere("PlacementId", placementId);

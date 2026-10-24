@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/jisr.css?v=20261023-21") %>" />
 <script defer src="<%: ResolveUrl("~/Assets/js/vendor/gsap.min.js") %>"></script>
 <script defer src="<%: ResolveUrl("~/Assets/js/vendor/ScrollTrigger.min.js") %>"></script>
-<script type="module" src="<%: ResolveUrl("~/Assets/js/jisr/jisr-hero.js?v=20261023-26") %>"></script>
+<script type="module" src="<%: ResolveUrl("~/Assets/js/jisr/jisr-hero.js?v=20261024-grounding") %>"></script>
 
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-discovery.css?v=20261024-5") %>" />
 <script defer src="<%: ResolveUrl("~/Assets/js/home-discovery.js?v=20261024-4") %>"></script>
@@ -16,7 +16,7 @@
 <script defer src="<%: ResolveUrl("~/Assets/js/home-video-zoom.js?v=20261024-1") %>"></script>
 <!-- Default Page Styles & Scripts -->
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home.css?v=20261021-7") %>" />
-<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-experience.css?v=20261022-taste-2") %>" />
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-experience.css?v=20261024-banner-removal") %>" />
 <script defer src="<%: ResolveUrl("~/Assets/js/home-experience.js?v=20261022-navbar-1") %>"></script>
 
 <!-- === ULTRA CREATIVE STYLES === -->
@@ -369,166 +369,6 @@
         outline: none;
     }
 
-    /* === SECTION 5: OPPORTUNITIES HERO BANNER === */
-    .home-opp-banner-section {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        overflow: hidden;
-        padding: 140px 8%;
-        text-align: center;
-        color: #ffffff;
-        background-color: #0f1c24;
-    }
-    .home-opp-bg-video {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        min-width: 100%;
-        min-height: 100%;
-        width: auto;
-        height: auto;
-        transform: translate(-50%, -50%) scale(1.02);
-        object-fit: cover;
-        z-index: 1;
-        filter: blur(6px);
-        opacity: 0.75;
-    }
-    .home-opp-overlay {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(135deg, rgba(15, 28, 36, 0.85) 0%, rgba(24, 49, 68, 0.9) 100%);
-        z-index: 2;
-    }
-    .home-opp-banner-content {
-        position: relative;
-        z-index: 3;
-        max-width: 800px;
-        margin: 0 auto;
-    }
-    .home-opp-banner-content h2 {
-        font-size: 3rem;
-        font-weight: 800;
-        color: #ffffff;
-        margin-bottom: 20px;
-        letter-spacing: -0.5px;
-        line-height: 1.2;
-    }
-    .home-opp-banner-content p {
-        font-size: 1.15rem;
-        color: rgba(255, 255, 255, 0.85);
-        line-height: 1.7;
-        margin-bottom: 40px;
-    }
-    .home-opp-explore-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        background-color: var(--ui-surface,#ffffff);
-        color: var(--ui-primary-text,var(--uims-navy));
-        padding: 16px 38px;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        text-decoration: none;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
-    }
-    .home-opp-explore-btn:hover {
-        background-color: var(--th-bg-f8fafc,#f8fafc);
-        transform: translateY(-4px);
-        box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25);
-        color: var(--th-fg-183144,#183144);
-        gap: 16px;
-    }
-    .home-opp-explore-btn svg {
-        width: 20px;
-        height: 20px;
-        transition: transform 0.3s ease;
-    }
-    .home-opp-explore-btn:hover svg {
-        transform: translateX(4px);
-    }
-
-    /* === SECTION 6: EXTENDED FULL-WIDTH CTA SECTION === */
-    .home-cta-full-section {
-        width: 100vw;
-        position: relative;
-        left: 50%;
-        right: 50%;
-        margin-left: -50vw;
-        margin-right: -50vw;
-        background-color: var(--th-bg-f4f6f8,#f4f6f8);
-        padding: 100px 8%;
-    }
-    .home-cta-full-inner {
-        max-width: 1250px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 40px;
-    }
-    .home-cta-text h2 {
-        font-size: 2.3يرم; /* تم ضبط الحجم ليصبح أنيقاً */
-        font-size: 2.2rem;
-        font-weight: 800;
-        color: var(--ui-primary-text,var(--uims-navy)); /* تعيين اللون الكحلي الهادئ بدلاً من الأسود */
-        margin-bottom: 12px;
-        letter-spacing: -0.5px;
-        line-height: 1.25;
-    }
-    .home-cta-text p {
-        font-size: 1.05rem;
-        color: var(--th-fg-606f7b,#606f7b);
-        margin: 0;
-        line-height: 1.6;
-    }
-    .home-cta-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        background-color: var(--uims-navy);
-        color: #ffffff !important; /* لون أبيض صريح ومضمون لنص الزر */
-        padding: 16px 36px;
-        border-radius: 50px;
-        font-weight: 700;
-        font-size: 1.05rem;
-        text-decoration: none;
-        box-shadow: 0 10px 25px rgba(40, 75, 99, 0.2);
-        transition: all 0.35s ease;
-        white-space: nowrap;
-    }
-    .home-cta-btn:hover {
-        background-color: #1a252c;
-        transform: translateY(-3px);
-        box-shadow: 0 15px 30px rgba(40, 75, 99, 0.3);
-        gap: 16px;
-        color: #ffffff !important;
-    }
-    .home-cta-btn svg {
-        width: 18px;
-        height: 18px;
-        stroke: #ffffff; /* توحيد لون سهم الزر ليصبح أبيض واضحاً */
-        transition: transform 0.3s ease;
-    }
-    .home-cta-btn:hover svg {
-        transform: translateX(4px);
-    }
-
-    @media (max-width: 900px) {
-        .home-cta-full-inner {
-            flex-direction: column;
-            align-items: flex-start;
-            text-align: left;
-        }
-    }
 </style>
 </asp:Content>
 
@@ -714,26 +554,7 @@
 </section>
 <!-- === END OF CLEAN VIDEO PRESENTATION === -->
 
-<!-- === SECTION 5: OPPORTUNITIES HERO BANNER === -->
-<section class="home-opp-banner-section" id="opportunities" aria-labelledby="opportunities-title">
- <video autoplay muted loop playsinline class="home-opp-bg-video">
-  <source src="<%: ResolveUrl("~/Assets/video/opportunities-bg.mp4") %>" type="video/mp4" />
- </video>
- <div class="home-opp-overlay"></div>
-
- <div class="home-opp-banner-content">
-  <span class="home-badge" style="background-color: rgba(255, 255, 255, 0.15); color: #ffffff;">Gateway to Careers</span>
-  <h2 id="opportunities-title">Your Next Professional Chapter Awaits</h2>
-  <p><%: L.T("Public.Home.BannerIntro") %></p>
-  <a class="home-opp-explore-btn" href="#opportunity-previews">
-   <span><%: L.T("Public.Home.BrowseSummaries") %></span>
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-  </a>
- </div>
-</section>
-<!-- === END OF OPPORTUNITIES HERO BANNER === -->
-
-<section class="home-discovery home-opportunity-previews" id="opportunity-previews" aria-labelledby="preview-title">
+<section class="home-discovery home-opportunity-previews" id="opportunities" aria-labelledby="preview-title">
  <header class="hd-section-heading"><div><h2 id="preview-title"><%: L.T("Public.Home.PreviewTitle") %></h2><p><%: L.T("Public.Home.PreviewIntro") %></p></div><a class="hd-browse" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>"><%: L.T("Public.Home.FindCurrent") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></header>
  <div class="hd-rail-toolbar"><p class="hd-access-note"><span class="hd-demo-label"><%: L.T("Public.Home.DemoLabel") %></span><span><%: L.T("Public.Home.DemoNote") %></span></p>
  </div>
@@ -750,21 +571,6 @@
  <div class="hd-preview-motion-controls" data-preview-controls hidden><button type="button" class="hd-motion-toggle" data-preview-pause aria-pressed="false" data-pause-label="<%: L.T("Public.Home.PauseCards") %>" data-resume-label="<%: L.T("Public.Home.ResumeCards") %>"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path data-preview-pause-icon d="M8 5v14M16 5v14" /></svg><span data-preview-pause-text><%: L.T("Public.Home.PauseCards") %></span></button><span class="visually-hidden"><%: L.T("Public.Home.CardMotionHint") %></span></div>
 </section>
 
-
-<!-- === SECTION 6: EXTENDED FULL-WIDTH CTA SECTION === -->
-<section class="home-cta-full-section" aria-labelledby="cta-title">
- <div class="home-cta-full-inner">
-  <div class="home-cta-text">
-   <h2 id="cta-title">Ready for your next chapter?</h2>
-   <p>Continue with your university internship account.</p>
-  </div>
-  <a class="home-cta-btn" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>">
-   <span>Log in to get started</span>
-   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-  </a>
- </div>
-</section>
-<!-- === END OF CTA SECTION === -->
 
 <section class="home-discovery home-faq" id="questions" aria-labelledby="faq-title" data-home-faq>
  <div class="hd-faq-layout">

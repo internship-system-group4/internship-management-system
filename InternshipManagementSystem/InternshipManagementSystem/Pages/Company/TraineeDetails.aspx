@@ -186,7 +186,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="<%$ Resources:Company, TraineeDetails.Action %>">
                             <ItemTemplate>
-                                <a href='TaskReview.aspx?id=<%# Eval("Id") %>' class="btn btn-exact-match btn-style-light shadow-sm"><%: L.T("Company.TraineeDetails.Review") %></a>
+                                <a href='TaskReview.aspx?taskId=<%# Eval("Id") %>' class="btn btn-exact-match btn-style-light shadow-sm"><%: L.T("Company.TraineeDetails.Review") %></a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>

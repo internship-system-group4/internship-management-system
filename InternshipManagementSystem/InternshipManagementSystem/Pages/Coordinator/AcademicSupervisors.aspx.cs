@@ -14,7 +14,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
     /// <summary>One academic supervisor in the coordinator's directory and pop-ups.</summary>
     public class SupervisorDirectoryRow
     {
-        public string Id, FullName, Email, Phone, Department, AcademicRank, Initials, StatusText, CreatedText, SearchText;
+        public string Id, FullName, Email, Phone, Department, AcademicRank, Initials, StatusText, CreatedText, SearchText, ProfileUrl;
         public List<string> GroupNames = new List<string>();
         public int GroupCount, StudentCount;
         public bool IsActive;
@@ -289,6 +289,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 List<StudentGroup> groups = new GroupRepository().GetAll();
                 List<Student> students = people.OfType<Student>().ToList();
                 string none = L.T("Coordinator.ManageStudents.NotRecorded");
+                string profileBase = ResolveUrl("~/Pages/Coordinator/SupervisorProfile.aspx?id=");
                 Rows = people.OfType<AcademicSupervisor>()
                     .OrderBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase)
                     .Select(s =>
@@ -310,6 +311,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                             GroupNames = groupNames,
                             GroupCount = groupNames.Count,
                             StudentCount = students.Count(st => st.AcademicSupervisorId == s.Id),
+                            ProfileUrl = profileBase + Uri.EscapeDataString(s.Id),
                             SearchText = string.Join(" ", new[] { s.FullName, s.Email, s.Department, s.AcademicRank }).ToLowerInvariant()
                         };
                     }).ToList();

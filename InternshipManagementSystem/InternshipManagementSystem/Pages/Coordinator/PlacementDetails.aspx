@@ -16,11 +16,19 @@ body.uims-portal .uims-main-inner .placement-redesign .placement-tools{display:f
 
 </style></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="monitor-page placement-redesign">
-    <a class="btn btn-outline-secondary monitor-btn monitor-back" href="Placements.aspx"><span data-ui-icon="back" aria-hidden="true"></span><%: L.T("Coordinator.PlacementDetails.PlacementsProgress") %></a>
+<div class="monitor-page placement-redesign dir-page">
+    <a class="dir-back" href="Placements.aspx"><span data-ui-icon="back" aria-hidden="true"></span> <%: L.T("Coordinator.PlacementDetails.PlacementsProgress") %></a>
     <% if (LoadError != null) { %><div class="monitor-error" role="alert"><%: LoadError %></div><% } else if (Progress != null) { var row = Progress.Overview; var placement = row.Placement; %>
+    
+    <section class="dir-card dir-profile-hero" aria-labelledby="progressName">
+        <span class="dir-avatar dir-avatar-xl" aria-hidden="true"><%: InternshipManagementSystem.Pages.CoordinatorArea.StudentDirectoryRow.MakeInitials(row.StudentName) %></span>
+        <div class="dir-hero-text"><span class="dir-eyebrow"><%: L.T("Coordinator.Students.TrainingProgress") %></span><h2 id="progressName"><%: row.StudentName %></h2><p><span class="dir-num"><%: row.StudentNumber %></span> &middot; <%: row.Major %> <span class="<%: InternshipManagementSystem.Pages.CoordinatorArea.PlacementStatusStyle.Css(placement.Status) %>"><%: row.StatusText %></span></p></div>
+        <div class="dir-hero-actions">
+            <% if (!string.IsNullOrEmpty(placement.StudentId)) { %><a class="btn dir-ghost" href="Students.aspx?id=<%: Server.UrlEncode(placement.StudentId) %>"><span data-ui-icon="person" aria-hidden="true"></span> <%: L.T("Coordinator.ManageStudents.ViewProfile") %></a><% } %>
+            <a class="btn btn-brand" href="CompletionReview.aspx?id=<%: Server.UrlEncode(placement.Id) %>"><span data-ui-icon="approved" aria-hidden="true"></span> <%: L.T("Coordinator.PlacementDetails.OpenCompletionReview") %></a>
+        </div>
+    </section>
     <div class="placement-tools" hidden><button type="button" data-placement-action="expand"><%: L.IsArabic ? "إظهار كل التفاصيل" : "Expand all" %></button><button type="button" data-placement-action="collapse"><%: L.IsArabic ? "إخفاء كل التفاصيل" : "Collapse all" %></button></div>
-    <div class="monitor-heading"><span class="placement-avatar" aria-hidden="true"><%: System.Globalization.StringInfo.GetNextTextElement(string.IsNullOrWhiteSpace(row.StudentName) ? "S" : row.StudentName.Trim()).ToUpperInvariant() %></span><div><h2><%: row.StudentName %></h2><p><%: row.StudentNumber %> &middot; <%: row.Major %></p></div><span class="monitor-status"><%: row.StatusText %></span></div>
     <details class="monitor-panel" open data-placement-section><summary class="monitor-panel-heading"><h3><span class="placement-section-icon" data-ui-icon="document" aria-hidden="true"></span><%: L.T("Coordinator.PlacementDetails.InternshipDetails") %></h3><span><%: L.T("Coordinator.PlacementDetails.Confirmed") %> <%: Time.DisplayDate(placement.ConfirmedAt) %></span><span class="placement-toggle" data-ui-icon="next" aria-hidden="true"></span></summary><div class="monitor-panel-body"><dl class="monitor-profile">
         <div><span class="placement-fact-icon" data-ui-icon="building" aria-hidden="true"></span><dt><%: L.T("Coordinator.PlacementDetails.Company") %></dt><dd><%: placement.CompanyName %></dd></div><div><span class="placement-fact-icon" data-ui-icon="briefcase" aria-hidden="true"></span><dt><%: L.T("Coordinator.PlacementDetails.Opportunity") %></dt><dd><%: placement.OpportunityTitle %></dd></div>
         <div><span class="placement-fact-icon" data-ui-icon="people" aria-hidden="true"></span><dt><%: L.T("Coordinator.PlacementDetails.CompanySupervisor") %></dt><dd><%: Progress.CompanySupervisorName %></dd></div><div><span class="placement-fact-icon" data-ui-icon="person" aria-hidden="true"></span><dt><%: L.T("Coordinator.PlacementDetails.AcademicSupervisor") %></dt><dd><%: Progress.AcademicSupervisorName %></dd></div>

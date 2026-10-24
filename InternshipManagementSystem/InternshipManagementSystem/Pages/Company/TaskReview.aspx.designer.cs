@@ -203,6 +203,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSaveGrade;
+
+        // Resubmission banner, request-changes popup and result popup.
+        protected global::System.Web.UI.WebControls.PlaceHolder phResubmission;
+        protected global::System.Web.UI.WebControls.Literal litResubmissionLabel;
+        protected global::System.Web.UI.WebControls.Literal litPreviousRequest;
+        protected global::System.Web.UI.WebControls.PlaceHolder phRequestChangesOpen;
+        protected global::System.Web.UI.WebControls.Literal litRevisionEyebrow;
+        protected global::System.Web.UI.WebControls.Literal litRevisionSubtitle;
+        protected global::System.Web.UI.WebControls.Label lblRevisionError;
+        protected global::System.Web.UI.WebControls.Label lblRevisionInstructions;
+        protected global::System.Web.UI.WebControls.TextBox txtRevisionInstructions;
+        protected global::System.Web.UI.WebControls.PlaceHolder phReviewResult;
+        protected global::System.Web.UI.WebControls.Literal litResultTitle;
+        protected global::System.Web.UI.WebControls.Literal litResultMessage;
+        protected global::System.Web.UI.WebControls.Literal litResultAttempt;
+        protected global::System.Web.UI.WebControls.Literal litResultFact;
     }
 }
 

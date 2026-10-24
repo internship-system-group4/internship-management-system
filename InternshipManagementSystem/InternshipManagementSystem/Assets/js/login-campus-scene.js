@@ -108,7 +108,9 @@ export async function createCampusScene(host, options) {
  const container = host.querySelector('[data-campus-canvas]');
  const pause = host.querySelector('[data-campus-pause]');
  const compact = innerWidth <= 640;
- let renderer, gate, actors, environmentTarget;
+ // 'recovery' is the password-recovery page: same campus, a screen terminal instead of the card reader, and no entry.
+ const recovery = options.mode === 'recovery';
+ let renderer, gate, actors, environmentTarget, terminal = null;
  const scene = new THREE.Scene();
  try {
   renderer = new THREE.WebGLRenderer({ antialias:!compact, alpha:false, powerPreference:'low-power' });
@@ -348,6 +350,15 @@ export async function createCampusScene(host, options) {
  const cardTexture=await identityTexture(host.dataset.logo);
  const card=new THREE.Mesh(new THREE.BoxGeometry(.086,.054,.0018),new THREE.MeshStandardMaterial({map:cardTexture,roughness:.34,metalness:0}));
  card.name='student-university-id';card.castShadow=true;scene.add(card);
+ // Recovery: the reader and the ID card are put away and a screen terminal stands between the student and the guard.
+ // The student's hand and gaze go to its screen instead of the reader (readerPoint is shared by both).
+ if(recovery){
+  const {createRecoveryTerminal}=await import('./recovery-terminal.js?v=20261024-recovery-7');
+  terminal=await createRecoveryTerminal(host,{compact});
+  terminal.root.position.set(1.86,0,6.02);terminal.root.rotation.y=-.5;scene.add(terminal.root);terminal.root.updateWorldMatrix(true,true);
+  readerPoint.copy(terminal.screen.localToWorld(new THREE.Vector3(0,-.03,.07)));
+  kiosk.visible=false;card.visible=false;
+ }
  const contact=new THREE.MeshBasicMaterial({map:contactShadowTexture(),transparent:true,depthWrite:false,opacity:.5});
  for(const person of [guard,visitor]){
   const blob=new THREE.Mesh(new THREE.PlaneGeometry(.66,.55),contact);blob.rotation.x=-Math.PI/2;blob.position.y=.004;person.root.add(blob);
@@ -375,9 +386,16 @@ export async function createCampusScene(host, options) {
   if(aspect<.9){basePosition.set(1,2,25);baseTarget.set(.4,2,1.1);camera.fov=46;}
   else if(width<=1100){basePosition.set(1.3,1.85,19);baseTarget.set(-2,2.45,.5);camera.fov=41;}
   else{basePosition.set(1,1.8,21);baseTarget.set(-2.9,2.7,.5);camera.fov=40;}
+  // Recovery frames the gate closer and lower than Login, so the terminal, student and guard read at the size of the
+  // reference composition while both flags stay in view.
+  if(recovery){
+   if(aspect<.9){basePosition.set(2.2,1.7,17.5);baseTarget.set(.9,2.7,1.5);camera.fov=50;}
+   else if(width<=1100){basePosition.set(1.9,1.5,16.5);baseTarget.set(-2.3,3,.5);camera.fov=48;}
+   else{basePosition.set(1.9,1.45,15.6);baseTarget.set(-3,3.05,.5);camera.fov=47;}
+  }
   // Side-by-side layouts frame the gate beside the card; in RTL the card is on the right, so the aim swings to the other side
   // (mirrored about the camera, eased back slightly so both flagpoles stay clear of the card).
-  if(aspect>=.9&&document.documentElement.dir==="rtl")baseTarget.x=2*basePosition.x-baseTarget.x-.4;
+  if(aspect>=.9&&document.documentElement.dir==="rtl")baseTarget.x=2*basePosition.x-baseTarget.x-(recovery?2:.4);
   exitPosition.copy(basePosition).add(new THREE.Vector3(-.25,0,-1.6));exitTarget.copy(baseTarget).add(new THREE.Vector3(.1,-.12,-1));
   if(!entryStart){camera.position.copy(basePosition);camera.lookAt(baseTarget);}
   camera.updateProjectionMatrix();draw();
@@ -449,7 +467,7 @@ export async function createCampusScene(host, options) {
    // A human-speed dolly and the shared veil bridge the remaining walk; no FOV acceleration.
    if(!veiled&&progress>=.9){veiled=true;onVeil?.();}
   }
-  updatePeople(dt);if(!paused&&!reduced)gate.updateCloth(clock,.32);draw();
+  updatePeople(dt);if(!paused&&!reduced)gate.updateCloth(clock,.32);terminal?.update(dt,clock,paused||reduced);draw();
   frameCost+=(performance.now()-begin-frameCost)*.1;
   if(entryStart&&progress>=1){entryStart=0;const done=resolveEntry;resolveEntry=null;done?.();}
   const settling=Math.abs(reachWeight-(state==='submitting'?.94:state==='success'?.72:state==='denied'?.28:.12))>.002;
@@ -468,8 +486,9 @@ export async function createCampusScene(host, options) {
  try { await renderer.compileAsync(scene,camera); } catch (error) { /* older drivers compile on first render */ }
  stage('compiled'); resize(); stage('first-frame');pause.hidden=reduced;start();host.dataset.actorFidelity='skinned';
  return {
-  setState(value){if(!['idle','submitting','success','denied'].includes(value))return;state=value;setTargets();if(reduced)updatePeople(0,true);start();},setReducedMotion,
-  enter(options={}){onVeil=options.onVeil;veiled=false;if(reduced){onVeil?.();return Promise.resolve();}if(resolveEntry)return Promise.resolve();return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();lastWalkDistance=walkDistance=0;start();});},
+  setState(value){if(!['idle','submitting','success','denied'].includes(value))return;state=value;setTargets();terminal?.setState(value);if(reduced)updatePeople(0,true);start();},setReducedMotion,
+  // Only a verified sign-in opens the gate; the recovery scene never does.
+  enter(options={}){if(recovery)return Promise.resolve();onVeil=options.onVeil;veiled=false;if(reduced){onVeil?.();return Promise.resolve();}if(resolveEntry)return Promise.resolve();return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();lastWalkDistance=walkDistance=0;start();});},
   snapshot(){return this.inspect();},
   inspect(){return {state,progress,paused,reduced,contextLost,draws,pixelRatio,frameCostMs:+frameCost.toFixed(2),frameIntervalMs:+interval.toFixed(1),triangles:renderer.info.render.triangles,flags:[jordan,germany].map(flag=>({name:flag.name,visible:flag.visible,x:flag.position.x})),poles:flagPoles.map(pole=>({country:pole.country,x:pole.x,z:pole.z})),leaves:leaves.map(leaf=>leaf.position.x),actors:[guard.root,visitor.root].map(root=>({name:root.name,role:root.userData.role,position:root.position.toArray(),bones:root.getObjectByProperty('isSkinnedMesh',true)?.skeleton.bones.length})),card:card.position.toArray(),camera:camera.position.toArray(),fov:camera.fov,drawCalls:renderer.info.render.calls};},
   dispose(){

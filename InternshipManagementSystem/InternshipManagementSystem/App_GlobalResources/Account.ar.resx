@@ -46,6 +46,19 @@
   <data name="ForgotPassword.PleaseEnterYourEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريدك الإلكتروني.</value></data>
   <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>إعادة تعيين كلمة المرور</value></data>
   <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>إرسال رابط إعادة التعيين</value></data>
+  <data name="ForgotPassword.CheckYourEmail" xml:space="preserve"><value>تحقّق من بريدك الإلكتروني</value></data>
+  <data name="ForgotPassword.EnterYourUniversityEmailAddress" xml:space="preserve"><value>أدخل بريدك الإلكتروني الجامعي وسنرسل إليك رابطًا لإعادة تعيين كلمة المرور.</value></data>
+  <data name="ForgotPassword.PasswordRecovery" xml:space="preserve"><value>استعادة كلمة المرور</value></data>
+  <data name="ForgotPassword.PleaseWaitAMomentBefore" xml:space="preserve"><value>يُرجى الانتظار قليلًا قبل طلب رابط آخر.</value></data>
+  <data name="ForgotPassword.RecoverYourAccess" xml:space="preserve"><value>استعِد وصولك.</value></data>
+  <data name="ForgotPassword.RememberedItBackToLogin" xml:space="preserve"><value>تذكّرتها؟ العودة إلى تسجيل الدخول</value></data>
+  <data name="ForgotPassword.ScreenProcessing" xml:space="preserve"><value>جارٍ المعالجة…</value></data>
+  <data name="ForgotPassword.ScreenReady" xml:space="preserve"><value>استعادة كلمة المرور</value></data>
+  <data name="ForgotPassword.ScreenReadyHint" xml:space="preserve"><value>جاهز لاستقبال طلبك</value></data>
+  <data name="ForgotPassword.ScreenRetry" xml:space="preserve"><value>يُرجى المحاولة مجددًا</value></data>
+  <data name="ForgotPassword.ScreenSent" xml:space="preserve"><value>تم إرسال الرابط</value></data>
+  <data name="ForgotPassword.UseADifferentEmail" xml:space="preserve"><value>استخدام بريد إلكتروني آخر</value></data>
+  <data name="ForgotPassword.UseTheEmailRegisteredWithUims" xml:space="preserve"><value>استخدم البريد الإلكتروني المسجّل في النظام (مثل ‎@gju.edu.jo).</value></data>
   <data name="Login.ContactYourCoordinator" xml:space="preserve"><value>تواصل مع منسّق التدريب</value></data>
   <data name="Login.ContinueToYourPortal" xml:space="preserve"><value>المتابعة إلى بوابتك</value></data>
   <data name="Login.EmailAddress" xml:space="preserve"><value>البريد الإلكتروني</value></data>

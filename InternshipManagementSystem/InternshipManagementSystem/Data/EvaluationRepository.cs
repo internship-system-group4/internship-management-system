@@ -70,7 +70,12 @@ namespace InternshipManagementSystem.Data
             if (Services.CompletionReviewService.IsFinal(new CompletionRepository().GetByPlacement(placement.Id)))
                 throw new InvalidOperationException("Completion is finalized; task evidence is read-only.");
             string id = PushWithId(Constants.Paths.TaskEvaluations, evaluation);
-            if (!string.IsNullOrEmpty(id)) Services.EmailNotificationService.Saved(null, evaluation);
+            if (!string.IsNullOrEmpty(id))
+            {
+                // One bilingual notice for the student, plus the email.
+                Services.NotificationService.TaskReviewed(evaluation);
+                Services.EmailNotificationService.Saved(null, evaluation, false);
+            }
             return id;
         }
 
@@ -101,7 +106,10 @@ namespace InternshipManagementSystem.Data
             evaluation.Id = key;
             if (!FirebaseContext.PutIfVersion(Constants.Paths.CompanyEvaluations + "/" + key, evaluation, etag))
                 throw new InvalidOperationException("Another request submitted this evaluation. Reload before retrying.");
-            Services.EmailNotificationService.Saved(previous, evaluation);
+            // A submitted form tells the academic supervisor and the coordinators
+            // (a draft sends nothing). The email service only adds the email.
+            Services.NotificationService.CompanyFinalSubmitted(evaluation);
+            Services.EmailNotificationService.Saved(previous, evaluation, false);
             return key;
         }
         // ---- final academic evaluation: CONFIDENTIAL --------------------
@@ -134,7 +142,9 @@ namespace InternshipManagementSystem.Data
             evaluation.Id = key;
             if (!FirebaseContext.PutIfVersion(Constants.Paths.AcademicEvaluations + "/" + key, evaluation, etag))
                 throw new InvalidOperationException("Another request submitted this evaluation. Reload before retrying.");
-            Services.EmailNotificationService.Saved(previous, evaluation);
+            // A submitted form tells the coordinators (a draft sends nothing).
+            Services.NotificationService.AcademicFinalSubmitted(evaluation);
+            Services.EmailNotificationService.Saved(previous, evaluation, false);
             return key;
         }
         // ----------------------------------------------------------------
