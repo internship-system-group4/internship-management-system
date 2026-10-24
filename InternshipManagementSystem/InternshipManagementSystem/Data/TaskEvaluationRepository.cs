@@ -1,4 +1,4 @@
-﻿//fatima new one 
+﻿using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
@@ -14,6 +14,11 @@ namespace InternshipManagementSystem.Data
         protected override void SetId(TaskEvaluation entity, string id)
         {
             entity.Id = id;
+        }
+
+        public List<TaskEvaluation> GetByTask(string taskId)
+        {
+            return GetWhere("TaskId", taskId);
         }
     }
 }
