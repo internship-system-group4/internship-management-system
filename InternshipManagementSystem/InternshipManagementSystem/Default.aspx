@@ -10,6 +10,10 @@
 <script defer src="<%: ResolveUrl("~/Assets/js/vendor/ScrollTrigger.min.js") %>"></script>
 <script type="module" src="<%: ResolveUrl("~/Assets/js/jisr/jisr-hero.js?v=20261023-26") %>"></script>
 
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-discovery.css?v=20261024-5") %>" />
+<script defer src="<%: ResolveUrl("~/Assets/js/home-discovery.js?v=20261024-4") %>"></script>
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-video-zoom.css?v=20261024-1") %>" />
+<script defer src="<%: ResolveUrl("~/Assets/js/home-video-zoom.js?v=20261024-1") %>"></script>
 <!-- Default Page Styles & Scripts -->
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home.css?v=20261021-7") %>" />
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/home-experience.css?v=20261022-taste-2") %>" />
@@ -528,7 +532,7 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <!-- === NEW 3D HERO SECTION (From Journey) === -->
-<div class="jisr jisr--static" data-jisr data-logo="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" data-stone="<%: ResolveUrl("~/Assets/images/university/materials/stone-albedo.png") %>" data-student="<%: ResolveUrl("~/Assets/models/people/Male_Adult_17_Animated.glb") %>">
+<div class="jisr jisr--static" data-jisr data-navbar-scene data-logo="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" data-stone="<%: ResolveUrl("~/Assets/images/university/materials/stone-albedo.png") %>" data-student="<%: ResolveUrl("~/Assets/models/people/Male_Adult_17_Animated.glb") %>">
  <div class="jisr-stage" data-jisr-stage>
   <canvas class="jisr-canvas" aria-hidden="true"></canvas>
   <img class="jisr-poster" src="<%: ResolveUrl("~/Assets/images/university/b270da86-de83-4a48-898d-7446958fbe45.png") %>" alt="Aerial view of the German Jordanian University campus in Madaba" width="1280" height="720" />
@@ -683,16 +687,18 @@
 <!-- === END OF BLURRED VIDEO BACKGROUND ABOUT PREVIEW === -->
 
 <!-- === SECTION 4: CLEAN VIDEO PRESENTATION === -->
-<section class="home-process-video-section" id="internship-video" aria-labelledby="video-title">
+<section class="home-process-video-section" id="internship-video" aria-labelledby="video-title" data-scroll-video>
  <div class="home-process-video-container">
   
   <div class="home-process-video-header">
    <h2 id="video-title">Bridge the Gap</h2>
    <p>Take a closer look at the UIMS experience. Watch how our platform seamlessly connects your academic milestones with real-world industry opportunities.</p>
+   <p class="home-video-scroll-hint" data-video-scroll-hint hidden><%: L.T("Public.Home.VideoScrollHint") %></p>
   </div>
   
-  <div class="home-process-video-wrapper">
-    <video controls preload="metadata" playsinline aria-label="University Internship Process Video">
+  <div class="home-video-runway" data-video-runway><div class="home-video-stage" data-video-stage>
+  <div class="home-process-video-wrapper" data-video-frame>
+    <video controls muted preload="metadata" playsinline aria-label="University Internship Process Video">
      <source src="<%: ResolveUrl("~/Assets/video/UIMS.mp4") %>" type="video/mp4" />
      <% if (ProcessCaptionsAvailable) { %>
       <track kind="captions" src="<%: ResolveUrl("~/Assets/video/internship-process.en.vtt") %>" srclang="en" label="English" default />
@@ -700,6 +706,7 @@
      Your browser does not support the video tag. <a href="<%: ResolveUrl("~/Assets/video/UIMS.mp4") %>">Open the video directly</a>.
     </video>
   </div>
+  </div></div>
 
  </div>
 </section>
@@ -715,14 +722,32 @@
  <div class="home-opp-banner-content">
   <span class="home-badge" style="background-color: rgba(255, 255, 255, 0.15); color: #ffffff;">Gateway to Careers</span>
   <h2 id="opportunities-title">Your Next Professional Chapter Awaits</h2>
-  <p>Explore exclusive verified engineering and technology internships tailored for GJU students. Sign in to your student portal to discover matching opportunities and apply instantly.</p>
-  <a class="home-opp-explore-btn" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>">
-   <span>Log In to Explore Opportunities</span>
+  <p><%: L.T("Public.Home.BannerIntro") %></p>
+  <a class="home-opp-explore-btn" href="#opportunity-previews">
+   <span><%: L.T("Public.Home.BrowseSummaries") %></span>
    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
   </a>
  </div>
 </section>
 <!-- === END OF OPPORTUNITIES HERO BANNER === -->
+
+<section class="home-discovery home-opportunity-previews" id="opportunity-previews" aria-labelledby="preview-title">
+ <header class="hd-section-heading"><div><h2 id="preview-title"><%: L.T("Public.Home.PreviewTitle") %></h2><p><%: L.T("Public.Home.PreviewIntro") %></p></div><a class="hd-browse" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>"><%: L.T("Public.Home.FindCurrent") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></header>
+ <div class="hd-rail-toolbar"><p class="hd-access-note"><span class="hd-demo-label"><%: L.T("Public.Home.DemoLabel") %></span><span><%: L.T("Public.Home.DemoNote") %></span></p>
+ </div>
+ <div class="hd-preview-grid" data-preview-carousel role="region" aria-labelledby="preview-title">
+ <% foreach (var preview in Previews) { %>
+ <article class="hd-preview">
+  <div class="hd-card-top"><span class="hd-role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="<%: preview.IconPath %>" /></svg></span><p class="hd-company"><%: preview.CompanyName %></p></div><div class="hd-preview-heading"><h3><%: preview.Title %></h3></div>
+  <p class="hd-summary"><%: preview.Summary %></p>
+  <dl class="hd-preview-facts"><div><dt class="visually-hidden"><%: L.T("Public.Home.Location") %></dt><dd><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0zM15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0" /></svg><%: preview.Location %></dd></div><div><dt class="visually-hidden"><%: L.T("Public.Home.Specialization") %></dt><dd><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m2 8 10-5 10 5-10 5zM6 11v7l6 3 6-3v-7m4-3v9" /></svg><%: preview.Specialization %></dd></div></dl>
+  <div class="hd-preview-actions"><a class="hd-details" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>"><%: L.T("Public.Home.MoreDetails") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></div>
+ </article>
+ <% } %>
+ </div>
+ <div class="hd-preview-motion-controls" data-preview-controls hidden><button type="button" class="hd-motion-toggle" data-preview-pause aria-pressed="false" data-pause-label="<%: L.T("Public.Home.PauseCards") %>" data-resume-label="<%: L.T("Public.Home.ResumeCards") %>"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path data-preview-pause-icon d="M8 5v14M16 5v14" /></svg><span data-preview-pause-text><%: L.T("Public.Home.PauseCards") %></span></button><span class="visually-hidden"><%: L.T("Public.Home.CardMotionHint") %></span></div>
+</section>
+
 
 <!-- === SECTION 6: EXTENDED FULL-WIDTH CTA SECTION === -->
 <section class="home-cta-full-section" aria-labelledby="cta-title">
@@ -738,6 +763,19 @@
  </div>
 </section>
 <!-- === END OF CTA SECTION === -->
+
+<section class="home-discovery home-faq" id="questions" aria-labelledby="faq-title" data-home-faq>
+ <div class="hd-faq-layout">
+  <header class="hd-faq-intro"><span class="hd-curiosity-line" aria-hidden="true"></span><h2 id="faq-title"><%: L.T("Public.Home.FaqTitle") %></h2><p><%: L.T("Public.Home.FaqIntro") %></p></header>
+  <div class="hd-faq-list">
+<details class="hd-faq-item" open><summary><h3><%: L.T("Public.Home.Faq1Question") %></h3><span class="hd-faq-symbol"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span></summary><div class="hd-faq-answer"><p><%: L.T("Public.Home.Faq1Answer") %></p></div></details>
+<details class="hd-faq-item"><summary><h3><%: L.T("Public.Home.Faq2Question") %></h3><span class="hd-faq-symbol"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span></summary><div class="hd-faq-answer"><p><%: L.T("Public.Home.Faq2Answer") %></p></div></details>
+<details class="hd-faq-item"><summary><h3><%: L.T("Public.Home.Faq3Question") %></h3><span class="hd-faq-symbol"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span></summary><div class="hd-faq-answer"><p><%: L.T("Public.Home.Faq3Answer") %></p></div></details>
+<details class="hd-faq-item"><summary><h3><%: L.T("Public.Home.Faq4Question") %></h3><span class="hd-faq-symbol"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span></summary><div class="hd-faq-answer"><p><%: L.T("Public.Home.Faq4Answer") %></p></div></details>
+<details class="hd-faq-item"><summary><h3><%: L.T("Public.Home.Faq5Question") %></h3><span class="hd-faq-symbol"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span></summary><div class="hd-faq-answer"><p><%: L.T("Public.Home.Faq5Answer") %></p></div></details>
+<details class="hd-faq-item"><summary><h3><%: L.T("Public.Home.Faq6Question") %></h3><span class="hd-faq-symbol"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14" /></svg></span></summary><div class="hd-faq-answer"><p><%: L.T("Public.Home.Faq6Answer") %></p></div></details>
+</div><div class="hd-faq-contact"><a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>"><%: L.T("Public.Home.MoreQuestions") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></div></div></section>
+
 
 </div>
 </asp:Content>

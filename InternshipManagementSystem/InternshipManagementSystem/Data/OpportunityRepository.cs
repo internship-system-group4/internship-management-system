@@ -22,54 +22,24 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        // Separate allowlisted projection with fallback to main collection if public node is empty
+        // Anonymous browsing reads only the separately published public projection.
         public List<PublicOpportunityPreview> GetPublicPreviews(int count = 3)
         {
             List<PublicOpportunityPreview> previews = new List<PublicOpportunityPreview>();
 
-            try
+            var raw = Json.Deserialize<Dictionary<string, PublicOpportunityPreview>>(
+                FirebaseContext.Get("publicOpportunityPreviews"));
+            if (raw != null)
             {
-                var raw = Json.Deserialize<Dictionary<string, PublicOpportunityPreview>>(
-                    FirebaseContext.Get("publicOpportunityPreviews"));
-                if (raw != null)
+                foreach (var pair in raw)
                 {
-                    foreach (var pair in raw)
-                    {
-                        if (pair.Value != null)
-                            pair.Value.Id = pair.Key;
-                    }
-                    previews = raw.Values.Where(p => p != null && ApplicationRepository.IsValidKey(p.Id)
-                        && p.Status == OpportunityStatus.Open && p.RemainingSeats > 0
-                        && (p.ApplicationDeadline <= 0 || !Time.IsPast(p.ApplicationDeadline))
-                        && !string.IsNullOrWhiteSpace(p.Title)).ToList();
+                    if (pair.Value != null)
+                        pair.Value.Id = pair.Key;
                 }
-            }
-            catch { }
-
-            // Fallback احتياطي: إذا لم توجد بيانات في العقدة المخصصة، نجلب الفرص المفتوحة مباشرة
-            if (previews == null || previews.Count == 0)
-            {
-                var allOpportunities = GetAll();
-                if (allOpportunities != null)
-                {
-                    previews = allOpportunities
-                        .Where(o => o != null && o.Status == OpportunityStatus.Open && o.RemainingSeats > 0)
-                        .Select(o => new PublicOpportunityPreview
-                        {
-                            Id = o.Id,
-                            Title = o.Title,
-                            CompanyName = o.CompanyName,
-                            Location = o.Location,
-                            Summary = !string.IsNullOrWhiteSpace(o.Description) && o.Description.Length <= 280
-                                      ? o.Description
-                                      : (o.Title + " internship at " + o.CompanyName + "."),
-                            Status = o.Status,
-                            RemainingSeats = o.RemainingSeats,
-                            ApplicationDeadline = o.ApplicationDeadline,
-                            PublishedAt = Time.NowMs(),
-                            Specialization = SpecializationText(o)
-                        }).ToList();
-                }
+                previews = raw.Values.Where(p => p != null && ApplicationRepository.IsValidKey(p.Id)
+                    && p.Status == OpportunityStatus.Open && p.RemainingSeats > 0
+                    && (p.ApplicationDeadline <= 0 || !Time.IsPast(p.ApplicationDeadline))
+                    && !string.IsNullOrWhiteSpace(p.Title)).ToList();
             }
 
             return previews

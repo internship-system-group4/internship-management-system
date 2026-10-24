@@ -127,6 +127,10 @@
     <Content Include="Assets\js\workspace-charts.js" />
     <Content Include="Assets\js\company-applications.js" />
     <Content Include="Assets\css\simple-workspace.css" />
+    <Content Include="Assets\css\home-discovery.css" />
+    <Content Include="Assets\css\home-video-zoom.css" />
+    <Content Include="Assets\js\home-video-zoom.js" />
+    <Content Include="Assets\js\home-discovery.js" />
     <Content Include="Assets\js\simple-workspace.js" />
     <Content Include="Assets\fonts\notosans-variable.ttf" />
     <Content Include="Assets\fonts\notosansarabic-variable.ttf" />
