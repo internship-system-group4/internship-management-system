@@ -36,7 +36,8 @@ namespace InternshipManagementSystem
             Common.L.Apply(Context);
             // Page titles come from each page directive (English); the translated title is looked up by route.
             var page = Context.Handler as System.Web.UI.Page;
-            if (page != null) page.PreRenderComplete += (s, args) => page.Title = Common.L.PageTitle(page);
+            // Pages without <head runat="server"> (standalone documents) have no Title to set.
+            if (page != null) page.PreRenderComplete += (s, args) => { if (page.Header != null) page.Title = Common.L.PageTitle(page); };
         }
 
         protected void Application_Error(object sender, EventArgs e)

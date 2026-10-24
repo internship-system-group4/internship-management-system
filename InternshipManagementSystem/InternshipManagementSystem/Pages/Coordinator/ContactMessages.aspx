@@ -412,8 +412,8 @@
     width: 52px;
     height: 52px;
 
-    background: #e4f0ff !important;
-    color: #1254a1 !important;
+    background: var(--th-bg-e4f0ff,#e4f0ff) !important;
+    color: var(--th-fg-1254a1,#1254a1) !important;
 
     border-radius: 12px !important;
 
@@ -434,10 +434,10 @@
     align-items: center;
     justify-content: center;
 
-    background: #e4f0ff !important;
-    color: #1254a1 !important;
+    background: var(--th-bg-e4f0ff,#e4f0ff) !important;
+    color: var(--th-fg-1254a1,#1254a1) !important;
 
-    border: 1px solid #cfe0f6;
+    border: 1px solid var(--th-line-cfe0f6,#cfe0f6);
     border-radius: 999px;
 
     padding: 6px 14px;

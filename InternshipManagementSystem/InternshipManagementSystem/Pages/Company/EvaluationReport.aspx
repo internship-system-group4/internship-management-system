@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="EvaluationReport.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.EvaluationReport" Title="Final Evaluation" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="EvaluationReport.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.EvaluationReport" Title="Final Evaluation" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -14,8 +14,8 @@
         .btn-action:hover { background-color: var(--th-bg-e8f0f7,#e8f0f7); border-color: var(--th-line-0f4c81,#0f4c81); }
         .btn-draft { background-color: var(--ui-surface,#ffffff); color: var(--th-fg-2b4560,#2b4560); border: 1px solid var(--th-line-c9d2db,#c9d2db); font-weight: 600; }
         .btn-draft:hover { background-color: var(--th-bg-f8fafc,#f8fafc); border-color: var(--th-line-2b4560,#2b4560); }
-        .btn-preview { color: var(--th-fg-b8860b,#b8860b); font-weight: 700; background: none; border: none; transition: 0.2s; }
-        .btn-preview:hover { color: #daa520; transform: scale(1.05); }
+        .btn-preview { color: var(--th-fg-7d5c05,#7d5c05); /* darker gold: #b8860b was 3.3:1 on white */ font-weight: 700; background: none; border: none; transition: 0.2s; }
+        .btn-preview:hover { color: var(--th-fg-604603,#604603); transform: scale(1.05); }
 
         .status-badge-green { background-color: var(--th-bg-e6f4ea,#e6f4ea); color: var(--th-fg-1e7e34,#1e7e34); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
         .status-badge-warning { background-color: var(--th-bg-fff3cd,#fff3cd); color: var(--th-fg-856404,#856404); padding: 4px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; }
@@ -389,7 +389,7 @@
                       <strong class="text-dark" id="repDate">--</strong>
                   </div>
                   <div class="text-end">
-                      <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.1rem; color: #0f4c81;" class="mb-1">
+                      <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.1rem; color: var(--th-fg-0f4c81,#0f4c81);" class="mb-1">
                           <asp:Literal ID="litReportSupervisorSig" runat="server">Company Supervisor</asp:Literal>
                       </div>
                       <div class="border-top border-dark pt-1" style="width: 200px;">

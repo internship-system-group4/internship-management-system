@@ -12,6 +12,7 @@ lines become low-contrast dark lines), keeping each colour's hue.
 Idempotent: colours already inside a var() fallback are skipped. Run from the repository root:
     python -I tools/theme/convert-colors.py            (rewrite files and regenerate the dark block)
     python -I tools/theme/convert-colors.py --check    (report only)
+    python -I tools/theme/convert-colors.py <file> ...  (only these stylesheets/pages; the dark block keeps every token)
 """
 import math, os, re, sys
 
@@ -19,11 +20,12 @@ ROOT = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..', 'Int
 THEME = os.path.join(ROOT, 'Assets', 'css', 'theme.css')
 SKIP_CSS = {'ui-tokens.css', 'theme.css'}
 CHECK = '--check' in sys.argv
+ONLY = {os.path.normcase(os.path.abspath(a)) for a in sys.argv[1:] if not a.startswith('--')}
 
 BG_PROPS = {'background', 'background-color', 'background-image', 'fill'}
 FG_PROPS = {'color', '-webkit-text-fill-color', 'caret-color', 'text-decoration-color', 'stroke', 'accent-color'}
 LINE_PROPS_PREFIX = ('border', 'outline', 'column-rule')
-SKIP_SELECTOR = re.compile(r'logo', re.I)  # official logo backings stay as they are
+SKIP_SELECTOR = re.compile(r'logo|gju404', re.I)  # official logo backings stay as they are; the 404 guard scene is a night scene in both themes
 
 # Exact original values that already have a UIMS token (same value in Light, so nothing changes there).
 SEMANTIC = {
@@ -166,9 +168,9 @@ def convert_css(text, page=False):
         role = role_of(prop)
         if not role: return m.group(0)
         head = text[:m.start()]
-        selector = head[max(head.rfind('}'), head.rfind(';')) + 1:]
-        if '{' in selector and SKIP_SELECTOR.search(selector[:selector.rfind('{')]): return m.group(0)
-        if SKIP_SELECTOR.search(selector.split('{')[0]) and '{' in selector: return m.group(0)
+        # The rule's selector: text between the previous '}' and the '{' that opens this declaration block.
+        opening = head.rfind('{')
+        if opening > head.rfind('}') and SKIP_SELECTOR.search(head[head.rfind('}', 0, opening) + 1:opening]): return m.group(0)
         new, n = convert_value(role, value)
         total += n
         return m.group(0).replace(value, new, 1) if n else m.group(0)
@@ -189,6 +191,7 @@ def convert_markup(text):
     return text, total
 
 def process(path, fn):
+    if ONLY and os.path.normcase(os.path.abspath(path)) not in ONLY: return
     raw = open(path, 'rb').read()
     bom = raw.startswith(b'\xef\xbb\xbf')
     # Keep each file's own encoding: a few team pages are Windows-1252, not UTF-8.

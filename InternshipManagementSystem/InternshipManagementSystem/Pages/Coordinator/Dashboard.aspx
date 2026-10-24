@@ -1,10 +1,10 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Dashboard" Title="Coordinator Dashboard" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/theme.css") %>" />
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-dashboard.css") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-dashboard.css?v=20261024-6") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="coordinator-dashboard">
+    <div class="coordinator-dashboard uims-theme">
         <section class="dashboard-heading" aria-labelledby="dashboard-title">
             <div>
                 <div class="theme-eyebrow">Your coordinator workspace</div>

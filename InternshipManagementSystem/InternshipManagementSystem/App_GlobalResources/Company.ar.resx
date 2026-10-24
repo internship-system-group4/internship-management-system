@@ -545,4 +545,32 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل الفرصة.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>أسابيع</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>حسابك غير مرتبط بأي شركة.</value></data>
+  <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>أكّد الطالب قبول هذا العرض.</value></data>
+  <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>تم تقديم عرض تدريب للطالب، وما زال عليه تأكيد قبوله.</value></data>
+  <data name="Applications.ReviewDeskIntro" xml:space="preserve"><value>راجع ملفات المتقدمين واتخذ قرارك. تظهر الطلبات التي تنتظر المراجعة أولًا.</value></data>
+  <data name="Applications.SearchPlaceholder" xml:space="preserve"><value>ابحث باسم الطالب أو فرصة التدريب</value></data>
+  <data name="Applications.FilterByStatus" xml:space="preserve"><value>تصفية الطلبات حسب الحالة</value></data>
+  <data name="Applications.AllApplications" xml:space="preserve"><value>الكل</value></data>
+  <data name="Applications.ShowingApplications" xml:space="preserve"><value>عرض {0} من أصل {1} طلبات</value></data>
+  <data name="Applications.NoMatchingApplications" xml:space="preserve"><value>لا توجد طلبات تطابق البحث والفلاتر المحددة.</value></data>
+  <data name="Applications.ClearFilters" xml:space="preserve"><value>مسح البحث والفلاتر</value></data>
+  <data name="Applications.ReviewApplication" xml:space="preserve"><value>مراجعة الطلب</value></data>
+  <data name="Applications.ViewApplication" xml:space="preserve"><value>عرض الطلب</value></data>
+  <data name="Applications.DraftWarning" xml:space="preserve"><value>لم يتم إرسال سبب الرفض بعد. هل تريد المتابعة؟ سيبقى النص محفوظًا داخل هذه الصفحة.</value></data>
+  <data name="Applications.ApplicationPosition" xml:space="preserve"><value>{0} من {1}</value></data>
+  <data name="Applications.PreviewCv" xml:space="preserve"><value>معاينة السيرة الذاتية</value></data>
+  <data name="Applications.HideCvPreview" xml:space="preserve"><value>إخفاء معاينة السيرة</value></data>
+  <data name="Applications.DownloadCv" xml:space="preserve"><value>تنزيل السيرة الذاتية</value></data>
+  <data name="Applications.PdfPreviewHelp" xml:space="preserve"><value>إذا لم يظهر ملف PDF، استخدم فتح السيرة الذاتية أو تنزيلها.</value></data>
+  <data name="Applications.CvPreviewFor" xml:space="preserve"><value>معاينة السيرة الذاتية لـ {0}</value></data>
+  <data name="Applications.ExternalCvHelp" xml:space="preserve"><value>السيرة الذاتية رابط خارجي. استخدم فتح السيرة الذاتية لعرضها في تبويب جديد.</value></data>
+  <data name="Applications.CloseApplication" xml:space="preserve"><value>إغلاق تفاصيل الطلب</value></data>
+  <data name="Applications.ApplicationNavigation" xml:space="preserve"><value>التنقل بين الطلبات المصفّاة</value></data>
+  <data name="Applications.PreviousApplication" xml:space="preserve"><value>السابق</value></data>
+  <data name="Applications.NextApplication" xml:space="preserve"><value>التالي</value></data>
+  <data name="Applications.SelectApplication" xml:space="preserve"><value>اختر طلبًا للمراجعة</value></data>
+  <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>اختر طالبًا من القائمة لمراجعة بياناته ومستنداته وطلبه.</value></data>
+  <data name="Applications.PlacementConfirmed" xml:space="preserve"><value>أكّد الطالب التدريب</value></data>
+  <data name="Applications.AwaitingStudentConfirmation" xml:space="preserve"><value>بانتظار تأكيد الطالب</value></data>
+  <data name="ApplicantDocument.ExternalPreviewUnavailable" xml:space="preserve"><value>هذا المستند رابط خارجي. ارجع إلى الطلب واستخدم فتح السيرة الذاتية أو الملف المهني.</value></data>
 </root>

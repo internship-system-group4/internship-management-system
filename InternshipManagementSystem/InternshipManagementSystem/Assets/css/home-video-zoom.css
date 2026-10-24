@@ -1,0 +1,22 @@
+/* Progressive enhancement: the original inline video remains the no-JS/reduced-motion fallback. */
+body.uims-public .home-page [data-scroll-video] { left:auto; right:auto; margin-inline:calc(50% - 50vw); }
+body.uims-public .home-page [data-scroll-video] .home-video-scroll-hint { color:var(--ui-primary-text,var(--ui-primary)); font-size:.875rem; margin:20px auto 0; }
+body.uims-public .home-page [data-scroll-video] [hidden] { display:none!important; }
+body.uims-public .home-page [data-scroll-video].is-scroll-video { padding:110px 0 0; }
+body.uims-public .home-page [data-scroll-video].is-scroll-video .home-process-video-container { max-width:none; }
+body.uims-public .home-page [data-scroll-video].is-scroll-video .home-process-video-header { max-width:1000px; padding-inline:24px; margin-inline:auto; }
+body.uims-public .home-page .is-scroll-video .home-video-runway { height:220svh; }
+body.uims-public .home-page .is-scroll-video .home-video-stage { position:sticky; top:0; height:100svh; display:grid; place-items:center; overflow:hidden; background:var(--ui-surface); }
+body.uims-public .home-page .is-scroll-video .home-process-video-wrapper { width:var(--video-frame-width, min(1000px,calc(100vw - 48px))); height:var(--video-frame-height,56.25vw); border:0; border-radius:var(--video-frame-radius,24px); background:#000; box-shadow:none; transform:none; transition:none; }
+body.uims-public .home-page .is-scroll-video .home-process-video-wrapper:hover { transform:none; box-shadow:none; }
+body.uims-public .home-page .is-scroll-video .home-process-video-wrapper video { width:100%; height:100%; object-fit:cover; border-radius:0; }
+body.uims-public .home-page [data-scroll-video] video:fullscreen { object-fit:contain; }
+body.uims-public .home-page [data-scroll-video] video:focus-visible { outline:3px solid var(--ui-focus); outline-offset:-4px; }
+/* Only the expanded viewing interval hides the bar. Focus and open menus always remain accessible. */
+body.uims-public .uims-public-nav[data-video-immersive="true"]:not(:focus-within):not([data-menu-open="true"]) { transform:translateY(calc(-100% - 32px)); }
+@media(max-width:760px) { body.uims-public .home-page [data-scroll-video].is-scroll-video { padding-block-start:72px; } }
+@media(prefers-reduced-motion:reduce) {
+ body.uims-public .home-page [data-scroll-video] { scroll-behavior:auto; }
+ body.uims-public .home-page [data-scroll-video] .home-process-video-wrapper { transition:none; transform:none; }
+ body.uims-public .home-page [data-scroll-video] .home-process-video-wrapper:hover { transform:none; }
+}

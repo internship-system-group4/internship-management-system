@@ -176,4 +176,79 @@
   <data name="NotFound.Home" xml:space="preserve"><value>Go Home</value></data>
   <data name="NotFound.Back" xml:space="preserve"><value>Go Back</value></data>
   <data name="NotFound.Contact" xml:space="preserve"><value>Contact us</value></data>
+  <data name="Home.BannerIntro" xml:space="preserve"><value>Explore a few examples of internship paths. Sign in to discover current opportunities and apply through your student portal.</value></data>
+  <data name="Home.BrowseSummaries" xml:space="preserve"><value>Explore internship examples</value></data>
+  <data name="Home.PreviewTitle" xml:space="preserve"><value>Find your next direction.</value></data>
+  <data name="Home.PreviewIntro" xml:space="preserve"><value>Explore the kind of experience an internship could offer. Sign in to find current openings for your field of study.</value></data>
+  <data name="Home.AccessNote" xml:space="preserve"><value>Open to explore. Sign in as a student to view full details or apply.</value></data>
+  <data name="Home.SignInBrowse" xml:space="preserve"><value>Sign in to browse all</value></data>
+  <data name="Home.BrowseAll" xml:space="preserve"><value>Browse all opportunities</value></data>
+  <data name="Home.SignInDetails" xml:space="preserve"><value>Sign in to view details</value></data>
+  <data name="Home.ViewDetails" xml:space="preserve"><value>View full details</value></data>
+  <data name="Home.SignInApply" xml:space="preserve"><value>Sign in to apply</value></data>
+  <data name="Home.Apply" xml:space="preserve"><value>Apply for this opportunity</value></data>
+  <data name="Home.StudentOnly" xml:space="preserve"><value>Full details and applications are available to eligible student accounts.</value></data>
+  <data name="Home.Location" xml:space="preserve"><value>Location</value></data>
+  <data name="Home.Specialization" xml:space="preserve"><value>Field of study</value></data>
+  <data name="Home.AvailableSeats" xml:space="preserve"><value>Available seats</value></data>
+  <data name="Home.Deadline" xml:space="preserve"><value>Application deadline</value></data>
+  <data name="Home.NoDeadline" xml:space="preserve"><value>No deadline listed</value></data>
+  <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>We could not load published summaries. Try again, or sign in to your portal.</value></data>
+  <data name="Home.UnavailableTitle" xml:space="preserve"><value>Summaries are temporarily unavailable</value></data>
+  <data name="Home.Retry" xml:space="preserve"><value>Try again</value></data>
+  <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>New opportunities will appear here</value></data>
+  <data name="Home.NoPreviewsText" xml:space="preserve"><value>There are no published summaries available right now. Check back later or sign in to explore your student portal.</value></data>
+  <data name="Home.FaqTitle" xml:space="preserve"><value>Frequently asked questions</value></data>
+  <data name="Home.FaqIntro" xml:space="preserve"><value>From your first application to the final review, here is what to expect along the way.</value></data>
+  <data name="Home.MoreQuestions" xml:space="preserve"><value>Still have a question? Contact us</value></data>
+  <data name="Home.Faq1Question" xml:space="preserve"><value>Can I explore opportunities before signing in?</value></data>
+  <data name="Home.Faq1Answer" xml:space="preserve"><value>The cards on this page are illustrative internship examples. Select More details to sign in, then explore current opportunities, full details, and applications in your student portal.</value></data>
+  <data name="Home.Faq2Question" xml:space="preserve"><value>Who can apply, and how do I get an account?</value></data>
+  <data name="Home.Faq2Answer" xml:space="preserve"><value>Eligible students with an active university internship account can apply. Your university coordinator manages accounts and supervision assignments. Contact the university if you need access.</value></data>
+  <data name="Home.Faq3Question" xml:space="preserve"><value>Why might an opportunity not be available to me?</value></data>
+  <data name="Home.Faq3Answer" xml:space="preserve"><value>Your student portal checks the opportunity’s college and major requirements, remaining seats, deadline, and current status. A public summary is a first look, not a guarantee of eligibility or availability.</value></data>
+  <data name="Home.Faq4Question" xml:space="preserve"><value>What happens after a company accepts my application?</value></data>
+  <data name="Home.Faq4Answer" xml:space="preserve"><value>Review the offer in My Applications and confirm one accepted offer to establish your internship placement. A company’s acceptance alone does not confirm your placement.</value></data>
+  <data name="Home.Faq5Question" xml:space="preserve"><value>How do I track my training and feedback?</value></data>
+  <data name="Home.Faq5Answer" xml:space="preserve"><value>Your workspace links to training tasks, submissions, feedback, meetings, and hours. Only hours approved by your supervisor count toward your required training hours.</value></data>
+  <data name="Home.Faq6Question" xml:space="preserve"><value>When is my internship considered complete?</value></data>
+  <data name="Home.Faq6Answer" xml:space="preserve"><value>Reaching your hours target is one part of completion. Training work and supervisor evaluations must also be completed, followed by coordinator approval. Results and reports are released according to the completion workflow.</value></data>
+  <data name="Home.FindCurrent" xml:space="preserve"><value>Find current opportunities</value></data>
+  <data name="Home.DemoLabel" xml:space="preserve"><value>Illustrative examples</value></data>
+  <data name="Home.DemoNote" xml:space="preserve"><value>These cards show possible internship paths, not current vacancies.</value></data>
+  <data name="Home.MoreDetails" xml:space="preserve"><value>More details</value></data>
+  <data name="Home.Demo1Title" xml:space="preserve"><value>Software Engineering Intern</value></data>
+  <data name="Home.Demo1Company" xml:space="preserve"><value>Example software team</value></data>
+  <data name="Home.Demo1Location" xml:space="preserve"><value>Amman, Jordan</value></data>
+  <data name="Home.Demo1Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
+  <data name="Home.Demo1Summary" xml:space="preserve"><value>Build web services, test new features, and learn how software teams ship useful products.</value></data>
+  <data name="Home.Demo2Title" xml:space="preserve"><value>Frontend Development Intern</value></data>
+  <data name="Home.Demo2Company" xml:space="preserve"><value>Example digital studio</value></data>
+  <data name="Home.Demo2Location" xml:space="preserve"><value>Hybrid, Jordan</value></data>
+  <data name="Home.Demo2Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
+  <data name="Home.Demo2Summary" xml:space="preserve"><value>Create accessible interfaces and bring thoughtful digital experiences to life.</value></data>
+  <data name="Home.Demo3Title" xml:space="preserve"><value>Data Analysis Intern</value></data>
+  <data name="Home.Demo3Company" xml:space="preserve"><value>Example analytics team</value></data>
+  <data name="Home.Demo3Location" xml:space="preserve"><value>Amman, Jordan</value></data>
+  <data name="Home.Demo3Field" xml:space="preserve"><value>Computer Science</value></data>
+  <data name="Home.Demo3Summary" xml:space="preserve"><value>Turn datasets into clear dashboards and insights that help teams make better decisions.</value></data>
+  <data name="Home.VideoScrollHint" xml:space="preserve"><value>Scroll to expand the video. Scroll back to return.</value></data>
+  <data name="Home.PauseCards" xml:space="preserve"><value>Pause cards</value></data>
+  <data name="Home.ResumeCards" xml:space="preserve"><value>Resume movement</value></data>
+  <data name="Home.CardMotionHint" xml:space="preserve"><value>Hover over a card to pause and take a closer look.</value></data>
+  <data name="Home.Demo4Title" xml:space="preserve"><value>Quality Assurance Intern</value></data>
+  <data name="Home.Demo4Company" xml:space="preserve"><value>Example product team</value></data>
+  <data name="Home.Demo4Location" xml:space="preserve"><value>Hybrid, Jordan</value></data>
+  <data name="Home.Demo4Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
+  <data name="Home.Demo4Summary" xml:space="preserve"><value>Test real features, automate checks, and help teams deliver reliable software.</value></data>
+  <data name="Home.Demo5Title" xml:space="preserve"><value>Cybersecurity Intern</value></data>
+  <data name="Home.Demo5Company" xml:space="preserve"><value>Example security lab</value></data>
+  <data name="Home.Demo5Location" xml:space="preserve"><value>Amman, Jordan</value></data>
+  <data name="Home.Demo5Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
+  <data name="Home.Demo5Summary" xml:space="preserve"><value>Explore secure systems, investigate risks, and learn practical security fundamentals.</value></data>
+  <data name="Home.Demo6Title" xml:space="preserve"><value>Embedded Systems Intern</value></data>
+  <data name="Home.Demo6Company" xml:space="preserve"><value>Example engineering team</value></data>
+  <data name="Home.Demo6Location" xml:space="preserve"><value>Madaba, Jordan</value></data>
+  <data name="Home.Demo6Field" xml:space="preserve"><value>Computer Engineering</value></data>
+  <data name="Home.Demo6Summary" xml:space="preserve"><value>Connect code with hardware through sensors, microcontrollers, and hands-on experiments.</value></data>
 </root>

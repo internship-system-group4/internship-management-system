@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="Progress.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.Progress" Title="My Progress & Evaluation" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="Progress.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.Progress" Title="My Progress & Evaluation" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -7,7 +7,7 @@
         .progress-intro p, .progress-muted { color: var(--muted); }
         .progress-summary { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; margin-bottom: 1.25rem; }
         .progress-stat { margin: 0; }
-        .progress-stat strong { display: block; font-size: 1.6rem; line-height: 1.2; color: var(--brand-dark); }
+        .progress-stat strong { display: block; font-size: 1.6rem; line-height: 1.2; color: var(--brand-text,var(--brand-dark)); }
         .progress-stat span { display: block; color: var(--muted); font-size: .84rem; margin-top: .3rem; }
         .progress-section-title { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
         .progress-section-title h3 { margin: 0 0 1rem; }
@@ -26,7 +26,7 @@
         .progress-history-head strong { font-size: .88rem; }
         .progress-history time, .progress-history small { color: var(--muted); font-size: .8rem; }
         .progress-history p, .progress-comment { white-space: pre-wrap; overflow-wrap: anywhere; margin: .25rem 0; font-size: .9rem; }
-        .progress-hours-count { font-size: 1.3rem; font-weight: 700; color: var(--brand-dark); }
+        .progress-hours-count { font-size: 1.3rem; font-weight: 700; color: var(--brand-text,var(--brand-dark)); }
         .progress-hours-count small { font-size: .85rem; font-weight: 400; color: var(--muted); }
         .progress-hours-note { margin: .7rem 0 1rem; font-size: .85rem; color: var(--muted); }
         .progress-result { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }

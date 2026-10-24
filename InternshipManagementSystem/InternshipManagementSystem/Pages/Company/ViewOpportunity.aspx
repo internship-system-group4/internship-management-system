@@ -41,7 +41,7 @@
 }
 
 .vo-muted {
-    color: var(--th-fg-718298,#718298);
+    color: var(--ui-muted);
     font-size: 13px;
     line-height: 1.7;
 }
@@ -74,7 +74,7 @@
     display: block;
     font-size: 12px;
     font-weight: 700;
-    color: var(--th-fg-718298,#718298);
+    color: var(--ui-muted);
     margin-bottom: 7px;
 }
 
