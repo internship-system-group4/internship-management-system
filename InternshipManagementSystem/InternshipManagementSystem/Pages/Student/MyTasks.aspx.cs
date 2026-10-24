@@ -1,17 +1,9 @@
-// =============================================================================
-//  My Tasks
-//  Owner : Fatima
-//  Cards : F03, F04
-//
-//  The student's own tasks with deadlines and statuses, and the submission form for text, a link or a file. Each submission is a new Submission record with an incremented AttemptNumber - never overwrite the previous attempt.
-//
-//  Namespace note: these page namespaces end in "Area" on purpose. A namespace
-//  called ...Pages.Student would hide the Student model class and every file in
-//  the folder would fail to compile with "Student is a namespace but is used
-//  like a type". Keep the suffix.
-// =============================================================================
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Net;
+using System.Web;
+using System.Web.Configuration;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -22,110 +14,397 @@ namespace InternshipManagementSystem.Pages.StudentArea
 {
     public partial class MyTasks : StudentPage
     {
+        private const int MaxFileBytes = 10 * 1024 * 1024;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Page.Form != null) Page.Form.Enctype = "multipart/form-data";
+            LoadTasks();
+            if (IsPostBack)
             {
-                LoadTasks();
-
-                // Opened from a notification: show that task straight away.
+                InternshipTask selected = GetSelectedTask();
+                if (selected != null) ShowTask(selected);
+            }
+            else
+            {
+                // Opened from a notification (MyTasks.aspx?task={id}): show that task straight away.
                 string fromLink = Request.QueryString["task"];
-                if (!string.IsNullOrEmpty(fromLink)) OpenTask(fromLink);
+                if (ApplicationRepository.IsValidKey(fromLink))
+                {
+                    InternshipTask linked = new TaskRepository().GetById(fromLink);
+                    if (OwnsTask(linked)) { ViewState["SelectedTaskId"] = linked.Id; ShowTask(linked); }
+                }
             }
         }
 
         private void LoadTasks()
         {
-            List<InternshipTask> tasks =
-                new TaskRepository().GetByStudent(CurrentStudent.Id);
+            List<InternshipTask> all = new TaskRepository().GetByStudent(CurrentStudent.Id);
+            Placement placement = new PlacementRepository().GetById(CurrentStudent.Id);
+            List<InternshipTask> tasks = new List<InternshipTask>();
+            if (placement != null && placement.StudentId == CurrentStudent.Id)
+                foreach (InternshipTask task in all)
+                    if (task != null && task.StudentId == CurrentStudent.Id &&
+                        task.PlacementId == placement.Id) tasks.Add(task);
 
-            rptTasks.DataSource = tasks;
+            string selectedId = ViewState["SelectedTaskId"] as string;
+            InternshipTask selected = null;
+            foreach (InternshipTask task in tasks)
+                if (task.Id == selectedId) { selected = task; break; }
+            if (selected == null && tasks.Count > 0)
+            {
+                selected = tasks[0];
+                ViewState["SelectedTaskId"] = selected.Id;
+            }
+
+            List<StudentTaskRow> rows = new List<StudentTaskRow>();
+            SubmissionRepository repo = new SubmissionRepository();
+            foreach (InternshipTask task in tasks)
+            {
+                StudentTaskRow row = new StudentTaskRow();
+                row.Id = task.Id;
+                row.Title = task.Title ?? "Untitled task";
+                row.StartLabel = task.StartDate > 0 ? "Starts " + FormatDate(task.StartDate) : "Assigned task";
+                row.DeadlineLabel = task.Deadline > 0 ? FormatDate(task.Deadline) : "Not set";
+                row.StatusLabel = FriendlyStatus(task.Status);
+                row.StatusClass = StatusClass(task.Status);
+                row.AttemptsLabel = CountAttempts(repo.GetByTask(task.Id), task).ToString();
+                row.ActionLabel = task.AcceptsSubmission
+                    ? (task.Status == InternshipTaskStatus.RevisionRequested ? "Resubmit" : "Submit")
+                    : "Details";
+                row.RowClass = selected != null && selected.Id == task.Id ? "is-selected" : "";
+                rows.Add(row);
+            }
+            rptTasks.DataSource = rows;
             rptTasks.DataBind();
             pnlNoTasks.Visible = tasks.Count == 0;
+            phNoTaskRows.Visible = tasks.Count == 0;
+            pnlSelectTask.Visible = tasks.Count == 0;
+            pnlSelectedTask.Visible = selected != null;
+            if (selected != null) ShowTask(selected);
         }
 
-        protected void rptTasks_ItemCommand(
-            object source, RepeaterCommandEventArgs e)
+        protected void rptTasks_ItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            if (e.CommandName != "ViewDetails") return;
-
-            OpenTask(Convert.ToString(e.CommandArgument));
-        }
-
-        private void OpenTask(string taskId)
-        {
-            if (!ApplicationRepository.IsValidKey(taskId)) return;
-            InternshipTask task = new TaskRepository().GetById(taskId);
-
-            // لا نعرض مهمة طالب آخر حتى لو وصلنا رقمها.
-            if (task == null || task.StudentId != CurrentStudent.Id) return;
-
+            if (e.CommandName != "SelectTask") return;
+            InternshipTask task = new TaskRepository().GetById(Convert.ToString(e.CommandArgument));
+            if (!OwnsTask(task)) return;
             ViewState["SelectedTaskId"] = task.Id;
-            ShowTask(task);
+            LoadTasks();
         }
 
         protected void btnSubmitTask_Click(object sender, EventArgs e)
         {
-            var task = new TaskRepository().GetById(ViewState["SelectedTaskId"] as string);
-            if (task == null || task.StudentId != CurrentStudent.Id) return;
-            try {
-                Services.TaskWorkflowService.Submit(task.Id, txtSubmissionText.Text, txtSubmissionLink.Text);
-                txtSubmissionText.Text = txtSubmissionLink.Text = "";
-                LoadTasks();
-                ShowMessage(L.T("Student.MyTasks.SubmissionSavedSuccessfully"), true, new TaskRepository().GetById(task.Id));
-            } catch (Exception ex) {
-                Services.EmailNotificationService.LogFailure(ex);
-                ShowMessage(ex is InvalidOperationException || ex is UnauthorizedAccessException ? ex.Message : "Could not submit your work. Please try again.", false, task);
+            InternshipTask task = GetSelectedTask();
+            if (!OwnsTask(task)) { ShowMessage("This task is not assigned to your account.", false); return; }
+            if (!task.AcceptsSubmission) { ShowMessage("This task is not accepting submissions right now.", false); return; }
+
+            Placement placement = new PlacementRepository().GetById(CurrentStudent.Id);
+            if (placement == null || placement.StudentId != CurrentStudent.Id ||
+                placement.Id != task.PlacementId)
+            { ShowMessage("Your placement could not be verified.", false); return; }
+
+            string note = (txtSubmissionText.Text ?? "").Trim();
+            string link = (txtSubmissionLink.Text ?? "").Trim();
+            bool hasFile = fuSubmission.HasFile;
+            if (link.Length > 0 && !IsHttpUrl(link))
+            { ShowMessage("Enter a valid link beginning with http:// or https://.", false); return; }
+            if (task.RequiresFileUpload && !hasFile) { string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"]; ShowMessage(string.IsNullOrWhiteSpace(bucket) ? "This task requires a file, but file storage is not configured. Contact your administrator before submitting." : "This task requires an attachment. Choose a file before submitting.", false); return; }
+            if (note.Length == 0 && link.Length == 0 && !hasFile)
+            { ShowMessage("Add a note, a link, or an attachment before submitting.", false); return; }
+
+            SubmissionRepository repo = new SubmissionRepository();
+            int previousAttempt = CountAttempts(repo.GetByTask(task.Id), task);
+            if (previousAttempt > 0 && task.Status != InternshipTaskStatus.RevisionRequested)
+            { ShowMessage("Your submission is waiting for review. You can resubmit after a revision is requested.", false); return; }
+
+            Submission submission = new Submission();
+            submission.TaskId = task.Id;
+            submission.StudentId = CurrentStudent.Id;
+            submission.PlacementId = task.PlacementId;
+            submission.AttemptNumber = previousAttempt + 1;
+            submission.DescriptionText = note;
+            submission.LinkUrl = link;
+
+            if (hasFile)
+            {
+                try
+                {
+                    string savedFileName;
+                    submission.FileUrl = UploadFile(fuSubmission.PostedFile, task.Id, CurrentStudent.Id, out savedFileName);
+                    submission.FileName = savedFileName;
+                }
+                catch (WebException) { ShowMessage("The attachment could not be uploaded. Check your connection and try again.", false); return; }
+                catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); return; }
             }
+
+            try
+            {
+                if (string.IsNullOrEmpty(repo.Insert(submission)))
+                { ShowMessage("The submission could not be saved. Please try again.", false); return; }
+            }
+            catch (FirebaseException)
+            { ShowMessage("The submission could not be saved. Please try again.", false); return; }
+
+            InternshipTaskStatus status = previousAttempt == 0
+                ? InternshipTaskStatus.Submitted : InternshipTaskStatus.Resubmitted;
+            try
+            {
+                new TaskRepository().Update(task.Id, new Dictionary<string, object> { { "Status", status } });
+                task.Status = status;
+            }
+            catch (FirebaseException)
+            {
+                ShowMessage("Your submission was saved, but the task status could not be refreshed. Reload the page or contact your supervisor.", false);
+                return;
+            }
+
+            txtSubmissionText.Text = "";
+            txtSubmissionLink.Text = "";
+            ViewState["SelectedTaskId"] = task.Id;
+            LoadTasks();
+            ShowMessage("Your task was submitted successfully.", true);
+        }
+
+        private InternshipTask GetSelectedTask()
+        {
+            string id = ViewState["SelectedTaskId"] as string;
+            return string.IsNullOrWhiteSpace(id) ? null : new TaskRepository().GetById(id);
+        }
+
+        private bool OwnsTask(InternshipTask task)
+        {
+            if (task == null || CurrentStudent == null || task.StudentId != CurrentStudent.Id) return false;
+            Placement p = new PlacementRepository().GetById(CurrentStudent.Id);
+            return p != null && p.StudentId == CurrentStudent.Id && p.Id == task.PlacementId;
         }
 
         private void ShowTask(InternshipTask task)
         {
+            if (!OwnsTask(task)) { pnlSelectedTask.Visible = false; pnlSelectTask.Visible = true; return; }
+            pnlSelectedTask.Visible = true;
+            pnlSelectTask.Visible = false;
             litTaskTitle.Text = task.Title ?? "";
-            litStatus.Text = L.Value("TaskStatus", task.Status);
-            litDescription.Text = task.Description ?? "";
-            litInstructions.Text = task.Instructions ?? "";
+            litStatus.Text = FriendlyStatus(task.Status);
+            litDescription.Text = string.IsNullOrWhiteSpace(task.Description) ? "No description was provided." : task.Description;
+            litInstructions.Text = string.IsNullOrWhiteSpace(task.Instructions) ? "No additional instructions were provided." : task.Instructions;
+            litDeadline.Text = task.Deadline > 0 ? FormatDate(task.Deadline) : "Not set";
 
-            litDeadline.Text = task.Deadline > 0
-                ? DateTimeOffset.FromUnixTimeMilliseconds(task.Deadline)
-                    .UtcDateTime.ToString("yyyy-MM-dd HH:mm") + " UTC"
-                : L.T("Student.MyTasks.NotSet");
-
-            rptCriteria.DataSource = task.Criteria;
-            rptCriteria.DataBind();
-            lblNoCriteria.Visible =
-                task.Criteria == null || task.Criteria.Count == 0;
-
-            List<Submission> mySubmissions = new List<Submission>();
-
-            foreach (Submission item in
-                     new SubmissionRepository().GetByTask(task.Id))
+            Uri attachment;
+            lnkTaskAttachment.Visible = Uri.TryCreate(task.AttachmentUrl, UriKind.Absolute, out attachment) &&
+                attachment.Scheme == Uri.UriSchemeHttps && attachment.Host == "firebasestorage.googleapis.com";
+            if (lnkTaskAttachment.Visible)
             {
-                if (item.StudentId == CurrentStudent.Id &&
-                    item.PlacementId == task.PlacementId)
-                {
-                    mySubmissions.Add(item);
-                }
+                lnkTaskAttachment.NavigateUrl = task.AttachmentUrl;
+                lnkTaskAttachment.Attributes["rel"] = "noopener noreferrer";
+                lnkTaskAttachment.Text = "Download task attachment: " +
+                    Server.HtmlEncode(string.IsNullOrWhiteSpace(task.AttachmentName) ? "Attached file" : task.AttachmentName);
             }
 
-            rptHistory.DataSource = mySubmissions;
-            rptHistory.DataBind();
-            phNoAttempts.Visible = mySubmissions.Count == 0;
-
-            ClientScript.RegisterStartupScript(
-                GetType(), "openTaskDetails", "showTaskDetails();", true);
+            pnlSubmissionForm.Visible = task.AcceptsSubmission;
+            pnlSubmissionClosed.Visible = !task.AcceptsSubmission;
+            btnSubmitTask.Text = task.Status == InternshipTaskStatus.RevisionRequested ? "Resubmit task" : "Submit task";
+            bool storageReady = !string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["Firebase.StorageBucket"]);
+            fuSubmission.Enabled = storageReady;
+            litFileRequirement.Text = !storageReady
+                ? (task.RequiresFileUpload
+                    ? "<span class=\"text-danger small d-block mt-1\">This task requires a file, but file storage is not configured.</span>"
+                    : "<span class=\"text-muted small d-block mt-1\">File uploads are not configured yet. You can submit a link instead.</span>")
+                : (task.RequiresFileUpload ? "<span class=\"text-danger small d-block mt-1\">An attachment is required for this task.</span>" : "");
+            rptCriteria.DataSource = task.Criteria;
+            rptCriteria.DataBind();
+            lblNoCriteria.Visible = task.Criteria == null || task.Criteria.Count == 0;
+            BindHistory(task);
         }
 
-        private void ShowMessage(
-            string message, bool success, InternshipTask task)
+        private void BindHistory(InternshipTask task)
+        {
+            List<Submission> submissions = new SubmissionRepository().GetByTask(task.Id);
+            List<TaskEvaluation> evaluations = new TaskEvaluationRepository().GetByTask(task.Id);
+            List<HistoryRow> rows = new List<HistoryRow>();
+            foreach (Submission s in submissions)
+            {
+                if (s == null || s.StudentId != CurrentStudent.Id || s.PlacementId != task.PlacementId) continue;
+                TaskEvaluation evaluation = null;
+                foreach (TaskEvaluation e in evaluations)
+                    if (e != null && e.SubmissionId == s.Id && e.StudentId == CurrentStudent.Id &&
+                        e.PlacementId == task.PlacementId) { evaluation = e; break; }
+
+                HistoryRow row = new HistoryRow();
+                row.AttemptLabel = s.AttemptNumber.ToString();
+                row.SubmittedLabel = FormatDate(s.SubmittedAt);
+                row.StatusLabel = evaluation == null
+                    ? SubmissionStatusLabel(s.Status)
+                    : (evaluation.RevisionRequested ? "Revision requested" : "Reviewed");
+                row.Feedback = evaluation == null ? "No feedback yet." :
+                    (evaluation.RevisionRequested
+                        ? (evaluation.RevisionInstructions ?? evaluation.Feedback ?? "Revision requested.")
+                        : (evaluation.Feedback ?? "Evaluation completed."));
+                row.FileUrl = SafeStorageUrl(s.FileUrl) ? s.FileUrl : "";
+                row.FileName = string.IsNullOrWhiteSpace(s.FileName) ? "Download submitted file" : s.FileName;
+                row.HasFile = row.FileUrl.Length > 0;
+                row.LinkUrl = IsHttpUrl(s.LinkUrl) ? s.LinkUrl : "";
+                row.HasLink = row.LinkUrl.Length > 0;
+                rows.Add(row);
+            }
+            rows.Sort(delegate(HistoryRow a, HistoryRow b)
+            { return Convert.ToInt32(b.AttemptLabel).CompareTo(Convert.ToInt32(a.AttemptLabel)); });
+            rptHistory.DataSource = rows;
+            rptHistory.DataBind();
+            phNoAttempts.Visible = rows.Count == 0;
+        }
+
+        private int CountAttempts(List<Submission> list, InternshipTask task)
+        {
+            int count = 0;
+            if (list == null) return count;
+            foreach (Submission s in list)
+                if (s != null && s.StudentId == CurrentStudent.Id && s.PlacementId == task.PlacementId &&
+                    s.AttemptNumber > count) count = s.AttemptNumber;
+            return count;
+        }
+
+        private static string FriendlyStatus(InternshipTaskStatus s)
+        {
+            switch (s)
+            {
+                case InternshipTaskStatus.Submitted: return "Submitted";
+                case InternshipTaskStatus.UnderReview: return "Under review";
+                case InternshipTaskStatus.RevisionRequested: return "Revision requested";
+                case InternshipTaskStatus.Resubmitted: return "Resubmitted";
+                case InternshipTaskStatus.Graded: return "Reviewed";
+                default: return "Assigned";
+            }
+        }
+
+        private static string SubmissionStatusLabel(SubmissionStatus s)
+        {
+            switch (s)
+            {
+                case SubmissionStatus.UnderReview: return "Under review";
+                case SubmissionStatus.RevisionRequested: return "Revision requested";
+                case SubmissionStatus.Accepted: return "Reviewed";
+                default: return "Submitted";
+            }
+        }
+
+        private static string StatusClass(InternshipTaskStatus s)
+        {
+            if (s == InternshipTaskStatus.Submitted || s == InternshipTaskStatus.UnderReview ||
+                s == InternshipTaskStatus.Resubmitted) return "status-submitted";
+            if (s == InternshipTaskStatus.RevisionRequested) return "status-revision";
+            if (s == InternshipTaskStatus.Graded) return "status-done";
+            return "status-action";
+        }
+
+        private static string FormatDate(long ms)
+        {
+            if (ms <= 0) return "Not set";
+            DateTimeOffset d = DateTimeOffset.FromUnixTimeMilliseconds(ms);
+            try { return TimeZoneInfo.ConvertTime(d, TimeZoneInfo.FindSystemTimeZoneById("Jordan Standard Time")).ToString("dd MMM yyyy, h:mm tt"); }
+            catch { return d.UtcDateTime.ToString("dd MMM yyyy, h:mm tt") + " UTC"; }
+        }
+
+        private static bool IsHttpUrl(string value)
+        {
+            Uri uri;
+            return !string.IsNullOrWhiteSpace(value) && Uri.TryCreate(value, UriKind.Absolute, out uri) &&
+                (uri.Scheme == Uri.UriSchemeHttp || uri.Scheme == Uri.UriSchemeHttps);
+        }
+
+        private static bool SafeStorageUrl(string value)
+        {
+            Uri uri;
+            return Uri.TryCreate(value, UriKind.Absolute, out uri) && uri.Scheme == Uri.UriSchemeHttps &&
+                uri.Host == "firebasestorage.googleapis.com";
+        }
+
+        private static string UploadFile(HttpPostedFile file, string taskId, string studentId, out string fileName)
+        {
+            fileName = Path.GetFileName(file.FileName);
+            string ext = Path.GetExtension(fileName).ToLowerInvariant();
+            string[] allowed = { ".pdf", ".doc", ".docx", ".zip", ".png", ".jpg", ".jpeg" };
+            bool valid = false;
+            foreach (string item in allowed) if (ext == item) valid = true;
+            if (!valid) throw new InvalidOperationException("Choose a PDF, Word, ZIP, PNG, or JPG file.");
+            if (file.ContentLength <= 0 || file.ContentLength > MaxFileBytes)
+                throw new InvalidOperationException("The file must be larger than zero and no bigger than 10 MB.");
+
+            string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"];
+            if (string.IsNullOrWhiteSpace(bucket)) throw new InvalidOperationException("File storage is not configured.");
+            bucket = bucket.Trim();
+            if (bucket.StartsWith("gs://", StringComparison.OrdinalIgnoreCase)) bucket = bucket.Substring(5).TrimEnd('/');
+            string token = HttpContext.Current.Session[Constants.SessionTokenKey] as string;
+            if (string.IsNullOrWhiteSpace(token)) throw new InvalidOperationException("Your session expired. Sign in again before uploading.");
+
+            string objectName = "task-submissions/" + studentId + "/" + taskId + "/" + Guid.NewGuid().ToString("N") + ext;
+            byte[] bytes = new byte[file.ContentLength];
+            int total = 0;
+            while (total < bytes.Length)
+            {
+                int read = file.InputStream.Read(bytes, total, bytes.Length - total);
+                if (read <= 0) break;
+                total += read;
+            }
+            if (total != bytes.Length) throw new InvalidOperationException("The selected file could not be read.");
+
+            string url = "https://firebasestorage.googleapis.com/v0/b/" + Uri.EscapeDataString(bucket) +
+                "/o?uploadType=media&name=" + Uri.EscapeDataString(objectName);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Method = "POST";
+            request.ContentType = string.IsNullOrWhiteSpace(file.ContentType) ? "application/octet-stream" : file.ContentType;
+            request.Headers[HttpRequestHeader.Authorization] = "Bearer " + token;
+            request.ContentLength = bytes.Length;
+            request.Timeout = 60000;
+            using (Stream stream = request.GetRequestStream()) stream.Write(bytes, 0, bytes.Length);
+            string responseText;
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            using (StreamReader reader = new StreamReader(response.GetResponseStream())) responseText = reader.ReadToEnd();
+            Dictionary<string, object> responseMap = Json.ToMap(responseText);
+            object tokenValue;
+            string downloadToken = responseMap != null && responseMap.TryGetValue("downloadTokens", out tokenValue)
+                ? Convert.ToString(tokenValue) : null;
+            if (string.IsNullOrWhiteSpace(downloadToken)) throw new InvalidOperationException("Storage did not return a download link.");
+            return "https://firebasestorage.googleapis.com/v0/b/" + Uri.EscapeDataString(bucket) +
+                "/o/" + Uri.EscapeDataString(objectName) + "?alt=media&token=" + Uri.EscapeDataString(downloadToken);
+        }
+
+        private void ShowMessage(string message, bool success)
         {
             lblSubmitMessage.Text = Server.HtmlEncode(message);
-            lblSubmitMessage.CssClass = success
-                ? "alert alert-success d-block mt-3"
-                : "alert alert-danger d-block mt-3";
+            lblSubmitMessage.CssClass = success ? "alert alert-success d-block mt-3" : "alert alert-danger d-block mt-3";
             lblSubmitMessage.Visible = true;
+        }
 
-            ShowTask(task);
+        public class StudentTaskRow
+        {
+            public string Id { get; set; }
+            public string Title { get; set; }
+            public string StartLabel { get; set; }
+            public string DeadlineLabel { get; set; }
+            public string StatusLabel { get; set; }
+            public string StatusClass { get; set; }
+            public string AttemptsLabel { get; set; }
+            public string ActionLabel { get; set; }
+            public string RowClass { get; set; }
+        }
+
+        public class HistoryRow
+        {
+            public string AttemptLabel { get; set; }
+            public string SubmittedLabel { get; set; }
+            public string StatusLabel { get; set; }
+            public string Feedback { get; set; }
+            public string FileUrl { get; set; }
+            public string FileName { get; set; }
+            public bool HasFile { get; set; }
+            public string LinkUrl { get; set; }
+            public bool HasLink { get; set; }
         }
     }
 }
+
+
+
+
+

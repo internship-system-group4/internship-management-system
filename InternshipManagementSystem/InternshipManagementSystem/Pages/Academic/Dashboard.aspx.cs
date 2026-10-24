@@ -1,31 +1,70 @@
 using System;
-using System.Collections.Generic;
+using System.Linq;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 
-namespace InternshipManagementSystem.Pages.AcademicArea
+namespace InternshipManagementSystem.Pages.Academic
 {
     public partial class Dashboard : AcademicPage
     {
+        protected WorkspaceAcademicData Workspace;
+        protected string LoadError;
+
+        public bool ShowAllStudents
+        {
+            get { return ViewState["ShowAll"] != null ? (bool)ViewState["ShowAll"] : false; }
+            set { ViewState["ShowAll"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
+            litSupervisorName.Text = System.Web.HttpUtility.HtmlEncode(CurrentSupervisor.FullName);
+            litTotalStudents.Text = litCompletedStudents.Text = "—";
+
+            LoadDashboardData();
+        }
+
+        private void LoadDashboardData()
+        {
             try
             {
-                List<Student> students = new UserRepository().GetStudentsBySupervisor(CurrentSupervisor.Id);
-                List<string> groupIds = CurrentSupervisor.GroupIds ?? new List<string>();
-                students.RemoveAll(student => !groupIds.Contains(student.GroupId));
-                students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
-                rptStudents.DataSource = students;
+                Workspace = new WorkspaceDashboardRepository().LoadAcademic(CurrentSupervisor.Id);
+                Journey.Model = Workspace.Journey;
+                Charts.Model = WorkspaceChartFactory.Academic(Workspace);
+
+                litTotalStudents.Text = Workspace.Students.Count.ToString();
+                litCompletedStudents.Text = Workspace.HoursMet.ToString();
+
+                var studentsToDisplay = ShowAllStudents ? Workspace.Students : Workspace.Students.Take(3).ToList();
+
+                rptStudents.DataSource = studentsToDisplay;
                 rptStudents.DataBind();
-                lblNoStudents.Visible = students.Count == 0;
+
+                litNoData.Visible = Workspace.Students.Count == 0;
+
+                // التحكم بظهور الأزرار بناءً على حالة العرض
+                btnSeeMore.Visible = Workspace.Students.Count > 3 && !ShowAllStudents;
+                btnSeeLess.Visible = Workspace.Students.Count > 3 && ShowAllStudents;
             }
-            catch (FirebaseException)
+            catch (Exception ex)
             {
-                lblMessage.Text = "Could not load your assigned students. Please try again.";
-                lblMessage.Visible = true;
+                System.Diagnostics.Trace.TraceError("Academic workspace: " + ex.Message);
+                LoadError = L.T("Academic.Dashboard.WeCouldNotLoadYourAssigned");
             }
+        }
+
+        protected void btnSeeMore_Click(object sender, EventArgs e)
+        {
+            ShowAllStudents = true;
+            LoadDashboardData();
+        }
+
+        protected void btnSeeLess_Click(object sender, EventArgs e)
+        {
+            ShowAllStudents = false;
+            LoadDashboardData();
         }
     }
 }

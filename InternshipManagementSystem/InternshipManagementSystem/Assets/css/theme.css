@@ -7,7 +7,7 @@
      (background, text, line) and is rebuilt by tools/theme/convert-colors.py. */
 
 /* Light: semantic tokens the dark theme also defines. Values are the existing ones, so Light is unchanged. */
-:root { color-scheme:light; --ui-surface-raised:#fff; }
+:root { color-scheme:light; --ui-surface-raised:#fff; --bs-link-color:var(--ui-primary); --bs-link-color-rgb:38,79,115; --bs-link-hover-color:var(--ui-primary-hover); --bs-link-hover-color-rgb:23,63,98; }
 
 /* ---------------------------------------------------------------- Dark: core palette, derived from the GJU navy */
 :root[data-theme="dark"] {
@@ -21,6 +21,8 @@
  /* Brand actions: a lighter navy keeps white button text above 4.5:1; links use a readable light blue. */
  --ui-primary:#3b74a6; --ui-primary-hover:#336897; --ui-primary-soft:#1a344d; --ui-primary-text:#93c2ea;
  --ui-accent:#d7b35c; --ui-focus:#93c2ea;
+ /* Deep brand band behind white text (hours card): Light falls back to --ui-primary-hover. */
+ --ui-brand-deep:#1d4569;
  /* Status: light tones for text, icons and series on dark surfaces; *-strong for filled buttons with white text. */
  --ui-success:#6fcf9d; --ui-success-soft:#12301f; --ui-success-strong:#23704b;
  --ui-warning:#e8b860; --ui-warning-soft:#332810; --ui-warning-strong:#8a5f12;
@@ -59,6 +61,12 @@ html.uims-public[data-theme="dark"] {
 [data-theme="dark"] :is(.bg-light,.bg-body-tertiary,.bg-body-secondary) { background-color:var(--ui-surface-raised)!important; }
 [data-theme="dark"] :is(.text-dark,.text-black,.text-body,.link-dark) { color:var(--ui-ink)!important; }
 [data-theme="dark"] :is(.text-muted,.text-secondary,.text-black-50) { color:var(--ui-muted)!important; }
+/* Coloured text utilities use the light status tones (Bootstrap's mid tones fall below 4.5:1 on dark surfaces). */
+[data-theme="dark"] :is(.text-primary,.link-primary) { color:var(--ui-primary-text)!important; }
+[data-theme="dark"] :is(.text-success,.link-success) { color:var(--ui-success)!important; }
+[data-theme="dark"] :is(.text-warning,.link-warning) { color:var(--ui-warning)!important; }
+[data-theme="dark"] :is(.text-danger,.link-danger) { color:var(--ui-danger)!important; }
+[data-theme="dark"] :is(.text-info,.link-info) { color:var(--ui-info)!important; }
 [data-theme="dark"] :is(.border-light,.border-white) { border-color:var(--ui-border)!important; }
 [data-theme="dark"] .table-light { --bs-table-color:var(--ui-ink); --bs-table-bg:var(--ui-surface-raised); --bs-table-border-color:var(--ui-border); --bs-table-striped-bg:#21344a; --bs-table-hover-bg:#22364b; color:var(--ui-ink); }
 [data-theme="dark"] .table { --bs-table-bg:transparent; --bs-table-color:var(--ui-ink); --bs-table-border-color:var(--ui-border); --bs-table-hover-bg:rgb(147 194 234 / 7%); --bs-table-striped-bg:rgb(255 255 255 / 3%); --bs-table-active-bg:var(--ui-primary-soft); }
@@ -74,12 +82,13 @@ html.uims-public[data-theme="dark"] {
 [data-theme="dark"] :is(input,textarea)[readonly] { background-color:var(--ui-neutral-soft); }
 
 /* --------------------------------------------------------------------------------- Theme selector */
-.uims-theme { position:relative; display:inline-flex; }
-:is(.uims-theme,.uims-theme-inline)[hidden] { display:none!important; }
+/* The toggle shares the class name with the team page scope of Assets/theme.css; component rules key on the control. */
+.uims-theme[data-theme-control] { position:relative; display:inline-flex; }
+:is(.uims-theme[data-theme-control],.uims-theme-inline)[hidden] { display:none!important; }
 .uims-theme-button { position:relative; display:inline-grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid var(--ui-border); border-radius:50%; background:var(--ui-surface); color:var(--ui-ink); cursor:pointer; }
 .uims-theme-button:hover { border-color:var(--ui-control-border); }
 .uims-theme-button:focus-visible,.uims-theme-option:focus-visible,.uims-theme-inline [role="radio"]:focus-visible { outline:3px solid var(--ui-focus); outline-offset:3px; }
-.uims-theme svg,.uims-theme-inline svg { width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.uims-theme[data-theme-control] svg,.uims-theme-inline svg { width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .uims-theme-button [data-theme-icon] { position:absolute; inset:0; margin:auto; opacity:0; transform:scale(.72) rotate(-24deg); }
 .uims-theme-icon-changing .uims-theme-button [data-theme-icon] { transition:opacity 150ms ease,transform 280ms cubic-bezier(.16,1,.3,1); }
 :root[data-theme-preference="light"] .uims-theme-button [data-theme-icon="light"],
@@ -102,6 +111,10 @@ html.uims-public[data-theme="dark"] {
 
 /* Public footer: a deep navy band in Dark (Light keeps --brand-dark). */
 [data-theme="dark"] .uims-public-footer { --footer-bg:#0f2438; }
+/* Footer map (MapLibre): its white control cards and attribution strip follow the dark surfaces; the dark glyphs are inverted. */
+[data-theme="dark"] .uims-public-footer :is(.maplibregl-ctrl-group,.maplibregl-ctrl-attrib,.maplibregl-ctrl-attrib.maplibregl-compact) { background:var(--ui-surface-raised); box-shadow:0 0 0 1px var(--ui-border); }
+[data-theme="dark"] .uims-public-footer .maplibregl-ctrl-group button + button { border-top-color:var(--ui-border); }
+[data-theme="dark"] .uims-public-footer :is(.maplibregl-ctrl-icon,.maplibregl-ctrl-attrib-button) { filter:invert(1) hue-rotate(180deg); }
 /* Home: the campus ground and its type follow the theme; the 3D miniature keeps its daylight materials. */
 [data-theme="dark"] .home-page { --campus-ground:#0e1823; --campus-ink:#e6edf5; --campus-secondary:#b6c4d2; }
 
@@ -168,69 +181,107 @@ html.uims-theme-reveal::view-transition-new(uims-theme-control) { animation:uims
 
 /* ===== generated:start (tools/theme/convert-colors.py) — do not edit by hand ===== */
 :root[data-theme="dark"] {
- --th-bg-000000:#121212; --th-bg-08346a:#1d477f; --th-bg-0a3457:#1f476b; --th-bg-0a365c:#1f4971; --th-bg-0f4c81:#276097; --th-bg-102e4d:#224061;
- --th-bg-104784:#275b9a; --th-bg-173a60:#2a4d75; --th-bg-173b5e:#2a4e72; --th-bg-183e64:#2b5179; --th-bg-1a2e44:#2c4057; --th-bg-1c477e:#305b94;
- --th-bg-1e5a8c:#346ea2; --th-bg-1f3a5f:#314d74; --th-bg-1f4466:#32577b; --th-bg-204b62:#345f76; --th-bg-244f77:#38638c; --th-bg-254e75:#39628a;
- --th-bg-285aa0:#3c6fb7; --th-bg-2b4560:#3e5874; --th-bg-2f6b45:#448058; --th-bg-316a99:#467faf; --th-bg-4f6878:#637c8d; --th-bg-7a302b:#90443e;
- --th-bg-903b35:#a75048; --th-bg-a9bccf:#36434f; --th-bg-b42318:#cd3e2f; --th-bg-c62f3b:#d23c45; --th-bg-cbd8e5:#191f24; --th-bg-cfe0f2:#192028;
- --th-bg-d3dde8:#1b1f24; --th-bg-dbeadf:#1c221e; --th-bg-dce6eb:#19212a; --th-bg-dce8f3:#1c2126; --th-bg-dce8f5:#1c2127; --th-bg-dce9f6:#1c2227;
- --th-bg-dceafa:#1c2229; --th-bg-dceaff:#1c222b; --th-bg-dde5e6:#192129; --th-bg-def7e9:#1a251f; --th-bg-def8ed:#1a2621; --th-bg-dfe9ef:#1a222a;
+ --th-bg-000000:#121212; --th-bg-08346a:#1d477f; --th-bg-090e19:#0c111d; --th-bg-09334f:#1e4663; --th-bg-0a3457:#1f476b; --th-bg-0a365c:#1f4971;
+ --th-bg-0b1322:#252e3f; --th-bg-0b2c48:#1e3e5c; --th-bg-0f4c81:#276097; --th-bg-102e4d:#224061; --th-bg-104784:#275b9a; --th-bg-121a2e:#242d43;
+ --th-bg-12263970:#23384c70; --th-bg-123d58:#26506c; --th-bg-172537:#28374a; --th-bg-173a60:#2a4d75; --th-bg-173b5e:#2a4e72; --th-bg-182b40:#293d53;
+ --th-bg-183e64:#2b5179; --th-bg-194568:#2d587d; --th-bg-194e56:#2e626a; --th-bg-1a2e44:#2c4057; --th-bg-1c3048:#2e425b; --th-bg-1c477e:#305b94;
+ --th-bg-1e5a8c:#346ea2; --th-bg-1f3a5f:#314d74; --th-bg-1f4466:#32577b; --th-bg-204b62:#345f76; --th-bg-205e9d:#3673b3; --th-bg-21364d:#334961;
+ --th-bg-244f77:#38638c; --th-bg-254e75:#39628a; --th-bg-28567e:#3c6a93; --th-bg-285aa0:#3c6fb7; --th-bg-2b4560:#3e5874; --th-bg-2f6b45:#448058;
+ --th-bg-316a99:#467faf; --th-bg-496b8c:#5b7ea0; --th-bg-4f6878:#637c8d; --th-bg-7a302b:#90443e; --th-bg-903b35:#a75048; --th-bg-a9bccf:#36434f;
+ --th-bg-b42318:#cd3e2f; --th-bg-c62f3b:#d23c45; --th-bg-cbd8e5:#191f24; --th-bg-cfe0ee:#192026; --th-bg-cfe0f2:#192028; --th-bg-d3dde8:#1b1f24;
+ --th-bg-dbeadf:#1c221e; --th-bg-dce6eb:#19212a; --th-bg-dce8f3:#1c2126; --th-bg-dce8f5:#1c2127; --th-bg-dce9f6:#1c2227; --th-bg-dceafa:#1c2229;
+ --th-bg-dceaff:#1c222b; --th-bg-dde5e6:#192129; --th-bg-def1ff:#1b2329; --th-bg-def7e9:#1a251f; --th-bg-def8ed:#1a2621; --th-bg-dfe9ef:#1a222a;
  --th-bg-dfeafa:#1d2228; --th-bg-e0eaf5:#1d2226; --th-bg-e0edff:#1d222a; --th-bg-e0f2fe:#1c2429; --th-bg-e1e6e3:#19212a; --th-bg-e2e8f0:#1a222a;
- --th-bg-e2f4e8:#1d241f; --th-bg-e3e8ec:#1a222a; --th-bg-e3eeff:#1e222a; --th-bg-e3f0ff:#1d2329; --th-bg-e3f6ea:#1d2520; --th-bg-e4f0ff:#1e2329;
- --th-bg-e4f5eb:#1d2520; --th-bg-e5e9e2:#1a222a; --th-bg-e5ecf4:#1a232b; --th-bg-e5edf7:#1f2226; --th-bg-e5f5ec:#1d2421; --th-bg-e6eef6:#1b232b;
- --th-bg-e6f4ea:#1e2420; --th-bg-e6f5ed:#1e2421; --th-bg-e6f6ec:#1e2520; --th-bg-e7f5ed:#1e2421; --th-bg-e7f6ed:#1e2521; --th-bg-e8f0f7:#1b232c;
- --th-bg-e8f1ff:#1f2329; --th-bg-e8f5ed:#1f2421; --th-bg-e8f6ef:#1e2522; --th-bg-e9edf2:#1b232b; --th-bg-e9eff5:#1b232c; --th-bg-e9eff8:#1b232c;
- --th-bg-e9f8ef:#1e2521; --th-bg-eaf0f3:#1b232c; --th-bg-eaf1f9:#1b232c; --th-bg-eaf1fc:#202327; --th-bg-eaf2fb:#1b242c; --th-bg-eaf6ee:#1f2421;
- --th-bg-eaf6ef:#1f2421; --th-bg-edf2f4:#1b242c; --th-bg-edf2f4ef:#1b242cef; --th-bg-edf2f6:#1b242c; --th-bg-edf2f8:#1b242c; --th-bg-edf3fb:#1c242c;
- --th-bg-edf4fc:#1c242c; --th-bg-edf4ff:#202328; --th-bg-edf5fd:#1c242d; --th-bg-eef1f5:#1b242c; --th-bg-eef3f8:#1c242c; --th-bg-eef3f9:#1c242c;
- --th-bg-eef5fd:#1c242d; --th-bg-eef7f1:#1c242d; --th-bg-eef9f1:#202521; --th-bg-eff4fb:#1c242d; --th-bg-eff6ff:#1c242d; --th-bg-f0f2f5:#1b242c;
- --th-bg-f0f4f8:#1c242d; --th-bg-f0f5f7:#1c242d; --th-bg-f0f5f7d9:#1c242dd9; --th-bg-f0f6fc:#1c242d; --th-bg-f0fdf4:#202622; --th-bg-f1f3f2:#1c242c;
- --th-bg-f1f5f9:#1c242d; --th-bg-f1f5fb:#1c242d; --th-bg-f1f7fd:#1c252d; --th-bg-f2c14e:#251900; --th-bg-f2ecfb:#242127; --th-bg-f2eeee:#1b232c;
- --th-bg-f2f6fb:#1c242d; --th-bg-f2f6fd:#1c242d; --th-bg-f2f7fd:#1c252d; --th-bg-f3f6fa:#1c242d; --th-bg-f3f6fb:#1c242d; --th-bg-f3f7f9:#1c252d;
- --th-bg-f3f7fb:#1c252d; --th-bg-f3f7ff:#1c252d; --th-bg-f3f9ff:#1d252d; --th-bg-f4f7fc:#1c252d; --th-bg-f5f8fc:#1d252d; --th-bg-f5faff:#1d252e;
- --th-bg-f6f8fc:#1d252d; --th-bg-f7f1df:#25231b; --th-bg-f7f8f4:#1c252d; --th-bg-f7f9fc:#1d252e; --th-bg-f7fbff:#1d252e; --th-bg-f8fafc:#1d252e;
- --th-bg-f8fbff:#1d252e; --th-bg-f9fbfe:#1d252e; --th-bg-fbe6e3:#281f1e; --th-bg-fbf1dc:#272219; --th-bg-fbfdff:#1d262e; --th-bg-fceeed:#272121;
- --th-bg-fdeaea:#282020; --th-bg-fef2f2:#1c242d; --th-bg-ffd700:#251e02; --th-bg-ffe1e1:#2a1e1e; --th-bg-fff0cc:#292211; --th-bg-fff0ed:#282120;
- --th-bg-fff0ee:#282121; --th-bg-fff0f0:#282121; --th-bg-fff1d2:#282214; --th-bg-fff1ef:#282221; --th-bg-fff1f1:#282222; --th-bg-fff2df:#28221a;
- --th-bg-fff3cd:#282311; --th-bg-fff4de:#282319; --th-bg-fff4e0:#28231a; --th-bg-fff5f4:#1c252d; --th-bg-fff7e7:#27231c; --th-bg-fff8ea:#27241e;
- --th-bg-fffafa:#1d252e; --th-fg-000000:#ffffff; --th-fg-008b64:#66d1a6; --th-fg-009e73:#56d1a3; --th-fg-0369a1:#8acafc; --th-fg-092e68:#afccfa;
- --th-fg-0a365c:#a2cffe; --th-fg-0f4c81:#a5cffc; --th-fg-1254a1:#aaccfa; --th-fg-143d61:#bfdcf8; --th-fg-15803d:#78d78f; --th-fg-163e62:#bfdbf8;
- --th-fg-164b84:#a6cefe; --th-fg-173451:#c8e0fa; --th-fg-173d76:#acccfe; --th-fg-17603a:#97ddb1; --th-fg-17613d:#97ddb3; --th-fg-19633d:#96ddb1;
- --th-fg-1b3551:#c9dff8; --th-fg-1b6b3a:#8fdca4; --th-fg-1c5a37:#9ddcb2; --th-fg-1c7a45:#80d79c; --th-fg-1d2733:#dce5f1; --th-fg-1d4ed8:#aac4fb;
- --th-fg-1d4f86:#a8cefc; --th-fg-1e293b:#d9e3f4; --th-fg-1e7e34:#7ed889; --th-fg-1f6b43:#91daac; --th-fg-20314b:#d0dff7; --th-fg-213d59:#c4dbf3;
- --th-fg-216d47:#8fd9ad; --th-fg-226a44:#93daae; --th-fg-244562:#bdd7f0; --th-fg-244867:#bad6f0; --th-fg-244f77:#a1d0ff; --th-fg-245237:#b9dbc4;
- --th-fg-24537e:#a3d0fd; --th-fg-24613f:#9ddcb4; --th-fg-247449:#89d7a6; --th-fg-254e75:#a2cffd; --th-fg-27734c:#8cd6aa; --th-fg-284766:#bdd6f0;
- --th-fg-28547d:#a5cffa; --th-fg-285781:#a3d0fb; --th-fg-285aa0:#a5c9fc; --th-fg-285b36:#a4daaf; --th-fg-286391:#96cbfa; --th-fg-294d83:#aeccfa;
- --th-fg-2a4b6a:#bad4ee; --th-fg-2b4560:#c1d6ed; --th-fg-31577c:#b2ceea; --th-fg-315d88:#9dccfd; --th-fg-315e89:#9bccfd; --th-fg-315f8a:#9accfd;
- --th-fg-333333:#dcdcdc; --th-fg-334155:#cad6e8; --th-fg-35546d:#b8d0e4; --th-fg-355572:#b6cfe7; --th-fg-3e5770:#b9cde1; --th-fg-3f5a73:#b6cce0;
- --th-fg-43545d:#c1ced6; --th-fg-435971:#b9cbde; --th-fg-43669c:#a0c3f9; --th-fg-444444:#d3d3d3; --th-fg-456a9e:#99c2fc; --th-fg-48627d:#b3c7dc;
- --th-fg-50627a:#b7c5d8; --th-fg-526985:#b1c2d8; --th-fg-526e87:#acc2d5; --th-fg-52718e:#a9c0d7; --th-fg-5272a1:#9bbef1; --th-fg-546170:#bbc6d2;
- --th-fg-54728b:#aac0d3; --th-fg-54728d:#a9c0d5; --th-fg-56738e:#a9bfd4; --th-fg-586575:#b9c3d0; --th-fg-5b3a8c:#d2befb; --th-fg-5d4a1d:#dccdac;
- --th-fg-5d4a1f:#dccdad; --th-fg-60748b:#aebdcf; --th-fg-60758b:#adbdce; --th-fg-6183a2:#9fb8cf; --th-fg-624715:#e0cbaa; --th-fg-64748b:#b0bccd;
- --th-fg-657488:#b0bccb; --th-fg-666666:#c1c1c1; --th-fg-66809a:#a5b8cc; --th-fg-687c92:#aab9ca; --th-fg-69798d:#aebac9; --th-fg-69819c:#a5b7cb;
- --th-fg-6a7e94:#a9b8c9; --th-fg-6b7280:#b6bbc6; --th-fg-6b7786:#b1bac6; --th-fg-718096:#abb6c6; --th-fg-718298:#a9b5c6; --th-fg-71839a:#a8b5c6;
- --th-fg-72839a:#a8b5c6; --th-fg-74433f:#e9c0bb; --th-fg-75869b:#a7b4c3; --th-fg-77889a:#a7b3c0; --th-fg-795416:#e8be84; --th-fg-7a2422:#ffb5ad;
- --th-fg-7a8ba0:#a5b1c1; --th-fg-7b8797:#aab2be; --th-fg-7b8ca1:#a4b1c0; --th-fg-805817:#e8bb7e; --th-fg-815b5b:#d7b8b8; --th-fg-8191a5:#a3aebd;
- --th-fg-835022:#f2b789; --th-fg-8395a8:#a0adbb; --th-fg-852c26:#fbb7ae; --th-fg-856404:#deba6c; --th-fg-888888:#b0b0b0; --th-fg-8a2c22:#fdb6aa;
- --th-fg-8a5300:#f3b574; --th-fg-8a5a00:#ecb770; --th-fg-8a5a12:#ebb676; --th-fg-903b35:#fab2aa; --th-fg-9b1c1c:#fbb6ad; --th-fg-9e302d:#fcafa7;
- --th-fg-a02d39:#fcaeae; --th-fg-a13d2d:#fdab9b; --th-fg-a3352a:#faaea2; --th-fg-a3392b:#ffaa9c; --th-fg-a42121:#fdb0a7; --th-fg-a46b00:#e8ab58;
- --th-fg-a53e36:#fca99e; --th-fg-b42318:#fea99c; --th-fg-b8860b:#e2ae47; --th-fg-b91c1c:#fda89d; --th-line-0f4c81:#3f78b0; --th-line-104784:#3e73b4;
- --th-line-173b5e:#42668c; --th-line-1d2733:#596472; --th-line-244f77:#4f7aa5; --th-line-254e75:#4f79a3; --th-line-2b4560:#546f8c; --th-line-2f8fd0:#3178aa;
- --th-line-315d84:#537596; --th-line-4979a8:#50759a; --th-line-4f6878:#617582; --th-line-5187b9:#4c759c; --th-line-5d94c2:#4c7699; --th-line-7a302b:#aa5b54;
- --th-line-903b35:#a15b54; --th-line-96b0cc:#2f3c4a; --th-line-9ec3e8:#2d3f51; --th-line-9fb6ce:#313d49; --th-line-9fd0b0:#2c4435; --th-line-a1c5ac:#304235;
- --th-line-a64b42:#a35a51; --th-line-a6c9b0:#314236; --th-line-a8c6b5:#324139; --th-line-a9c2dc:#323f4b; --th-line-ab3932:#ad524a; --th-line-aeb9c5:#373d43;
- --th-line-afc9e2:#33404c; --th-line-b3c3ce:#373f44; --th-line-b42318:#b7493c; --th-line-b6cade:#36404a; --th-line-b7c7d1:#383f44; --th-line-b7d4c4:#35433c;
- --th-line-b8860b:#906a16; --th-line-b8a272:#423820; --th-line-b9c3c2:#363f48; --th-line-b9c9dc:#383f49; --th-line-bae6fd:#304651; --th-line-bbf7d0:#324a3b;
- --th-line-bccbdb:#384048; --th-line-bfdbfe:#354354; --th-line-c3ccd6:#3b4045; --th-line-c5e8d2:#36473d; --th-line-c8cfd8:#38414a; --th-line-c8d9e9:#3a424a;
- --th-line-c9d2db:#3c4145; --th-line-c9d3db:#3c4145; --th-line-c9d8e8:#3b424a; --th-line-c9d9ef:#3a424d; --th-line-cad8e8:#3b424a; --th-line-cbd5e1:#3c4147;
- --th-line-cbd8e7:#3c4249; --th-line-ccddf2:#3a434d; --th-line-cce5ff:#384451; --th-line-cfdbe8:#3c4249; --th-line-cfdeed:#3c434a; --th-line-cfe0f1:#3b434c;
- --th-line-cfe0f6:#3b434e; --th-line-d0dfed:#3c434a; --th-line-d6e0ec:#3e4349; --th-line-d6e1eb:#3e4348; --th-line-d6e5f6:#3d444c; --th-line-d7e1ed:#3e4349;
- --th-line-d8e3ee:#3e4449; --th-line-d8e3f0:#3e444a; --th-line-d9a9a4:#4d3533; --th-line-d9b375:#483a24; --th-line-d9dfe6:#3a434d; --th-line-dbe5ef:#3f4449;
- --th-line-dbe5f1:#3f444a; --th-line-dce5ef:#3f4449; --th-line-dce6f2:#3f444a; --th-line-ddaaa3:#4e3532; --th-line-dee2e6:#3b444d; --th-line-e0e6ee:#3c454e;
- --th-line-e0e8f2:#404449; --th-line-e1b3ae:#4d3735; --th-line-e1e9f2:#3c454e; --th-line-e2c3bf:#4a3b39; --th-line-e2e8f0:#3c454e; --th-line-e3e8ee:#3c454e;
- --th-line-e3eaf2:#3c454f; --th-line-e4edf8:#41454a; --th-line-e5ebf1:#3c454f; --th-line-e6edf3:#3d464f; --th-line-e6eef6:#3d464f; --th-line-edf1f6:#3d4650;
- --th-line-eeeeee:#3d464f; --th-line-efd8ab:#4c402a; --th-line-f0d4d1:#4c3e3d; --th-line-f0f3f8:#3e4750; --th-line-f1cdc8:#4e3c3a; --th-line-f1d9ab:#4c4029;
- --th-line-f1f5f9:#3e4751; --th-line-fecaca:#533a3a;
+ --th-bg-e2f4e8:#1d241f; --th-bg-e3e8ec:#1a222a; --th-bg-e3eeff:#1e222a; --th-bg-e3efff:#1d2329; --th-bg-e3f0ff:#1d2329; --th-bg-e3f6ea:#1d2520;
+ --th-bg-e4f0ff:#1e2329; --th-bg-e4f5eb:#1d2520; --th-bg-e5e9e2:#1a222a; --th-bg-e5ecf4:#1a232b; --th-bg-e5edf7:#1f2226; --th-bg-e5f0ff:#1e2329;
+ --th-bg-e5f5ec:#1d2421; --th-bg-e6eef6:#1b232b; --th-bg-e6f4ea:#1e2420; --th-bg-e6f5ed:#1e2421; --th-bg-e6f5ef:#1e2422; --th-bg-e6f6ec:#1e2520;
+ --th-bg-e7eef7:#1b232b; --th-bg-e7f5ec:#1e2421; --th-bg-e7f5ed:#1e2421; --th-bg-e7f5ee:#1e2421; --th-bg-e7f6ed:#1e2521; --th-bg-e8eeeb:#1a232b;
+ --th-bg-e8f0f7:#1b232c; --th-bg-e8f0f8:#1b232c; --th-bg-e8f1ff:#1f2329; --th-bg-e8f2ff:#1f2329; --th-bg-e8f5ed:#1f2421; --th-bg-e8f5ef:#1f2422;
+ --th-bg-e8f6ee:#1e2521; --th-bg-e8f6ef:#1e2522; --th-bg-e9edf2:#1b232b; --th-bg-e9eff5:#1b232c; --th-bg-e9eff8:#1b232c; --th-bg-e9f8ef:#1e2521;
+ --th-bg-eaf0f3:#1b232c; --th-bg-eaf0ff:#202229; --th-bg-eaf1f9:#1b232c; --th-bg-eaf1fc:#202327; --th-bg-eaf2fb:#1b242c; --th-bg-eaf2fc:#202327;
+ --th-bg-eaf3ff:#1f2328; --th-bg-eaf5f2:#1c242c; --th-bg-eaf6ee:#1f2421; --th-bg-eaf6ef:#1f2421; --th-bg-edf1f5:#1b232c; --th-bg-edf2f4:#1b242c;
+ --th-bg-edf2f4ef:#1b242cef; --th-bg-edf2f6:#1b242c; --th-bg-edf2f7:#1b242c; --th-bg-edf2f8:#1b242c; --th-bg-edf3f9:#1c242c; --th-bg-edf3fb:#1c242c;
+ --th-bg-edf3fc:#1c242c; --th-bg-edf4fc:#1c242c; --th-bg-edf4fd:#1c242c; --th-bg-edf4ff:#202328; --th-bg-edf5fd:#1c242d; --th-bg-edf5ff:#202428;
+ --th-bg-eef1f5:#1b242c; --th-bg-eef3f6:#1c242c; --th-bg-eef3f8:#1c242c; --th-bg-eef3f9:#1c242c; --th-bg-eef4fb:#1c242c; --th-bg-eef5fd:#1c242d;
+ --th-bg-eef7f1:#1c242d; --th-bg-eef9f1:#202521; --th-bg-eff3f7:#1c242c; --th-bg-eff4fb:#1c242d; --th-bg-eff6ff:#1c242d; --th-bg-f0eafa:#232127;
+ --th-bg-f0f2f5:#1b242c; --th-bg-f0f4f8:#1c242d; --th-bg-f0f5f7:#1c242d; --th-bg-f0f5f7d9:#1c242dd9; --th-bg-f0f6fc:#1c242d; --th-bg-f0f6ff:#1c242d;
+ --th-bg-f0f7f6:#1c242d; --th-bg-f0fdf4:#202622; --th-bg-f1f3f2:#1c242c; --th-bg-f1f5f9:#1c242d; --th-bg-f1f5fb:#1c242d; --th-bg-f1f7fd:#1c252d;
+ --th-bg-f2c14e:#251900; --th-bg-f2ecfb:#242127; --th-bg-f2eeee:#1b232c; --th-bg-f2f6fb:#1c242d; --th-bg-f2f6fc:#1c242d; --th-bg-f2f6fd:#1c242d;
+ --th-bg-f2f7fc:#1c252d; --th-bg-f2f7fd:#1c252d; --th-bg-f3f6fa:#1c242d; --th-bg-f3f6fb:#1c242d; --th-bg-f3f7f9:#1c252d; --th-bg-f3f7fa:#1c252d;
+ --th-bg-f3f7fb:#1c252d; --th-bg-f3f7fc:#1c252d; --th-bg-f3f7ff:#1c252d; --th-bg-f3f9ff:#1d252d; --th-bg-f4f6f8:#1c242d; --th-bg-f4f7fa:#1c252d;
+ --th-bg-f4f7fc:#1c252d; --th-bg-f5f8fc:#1d252d; --th-bg-f5f8ff:#1d252d; --th-bg-f5faff:#1d252e; --th-bg-f6f8fc:#1d252d; --th-bg-f7f1df:#25231b;
+ --th-bg-f7f8f4:#1c252d; --th-bg-f7f9fc:#1d252e; --th-bg-f7fafd:#1d252e; --th-bg-f7faff:#1d252e; --th-bg-f7fbff:#1d252e; --th-bg-f8f9fa:#1d252e;
+ --th-bg-f8fafc:#1d252e; --th-bg-f8fbff:#1d252e; --th-bg-f9fbfe:#1d252e; --th-bg-fbe6e3:#281f1e; --th-bg-fbf1dc:#272219; --th-bg-fbfcfe:#1d262e;
+ --th-bg-fbfdff:#1d262e; --th-bg-fceeed:#272121; --th-bg-fcfdfd:#1d262e; --th-bg-fcfdfe:#1d262e; --th-bg-fdeaea:#282020; --th-bg-fdebed:#282021;
+ --th-bg-fdecef:#282022; --th-bg-fdfefe:#1e262e; --th-bg-fef2f2:#1c242d; --th-bg-ffd700:#251e02; --th-bg-ffe1e1:#2a1e1e; --th-bg-fff0cc:#292211;
+ --th-bg-fff0ed:#282120; --th-bg-fff0ee:#282121; --th-bg-fff0f0:#282121; --th-bg-fff1d2:#282214; --th-bg-fff1df:#28221a; --th-bg-fff1ef:#282221;
+ --th-bg-fff1f1:#282222; --th-bg-fff2d6:#282216; --th-bg-fff2df:#28221a; --th-bg-fff3cd:#282311; --th-bg-fff4d6:#282315; --th-bg-fff4de:#282319;
+ --th-bg-fff4e0:#28231a; --th-bg-fff5f4:#1c252d; --th-bg-fff7e7:#27231c; --th-bg-fff8ea:#27241e; --th-bg-fffafa:#1d252e; --th-fg-000000:#ffffff;
+ --th-fg-008b64:#66d1a6; --th-fg-009e73:#56d1a3; --th-fg-0369a1:#8acafc; --th-fg-073b61:#9ed0ff; --th-fg-092e68:#afccfa; --th-fg-0a365c:#a2cffe;
+ --th-fg-0e2740:#d2e7ff; --th-fg-0f4c81:#a5cffc; --th-fg-123850:#c4e0f5; --th-fg-123b5e:#c0ddfa; --th-fg-123d60:#bfdcf8; --th-fg-123f63:#bedbf7;
+ --th-fg-1254a1:#aaccfa; --th-fg-142235:#dbe8fb; --th-fg-143d61:#bfdcf8; --th-fg-15803d:#78d78f; --th-fg-163e62:#bfdbf8; --th-fg-164b84:#a6cefe;
+ --th-fg-173451:#c8e0fa; --th-fg-173b5c:#c1ddfa; --th-fg-173d76:#acccfe; --th-fg-173e61:#bfdbf8; --th-fg-173f60:#bedbf7; --th-fg-174a78:#a5cffb;
+ --th-fg-17603a:#97ddb1; --th-fg-17613d:#97ddb3; --th-fg-176447:#94dcba; --th-fg-183144:#cee2f4; --th-fg-183f60:#bedbf7; --th-fg-193b62:#c2dbfa;
+ --th-fg-194568:#bad8f4; --th-fg-194f89:#a6ceff; --th-fg-19633d:#96ddb1; --th-fg-198754:#71d39b; --th-fg-1b3046:#cfe1f6; --th-fg-1b3551:#c9dff8;
+ --th-fg-1b6b3a:#8fdca4; --th-fg-1c5a37:#9ddcb2; --th-fg-1c7a45:#80d79c; --th-fg-1d2733:#dce5f1; --th-fg-1d4ed8:#aac4fb; --th-fg-1d4f86:#a8cefc;
+ --th-fg-1e293b:#d9e3f4; --th-fg-1e7e34:#7ed889; --th-fg-1f6b43:#91daac; --th-fg-20314b:#d0dff7; --th-fg-203751:#caddf4; --th-fg-203d60:#c2daf8;
+ --th-fg-213d59:#c4dbf3; --th-fg-214e75:#a0d0fe; --th-fg-215982:#9ed1fb; --th-fg-215b8b:#9fcefa; --th-fg-215b98:#a0cbfe; --th-fg-215c9d:#a3cafa;
+ --th-fg-2162a8:#9dc7fa; --th-fg-216d47:#8fd9ad; --th-fg-226a44:#93daae; --th-fg-234569:#bcd6f4; --th-fg-244562:#bdd7f0; --th-fg-244867:#bad6f0;
+ --th-fg-244c72:#b8d3f0; --th-fg-244f77:#a1d0ff; --th-fg-245237:#b9dbc4; --th-fg-24537e:#a3d0fd; --th-fg-24547c:#9ed0ff; --th-fg-24613f:#9ddcb4;
+ --th-fg-24636b:#a7d1d7; --th-fg-246b4d:#92d8b5; --th-fg-246b52:#92d7ba; --th-fg-247449:#89d7a6; --th-fg-247c61:#7fd2b4; --th-fg-254e75:#a2cffd;
+ --th-fg-274a68:#bad5ee; --th-fg-27577e:#9ed1fe; --th-fg-27734c:#8cd6aa; --th-fg-284766:#bdd6f0; --th-fg-28547d:#a5cffa; --th-fg-28567e:#9fd0ff;
+ --th-fg-285781:#a3d0fb; --th-fg-285aa0:#a5c9fc; --th-fg-285b36:#a4daaf; --th-fg-285b88:#9ecefc; --th-fg-286391:#96cbfa; --th-fg-2868ae:#96c4fc;
+ --th-fg-294966:#bcd5ee; --th-fg-294d83:#aeccfa; --th-fg-294e70:#b6d3ef; --th-fg-2a4b6a:#bad4ee; --th-fg-2a649e:#98c8fc; --th-fg-2b4560:#c1d6ed;
+ --th-fg-2c4660:#c1d6ec; --th-fg-314c69:#bcd2eb; --th-fg-315674:#b3cfe8; --th-fg-31577c:#b2ceea; --th-fg-315d83:#aecce7; --th-fg-315d88:#9dccfd;
+ --th-fg-315e89:#9bccfd; --th-fg-315f8a:#9accfd; --th-fg-333333:#dcdcdc; --th-fg-334155:#cad6e8; --th-fg-34495e:#c2d4e5; --th-fg-344b60:#c0d3e5;
+ --th-fg-345d81:#aecbe7; --th-fg-35546d:#b8d0e4; --th-fg-355572:#b6cfe7; --th-fg-355b79:#b0cde5; --th-fg-365c7e:#afcce7; --th-fg-368365:#81ceac;
+ --th-fg-374b5e:#c2d3e3; --th-fg-3d5266:#becfe0; --th-fg-3e5770:#b9cde1; --th-fg-3e5e9b:#a7c5fc; --th-fg-3f5a73:#b6cce0; --th-fg-42666b:#b0cace;
+ --th-fg-43545d:#c1ced6; --th-fg-435971:#b9cbde; --th-fg-435974:#b9cbe0; --th-fg-43669c:#a0c3f9; --th-fg-444444:#d3d3d3; --th-fg-45596e:#bbcbdc;
+ --th-fg-45627c:#b2c8dd; --th-fg-456a9e:#99c2fc; --th-fg-48627d:#b3c7dc; --th-fg-4b5563:#c3cbd7; --th-fg-4b5e70:#b9c8d7; --th-fg-4d6681:#b1c5da;
+ --th-fg-50627a:#b7c5d8; --th-fg-526985:#b1c2d8; --th-fg-526b82:#b0c3d5; --th-fg-526e87:#acc2d5; --th-fg-52718e:#a9c0d7; --th-fg-5272a1:#9bbef1;
+ --th-fg-53667b:#b5c4d4; --th-fg-536a7e:#b1c3d3; --th-fg-546170:#bbc6d2; --th-fg-54697d:#b3c3d3; --th-fg-54728b:#aac0d3; --th-fg-54728d:#a9c0d5;
+ --th-fg-56677c:#b5c3d3; --th-fg-56738e:#a9bfd4; --th-fg-586575:#b9c3d0; --th-fg-58718a:#acbfd3; --th-fg-596b7c:#b4c2cf; --th-fg-59728d:#acbfd3;
+ --th-fg-5b3a8c:#d2befb; --th-fg-5b6c80:#b3c0d0; --th-fg-5d4a1d:#dccdac; --th-fg-5d4a1f:#dccdad; --th-fg-604603:#e4c68c; --th-fg-606f7b:#b4bfc9;
+ --th-fg-60738c:#aebdd0; --th-fg-60748b:#aebdcf; --th-fg-60758b:#adbdce; --th-fg-60788d:#aabccc; --th-fg-61758a:#aebdcd; --th-fg-6183a2:#9fb8cf;
+ --th-fg-624715:#e0cbaa; --th-fg-62748a:#afbccd; --th-fg-62758c:#aebcce; --th-fg-627a94:#a9bbce; --th-fg-627b90:#a8bbcb; --th-fg-627b94:#a8bacd;
+ --th-fg-637890:#abbbcd; --th-fg-64748b:#b0bccd; --th-fg-657488:#b0bccb; --th-fg-666666:#c1c1c1; --th-fg-66809a:#a5b8cc; --th-fg-687c92:#aab9ca;
+ --th-fg-69798d:#aebac9; --th-fg-698096:#a7b8c8; --th-fg-69819c:#a5b7cb; --th-fg-6a7e94:#a9b8c9; --th-fg-6b7280:#b6bbc6; --th-fg-6b7786:#b1bac6;
+ --th-fg-6c757d:#b4bbc1; --th-fg-718096:#abb6c6; --th-fg-718298:#a9b5c6; --th-fg-71839a:#a8b5c6; --th-fg-71869a:#a5b5c4; --th-fg-71869b:#a5b5c4;
+ --th-fg-728398:#a8b5c5; --th-fg-72839a:#a8b5c6; --th-fg-738298:#aab5c5; --th-fg-73869a:#a6b4c3; --th-fg-74433f:#e9c0bb; --th-fg-75510a:#eac182;
+ --th-fg-75869b:#a7b4c3; --th-fg-77889a:#a7b3c0; --th-fg-7850ad:#cdaffd; --th-fg-788da1:#a2b1c0; --th-fg-795416:#e8be84; --th-fg-7a2422:#ffb5ad;
+ --th-fg-7a8ba0:#a5b1c1; --th-fg-7a8ca1:#a4b1c0; --th-fg-7a8ea1:#a2b1bf; --th-fg-7b8797:#aab2be; --th-fg-7b8ca1:#a4b1c0; --th-fg-7b8ca2:#a4b1c1;
+ --th-fg-7d5c05:#e2be75; --th-fg-805817:#e8bb7e; --th-fg-815b5b:#d7b8b8; --th-fg-8191a5:#a3aebd; --th-fg-825b0d:#e6bb77; --th-fg-835022:#f2b789;
+ --th-fg-8395a8:#a0adbb; --th-fg-852c26:#fbb7ae; --th-fg-856404:#deba6c; --th-fg-888888:#b0b0b0; --th-fg-8a2c22:#fdb6aa; --th-fg-8a4b00:#fbb479;
+ --th-fg-8a5300:#f3b574; --th-fg-8a5a00:#ecb770; --th-fg-8a5a12:#ebb676; --th-fg-903b35:#fab2aa; --th-fg-946511:#e5b269; --th-fg-975400:#f8ae6d;
+ --th-fg-9b1c1c:#fbb6ad; --th-fg-9d2334:#feb0b1; --th-fg-9e302d:#fcafa7; --th-fg-a02d39:#fcaeae; --th-fg-a13a4a:#fca8af; --th-fg-a13d2d:#fdab9b;
+ --th-fg-a3352a:#faaea2; --th-fg-a3392b:#ffaa9c; --th-fg-a33b42:#fda8a8; --th-fg-a42121:#fdb0a7; --th-fg-a46b00:#e8ab58; --th-fg-a53e36:#fca99e;
+ --th-fg-a96d1c:#e9a95f; --th-fg-b42318:#fea99c; --th-fg-b8860b:#e2ae47; --th-fg-b91c1c:#fda89d; --th-fg-dc2626:#fe978b; --th-line-0b2c48:#456786;
+ --th-line-0f4c81:#3f78b0; --th-line-104784:#3e73b4; --th-line-173b5e:#42668c; --th-line-194568:#447095; --th-line-1d2733:#596472; --th-line-205e9d:#4674a8;
+ --th-line-244f77:#4f7aa5; --th-line-254e75:#4f79a3; --th-line-28567e:#5382ac; --th-line-2b4560:#546f8c; --th-line-2f8fd0:#3178aa; --th-line-304853:#59727e;
+ --th-line-315d84:#537596; --th-line-33465a:#5c7086; --th-line-34475b:#5d7187; --th-line-3b535d:#657e89; --th-line-49616b:#62757d; --th-line-496b8c:#59758f;
+ --th-line-4979a8:#50759a; --th-line-4f6878:#617582; --th-line-506b75:#60767e; --th-line-5187b9:#4c759c; --th-line-5d94c2:#4c7699; --th-line-69a8b5:#4b7a84;
+ --th-line-70a4dc:#283a4c; --th-line-749bb4:#587689; --th-line-7a302b:#aa5b54; --th-line-7aa6cf:#273a4c; --th-line-7ea3c8:#273a4c; --th-line-83a9ce:#283b4d;
+ --th-line-8db8df:#2a3d4f; --th-line-903b35:#a15b54; --th-line-95b7de:#2c3d50; --th-line-96b0cc:#2f3c4a; --th-line-9ec3e8:#2d3f51; --th-line-9fb6ce:#313d49;
+ --th-line-9fb8d2:#313d4a; --th-line-9fd0b0:#2c4435; --th-line-a1c5ac:#304235; --th-line-a4dfff:#2b4553; --th-line-a64b42:#a35a51; --th-line-a6c9b0:#314236;
+ --th-line-a8c6b5:#324139; --th-line-a9bfd6:#333e49; --th-line-a9c2dc:#323f4b; --th-line-ab3932:#ad524a; --th-line-aeb9c5:#373d43; --th-line-afc9e2:#33404c;
+ --th-line-b3c3ce:#373f44; --th-line-b42318:#b7493c; --th-line-b6cade:#36404a; --th-line-b7c7d1:#383f44; --th-line-b7c9dc:#374049; --th-line-b7d4c4:#35433c;
+ --th-line-b8860b:#906a16; --th-line-b8a272:#423820; --th-line-b8cadc:#374049; --th-line-b9c3c2:#363f48; --th-line-b9c9dc:#383f49; --th-line-b9cbdb:#374048;
+ --th-line-bae6fd:#304651; --th-line-bbf7d0:#324a3b; --th-line-bccbdb:#384048; --th-line-bfd0e2:#384149; --th-line-bfdbfe:#354354; --th-line-c3ccd6:#3b4045;
+ --th-line-c5e8d2:#36473d; --th-line-c8cfd8:#38414a; --th-line-c8d9e9:#3a424a; --th-line-c9d2db:#3c4145; --th-line-c9d3db:#3c4145; --th-line-c9d8e8:#3b424a;
+ --th-line-c9d9ef:#3a424d; --th-line-cad8e8:#3b424a; --th-line-cbd5e1:#3c4147; --th-line-cbd8e5:#3c4248; --th-line-cbd8e6:#3c4249; --th-line-cbd8e7:#3c4249;
+ --th-line-ccd9e7:#3c4249; --th-line-ccddf2:#3a434d; --th-line-cce5ff:#384451; --th-line-cfdbe4:#3d4247; --th-line-cfdbe8:#3c4249; --th-line-cfdeed:#3c434a;
+ --th-line-cfe0f1:#3b434c; --th-line-cfe0f6:#3b434e; --th-line-d0dce8:#3d4348; --th-line-d0dfed:#3c434a; --th-line-d1d5db:#39424b; --th-line-d2dfed:#3d434a;
+ --th-line-d6e0ec:#3e4349; --th-line-d6e1eb:#3e4348; --th-line-d6e5f6:#3d444c; --th-line-d7e1ed:#3e4349; --th-line-d7e8fc:#3c454e; --th-line-d8e3ee:#3e4449;
+ --th-line-d8e3f0:#3e444a; --th-line-d8e4f1:#3e444a; --th-line-d9a9a4:#4d3533; --th-line-d9b375:#483a24; --th-line-d9dfe6:#3a434d; --th-line-d9e3ed:#3f4448;
+ --th-line-d9e5f2:#3e444a; --th-line-dbe5ef:#3f4449; --th-line-dbe5f1:#3f444a; --th-line-dce4ee:#404448; --th-line-dce5ef:#3f4449; --th-line-dce6f0:#3f4449;
+ --th-line-dce6f2:#3f444a; --th-line-dce9e8:#3c454e; --th-line-ddaaa3:#4e3532; --th-line-dee2e6:#3b444d; --th-line-dfe7ef:#3c454e; --th-line-dfe7f0:#3c454e;
+ --th-line-e0e6ee:#3c454e; --th-line-e0e7f0:#3c454e; --th-line-e0e8ef:#3c454e; --th-line-e0e8f0:#3c454e; --th-line-e0e8f2:#404449; --th-line-e1b3ae:#4d3735;
+ --th-line-e1e8ef:#3c454e; --th-line-e1e9f2:#3c454e; --th-line-e1eaf4:#404549; --th-line-e2c3bf:#4a3b39; --th-line-e2e8f0:#3c454e; --th-line-e2eaf3:#3c454f;
+ --th-line-e3e8ee:#3c454e; --th-line-e3eaf2:#3c454f; --th-line-e4ecf5:#3c464f; --th-line-e4edf8:#41454a; --th-line-e5e7eb:#3c454e; --th-line-e5ebf1:#3c454f;
+ --th-line-e6edf3:#3d464f; --th-line-e6eef6:#3d464f; --th-line-e7edf4:#3d464f; --th-line-e8edf3:#3d464f; --th-line-e8eef5:#3d464f; --th-line-e9dcc7:#484137;
+ --th-line-e9eef5:#3d464f; --th-line-edf1f5:#3d4650; --th-line-edf1f6:#3d4650; --th-line-edf1f7:#3d4650; --th-line-eed5db:#4a3e41; --th-line-eeeeee:#3d464f;
+ --th-line-efd8ab:#4c402a; --th-line-f0d4d1:#4c3e3d; --th-line-f0f3f8:#3e4750; --th-line-f1cdc8:#4e3c3a; --th-line-f1d9ab:#4c4029; --th-line-f1f5f9:#3e4751;
+ --th-line-fecaca:#533a3a;
 }
 /* ===== generated:end ===== */
 

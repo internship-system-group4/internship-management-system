@@ -1,4 +1,4 @@
-﻿//fatima new one 
+﻿using System.Collections.Generic;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 
@@ -22,6 +22,11 @@ namespace InternshipManagementSystem.Data
             string id = base.Insert(entity);
             if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskReviewed(entity);
             return id;
+        }
+
+        public List<TaskEvaluation> GetByTask(string taskId)
+        {
+            return GetWhere("TaskId", taskId);
         }
     }
 }

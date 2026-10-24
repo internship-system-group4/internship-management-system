@@ -9,7 +9,7 @@
 .explore-page {
     --ex-navy: var(--ui-primary);
     --ex-blue: #28547d;
-    --ex-muted: var(--th-fg-71839a,#71839a);
+    --ex-muted: var(--ui-muted);
     --ex-line: var(--th-line-e0e8f2,#e0e8f2);
     max-width: 1200px;
     margin: 0 auto;
@@ -241,7 +241,7 @@
 }
 .ex-description {
     margin: 17px 0;
-    color: var(--th-fg-687c92,#687c92);
+    color: var(--ui-muted);
     font-size: 12px;
     line-height: 1.85;
     overflow-wrap: anywhere;
@@ -257,7 +257,7 @@
 }
 .ex-detail-label {
     display: block;
-    color: var(--th-fg-8191a5,#8191a5);
+    color: var(--ui-muted);
     font-size: 10px;
     font-weight: 700;
     margin-bottom: 5px;

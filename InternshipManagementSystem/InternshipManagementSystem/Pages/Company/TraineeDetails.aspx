@@ -13,11 +13,11 @@
         .progress-wrapper { background-color: var(--th-bg-e2e8f0,#e2e8f0); border-radius: 50px; height: 8px; overflow: hidden; width: 100%; }
         .progress-fill { height: 100%; background-color: var(--th-bg-0f4c81,#0f4c81); border-radius: 50px; transition: width 0.5s ease; }
 
-        .info-label { font-size: 0.75rem; color: var(--th-fg-64748b,#64748b); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
+        .info-label { font-size: 0.75rem; color: var(--ui-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
         .info-value { font-size: 0.95rem; color: var(--th-fg-1e293b,#1e293b); font-weight: 600; margin-bottom: 0; }
 
         .clean-table { width: 100%; border-collapse: collapse; }
-        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--th-fg-64748b,#64748b); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: start; letter-spacing: 0.5px; }
+        .clean-table th { padding: 1rem; border-bottom: 2px solid var(--th-line-e2e8f0,#e2e8f0); color: var(--ui-muted); font-size: 0.75rem; text-transform: uppercase; font-weight: 700; text-align: start; letter-spacing: 0.5px; }
         .clean-table td { padding: 1rem; border-bottom: 1px solid var(--th-line-f1f5f9,#f1f5f9); color: var(--th-fg-334155,#334155); font-size: 0.875rem; font-weight: 500; vertical-align: middle; }
         .clean-table tr:hover td { background-color: var(--th-bg-f8fafc,#f8fafc); }
 

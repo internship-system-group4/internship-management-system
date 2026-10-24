@@ -504,3 +504,303 @@ en: Go to my dashboard
 
 AccessDenied.GoToLogin
 en: Go to login
+
+Home.BannerIntro
+en: Explore a few examples of internship paths. Sign in to discover current opportunities and apply through your student portal.
+ar: استكشف أمثلة لمسارات التدريب. سجّل الدخول لاكتشاف الفرص الحالية والتقديم من خلال بوابة الطالب.
+
+Home.BrowseSummaries
+en: Explore internship examples
+ar: استكشف أمثلة فرص التدريب
+
+Home.PreviewTitle
+en: Find your next direction.
+ar: اكتشف مسارك القادم.
+
+Home.PreviewIntro
+en: Explore the kind of experience an internship could offer. Sign in to find current openings for your field of study.
+ar: تعرّف على تجارب قد تخوضها في تدريبك. سجّل الدخول للعثور على الفرص الحالية المناسبة لتخصصك.
+
+Home.AccessNote
+en: Open to explore. Sign in as a student to view full details or apply.
+ar: التصفّح متاح للجميع. سجّل الدخول كطالب لعرض التفاصيل الكاملة أو التقديم.
+
+Home.SignInBrowse
+en: Sign in to browse all
+ar: سجّل الدخول لتصفّح الكل
+
+Home.BrowseAll
+en: Browse all opportunities
+ar: تصفّح جميع الفرص
+
+Home.SignInDetails
+en: Sign in to view details
+ar: سجّل الدخول لعرض التفاصيل
+
+Home.ViewDetails
+en: View full details
+ar: عرض التفاصيل الكاملة
+
+Home.SignInApply
+en: Sign in to apply
+ar: سجّل الدخول للتقديم
+
+Home.Apply
+en: Apply for this opportunity
+ar: التقديم لهذه الفرصة
+
+Home.StudentOnly
+en: Full details and applications are available to eligible student accounts.
+ar: التفاصيل الكاملة والتقديم متاحان لحسابات الطلبة المؤهلين.
+
+Home.Location
+en: Location
+ar: الموقع
+
+Home.Specialization
+en: Field of study
+ar: التخصص
+
+Home.AvailableSeats
+en: Available seats
+ar: المقاعد المتاحة
+
+Home.Deadline
+en: Application deadline
+ar: آخر موعد للتقديم
+
+Home.NoDeadline
+en: No deadline listed
+ar: لم يُحدّد موعد نهائي
+
+Home.PreviewsUnavailable
+en: We could not load published summaries. Try again, or sign in to your portal.
+ar: تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.
+
+Home.UnavailableTitle
+en: Summaries are temporarily unavailable
+ar: الملخصات غير متاحة مؤقتًا
+
+Home.Retry
+en: Try again
+ar: المحاولة مجددًا
+
+Home.NoPreviewsTitle
+en: New opportunities will appear here
+ar: ستظهر الفرص الجديدة هنا
+
+Home.NoPreviewsText
+en: There are no published summaries available right now. Check back later or sign in to explore your student portal.
+ar: لا تتوفر ملخصات منشورة حاليًا. عُد لاحقًا أو سجّل الدخول لاستكشاف بوابة الطالب.
+
+Home.FaqTitle
+en: Frequently asked questions
+ar: الأسئلة الشائعة
+
+Home.FaqIntro
+en: From your first application to the final review, here is what to expect along the way.
+ar: من طلبك الأول إلى المراجعة النهائية، تعرّف على ما ينتظرك خلال رحلة التدريب.
+
+Home.MoreQuestions
+en: Still have a question? Contact us
+ar: لديك سؤال آخر؟ تواصل معنا
+
+Home.Faq1Question
+en: Can I explore opportunities before signing in?
+ar: هل يمكنني استكشاف الفرص قبل تسجيل الدخول؟
+
+Home.Faq1Answer
+en: The cards on this page are illustrative internship examples. Select More details to sign in, then explore current opportunities, full details, and applications in your student portal.
+ar: البطاقات في هذه الصفحة أمثلة توضيحية لفرص التدريب. اضغط مزيد من التفاصيل لتسجيل الدخول، ثم استكشف الفرص الحالية وتفاصيلها والتقديم داخل بوابة الطالب.
+
+Home.Faq2Question
+en: Who can apply, and how do I get an account?
+ar: من يمكنه التقديم، وكيف أحصل على حساب؟
+
+Home.Faq2Answer
+en: Eligible students with an active university internship account can apply. Your university coordinator manages accounts and supervision assignments. Contact the university if you need access.
+ar: يمكن للطلبة المؤهلين الذين لديهم حساب تدريب جامعي فعّال التقديم. يتولى منسق الجامعة إدارة الحسابات وتوزيع الإشراف. تواصل مع الجامعة إذا كنت بحاجة إلى صلاحية الدخول.
+
+Home.Faq3Question
+en: Why might an opportunity not be available to me?
+ar: لماذا قد لا تكون الفرصة متاحة لي؟
+
+Home.Faq3Answer
+en: Your student portal checks the opportunity’s college and major requirements, remaining seats, deadline, and current status. A public summary is a first look, not a guarantee of eligibility or availability.
+ar: تتحقق بوابة الطالب من متطلبات الكلية والتخصص والمقاعد المتبقية والموعد النهائي وحالة الفرصة. الملخص العام معاينة أولية، ولا يضمن الأهلية أو استمرار التوافر.
+
+Home.Faq4Question
+en: What happens after a company accepts my application?
+ar: ماذا يحدث بعد قبول الشركة لطلبي؟
+
+Home.Faq4Answer
+en: Review the offer in My Applications and confirm one accepted offer to establish your internship placement. A company’s acceptance alone does not confirm your placement.
+ar: راجع العرض في صفحة طلباتي وأكّد عرضًا مقبولًا واحدًا لتثبيت جهة تدريبك. قبول الشركة وحده لا يثبّت جهة التدريب.
+
+Home.Faq5Question
+en: How do I track my training and feedback?
+ar: كيف أتابع تدريبي والملاحظات عليه؟
+
+Home.Faq5Answer
+en: Your workspace links to training tasks, submissions, feedback, meetings, and hours. Only hours approved by your supervisor count toward your required training hours.
+ar: توصلك مساحة عملك إلى مهام التدريب والتسليمات والملاحظات والاجتماعات والساعات. لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك.
+
+Home.Faq6Question
+en: When is my internship considered complete?
+ar: متى يُعدّ تدريبي مكتملًا؟
+
+Home.Faq6Answer
+en: Reaching your hours target is one part of completion. Training work and supervisor evaluations must also be completed, followed by coordinator approval. Results and reports are released according to the completion workflow.
+ar: بلوغ هدف الساعات جزء من متطلبات الإنهاء. يجب أيضًا إكمال أعمال التدريب وتقييمات المشرفين، ثم الحصول على اعتماد المنسق. تُتاح النتائج والتقارير وفق مسار اعتماد الإنهاء.
+
+Home.FindCurrent
+en: Find current opportunities
+ar: اكتشف الفرص الحالية
+
+Home.DemoLabel
+en: Illustrative examples
+ar: أمثلة توضيحية
+
+Home.DemoNote
+en: These cards show possible internship paths, not current vacancies.
+ar: تعرض هذه البطاقات مسارات تدريب محتملة، وليست شواغر حالية.
+
+Home.MoreDetails
+en: More details
+ar: مزيد من التفاصيل
+
+Home.Demo1Title
+en: Software Engineering Intern
+ar: متدرب هندسة برمجيات
+
+Home.Demo1Company
+en: Example software team
+ar: فريق برمجيات افتراضي
+
+Home.Demo1Location
+en: Amman, Jordan
+ar: عمّان، الأردن
+
+Home.Demo1Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo1Summary
+en: Build web services, test new features, and learn how software teams ship useful products.
+ar: طوّر خدمات الويب واختبر ميزات جديدة، وتعرّف على طريقة عمل فرق البرمجيات.
+
+Home.Demo2Title
+en: Frontend Development Intern
+ar: متدرب تطوير واجهات
+
+Home.Demo2Company
+en: Example digital studio
+ar: استوديو رقمي افتراضي
+
+Home.Demo2Location
+en: Hybrid, Jordan
+ar: عمل هجين، الأردن
+
+Home.Demo2Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo2Summary
+en: Create accessible interfaces and bring thoughtful digital experiences to life.
+ar: صمّم واجهات ميسّرة وحوّل الأفكار إلى تجارب رقمية سهلة الاستخدام.
+
+Home.Demo3Title
+en: Data Analysis Intern
+ar: متدرب تحليل بيانات
+
+Home.Demo3Company
+en: Example analytics team
+ar: فريق تحليلات افتراضي
+
+Home.Demo3Location
+en: Amman, Jordan
+ar: عمّان، الأردن
+
+Home.Demo3Field
+en: Computer Science
+ar: علوم الحاسوب
+
+Home.Demo3Summary
+en: Turn datasets into clear dashboards and insights that help teams make better decisions.
+ar: حوّل البيانات إلى لوحات واضحة ونتائج تساعد الفرق على اتخاذ قرارات أفضل.
+
+Home.VideoScrollHint
+en: Scroll to expand the video. Scroll back to return.
+ar: مرّر للأسفل لتكبير الفيديو، وللأعلى للعودة إلى حجمه الأصلي.
+
+Home.PauseCards
+en: Pause cards
+ar: إيقاف حركة البطاقات
+
+Home.ResumeCards
+en: Resume movement
+ar: استئناف الحركة
+
+Home.CardMotionHint
+en: Hover over a card to pause and take a closer look.
+ar: ضع المؤشر على بطاقة لإيقاف الحركة وإلقاء نظرة أقرب.
+
+Home.Demo4Title
+en: Quality Assurance Intern
+ar: متدرب ضمان الجودة
+
+Home.Demo4Company
+en: Example product team
+ar: فريق منتجات افتراضي
+
+Home.Demo4Location
+en: Hybrid, Jordan
+ar: عمل هجين، الأردن
+
+Home.Demo4Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo4Summary
+en: Test real features, automate checks, and help teams deliver reliable software.
+ar: اختبر ميزات المنتجات وأتمت عمليات الفحص، وساهم في تطوير برمجيات موثوقة.
+
+Home.Demo5Title
+en: Cybersecurity Intern
+ar: متدرب الأمن السيبراني
+
+Home.Demo5Company
+en: Example security lab
+ar: مختبر أمن افتراضي
+
+Home.Demo5Location
+en: Amman, Jordan
+ar: عمّان، الأردن
+
+Home.Demo5Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo5Summary
+en: Explore secure systems, investigate risks, and learn practical security fundamentals.
+ar: استكشف الأنظمة الآمنة وتحليل المخاطر، وتعلّم أساسيات الأمن بشكل عملي.
+
+Home.Demo6Title
+en: Embedded Systems Intern
+ar: متدرب الأنظمة المدمجة
+
+Home.Demo6Company
+en: Example engineering team
+ar: فريق هندسي افتراضي
+
+Home.Demo6Location
+en: Madaba, Jordan
+ar: مادبا، الأردن
+
+Home.Demo6Field
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+Home.Demo6Summary
+en: Connect code with hardware through sensors, microcontrollers, and hands-on experiments.
+ar: اربط البرمجة بالأجهزة عبر الحساسات والمتحكمات الدقيقة والتجارب العملية.

@@ -561,4 +561,9 @@
   <data name="Progress.DownloadReport" xml:space="preserve"><value>تنزيل تقرير الإتمام (PDF)</value></data>
   <data name="Progress.PrintReport" xml:space="preserve"><value>طباعة التقرير</value></data>
   <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>استُبدل بالنتيجة المعلنة</value></data>
+  <data name="Dashboard.StudentWorkspace" xml:space="preserve"><value>مساحة عمل الطالب</value></data>
+  <data name="Dashboard.SearchWorkspace" xml:space="preserve"><value>ابحث في المهام والطلبات الأخيرة أو الشركات</value></data>
+  <data name="Dashboard.ProfileHelp" xml:space="preserve"><value>حدّث بياناتك الجامعية.</value></data>
+  <data name="Dashboard.DocumentsHelp" xml:space="preserve"><value>أدر سيرتك الذاتية وملف أعمالك.</value></data>
+  <data name="Dashboard.MeetingsHelp" xml:space="preserve"><value>تابع اجتماعاتك المجدولة.</value></data>
 </root>

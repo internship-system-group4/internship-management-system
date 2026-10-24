@@ -168,18 +168,24 @@ namespace InternshipManagementSystem.Pages.AccountArea
             }
         }
 
-        // A visitor who pressed "Apply now" on the homepage comes back here with
-        // ?returnUrl=/Pages/Student/Apply.aspx?opportunityId=<id>. Only that page, only a
-        // valid opportunity key, and only for an active student who needs no password change.
+        // Resume only the fixed student opportunity routes and a single valid key.
+        // Eligible accounts are still checked by the destination's StudentPage guard.
         // Everything else still goes to the role dashboard, so this cannot become an open redirect.
         private string ResumeDestination(Person user)
         {
             string requested = Request.QueryString["returnUrl"];
             if (string.IsNullOrEmpty(requested) || user == null || user.Role != UserRole.Student || user.MustChangePassword) return null;
-            string prefix = ResolveUrl("~/Pages/Student/Apply.aspx") + "?opportunityId=";
-            if (!requested.StartsWith(prefix, StringComparison.Ordinal)) return null;
-            string id = requested.Substring(prefix.Length);
-            return ApplicationRepository.IsValidKey(id) ? prefix + Uri.EscapeDataString(id) : null;
+            string browse = ResolveUrl("~/Pages/Student/Opportunities.aspx");
+            if (string.Equals(requested, browse, StringComparison.Ordinal)) return browse;
+            foreach (string prefix in new[] {
+                ResolveUrl("~/Pages/Student/Apply.aspx") + "?opportunityId=",
+                ResolveUrl("~/Pages/Student/OpportunityDetails.aspx") + "?id=" })
+            {
+                if (!requested.StartsWith(prefix, StringComparison.Ordinal)) continue;
+                string id = requested.Substring(prefix.Length);
+                return ApplicationRepository.IsValidKey(id) ? prefix + Uri.EscapeDataString(id) : null;
+            }
+            return null;
         }
 
         private bool IsApprovedDestination(string destination)
