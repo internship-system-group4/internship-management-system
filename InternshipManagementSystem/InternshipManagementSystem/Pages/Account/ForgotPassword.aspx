@@ -62,7 +62,7 @@
         }
 
         .recovery-experience .public-text-link:hover {
-            color: var(--ui-primary);
+            color: var(--ui-primary-text,var(--ui-primary));
         }
 
         /* Animated illustration */
@@ -237,7 +237,7 @@
             border: 4px solid var(--ui-primary);
             border-radius: 50%;
             background: var(--ui-accent);
-            color: #173f62;
+            color: #173f62; /* Navy on the gold seal in both themes. */
         }
 
         .mail-seal svg {

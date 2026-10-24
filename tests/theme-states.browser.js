@@ -62,13 +62,13 @@ async page => {
   await ctx.close();
  }
 
- // 2. Charts repaint on theme change without a reload.
+ // 2. The Academic workspace chart repaints on theme change without a reload.
  {
   const {ctx,p}=await open('light');
-  await p.goto(base+'/__fixture.aspx?user=student-one');await p.goto(base+'/Pages/Student/Dashboard.aspx');await p.waitForSelector('[data-reference-analytics] [data-mark]',{timeout:15000}).catch(()=>{});await p.waitForTimeout(500);
+  await p.goto(base+'/__fixture.aspx?user=academic-one');await p.goto(base+'/Pages/Academic/Dashboard.aspx');await p.waitForSelector('[data-reference-analytics] [data-mark]',{timeout:15000}).catch(()=>{});await p.waitForTimeout(500);
   // Charts are DOM marks styled by tokens (bars, donut segments, gridlines, labels): read what is painted.
   const paint=()=>p.evaluate(()=>[...document.querySelectorAll('[data-reference-analytics] *')].filter(e=>e.getBoundingClientRect().width>0).slice(0,200).map(e=>{const s=getComputedStyle(e);return s.backgroundColor+s.backgroundImage.slice(0,60)+s.color+s.borderTopColor+s.fill+s.stroke;}).join('|'));
-  const light=await paint();check(light.length>0,'Student dashboard renders chart marks');
+  const light=await paint();check(light.length>0,'Academic dashboard renders chart marks');
   await p.locator('[data-theme-toggle]:visible').first().click();await p.waitForFunction(()=>document.documentElement.dataset.theme==='dark');await p.waitForTimeout(400);
   check(await paint()!==light,'Chart marks, axes and labels change with the theme without reload');
   const a=await audit(p,'[data-reference-analytics]');check(!a.bad.length&&!a.light.length,'Chart text and surfaces pass in Dark',a);

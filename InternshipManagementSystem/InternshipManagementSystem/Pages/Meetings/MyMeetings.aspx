@@ -34,9 +34,9 @@
             gap: 24px;
             padding: 30px;
             margin-bottom: 24px;
-            border: 1px solid #d9e5f2;
+            border: 1px solid var(--th-line-d9e5f2,#d9e5f2);
             border-radius: 22px;
-            background: linear-gradient(120deg, #edf4fd, #f5f8ff);
+            background: linear-gradient(120deg, var(--th-bg-edf4fd,#edf4fd), var(--th-bg-f5f8ff,#f5f8ff));
         }
 
         .meeting-eyebrow {
@@ -92,7 +92,7 @@
         }
 
         .meeting-btn-primary:hover {
-            background: #194568;
+            background: var(--th-bg-194568,#194568);
             color: #fff;
         }
 
@@ -113,7 +113,7 @@
         }
 
         .meetings-page :is(button, input, textarea, select, a):focus-visible {
-            outline: 3px solid #8db8df;
+            outline: 3px solid var(--th-line-8db8df,#8db8df);
             outline-offset: 3px;
         }
 
@@ -157,7 +157,7 @@
         }
 
         .meeting-stat:nth-child(3) .meeting-stat-number {
-            color: #28567e;
+            color: var(--th-fg-28567e,#28567e);
         }
 
         .meeting-panel {
@@ -287,8 +287,8 @@
         }
 
         .meeting-status[data-state="Approved"] {
-            background: #e3efff;
-            color: #24547c;
+            background: var(--th-bg-e3efff,#e3efff);
+            color: var(--th-fg-24547c,#24547c);
         }
 
         .meeting-status[data-state="Declined"],
@@ -442,9 +442,9 @@
         .meeting-help {
             padding: 13px 16px;
             border-radius: 10px;
-            background: #edf4fd;
+            background: var(--th-bg-edf4fd,#edf4fd);
             font-size: 12px;
-            color: #345d81;
+            color: var(--th-fg-345d81,#345d81);
             line-height: 1.8;
         }
 

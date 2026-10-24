@@ -35,7 +35,7 @@
            <p class="m-0"><%: L.T("Academic.Dashboard.PlacementApprovedHoursAndTheNext") %></p>
        </div>
        <div>
-           <select id="studentFilter" class="form-select form-select-sm" style="border-radius: 6px; border-color: #d1d5db; font-weight: 500;">
+           <select id="studentFilter" class="form-select form-select-sm" style="border-radius: 6px; border-color: var(--th-line-d1d5db,#d1d5db); font-weight: 500;">
                <option value="all">All Students</option>
                <option value="pending">Awaiting Placement</option>
                <option value="progress">In Progress</option>
@@ -72,10 +72,10 @@
    
    <!-- أزرار See More / See Less بتصميم أصغر -->
    <div class="text-center mt-3 mb-2">
-       <asp:LinkButton ID="btnSeeMore" runat="server" CssClass="btn btn-light" style="border-radius: 20px; padding: 4px 16px; font-size: 0.8rem; font-weight: 600; border: 1px solid #e5e7eb;" OnClick="btnSeeMore_Click" Visible="false">
+       <asp:LinkButton ID="btnSeeMore" runat="server" CssClass="btn btn-light" style="border-radius: 20px; padding: 4px 16px; font-size: 0.8rem; font-weight: 600; border: 1px solid var(--th-line-e5e7eb,#e5e7eb);" OnClick="btnSeeMore_Click" Visible="false">
            See more <span data-ui-icon="down" aria-hidden="true" style="margin-left: 3px;"></span>
        </asp:LinkButton>
-       <asp:LinkButton ID="btnSeeLess" runat="server" CssClass="btn btn-light" style="border-radius: 20px; padding: 4px 16px; font-size: 0.8rem; font-weight: 600; border: 1px solid #e5e7eb;" OnClick="btnSeeLess_Click" Visible="false">
+       <asp:LinkButton ID="btnSeeLess" runat="server" CssClass="btn btn-light" style="border-radius: 20px; padding: 4px 16px; font-size: 0.8rem; font-weight: 600; border: 1px solid var(--th-line-e5e7eb,#e5e7eb);" OnClick="btnSeeLess_Click" Visible="false">
            See less <span data-ui-icon="up" aria-hidden="true" style="margin-left: 3px;"></span>
        </asp:LinkButton>
    </div>

@@ -47,7 +47,7 @@
     flex-wrap: wrap;
 }
 .od-label {
-    color: var(--th-fg-6183a2,#6183a2);
+    color: var(--ui-muted);
     font-size: 11px;
     font-weight: 800;
     letter-spacing: .6px;

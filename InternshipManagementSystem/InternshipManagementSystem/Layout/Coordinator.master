@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="~/Assets/css/portal-layout.css?v=20261023-sidebar-7" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/notifications.css?v=20261022-notify-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261024-6" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/portal-motion.css?v=20261023-theme-reveal-2" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />

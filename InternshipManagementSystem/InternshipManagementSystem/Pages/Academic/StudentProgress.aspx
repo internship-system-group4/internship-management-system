@@ -16,21 +16,21 @@
         
         <!-- التنسيق الجديد للعنوان الرئيسي -->
         <div class="mb-4">
-            <h1 class="mb-1" style="color: var(--brand-dark, #1a365d); font-weight: 700; font-size: 2rem;"><%: L.T("Academic.StudentProgress.StudentProgressMonitor") %></h1>
+            <h1 class="mb-1" style="color: var(--brand-text,var(--brand-dark, #1a365d)); font-weight: 700; font-size: 2rem;"><%: L.T("Academic.StudentProgress.StudentProgressMonitor") %></h1>
             <p class="text-muted"><%: L.T("Academic.StudentProgress.SelectAStudentToViewTheir") %></p>
         </div>
 
         <div class="uims-card">
             <!-- التنسيق الجديد: عنوان الكارد + شريط البحث والفلتر -->
             <div class="p-4 border-bottom">
-                <h4 style="color: var(--brand-dark, #1a365d); font-weight: 700; margin-bottom: 0.25rem;">Student records</h4>
+                <h4 style="color: var(--brand-text,var(--brand-dark, #1a365d)); font-weight: 700; margin-bottom: 0.25rem;">Student records</h4>
                 <p class="text-muted mb-4" style="font-size: 0.9rem;">Search and view student progress and assignment information.</p>
                 
-                <div class="d-flex gap-3">
+                <div class="d-flex flex-wrap gap-3">
                     <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search name or ID..." style="border-radius: 6px; flex-grow: 1;"></asp:TextBox>
                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-brand" OnClick="btnSearch_Click" style="border-radius: 6px; padding: 0.4rem 1.5rem; font-weight: 600;" />
                     
-                    <asp:DropDownList ID="ddlMajorFilter" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMajorFilter_SelectedIndexChanged" style="border-radius: 6px; border-color: #d1d5db; font-weight: 500; min-width: 200px; max-width: 250px;">
+                    <asp:DropDownList ID="ddlMajorFilter" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMajorFilter_SelectedIndexChanged" style="border-radius: 6px; border-color: var(--th-line-d1d5db,#d1d5db); font-weight: 500; min-width: 200px; max-width: 250px;">
                         <asp:ListItem Text="All Majors" Value="All"></asp:ListItem>
                         <asp:ListItem Text="Computer Science" Value="Computer Science"></asp:ListItem>
                         <asp:ListItem Text="Computer Engineering" Value="Computer Engineering"></asp:ListItem>

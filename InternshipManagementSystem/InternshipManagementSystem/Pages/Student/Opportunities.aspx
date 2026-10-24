@@ -257,7 +257,7 @@
 }
 .ex-detail-label {
     display: block;
-    color: var(--th-fg-8191a5,#8191a5);
+    color: var(--ui-muted);
     font-size: 10px;
     font-weight: 700;
     margin-bottom: 5px;

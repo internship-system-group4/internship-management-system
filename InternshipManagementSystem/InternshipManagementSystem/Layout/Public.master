@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="~/Assets/css/site.css" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/public-layout.css?v=20261021-4" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261023-5" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261024-6" runat="server" />
     <asp:ContentPlaceHolder ID="head" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/public-navbar.css?v=20261024-hero-nav-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/public-footer.css?v=20261022-10" runat="server" />
