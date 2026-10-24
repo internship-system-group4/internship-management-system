@@ -9,7 +9,7 @@
   if(instance)instance.dispose();
   var body=header.querySelector('.public-header-inner'),menu=header.querySelector('#publicNav'),toggle=header.querySelector('.public-menu-toggle'),highlight=header.querySelector('.uims-public-nav-highlight');
   if(!body||!menu||!toggle||!highlight)return;
-  var small=matchMedia('(max-width:1120px)'),abort=new AbortController(),opened=false,compact=null,scrolled=null,hovered=null,highlightFrame=0,anchorFrame=0;
+  var small=matchMedia('(max-width:1200px)'),abort=new AbortController(),opened=false,compact=null,scrolled=null,hovered=null,highlightFrame=0,anchorFrame=0;
   var anchorPending=!!location.hash,anchorFocus=false;
   function on(target,name,handler,options){target.addEventListener(name,handler,Object.assign({},options,{signal:abort.signal}));}
   function setOpen(value,restore){

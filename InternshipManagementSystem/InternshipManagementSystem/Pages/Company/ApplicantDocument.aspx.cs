@@ -14,10 +14,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
     /// </summary>
     public partial class ApplicantDocument : Security.CompanyPage
     {
+        private bool pdfResponse;
         protected void Page_Load(object sender, EventArgs e)
         {
             string applicationId = Request.QueryString["id"];
             bool isCv = Request.QueryString["type"] != "portfolio";
+            bool preview = Request.QueryString["preview"] == "1";
 
             InternshipApplication application;
             try
@@ -47,6 +49,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             // 1) The external link the student gave (Google Drive, GitHub...).
             if (StudentDocumentService.IsExternalLink(submittedLink))
             {
+                if (preview) { ShowMessage(L.T("Company.ApplicantDocument.ExternalPreviewUnavailable")); return; }
                 Response.Redirect(submittedLink, false);
                 Context.ApplicationInstance.CompleteRequest();
                 return;
@@ -63,6 +66,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             // 3) A newer external link saved on the student's profile.
             if (StudentDocumentService.IsExternalLink(profileLink))
             {
+                if (preview) { ShowMessage(L.T("Company.ApplicantDocument.ExternalPreviewUnavailable")); return; }
                 Response.Redirect(profileLink, false);
                 Context.ApplicationInstance.CompleteRequest();
                 return;
@@ -75,10 +79,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private void SendPdf(string path, string fileName)
         {
+            pdfResponse = true;
             Response.Clear();
             Response.ContentType = "application/pdf";
             // "inline" opens the PDF in the browser tab instead of downloading it.
-            Response.AddHeader("Content-Disposition", "inline; filename=\"" + fileName + "\"");
+            string disposition = Request.QueryString["download"] == "1" ? "attachment" : "inline";
+            Response.AddHeader("Content-Disposition", disposition + "; filename=\"" + fileName + "\"");
             Response.AddHeader("X-Content-Type-Options", "nosniff");
             Response.TransmitFile(path);
             Response.Flush();
@@ -88,7 +94,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         private void ShowMessage(string message)
         {
             Response.StatusCode = 404;
+            Response.TrySkipIisCustomErrors = true;
             MessageText.Text = message;
+        }
+
+        protected override void Render(System.Web.UI.HtmlTextWriter writer)
+        {
+            if (!pdfResponse) base.Render(writer);
         }
     }
 }

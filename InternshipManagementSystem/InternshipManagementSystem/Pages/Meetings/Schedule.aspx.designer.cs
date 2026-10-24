@@ -2,5 +2,13 @@
 {
     public partial class Schedule
     {
+        protected global::System.Web.UI.WebControls.Label lblMessage;
+        protected global::System.Web.UI.WebControls.TextBox txtTitle;
+        protected global::System.Web.UI.WebControls.TextBox txtAgenda;
+        protected global::System.Web.UI.WebControls.TextBox txtStart;
+        protected global::System.Web.UI.WebControls.TextBox txtDuration;
+        protected global::System.Web.UI.WebControls.CheckBoxList lstParticipants;
+        protected global::System.Web.UI.WebControls.HiddenField hdnOffset;
+        protected global::System.Web.UI.WebControls.Button btnCreate;
     }
 }

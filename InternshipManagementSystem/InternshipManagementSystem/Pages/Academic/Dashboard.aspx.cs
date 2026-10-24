@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
+using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.Academic

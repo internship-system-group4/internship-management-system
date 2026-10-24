@@ -1,10 +1,10 @@
 <%@ Control Language="C#" AutoEventWireup="true" CodeBehind="NotificationBell.ascx.cs" Inherits="InternshipManagementSystem.Layout.NotificationBell" %>
-<%-- Notification bell in the top bar of every portal master. The list is
+<%-- Notification bell in the shared sidebar of every portal master. The list is
      loaded in NotificationBell.ascx.cs; clicking an item opens it through
      Pages/Account/Notifications.aspx, which marks it read. --%>
 <div class="uims-notify dropdown">
     <button type="button" class="uims-notify-button" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false"
-            aria-label="<%: UnreadCount > 0 ? "Notifications, " + UnreadCount + " unread" : "Notifications" %>" title="<%: L.T("Shared.NotificationBell.Notifications") %>">
+            aria-label="<%: UnreadCount > 0 ? L.T("Shared.NotificationBell.Notifications") + " (" + UnreadCount + " " + L.T("Shared.NotificationBell.New") + ")" : L.T("Shared.NotificationBell.Notifications") %>" title="<%: L.T("Shared.NotificationBell.Notifications") %>">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>
         <% if (UnreadCount > 0) { %><span class="uims-notify-badge" aria-hidden="true"><%: BadgeText %></span><% } %>
     </button>

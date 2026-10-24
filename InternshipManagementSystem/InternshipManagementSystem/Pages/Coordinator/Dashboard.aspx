@@ -1,27 +1,116 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Dashboard" Title="Coordinator Dashboard" %>
-<%@ Import Namespace="System.Linq" %>
-<%@ Register Src="~/Layout/WorkspaceJourney.ascx" TagPrefix="uims" TagName="WorkspaceJourney" %>
-<%@ Register Src="~/Layout/WorkspaceChart.ascx" TagPrefix="uims" TagName="WorkspaceChart" %>
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css") %>" /></asp:Content>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Dashboard.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Dashboard" Title="Coordinator Dashboard" %>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/theme.css") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-dashboard.css") %>" />
+</asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="ws-dashboard ws-reference ws-coordinator" data-workspace-role="coordinator">
- <header class="ws-page-heading" data-ws-enter="header"><div><h2><%: L.T("Coordinator.Dashboard.CoordinationDesk") %></h2><p><%: L.T("Coordinator.Dashboard.KeepAssignmentsTrainingExceptionsAndCompletion") %></p></div><a class="btn btn-brand" href="CompletionReview.aspx"><%: L.T("Coordinator.Dashboard.OpenCompletionReview") %> <span data-ui-icon="next" aria-hidden="true"></span></a></header>
- <% if(LoadError != null) { %><div class="alert alert-danger" role="alert"><%: LoadError %> <a href="Dashboard.aspx"><%: L.T("Coordinator.Dashboard.Retry") %></a></div><% } %>
- <uims:WorkspaceJourney ID="Journey" runat="server" />
- <uims:WorkspaceChart ID="Charts" runat="server" />
- <% if(Summary != null) { %>
- <dl class="ws-metric-band" hidden aria-hidden="true" data-ws-enter="metrics"><div data-metric="students"><dt><%: L.T("Coordinator.Dashboard.Students") %></dt><dd><strong><%: Summary.Students %></strong></dd><small><%: Summary.ActiveStudents %> <%: L.T("Coordinator.Dashboard.ActiveAccounts") %></small></div><div data-metric="placements"><dt><%: L.T("Coordinator.Dashboard.ConfirmedPlacements") %></dt><dd><strong><%: Summary.Placements %></strong></dd><small><%: Summary.ActivePlacements %> <%: L.T("Coordinator.Dashboard.ConfirmedOrActive") %></small></div><div data-metric="final-evaluations"><dt><%: L.T("Coordinator.Dashboard.FinalAssessmentsReceived") %></dt><dd><strong><%: Summary.CompanyFinals + Summary.AcademicFinals %></strong></dd><small><%: Summary.CompanyFinals %> <%: L.T("Coordinator.Dashboard.Company") %> <%: Summary.AcademicFinals %> <%: L.T("Coordinator.Dashboard.Academic") %></small></div><div><dt><%: L.T("Coordinator.Dashboard.ReadyForReview") %></dt><dd><%: Workspace.Queue.Count(q => q.IsReady) %></dd><small><%: L.T("Coordinator.Dashboard.BothEvaluationsNotYetApproved") %></small></div></dl>
- <div class="ws-coordination-work" data-ws-enter="work">
-  <section class="ws-work-panel"><div class="ws-section-heading"><div><h3><%: L.T("Coordinator.Dashboard.CompletionQueue") %></h3><p><%: L.T("Coordinator.Dashboard.EachStudentNeedsAnIndividualCoordinator") %></p></div><a href="CompletionReview.aspx"><%: L.T("Coordinator.Dashboard.ViewQueue") %></a></div>
-   <% if(Workspace.Queue.Count == 0) { %><div class="ws-empty"><h4><%: L.T("Coordinator.Dashboard.NoConfirmedPlacementsYet") %></h4><p><%: L.T("Coordinator.Dashboard.StudentsAppearHereAfterConfirmingOne") %></p><a href="ManageStudents.aspx"><%: L.T("Coordinator.Dashboard.ManageStudentRecords") %></a></div><% } else { %>
-   <table class="ws-completion-table"><caption class="visually-hidden"><%: L.T("Coordinator.Dashboard.CompletionWorkAndApprovedHoursFor") %></caption><thead><tr><th><%: L.T("Coordinator.Dashboard.StudentCompany") %></th><th><%: L.T("Coordinator.Dashboard.ApprovedHours") %></th><th><%: L.T("Coordinator.Dashboard.ReviewStage") %></th><th><%: L.T("Coordinator.Dashboard.Action") %></th></tr></thead><tbody>
-    <% foreach(var row in Workspace.Queue.Take(5)) { %><tr data-workspace-row="<%: row.Overview.Placement.Id %>" data-workspace-status="<%: row.StageText %>"><td><strong><%: row.Overview.StudentName %></strong><small><%: row.Overview.Placement.CompanyName %></small></td><td><%: row.Overview.HoursText %></td><td><span class="monitor-status"><%: row.StageText %></span></td><td><a class="ws-text-action" href="CompletionReview.aspx?id=<%: Server.UrlEncode(row.Overview.Placement.Id) %>"><%: L.T("Coordinator.Dashboard.Review") %> <span data-ui-icon="next" aria-hidden="true"></span></a></td></tr><% } %>
-   </tbody></table><% } %>
-  </section>
-  <aside class="ws-assignment-desk"><span data-ui-icon="people" aria-hidden="true"></span><h3><%: L.T("Coordinator.Dashboard.Assignments") %></h3><div class="ws-assignment-number"><%: Workspace.UnassignedStudents %></div><p><%: L.T("Coordinator.Dashboard.ActiveStudentProfilesHaveNoAcademic") %></p><a class="btn btn-light" href="Groups.aspx"><%: L.T("Coordinator.Dashboard.ManageGroupsAssignments") %> <span data-ui-icon="next" aria-hidden="true"></span></a><a href="AcademicSupervisors.aspx"><%: L.T("Coordinator.Dashboard.AcademicSupervisors") %></a></aside>
- </div>
- <section class="ws-exceptions" data-ws-enter="support"><div class="ws-section-heading"><h3><%: L.T("Coordinator.Dashboard.TrainingExceptions") %></h3><a href="Placements.aspx"><%: L.T("Coordinator.Dashboard.OpenPlacements") %></a></div><div class="ws-exception-band"><a href="Placements.aspx?status=3"><strong><%: Summary.AwaitingCompletion %></strong><span><%: L.T("Coordinator.Dashboard.PlacementsAwaitingCompletion") %></span></a><div><strong><%: Summary.OverdueTasks %></strong><span><%: L.T("Coordinator.Dashboard.UngradedTasksPastTheirDeadline") %></span></div><div><strong><%: Summary.PendingHours %> h</strong><span><%: L.T("Coordinator.Dashboard.ReportedAwaitingCompanyApproval") %></span></div></div></section>
- <div class="ws-programme-totals"><span data-metric="companies"><strong><%: Summary.Companies %></strong> <%: L.T("Coordinator.Dashboard.Companies") %> <%: Summary.ActiveCompanies %> <%: L.T("Coordinator.Dashboard.Active") %></span><span data-metric="opportunities"><strong><%: Summary.Opportunities %></strong> <%: L.T("Coordinator.Dashboard.Opportunities") %> <%: Summary.OpenOpportunities %> <%: L.T("Coordinator.Dashboard.Open") %></span><span data-metric="task-evaluations"><strong><%: Summary.TaskEvaluations %></strong> <%: L.T("Coordinator.Dashboard.LinkedTaskEvaluations") %></span><small><%: L.T("Coordinator.Dashboard.UpdatedOnPageLoad") %> <%: DateTime.UtcNow.ToString("dd MMM yyyy HH:mm") %> <%: L.T("Coordinator.Dashboard.UTC") %></small></div>
- <% } %>
-</div>
+    <div class="coordinator-dashboard">
+        <section class="dashboard-heading" aria-labelledby="dashboard-title">
+            <div>
+                <div class="theme-eyebrow">Your coordinator workspace</div>
+                <h2 id="dashboard-title">Good to see you, <%: FirstName %>.</h2>
+                <p>A clear view of your students, their progress, and what comes next.</p>
+            </div>
+            <div class="dashboard-heading-actions">
+                <a class="btn btn-outline-secondary" href="<%: ResolveUrl("~/Pages/Reports/Grades.aspx") %>"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-chart" /></svg>View results</a>
+                <a class="btn btn-brand" href="<%: ResolveUrl("~/Pages/Coordinator/AddStudent.aspx") %>"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-plus" /></svg>Add student</a>
+            </div>
+        </section>
+        <% if (!string.IsNullOrEmpty(LoadError)) { %>
+        <div class="theme-alert" role="alert"><%: LoadError %> <a class="theme-link" href="<%: ResolveUrl("~/Pages/Coordinator/Dashboard.aspx") %>">Try again</a></div>
+        <% } %>
+        <section class="dashboard-hero" aria-labelledby="hero-title">
+            <div class="dashboard-hero-copy">
+                <div class="theme-eyebrow">From classroom to career</div>
+                <h3 id="hero-title">Great futures start with good guidance.</h3>
+                <p>Keep every internship moving forward. Connect the right people, follow their progress, and celebrate the milestones.</p>
+                <a class="theme-link" href="<%: ResolveUrl("~/Pages/Coordinator/Placements.aspx") %>">Explore placements &nbsp; &rarr;</a>
+            </div>
+            <svg class="dashboard-hero-art" viewBox="0 0 220 160" fill="none" aria-hidden="true">
+                <circle cx="121" cy="82" r="69" fill="#d6e7d9" />
+                <path d="M25 138h177M43 138V83h38v55m15 0V57h38v81m15 0V27h38v111" stroke="#699887" stroke-width="1.3" />
+                <path d="M44 84h36v54H44z" fill="#c0dacb" /><path d="M97 58h36v80H97z" fill="#9bc4af" /><path d="M150 28h36v110h-36z" fill="#4d9680" />
+                <path d="m42 62 44-29 36 4 47-29m-15-1 16-1-2 16" stroke="#264e40" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
+                <rect x="20" y="89" width="103" height="53" rx="8" fill="white" stroke="#c6d9ce" transform="rotate(-8 20 89)" />
+                <circle cx="40" cy="106" r="9" fill="#edf5ef" /><path d="m36 106 3 3 5-6" stroke="#087f75" stroke-width="1.6" stroke-linecap="round" />
+                <path d="m59 101 42-6m-42 15 28-4m-53 22 69-10" stroke="#a7bfb3" stroke-width="3" stroke-linecap="round" />
+                <circle cx="185" cy="44" r="18" fill="#edb669" /><path d="m178 44 5 5 9-10" stroke="#614318" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M31 30v10m-5-5h10m164 65v8m-4-4h8" stroke="#87aa91" stroke-width="1.5" stroke-linecap="round" />
+            </svg>
+        </section>
+        <section aria-labelledby="overview-title">
+            <div class="dashboard-section-heading"><h3 id="overview-title">Your program at a glance</h3><span>Current program overview</span></div>
+            <div class="dashboard-stats">
+                <a class="theme-card dashboard-stat" href="<%: ResolveUrl("~/Pages/Coordinator/Students.aspx") %>">
+                    <div class="dashboard-stat-top"><span>Total students</span><span class="stat-icon teal"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-users" /></svg></span></div>
+                    <strong class="dashboard-stat-number"><%: StudentCount %></strong>
+                    <span class="dashboard-stat-note">Student accounts</span>
+                </a>
+                <a class="theme-card dashboard-stat" href="<%: ResolveUrl("~/Pages/Coordinator/Placements.aspx") %>">
+                    <div class="dashboard-stat-top"><span>Active placements</span><span class="stat-icon blue"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-briefcase" /></svg></span></div>
+                    <strong class="dashboard-stat-number"><%: ActivePlacementCount %></strong>
+                    <span class="dashboard-stat-note">Confirmed & in progress</span>
+                </a>
+                <a class="theme-card dashboard-stat" href="<%: ResolveUrl("~/Pages/Coordinator/Companies.aspx") %>">
+                    <div class="dashboard-stat-top"><span>Partner companies</span><span class="stat-icon amber"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-building" /></svg></span></div>
+                    <strong class="dashboard-stat-number"><%: CompanyCount %></strong>
+                    <span class="dashboard-stat-note">Registered companies</span>
+                </a>
+                <article class="theme-card dashboard-stat">
+                    <div class="dashboard-stat-top"><span>Open opportunities</span><span class="stat-icon green"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-cap" /></svg></span></div>
+                    <strong class="dashboard-stat-number"><%: OpportunityCount %></strong>
+                    <span class="dashboard-stat-note">Available to students</span>
+                </article>
+            </div>
+        </section>
+        <div class="dashboard-columns">
+            <section class="theme-card dashboard-panel" aria-labelledby="placements-title">
+                <div class="dashboard-panel-head">
+                    <div><h3 id="placements-title">Recent placements</h3><p>Small steps. Real progress.</p></div>
+                    <a class="theme-link" href="<%: ResolveUrl("~/Pages/Coordinator/Placements.aspx") %>">View all &nbsp; &rarr;</a>
+                </div>
+                <% if (RecentPlacements.Count > 0) { %>
+                <div class="theme-table-scroll" role="region" aria-label="Recent placements" tabindex="0">
+                    <table class="uims-table">
+                        <thead><tr><th scope="col">Student</th><th scope="col">Company</th><th scope="col">Hours</th><th scope="col">Status</th><th scope="col"><span class="visually-hidden">Details</span></th></tr></thead>
+                        <tbody>
+                            <% foreach (var placement in RecentPlacements) { %>
+                            <tr>
+                                <td><div class="dashboard-student"><span class="dashboard-student-avatar"><%: Initials(placement.StudentName) %></span><div><strong><%: placement.StudentName %></strong><small><%: placement.OpportunityTitle %></small></div></div></td>
+                                <td><span class="dashboard-company"><%: placement.CompanyName %></span></td>
+                                <td><div class="dashboard-progress"><progress max="100" value="<%: Progress(placement) %>" aria-label="<%: placement.StudentName + " approved hours progress" %>"></progress><span><%: Progress(placement) %>%</span></div></td>
+                                <td><span class="theme-badge <%: StatusClass(placement.Status) %>"><%: StatusLabel(placement.Status) %></span></td>
+                                <td><a class="dashboard-placement-link" href="<%: ResolveUrl("~/Pages/Coordinator/PlacementDetails.aspx?id=" + Server.UrlEncode(placement.Id)) %>" aria-label="<%: "View placement for " + placement.StudentName %>"><svg class="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-arrow" /></svg></a></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="dashboard-table-caption">Latest <%: RecentPlacements.Count %> placements &middot; Progress reflects approved training hours.</p>
+                <% } else { %>
+                <div class="theme-empty">
+                    <svg class="theme-icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-briefcase" /></svg>
+                    <h3><%: HasData ? "Every journey has a first step" : "Your overview will be here" %></h3>
+                    <p><%: HasData ? "Confirmed internships will appear here as students begin their placements." : "We could not load placements. Try refreshing this page." %></p>
+                    <a class="theme-link" href="<%: ResolveUrl("~/Pages/Coordinator/Placements.aspx") %>">Go to placements &rarr;</a>
+                </div>
+                <% } %>
+            </section>
+            <aside class="dashboard-aside" aria-label="Coordinator actions">
+                <section class="theme-card dashboard-actions">
+                    <h3>Make things happen</h3><p>Your everyday actions, one click away.</p>
+                    <a class="dashboard-action" href="<%: ResolveUrl("~/Pages/Coordinator/AddStudent.aspx") %>"><span class="stat-icon teal"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-plus" /></svg></span><span><strong>Add a student</strong><small>Start a new internship journey</small></span><svg class="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-arrow" /></svg></a>
+                    <a class="dashboard-action" href="<%: ResolveUrl("~/Pages/Coordinator/Groups.aspx") %>"><span class="stat-icon blue"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-users" /></svg></span><span><strong>Assign student groups</strong><small>Connect students and supervisors</small></span><svg class="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-arrow" /></svg></a>
+                    <a class="dashboard-action" href="<%: ResolveUrl("~/Pages/Meetings/Schedule.aspx") %>"><span class="stat-icon amber"><svg class="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-calendar" /></svg></span><span><strong>Schedule a meeting</strong><small>Make time for a conversation</small></span><svg class="theme-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-arrow" /></svg></a>
+                </section>
+                <section class="theme-card dashboard-review">
+                    <div class="theme-eyebrow">The next milestone</div>
+                    <h3><%: ReviewHeading %></h3>
+                    <p><%: ReviewDescription %></p>
+                    <a class="theme-link" href="<%: ResolveUrl("~/Pages/Coordinator/CompletionReview.aspx") %>">Open completion review &nbsp; &rarr;</a>
+                </section>
+            </aside>
+        </div>
+        <footer class="dashboard-footer"><span>UIMS &middot; A better path from learning to doing.</span><span><svg class="theme-icon" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><use href="#icon-shield" /></svg>Coordinator workspace</span></footer>
+    </div>
 </asp:Content>

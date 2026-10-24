@@ -1,55 +1,55 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="PlacementDetails.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.PlacementDetails" Title="Placement Details" %>
-<%@ Import Namespace="System.Linq" %>
-<%@ Import Namespace="System.Collections.Generic" %>
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css") %>" /></asp:Content>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="PlacementDetails.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.PlacementDetails" Title="Placement Details" %>
+
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+    <style>
+        .placement-intro{display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}.placement-intro h2{font-size:1.45rem;margin:0 0 .35rem}.placement-muted{color:var(--muted)}
+        .placement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.placement-fact{border-top:1px solid var(--line);padding-top:.65rem}.placement-fact small{display:block;color:var(--muted)}.placement-fact strong{display:block;margin-top:.2rem;overflow-wrap:anywhere}
+        .placement-stats{display:flex;gap:1rem;flex-wrap:wrap}.placement-stats strong{color:var(--brand-dark)}.placement-feedback{white-space:pre-wrap;overflow-wrap:anywhere}
+        @media(max-width:750px){.placement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.placement-grid{grid-template-columns:1fr}}
+    </style>
+</asp:Content>
+
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="monitor-page">
-    <a href="Placements.aspx"><%: L.T("Coordinator.PlacementDetails.PlacementsProgress") %></a>
-    <% if (LoadError != null) { %><div class="monitor-error" role="alert"><%: LoadError %></div><% } else if (Progress != null) { var row = Progress.Overview; var placement = row.Placement; %>
-    <div class="monitor-heading" style="margin-top:24px"><div><h2><%: row.StudentName %></h2><p><%: row.StudentNumber %> &middot; <%: row.Major %></p></div><span class="monitor-status"><%: row.StatusText %></span></div>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.InternshipDetails") %></h3><span><%: L.T("Coordinator.PlacementDetails.Confirmed") %> <%: Time.DisplayDate(placement.ConfirmedAt) %></span></div><div class="monitor-panel-body"><dl class="monitor-profile">
-        <div><dt><%: L.T("Coordinator.PlacementDetails.Company") %></dt><dd><%: placement.CompanyName %></dd></div><div><dt><%: L.T("Coordinator.PlacementDetails.Opportunity") %></dt><dd><%: placement.OpportunityTitle %></dd></div>
-        <div><dt><%: L.T("Coordinator.PlacementDetails.CompanySupervisor") %></dt><dd><%: Progress.CompanySupervisorName %></dd></div><div><dt><%: L.T("Coordinator.PlacementDetails.AcademicSupervisor") %></dt><dd><%: Progress.AcademicSupervisorName %></dd></div>
-        <div><dt><%: L.T("Coordinator.PlacementDetails.TrainingPeriod") %></dt><dd><%: Time.DisplayDate(placement.StartDate) %> &ndash; <%: Time.DisplayDate(placement.EndDate) %></dd></div><div><dt><%: L.T("Coordinator.PlacementDetails.StudentEmail") %></dt><dd><%: row.Student == null ? "Profile unavailable" : row.Student.Email %></dd></div>
-    </dl></div></section>
-    <div class="monitor-progress">
-        <section class="monitor-panel"><div class="monitor-panel-body"><h3><%: L.T("Coordinator.PlacementDetails.ApprovedTrainingHours") %></h3><strong data-approved-hours="<%: row.ApprovedHours %>"><%: row.HoursText %></strong><progress value="<%: row.HoursPercent %>" max="100" aria-label="<%: L.T("Coordinator.PlacementDetails.ApprovedTrainingHours") %>"><%: row.HoursPercent %>%</progress><p><%: row.PendingHours %> <%: L.T("Coordinator.PlacementDetails.HReportedAwaitingApprovalOnlyApproved") %></p></div></section>
-        <section class="monitor-panel"><div class="monitor-panel-body"><h3><%: L.T("Coordinator.PlacementDetails.TaskProgress") %></h3><strong><%: Progress.Tasks.Count(t => t.Status == InternshipTaskStatus.Graded) %> / <%: Progress.Tasks.Count %> <%: L.T("Coordinator.PlacementDetails.Graded") %></strong><p><%: Progress.Tasks.Count(t => t.IsOverdue) %> <%: L.T("Coordinator.PlacementDetails.PastDeadlineAndNotGraded") %> <%: Progress.Submissions.Count %> <%: L.T("Coordinator.PlacementDetails.SubmissionAttempts") %></p><p><%: L.T("Coordinator.PlacementDetails.TasksAndHoursAreSeparateCompleting") %></p></div></section>
-    </div>
-    <section class="monitor-panel" id="tasks"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.Tasks") %></h3><span><%: Progress.Tasks.Count %> <%: L.T("Coordinator.PlacementDetails.Assigned") %></span></div>
-        <% if (Progress.Tasks.Count == 0) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoTasksHaveBeenAssignedTo") %></div><% } else { %><div class="monitor-table-scroll"><table class="monitor-table"><caption class="visually-hidden"><%: L.T("Coordinator.PlacementDetails.TasksAssignedToThisStudentPlacement") %></caption><thead><tr><th scope="col"><%: L.T("Coordinator.PlacementDetails.Task") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.Deadline") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.Status") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.MarkScale") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.Attempts") %></th></tr></thead><tbody>
-        <% foreach (var task in Progress.Tasks) { %><tr><td><strong><%: task.Title %></strong><small><%: task.Description %></small></td><td><%: Time.Display(task.Deadline) %><% if (task.IsOverdue) { %><small><%: L.T("Coordinator.PlacementDetails.PastDeadline") %></small><% } %></td><td><span class="monitor-status"><%: StatusLabel(task.Status) %></span></td><td><%: task.MaxScore > 0 ? "Out of " + task.MaxScore.ToString("0.##") : "Not specified" %></td><td><%: Progress.Submissions.Count(s => s.TaskId == task.Id) %></td></tr><% } %>
-        </tbody></table></div><% } %>
-    </section>
-    <section class="monitor-panel" id="submissions"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.SubmissionHistory") %></h3><span><%: L.T("Coordinator.PlacementDetails.AllAttemptsNewestFirst") %></span></div>
-        <% if (Progress.Submissions.Count == 0) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoSubmissionsHaveBeenRecordedFor") %></div><% } %>
-        <% foreach (var submission in Progress.Submissions) { %><article class="monitor-entry"><h4><%: Progress.Tasks.First(t => t.Id == submission.TaskId).Title %> <%: L.T("Coordinator.PlacementDetails.Attempt") %> <%: submission.AttemptNumber %></h4><small><%: Time.Display(submission.SubmittedAt) %> &middot; <%: StatusLabel(submission.Status) %></small><p><%: submission.DescriptionText %></p>
-            <% if (SafeLink(submission.LinkUrl)) { %><a href="<%: submission.LinkUrl %>" target="_blank" rel="noopener noreferrer"><%: L.T("Coordinator.PlacementDetails.OpenSubmittedLink") %></a><% } %><% if (SafeLink(submission.FileUrl)) { %><a href="<%: submission.FileUrl %>" target="_blank" rel="noopener noreferrer"><%: L.T("Coordinator.PlacementDetails.OpenAttachment") %> <%: submission.FileName %></a><% } %><p class="monitor-note"><%: L.T("Coordinator.PlacementDetails.ReportedForThisAttempt") %> <%: submission.ReportedHours %> <%: L.T("Coordinator.PlacementDetails.HRequiresSeparateApproval") %></p>
-        </article><% } %>
-    </section>
-    <section class="monitor-panel" id="evaluations"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.TaskEvaluationsFeedback") %></h3><span><%: Progress.Evaluations.Count %> <%: L.T("Coordinator.PlacementDetails.Records") %></span></div>
-        <% if (Progress.Evaluations.Count == 0) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoTaskEvaluationsHaveBeenRecorded") %></div><% } %>
-        <% foreach (var evaluation in Progress.Evaluations) { %><article class="monitor-entry"><h4><%: Progress.Tasks.First(t => t.Id == evaluation.TaskId).Title %> &middot; <%: evaluation.RevisionRequested ? "Revision requested" : Score(evaluation.TotalScore, evaluation.MaxScore) %></h4><small><%: L.T("Coordinator.PlacementDetails.Attempt2") %> <%: Progress.Submissions.First(s => s.Id == evaluation.SubmissionId).AttemptNumber %> &middot; <%: Time.Display(evaluation.EvaluatedAt) %></small><p><%: evaluation.Feedback %></p><% if (evaluation.RevisionRequested) { %><p><strong><%: L.T("Coordinator.PlacementDetails.RequestedChanges") %></strong> <%: evaluation.RevisionInstructions %></p><% } %>
-        <% if (evaluation.Components != null && evaluation.Components.Count > 0) { %><details><summary><%: L.T("Coordinator.PlacementDetails.EvaluationCriteria") %></summary><% foreach (var component in evaluation.Components) { %><p><%: component.Name %>: <%: Score(component.Score, component.MaxScore) %> <%: L.T("Coordinator.PlacementDetails.Weight") %> <%: component.Weight %>% &middot; <%: component.Comment %></p><% } %></details><% } %>
-        </article><% } %>
-    </section>
-    <section class="monitor-panel" id="hours"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.TrainingHoursLog") %></h3><span><%: L.T("Coordinator.PlacementDetails.ApprovalIsSeparateFromTaskCompletion") %></span></div>
-        <% if (Progress.Hours.Count == 0) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoTrainingHoursHaveBeenReported") %></div><% } else { %><div class="monitor-table-scroll"><table class="monitor-table"><caption class="visually-hidden"><%: L.T("Coordinator.PlacementDetails.ReportedHoursAndReviewDecisions") %></caption><thead><tr><th scope="col"><%: L.T("Coordinator.PlacementDetails.WorkDate") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.Description") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.Hours") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.Status") %></th><th scope="col"><%: L.T("Coordinator.PlacementDetails.ReviewNote") %></th></tr></thead><tbody><% foreach (var entry in Progress.Hours) { %><tr><td><%: Time.DisplayDate(entry.WorkDate) %></td><td><%: entry.Description %></td><td><%: entry.Hours %> h</td><td><%: entry.Status %></td><td><%: entry.ReviewNote %></td></tr><% } %></tbody></table></div><% } %>
-    </section>
-    <div class="monitor-evaluation-grid">
-        <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.CompanyFinalEvaluation") %></h3><span><%: L.T("Coordinator.PlacementDetails.CoordinatorAccess") %></span></div>
-            <% if (Progress.CompanyFinal == null) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoCompanyFinalEvaluationReceived") %></div><% } else { var final = Progress.CompanyFinal; %><div class="monitor-entry"><h4><%: final.IsSubmitted ? "Submitted" : "Draft — not submitted" %></h4><p><%: L.T("Coordinator.PlacementDetails.Score") %> <%: Score(final.TotalScore, final.MaxScore) %></p><small><%: final.IsSubmitted ? Time.Display(final.SubmittedAt) : "Awaiting company submission" %></small></div><details><summary><%: L.T("Coordinator.PlacementDetails.ViewConfidentialCompanyEvaluation") %></summary><div class="monitor-entry"><p><strong><%: L.T("Coordinator.PlacementDetails.Strengths") %></strong> <%: final.Strengths %></p><p><strong><%: L.T("Coordinator.PlacementDetails.AreasForImprovement") %></strong> <%: final.AreasForImprovement %></p><p><strong><%: L.T("Coordinator.PlacementDetails.OverallComment") %></strong> <%: final.OverallComment %></p><% foreach (var component in final.Components ?? new List<GradeComponent>()) { %><p><%: component.Name %>: <%: Score(component.Score, component.MaxScore) %> <%: L.T("Coordinator.PlacementDetails.Weight") %> <%: component.Weight %>%</p><% } %></div></details><% } %>
+    <div class="placement-intro"><div><h2>Placement details</h2><p class="placement-muted mb-0">Tasks, submissions, evaluations and training hours for one confirmed internship.</p></div><a class="btn btn-outline-secondary" href="<%: ResolveUrl("~/Pages/Coordinator/Placements.aspx") %>">Back to placements</a></div>
+    <asp:Panel ID="pnlMissing" runat="server" Visible="false" CssClass="uims-card"><p class="placement-muted mb-0"><asp:Literal ID="litMissing" runat="server" /></p></asp:Panel>
+
+    <asp:Panel ID="pnlDetails" runat="server" Visible="false">
+        <section class="uims-card" aria-labelledby="studentHeading">
+            <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap"><h3 id="studentHeading"><asp:Literal ID="litStudent" runat="server" /></h3><asp:HyperLink ID="lnkFinalReview" runat="server" Text="Open final completion review" CssClass="btn btn-sm btn-outline-primary" /></div>
+            <div class="placement-grid">
+                <div class="placement-fact"><small>Student number</small><strong><asp:Literal ID="litStudentNumber" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Program</small><strong><asp:Literal ID="litProgram" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Status</small><strong><asp:Literal ID="litStatus" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Company</small><strong><asp:Literal ID="litCompany" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Opportunity</small><strong><asp:Literal ID="litOpportunity" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Company supervisor</small><strong><asp:Literal ID="litCompanySupervisor" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Academic supervisor</small><strong><asp:Literal ID="litAcademicSupervisor" runat="server" /></strong></div>
+                <div class="placement-fact"><small>Training period</small><strong><asp:Literal ID="litPeriod" runat="server" /></strong></div>
+            </div>
         </section>
-        <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.AcademicFinalEvaluation") %></h3><span><%: L.T("Coordinator.PlacementDetails.CoordinatorAccess") %></span></div>
-            <% if (Progress.AcademicFinal == null) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoAcademicFinalEvaluationReceived") %></div><% } else { var final = Progress.AcademicFinal; %><div class="monitor-entry"><h4><%: final.IsSubmitted ? "Submitted" : "Draft — not submitted" %></h4><p><%: L.T("Coordinator.PlacementDetails.Score") %> <%: Score(final.TotalScore, final.MaxScore) %></p><small><%: final.IsSubmitted ? Time.Display(final.SubmittedAt) : "Awaiting academic submission" %></small></div><details><summary><%: L.T("Coordinator.PlacementDetails.ViewConfidentialAcademicEvaluation") %></summary><div class="monitor-entry"><p><%: final.AcademicComments %></p><p><strong><%: L.T("Coordinator.PlacementDetails.CompanyEvaluationRemarks") %></strong> <%: final.CompanyEvaluationRemarks %></p><% foreach (var component in final.Components ?? new List<GradeComponent>()) { %><p><%: component.Name %>: <%: Score(component.Score, component.MaxScore) %> <%: L.T("Coordinator.PlacementDetails.Weight") %> <%: component.Weight %>%</p><% } %></div></details><% } %>
+
+        <section class="uims-card" aria-labelledby="tasksHeading">
+            <h3 id="tasksHeading">Tasks and evaluations</h3>
+            <p class="placement-stats"><span><strong><asp:Literal ID="litTaskCount" runat="server" /></strong> assigned tasks</span><span><strong><asp:Literal ID="litSubmissionCount" runat="server" /></strong> submissions</span><span><strong><asp:Literal ID="litGradedCount" runat="server" /></strong> graded tasks</span></p>
+            <div class="table-responsive"><table class="uims-table"><thead><tr><th scope="col">Task</th><th scope="col">Deadline</th><th scope="col">Status</th><th scope="col">Attempts</th><th scope="col">Latest grade</th><th scope="col">Latest feedback</th></tr></thead>
+                <tbody><asp:Repeater ID="rptTasks" runat="server"><ItemTemplate><tr><td><%#: Eval("Title") %></td><td><%#: Eval("Deadline") %></td><td><%#: Eval("Status") %></td><td><%#: Eval("Attempts") %></td><td><%#: Eval("Grade") %></td><td class="placement-feedback"><%#: Eval("Feedback") %></td></tr></ItemTemplate></asp:Repeater></tbody>
+            </table></div>
+            <asp:Panel ID="pnlNoTasks" runat="server" Visible="false"><p class="placement-muted mb-0">No tasks have been assigned yet.</p></asp:Panel>
         </section>
-    </div>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.AcademicFollowUp") %></h3><span><%: Progress.Comments.Count %> <%: L.T("Coordinator.PlacementDetails.Comments") %></span></div>
-        <% if (Progress.Comments.Count == 0) { %><div class="monitor-empty"><%: L.T("Coordinator.PlacementDetails.NoAcademicCommentsHaveBeenRecorded") %></div><% } %><% foreach (var comment in Progress.Comments) { %><article class="monitor-entry"><small><%: Time.Display(comment.CreatedAt) %> &middot; <%: comment.IsVisibleToStudent ? "Visible to student" : "Not visible to student" %></small><p><%: comment.Comment %></p></article><% } %>
-    </section>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.PlacementDetails.CompletionOfficialResult") %></h3><a href="CompletionReview.aspx?id=<%: Server.UrlEncode(placement.Id) %>"><%: L.T("Coordinator.PlacementDetails.OpenCompletionReview") %></a></div><div class="monitor-panel-body">
-        <% if (Progress.Completion == null) { %><p class="monitor-note"><%: L.T("Coordinator.PlacementDetails.NoCompletionReviewRecordYetTraining") %></p><% } else { %><p><%: L.T("Coordinator.PlacementDetails.ReviewStatus") %> <strong><%: StatusLabel(Progress.Completion.Status) %></strong></p><% if (Progress.Completion.Status == CompletionStatus.Approved) { %><p><%: L.T("Coordinator.PlacementDetails.RecordedFinalResult") %> <strong><%: Progress.Completion.Result %></strong> &middot; <%: Progress.Completion.FinalScore.ToString("0.##") %>%</p><a href="<%: ResolveUrl(InternshipManagementSystem.Services.PdfReportService.ReportUrl(Progress.Completion.Id)) %>" target="_blank" rel="noopener noreferrer"><%: L.T("Coordinator.PlacementDetails.OpenOfficialCompletionReport") %></a><% } else { %><p class="monitor-note"><%: L.T("Coordinator.PlacementDetails.FinalResultAndReportAreAwaiting") %></p><% } %><p><%: Progress.Completion.CoordinatorNote %></p><% } %>
-    </div></section>
-    <% } %>
-</div>
+
+        <section class="uims-card" aria-labelledby="hoursHeading">
+            <h3 id="hoursHeading">Training hours</h3>
+            <p class="mb-2"><strong><asp:Literal ID="litHours" runat="server" /></strong> approved / required · <asp:Literal ID="litPendingHours" runat="server" /> reported hours awaiting review</p>
+            <div id="hoursProgress" runat="server" class="progress mb-2" role="progressbar" aria-label="Approved hours progress" aria-valuemin="0" aria-valuemax="100"><div id="hoursBar" runat="server" class="progress-bar btn-brand" style="width:0%"></div></div>
+            <p class="placement-muted small"><asp:Literal ID="litHoursPercent" runat="server" /> of required hours approved.</p>
+            <div class="table-responsive"><table class="uims-table"><thead><tr><th scope="col">Work date</th><th scope="col">Entry</th><th scope="col">Hours</th><th scope="col">Status</th></tr></thead>
+                <tbody><asp:Repeater ID="rptHours" runat="server"><ItemTemplate><tr><td><%#: Eval("Date") %></td><td><%#: Eval("Description") %></td><td><%#: Eval("Hours") %></td><td><%#: Eval("Status") %></td></tr></ItemTemplate></asp:Repeater></tbody>
+            </table></div>
+            <asp:Panel ID="pnlNoHours" runat="server" Visible="false"><p class="placement-muted mb-0">No hours have been reported yet.</p></asp:Panel>
+        </section>
+
+        <section class="uims-card" aria-labelledby="finalHeading"><h3 id="finalHeading">Final review status</h3>
+            <div class="placement-grid"><div class="placement-fact"><small>Company final evaluation</small><strong><asp:Literal ID="litCompanyEvaluation" runat="server" /></strong></div><div class="placement-fact"><small>Academic final evaluation</small><strong><asp:Literal ID="litAcademicEvaluation" runat="server" /></strong></div><div class="placement-fact"><small>Completion</small><strong><asp:Literal ID="litCompletion" runat="server" /></strong></div></div>
+        </section>
+    </asp:Panel>
 </asp:Content>

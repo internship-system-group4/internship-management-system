@@ -1664,3 +1664,115 @@ en: Under review
 
 Tasks.RevisionRequested
 en: Revision requested
+
+Applications.StudentConfirmedOffer
+en: The student has confirmed this offer.
+ar: أكّد الطالب قبول هذا العرض.
+
+Applications.StudentMustConfirmOffer
+en: The student has been offered a place and still needs to confirm it.
+ar: تم تقديم عرض تدريب للطالب، وما زال عليه تأكيد قبوله.
+
+Applications.ReviewDeskIntro
+en: Review candidate profiles and make a decision. Pending applications appear first.
+ar: راجع ملفات المتقدمين واتخذ قرارك. تظهر الطلبات التي تنتظر المراجعة أولًا.
+
+Applications.SearchPlaceholder
+en: Search by student name or opportunity
+ar: ابحث باسم الطالب أو فرصة التدريب
+
+Applications.FilterByStatus
+en: Filter applications by status
+ar: تصفية الطلبات حسب الحالة
+
+Applications.AllApplications
+en: All
+ar: الكل
+
+Applications.ShowingApplications
+en: Showing {0} of {1} applications
+ar: عرض {0} من أصل {1} طلبات
+
+Applications.NoMatchingApplications
+en: No applications match your search and filters.
+ar: لا توجد طلبات تطابق البحث والفلاتر المحددة.
+
+Applications.ClearFilters
+en: Clear search and filters
+ar: مسح البحث والفلاتر
+
+Applications.ReviewApplication
+en: Review application
+ar: مراجعة الطلب
+
+Applications.ViewApplication
+en: View application
+ar: عرض الطلب
+
+Applications.DraftWarning
+en: This rejection reason has not been submitted. Continue? Your text will remain in this page.
+ar: لم يتم إرسال سبب الرفض بعد. هل تريد المتابعة؟ سيبقى النص محفوظًا داخل هذه الصفحة.
+
+Applications.ApplicationPosition
+en: {0} of {1}
+ar: {0} من {1}
+
+Applications.PreviewCv
+en: Preview CV
+ar: معاينة السيرة الذاتية
+
+Applications.HideCvPreview
+en: Hide CV preview
+ar: إخفاء معاينة السيرة
+
+Applications.DownloadCv
+en: Download CV
+ar: تنزيل السيرة الذاتية
+
+Applications.PdfPreviewHelp
+en: If the PDF does not appear, use Open CV or Download CV.
+ar: إذا لم يظهر ملف PDF، استخدم فتح السيرة الذاتية أو تنزيلها.
+
+Applications.CvPreviewFor
+en: CV preview for {0}
+ar: معاينة السيرة الذاتية لـ {0}
+
+Applications.ExternalCvHelp
+en: This CV is an external link. Use Open CV to view it in a new tab.
+ar: السيرة الذاتية رابط خارجي. استخدم فتح السيرة الذاتية لعرضها في تبويب جديد.
+
+Applications.CloseApplication
+en: Close application details
+ar: إغلاق تفاصيل الطلب
+
+Applications.ApplicationNavigation
+en: Navigate filtered applications
+ar: التنقل بين الطلبات المصفّاة
+
+Applications.PreviousApplication
+en: Previous
+ar: السابق
+
+Applications.NextApplication
+en: Next
+ar: التالي
+
+Applications.SelectApplication
+en: Select an application
+ar: اختر طلبًا للمراجعة
+
+Applications.SelectApplicationHelp
+en: Choose a student from the list to review their profile, documents, and application.
+ar: اختر طالبًا من القائمة لمراجعة بياناته ومستنداته وطلبه.
+
+Applications.PlacementConfirmed
+en: Student confirmed the placement
+ar: أكّد الطالب التدريب
+
+Applications.AwaitingStudentConfirmation
+en: Awaiting student confirmation
+ar: بانتظار تأكيد الطالب
+
+ApplicantDocument.ExternalPreviewUnavailable
+en: This document is an external link. Return to the application and use Open CV or Open portfolio.
+ar: هذا المستند رابط خارجي. ارجع إلى الطلب واستخدم فتح السيرة الذاتية أو الملف المهني.

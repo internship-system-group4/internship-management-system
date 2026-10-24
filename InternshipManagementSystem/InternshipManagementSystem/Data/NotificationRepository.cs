@@ -1,86 +1,76 @@
-// =============================================================================
-//  UIMS - Group 4   |   Owner: Ahmad
-//  Notifications shown in the top-bar bell of every portal.
-// =============================================================================
-
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using InternshipManagementSystem.Common;
+using System.Text.RegularExpressions;
 using InternshipManagementSystem.Models;
+using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Data
 {
-    /// <summary>
-    /// Each person has their own list: notifications/{uid}/{id}. That is why
-    /// this class does not extend RepositoryBase - the path changes per user.
-    /// To send a notification, call Services/NotificationService instead.
-    /// </summary>
+    // A recipient's inbox is a separate node; never read all recipients' data.
     public class NotificationRepository
     {
-        private static string UserPath(string userId)
+        private static string Path(string uid)
         {
-            return Constants.Paths.Notifications + "/" + userId;
+            if (string.IsNullOrEmpty(uid) || !Regex.IsMatch(uid, @"^[A-Za-z0-9_-]+$"))
+                throw new InvalidOperationException("Invalid notification recipient.");
+            return "notifications/" + uid;
         }
 
-        /// <summary>Saves a new notification and returns its id.</summary>
-        public string Add(Notification notification)
+        public void Add(UserNotification item)
         {
-            if (notification == null || string.IsNullOrEmpty(notification.RecipientId)) return null;
-
-            // One request only: the Id is not stored inside the record because
-            // every read below fills it in from the key. That keeps sending to a
-            // whole group of students fast.
-            string id = FirebaseContext.Push(UserPath(notification.RecipientId), notification);
-            notification.Id = id;
-            return id;
+            item.Id = Guid.NewGuid().ToString("N");
+            item.Message = item.Detail;
+            item.Link = "~/" + item.Page;
+            FirebaseContext.Put(Path(item.RecipientId) + "/" + item.Id, item);
         }
 
-        /// <summary>The newest notifications first.</summary>
+        internal void SetEmailStatus(UserNotification item, string status)
+        {
+            FirebaseContext.Patch(Path(item.RecipientId) + "/" + item.Id,
+                new Dictionary<string, object> { { "EmailStatus", status } });
+        }
+
+        public List<UserNotification> GetMine()
+        {
+            var user = SessionHelper.Current;
+            if (user == null || !user.IsActive) throw new UnauthorizedAccessException();
+            var map = Json.Deserialize<Dictionary<string, UserNotification>>(FirebaseContext.GetRecent(Path(user.Id), 100));
+            if (map == null) return new List<UserNotification>();
+            return map.Where(p => p.Value != null && p.Value.RecipientId == user.Id)
+                .Select(p => {
+                    p.Value.Id = p.Key;
+                    p.Value.Detail = p.Value.Detail ?? p.Value.Message;
+                    p.Value.Page = p.Value.Page ?? (p.Value.Link ?? "").TrimStart('~', '/');
+                    return p.Value;
+                })
+                .OrderByDescending(n => n.CreatedAt).ThenByDescending(n => n.Id).ToList();
+        }
+
+        public void MarkRead(string id)
+        {
+            var mine = GetMine();
+            var changes = new Dictionary<string, object>();
+            foreach (var item in mine.Where(n => !n.IsRead && (id == "all" || n.Id == id)))
+                changes[item.Id + "/IsRead"] = true;
+            if (changes.Count > 0) FirebaseContext.Patch(Path(SessionHelper.Current.Id), changes);
+        }
+
+        // Compatibility for existing portal controls and bookmarked notification links.
         public List<Notification> GetLatest(string userId, int count)
         {
-            List<Notification> list = new List<Notification>();
-            if (string.IsNullOrEmpty(userId)) return list;
-
-            string json = FirebaseContext.GetLast(UserPath(userId), count);
-            if (string.IsNullOrWhiteSpace(json) || json == "null") return list;
-
-            Dictionary<string, object> map = Json.ToMap(json);
-            foreach (KeyValuePair<string, object> pair in map)
-            {
-                Notification item = Json.Deserialize<Notification>(Json.Serialize(pair.Value));
-                if (item == null) continue;
-                item.Id = pair.Key;
-                list.Add(item);
-            }
-            return list.OrderByDescending(n => n.CreatedAt).ToList();
+            RequireMine(userId);
+            return GetMine().Take(Math.Max(0, Math.Min(100, count))).Select(n => new Notification {
+                Id = n.Id, RecipientId = n.RecipientId, Title = n.Title, Message = n.Detail,
+                Link = "~/" + n.Page, IsRead = n.IsRead, CreatedAt = n.CreatedAt
+            }).ToList();
         }
-
-        public Notification GetById(string userId, string id)
+        public Notification GetById(string userId, string id) { return GetLatest(userId, 100).FirstOrDefault(n => n.Id == id); }
+        public void MarkRead(string userId, string id) { RequireMine(userId); MarkRead(id); }
+        public void MarkAllRead(string userId) { RequireMine(userId); MarkRead("all"); }
+        private static void RequireMine(string id)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(id)) return null;
-            Notification item = Json.Deserialize<Notification>(FirebaseContext.Get(UserPath(userId) + "/" + id));
-            if (item != null) item.Id = id;
-            return item;
-        }
-
-        public void MarkRead(string userId, string id)
-        {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(id)) return;
-            FirebaseContext.Patch(UserPath(userId) + "/" + id,
-                new Dictionary<string, object> { { "IsRead", true } });
-        }
-
-        /// <summary>Marks every unread notification as read in one request.</summary>
-        public void MarkAllRead(string userId)
-        {
-            if (string.IsNullOrEmpty(userId)) return;
-
-            Dictionary<string, object> changes = new Dictionary<string, object>();
-            foreach (Notification item in GetLatest(userId, 200))
-            {
-                if (!item.IsRead) changes[item.Id + "/IsRead"] = true;
-            }
-            if (changes.Count > 0) FirebaseContext.Patch(UserPath(userId), changes);
+            if (SessionHelper.Current == null || SessionHelper.Current.Id != id) throw new UnauthorizedAccessException();
         }
     }
 }

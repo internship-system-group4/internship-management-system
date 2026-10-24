@@ -29,6 +29,11 @@
         }
         function mobile(value, restoreFocus) {
             opened = value && media.matches;
+            if (!opened && window.bootstrap) {
+                var bell = sidebar.querySelector('.uims-notify-button');
+                var dropdown = bell && window.bootstrap.Dropdown.getInstance(bell);
+                if (dropdown) dropdown.hide();
+            }
             if (!opened) {
                 content.inert = false;
                 content.removeAttribute('aria-hidden');
@@ -55,6 +60,18 @@
             }
             desktop();
         }
+        // Keep the existing Bootstrap notification dropdown above the sidebar utilities,
+        // bounded by the available space on short screens. It remains inside the modal drawer.
+        var notification = sidebar.querySelector('.uims-notify');
+        function positionNotifications() {
+            if (!notification) return;
+            var tools = sidebar.querySelector('.uims-sidebar-tools');
+            var menu = notification.querySelector('.uims-notify-menu');
+            var room = Math.max(100, tools.getBoundingClientRect().top - 16);
+            menu.style.setProperty('--sidebar-notify-height', Math.floor(room) + 'px');
+        }
+        if (notification) on(notification, 'show.bs.dropdown', positionNotifications);
+        on(window, 'resize', positionNotifications);
         on(toggle, 'click', function () { mobile(!opened, true); });
         on(close, 'click', function () { mobile(false, true); });
         on(backdrop, 'click', function () { mobile(false, true); });
@@ -67,9 +84,26 @@
         on(sidebar, 'pointerleave', function () { hovered = false; desktop(); });
         on(sidebar, 'focusin', desktop);
         on(sidebar, 'focusout', function () { queueMicrotask(desktop); });
-        on(sidebar, 'click', function (event) { if (opened && event.target.closest('a[href]')) mobile(false, true); });
+        on(sidebar, 'click', function (event) {
+            if (opened && event.target.closest('a[href]')) setTimeout(function () {
+                if (!event.defaultPrevented) mobile(false, true);
+            }, 0);
+        });
+        on(sidebar, 'keydown', function (event) {
+            if (event.key !== 'Escape') return;
+            var bell = sidebar.querySelector('.uims-notify-button');
+            var menu = sidebar.querySelector('.uims-notify-menu.show');
+            if (menu && window.bootstrap) {
+                event.preventDefault(); event.stopPropagation();
+                var dropdown = window.bootstrap.Dropdown.getInstance(bell);
+                if (dropdown) dropdown.hide();
+                bell.focus();
+            } else if (opened) {
+                event.preventDefault(); event.stopPropagation(); mobile(false, true);
+            }
+        });
         on(document, 'keydown', function (event) {
-            if (!opened) return;
+            if (!opened || event.defaultPrevented) return;
             if (event.key === 'Escape') { event.preventDefault(); mobile(false, true); }
             else if (event.key === 'Tab') {
                 var targets = Array.from(sidebar.querySelectorAll('a[href],button:not([disabled]),[tabindex="0"]'))

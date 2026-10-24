@@ -1,3 +1,23 @@
+# UIMS shared sidebar — current update, 23 October 2026
+
+The single shared `Layout/Sidebar.ascx` now owns the former portal-header content for all four roles: localized portal/page context, one language toggle, one theme toggle, the existing notification control, and the existing trusted account/avatar link. The duplicate header account literals and initials helpers were removed from the four masters and their designers. Their logout controls and postback handlers remain intact. Desktop content no longer reserves the former top-bar space; mobile retains only the drawer opener above the page.
+
+The visual refinement uses the existing UIMS wordmark alongside the original university logo, with the pin control in the heading. Primary-soft selection, 8px link corners, a neutral utility strip and a 12px account surface establish a quieter hierarchy. Link text remains 16px; secondary sidebar context is 12px and account names are 13px. Names, university identity, account routes and role data are preserved.
+
+The expanded panel is 264px, the compact rail 76px, and the mobile drawer is at most 360px with space for its backdrop. Context and university identity appear above the role links. Utilities, account and logout sit below the independently scrolling navigation. Long names wrap within the account block. Scrollbars are visually hidden with standard and WebKit rules; wheel, touch and keyboard scrolling remain enabled. Short viewports use tighter spacing without removing navigation destinations.
+
+Coordinator theme-reveal correction: `portal-motion.css` disables the root snapshot and names the sidebar/main separately for route navigation. While the existing `uims-theme-reveal` class is active, it now restores the root snapshot and temporarily removes those route names. The circular 900ms theme animation therefore captures the whole page; normal route names return when the class is cleaned up. The Coordinator master's stylesheet version is bumped to invalidate cached CSS. This changes no theme controller, preference storage, server route or authentication behavior. `tests/coordinator-theme.browser.js` passed 41 checks: actual 900ms circular root animation in both directions on nine Coordinator pages, restoration of navigation snapshot names, Arabic mobile, reduced motion and the three other role dashboards.
+
+The same language/theme controllers and notification server routes are reused. The Bootstrap notification dropdown opens above the utility row, remains inside the drawer's focus scope, and is bounded by the available viewport height. Escape closes notifications first, then the drawer. Canceling a dirty-form language change keeps both input and drawer state. Preference persistence, native form validation, role authorization and logout behavior are preserved.
+
+`tests/sidebar-unified.browser.js` passed 132 assertions against the disposable IIS host on port 58137 and existing Postman Auth/Firebase simulation on 4912. Coverage includes all four roles, English/Arabic server navigation, Light/Dark toggling, single controls, no desktop header gap, 1440/390/320px layouts, compact pin persistence, keyboard access, mobile focus/inert state and Escape, short-height navigation scrolling, notification popup bounds, unsaved account input and real logout postbacks. Build and diff whitespace checks passed. Screenshots are under ignored `tests/artifacts/sidebar-unified-*`.
+
+One browser View Transition rejection on Coordinator-to-Login logout was reproduced on the unchanged earlier host at port 58136: `ViewTransition opt-in disabled`. The regression test records this exact baseline separately and rejects other page errors. Notification popup layout was checked with the existing empty-data fixture; its server data-loading code is unchanged. This does not certify production Firebase or physical mobile keyboard behavior. The earlier test suite and width claims below describe the historical implementation and are superseded by this update.
+
+Run the existing simulation, then `tests/Start-LoginTestHost.ps1 -Port 58137 -SimulationPort 4912`, open the returned host with playwright-cli and run `tests/sidebar-unified.browser.js`. Production endpoints are changed only in that disposable copy, never in source configuration. No frontend package or framework was added.
+
+---
+
 # UIMS shared sidebar — 22 October 2026
 
 The supplied DesktopSidebar, MobileSidebar, SidebarLink and SidebarDemo TSX is

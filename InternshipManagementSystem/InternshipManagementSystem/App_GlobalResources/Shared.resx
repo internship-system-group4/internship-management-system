@@ -340,4 +340,8 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>Journey details</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>Select a stage for details</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>Swipe through stages. Select one to view its details.</value></data>
+  <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>Page not found | UIMS</value></data>
+  <data name="SimpleWorkspace.ClearSearch" xml:space="preserve"><value>Clear search</value></data>
+  <data name="SimpleWorkspace.MatchCount" xml:space="preserve"><value>{0} of {1} records shown</value></data>
+  <data name="SimpleWorkspace.NoMatches" xml:space="preserve"><value>No matching records. Try another search or clear the search field.</value></data>
 </root>

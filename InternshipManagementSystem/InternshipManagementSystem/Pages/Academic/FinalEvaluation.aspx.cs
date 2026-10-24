@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 using InternshipManagementSystem.Common;
 using System.Collections.Generic;

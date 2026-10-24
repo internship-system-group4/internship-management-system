@@ -4,37 +4,28 @@
    Nothing here applies in English except the selector styles. */
 
 /* ------------------------------------------------------------------------------------------- language selector */
-.uims-lang-control { position:relative; isolation:isolate; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:stretch; box-sizing:border-box; width:120px; height:44px; padding:0 2px; border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-neutral-soft); direction:ltr; }
-.uims-lang-indicator { position:absolute; z-index:0; inset-block:2px; inset-inline-start:2px; width:calc(50% - 3px); border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-surface); transition:transform 250ms cubic-bezier(.2,.7,.2,1); pointer-events:none; }
-.uims-lang-control[data-current-lang="ar"] .uims-lang-indicator { transform:translateX(100%); }
-.uims-lang-option { position:relative; z-index:1; display:grid; place-items:center; min-width:0; min-height:42px; border-radius:999px; color:var(--ui-muted); font:650 12px/1 var(--ui-font); text-decoration:none; transition:color 160ms ease,transform 100ms ease-out; }
-.uims-lang-option[lang="ar"] { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,sans-serif; font-size:13px; }
-.uims-lang-option[aria-current="page"] { color:var(--ui-primary-text); }
-.uims-lang-option:hover { color:var(--ui-ink); text-decoration:none; }
-.uims-lang-option[aria-current="page"]:hover { color:var(--ui-primary-text); }
-.uims-lang-option:active { transform:scale(.97); }
-.uims-lang-option:focus-visible { z-index:2; outline:3px solid var(--ui-focus); outline-offset:2px; }
-/* The public navigation decorates its current page links; the segmented selector owns its own state. */
-.public-links .uims-lang-option,.public-links .uims-lang-option:hover,.public-links .uims-lang-option[aria-current="page"] { padding:0; text-decoration:none; white-space:nowrap; }
+/* Same footprint and surface as the direct theme toggle. The text names the destination language. */
+.uims-lang-control { position:relative; display:inline-grid; place-items:center; box-sizing:border-box; flex:none; width:44px; height:44px; padding:0; border:1px solid var(--ui-border); border-radius:50%; background:var(--ui-surface); color:var(--ui-ink); font:600 11px/1 "Noto Sans",Arial,sans-serif; text-decoration:none; direction:ltr; cursor:pointer; transition:transform 120ms ease,border-color 160ms ease; }
+/* Keep Latin abbreviations consistent and override the navbar's larger link typography. */
+body.uims-public .public-links .uims-lang-control,body.uims-portal .uims-lang-control { font:600 11px/1 "Noto Sans",Arial,sans-serif; }
+.uims-lang-control:hover { border-color:var(--ui-control-border); color:var(--ui-ink); text-decoration:none; }
+.uims-lang-control:active { transform:scale(.96); }
+.uims-lang-control:focus-visible { outline:3px solid var(--ui-focus); outline-offset:3px; }
+.public-links .uims-lang-control,.public-links .uims-lang-control:hover { padding:0; text-decoration:none; }
 .uims-lang-inline { display:grid; gap:8px; }
 .uims-lang-inline-label { font-size:13px; font-weight:650; color:var(--ui-muted); }
 .uims-lang-inline .uims-lang-control { justify-self:start; }
-@media(prefers-reduced-motion:reduce) { .uims-lang-indicator,.uims-lang-option { transition:none!important; } }
+@media(prefers-reduced-motion:reduce) { .uims-lang-control { transition:none!important; } }
 /* Public navbar: language and theme sit together before "Log in". */
-body.uims-public .uims-public-nav .public-links { padding-inline-end:290px; }
-body.uims-public .uims-public-nav .public-theme-desktop { display:inline-flex; align-items:center; gap:8px; }
-@media(max-width:1120px) {
+body.uims-public .uims-public-nav .public-links { padding-inline-end:0; justify-content:flex-end; }
+body.uims-public .uims-public-nav .public-links>a { flex:none; }
+body.uims-public .uims-public-nav .public-links>.public-login { position:static; margin-inline-start:12px; }
+body.uims-public .uims-public-nav .public-theme-desktop { position:static; display:inline-flex; flex:none; align-items:center; gap:8px; margin-inline-start:12px; }
+@media(max-width:1200px) {
  body.uims-public .uims-public-nav .public-links { padding-inline-end:12px; }
+ body.uims-public .uims-public-nav .public-links>.public-login { margin-inline-start:0; }
  body.uims-public .public-theme-mobile { display:grid; gap:14px; }
 }
-body.uims-portal .uims-user .uims-lang-control { flex:none; }
-/* Portal: in the header on wide screens; inside the navigation drawer on drawer-sized screens. */
-body.uims-portal .uims-sidebar-lang { display:none; }
-@media(max-width:900px) {
- body.uims-portal .uims-user .uims-lang-control { display:none; }
- body.uims-portal .uims-sidebar-lang { display:block; flex:none; margin:12px 0 4px; padding:14px 6px 0; border-top:1px solid var(--ui-border); }
-}
-
 /* --------------------------------------------------------------------------------- Arabic typography */
 :root[lang="ar"] body, :root[lang="ar"] :is(button,input,select,textarea,optgroup) { font-family:"Noto Sans Arabic","Noto Sans",Tahoma,Arial,sans-serif; }
 /* Home's display face (Switzer) has no Arabic glyphs. */

@@ -1,22 +1,25 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Placements.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Placements" Title="Placements & Progress" %>
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/coordinator-monitoring.css") %>" /></asp:Content>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Placements.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Placements" Title="Placements & Progress" %>
+
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+    <style>.placements-intro{margin-bottom:1.5rem}.placements-intro h2{font-size:1.45rem;margin:0 0 .35rem}.placements-search{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}.placements-search .form-control{max-width:360px}.placements-muted{color:var(--muted)}</style>
+</asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="monitor-page">
-    <div class="monitor-heading"><div><h2><%: L.T("Coordinator.Placements.PlacementsProgress") %></h2><p><%: L.T("Coordinator.Placements.FindAStudentSConfirmedInternship") %></p></div><a href="Dashboard.aspx"><%: L.T("Coordinator.Placements.BackToDashboard") %></a></div>
-    <div class="monitor-filters">
-        <div><asp:Label runat="server" AssociatedControlID="SearchText" Text="<%$ Resources:Coordinator, Placements.SearchPlacements %>" /><asp:TextBox ID="SearchText" runat="server" MaxLength="120" CssClass="form-control" placeholder="<%$ Resources:Coordinator, Placements.StudentNameNumberUIDOrCompany %>" /></div>
-        <div><asp:Label runat="server" AssociatedControlID="StatusList" Text="<%$ Resources:Coordinator, Placements.PlacementStatus %>" /><asp:DropDownList ID="StatusList" runat="server" CssClass="form-select"><asp:ListItem Value="" Text="<%$ Resources:Coordinator, Placements.AllStatuses %>" /><asp:ListItem Value="1" Text="<%$ Resources:Shared, Value.PlacementStatus.Confirmed %>" /><asp:ListItem Value="2" Text="<%$ Resources:Shared, Value.PlacementStatus.Active %>" /><asp:ListItem Value="3" Text="<%$ Resources:Shared, Value.PlacementStatus.AwaitingCompletion %>" /><asp:ListItem Value="4" Text="<%$ Resources:Shared, Value.PlacementStatus.Completed %>" /><asp:ListItem Value="5" Text="<%$ Resources:Shared, Value.PlacementStatus.Cancelled %>" /></asp:DropDownList></div>
-        <asp:Button ID="SearchButton" runat="server" Text="<%$ Resources:Coordinator, Placements.Search %>" OnClick="Search_Click" CssClass="btn btn-brand" /><a href="Placements.aspx"><%: L.T("Coordinator.Placements.ClearFilters") %></a>
-    </div>
-    <% if (LoadError != null) { %><div class="monitor-error" role="alert"><%: LoadError %> <a href="Placements.aspx"><%: L.T("Coordinator.Placements.Retry") %></a></div><% } else { %>
-    <section class="monitor-panel"><div class="monitor-panel-heading"><h3><%: L.T("Coordinator.Placements.StudentPlacements") %></h3><span><%: Matched %> <%: L.T("Coordinator.Placements.Matching") %> <%: Total %> <%: L.T("Coordinator.Placements.Total") %></span></div>
-    <% if (Rows.Count == 0) { %><div class="monitor-empty"><%: Total == 0 ? "No confirmed placements yet. A student's first offer confirmation creates their placement." : "No placements match these filters. Try another name, number or status." %></div><% } else { %>
-    <div class="monitor-table-scroll"><table class="monitor-table"><caption class="visually-hidden"><%: L.T("Coordinator.Placements.ConfirmedStudentPlacementsAndApprovedHour") %></caption><thead><tr><th scope="col"><%: L.T("Coordinator.Placements.Student") %></th><th scope="col"><%: L.T("Coordinator.Placements.Major") %></th><th scope="col"><%: L.T("Coordinator.Placements.CompanyOpportunity") %></th><th scope="col"><%: L.T("Coordinator.Placements.Status") %></th><th scope="col"><%: L.T("Coordinator.Placements.ApprovedHours") %></th><th scope="col"><%: L.T("Coordinator.Placements.Action") %></th></tr></thead><tbody>
-    <% foreach (var row in Rows) { %><tr data-student-id="<%: row.Placement.StudentId %>"><td><strong><%: row.StudentName %></strong><small><%: row.StudentNumber %></small></td><td><%: row.Major %></td><td><strong><%: row.Placement.CompanyName %></strong><small><%: row.Placement.OpportunityTitle %></small></td><td><span class="monitor-status"><%: row.StatusText %></span></td><td><span><%: row.HoursText %></span><progress value="<%: row.HoursPercent %>" max="100" aria-label="Approved hours for <%: row.StudentName %>"><%: row.HoursPercent %>%</progress></td><td><a href="PlacementDetails.aspx?id=<%: Server.UrlEncode(row.Placement.Id) %>" aria-label="View internship for <%: row.StudentName %>"><%: L.T("Coordinator.Placements.ViewDetails") %></a></td></tr><% } %>
-    </tbody></table></div>
-    <div class="monitor-pagination"><span><%: L.T("Coordinator.Placements.Page") %> <%: CurrentPage %> <%: L.T("Coordinator.Placements.Of") %> <%: PageCount %> <%: L.T("Coordinator.Placements.Showing") %> <%: Math.Min(Matched, (CurrentPage - 1) * 10 + 1) %>&ndash;<%: Math.Min(Matched, CurrentPage * 10) %> <%: L.T("Coordinator.Placements.Of") %> <%: Matched %></span><nav aria-label="<%: L.T("Coordinator.Placements.PlacementsPagination") %>"><% if (CurrentPage > 1) { %><a href="<%: PageUrl(CurrentPage - 1) %>"><%: L.T("Coordinator.Placements.Previous") %></a><% } %><% if (CurrentPage < PageCount) { %><a href="<%: PageUrl(CurrentPage + 1) %>"><%: L.T("Coordinator.Placements.Next") %></a><% } %></nav></div>
-    <% } %></section>
-    <p class="monitor-note"><%: L.T("Coordinator.Placements.HoursAreCalculatedFromApprovedTraining") %></p>
-    <% } %>
-</div>
+    <div class="placements-intro"><h2>Placements &amp; Progress</h2><p class="placements-muted mb-0">Monitor each confirmed internship and open its task, evaluation and hours details.</p></div>
+    <section class="uims-card" aria-labelledby="placementsHeading">
+        <h3 id="placementsHeading">Confirmed internships</h3>
+        <div class="placements-search">
+            <label class="visually-hidden" for="<%= txtSearch.ClientID %>">Search placements</label>
+            <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" MaxLength="120" placeholder="Search student, company or opportunity" />
+            <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-brand" OnClick="btnSearch_Click" CausesValidation="false" />
+            <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-outline-secondary" OnClick="btnClear_Click" CausesValidation="false" />
+        </div>
+        <div class="table-responsive"><table class="uims-table">
+            <thead><tr><th scope="col">Student</th><th scope="col">Company</th><th scope="col">Opportunity</th><th scope="col">Approved hours</th><th scope="col">Status</th><th scope="col">Details</th></tr></thead>
+            <tbody><asp:Repeater ID="rptPlacements" runat="server"><ItemTemplate>
+                <tr><td><%#: Eval("Student") %></td><td><%#: Eval("Company") %></td><td><%#: Eval("Opportunity") %></td><td><%#: Eval("Hours") %></td><td><%#: Eval("Status") %></td>
+                <td><asp:HyperLink runat="server" NavigateUrl='<%# Eval("DetailsUrl") %>' Text="View details" CssClass="btn btn-sm btn-outline-primary" /></td></tr>
+            </ItemTemplate></asp:Repeater></tbody>
+        </table></div>
+        <asp:Panel ID="pnlEmpty" runat="server" Visible="false"><p class="placements-muted mt-2 mb-0"><asp:Literal ID="litEmpty" runat="server" /></p></asp:Panel>
+    </section>
 </asp:Content>

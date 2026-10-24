@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  My Tasks
 //  Owner : Fatima
 //  Cards : F03, F04
@@ -57,140 +57,17 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         protected void btnSubmitTask_Click(object sender, EventArgs e)
         {
-            string taskId = ViewState["SelectedTaskId"] as string;
-            InternshipTask task = new TaskRepository().GetById(taskId);
-
-            // نعيد فحص المهمة عند التسليم، ولا نعتمد على فحص زر التفاصيل.
+            var task = new TaskRepository().GetById(ViewState["SelectedTaskId"] as string);
             if (task == null || task.StudentId != CurrentStudent.Id) return;
-
-            Placement placement =
-                new PlacementRepository().GetById(CurrentStudent.Id);
-
-            if (placement == null ||
-                placement.StudentId != CurrentStudent.Id ||
-                task.PlacementId != placement.Id)
-            {
-                ShowMessage(L.T("Student.MyTasks.YourConfirmedPlacementWasNotFound"), false, task);
-                return;
+            try {
+                Services.TaskWorkflowService.Submit(task.Id, txtSubmissionText.Text, txtSubmissionLink.Text);
+                txtSubmissionText.Text = txtSubmissionLink.Text = "";
+                LoadTasks();
+                ShowMessage(L.T("Student.MyTasks.SubmissionSavedSuccessfully"), true, new TaskRepository().GetById(task.Id));
+            } catch (Exception ex) {
+                Services.EmailNotificationService.LogFailure(ex);
+                ShowMessage(ex is InvalidOperationException || ex is UnauthorizedAccessException ? ex.Message : "Could not submit your work. Please try again.", false, task);
             }
-
-            if (!task.AcceptsSubmission)
-            {
-                ShowMessage(L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions"), false, task);
-                return;
-            }
-
-            if (task.RequiresFileUpload)
-            {
-                ShowMessage(
-                    L.T("Student.MyTasks.ThisTaskRequiresAFileFile"),
-                    false, task);
-                return;
-            }
-
-            string submissionText = txtSubmissionText.Text.Trim();
-            string submissionLink = txtSubmissionLink.Text.Trim();
-
-            if (submissionText == "" && submissionLink == "")
-            {
-                ShowMessage(L.T("Student.MyTasks.EnterSubmissionTextOrALink"), false, task);
-                return;
-            }
-
-            if (submissionLink != "")
-            {
-                Uri address;
-                bool validLink = Uri.TryCreate(
-                    submissionLink, UriKind.Absolute, out address);
-
-                if (!validLink ||
-                    (address.Scheme != Uri.UriSchemeHttp &&
-                     address.Scheme != Uri.UriSchemeHttps))
-                {
-                    ShowMessage(L.T("Student.MyTasks.EnterAValidHttpOrHttps"), false, task);
-                    return;
-                }
-            }
-
-            SubmissionRepository repository = new SubmissionRepository();
-            List<Submission> submissions = repository.GetByTask(task.Id);
-
-            int lastAttempt = 0;
-
-            foreach (Submission previous in submissions)
-            {
-                if (previous.StudentId == CurrentStudent.Id &&
-                    previous.PlacementId == task.PlacementId &&
-                    previous.AttemptNumber > lastAttempt)
-                {
-                    lastAttempt = previous.AttemptNumber;
-                }
-            }
-
-            // لا نسمح بمحاولة ثانية إلا بعد طلب تعديل من المشرف.
-            if (lastAttempt > 0 &&
-                task.Status != InternshipTaskStatus.RevisionRequested)
-            {
-                ShowMessage(
-                    L.T("Student.MyTasks.YouAlreadySubmittedThisTaskWait"),
-                    false, task);
-                return;
-            }
-
-            Submission submission = new Submission();
-            submission.TaskId = task.Id;
-            submission.PlacementId = task.PlacementId;
-            submission.StudentId = CurrentStudent.Id;
-            submission.AttemptNumber = lastAttempt + 1;
-            submission.DescriptionText = submissionText;
-            submission.LinkUrl = submissionLink;
-
-            try
-            {
-                // Insert ينشئ سجلًا جديدًا؛ المحاولات السابقة تبقى محفوظة.
-                string newId = repository.Insert(submission);
-
-                if (string.IsNullOrEmpty(newId))
-                {
-                    ShowMessage(L.T("Student.MyTasks.SubmissionCouldNotBeSaved"), false, task);
-                    return;
-                }
-            }
-            catch (FirebaseException)
-            {
-                ShowMessage(L.T("Student.MyTasks.SubmissionCouldNotBeSavedTry"), false, task);
-                return;
-            }
-
-            InternshipTaskStatus newStatus =
-                lastAttempt == 0
-                    ? InternshipTaskStatus.Submitted
-                    : InternshipTaskStatus.Resubmitted;
-
-            try
-            {
-                new TaskRepository().Update(
-                    task.Id,
-                    new Dictionary<string, object>
-                    {
-                        { "Status", newStatus }
-                    });
-
-                task.Status = newStatus;
-            }
-            catch (FirebaseException)
-            {
-                ShowMessage(
-                    L.T("Student.MyTasks.SubmissionWasSavedButTheTask"),
-                    false, task);
-                return;
-            }
-
-            txtSubmissionText.Text = "";
-            txtSubmissionLink.Text = "";
-
-            LoadTasks();
-            ShowMessage(L.T("Student.MyTasks.SubmissionSavedSuccessfully"), true, task);
         }
 
         private void ShowTask(InternshipTask task)

@@ -545,4 +545,32 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>Unable to load opportunity details.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>weeks</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>Your account is not linked to a company.</value></data>
+  <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>The student has confirmed this offer.</value></data>
+  <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>The student has been offered a place and still needs to confirm it.</value></data>
+  <data name="Applications.ReviewDeskIntro" xml:space="preserve"><value>Review candidate profiles and make a decision. Pending applications appear first.</value></data>
+  <data name="Applications.SearchPlaceholder" xml:space="preserve"><value>Search by student name or opportunity</value></data>
+  <data name="Applications.FilterByStatus" xml:space="preserve"><value>Filter applications by status</value></data>
+  <data name="Applications.AllApplications" xml:space="preserve"><value>All</value></data>
+  <data name="Applications.ShowingApplications" xml:space="preserve"><value>Showing {0} of {1} applications</value></data>
+  <data name="Applications.NoMatchingApplications" xml:space="preserve"><value>No applications match your search and filters.</value></data>
+  <data name="Applications.ClearFilters" xml:space="preserve"><value>Clear search and filters</value></data>
+  <data name="Applications.ReviewApplication" xml:space="preserve"><value>Review application</value></data>
+  <data name="Applications.ViewApplication" xml:space="preserve"><value>View application</value></data>
+  <data name="Applications.DraftWarning" xml:space="preserve"><value>This rejection reason has not been submitted. Continue? Your text will remain in this page.</value></data>
+  <data name="Applications.ApplicationPosition" xml:space="preserve"><value>{0} of {1}</value></data>
+  <data name="Applications.PreviewCv" xml:space="preserve"><value>Preview CV</value></data>
+  <data name="Applications.HideCvPreview" xml:space="preserve"><value>Hide CV preview</value></data>
+  <data name="Applications.DownloadCv" xml:space="preserve"><value>Download CV</value></data>
+  <data name="Applications.PdfPreviewHelp" xml:space="preserve"><value>If the PDF does not appear, use Open CV or Download CV.</value></data>
+  <data name="Applications.CvPreviewFor" xml:space="preserve"><value>CV preview for {0}</value></data>
+  <data name="Applications.ExternalCvHelp" xml:space="preserve"><value>This CV is an external link. Use Open CV to view it in a new tab.</value></data>
+  <data name="Applications.CloseApplication" xml:space="preserve"><value>Close application details</value></data>
+  <data name="Applications.ApplicationNavigation" xml:space="preserve"><value>Navigate filtered applications</value></data>
+  <data name="Applications.PreviousApplication" xml:space="preserve"><value>Previous</value></data>
+  <data name="Applications.NextApplication" xml:space="preserve"><value>Next</value></data>
+  <data name="Applications.SelectApplication" xml:space="preserve"><value>Select an application</value></data>
+  <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>Choose a student from the list to review their profile, documents, and application.</value></data>
+  <data name="Applications.PlacementConfirmed" xml:space="preserve"><value>Student confirmed the placement</value></data>
+  <data name="Applications.AwaitingStudentConfirmation" xml:space="preserve"><value>Awaiting student confirmation</value></data>
+  <data name="ApplicantDocument.ExternalPreviewUnavailable" xml:space="preserve"><value>This document is an external link. Return to the application and use Open CV or Open portfolio.</value></data>
 </root>
