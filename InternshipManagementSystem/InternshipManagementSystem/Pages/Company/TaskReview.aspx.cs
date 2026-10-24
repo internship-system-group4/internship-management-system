@@ -18,6 +18,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         /// <summary>True when the result popup is for a change request (not a grade).</summary>
         protected bool ResultIsRevision;
 
+        /// <summary>Saved total of an already graded attempt ("" while it can still be graded).</summary>
+        protected string SavedScore = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -186,6 +189,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
 
             lblDetailTask.Text = Server.HtmlEncode(task.Title ?? "");
+            SavedScore = existingEvaluation != null && !existingEvaluation.RevisionRequested
+                ? existingEvaluation.TotalScore.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)
+                : "";
             lblTaskMaxScore.Text = task.MaxScore.ToString(
                 "0.##", System.Globalization.CultureInfo.InvariantCulture);
             lblDetailAttempt.Text =

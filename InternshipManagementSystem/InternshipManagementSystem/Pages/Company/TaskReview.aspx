@@ -605,7 +605,7 @@
             <div class="review-rubric-row"><label for="<%= txtFunctionality.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.Functionality") %> <span>/ 35</span></label><asp:TextBox ID="txtFunctionality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="35" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
             <div class="review-rubric-row"><label for="<%= txtDesignUsability.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.DesignUsability") %> <span>/ 25</span></label><asp:TextBox ID="txtDesignUsability" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
             <div class="review-rubric-row"><label for="<%= txtDocumentation.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.Documentation") %> <span>/ 15</span></label><asp:TextBox ID="txtDocumentation" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="15" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
-            <div class="review-total"><span><%: L.T("Company.TaskReview.TotalEvaluationScore") %><small><%: L.T("Company.TaskReview.EnterScoresToCalculateTheTotal") %></small></span><span><strong id="reviewComputedScore">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
+            <div class="review-total"><span><%: L.T("Company.TaskReview.TotalEvaluationScore") %><small><%: L.T("Company.TaskReview.EnterScoresToCalculateTheTotal") %></small></span><span><strong id="reviewComputedScore" data-saved="<%: SavedScore %>">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
             <div class="mb-2">
                 <asp:Label ID="lblFeedback" runat="server" AssociatedControlID="txtFeedback" CssClass="review-form-label" Text="<%$ Resources:Company, TaskReview.FeedbackForTrainee %>" />
                 <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="<%$ Resources:Company, TaskReview.AddFeedbackAndSuggestions %>" />
@@ -730,6 +730,11 @@
         var maxScore = maxLabel ? parseFloat(maxLabel.textContent || maxLabel.innerText) : 100;
         var computedScore = document.getElementById("reviewComputedScore");
         if (!computedScore) return;
+        // Already graded: show the saved total (older grades may use other criterion names).
+        if (computedScore.getAttribute("data-saved")) {
+            computedScore.textContent = computedScore.getAttribute("data-saved");
+            return;
+        }
         computedScore.textContent = hasValue
             ? (total * maxScore / 100).toFixed(2).replace(/\.00$/, "")
             : "-";
