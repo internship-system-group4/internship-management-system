@@ -27,6 +27,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (!IsPostBack)
             {
                 LoadTasks();
+
+                // Opened from a notification: show that task straight away.
+                string fromLink = Request.QueryString["task"];
+                if (!string.IsNullOrEmpty(fromLink)) OpenTask(fromLink);
             }
         }
 
@@ -45,7 +49,12 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             if (e.CommandName != "ViewDetails") return;
 
-            string taskId = Convert.ToString(e.CommandArgument);
+            OpenTask(Convert.ToString(e.CommandArgument));
+        }
+
+        private void OpenTask(string taskId)
+        {
+            if (!ApplicationRepository.IsValidKey(taskId)) return;
             InternshipTask task = new TaskRepository().GetById(taskId);
 
             // لا نعرض مهمة طالب آخر حتى لو وصلنا رقمها.

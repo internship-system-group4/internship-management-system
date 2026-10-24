@@ -42,4 +42,33 @@
         </asp:Panel>
     </div>
 </div>
+<% if (lblSuccess.Visible) { %>
+<%-- Animated "student created" popup (SweetAlert2). Rendered only after a successful create.
+     The plain success message is hidden once the popup shows, and stays as a fallback if the CDN is unreachable. --%>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js"></script>
+<script>
+(function () {
+    function celebrate() {
+        var label = document.getElementById('<%= lblSuccess.ClientID %>');
+        if (!label || !window.Swal) return;
+        label.classList.remove('d-block');
+        label.classList.add('d-none');
+        var root = document.documentElement, theme = root.getAttribute('data-theme');
+        var dark = theme === 'dark' || (!theme && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        window.Swal.fire({
+            icon: 'success',
+            title: '<%= HttpUtility.JavaScriptStringEncode(L.T("Coordinator.StudentCreation.CreatedSuccessTitle")) %>',
+            text: label.textContent,
+            confirmButtonText: '<%= HttpUtility.JavaScriptStringEncode(L.T("Coordinator.StudentCreation.CreatedSuccessDone")) %>',
+            buttonsStyling: false,
+            customClass: { confirmButton: 'btn btn-primary rounded-pill px-4' },
+            background: dark ? '#1e2330' : undefined,
+            color: dark ? '#e8eaf0' : undefined
+        });
+    }
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', celebrate);
+    else celebrate();
+}());
+</script>
+<% } %>
 <script src="<%= ResolveUrl("~/Assets/js/account-creation-modal.js") %>" defer></script>

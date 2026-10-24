@@ -48,9 +48,21 @@ namespace InternshipManagementSystem.Security
                 return;
             }
 
-            // 2. Re-read on every protected request, including postbacks, so
-            //    deactivation, deletion and permission changes take effect on
-            //    the next request. A failed lookup must not use stale access.
+            // 2. Re-read the account on every protected request, so deactivation,
+            //    deletion and permission changes take effect. A failed lookup must
+            //    not use stale access.
+            //    Speed: the account and the top-bar notifications are fetched
+            //    together (one wait instead of two). Every postback - the only way
+            //    to change anything - asks Firebase directly. Simply opening a page
+            //    may reuse the read from the last few seconds (Firebase.ReadCacheSeconds);
+            //    a deactivation saved on this server clears that copy at once.
+            FirebaseRead[] accountReads =
+            {
+                FirebaseRead.Node(Constants.Paths.Users + "/" + user.Id),
+                FirebaseRead.Last(Constants.Paths.Notifications + "/" + user.Id, Layout.NotificationBell.CountWindow)
+            };
+            if (IsPostBackRequest) FirebaseContext.Reload(accountReads);
+            else FirebaseContext.Prefetch(accountReads);
             user = new UserRepository().GetPerson(user.Id);
             if (user == null || !user.CanLogin())
             {
@@ -75,6 +87,12 @@ namespace InternshipManagementSystem.Security
             }
 
             base.OnPreInit(e);
+        }
+
+        /// <summary>IsPostBack is not ready yet in PreInit, so look at the HTTP method.</summary>
+        private bool IsPostBackRequest
+        {
+            get { return !string.Equals(Request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase); }
         }
 
         private void RedirectTo(string virtualPath, string query)

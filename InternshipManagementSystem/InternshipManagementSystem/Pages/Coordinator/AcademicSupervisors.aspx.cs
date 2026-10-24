@@ -1,21 +1,41 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Services;
+using Newtonsoft.Json;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
+    /// <summary>One academic supervisor in the coordinator's directory and pop-ups.</summary>
+    public class SupervisorDirectoryRow
+    {
+        public string Id, FullName, Email, Phone, Department, AcademicRank, Initials, StatusText, CreatedText, SearchText;
+        public List<string> GroupNames = new List<string>();
+        public int GroupCount, StudentCount;
+        public bool IsActive;
+        /// <summary>Only a supervisor with no groups and no students can be deleted.</summary>
+        public bool CanDelete { get { return GroupCount == 0 && StudentCount == 0; } }
+    }
+
     public partial class AcademicSupervisors : CoordinatorPage
     {
         protected bool ShowCreationModal { get; private set; }
+        protected List<SupervisorDirectoryRow> Rows = new List<SupervisorDirectoryRow>();
+
+        protected string RowsJson
+        {
+            get { return JsonConvert.SerializeObject(Rows, new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml }); }
+        }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack) BindSupervisors();
+            // The table is rebuilt on every request (it is not kept in ViewState).
+            BindSupervisors();
         }
 
         protected void btnCreate_Click(object sender, EventArgs e)
@@ -104,100 +124,73 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             BindSupervisors();
         }
 
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            hdnActiveTab.Value = "records";
-            pnlRecord.Visible = false;
-            pnlDetails.Visible = false;
-            ViewState["EditingSupervisorId"] = null;
-            BindSupervisors();
-        }
-
-        protected void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            hdnActiveTab.Value = "records";
-            txtSearch.Text = "";
-            pnlRecord.Visible = false;
-            pnlDetails.Visible = false;
-            ViewState["EditingSupervisorId"] = null;
-            BindSupervisors();
-        }
-
-        protected void btnManageSearch_Click(object sender, EventArgs e)
-        {
-            hdnActiveTab.Value = "manage";
-            pnlDetails.Visible = false;
-            ViewState["EditingSupervisorId"] = null;
-            BindSupervisors();
-        }
-
-        protected void btnClearManageSearch_Click(object sender, EventArgs e)
-        {
-            hdnActiveTab.Value = "manage";
-            txtManageSearch.Text = "";
-            pnlDetails.Visible = false;
-            ViewState["EditingSupervisorId"] = null;
-            BindSupervisors();
-        }
-
-        protected void btnView_Click(object sender, EventArgs e)
-        {
-            var button = sender as System.Web.UI.WebControls.LinkButton;
-            if (button == null || !IsValidSupervisorId(button.CommandArgument)) return;
-            hdnActiveTab.Value = "records";
-            try
-            {
-                AcademicSupervisor supervisor = new UserRepository().GetAcademicSupervisor(button.CommandArgument);
-                if (supervisor == null)
-                {
-                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
-                    return;
-                }
-                lblRecordName.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.FullName);
-                lblRecordEmail.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.Email);
-                lblRecordPhone.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.PhoneNumber ?? "—");
-                lblRecordDepartment.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.Department);
-                lblRecordRank.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.AcademicRank ?? "—");
-                lblRecordGroups.Text = supervisor.GroupIds == null ? "0" : supervisor.GroupIds.Count.ToString();
-                lblRecordStatus.Text = supervisor.IsActive ? "Active" : "Inactive";
-                pnlRecord.Visible = true;
-            }
-            catch (FirebaseException)
-            {
-                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadThisSupervisorPlease"));
-            }
-        }
-
         protected void btnEdit_Click(object sender, EventArgs e)
         {
             var button = sender as System.Web.UI.WebControls.LinkButton;
             if (button == null || !IsValidSupervisorId(button.CommandArgument)) return;
-            hdnActiveTab.Value = "manage";
-
             try
             {
                 AcademicSupervisor supervisor = new UserRepository().GetAcademicSupervisor(button.CommandArgument);
                 if (supervisor == null)
                 {
-                    ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
+                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"), false);
                     return;
                 }
                 ShowDetails(supervisor);
             }
             catch (FirebaseException)
             {
-                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadThisSupervisorPlease"));
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadThisSupervisorPlease"), false);
+            }
+        }
+
+        /// <summary>Deletes the supervisor's profile. Only allowed when no group
+        /// and no student still points to them, so nobody is left without a
+        /// supervisor. Their sign-in stops working because the profile is gone.</summary>
+        protected void btnConfirmDelete_Click(object sender, EventArgs e)
+        {
+            string id = hfDeleteId.Value;
+            hfDeleteId.Value = "";
+            pnlDetails.Visible = false;
+            if (!IsValidSupervisorId(id))
+            {
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"), false);
+                return;
+            }
+            try
+            {
+                UserRepository users = new UserRepository();
+                AcademicSupervisor supervisor = users.GetAcademicSupervisor(id);
+                if (supervisor == null)
+                {
+                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"), false);
+                    BindSupervisors();
+                    return;
+                }
+                bool hasGroups = new GroupRepository().GetAll().Any(g => g.AcademicSupervisorId == id);
+                bool hasStudents = users.GetStudentsBySupervisor(id).Count > 0;
+                if (hasGroups || hasStudents)
+                {
+                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.DeleteBlocked"), false);
+                    return;
+                }
+                users.Delete(id);
+                BindSupervisors();
+                ShowListMessage(L.F("Coordinator.AcademicSupervisors.SupervisorDeleted", supervisor.FullName), true);
+            }
+            catch (FirebaseException)
+            {
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotDeleteSupervisor"), false);
             }
         }
 
         protected void btnSaveDetails_Click(object sender, EventArgs e)
         {
-            hdnActiveTab.Value = "manage";
             string id = ViewState["EditingSupervisorId"] as string;
             pnlDetails.Visible = IsValidSupervisorId(id);
             if (!pnlDetails.Visible)
             {
-                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SelectASupervisorBeforeSavingChanges"));
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.SelectASupervisorBeforeSavingChanges"), false);
                 return;
             }
 
@@ -226,7 +219,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     pnlDetails.Visible = false;
                     ViewState["EditingSupervisorId"] = null;
                     BindSupervisors();
-                    ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
+                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"), false);
                     return;
                 }
 
@@ -255,12 +248,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void btnToggleAccess_Click(object sender, EventArgs e)
         {
-            hdnActiveTab.Value = "manage";
             string id = ViewState["EditingSupervisorId"] as string;
             if (!IsValidSupervisorId(id))
             {
                 pnlDetails.Visible = false;
-                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SelectASupervisorBeforeChangingAccess"));
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.SelectASupervisorBeforeChangingAccess"), false);
                 return;
             }
             try
@@ -272,7 +264,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     pnlDetails.Visible = false;
                     ViewState["EditingSupervisorId"] = null;
                     BindSupervisors();
-                    ShowManageMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"));
+                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.SupervisorRecordNotFound"), false);
                     return;
                 }
                 bool activate = !supervisor.IsActive;
@@ -291,48 +283,49 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         private void BindSupervisors()
         {
-            lblListMessage.Visible = false;
-            lblManageMessage.Visible = false;
             try
             {
-                List<AcademicSupervisor> supervisors = new List<AcademicSupervisor>();
-                foreach (Person person in new UserRepository().GetByRole(UserRole.AcademicSupervisor))
-                {
-                    AcademicSupervisor supervisor = person as AcademicSupervisor;
-                    if (supervisor != null) supervisors.Add(supervisor);
-                }
-                supervisors.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
-                string search = (txtSearch.Text ?? "").Trim();
-                string manageSearch = (txtManageSearch.Text ?? "").Trim();
-                List<AcademicSupervisor> records = supervisors.FindAll(s => MatchesSearch(s, search));
-                List<AcademicSupervisor> manageRecords = supervisors.FindAll(s => MatchesSearch(s, manageSearch));
-                rptSupervisors.DataSource = records;
+                List<Person> people = new UserRepository().GetAllPeople();
+                List<StudentGroup> groups = new GroupRepository().GetAll();
+                List<Student> students = people.OfType<Student>().ToList();
+                string none = L.T("Coordinator.ManageStudents.NotRecorded");
+                Rows = people.OfType<AcademicSupervisor>()
+                    .OrderBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase)
+                    .Select(s =>
+                    {
+                        List<string> groupNames = groups.Where(g => g.AcademicSupervisorId == s.Id)
+                            .Select(g => g.Name).OrderBy(n => n).ToList();
+                        return new SupervisorDirectoryRow
+                        {
+                            Id = s.Id,
+                            FullName = s.FullName ?? none,
+                            Email = s.Email ?? none,
+                            Phone = string.IsNullOrWhiteSpace(s.PhoneNumber) ? none : s.PhoneNumber,
+                            Department = string.IsNullOrWhiteSpace(s.Department) ? none : s.Department,
+                            AcademicRank = string.IsNullOrWhiteSpace(s.AcademicRank) ? none : s.AcademicRank,
+                            Initials = StudentDirectoryRow.MakeInitials(s.FullName),
+                            IsActive = s.IsActive,
+                            StatusText = s.IsActive ? L.T("Coordinator.ManageStudents.StatusActive") : L.T("Coordinator.ManageStudents.StatusInactive"),
+                            CreatedText = s.CreatedAt > 0 ? s.CreatedAtUtc.ToString("dd MMM yyyy") : none,
+                            GroupNames = groupNames,
+                            GroupCount = groupNames.Count,
+                            StudentCount = students.Count(st => st.AcademicSupervisorId == s.Id),
+                            SearchText = string.Join(" ", new[] { s.FullName, s.Email, s.Department, s.AcademicRank }).ToLowerInvariant()
+                        };
+                    }).ToList();
+                rptSupervisors.DataSource = Rows;
                 rptSupervisors.DataBind();
-                rptManageSupervisors.DataSource = manageRecords;
-                rptManageSupervisors.DataBind();
-                lblNoSupervisors.Text = search.Length == 0 ? L.T("Coordinator.AcademicSupervisors.NoAcademicSupervisorsFound") : L.T("Coordinator.AcademicSupervisors.NoSupervisorsMatchYourSearch");
-                lblNoSupervisors.Visible = records.Count == 0;
-                lblNoManageSupervisors.Text = manageSearch.Length == 0 ? L.T("Coordinator.AcademicSupervisors.NoAcademicSupervisorsFound") : L.T("Coordinator.AcademicSupervisors.NoSupervisorsMatchYourSearch");
-                lblNoManageSupervisors.Visible = manageRecords.Count == 0;
+                lblNoSupervisors.Text = L.T("Coordinator.AcademicSupervisors.NoAcademicSupervisorsFound");
+                lblNoSupervisors.Visible = Rows.Count == 0;
             }
             catch (FirebaseException)
             {
-                rptSupervisors.DataSource = new List<AcademicSupervisor>();
+                Rows = new List<SupervisorDirectoryRow>();
+                rptSupervisors.DataSource = Rows;
                 rptSupervisors.DataBind();
-                rptManageSupervisors.DataSource = new List<AcademicSupervisor>();
-                rptManageSupervisors.DataBind();
                 lblNoSupervisors.Visible = false;
-                lblNoManageSupervisors.Visible = false;
-                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry"));
-                ShowManageMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry"));
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry"), false);
             }
-        }
-
-        private static bool MatchesSearch(AcademicSupervisor supervisor, string search)
-        {
-            return search.Length == 0 || Matches(supervisor.FullName, search)
-                || Matches(supervisor.Email, search) || Matches(supervisor.Department, search)
-                || Matches(supervisor.AcademicRank, search);
         }
 
         private static bool IsValidSupervisorId(string id)
@@ -340,17 +333,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             return !string.IsNullOrEmpty(id) && Regex.IsMatch(id, @"\A[A-Za-z0-9_-]{1,128}\z");
         }
 
-        private static bool Matches(string value, string search)
-        {
-            return !string.IsNullOrEmpty(value)
-                && value.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
-
         private void ShowDetails(AcademicSupervisor supervisor)
         {
             ViewState["EditingSupervisorId"] = supervisor.Id;
             pnlDetails.Visible = true;
             lblDetailsMessage.Visible = false;
+            litInitials.Text = InternshipManagementSystem.Common.Validators.Safe(StudentDirectoryRow.MakeInitials(supervisor.FullName));
             lblDetailsName.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.FullName);
             lblDetailsEmail.Text = InternshipManagementSystem.Common.Validators.Safe(supervisor.Email);
             lblGroupCount.Text = supervisor.GroupIds == null ? "0" : supervisor.GroupIds.Count.ToString();
@@ -361,7 +349,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             btnToggleAccess.Text = supervisor.IsActive ? L.T("Coordinator.AcademicSupervisors.RemoveAccess") : L.T("Coordinator.AcademicSupervisors.RestoreAccess");
             btnToggleAccess.CssClass = supervisor.IsActive ? "btn btn-outline-danger" : "btn btn-outline-success";
             btnToggleAccess.OnClientClick = supervisor.IsActive
-                ? "return confirm('Remove this supervisor’s access? Assigned groups and history will be retained.');"
+                ? "return confirm(" + JsonConvert.ToString(L.T("Coordinator.AcademicSupervisors.ConfirmRemoveAccess")) + ");"
                 : "";
             lblAccessDescription.Text = supervisor.IsActive
                 ? L.T("Coordinator.AcademicSupervisors.RemovingAccessBlocksSignInAssigned")
@@ -377,18 +365,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             label.Visible = true;
         }
 
-        private void ShowListMessage(string message)
+        private void ShowListMessage(string message, bool success)
         {
             lblListMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
-            lblListMessage.CssClass = "alert alert-danger d-block";
+            lblListMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block";
             lblListMessage.Visible = true;
-        }
-
-        private void ShowManageMessage(string message)
-        {
-            lblManageMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
-            lblManageMessage.CssClass = "alert alert-danger d-block";
-            lblManageMessage.Visible = true;
         }
 
         private void ShowDetailsMessage(string message, bool success)

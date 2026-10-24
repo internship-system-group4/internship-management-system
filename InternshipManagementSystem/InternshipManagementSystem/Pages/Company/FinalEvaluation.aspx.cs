@@ -202,6 +202,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 _placementRepo.Update(placementId, updates);
 
+                // The academic supervisor's final evaluation is now due.
+                Services.NotificationService.CompanyEvaluationSent(placementId);
+
                 litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeGreenI");
                 ShowPopupMessage(L.T("Company.FinalEvaluation.CertificateIssued"), L.T("Company.FinalEvaluation.SuccessEvaluationSubmittedToTheGJU"), true);
 

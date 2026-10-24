@@ -145,13 +145,8 @@ namespace InternshipManagementSystem.Data
         /// and nothing could reference it.</summary>
         private static string PushWithId(string collection, object entity)
         {
-            string id = FirebaseContext.Push(collection, entity);
-            if (!string.IsNullOrEmpty(id))
-            {
-                FirebaseContext.Patch(collection + "/" + id,
-                    new Dictionary<string, object> { { "Id", id } });
-            }
-            return id;
+            // One request instead of Push + Patch.
+            return FirebaseContext.PushWithId(collection, entity);
         }
 
         private static List<T> Deserialise<T>(string json) where T : class

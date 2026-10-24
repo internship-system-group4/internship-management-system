@@ -151,12 +151,7 @@ namespace InternshipManagementSystem.Data
                 return existing.Id;
             }
 
-            Notify(
-                meeting,
-                actorId,
-                meeting.RequestedToId,
-                "New meeting request",
-                "You have a meeting request: " + meeting.Title);
+            Services.NotificationService.MeetingChanged(meeting, actorId, meeting.RequestedToId, "MeetingRequest");
 
             return meeting.Id;
         }
@@ -209,9 +204,7 @@ namespace InternshipManagementSystem.Data
 
                 recipient = meeting.CreatedById;
 
-                title = action == "Accept"
-                    ? "Meeting accepted"
-                    : "Meeting declined";
+                title = action == "Accept" ? "MeetingAccepted" : "MeetingDeclined";
             }
             else if (action == "Complete")
             {
@@ -229,7 +222,7 @@ namespace InternshipManagementSystem.Data
 
                 recipient = meeting.RequestedToId;
 
-                title = "Meeting marked completed";
+                title = "MeetingCompleted";
             }
             else if (action == "Cancel")
             {
@@ -251,7 +244,7 @@ namespace InternshipManagementSystem.Data
 
                 recipient = meeting.RequestedToId;
 
-                title = "Meeting cancelled";
+                title = "MeetingCancelled";
             }
             else
             {
@@ -271,52 +264,7 @@ namespace InternshipManagementSystem.Data
                     "The meeting changed. Refresh and try again.");
             }
 
-            Notify(
-                meeting,
-                actorId,
-                recipient,
-                title,
-                title + ": " + meeting.Title);
-        }
-
-        // إرسال إشعار مرتبط بالميتنج للطرف الآخر.
-        private void Notify(
-            Meeting meeting,
-            string actorId,
-            string recipientId,
-            string title,
-            string message)
-        {
-            try
-            {
-                FirebaseContext.Push(
-                    Constants.Paths.Notifications + "/" + recipientId,
-                    new Dictionary<string, object>
-                    {
-                        { "RecipientId", recipientId },
-                        { "SenderId", actorId },
-                        { "MeetingId", meeting.Id },
-                        { "Type", "Meeting" },
-                        { "Title", title },
-                        { "Message", message },
-                        {
-                            "Link",
-                            "~/Pages/Meetings/MyMeetings.aspx"
-                        },
-                        { "IsRead", false },
-                        { "CreatedAt", Time.NowMs() }
-                    });
-            }
-            catch (FirebaseAuthExpiredException)
-            {
-                throw;
-            }
-            catch (FirebaseException ex)
-            {
-                Trace.TraceWarning(
-                    "Meeting saved; notification failed: {0}",
-                    ex.Message);
-            }
+            Services.NotificationService.MeetingChanged(meeting, actorId, recipient, title);
         }
     }
 }

@@ -1,42 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using Newtonsoft.Json;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
+    /// <summary>One student as shown in the coordinator's student directory,
+    /// the "View details" pop-up and the student profile page.</summary>
+    public class StudentDirectoryRow
+    {
+        public string Id, FullName, Email, Phone, StudentNumber, University, College, Major, MajorKey;
+        public string Initials, StatusText, HoursText, CreatedText, GroupName, SupervisorName, PlacementText, ProfileUrl, SearchText;
+        public int ApprovedHours, RequiredHours, HoursPercent;
+        public bool IsActive;
+
+        /// <summary>Builds the rows for many students with one read of groups and placements.</summary>
+        public static List<StudentDirectoryRow> Build(List<Student> students, List<Person> people, string profileBase)
+        {
+            Dictionary<string, StudentGroup> groups = new Dictionary<string, StudentGroup>();
+            foreach (StudentGroup group in new GroupRepository().GetAll())
+                if (group != null && !string.IsNullOrEmpty(group.Id)) groups[group.Id] = group;
+            Dictionary<string, Placement> placements = new Dictionary<string, Placement>();
+            foreach (Placement placement in new PlacementRepository().GetAll())
+                if (placement != null && !string.IsNullOrEmpty(placement.StudentId)) placements[placement.StudentId] = placement;
+            Dictionary<string, string> supervisors = new Dictionary<string, string>();
+            foreach (AcademicSupervisor supervisor in people.OfType<AcademicSupervisor>())
+                supervisors[supervisor.Id] = supervisor.FullName;
+
+            List<StudentDirectoryRow> rows = new List<StudentDirectoryRow>();
+            foreach (Student student in students)
+            {
+                StudentGroup group;
+                Placement placement;
+                string supervisorName;
+                groups.TryGetValue(student.GroupId ?? "", out group);
+                placements.TryGetValue(student.Id, out placement);
+                supervisors.TryGetValue(student.AcademicSupervisorId ?? "", out supervisorName);
+                rows.Add(From(student, group, supervisorName, placement, profileBase));
+            }
+            return rows;
+        }
+
+        public static StudentDirectoryRow From(Student s, StudentGroup group, string supervisorName, Placement placement, string profileBase)
+        {
+            string none = L.T("Coordinator.ManageStudents.NotRecorded");
+            AcademicProgram program = AcademicPrograms.Find(s.Major);
+            MajorQuality quality = AcademicPrograms.Quality(s.Major);
+            int required = s.RequiredHours, approved = s.ApprovedHours;
+            StudentDirectoryRow row = new StudentDirectoryRow
+            {
+                Id = s.Id,
+                FullName = s.FullName ?? none,
+                Email = s.Email ?? none,
+                Phone = string.IsNullOrWhiteSpace(s.PhoneNumber) ? none : s.PhoneNumber,
+                StudentNumber = string.IsNullOrWhiteSpace(s.StudentNumber) ? none : s.StudentNumber,
+                University = string.IsNullOrWhiteSpace(s.University) ? none : s.University,
+                College = string.IsNullOrWhiteSpace(s.College) ? none : s.College,
+                Major = string.IsNullOrWhiteSpace(s.Major) ? none : s.Major,
+                MajorKey = program != null ? program.Key
+                    : quality == MajorQuality.Missing ? AcademicPrograms.MissingKey : AcademicPrograms.UnrecognizedKey,
+                IsActive = s.IsActive,
+                StatusText = s.IsActive ? L.T("Coordinator.ManageStudents.StatusActive") : L.T("Coordinator.ManageStudents.StatusInactive"),
+                ApprovedHours = approved,
+                RequiredHours = required,
+                HoursPercent = required <= 0 ? 0 : Math.Min(100, approved * 100 / required),
+                HoursText = approved + " / " + required + " " + L.T("Workspace.UnitH"),
+                CreatedText = s.CreatedAt > 0 ? s.CreatedAtUtc.ToString("dd MMM yyyy") : none,
+                GroupName = group == null ? L.T("Coordinator.ManageStudents.NoGroup") : group.Name,
+                SupervisorName = string.IsNullOrEmpty(supervisorName) ? L.T("Coordinator.ManageStudents.NotAssigned") : supervisorName,
+                PlacementText = placement == null ? L.T("Coordinator.ManageStudents.NoPlacement")
+                    : string.IsNullOrWhiteSpace(placement.CompanyName) ? L.Value("PlacementStatus", placement.Status)
+                    : placement.CompanyName + " · " + L.Value("PlacementStatus", placement.Status),
+                ProfileUrl = profileBase + Uri.EscapeDataString(s.Id),
+                Initials = MakeInitials(s.FullName)
+            };
+            row.SearchText = string.Join(" ", new[] { s.FullName, s.Email, s.StudentNumber, s.Major, s.University, s.College })
+                .ToLowerInvariant();
+            return row;
+        }
+
+        public static string MakeInitials(string name)
+        {
+            string[] parts = (name ?? "").Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length == 0) return "?";
+            string initials = parts[0].Substring(0, 1);
+            if (parts.Length > 1) initials += parts[parts.Length - 1].Substring(0, 1);
+            return initials.ToUpperInvariant();
+        }
+    }
+
     public partial class ManageStudents : CoordinatorPage
     {
+        protected List<StudentDirectoryRow> Rows = new List<StudentDirectoryRow>();
+
+        /// <summary>The row data for the "View details" pop-up (HTML-safe JSON).</summary>
+        protected string RowsJson
+        {
+            get { return JsonConvert.SerializeObject(Rows, new JsonSerializerSettings { StringEscapeHandling = StringEscapeHandling.EscapeHtml }); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-            foreach (string program in Constants.Programs)
-                ddlEditMajor.Items.Add(new System.Web.UI.WebControls.ListItem(program, program));
+            if (!IsPostBack)
+            {
+                // The three verified School of Computing programmes (see
+                // Common/InternshipRequirements.cs), so a record flagged on the
+                // dashboard can be corrected to any of them.
+                foreach (AcademicProgram program in AcademicPrograms.All)
+                    ddlEditMajor.Items.Add(new System.Web.UI.WebControls.ListItem(program.Name, program.Name));
+            }
+            // The table is rebuilt on every request (it is not kept in ViewState).
             BindStudents();
+            if (IsPostBack) return;
             string id = Request.QueryString["id"];
             if (IsValidStudentId(id)) LoadStudent(id);
         }
 
         protected void StudentCreator_Created(object sender, EventArgs e)
         {
-            txtSearch.Text = "";
             pnlDetails.Visible = false;
-            BindStudents();
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            ClearSelection();
-            BindStudents();
-        }
-
-        protected void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-            ClearSelection();
             BindStudents();
         }
 
@@ -56,7 +143,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 return;
             }
 
-           string university = InternshipManagementSystem.Common.Validators.Clean(txtEditUniversity.Text);
+            string university = InternshipManagementSystem.Common.Validators.Clean(txtEditUniversity.Text);
             string college = InternshipManagementSystem.Common.Validators.Clean(txtEditCollege.Text);
             string major = InternshipManagementSystem.Common.Validators.Clean(ddlEditMajor.SelectedValue);
             int requiredHours;
@@ -70,7 +157,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ShowDetailsMessage(L.T("Coordinator.ManageStudents.OneOrMoreAcademicInformationFields"), false);
                 return;
             }
-            if (!int.TryParse(txtEditRequiredHours.Text, out requiredHours) || requiredHours <= 0)
+            if (!int.TryParse(txtEditRequiredHours.Text, out requiredHours) || requiredHours < InternshipRules.LocalContactHours)
             {
                 ShowDetailsMessage(L.T("Coordinator.ManageStudents.RequiredTrainingHoursMustBeA"), false);
                 return;
@@ -91,7 +178,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     { "University", university },
                     { "College", college }, { "Major", major }, { "RequiredHours", requiredHours }
                 });
-               txtEditUniversity.Text = university;
+                txtEditUniversity.Text = university;
                 txtEditCollege.Text = college;
                 ddlEditMajor.SelectedValue = major;
                 txtEditRequiredHours.Text = requiredHours.ToString();
@@ -162,6 +249,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             ViewState["EditingStudentId"] = student.Id;
             pnlDetails.Visible = true;
             lblDetailsMessage.Visible = false;
+            litInitials.Text = InternshipManagementSystem.Common.Validators.Safe(StudentDirectoryRow.MakeInitials(student.FullName));
             lblStudentName.Text = InternshipManagementSystem.Common.Validators.Safe(student.FullName);
             lblStudentEmail.Text = InternshipManagementSystem.Common.Validators.Safe(student.Email);
             txtEditStudentNumber.Text = student.StudentNumber;
@@ -169,13 +257,15 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtEditCollege.Text = student.College;
             if (ddlEditMajor.Items.FindByValue(student.Major) == null && !string.IsNullOrEmpty(student.Major))
                 ddlEditMajor.Items.Add(new System.Web.UI.WebControls.ListItem(student.Major, student.Major));
-            ddlEditMajor.SelectedValue = student.Major;
+            if (!string.IsNullOrEmpty(student.Major)) ddlEditMajor.SelectedValue = student.Major;
             txtEditRequiredHours.Text = student.RequiredHours.ToString();
+            // "View profile" opens the student's own profile page.
+            lnkRecord.Text = L.T("Coordinator.ManageStudents.ViewProfile");
             lnkRecord.NavigateUrl = ResolveUrl("~/Pages/Coordinator/Students.aspx?id=" + Server.UrlEncode(student.Id));
             btnToggleAccess.Text = student.IsActive ? L.T("Coordinator.ManageStudents.RemoveAccess") : L.T("Coordinator.ManageStudents.RestoreAccess");
             btnToggleAccess.CssClass = student.IsActive ? "btn btn-outline-danger" : "btn btn-outline-success";
             btnToggleAccess.OnClientClick = student.IsActive
-                ? "return confirm('Remove this student’s access? Their record and training history will be retained.');"
+                ? "return confirm(" + JsonConvert.ToString(L.T("Coordinator.ManageStudents.ConfirmRemoveAccess")) + ");"
                 : "";
             lblAccessDescription.Text = student.IsActive
                 ? L.T("Coordinator.ManageStudents.RemovingAccessBlocksSignInWhile")
@@ -193,34 +283,36 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             lblListMessage.Visible = false;
             try
             {
-                var students = new List<Student>();
-                string search = (txtSearch.Text ?? "").Trim();
-                foreach (Person person in new UserRepository().GetByRole(UserRole.Student))
-                {
-                    Student student = person as Student;
-                    if (student != null && (search.Length == 0 || Matches(student.FullName, search)
-                        || Matches(student.StudentNumber, search) || Matches(student.Email, search)
-                        || Matches(student.University, search) || Matches(student.College, search)
-                        || Matches(student.Major, search))) students.Add(student);
-                }
-                students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
-                rptStudents.DataSource = students;
+                List<Person> people = new UserRepository().GetAllPeople();
+                List<Student> students = people.OfType<Student>()
+                    .OrderBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase).ToList();
+                Rows = StudentDirectoryRow.Build(students, people, ResolveUrl("~/Pages/Coordinator/Students.aspx?id="));
+                rptStudents.DataSource = Rows;
                 rptStudents.DataBind();
-                lblNoStudents.Text = search.Length == 0 ? L.T("Coordinator.ManageStudents.NoStudentsFound") : L.T("Coordinator.ManageStudents.NoStudentsMatchYourSearch");
-                lblNoStudents.Visible = students.Count == 0;
+                lblNoStudents.Text = L.T("Coordinator.ManageStudents.NoStudentsFound");
+                lblNoStudents.Visible = Rows.Count == 0;
             }
             catch (FirebaseException)
             {
-                rptStudents.DataSource = new List<Student>();
+                Rows = new List<StudentDirectoryRow>();
+                rptStudents.DataSource = Rows;
                 rptStudents.DataBind();
                 lblNoStudents.Visible = false;
                 ShowListMessage(L.T("Coordinator.ManageStudents.CouldNotLoadStudentRecordsPlease"));
             }
         }
 
-        private static bool Matches(string value, string search)
+        /// <summary>?major= from the coordinator dashboard's Students by Major
+        /// chart: cs, ce, gdmi, missing or unverified. It preselects the major
+        /// filter above the table. Anything else is ignored.</summary>
+        protected string MajorFilter
         {
-            return !string.IsNullOrEmpty(value) && value.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
+            get
+            {
+                string value = (Request.QueryString["major"] ?? "").Trim().ToLowerInvariant();
+                if (value == AcademicPrograms.MissingKey || value == AcademicPrograms.UnrecognizedKey) return value;
+                return AcademicPrograms.ByKey(value) != null ? value : null;
+            }
         }
 
         private static bool IsValidStudentId(string id)

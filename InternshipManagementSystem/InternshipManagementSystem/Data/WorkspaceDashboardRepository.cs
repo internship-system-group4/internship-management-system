@@ -79,6 +79,14 @@ namespace InternshipManagementSystem.Data
         }
         public WorkspaceStudentData LoadStudent(Student student)
         {
+            // Speed: the six reads below run at the same time instead of one by one.
+            FirebaseContext.Prefetch(
+                FirebaseRead.Where(Constants.Paths.Applications, "StudentId", student.Id),
+                FirebaseRead.Node(Constants.Paths.Placements + "/" + student.Id),
+                FirebaseRead.Where(Constants.Paths.Tasks, "StudentId", student.Id),
+                FirebaseRead.Where(Constants.Paths.TaskEvaluations, "StudentId", student.Id),
+                FirebaseRead.Where(Constants.Paths.TrainingHours, "StudentId", student.Id),
+                FirebaseRead.Where(Constants.Paths.Completions, "StudentId", student.Id));
             var apps = new ApplicationRepository().GetWhere("StudentId", student.Id).OrderByDescending(a => a.SubmittedAt).ToList();
             var placement = new PlacementRepository().GetById(student.Id);
             if (!Canonical(placement) || placement.StudentId != student.Id) placement = null;
@@ -107,6 +115,15 @@ namespace InternshipManagementSystem.Data
         }
         public WorkspaceCompanyData LoadCompany(string companyId)
         {
+            // Speed: the collections below are read at the same time instead of one by one.
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Applications),
+                FirebaseRead.Node(Constants.Paths.Placements),
+                FirebaseRead.Node(Constants.Paths.TrainingHours),
+                FirebaseRead.Node(Constants.Paths.Tasks),
+                FirebaseRead.Node(Constants.Paths.Submissions),
+                FirebaseRead.Node(Constants.Paths.CompanyEvaluations),
+                FirebaseRead.Node(Constants.Paths.Opportunities));
             var applications = new ApplicationRepository().GetAll().Where(a => a.CompanyId == companyId).ToList();
             var placements = new PlacementRepository().GetAll().Where(p => Canonical(p) && p.CompanyId == companyId && p.Status != PlacementStatus.Cancelled).ToList();
             var byId = placements.ToDictionary(p => p.Id);
@@ -126,10 +143,20 @@ namespace InternshipManagementSystem.Data
         }
         public WorkspaceAcademicData LoadAcademic(string supervisorId)
         {
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Users),
+                FirebaseRead.Node(Constants.Paths.Placements),
+                FirebaseRead.Node(Constants.Paths.TrainingHours));
             var students = new UserRepository().GetStudentsBySupervisor(supervisorId);
             var ids = new HashSet<string>(students.Select(s => s.Id));
             var placements = new PlacementRepository().GetAll().Where(p => Canonical(p) && ids.Contains(p.StudentId) && p.AcademicSupervisorId == supervisorId).ToDictionary(p => p.StudentId);
             var hours = new HoursRepository().GetAll().Where(h => placements.ContainsKey(h.StudentId ?? "") && h.PlacementId == placements[h.StudentId].Id && h.Hours > 0).ToList();
+            // Speed: both final evaluations of every student are read at the same time.
+            FirebaseContext.Prefetch(placements.Values.SelectMany(p => new[]
+            {
+                FirebaseRead.Where(Constants.Paths.CompanyEvaluations, "PlacementId", p.Id),
+                FirebaseRead.Where(Constants.Paths.AcademicEvaluations, "PlacementId", p.Id)
+            }));
             var evaluations = new EvaluationRepository();
             var rows = students.Select(s =>
             {
@@ -149,6 +176,7 @@ namespace InternshipManagementSystem.Data
         public WorkspaceCoordinatorData LoadCoordinator()
         {
             var repo = new CoordinatorMonitoringRepository();
+            CoordinatorMonitoringRepository.PrefetchProgrammeData();
             var summary = repo.LoadDashboard();
             var queue = repo.LoadCompletionQueue();
             var students = new UserRepository().GetAllPeople().OfType<Student>().ToList();

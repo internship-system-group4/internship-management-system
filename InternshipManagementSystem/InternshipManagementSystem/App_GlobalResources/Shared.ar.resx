@@ -252,7 +252,7 @@
   <data name="Title.Pages.Coordinator.ManageStudents" xml:space="preserve"><value>إدارة الطلبة</value></data>
   <data name="Title.Pages.Coordinator.PlacementDetails" xml:space="preserve"><value>تفاصيل مكان التدريب</value></data>
   <data name="Title.Pages.Coordinator.Placements" xml:space="preserve"><value>أماكن التدريب والتقدّم</value></data>
-  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>سجلات الطلبة</value></data>
+  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>ملف الطالب</value></data>
   <data name="Title.Pages.Meetings.MyMeetings" xml:space="preserve"><value>اجتماعاتي</value></data>
   <data name="Title.Pages.Meetings.Schedule" xml:space="preserve"><value>الاجتماعات</value></data>
   <data name="Title.Pages.Public.About" xml:space="preserve"><value>من نحن | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
@@ -340,4 +340,124 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>تفاصيل المسار</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>اختر مرحلة لعرض تفاصيلها</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.</value></data>
+  <data name="WorkspaceChart.Share" xml:space="preserve"><value>النسبة</value></data>
+  <data name="WorkspaceChart.OpenStudentList" xml:space="preserve"><value>فتح قائمة الطلاب</value></data>
+  <data name="Js.ReviewQueueShowing" xml:space="preserve"><value>عرض {0} من {1} تدريب</value></data>
+  <data name="Js.ChartNoStudentsByMajor" xml:space="preserve"><value>لا توجد سجلات طلاب بعد.</value></data>
+  <data name="Title.Pages.Coordinator.DemoStudent" xml:space="preserve"><value>طالب تجريبي</value></data>
+  <data name="Js.GroupPickerSelected" xml:space="preserve"><value>تم اختيار {0} طلاب</value></data>
+  <data name="Js.GroupPickerRemove" xml:space="preserve"><value>إزالة {0}</value></data>
+  <data name="Js.ChartFixedRangeCaption" xml:space="preserve"><value>{0} – {1} · UTC. الموافقات خلال آخر {2} شهراً؛ والفئات لقطات حالية.</value></data>
+  <data name="Notify.Type.General" xml:space="preserve"><value>تحديث</value></data>
+  <data name="Notify.Type.Task" xml:space="preserve"><value>مهمة</value></data>
+  <data name="Notify.Type.Group" xml:space="preserve"><value>مجموعة</value></data>
+  <data name="Notify.Type.Application" xml:space="preserve"><value>طلب تدريب</value></data>
+  <data name="Notify.Type.Placement" xml:space="preserve"><value>تدريب مؤكد</value></data>
+  <data name="Notify.Type.Hours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Notify.Type.Evaluation" xml:space="preserve"><value>تقييم</value></data>
+  <data name="Notify.Type.Comment" xml:space="preserve"><value>ملاحظة المشرف</value></data>
+  <data name="Notify.Type.Meeting" xml:space="preserve"><value>اجتماع</value></data>
+  <data name="Notify.Type.Opportunity" xml:space="preserve"><value>فرصة تدريب</value></data>
+  <data name="Notify.Type.Completion" xml:space="preserve"><value>إنهاء التدريب</value></data>
+  <data name="Notify.Type.Account" xml:space="preserve"><value>الحساب</value></data>
+  <data name="Notify.AStudent" xml:space="preserve"><value>أحد الطلاب</value></data>
+  <data name="Notify.MinutesAgo" xml:space="preserve"><value>قبل {0} دقيقة</value></data>
+  <data name="Notify.HoursAgo" xml:space="preserve"><value>قبل {0} ساعة</value></data>
+  <data name="Notify.Yesterday" xml:space="preserve"><value>أمس</value></data>
+  <data name="Notify.MarkAllRead" xml:space="preserve"><value>تحديد الكل كمقروء</value></data>
+  <data name="Notify.Open" xml:space="preserve"><value>فتح</value></data>
+  <data name="Notify.NewBadge" xml:space="preserve"><value>جديد</value></data>
+  <data name="Notify.FilterAll" xml:space="preserve"><value>الكل</value></data>
+  <data name="Notify.FilterUnread" xml:space="preserve"><value>غير المقروءة</value></data>
+  <data name="Notify.NoUnread" xml:space="preserve"><value>لا توجد إشعارات غير مقروءة.</value></data>
+  <data name="Notify.UnreadCount" xml:space="preserve"><value>{0} غير مقروءة</value></data>
+  <data name="Notify.PageIntro" xml:space="preserve"><value>كل التحديثات المتعلقة بمراحل التدريب. اختر أي إشعار لفتح الصفحة التي تتخذ فيها الإجراء.</value></data>
+  <data name="Notify.BlockedByRules" xml:space="preserve"><value>الإشعارات محظورة بسبب قواعد قاعدة بيانات Firebase. انشر قاعدة "notifications" من الملف docs/05-firebase-setup.md (Firebase &gt; Realtime Database &gt; Rules).</value></data>
+  <data name="Notify.SomeNotDelivered" xml:space="preserve"><value>تعذّر إيصال بعض الإشعارات بسبب قواعد قاعدة بيانات Firebase. راجع الملف docs/05-firebase-setup.md.</value></data>
+  <data name="Notify.OpportunityPublished.Title" xml:space="preserve"><value>فرصة تدريب جديدة</value></data>
+  <data name="Notify.OpportunityPublished.Message" xml:space="preserve"><value>نشرت {0} فرصة «{1}». افتحها لقراءة التفاصيل والتقديم.</value></data>
+  <data name="Notify.ApplicationSubmitted.Title" xml:space="preserve"><value>طلب تدريب جديد بانتظار مراجعتك</value></data>
+  <data name="Notify.ApplicationSubmitted.Message" xml:space="preserve"><value>قدّم {0} على فرصة «{1}». افتح الطلب لقراءة رسالة التقديم والسيرة الذاتية ثم اقبله أو ارفضه.</value></data>
+  <data name="Notify.ApplicationAccepted.Title" xml:space="preserve"><value>تم قبول طلبك</value></data>
+  <data name="Notify.ApplicationAccepted.Message" xml:space="preserve"><value>قبلت {0} طلبك على فرصة «{1}». أكّد العرض لتثبيت مكانك.</value></data>
+  <data name="Notify.ApplicationRejected.Title" xml:space="preserve"><value>لم يتم قبول طلبك</value></data>
+  <data name="Notify.ApplicationRejected.Message" xml:space="preserve"><value>لم تقبل {0} طلبك على فرصة «{1}». يمكنك قراءة السبب في صفحة طلباتي.</value></data>
+  <data name="Notify.PlacementConfirmedCompany.Title" xml:space="preserve"><value>تم تأكيد متدرب جديد</value></data>
+  <data name="Notify.PlacementConfirmedCompany.Message" xml:space="preserve"><value>أكّد {0} التدريب «{1}» وأصبح متدرباً لديك. يمكنك البدء بإسناد المهام.</value></data>
+  <data name="Notify.PlacementConfirmedAcademic.Title" xml:space="preserve"><value>تم تأكيد تدريب طالب</value></data>
+  <data name="Notify.PlacementConfirmedAcademic.Message" xml:space="preserve"><value>سيتدرب {0} في {1}. تابع تقدمه من صفحة تقدم الطالب.</value></data>
+  <data name="Notify.PlacementConfirmedCoordinator.Title" xml:space="preserve"><value>تم تأكيد تدريب</value></data>
+  <data name="Notify.PlacementConfirmedCoordinator.Message" xml:space="preserve"><value>أكّد {0} تدريبه في {1}.</value></data>
+  <data name="Notify.WelcomeStudent.Title" xml:space="preserve"><value>مرحباً بك في نظام إدارة التدريب</value></data>
+  <data name="Notify.WelcomeStudent.Message" xml:space="preserve"><value>حسابك جاهز يا {0}. أكمل ملفك الشخصي ثم تصفّح فرص التدريب.</value></data>
+  <data name="Notify.GroupAdded.Title" xml:space="preserve"><value>تمت إضافتك إلى مجموعة</value></data>
+  <data name="Notify.GroupAdded.Message" xml:space="preserve"><value>أصبحت ضمن {0}. مشرفك الأكاديمي هو {1}.</value></data>
+  <data name="Notify.GroupRemoved.Title" xml:space="preserve"><value>تمت إزالتك من مجموعة</value></data>
+  <data name="Notify.GroupRemoved.Message" xml:space="preserve"><value>تمت إزالتك من {0}. سيعيّنك المنسق في مجموعة جديدة.</value></data>
+  <data name="Notify.GroupNewSupervisor.Title" xml:space="preserve"><value>مشرف أكاديمي جديد</value></data>
+  <data name="Notify.GroupNewSupervisor.Message" xml:space="preserve"><value>أصبح {0} المشرف الأكاديمي لـ {1}.</value></data>
+  <data name="Notify.GroupAssigned.Title" xml:space="preserve"><value>تم إسناد مجموعة إليك</value></data>
+  <data name="Notify.GroupAssigned.Message" xml:space="preserve"><value>أُسندت إليك {0}. عدد طلاب المجموعة: {1}.</value></data>
+  <data name="Notify.GroupStudentsAdded.Title" xml:space="preserve"><value>طلاب جدد في مجموعتك</value></data>
+  <data name="Notify.GroupStudentsAdded.Message" xml:space="preserve"><value>عدد الطلاب المضافين إلى {0}: {1}.</value></data>
+  <data name="Notify.GroupReassigned.Title" xml:space="preserve"><value>تم نقل الإشراف على مجموعة</value></data>
+  <data name="Notify.GroupReassigned.Message" xml:space="preserve"><value>أصبح {1} المشرف على {0}.</value></data>
+  <data name="Notify.GroupDeletedStudent.Title" xml:space="preserve"><value>تم حذف مجموعتك</value></data>
+  <data name="Notify.GroupDeletedStudent.Message" xml:space="preserve"><value>تم حذف {0}. سيعيّنك المنسق في مجموعة جديدة.</value></data>
+  <data name="Notify.GroupDeletedSupervisor.Title" xml:space="preserve"><value>تم حذف مجموعة</value></data>
+  <data name="Notify.GroupDeletedSupervisor.Message" xml:space="preserve"><value>تم حذف {0} ولم تعد مسندة إليك.</value></data>
+  <data name="Notify.TaskAssigned.Title" xml:space="preserve"><value>مهمة جديدة</value></data>
+  <data name="Notify.TaskAssigned.Message" xml:space="preserve"><value>أسند إليك مشرفك مهمة «{0}»، موعد تسليمها {1}. افتحها لقراءة التعليمات وتسليم عملك.</value></data>
+  <data name="Notify.TaskAssignedNoDue.Title" xml:space="preserve"><value>مهمة جديدة</value></data>
+  <data name="Notify.TaskAssignedNoDue.Message" xml:space="preserve"><value>أسند إليك مشرفك مهمة «{0}». افتحها لقراءة التعليمات وتسليم عملك.</value></data>
+  <data name="Notify.TaskSubmitted.Title" xml:space="preserve"><value>تسليم بانتظار التقييم</value></data>
+  <data name="Notify.TaskSubmitted.Message" xml:space="preserve"><value>سلّم {0} مهمة «{1}». افتحها لتقييم العمل أو طلب تعديلات.</value></data>
+  <data name="Notify.TaskResubmitted.Title" xml:space="preserve"><value>تسليم معدّل بانتظار التقييم</value></data>
+  <data name="Notify.TaskResubmitted.Message" xml:space="preserve"><value>أعاد {0} تسليم مهمة «{1}» بعد طلب التعديل. افتحها لتقييم المحاولة الجديدة.</value></data>
+  <data name="Notify.TaskGraded.Title" xml:space="preserve"><value>تم تقييم مهمتك</value></data>
+  <data name="Notify.TaskGraded.Message" xml:space="preserve"><value>حصلت مهمة «{0}» على {1} من {2}. افتحها لقراءة ملاحظات المشرف.</value></data>
+  <data name="Notify.TaskRevision.Title" xml:space="preserve"><value>مطلوب تعديل على مهمتك</value></data>
+  <data name="Notify.TaskRevision.Message" xml:space="preserve"><value>طلب مشرفك تعديلات على مهمة «{0}»: {1}</value></data>
+  <data name="Notify.CommentAdded.Title" xml:space="preserve"><value>ملاحظة جديدة من مشرفك الأكاديمي</value></data>
+  <data name="Notify.CommentAdded.Message" xml:space="preserve"><value>{0}</value></data>
+  <data name="Notify.HoursReported.Title" xml:space="preserve"><value>ساعات تدريب بانتظار الاعتماد</value></data>
+  <data name="Notify.HoursReported.Message" xml:space="preserve"><value>سجّل {0} عدد {1} ساعة تدريب. راجعها ثم اعتمدها أو ارفضها.</value></data>
+  <data name="Notify.HoursApproved.Title" xml:space="preserve"><value>تم اعتماد ساعات التدريب</value></data>
+  <data name="Notify.HoursApproved.Message" xml:space="preserve"><value>أُضيفت {0} ساعة إلى مجموع ساعاتك المعتمدة.</value></data>
+  <data name="Notify.HoursRejected.Title" xml:space="preserve"><value>لم تُعتمد ساعات التدريب</value></data>
+  <data name="Notify.HoursRejected.Message" xml:space="preserve"><value>لم تُعتمد {0} ساعة. اقرأ الملاحظة في صفحة تقدّمي.</value></data>
+  <data name="Notify.CompanyEvalForAcademic.Title" xml:space="preserve"><value>حان موعد تقييمك النهائي</value></data>
+  <data name="Notify.CompanyEvalForAcademic.Message" xml:space="preserve"><value>أرسلت الشركة تقييمها النهائي للطالب {0}. يرجى إكمال التقييم الأكاديمي.</value></data>
+  <data name="Notify.CompanyEvalForCoordinator.Title" xml:space="preserve"><value>تم إرسال تقييم الشركة</value></data>
+  <data name="Notify.CompanyEvalForCoordinator.Message" xml:space="preserve"><value>أرسلت {0} التقييم النهائي للطالب {1}.</value></data>
+  <data name="Notify.AcademicEvalForCoordinator.Title" xml:space="preserve"><value>مطلوب مراجعة إنهاء تدريب</value></data>
+  <data name="Notify.AcademicEvalForCoordinator.Message" xml:space="preserve"><value>اكتمل التقييمان النهائيان للطالب {0}. راجع الملف ثم اعتمد إنهاء التدريب أو أعده للتصحيح.</value></data>
+  <data name="Notify.CompletionApproved.Title" xml:space="preserve"><value>صدرت نتيجتك النهائية</value></data>
+  <data name="Notify.CompletionApproved.Message" xml:space="preserve"><value>نتيجة تدريبك: {0}. افتح صفحة تقدّمي لرؤية التفاصيل وتحميل التقرير.</value></data>
+  <data name="Notify.CompletionApprovedSupervisor.Title" xml:space="preserve"><value>اكتمل التدريب</value></data>
+  <data name="Notify.CompletionApprovedSupervisor.Message" xml:space="preserve"><value>اعتمد المنسق إنهاء تدريب الطالب {0}.</value></data>
+  <data name="Notify.CompletionRejected.Title" xml:space="preserve"><value>لم يُعتمد إنهاء التدريب</value></data>
+  <data name="Notify.CompletionRejected.Message" xml:space="preserve"><value>ملاحظة المنسق: {0}</value></data>
+  <data name="Notify.CompletionRejectedNoNote.Title" xml:space="preserve"><value>لم يُعتمد إنهاء التدريب</value></data>
+  <data name="Notify.CompletionRejectedNoNote.Message" xml:space="preserve"><value>لم يعتمد المنسق إنهاء تدريبك.</value></data>
+  <data name="Notify.CompletionReturned.Title" xml:space="preserve"><value>أُعيد ملف إنهاء التدريب للتصحيح</value></data>
+  <data name="Notify.CompletionReturned.Message" xml:space="preserve"><value>ملاحظة المنسق: {0}</value></data>
+  <data name="Notify.CompletionReturnedNoNote.Title" xml:space="preserve"><value>أُعيد ملف إنهاء التدريب للتصحيح</value></data>
+  <data name="Notify.CompletionReturnedNoNote.Message" xml:space="preserve"><value>أعاد المنسق ملف إنهاء تدريبك. افتح صفحة تقدّمي لمعرفة ما ينقص.</value></data>
+  <data name="Notify.MeetingRequest.Title" xml:space="preserve"><value>طلب اجتماع جديد</value></data>
+  <data name="Notify.MeetingRequest.Message" xml:space="preserve"><value>دعاك {0} إلى اجتماع «{1}» بتاريخ {2}. اقبل الطلب أو ارفضه.</value></data>
+  <data name="Notify.MeetingAccepted.Title" xml:space="preserve"><value>تم قبول الاجتماع</value></data>
+  <data name="Notify.MeetingAccepted.Message" xml:space="preserve"><value>قبل {0} اجتماع «{1}» بتاريخ {2}.</value></data>
+  <data name="Notify.MeetingDeclined.Title" xml:space="preserve"><value>تم رفض الاجتماع</value></data>
+  <data name="Notify.MeetingDeclined.Message" xml:space="preserve"><value>رفض {0} اجتماع «{1}».</value></data>
+  <data name="Notify.MeetingCompleted.Title" xml:space="preserve"><value>تم إنهاء الاجتماع</value></data>
+  <data name="Notify.MeetingCompleted.Message" xml:space="preserve"><value>سجّل {0} اجتماع «{1}» كمكتمل.</value></data>
+  <data name="Notify.MeetingCancelled.Title" xml:space="preserve"><value>تم إلغاء الاجتماع</value></data>
+  <data name="Notify.MeetingCancelled.Message" xml:space="preserve"><value>ألغى {0} اجتماع «{1}» بتاريخ {2}.</value></data>
+  <data name="Js.NotifyOpen" xml:space="preserve"><value>فتح</value></data>
+  <data name="Js.NotifyMany" xml:space="preserve"><value>لديك {0} إشعارات جديدة</value></data>
+  <data name="Js.NotifyViewAll" xml:space="preserve"><value>عرض الكل</value></data>
+  <data name="Js.NotifyDismiss" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="Js.NotifyUnread" xml:space="preserve"><value>{0} جديد</value></data>
+  <data name="Js.NotifyBellLabel" xml:space="preserve"><value>الإشعارات، {0} غير مقروءة</value></data>
 </root>

@@ -4,6 +4,8 @@
 //  Add fields freely; never rename or delete one without telling the team.
 // =============================================================================
 
+using System.Collections.Generic;
+using System.Web.Script.Serialization;
 using InternshipManagementSystem.Common;
 
 namespace InternshipManagementSystem.Models
@@ -47,6 +49,58 @@ namespace InternshipManagementSystem.Models
         public string CertificateFileUrl { get; set; }
 
         public long CreatedAt { get; set; }
+
+        // ---- added for the final completion review (all optional) ----------
+
+        /// <summary>The coordinator's decision: "Approved", "Corrections" or
+        /// "Rejected". Status stays Rejected for both Corrections and Rejected
+        /// so older pages keep showing "not approved". A Rejected status with
+        /// no Decision is a legacy "returned" record = Corrections.</summary>
+        public string Decision { get; set; }
+        public long DecidedAt { get; set; }
+
+        /// <summary>Requirements the coordinator verified by hand, by key
+        /// (see InternshipRules.ManualChecks).</summary>
+        public Dictionary<string, RequirementCheck> Checks { get; set; }
+
+        /// <summary>EvaluationMethod.Id used for the provisional result.</summary>
+        public string EvaluationMethod { get; set; }
+        public string InternshipType { get; set; }
+
+        /// <summary>Copied at approval so the report and certificate print the
+        /// same details every time, even if a profile changes later.</summary>
+        public string StudentName { get; set; }
+        public string StudentNumber { get; set; }
+        public string Program { get; set; }
+        public string CompanyName { get; set; }
+        public string OpportunityTitle { get; set; }
+        public long TrainingStart { get; set; }
+        public long TrainingEnd { get; set; }
+        public string CoordinatorName { get; set; }
+
+        public const string DecisionApproved = "Approved";
+        public const string DecisionCorrections = "Corrections";
+        public const string DecisionRejected = "Rejected";
+
+        /// <summary>Returned to the student to fix something; can be reviewed again.</summary>
+        [ScriptIgnore]
+        public bool NeedsCorrections
+        {
+            get { return Status == CompletionStatus.Rejected && Decision != DecisionRejected; }
+        }
+
+        /// <summary>A documented, final rejection.</summary>
+        [ScriptIgnore]
+        public bool IsRejectedFinal
+        {
+            get { return Status == CompletionStatus.Rejected && Decision == DecisionRejected; }
+        }
+
+        public RequirementCheck Check(string key)
+        {
+            RequirementCheck check;
+            return Checks != null && key != null && Checks.TryGetValue(key, out check) ? check : null;
+        }
 
         public CompletionRecord()
         {

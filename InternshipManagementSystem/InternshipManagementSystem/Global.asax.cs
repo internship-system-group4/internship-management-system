@@ -19,7 +19,23 @@ namespace InternshipManagementSystem
             // track down. Setting it explicitly removes the whole class of bug.
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            // Firebase hands back self-describing JSON; no extra setup needed.
+            // Speed. By default .NET waits for a "100 Continue" reply before
+            // sending the body of every save (one extra trip to Firebase each
+            // time), delays small packets (Nagle), and allows only a couple of
+            // open connections, which makes parallel reads wait in line.
+            ServicePointManager.Expect100Continue = false;
+            ServicePointManager.UseNagleAlgorithm = false;
+            ServicePointManager.DefaultConnectionLimit = Math.Max(ServicePointManager.DefaultConnectionLimit, 48);
+        }
+
+        // Shows how long each page waited for Firebase in the browser dev tools
+        // (Network tab, select the page, Timing): "firebase" with the call count.
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            var stats = Data.FirebaseContext.Stats;
+            if (stats == null || Response.HeadersWritten) return;
+            Response.AppendHeader("Server-Timing", "firebase;dur=" + stats.Milliseconds +
+                ";desc=\"" + stats.Calls + " calls, " + stats.CacheHits + " cached\"");
         }
 
         // Interface language (Common/Localization.cs): a GET with ?ui-lang=en|ar saves the choice and redirects to the

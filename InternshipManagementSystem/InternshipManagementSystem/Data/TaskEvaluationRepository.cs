@@ -15,5 +15,13 @@ namespace InternshipManagementSystem.Data
         {
             entity.Id = id;
         }
+
+        /// <summary>Saves a grade or a revision request and tells the student.</summary>
+        public override string Insert(TaskEvaluation entity)
+        {
+            string id = base.Insert(entity);
+            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskReviewed(entity);
+            return id;
+        }
     }
 }

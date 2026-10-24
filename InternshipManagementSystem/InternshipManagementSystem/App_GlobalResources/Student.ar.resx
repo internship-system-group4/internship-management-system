@@ -430,4 +430,135 @@
   <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>عرض الملف المهني</value></data>
   <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>اطّلع على الروابط والمستندات التي حفظتها سابقًا.</value></data>
   <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>تغيّرت بياناتك. حدّث الصفحة وحاول مرة أخرى.</value></data>
+  <data name="Progress.Eyebrow" xml:space="preserve"><value>مساحة الطالب</value></data>
+  <data name="Progress.SectionTasks" xml:space="preserve"><value>المهام</value></data>
+  <data name="Progress.SectionSubmissions" xml:space="preserve"><value>التسليمات</value></data>
+  <data name="Progress.JourneyTitle" xml:space="preserve"><value>رحلتي التدريبية</value></data>
+  <data name="Progress.JourneyNote" xml:space="preserve"><value>أين وصل تدريبك، من التثبيت حتى تقرير الإتمام.</value></data>
+  <data name="Progress.Now" xml:space="preserve"><value>الآن</value></data>
+  <data name="Progress.JourneyAria" xml:space="preserve"><value>أُنجزت {0} من {1} مراحل</value></data>
+  <data name="Progress.StepNumber" xml:space="preserve"><value>المرحلة {0}</value></data>
+  <data name="Progress.JourneyDisclaimer" xml:space="preserve"><value>هذه مراحل سير عمل في النظام مبنية على بياناتك المسجّلة، وليست أسماء حالات MyGJU.</value></data>
+  <data name="Progress.StepPlacement" xml:space="preserve"><value>اعتماد التدريب</value></data>
+  <data name="Progress.StepPlacementDone" xml:space="preserve"><value>أُكِّد في {0}</value></data>
+  <data name="Progress.StepPlacementCancelled" xml:space="preserve"><value>أُلغي هذا التدريب</value></data>
+  <data name="Progress.StepPlacementHint" xml:space="preserve"><value>تحوّل عرضك المقبول إلى تدريب مؤكَّد في النظام.</value></data>
+  <data name="Progress.StepTraining" xml:space="preserve"><value>التدريب جارٍ</value></data>
+  <data name="Progress.StepTrainingHours" xml:space="preserve"><value>اعتُمدت {0} من {1} ساعة</value></data>
+  <data name="Progress.StepTrainingWeeks" xml:space="preserve"><value>{0} من {1} أسبوعًا</value></data>
+  <data name="Progress.StepOverdue" xml:space="preserve"><value>توجد مهمة متأخرة</value></data>
+  <data name="Progress.StepTrainingHint" xml:space="preserve"><value>تُحتسب فقط الساعات التي اعتمدها مشرفك. إنهاء مهمة لا يعتمد الساعات.</value></data>
+  <data name="Progress.StepDocuments" xml:space="preserve"><value>الوثائق والتقارير المطلوبة</value></data>
+  <data name="Progress.StepDocumentsDetail" xml:space="preserve"><value>تم التحقق من {0} من {1}</value></data>
+  <data name="Progress.StepDocumentsHint" xml:space="preserve"><value>نماذج التدريب والتقرير وأعمال المهام ومراجعة القسم، كما تحقق منها المنسّق.</value></data>
+  <data name="Progress.StepEvaluations" xml:space="preserve"><value>التقييمات النهائية</value></data>
+  <data name="Progress.StepEvaluationsDone" xml:space="preserve"><value>استلمها المنسّق</value></data>
+  <data name="Progress.StepEvaluationsActive" xml:space="preserve"><value>يُكملها مشرفاك بسرية</value></data>
+  <data name="Progress.StepEvaluationsPending" xml:space="preserve"><value>بعد استيفاء متطلب التدريب</value></data>
+  <data name="Progress.StepEvaluationsHint" xml:space="preserve"><value>نماذج تقييم الشركة والتقييم الأكاديمي سرّية. سترى النتيجة المعلنة لا النماذج.</value></data>
+  <data name="Progress.StepReview" xml:space="preserve"><value>مراجعة المنسّق للإتمام</value></data>
+  <data name="Progress.StepReviewApproved" xml:space="preserve"><value>اعتُمد في {0}</value></data>
+  <data name="Progress.StepReviewRejected" xml:space="preserve"><value>لم يُعتمد الإتمام</value></data>
+  <data name="Progress.StepReviewCorrections" xml:space="preserve"><value>أُعيد إليك للتصحيح</value></data>
+  <data name="Progress.StepReviewActive" xml:space="preserve"><value>يتحقق المنسّق من متطلباتك</value></data>
+  <data name="Progress.StepReviewPending" xml:space="preserve"><value>تبدأ بعد التقييمين النهائيين</value></data>
+  <data name="Progress.StepReviewHint" xml:space="preserve"><value>يتحقق المنسّق من التقييمات والساعات والوثائق قبل اعتماد الإتمام.</value></data>
+  <data name="Progress.StepReport" xml:space="preserve"><value>تقرير الإتمام الرسمي</value></data>
+  <data name="Progress.StepReportDone" xml:space="preserve"><value>جاهز للتنزيل</value></data>
+  <data name="Progress.StepReportPreparing" xml:space="preserve"><value>قيد التجهيز</value></data>
+  <data name="Progress.StepReportPending" xml:space="preserve"><value>متاح بعد الاعتماد</value></data>
+  <data name="Progress.StepReportHint" xml:space="preserve"><value>ملف PDF يصدره النظام يمكنك تنزيله وطباعته بعد اعتماد الإتمام.</value></data>
+  <data name="Progress.StateCompleted" xml:space="preserve"><value>مكتمل</value></data>
+  <data name="Progress.StateInProgress" xml:space="preserve"><value>قيد التنفيذ</value></data>
+  <data name="Progress.StatePending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Progress.StateAttention" xml:space="preserve"><value>يحتاج إلى انتباه</value></data>
+  <data name="Progress.StateRejected" xml:space="preserve"><value>مرفوض</value></data>
+  <data name="Progress.WeeksUnit" xml:space="preserve"><value>أسبوعًا</value></data>
+  <data name="Progress.WeeksFromDates" xml:space="preserve"><value>محسوبة من تواريخ تدريبك</value></data>
+  <data name="Progress.PercentOfRequired" xml:space="preserve"><value>{0}% من الساعات المطلوبة</value></data>
+  <data name="Progress.HoursValueText" xml:space="preserve"><value>{0} ساعة معتمدة من {1} مطلوبة ({2}%)</value></data>
+  <data name="Progress.AverageNote" xml:space="preserve"><value>المهام المقيَّمة فقط، كلٌّ على مقياسها. ليست علامتك النهائية في التدريب.</value></data>
+  <data name="Progress.InternshipType" xml:space="preserve"><value>نوع التدريب</value></data>
+  <data name="Progress.TypeLocal" xml:space="preserve"><value>تدريب ميداني محلي</value></data>
+  <data name="Progress.TypeInternational" xml:space="preserve"><value>تدريب دولي (السنة الألمانية)</value></data>
+  <data name="Progress.TypeDefault" xml:space="preserve"><value>افتراضي حتى يؤكده المنسّق</value></data>
+  <data name="Progress.AcademicProgram" xml:space="preserve"><value>البرنامج الأكاديمي</value></data>
+  <data name="Progress.CourseCode" xml:space="preserve"><value>مساق التدريب المحلي {0}</value></data>
+  <data name="Progress.ProgramCheck" xml:space="preserve"><value>ليس برنامجًا معروفًا في كلية الحوسبة؛ سيتحقق منه المنسّق</value></data>
+  <data name="Progress.NotRecorded" xml:space="preserve"><value>غير مسجّل</value></data>
+  <data name="Progress.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
+  <data name="Progress.NotAssigned" xml:space="preserve"><value>لم يُعيَّن بعد</value></data>
+  <data name="Progress.WeeksValue" xml:space="preserve"><value>{0} أسبوعًا</value></data>
+  <data name="Progress.ConfirmedOn" xml:space="preserve"><value>أُكِّد في {0}</value></data>
+  <data name="Progress.CurrentStatus" xml:space="preserve"><value>المرحلة الحالية</value></data>
+  <data name="Progress.ApplicableRequirement" xml:space="preserve"><value>متطلب التدريب</value></data>
+  <data name="Progress.RequirementLocal" xml:space="preserve"><value>{0} ساعة اتصال معتمدة</value></data>
+  <data name="Progress.RequirementInternational" xml:space="preserve"><value>{0} أسبوعًا على الأقل بدوام كامل</value></data>
+  <data name="Progress.RequirementSourceLocal" xml:space="preserve"><value>التدريب المحلي في كلية الحوسبة</value></data>
+  <data name="Progress.RequirementSourceIntl" xml:space="preserve"><value>تدريب السنة الألمانية في الجامعة</value></data>
+  <data name="Progress.OpenMyTasks" xml:space="preserve"><value>فتح مهامي</value></data>
+  <data name="Progress.Overdue" xml:space="preserve"><value>متأخرة</value></data>
+  <data name="Progress.DueToday" xml:space="preserve"><value>تستحق اليوم</value></data>
+  <data name="Progress.DueInDays" xml:space="preserve"><value>تستحق خلال {0} أيام</value></data>
+  <data name="Progress.GradedOutOf" xml:space="preserve"><value>تُقيَّم من {0}</value></data>
+  <data name="Progress.Graded" xml:space="preserve"><value>مقيَّمة</value></data>
+  <data name="Progress.GradeValue" xml:space="preserve"><value>العلامة ⁦{0} / {1}⁩</value></data>
+  <data name="Progress.HistoryNote" xml:space="preserve"><value>سُجِّلت {0} محاولة. تُحفظ كل محاولة، والأحدث أولًا.</value></data>
+  <data name="Progress.AttemptNumber" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="Progress.HoursOfRequired" xml:space="preserve"><value>⁦{0} / {1}⁩ ساعة معتمدة</value></data>
+  <data name="Progress.TargetNotSet" xml:space="preserve"><value>لم يُحدَّد هدف الساعات بعد</value></data>
+  <data name="Progress.HoursInternationalNote" xml:space="preserve"><value>يُتحقق من التدريب الدولي بالمدة (أسابيع) لا بعدد الساعات هذا.</value></data>
+  <data name="Progress.HoursLog" xml:space="preserve"><value>سجل الساعات ({0} إدخالات)</value></data>
+  <data name="Progress.DocsTitle" xml:space="preserve"><value>متطلبات التدريب والوثائق</value></data>
+  <data name="Progress.DocsNote" xml:space="preserve"><value>تأتي الحالة من تحقق المنسّق المسجّل. «قيد الانتظار» تعني أنه لم يُتحقق منه بعد، وليست رفضًا.</value></data>
+  <data name="Progress.DocPriorApproval" xml:space="preserve"><value>الموافقة المسبقة على التدريب</value></data>
+  <data name="Progress.DocPlacementConfirmed" xml:space="preserve"><value>أُكِّد التدريب في النظام في {0}.</value></data>
+  <data name="Progress.DocDeptNotVerified" xml:space="preserve"><value>لم يُتحقق من موافقة القسم بعد.</value></data>
+  <data name="Progress.DocHours" xml:space="preserve"><value>متطلب ساعات التدريب</value></data>
+  <data name="Progress.DocHoursDetail" xml:space="preserve"><value>اعتُمدت {0} من {1} ساعة</value></data>
+  <data name="Progress.DocDuration" xml:space="preserve"><value>مدة التدريب</value></data>
+  <data name="Progress.DocDurationDetail" xml:space="preserve"><value>{0} من {1} أسبوعًا</value></data>
+  <data name="Progress.DocReport" xml:space="preserve"><value>تقرير التدريب</value></data>
+  <data name="Progress.DocInternationalReport" xml:space="preserve"><value>تقرير التدريب</value></data>
+  <data name="Progress.DocForms" xml:space="preserve"><value>نماذج تدريب الشركة</value></data>
+  <data name="Progress.DocCertificate" xml:space="preserve"><value>شهادة التدريب</value></data>
+  <data name="Progress.DocTasks" xml:space="preserve"><value>توثيق المهام المطلوب</value></data>
+  <data name="Progress.DocTasksNone" xml:space="preserve"><value>لم تُسند مهام بعد</value></data>
+  <data name="Progress.DocTasksRevision" xml:space="preserve"><value>{0} مهمة بانتظار إعادة تسليمك</value></data>
+  <data name="Progress.DocTasksDetail" xml:space="preserve"><value>قُيِّمت {0} من {1} مهمة</value></data>
+  <data name="Progress.DocDepartment" xml:space="preserve"><value>مراجعة القسم</value></data>
+  <data name="Progress.DocEndorsement" xml:space="preserve"><value>اعتماد القسم والعميد</value></data>
+  <data name="Progress.DocFacultyValidation" xml:space="preserve"><value>مصادقة الكلية</value></data>
+  <data name="Progress.DocCoordinator" xml:space="preserve"><value>الاعتماد النهائي من المنسّق</value></data>
+  <data name="Progress.DocCoordinatorPending" xml:space="preserve"><value>لم يُتخذ قرار بعد</value></data>
+  <data name="Progress.DocCoordinatorApproved" xml:space="preserve"><value>اعتُمد في {0}</value></data>
+  <data name="Progress.DocVerifiedOn" xml:space="preserve"><value>تم التحقق في {0}</value></data>
+  <data name="Progress.DocPartlyVerified" xml:space="preserve"><value>تم التحقق من {0} من {1} بنود</value></data>
+  <data name="Progress.DocNotVerified" xml:space="preserve"><value>لم يُتحقق منه بعد</value></data>
+  <data name="Progress.DocStateVerified" xml:space="preserve"><value>تم التحقق</value></data>
+  <data name="Progress.DocStateSubmitted" xml:space="preserve"><value>مقدَّم</value></data>
+  <data name="Progress.DocStatePending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Progress.DocStateMissing" xml:space="preserve"><value>مفقود</value></data>
+  <data name="Progress.DocStateCorrections" xml:space="preserve"><value>يحتاج إلى تصحيح</value></data>
+  <data name="Progress.DocStateNA" xml:space="preserve"><value>لا ينطبق</value></data>
+  <data name="Progress.FinalNote" xml:space="preserve"><value>التقدّم والتقييم والاعتماد والنتيجة المعلنة خطوات منفصلة.</value></data>
+  <data name="Progress.TileProgress" xml:space="preserve"><value>تقدّم التدريب</value></data>
+  <data name="Progress.TileProvisional" xml:space="preserve"><value>التقييم المبدئي</value></data>
+  <data name="Progress.ProvisionalHidden" xml:space="preserve"><value>سرّي حتى الإعلان</value></data>
+  <data name="Progress.TileApproval" xml:space="preserve"><value>اعتماد الإتمام</value></data>
+  <data name="Progress.TileResult" xml:space="preserve"><value>النتيجة النهائية المعلنة</value></data>
+  <data name="Progress.ApprovalNotStarted" xml:space="preserve"><value>لم يبدأ</value></data>
+  <data name="Progress.ApprovalApproved" xml:space="preserve"><value>اعتُمد في {0}</value></data>
+  <data name="Progress.ApprovalRejected" xml:space="preserve"><value>غير معتمد</value></data>
+  <data name="Progress.ApprovalCorrections" xml:space="preserve"><value>أُعيد للتصحيح</value></data>
+  <data name="Progress.ApprovalWaiting" xml:space="preserve"><value>بانتظار مراجعة المنسّق</value></data>
+  <data name="Progress.NotReleased" xml:space="preserve"><value>لم تُعلن</value></data>
+  <data name="Progress.Pass" xml:space="preserve"><value>ناجح</value></data>
+  <data name="Progress.Fail" xml:space="preserve"><value>راسب</value></data>
+  <data name="Progress.CoordinatorNote" xml:space="preserve"><value>ملاحظة المنسّق</value></data>
+  <data name="Progress.ReleasedLine" xml:space="preserve"><value>النتيجة: {0} · العلامة الداعمة {1}% · اعتُمد في {2}</value></data>
+  <data name="Progress.ScoreMethodNote" xml:space="preserve"><value>تستخدم العلامة الداعمة الطريقة المقترحة في المشروع؛ والنتيجة المعلنة هي ناجح/راسب.</value></data>
+  <data name="Progress.DownloadReport" xml:space="preserve"><value>تنزيل تقرير الإتمام (PDF)</value></data>
+  <data name="Progress.PrintReport" xml:space="preserve"><value>طباعة التقرير</value></data>
+  <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>استُبدل بالنتيجة المعلنة</value></data>
 </root>

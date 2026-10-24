@@ -49,3 +49,8 @@ body.uims-public:has(.login-campus) .uims-main > .public-container { width:100%;
  .login-campus-form.public-form, .login-campus[data-entering] .login-campus-form { transition:none; }
  .login-campus-welcome { animation:none; }
 }
+/* Hand-off veil. It matches the portal's arrival veil in theme.css exactly, so the page swap is invisible. */
+.login-campus-veil { position:fixed; inset:0; z-index:3000; pointer-events:none; opacity:0; visibility:hidden; background:var(--ui-canvas,#f6f8ff) url(../images/gju-logo.png) center/88px auto no-repeat; transition:opacity 420ms cubic-bezier(.4,0,.2,1),visibility 0s linear 420ms; }
+html[data-login-veil] .login-campus-veil { opacity:1; visibility:visible; transition:opacity 420ms cubic-bezier(.4,0,.2,1); }
+html[data-login-veil] .login-campus-welcome { opacity:0; transition:opacity 200ms ease; }
+@media(prefers-reduced-motion:reduce) { .login-campus-veil, html[data-login-veil] .login-campus-veil { transition:none; } }

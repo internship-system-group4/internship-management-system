@@ -54,7 +54,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ShowMessage(L.T("Coordinator.StudentCreation.EnterAValidEmailAddress"), false);
                 return;
             }
-            if (!int.TryParse(txtRequiredHours.Text, out requiredHours) || requiredHours <= 0)
+            if (!int.TryParse(txtRequiredHours.Text, out requiredHours) || requiredHours < InternshipRules.LocalContactHours)
             {
                 ShowMessage(L.T("Coordinator.StudentCreation.RequiredTrainingHoursMustBeA"), false);
                 return;
@@ -123,6 +123,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 return;
             }
 
+            InternshipManagementSystem.Services.NotificationService.StudentAccountCreated(student);
             ShowMessage(L.F("Coordinator.StudentCreation.StudentAccountCreatedWithIDShare", student.StudentNumber), true);
             txtFullName.Text = txtEmail.Text = txtPhone.Text = "";
             ddlMajor.SelectedIndex = 0;

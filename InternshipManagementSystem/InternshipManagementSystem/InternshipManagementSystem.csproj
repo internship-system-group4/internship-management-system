@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <!--
   ===========================================================================
   UIMS - Group 4
@@ -63,6 +63,7 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.13.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Web.DynamicData" />
@@ -105,6 +106,7 @@
     <Compile Include="Common\Localization.cs" />
     <Compile Include="Common\Enums.cs" />
     <Compile Include="Common\GradingPolicy.cs" />
+    <Compile Include="Common\InternshipRequirements.cs" />
     <Compile Include="Common\Time.cs" />
     <Compile Include="Common\Validators.cs" />
     <Compile Include="Data\AcademicCommentRepository.cs" />
@@ -120,6 +122,8 @@
     <Content Include="Assets\css\interface.css" />
     <Content Include="Assets\css\reference-analytics.css" />
     <Content Include="Assets\js\workspace-charts.js" />
+    <Content Include="Assets\js\review-system.js" />
+    <Content Include="Assets\js\completion-review.js" />
     <Content Include="Assets\fonts\notosans-variable.ttf" />
     <Content Include="Assets\fonts\notosansarabic-variable.ttf" />
     <Content Include="Assets\fonts\notosans-OFL.txt" />
@@ -204,6 +208,7 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonFactory.cs" />
     <Compile Include="Models\Placement.cs" />
+    <Compile Include="Models\RequirementCheck.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentGroup.cs" />
     <Compile Include="Models\Submission.cs" />
@@ -265,6 +270,9 @@
     <Compile Include="Pages\Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Account\NotificationFeed.ashx.cs">
+      <DependentUpon>NotificationFeed.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Account\Notifications.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Notifications.aspx</DependentUpon>
@@ -311,13 +319,13 @@
       <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-		  <SubType>ASPXCodeBehind</SubType>
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
-	  <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
-		  <DependentUpon>ManageOpportunities.aspx</DependentUpon>
-	  </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
+      <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Company\Opportunities.aspx.designer.cs">
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
@@ -357,7 +365,6 @@
       <DependentUpon>ViewOpportunity.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\AcademicSupervisors.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>AcademicSupervisors.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\AcademicSupervisors.aspx.designer.cs">
@@ -448,7 +455,6 @@
       <DependentUpon>AddStudent.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ManageStudents.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ManageStudents.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\ManageStudents.aspx.designer.cs">
@@ -578,6 +584,15 @@
     </Compile>
     <Compile Include="Services\AuthService.cs" />
     <Compile Include="Services\CompletionService.cs" />
+    <Compile Include="Services\ExcelExportService.cs" />
+    <Compile Include="Services\DemoStudentService.cs" />
+    <Compile Include="Pages\Coordinator\DemoStudent.aspx.cs">
+      <DependentUpon>DemoStudent.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\Coordinator\DemoStudent.aspx.designer.cs">
+      <DependentUpon>DemoStudent.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Services\GradingService.cs" />
     <Compile Include="Services\HoursService.cs" />
     <Compile Include="Services\NotificationService.cs" />
@@ -640,6 +655,9 @@
     <Content Include="Assets\css\public-layout.css" />
     <Content Include="Assets\css\public-navbar.css" />
     <Content Include="Assets\css\completion-review.css" />
+    <Content Include="Assets\css\review-system.css" />
+    <Content Include="Pages\Coordinator\DemoStudent.aspx" />
+    <Content Include="Assets\css\student-progress.css" />
     <Content Include="Assets\css\coordinator-monitoring.css" />
     <Content Include="Assets\css\home.css" />
     <Content Include="Assets\images\home-campus.jpg" />
@@ -778,6 +796,8 @@
     <Content Include="Pages\Account\ForgotPassword.aspx" />
     <Content Include="Pages\Account\Login.aspx" />
     <Content Include="Pages\Account\Notifications.aspx" />
+    <Content Include="Pages\Account\NotificationFeed.ashx" />
+    <Content Include="Assets\js\notifications.js" />
     <Content Include="Pages\Company\Account.aspx" />
     <Content Include="Pages\Company\ApplicantDocument.aspx" />
     <Content Include="Pages\Company\Applications.aspx" />
@@ -801,6 +821,7 @@
     <Content Include="Pages\Coordinator\Students.aspx" />
     <Content Include="Pages\Coordinator\StudentCreation.ascx" />
     <Content Include="Assets\js\account-creation-modal.js" />
+    <Content Include="Assets\js\directory.js" />
     <Content Include="Pages\Coordinator\AddStudent.aspx" />
     <Content Include="Pages\Coordinator\ManageStudents.aspx" />
     <Content Include="Pages\Meetings\MyMeetings.aspx" />
@@ -826,6 +847,23 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\js\chart.umd.js" />
+    <Content Include="Assets\images\dashboard-icons\bar-chart-fill.svg" />
+    <Content Include="Assets\images\dashboard-icons\calendar-event.svg" />
+    <Content Include="Assets\images\dashboard-icons\CHART-LICENSE.md" />
+    <Content Include="Assets\images\dashboard-icons\check-lg.svg" />
+    <Content Include="Assets\images\dashboard-icons\chevron-right.svg" />
+    <Content Include="Assets\images\dashboard-icons\clock.svg" />
+    <Content Include="Assets\images\dashboard-icons\eye-fill.svg" />
+    <Content Include="Assets\images\dashboard-icons\file-earmark-text.svg" />
+    <Content Include="Assets\images\dashboard-icons\ICONS-LICENSE.txt" />
+    <Content Include="Assets\images\dashboard-icons\info-circle-fill.svg" />
+    <Content Include="Assets\images\dashboard-icons\mortarboard-fill.svg" />
+    <Content Include="Assets\images\dashboard-icons\pie-chart-fill.svg" />
+    <Content Include="Assets\images\dashboard-icons\table.svg" />
+    <Content Include="Assets\images\dashboard-icons\people-fill.svg" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

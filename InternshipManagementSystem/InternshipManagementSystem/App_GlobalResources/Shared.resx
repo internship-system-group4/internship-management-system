@@ -252,7 +252,7 @@
   <data name="Title.Pages.Coordinator.ManageStudents" xml:space="preserve"><value>Manage students</value></data>
   <data name="Title.Pages.Coordinator.PlacementDetails" xml:space="preserve"><value>Placement Details</value></data>
   <data name="Title.Pages.Coordinator.Placements" xml:space="preserve"><value>Placements &amp; Progress</value></data>
-  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>Student records</value></data>
+  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>Student profile</value></data>
   <data name="Title.Pages.Meetings.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
   <data name="Title.Pages.Meetings.Schedule" xml:space="preserve"><value>Meetings</value></data>
   <data name="Title.Pages.Public.About" xml:space="preserve"><value>About | GJU Internship Management System</value></data>
@@ -340,4 +340,124 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>Journey details</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>Select a stage for details</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>Swipe through stages. Select one to view its details.</value></data>
+  <data name="WorkspaceChart.Share" xml:space="preserve"><value>Share</value></data>
+  <data name="WorkspaceChart.OpenStudentList" xml:space="preserve"><value>Open student list</value></data>
+  <data name="Js.ReviewQueueShowing" xml:space="preserve"><value>Showing {0} of {1} internships</value></data>
+  <data name="Js.ChartNoStudentsByMajor" xml:space="preserve"><value>No student records yet.</value></data>
+  <data name="Title.Pages.Coordinator.DemoStudent" xml:space="preserve"><value>Demo student</value></data>
+  <data name="Js.GroupPickerSelected" xml:space="preserve"><value>{0} students selected</value></data>
+  <data name="Js.GroupPickerRemove" xml:space="preserve"><value>Remove {0}</value></data>
+  <data name="Js.ChartFixedRangeCaption" xml:space="preserve"><value>{0} – {1} · UTC. Approvals from the last {2} months; categories are current snapshots.</value></data>
+  <data name="Notify.Type.General" xml:space="preserve"><value>Update</value></data>
+  <data name="Notify.Type.Task" xml:space="preserve"><value>Task</value></data>
+  <data name="Notify.Type.Group" xml:space="preserve"><value>Group</value></data>
+  <data name="Notify.Type.Application" xml:space="preserve"><value>Application</value></data>
+  <data name="Notify.Type.Placement" xml:space="preserve"><value>Placement</value></data>
+  <data name="Notify.Type.Hours" xml:space="preserve"><value>Training hours</value></data>
+  <data name="Notify.Type.Evaluation" xml:space="preserve"><value>Evaluation</value></data>
+  <data name="Notify.Type.Comment" xml:space="preserve"><value>Supervisor note</value></data>
+  <data name="Notify.Type.Meeting" xml:space="preserve"><value>Meeting</value></data>
+  <data name="Notify.Type.Opportunity" xml:space="preserve"><value>Opportunity</value></data>
+  <data name="Notify.Type.Completion" xml:space="preserve"><value>Completion</value></data>
+  <data name="Notify.Type.Account" xml:space="preserve"><value>Account</value></data>
+  <data name="Notify.AStudent" xml:space="preserve"><value>A student</value></data>
+  <data name="Notify.MinutesAgo" xml:space="preserve"><value>{0} min ago</value></data>
+  <data name="Notify.HoursAgo" xml:space="preserve"><value>{0} h ago</value></data>
+  <data name="Notify.Yesterday" xml:space="preserve"><value>Yesterday</value></data>
+  <data name="Notify.MarkAllRead" xml:space="preserve"><value>Mark all as read</value></data>
+  <data name="Notify.Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Notify.NewBadge" xml:space="preserve"><value>New</value></data>
+  <data name="Notify.FilterAll" xml:space="preserve"><value>All</value></data>
+  <data name="Notify.FilterUnread" xml:space="preserve"><value>Unread</value></data>
+  <data name="Notify.NoUnread" xml:space="preserve"><value>No unread notifications.</value></data>
+  <data name="Notify.UnreadCount" xml:space="preserve"><value>{0} unread</value></data>
+  <data name="Notify.PageIntro" xml:space="preserve"><value>Every update about your internship cycle. Select one to open the page where you can act on it.</value></data>
+  <data name="Notify.BlockedByRules" xml:space="preserve"><value>Notifications are blocked by the Firebase database rules. Publish the "notifications" rule from docs/05-firebase-setup.md (Firebase &gt; Realtime Database &gt; Rules).</value></data>
+  <data name="Notify.SomeNotDelivered" xml:space="preserve"><value>Some notifications could not be delivered because of the Firebase database rules. See docs/05-firebase-setup.md.</value></data>
+  <data name="Notify.OpportunityPublished.Title" xml:space="preserve"><value>New internship opportunity</value></data>
+  <data name="Notify.OpportunityPublished.Message" xml:space="preserve"><value>{0} posted “{1}”. Open it to check the details and apply.</value></data>
+  <data name="Notify.ApplicationSubmitted.Title" xml:space="preserve"><value>New application to review</value></data>
+  <data name="Notify.ApplicationSubmitted.Message" xml:space="preserve"><value>{0} applied for “{1}”. Open it to read the cover letter and CV, then accept or reject.</value></data>
+  <data name="Notify.ApplicationAccepted.Title" xml:space="preserve"><value>Your application was accepted</value></data>
+  <data name="Notify.ApplicationAccepted.Message" xml:space="preserve"><value>{0} accepted your application for “{1}”. Confirm the offer to secure your place.</value></data>
+  <data name="Notify.ApplicationRejected.Title" xml:space="preserve"><value>Application not accepted</value></data>
+  <data name="Notify.ApplicationRejected.Message" xml:space="preserve"><value>{0} did not accept your application for “{1}”. You can read the reason in My Applications.</value></data>
+  <data name="Notify.PlacementConfirmedCompany.Title" xml:space="preserve"><value>New trainee confirmed</value></data>
+  <data name="Notify.PlacementConfirmedCompany.Message" xml:space="preserve"><value>{0} confirmed the internship “{1}” and is now your trainee. You can start assigning tasks.</value></data>
+  <data name="Notify.PlacementConfirmedAcademic.Title" xml:space="preserve"><value>Student placement confirmed</value></data>
+  <data name="Notify.PlacementConfirmedAcademic.Message" xml:space="preserve"><value>{0} will train at {1}. Follow their progress from Student Progress.</value></data>
+  <data name="Notify.PlacementConfirmedCoordinator.Title" xml:space="preserve"><value>Placement confirmed</value></data>
+  <data name="Notify.PlacementConfirmedCoordinator.Message" xml:space="preserve"><value>{0} confirmed a placement at {1}.</value></data>
+  <data name="Notify.WelcomeStudent.Title" xml:space="preserve"><value>Welcome to UIMS</value></data>
+  <data name="Notify.WelcomeStudent.Message" xml:space="preserve"><value>Your student account is ready, {0}. Complete your profile, then browse internship opportunities.</value></data>
+  <data name="Notify.GroupAdded.Title" xml:space="preserve"><value>You were added to a group</value></data>
+  <data name="Notify.GroupAdded.Message" xml:space="preserve"><value>You are now in {0}. Your academic supervisor is {1}.</value></data>
+  <data name="Notify.GroupRemoved.Title" xml:space="preserve"><value>Removed from a group</value></data>
+  <data name="Notify.GroupRemoved.Message" xml:space="preserve"><value>You were removed from {0}. The coordinator will assign you a new group.</value></data>
+  <data name="Notify.GroupNewSupervisor.Title" xml:space="preserve"><value>New academic supervisor</value></data>
+  <data name="Notify.GroupNewSupervisor.Message" xml:space="preserve"><value>{0} is now the academic supervisor of {1}.</value></data>
+  <data name="Notify.GroupAssigned.Title" xml:space="preserve"><value>Group assigned to you</value></data>
+  <data name="Notify.GroupAssigned.Message" xml:space="preserve"><value>{0} is now assigned to you. Students in the group: {1}.</value></data>
+  <data name="Notify.GroupStudentsAdded.Title" xml:space="preserve"><value>New students in your group</value></data>
+  <data name="Notify.GroupStudentsAdded.Message" xml:space="preserve"><value>Students added to {0}: {1}.</value></data>
+  <data name="Notify.GroupReassigned.Title" xml:space="preserve"><value>Group reassigned</value></data>
+  <data name="Notify.GroupReassigned.Message" xml:space="preserve"><value>{0} is now supervised by {1}.</value></data>
+  <data name="Notify.GroupDeletedStudent.Title" xml:space="preserve"><value>Your group was removed</value></data>
+  <data name="Notify.GroupDeletedStudent.Message" xml:space="preserve"><value>{0} was deleted. The coordinator will assign you a new group.</value></data>
+  <data name="Notify.GroupDeletedSupervisor.Title" xml:space="preserve"><value>Group removed</value></data>
+  <data name="Notify.GroupDeletedSupervisor.Message" xml:space="preserve"><value>{0} was deleted and is no longer assigned to you.</value></data>
+  <data name="Notify.TaskAssigned.Title" xml:space="preserve"><value>New task assigned</value></data>
+  <data name="Notify.TaskAssigned.Message" xml:space="preserve"><value>Your supervisor assigned “{0}”, due {1}. Open it to read the instructions and submit your work.</value></data>
+  <data name="Notify.TaskAssignedNoDue.Title" xml:space="preserve"><value>New task assigned</value></data>
+  <data name="Notify.TaskAssignedNoDue.Message" xml:space="preserve"><value>Your supervisor assigned “{0}”. Open it to read the instructions and submit your work.</value></data>
+  <data name="Notify.TaskSubmitted.Title" xml:space="preserve"><value>Submission to review</value></data>
+  <data name="Notify.TaskSubmitted.Message" xml:space="preserve"><value>{0} submitted “{1}”. Open it to grade the work or ask for changes.</value></data>
+  <data name="Notify.TaskResubmitted.Title" xml:space="preserve"><value>Revised work to review</value></data>
+  <data name="Notify.TaskResubmitted.Message" xml:space="preserve"><value>{0} resubmitted “{1}” after your revision request. Open it to grade the new attempt.</value></data>
+  <data name="Notify.TaskGraded.Title" xml:space="preserve"><value>Your task was graded</value></data>
+  <data name="Notify.TaskGraded.Message" xml:space="preserve"><value>“{0}” was graded {1} / {2}. Open it to read your supervisor’s feedback.</value></data>
+  <data name="Notify.TaskRevision.Title" xml:space="preserve"><value>Changes requested on your task</value></data>
+  <data name="Notify.TaskRevision.Message" xml:space="preserve"><value>Your supervisor asked for changes to “{0}”: {1}</value></data>
+  <data name="Notify.CommentAdded.Title" xml:space="preserve"><value>New note from your academic supervisor</value></data>
+  <data name="Notify.CommentAdded.Message" xml:space="preserve"><value>{0}</value></data>
+  <data name="Notify.HoursReported.Title" xml:space="preserve"><value>Training hours to approve</value></data>
+  <data name="Notify.HoursReported.Message" xml:space="preserve"><value>{0} reported {1} training hours. Review them and approve or reject.</value></data>
+  <data name="Notify.HoursApproved.Title" xml:space="preserve"><value>Training hours approved</value></data>
+  <data name="Notify.HoursApproved.Message" xml:space="preserve"><value>{0} hours were added to your approved total.</value></data>
+  <data name="Notify.HoursRejected.Title" xml:space="preserve"><value>Training hours not approved</value></data>
+  <data name="Notify.HoursRejected.Message" xml:space="preserve"><value>{0} hours were not approved. Read the note on My Progress.</value></data>
+  <data name="Notify.CompanyEvalForAcademic.Title" xml:space="preserve"><value>Your final evaluation is due</value></data>
+  <data name="Notify.CompanyEvalForAcademic.Message" xml:space="preserve"><value>The company submitted its final evaluation for {0}. Please complete your academic evaluation.</value></data>
+  <data name="Notify.CompanyEvalForCoordinator.Title" xml:space="preserve"><value>Company evaluation submitted</value></data>
+  <data name="Notify.CompanyEvalForCoordinator.Message" xml:space="preserve"><value>{0} submitted the final evaluation for {1}.</value></data>
+  <data name="Notify.AcademicEvalForCoordinator.Title" xml:space="preserve"><value>Completion review needed</value></data>
+  <data name="Notify.AcademicEvalForCoordinator.Message" xml:space="preserve"><value>Both final evaluations for {0} are in. Review the file, then approve or return the completion.</value></data>
+  <data name="Notify.CompletionApproved.Title" xml:space="preserve"><value>Your final result is released</value></data>
+  <data name="Notify.CompletionApproved.Message" xml:space="preserve"><value>Your internship result is {0}. Open My Progress to see the details and download your report.</value></data>
+  <data name="Notify.CompletionApprovedSupervisor.Title" xml:space="preserve"><value>Internship completed</value></data>
+  <data name="Notify.CompletionApprovedSupervisor.Message" xml:space="preserve"><value>The coordinator approved the internship completion of {0}.</value></data>
+  <data name="Notify.CompletionRejected.Title" xml:space="preserve"><value>Internship completion not approved</value></data>
+  <data name="Notify.CompletionRejected.Message" xml:space="preserve"><value>Coordinator’s note: {0}</value></data>
+  <data name="Notify.CompletionRejectedNoNote.Title" xml:space="preserve"><value>Internship completion not approved</value></data>
+  <data name="Notify.CompletionRejectedNoNote.Message" xml:space="preserve"><value>The coordinator did not approve your internship completion.</value></data>
+  <data name="Notify.CompletionReturned.Title" xml:space="preserve"><value>Completion returned for corrections</value></data>
+  <data name="Notify.CompletionReturned.Message" xml:space="preserve"><value>Coordinator’s note: {0}</value></data>
+  <data name="Notify.CompletionReturnedNoNote.Title" xml:space="preserve"><value>Completion returned for corrections</value></data>
+  <data name="Notify.CompletionReturnedNoNote.Message" xml:space="preserve"><value>The coordinator returned your completion review. Open My Progress to see what is missing.</value></data>
+  <data name="Notify.MeetingRequest.Title" xml:space="preserve"><value>New meeting request</value></data>
+  <data name="Notify.MeetingRequest.Message" xml:space="preserve"><value>{0} invited you to “{1}” on {2}. Accept or decline the request.</value></data>
+  <data name="Notify.MeetingAccepted.Title" xml:space="preserve"><value>Meeting accepted</value></data>
+  <data name="Notify.MeetingAccepted.Message" xml:space="preserve"><value>{0} accepted “{1}” on {2}.</value></data>
+  <data name="Notify.MeetingDeclined.Title" xml:space="preserve"><value>Meeting declined</value></data>
+  <data name="Notify.MeetingDeclined.Message" xml:space="preserve"><value>{0} declined “{1}”.</value></data>
+  <data name="Notify.MeetingCompleted.Title" xml:space="preserve"><value>Meeting marked completed</value></data>
+  <data name="Notify.MeetingCompleted.Message" xml:space="preserve"><value>{0} marked “{1}” as completed.</value></data>
+  <data name="Notify.MeetingCancelled.Title" xml:space="preserve"><value>Meeting cancelled</value></data>
+  <data name="Notify.MeetingCancelled.Message" xml:space="preserve"><value>{0} cancelled “{1}” on {2}.</value></data>
+  <data name="Js.NotifyOpen" xml:space="preserve"><value>Open</value></data>
+  <data name="Js.NotifyMany" xml:space="preserve"><value>You have {0} new notifications</value></data>
+  <data name="Js.NotifyViewAll" xml:space="preserve"><value>View all</value></data>
+  <data name="Js.NotifyDismiss" xml:space="preserve"><value>Dismiss</value></data>
+  <data name="Js.NotifyUnread" xml:space="preserve"><value>{0} new</value></data>
+  <data name="Js.NotifyBellLabel" xml:space="preserve"><value>Notifications, {0} unread</value></data>
 </root>

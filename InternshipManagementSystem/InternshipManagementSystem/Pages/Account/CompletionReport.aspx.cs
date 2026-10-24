@@ -41,7 +41,14 @@ namespace InternshipManagementSystem.Pages.AccountArea
             Person coordinator = users.GetPerson(record.ReviewedByCoordinatorId);
             string coordinatorName = coordinator == null ? "Internship Coordinator" : coordinator.FullName;
 
+            // The certificate is printed by the coordinator (card A14); the
+            // student receives the completion report.
             bool certificate = Request.QueryString["doc"] == "certificate";
+            if (certificate && CurrentUser.Role != UserRole.Coordinator)
+            {
+                Fail(404, L.T("Account.CompletionReport.ThisReportIsNotAvailable"));
+                return;
+            }
             byte[] pdf = certificate
                 ? PdfReportService.GenerateCertificate(record, student, placement, coordinatorName)
                 : PdfReportService.GenerateCompletionReport(record, student, placement, coordinatorName);
@@ -55,8 +62,14 @@ namespace InternshipManagementSystem.Pages.AccountArea
                               + PdfReportService.Reference(record) + ".pdf";
             Response.Clear();
             Response.ContentType = "application/pdf";
-            // inline: opens in the browser's PDF viewer, which can download and print it.
-            Response.AddHeader("Content-Disposition", "inline; filename=\"" + fileName + "\"");
+            // Private documents: never cached by shared proxies.
+            Response.Cache.SetCacheability(System.Web.HttpCacheability.Private);
+            Response.Cache.SetNoStore();
+            Response.AddHeader("X-Content-Type-Options", "nosniff");
+            // inline (default): opens in the browser's PDF viewer for printing.
+            // &download=1: saved as a file.
+            string disposition = Request.QueryString["download"] == "1" ? "attachment" : "inline";
+            Response.AddHeader("Content-Disposition", disposition + "; filename=\"" + fileName + "\"");
             Response.BinaryWrite(pdf);
             Response.Flush();
             Context.ApplicationInstance.CompleteRequest();
@@ -74,6 +87,14 @@ namespace InternshipManagementSystem.Pages.AccountArea
 
         // The page writes the PDF itself; skip the normal HTML rendering.
         protected override void Render(System.Web.UI.HtmlTextWriter writer)
+        {
+        }
+
+        // Global.asax localises page titles on PreRenderComplete, which needs a
+        // <head runat="server">. This page has none (it sends a PDF or a plain
+        // 404), so the event is not raised here; otherwise every refusal
+        // became a 500 error.
+        protected override void OnPreRenderComplete(EventArgs e)
         {
         }
     }

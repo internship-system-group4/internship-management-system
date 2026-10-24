@@ -1,6 +1,6 @@
 ﻿// =============================================================================
 //  UIMS - Group 4   |   Owner: Ahmad  (Trello cards A13, A14)
-//  The official completion report and certificate (cards A13, A14).
+//  The internship completion report and certificate (cards A13, A14).
 // =============================================================================
 
 using System;
@@ -19,11 +19,24 @@ namespace InternshipManagementSystem.Services
     /// and only the coordinator and the student it belongs to can fetch it.
     ///
     /// The final evaluation forms are confidential, so the report shows only
-    /// the final score and result - never the company or academic scores.
+    /// the released result - never the company or academic scores.
+    ///
+    /// Honesty rules: the documents are UIMS project records. They carry a
+    /// static "UIMS - APPROVED" status mark, never a university seal or a
+    /// signature, and say plainly that they are not issued by GJU.
+    /// Values are read from the snapshot saved at approval, so every download
+    /// of the same record prints the same details.
     /// </summary>
     public static class PdfReportService
     {
         private const string ReportPage = "~/Pages/Account/CompletionReport.aspx";
+
+        // Colours (0-1 RGB). Navy matches --ui-primary #264f73; green is the approval tone.
+        private static readonly double[] Navy = { 0.149, 0.31, 0.451 };
+        private static readonly double[] Ink = { 0.075, 0.24, 0.38 };
+        private static readonly double[] Muted = { 0.31, 0.4, 0.48 };
+        private static readonly double[] Green = { 0.125, 0.376, 0.267 };
+        private static readonly double[] Gold = { 0.784, 0.639, 0.286 };
 
         public static string ReportUrl(string completionId)
         {
@@ -35,75 +48,87 @@ namespace InternshipManagementSystem.Services
             return ReportUrl(completionId) + "&doc=certificate";
         }
 
-        /// <summary>The official Internship Completion Report (card A13).
+        /// <summary>Same document, sent as a file download instead of opening in the browser.</summary>
+        public static string DownloadUrl(string url)
+        {
+            return url + "&download=1";
+        }
+
+        /// <summary>The Internship Completion Report (card A13).
         /// Returns null while the record is not approved.</summary>
         public static byte[] GenerateCompletionReport(CompletionRecord record, Student student,
                                                       Placement placement, string coordinatorName)
         {
             if (record == null || student == null || placement == null) return null;
             if (record.Status != CompletionStatus.Approved) return null;
+            Details d = Details.From(record, student, placement, coordinatorName);
 
             SimplePdf pdf = new SimplePdf(595, 842);   // A4 portrait
             double left = 56, right = 539;
 
             // Header band
-            pdf.FillRect(0, 752, 595, 90, 0.10, 0.23, 0.42);
-            pdf.Text(left, 806, 18, true, Constants.UniversityName, 1, 1, 1);
-            pdf.Text(left, 786, 11, false, Constants.CollegeName + "  -  Internship Office", 1, 1, 1);
-            pdf.Text(left, 768, 9, false, Constants.UniversityWebsite, 0.85, 0.9, 1);
+            pdf.FillRect(0, 760, 595, 82, Navy[0], Navy[1], Navy[2]);
+            pdf.FillRect(0, 757, 595, 3, Gold[0], Gold[1], Gold[2]);
+            pdf.Text(left, 812, 17, true, Constants.UniversityName, 1, 1, 1);
+            pdf.Text(left, 794, 10.5, false, Constants.CollegeName, 0.88, 0.92, 0.97);
+            pdf.Text(left, 777, 9, false, "University Internship Management System (UIMS)", 0.78, 0.85, 0.93);
 
-            pdf.Text(left, 712, 18, true, "Official Internship Completion Report");
-            pdf.Text(left, 692, 10, false, "Reference: " + Reference(record) + "     Issued: " + Date(record.ApprovedAt), 0.35, 0.42, 0.5);
-            pdf.Line(left, 680, right, 680, 0.8);
+            pdf.Text(left, 718, 20, true, "Internship Completion Report", Ink[0], Ink[1], Ink[2]);
+            pdf.Text(left, 699, 9.5, false, "Reference " + Reference(record) + "     Approved " + LongDate(record.ApprovedAt),
+                Muted[0], Muted[1], Muted[2]);
+            pdf.Line(left, 688, 420, 688, 0.6);
 
-            double y = 652;
+            // Approval mark, top right, static (never animated in a PDF).
+            Stamp(pdf, 486, 708, record.ApprovedAt, 0.82);
+
+            double y = 660;
             y = Section(pdf, left, y, "Student");
-            y = Row(pdf, left, y, "Full name", student.FullName);
-            y = Row(pdf, left, y, "Student number", student.StudentNumber);
-            y = Row(pdf, left, y, "Programme", student.Major);
-            y = Row(pdf, left, y, "Email", student.Email);
+            y = Row(pdf, left, y, "Full name", d.StudentName);
+            y = Row(pdf, left, y, "Student number", d.StudentNumber);
+            y = Row(pdf, left, y, "Academic programme", d.ProgramLine);
 
-            y = Section(pdf, left, y - 10, "Internship");
-            y = Row(pdf, left, y, "Company", placement.CompanyName);
-            y = Row(pdf, left, y, "Position", placement.OpportunityTitle);
-            y = Row(pdf, left, y, "Company supervisor", placement.CompanySupervisorName);
-            y = Row(pdf, left, y, "Training period", Date(placement.StartDate) + "  to  " + Date(placement.EndDate));
-            y = Row(pdf, left, y, "Approved training hours", record.ApprovedHours + " of " + record.RequiredHours + " required hours");
+            y = Section(pdf, left, y - 12, "Internship");
+            y = Row(pdf, left, y, "Internship type", d.TypeLine);
+            y = Row(pdf, left, y, "Company", d.CompanyName);
+            y = Row(pdf, left, y, "Position", d.OpportunityTitle);
+            y = Row(pdf, left, y, "Training period", LongDate(d.Start) + "  to  " + LongDate(d.End));
+            y = Row(pdf, left, y, d.International ? "Verified duration" : "Verified training hours", d.VerifiedLine);
 
-            y = Section(pdf, left, y - 10, "Final result");
-            pdf.FillRect(left, y - 46, right - left, 56, 0.94, 0.96, 0.99);
-            pdf.Text(left + 16, y - 12, 10, false, "Final score", 0.35, 0.42, 0.5);
-            pdf.Text(left + 16, y - 36, 22, true, record.FinalScore.ToString("0.##", CultureInfo.InvariantCulture) + "%");
-            pdf.Text(left + 220, y - 12, 10, false, "Result", 0.35, 0.42, 0.5);
+            // Outcome
+            y = Section(pdf, left, y - 12, "Outcome");
+            pdf.FillRect(left, y - 52, right - left, 64, 0.94, 0.97, 0.95);
+            pdf.Rect(left, y - 52, right - left, 64, 0.6, 0.78, 0.87, 0.81);
+            pdf.Text(left + 16, y - 10, 10, false, "Released final result", Muted[0], Muted[1], Muted[2]);
             bool pass = record.Result == "Pass";
-            pdf.Text(left + 220, y - 36, 22, true, record.Result ?? "-", pass ? 0.09 : 0.65, pass ? 0.45 : 0.15, pass ? 0.24 : 0.15);
-            y -= 66;
+            pdf.Text(left + 16, y - 40, 26, true, Clean(record.Result), pass ? Green[0] : 0.65, pass ? Green[1] : 0.17, pass ? Green[2] : 0.21);
+            pdf.Text(left + 200, y - 10, 10, false, "Supporting score", Muted[0], Muted[1], Muted[2]);
+            pdf.Text(left + 200, y - 38, 17, true, record.FinalScore.ToString("0.##", CultureInfo.InvariantCulture) + "%", Ink[0], Ink[1], Ink[2]);
+            pdf.Text(left + 320, y - 10, 10, false, "Completion decision", Muted[0], Muted[1], Muted[2]);
+            pdf.Text(left + 320, y - 38, 15, true, "Approved", Green[0], Green[1], Green[2]);
+            y -= 72;
             y = Paragraph(pdf, left, y, 9, right - left,
-                "The final score combines graded tasks (" + GradingPolicy.TaskComponentWeight + "%), the company final evaluation ("
-                + GradingPolicy.CompanyFinalWeight + "%) and the academic final evaluation (" + GradingPolicy.AcademicFinalWeight
-                + "%). The pass mark is " + GradingPolicy.PassMarkPercent + "%.");
+                "The supporting score uses the UIMS project-proposed evaluation method " + Clean(record.EvaluationMethod ?? EvaluationMethod.Id)
+                + " (graded tasks " + GradingPolicy.TaskComponentWeight + "%, company final evaluation " + GradingPolicy.CompanyFinalWeight
+                + "%, academic final evaluation " + GradingPolicy.AcademicFinalWeight + "%, pass mark " + GradingPolicy.PassMarkPercent
+                + "%). These weights are a project proposal, not a published GJU grading policy. The coordinator's completion decision is "
+                + "recorded separately from the score.", Muted);
 
             if (!string.IsNullOrWhiteSpace(record.CoordinatorNote))
             {
-                y = Section(pdf, left, y - 10, "Coordinator remarks");
-                y = Paragraph(pdf, left, y, 10, right - left, record.CoordinatorNote);
+                y = Section(pdf, left, y - 12, "Coordinator remarks");
+                y = Paragraph(pdf, left, y, 11.5, right - left, record.CoordinatorNote, Ink, 4);
             }
 
-            y = Section(pdf, left, y - 10, "Approval");
-            y = Paragraph(pdf, left, y, 10, right - left,
-                "The University Internship Coordinator reviewed the company and academic final evaluations and the university's "
-                + "requirements, and approved the completion of this internship on " + Date(record.ApprovedAt) + ".");
+            y = Section(pdf, left, y - 12, "Coordinator decision");
+            y = Row(pdf, left, y, "Decision", "Internship completion approved in UIMS");
+            y = Row(pdf, left, y, "Recorded by", d.CoordinatorName + " (University Internship Coordinator, UIMS role)");
+            y = Row(pdf, left, y, "Recorded on", LongDate(record.ApprovedAt));
+            y = Paragraph(pdf, left, y - 6, 10, right - left,
+                "Before approval the coordinator reviewed the company and academic final evaluations, the approved training record "
+                + "and the requirements listed for this internship type, each with a written evidence reference.", Muted);
 
-            // Signature
-            double signY = Math.Min(y - 40, 150);
-            pdf.Line(left, signY, left + 200, signY, 0.6);
-            pdf.Text(left, signY - 14, 10, true, coordinatorName);
-            pdf.Text(left, signY - 28, 9, false, "University Internship Coordinator", 0.35, 0.42, 0.5);
-
-            pdf.Line(left, 60, right, 60, 0.5);
-            pdf.Text(left, 46, 8, false, "Issued by the University Internship Management System. Reference " + Reference(record) + ".", 0.45, 0.5, 0.56);
-
-            return pdf.ToBytes("Internship Completion Report - " + student.FullName);
+            Footer(pdf, left, right, record);
+            return pdf.ToBytes("Internship Completion Report - " + d.StudentName);
         }
 
         /// <summary>The printable completion certificate (card A14).</summary>
@@ -112,38 +137,45 @@ namespace InternshipManagementSystem.Services
         {
             if (record == null || student == null || placement == null) return null;
             if (record.Status != CompletionStatus.Approved) return null;
+            Details d = Details.From(record, student, placement, coordinatorName);
 
             SimplePdf pdf = new SimplePdf(842, 595);   // A4 landscape
             double centre = 421;
 
-            pdf.Rect(24, 24, 794, 547, 3, 0.10, 0.23, 0.42);
-            pdf.Rect(34, 34, 774, 527, 0.8, 0.72, 0.6, 0.3);
+            pdf.FillRect(0, 0, 842, 595, 0.988, 0.984, 0.972);
+            pdf.Rect(22, 22, 798, 551, 2.5, Navy[0], Navy[1], Navy[2]);
+            pdf.Rect(31, 31, 780, 533, 0.8, Gold[0], Gold[1], Gold[2]);
 
-            pdf.CentredText(centre, 510, 15, true, Constants.UniversityName.ToUpperInvariant(), 0.10, 0.23, 0.42);
-            pdf.CentredText(centre, 490, 10, false, Constants.CollegeName, 0.35, 0.42, 0.5);
+            pdf.CentredText(centre, 520, 14, true, Constants.UniversityName.ToUpperInvariant(), Navy[0], Navy[1], Navy[2]);
+            pdf.CentredText(centre, 502, 10, false, Constants.CollegeName + "  -  University Internship Management System (UIMS)", Muted[0], Muted[1], Muted[2]);
+            pdf.LineColour(centre - 60, 488, centre + 60, 488, 1.2, Gold[0], Gold[1], Gold[2]);
 
-            pdf.CentredText(centre, 430, 30, true, "Certificate of Internship Completion");
-            pdf.CentredText(centre, 390, 12, false, "This is to certify that", 0.35, 0.42, 0.5);
-            pdf.CentredText(centre, 352, 26, true, student.FullName, 0.10, 0.23, 0.42);
-            pdf.Line(centre - 200, 342, centre + 200, 342, 0.6);
-            pdf.CentredText(centre, 322, 11, false, "Student number " + Clean(student.StudentNumber) + "  -  " + Clean(student.Major), 0.35, 0.42, 0.5);
+            pdf.CentredText(centre, 444, 30, true, "Certificate of Internship Completion", Ink[0], Ink[1], Ink[2]);
+            pdf.CentredText(centre, 408, 12, false, "This UIMS record certifies that", Muted[0], Muted[1], Muted[2]);
+            pdf.CentredText(centre, 370, 26, true, d.StudentName, Navy[0], Navy[1], Navy[2]);
+            pdf.Line(centre - 210, 360, centre + 210, 360, 0.6);
+            pdf.CentredText(centre, 341, 11, false, "Student number " + d.StudentNumber + "  -  " + d.ProgramLine, Muted[0], Muted[1], Muted[2]);
 
-            pdf.CentredText(centre, 284, 13, false, "has successfully completed " + record.ApprovedHours + " approved training hours as");
-            pdf.CentredText(centre, 264, 13, true, Clean(placement.OpportunityTitle) + "  at  " + Clean(placement.CompanyName));
-            pdf.CentredText(centre, 244, 13, false, "from " + Date(placement.StartDate) + " to " + Date(placement.EndDate) + ", with a final result of "
-                + (record.Result ?? "-") + ".");
+            pdf.CentredText(centre, 304, 13, false, "has completed " + d.CompletedLine + " as");
+            pdf.CentredText(centre, 284, 13, true, d.OpportunityTitle + "  at  " + d.CompanyName);
+            pdf.CentredText(centre, 264, 13, false, "from " + LongDate(d.Start) + " to " + LongDate(d.End) + ", with a released result of " + Clean(record.Result) + ".");
 
-            pdf.Line(110, 140, 330, 140, 0.6);
-            pdf.CentredText(220, 124, 10, true, coordinatorName);
-            pdf.CentredText(220, 110, 9, false, "University Internship Coordinator", 0.35, 0.42, 0.5);
+            Stamp(pdf, centre, 172, record.ApprovedAt, 1);
 
-            pdf.Line(512, 140, 732, 140, 0.6);
-            pdf.CentredText(622, 124, 10, true, Date(record.ApprovedAt));
-            pdf.CentredText(622, 110, 9, false, "Date of approval", 0.35, 0.42, 0.5);
+            pdf.Line(96, 132, 316, 132, 0.6);
+            pdf.CentredText(206, 116, 10, true, d.CoordinatorName);
+            pdf.CentredText(206, 102, 8.5, false, "Approved in UIMS by the University Internship Coordinator", Muted[0], Muted[1], Muted[2]);
 
-            pdf.CentredText(centre, 60, 8, false, "Reference " + Reference(record) + "  -  " + Constants.UniversityWebsite, 0.45, 0.5, 0.56);
+            pdf.Line(526, 132, 746, 132, 0.6);
+            pdf.CentredText(636, 116, 10, true, LongDate(record.ApprovedAt));
+            pdf.CentredText(636, 102, 8.5, false, "Date of approval  -  Reference " + Reference(record), Muted[0], Muted[1], Muted[2]);
 
-            return pdf.ToBytes("Internship Completion Certificate - " + student.FullName);
+            pdf.CentredText(centre, 58, 7.5, false,
+                "UIMS-generated project record. It is not an official GJU certificate or transcript and carries no university seal or signature.",
+                0.45, 0.5, 0.56);
+            pdf.CentredText(centre, 46, 7.5, false, "Record " + Clean(record.Id) + "  -  " + Constants.UniversityWebsite, 0.45, 0.5, 0.56);
+
+            return pdf.ToBytes("Internship Completion Certificate - " + d.StudentName);
         }
 
         /// <summary>Authorisation gate for card A16. Call this before serving
@@ -152,7 +184,8 @@ namespace InternshipManagementSystem.Services
         {
             if (record == null || requester == null) return false;
             if (requester.Role == Common.UserRole.Coordinator) return record.Status == CompletionStatus.Approved;
-            return record.IsReleasedToStudent() && record.StudentId == requester.Id;
+            return requester.Role == Common.UserRole.Student
+                   && record.IsReleasedToStudent() && record.StudentId == requester.Id;
         }
 
         public static string Reference(CompletionRecord record)
@@ -161,33 +194,113 @@ namespace InternshipManagementSystem.Services
             return "UIMS-" + (id.Length > 8 ? id.Substring(id.Length - 8) : id);
         }
 
+        // ---- the static approval mark ---------------------------------------
+        /// <summary>A circular "UIMS - APPROVED" status mark. Plain shapes and
+        /// text only: not a seal, crest or signature.</summary>
+        private static void Stamp(SimplePdf pdf, double cx, double cy, long approvedAt, double k)
+        {
+            const double angle = -9;
+            double r = Green[0], g = Green[1], b = Green[2];
+            pdf.Circle(cx, cy, 52 * k, 2.2 * k, r, g, b);
+            pdf.Circle(cx, cy, 46 * k, 0.7, r, g, b);
+            pdf.RotatedLine(cx, cy, -38 * k, 9 * k, 38 * k, 9 * k, angle, 0.7, r, g, b);
+            pdf.RotatedLine(cx, cy, -38 * k, -10 * k, 38 * k, -10 * k, angle, 0.7, r, g, b);
+            pdf.RotatedCentredText(cx, cy, 20 * k, 8 * k, true, "UIMS", angle, r, g, b);
+            pdf.RotatedCentredText(cx, cy, -4.5 * k, 11.5 * k, true, "APPROVED", angle, r, g, b);
+            pdf.RotatedCentredText(cx, cy, -26 * k, 6.5 * k, false, approvedAt > 0 ? ShortDate(approvedAt) : "COMPLETION", angle, r, g, b);
+        }
+
+        private static void Footer(SimplePdf pdf, double left, double right, CompletionRecord record)
+        {
+            pdf.Line(left, 66, right, 66, 0.5);
+            pdf.Text(left, 52, 7.5, false,
+                "UIMS-generated project record (reference " + Reference(record) + "). Not an official GJU transcript or certificate;",
+                0.45, 0.5, 0.56);
+            pdf.Text(left, 41, 7.5, false,
+                "it carries no university seal or signature. Final confidential evaluation forms are not included.", 0.45, 0.5, 0.56);
+        }
+
+        /// <summary>Values printed on the documents: the approval snapshot
+        /// first, live profile data only for records approved before snapshots existed.</summary>
+        private class Details
+        {
+            public string StudentName, StudentNumber, ProgramLine, TypeLine, CompanyName, OpportunityTitle, CoordinatorName;
+            public string VerifiedLine, CompletedLine;
+            public long Start, End;
+            public bool International;
+
+            public static Details From(CompletionRecord r, Student s, Placement p, string coordinatorName)
+            {
+                Details d = new Details();
+                d.StudentName = Clean(r.StudentName ?? s.FullName);
+                d.StudentNumber = Clean(r.StudentNumber ?? s.StudentNumber);
+                string programName = r.Program ?? s.Major;
+                AcademicProgram program = AcademicPrograms.Find(programName);
+                d.International = (r.InternshipType ?? InternshipTypes.Of(p)) == InternshipTypes.International;
+                d.ProgramLine = program == null ? Clean(programName)
+                    : program.Name + (d.International ? "" : "  (local training course " + program.LocalCourse + ")");
+                d.TypeLine = d.International ? "International internship (German Year)" : "Local field training";
+                d.CompanyName = Clean(r.CompanyName ?? p.CompanyName);
+                d.OpportunityTitle = Clean(r.OpportunityTitle ?? p.OpportunityTitle);
+                d.Start = r.TrainingStart > 0 ? r.TrainingStart : p.StartDate;
+                d.End = r.TrainingEnd > 0 ? r.TrainingEnd : p.EndDate;
+                d.CoordinatorName = Clean(r.CoordinatorName ?? coordinatorName ?? "Internship Coordinator");
+                double weeks = d.Start > 0 && d.End > d.Start ? (d.End - d.Start) / (7.0 * 24 * 3600 * 1000) : 0;
+                if (d.International)
+                {
+                    d.VerifiedLine = weeks > 0 ? weeks.ToString("0.#", CultureInfo.InvariantCulture) + " weeks (minimum "
+                        + InternshipRules.InternationalMinimumWeeks + " weeks full time)" : "-";
+                    d.CompletedLine = weeks > 0 ? weeks.ToString("0.#", CultureInfo.InvariantCulture) + " weeks of full-time internship" : "a full-time internship";
+                }
+                else
+                {
+                    d.VerifiedLine = r.ApprovedHours + " approved of " + r.RequiredHours + " required contact hours";
+                    d.CompletedLine = r.ApprovedHours + " approved training hours";
+                }
+                return d;
+            }
+        }
+
         // ---- layout helpers ------------------------------------------------
         private static double Section(SimplePdf pdf, double x, double y, string title)
         {
-            pdf.Text(x, y, 12, true, title, 0.10, 0.23, 0.42);
-            return y - 20;
+            pdf.Text(x, y, 13, true, title, Navy[0], Navy[1], Navy[2]);
+            pdf.LineColour(x, y - 6, x + 28, y - 6, 1.6, Gold[0], Gold[1], Gold[2]);
+            return y - 26;
         }
 
         private static double Row(SimplePdf pdf, double x, double y, string label, string value)
         {
-            pdf.Text(x, y, 10, false, label, 0.35, 0.42, 0.5);
-            pdf.Text(x + 160, y, 10, false, Clean(value));
-            return y - 17;
+            pdf.Text(x, y, 10.5, false, label, Muted[0], Muted[1], Muted[2]);
+            pdf.Text(x + 160, y, 11.5, false, Clean(value), Ink[0], Ink[1], Ink[2]);
+            return y - 21;
         }
 
-        private static double Paragraph(SimplePdf pdf, double x, double y, double size, double width, string text)
+        /// <summary>Wrapped text. maxLines keeps long remarks from running into the footer.</summary>
+        private static double Paragraph(SimplePdf pdf, double x, double y, double size, double width, string text, double[] colour, int maxLines = 0)
         {
-            foreach (string line in SimplePdf.Wrap(text, size, width))
+            List<string> lines = SimplePdf.Wrap(text, size, width);
+            if (maxLines > 0 && lines.Count > maxLines)
             {
-                pdf.Text(x, y, size, false, line);
+                lines = lines.GetRange(0, maxLines);
+                lines[maxLines - 1] = lines[maxLines - 1].TrimEnd() + " ...";
+            }
+            foreach (string line in lines)
+            {
+                pdf.Text(x, y, size, false, line, colour[0], colour[1], colour[2]);
                 y -= size * 1.5;
             }
             return y;
         }
 
-        private static string Date(long ms)
+        private static string LongDate(long ms)
         {
-            return ms > 0 ? Time.DisplayDate(ms) : "-";
+            return ms > 0 ? Time.FromUnixMs(ms).ToLocalTime().ToString("d MMMM yyyy", CultureInfo.InvariantCulture) : "-";
+        }
+
+        private static string ShortDate(long ms)
+        {
+            return Time.FromUnixMs(ms).ToLocalTime().ToString("dd MMM yyyy", CultureInfo.InvariantCulture).ToUpperInvariant();
         }
 
         private static string Clean(string value)
@@ -197,9 +310,9 @@ namespace InternshipManagementSystem.Services
     }
 
     /// <summary>
-    /// A very small PDF writer: text in the built-in Helvetica fonts, lines and
-    /// rectangles. Enough for a one-page report, with no NuGet package.
-    /// Coordinates are in points from the bottom-left corner of the page.
+    /// A very small PDF writer: text in the built-in Helvetica fonts, lines,
+    /// rectangles and circles. Enough for a one-page report, with no NuGet
+    /// package. Coordinates are in points from the bottom-left of the page.
     /// </summary>
     public class SimplePdf
     {
@@ -226,10 +339,48 @@ namespace InternshipManagementSystem.Services
             Text(centreX - TextWidth(text, size, bold) / 2, y, size, bold, text, r, g, b);
         }
 
+        /// <summary>Text centred on (cx, cy + offset) in a frame rotated by
+        /// <paramref name="degrees"/> around (cx, cy).</summary>
+        public void RotatedCentredText(double cx, double cy, double offsetY, double size, bool bold, string text,
+                                       double degrees, double r, double g, double b)
+        {
+            double a = degrees * Math.PI / 180, cos = Math.Cos(a), sin = Math.Sin(a);
+            double lx = -TextWidth(text, size, bold) / 2, ly = offsetY;
+            double x = cx + lx * cos - ly * sin, y = cy + lx * sin + ly * cos;
+            content.AppendFormat("BT {0} rg /{1} {2} Tf {3} {4} {5} {6} {7} {8} Tm ({9}) Tj ET\n",
+                Colour(r, g, b), bold ? "F2" : "F1", N(size), N(cos), N(sin), N(-sin), N(cos), N(x), N(y), Escape(text));
+        }
+
         public void Line(double x1, double y1, double x2, double y2, double lineWidth)
         {
             content.AppendFormat("0.6 0.65 0.7 RG {0} w {1} {2} m {3} {4} l S\n",
                 N(lineWidth), N(x1), N(y1), N(x2), N(y2));
+        }
+
+        public void LineColour(double x1, double y1, double x2, double y2, double lineWidth, double r, double g, double b)
+        {
+            content.AppendFormat("{0} RG {1} w {2} {3} m {4} {5} l S\n",
+                Colour(r, g, b), N(lineWidth), N(x1), N(y1), N(x2), N(y2));
+        }
+
+        /// <summary>A line given in a frame rotated around (cx, cy).</summary>
+        public void RotatedLine(double cx, double cy, double x1, double y1, double x2, double y2,
+                                double degrees, double lineWidth, double r, double g, double b)
+        {
+            double a = degrees * Math.PI / 180, cos = Math.Cos(a), sin = Math.Sin(a);
+            LineColour(cx + x1 * cos - y1 * sin, cy + x1 * sin + y1 * cos,
+                       cx + x2 * cos - y2 * sin, cy + x2 * sin + y2 * cos, lineWidth, r, g, b);
+        }
+
+        /// <summary>A stroked circle drawn with four Bezier curves.</summary>
+        public void Circle(double cx, double cy, double radius, double lineWidth, double r, double g, double b)
+        {
+            double k = 0.5523 * radius;
+            content.AppendFormat("{0} RG {1} w {2} {3} m ", Colour(r, g, b), N(lineWidth), N(cx + radius), N(cy));
+            content.AppendFormat("{0} {1} {2} {3} {4} {5} c ", N(cx + radius), N(cy + k), N(cx + k), N(cy + radius), N(cx), N(cy + radius));
+            content.AppendFormat("{0} {1} {2} {3} {4} {5} c ", N(cx - k), N(cy + radius), N(cx - radius), N(cy + k), N(cx - radius), N(cy));
+            content.AppendFormat("{0} {1} {2} {3} {4} {5} c ", N(cx - radius), N(cy - k), N(cx - k), N(cy - radius), N(cx), N(cy - radius));
+            content.AppendFormat("{0} {1} {2} {3} {4} {5} c S\n", N(cx + k), N(cy - radius), N(cx + radius), N(cy - k), N(cx + radius), N(cy));
         }
 
         public void Rect(double x, double y, double w, double h, double lineWidth, double r, double g, double b)

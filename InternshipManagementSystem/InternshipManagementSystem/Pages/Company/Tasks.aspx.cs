@@ -288,9 +288,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             List<CompanyTaskRow> rows = new List<CompanyTaskRow>();
 
             // نقرأ المهام والتسليمات ثم نعرض ما يخص شركة المشرف فقط.
+            // Speed: tasks and submissions are read at the same time.
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Tasks),
+                FirebaseRead.Node(Constants.Paths.Submissions));
             List<InternshipTask> tasks = new TaskRepository().GetAll();
             List<Submission> submissions = new SubmissionRepository().GetAll();
             PlacementRepository placements = new PlacementRepository();
+
+            // Speed: then each task's placement, all at the same time.
+            List<FirebaseRead> placementReads = new List<FirebaseRead>();
+            foreach (InternshipTask task in tasks)
+            {
+                if (task.CompanyId == CurrentSupervisor.CompanyId && ApplicationRepository.IsValidKey(task.PlacementId))
+                    placementReads.Add(FirebaseRead.Node(Constants.Paths.Placements + "/" + task.PlacementId));
+            }
+            FirebaseContext.Prefetch(placementReads);
 
             foreach (InternshipTask task in tasks)
             {

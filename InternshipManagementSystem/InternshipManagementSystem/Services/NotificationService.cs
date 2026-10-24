@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -15,17 +16,20 @@ using InternshipManagementSystem.Security;
 namespace InternshipManagementSystem.Services
 {
     /// <summary>
-    /// One method per workflow event. The repositories call these right after
-    /// a successful save, so a page that saves through a repository gets its
-    /// notification for free.
+    /// One method per workflow event. The repositories (and a few pages) call
+    /// these right after a successful save.
     ///
-    /// A notification is a nice-to-have: if sending one fails (for example the
-    /// database rules are missing), the error is logged and the real action
-    /// still succeeds. Never let a notification break a save.
+    /// Each notification stores a Key such as "ApplicationSubmitted" plus a few
+    /// Args (names, titles). The text lives in Shared.resx / Shared.ar.resx as
+    /// "Notify.{Key}.Title" and "Notify.{Key}.Message", so every person reads it
+    /// in their own language. The English text is saved too, as a fallback.
+    ///
+    /// A notification never breaks a save: if sending fails (for example the
+    /// database rules are missing) the error is logged and the action still succeeds.
     /// </summary>
     public static class NotificationService
     {
-        // Notification types - the bell picks an icon from these.
+        // Notification types - the bell picks an icon and a label from these.
         public const string TypeTask = "Task";
         public const string TypeGroup = "Group";
         public const string TypeApplication = "Application";
@@ -36,6 +40,68 @@ namespace InternshipManagementSystem.Services
         public const string TypeMeeting = "Meeting";
         public const string TypeOpportunity = "Opportunity";
         public const string TypeCompletion = "Completion";
+        public const string TypeAccount = "Account";
+
+        // ------------------------------------------------------------------
+        //  Text shown to the reader (bell, toast and Notifications page)
+        // ------------------------------------------------------------------
+
+        public static string TitleOf(Notification item)
+        {
+            if (item == null) return "";
+            string id = "Shared.Notify." + item.Key + ".Title";
+            if (!string.IsNullOrEmpty(item.Key) && L.Has(id)) return L.T(id);
+            return item.Title ?? "";
+        }
+
+        public static string MessageOf(Notification item)
+        {
+            if (item == null) return "";
+            string id = "Shared.Notify." + item.Key + ".Message";
+            if (!string.IsNullOrEmpty(item.Key) && L.Has(id))
+            {
+                try
+                {
+                    object[] args = (item.Args ?? new List<string>()).Cast<object>().ToArray();
+                    return string.Format(CultureInfo.CurrentCulture, L.T(id), args);
+                }
+                catch (FormatException) { }
+            }
+            return item.Message ?? "";
+        }
+
+        /// <summary>Short category name, for example "Application" / "طلب تدريب".</summary>
+        public static string TypeLabel(string type)
+        {
+            string id = "Shared.Notify.Type." + type;
+            return !string.IsNullOrEmpty(type) && L.Has(id) ? L.T(id) : L.T("Shared.Notify.Type.General");
+        }
+
+        // ------------------------------------------------------------------
+        //  Delivery health - shown in the bell when the rules block notifications
+        // ------------------------------------------------------------------
+
+        /// <summary>True after a notification was refused by the Firebase rules
+        /// ("Permission denied"). Cleared by the next one that is saved.</summary>
+        public static bool BlockedByRules { get; private set; }
+
+        private static void RecordFailure(Notification notification, Exception ex)
+        {
+            string reason = ex == null ? "" : ex.Message;
+            if (reason.IndexOf("Permission denied", StringComparison.OrdinalIgnoreCase) >= 0)
+            {
+                BlockedByRules = true;
+                // Trace.TraceError shows in the Visual Studio Output window.
+                Trace.TraceError("[UIMS notifications] Firebase refused notification '{0}' for {1}. " +
+                    "Publish the \"notifications\" rule from docs/05-firebase-setup.md in Firebase > Realtime Database > Rules.",
+                    notification.Key, notification.RecipientId);
+            }
+            else
+            {
+                Trace.TraceError("[UIMS notifications] '{0}' was not sent to {1}: {2}",
+                    notification.Key, notification.RecipientId, reason);
+            }
+        }
 
         // ------------------------------------------------------------------
         //  Basic sending
@@ -43,55 +109,114 @@ namespace InternshipManagementSystem.Services
 
         /// <summary>Sends one notification. Nothing is sent to the person who
         /// did the action themselves.</summary>
-        public static void Send(string recipientId, string type, string title, string message, string link)
+        public static void Send(string recipientId, string type, string key, string link, params string[] args)
         {
             if (string.IsNullOrEmpty(recipientId)) return;
             Person current = SessionHelper.Current;
             if (current != null && current.Id == recipientId) return;
 
+            List<string> values = (args ?? new string[0]).Select(a => a ?? "").ToList();
+            var notification = new Notification
+            {
+                RecipientId = recipientId,
+                Type = type,
+                Key = key,
+                Args = values,
+                Title = L.InEnglish("Shared.Notify." + key + ".Title"),
+                Message = EnglishMessage(key, values),
+                Link = link,
+                IsRead = false
+            };
+
+            // Inside an event (see Safely) the notifications are collected and
+            // saved together at the end, in one request.
+            if (pending != null)
+            {
+                if (!pending.Any(n => n.RecipientId == recipientId && n.Key == key && n.Link == link)) pending.Add(notification);
+                return;
+            }
+            SaveOne(notification);
+        }
+
+        private static string EnglishMessage(string key, List<string> values)
+        {
+            string format = L.InEnglish("Shared.Notify." + key + ".Message");
+            try { return string.Format(CultureInfo.InvariantCulture, format, values.Cast<object>().ToArray()); }
+            catch (FormatException) { return format; }
+        }
+
+        private static void SaveOne(Notification notification)
+        {
             try
             {
-                new NotificationRepository().Add(new Notification
-                {
-                    RecipientId = recipientId,
-                    Type = type,
-                    Title = title,
-                    Message = message,
-                    Link = link,
-                    IsRead = false
-                });
+                new NotificationRepository().Add(notification);
+                BlockedByRules = false;
             }
             catch (Exception ex)
             {
-                Trace.TraceWarning("Notification '{0}' was not sent to {1}: {2}", title, recipientId, ex.Message);
+                RecordFailure(notification, ex);
             }
         }
 
-        /// <summary>Runs one event safely: a failed lookup only skips the notification.</summary>
+        /// <summary>Notifications collected by the event that is running now.
+        /// One per thread, and a web request runs on one thread.</summary>
+        [ThreadStatic] private static List<Notification> pending;
+
+        /// <summary>Runs one event safely: a failed lookup only skips the notification.
+        /// Everything the event sends is saved at the end in ONE request.</summary>
         private static void Safely(string eventName, Action action)
         {
+            bool outermost = pending == null;
+            if (outermost) pending = new List<Notification>();
             try
             {
                 action();
             }
             catch (Exception ex)
             {
-                Trace.TraceWarning("Notification event {0} skipped: {1}", eventName, ex.Message);
+                Trace.TraceError("[UIMS notifications] Event {0} skipped: {1}", eventName, ex.Message);
+            }
+            finally
+            {
+                if (outermost)
+                {
+                    List<Notification> batch = pending;
+                    pending = null;
+                    SaveAll(batch);
+                }
             }
         }
 
-        private static void SendToCoordinators(string type, string title, string message, string link)
+        private static void SaveAll(List<Notification> batch)
+        {
+            if (batch.Count == 0) return;
+            if (batch.Count == 1) { SaveOne(batch[0]); return; }
+            try
+            {
+                new NotificationRepository().AddMany(batch);
+                BlockedByRules = false;
+            }
+            catch (Exception ex)
+            {
+                // A multi-path update is all or nothing; fall back to one by one
+                // so a single bad recipient does not stop the others.
+                Trace.TraceWarning("Batched notifications failed, sending one by one: " + ex.Message);
+                foreach (Notification notification in batch) SaveOne(notification);
+            }
+        }
+
+        private static void SendToCoordinators(string type, string key, string link, params string[] args)
         {
             foreach (Person coordinator in new UserRepository().GetByRole(UserRole.Coordinator))
             {
-                if (coordinator.IsActive) Send(coordinator.Id, type, title, message, link);
+                if (coordinator.IsActive) Send(coordinator.Id, type, key, link, args);
             }
         }
 
         private static string NameOf(string userId)
         {
             Person person = new UserRepository().GetPerson(userId);
-            return person == null || string.IsNullOrWhiteSpace(person.FullName) ? "A student" : person.FullName;
+            return person == null || string.IsNullOrWhiteSpace(person.FullName) ? L.InEnglish("Shared.Notify.AStudent") : person.FullName;
         }
 
         private static string Shorten(string text, int length)
@@ -100,9 +225,19 @@ namespace InternshipManagementSystem.Services
             return text.Length <= length ? text : text.Substring(0, length).TrimEnd() + "…";
         }
 
+        private static string With(string page, string name, string value)
+        {
+            return string.IsNullOrEmpty(value) ? page : page + "?" + name + "=" + Uri.EscapeDataString(value);
+        }
+
         private static string WithId(string page, string id)
         {
-            return string.IsNullOrEmpty(id) ? page : page + "?id=" + Uri.EscapeDataString(id);
+            return With(page, "id", id);
+        }
+
+        private static string Number(double value)
+        {
+            return value.ToString("0.##", CultureInfo.InvariantCulture);
         }
 
         // ------------------------------------------------------------------
@@ -128,25 +263,42 @@ namespace InternshipManagementSystem.Services
                 {
                     Student student = person as Student;
                     if (student == null || !student.IsActive || !opportunity.IsEligible(student)) continue;
-                    Send(student.Id, TypeOpportunity, "New internship opportunity",
-                        companyName + " posted \"" + opportunity.Title + "\".",
-                        WithId("~/Pages/Student/OpportunityDetails.aspx", opportunity.Id));
+                    Send(student.Id, TypeOpportunity, "OpportunityPublished",
+                        WithId("~/Pages/Student/OpportunityDetails.aspx", opportunity.Id),
+                        companyName, opportunity.Title);
                 }
             });
         }
 
-        /// <summary>A student applied: tell the company's supervisors.</summary>
+        /// <summary>A student applied: tell every active supervisor of that company,
+        /// and the supervisor who posted the opportunity.</summary>
         public static void ApplicationSubmitted(InternshipApplication application)
         {
             Safely("ApplicationSubmitted", () =>
             {
+                var recipients = new HashSet<string>();
                 foreach (Person person in new UserRepository().GetByRole(UserRole.CompanySupervisor))
                 {
                     CompanySupervisor supervisor = person as CompanySupervisor;
-                    if (supervisor == null || !supervisor.IsActive || supervisor.CompanyId != application.CompanyId) continue;
-                    Send(supervisor.Id, TypeApplication, "New application",
-                        application.StudentName + " applied for \"" + application.OpportunityTitle + "\".",
-                        "~/Pages/Company/Applications.aspx");
+                    if (supervisor != null && supervisor.IsActive && supervisor.CompanyId == application.CompanyId)
+                        recipients.Add(supervisor.Id);
+                }
+
+                Opportunity opportunity = new OpportunityRepository().GetById(application.OpportunityId);
+                if (opportunity != null && !string.IsNullOrEmpty(opportunity.CreatedBySupervisorId))
+                    recipients.Add(opportunity.CreatedBySupervisorId);
+
+                if (recipients.Count == 0)
+                {
+                    Trace.TraceWarning("[UIMS notifications] No company supervisor found for company {0}; nobody was told about application {1}.",
+                        application.CompanyId, application.Id);
+                }
+
+                foreach (string id in recipients)
+                {
+                    Send(id, TypeApplication, "ApplicationSubmitted",
+                        With("~/Pages/Company/Applications.aspx", "focus", application.Id),
+                        application.StudentName, application.OpportunityTitle);
                 }
             });
         }
@@ -156,18 +308,16 @@ namespace InternshipManagementSystem.Services
         {
             Safely("ApplicationDecided", () =>
             {
+                string link = With("~/Pages/Student/MyApplications.aspx", "focus", application.Id);
                 if (decision == ApplicationStatus.Accepted)
                 {
-                    Send(application.StudentId, TypeApplication, "Application accepted",
-                        application.CompanyName + " accepted your application for \"" + application.OpportunityTitle
-                        + "\". Confirm the offer in My Applications.",
-                        "~/Pages/Student/MyApplications.aspx");
+                    Send(application.StudentId, TypeApplication, "ApplicationAccepted", link,
+                        application.CompanyName, application.OpportunityTitle);
                 }
                 else if (decision == ApplicationStatus.Rejected)
                 {
-                    Send(application.StudentId, TypeApplication, "Application not accepted",
-                        application.CompanyName + " did not accept your application for \"" + application.OpportunityTitle + "\".",
-                        "~/Pages/Student/MyApplications.aspx");
+                    Send(application.StudentId, TypeApplication, "ApplicationRejected", link,
+                        application.CompanyName, application.OpportunityTitle);
                 }
             });
         }
@@ -178,23 +328,33 @@ namespace InternshipManagementSystem.Services
         {
             Safely("PlacementConfirmed", () =>
             {
-                Send(placement.CompanySupervisorId, TypePlacement, "New trainee",
-                    placement.StudentName + " confirmed the internship \"" + placement.OpportunityTitle + "\".",
-                    WithId("~/Pages/Company/TraineeDetails.aspx", placement.Id));
+                Send(placement.CompanySupervisorId, TypePlacement, "PlacementConfirmedCompany",
+                    WithId("~/Pages/Company/TraineeDetails.aspx", placement.Id),
+                    placement.StudentName, placement.OpportunityTitle);
 
-                Send(placement.AcademicSupervisorId, TypePlacement, "Student placement confirmed",
-                    placement.StudentName + " will train at " + placement.CompanyName + ".",
-                    WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId));
+                Send(placement.AcademicSupervisorId, TypePlacement, "PlacementConfirmedAcademic",
+                    WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId),
+                    placement.StudentName, placement.CompanyName);
 
-                SendToCoordinators(TypePlacement, "Placement confirmed",
-                    placement.StudentName + " confirmed a placement at " + placement.CompanyName + ".",
-                    WithId("~/Pages/Coordinator/PlacementDetails.aspx", placement.Id));
+                SendToCoordinators(TypePlacement, "PlacementConfirmedCoordinator",
+                    WithId("~/Pages/Coordinator/PlacementDetails.aspx", placement.Id),
+                    placement.StudentName, placement.CompanyName);
             });
         }
 
         // ------------------------------------------------------------------
-        //  2. Groups and academic supervisors
+        //  2. Accounts, groups and academic supervisors
         // ------------------------------------------------------------------
+
+        /// <summary>The coordinator created a student account: welcome the student.</summary>
+        public static void StudentAccountCreated(Student student)
+        {
+            Safely("StudentAccountCreated", () =>
+            {
+                if (student == null) return;
+                Send(student.Id, TypeAccount, "WelcomeStudent", "~/Pages/Student/Profile.aspx", student.FullName);
+            });
+        }
 
         /// <summary>The coordinator saved a group. Each person only hears about
         /// what changed for them.</summary>
@@ -207,49 +367,33 @@ namespace InternshipManagementSystem.Services
                 bool supervisorChanged = formerSupervisorId != supervisor.Id;
 
                 foreach (string studentId in addedStudentIds)
-                {
-                    Send(studentId, TypeGroup, "You were added to a group",
-                        "You are now in " + groupName + ". Your academic supervisor is " + supervisor.FullName + ".",
-                        "~/Pages/Student/Dashboard.aspx");
-                }
+                    Send(studentId, TypeGroup, "GroupAdded", "~/Pages/Student/Dashboard.aspx", groupName, supervisor.FullName);
 
                 foreach (string studentId in removedStudentIds)
-                {
-                    Send(studentId, TypeGroup, "Group updated",
-                        "You were removed from " + groupName + ". The coordinator will assign you a new group.",
-                        "~/Pages/Student/Dashboard.aspx");
-                }
+                    Send(studentId, TypeGroup, "GroupRemoved", "~/Pages/Student/Dashboard.aspx", groupName);
 
                 if (supervisorChanged)
                 {
                     foreach (string studentId in keptStudentIds)
-                    {
-                        Send(studentId, TypeGroup, "New academic supervisor",
-                            supervisor.FullName + " is now the academic supervisor of " + groupName + ".",
-                            "~/Pages/Student/Dashboard.aspx");
-                    }
+                        Send(studentId, TypeGroup, "GroupNewSupervisor", "~/Pages/Student/Dashboard.aspx", supervisor.FullName, groupName);
                 }
 
                 int total = addedStudentIds.Count + keptStudentIds.Count;
                 if (supervisorChanged)
                 {
-                    Send(supervisor.Id, TypeGroup, "Group assigned to you",
-                        groupName + " is now assigned to you with " + total + (total == 1 ? " student." : " students."),
-                        "~/Pages/Academic/Dashboard.aspx");
+                    Send(supervisor.Id, TypeGroup, "GroupAssigned", "~/Pages/Academic/Dashboard.aspx",
+                        groupName, total.ToString(CultureInfo.InvariantCulture));
                 }
                 else if (addedStudentIds.Count > 0)
                 {
-                    Send(supervisor.Id, TypeGroup, "New students in your group",
-                        addedStudentIds.Count + (addedStudentIds.Count == 1 ? " student was" : " students were")
-                        + " added to " + groupName + ".",
-                        "~/Pages/Academic/Dashboard.aspx");
+                    Send(supervisor.Id, TypeGroup, "GroupStudentsAdded", "~/Pages/Academic/Dashboard.aspx",
+                        groupName, addedStudentIds.Count.ToString(CultureInfo.InvariantCulture));
                 }
 
                 if (supervisorChanged && !string.IsNullOrEmpty(formerSupervisorId))
                 {
-                    Send(formerSupervisorId, TypeGroup, "Group reassigned",
-                        groupName + " is now supervised by " + supervisor.FullName + ".",
-                        "~/Pages/Academic/Dashboard.aspx");
+                    Send(formerSupervisorId, TypeGroup, "GroupReassigned", "~/Pages/Academic/Dashboard.aspx",
+                        groupName, supervisor.FullName);
                 }
             });
         }
@@ -260,17 +404,10 @@ namespace InternshipManagementSystem.Services
             Safely("GroupDeleted", () =>
             {
                 foreach (string studentId in studentIds)
-                {
-                    Send(studentId, TypeGroup, "Group removed",
-                        groupName + " was deleted. The coordinator will assign you a new group.",
-                        "~/Pages/Student/Dashboard.aspx");
-                }
+                    Send(studentId, TypeGroup, "GroupDeletedStudent", "~/Pages/Student/Dashboard.aspx", groupName);
+
                 if (!string.IsNullOrEmpty(supervisorId))
-                {
-                    Send(supervisorId, TypeGroup, "Group removed",
-                        groupName + " was deleted and is no longer assigned to you.",
-                        "~/Pages/Academic/Dashboard.aspx");
-                }
+                    Send(supervisorId, TypeGroup, "GroupDeletedSupervisor", "~/Pages/Academic/Dashboard.aspx", groupName);
             });
         }
 
@@ -283,10 +420,11 @@ namespace InternshipManagementSystem.Services
         {
             Safely("TaskAssigned", () =>
             {
-                string due = task.Deadline > 0 ? " Due " + Time.DisplayDate(task.Deadline) + "." : "";
-                Send(task.StudentId, TypeTask, "New task assigned",
-                    "\"" + task.Title + "\" was added to your tasks." + due,
-                    "~/Pages/Student/MyTasks.aspx");
+                string link = With("~/Pages/Student/MyTasks.aspx", "task", task.Id);
+                if (task.Deadline > 0)
+                    Send(task.StudentId, TypeTask, "TaskAssigned", link, task.Title, Time.DisplayDate(task.Deadline));
+                else
+                    Send(task.StudentId, TypeTask, "TaskAssignedNoDue", link, task.Title);
             });
         }
 
@@ -305,33 +443,30 @@ namespace InternshipManagementSystem.Services
                     if (placement != null) recipient = placement.CompanySupervisorId;
                 }
 
-                bool again = submission.AttemptNumber > 1;
-                Send(recipient, TypeTask, again ? "Task resubmitted" : "Task submitted",
-                    NameOf(submission.StudentId) + (again ? " resubmitted \"" : " submitted \"") + task.Title + "\".",
-                    "~/Pages/Company/TaskReview.aspx");
+                Send(recipient, TypeTask, submission.AttemptNumber > 1 ? "TaskResubmitted" : "TaskSubmitted",
+                    With("~/Pages/Company/TaskReview.aspx", "submission", submission.Id),
+                    NameOf(submission.StudentId), task.Title);
             });
         }
 
-        /// <summary>The company reviewed a submission: tell the student.</summary>
+        /// <summary>The company graded a submission or asked for changes: tell the student.</summary>
         public static void TaskReviewed(TaskEvaluation evaluation)
         {
             Safely("TaskReviewed", () =>
             {
                 InternshipTask task = new TaskRepository().GetById(evaluation.TaskId);
-                string title = task == null ? "your task" : "\"" + task.Title + "\"";
+                string title = task == null ? "" : task.Title;
+                string link = With("~/Pages/Student/MyTasks.aspx", "task", evaluation.TaskId);
 
                 if (evaluation.RevisionRequested)
                 {
-                    Send(evaluation.StudentId, TypeTask, "Revision requested",
-                        "Your supervisor asked for changes to " + title + ".",
-                        "~/Pages/Student/MyTasks.aspx");
+                    Send(evaluation.StudentId, TypeTask, "TaskRevision", link,
+                        title, Shorten(evaluation.RevisionInstructions, 140));
                 }
                 else
                 {
-                    Send(evaluation.StudentId, TypeTask, "Task reviewed",
-                        "Your work on " + title + " was graded: "
-                        + evaluation.TotalScore + " / " + evaluation.MaxScore + ".",
-                        "~/Pages/Student/MyTasks.aspx");
+                    Send(evaluation.StudentId, TypeTask, "TaskGraded", link,
+                        title, Number(evaluation.TotalScore), Number(evaluation.MaxScore));
                 }
             });
         }
@@ -346,9 +481,8 @@ namespace InternshipManagementSystem.Services
             Safely("AcademicCommentAdded", () =>
             {
                 if (!comment.IsVisibleToStudent) return;
-                Send(comment.StudentId, TypeComment, "New comment from your academic supervisor",
-                    Shorten(comment.Comment, 120),
-                    "~/Pages/Student/Progress.aspx");
+                Send(comment.StudentId, TypeComment, "CommentAdded", "~/Pages/Student/Progress.aspx",
+                    Shorten(comment.Comment, 140));
             });
         }
 
@@ -359,9 +493,9 @@ namespace InternshipManagementSystem.Services
             {
                 Placement placement = new PlacementRepository().GetById(entry.PlacementId);
                 if (placement == null) return;
-                Send(placement.AcademicSupervisorId, TypeHours, "Training hours to review",
-                    placement.StudentName + " reported " + entry.Hours + (entry.Hours == 1 ? " hour." : " hours."),
-                    WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId));
+                Send(placement.AcademicSupervisorId, TypeHours, "HoursReported",
+                    WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId),
+                    placement.StudentName, Number(entry.Hours));
             });
         }
 
@@ -370,11 +504,8 @@ namespace InternshipManagementSystem.Services
         {
             Safely("HoursDecided", () =>
             {
-                string hours = entry.Hours + (entry.Hours == 1 ? " hour" : " hours");
-                Send(entry.StudentId, TypeHours, approved ? "Training hours approved" : "Training hours rejected",
-                    approved ? hours + " were added to your approved total."
-                             : hours + " were not approved. Check the note on My Progress.",
-                    "~/Pages/Student/Progress.aspx");
+                Send(entry.StudentId, TypeHours, approved ? "HoursApproved" : "HoursRejected",
+                    "~/Pages/Student/Progress.aspx", Number(entry.Hours));
             });
         }
 
@@ -386,53 +517,75 @@ namespace InternshipManagementSystem.Services
 
         public static void CompanyFinalSubmitted(FinalCompanyEvaluation evaluation)
         {
-            Safely("CompanyFinalSubmitted", () =>
-            {
-                if (!evaluation.IsSubmitted) return;
-                Placement placement = new PlacementRepository().GetById(evaluation.PlacementId);
-                string student = placement != null ? placement.StudentName : NameOf(evaluation.StudentId);
+            if (evaluation == null || !evaluation.IsSubmitted) return;
+            CompanyEvaluationSent(evaluation.PlacementId);
+        }
 
-                if (placement != null)
-                {
-                    Send(placement.AcademicSupervisorId, TypeEvaluation, "Company evaluation submitted",
-                        "The company submitted the final evaluation for " + student + ". You can now complete yours.",
-                        WithId("~/Pages/Academic/FinalEvaluation.aspx", evaluation.StudentId));
-                }
-                SendToCoordinators(TypeEvaluation, "Company evaluation submitted",
-                    "The company submitted the final evaluation for " + student + ".",
-                    WithId("~/Pages/Coordinator/PlacementDetails.aspx", evaluation.PlacementId));
+        /// <summary>The company sent its final evaluation for a placement: the
+        /// academic supervisor's evaluation is now due, and the coordinators are told.</summary>
+        public static void CompanyEvaluationSent(string placementId)
+        {
+            Safely("CompanyEvaluationSent", () =>
+            {
+                Placement placement = new PlacementRepository().GetById(placementId);
+                if (placement == null) return;
+                string student = string.IsNullOrWhiteSpace(placement.StudentName) ? NameOf(placement.StudentId) : placement.StudentName;
+
+                Send(placement.AcademicSupervisorId, TypeEvaluation, "CompanyEvalForAcademic",
+                    WithId("~/Pages/Academic/FinalEvaluation.aspx", placement.StudentId), student);
+
+                SendToCoordinators(TypeEvaluation, "CompanyEvalForCoordinator",
+                    WithId("~/Pages/Coordinator/PlacementDetails.aspx", placement.Id),
+                    placement.CompanyName ?? "", student);
             });
         }
 
+        /// <summary>The academic supervisor submitted the final evaluation:
+        /// the coordinators now need to review the completion.</summary>
         public static void AcademicFinalSubmitted(FinalAcademicEvaluation evaluation)
         {
             Safely("AcademicFinalSubmitted", () =>
             {
                 if (!evaluation.IsSubmitted) return;
-                SendToCoordinators(TypeEvaluation, "Academic evaluation submitted",
-                    "The academic evaluation for " + NameOf(evaluation.StudentId) + " is ready for completion review.",
-                    "~/Pages/Coordinator/CompletionReview.aspx");
+                SendToCoordinators(TypeEvaluation, "AcademicEvalForCoordinator",
+                    WithId("~/Pages/Coordinator/CompletionReview.aspx", evaluation.StudentId),
+                    NameOf(evaluation.StudentId));
             });
         }
 
-        /// <summary>The coordinator approved or returned a completion record.</summary>
+        /// <summary>The coordinator approved, returned or rejected a completion record.</summary>
         public static void CompletionDecided(CompletionRecord record)
         {
             Safely("CompletionDecided", () =>
             {
+                const string progress = "~/Pages/Student/Progress.aspx";
+                bool hasNote = !string.IsNullOrWhiteSpace(record.CoordinatorNote);
+                string note = Shorten(record.CoordinatorNote, 140);
+
                 if (record.Status == CompletionStatus.Approved)
                 {
-                    Send(record.StudentId, TypeCompletion, "Your final result is released",
-                        "Your internship result is " + (record.Result ?? "available") + ".",
-                        "~/Pages/Student/Progress.aspx");
+                    Send(record.StudentId, TypeCompletion, "CompletionApproved", progress, record.Result ?? "");
+
+                    // The supervisors who followed the student hear that it is done.
+                    Placement placement = new PlacementRepository().GetById(record.StudentId);
+                    if (placement != null)
+                    {
+                        string student = string.IsNullOrWhiteSpace(placement.StudentName) ? NameOf(record.StudentId) : placement.StudentName;
+                        Send(placement.AcademicSupervisorId, TypeCompletion, "CompletionApprovedSupervisor",
+                            WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId), student);
+                        Send(placement.CompanySupervisorId, TypeCompletion, "CompletionApprovedSupervisor",
+                            WithId("~/Pages/Company/TraineeDetails.aspx", placement.Id), student);
+                    }
+                }
+                else if (record.IsRejectedFinal)
+                {
+                    if (hasNote) Send(record.StudentId, TypeCompletion, "CompletionRejected", progress, note);
+                    else Send(record.StudentId, TypeCompletion, "CompletionRejectedNoNote", progress);
                 }
                 else if (record.Status == CompletionStatus.Rejected)
                 {
-                    Send(record.StudentId, TypeCompletion, "Completion review returned",
-                        string.IsNullOrWhiteSpace(record.CoordinatorNote)
-                            ? "The coordinator returned your completion review."
-                            : Shorten(record.CoordinatorNote, 120),
-                        "~/Pages/Student/Progress.aspx");
+                    if (hasNote) Send(record.StudentId, TypeCompletion, "CompletionReturned", progress, note);
+                    else Send(record.StudentId, TypeCompletion, "CompletionReturnedNoNote", progress);
                 }
             });
         }
@@ -441,26 +594,27 @@ namespace InternshipManagementSystem.Services
         //  6. Meetings
         // ------------------------------------------------------------------
 
+        /// <summary>A meeting was requested, accepted, declined, completed or cancelled.
+        /// <paramref name="key"/> is one of MeetingRequest, MeetingAccepted,
+        /// MeetingDeclined, MeetingCompleted, MeetingCancelled.</summary>
+        public static void MeetingChanged(Meeting meeting, string actorId, string recipientId, string key)
+        {
+            Safely("MeetingChanged", () =>
+            {
+                if (meeting == null) return;
+                Send(recipientId, TypeMeeting, key, "~/Pages/Meetings/MyMeetings.aspx",
+                    NameOf(actorId), meeting.Title, Time.Display(meeting.ScheduledAt));
+            });
+        }
+
         public static void MeetingScheduled(Meeting meeting)
         {
-            Safely("MeetingScheduled", () =>
+            if (meeting == null || meeting.ParticipantIds == null) return;
+            foreach (string participantId in meeting.ParticipantIds.Distinct())
             {
-                if (meeting.ParticipantIds == null) return;
-                foreach (string participantId in meeting.ParticipantIds.Distinct())
-                {
-                    if (participantId == meeting.CreatedById) continue;
-                    bool pending = meeting.ApprovalState == "Pending";
-
-                    Send(
-                        participantId,
-                        TypeMeeting,
-                        pending ? "New meeting request" : "New meeting scheduled",
-                        "\"" + meeting.Title + "\" on " +
-                            Time.Display(meeting.ScheduledAt) +
-                            (pending ? ". Please accept or reject the request." : "."),
-                        "~/Pages/Meetings/MyMeetings.aspx");
-                }
-            });
+                if (participantId != meeting.CreatedById)
+                    MeetingChanged(meeting, meeting.CreatedById, participantId, "MeetingRequest");
+            }
         }
     }
 }

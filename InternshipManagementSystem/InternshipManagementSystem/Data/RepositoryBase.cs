@@ -50,14 +50,10 @@ namespace InternshipManagementSystem.Data
         /// id, which is also written onto the entity.</summary>
         public virtual string Insert(T entity)
         {
-            string id = FirebaseContext.Push(Collection, entity);
-            if (!string.IsNullOrEmpty(id))
-            {
-                SetId(entity, id);
-                // Store the key inside the record too, so reads from anywhere
-                // (including the Firebase console) carry the id.
-                FirebaseContext.Patch(Collection + "/" + id, new Dictionary<string, object> { { "Id", id } });
-            }
+            // One request: the key is made here and stored inside the record too,
+            // so reads from anywhere (including the Firebase console) carry the id.
+            string id = FirebaseContext.PushWithId(Collection, entity);
+            SetId(entity, id);
             return id;
         }
 

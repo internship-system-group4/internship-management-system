@@ -5,6 +5,7 @@
 // =============================================================================
 
 using System;
+using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using InternshipManagementSystem.Common;
 
@@ -25,8 +26,15 @@ namespace InternshipManagementSystem.Models
         /// Placement, Hours, Evaluation, Comment, Meeting, Opportunity, Completion.</summary>
         public string Type { get; set; }
 
+        /// <summary>English title and message, kept for older records and as a fallback.</summary>
         public string Title { get; set; }
         public string Message { get; set; }
+
+        /// <summary>Which event this is, for example "ApplicationSubmitted". The bell
+        /// shows the text "Shared.Notify.{Key}.Title / .Message" in the reader's own
+        /// language, filled in with Args (names, titles, dates).</summary>
+        public string Key { get; set; }
+        public List<string> Args { get; set; }
 
         /// <summary>App-relative page to open, for example "~/Pages/Student/MyTasks.aspx".</summary>
         public string Link { get; set; }

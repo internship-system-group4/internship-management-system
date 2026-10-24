@@ -5,7 +5,7 @@ using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Models;
 namespace InternshipManagementSystem.Data {
  public class AnalyticsRecord { public string Title, Detail, Url; public long? Value; }
- public class AnalyticsCategory { public string Key,Label,Tone; public long Value; public List<AnalyticsRecord> Records; }
+ public class AnalyticsCategory { public string Key,Label,Tone; public long Value; public List<AnalyticsRecord> Records; /* Optional: page that lists this category (coordinator majors). */ public string Url; }
  public class AnalyticsKpi { public string Label,Context,Unit; public long Value; public bool Flow; public List<AnalyticsRecord> Records; }
  public class AnalyticsEvent { public long Date,Value; public AnalyticsRecord Record; }
  public class WorkspaceChartData {
@@ -13,6 +13,12 @@ namespace InternshipManagementSystem.Data {
   public long Now=Time.NowMs(); public List<AnalyticsKpi> Kpis=new List<AnalyticsKpi>();
   public List<AnalyticsEvent> Events=new List<AnalyticsEvent>();public List<AnalyticsRecord> Undated=new List<AnalyticsRecord>();
   public List<AnalyticsCategory> Bars,Breakdown;
+  // Optional, coordinator only: "horizontal" bars, a data-quality notice and a
+  // title for the bar data table. Other roles leave these null (no change).
+  public string BarLayout,BarNotice,BarDataTitle;
+  // Optional: a fixed approval window in months. 0 keeps the 6 / 12 month
+  // switch; the coordinator dashboard uses a fixed 12 month window instead.
+  public int RangeMonths;
  }
  // Pure adapters of existing authorized read models. No network or writes.
  public static class WorkspaceChartFactory {
@@ -64,12 +70,31 @@ namespace InternshipManagementSystem.Data {
    m.Kpis.Add(K(L.T("Workspace.AcademicActionDue"),d.PendingEvaluations,L.T("Workspace.CompanyFeedbackReceivedAcademicNotSubmitted"),d.Students.Where(r=>r.CompanySubmitted&&!r.AcademicSubmitted).Select(r=>R(r.FullName,L.T("Workspace.AcademicAssessmentDue"),evaluation))));
    m.Kpis.Add(K(L.T("Workspace.ApprovedInRange"),0,L.T("Workspace.DatedCompanyApprovalsForAssignedStudents"),new List<AnalyticsRecord>(),L.T("Workspace.UnitH"),true));return m;
   }
+  /// <summary>Students by Major for the coordinator. Each student is counted
+  /// once (by Id). The three verified School of Computing programmes always
+  /// appear; missing and unrecognised majors get their own categories and a
+  /// verification notice - they are never mapped onto a programme, and the
+  /// stored Major is never changed.</summary>
+  static void StudentsByMajor(WorkspaceChartData m,List<Student> all,string studentsUrl){
+   var unique=all.Where(s=>s!=null&&!string.IsNullOrEmpty(s.Id)).GroupBy(s=>s.Id).Select(g=>g.First()).ToList();
+   Func<Student,AnalyticsRecord> rec=s=>R(s.FullName,string.IsNullOrWhiteSpace(s.Major)?L.T("Workspace.MajorNotRecorded"):L.T("Workspace.RecordedMajor")+s.Major,studentsUrl+"?id="+Uri.EscapeDataString(s.Id));
+   m.Bars=new List<AnalyticsCategory>();
+   foreach(var program in AcademicPrograms.All){var p=program;var cat=C("major-"+p.Key,p.Name,"active",unique.Where(s=>AcademicPrograms.Find(s.Major)==p).OrderBy(s=>s.FullName).Select(rec));cat.Url=studentsUrl+"?major="+p.Key;m.Bars.Add(cat);}
+   var missing=unique.Where(s=>AcademicPrograms.Quality(s.Major)==MajorQuality.Missing).OrderBy(s=>s.FullName).ToList();
+   var unknown=unique.Where(s=>AcademicPrograms.Quality(s.Major)==MajorQuality.Unrecognized).OrderBy(s=>s.FullName).ToList();
+   if(missing.Count>0){var cat=C(AcademicPrograms.MissingKey,L.T("Workspace.MajorMissing"),"pending",missing.Select(rec));cat.Url=studentsUrl+"?major="+AcademicPrograms.MissingKey;m.Bars.Add(cat);}
+   if(unknown.Count>0){var cat=C(AcademicPrograms.UnrecognizedKey,L.T("Workspace.MajorUnrecognized"),"pending",unknown.Select(rec));cat.Url=studentsUrl+"?major="+AcademicPrograms.UnrecognizedKey;m.Bars.Add(cat);}
+   m.BarDataTitle=L.T("Workspace.ViewStudentBreakdown");
+   int review=missing.Count+unknown.Count;if(review>0)m.BarNotice=L.F("Workspace.MajorVerificationNotice",review);
+  }
   public static WorkspaceChartData Coordinator(WorkspaceCoordinatorData d){
    const string review="~/Pages/Coordinator/CompletionReview.aspx",students="~/Pages/Coordinator/ManageStudents.aspx",groups="~/Pages/Coordinator/Groups.aspx";Func<CompletionQueueRow,AnalyticsRecord> record=r=>R(r.Overview.StudentName,r.StageText,review+"?id="+Uri.EscapeDataString(r.Overview.Placement.Id));
-   var m=new WorkspaceChartData{Role="Coordinator",Title=L.T("Workspace.ProgrammeOverview"),Scope=L.T("Workspace.ProgrammeWideCurrentRecordsAndExplicitCoordinator"),TrendTitle=L.T("Workspace.CompletionApprovalsOverTime"),TrendUnit=L.T("Workspace.UnitCompletions"),BarTitle=L.T("Workspace.StudentsByCollege"),BarUnit=L.T("Workspace.UnitStudents"),BarContext=L.T("Workspace.CurrentStudentProfilesMissingCollegesAreLabeled"),DonutTitle=L.T("Workspace.CompletionReviewStatus"),DonutUnit=L.T("Workspace.UnitPlacements")};
+   var m=new WorkspaceChartData{Role="Coordinator",Title=L.T("Workspace.ProgrammeOverview"),Scope=L.T("Workspace.ProgrammeWideCurrentRecordsAndExplicitCoordinator"),TrendTitle=L.T("Workspace.CompletionApprovalsOverTime"),TrendUnit=L.T("Workspace.UnitCompletions"),BarTitle=L.T("Workspace.StudentsByMajor"),BarUnit=L.T("Workspace.UnitStudents"),BarContext=L.T("Workspace.StudentsByMajorContext"),DonutTitle=L.T("Workspace.CompletionReviewStatus"),DonutUnit=L.T("Workspace.UnitPlacements")};
    foreach(var row in d.Queue.Where(r=>r.IsApproved)){var rec=record(row);if(row.Completion.ApprovedAt>0&&row.Completion.ApprovedAt<=m.Now)m.Events.Add(new AnalyticsEvent{Date=row.Completion.ApprovedAt,Value=1,Record=rec});else m.Undated.Add(rec);}
-   m.Bars=d.Students.GroupBy(s=>string.IsNullOrWhiteSpace(s.College)?L.T("Workspace.NotRecorded"):s.College).OrderBy(g=>g.Key).Select(g=>C("college-"+g.Key,g.Key,"active",g.Select(s=>R(s.FullName,L.T("Workspace.CurrentStudentProfile"),students)))).ToList();
-   m.Breakdown=new List<AnalyticsCategory>{C("approved",L.T("Workspace.Approved"),"approved",d.Queue.Where(r=>r.IsApproved).Select(record)),C("returned",L.T("Workspace.Returned"),"rejected",d.Queue.Where(r=>!r.IsApproved&&r.IsReturned).Select(record)),C("ready",L.T("Workspace.ReadyForReview"),"review",d.Queue.Where(r=>!r.IsApproved&&!r.IsReturned&&r.IsReady).Select(record)),C("company",L.T("Workspace.AwaitingCompany"),"pending",d.Queue.Where(r=>!r.IsApproved&&!r.IsReturned&&!r.IsReady&&!r.CompanySubmitted).Select(record)),C("academic",L.T("Workspace.AwaitingAcademic"),"neutral",d.Queue.Where(r=>!r.IsApproved&&!r.IsReturned&&!r.IsReady&&r.CompanySubmitted).Select(record))};
+   StudentsByMajor(m,d.Students,students);
+   // No completion breakdown chart here: the completion queue on the
+   // dashboard already lists the same students. Fixed 12 month window.
+   m.Breakdown=new List<AnalyticsCategory>();m.RangeMonths=12;
    m.Kpis.Add(K(L.T("Workspace.StudentsInScope"),d.Students.Count,L.T("Workspace.AllCurrentStudentProfiles"),d.Students.Select(s=>R(s.FullName,L.T("Workspace.CurrentStudentProfile"),students))));m.Kpis.Add(K(L.T("Workspace.PendingAssignments"),d.UnassignedStudents,L.T("Workspace.ActiveProfilesWithoutAnAcademicSupervisor"),d.Students.Where(s=>s.IsActive&&string.IsNullOrWhiteSpace(s.AcademicSupervisorId)).Select(s=>R(s.FullName,L.T("Workspace.AcademicSupervisorNotAssigned"),groups))));
    m.Kpis.Add(K(L.T("Workspace.FinalReviewsReady"),d.Queue.Count(r=>r.IsReady&&!r.IsReturned),L.T("Workspace.BothAssessmentsReceivedRequirementsStillNeedReview"),d.Queue.Where(r=>r.IsReady&&!r.IsReturned).Select(record)));m.Kpis.Add(K(L.T("Workspace.ApprovedInRange"),0,L.T("Workspace.CurrentApprovedCompletions")+d.Queue.Count(r=>r.IsApproved),new List<AnalyticsRecord>(),"",true));return m;
   }

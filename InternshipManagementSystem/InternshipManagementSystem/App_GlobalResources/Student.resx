@@ -430,4 +430,135 @@
   <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>View Portfolio</value></data>
   <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>View your previously saved links and documents.</value></data>
   <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>Your information changed. Refresh and try again.</value></data>
+  <data name="Progress.Eyebrow" xml:space="preserve"><value>Student workspace</value></data>
+  <data name="Progress.SectionTasks" xml:space="preserve"><value>Tasks</value></data>
+  <data name="Progress.SectionSubmissions" xml:space="preserve"><value>Submissions</value></data>
+  <data name="Progress.JourneyTitle" xml:space="preserve"><value>My Internship Journey</value></data>
+  <data name="Progress.JourneyNote" xml:space="preserve"><value>Where your internship stands, from placement to the completion report.</value></data>
+  <data name="Progress.Now" xml:space="preserve"><value>Now</value></data>
+  <data name="Progress.JourneyAria" xml:space="preserve"><value>{0} of {1} milestones completed</value></data>
+  <data name="Progress.StepNumber" xml:space="preserve"><value>Step {0}</value></data>
+  <data name="Progress.JourneyDisclaimer" xml:space="preserve"><value>These are UIMS workflow stages based on your recorded data, not MyGJU status names.</value></data>
+  <data name="Progress.StepPlacement" xml:space="preserve"><value>Placement approved</value></data>
+  <data name="Progress.StepPlacementDone" xml:space="preserve"><value>Confirmed {0}</value></data>
+  <data name="Progress.StepPlacementCancelled" xml:space="preserve"><value>This placement was cancelled</value></data>
+  <data name="Progress.StepPlacementHint" xml:space="preserve"><value>Your accepted offer became a confirmed internship in UIMS.</value></data>
+  <data name="Progress.StepTraining" xml:space="preserve"><value>Training in progress</value></data>
+  <data name="Progress.StepTrainingHours" xml:space="preserve"><value>{0} of {1} hours approved</value></data>
+  <data name="Progress.StepTrainingWeeks" xml:space="preserve"><value>{0} of {1} weeks</value></data>
+  <data name="Progress.StepOverdue" xml:space="preserve"><value>a task is overdue</value></data>
+  <data name="Progress.StepTrainingHint" xml:space="preserve"><value>Only hours your supervisor approved count. Finishing a task does not approve hours.</value></data>
+  <data name="Progress.StepDocuments" xml:space="preserve"><value>Required documents &amp; reports</value></data>
+  <data name="Progress.StepDocumentsDetail" xml:space="preserve"><value>{0} of {1} verified</value></data>
+  <data name="Progress.StepDocumentsHint" xml:space="preserve"><value>Training forms, report, task work and department review, as verified by the coordinator.</value></data>
+  <data name="Progress.StepEvaluations" xml:space="preserve"><value>Final evaluations</value></data>
+  <data name="Progress.StepEvaluationsDone" xml:space="preserve"><value>Received by the coordinator</value></data>
+  <data name="Progress.StepEvaluationsActive" xml:space="preserve"><value>Your supervisors complete these confidentially</value></data>
+  <data name="Progress.StepEvaluationsPending" xml:space="preserve"><value>After the training requirement is met</value></data>
+  <data name="Progress.StepEvaluationsHint" xml:space="preserve"><value>The company and academic evaluation forms are confidential. You will see the released result, not the forms.</value></data>
+  <data name="Progress.StepReview" xml:space="preserve"><value>Coordinator completion review</value></data>
+  <data name="Progress.StepReviewApproved" xml:space="preserve"><value>Approved {0}</value></data>
+  <data name="Progress.StepReviewRejected" xml:space="preserve"><value>Completion was not approved</value></data>
+  <data name="Progress.StepReviewCorrections" xml:space="preserve"><value>Returned to you for corrections</value></data>
+  <data name="Progress.StepReviewActive" xml:space="preserve"><value>The coordinator is verifying your requirements</value></data>
+  <data name="Progress.StepReviewPending" xml:space="preserve"><value>Starts after both final evaluations</value></data>
+  <data name="Progress.StepReviewHint" xml:space="preserve"><value>The coordinator checks evaluations, hours and documents before approving completion.</value></data>
+  <data name="Progress.StepReport" xml:space="preserve"><value>Official completion report</value></data>
+  <data name="Progress.StepReportDone" xml:space="preserve"><value>Ready to download</value></data>
+  <data name="Progress.StepReportPreparing" xml:space="preserve"><value>Being prepared</value></data>
+  <data name="Progress.StepReportPending" xml:space="preserve"><value>Available after approval</value></data>
+  <data name="Progress.StepReportHint" xml:space="preserve"><value>A UIMS-generated PDF you can download and print once completion is approved.</value></data>
+  <data name="Progress.StateCompleted" xml:space="preserve"><value>Completed</value></data>
+  <data name="Progress.StateInProgress" xml:space="preserve"><value>In progress</value></data>
+  <data name="Progress.StatePending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Progress.StateAttention" xml:space="preserve"><value>Needs attention</value></data>
+  <data name="Progress.StateRejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Progress.WeeksUnit" xml:space="preserve"><value>weeks</value></data>
+  <data name="Progress.WeeksFromDates" xml:space="preserve"><value>Calculated from your training dates</value></data>
+  <data name="Progress.PercentOfRequired" xml:space="preserve"><value>{0}% of required hours</value></data>
+  <data name="Progress.HoursValueText" xml:space="preserve"><value>{0} approved hours of {1} required ({2}%)</value></data>
+  <data name="Progress.AverageNote" xml:space="preserve"><value>Graded tasks only, each on its own scale. Not your final internship grade.</value></data>
+  <data name="Progress.InternshipType" xml:space="preserve"><value>Internship type</value></data>
+  <data name="Progress.TypeLocal" xml:space="preserve"><value>Local field training</value></data>
+  <data name="Progress.TypeInternational" xml:space="preserve"><value>International internship (German Year)</value></data>
+  <data name="Progress.TypeDefault" xml:space="preserve"><value>Default until the coordinator confirms it</value></data>
+  <data name="Progress.AcademicProgram" xml:space="preserve"><value>Academic program</value></data>
+  <data name="Progress.CourseCode" xml:space="preserve"><value>Local training course {0}</value></data>
+  <data name="Progress.ProgramCheck" xml:space="preserve"><value>Not a recognized School of Computing program; the coordinator will verify it</value></data>
+  <data name="Progress.NotRecorded" xml:space="preserve"><value>Not recorded</value></data>
+  <data name="Progress.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
+  <data name="Progress.NotAssigned" xml:space="preserve"><value>Not assigned yet</value></data>
+  <data name="Progress.WeeksValue" xml:space="preserve"><value>{0} weeks</value></data>
+  <data name="Progress.ConfirmedOn" xml:space="preserve"><value>Confirmed {0}</value></data>
+  <data name="Progress.CurrentStatus" xml:space="preserve"><value>Current stage</value></data>
+  <data name="Progress.ApplicableRequirement" xml:space="preserve"><value>Training requirement</value></data>
+  <data name="Progress.RequirementLocal" xml:space="preserve"><value>{0} approved contact hours</value></data>
+  <data name="Progress.RequirementInternational" xml:space="preserve"><value>At least {0} weeks full time</value></data>
+  <data name="Progress.RequirementSourceLocal" xml:space="preserve"><value>GJU School of Computing local training</value></data>
+  <data name="Progress.RequirementSourceIntl" xml:space="preserve"><value>GJU German Year internship</value></data>
+  <data name="Progress.OpenMyTasks" xml:space="preserve"><value>Open My Tasks</value></data>
+  <data name="Progress.Overdue" xml:space="preserve"><value>Overdue</value></data>
+  <data name="Progress.DueToday" xml:space="preserve"><value>Due today</value></data>
+  <data name="Progress.DueInDays" xml:space="preserve"><value>Due in {0} days</value></data>
+  <data name="Progress.GradedOutOf" xml:space="preserve"><value>Graded out of {0}</value></data>
+  <data name="Progress.Graded" xml:space="preserve"><value>Graded</value></data>
+  <data name="Progress.GradeValue" xml:space="preserve"><value>Grade {0} / {1}</value></data>
+  <data name="Progress.HistoryNote" xml:space="preserve"><value>{0} attempts recorded. Every attempt is kept, newest first.</value></data>
+  <data name="Progress.AttemptNumber" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="Progress.HoursOfRequired" xml:space="preserve"><value>{0} / {1} approved hours</value></data>
+  <data name="Progress.TargetNotSet" xml:space="preserve"><value>The hours target is not set yet</value></data>
+  <data name="Progress.HoursInternationalNote" xml:space="preserve"><value>International internships are checked by duration (weeks), not by this hour count.</value></data>
+  <data name="Progress.HoursLog" xml:space="preserve"><value>Hours log ({0} entries)</value></data>
+  <data name="Progress.DocsTitle" xml:space="preserve"><value>Training Requirements &amp; Documents</value></data>
+  <data name="Progress.DocsNote" xml:space="preserve"><value>Status comes from the coordinator's recorded verification. "Pending" means not verified yet, which is not a rejection.</value></data>
+  <data name="Progress.DocPriorApproval" xml:space="preserve"><value>Prior placement approval</value></data>
+  <data name="Progress.DocPlacementConfirmed" xml:space="preserve"><value>Placement confirmed in UIMS on {0}.</value></data>
+  <data name="Progress.DocDeptNotVerified" xml:space="preserve"><value>Department approval not verified yet.</value></data>
+  <data name="Progress.DocHours" xml:space="preserve"><value>Training hours requirement</value></data>
+  <data name="Progress.DocHoursDetail" xml:space="preserve"><value>{0} of {1} hours approved</value></data>
+  <data name="Progress.DocDuration" xml:space="preserve"><value>Internship duration</value></data>
+  <data name="Progress.DocDurationDetail" xml:space="preserve"><value>{0} of {1} weeks</value></data>
+  <data name="Progress.DocReport" xml:space="preserve"><value>Training report</value></data>
+  <data name="Progress.DocInternationalReport" xml:space="preserve"><value>Internship report</value></data>
+  <data name="Progress.DocForms" xml:space="preserve"><value>Company training forms</value></data>
+  <data name="Progress.DocCertificate" xml:space="preserve"><value>Internship certificate</value></data>
+  <data name="Progress.DocTasks" xml:space="preserve"><value>Required task documentation</value></data>
+  <data name="Progress.DocTasksNone" xml:space="preserve"><value>No tasks assigned yet</value></data>
+  <data name="Progress.DocTasksRevision" xml:space="preserve"><value>{0} task(s) waiting for your resubmission</value></data>
+  <data name="Progress.DocTasksDetail" xml:space="preserve"><value>{0} of {1} tasks graded</value></data>
+  <data name="Progress.DocDepartment" xml:space="preserve"><value>Department review</value></data>
+  <data name="Progress.DocEndorsement" xml:space="preserve"><value>Department and dean endorsement</value></data>
+  <data name="Progress.DocFacultyValidation" xml:space="preserve"><value>Faculty validation</value></data>
+  <data name="Progress.DocCoordinator" xml:space="preserve"><value>Final coordinator approval</value></data>
+  <data name="Progress.DocCoordinatorPending" xml:space="preserve"><value>Not decided yet</value></data>
+  <data name="Progress.DocCoordinatorApproved" xml:space="preserve"><value>Approved {0}</value></data>
+  <data name="Progress.DocVerifiedOn" xml:space="preserve"><value>Verified {0}</value></data>
+  <data name="Progress.DocPartlyVerified" xml:space="preserve"><value>{0} of {1} checks verified</value></data>
+  <data name="Progress.DocNotVerified" xml:space="preserve"><value>Not verified yet</value></data>
+  <data name="Progress.DocStateVerified" xml:space="preserve"><value>Verified</value></data>
+  <data name="Progress.DocStateSubmitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Progress.DocStatePending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Progress.DocStateMissing" xml:space="preserve"><value>Missing</value></data>
+  <data name="Progress.DocStateCorrections" xml:space="preserve"><value>Needs corrections</value></data>
+  <data name="Progress.DocStateNA" xml:space="preserve"><value>Not applicable</value></data>
+  <data name="Progress.FinalNote" xml:space="preserve"><value>Progress, evaluation, approval and the released result are separate steps.</value></data>
+  <data name="Progress.TileProgress" xml:space="preserve"><value>Internship progress</value></data>
+  <data name="Progress.TileProvisional" xml:space="preserve"><value>Provisional evaluation</value></data>
+  <data name="Progress.ProvisionalHidden" xml:space="preserve"><value>Confidential until released</value></data>
+  <data name="Progress.TileApproval" xml:space="preserve"><value>Completion approval</value></data>
+  <data name="Progress.TileResult" xml:space="preserve"><value>Released final result</value></data>
+  <data name="Progress.ApprovalNotStarted" xml:space="preserve"><value>Not started</value></data>
+  <data name="Progress.ApprovalApproved" xml:space="preserve"><value>Approved {0}</value></data>
+  <data name="Progress.ApprovalRejected" xml:space="preserve"><value>Not approved</value></data>
+  <data name="Progress.ApprovalCorrections" xml:space="preserve"><value>Returned for corrections</value></data>
+  <data name="Progress.ApprovalWaiting" xml:space="preserve"><value>Waiting for coordinator review</value></data>
+  <data name="Progress.NotReleased" xml:space="preserve"><value>Not released</value></data>
+  <data name="Progress.Pass" xml:space="preserve"><value>Pass</value></data>
+  <data name="Progress.Fail" xml:space="preserve"><value>Fail</value></data>
+  <data name="Progress.CoordinatorNote" xml:space="preserve"><value>Coordinator's note</value></data>
+  <data name="Progress.ReleasedLine" xml:space="preserve"><value>Result: {0} · supporting score {1}% · approved {2}</value></data>
+  <data name="Progress.ScoreMethodNote" xml:space="preserve"><value>The supporting score uses the UIMS project-proposed method; the released result is the Pass/Fail outcome.</value></data>
+  <data name="Progress.DownloadReport" xml:space="preserve"><value>Download completion report (PDF)</value></data>
+  <data name="Progress.PrintReport" xml:space="preserve"><value>Print report</value></data>
+  <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>Replaced by the released result</value></data>
 </root>

@@ -67,6 +67,18 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private List<ApplicantRow> BuildRows(List<InternshipApplication> applications)
         {
+            // Speed: each applicant needs three reads (profile, extras, documents).
+            // Read them for every applicant at the same time before the loop.
+            var reads = new List<FirebaseRead>();
+            foreach (InternshipApplication application in applications)
+            {
+                if (!ApplicationRepository.IsValidKey(application.StudentId)) continue;
+                reads.Add(FirebaseRead.Node(Constants.Paths.Users + "/" + application.StudentId));
+                reads.Add(FirebaseRead.Node("studentProfileExtras/" + application.StudentId));
+                reads.Add(FirebaseRead.Node("studentCvPortfolios/" + application.StudentId));
+            }
+            FirebaseContext.Prefetch(reads);
+
             var users = new UserRepository();
             var rows = new List<ApplicantRow>();
             foreach (InternshipApplication application in applications)

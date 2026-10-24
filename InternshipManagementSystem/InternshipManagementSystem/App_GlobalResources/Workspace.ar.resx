@@ -238,4 +238,12 @@
   <data name="YourOwnApplicationConfirmedPlacementAndTraining" xml:space="preserve"><value>طلبك وجهة تدريبك المؤكَّدة وسجل تدريبك.</value></data>
   <data name="YourOwnInternshipRecordsCurrentTotalsAnd" xml:space="preserve"><value>سجلات تدريبك فقط: المجاميع الحالية ونشاط الاعتماد المؤرّخ.</value></data>
   <data name="YourSupervisorsManageTheFinalAssessmentsTheir" xml:space="preserve"><value>يتولّى مشرفوك التقييمات النهائية، وتبقى نماذجهم الداخلية خاصة، ولا تظهر نتيجتك إلا بعد اعتماد منسّق التدريب.</value></data>
+  <data name="StudentsByMajor" xml:space="preserve"><value>الطلاب حسب التخصص</value></data>
+  <data name="StudentsByMajorContext" xml:space="preserve"><value>توزيع طلاب كلية الحوسبة حسب التخصص الأكاديمي.</value></data>
+  <data name="MajorMissing" xml:space="preserve"><value>تخصص غير مسجّل</value></data>
+  <data name="MajorUnrecognized" xml:space="preserve"><value>تخصص غير معروف</value></data>
+  <data name="MajorNotRecorded" xml:space="preserve"><value>التخصص غير مسجّل</value></data>
+  <data name="RecordedMajor" xml:space="preserve"><value>التخصص المسجّل: </value></data>
+  <data name="MajorVerificationNotice" xml:space="preserve"><value>يلزم التحقق من المعلومات الأكاديمية لـ {0} من سجلات الطلاب.</value></data>
+  <data name="ViewStudentBreakdown" xml:space="preserve"><value>عرض توزيع الطلاب</value></data>
 </root>

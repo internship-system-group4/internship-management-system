@@ -16,12 +16,21 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (!IsPostBack)
             {
                 LoadCompanySubmissions();
+
+                // Opened from a notification: show that submission straight away.
+                string fromLink = Request.QueryString["submission"];
+                if (!string.IsNullOrEmpty(fromLink)) OpenSubmission(fromLink);
             }
         }
 
         private void LoadCompanySubmissions()
         {
             List<Submission> companySubmissions = new List<Submission>();
+
+            // Speed: both collections are read at the same time.
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Tasks),
+                FirebaseRead.Node(Constants.Paths.Submissions));
 
             List<InternshipTask> tasks =
                 new TaskRepository().GetAll();
@@ -54,8 +63,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             if (e.CommandName != "ViewDetails") return;
 
-            string submissionId = Convert.ToString(e.CommandArgument);
+            OpenSubmission(Convert.ToString(e.CommandArgument));
+        }
 
+        private void OpenSubmission(string submissionId)
+        {
+            if (!ApplicationRepository.IsValidKey(submissionId)) return;
             Submission submission =
                 new SubmissionRepository().GetById(submissionId);
 

@@ -53,6 +53,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 List<TraineeViewModel> allTraineesList = new List<TraineeViewModel>();
 
+                // Speed: read every trainee's profile at the same time before the loop.
+                List<FirebaseRead> profiles = new List<FirebaseRead>();
+                foreach (Placement p in companyPlacements)
+                {
+                    if (ApplicationRepository.IsValidKey(p.StudentId))
+                        profiles.Add(FirebaseRead.Node(Constants.Paths.Users + "/" + p.StudentId));
+                }
+                FirebaseContext.Prefetch(profiles);
+
                 foreach (Placement p in companyPlacements)
                 {
                     var student = _userRepo.GetStudent(p.StudentId);

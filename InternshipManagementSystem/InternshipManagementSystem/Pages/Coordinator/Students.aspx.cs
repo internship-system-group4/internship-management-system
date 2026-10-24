@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using System.Text.RegularExpressions;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -8,117 +8,58 @@ using InternshipManagementSystem.Security;
 
 namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
+    /// <summary>One student's profile for the coordinator: personal, academic,
+    /// supervision and placement details (Students.aspx?id=...).</summary>
     public partial class Students : CoordinatorPage
     {
+        protected StudentDirectoryRow Row;
+        protected Placement Placement;
+        protected string LoadError;
+        protected bool HasPlacement { get { return Placement != null; } }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-            BindStudents();
             string id = Request.QueryString["id"];
-            if (IsValidStudentId(id)) LoadStudent(id);
-        }
+            // Old links (?create=student) and links without a student go to the student list.
+            if (string.IsNullOrEmpty(id) || !Regex.IsMatch(id, @"\A[A-Za-z0-9_-]{1,128}\z"))
+            {
+                string create = Request.QueryString["create"] == "student" ? "?create=student" : "";
+                Response.Redirect(ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx" + create), false);
+                Context.ApplicationInstance.CompleteRequest();
+                return;
+            }
 
-        protected void StudentCreator_Created(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-            pnlDetails.Visible = false;
-            BindStudents();
-        }
-
-        protected void btnSearch_Click(object sender, EventArgs e)
-        {
-            pnlDetails.Visible = false;
-            BindStudents();
-        }
-
-        protected void btnClearSearch_Click(object sender, EventArgs e)
-        {
-            txtSearch.Text = "";
-            pnlDetails.Visible = false;
-            BindStudents();
-        }
-
-        protected void btnView_Click(object sender, EventArgs e)
-        {
-            var button = sender as System.Web.UI.WebControls.LinkButton;
-            if (button == null || !IsValidStudentId(button.CommandArgument)) return;
-            LoadStudent(button.CommandArgument);
-        }
-
-        private void LoadStudent(string id)
-        {
             try
             {
-                Student student = new UserRepository().GetStudent(id);
+                UserRepository users = new UserRepository();
+                Student student = users.GetStudent(id);
                 if (student == null)
                 {
-                    ShowError(L.T("Coordinator.Students.StudentRecordNotFound"));
+                    LoadError = L.T("Coordinator.Students.StudentRecordNotFound");
                     return;
                 }
-                lblStudentName.Text = InternshipManagementSystem.Common.Validators.Safe(student.FullName);
-                lblStudentNumber.Text = InternshipManagementSystem.Common.Validators.Safe(student.StudentNumber);
-                lblStudentEmail.Text = InternshipManagementSystem.Common.Validators.Safe(student.Email);
-                lblStudentPhone.Text = InternshipManagementSystem.Common.Validators.Safe(student.PhoneNumber ?? "—");
-                lblUniversity.Text = InternshipManagementSystem.Common.Validators.Safe(student.University);
-                lblCollege.Text = InternshipManagementSystem.Common.Validators.Safe(student.College);
-                lblMajor.Text = InternshipManagementSystem.Common.Validators.Safe(student.Major);
-                lblApprovedHours.Text = student.ApprovedHours.ToString();
-                lblRequiredHours.Text = student.RequiredHours.ToString();
-                lblStatus.Text = student.IsActive ? "Active" : "Inactive";
-                lnkManage.NavigateUrl = ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx?id=" + Server.UrlEncode(student.Id));
-                pnlDetails.Visible = true;
+                StudentGroup group = string.IsNullOrEmpty(student.GroupId) ? null : new GroupRepository().GetById(student.GroupId);
+                AcademicSupervisor supervisor = string.IsNullOrEmpty(student.AcademicSupervisorId) ? null : users.GetAcademicSupervisor(student.AcademicSupervisorId);
+                Placement = new PlacementRepository().GetById(student.Id);
+                Row = StudentDirectoryRow.From(student, group, supervisor == null ? null : supervisor.FullName, Placement,
+                    ResolveUrl("~/Pages/Coordinator/Students.aspx?id="));
+                Page.Title = student.FullName;
             }
             catch (FirebaseException)
             {
-                ShowError(L.T("Coordinator.Students.CouldNotLoadThisStudentPlease"));
+                LoadError = L.T("Coordinator.Students.CouldNotLoadThisStudentPlease");
             }
         }
 
-        private void BindStudents()
+        protected static string Show(string value)
         {
-            lblListMessage.Visible = false;
-            try
-            {
-                var students = new List<Student>();
-                string search = (txtSearch.Text ?? "").Trim();
-                foreach (Person person in new UserRepository().GetByRole(UserRole.Student))
-                {
-                    Student student = person as Student;
-                    if (student != null && (search.Length == 0 || Matches(student.FullName, search)
-                        || Matches(student.StudentNumber, search) || Matches(student.Email, search)
-                        || Matches(student.University, search) || Matches(student.College, search)
-                        || Matches(student.Major, search))) students.Add(student);
-                }
-                students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
-                rptStudents.DataSource = students;
-                rptStudents.DataBind();
-                lblNoStudents.Text = search.Length == 0 ? L.T("Coordinator.Students.NoStudentsFoundAddAStudent") : L.T("Coordinator.Students.NoStudentsMatchYourSearch");
-                lblNoStudents.Visible = students.Count == 0;
-            }
-            catch (FirebaseException)
-            {
-                rptStudents.DataSource = new List<Student>();
-                rptStudents.DataBind();
-                lblNoStudents.Visible = false;
-                ShowError(L.T("Coordinator.Students.CouldNotLoadStudentRecordsPlease"));
-            }
+            return string.IsNullOrWhiteSpace(value) ? L.T("Coordinator.ManageStudents.NotRecorded") : value;
         }
 
-        private static bool Matches(string value, string search)
+        protected static string DateText(long unixMs)
         {
-            return !string.IsNullOrEmpty(value) && value.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0;
-        }
-
-        private static bool IsValidStudentId(string id)
-        {
-            return !string.IsNullOrEmpty(id) && Regex.IsMatch(id, @"\A[A-Za-z0-9_-]{1,128}\z");
-        }
-
-        private void ShowError(string message)
-        {
-            lblListMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
-            lblListMessage.CssClass = "alert alert-danger d-block";
-            lblListMessage.Visible = true;
+            if (unixMs <= 0) return L.T("Coordinator.ManageStudents.NotRecorded");
+            return Time.DisplayDate(unixMs);
         }
     }
 }

@@ -77,9 +77,30 @@ body.uims-portal .ws-reference .ra-record-modal .btn{font-size:16px!important;}
 @keyframes ra-enter{from{opacity:.25;transform:translateY(10px);}to{opacity:1;transform:none;}}
 @keyframes ra-splash{0%{transform:scaleX(0);opacity:.65;}72%{transform:scaleX(1);opacity:1;}100%{transform:scaleX(1);opacity:0;}}
 @keyframes ra-value-arrive{from{opacity:0;transform:translateY(.28em);clip-path:inset(0 0 70%);}to{opacity:1;transform:translateY(0);clip-path:inset(0);}}
-.ws-reference .ra-kpi{animation:ra-enter 450ms var(--ui-ease) both;animation-delay:var(--ra-delay,0ms);}.ws-reference .ra-primary .ra-card{animation:ra-enter 500ms var(--ui-ease) 120ms backwards;}.ws-reference .ra-breakdown{animation:ra-enter 500ms var(--ui-ease) 180ms backwards;}
+.ws-reference .ra-kpi{animation:ra-enter 240ms var(--ui-ease) both;animation-delay:var(--ra-delay,0ms);}.ws-reference .ra-primary .ra-card{animation:ra-enter 260ms var(--ui-ease) 40ms backwards;}.ws-reference .ra-breakdown{animation:ra-enter 260ms var(--ui-ease) 60ms backwards;}
 .ws-reference .ra-root :is(button,a,summary):focus-visible{outline:3px solid var(--ui-focus);outline-offset:3px;}
 @media(max-width:1200px){.ws-reference .ra-kpis{gap:12px;}.ws-reference .ra-kpi{padding:17px 16px;}.ws-reference .ra-spark{width:50px;}.ws-reference .ra-breakdown-body{grid-template-columns:180px minmax(0,1fr);}.ws-reference .ra-breakdown-context{grid-column:1/-1;}}
 @media(max-width:1000px){.ws-reference .ra-primary{grid-template-columns:minmax(0,1fr);}.ws-reference .ra-kpis{grid-template-columns:repeat(2,minmax(0,1fr));}.ws-reference .ra-heading{align-items:flex-start;}.ws-reference .ra-plot{height:250px;}}
 @media(max-width:600px){body.uims-portal .ws-reference .ws-page-heading h2{font-size:32px!important;}.ws-reference .ra-heading{flex-direction:column;gap:14px;}.ws-reference .ra-kpis{gap:10px;}.ws-reference .ra-kpi{padding:15px 12px;gap:9px;}.ws-reference .ra-kpi-main strong{font-size:32px;}.ws-reference .ra-spark{display:none;}.ws-reference .ra-card{padding:18px 16px;}.ws-reference .ra-card figcaption{gap:12px;}.ws-reference .ra-card figcaption h3{font-size:19px!important;}.ws-reference .ra-card figcaption>a{font-size:13px;}.ws-reference .ra-breakdown-body{grid-template-columns:minmax(0,1fr);gap:20px;}.ws-reference .ra-donut{justify-self:center;}.ws-reference .ra-breakdown-context{grid-column:auto;}.ws-reference .ra-record-modal .modal-footer{align-items:stretch;}.ws-reference .ra-record-pagination{gap:8px;}.ws-reference .ra-record-pagination .btn{padding:8px 10px;}.ws-reference .ws-journey{padding:18px 16px 0;}.ws-reference .ws-journey-step{flex-basis:142px;}.ws-reference .ra-note{min-height:0;}}
 @media(prefers-reduced-motion:reduce){.ws-reference .ra-root *,.ws-reference .ra-root::before{animation:none!important;transition:none!important;}.ws-reference .ra-kpi:active{transform:none;}}
+/* Coordinator "Students by Major": opt-in horizontal bars (data.BarLayout = "horizontal"). Other roles are unchanged. */
+.ws-reference .ra-plot.ra-plot-h{height:auto;min-height:0;align-items:start;}
+.ws-reference .ra-plot-h svg{height:auto;}
+.ws-reference .ra-plot-h .ra-hrow{cursor:pointer;outline:none;transition:opacity 200ms ease;}
+.ws-reference .ra-plot-h .ra-hhit{fill:transparent;transition:fill 180ms ease;}
+.ws-reference .ra-plot-h .ra-hrow:hover .ra-hhit,.ws-reference .ra-plot-h .ra-hrow:focus-visible .ra-hhit{fill:var(--ui-primary-soft);}
+.ws-reference .ra-plot-h .ra-hrow:focus-visible .ra-hhit{stroke:var(--ui-focus);stroke-width:2;}
+.ws-reference .ra-plot-h svg:hover .ra-hrow:not(:hover){opacity:.6;}
+.ws-reference .ra-plot-h .ra-htrack{fill:var(--ui-neutral-soft);}
+.ws-reference .ra-plot-h .ra-hfill{transform-box:fill-box;transform-origin:left center;transition:filter 180ms ease;}
+.ws-reference:dir(rtl) .ra-plot-h .ra-hfill{transform-origin:right center;}
+.ws-reference .ra-plot-h .ra-hrow:hover .ra-hfill,.ws-reference .ra-plot-h .ra-hrow:focus-visible .ra-hfill{filter:brightness(1.12) saturate(1.05);}
+.ws-reference .ra-plot-h .ra-hrow.is-quality .ra-hfill{fill:var(--ra-pending);}
+body.uims-portal .ws-reference .ra-plot-h text.ra-hlabel{font-size:16px;font-weight:600;fill:var(--ui-ink);}
+body.uims-portal .ws-reference .ra-plot-h .ra-hrow.is-quality text.ra-hlabel{fill:var(--ra-pending);}
+body.uims-portal .ws-reference .ra-plot-h text.ra-hvalue{font-size:17px;font-weight:650;fill:var(--ui-ink);font-variant-numeric:tabular-nums;}
+.ws-reference .ra-bar-horizontal .ra-legend[hidden]{display:none;}
+.ws-reference .ra-notice{display:flex;align-items:flex-start;gap:10px;margin:0;padding:10px 12px;border-radius:10px;background:var(--ui-warning-soft);color:var(--ui-warning);border:1px solid color-mix(in srgb,var(--ui-warning) 28%,transparent);font-weight:500;}
+.ws-reference .ra-notice-icon{width:20px;height:20px;flex:none;display:inline-grid;place-items:center;border-radius:50%;background:var(--ui-warning);color:var(--ui-surface);font-size:12px;font-weight:800;line-height:1;margin-top:1px;}
+.ws-reference .ra-bar-horizontal .ra-table-action+.ra-table-action{margin-inline-start:12px;}
+@media(prefers-reduced-motion:reduce){.ws-reference .ra-plot-h .ra-hrow,.ws-reference .ra-plot-h .ra-hhit,.ws-reference .ra-plot-h .ra-hfill{transition:none!important;}}

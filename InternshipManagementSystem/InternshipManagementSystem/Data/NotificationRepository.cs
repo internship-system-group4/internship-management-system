@@ -35,6 +35,26 @@ namespace InternshipManagementSystem.Data
             return id;
         }
 
+        /// <summary>Saves several notifications (to any people) in ONE request,
+        /// using a Firebase multi-path update. Much faster than one Add each
+        /// when, for example, every eligible student is told about a new opportunity.</summary>
+        public void AddMany(IList<Notification> notifications)
+        {
+            var changes = new Dictionary<string, object>();
+            var keys = new List<KeyValuePair<Notification, string>>();
+            foreach (Notification notification in notifications)
+            {
+                if (notification == null || string.IsNullOrEmpty(notification.RecipientId)) continue;
+                string id = FirebaseContext.NewKey();
+                changes[notification.RecipientId + "/" + id] = notification;
+                keys.Add(new KeyValuePair<Notification, string>(notification, id));
+            }
+            if (changes.Count == 0) return;
+            FirebaseContext.Patch(Constants.Paths.Notifications, changes);
+            // Like Add, the Id is filled in only after saving, so it is not stored in the record.
+            foreach (KeyValuePair<Notification, string> pair in keys) pair.Key.Id = pair.Value;
+        }
+
         /// <summary>The newest notifications first.</summary>
         public List<Notification> GetLatest(string userId, int count)
         {

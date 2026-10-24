@@ -7,7 +7,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Response.Redirect(ResolveUrl("~/Pages/Coordinator/Students.aspx?create=student"), false);
+            Response.Redirect(ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx?create=student"), false);
             Context.ApplicationInstance.CompleteRequest();
         }
     }

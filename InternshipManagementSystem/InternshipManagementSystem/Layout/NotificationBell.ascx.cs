@@ -17,14 +17,21 @@ namespace InternshipManagementSystem.Layout
     public partial class NotificationBell : UserControl
     {
         /// <summary>How many recent notifications the dropdown shows.</summary>
-        private const int DropdownSize = 8;
+        public const int DropdownSize = 8;
 
         /// <summary>How many recent notifications are counted for the badge.</summary>
-        private const int CountWindow = 30;
+        public const int CountWindow = 30;
 
         protected List<Notification> Items = new List<Notification>();
         protected int UnreadCount;
         protected bool Loaded;
+        protected string LoadError;
+
+        /// <summary>Lets the script remember, per person, which notifications already popped up.</summary>
+        protected string UserKey;
+
+        /// <summary>Shown to coordinators when Firebase refused a notification.</summary>
+        protected string Warning;
 
         protected string BadgeText
         {
@@ -44,6 +51,7 @@ namespace InternshipManagementSystem.Layout
                 return;
             }
 
+            UserKey = user.Id;
             try
             {
                 List<Notification> recent = new NotificationRepository().GetLatest(user.Id, CountWindow);
@@ -55,9 +63,15 @@ namespace InternshipManagementSystem.Layout
             {
                 // Usually the database rules for "notifications" are missing.
                 // The page must still work, so only the bell is affected.
-                System.Diagnostics.Trace.TraceWarning("Could not load notifications: " + ex.Message);
+                System.Diagnostics.Trace.TraceError("[UIMS notifications] Could not load notifications: " + ex.Message);
                 Loaded = false;
+                LoadError = ex.Message.IndexOf("Permission denied", StringComparison.OrdinalIgnoreCase) >= 0
+                    ? L.T("Shared.Notify.BlockedByRules")
+                    : L.T("Shared.NotificationBell.NotificationsAreUnavailableRightNow");
             }
+
+            if (user.Role == UserRole.Coordinator && Services.NotificationService.BlockedByRules)
+                Warning = L.T("Shared.Notify.SomeNotDelivered");
         }
 
         protected string OpenUrl(Notification item)
@@ -75,9 +89,9 @@ namespace InternshipManagementSystem.Layout
             if (createdAt <= 0) return "";
             TimeSpan age = TimeSpan.FromMilliseconds(Math.Max(0, Time.NowMs() - createdAt));
             if (age.TotalMinutes < 1) return L.T("Shared.NotificationBell.JustNow");
-            if (age.TotalHours < 1) return (int)age.TotalMinutes + " min ago";
-            if (age.TotalDays < 1) return (int)age.TotalHours + " h ago";
-            if (age.TotalDays < 2) return "Yesterday";
+            if (age.TotalHours < 1) return L.F("Shared.Notify.MinutesAgo", (int)age.TotalMinutes);
+            if (age.TotalDays < 1) return L.F("Shared.Notify.HoursAgo", (int)age.TotalHours);
+            if (age.TotalDays < 2) return L.T("Shared.Notify.Yesterday");
             return Time.DisplayDate(createdAt);
         }
 
@@ -96,6 +110,7 @@ namespace InternshipManagementSystem.Layout
                 case "Comment": path = "<path d=\"M4 5h16v11H9l-5 4z\"/>"; break;
                 case "Meeting": path = "<rect x=\"3\" y=\"5\" width=\"18\" height=\"16\" rx=\"2\"/><path d=\"M7 3v4M17 3v4M3 11h18\"/>"; break;
                 case "Opportunity": path = "<circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m16 16 5 5\"/>"; break;
+                case "Account": path = "<circle cx=\"12\" cy=\"8\" r=\"4\"/><path d=\"M4 21v-1a8 8 0 0 1 16 0v1\"/>"; break;
                 case "Completion": path = "<circle cx=\"12\" cy=\"9\" r=\"6\"/><path d=\"M8.5 14 7 21l5-3 5 3-1.5-7\"/>"; break;
                 default: path = "<path d=\"M6 16v-5a6 6 0 0 1 12 0v5l2 2H4z\"/><path d=\"M10 20a2 2 0 0 0 4 0\"/>"; break;
             }

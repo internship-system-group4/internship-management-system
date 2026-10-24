@@ -233,3 +233,19 @@ html.uims-theme-reveal::view-transition-new(uims-theme-control) { animation:uims
  --th-line-f1f5f9:#3e4751; --th-line-fecaca:#533a3a;
 }
 /* ===== generated:end ===== */
+
+/* Login hand-off. Login.aspx ends on .login-campus-veil (login-campus.css); the next page opens under
+   the same veil (a head script sets .uims-arrival from a one-time flag), then fades it and assembles. */
+html.uims-arrival body::after { content:""; position:fixed; inset:0; z-index:3000; pointer-events:none; background:var(--ui-canvas,#f6f8ff) url(../images/gju-logo.png) center/88px auto no-repeat; animation:uims-arrival-veil 480ms cubic-bezier(.4,0,.2,1) 90ms both; }
+html.uims-arrival body.uims-portal .uims-sidebar { animation:uims-arrive-side 640ms cubic-bezier(.22,1,.36,1) 140ms both; }
+html.uims-arrival body.uims-portal .uims-topbar { animation:uims-arrive-top 520ms cubic-bezier(.22,1,.36,1) 200ms both; }
+html.uims-arrival body.uims-portal .uims-main-inner { animation:uims-arrive-rise 700ms cubic-bezier(.22,1,.36,1) 250ms both; }
+html.uims-arrival[dir="rtl"] { --uims-arrive-dir:-1; }
+@keyframes uims-arrival-veil { to { opacity:0; visibility:hidden; } }
+@keyframes uims-arrive-side { from { opacity:0; transform:translateX(calc(var(--uims-arrive-dir,1) * -24px)); } }
+@keyframes uims-arrive-top { from { opacity:0; transform:translateY(-8px); } }
+@keyframes uims-arrive-rise { from { opacity:0; transform:translateY(18px); } }
+@media (prefers-reduced-motion:reduce) {
+ html.uims-arrival body::after { display:none; }
+ html.uims-arrival body.uims-portal :is(.uims-sidebar,.uims-topbar,.uims-main-inner) { animation:none; }
+}

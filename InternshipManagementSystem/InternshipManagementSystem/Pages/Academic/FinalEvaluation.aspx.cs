@@ -14,6 +14,10 @@ namespace InternshipManagementSystem.Pages.Academic
             if (!IsPostBack)
             {
                 LoadStudentsTable();
+
+                // Opened from a notification: open that student's evaluation.
+                string fromLink = Request.QueryString["id"];
+                if (!string.IsNullOrEmpty(fromLink)) OpenEvaluation(fromLink);
             }
         }
 
@@ -43,8 +47,12 @@ namespace InternshipManagementSystem.Pages.Academic
 
             // أخذ الـ ID الخاص بالطالب الذي تم الضغط عليه
             System.Web.UI.WebControls.LinkButton btn = (System.Web.UI.WebControls.LinkButton)sender;
-            string studentId = btn.CommandArgument;
+            OpenEvaluation(btn.CommandArgument);
+        }
 
+        private void OpenEvaluation(string studentId)
+        {
+            pnlSuccessMessage.Visible = false;
             if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
             // حفظه في Hidden Field لنستخدمه عند الضغط على إرسال التقييم
             hfSelectedStudentId.Value = studentId;

@@ -49,6 +49,11 @@ namespace InternshipManagementSystem.Models
         public PlacementStatus Status { get; set; }
         public long ConfirmedAt { get; set; }
 
+        /// <summary>"Local" (field training in Jordan) or "International"
+        /// (German Year internship). Optional: older placements have no value
+        /// and are treated as local. See Common/InternshipRequirements.cs.</summary>
+        public string InternshipType { get; set; }
+
         public Placement()
         {
             Status = PlacementStatus.Confirmed;
@@ -58,7 +63,7 @@ namespace InternshipManagementSystem.Models
         [ScriptIgnore]
         public bool HoursRequirementMet
         {
-            get { return RequiredHours > 0 && ApprovedHours >= RequiredHours; }
+            get { return ApprovedHours >= InternshipRules.RequiredHours(RequiredHours, 0); }
         }
     }
 }

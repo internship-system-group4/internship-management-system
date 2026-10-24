@@ -17,7 +17,7 @@
  --ui-radius:8px;--ui-radius-panel:12px;--ui-radius-dialog:16px;--ui-elevation:0 22px 70px rgb(11 36 51 / 20%);
  --ui-icon:21px;--ui-icon-sm:17px;--ui-stroke:1.75;--ui-control:48px;--ui-control-sm:40px;
  --ui-z-nav:1100;--ui-z-modal:1200;--ui-z-toast:1300;
- --ui-motion-fast:120ms;--ui-motion-control:200ms;--ui-motion-dialog:300ms;--ui-motion-exit:200ms;--ui-motion-page:460ms;--ui-motion-progress:600ms;
+ --ui-motion-fast:120ms;--ui-motion-control:200ms;--ui-motion-dialog:300ms;--ui-motion-exit:200ms;--ui-motion-page:220ms;--ui-motion-progress:320ms;
  --ui-ease:cubic-bezier(.16,1,.3,1);--ui-focus:#315e8d;
 }
 @media(prefers-reduced-motion:reduce) { :root {--ui-motion-fast:0ms;--ui-motion-control:0ms;--ui-motion-dialog:0ms;--ui-motion-exit:0ms;--ui-motion-page:0ms;--ui-motion-progress:0ms;} }
