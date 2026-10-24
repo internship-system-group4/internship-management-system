@@ -13,7 +13,7 @@
         .profile-avatar { width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--th-line-ffffff,#fff); background-color: var(--th-bg-e8f0f7,#e8f0f7); color: var(--ui-primary-text,var(--ui-primary)); font-size: 2.5rem; font-weight: bold; display: inline-flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); object-fit: cover; }
         
         .info-group { margin-bottom: 1.5rem; text-align: start; background: var(--th-bg-f8fafc,#f8fafc); padding: 1.25rem 1.75rem; border-radius: 12px; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); }
-        .info-label { font-size: 0.75rem; color: var(--th-fg-6b7786,#6b7786); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
+        .info-label { font-size: 0.75rem; color: var(--ui-muted); text-transform: uppercase; font-weight: 700; margin-bottom: 0.25rem; letter-spacing: 0.5px; }
         .info-value { font-size: 1.05rem; color: var(--th-fg-1d2733,#1d2733); font-weight: 600; margin: 0; }
         
         .btn-edit { background-color: var(--ui-surface,#ffffff); color: var(--ui-primary-text,var(--ui-primary)); border: 1px solid var(--ui-primary); font-weight: 600; padding: 0.5rem 1.5rem; border-radius: 50rem; transition: all 0.2s; position: absolute; top: 1rem; inset-inline-end: 1rem; }

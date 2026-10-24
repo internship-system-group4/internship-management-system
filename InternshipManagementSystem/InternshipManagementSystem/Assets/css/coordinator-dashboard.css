@@ -1,9 +1,28 @@
 /* Ahmad coordinator dashboard: preserves Sidebar.ascx, pinning, mobile navigation,
    notification bell, authentication, and the existing monitoring repository.
    Shared colors and components are documented in Assets/theme.css. */
+/* Colour scope. The dashboard keeps the component styles of Assets/theme.css (cards, buttons, links, badges, empty states)
+   but takes its colours from the shared UIMS tokens, so it matches the other coordinator pages and follows Light/Dark.
+   The <body> no longer carries .uims-theme (the shared sidebar is the same on every page), so the dashboard element is
+   the scope; without it every --theme-* colour was undefined (transparent cards, default blue links, a visible skip link). */
+.coordinator-dashboard.uims-theme {
+ --theme-primary:var(--ui-primary); --theme-primary-hover:var(--ui-primary-hover); --theme-primary-soft:var(--ui-primary-soft); --theme-on-primary:#fff;
+ --theme-navy:var(--ui-ink); --theme-navy-soft:var(--ui-primary-soft); --theme-accent:var(--ui-accent); --theme-accent-soft:var(--ui-warning-soft);
+ --theme-text:var(--ui-ink); --theme-muted:var(--ui-muted); --theme-border:var(--ui-border);
+ --theme-surface:var(--ui-surface); --theme-surface-subtle:var(--ui-neutral-soft); --theme-canvas:var(--ui-canvas);
+ --theme-success:var(--ui-success); --theme-success-bg:var(--ui-success-soft); --theme-warning:var(--ui-warning); --theme-warning-bg:var(--ui-warning-soft);
+ --theme-danger:var(--ui-danger); --theme-danger-bg:var(--ui-danger-soft); --theme-info:var(--ui-info); --theme-info-bg:var(--ui-info-soft);
+ --theme-focus:var(--ui-focus,var(--ui-primary)); --theme-disabled-bg:var(--ui-neutral-soft); --theme-disabled-text:var(--ui-muted); --theme-font:var(--ui-font);
+ background:transparent;
+}
+/* Quiet links read as links in both themes (the hover navy is too dark on the Dark canvas). */
+.coordinator-dashboard.uims-theme .theme-link { color:var(--ui-primary-text,var(--ui-primary)); }
+/* The master renders the skip link outside the dashboard scope: hidden until focused. */
+body.uims-portal .theme-skip-link { position:absolute; inset-inline-start:1rem; top:-100px; z-index:1200; padding:.75rem 1rem; border-radius:8px; background:var(--ui-primary); color:#fff; }
+body.uims-portal .theme-skip-link:focus { top:1rem; }
 body.uims-portal.uims-theme { background:var(--theme-canvas);color:var(--theme-text);font-family:var(--theme-font); }
 body.uims-portal.uims-theme :focus-visible { outline-color:var(--theme-focus); }
-html body.uims-portal.uims-theme .uims-sidebar { background:var(--theme-navy);color:#c2d2d6;border-color:#304853; }
+html body.uims-portal.uims-theme .uims-sidebar { background:var(--theme-navy);color:#c2d2d6;border-color:var(--th-line-304853,#304853); }
 body.uims-portal.uims-theme .uims-sidebar-brand strong { color:#fff; }
 body.uims-portal.uims-theme .uims-sidebar-brand small { color:#b7cbd0; }
 body.uims-portal.uims-theme .uims-sidebar-pin,
@@ -15,7 +34,7 @@ body.uims-portal.uims-theme .uims-sidebar-pin[aria-pressed="true"],
 body.uims-portal.uims-theme .student-logout a:hover { background:var(--theme-navy-soft);color:#fff; }
 body.uims-portal.uims-theme .uims-side-link[aria-current="page"] { background:var(--theme-navy-soft);color:#fff;box-shadow:inset 3px 0 var(--theme-accent); }
 body.uims-portal.uims-theme .uims-sidebar-navigation { scrollbar-color:#506b75 var(--theme-navy); }
-body.uims-portal.uims-theme .uims-sidebar-account { border-color:#3b535d;color:#fff; }
+body.uims-portal.uims-theme .uims-sidebar-account { border-color:var(--th-line-3b535d,#3b535d);color:#fff; }
 body.uims-portal.uims-theme .uims-sidebar-account:hover { background:var(--theme-navy-soft); }
 body.uims-portal.uims-theme .uims-sidebar-account-meta small { color:#b7cbd0; }
 body.uims-portal.uims-theme .uims-sidebar-account-meta>span { color:var(--theme-accent); }
@@ -24,7 +43,7 @@ body.uims-portal.uims-theme .student-avatar { color:var(--theme-warning);backgro
 body.uims-portal.uims-theme .uims-topbar { background:var(--theme-surface);border-color:var(--theme-border); }
 body.uims-portal.uims-theme .uims-page-title::before { color:var(--theme-muted); }
 body.uims-portal.uims-theme .uims-main-inner { width:100%;max-width:1600px;margin-inline:auto;padding:32px; }
-body.uims-portal.uims-theme .student-nav-close { background:var(--theme-navy-soft);color:#fff;border-color:#506b75; }
+body.uims-portal.uims-theme .student-nav-close { background:var(--theme-navy-soft);color:#fff;border-color:var(--th-line-506b75,#506b75); }
 body.uims-portal.uims-theme .uims-user-meta small { color:var(--theme-muted); }
 .coordinator-dashboard .dashboard-stats { grid-template-columns:repeat(3,minmax(0,1fr)); }
 .coordinator-dashboard .dashboard-progress { flex-wrap:wrap; }
@@ -81,7 +100,7 @@ a.dashboard-stat:hover { border-color: var(--theme-primary); color: inherit; }
 .dashboard-action > .theme-icon { width: 15px; height: 15px; margin-inline-start: auto; color: var(--theme-muted); }
 .dashboard-action strong { display: block; font-size: 12px; font-weight: 600; }
 .dashboard-action small { display: block; color: var(--theme-muted); font-size: 10px; margin-top: 2px; }
-.dashboard-review { margin-top: 16px; padding: 20px; background: var(--theme-accent-soft) !important; border-color: #e9dcc7 !important; }
+.dashboard-review { margin-top: 16px; padding: 20px; background: var(--theme-accent-soft) !important; border-color: var(--th-line-e9dcc7,#e9dcc7) !important; }
 .dashboard-review .theme-eyebrow { color: var(--theme-warning); font-size: 9px; }
 .dashboard-review h3 { margin: 9px 0; font-size: 18px; letter-spacing: -.025em; }
 .dashboard-review p { font-size: 11px; color: var(--theme-warning); margin: 0 0 13px; }
@@ -140,7 +159,7 @@ a.dashboard-stat:hover { border-color: var(--theme-primary); color: inherit; }
 .dashboard-load-error > p { margin: 8px 0 14px; }
 .dashboard-error-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 16px; }
 .dashboard-full-link { display: inline-block; margin-top: 12px; font-size: 11px !important; }
-.skeleton-block { position: relative; display: block; overflow: hidden; background: #e8eeeb; border-radius: 5px; }
+.skeleton-block { position: relative; display: block; overflow: hidden; background: var(--th-bg-e8eeeb,#e8eeeb); border-radius: 5px; }
 .skeleton-block::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, transparent 20%, rgb(255 255 255 / 65%) 48%, transparent 75%); transform: translateX(-100%); animation: dashboard-shimmer 1500ms ease 2; }
 @keyframes dashboard-shimmer { to { transform: translateX(100%); } }
 .skeleton-section-title { width: 190px; height: 19px; margin-bottom: 13px; }

@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="InternshipManagementSystem.Layout.PublicMaster" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="InternshipManagementSystem.Layout.PublicMaster" %>
 <%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
 <%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
 <!DOCTYPE html>

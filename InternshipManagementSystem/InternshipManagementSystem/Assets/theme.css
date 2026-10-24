@@ -49,7 +49,8 @@
    RESPONSIVE: layouts should stack at 1100px/760px; remain usable at 320px.
    ========================================================================== */
 
-.uims-theme {
+/* Page scope only: the shared Light/Dark toggle (Layout/ThemeSelector.ascx) also carries .uims-theme. */
+.uims-theme:not([data-theme-control]) {
     /* Brand: primary actions, links, navigation, decorative highlights. */
     --theme-primary: #087f75;
     --theme-primary-hover: #06685f;

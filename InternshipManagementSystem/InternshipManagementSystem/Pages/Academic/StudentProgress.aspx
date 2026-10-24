@@ -103,7 +103,7 @@
         <!-- Accordion for detailed sections -->
         <div class="accordion" id="progressAccordion">
             <!-- Interactive Progress Summary Card (Bonus Feature) -->
-            <div class="card shadow-sm mb-4 border-0" style="background-color: #f8f9fa; border-radius: 10px;">
+            <div class="card shadow-sm mb-4 border-0" style="background-color: var(--th-bg-f8f9fa,#f8f9fa); border-radius: 10px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h6 class="fw-bold text-dark m-0">Training Hours & Progress Overview</h6>

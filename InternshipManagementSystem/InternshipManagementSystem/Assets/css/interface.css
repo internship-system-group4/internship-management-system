@@ -28,7 +28,7 @@ body.uims-portal .uims-main-inner .ws-metric-band dd {font-size:42px;line-height
 .ws-text-action,.ws-section-heading>a,.ws-utility-links a {font-size:17px;}
 .ws-programme-totals,.ws-exception-band span {font-size:16px;}
 body.uims-portal .ws-section-heading h3 {font-size:25px!important;}
-.ws-hours {background:var(--ui-primary-hover);}
+.ws-hours {background:var(--ui-brand-deep,var(--ui-primary-hover));}
 .ws-hours .ws-progress-fill {background:var(--ui-accent);}
 body.uims-public :is(.public-links a,.public-button,.public-text-link) {font-size:18px;}
 body.uims-public :is(.public-brand small,.public-footer p,.public-footer a,.public-footer small) {font-size:15px;}

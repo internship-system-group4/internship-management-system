@@ -1,10 +1,10 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="PlacementDetails.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.PlacementDetails" Title="Placement Details" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="PlacementDetails.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.PlacementDetails" Title="Placement Details" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <style>
         .placement-intro{display:flex;justify-content:space-between;align-items:start;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}.placement-intro h2{font-size:1.45rem;margin:0 0 .35rem}.placement-muted{color:var(--muted)}
         .placement-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.placement-fact{border-top:1px solid var(--line);padding-top:.65rem}.placement-fact small{display:block;color:var(--muted)}.placement-fact strong{display:block;margin-top:.2rem;overflow-wrap:anywhere}
-        .placement-stats{display:flex;gap:1rem;flex-wrap:wrap}.placement-stats strong{color:var(--brand-dark)}.placement-feedback{white-space:pre-wrap;overflow-wrap:anywhere}
+        .placement-stats{display:flex;gap:1rem;flex-wrap:wrap}.placement-stats strong{color:var(--brand-text,var(--brand-dark))}.placement-feedback{white-space:pre-wrap;overflow-wrap:anywhere}
         @media(max-width:750px){.placement-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:520px){.placement-grid{grid-template-columns:1fr}}
     </style>
 </asp:Content>

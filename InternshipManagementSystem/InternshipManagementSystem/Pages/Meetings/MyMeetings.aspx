@@ -11,10 +11,11 @@
 
     <style>
         .meetings-page {
-            --ink: #1b3046;
-            --muted: #62748a;
+            --ink: var(--th-fg-1b3046,#1b3046);
+            --muted: var(--ui-muted);
             --primary: #28567e;
-            --border: #e0e8ef;
+            --primary-text: var(--ink,#28567e);
+            --border: var(--th-line-e0e8ef,#e0e8ef);
             color: var(--ink);
             max-width: 1240px;
             margin: auto;
@@ -43,7 +44,7 @@
             font-weight: 750;
             letter-spacing: .15em;
             text-transform: uppercase;
-            color: var(--primary);
+            color: var(--primary-text);
             margin: 0 0 8px;
         }
 
@@ -69,7 +70,7 @@
             padding: 10px 16px;
             border: 1px solid var(--border);
             border-radius: 10px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             color: var(--ink);
             font: inherit;
             font-size: 13px;
@@ -80,7 +81,7 @@
         }
 
         .meeting-btn:hover {
-            background: #f0f5f7;
+            background: var(--th-bg-f0f5f7,#f0f5f7);
             color: var(--ink);
         }
 
@@ -96,8 +97,8 @@
         }
 
         .meeting-btn-danger {
-            color: #a13a4a;
-            border-color: #eed5db;
+            color: var(--th-fg-a13a4a,#a13a4a);
+            border-color: var(--th-line-eed5db,#eed5db);
         }
 
         .meeting-btn-small {
@@ -125,7 +126,7 @@
 
         .meeting-stat {
             padding: 20px 22px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border: 1px solid var(--border);
             border-radius: 15px;
         }
@@ -152,7 +153,7 @@
         }
 
         .meeting-stat:first-child .meeting-stat-number {
-            color: #946511;
+            color: var(--th-fg-946511,#946511);
         }
 
         .meeting-stat:nth-child(3) .meeting-stat-number {
@@ -162,7 +163,7 @@
         .meeting-panel {
             border: 1px solid var(--border);
             border-radius: 18px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             overflow: hidden;
             box-shadow: 0 6px 24px #1b304606;
         }
@@ -201,7 +202,7 @@
             gap: 15px;
             align-items: center;
             padding: 16px 24px;
-            background: #fbfcfe;
+            background: var(--th-bg-fbfcfe,#fbfcfe);
             border-bottom: 1px solid var(--border);
             font-size: 13px;
         }
@@ -229,10 +230,10 @@
 
         .meeting-table th {
             padding: 15px 19px;
-            background: #f4f7fa;
+            background: var(--th-bg-f4f7fa,#f4f7fa);
             border: 0 !important;
             border-bottom: 1px solid var(--border) !important;
-            color: #5b6c80;
+            color: var(--th-fg-5b6c80,#5b6c80);
             text-align: left;
             font-size: 12px;
             font-weight: 700;
@@ -242,7 +243,7 @@
             padding: 20px 19px;
             vertical-align: top;
             border: 0 !important;
-            border-bottom: 1px solid #edf1f5 !important;
+            border-bottom: 1px solid var(--th-line-edf1f5,#edf1f5) !important;
             overflow-wrap: anywhere;
         }
 
@@ -251,7 +252,7 @@
         }
 
         .meeting-table tr:hover td {
-            background: #fcfdfd;
+            background: var(--th-bg-fcfdfd,#fcfdfd);
         }
 
         .meeting-subtext {
@@ -273,16 +274,16 @@
             display: inline-block;
             padding: 6px 10px;
             border-radius: 8px;
-            background: #eff3f7;
-            color: #56677c;
+            background: var(--th-bg-eff3f7,#eff3f7);
+            color: var(--th-fg-56677c,#56677c);
             font-size: 11px;
             font-weight: 700;
             max-width: 180px;
         }
 
         .meeting-status[data-state="Pending approval"] {
-            background: #fff2d6;
-            color: #825b0d;
+            background: var(--th-bg-fff2d6,#fff2d6);
+            color: var(--th-fg-825b0d,#825b0d);
         }
 
         .meeting-status[data-state="Approved"] {
@@ -292,13 +293,13 @@
 
         .meeting-status[data-state="Declined"],
         .meeting-status[data-state="Cancelled"] {
-            background: #fdecef;
-            color: #a13a4a;
+            background: var(--th-bg-fdecef,#fdecef);
+            color: var(--th-fg-a13a4a,#a13a4a);
         }
 
         .meeting-status[data-state="Completed"] {
-            background: #eaf0ff;
-            color: #3e5e9b;
+            background: var(--th-bg-eaf0ff,#eaf0ff);
+            color: var(--th-fg-3e5e9b,#3e5e9b);
         }
 
         .meeting-empty {
@@ -320,7 +321,7 @@
             font-size: 12px;
             color: var(--muted);
             line-height: 1.8;
-            background: #fcfdfe;
+            background: var(--th-bg-fcfdfe,#fcfdfe);
         }
 
         .meeting-dialog {
@@ -331,13 +332,13 @@
             margin: auto;
             border: 1px solid var(--border);
             border-radius: 20px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             overflow: auto;
             box-shadow: 0 30px 100px #10203040;
         }
 
         .meeting-dialog::backdrop {
-            background: #12263970;
+            background: var(--th-bg-12263970,#12263970);
             backdrop-filter: blur(7px);
             -webkit-backdrop-filter: blur(7px);
         }
@@ -376,14 +377,14 @@
             height: 38px;
             border: 1px solid var(--border);
             border-radius: 10px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             font-size: 24px;
-            color: #53667b;
+            color: var(--th-fg-53667b,#53667b);
             cursor: pointer;
         }
 
         .meeting-close:hover {
-            background: #f3f7fa;
+            background: var(--th-bg-f3f7fa,#f3f7fa);
         }
 
         .meeting-form {
@@ -407,9 +408,9 @@
         .meeting-control {
             width: 100%;
             min-height: 45px;
-            border: 1px solid #cfdbe4;
+            border: 1px solid var(--th-line-cfdbe4,#cfdbe4);
             border-radius: 10px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             padding: 11px 12px;
             font: inherit;
             font-size: 14px;
@@ -491,7 +492,7 @@
         .meeting-room-host {
             height: 68vh;
             min-height: 320px;
-            background: #182b40;
+            background: var(--th-bg-182b40,#182b40);
         }
 
         .meeting-room-note {

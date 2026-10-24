@@ -1,8 +1,7 @@
-namespace InternshipManagementSystem.Pages.AcademicArea
+namespace InternshipManagementSystem.Pages.Academic
 {
     public partial class Dashboard
     {
-<<<<<<< HEAD
 
         /// <summary>
         /// litSupervisorName control.
@@ -84,11 +83,5 @@ namespace InternshipManagementSystem.Pages.AcademicArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.LinkButton btnSeeLess;
-=======
-        protected global::System.Web.UI.WebControls.Label lblMessage;
-        protected global::System.Web.UI.WebControls.Repeater rptStudents;
-        protected global::System.Web.UI.WebControls.Label lblNoStudents;
-        protected global::System.Web.UI.WebControls.Panel pnlStudentTable;
->>>>>>> 47f5c7e1735f26ddf41edaf20756fabbfec4b522
     }
 }

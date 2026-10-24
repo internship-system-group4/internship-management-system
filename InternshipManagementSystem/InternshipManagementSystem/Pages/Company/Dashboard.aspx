@@ -17,7 +17,7 @@
 
         .metric-card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--th-bg-0f4c81,#0f4c81) !important; transition: transform 0.2s; }
         .metric-card:hover { transform: translateY(-3px); }
-        .metric-card .title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--th-fg-6b7786,#6b7786); letter-spacing: 0.5px; margin-bottom: 0.5rem; }
+        .metric-card .title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--ui-muted); letter-spacing: 0.5px; margin-bottom: 0.5rem; }
         .metric-card .value { font-size: 1.5rem; font-weight: 800; color: var(--th-fg-1d2733,#1d2733); margin-bottom: 0.2rem; }
         .metric-card .desc { font-size: 0.75rem; color: var(--th-fg-888888,#888); }
 

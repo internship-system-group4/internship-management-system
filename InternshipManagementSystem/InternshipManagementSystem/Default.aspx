@@ -25,6 +25,8 @@
         --uims-navy: #284b63;
         --uims-heading: #1a252c;
     }
+    /* Dark: the near-black heading becomes the theme ink. */
+    :root[data-theme="dark"] { --uims-heading: var(--ui-ink); }
     
     /* === SECTION 2: HOW IT WORKS === */
     .home-how-it-works {
@@ -35,7 +37,7 @@
         margin-left: -50vw;
         margin-right: -50vw;
         padding: 110px 8%;
-        background-color: #ffffff;
+        background-color: var(--ui-surface,#ffffff);
     }
     .home-how-it-works-inner {
         max-width: 1250px;
@@ -52,7 +54,7 @@
     .header-col-left h2 {
         font-size: 2.8rem;
         font-weight: 800;
-        color: var(--uims-navy);
+        color: var(--ui-primary-text,var(--uims-navy));
         margin: 0;
         line-height: 1.2;
         letter-spacing: -0.5px;
@@ -68,7 +70,7 @@
         display: inline-block;
         padding: 8px 24px;
         background-color: rgba(40, 75, 99, 0.08);
-        color: var(--uims-navy);
+        color: var(--ui-primary-text,var(--uims-navy));
         font-weight: 700;
         font-size: 0.85rem;
         border-radius: 50px;
@@ -78,7 +80,7 @@
     }
     .header-col-right p {
         font-size: 1.05rem;
-        color: #606f7b;
+        color: var(--th-fg-606f7b,#606f7b);
         line-height: 1.75;
         margin: 0;
         max-width: 95%;
@@ -103,7 +105,7 @@
         position: relative;
     }
     .uims-step-card {
-        background: #ffffff;
+        background: var(--ui-surface,#ffffff);
         padding: 35px 28px;
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
@@ -140,7 +142,7 @@
         right: 20px;
         font-size: 2.4rem;
         font-weight: 900;
-        color: var(--uims-navy); 
+        color: var(--ui-primary-text,var(--uims-navy));
         opacity: 0.35;
         letter-spacing: -1px;
         transition: all 0.3s ease;
@@ -154,7 +156,7 @@
         width: 54px;
         height: 54px;
         background-color: rgba(40, 75, 99, 0.08);
-        color: var(--uims-navy);
+        color: var(--ui-primary-text,var(--uims-navy));
         display: flex;
         align-items: center;
         justify-content: center;
@@ -179,7 +181,7 @@
     }
     .uims-step-card p {
         font-size: 0.95rem;
-        color: #606f7b;
+        color: var(--th-fg-606f7b,#606f7b);
         line-height: 1.65;
         margin: 0;
     }
@@ -256,8 +258,8 @@
         display: inline-flex;
         align-items: center;
         gap: 14px;
-        background-color: #ffffff;
-        color: var(--uims-navy);
+        background-color: var(--ui-surface,#ffffff);
+        color: var(--ui-primary-text,var(--uims-navy));
         padding: 16px 36px;
         border-radius: 50px;
         font-weight: 700;
@@ -267,10 +269,10 @@
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     }
     .home-video-about-btn:hover {
-        background-color: #f8fafc;
+        background-color: var(--th-bg-f8fafc,#f8fafc);
         transform: translateY(-4px);
         box-shadow: 0 15px 35px rgba(255, 255, 255, 0.2);
-        color: #183144;
+        color: var(--th-fg-183144,#183144);
     }
     .home-video-about-btn svg {
         width: 20px;
@@ -320,7 +322,7 @@
         margin-left: -50vw;
         margin-right: -50vw;
         padding: 120px 8%;
-        background-color: #fdfefe;
+        background-color: var(--th-bg-fdfefe,#fdfefe);
         text-align: center;
     }
     .home-process-video-container {
@@ -333,14 +335,14 @@
     .home-process-video-header h2 {
         font-size: 2.8rem;
         font-weight: 800;
-        color: var(--uims-navy);
+        color: var(--ui-primary-text,var(--uims-navy));
         margin-bottom: 15px;
         letter-spacing: -0.5px;
         line-height: 1.3;
     }
     .home-process-video-header p {
         font-size: 1.1rem;
-        color: #606f7b;
+        color: var(--th-fg-606f7b,#606f7b);
         max-width: 650px;
         margin: 0 auto;
         line-height: 1.7;
@@ -352,7 +354,7 @@
         overflow: hidden;
         box-shadow: 0 25px 50px rgba(40, 75, 99, 0.15);
         border: 1px solid rgba(40, 75, 99, 0.08);
-        background-color: #000;
+        background-color: var(--th-bg-000000,#000);
         transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
     .home-process-video-wrapper:hover {
@@ -428,8 +430,8 @@
         display: inline-flex;
         align-items: center;
         gap: 12px;
-        background-color: #ffffff;
-        color: var(--uims-navy);
+        background-color: var(--ui-surface,#ffffff);
+        color: var(--ui-primary-text,var(--uims-navy));
         padding: 16px 38px;
         border-radius: 50px;
         font-weight: 700;
@@ -439,10 +441,10 @@
         transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1);
     }
     .home-opp-explore-btn:hover {
-        background-color: #f8fafc;
+        background-color: var(--th-bg-f8fafc,#f8fafc);
         transform: translateY(-4px);
         box-shadow: 0 15px 35px rgba(255, 255, 255, 0.25);
-        color: #183144;
+        color: var(--th-fg-183144,#183144);
         gap: 16px;
     }
     .home-opp-explore-btn svg {
@@ -462,7 +464,7 @@
         right: 50%;
         margin-left: -50vw;
         margin-right: -50vw;
-        background-color: #f4f6f8;
+        background-color: var(--th-bg-f4f6f8,#f4f6f8);
         padding: 100px 8%;
     }
     .home-cta-full-inner {
@@ -477,14 +479,14 @@
         font-size: 2.3يرم; /* تم ضبط الحجم ليصبح أنيقاً */
         font-size: 2.2rem;
         font-weight: 800;
-        color: var(--uims-navy); /* تعيين اللون الكحلي الهادئ بدلاً من الأسود */
+        color: var(--ui-primary-text,var(--uims-navy)); /* تعيين اللون الكحلي الهادئ بدلاً من الأسود */
         margin-bottom: 12px;
         letter-spacing: -0.5px;
         line-height: 1.25;
     }
     .home-cta-text p {
         font-size: 1.05rem;
-        color: #606f7b;
+        color: var(--th-fg-606f7b,#606f7b);
         margin: 0;
         line-height: 1.6;
     }
