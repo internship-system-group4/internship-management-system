@@ -60,9 +60,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected void DdlTrainees_SelectedIndexChanged(object sender, EventArgs e)
         {
             string placementId = ddlTrainees.SelectedValue;
+            ClearTraineeCard();
             if (string.IsNullOrEmpty(placementId))
             {
-                ClearTraineeCard();
                 return;
             }
 
@@ -88,7 +88,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         catch { }
 
                         // إظهار أو إخفاء زر الـ CV وتعيين الرابط
-                        if (!string.IsNullOrEmpty(cvLink))
+                        if (ApplicationRepository.IsSafeDocumentUrl(cvLink))
                         {
                             hlViewCV.NavigateUrl = cvLink;
                             divCvContainer.Visible = true;

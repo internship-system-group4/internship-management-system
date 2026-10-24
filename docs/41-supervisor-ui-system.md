@@ -72,3 +72,24 @@ Company and Academic account pages now use the same `su-account` composition: pa
 Academic official fields and full name remain noneditable. Age and phone keep their existing save handler; the existing photo upload still runs on file selection and its helper text says so. Company name/phone/job title/photo keep the existing profile handler. Company password navigation uses the existing authenticated Change Password page; Academic retains its existing password dialog. This is presentation unification, not a change to account authorization, storage, upload policy or authentication. The duplicate page-local Bootstrap runtime was removed from Company Account so the master owns dialog initialization.
 
 `tests/supervisor-account.browser.js`: **75 checks passed**, covering both roles, English/Arabic, Light/Dark, desktop/phone layouts, start-aligned identity, shared actions, role-specific readonly controls, Edit dialog semantics, cancel/reopen draft preservation, existing save/password controls, one Bootstrap runtime, and 375px/200% text layout. No profile, photo or password write was submitted; storage/authentication integration behavior is not newly established by these UI checks. Screenshots are under `tests/artifacts/account-*`.
+
+## Application review loading
+
+The initial queue binds names and majors saved on application records. Optional
+student profiles, skills and document metadata load only for the selected
+application through `Applications.aspx?candidate=<applicationId>`. The server
+matches this ID against the signed-in company's applications before fetching a
+profile. JavaScript imports only the candidate panel into the existing page;
+decision buttons, postback controls and unsaved rejection fields stay in place.
+A failed or timed-out detail request retains a localized retry link. Without
+JavaScript, that link opens the same authenticated page with the selected details.
+Loaded panels are reused within the page; PDF previews remain deferred.
+
+On 2026-10-24, the real IIS application against the local Postman Firebase
+simulation with shared read caching disabled made **3 initial reads instead of
+39** for 12 synthetic applications. This measures initial database round trips,
+not live Firebase latency; the selected profile adds its own reads afterward.
+`tests/application-review-loading.browser.js` passed **22 checks**, including
+independent detail loading, retry, unsaved input protection, actual acceptance and
+rejection postbacks, Arabic Dark mobile, no-JavaScript fallback and company scoping.
+Production Firebase rules and external network performance were not tested.

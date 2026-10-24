@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -814,4 +814,6 @@
   <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>Deactivate</value></data>
   <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>Activate “{0}”? Students can apply again if the deadline has not passed and seats are available.</value></data>
   <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>Deactivate “{0}”? New applications will stop. Existing applications will be preserved.</value></data>
+  <data name="Applications.LoadingDetails" xml:space="preserve"><value>Loading candidate details…</value></data>
+  <data name="Applications.DetailsLoadFailed" xml:space="preserve"><value>Could not load details. Try again using the link below.</value></data>
 </root>

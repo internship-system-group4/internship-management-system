@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -814,4 +814,6 @@
   <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>إيقاف</value></data>
   <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>هل تريد تفعيل «{0}»؟ يمكن للطلاب التقديم مجددًا إذا لم ينتهِ الموعد النهائي وكانت هناك مقاعد متاحة.</value></data>
   <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>هل تريد إيقاف «{0}»؟ سيتوقف استقبال الطلبات الجديدة مع الاحتفاظ بالطلبات الحالية.</value></data>
+  <data name="Applications.LoadingDetails" xml:space="preserve"><value>جارٍ تحميل تفاصيل المتقدم…</value></data>
+  <data name="Applications.DetailsLoadFailed" xml:space="preserve"><value>تعذّر تحميل التفاصيل. حاول مجددًا باستخدام الرابط أدناه.</value></data>
 </root>

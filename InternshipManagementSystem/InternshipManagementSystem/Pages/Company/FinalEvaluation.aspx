@@ -242,6 +242,12 @@
                         </div>
                     </div>
 
+                    <div id="divCvContainer" runat="server" visible="false" class="mb-3">
+                        <asp:HyperLink ID="hlViewCV" runat="server" CssClass="btn btn-outline-primary"
+                            Target="_blank" rel="noopener noreferrer"
+                            Text="<%$ Resources:Company, TraineeDetails.ViewTraineeCV %>" />
+                    </div>
+
                     <div class="mb-3">
                         <div class="text-muted mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.Internship") %></div>
                         <div class="fw-semibold text-dark" style="font-size: 0.85rem;"><span id="jsInternshipTitle"><asp:Literal ID="litInternshipTitle" runat="server">-</asp:Literal></span></div>

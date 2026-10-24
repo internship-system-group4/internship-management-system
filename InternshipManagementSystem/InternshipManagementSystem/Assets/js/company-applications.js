@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     'use strict';
     var root = document.querySelector('.company-applications');
     if (!root) return;
@@ -68,6 +68,45 @@
         active = null; selection.value = ''; pane.hidden = true; actions.hidden = true;
         placeholder.hidden = records.length === 0; releaseDialog();
     }
+    function wirePreview(record) {
+        var previewButton = record.details.querySelector('.review-preview-toggle');
+        if (previewButton) {
+            previewButton.hidden = false;
+            previewButton.addEventListener('click', function () {
+                var preview = record.details.querySelector('.review-cv-preview'), frame = preview.querySelector('iframe');
+                preview.hidden = !preview.hidden;
+                previewButton.setAttribute('aria-expanded', preview.hidden ? 'false' : 'true');
+                previewButton.textContent = preview.hidden ? previewButton.dataset.showLabel : previewButton.dataset.hideLabel;
+                if (!preview.hidden && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
+            });
+        }
+    }
+    function loadDetails(record) {
+        var panel = record.details.querySelector('.candidate-panel');
+        if (!panel || panel.dataset.detailsLoaded === 'true' || record.loading) return;
+        var link = panel.querySelector('[data-load-candidate]');
+        var status = panel.querySelector('[data-details-status]');
+        if (!link) return;
+        record.loading = true; panel.setAttribute('aria-busy', 'true');
+        status.textContent = root.dataset.detailsLoading;
+        // Same authenticated page and company-scoped repository; only the selected
+        // candidate panel is imported. Decision controls and form state stay in place.
+        var controller = new AbortController();
+        var timeout = window.setTimeout(function () { controller.abort(); }, 15000);
+        fetch(link.href, { credentials: 'same-origin', cache: 'no-store', signal: controller.signal })
+            .then(function (response) { if (!response.ok || response.redirected) throw new Error('Details unavailable'); return response.text(); })
+            .then(function (html) {
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                var source = doc.getElementById(record.details.id);
+                var loaded = source && source.querySelector('.candidate-panel[data-details-loaded="true"]');
+                if (!loaded) throw new Error('Details unavailable');
+                panel.replaceChildren.apply(panel, Array.from(loaded.childNodes).map(function (node) { return document.importNode(node, true); }));
+                panel.dataset.detailsLoaded = 'true'; wirePreview(record);
+                if (window.UimsUI && window.UimsUI.refresh) window.UimsUI.refresh();
+            })
+            .catch(function () { status.textContent = root.dataset.detailsError; })
+            .finally(function () { window.clearTimeout(timeout); record.loading = false; panel.removeAttribute('aria-busy'); });
+    }
     function select(record, focus) {
         if (!record || record.card.hidden) return false;
         if (active !== record) {
@@ -81,6 +120,7 @@
             pane.hidden = false; placeholder.hidden = true; actions.hidden = !active.decision;
             content.scrollTop = 0;
         }
+        loadDetails(record);
         sizeDesk(); updateNavigation(); syncDialog();
         if (focus && !mobile.matches) active.card.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         if (focus) title.focus({ preventScroll: true });
@@ -96,17 +136,9 @@
         if (record.decision) { actions.appendChild(record.decision); record.decision.hidden = true; }
         record.button.hidden = false;
         record.button.addEventListener('click', function () { select(record, true); });
-        var previewButton = record.details.querySelector('.review-preview-toggle');
-        if (previewButton) {
-            previewButton.hidden = false;
-            previewButton.addEventListener('click', function () {
-                var preview = record.details.querySelector('.review-cv-preview'), frame = preview.querySelector('iframe');
-                preview.hidden = !preview.hidden;
-                previewButton.setAttribute('aria-expanded', preview.hidden ? 'false' : 'true');
-                previewButton.textContent = preview.hidden ? previewButton.dataset.showLabel : previewButton.dataset.hideLabel;
-                if (!preview.hidden && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
-            });
-        }
+        wirePreview(record);
+        var loadLink = record.details.querySelector('[data-load-candidate]');
+        if (loadLink) loadLink.addEventListener('click', function (event) { event.preventDefault(); loadDetails(record); });
         if (record.reason) record.reason.maxLength = 2000;
         if (record.decision) {
             var toggle = record.decision.querySelector('.review-reject-toggle');

@@ -195,29 +195,26 @@
         </div>
     </div>
 
-    <!-- نافذة منبثقة للـ CV -->
-    <div class="modal fade" id="cvModal" tabindex="-1" aria-hidden="true">
+    <!-- One document state is rendered on the server, independent of theme CSS. -->
+    <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="traineeCvTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 border-0 shadow-lg p-3">
-          <div class="modal-header border-bottom-0 pb-0 pt-2 px-3">
-            <h5 class="modal-title fw-bold text-dark" style="font-size: 0.95rem;"><i class="bi bi-file-earmark-pdf me-2 text-primary"></i><%: L.T("Company.TraineeDetails.TraineeCVPortfolio") %></h5>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="traineeCvTitle"><span data-ui-icon="document" aria-hidden="true"></span> <%: L.T("Company.TraineeDetails.TraineeCVPortfolio") %></h2>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.TraineeDetails.Close") %>"></button>
           </div>
-          <div class="modal-body p-3 text-center">
-              <div class="mb-2 text-primary" style="font-size: 2rem;"><i class="bi bi-file-earmark-pdf-fill"></i></div>
-              <p class="text-muted small mb-3" style="font-size: 0.75rem;"><%: L.T("Company.TraineeDetails.YouCanAccessTheTraineeS") %></p>
-
-              <div class="mt-2">
-                  <a id="btnOpenRealCv" href="#" target="_blank" class="cv-btn-theme shadow-sm" style="display:none;">
-                      <i class="bi bi-box-arrow-up-right me-1"></i> <%: L.T("Company.TraineeDetails.OpenCVInNewTab") %>
-                  </a>
-                  <div id="divNoCv" class="text-muted fst-italic p-2 bg-light rounded-3 border" style="font-size: 0.75rem; display:none;">
-                      <%: L.T("Company.TraineeDetails.NoCVOrPortfolioWasProvided") %>
-                  </div>
-              </div>
+          <div class="modal-body">
+            <% if (!string.IsNullOrEmpty(CvDocumentUrl)) { %>
+              <p class="text-muted"><%: L.T("Company.TraineeDetails.YouCanAccessTheTraineeS") %></p>
+              <a id="btnOpenRealCv" href="<%: CvDocumentUrl %>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <span data-ui-icon="next" aria-hidden="true"></span> <%: L.T("Company.TraineeDetails.OpenCVInNewTab") %>
+              </a>
+            <% } else { %>
+              <p id="divNoCv" class="text-muted mb-0" role="status"><%: L.T("Company.TraineeDetails.NoCVOrPortfolioWasProvided") %></p>
+            <% } %>
           </div>
-          <div class="modal-footer border-top-0 px-3 pb-2 justify-content-center">
-            <button type="button" class="btn btn-light border rounded-pill text-muted" data-bs-dismiss="modal" style="font-size: 0.7rem; height: 26px; padding: 0 14px;"><%: L.T("Company.TraineeDetails.Close") %></button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Company.TraineeDetails.Close") %></button>
           </div>
         </div>
       </div>
