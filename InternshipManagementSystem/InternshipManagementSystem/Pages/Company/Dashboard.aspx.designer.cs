@@ -42,24 +42,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.Literal litTotalApplications;
 
         /// <summary>
-        /// litTotalTrainees control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTotalTrainees;
-
-        /// <summary>
-        /// gvRecentApplications control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvRecentApplications;
-
-        /// <summary>
         /// litPendingApps control.
         /// </summary>
         /// <remarks>
@@ -69,6 +51,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected global::System.Web.UI.WebControls.Literal litPendingApps;
 
         /// <summary>
+        /// litTotalTrainees control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTotalTrainees;
+
+        /// <summary>
         /// litActiveTrainees control.
         /// </summary>
         /// <remarks>
@@ -76,7 +67,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litActiveTrainees;
-        protected global::InternshipManagementSystem.Layout.WorkspaceChart Charts;
-        protected global::InternshipManagementSystem.Layout.WorkspaceJourney Journey;
+
+        /// <summary>
+        /// gvRecentApplications control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView gvRecentApplications;
     }
 }

@@ -5,7 +5,7 @@
 <%@ Import Namespace="InternshipManagementSystem.Common" %>
 <%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
 <%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
-<%@ Register Src="~/Layout/NotificationBell.ascx" TagPrefix="uims" TagName="NotificationBell" %>
+<%@ Register TagPrefix="live" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <script runat="server">
     protected string PortalName
     {
@@ -140,7 +140,7 @@
 <div class="uims-sidebar-tools" role="group" aria-label="<%: L.T("Shared.Sidebar.Portal") %>">
     <uims:LanguageSelector runat="server" Variant="link" />
     <uims:ThemeSelector runat="server" Variant="menu" />
-    <uims:NotificationBell runat="server" />
+    <live:ActivityBell ID="NotificationMenu" runat="server" />
 </div>
 <% if (SessionHelper.Current != null) { %>
 <a class="uims-sidebar-account" href="<%: ResolveUrl(AccountPath) %>" <%= NavigationAttributes(AccountPath) %> title="<%: SessionHelper.Current.FullName %> &mdash; <%: L.T("Shared.Sidebar.MyAccountTitle") %>">

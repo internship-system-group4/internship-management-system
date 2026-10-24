@@ -95,7 +95,13 @@
         .ca-page .btn-primary {
             background: var(--th-bg-254e75,#254e75);
             border-color: var(--th-line-254e75,#254e75);
+           
         }
+        
+/* Space above Update Password button */
+.ca-page .password-update-btn {
+    margin-top: 15px !important;
+}
 
         .ca-page .btn-primary:hover {
             background: var(--th-bg-173b5e,#173b5e);
@@ -105,6 +111,7 @@
         .ca-page .btn-outline-primary {
             color: var(--th-fg-254e75,#254e75);
             border-color: var(--th-line-254e75,#254e75);
+            
         }
 
         .ca-page .btn {
@@ -179,11 +186,15 @@
                 align-items: stretch;
                 flex-direction: column;
             }
+            
+
+
 
             .ca-footer .d-flex {
                 justify-content: flex-end;
             }
         }
+
     </style>
 </asp:Content>
 
@@ -340,7 +351,7 @@
                     <asp:Button ID="btnChangePassword"
                         runat="server"
                         Text="<%$ Resources:Coordinator, Account.UpdatePassword %>"
-                        CssClass="btn btn-primary w-100"
+                        CssClass="btn btn-primary password-update-btn"
                         CausesValidation="false"
                         OnClick="btnChangePassword_Click"  data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none"/>
 

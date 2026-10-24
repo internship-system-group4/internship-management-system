@@ -400,6 +400,51 @@
         .uims-sidebar *::-webkit-scrollbar {
             display: none !important;
         }
+        
+/* ==========================================
+   BLUE SUMMARY ICONS
+   ========================================== */
+
+.cm-page .summary-icon,
+.cm-page .summary-icon.total,
+.cm-page .summary-icon.new,
+.cm-page .summary-icon.reviewed {
+    width: 52px;
+    height: 52px;
+
+    background: #e4f0ff !important;
+    color: #1254a1 !important;
+
+    border-radius: 12px !important;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+/* ==========================================
+   BLUE NEW & REVIEWED STATUS
+   ========================================== */
+
+.cm-page .status-badge.new,
+.cm-page .status-badge.reviewed {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e4f0ff !important;
+    color: #1254a1 !important;
+
+    border: 1px solid #cfe0f6;
+    border-radius: 999px;
+
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
     </style>
 
 </asp:Content>

@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="InternshipManagementSystem.Layout.PublicMaster" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Public.master.cs" Inherits="InternshipManagementSystem.Layout.PublicMaster" %>
 <%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
 <%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
 <!DOCTYPE html>
@@ -22,6 +22,70 @@
 <link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-9" runat="server" />
+    
+    <%-- Global Navbar Master Fix --%>
+    <style>
+        /* 1. الشفافية في أعلى الصفحة (قبل الـ Scroll) */
+        .uims-public-nav:not(.scrolled) {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%) !important;
+            border-bottom: none !important;
+            box-shadow: none !important;
+        }
+        .uims-public-nav:not(.scrolled) a:not(.public-login) {
+            color: #ffffff !important;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.9) !important;
+        }
+
+        /* 2. الكبسولة البيضاء العريضة (عند الـ Scroll) */
+        .uims-public-nav.scrolled {
+            background: transparent !important;
+            box-shadow: none !important;
+            padding-top: 15px !important;
+        }
+        .uims-public-nav.scrolled .public-container {
+            background: rgba(255, 255, 255, 0.98) !important;
+            max-width: 1400px !important; 
+            width: 96% !important;
+            border-radius: 50px !important;
+            padding: 10px 30px !important;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+            transition: all 0.3s ease;
+        }
+
+        /* 3. ترتيب الروابط ومنع التداخل */
+        .uims-public-nav .public-navigation {
+            flex-grow: 1 !important;
+        }
+        .uims-public-nav .public-links {
+            display: flex !important;
+            width: 100% !important;
+            flex-wrap: nowrap !important;
+            align-items: center !important;
+            overflow: visible !important; 
+        }
+
+        /* تباعد الروابط الأساسية على اليسار */
+        .uims-public-nav .public-links > a:not(.public-login) {
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+            margin-right: 24px !important; 
+        }
+
+        /* 4. دفع الأزرار الثلاثة (اللغة، الثيم، الدخول) أقصى اليمين ككتلة واحدة */
+        .uims-public-nav .public-theme-desktop {
+            margin-left: auto !important; /* كلمة السر لدفعهم لليمين */
+            display: flex !important;
+            align-items: center !important;
+            gap: 15px !important;
+            flex-shrink: 0 !important;
+        }
+        .uims-public-nav .public-login {
+            white-space: nowrap !important;
+            flex-shrink: 0 !important;
+            margin-left: 15px !important;
+        }
+    </style>
+
     <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>
     <script>window.UIMS_I18N=<%= L.ScriptDictionary() %>;window.uimsT=function(k){var d=window.UIMS_I18N,t=Object.prototype.hasOwnProperty.call(d,k)?d[k]:k,a=arguments;return t.replace(/\{(\d+)\}/g,function(m,i){var v=a[+i+1];return v===undefined?m:String(v);});};window.uimsLang='<%= L.Lang %>';</script>
 </head>
@@ -39,9 +103,9 @@
                 <div class="public-links" id="publicNav">
                     <span class="uims-public-nav-highlight" aria-hidden="true"></span>
                     <a href="<%: ResolveUrl("~/Default.aspx") %>" <%= NavigationAttributes("~/Default.aspx") %>><%: L.T("Shared.Public.Home") %></a>
-                    <a href="<%: ResolveUrl("~/Pages/Public/About.aspx") %>" <%= NavigationAttributes("~/Pages/Public/About.aspx") %>><%: L.T("Shared.Public.AboutUs") %></a>
-                    <a href="<%: ResolveUrl("~/Default.aspx") %>#opportunities"><%: L.T("Shared.Public.Opportunities") %></a>
                     <a href="<%: ResolveUrl("~/Default.aspx") %>#how-it-works"><%: L.T("Shared.Public.HowItWorks") %></a>
+                    <a href="<%: ResolveUrl("~/Default.aspx") %>#opportunities"><%: L.T("Shared.Public.Opportunities") %></a>
+                    <a href="<%: ResolveUrl("~/Pages/Public/About.aspx") %>" <%= NavigationAttributes("~/Pages/Public/About.aspx") %>><%: L.T("Shared.Public.AboutUs") %></a>
                     <a href="<%: ResolveUrl("~/Pages/Public/Contact.aspx") %>" <%= NavigationAttributes("~/Pages/Public/Contact.aspx") %>><%: L.T("Shared.Public.ContactUs") %></a>
                     <span class="public-theme-desktop"><uims:LanguageSelector runat="server" Variant="link" /><uims:ThemeSelector runat="server" Variant="menu" /></span>
                     <a class="public-login" href="<%: PortalActionUrl %>" <%= NavigationAttributes(Constants.Routes.Login) %>><%: PortalActionText %></a>
@@ -91,8 +155,6 @@
                         </ul>
                     </section>
                 </div>
-                <%-- Campus map: a MapLibre flight to the verified main campus (public-footer-map.js). The Google embed is the
-                     no-script view and the fallback when WebGL or the map cannot load; the address and links always remain. --%>
                 <section class="uims-public-footer-campus" aria-labelledby="footerLocationTitle" data-footer-map
                     data-runtime="<%: ResolveUrl("~/Assets/js/vendor/maplibre/maplibre-gl.mjs") %>" data-stylesheet="<%: ResolveUrl("~/Assets/js/vendor/maplibre/maplibre-gl.css") %>" data-lat="<%: Constants.CampusLatitude %>" data-lng="<%: Constants.CampusLongitude %>">
                     <h2 id="footerLocationTitle"><%: L.T("Shared.Public.UniversityLocation") %></h2>

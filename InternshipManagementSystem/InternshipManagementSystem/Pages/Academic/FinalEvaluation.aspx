@@ -1,16 +1,19 @@
-﻿<%@ Page Title="Final Evaluation" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="FinalEvaluation.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.FinalEvaluation" %>
+<%@ Page Title="Final Evaluation" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="FinalEvaluation.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.FinalEvaluation" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .score-box { background-color: var(--canvas); border: 1px solid var(--line); border-radius: var(--radius); padding: 1rem; text-align: center; }
+        .btn-outline-brand { border: 1px solid var(--brand); color: var(--brand-text,var(--brand)); background: transparent; font-weight: 600; padding: 0.4rem 1rem; border-radius: 6px; }
+        .btn-outline-brand:hover { background-color: var(--brand-light); color: var(--brand-text,var(--brand-dark)); }
     </style>
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     
-    <div class="uims-topbar mb-4" style="border-radius: var(--radius);">
-        <h1 class="uims-page-title"><%: L.T("Academic.FinalEvaluation.FinalAcademicEvaluation") %></h1>
-        <div class="text-muted"><%: L.T("Academic.FinalEvaluation.SelectAStudentToCompleteTheir") %></div>
+    <!-- التنسيق الجديد للعنوان الرئيسي -->
+    <div class="mb-4">
+        <h1 class="mb-1" style="color: var(--brand-dark, #1a365d); font-weight: 700; font-size: 2rem;"><%: L.T("Academic.FinalEvaluation.FinalAcademicEvaluation") %></h1>
+        <p class="text-muted"><%: L.T("Academic.FinalEvaluation.SelectAStudentToCompleteTheir") %></p>
     </div>
 
     <!-- Success Message Panel -->
@@ -20,8 +23,26 @@
 
     <!-- Students Table -->
     <div class="uims-card">
+        
+        <!-- التنسيق الجديد: عنوان الكارد + شريط البحث والفلتر -->
+        <div class="p-4 border-bottom">
+            <h4 style="color: var(--brand-dark, #1a365d); font-weight: 700; margin-bottom: 0.25rem;">Student records</h4>
+            <p class="text-muted mb-4" style="font-size: 0.9rem;">Search and view student evaluation assignments.</p>
+            
+            <div class="d-flex gap-3">
+                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search name or ID..." style="border-radius: 6px; flex-grow: 1;"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-brand" OnClick="btnSearch_Click" style="border-radius: 6px; padding: 0.4rem 1.5rem; font-weight: 600;" />
+                
+                <asp:DropDownList ID="ddlMajorFilter" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMajorFilter_SelectedIndexChanged" style="border-radius: 6px; border-color: #d1d5db; font-weight: 500; min-width: 200px; max-width: 250px;">
+                    <asp:ListItem Text="All Majors" Value="All"></asp:ListItem>
+                    <asp:ListItem Text="Computer Science" Value="Computer Science"></asp:ListItem>
+                    <asp:ListItem Text="Computer Engineering" Value="Computer Engineering"></asp:ListItem>
+                </asp:DropDownList>
+            </div>
+        </div>
+
         <div class="table-responsive">
-            <table class="uims-table align-middle">
+            <table class="uims-table align-middle mb-0">
                 <thead>
                     <tr>
                         <th><%: L.T("Academic.FinalEvaluation.StudentName") %></th>
@@ -38,18 +59,17 @@
                                 <td>#<%# Eval("StudentNumber") %></td>
                                 <td><%# Eval("Major") %></td>
                                 <td class="text-end">
-                                    <!-- LinkButton triggers server-side click to open the modal -->
-                                   <asp:LinkButton ID="btnOpenModal" runat="server" CssClass="btn btn-sm btn-brand" 
-    CommandArgument='<%# Eval("Id") %>' OnClick="btnOpenModal_Click" CausesValidation="false" formnovalidate="true">
-    <%# L.T("Academic.FinalEvaluation.ViewAndEvaluate") %>
-</asp:LinkButton>
+                                    <asp:LinkButton ID="btnOpenModal" runat="server" CssClass="btn btn-sm btn-outline-brand" 
+                                        CommandArgument='<%# Eval("Id") %>' OnClick="btnOpenModal_Click" CausesValidation="false" formnovalidate="true">
+                                        <%# L.T("Academic.FinalEvaluation.ViewAndEvaluate") %>
+                                    </asp:LinkButton>
                                 </td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
                     
                     <asp:PlaceHolder ID="litNoData" runat="server" Visible="false">
-                        <tr><td colspan="4" class="text-center text-muted py-4"><%: L.T("Academic.FinalEvaluation.NoStudentsAssigned") %></td></tr>
+                        <tr><td colspan="4" class="text-center text-muted py-5"><%: L.T("Academic.FinalEvaluation.NoStudentsAssigned") %></td></tr>
                     </asp:PlaceHolder>
                 </tbody>
             </table>
@@ -68,10 +88,9 @@
                 </div>
                 
                 <div class="modal-body">
-                    <!-- Hidden field to store the student ID being evaluated -->
                     <asp:HiddenField ID="hfSelectedStudentId" runat="server" />
 
-                    <!-- 1. Company Evaluation (Read-Only) -->
+                    <!-- 1. Company Evaluation -->
                     <h5 style="color: var(--brand-text,var(--brand-dark)); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;"><%: L.T("Academic.FinalEvaluation.1CompanySupervisorEvaluation") %></h5>
                     
                     <asp:Panel ID="pnlCompanyEvalExists" runat="server" Visible="false" CssClass="mb-4">
@@ -96,7 +115,7 @@
                         <div class="alert alert-warning mt-3 mb-0" style="padding: 0.75rem;"><%: L.T("Academic.FinalEvaluation.TheCompanySupervisorHasNotSubmitted") %></div>
                     </asp:Panel>
 
-                    <!-- 2. Academic Evaluation Form (Pass/Fail) -->
+                    <!-- 2. Academic Evaluation Form -->
                     <h5 style="color: var(--brand-text,var(--brand-dark)); font-weight: 600; border-bottom: 2px solid var(--line); padding-bottom: 0.5rem;"><%: L.T("Academic.FinalEvaluation.2AcademicFinalDecision") %></h5>
                     <p class="text-muted mb-3" style="font-size: 0.9rem;"><%: L.T("Academic.FinalEvaluation.SubmitYourFinalDecisionOnceSubmitted") %></p>
                     
@@ -110,21 +129,7 @@
                             </asp:DropDownList>
                         </div>
                     </div>
-                    <!-- Smart Recommendation Chips -->
-<div class="mb-2">
-    <label class="form-label text-muted" style="font-size: 0.85rem; font-weight: 600;">Quick Academic Templates:</label>
-    <div class="d-flex flex-wrap gap-2 mb-2">
-        <button type="button" class="btn btn-sm btn-outline-success" onclick="setRemark('Excellent performance and outstanding commitment to training tasks and required hours.')">
-            🟢 Excellent
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-warning text-dark" onclick="setRemark('Minimum hours completed, periodic reports and follow-up are required.')">
-            🟡 Complete Requirements
-        </button>
-        <button type="button" class="btn btn-sm btn-outline-danger" onclick="setRemark('Training requirements and core competencies were not sufficiently met.')">
-            🔴 Re-evaluation Needed
-        </button>
-    </div>
-</div>
+
                     <div class="mb-2">
                         <label class="form-label" style="font-weight: 600;"><%: L.T("Academic.FinalEvaluation.AcademicCommentsRemarks") %></label>
                         <asp:TextBox ID="txtAcademicComments" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3"></asp:TextBox>
@@ -143,14 +148,4 @@
             </div>
         </div>
     </div>
-    <!-- نهاية محتوى الصفحة -->
-    <script type="text/javascript">
-        function setRemark(text) {
-            var txtBox = document.getElementById('<%= txtAcademicComments.ClientID %>');
-            if (txtBox) {
-                txtBox.value = text;
-            }
-        }
-    </script>
-
 </asp:Content>

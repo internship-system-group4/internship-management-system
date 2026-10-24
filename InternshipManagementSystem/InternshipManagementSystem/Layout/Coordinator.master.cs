@@ -12,6 +12,15 @@ namespace InternshipManagementSystem.Layout
 {
     public partial class CoordinatorMaster : MasterPage
     {
+        protected bool UseDashboardTheme
+        {
+            get { return CurrentPage("~/Pages/Coordinator/Dashboard.aspx") == "page"; }
+        }
+        protected string CurrentPage(string virtualPath)
+        {
+            return string.Equals(Request.AppRelativeCurrentExecutionFilePath, virtualPath,
+                StringComparison.OrdinalIgnoreCase) ? "page" : "false";
+        }
         protected void btnSignOut_Click(object sender, EventArgs e)
         {
             SessionHelper.SignOut();

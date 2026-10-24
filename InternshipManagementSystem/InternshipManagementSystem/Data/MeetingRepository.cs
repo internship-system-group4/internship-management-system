@@ -7,7 +7,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class MeetingRepository : RepositoryBase<Meeting>
+    public class MeetingRepository : NotifyingRepositoryBase<Meeting>
     {
         protected override string Collection
         {
@@ -365,36 +365,7 @@ namespace InternshipManagementSystem.Data
             string title,
             string message)
         {
-            try
-            {
-                FirebaseContext.Push(
-                    Constants.Paths.Notifications + "/" + recipientId,
-                    new Dictionary<string, object>
-                    {
-                        { "RecipientId", recipientId },
-                        { "SenderId", actorId },
-                        { "MeetingId", meeting.Id },
-                        { "Type", "Meeting" },
-                        { "Title", title },
-                        { "Message", message },
-                        {
-                            "Link",
-                            "~/Pages/Meetings/MyMeetings.aspx"
-                        },
-                        { "IsRead", false },
-                        { "CreatedAt", Time.NowMs() }
-                    });
-            }
-            catch (FirebaseAuthExpiredException)
-            {
-                throw;
-            }
-            catch (FirebaseException ex)
-            {
-                Trace.TraceWarning(
-                    "Meeting saved; notification failed: {0}",
-                    ex.Message);
-            }
+            Services.NotificationService.Send(recipientId, "Meeting", title, message, "~/Pages/Meetings/MyMeetings.aspx");
         }
     }
 }
