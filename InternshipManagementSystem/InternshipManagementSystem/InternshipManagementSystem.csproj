@@ -751,6 +751,7 @@
     <Content Include="Assets\js\vendor\ScrollTrigger.min.js" />
     <Content Include="Assets\js\vendor\GSAP-NOTICE.txt" />
     <Content Include="Assets\images\university\b1138b1f-421a-4fb1-9003-2d233d57c05c.png" />
+    <Content Include="Assets\images\university\b1138b1f-421a-4fb1-9003-2d233d57c05c.webp" />
     <Content Include="Assets\js\courtyard-scene.js" />
     <Content Include="Assets\js\courtyard-model.js" />
     <Content Include="Assets\js\vendor\three.module.min.js" />
@@ -770,6 +771,7 @@
     <Content Include="Assets\css\login-campus.css" />
     <Content Include="Assets\js\login-campus.js" />
     <Content Include="Assets\js\login-campus-scene.js" />
+    <Content Include="Assets\js\login-campus-actors.js" />
     <Content Include="Assets\css\public-footer.css" />
     <Content Include="Assets\css\about.css" />
     <Content Include="Assets\js\about.js" />
@@ -799,6 +801,7 @@
     <Content Include="Assets\models\people\README.md" />
     <Content Include="Assets\models\people\Female_Adult_04.glb" />
     <Content Include="Assets\models\people\Male_Adult_17_Animated.glb" />
+    <Content Include="Assets\models\people\Male_Adult_17_Animated.web.glb" />
     <Content Include="Assets\models\people\Female_Adult_06.glb" />
     <Content Include="Assets\models\people\Female_Adult_08.glb" />
     <Content Include="Assets\models\people\Female_Adult_09.glb" />

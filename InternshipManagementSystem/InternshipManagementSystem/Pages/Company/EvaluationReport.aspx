@@ -240,7 +240,7 @@
           <div class="modal-header border-bottom-0 pb-0 justify-content-end pe-3 pt-3">
               <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="<%: L.T("Company.EvaluationReport.Close") %>" style="opacity: 1;"></button>
           </div>
-          <div class="modal-body p-0" id="certificatePrintArea">
+          <div class="modal-body p-0 uims-paper" id="certificatePrintArea" data-bs-theme="light">
               <div class="cert-container">
                   <div class="cert-title"><%: L.T("Company.FinalEvaluation.CertificateOfCompletion") %></div>
                   <div class="cert-subtitle"><%: L.T("Company.FinalEvaluation.InternshipProgram") %></div>
@@ -257,12 +257,12 @@
                   <div class="cert-signature-area">
                       <div class="cert-signature-line">
                           <span id="certDate"><%: L.T("Company.FinalEvaluation.Date") %></span><br />
-                          <span style="font-size: 0.75rem; color: var(--th-fg-888888,#888);"><%: L.T("Company.FinalEvaluation.DateOfIssue") %></span>
+                          <span style="font-size: 0.75rem; color: var(--ui-muted);"><%: L.T("Company.FinalEvaluation.DateOfIssue") %></span>
                       </div>
                       <div class="gold-seal"><%: L.T("Company.FinalEvaluation.Official") %><br/><%: L.T("Company.FinalEvaluation.Company") %><br/><%: L.T("Company.FinalEvaluation.Seal") %></div>
                       <div class="cert-signature-line">
                           <asp:Literal ID="litCompanySupervisorName" runat="server" Text="<%$ Resources:Shared, Role.CompanySupervisor %>" /><br />
-                          <span style="font-size: 0.75rem; color: var(--th-fg-888888,#888);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
+                          <span style="font-size: 0.75rem; color: var(--ui-muted);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
                       </div>
                   </div>
               </div>
@@ -292,7 +292,7 @@
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.EvaluationReport.Close") %>"></button>
           </div>
-          <div class="modal-body p-4 p-md-5 bg-white" id="reportPrintArea">
+          <div class="modal-body p-4 p-md-5 bg-white uims-paper" id="reportPrintArea" data-bs-theme="light">
               <div class="text-center border-bottom pb-4 mb-4">
                   <h4 class="fw-bold text-uppercase text-primary mb-1"><%: L.T("Company.EvaluationReport.GermanJordanianUniversity") %></h4>
                   <p class="text-muted small mb-0"><%: L.T("Company.EvaluationReport.InternshipManagementSystemUIMSOfficialAcademic") %></p>

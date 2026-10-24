@@ -14,6 +14,44 @@
  const serverForm = root.closest('form');
  let scene, sceneReady, disposed = false, completed = false, destination = null, safety = 0;
 
+ // Presentation only: no credential storage and no duplicate authentication controller.
+ const identityValue=form.querySelector('[data-id-value]'),identityLabel=form.querySelector('[data-id-label]');
+ const emailField=form.querySelector('input[type=email]'),secretField=form.querySelector('input[autocomplete=current-password]');
+ let typingTimer=0,inkAnimation;
+ function updateIdentity(event) {
+  if(!identityValue||!emailField||!secretField)return;
+  const secret=document.activeElement===secretField;
+  identityLabel.textContent=form.querySelector('label[for="'+(secret?secretField.id:emailField.id)+'"]').textContent;
+  identityValue.textContent=secret ? (secretField.value ? '••••••••' : '— — — —') : (emailField.value||identityValue.dataset.placeholder);
+  form.dataset.idField=secret?'password':'email';
+  if(event?.type==='input'&&!event.isComposing&&!motion.matches){
+   form.dataset.typing='true';clearTimeout(typingTimer);
+   typingTimer=setTimeout(()=>{delete form.dataset.typing;},650);
+   inkAnimation?.cancel();
+   const ink=form.querySelector('.login-id-ink i');
+   if(ink?.animate)inkAnimation=ink.animate([{transform:'translateX(-100%)'},{transform:'translateX(100%)'}],{duration:460,easing:'cubic-bezier(.2,.65,.3,1)'});
+  }
+ }
+ function stopTyping(){clearTimeout(typingTimer);delete form.dataset.typing;inkAnimation?.cancel();}
+ function identityInput(event){if(event.target===emailField||event.target===secretField)updateIdentity(event);}
+ form.addEventListener('input',identityInput);form.addEventListener('change',identityInput);form.addEventListener('focusin',identityInput);
+ form.addEventListener('focusout',stopTyping);updateIdentity();
+ // The printed card tilts a few degrees under a fine pointer and its gloss and hologram follow; nothing moves under reduced motion.
+ const idCard=form.querySelector('[data-id-card]');
+ if(idCard&&matchMedia('(pointer:fine)').matches){
+  let tiltFrame=0;
+  idCard.addEventListener('pointermove',event=>{
+   if(motion.matches)return;
+   cancelAnimationFrame(tiltFrame);
+   tiltFrame=requestAnimationFrame(()=>{
+    const box=idCard.getBoundingClientRect(),x=(event.clientX-box.left)/box.width,y=(event.clientY-box.top)/box.height;
+    idCard.dataset.tilting='';idCard.style.setProperty('--mx',(x*100).toFixed(1)+'%');idCard.style.setProperty('--my',(y*100).toFixed(1)+'%');
+    idCard.style.setProperty('--tilt-y',((x-.5)*8).toFixed(2)+'deg');idCard.style.setProperty('--tilt-x',((.5-y)*6).toFixed(2)+'deg');
+   });
+  });
+  idCard.addEventListener('pointerleave',()=>{cancelAnimationFrame(tiltFrame);delete idCard.dataset.tilting;for(const name of ['--mx','--my','--tilt-x','--tilt-y'])idCard.style.removeProperty(name);});
+ }
+
  function approved(url) { return !!url && ROUTE.test(url); }
  // The login page ends on the same veil the portal starts on (theme.css), so the swap is invisible.
  function navigate() {
@@ -51,9 +89,11 @@
  // Verified: run the welcome and the walk through the gate, then hand off to the portal.
  function succeed(url) {
   destination = url; prefetch(url);
+  // The welcome plays in the scene at the top of the page; bring it back into view if the visitor had scrolled.
+  if (scrollY > 0) scrollTo({ top:0, behavior:motion.matches ? 'auto' : 'smooth' });
   status.textContent = window.uimsT('LoginOpening');
   // Hard cap: a stalled scene never holds the visitor at the gate.
-  safety = setTimeout(coverAndGo, 4500);
+  safety = setTimeout(coverAndGo, 5200);
   if (motion.matches) { navigate(); return; }
   const play = () => {
    if (completed) return;
@@ -93,12 +133,15 @@
   }
   const password = form.querySelector('input[type=password],input[autocomplete="current-password"]');
   if (password) password.value = '';
+  stopTyping();updateIdentity();
   form.removeAttribute('data-submitting'); form.removeAttribute('aria-busy');
   const button = form.querySelector('input[type="submit"]');
   if (button) { button.removeAttribute('aria-disabled'); if (button.dataset.originalText) button.value = button.dataset.originalText; }
   root.dataset.state = 'idle'; status.textContent = '';
   scene?.setState('denied');
-  (alert || password)?.focus();
+  // Focus without the browser's jump-scroll, then reveal the message only as far as needed.
+  const focusTarget = alert || password;
+  focusTarget?.focus({ preventScroll:true }); focusTarget?.scrollIntoView?.({ block:'nearest' });
  }
 
  // Post in the background so the same scene carries straight into the welcome (no page reload).
@@ -129,15 +172,16 @@
  serverForm.addEventListener('submit', submit);
  function pageShow() { posted = false; if (!destination) { root.dataset.state = 'idle'; scene?.setState('idle'); status.textContent = ''; } }
  window.addEventListener('pageshow', pageShow);
- function changeMotion() { setPreference(); scene?.setReducedMotion(motion.matches); if (destination && motion.matches) navigate(); }
+ function changeMotion() { setPreference(); if(motion.matches)stopTyping(); scene?.setReducedMotion(motion.matches); if (destination && motion.matches) navigate(); }
  motion.addEventListener('change', changeMotion);
 
  // The form is usable before this dynamic import starts.
- sceneReady = import(new URL('./login-campus-scene.js?v=20261024-handoff', scriptUrl).href).then(async module => {
+ sceneReady = import(new URL('./login-campus-scene.js?v=20261024-perf-1', scriptUrl).href).then(async module => {
   if (disposed || completed) return;
   const created = await module.createCampusScene(root, { reducedMotion:motion.matches });
   if (disposed || completed) { created.dispose(); return; }
-  scene = created; root.dataset.sceneReady = 'true';
+  // data-scene-ready starts the CSS crossfade from the photograph; the first complete frame is already drawn.
+  scene = created; root.campusScene = created; root.dataset.sceneReady = 'true';
   if (!destination) submitting();
  }).catch(() => { root.dataset.sceneFallback = 'true'; });
 
@@ -147,7 +191,8 @@
 
  window.addEventListener('pagehide', function () {
   disposed = true; observer.disconnect(); scene?.dispose(); clearTimeout(safety);
-  root.removeAttribute('data-scene-ready');
+  stopTyping();form.removeEventListener('input',identityInput);form.removeEventListener('change',identityInput);form.removeEventListener('focusin',identityInput);form.removeEventListener('focusout',stopTyping);
+  root.removeAttribute('data-scene-ready'); delete root.campusScene;
   delete root.dataset.initialized;
   root.querySelector('[data-campus-pause]').hidden = true;
   serverForm.removeEventListener('submit', submit);

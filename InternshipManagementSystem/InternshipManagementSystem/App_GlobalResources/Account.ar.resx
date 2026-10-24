@@ -82,4 +82,5 @@
   <data name="Notifications.Notifications" xml:space="preserve"><value>الإشعارات</value></data>
   <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>الإشعارات غير متاحة حاليًا.</value></data>
   <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>لا يوجد جديد. ستظهر هنا المهام والقرارات والتحديثات الجديدة.</value></data>
+  <data name="Login.UniversityAccessCard" xml:space="preserve"><value>بطاقة الدخول الجامعية</value></data>
 </root>

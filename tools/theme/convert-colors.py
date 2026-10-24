@@ -222,6 +222,12 @@ block = '/* ===== generated:start (tools/theme/convert-colors.py) — do not edi
 items = sorted(existing.items())
 for i in range(0, len(items), 6):
     block += ' ' + ' '.join('%s:%s;' % kv for kv in items[i:i + 6]) + '\n'
+block += '}\n'
+# Printable documents (.uims-paper) keep their Light colours in Dark: 'initial' makes every var(--th-x, #original) use #original.
+names = [k for k, _ in items]
+block += '[data-theme="dark"] .uims-paper {\n'
+for i in range(0, len(names), 8):
+    block += ' ' + ' '.join('%s:initial;' % k for k in names[i:i + 8]) + '\n'
 block += '}\n/* ===== generated:end ===== */'
 theme = re.sub(r'/\* ===== generated:start.*?generated:end ===== \*/', lambda m: block, theme, flags=re.S)
 if not CHECK: open(THEME, 'wb').write(theme.encode('utf-8'))

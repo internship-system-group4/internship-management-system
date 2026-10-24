@@ -1,18 +1,20 @@
 async page => {
  // Theme audit: opens every route as the right fixture role in Light and Dark and measures the rendered page.
- //  - lightSurfaces (Dark only): visible boxes ≥ 1500px² whose own background is light (relative luminance > .45).
+ //  - lightSurfaces (Dark only): visible boxes ≥ 1500px² whose own background is light (relative luminance > .45),
+ //    except printable documents (.uims-paper), which stay light by design.
  //  - contrast: text (and form-control values) below WCAG AA against the composited background behind it
  //    (4.5:1, or 3:1 for large text). Backgrounds over photos/canvas are counted as "unknown", not judged.
  //  - status, server errors, page errors and the theme attributes after load.
- // Run against tests/Start-LoginTestHost.ps1 (57992) with the campus-login simulation (4910). Read-only.
+ // Run against tests/Start-LoginTestHost.ps1 with the campus-login simulation (4910); open the session on the host first
+ // (playwright-cli open http://localhost:<port>/), otherwise 57992 is assumed. Read-only.
  // Options (window globals are not available here, so edit in place): THEMES, LANGS, WIDTHS, ONLY (route substring).
- const base='http://localhost:57992', THEMES=['light','dark'], LANGS=['en'], WIDTHS=[[1440,900]], ONLY=null, SHOTS=null; // SHOTS='tests/artifacts/theme/audit/'
+ const base=/^https?:/.test(page.url())?new URL(page.url()).origin:'http://localhost:57992', THEMES=['light','dark'], LANGS=['en'], WIDTHS=[[1440,900]], ONLY=null, SHOTS=null; // SHOTS='tests/artifacts/theme/audit/'
  const routes={
   public:['/Default.aspx','/Pages/Public/About.aspx','/Pages/Public/Contact.aspx','/Pages/Public/PoweredBy.aspx','/Pages/Public/Journey.aspx','/Pages/Public/AccessDenied.aspx','/Pages/Public/NotFound.aspx','/Pages/Public/404.aspx','/Pages/Account/Login.aspx','/Pages/Account/ForgotPassword.aspx','/Pages/Public/does-not-exist.aspx'],
   'student-one':['/Pages/Student/Dashboard.aspx','/Pages/Student/Opportunities.aspx','/Pages/Student/exploreOpport.aspx','/Pages/Student/OpportunityDetails.aspx?id=internship-one','/Pages/Student/Apply.aspx?opportunityId=internship-one','/Pages/Student/MyApplications.aspx','/Pages/Student/MyTasks.aspx','/Pages/Student/Progress.aspx','/Pages/Student/Profile.aspx','/Pages/Student/DisplayEditProfile.aspx','/Pages/Student/StudentCVPortfolio.aspx','/Pages/Account/Notifications.aspx','/Pages/Notifications/Inbox.aspx','/Pages/Account/ChangePassword.aspx','/Pages/Account/CompletionReport.aspx','/Pages/Meetings/MyMeetings.aspx'],
   'supervisor-one':['/Pages/Company/Dashboard.aspx','/Pages/Company/Opportunities.aspx','/Pages/Company/ManageOpportunities.aspx','/Pages/Company/ViewOpportunity.aspx?id=internship-one','/Pages/Company/Applications.aspx','/Pages/Company/ApplicantDocument.aspx','/Pages/Company/Trainees.aspx','/Pages/Company/TraineeDetails.aspx','/Pages/Company/Tasks.aspx','/Pages/Company/TaskReview.aspx','/Pages/Company/FinalEvaluation.aspx','/Pages/Company/EvaluationReport.aspx','/Pages/Company/Account.aspx','/Pages/Meetings/Schedule.aspx','/Pages/Meetings/MyMeetings.aspx','/Pages/Notifications/Inbox.aspx'],
   'academic-one':['/Pages/Academic/Dashboard.aspx','/Pages/Academic/StudentProgress.aspx','/Pages/Academic/FinalEvaluation.aspx','/Pages/Academic/Account.aspx','/Pages/Meetings/Schedule.aspx','/Pages/Reports/Grades.aspx','/Pages/Notifications/Inbox.aspx'],
-  'coordinator-one':['/Pages/Coordinator/Dashboard.aspx','/Pages/Coordinator/Students.aspx','/Pages/Coordinator/ManageStudents.aspx','/Pages/Coordinator/AddStudent.aspx','/Pages/Coordinator/Companies.aspx','/Pages/Coordinator/AcademicSupervisors.aspx','/Pages/Coordinator/Groups.aspx','/Pages/Coordinator/ConfiguredGroups.aspx','/Pages/Coordinator/Placements.aspx','/Pages/Coordinator/PlacementDetails.aspx','/Pages/Coordinator/CompletionReview.aspx','/Pages/Coordinator/ContactMessages.aspx','/Pages/Reports/Grades.aspx','/Pages/Notifications/Inbox.aspx']
+  'coordinator-one':['/Pages/Coordinator/Dashboard.aspx','/Pages/Coordinator/Students.aspx','/Pages/Coordinator/ManageStudents.aspx','/Pages/Coordinator/AddStudent.aspx','/Pages/Coordinator/Companies.aspx','/Pages/Coordinator/AcademicSupervisors.aspx','/Pages/Coordinator/Groups.aspx','/Pages/Coordinator/ConfiguredGroups.aspx','/Pages/Coordinator/Placements.aspx','/Pages/Coordinator/PlacementDetails.aspx','/Pages/Coordinator/CompletionReview.aspx','/Pages/Coordinator/ContactMessages.aspx','/Pages/Coordinator/Account.aspx','/Pages/Coordinator/DemoStudent.aspx','/Pages/Reports/Grades.aspx','/Pages/Notifications/Inbox.aspx']
  };
  const measure=()=>{
   const parse=s=>{const m=/rgba?\(([\d.]+)[ ,]+([\d.]+)[ ,]+([\d.]+)(?:[ ,/]+([\d.]+%?))?/.exec(s||'');if(!m)return null;let a=m[4]===undefined?1:m[4].endsWith('%')?parseFloat(m[4])/100:+m[4];return [+m[1],+m[2],+m[3],a];};
@@ -39,7 +41,7 @@ async page => {
    if(e.closest('svg,.uims-sidebar-brand,.public-brand,[aria-hidden="true"].sr-only,noscript,script,style'))continue;
    const s=getComputedStyle(e);
    if(dark){const c=parse(s.backgroundColor),r=e.getBoundingClientRect();
-    if(c&&c[3]>.45&&r.width*r.height>=1500&&L(c)>.45&&visible(e)&&!/logo/i.test(e.className+e.id)){const k=path(e);out.lightSurfaces[k]=out.lightSurfaces[k]||{n:0,bg:s.backgroundColor,size:Math.round(r.width)+'x'+Math.round(r.height)};out.lightSurfaces[k].n++;}}
+    if(c&&c[3]>.45&&r.width*r.height>=1500&&L(c)>.45&&visible(e)&&!/logo/i.test(e.className+e.id)&&!e.closest('.uims-paper')){const k=path(e);out.lightSurfaces[k]=out.lightSurfaces[k]||{n:0,bg:s.backgroundColor,size:Math.round(r.width)+'x'+Math.round(r.height)};out.lightSurfaces[k].n++;}}
    const isField=['INPUT','TEXTAREA','SELECT'].includes(e.tagName)&&!['hidden','checkbox','radio','submit','button','image','file','range','color'].includes(e.type);
    const hasText=isField?!!(e.value||e.placeholder):[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim().length>1);
    if(!hasText||!visible(e))continue;

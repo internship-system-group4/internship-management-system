@@ -14,7 +14,7 @@
     <%-- Minimal readable fallback if any stylesheet fails. The message never depends on animation. --%>
     <style>body{margin:0;font-family:Arial,sans-serif}main{padding:32px;text-align:center}[hidden]{display:none!important}</style>
     <link rel="stylesheet" href="~/Assets/css/ui-tokens.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261024-theme-7" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/theme.css?v=20261024-theme-8" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261023-9" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/not-found.css?v=20261023-1" runat="server" />

@@ -534,7 +534,7 @@
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <!-- === NEW 3D HERO SECTION (From Journey) === -->
-<div class="jisr jisr--static" data-jisr data-navbar-scene data-logo="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" data-stone="<%: ResolveUrl("~/Assets/images/university/materials/stone-albedo.png") %>" data-student="<%: ResolveUrl("~/Assets/models/people/Male_Adult_17_Animated.glb") %>">
+<div class="jisr jisr--static" data-jisr data-navbar-scene data-logo="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" data-stone="<%: ResolveUrl("~/Assets/images/university/materials/stone-albedo.png") %>" data-student="<%: ResolveUrl("~/Assets/models/people/Male_Adult_17_Animated.web.glb") %>">
  <div class="jisr-stage" data-jisr-stage>
   <canvas class="jisr-canvas" aria-hidden="true"></canvas>
   <img class="jisr-poster" src="<%: ResolveUrl("~/Assets/images/university/b270da86-de83-4a48-898d-7446958fbe45.png") %>" alt="Aerial view of the German Jordanian University campus in Madaba" width="1280" height="720" />

@@ -82,4 +82,5 @@
   <data name="Notifications.Notifications" xml:space="preserve"><value>Notifications</value></data>
   <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>Notifications are unavailable right now.</value></data>
   <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>You're all caught up. New tasks, decisions and updates will appear here.</value></data>
+  <data name="Login.UniversityAccessCard" xml:space="preserve"><value>University access card</value></data>
 </root>

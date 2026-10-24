@@ -5,22 +5,23 @@ async page => {
  //  - Workspace charts repaint in the new theme without a reload.
  //  - Components that only exist once opened (notification menu, modals, mobile drawer, compact sidebar, validation
  //    messages) have no light surfaces in Dark and keep AA text contrast in both themes.
- // Run against tests/Start-LoginTestHost.ps1 (57992) with the campus-login simulation (4910).
- // Writes nothing to the simulation: searches and filters only, validation is triggered with empty forms.
- const base='http://localhost:57992', browser=page.context().browser();
+ // Run against tests/Start-LoginTestHost.ps1 with the campus-login simulation (4910); open the session on the host first
+ // (playwright-cli open http://localhost:<port>/), otherwise 57992 is assumed.
+ // Writes nothing to the simulation: read-only postbacks only, validation is triggered with empty forms.
+ const base=/^https?:/.test(page.url())?new URL(page.url()).origin:'http://localhost:57992', browser=page.context().browser();
  const checks=[];const check=(ok,name,detail)=>{if(!ok)throw Error(name+(detail?': '+JSON.stringify(detail).slice(0,400):''));checks.push(name);};
  // Scoped audit: AA text contrast against the composited background, and (Dark) light boxes larger than 1500px².
  const audit=(p,selector)=>p.evaluate(sel=>{
   const parse=s=>{const m=/rgba?\(([\d.]+)[ ,]+([\d.]+)[ ,]+([\d.]+)(?:[ ,/]+([\d.]+%?))?/.exec(s||'');if(!m)return null;const a=m[4]===undefined?1:m[4].endsWith('%')?parseFloat(m[4])/100:+m[4];return [+m[1],+m[2],+m[3],a];};
   const lin=c=>{c/=255;return c<=.04045?c/12.92:Math.pow((c+.055)/1.055,2.4);},L=c=>.2126*lin(c[0])+.7152*lin(c[1])+.0722*lin(c[2]);
   const over=(t,u)=>[t[0]*t[3]+u[0]*(1-t[3]),t[1]*t[3]+u[1]*(1-t[3]),t[2]*t[3]+u[2]*(1-t[3]),1];
-  const bgOf=el=>{const layers=[];for(let e=el;e;e=e.parentElement){const s=getComputedStyle(e);if(/url\(/.test(s.backgroundImage))return null;const c=parse(s.backgroundColor);if(c&&c[3]>0){layers.push(c);if(c[3]>=.98)break;}}
+  const bgOf=el=>{const layers=[];for(let e=el;e;e=e.parentElement){const s=getComputedStyle(e);if(/url\(|gradient/.test(s.backgroundImage))return null;const c=parse(s.backgroundColor);if(c&&c[3]>0){layers.push(c);if(c[3]>=.98)break;}}
    let b=layers.length&&layers[layers.length-1][3]>=.98?layers.pop():[255,255,255,1];for(let i=layers.length-1;i>=0;i--)b=over(layers[i],b);return b;};
   const shown=e=>{const r=e.getBoundingClientRect();if(r.width<2||r.height<2)return false;for(let x=e;x;x=x.parentElement){const s=getComputedStyle(x);if(s.display==='none'||s.visibility==='hidden'||+s.opacity===0)return false;}return true;};
   const dark=document.documentElement.dataset.theme==='dark',bad=[],light=[];
   document.querySelectorAll(sel).forEach(root=>[root,...root.querySelectorAll('*')].forEach(e=>{
    if(e.closest('svg,img,[class*=logo]'))return;const s=getComputedStyle(e),c=parse(s.backgroundColor),r=e.getBoundingClientRect();
-   if(dark&&c&&c[3]>.45&&L(c)>.45&&r.width*r.height>=1500&&shown(e))light.push(e.className+' '+s.backgroundColor);
+   if(dark&&c&&c[3]>.45&&L(c)>.45&&r.width*r.height>=1500&&shown(e)&&!e.closest('.uims-paper'))light.push(e.className+' '+s.backgroundColor);
    const field=['INPUT','TEXTAREA','SELECT'].includes(e.tagName)&&!['hidden','checkbox','radio','file','range','color'].includes(e.type);
    if(!(field?(e.value||e.placeholder):[...e.childNodes].some(n=>n.nodeType===3&&n.textContent.trim().length>1))||!shown(e)||e.closest('[disabled],.disabled'))return;
    const fg=parse(s.color),bg=bgOf(e);if(!fg||!bg)return;const col=fg[3]<1?over(fg,bg):fg,x=L(col),y=L(bg),ratio=(Math.max(x,y)+.05)/(Math.min(x,y)+.05);
@@ -45,9 +46,10 @@ async page => {
   await p.locator('input[type=email]').first().fill('coordinator@campus.test');await p.locator('input[type=password]').first().fill('Fixture-pass-2026');
   await Promise.all([p.waitForURL('**/Pages/Coordinator/**',{timeout:30000}),p.locator('[data-public-form] input[type=submit]').click()]);
   check(await theme(p)==='dark'&&await p.evaluate(()=>window.__firstTheme)==='dark','Sign-in lands on the portal in Dark');
-  await p.goto(base+'/Pages/Coordinator/Students.aspx');
-  const search=p.locator('input[type=submit],button[type=submit]').filter({hasText:/Search/}).first();
-  const [post]=await Promise.all([p.waitForRequest(r=>r.method()==='POST'&&r.isNavigationRequest()),search.click()]);await p.waitForLoadState('load');
+  // A read-only postback: Companies > View (ViewDetails command) re-renders the page with the record's details.
+  await p.goto(base+'/Pages/Coordinator/Companies.aspx');
+  const view=p.locator('a[id*="btnView"]').first();
+  const [post]=await Promise.all([p.waitForRequest(r=>r.method()==='POST'&&r.isNavigationRequest()),view.click()]);await p.waitForLoadState('load');
   check(!!post&&await theme(p)==='dark'&&await p.evaluate(()=>window.__firstTheme)==='dark','Full postback keeps Dark from first paint');
   await p.locator('[data-lang-switch]:visible').first().click();await p.waitForLoadState('load');
   check(await p.evaluate(()=>document.documentElement.dir)==='rtl'&&await theme(p)==='dark','Switching to Arabic (RTL) keeps Dark');
@@ -91,6 +93,13 @@ async page => {
   for(const id of ['scoresModal','feedbackModal','draftsModal']){
    await p.evaluate(id=>bootstrap.Modal.getOrCreateInstance(document.getElementById(id)).show(),id);await p.waitForSelector('#'+id+'.show');await p.waitForTimeout(300);
    a=await audit(p,'#'+id+' .modal-content');check(!a.bad.length&&!a.light.length,t+': '+id,a);
+   await p.evaluate(id=>bootstrap.Modal.getInstance(document.getElementById(id)).hide(),id);await p.waitForTimeout(350);
+  }
+  // Printable documents stay on light paper in both themes (what is shown is what prints), with readable text.
+  for(const [id,area] of [['officialReportModal','#reportPrintArea'],['certificateModal','#certificatePrintArea']]){
+   await p.evaluate(id=>bootstrap.Modal.getOrCreateInstance(document.getElementById(id)).show(),id);await p.waitForSelector('#'+id+'.show');await p.waitForTimeout(300);
+   const paper=await p.evaluate(sel=>{const e=document.querySelector(sel),c=getComputedStyle(e);let x=e.firstElementChild&&getComputedStyle(e).backgroundColor==='rgba(0, 0, 0, 0)'?e.firstElementChild:e,bg='';while(x){const b=getComputedStyle(x).backgroundColor;if(!/rgba\(0, 0, 0, 0\)|transparent/.test(b)){bg=b;break;}x=x.parentElement;}return {bg,scheme:c.colorScheme};},area);
+   a=await audit(p,area);check(/^rgb\(25[0-5], 25[0-5], 25[0-5]\)$/.test(paper.bg)&&!a.bad.length,t+': '+id+' is light paper with AA text',{paper,a});
    await p.evaluate(id=>bootstrap.Modal.getInstance(document.getElementById(id)).hide(),id);await p.waitForTimeout(350);
   }
   // Validation states: empty public forms.

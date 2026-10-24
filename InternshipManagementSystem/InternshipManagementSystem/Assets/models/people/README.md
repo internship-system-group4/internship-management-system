@@ -23,3 +23,24 @@ above) kept as a skinned mesh with its full skeleton and three Rocketbox motion-
 `look` (`m_idle_look_around_01`). Metres, facing +z, feet on y = 0; 1024 px colour and normal maps.
 Scale tracks were dropped and redundant keys removed to keep the file at about 3.2 MB.
 Regenerate with `tools/rocketbox/convert-animated.html` (see tools/rocketbox/README.md).
+
+## Login checkpoint reuse
+
+The login scene reuses this same animated GLB for two fictional adults with independent
+80-bone skeletons. The guard has a navy fabric shader and small cap/radio/badge accessories;
+skin and face textures retain their original treatment. Distance-driven walking, gaze and
+two-bone arm posing adapt the existing clips for a fictional university ID-reader interaction.
+No new third-party character assets were downloaded. These are generic characters, not
+likenesses of university staff or students. The existing MIT licence remains applicable.
+
+## Web build (`Male_Adult_17_Animated.web.glb`)
+
+The Login checkpoint and the Jisr homepage load `Male_Adult_17_Animated.web.glb`, derived from the file above by
+`python -I tools/rocketbox/optimize-animated.py` (3.24 MB -> 1.46 MB). Same avatar, skeleton and `walk`/`look` motion:
+- the unused `stop` clip is dropped;
+- normals, UVs, skin weights/joints and rotation keyframes are stored as normalized integers (`KHR_mesh_quantization`,
+  read natively by three.js GLTFLoader: no decoder download, no extra decode step);
+- colour and normal maps are downscaled from 1024 to 512 px JPEG (quality 88).
+Positions and indices are unchanged. The original file is kept as the conversion source. The MIT licence above applies
+unchanged to the derived file. Never overwrite either file in place: `Assets/models` is served with a 30-day browser
+cache (Web.config), so a changed model needs a new file name.

@@ -1,52 +1,8 @@
 import * as THREE from './vendor/three.module.min.js';
 import { createGateModel } from './home-gate-model.js';
 import { architecturalUV } from './home-campus-materials.js';
-
-// Rigid, fictional adult figures: no likeness, dialogue, facial or skeletal animation.
-function createPerson(uniform) {
- const root = new THREE.Group(); root.name = uniform ? 'campus-security-guard' : 'adult-campus-visitor';
- const skin = new THREE.MeshStandardMaterial({ color:uniform ? '#9a6e52' : '#c08d6b', roughness:.8 });
- const shirt = new THREE.MeshStandardMaterial({ color:uniform ? '#2b4f70' : '#e9e2d3', roughness:.9 });
- const outer = new THREE.MeshStandardMaterial({ color:uniform ? '#1f3a54' : '#6f7f73', roughness:.88 });
- const trousers = new THREE.MeshStandardMaterial({ color:uniform ? '#1f2b36' : '#3d4a55', roughness:.92 });
- const dark = new THREE.MeshStandardMaterial({ color:'#1d252b', roughness:.7 });
- function mesh(name, geometry, material, position, parent = root) {
-  const object = new THREE.Mesh(geometry, material); object.name = name;
-  object.position.fromArray(position); object.castShadow = true; parent.add(object); return object;
- }
- const torso = mesh('torso', new THREE.CapsuleGeometry(.21,.4,4,10), uniform ? shirt : outer, [0,1.15,0]); torso.scale.z = .72;
- if (!uniform) { const collar = mesh('shirt-collar', new THREE.CylinderGeometry(.1,.13,.08,10), shirt, [0,1.49,0]); collar.scale.z = .8; }
- mesh('neck', new THREE.CylinderGeometry(.07,.078,.12,10), skin, [0,1.54,0]);
- const head = new THREE.Group(); head.name = 'head-pivot'; head.position.set(0,1.6,0); root.add(head);
- const skull = mesh('head', new THREE.SphereGeometry(.145,16,12), skin, [0,.12,0], head); skull.scale.set(.88,1.12,.92);
- // Hair is a continuous upper hemisphere, seated on the head.
- mesh('hair', new THREE.SphereGeometry(.148,16,8,0,Math.PI*2,0,Math.PI/2.1), dark, [0,.155,-.008], head).scale.set(.9,1,.95);
- for (const side of [-1,1]) {
-  mesh('trouser-leg-'+side, new THREE.CapsuleGeometry(.095,.62,4,8), trousers, [side*.11,.47,0]);
-  const shoe = mesh('shoe-'+side, new THREE.SphereGeometry(.1,10,6), dark, [side*.11,.07,.05]); shoe.scale.set(1,.6,1.7);
- }
- const arms = [];
- for (const side of [-1,1]) {
-  const pivot = new THREE.Group(); pivot.name = 'shoulder-'+side; pivot.position.set(side*.255,1.39,0); root.add(pivot);
-  mesh('sleeve-'+side, new THREE.CapsuleGeometry(.072,.3,4,8), uniform ? shirt : outer, [0,-.17,0], pivot);
-  mesh('forearm-'+side, new THREE.CapsuleGeometry(.058,.2,4,8), uniform ? skin : outer, [0,-.43,0], pivot);
-  mesh('hand-'+side, new THREE.SphereGeometry(.062,10,8), skin, [0,-.6,0], pivot); arms.push(pivot);
- }
- if (uniform) {
-  mesh('cap', new THREE.CylinderGeometry(.152,.15,.09,16), outer, [0,.27,0], head);
-  mesh('cap-visor', new THREE.BoxGeometry(.22,.02,.13), dark, [0,.235,.13], head);
-  mesh('badge', new THREE.BoxGeometry(.055,.07,.012), new THREE.MeshStandardMaterial({ color:'#cfae62', metalness:.5, roughness:.45 }), [-.09,1.3,.155]);
-  mesh('shoulder-radio', new THREE.BoxGeometry(.05,.09,.03), dark, [.1,1.33,.155]);
-  mesh('belt', new THREE.BoxGeometry(.4,.06,.29), dark, [0,.93,0]);
-  for (const side of [-1,1]) mesh('epaulette-'+side, new THREE.BoxGeometry(.12,.02,.1), outer, [side*.17,1.47,0]);
- } else {
-  // Lanyard and entry pass; the pass travels with the right hand when presented.
-  mesh('lanyard', new THREE.TorusGeometry(.13,.008,4,24,Math.PI), new THREE.MeshStandardMaterial({ color:'#264f73', roughness:.8 }), [0,1.42,.1]).rotation.set(Math.PI*.55,0,Math.PI);
-  const pass = mesh('entry-pass', new THREE.BoxGeometry(.09,.13,.01), new THREE.MeshStandardMaterial({ color:'#fbfbf8', roughness:.7 }), [0,-.66,.07], arms[1]);
-  mesh('pass-band', new THREE.BoxGeometry(.09,.03,.012), new THREE.MeshStandardMaterial({ color:'#f2a900', roughness:.7 }), [0,.04,.001], pass);
- }
- return { root, arms, head };
-}
+import { mergeGeometries } from './vendor/addons/utils/BufferGeometryUtils.js';
+import { createCampusActors } from './login-campus-actors.js?v=20261024-perf-1';
 
 // Daylight sky painted once on a canvas: zenith blue, pale horizon, soft cumulus.
 function skyTexture() {
@@ -110,40 +66,93 @@ function curbTexture() {
  texture.wrapS = THREE.RepeatWrapping; texture.magFilter = THREE.NearestFilter; return texture;
 }
 
+async function identityTexture(logoUrl) {
+ const c=document.createElement('canvas');c.width=512;c.height=320;const g=c.getContext('2d');
+ g.fillStyle='#f4f3ed';g.fillRect(0,0,512,320);g.fillStyle='#234e73';g.fillRect(0,0,512,62);
+ g.fillStyle='#fff';g.font='bold 25px Arial';g.fillText('GJU  |  UNIVERSITY ID',22,41);
+ const logo=new Image();logo.src=logoUrl;try{await logo.decode();g.drawImage(logo,25,85,104,91);}catch(e){}
+ g.fillStyle='#c4d2dc';g.fillRect(350,88,125,150);g.fillStyle='#657e91';g.beginPath();g.arc(412,132,28,0,Math.PI*2);g.fill();g.beginPath();g.ellipse(412,211,46,43,0,Math.PI,0);g.fill();
+ g.fillStyle='#183d5b';g.font='bold 26px Arial';g.fillText('STUDENT',25,219);g.font='20px Arial';g.fillText('CAMPUS ACCESS',25,252);g.fillStyle='#c5a24d';g.fillRect(0,294,512,26);
+ const map=new THREE.CanvasTexture(c);map.colorSpace=THREE.SRGBColorSpace;return map;
+}
+
+// Static scenery is drawn as one mesh per material: child meshes are baked into world space and merged. Meshes that move,
+// deform or carry their own shader (people, flags, gate leaves' parents, the reader) are not passed in here.
+function mergeStatic(group) {
+ group.updateMatrixWorld(true);
+ const buckets = new Map(), merged = [];
+ group.traverse(object => {
+  if (!object.isMesh || object.isSkinnedMesh || !object.visible) return;
+  const key = object.material.uuid + (object.castShadow ? '|c' : '') + (object.receiveShadow ? '|r' : '');
+  if (!buckets.has(key)) buckets.set(key, { material:object.material, cast:object.castShadow, receive:object.receiveShadow, parts:[] });
+  const geometry = (object.geometry.index ? object.geometry : object.geometry.toNonIndexed()).clone().applyMatrix4(object.matrixWorld);
+  for (const name of Object.keys(geometry.attributes)) if (!['position','normal','uv'].includes(name)) geometry.deleteAttribute(name);
+  buckets.get(key).parts.push(geometry); merged.push(object);
+ });
+ for (const object of merged) object.removeFromParent();
+ group.position.set(0,0,0); group.rotation.set(0,0,0); group.scale.set(1,1,1);
+ group.traverse(object => { if (object !== group && object.isObject3D && !object.isMesh) { object.position.set(0,0,0); object.rotation.set(0,0,0); object.scale.set(1,1,1); } });
+ for (const { material, cast, receive, parts } of buckets.values()) {
+  const geometry = parts.length === 1 ? parts[0] : mergeGeometries(parts.filter(p => p.index), false) || parts[0];
+  parts.forEach(p => { if (p !== geometry) p.dispose(); });
+  const mesh = new THREE.Mesh(geometry, material); mesh.name = 'merged-' + (material.name || material.type); mesh.castShadow = cast; mesh.receiveShadow = receive; mesh.matrixAutoUpdate = false; mesh.updateMatrix();
+  group.add(mesh);
+ }
+ return group;
+}
+
 export async function createCampusScene(host, options) {
+ // User Timing marks (scene:*) record each initialization stage for the performance checks.
+ const stage = name => performance.mark('scene:' + name);
+ stage('start');
  const container = host.querySelector('[data-campus-canvas]');
  const pause = host.querySelector('[data-campus-pause]');
  const compact = innerWidth <= 640;
- let renderer, gate;
+ let renderer, gate, actors, environmentTarget;
  const scene = new THREE.Scene();
  try {
   renderer = new THREE.WebGLRenderer({ antialias:!compact, alpha:false, powerPreference:'low-power' });
-  gate = await createGateModel(host.dataset.logo);
- } catch (error) { renderer?.dispose(); throw error; }
- scene.background = new THREE.Color('#dfe9ef'); scene.fog = new THREE.Fog('#e3ebee',46,110);
- renderer.setPixelRatio(Math.min(devicePixelRatio,compact?1.25:1.5));
- renderer.shadowMap.enabled = !compact; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  [gate,actors] = await Promise.all([createGateModel(host.dataset.logo),createCampusActors()]);
+  stage('assets');
+ } catch (error) { renderer?.dispose(); actors?.dispose(); throw error; }
+ scene.background = new THREE.Color('#dbe5eb'); scene.fog = new THREE.Fog('#dbe5eb',48,120);
+ // Resolution starts at the device ratio (capped) and adapts to measured frame time in small steps (see adapt()).
+ const maxRatio = Math.min(devicePixelRatio, compact ? 1.25 : 1.5), minRatio = Math.min(maxRatio, compact ? .8 : 1);
+ let pixelRatio = maxRatio; renderer.setPixelRatio(pixelRatio);
+ renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
  renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping;
- renderer.toneMappingExposure = 1.05; container.appendChild(renderer.domElement);
- scene.add(new THREE.HemisphereLight('#dcecff','#b8a98c',2.1));
- const sun = new THREE.DirectionalLight('#fff3df',3.4); sun.position.set(-9,15,13); sun.castShadow = true;
- sun.shadow.mapSize.set(1536,1536); Object.assign(sun.shadow.camera,{left:-14,right:14,top:12,bottom:-10,near:1,far:50}); sun.shadow.bias = -.0008; sun.shadow.normalBias = .02;
+ renderer.toneMappingExposure = .92; container.appendChild(renderer.domElement);
+ scene.add(new THREE.HemisphereLight('#c9ddf3','#a48e70',.78));
+ const sun = new THREE.DirectionalLight('#fff1dd',3.05); sun.position.set(-7,11,9); sun.castShadow = true;
+ sun.shadow.mapSize.set(compact?1024:2048,compact?1024:2048);sun.shadow.radius=2; Object.assign(sun.shadow.camera,{left:-14,right:14,top:12,bottom:-10,near:1,far:50}); sun.shadow.bias = -.00015; sun.shadow.normalBias = .015;
  scene.add(sun);
  const sky = new THREE.Mesh(new THREE.SphereGeometry(120,32,16), new THREE.MeshBasicMaterial({ map:skyTexture(), side:THREE.BackSide, fog:false, depthWrite:false, toneMapped:false }));
  sky.name = 'daylight-sky'; scene.add(sky);
+ const environmentScene = new THREE.Scene(); environmentScene.add(sky.clone());
+ const pmrem = new THREE.PMREMGenerator(renderer); environmentTarget=pmrem.fromScene(environmentScene,.025,.1,220);
+ scene.environment=environmentTarget.texture; scene.environmentIntensity=.45; pmrem.dispose();
+ stage('environment');
  scene.add(gate.root);
 
- // Login's reference (b1138b1f) shows two Jordan flags inside the portal, unlike Home's staging.
- // Adapt this instance only, keeping the shared Home model and its callers unchanged.
- gate.parts.get('flagpoles').scale.y = 3.5 / 8.5;
+ // Flags fly from freestanding poles in the planters in front of the piers, clear of the road, the sliding leaves (which
+ // travel along z=.5) and both characters: Jordan on the visitor's right, Germany on the left. The gate model's own poles
+ // inside the opening are hidden; its two cloth simulations are reused and stay pinned to the new poles.
+ gate.parts.get('flagpoles').visible = false;
  const jordan = gate.parts.get('jordan-flag'), germany = gate.parts.get('germany-flag');
- germany.visible = false;
- jordan.scale.setScalar(.6); jordan.position.set(-3.2 + .91,3,-1.35);
- const secondJordan = jordan.clone(); secondJordan.name = 'login-jordan-flag-right';
- secondJordan.position.x = 1.55 + .91; gate.root.add(secondJordan);
+ // Flags fly above the lintel line so neither covers the gate sign or logo.
+ const FLAG_SCALE = .52, POLE_HEIGHT = 7, FLAG_TOP = 6.92;
+ const flagPoles = [['jordan', jordan, 5.9], ['germany', germany, -5.9]].map(([country, flag, x]) => ({ country, flag, x, z:2.45 }));
  // Reference-toned limestone courses on the stationary structure.
  const portal = gate.parts.get('limestone-portal').children[0].material;
- portal.map = limestoneTexture(); portal.color.set('#ffffff'); portal.needsUpdate = true;
+ const stoneLoader=new THREE.TextureLoader();
+ const surfacePath=new URL('../images/university/materials/',import.meta.url);
+ const maps=await Promise.allSettled(['stone-albedo.png','stone-roughness.png','stone-height.png'].map(name=>stoneLoader.loadAsync(new URL(name,surfacePath).href)));
+ portal.map=maps[0].status==='fulfilled'?maps[0].value:limestoneTexture();portal.map.colorSpace=THREE.SRGBColorSpace;
+ for(const item of maps)if(item.status==='fulfilled'){item.value.wrapS=item.value.wrapT=THREE.RepeatWrapping;item.value.anisotropy=compact?2:4;}
+ if(maps[1].status==='fulfilled')portal.roughnessMap=maps[1].value;
+ if(maps[2].status==='fulfilled'){portal.bumpMap=maps[2].value;portal.bumpScale=.012;}
+ portal.color.set('#eee8d9');portal.roughness=.9;
+ portal.onBeforeCompile=shader=>{shader.fragmentShader=shader.fragmentShader.replace('#include <map_fragment>', '#include <map_fragment>\n float limestoneTone=dot(diffuseColor.rgb,vec3(.2126,.7152,.0722)); diffuseColor.rgb=mix(diffuseColor.rgb,vec3(limestoneTone)*vec3(1.04,1.01,.94),.68);');};portal.needsUpdate=true;
  for (const id of ['limestone-portal','right-return']) gate.parts.get(id).traverse(o => { if (o.isMesh && o.material === portal) architecturalUV(o.geometry,2.4); });
  // Reference details: recessed sign band and four soffit downlights under the lintel.
  const soffit = new THREE.MeshStandardMaterial({ color:'#1f2427', roughness:.6 });
@@ -157,10 +166,10 @@ export async function createCampusScene(host, options) {
   m.castShadow = shadow; m.receiveShadow = true; surroundings.add(m); return m;
  }
  const ground = new THREE.Mesh(new THREE.PlaneGeometry(260,260), new THREE.MeshStandardMaterial({ color:'#d6cfbf', roughness:1 }));
- ground.name = 'campus-ground'; ground.rotation.x = -Math.PI/2; ground.position.y = -.26; ground.receiveShadow = true; scene.add(ground);
+ ground.name = 'campus-ground'; ground.rotation.x = -Math.PI/2; ground.position.y = -.035; ground.receiveShadow = true; scene.add(ground);
  const asphalt = new THREE.MeshStandardMaterial({ color:'#a3a7a6', roughness:.95 });
- block('approach-road-inner', [8.8,.02,60], [0,-.04,-37], asphalt, false);
- block('approach-road-outer', [8.8,.02,12], [0,-.2,10], asphalt, false);
+ block('approach-road-inner', [8.8,.02,60], [0,-.015,-37], asphalt, false);
+ block('approach-road-outer', [8.8,.02,12], [0,-.015,10], asphalt, false);
  const curbMap = curbTexture(); curbMap.repeat.set(30,1);
  const curb = new THREE.MeshStandardMaterial({ map:curbMap, roughness:.8 });
  // Side faces map u along z; the top face is swapped so its stripes also run along the curb.
@@ -182,12 +191,123 @@ export async function createCampusScene(host, options) {
   const lamp = new THREE.Mesh(headGeo,poleMat); lamp.position.set(x-side*1.2,6.7,z);
   pole.name = 'street-lamp'; surroundings.add(pole,arm,lamp);
  }
- const trunkGeo = new THREE.CylinderGeometry(.12,.15,1.6,6), crownGeo = new THREE.IcosahedronGeometry(1,1);
- const trunkMat = new THREE.MeshStandardMaterial({ color:'#80705c', roughness:1 }), crownMat = new THREE.MeshStandardMaterial({ color:'#8aa07a', roughness:1, flatShading:true });
+ const trunkGeo = new THREE.CylinderGeometry(.12,.15,1.6,6), crownGeo = new THREE.SphereGeometry(1,20,14);
+ const trunkMat = new THREE.MeshStandardMaterial({ color:'#80705c', roughness:1 }), crownMat = new THREE.MeshStandardMaterial({ color:'#8aa07a', roughness:1 });
+ const crownVertices=crownGeo.attributes.position;
+ for(let i=0;i<crownVertices.count;i++){const x=crownVertices.getX(i),y=crownVertices.getY(i),z=crownVertices.getZ(i);const r=1+.11*Math.sin(x*10+y*6)*Math.cos(z*9-y*4);crownVertices.setXYZ(i,x*r,y*r,z*r);}crownGeo.computeVertexNormals();
  for (const [x,z,s] of [[-9,-6,1.1],[-10.5,-11,1.3],[11,-8,1.2],[12.5,-15,1.4],[10,-22,1],[-24,-14,1.5],[-8,-36,1.2],[13,-33,1.3]]) {
   const trunk = new THREE.Mesh(trunkGeo,trunkMat); trunk.position.set(x,.8,z); surroundings.add(trunk);
   const crown = new THREE.Mesh(crownGeo,crownMat); crown.position.set(x,2.3*s,z); crown.scale.set(s*1.1,s*1.35,s*1.1); crown.castShadow = !compact; surroundings.add(crown);
  }
+
+ // Entrance detail at real-world scale (metres). Every object rests on the ground, a curb or a planter; nothing crosses
+ // the road, the sliding-leaf track (z=.5) or the characters' paths. Materials and geometries are shared.
+ const detail = new THREE.Group(); detail.name = 'entrance-detail'; scene.add(detail);
+ function surfaceTexture(size, draw) {
+  const c = document.createElement('canvas'); c.width = c.height = size; draw(c.getContext('2d'), size);
+  const map = new THREE.CanvasTexture(c); map.wrapS = map.wrapT = THREE.RepeatWrapping; map.colorSpace = THREE.SRGBColorSpace; map.anisotropy = compact ? 2 : 4; return map;
+ }
+ function grain(g, s, base, spread, count, seed) {
+  for (let i = 0; i < count; i++) { seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0; const v = base + (seed >>> 27) % spread - spread / 2; g.fillStyle = `rgb(${v},${v},${v - 3})`; g.fillRect(seed % s, (seed >>> 9) % s, 2, 2); }
+ }
+ // Forecourt: 0.6 x 0.3 m limestone setts in running bond (one tile = 1.2 m square).
+ const paverMap = surfaceTexture(256, (g, s) => {
+  g.fillStyle = '#e8e5dc'; g.fillRect(0, 0, s, s); grain(g, s, 226, 18, 1800, 11);
+  g.strokeStyle = 'rgba(120,112,98,.55)'; g.lineWidth = 2;
+  for (let r = 0; r < 4; r++) { const y = r * s / 4; g.beginPath(); g.moveTo(0, y); g.lineTo(s, y); g.stroke();
+   for (let k = -1; k < 3; k++) { const x = (r % 2 ? s / 4 : 0) + k * s / 2; g.beginPath(); g.moveTo(x, y); g.lineTo(x, y + s / 4); g.stroke(); } }
+ });
+ paverMap.repeat.set(17 / 1.2, 11 / 1.2);
+ const forecourt = gate.parts.get('ground').getObjectByName('forecourt');
+ if (forecourt) { forecourt.material = forecourt.material.clone(); Object.assign(forecourt.material, { map:paverMap, roughness:.86 }); forecourt.material.color.set('#f6f3ec'); }
+ // Asphalt: a faint aggregate grain instead of a flat fill.
+ const asphaltMap = surfaceTexture(128, (g, s) => { g.fillStyle = '#a2a6a5'; g.fillRect(0, 0, s, s); grain(g, s, 160, 34, 1400, 5); });
+ asphaltMap.repeat.set(4.4, 6); asphalt.map = asphaltMap; asphalt.color.set('#ffffff'); asphalt.needsUpdate = true;
+ const entranceRoad = gate.parts.get('ground').getObjectByName('entrance-road');
+ if (entranceRoad) { entranceRoad.material = asphalt; }
+ // Restrained road paint: centre dashes on the approach, a stop line before the gate, and the checkpoint box around the reader.
+ const paint = new THREE.MeshStandardMaterial({ color:'#eceee9', roughness:.72, polygonOffset:true, polygonOffsetFactor:-2, polygonOffsetUnits:-2 });
+ const markGeo = new THREE.PlaneGeometry(1, 1);
+ function mark(name, w, l, x, z, y = .001) { const m = new THREE.Mesh(markGeo, paint); m.name = name; m.rotation.x = -Math.PI / 2; m.scale.set(w, l, 1); m.position.set(x, y, z); m.receiveShadow = true; detail.add(m); return m; }
+ for (let z = 8.2; z < 17; z += 3.4) mark('centre-dash', .1, 1.5, 0, z);
+ mark('stop-line', 4, .28, 2.2, 1.6, -.012);
+ for (const [w, l, x, z] of [[2.7, .08, 2.05, 4.75], [2.7, .08, 2.05, 7.25], [.08, 2.5, .72, 6], [.08, 2.5, 3.38, 6]]) mark('checkpoint-box', w, l, x, z);
+ // Stone curbs and grass verges along the approach (the painted curbs beyond the gate stay as they were).
+ const curbStone = new THREE.MeshStandardMaterial({ color:'#cfc8b8', roughness:.86 });
+ const verge = new THREE.MeshStandardMaterial({ color:'#9aab7f', roughness:1 });
+ for (const side of [-1, 1]) {
+  block('approach-curb', [.2, .14, 12.2], [side * 4.5, .055, 10.1], curbStone, false);
+  block('grass-verge', [6, .04, 12.2], [side * 7.6, -.005, 10.1], verge, false);
+ }
+ // Matching sidewalk on the left beyond the gate, narrow enough to clear the sport hall.
+ block('sidewalk-left', [1.2, .14, 60], [-5.3, 0, -37], new THREE.MeshStandardMaterial({ color:'#ddd6c7', roughness:.95 }), false);
+ const leftCurbGeo = block('painted-curb-left', [.25, .22, 60], [-4.55, .06, -37], curb, false).geometry, leftUv = leftCurbGeo.attributes.uv;
+ for (let i = 8; i < 12; i++) leftUv.setXY(i, leftUv.getY(i), leftUv.getX(i));
+
+ // Planters in front of each pier: stone kerb, soil, ground cover and clipped shrubs; each holds a flagpole.
+ const planterStone = new THREE.MeshStandardMaterial({ color:'#d6c9ad', roughness:.88 });
+ const soil = new THREE.MeshStandardMaterial({ color:'#7f8f62', roughness:1 });
+ const shrub = new THREE.MeshStandardMaterial({ color:'#6f8d5c', roughness:.95 });
+ const contactPlane = new THREE.PlaneGeometry(1, 1);
+ const contactShadow = new THREE.MeshBasicMaterial({ map:contactShadowTexture(), transparent:true, depthWrite:false, opacity:.42 });
+ function groundContact(x, z, w, d, y) { const m = new THREE.Mesh(contactPlane, contactShadow); m.rotation.x = -Math.PI / 2; m.scale.set(w, d, 1); m.position.set(x, y, z); detail.add(m); }
+ const PLANTER = { inner:5.05, outer:7.55, front:3.75, back:1.35, top:.27, floor:-.05 };
+ for (const side of [-1, 1]) {
+  const cx = side * (PLANTER.inner + PLANTER.outer) / 2, cz = (PLANTER.front + PLANTER.back) / 2, w = PLANTER.outer - PLANTER.inner, d = PLANTER.front - PLANTER.back, h = PLANTER.top - PLANTER.floor, y = PLANTER.floor + h / 2;
+  block('planter-kerb-front', [w, h, .14], [cx, y, PLANTER.front - .07], planterStone);
+  block('planter-kerb-back', [w, h, .14], [cx, y, PLANTER.back + .07], planterStone);
+  block('planter-kerb-inner', [.14, h, d - .28], [side * (PLANTER.inner + .07), y, cz], planterStone);
+  block('planter-kerb-outer', [.14, h, d - .28], [side * (PLANTER.outer - .07), y, cz], planterStone);
+  block('planter-bed', [w - .28, .02, d - .28], [cx, PLANTER.top - .06, cz], soil, false);
+  for (const [dx, dz, s] of [[-.85, -.7, .34], [.85, -.72, .3], [-.9, .72, .3], [.88, .7, .34], [0, .78, .26]]) {
+   const bush = new THREE.Mesh(crownGeo, shrub); bush.name = 'planter-shrub';
+   bush.scale.set(s * 1.25, s * .8, s * 1.1); bush.position.set(cx + side * dx, PLANTER.top - .05 + s * .7, cz + dz);
+   bush.castShadow = !compact; bush.receiveShadow = true; detail.add(bush);
+  }
+ }
+ // Flagpoles: satin aluminium, stone collar, truck and gilt finial, halyard tied off at a cleat.
+ const aluminium = new THREE.MeshStandardMaterial({ color:'#d3d8db', metalness:.75, roughness:.32 });
+ const gilt = new THREE.MeshStandardMaterial({ color:'#c9a24e', metalness:.85, roughness:.3 });
+ const poleShaft = new THREE.CylinderGeometry(.042, .066, POLE_HEIGHT, 14), collarGeo = new THREE.CylinderGeometry(.15, .17, .14, 18);
+ const truckGeo = new THREE.CylinderGeometry(.07, .07, .05, 14), finialGeo = new THREE.SphereGeometry(.068, 16, 10);
+ const halyardGeo = new THREE.CylinderGeometry(.0045, .0045, 1, 4), cleatGeo = new THREE.BoxGeometry(.025, .09, .02);
+ const ropeMat = new THREE.MeshStandardMaterial({ color:'#f1efe8', roughness:.9 });
+ for (const pole of flagPoles) {
+  const base = PLANTER.top - .06, assembly = new THREE.Group(); assembly.name = pole.country + '-flag-assembly'; assembly.position.set(pole.x, base, pole.z); detail.add(assembly);
+  // The slender shaft casts no shadow: at this sun angle it would draw a line across the gate logo.
+  const shaft = new THREE.Mesh(poleShaft, aluminium); shaft.position.y = POLE_HEIGHT / 2; assembly.add(shaft);
+  const collar = new THREE.Mesh(collarGeo, planterStone); collar.position.y = .07; collar.castShadow = true; assembly.add(collar);
+  const truck = new THREE.Mesh(truckGeo, aluminium); truck.position.y = POLE_HEIGHT + .025; assembly.add(truck);
+  const finial = new THREE.Mesh(finialGeo, gilt); finial.position.y = POLE_HEIGHT + .11; finial.castShadow = true; assembly.add(finial);
+  const halyard = new THREE.Mesh(halyardGeo, ropeMat); halyard.scale.y = POLE_HEIGHT - 1.25; halyard.position.set(.05, 1.25 + (POLE_HEIGHT - 1.25) / 2, .02); assembly.add(halyard);
+  const cleat = new THREE.Mesh(cleatGeo, aluminium); cleat.position.set(.06, 1.2, 0); assembly.add(cleat);
+  groundContact(pole.x, pole.z, .7, .7, base + .002);
+  // Hoisted to the truck; the cloth's pinned edge sits on the halyard side of the shaft.
+  const flag = pole.flag, width = 2.85 * FLAG_SCALE, height = (pole.country === 'jordan' ? 2.85 / 2 : 2.85 * 3 / 5) * FLAG_SCALE;
+  flag.scale.setScalar(FLAG_SCALE); flag.position.set(pole.x + .06 + width / 2, base + FLAG_TOP - height / 2, pole.z);
+  // Thin cloth casts no shadow: at this sun angle it would darken the gate sign and logo.
+  flag.castShadow = false; flag.receiveShadow = true;
+ }
+
+ // Gate stone: a darker plinth course at each pier foot (it also seats the piers on the paving), a projecting coping on
+ // the lintel, and fine horizontal joints on the pier faces.
+ const plinthStone = new THREE.MeshStandardMaterial({ color:'#cdbd9d', roughness:.92 });
+ const jointMat = new THREE.MeshStandardMaterial({ color:'#a89b80', roughness:1 });
+ const jointGeo = new THREE.BoxGeometry(1.0, .012, .006);
+ for (const side of [-1, 1]) {
+  const plinth = new THREE.Mesh(new THREE.BoxGeometry(1.17, .36, 1.02), plinthStone); plinth.name = 'pier-plinth'; plinth.position.set(side * 5.6, .13, 0); plinth.castShadow = plinth.receiveShadow = true; detail.add(plinth);
+  for (const y of [1.2, 2.4]) { const joint = new THREE.Mesh(jointGeo, jointMat); joint.name = 'pier-joint'; joint.position.set(side * 5.6, y, .453); detail.add(joint); }
+ }
+ const coping = new THREE.Mesh(new THREE.BoxGeometry(12.45, .09, 1.04), plinthStone); coping.name = 'lintel-coping'; coping.position.set(0, 5.445, 0); coping.castShadow = coping.receiveShadow = true; detail.add(coping);
+ // Security equipment, kept restrained: one dome-less bullet camera on the right pier, facing the approach.
+ const housing = new THREE.MeshStandardMaterial({ color:'#e7eaec', roughness:.45, metalness:.1 }), lensMat = new THREE.MeshStandardMaterial({ color:'#11171b', roughness:.2, metalness:.4 });
+ const cctv = new THREE.Group(); cctv.name = 'cctv-camera'; cctv.position.set(5.12, 3.25, .5); cctv.rotation.set(-.32, -.35, 0); detail.add(cctv);
+ const cctvArm = new THREE.Mesh(new THREE.BoxGeometry(.04, .04, .16), housing); cctvArm.position.z = .02; cctv.add(cctvArm);
+ const cctvBody = new THREE.Mesh(new THREE.BoxGeometry(.09, .085, .25), housing); cctvBody.position.set(0, -.05, .14); cctvBody.castShadow = true; cctv.add(cctvBody);
+ const lens = new THREE.Mesh(new THREE.CylinderGeometry(.028, .028, .012, 16), lensMat); lens.rotation.x = Math.PI / 2; lens.position.set(0, -.05, .27); cctv.add(lens);
+
+ // Static scenery and entrance detail: one draw call per material instead of one per object.
+ stage('built'); mergeStatic(surroundings); mergeStatic(detail); stage('merged');
 
  // The existing photographed structure stays fixed. These complete sliding leaves
  // deliberately use a symbolic mechanism; no claim about the real gate hardware.
@@ -203,112 +323,161 @@ export async function createCampusScene(host, options) {
   for (const x of [-2.44,2.44]) bar(leaf,'stile-'+x,[.09,2.42,.08],[x,1.27,0]);
   for (let i = 1; i < 24; i++) { const v = new THREE.Mesh(barGeo,metal); v.name = 'vertical-'+i; v.position.set(-2.44+i*4.88/24,1.2,0); v.castShadow = true; leaf.add(v); }
  }
+ // Each leaf slides as a unit: its 28 rails, stiles and bars become one mesh in the leaf's own frame.
+ for (const leaf of leaves) { const x = leaf.position.x; leaf.position.set(0,0,0); mergeStatic(leaf); leaf.position.set(x,0,.5); for (const m of leaf.children) m.matrixAutoUpdate = true; }
 
- const guard = createPerson(true), visitor = createPerson(false);
- guard.root.position.set(4.3,0,3.1); guard.root.rotation.y = -.75;
- visitor.root.position.set(2.85,0,3.95); visitor.root.rotation.y = 1.05; scene.add(guard.root, visitor.root);
- // Verification kiosk beside the guard; its status light is the only colour cue.
- const kiosk = new THREE.Group(); kiosk.name = 'verification-device'; kiosk.position.set(3.65,0,2.75); kiosk.rotation.y = -.5; scene.add(kiosk);
- const kioskMat = new THREE.MeshStandardMaterial({ color:'#2a3740', roughness:.55, metalness:.3 });
- const post = new THREE.Mesh(new THREE.CylinderGeometry(.04,.06,1.05,10),kioskMat); post.position.y = .52; post.castShadow = true;
- const reader = new THREE.Mesh(new THREE.BoxGeometry(.3,.2,.06),kioskMat); reader.position.set(0,1.1,0); reader.rotation.x = -.6; reader.castShadow = true;
- const lightMat = new THREE.MeshStandardMaterial({ color:'#3c4a52', emissive:'#000000', roughness:.4 });
- const indicator = new THREE.Mesh(new THREE.BoxGeometry(.2,.035,.012),lightMat); indicator.position.set(0,.03,.032); reader.add(indicator);
- kiosk.add(post,reader);
- const contact = new THREE.MeshBasicMaterial({ map:contactShadowTexture(), transparent:true, depthWrite:false });
- for (const person of [guard,visitor]) {
-  const blob = new THREE.Mesh(new THREE.PlaneGeometry(.9,.9),contact); blob.rotation.x = -Math.PI/2; blob.position.y = .012; person.root.add(blob);
- }
+ // Fictional adults with independent skinned skeletons and licensed motion-capture clips.
+ const guard=actors.guard,visitor=actors.student;
+ const guardHome=new THREE.Vector3(2.65,0,5.35),visitorHome=new THREE.Vector3(1.3,0,6.25);
+ guard.root.position.copy(guardHome);visitor.root.position.copy(visitorHome);
+ const guardHeading=-1.17,visitorHeading=2.15;
+ guard.root.rotation.y=guardHeading;visitor.root.rotation.y=visitorHeading;scene.add(guard.root,visitor.root);
 
- const camera = new THREE.PerspectiveCamera(38,1,.1,260);
- let basePosition = new THREE.Vector3(), baseTarget = new THREE.Vector3(), reduced = options.reducedMotion, paused = false, disposed = false, raf = 0;
- let state = 'idle', progress = 0, entryStart = 0, resolveEntry, onVeil, veiled = false, clock = 0, lastTime = 0, settling = 0, baseFov = 38;
- // Entry flight: a curve that lines up with the road first, then passes midway between
- // the flagpoles (x = -3.2 and 1.55) and carries on down the campus approach.
- const ENTRY_MS = 1400;
- const entryVia = new THREE.Vector3(-.6,1.9,8), exitPosition = new THREE.Vector3(-.8,1.65,-7), exitTarget = new THREE.Vector3(-.8,1.75,-30);
- const flightPoint = new THREE.Vector3(), flightLook = new THREE.Vector3();
- const easeInOut = t => t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
- function resize() {
-  const {width,height} = container.getBoundingClientRect(); if (!width || !height) return;
-  renderer.setSize(width,height,false); camera.aspect = width/height;
-  const aspect = width/height;
-  if (aspect < .9) { basePosition.set(1.2,2.7,27.5); baseTarget.set(.7,2.2,0); baseFov = 44; }
-  else if (width <= 1100) { basePosition.set(1.4,2.4,21); baseTarget.set(-2.6,2.8,0); baseFov = 40; }
-  else { basePosition.set(1.4,2.1,20.5); baseTarget.set(-4.3,3,0); baseFov = 38; }
-  if (!entryStart) { camera.fov = baseFov; camera.position.copy(basePosition); camera.lookAt(baseTarget); }
-  camera.updateProjectionMatrix(); draw();
+ const kiosk=new THREE.Group();kiosk.name='verification-device';kiosk.position.set(1.7,0,6.1);kiosk.rotation.y=-.62;scene.add(kiosk);
+ const kioskMat=new THREE.MeshStandardMaterial({color:'#27343e',roughness:.58,metalness:.32});
+ const post=new THREE.Mesh(new THREE.CylinderGeometry(.04,.065,1.05,16),kioskMat);post.position.y=.525;post.castShadow=true;
+ const reader=new THREE.Mesh(new THREE.BoxGeometry(.22,.16,.055),kioskMat);reader.position.set(0,1.1,0);reader.rotation.x=-.42;reader.castShadow=true;
+ const lightMat=new THREE.MeshStandardMaterial({color:'#344a53',emissive:'#162a33',emissiveIntensity:.5,roughness:.38});
+ const indicator=new THREE.Mesh(new THREE.BoxGeometry(.16,.016,.006),lightMat);indicator.position.set(0,.04,.03);reader.add(indicator);
+ // Bolted base plate and a small rain hood over the reader face; the post meets the road instead of floating on it.
+ const plate=new THREE.Mesh(new THREE.CylinderGeometry(.16,.17,.022,20),kioskMat);plate.position.y=.011;plate.receiveShadow=true;
+ const hood=new THREE.Mesh(new THREE.BoxGeometry(.25,.012,.1),kioskMat);hood.position.set(0,.09,-.012);hood.rotation.x=.18;reader.add(hood);
+ kiosk.add(post,reader,plate);
+ kiosk.updateWorldMatrix(true,true);
+ const readerPoint=reader.localToWorld(new THREE.Vector3(0,0,.07));
+ const cardTexture=await identityTexture(host.dataset.logo);
+ const card=new THREE.Mesh(new THREE.BoxGeometry(.086,.054,.0018),new THREE.MeshStandardMaterial({map:cardTexture,roughness:.34,metalness:0}));
+ card.name='student-university-id';card.castShadow=true;scene.add(card);
+ const contact=new THREE.MeshBasicMaterial({map:contactShadowTexture(),transparent:true,depthWrite:false,opacity:.5});
+ for(const person of [guard,visitor]){
+  const blob=new THREE.Mesh(new THREE.PlaneGeometry(.66,.55),contact);blob.rotation.x=-Math.PI/2;blob.position.y=.004;person.root.add(blob);
  }
- function draw() { if (!disposed) renderer.render(scene,camera); }
- // Restrained target poses; the loop eases toward them instead of snapping.
- const targets = { visitorArmX:0, visitorArmZ:0, visitorHead:0, guardHeadX:0, guardHeadY:0, guardArmX:0, guardArmZ:0 };
- function setTargets() {
-  const checking = state === 'submitting', success = state === 'success', denied = state === 'denied';
-  Object.assign(targets, {
-   visitorArmX: checking || success ? -1.05 : 0, visitorArmZ: checking ? -.3 : 0, visitorHead: checking ? .12 : 0,
-   guardHeadX: checking ? .22 : denied ? .12 : 0, guardHeadY: checking ? .35 : denied ? .5 : 0,
-   guardArmX: success ? -.55 : 0, guardArmZ: success ? -1.15 : 0
-  });
-  // Amber while checking, green when verified, red when the details were refused.
-  const light = success ? '#2fae6b' : checking ? '#e3a21a' : denied ? '#d64545' : null;
-  lightMat.emissive.set(light || '#000000'); lightMat.color.set(light || '#3c4a52');
-  settling = reduced ? 0 : 1;
+ const kioskShadow=new THREE.Mesh(new THREE.PlaneGeometry(.5,.5),contact);kioskShadow.rotation.x=-Math.PI/2;kioskShadow.position.y=.003;kiosk.add(kioskShadow);
+
+ const camera=new THREE.PerspectiveCamera(38,1,.1,220);
+ let basePosition=new THREE.Vector3(),baseTarget=new THREE.Vector3(),reduced=!!options.reducedMotion,paused=false,disposed=false,raf=0;
+ let state='idle',progress=0,entryStart=0,resolveEntry,onVeil,veiled=false,clock=0,lastTime=0,draws=0,contextLost=false;
+ let reachWeight=0,welcomeWeight=0,walkDistance=0,lastWalkDistance=0,heading=visitorHeading;
+ // Entry: the gates open, then the student turns toward the far side of the gate and walks through it at a natural pace.
+ const ENTRY_MS=4000,WALK_FROM=.06,WALK_SPEED=1.8,walkGoal=new THREE.Vector3(.55,0,-2.2);
+ const flightPoint=new THREE.Vector3(),flightLook=new THREE.Vector3(),exitPosition=new THREE.Vector3(),exitTarget=new THREE.Vector3();
+ const gazeReader=readerPoint.clone(),guardGaze=new THREE.Vector3(),visitorGaze=new THREE.Vector3();
+ const handPoint=new THREE.Vector3();
+ // Per-frame temporaries, reused so the render loop allocates nothing.
+ const guardFace=new THREE.Vector3(guardHome.x,1.64,guardHome.z),guardReach=new THREE.Vector3(2.28,1.16,5.66),cardOffset=new THREE.Vector3(0,-.025,.018);
+ const cardEuler=new THREE.Euler(),cardRest=new THREE.Quaternion(),cardScan=new THREE.Quaternion().setFromEuler(new THREE.Euler(-.42,-.62,0));
+ const visitorPose={},guardPose={};
+ const smooth=t=>t*t*(3-2*t);
+ function resize(){
+  const {width,height}=container.getBoundingClientRect();if(!width||!height)return;
+  renderer.setSize(width,height,false);camera.aspect=width/height;
+  const aspect=width/height;
+  if(aspect<.9){basePosition.set(1,2,25);baseTarget.set(.4,2,1.1);camera.fov=46;}
+  else if(width<=1100){basePosition.set(1.3,1.85,19);baseTarget.set(-2,2.45,.5);camera.fov=41;}
+  else{basePosition.set(1,1.8,21);baseTarget.set(-2.9,2.7,.5);camera.fov=40;}
+  // Side-by-side layouts frame the gate beside the card; in RTL the card is on the right, so the aim swings to the other side
+  // (mirrored about the camera, eased back slightly so both flagpoles stay clear of the card).
+  if(aspect>=.9&&document.documentElement.dir==="rtl")baseTarget.x=2*basePosition.x-baseTarget.x-.4;
+  exitPosition.copy(basePosition).add(new THREE.Vector3(-.25,0,-1.6));exitTarget.copy(baseTarget).add(new THREE.Vector3(.1,-.12,-1));
+  if(!entryStart){camera.position.copy(basePosition);camera.lookAt(baseTarget);}
+  camera.updateProjectionMatrix();draw();
  }
- function applyPose(rate) {
-  const ease = (object, key, value) => { object[key] += (value - object[key]) * rate; };
-  ease(visitor.arms[1].rotation,'x',targets.visitorArmX); ease(visitor.arms[1].rotation,'z',targets.visitorArmZ);
-  ease(visitor.head.rotation,'x',targets.visitorHead);
-  ease(guard.head.rotation,'x',targets.guardHeadX); ease(guard.head.rotation,'y',targets.guardHeadY);
-  // The guard's own right arm (the -X side) gives the small welcoming gesture.
-  ease(guard.arms[0].rotation,'x',targets.guardArmX); ease(guard.arms[0].rotation,'z',targets.guardArmZ);
-  const remaining = Math.abs(visitor.arms[1].rotation.x - targets.visitorArmX) + Math.abs(guard.arms[0].rotation.z - targets.guardArmZ) + Math.abs(guard.head.rotation.y - targets.guardHeadY);
-  if (remaining < .002) settling = 0;
+ function draw(){if(!disposed&&!contextLost){renderer.render(scene,camera);draws++;}}
+ function setTargets(){
+  const color=state==='success'?'#52c491':state==='submitting'?'#dfa849':state==='denied'?'#c75c54':'#527485';
+  lightMat.color.set(color);lightMat.emissive.set(color);lightMat.emissiveIntensity=state==='idle'?.18:.55;
  }
- function ambient(time) {
-  if (reduced || paused) return;
-  gate.updateCloth(time,.45);
-  guard.root.position.y = .005*Math.sin(time*1.4);
-  visitor.root.rotation.y = 1.05 + .025*Math.sin(time*.5);
- }
- function frame(now) {
-  raf = 0; if (disposed || document.hidden) return;
-  const delta = lastTime ? Math.min((now-lastTime)/1000,.05) : 0; clock += delta; lastTime = now;
-  if (entryStart) {
-   progress = Math.min((now-entryStart)/ENTRY_MS,1);
-   // Gates finish opening well before the camera reaches them (~66% of the flight).
-   const open = 1-Math.pow(1-Math.min(progress/.45,1),3);
-   const t = easeInOut(Math.max(0,(progress-.06)/.94)), u = 1-t;
-   leaves.forEach((leaf,i) => leaf.position.x = (i?1:-1)*(2.5+5.1*open));
-   flightPoint.copy(basePosition).multiplyScalar(u*u).addScaledVector(entryVia,2*u*t).addScaledVector(exitPosition,t*t);
-   flightLook.copy(baseTarget).lerp(exitTarget,1-Math.pow(1-Math.min(t/.7,1),2));
-   camera.position.copy(flightPoint); camera.lookAt(flightLook);
-   camera.fov = baseFov + 12*t*t; camera.updateProjectionMatrix();
-   // The page veil starts fading in as the camera crosses the gateway.
-   if (!veiled && progress >= .64) { veiled = true; onVeil?.(); }
-   if(progress===1){entryStart=0;resolveEntry?.();resolveEntry=null;}
+ function updatePeople(dt,snap=false){
+  const k=snap?1:1-Math.exp(-dt*4.8);
+  const reach=state==='submitting'?.94:state==='success'?.72:state==='denied'?.28:.12;
+  reachWeight+=(reach-reachWeight)*k;
+  welcomeWeight+=((state==='success'?1:0)-welcomeWeight)*k;
+  const walking=entryStart&&progress>WALK_FROM;
+  const pos=visitor.root.position;
+  const angle=walking?Math.atan2(walkGoal.x-pos.x,walkGoal.z-pos.z):visitorHeading;
+  heading+=Math.atan2(Math.sin(angle-heading),Math.cos(angle-heading))*(snap?1:1-Math.exp(-dt*(walking?5:3.2)));
+  visitor.root.rotation.y=heading;
+  // Steps follow the body's current heading (no sideways slide while turning) and ease in over the first half second.
+  if(walking&&!snap&&!paused&&!reduced){
+   const since=(progress-WALK_FROM)*ENTRY_MS/1000,turned=Math.max(0,Math.cos(angle-heading));
+   const step=WALK_SPEED*Math.min(1,since/.5)*turned*dt;
+   pos.x+=Math.sin(heading)*step;pos.z+=Math.cos(heading)*step;walkDistance+=step;
   }
-  if (settling) applyPose(1-Math.exp(-delta*9));
-  ambient(clock); draw();
-  if (entryStart || settling || (!paused && !reduced)) raf = requestAnimationFrame(frame);
+  guardGaze.set(visitor.root.position.x,1.64,visitor.root.position.z);
+  visitorGaze.copy(state==='submitting'?gazeReader:guardFace);
+  // While nothing is happening, each of them occasionally glances away: the guard down the approach road, the student up
+  // at the gate sign. Different periods keep the glances from lining up; the gaze follower eases each turn.
+  if(state==='idle'&&!entryStart&&!reduced){
+   if(clock%9.5>7.4)guardGaze.set(1.2,1.5,15);
+   if((clock+4)%12.5>10.9)visitorGaze.set(-.6,3.9,.5);
+  }
+  const still=snap||reduced||paused;
+  const motionDt=still?0:dt;
+  Object.assign(visitorPose,{time:clock,heading,walking:walking?1:0,step:walkDistance-lastWalkDistance,target:visitorGaze,reach:readerPoint,reachWeight:walking?0:reachWeight,still});
+  Object.assign(guardPose,{time:clock,heading:guardHeading,walking:0,step:0,target:state==='submitting'?gazeReader:guardGaze,reach:guardReach,reachWeight:state==='submitting'?.35:welcomeWeight*.52,still});
+  visitor.update(motionDt,visitorPose);guard.update(motionDt,guardPose);
+  lastWalkDistance=walkDistance;
+  if(visitor.hand){
+   visitor.hand.getWorldPosition(handPoint);card.position.copy(handPoint).add(cardOffset);
+   // Align the laminated ID with the reader while presenting it; otherwise it rests naturally in the hand.
+   cardRest.setFromEuler(cardEuler.set(-.28,heading,0));card.quaternion.copy(cardRest).slerp(cardScan,reachWeight);
+  }
  }
- function start() { if (!raf && !disposed && !document.hidden) { lastTime = 0; raf = requestAnimationFrame(frame); } }
- function visibility() { if (document.hidden) { cancelAnimationFrame(raf); raf = 0; lastTime = 0; } else start(); }
- function snap() { applyPose(1); settling = 0; draw(); }
- function setReducedMotion(value) { reduced = value; pause.hidden = value; if (value) snap(); start(); }
- function togglePause() { paused = !paused; pause.textContent = (paused ? (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('ResumeScene') : (typeof window.uimsT==='function'?window.uimsT:function(k){return k;})('PauseScene')); pause.setAttribute('aria-pressed',String(paused)); start(); }
- function lost(event) { event.preventDefault(); host.removeAttribute('data-scene-ready'); cancelAnimationFrame(raf); raf = 0; pause.hidden = true; resolveEntry?.(); }
- const observer = new ResizeObserver(resize); observer.observe(container);
- document.addEventListener('visibilitychange',visibility); pause.addEventListener('click',togglePause); renderer.domElement.addEventListener('webglcontextlost',lost);
- resize(); setTargets(); snap(); pause.hidden = reduced; start();
+ // Gradual quality: frame intervals are averaged; after a sustained slow second the resolution drops by 0.1, and after
+ // five fast seconds it climbs back by 0.05. Steps are small, so the change reads as a slight softening, not a jump.
+ let interval=16.7,slowFor=0,fastFor=0,frameCost=0;
+ function adapt(ms){
+  interval+=(Math.min(ms,100)-interval)*.05;
+  slowFor=interval>24?slowFor+ms:0; fastFor=interval<15?fastFor+ms:0;
+  let next=pixelRatio;
+  if(slowFor>1000&&pixelRatio>minRatio){next=Math.max(minRatio,pixelRatio-.1);slowFor=0;}
+  else if(fastFor>5000&&pixelRatio<maxRatio){next=Math.min(maxRatio,pixelRatio+.05);fastFor=0;}
+  if(next!==pixelRatio){pixelRatio=next;renderer.setPixelRatio(pixelRatio);const {width,height}=container.getBoundingClientRect();if(width&&height)renderer.setSize(width,height,false);}
+ }
+ function frame(now){
+  raf=0;if(disposed||contextLost||document.hidden)return;
+  const begin=performance.now();
+  if(lastTime&&!paused)adapt(now-lastTime);
+  const dt=lastTime?Math.min((now-lastTime)/1000,.05):1/60;lastTime=now;
+  if(!paused&&!reduced)clock+=dt;
+  if(entryStart){
+   progress=Math.min((now-entryStart)/ENTRY_MS,1);
+   const open=smooth(Math.min(progress/.34,1));leaves[0].position.x=-(2.5+5.1*open);leaves[1].position.x=2.5+5.1*open;
+   const travel=smooth(Math.max(0,(progress-.08)/.92));
+   flightPoint.copy(basePosition).lerp(exitPosition,travel);flightLook.copy(baseTarget).lerp(exitTarget,travel);
+   camera.position.copy(flightPoint);camera.lookAt(flightLook);
+   // A human-speed dolly and the shared veil bridge the remaining walk; no FOV acceleration.
+   if(!veiled&&progress>=.9){veiled=true;onVeil?.();}
+  }
+  updatePeople(dt);if(!paused&&!reduced)gate.updateCloth(clock,.32);draw();
+  frameCost+=(performance.now()-begin-frameCost)*.1;
+  if(entryStart&&progress>=1){entryStart=0;const done=resolveEntry;resolveEntry=null;done?.();}
+  const settling=Math.abs(reachWeight-(state==='submitting'?.94:state==='success'?.72:state==='denied'?.28:.12))>.002;
+  if(entryStart||settling||(!paused&&!reduced))raf=requestAnimationFrame(frame);
+ }
+ function start(){if(!raf&&!disposed&&!contextLost&&!document.hidden){lastTime=0;raf=requestAnimationFrame(frame);}}
+ function visibility(){if(document.hidden){cancelAnimationFrame(raf);raf=0;lastTime=0;}else start();}
+ function setReducedMotion(value){reduced=value;pause.hidden=value;if(value){updatePeople(0,true);draw();}start();}
+ function togglePause(){paused=!paused;pause.textContent=window.uimsT(paused?'ResumeScene':'PauseScene');pause.setAttribute('aria-pressed',String(paused));start();}
+ function lost(event){event.preventDefault();contextLost=true;host.removeAttribute('data-scene-ready');cancelAnimationFrame(raf);raf=0;pause.hidden=true;resolveEntry?.();resolveEntry=null;}
+ const observer=new ResizeObserver(resize);observer.observe(container);
+ document.addEventListener('visibilitychange',visibility);pause.addEventListener('click',togglePause);renderer.domElement.addEventListener('webglcontextlost',lost);
+ updatePeople(0,true);setTargets();
+ // Compile every shader before the first frame (parallel where the driver supports it), so the first visible frame is
+ // complete and no program compiles mid-animation; the caller crossfades from the photograph only after this resolves.
+ try { await renderer.compileAsync(scene,camera); } catch (error) { /* older drivers compile on first render */ }
+ stage('compiled'); resize(); stage('first-frame');pause.hidden=reduced;start();host.dataset.actorFidelity='skinned';
  return {
-  setState(value){state=value;setTargets();if(reduced)snap();start();},setReducedMotion,
-  enter(options={}){onVeil=options.onVeil;veiled=false;if(reduced){onVeil?.();return Promise.resolve();}return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();start();});},
+  setState(value){if(!['idle','submitting','success','denied'].includes(value))return;state=value;setTargets();if(reduced)updatePeople(0,true);start();},setReducedMotion,
+  enter(options={}){onVeil=options.onVeil;veiled=false;if(reduced){onVeil?.();return Promise.resolve();}if(resolveEntry)return Promise.resolve();return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();lastWalkDistance=walkDistance=0;start();});},
+  snapshot(){return this.inspect();},
+  inspect(){return {state,progress,paused,reduced,contextLost,draws,pixelRatio,frameCostMs:+frameCost.toFixed(2),frameIntervalMs:+interval.toFixed(1),triangles:renderer.info.render.triangles,flags:[jordan,germany].map(flag=>({name:flag.name,visible:flag.visible,x:flag.position.x})),poles:flagPoles.map(pole=>({country:pole.country,x:pole.x,z:pole.z})),leaves:leaves.map(leaf=>leaf.position.x),actors:[guard.root,visitor.root].map(root=>({name:root.name,role:root.userData.role,position:root.position.toArray(),bones:root.getObjectByProperty('isSkinnedMesh',true)?.skeleton.bones.length})),card:card.position.toArray(),camera:camera.position.toArray(),fov:camera.fov,drawCalls:renderer.info.render.calls};},
   dispose(){
-   if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();
+   if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();actors.dispose();
    document.removeEventListener('visibilitychange',visibility);pause.removeEventListener('click',togglePause);renderer.domElement.removeEventListener('webglcontextlost',lost);
    const geometries=new Set(),materials=new Set(),textures=new Set();
    scene.traverse(object=>{if(object.geometry)geometries.add(object.geometry);for(const material of object.material?(Array.isArray(object.material)?object.material:[object.material]):[]){materials.add(material);for(const value of Object.values(material))if(value?.isTexture)textures.add(value);}});
-   geometries.forEach(g=>g.dispose());textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());renderer.dispose();renderer.domElement.remove();
+   geometries.forEach(g=>g.dispose());textures.forEach(t=>t.dispose());materials.forEach(m=>m.dispose());environmentTarget?.dispose();renderer.renderLists.dispose();renderer.dispose();renderer.forceContextLoss();renderer.domElement.remove();resolveEntry?.();resolveEntry=null;
   }
  };
 }

@@ -54,6 +54,24 @@ html.uims-public[data-theme="dark"] {
 html.company-portal[data-theme="dark"] :is(.search-container,.metric-card,.card-custom,.card-custom-header,.workflow-link) { background-color:var(--ui-surface); }
 html.company-portal[data-theme="dark"] .workflow-link:hover { background-color:var(--ui-surface-raised); border-color:var(--ui-control-border); }
 
+/* Printable documents (official evaluation report, completion certificate) stay on light paper in Dark: what is printed or
+   saved as PDF matches what is shown. Mark the document element with class="uims-paper" data-bs-theme="light" (Bootstrap
+   follows the attribute). The semantic tokens below mirror ui-tokens.css; the generated block at the end resets the --th-*
+   colours to their Light originals. */
+[data-theme="dark"] .uims-paper {
+ color-scheme:light; color:var(--ui-ink); background-color:var(--ui-surface);
+ --ui-canvas:#f6f8ff; --ui-surface:#fff; --ui-surface-raised:#fff; --ui-neutral-soft:#f0f3f7; --ui-nav:#f5f5f5;
+ --ui-ink:#133d61; --ui-muted:#50657a; --ui-neutral:#52616a; --ui-nav-text:#42474b; --ui-nav-muted:#565f69;
+ --ui-border:#e4ebf4; --ui-control-border:#7b8b9e; --ui-focus:#315e8d;
+ --ui-primary:#264f73; --ui-primary-hover:#173f62; --ui-primary-soft:#e5efff; --ui-primary-text:#264f73; --ui-accent:#c8a349;
+ --ui-success:#206044; --ui-success-soft:#edf7f0; --ui-warning:#76500b; --ui-warning-soft:#fff5db;
+ --ui-danger:#a52c37; --ui-danger-soft:#fff0f1; --ui-info:#245979; --ui-info-soft:#edf5fb;
+ --brand:var(--ui-primary); --brand-dark:var(--ui-primary-hover); --brand-light:var(--ui-primary-soft); --brand-text:var(--ui-primary);
+ --ink:var(--ui-ink); --muted:var(--ui-muted); --line:var(--ui-border); --canvas:var(--ui-canvas); --surface:var(--ui-surface);
+}
+/* Round close buttons drawn on a white disc (certificate): Bootstrap's dark filter would invert the disc and hide the cross. */
+[data-theme="dark"] .btn-close.bg-white { background-color:#fff!important; filter:none; }
+
 /* Logos keep their official colours on a light backing (no recolouring). */
 [data-theme="dark"] :is(.public-brand img,.uims-sidebar-brand img) { padding:3px; border-radius:6px; background:#fff; }
 
@@ -67,7 +85,9 @@ html.company-portal[data-theme="dark"] .workflow-link:hover { background-color:v
 [data-theme="dark"] :is(.text-dark,.text-black,.text-body,.link-dark) { color:var(--ui-ink)!important; }
 [data-theme="dark"] :is(.text-muted,.text-secondary,.text-black-50) { color:var(--ui-muted)!important; }
 /* Coloured text utilities use the light status tones (Bootstrap's mid tones fall below 4.5:1 on dark surfaces). */
-[data-theme="dark"] :is(.text-primary,.link-primary) { color:var(--ui-primary-text)!important; }
+/* Primary text in both themes: Bootstrap's #0d6efd is 4.5:1 only on pure white (4.3:1 on tinted rows and the canvas);
+   UIMS navy in Light, the light link blue in Dark (and navy again on printable paper). */
+:is(.text-primary,.link-primary) { color:var(--ui-primary-text,var(--ui-primary))!important; }
 [data-theme="dark"] :is(.text-success,.link-success) { color:var(--ui-success)!important; }
 [data-theme="dark"] :is(.text-warning,.link-warning) { color:var(--ui-warning)!important; }
 [data-theme="dark"] :is(.text-danger,.link-danger) { color:var(--ui-danger)!important; }
@@ -308,6 +328,93 @@ html.uims-theme-reveal::view-transition-new(uims-theme-control) { animation:uims
  --th-line-edf1f5:#3d4650; --th-line-edf1f6:#3d4650; --th-line-edf1f7:#3d4650; --th-line-eed5db:#4a3e41; --th-line-eeeeee:#3d464f; --th-line-efd8ab:#4c402a;
  --th-line-f0d4d1:#4c3e3d; --th-line-f0f3f8:#3e4750; --th-line-f1cdc8:#4e3c3a; --th-line-f1d9ab:#4c4029; --th-line-f1f5f9:#3e4751; --th-line-fecaca:#533a3a;
  --th-line-ff8c97:#4e3335; --th-line-ffc107:#493e26;
+}
+[data-theme="dark"] .uims-paper {
+ --th-bg-000000:initial; --th-bg-08346a:initial; --th-bg-090e19:initial; --th-bg-09334f:initial; --th-bg-0a3457:initial; --th-bg-0a365c:initial; --th-bg-0b1322:initial; --th-bg-0b2c48:initial;
+ --th-bg-0f4c81:initial; --th-bg-102e4d:initial; --th-bg-104784:initial; --th-bg-104bbc:initial; --th-bg-121a2e:initial; --th-bg-12263970:initial; --th-bg-123d58:initial; --th-bg-155cdb:initial;
+ --th-bg-172537:initial; --th-bg-173a60:initial; --th-bg-173b5e:initial; --th-bg-182b40:initial; --th-bg-183e64:initial; --th-bg-194568:initial; --th-bg-194e56:initial; --th-bg-1a2e44:initial;
+ --th-bg-1c3048:initial; --th-bg-1c477e:initial; --th-bg-1e5a8c:initial; --th-bg-1f3a5f:initial; --th-bg-1f4466:initial; --th-bg-204b62:initial; --th-bg-205e9d:initial; --th-bg-21364d:initial;
+ --th-bg-24496e:initial; --th-bg-244f77:initial; --th-bg-254e75:initial; --th-bg-27354b:initial; --th-bg-273d60:initial; --th-bg-28567e:initial; --th-bg-285aa0:initial; --th-bg-2a5276:initial;
+ --th-bg-2b455f:initial; --th-bg-2b4560:initial; --th-bg-2f6b45:initial; --th-bg-316a99:initial; --th-bg-345e89:initial; --th-bg-496b8c:initial; --th-bg-4f6878:initial; --th-bg-7a302b:initial;
+ --th-bg-7f8d9f:initial; --th-bg-903b35:initial; --th-bg-a9bccf:initial; --th-bg-b42318:initial; --th-bg-c62f3b:initial; --th-bg-cbd8e5:initial; --th-bg-cfe0ee:initial; --th-bg-cfe0f2:initial;
+ --th-bg-d3dde8:initial; --th-bg-dbeadf:initial; --th-bg-dce6eb:initial; --th-bg-dce8f3:initial; --th-bg-dce8f5:initial; --th-bg-dce9f6:initial; --th-bg-dceafa:initial; --th-bg-dceaff:initial;
+ --th-bg-dde5e6:initial; --th-bg-def1ff:initial; --th-bg-def7e9:initial; --th-bg-def8ed:initial; --th-bg-dfe9ef:initial; --th-bg-dfeaf4:initial; --th-bg-dfeafa:initial; --th-bg-e0eaf5:initial;
+ --th-bg-e0edff:initial; --th-bg-e0f2fe:initial; --th-bg-e0f3ed:initial; --th-bg-e1e6e3:initial; --th-bg-e2e8f0:initial; --th-bg-e2ecff:initial; --th-bg-e2f4e8:initial; --th-bg-e3e8ec:initial;
+ --th-bg-e3eeff:initial; --th-bg-e3efff:initial; --th-bg-e3f0ff:initial; --th-bg-e3f6ea:initial; --th-bg-e4f0ff:initial; --th-bg-e4f5eb:initial; --th-bg-e5e9e2:initial; --th-bg-e5ecf4:initial;
+ --th-bg-e5edf7:initial; --th-bg-e5eef9:initial; --th-bg-e5f0ff:initial; --th-bg-e5f5ec:initial; --th-bg-e6eef6:initial; --th-bg-e6efff:initial; --th-bg-e6f4ea:initial; --th-bg-e6f5ed:initial;
+ --th-bg-e6f5ef:initial; --th-bg-e6f6ec:initial; --th-bg-e7eef7:initial; --th-bg-e7eff7:initial; --th-bg-e7f5ec:initial; --th-bg-e7f5ed:initial; --th-bg-e7f5ee:initial; --th-bg-e7f6ed:initial;
+ --th-bg-e8eeeb:initial; --th-bg-e8f0f7:initial; --th-bg-e8f0f8:initial; --th-bg-e8f1ff:initial; --th-bg-e8f2ff:initial; --th-bg-e8f5ed:initial; --th-bg-e8f5ef:initial; --th-bg-e8f6ee:initial;
+ --th-bg-e8f6ef:initial; --th-bg-e9edf1:initial; --th-bg-e9edf2:initial; --th-bg-e9eff5:initial; --th-bg-e9eff7:initial; --th-bg-e9eff8:initial; --th-bg-e9f1fa:initial; --th-bg-e9f8ef:initial;
+ --th-bg-eaf0f3:initial; --th-bg-eaf0f6:initial; --th-bg-eaf0ff:initial; --th-bg-eaf1f9:initial; --th-bg-eaf1fc:initial; --th-bg-eaf2fb:initial; --th-bg-eaf2fc:initial; --th-bg-eaf3ff:initial;
+ --th-bg-eaf5f2:initial; --th-bg-eaf6ee:initial; --th-bg-eaf6ef:initial; --th-bg-edf1f5:initial; --th-bg-edf2f4:initial; --th-bg-edf2f4ef:initial; --th-bg-edf2f6:initial; --th-bg-edf2f7:initial;
+ --th-bg-edf2f8:initial; --th-bg-edf3f9:initial; --th-bg-edf3fb:initial; --th-bg-edf3fc:initial; --th-bg-edf4fc:initial; --th-bg-edf4fd:initial; --th-bg-edf4ff:initial; --th-bg-edf5fd:initial;
+ --th-bg-edf5ff:initial; --th-bg-eee5fc:initial; --th-bg-eef1f5:initial; --th-bg-eef3f6:initial; --th-bg-eef3f8:initial; --th-bg-eef3f9:initial; --th-bg-eef4fb:initial; --th-bg-eef5fb:initial;
+ --th-bg-eef5fd:initial; --th-bg-eef7f1:initial; --th-bg-eef9f1:initial; --th-bg-eff3f7:initial; --th-bg-eff4fb:initial; --th-bg-eff5ff:initial; --th-bg-eff6ff:initial; --th-bg-f0eafa:initial;
+ --th-bg-f0f2f5:initial; --th-bg-f0f4f8:initial; --th-bg-f0f5f7:initial; --th-bg-f0f5f7d9:initial; --th-bg-f0f6fc:initial; --th-bg-f0f6ff:initial; --th-bg-f0f7f6:initial; --th-bg-f0fdf4:initial;
+ --th-bg-f1f3f2:initial; --th-bg-f1f5f9:initial; --th-bg-f1f5fb:initial; --th-bg-f1f7fd:initial; --th-bg-f2c14e:initial; --th-bg-f2ecfb:initial; --th-bg-f2eeee:initial; --th-bg-f2f6fb:initial;
+ --th-bg-f2f6fc:initial; --th-bg-f2f6fd:initial; --th-bg-f2f7fc:initial; --th-bg-f2f7fd:initial; --th-bg-f3f6fa:initial; --th-bg-f3f6fb:initial; --th-bg-f3f7f9:initial; --th-bg-f3f7fa:initial;
+ --th-bg-f3f7fb:initial; --th-bg-f3f7fc:initial; --th-bg-f3f7ff:initial; --th-bg-f3f9ff:initial; --th-bg-f4f6f8:initial; --th-bg-f4f7fa:initial; --th-bg-f4f7fc:initial; --th-bg-f5f8fc:initial;
+ --th-bg-f5f8ff:initial; --th-bg-f5faff:initial; --th-bg-f6f8fc:initial; --th-bg-f7f1df:initial; --th-bg-f7f8f4:initial; --th-bg-f7f9fc:initial; --th-bg-f7fafd:initial; --th-bg-f7faff:initial;
+ --th-bg-f7fbff:initial; --th-bg-f8f9fa:initial; --th-bg-f8fafc:initial; --th-bg-f8fbff:initial; --th-bg-f9fbfe:initial; --th-bg-fbe6e3:initial; --th-bg-fbf1dc:initial; --th-bg-fbfcfe:initial;
+ --th-bg-fbfdff:initial; --th-bg-fceeed:initial; --th-bg-fcfdfd:initial; --th-bg-fcfdfe:initial; --th-bg-fdeaea:initial; --th-bg-fdebed:initial; --th-bg-fdecef:initial; --th-bg-fdfefe:initial;
+ --th-bg-fef2f2:initial; --th-bg-ffc107:initial; --th-bg-ffca2c:initial; --th-bg-ffd700:initial; --th-bg-ffe1e1:initial; --th-bg-fff0cc:initial; --th-bg-fff0ed:initial; --th-bg-fff0ee:initial;
+ --th-bg-fff0f0:initial; --th-bg-fff1d2:initial; --th-bg-fff1df:initial; --th-bg-fff1ef:initial; --th-bg-fff1f1:initial; --th-bg-fff2d6:initial; --th-bg-fff2df:initial; --th-bg-fff3cd:initial;
+ --th-bg-fff4d6:initial; --th-bg-fff4de:initial; --th-bg-fff4e0:initial; --th-bg-fff5f4:initial; --th-bg-fff7e7:initial; --th-bg-fff8ea:initial; --th-bg-fffafa:initial; --th-fg-000000:initial;
+ --th-fg-008b64:initial; --th-fg-008b70:initial; --th-fg-009e73:initial; --th-fg-0369a1:initial; --th-fg-071d35:initial; --th-fg-073b61:initial; --th-fg-073e69:initial; --th-fg-092e68:initial;
+ --th-fg-0a365c:initial; --th-fg-0e2740:initial; --th-fg-0f4c81:initial; --th-fg-102d60:initial; --th-fg-123850:initial; --th-fg-123b5e:initial; --th-fg-123d60:initial; --th-fg-123f63:initial;
+ --th-fg-123f65:initial; --th-fg-1254a1:initial; --th-fg-142235:initial; --th-fg-143d61:initial; --th-fg-1462ea:initial; --th-fg-15803d:initial; --th-fg-163e62:initial; --th-fg-164b78:initial;
+ --th-fg-164b84:initial; --th-fg-173451:initial; --th-fg-173b5c:initial; --th-fg-173d76:initial; --th-fg-173e61:initial; --th-fg-173f60:initial; --th-fg-174a78:initial; --th-fg-174b79:initial;
+ --th-fg-175c9f:initial; --th-fg-17603a:initial; --th-fg-17613d:initial; --th-fg-176447:initial; --th-fg-183144:initial; --th-fg-183f60:initial; --th-fg-193b62:initial; --th-fg-194568:initial;
+ --th-fg-194f89:initial; --th-fg-19633d:initial; --th-fg-198754:initial; --th-fg-1b3046:initial; --th-fg-1b3551:initial; --th-fg-1b6b3a:initial; --th-fg-1c5a37:initial; --th-fg-1c7a45:initial;
+ --th-fg-1d2733:initial; --th-fg-1d4ed8:initial; --th-fg-1d4f86:initial; --th-fg-1e293b:initial; --th-fg-1e7e34:initial; --th-fg-1f6b43:initial; --th-fg-20314b:initial; --th-fg-203751:initial;
+ --th-fg-203d60:initial; --th-fg-212529:initial; --th-fg-213d59:initial; --th-fg-214e75:initial; --th-fg-2156cb:initial; --th-fg-215982:initial; --th-fg-215b8b:initial; --th-fg-215b98:initial;
+ --th-fg-215c9d:initial; --th-fg-2162a8:initial; --th-fg-216d47:initial; --th-fg-226a44:initial; --th-fg-234569:initial; --th-fg-244562:initial; --th-fg-244867:initial; --th-fg-244c72:initial;
+ --th-fg-244f77:initial; --th-fg-245237:initial; --th-fg-24537e:initial; --th-fg-24547c:initial; --th-fg-24613f:initial; --th-fg-24636b:initial; --th-fg-246b4d:initial; --th-fg-246b52:initial;
+ --th-fg-247449:initial; --th-fg-247c61:initial; --th-fg-254e75:initial; --th-fg-274a68:initial; --th-fg-27577e:initial; --th-fg-27734c:initial; --th-fg-284766:initial; --th-fg-28547d:initial;
+ --th-fg-28567e:initial; --th-fg-28577e:initial; --th-fg-285781:initial; --th-fg-285aa0:initial; --th-fg-285b36:initial; --th-fg-285b88:initial; --th-fg-286391:initial; --th-fg-2868ae:initial;
+ --th-fg-294760:initial; --th-fg-294966:initial; --th-fg-294d83:initial; --th-fg-294e70:initial; --th-fg-2a4b6a:initial; --th-fg-2a649e:initial; --th-fg-2b4560:initial; --th-fg-2b5274:initial;
+ --th-fg-2c4660:initial; --th-fg-314c69:initial; --th-fg-315572:initial; --th-fg-315674:initial; --th-fg-31577c:initial; --th-fg-315d83:initial; --th-fg-315d88:initial; --th-fg-315e89:initial;
+ --th-fg-315f8a:initial; --th-fg-333333:initial; --th-fg-334155:initial; --th-fg-34495e:initial; --th-fg-344b60:initial; --th-fg-345d81:initial; --th-fg-35546d:initial; --th-fg-355572:initial;
+ --th-fg-355b79:initial; --th-fg-365c7e:initial; --th-fg-368365:initial; --th-fg-374b5e:initial; --th-fg-3b526e:initial; --th-fg-3d5266:initial; --th-fg-3e5471:initial; --th-fg-3e5770:initial;
+ --th-fg-3e5e9b:initial; --th-fg-3f5a73:initial; --th-fg-405574:initial; --th-fg-42666b:initial; --th-fg-4288ed:initial; --th-fg-43545d:initial; --th-fg-435971:initial; --th-fg-435974:initial;
+ --th-fg-43669c:initial; --th-fg-444444:initial; --th-fg-45596e:initial; --th-fg-45627c:initial; --th-fg-456a9e:initial; --th-fg-48627d:initial; --th-fg-4b5563:initial; --th-fg-4b5e70:initial;
+ --th-fg-4d6280:initial; --th-fg-4d6681:initial; --th-fg-50627a:initial; --th-fg-526985:initial; --th-fg-526b82:initial; --th-fg-526e87:initial; --th-fg-52718e:initial; --th-fg-5272a1:initial;
+ --th-fg-53667b:initial; --th-fg-536a7e:initial; --th-fg-546170:initial; --th-fg-54697d:initial; --th-fg-54728b:initial; --th-fg-54728d:initial; --th-fg-56677c:initial; --th-fg-56738e:initial;
+ --th-fg-586575:initial; --th-fg-58708d:initial; --th-fg-58718a:initial; --th-fg-596b7c:initial; --th-fg-59728d:initial; --th-fg-5b3a8c:initial; --th-fg-5b6c80:initial; --th-fg-5d4a1d:initial;
+ --th-fg-5d4a1f:initial; --th-fg-604603:initial; --th-fg-606f7b:initial; --th-fg-60738c:initial; --th-fg-60748b:initial; --th-fg-60758b:initial; --th-fg-60788d:initial; --th-fg-607b99:initial;
+ --th-fg-61758a:initial; --th-fg-6183a2:initial; --th-fg-624715:initial; --th-fg-62748a:initial; --th-fg-62758c:initial; --th-fg-627a94:initial; --th-fg-627b90:initial; --th-fg-627b94:initial;
+ --th-fg-637890:initial; --th-fg-64748b:initial; --th-fg-657488:initial; --th-fg-657fa6:initial; --th-fg-666666:initial; --th-fg-667b91:initial; --th-fg-66809a:initial; --th-fg-687c92:initial;
+ --th-fg-69798d:initial; --th-fg-698096:initial; --th-fg-69819c:initial; --th-fg-6a7e94:initial; --th-fg-6b7280:initial; --th-fg-6b7786:initial; --th-fg-6c757d:initial; --th-fg-6f86a3:initial;
+ --th-fg-718096:initial; --th-fg-718298:initial; --th-fg-718399:initial; --th-fg-71839a:initial; --th-fg-71869a:initial; --th-fg-71869b:initial; --th-fg-728398:initial; --th-fg-72839a:initial;
+ --th-fg-738298:initial; --th-fg-73869a:initial; --th-fg-74433f:initial; --th-fg-75510a:initial; --th-fg-75869b:initial; --th-fg-77889a:initial; --th-fg-7850ad:initial; --th-fg-788ba0:initial;
+ --th-fg-788da1:initial; --th-fg-795416:initial; --th-fg-7a2422:initial; --th-fg-7a8ba0:initial; --th-fg-7a8ca1:initial; --th-fg-7a8ea1:initial; --th-fg-7b8797:initial; --th-fg-7b8ca1:initial;
+ --th-fg-7b8ca2:initial; --th-fg-7c36c7:initial; --th-fg-7d5c05:initial; --th-fg-805817:initial; --th-fg-815b5b:initial; --th-fg-8191a5:initial; --th-fg-8193ad:initial; --th-fg-825b0d:initial;
+ --th-fg-835022:initial; --th-fg-8395a8:initial; --th-fg-852c26:initial; --th-fg-856404:initial; --th-fg-888888:initial; --th-fg-8a2c22:initial; --th-fg-8a4b00:initial; --th-fg-8a5300:initial;
+ --th-fg-8a5a00:initial; --th-fg-8a5a12:initial; --th-fg-903b35:initial; --th-fg-946511:initial; --th-fg-975400:initial; --th-fg-9b1c1c:initial; --th-fg-9d2334:initial; --th-fg-9e302d:initial;
+ --th-fg-a02d39:initial; --th-fg-a13a4a:initial; --th-fg-a13d2d:initial; --th-fg-a3352a:initial; --th-fg-a3392b:initial; --th-fg-a33b42:initial; --th-fg-a42121:initial; --th-fg-a46b00:initial;
+ --th-fg-a53e36:initial; --th-fg-a96d1c:initial; --th-fg-b42318:initial; --th-fg-b8860b:initial; --th-fg-b91c1c:initial; --th-fg-dc2626:initial; --th-fg-ec3043:initial; --th-line-0b2c48:initial;
+ --th-line-0f4c81:initial; --th-line-104784:initial; --th-line-104bbc:initial; --th-line-155cdb:initial; --th-line-173b5e:initial; --th-line-175c9f:initial; --th-line-194568:initial; --th-line-1d2733:initial;
+ --th-line-205e9d:initial; --th-line-244f77:initial; --th-line-254e75:initial; --th-line-28567e:initial; --th-line-2b4560:initial; --th-line-2f8fd0:initial; --th-line-304853:initial; --th-line-315d84:initial;
+ --th-line-33465a:initial; --th-line-34475b:initial; --th-line-3b535d:initial; --th-line-3f81df:initial; --th-line-49616b:initial; --th-line-496b8c:initial; --th-line-4979a8:initial; --th-line-4f6878:initial;
+ --th-line-506b75:initial; --th-line-5187b9:initial; --th-line-5d94c2:initial; --th-line-69a8b5:initial; --th-line-70a4dc:initial; --th-line-749bb4:initial; --th-line-7a302b:initial; --th-line-7aa6cf:initial;
+ --th-line-7aa9dc:initial; --th-line-7ea3c8:initial; --th-line-83a9ce:initial; --th-line-84b3ff:initial; --th-line-8db8df:initial; --th-line-903b35:initial; --th-line-95b7de:initial; --th-line-96b0cc:initial;
+ --th-line-9ec3e8:initial; --th-line-9fb6ce:initial; --th-line-9fb8d2:initial; --th-line-9fd0b0:initial; --th-line-a1c5ac:initial; --th-line-a4dfff:initial; --th-line-a64b42:initial; --th-line-a6c9b0:initial;
+ --th-line-a8c6b5:initial; --th-line-a9bfd6:initial; --th-line-a9c2dc:initial; --th-line-ab3932:initial; --th-line-adcaff:initial; --th-line-aeb9c5:initial; --th-line-afc9e2:initial; --th-line-b3c3ce:initial;
+ --th-line-b42318:initial; --th-line-b6cade:initial; --th-line-b7c7d1:initial; --th-line-b7c9dc:initial; --th-line-b7d4c4:initial; --th-line-b8860b:initial; --th-line-b8a272:initial; --th-line-b8cadc:initial;
+ --th-line-b9c3c2:initial; --th-line-b9c9dc:initial; --th-line-b9cbdb:initial; --th-line-bae6fd:initial; --th-line-bbf7d0:initial; --th-line-bccbdb:initial; --th-line-bfd0e2:initial; --th-line-bfdbfe:initial;
+ --th-line-c19a6b:initial; --th-line-c3ccd6:initial; --th-line-c5e8d2:initial; --th-line-c6d3e5:initial; --th-line-c8cfd8:initial; --th-line-c8d7e6:initial; --th-line-c8d9e9:initial; --th-line-c8ecdf:initial;
+ --th-line-c9d2db:initial; --th-line-c9d3db:initial; --th-line-c9d8e8:initial; --th-line-c9d9ef:initial; --th-line-cad8e8:initial; --th-line-cbd5e1:initial; --th-line-cbd8e5:initial; --th-line-cbd8e6:initial;
+ --th-line-cbd8e7:initial; --th-line-cccccc:initial; --th-line-ccd8e8:initial; --th-line-ccd9e7:initial; --th-line-ccddf2:initial; --th-line-cce5ff:initial; --th-line-ce6976:initial; --th-line-cfdbe4:initial;
+ --th-line-cfdbe8:initial; --th-line-cfdeed:initial; --th-line-cfe0f1:initial; --th-line-cfe0f6:initial; --th-line-d0a065:initial; --th-line-d0dce8:initial; --th-line-d0dfed:initial; --th-line-d1d5db:initial;
+ --th-line-d2dfed:initial; --th-line-d2e3ff:initial; --th-line-d3dfed:initial; --th-line-d6e0ec:initial; --th-line-d6e1eb:initial; --th-line-d6e5f6:initial; --th-line-d7e1ed:initial; --th-line-d7e8fc:initial;
+ --th-line-d8e3ee:initial; --th-line-d8e3f0:initial; --th-line-d8e4f1:initial; --th-line-d9a9a4:initial; --th-line-d9b375:initial; --th-line-d9dfe6:initial; --th-line-d9e3ed:initial; --th-line-d9e5f2:initial;
+ --th-line-dbe4ef:initial; --th-line-dbe5ef:initial; --th-line-dbe5f1:initial; --th-line-dce3ed:initial; --th-line-dce4ec:initial; --th-line-dce4ee:initial; --th-line-dce5ef:initial; --th-line-dce6f0:initial;
+ --th-line-dce6f2:initial; --th-line-dce8f7:initial; --th-line-dce9e8:initial; --th-line-ddaaa3:initial; --th-line-dee2e6:initial; --th-line-dfe7ef:initial; --th-line-dfe7f0:initial; --th-line-e0e6ee:initial;
+ --th-line-e0e7f0:initial; --th-line-e0e8ef:initial; --th-line-e0e8f0:initial; --th-line-e0e8f2:initial; --th-line-e1b3ae:initial; --th-line-e1e8ef:initial; --th-line-e1e9f2:initial; --th-line-e1eaf4:initial;
+ --th-line-e2c3bf:initial; --th-line-e2e8f0:initial; --th-line-e2eaf3:initial; --th-line-e3e8ee:initial; --th-line-e3eaf2:initial; --th-line-e4d7ff:initial; --th-line-e4ecf5:initial; --th-line-e4edf8:initial;
+ --th-line-e5e7eb:initial; --th-line-e5ebf1:initial; --th-line-e5ebf2:initial; --th-line-e6edf3:initial; --th-line-e6eef6:initial; --th-line-e7edf4:initial; --th-line-e8edf3:initial; --th-line-e8eef5:initial;
+ --th-line-e9dcc7:initial; --th-line-e9eef5:initial; --th-line-edf1f5:initial; --th-line-edf1f6:initial; --th-line-edf1f7:initial; --th-line-eed5db:initial; --th-line-eeeeee:initial; --th-line-efd8ab:initial;
+ --th-line-f0d4d1:initial; --th-line-f0f3f8:initial; --th-line-f1cdc8:initial; --th-line-f1d9ab:initial; --th-line-f1f5f9:initial; --th-line-fecaca:initial; --th-line-ff8c97:initial; --th-line-ffc107:initial;
 }
 /* ===== generated:end ===== */
 

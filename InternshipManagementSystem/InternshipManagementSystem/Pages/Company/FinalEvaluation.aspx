@@ -14,7 +14,7 @@
         .btn-action:hover { background-color: var(--th-bg-e8f0f7,#e8f0f7); border-color: var(--th-line-0f4c81,#0f4c81); }
         
         .btn-preview { color: var(--ui-warning); font-weight: 700; background: none; border: none; transition: 0.2s; font-size: 0.75rem; }
-        .btn-preview:hover { color: #daa520; transform: scale(1.05); }
+        .btn-preview:hover { color: var(--th-fg-604603,#604603); /* #daa520 was 2.1:1 on white */ transform: scale(1.05); }
 
         .status-badge-green { background-color: var(--th-bg-e6f4ea,#e6f4ea); color: var(--th-fg-1e7e34,#1e7e34); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
         .status-badge-warning { background-color: var(--th-bg-fff3cd,#fff3cd); color: var(--th-fg-856404,#856404); padding: 4px 10px; border-radius: 20px; font-size: 0.7rem; font-weight: 600; }
@@ -267,7 +267,7 @@
           <div class="modal-header border-bottom-0 pb-0 justify-content-end pe-3 pt-3">
               <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="Close" style="opacity: 1;"></button>
           </div>
-          <div class="modal-body p-0" id="certificatePrintArea">
+          <div class="modal-body p-0 uims-paper" id="certificatePrintArea" data-bs-theme="light">
               <div class="cert-container">
                   <div class="cert-title"><%: L.T("Company.FinalEvaluation.CertificateOfCompletion") %></div>
                   <div class="cert-subtitle"><%: L.T("Company.FinalEvaluation.InternshipProgram") %></div>
@@ -322,7 +322,7 @@
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
-          <div class="modal-body p-4 p-md-5 bg-white" id="reportPrintArea">
+          <div class="modal-body p-4 p-md-5 bg-white uims-paper" id="reportPrintArea" data-bs-theme="light">
               <div class="text-center border-bottom pb-4 mb-4">
                   <h5 class="fw-bold text-uppercase text-primary mb-1">German Jordanian University</h5>
                   <p class="text-muted mb-0" style="font-size: 0.8rem;">Internship Management System (UIMS) - Official Academic Report</p>
