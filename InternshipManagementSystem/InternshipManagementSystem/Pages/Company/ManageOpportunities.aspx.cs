@@ -213,15 +213,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
-<<<<<<< HEAD
+
                 Notice = activating
                     ? "Opportunity activated successfully."
                     : "Opportunity deactivated successfully.";
 
-=======
+
                 new OpportunityRepository().SyncPublicPreview(id);
                 Notice = L.T("Company.ManageOpportunities.OpportunityClosedSuccessfully");
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
+
                 IsError = false;
             }
             else
@@ -360,14 +360,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
-<<<<<<< HEAD
+
                 Notice =
                     L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
 
-=======
+
                 new OpportunityRepository().SyncPublicPreview(id);
                 Notice = L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
+
                 IsError = false;
             }
             else

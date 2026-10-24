@@ -556,7 +556,7 @@
 }
 
 @media (max-width: 750px) {
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
+
     .mo-card {
         padding: 15px;
     }
@@ -569,8 +569,6 @@
         padding: 22px;
     }
 }
-<<<<<<< HEAD
-=======
 
 /* Professional bordered table */
 
@@ -638,7 +636,7 @@
     margin-bottom: 4px;
 }
 
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
+
 </style>
 
 </asp:Content>
@@ -673,10 +671,12 @@
                 </p>
             </div>
 
-            <a href="Opportunities.aspx" class="mo-btn">
-                + <%: L.T("Company.ManageOpportunities.AddOpportunity") %>
-            </a>
-        </div>
+           
+             <a href="Opportunities.aspx" class="mo-btn">
+                 <%: L.T("Company.ManageOpportunities.AddOpportunity") %>
+                   </a>
+
+                </div>
 
         <!-- STATISTICS -->
 
@@ -919,7 +919,7 @@
                     </button>
 
                     <button type="submit"
-<<<<<<< HEAD
+
                             class="mo-btn mo-btn-danger"
                             id="moConfirmButton"
                             name="moAction"
@@ -929,13 +929,11 @@
 
                         Confirm
 
-=======
                         class="mo-btn mo-btn-danger"
                         name="moAction"
                         value="close"
                         onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Closing") %>">
                         <%: L.T("Company.ManageOpportunities.CloseOpportunity") %>
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
                     </button>
 
                 </div>
@@ -1418,7 +1416,7 @@
                 </a>
 
                 <button type="submit"
-<<<<<<< HEAD
+
                         class="mo-btn"
                         name="moAction"
                         value="save"
@@ -1426,11 +1424,10 @@
                         data-ui-validation="none"
                         data-loading-label="Saving…">
 
-=======
                     class="mo-btn"
                     name="moAction"
                     value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
+
                     <%: L.T("Company.ManageOpportunities.SaveChanges") %>
 
                 </button>
