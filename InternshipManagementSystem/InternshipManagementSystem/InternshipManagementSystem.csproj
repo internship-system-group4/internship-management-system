@@ -898,14 +898,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
-  <ItemGroup>
-    <Compile Include="Pages\Company\EvaluationReport.aspx.cs">
-      <DependentUpon>EvaluationReport.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\Company\EvaluationReport.aspx.designer.cs">
-      <DependentUpon>EvaluationReport.aspx</DependentUpon>
-    </Compile>
-    <Content Include="Pages\Company\EvaluationReport.aspx" />
-  </ItemGroup>
 </Project>
