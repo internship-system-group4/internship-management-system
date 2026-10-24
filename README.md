@@ -20,7 +20,7 @@ A shared internship workspace for students, companies, and the university.
 
 <img src="docs/assets/uims-journey.gif" alt="Illustrative internship journey: discover opportunities, apply for a company decision, confirm one placement, train through tasks and feedback, and review completion requirements." width="100%">
 
-**[Explore](#overview) · [Roles](#roles) · [Workflows](#workflows) · [Setup](#setup) · [Status](#status) · [Reference](#reference)**
+**[Explore](#overview) · [Roles](#roles) · [Workflows](#workflows) · [Setup](#setup) · [Status](#status) · [Reference](#reference) · [Team & Resources](#credits)**
 
 <sub>Orange Academy · Group 4 · Academic team project · GJU School of Computing context</sub>
 
@@ -488,11 +488,30 @@ Contribute through focused branches and respect [CODEOWNERS](.github/CODEOWNERS)
 
 <a id="credits"></a>
 
-## 🤝 Team and licensing
+## 🤝 Team, project resources, and licensing
 
-UIMS is an **Orange Academy Group 4** team project. Responsibilities appear in [Ownership](docs/03-ownership.md); the application's **Powered by** page presents the team.
+UIMS is an **Orange Academy Group 4** team project. The application's **Powered by** page presents the team, and the [Ownership guide](docs/03-ownership.md) contains additional development responsibilities.
 
-**Team, as listed in the ownership guide:** Ahmad · Osama · Sara Rajoub · Sara Dolat · Suja · Fatima · Nada.
+### 👥 Project team
+
+| Team member | Project role |
+| --- | --- |
+| **Ahmad Bani Hamad** | Scrum Master |
+| **سارة الدولات** | Quality Assurance (QA) |
+| **سارة رجوب** | Product Owner |
+| **ندى علاونة** | Team Member |
+| **سجى** | Team Member |
+| **اسامة بني هاني** | Team Member |
+| **فاطمة** | Team Member |
+
+### 🎨 Design and task management
+
+| Resource | Description | Link |
+| --- | --- | --- |
+| **Figma** | UIMS — GJU Homepage Mockup | [View Figma design](https://www.figma.com/design/5vZ9vUap9JGFjevOlmBZVi/UIMS-%E2%80%94-GJU-Homepage-Mockup?t=MHVxvLg0UOMWCpRn-0) |
+| **Trello** | Internship System — Group 4 board | [Open Trello board](https://trello.com/b/fUVGTBxk/internship-system-group4) |
+
+### Third-party assets and licensing
 
 Third-party assets retain their terms:
 
