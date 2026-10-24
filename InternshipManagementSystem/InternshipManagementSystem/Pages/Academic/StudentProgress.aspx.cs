@@ -43,6 +43,7 @@ namespace InternshipManagementSystem.Pages.Academic
             }
         }
 
+        // دالة تحميل الطلاب مع الفلترة حسب الخيار المحدد بالـ Dropdown ونص البحث
         private void LoadStudentsTable()
         {
             UserRepository userRepo = new UserRepository();
@@ -50,14 +51,43 @@ namespace InternshipManagementSystem.Pages.Academic
 
             if (myStudents != null && myStudents.Count > 0)
             {
+                // تطبيق الفلتر حسب التخصص
+                string selectedFilter = ddlMajorFilter.SelectedValue;
+                if (selectedFilter != "All")
+                {
+                    myStudents = myStudents.Where(s => s.Major == selectedFilter).ToList();
+                }
+
+                // تطبيق البحث بالاسم أو الرقم الجامعي
+                string searchQuery = txtSearch.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    myStudents = myStudents.Where(s =>
+                        s.FullName.ToLower().Contains(searchQuery) ||
+                        s.StudentNumber.ToLower().Contains(searchQuery)
+                    ).ToList();
+                }
+
                 rptStudentsList.DataSource = myStudents;
                 rptStudentsList.DataBind();
-                litNoStudents.Visible = false;
+                litNoStudents.Visible = myStudents.Count == 0;
             }
             else
             {
                 litNoStudents.Visible = true;
             }
+        }
+
+        // حدث التغيير عند اختيار الفلتر
+        protected void ddlMajorFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadStudentsTable();
+        }
+
+        // حدث الضغط على زر البحث
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadStudentsTable();
         }
 
         private void LoadStudentAndPlacementData()

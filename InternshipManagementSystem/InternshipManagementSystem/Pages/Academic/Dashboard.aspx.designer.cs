@@ -24,6 +24,15 @@ namespace InternshipManagementSystem.Pages.Academic
         protected global::System.Web.UI.WebControls.Literal litSupervisorName;
 
         /// <summary>
+        /// Charts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::InternshipManagementSystem.Layout.WorkspaceChart Charts;
+
+        /// <summary>
         /// litTotalStudents control.
         /// </summary>
         /// <remarks>
@@ -42,6 +51,15 @@ namespace InternshipManagementSystem.Pages.Academic
         protected global::System.Web.UI.WebControls.Literal litCompletedStudents;
 
         /// <summary>
+        /// Journey control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::InternshipManagementSystem.Layout.WorkspaceJourney Journey;
+
+        /// <summary>
         /// rptStudents control.
         /// </summary>
         /// <remarks>
@@ -58,7 +76,23 @@ namespace InternshipManagementSystem.Pages.Academic
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litNoData;
-        protected global::InternshipManagementSystem.Layout.WorkspaceChart Charts;
-        protected global::InternshipManagementSystem.Layout.WorkspaceJourney Journey;
+
+        /// <summary>
+        /// btnSeeMore control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSeeMore;
+
+        /// <summary>
+        /// btnSeeLess control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btnSeeLess;
     }
 }

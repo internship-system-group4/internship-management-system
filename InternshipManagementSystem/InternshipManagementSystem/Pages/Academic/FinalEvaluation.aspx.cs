@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using InternshipManagementSystem.Models;
@@ -17,17 +18,39 @@ namespace InternshipManagementSystem.Pages.Academic
             }
         }
 
+        // دالة عرض الطلاب مع فلترة الطلاب الجاهزين للتقييم فقط + البحث والتخصص
         private void LoadStudentsTable()
         {
-            // جلب الطلاب المخصصين للمشرف لعرضهم في الجدول
             UserRepository userRepo = new UserRepository();
-            List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
+            // 1. جلب كل طلاب المشرف
+            List<Student> allMyStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
 
-            if (myStudents != null && myStudents.Count > 0)
+            if (allMyStudents != null && allMyStudents.Count > 0)
             {
-                rptStudents.DataSource = myStudents;
+                // 2. الفلترة المنطقية: إبقاء الطلاب اللي عندهم تدريب وجاهزين للتقييم فقط
+                var validStudentsForEvaluation = allMyStudents.Where(s => CanEvaluate(s.Id)).ToList();
+
+                // 3. تطبيق فلتر التخصص (Major)
+                string selectedFilter = ddlMajorFilter.SelectedValue;
+                if (selectedFilter != "All")
+                {
+                    validStudentsForEvaluation = validStudentsForEvaluation.Where(s => s.Major == selectedFilter).ToList();
+                }
+
+                // 4. تطبيق البحث بالاسم أو الرقم الجامعي
+                string searchQuery = txtSearch.Text.Trim().ToLower();
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    validStudentsForEvaluation = validStudentsForEvaluation.Where(s =>
+                        s.FullName.ToLower().Contains(searchQuery) ||
+                        s.StudentNumber.ToLower().Contains(searchQuery)
+                    ).ToList();
+                }
+
+                // 5. ربط البيانات بالجدول
+                rptStudents.DataSource = validStudentsForEvaluation;
                 rptStudents.DataBind();
-                litNoData.Visible = false;
+                litNoData.Visible = validStudentsForEvaluation.Count == 0;
             }
             else
             {
@@ -35,26 +58,32 @@ namespace InternshipManagementSystem.Pages.Academic
             }
         }
 
-        // هذا الحدث يعمل عندما يضغط الدكتور على زر View لأي طالب
+        protected void ddlMajorFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadStudentsTable();
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadStudentsTable();
+        }
+
         protected void btnOpenModal_Click(object sender, EventArgs e)
         {
-            // إخفاء رسالة النجاح السابقة إن وجدت
             pnlSuccessMessage.Visible = false;
 
-            // أخذ الـ ID الخاص بالطالب الذي تم الضغط عليه
             System.Web.UI.WebControls.LinkButton btn = (System.Web.UI.WebControls.LinkButton)sender;
             string studentId = btn.CommandArgument;
 
+            // حماية منطقية: التأكد من إمكانية التقييم
             if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
-            // حفظه في Hidden Field لنستخدمه عند الضغط على إرسال التقييم
+
             hfSelectedStudentId.Value = studentId;
 
-            // 1. جلب اسم الطالب
             UserRepository userRepo = new UserRepository();
             Student student = userRepo.GetStudent(studentId);
             litModalStudentName.Text = student != null ? student.FullName : L.T("Academic.FinalEvaluation.UnknownStudent");
 
-            // 2. جلب تقييم الشركة إن وجد
             EvaluationRepository evalRepo = new EvaluationRepository();
             FinalCompanyEvaluation companyEval = evalRepo.GetCompanyFinalForPlacement(studentId);
 
@@ -75,7 +104,6 @@ namespace InternshipManagementSystem.Pages.Academic
                 pnlNoCompanyEval.Visible = true;
             }
 
-            // 3. التحقق إذا كان التقييم الأكاديمي محفوظ مسبقاً لهذا الطالب
             FinalAcademicEvaluation academicEval = evalRepo.GetAcademicFinalForPlacement(studentId);
 
             if (academicEval != null && academicEval.IsSubmitted)
@@ -93,7 +121,6 @@ namespace InternshipManagementSystem.Pages.Academic
             }
             else
             {
-                // إذا لم يتم التقييم بعد، نفتح النموذج
                 ddlPassFail.SelectedValue = "";
                 ddlPassFail.Enabled = true;
                 txtAcademicComments.Text = "";
@@ -102,7 +129,6 @@ namespace InternshipManagementSystem.Pages.Academic
                 pnlAlreadySubmitted.Visible = false;
             }
 
-            // 4. كود جافاسكريبت متطور لإظهار النافذة المنبثقة (Modal) بأمان
             string script = @"
         setTimeout(function() {
             var modalEl = document.getElementById('evaluationModal');
@@ -115,7 +141,6 @@ namespace InternshipManagementSystem.Pages.Academic
             ClientScript.RegisterStartupScript(this.GetType(), "ShowEvaluationModal", script, true);
         }
 
-        // هذا الحدث يعمل عندما يضغط الدكتور "إرسال" من داخل النافذة المنبثقة
         protected void btnSubmitEvaluation_Click(object sender, EventArgs e)
         {
             string studentId = hfSelectedStudentId.Value;
@@ -125,6 +150,7 @@ namespace InternshipManagementSystem.Pages.Academic
                 return;
             }
 
+            // حماية منطقية قبل الحفظ
             if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
             var existing = new EvaluationRepository().GetAcademicFinalForPlacement(studentId);
             if (existing != null && existing.IsSubmitted) return;
@@ -145,10 +171,10 @@ namespace InternshipManagementSystem.Pages.Academic
             EvaluationRepository evalRepo = new EvaluationRepository();
             evalRepo.SaveAcademicFinal(eval);
 
-            // إظهار رسالة النجاح في الشاشة الرئيسية (لأن النافذة ستغلق تلقائياً بعد الإرسال)
             pnlSuccessMessage.Visible = true;
             litSuccessMessage.Text = L.T("Academic.FinalEvaluation.EvaluationForTheSelectedStudentHas");
         }
+
         private bool CanEvaluate(string studentId)
         {
             if (!ApplicationRepository.IsValidKey(studentId)) return false;
