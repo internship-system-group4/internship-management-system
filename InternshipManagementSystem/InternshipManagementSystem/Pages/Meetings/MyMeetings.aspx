@@ -38,16 +38,6 @@
             border-radius: 22px;
             background: linear-gradient(120deg, var(--th-bg-edf4fd,#edf4fd), var(--th-bg-f5f8ff,#f5f8ff));
         }
-
-        .meeting-eyebrow {
-            font-size: 11px;
-            font-weight: 750;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: var(--primary-text);
-            margin: 0 0 8px;
-        }
-
         .meeting-hero h1 {
             font-size: clamp(27px, 3vw, 37px);
             font-weight: 750;
@@ -210,12 +200,6 @@
         .meeting-view-bar strong {
             font-weight: 650;
         }
-
-        .meeting-live-note {
-            color: var(--muted);
-            font-size: 12px;
-        }
-
         .meeting-table-wrap {
             overflow-x: auto;
         }
@@ -574,7 +558,139 @@
                 animation: none;
             }
         }
-    </style>
+            /* Align meeting dialogs with the student profile type scale */
+        body.uims-public .uims-main-inner .meetings-page .meeting-dialog {
+            width:min(680px,calc(100% - 28px));
+            max-height:86vh;
+            font-size:14px;
+            line-height:1.55;
+        }
+        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header { padding:18px 22px; gap:14px; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header h2 { font-size:20px!important; line-height:1.3; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header p { font-size:13px!important; line-height:1.5; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-close { font-size:22px; line-height:1; white-space:nowrap; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-form { gap:16px; padding:20px 22px; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-label { margin-bottom:7px; font-size:13px!important; line-height:1.4; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-control { min-height:44px; padding:10px 12px; font-size:14px!important; line-height:1.45!important; }
+        body.uims-public .uims-main-inner .meetings-page textarea.meeting-control { min-height:92px; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-hint,
+        body.uims-public .uims-main-inner .meetings-page .meeting-help { font-size:12px!important; line-height:1.55; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-actions { gap:9px; padding:15px 22px; }
+        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-actions .meeting-btn { min-height:42px; padding:9px 15px; font-size:13px!important; line-height:1.4; }
+        @media(max-width:700px) {
+            body.uims-public .uims-main-inner .meetings-page .meeting-dialog { width:calc(100% - 20px); max-height:90vh; border-radius:16px; }
+            body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header { padding:16px; }
+            body.uims-public .uims-main-inner .meetings-page .meeting-form { gap:13px; padding:16px; }
+            body.uims-public .uims-main-inner .meetings-page .meeting-dialog-actions { padding:13px 16px; }
+        }
+        /* Refined, compact meetings layout */
+        .meetings-page { padding: 8px 0 28px; }
+        .meetings-page .meeting-hero {
+            padding: 22px 24px;
+            margin-bottom: 18px;
+            gap: 18px;
+            border-radius: 16px;
+        }
+        .meetings-page .meeting-hero h1 {
+            margin: 0 0 5px !important;
+            font-size: 24px !important;
+            line-height: 1.3 !important;
+            font-weight: 700 !important;
+            letter-spacing: -.02em;
+        }
+        .meetings-page .meeting-hero p:last-child {
+            max-width: 620px;
+            font-size: 14px !important;
+            line-height: 1.55 !important;
+        }
+        .meetings-page .meeting-hero .meeting-btn {
+            min-height: 38px;
+            padding: 8px 14px;
+            border-radius: 9px;
+            font-size: 12px;
+        }
+        .meetings-page .meeting-stats { gap: 12px; margin-bottom: 18px; }
+        .meetings-page .meeting-stat {
+            padding: 16px 18px;
+            border-radius: 13px;
+            box-shadow: 0 2px 8px #1b304606;
+            transition: transform .16s ease, box-shadow .16s ease;
+        }
+        .meetings-page .meeting-stat:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px #1b304610;
+        }
+        .meetings-page .meeting-stat-number { font-size: 25px; margin-bottom: 5px; }
+        .meetings-page .meeting-stat-label { font-size: 12px; }
+        .meetings-page .meeting-stat small { margin-top: 4px; font-size: 11px; line-height: 1.45; }
+        .meetings-page .meeting-panel {
+            border-radius: 15px;
+            box-shadow: 0 4px 16px #1b304608;
+        }
+        .meetings-page .meeting-panel-heading {
+            padding: 15px 18px !important;
+            gap: 14px;
+        }
+        .meetings-page .meeting-panel-heading h2 {
+            margin: 0 0 3px !important;
+            font-size: 19px !important;
+            line-height: 1.35 !important;
+            font-weight: 700 !important;
+        }
+        .meetings-page .meeting-panel-heading p {
+            margin: 0 !important;
+            font-size: 12px !important;
+            line-height: 1.5 !important;
+        }
+        .meetings-page .meeting-toolbar { gap: 8px; }
+        .meetings-page .meeting-toolbar .meeting-btn {
+            min-height: 34px;
+            padding: 6px 11px;
+            border-radius: 8px;
+            font-size: 11px !important;
+            line-height: 1.35;
+        }
+        .meetings-page .meeting-view-bar {
+            min-height: 44px;
+            padding: 10px 18px;
+            font-size: 11px;
+        }
+        .meetings-page .meeting-table { min-width: 900px; font-size: 12px; }
+        .meetings-page .meeting-table th {
+            padding: 11px 15px;
+            font-size: 11px;
+            letter-spacing: .01em;
+        }
+        .meetings-page .meeting-table td {
+            padding: 13px 15px;
+            vertical-align: middle;
+            line-height: 1.5;
+        }
+        .meetings-page .meeting-subtext { margin-top: 3px; font-size: 11px; line-height: 1.45; }
+        .meetings-page .meeting-actions { gap: 6px; max-width: 250px; min-width: 145px; }
+        .meetings-page .meeting-actions .meeting-btn {
+            min-height: 30px;
+            padding: 5px 9px;
+            border-radius: 7px;
+            font-size: 10px;
+        }
+        .meetings-page .meeting-status { padding: 5px 8px; border-radius: 7px; font-size: 10px; }
+        .meetings-page .meeting-empty { padding: 32px 18px; }
+        .meetings-page .meeting-empty strong { font-size: 15px; }
+        @media (max-width:760px) {
+            .meetings-page { padding-top: 4px; }
+            .meetings-page .meeting-hero,
+            .meetings-page .meeting-panel-heading { padding: 16px !important; }
+            .meetings-page .meeting-hero h1 { font-size: 22px !important; }
+            .meetings-page .meeting-panel-heading h2 { font-size: 17px !important; }
+            .meetings-page .meeting-stat { padding: 13px; }
+            .meetings-page .meeting-stat-number { font-size: 22px; }
+            .meetings-page .meeting-view-bar { padding: 10px 14px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .meetings-page .meeting-stat { transition: none; }
+            .meetings-page .meeting-stat:hover { transform: none; }
+        }</style>
 
 </asp:Content>
 
@@ -588,7 +704,6 @@
 
         <header class="meeting-hero">
             <div>
-                <p class="meeting-eyebrow"><%: L.T("Meetings.MyMeetings.InternshipWorkspace") %></p>
 
                 <h1><%: L.T("Meetings.MyMeetings.MyMeetings") %></h1>
 
@@ -687,10 +802,6 @@
                         runat="server"
                         Text="<%$ Resources:Meetings, MyMeetings.AllMyMeetings %>" />
                 </strong>
-
-                <span class="meeting-live-note">
-                    <%: L.T("Meetings.MyMeetings.TimesShownInJordanLocalTime") %>
-                </span>
             </div>
 
             <div class="meeting-table-wrap">
@@ -825,10 +936,6 @@
 
             </div>
 
-            <p class="meeting-footer-note">
-                <%: L.T("Meetings.MyMeetings.RequestsNeedTheInvitedPersonS") %>
-            </p>
-
         </section>
 
         <!-- نافذة إنشاء طلب ميتنج -->
@@ -850,7 +957,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('requestDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseRequestForm") %>">
-                    ×
+                    &#215;
                 </button>
             </div>
 
@@ -969,7 +1076,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('filterDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseViewSelector") %>">
-                    ×
+                    &#215;
                 </button>
             </div>
 
@@ -1027,7 +1134,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('confirmDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseConfirmation") %>">
-                    ×
+                    &#215;
                 </button>
             </div>
 
@@ -1065,7 +1172,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('detailsDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseMeetingDetails") %>">
-                    ×
+                    &#215;
                 </button>
             </div>
 
@@ -1124,7 +1231,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('noticeDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseMessage") %>">
-                    ×
+                    &#215;
                 </button>
             </div>
 
@@ -1163,7 +1270,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('roomDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.LeaveAndCloseMeeting") %>">
-                    ×
+                    &#215;
                 </button>
             </div>
 

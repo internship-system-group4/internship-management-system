@@ -13,6 +13,50 @@
 .student-criteria,.student-history{margin-top:16px;padding-top:14px;border-top:1px solid var(--th-line-e7edf4,#e7edf4)}.student-criteria h4,.student-history h4{margin:0 0 9px;font-size:.92rem;font-weight:700;color:var(--th-fg-173f60,#173f60)}.student-criterion,.student-history-row{padding:8px 0;border-bottom:1px solid var(--th-line-edf1f6,#edf1f6);font-size:.79rem;color:var(--ui-muted)}.student-criterion:last-child,.student-history-row:last-child{border-bottom:0}.student-history-row strong{color:var(--th-fg-355b79,#355b79)}
 .student-empty-selection{padding:28px 20px;text-align:center;color:var(--ui-muted)}.student-empty-selection strong{display:block;margin-bottom:5px;color:var(--th-fg-315674,#315674)}.student-submit-button{width:100%;margin-top:12px}
 @media(max-width:900px){.student-tasks-layout{grid-template-columns:1fr}}@media(max-width:600px){.student-task-table th,.student-task-table td{padding:9px 8px;font-size:.75rem}.student-task-table th:nth-child(3),.student-task-table td:nth-child(3){display:none}.student-card-heading,.student-submit-body{padding-inline-start:14px;padding-inline-end:14px}.student-selected-meta{flex-direction:column}}
+.student-tasks-layout{grid-template-columns:minmax(0,1fr)}
+.student-task-dialog{position:fixed;inset:0;z-index:99999;display:none;align-items:center;justify-content:center;padding:24px;pointer-events:auto}
+.student-task-dialog.is-open{display:flex}
+.student-task-dialog-backdrop{position:absolute;inset:0;z-index:0;width:100%;height:100%;border:0;background:rgba(19,43,65,.58);backdrop-filter:blur(3px);cursor:default}
+.student-submit-card{position:relative;z-index:1;width:min(640px,100%);max-height:min(78vh,700px);overflow:auto;border-radius:14px;box-shadow:0 24px 72px rgba(14,39,63,.28);animation:studentDialogIn 180ms ease-out}
+.student-dialog-close{position:absolute;top:12px;inset-inline-end:14px;z-index:2;display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--th-line-d8e4f1,#d8e4f1);border-radius:50%;background:var(--ui-surface,#fff);color:var(--th-fg-315674,#315674);font-size:21px;line-height:1;cursor:pointer}
+.student-dialog-close:hover{background:var(--th-bg-edf5ff,#edf5ff)}
+.student-submit-card .student-card-heading{padding:14px 52px 13px 18px}
+.student-submit-card .student-card-heading h3{font-size:.98rem}
+.student-submit-card .student-card-heading p{font-size:.76rem;line-height:1.45}
+.student-submit-card .student-submit-body{padding:14px 18px}
+.student-submit-card .student-selected-meta{gap:8px;padding-bottom:10px;margin-bottom:11px}
+.student-submit-card .student-selected-meta h4{font-size:.9rem}
+.student-submit-card .student-selected-meta p,.student-submit-card .student-detail-block p{font-size:.76rem;line-height:1.45}
+.student-submit-card .student-detail-block{margin-bottom:10px}
+.student-submit-card .student-detail-block h5{font-size:.72rem;margin-bottom:3px}
+.student-submit-card .student-submit-form{padding-top:11px;margin-top:11px}
+.student-submit-card .student-submit-form h4{font-size:.9rem}
+.student-submit-card .student-submit-form>p{font-size:.74rem;margin-bottom:10px!important}
+.student-submit-card .student-submit-form .mb-3{margin-bottom:10px!important}
+.student-submit-card .student-submit-form .form-label{font-size:.72rem}
+.student-submit-card .student-submit-form .form-control{padding:7px 10px;font-size:.78rem}
+.student-submit-card .student-submit-form textarea.form-control{min-height:58px}
+.student-submit-card .student-file-help{font-size:.68rem}
+.student-submit-card .student-criteria,.student-submit-card .student-history{margin-top:11px;padding-top:10px}
+.student-submit-card .student-criteria h4,.student-submit-card .student-history h4{font-size:.82rem}
+.student-submit-card .student-criterion,.student-submit-card .student-history-row{padding:6px 0;font-size:.72rem}
+.student-submit-card .student-submit-button{padding:8px 14px;font-size:.8rem}
+body.student-dialog-active{overflow:hidden}
+@keyframes studentDialogIn{from{opacity:0;transform:translateY(10px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:600px){.student-task-dialog{padding:10px}.student-submit-card{width:100%;max-height:86vh;border-radius:13px}.student-submit-card .student-card-heading{padding:13px 48px 12px 14px}.student-submit-card .student-submit-body{padding:12px 14px}}
+@media(prefers-reduced-motion:reduce){.student-submit-card{animation:none}}
+.student-success-dialog{position:fixed;inset:0;z-index:100001;display:none;align-items:center;justify-content:center;padding:20px}
+.student-success-dialog.is-open{display:flex}
+.student-success-backdrop{position:absolute;inset:0;border:0;background:rgba(19,43,65,.55);backdrop-filter:blur(3px)}
+.student-success-card{position:relative;z-index:1;width:min(360px,100%);padding:28px 26px 24px;border:1px solid var(--th-line-d8e4f1,#d8e4f1);border-radius:18px;background:var(--ui-surface,#fff);box-shadow:0 22px 64px rgba(14,39,63,.26);text-align:center;animation:studentDialogIn 180ms ease-out}
+.student-success-check{display:grid;place-items:center;width:58px;height:58px;margin:0 auto 15px;border-radius:50%;background:#e8f6ee;color:#18734d}
+.student-success-check svg{width:29px;height:29px;fill:none;stroke:currentColor;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:30;stroke-dashoffset:30;animation:studentCheckDraw 420ms ease-out 100ms forwards}
+.student-success-card h3{margin:0 0 7px;color:var(--th-fg-173f60,#173f60);font-size:1.05rem;font-weight:700}
+.student-success-card p{margin:0 0 18px;color:var(--ui-muted);font-size:.84rem;line-height:1.5}
+.student-success-close{min-height:36px;padding:8px 20px;border:0;border-radius:9px;background:var(--th-fg-27577e,#27577e);color:#fff;font-size:.8rem;font-weight:700;cursor:pointer}
+.student-success-close:hover{filter:brightness(1.08)}
+@keyframes studentCheckDraw{to{stroke-dashoffset:0}}
+@media(prefers-reduced-motion:reduce){.student-success-card,.student-success-check svg{animation:none;stroke-dashoffset:0}}
 </style>
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
@@ -36,7 +80,12 @@
             </table></div>
             <asp:Panel ID="pnlNoTasks" runat="server" CssClass="student-empty-selection" Visible="false"><%: L.T("Student.MyTasks.YourSupervisorSTasksWillAppear") %></asp:Panel>
         </section>
-        <section class="student-submit-card" aria-labelledby="submitTaskHeading">
+        <asp:HiddenField ID="hfTaskDialogOpen" runat="server" ClientIDMode="Static" Value="0" />
+        <asp:HiddenField ID="hfTaskSubmitSucceeded" runat="server" ClientIDMode="Static" Value="0" />
+        <div id="studentTaskDialog" class="student-task-dialog" aria-hidden="true">
+          <button type="button" class="student-task-dialog-backdrop" data-close-task-dialog aria-label="Close task details"></button>
+          <section class="student-submit-card" role="dialog" aria-modal="true" aria-labelledby="submitTaskHeading" tabindex="-1">
+            <button type="button" class="student-dialog-close" data-close-task-dialog aria-label="Close">&times;</button>
             <asp:Panel ID="pnlSelectTask" runat="server" CssClass="student-empty-selection" Visible="true"><strong><%: L.T("Student.MyTasks.ChooseATask") %></strong><%: L.T("Student.MyTasks.SelectOneOfYourAssignedTasks") %></asp:Panel>
             <asp:Panel ID="pnlSelectedTask" runat="server" Visible="false">
                 <div class="student-card-heading"><h3 id="submitTaskHeading"><%: L.T("Student.MyTasks.TaskDetailsAndSubmission") %></h3><p><%: L.T("Student.MyTasks.SubmitYourWorkHereEachResubmission") %></p></div>
@@ -48,7 +97,7 @@
                         <h4><%: L.T("Student.MyTasks.SubmitOrResubmitWork") %></h4><p class="text-muted small mb-3"><%: L.T("Student.MyTasks.AddANoteALinkOr") %></p>
                         <div class="mb-3"><asp:Label ID="lblSubmissionText" runat="server" AssociatedControlID="txtSubmissionText" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.DescriptionOrNoteOptional %>" /><asp:TextBox ID="txtSubmissionText" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" MaxLength="2000" /></div>
                         <div class="mb-3"><asp:Label ID="lblSubmissionLink" runat="server" AssociatedControlID="txtSubmissionLink" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.LinkOptional %>" /><asp:TextBox ID="txtSubmissionLink" runat="server" CssClass="form-control" TextMode="Url" MaxLength="2000" /><div class="student-file-help"><%: L.T("Student.MyTasks.UseAFullLinkBeginningWith") %></div></div>
-                        <div class="mb-2"><asp:Label ID="lblSubmissionFile" runat="server" AssociatedControlID="fuSubmission" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.AttachmentOptional %>" /><asp:FileUpload ID="fuSubmission" runat="server" CssClass="form-control" /><div class="student-file-help"><%: L.T("Student.MyTasks.PDFWordZIPOrImageFile") %></div><asp:Literal ID="litFileRequirement" runat="server" Mode="Encode" /></div>
+                        <div class="mb-2"><asp:Label ID="lblSubmissionFile" runat="server" AssociatedControlID="fuSubmission" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.AttachmentOptional %>" /><asp:FileUpload ID="fuSubmission" runat="server" CssClass="form-control" /><div class="student-file-help"><%: L.T("Student.MyTasks.PDFWordZIPOrImageFile") %></div></div>
                         <asp:Label ID="lblSubmitMessage" runat="server" Visible="false" EnableViewState="false" />
                         <asp:Button ID="btnSubmitTask" runat="server" Text="<%$ Resources:Student, MyTasks.SubmitTask2 %>" CssClass="btn btn-brand student-submit-button" OnClick="btnSubmitTask_Click" />
                     </asp:Panel>
@@ -62,7 +111,35 @@
                     </ItemTemplate></asp:Repeater><asp:PlaceHolder ID="phNoAttempts" runat="server" Visible="true"><p class="text-muted small mb-0"><%: L.T("Student.MyTasks.NoSubmissionsYet") %></p></asp:PlaceHolder></div>
                 </div>
             </asp:Panel>
-        </section>
+          </section>
+        </div>
+        <div id="studentSubmitSuccess" class="student-success-dialog" aria-hidden="true">
+          <button type="button" class="student-success-backdrop" data-close-submit-success aria-label="Close confirmation"></button>
+          <section class="student-success-card" role="alertdialog" aria-modal="true" aria-labelledby="studentSubmitSuccessTitle" tabindex="-1">
+            <span class="student-success-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7"/></svg></span>
+            <h3 id="studentSubmitSuccessTitle"><%: L.T("Student.MyTasks.SubmissionSavedSuccessfully") %></h3>
+            <p><%: L.T("Student.MyTasks.YourTaskWasSubmittedSuccessfully") %></p>
+            <button type="button" class="student-success-close" data-close-submit-success><%: L.T("Student.MyTasks.Close") %></button>
+          </section>
+        </div>
     </div>
 </div>
+<script>
+(function(){
+    var dialog=document.getElementById('studentTaskDialog');
+    var state=document.getElementById('hfTaskDialogOpen');
+    var successState=document.getElementById('hfTaskSubmitSucceeded');
+    var successDialog=document.getElementById('studentSubmitSuccess');
+    if(!dialog||!state||!successState||!successDialog)return;
+    function closeDialog(){dialog.classList.remove('is-open');dialog.setAttribute('aria-hidden','true');document.body.classList.remove('student-dialog-active');state.value='0';}
+    function openDialog(){dialog.classList.add('is-open');dialog.setAttribute('aria-hidden','false');document.body.classList.add('student-dialog-active');var panel=dialog.querySelector('[role="dialog"]');if(panel)panel.focus();}
+    function openSuccess(){closeDialog();successDialog.classList.add('is-open');successDialog.setAttribute('aria-hidden','false');document.body.classList.add('student-dialog-active');var card=successDialog.querySelector('[role="alertdialog"]');if(card)card.focus();}
+    function closeSuccess(){successDialog.classList.remove('is-open');successDialog.setAttribute('aria-hidden','true');document.body.classList.remove('student-dialog-active');successState.value='0';}
+    document.addEventListener('click',function(e){if(e.target.closest('.student-select-button'))state.value='1';},true);
+    dialog.addEventListener('click',function(e){if(e.target.closest('[data-close-task-dialog]'))closeDialog();});
+    successDialog.addEventListener('click',function(e){if(e.target.closest('[data-close-submit-success]'))closeSuccess();});
+    document.addEventListener('keydown',function(e){if(e.key==='Escape'){if(successDialog.classList.contains('is-open'))closeSuccess();else if(dialog.classList.contains('is-open'))closeDialog();}});
+    if(successState.value==='1')openSuccess();else if(state.value==='1')openDialog();
+})();
+</script>
 </asp:Content>

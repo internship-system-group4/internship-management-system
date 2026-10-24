@@ -19,6 +19,11 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Page.Form != null) Page.Form.Enctype = "multipart/form-data";
+            if (!IsPostBack)
+            {
+                hfTaskDialogOpen.Value = "0";
+                hfTaskSubmitSucceeded.Value = "0";
+            }
             LoadTasks();
             if (IsPostBack)
             {
@@ -90,6 +95,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             InternshipTask task = new TaskRepository().GetById(Convert.ToString(e.CommandArgument));
             if (!OwnsTask(task)) return;
             ViewState["SelectedTaskId"] = task.Id;
+            hfTaskDialogOpen.Value = "1";
             LoadTasks();
         }
 
@@ -206,14 +212,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
             btnSubmitTask.Text = task.Status == InternshipTaskStatus.RevisionRequested ? L.T("Student.MyTasks.ResubmitTask") : L.T("Student.MyTasks.SubmitTask2");
             bool storageReady = !string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["Firebase.StorageBucket"]);
             fuSubmission.Enabled = storageReady;
-            litFileRequirement.Text = !storageReady
-                ? (task.RequiresFileUpload
-                    ? "<span class=\"text-danger small d-block mt-1\">This task requires a file, but file storage is not configured.</span>"
-                    : "<span class=\"text-muted small d-block mt-1\">File uploads are not configured yet. You can submit a link instead.</span>")
-                : (task.RequiresFileUpload ? "<span class=\"text-danger small d-block mt-1\">An attachment is required for this task.</span>" : "");
             rptCriteria.DataSource = task.Criteria;
             rptCriteria.DataBind();
-            lblNoCriteria.Visible = task.Criteria == null || task.Criteria.Count == 0;
+            if (lblNoCriteria != null)
+                lblNoCriteria.Visible = task.Criteria == null || task.Criteria.Count == 0;
             BindHistory(task);
         }
 
@@ -374,6 +376,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             lblSubmitMessage.Text = Server.HtmlEncode(message);
             lblSubmitMessage.CssClass = success ? "alert alert-success d-block mt-3" : "alert alert-danger d-block mt-3";
             lblSubmitMessage.Visible = true;
+            if (success && hfTaskSubmitSucceeded != null) hfTaskSubmitSucceeded.Value = "1";
         }
 
         public class StudentTaskRow

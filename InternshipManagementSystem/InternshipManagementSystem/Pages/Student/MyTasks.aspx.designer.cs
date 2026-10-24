@@ -15,6 +15,16 @@ namespace InternshipManagementSystem.Pages.StudentArea
     {
 
         /// <summary>
+        /// hfTaskDialogOpen control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.HiddenField hfTaskDialogOpen;
+
+        /// <summary>
+        /// hfTaskSubmitSucceeded control.
+        /// </summary>
+        protected global::System.Web.UI.WebControls.HiddenField hfTaskSubmitSucceeded;
+
+        /// <summary>
         /// rptTasks control.
         /// </summary>
         /// <remarks>
@@ -175,15 +185,6 @@ namespace InternshipManagementSystem.Pages.StudentArea
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload fuSubmission;
-
-        /// <summary>
-        /// litFileRequirement control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litFileRequirement;
 
         /// <summary>
         /// lblSubmitMessage control.

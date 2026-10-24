@@ -1,4 +1,3 @@
-﻿
 <%@ Page Language="C#" MasterPageFile="~/Layout/Student.master"
     AutoEventWireup="true" CodeBehind="Profile.aspx.cs"
     Inherits="InternshipManagementSystem.Pages.StudentArea.Profile"
@@ -156,6 +155,58 @@
     box-shadow: 0 2px 10px rgba(0,0,0,.025);
 }
 
+.sp-section-toggle { cursor: default; }
+.sp-section-toggle:hover { background: transparent; }
+.sp-section-right { flex-wrap: wrap; justify-content: flex-end; }
+.sp-link-row { display: block; margin-top: 8px; overflow-wrap: anywhere; }
+.sp-modal-divider {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 13px 15px;
+    margin: 7px 0 16px;
+    border-radius: 11px;
+    background: var(--th-bg-f0f6fc,#f0f6fc);
+    color: var(--sp-ink);
+}
+.sp-modal-divider span { color: var(--ui-muted); font-size: 12px; }
+.sp-file-input { padding: 9px !important; }
+.sp-result-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1060;
+    display: grid;
+    place-items: center;
+    padding: 18px;
+    background: rgba(12,30,49,.57);
+}
+.sp-result-card {
+    width: min(100%, 390px);
+    padding: 30px 26px 25px;
+    border: 1px solid var(--sp-border);
+    border-radius: 20px;
+    background: var(--ui-surface,#fff);
+    box-shadow: 0 20px 70px rgba(0,0,0,.22);
+    text-align: center;
+}
+.sp-success-mark {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    background: var(--th-bg-e9f8ef,#e9f8ef);
+    color: var(--th-fg-226a44,#226a44);
+    font-size: 34px;
+}
+.sp-success-mark i { display: none; }
+.sp-success-mark::before { content: ""; width: 15px; height: 27px; border: solid currentColor; border-width: 0 3px 3px 0; transform: rotate(45deg) translate(-2px,-2px); border-radius: 1px; }
+.sp-result-card h3 { margin: 0 0 22px; color: var(--sp-ink); font-size: 20px; line-height: 1.45; }
+.sp-result-card .sp-success-close { display: inline-flex !important; align-items: center; justify-content: center; gap: 9px; min-width: 140px; min-height: 48px; padding: 0 22px; border: 0 !important; border-radius: 999px; background: var(--sp-primary,#173a60) !important; color: #fff !important; font-size: 14px; font-weight: 700; box-shadow: 0 5px 14px rgba(23,58,96,.18); cursor: pointer; }
+.sp-result-card .sp-success-close:hover { filter: brightness(1.08); }
+.sp-result-card p { margin: 0 0 22px; color: var(--ui-muted); line-height: 1.6; }
+.sp-result-modal[hidden] { display: none !important; }
 .sp-section-toggle {
     width: 100%;
     display: flex;
@@ -166,13 +217,11 @@
     border: 0;
     padding: 18px 21px;
     text-align: start;
-    cursor: pointer;
+    cursor: default;
     color: inherit;
 }
 
-.sp-section-toggle:hover {
-    background: var(--th-bg-f8fafc,#f8fafc);
-}
+.sp-section-toggle:hover { background: transparent; }
 
 .sp-section-toggle:focus-visible {
     outline: 3px solid var(--th-line-7aa6cf,#7aa6cf);
@@ -214,15 +263,6 @@
     display: flex;
     align-items: center;
     gap: 12px;
-}
-
-.sp-chevron {
-    transition: transform .2s;
-    color: var(--ui-muted);
-}
-
-.sp-open .sp-chevron {
-    transform: rotate(180deg);
 }
 
 .sp-section-body {
@@ -325,11 +365,6 @@
     background: var(--th-bg-f0f4f8,#f0f4f8);
     padding: 6px 9px;
     border-radius: 20px;
-}
-
-.sp-actions {
-    margin-top: 16px;
-    text-align: right;
 }
 
 .sp-btn {
@@ -450,6 +485,32 @@
     resize: vertical;
 }
 
+
+.sp-account-value { display: flex; align-items: center; gap: 10px; }
+.sp-account-value i { color: var(--sp-primary); font-size: 18px; flex: 0 0 auto; }
+.sp-modal-dialog { display: flex; flex-direction: column; overflow: hidden; }
+.sp-modal-body { overflow-y: auto; min-height: 0; }
+.sp-modal-foot {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
+    flex-shrink: 0;
+    background: var(--ui-surface,#fff);
+    border-top: 1px solid var(--sp-border);
+}
+.sp-modal-foot .sp-save-button {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 150px;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+@media (max-width: 700px) {
+    .sp-modal-foot .sp-save-button { min-width: 0; }
+}
+
 .sp-modal-foot {
     display: flex;
     justify-content: flex-end;
@@ -525,6 +586,110 @@
     }
 }
 
+/* Keep the modal actions visible while the form scrolls. */
+.sp-modal-dialog {
+    height: 90vh;
+    max-height: 90vh;
+    overflow: hidden;
+}
+.sp-modal-head { flex: 0 0 auto; }
+.sp-modal-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+}
+.sp-modal-foot {
+    position: relative;
+    flex: 0 0 auto;
+    padding: 14px 25px 20px;
+    background: var(--ui-surface,#fff);
+}
+.sp-modal-foot .sp-save-button {
+    color: #fff !important;
+    background: var(--sp-primary);
+}
+/* Student profile resources */
+.sp-resource-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+.sp-resource-card { min-width:0; display:flex; flex-direction:column; gap:18px; padding:20px; border:1px solid var(--sp-border); border-radius:15px; background:var(--th-bg-f8fafc,#f8fafc); }
+.sp-resource-card-linkedin { grid-column:1/-1; flex-direction:row; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.sp-resource-heading { display:flex; align-items:flex-start; gap:13px; min-width:0; }
+.sp-resource-icon { flex:0 0 42px; width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:var(--th-bg-e8f0f7,#e8f0f7); color:var(--sp-primary); font-size:19px; }
+.sp-resource-icon.sp-linkedin-icon { color:#0a66c2; background:#eaf3fb; }
+.sp-resource-heading h3 { margin:0 0 5px; color:var(--sp-ink); font-size:15px; font-weight:750; }
+.sp-resource-heading p { margin:0; color:var(--ui-muted); font-size:12px; line-height:1.55; }
+.sp-resource-actions { display:flex; flex-wrap:wrap; align-items:center; gap:9px; margin-top:auto; }
+.sp-resource-link { min-height:40px; display:inline-flex; align-items:center; justify-content:center; gap:8px; max-width:100%; padding:9px 13px; border:1px solid var(--sp-primary); border-radius:10px; background:var(--sp-primary); color:#fff !important; font-size:12px; font-weight:700; text-decoration:none !important; transition:background .16s ease,transform .16s ease; }
+.sp-resource-link:hover { background:var(--th-bg-2b4560,#2b4560); transform:translateY(-1px); }
+.sp-resource-link-secondary { background:transparent; color:var(--sp-ink) !important; }
+.sp-resource-link-secondary:hover { background:var(--th-bg-e8f0f7,#e8f0f7); }
+.sp-resource-empty { display:inline-flex; align-items:center; gap:7px; color:var(--ui-muted); font-size:12px; }
+.sp-resource-url { max-width:min(42vw,520px); overflow:hidden; text-overflow:ellipsis; white-space:nowrap; color:inherit; opacity:.82; font-weight:500; }
+@media(max-width:700px) { .sp-resource-grid { grid-template-columns:1fr; } .sp-resource-card-linkedin { grid-column:auto; flex-direction:column; align-items:stretch; } .sp-resource-card-linkedin .sp-resource-link { align-self:flex-start; } .sp-resource-url { max-width:55vw; } }
+/* Compact student profile hero */
+.sp-cover { height:112px; }
+.sp-avatar-holder { margin-top:-52px; }
+.sp-avatar { width:104px; height:104px; }
+.sp-person { padding:10px 18px 18px; }
+.sp-person h3 { font-size:21px; margin-bottom:5px; }
+.sp-person p { margin-bottom:9px; }
+.sp-role { padding:6px 14px; }
+@media(max-width:700px) {
+    .sp-cover { height:96px; }
+    .sp-avatar-holder { margin-top:-44px; }
+    .sp-avatar { width:88px; height:88px; }
+    .sp-person { padding:9px 14px 16px; }
+}
+/* Refined academic detail cards and lively, professional skill tags */
+.sp-academic-section .sp-info-grid .sp-field { position:relative; overflow:hidden; min-height:94px; padding:17px 19px; border-radius:14px; background:linear-gradient(145deg,var(--ui-surface,#fff),var(--th-bg-f8fafc,#f8fafc)); transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease; }
+.sp-academic-section .sp-info-grid .sp-field::before { content:""; position:absolute; inset-block:14px; inset-inline-start:0; width:3px; border-radius:0 4px 4px 0; background:var(--sp-primary); opacity:.45; }
+.sp-academic-section .sp-info-grid .sp-field:hover { transform:translateY(-2px); border-color:var(--th-line-b8cde0,#b8cde0); box-shadow:0 8px 20px rgba(23,58,96,.07); }
+.sp-academic-section .sp-info-grid .sp-field label { margin-bottom:9px; font-size:10px; letter-spacing:.055em; text-transform:uppercase; }
+.sp-academic-section .sp-view-value { font-size:14px; line-height:1.45; }
+.sp-skill-list { display:flex; flex-wrap:wrap; align-items:center; gap:8px; white-space:normal; min-height:30px; }
+.sp-skill-tag { display:inline-flex; align-items:center; min-height:30px; padding:5px 11px; border:1px solid #d8e5f1; border-radius:999px; background:#edf4fa; color:#244d73; font-size:12px; font-weight:650; line-height:1.25; transition:transform .18s ease,box-shadow .18s ease,background .18s ease; animation:sp-skill-in .32s both; }
+.sp-skill-tag:nth-child(4n+2) { border-color:#d5e9e4; background:#edf7f3; color:#286657; }
+.sp-skill-tag:nth-child(4n+3) { border-color:#e2dcf1; background:#f3f0fa; color:#5b4d80; }
+.sp-skill-tag:nth-child(4n+4) { border-color:#eee1ce; background:#faf5eb; color:#78603b; }
+.sp-skill-tag:hover { transform:translateY(-2px) scale(1.025); box-shadow:0 5px 12px rgba(23,58,96,.1); }
+@keyframes sp-skill-in { from { opacity:0; transform:translateY(5px) scale(.97); } to { opacity:1; transform:translateY(0) scale(1); } }
+@media(prefers-reduced-motion:reduce) { .sp-skill-tag { animation:none; transition:none; } .sp-academic-section .sp-info-grid .sp-field { transition:none; } }
+/* Consistent type scale for the profile page */
+body.uims-portal .uims-main-inner .sp-page { font-size:15px; line-height:1.55; }
+body.uims-portal .uims-main-inner .sp-page .sp-heading h2 { font-size:34px; line-height:1.2; font-weight:750; }
+body.uims-portal .uims-main-inner .sp-page .sp-section-title strong { font-size:16px; line-height:1.35; font-weight:700; }
+body.uims-portal .uims-main-inner .sp-page .sp-section-title small { font-size:13px; line-height:1.45; }
+body.uims-portal .uims-main-inner .sp-page .sp-person h3 { font-size:21px; line-height:1.3; }
+body.uims-portal .uims-main-inner .sp-page .sp-person p { font-size:14px; line-height:1.5; }
+body.uims-portal .uims-main-inner .sp-page .sp-role { font-size:12px; line-height:1.3; }
+body.uims-portal .uims-main-inner .sp-page .sp-info-grid .sp-field label { font-size:12px; line-height:1.4; }
+body.uims-portal .uims-main-inner .sp-page .sp-view-value { font-size:14px; line-height:1.5; }
+body.uims-portal .uims-main-inner .sp-page .sp-help { font-size:12px; line-height:1.5; }
+body.uims-portal .uims-main-inner .sp-page .sp-note { font-size:14px; line-height:1.55; }
+body.uims-portal .uims-main-inner .sp-page .sp-resource-heading h3 { font-size:15px; line-height:1.4; }
+body.uims-portal .uims-main-inner .sp-page .sp-resource-heading p { font-size:12px; line-height:1.55; }
+body.uims-portal .uims-main-inner .sp-page .sp-resource-link { font-size:12px; line-height:1.35; }
+body.uims-portal .uims-main-inner .sp-page .sp-resource-empty { font-size:12px; line-height:1.45; }
+body.uims-portal .uims-main-inner .sp-page .sp-resource-url { font-size:11px; line-height:1.4; }
+body.uims-portal .uims-main-inner .sp-page .sp-modal-head h3 { font-size:20px; line-height:1.3; }
+body.uims-portal .uims-main-inner .sp-page .sp-modal-body .sp-field label { font-size:13px; line-height:1.4; }
+body.uims-portal .uims-main-inner .sp-page .sp-modal-body .sp-input { font-size:14px; line-height:1.45; }
+@media(max-width:700px) { body.uims-portal .uims-main-inner .sp-page .sp-heading h2 { font-size:29px; } }
+/* Reduce above-the-fold scrolling on the student profile */
+.sp-page { padding-top:0; }
+.sp-heading { margin-bottom:12px; padding-bottom:10px; }
+.sp-cover { height:100px; }
+.sp-avatar-holder { margin-top:-64px; }
+.sp-avatar { width:100px; height:100px; }
+.sp-person { padding:8px 16px 12px; }
+.sp-person p { margin-bottom:7px; }
+@media(max-width:700px) {
+    .sp-page { padding-top:0; }
+    .sp-heading { margin-bottom:10px; padding-bottom:8px; }
+    .sp-cover { height:88px; }
+    .sp-avatar-holder { margin-top:-54px; }
+    .sp-avatar { width:82px; height:82px; }
+    .sp-person { padding:7px 12px 12px; }
+}
 </style>
 </asp:Content>
 
@@ -533,11 +698,10 @@
 <div class="sp-page" id="studentProfilePage">
 
     <div class="sp-heading">
-        <h2><%: L.T("Student.Profile.MyStudentProfile") %></h2>
-        <p><%: L.T("Student.Profile.ManageYourPersonalDetailsAcademicInformation") %></p>
+        <h2><%: L.T("Student.DisplayEditProfile.MyProfile") %></h2>
     </div>
 
-    <% if (!string.IsNullOrWhiteSpace(Notice)) { %>
+    <% if (!string.IsNullOrWhiteSpace(Notice) && NoticeIsError) { %>
         <div class='sp-alert <%= NoticeIsError ? "sp-error" : "sp-success" %>'
              role="alert">
             <%: Notice %>
@@ -568,7 +732,7 @@
         <div class="sp-person">
             <h3><%: StudentName %></h3>
             <p>
-                <%: StudentMajor %> ·
+                <%: StudentMajor %>
                 <%: L.T("Student.Profile.GermanJordanianUniversity") %>
             </p>
             <span class="sp-role">
@@ -579,15 +743,13 @@
 
     </div>
 
-    <!-- Accordion Sections -->
+    <!-- Profile Sections -->
     <div class="sp-sections">
 
         <!-- Personal Information -->
-        <section class="sp-section sp-open">
+        <section class="sp-section">
 
-            <button type="button"
-                    class="sp-section-toggle"
-                    aria-expanded="true">
+            <div class="sp-section-toggle">
 
                 <span class="sp-section-title">
                     <span class="sp-section-icon">
@@ -599,10 +761,8 @@
                     </span>
                 </span>
 
-                <span class="sp-section-right">
-                    <i class="bi bi-chevron-down sp-chevron" aria-hidden="true"></i>
-                </span>
-            </button>
+
+            </div>
 
             <div class="sp-section-body">
                 <div class="sp-info-grid">
@@ -623,10 +783,10 @@
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.UniversityAccountEmail") %></label>
-                        <input class="sp-input"
-                               type="email"
-                               value="<%: StudentEmail %>"
-                               readonly />
+                        <div class="sp-view-value sp-account-value">
+                            <i class="bi bi-envelope" aria-hidden="true"></i>
+                            <span><%: StudentEmail %></span>
+                        </div>
                         <span class="sp-help">
                             <%: L.T("Student.Profile.ManagedByYourUniversityAccount") %>
                         </span>
@@ -644,11 +804,9 @@
         </section>
 
         <!-- Academic Information -->
-        <section class="sp-section">
+        <section class="sp-section sp-academic-section">
 
-            <button type="button"
-                    class="sp-section-toggle"
-                    aria-expanded="false">
+            <div class="sp-section-toggle">
 
                 <span class="sp-section-title">
                     <span class="sp-section-icon">
@@ -659,16 +817,9 @@
                         <small><%: L.T("Student.Profile.YourOfficialUniversityAndTrainingDetails") %></small>
                     </span>
                 </span>
+            </div>
 
-                <span class="sp-section-right">
-                    <span class="sp-readonly-badge">
-                        <%: L.T("Student.Profile.ReadOnly") %>
-                    </span>
-                    <i class="bi bi-chevron-down sp-chevron" aria-hidden="true"></i>
-                </span>
-            </button>
-
-            <div class="sp-section-body" hidden>
+            <div class="sp-section-body">
 
                 <div class="sp-note">
                     <%: L.T("Student.Profile.AcademicDetailsAreManagedByThe") %>
@@ -678,38 +829,32 @@
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.StudentID") %></label>
-                        <input class="sp-input" type="text"
-                               value="<%: StudentNumber %>" readonly />
+                        <div class="sp-view-value"><%: StudentNumber %></div>
                     </div>
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.University") %></label>
-                        <input class="sp-input" type="text"
-                               value="<%: StudentUniversity %>" readonly />
+                        <div class="sp-view-value"><%: StudentUniversity %></div>
                     </div>
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.College") %></label>
-                        <input class="sp-input" type="text"
-                               value="<%: StudentCollege %>" readonly />
+                        <div class="sp-view-value"><%: StudentCollege %></div>
                     </div>
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.MajorSpecialization") %></label>
-                        <input class="sp-input" type="text"
-                               value="<%: StudentMajor %>" readonly />
+                        <div class="sp-view-value"><%: StudentMajor %></div>
                     </div>
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.RequiredTrainingHours") %></label>
-                        <input class="sp-input" type="text"
-                               value="<%: RequiredHoursText %>" readonly />
+                        <div class="sp-view-value"><%: RequiredHoursText %></div>
                     </div>
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.ApprovedTrainingHours") %></label>
-                        <input class="sp-input" type="text"
-                               value="<%: ApprovedHoursText %>" readonly />
+                        <div class="sp-view-value"><%: ApprovedHoursText %></div>
                     </div>
 
                 </div>
@@ -719,9 +864,7 @@
         <!-- Skills -->
         <section class="sp-section">
 
-            <button type="button"
-                    class="sp-section-toggle"
-                    aria-expanded="false">
+            <div class="sp-section-toggle">
 
                 <span class="sp-section-title">
                     <span class="sp-section-icon">
@@ -733,17 +876,15 @@
                     </span>
                 </span>
 
-                <span class="sp-section-right">
-                    <i class="bi bi-chevron-down sp-chevron" aria-hidden="true"></i>
-                </span>
-            </button>
 
-            <div class="sp-section-body" hidden>
+            </div>
+
+            <div class="sp-section-body">
                 <div class="sp-info-grid">
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.TechnicalSkills") %></label>
-                        <div class="sp-view-value sp-view-multiline"><%: FormValue("spTechnical", TechnicalSkills) %></div>
+                        <div class="sp-view-value sp-view-multiline sp-skill-list" data-skill-list><%: FormValue("spTechnical", TechnicalSkills) %></div>
                         <span class="sp-help">
                             <%: L.T("Student.Profile.ProgrammingLanguagesFrameworksToolsAndTechnologies") %>
                         </span>
@@ -751,7 +892,7 @@
 
                     <div class="sp-field">
                         <label><%: L.T("Student.Profile.SoftSkills") %></label>
-                        <div class="sp-view-value sp-view-multiline"><%: FormValue("spSoft", SoftSkills) %></div>
+                        <div class="sp-view-value sp-view-multiline sp-skill-list" data-skill-list><%: FormValue("spSoft", SoftSkills) %></div>
                         <span class="sp-help">
                             <%: L.T("Student.Profile.CommunicationLeadershipProblemSolvingAndTeamwork") %>
                         </span>
@@ -764,9 +905,7 @@
         <!-- CV & Portfolio -->
         <section class="sp-section">
 
-            <button type="button"
-                    class="sp-section-toggle"
-                    aria-expanded="false">
+            <div class="sp-section-toggle">
 
                 <span class="sp-section-title">
                     <span class="sp-section-icon">
@@ -778,80 +917,64 @@
                     </span>
                 </span>
 
-                <span class="sp-section-right">
-                    <i class="bi bi-chevron-down sp-chevron" aria-hidden="true"></i>
-                </span>
-            </button>
 
-            <div class="sp-section-body" hidden>
+            </div>
+
+            <div class="sp-section-body">
 
                 <div class="sp-note">
                     <%: L.T("Student.Profile.KeepYourCVAndPortfolioUp") %>
                 </div>
 
-                <div class="sp-info-grid">
+                <div class="sp-resource-grid">
+    <article class="sp-resource-card">
+        <div class="sp-resource-heading">
+            <span class="sp-resource-icon" aria-hidden="true"><i class="bi bi-file-earmark-person"></i></span>
+            <div><h3><%: L.T("Student.Profile.CurriculumVitaeCV") %></h3><p><%: L.T("Student.Profile.UploadYourLatestCVReplaceAn") %></p></div>
+        </div>
+        <div class="sp-resource-actions">
+            <% if (!string.IsNullOrWhiteSpace(CvUrl)) { %>
+                <a class="sp-resource-link" href="<%: CvUrl %>" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><%: L.T("Student.Profile.OpenOnlineCV") %></a>
+            <% } %>
+            <% if (HasCvFile) { %>
+                <a class="sp-resource-link sp-resource-link-secondary" href="<%: CvDownloadUrl %>"><i class="bi bi-download" aria-hidden="true"></i><%: L.T("Student.Profile.DownloadCurrentCV") %></a>
+            <% } %>
+            <% if (!HasCvFile && string.IsNullOrWhiteSpace(CvUrl)) { %>
+                <span class="sp-resource-empty"><i class="bi bi-info-circle" aria-hidden="true"></i><%: L.T("Student.Profile.NoUploadedCVAvailable") %></span>
+            <% } %>
+        </div>
+    </article>
 
-                    <div class="sp-field">
-                        <div class="sp-file-row">
-                            <strong>
-                                <%: L.T("Student.Profile.CurriculumVitaeCV") %>
-                            </strong>
+    <article class="sp-resource-card">
+        <div class="sp-resource-heading">
+            <span class="sp-resource-icon" aria-hidden="true"><i class="bi bi-briefcase"></i></span>
+            <div><h3><%: L.T("Student.Profile.ProjectPortfolio") %></h3><p><%: L.T("Student.Profile.ShowcaseYourAcademicProjectsPracticalWork") %></p></div>
+        </div>
+        <div class="sp-resource-actions">
+            <% if (!string.IsNullOrWhiteSpace(PortfolioUrl)) { %>
+                <a class="sp-resource-link" href="<%: PortfolioUrl %>" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><%: L.T("Student.Profile.OpenProjectPortfolio") %></a>
+            <% } %>
+            <% if (HasPortfolioFile) { %>
+                <a class="sp-resource-link sp-resource-link-secondary" href="<%: PortfolioDownloadUrl %>"><i class="bi bi-download" aria-hidden="true"></i><%: L.T("Student.Profile.DownloadCurrentPortfolio") %></a>
+            <% } %>
+            <% if (!HasPortfolioFile && string.IsNullOrWhiteSpace(PortfolioUrl)) { %>
+                <span class="sp-resource-empty"><i class="bi bi-info-circle" aria-hidden="true"></i><%: L.T("Student.Profile.NoUploadedPortfolioAvailable") %></span>
+            <% } %>
+        </div>
+    </article>
 
-                            <p>
-                                <%: L.T("Student.Profile.UploadYourLatestCVReplaceAn") %>
-                            </p>
-
-                            <% if (HasCvFile) { %>
-                                <a class="sp-file-link"
-                                   href="<%: CvDownloadUrl %>">
-                                    <%: L.T("Student.Profile.DownloadCurrentCV") %>
-                                </a>
-                            <% } else { %>
-                                <span class="sp-help">
-                                    <%: L.T("Student.Profile.NoUploadedCVAvailable") %>
-                                </span>
-                            <% } %>
-                        </div>
-                    </div>
-
-                    <div class="sp-field">
-                        <div class="sp-file-row">
-                            <strong>
-                                <%: L.T("Student.Profile.ProjectPortfolio") %>
-                            </strong>
-
-                            <p>
-                                <%: L.T("Student.Profile.ShowcaseYourAcademicProjectsPracticalWork") %>
-                            </p>
-
-                            <% if (HasPortfolioFile) { %>
-                                <a class="sp-file-link"
-                                   href="<%: PortfolioDownloadUrl %>">
-                                    <%: L.T("Student.Profile.DownloadCurrentPortfolio") %>
-                                </a>
-                            <% } else { %>
-                                <span class="sp-help">
-                                    <%: L.T("Student.Profile.NoUploadedPortfolioAvailable") %>
-                                </span>
-                            <% } %>
-                        </div>
-                    </div>
-
-                    <div class="sp-field sp-field-wide">
-                        <label><%: L.T("Student.Profile.LinkedInProfile") %></label>
-                        <div class="sp-view-value">
-                            <%: FormValue("spLinkedIn", LinkedInUrl) %>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="sp-actions">
-                    <a class="sp-btn sp-btn-light"
-                       href="<%: ResolveUrl("~/Pages/Student/StudentCVPortfolio.aspx") %>">
-                        <%: L.T("Student.Profile.ManageCVPortfolio") %>
-                    </a>
-                </div>
+    <article class="sp-resource-card sp-resource-card-linkedin">
+        <div class="sp-resource-heading">
+            <span class="sp-resource-icon sp-linkedin-icon" aria-hidden="true"><i class="bi bi-linkedin"></i></span>
+            <div><h3><%: L.T("Student.Profile.LinkedInProfile") %></h3><p><%: L.T("Student.Profile.ProfessionalOnlinePresence") %></p></div>
+        </div>
+        <% if (!string.IsNullOrWhiteSpace(LinkedInUrl)) { %>
+            <a class="sp-resource-link" href="<%: LinkedInUrl %>" target="_blank" rel="noopener noreferrer"><i class="bi bi-box-arrow-up-right" aria-hidden="true"></i><%: L.T("Student.Profile.OpenLinkedInProfile") %><span class="sp-resource-url"><%: LinkedInUrl %></span></a>
+        <% } else { %>
+            <span class="sp-resource-empty"><i class="bi bi-info-circle" aria-hidden="true"></i><%: L.T("Student.Profile.NoLinkedInProfileAvailable") %></span>
+        <% } %>
+    </article>
+</div>
 
             </div>
         </section>
@@ -859,6 +982,15 @@
     </div>
 </div>
 
+<% if (!string.IsNullOrWhiteSpace(Notice) && !NoticeIsError) { %>
+<div class="sp-result-modal" id="spSaveSuccess" role="dialog" aria-modal="true" aria-labelledby="spSaveSuccessTitle">
+    <div class="sp-result-card">
+        <div class="sp-success-mark" aria-hidden="true"><i class="bi bi-check-lg"></i></div>
+        <h3 id="spSaveSuccessTitle"><%: L.T("Student.Profile.YourProfileHasBeenUpdatedSuccessfully") %></h3>
+        <button type="button" class="sp-btn sp-success-close" id="spSuccessOkay" style="display:inline-flex!important;align-items:center;justify-content:center;min-width:140px;min-height:48px;padding:0 22px;border:0!important;border-radius:999px;background:#173a60!important;color:#fff!important;font-size:14px;font-weight:700;"> <i class="bi bi-check-lg" aria-hidden="true"></i><span><%: L.T("Student.Profile.Close") %></span></button>
+    </div>
+</div>
+<% } %>
 <!-- Edit Profile Popup -->
 <div class="sp-modal"
      id="spEditModal"
@@ -975,6 +1107,34 @@
                           placeholder="<%: L.T("Student.Profile.ExampleTeamworkCommunicationTimeManagement") %>"><%: FormValue("spSoft", SoftSkills) %></textarea>
             </div>
 
+            <div class="sp-modal-divider">
+                <strong><i class="bi bi-file-earmark-text" aria-hidden="true"></i> <%: L.T("Student.Profile.CVProfessionalPortfolio") %></strong>
+                <span><%: L.T("Student.Profile.KeepYourCVAndPortfolioUp") %></span>
+            </div>
+
+            <div class="sp-field">
+                <label for="spCvUrl"><%: L.T("Student.StudentCVPortfolio.CVLink") %></label>
+                <input class="sp-input" id="spCvUrl" name="spCvUrl" type="url" maxlength="500" placeholder="https://..." value="<%: FormValue("spCvUrl", CvUrl) %>" />
+                <span class="sp-help"><%: L.T("Student.StudentCVPortfolio.AddLinksToYourOnlineCV") %></span>
+            </div>
+
+            <div class="sp-field">
+                <label for="spCvFile"><%: L.T("Student.StudentCVPortfolio.UploadCV") %></label>
+                <input class="sp-input sp-file-input" id="spCvFile" name="spCvFile" type="file" accept=".pdf,application/pdf" />
+                <span class="sp-help"><%: L.T("Student.StudentCVPortfolio.PDFFilesMustBe5MB") %></span>
+            </div>
+
+            <div class="sp-field">
+                <label for="spPortfolioUrl"><%: L.T("Student.StudentCVPortfolio.PortfolioLink") %></label>
+                <input class="sp-input" id="spPortfolioUrl" name="spPortfolioUrl" type="url" maxlength="500" placeholder="https://..." value="<%: FormValue("spPortfolioUrl", PortfolioUrl) %>" />
+                <span class="sp-help"><%: L.T("Student.StudentCVPortfolio.GitHubBehanceOrAPersonalWebsite") %></span>
+            </div>
+
+            <div class="sp-field">
+                <label for="spPortfolioFile"><%: L.T("Student.Profile.ProjectPortfolio") %></label>
+                <input class="sp-input sp-file-input" id="spPortfolioFile" name="spPortfolioFile" type="file" accept=".pdf,application/pdf" />
+                <span class="sp-help"><%: L.T("Student.StudentCVPortfolio.PDFFilesMustBe5MB") %></span>
+            </div>
             <!-- LinkedIn -->
             <div class="sp-field">
                 <label for="spLinkedIn">
@@ -992,22 +1152,21 @@
 
         </div>
 
-        <div class="sp-modal-foot">
+        <div class="sp-modal-foot" style="display:flex;flex-direction:row;flex-wrap:nowrap;align-items:center;justify-content:flex-end;gap:12px;width:100%;min-height:76px;padding:12px 25px 20px;background:#fff;border-top:1px solid var(--sp-border);">
 
             <button type="button"
-                    class="sp-btn sp-btn-light"
+                    class="sp-btn sp-btn-light" style="display:inline-flex;align-items:center;justify-content:center;min-height:48px;"
                     id="spCancelEdit">
                 <%: L.T("Student.Profile.Cancel") %>
             </button>
 
-            <button class="sp-btn"
-                    type="submit"
+            <button class="sp-btn sp-save-button" style="display:inline-flex!important;align-items:center;justify-content:center;gap:8px;min-width:160px;min-height:48px;visibility:visible!important;opacity:1!important;background:#173a60!important;color:#fff!important;" type="submit"
                     name="spAction"
                     value="save"
                     data-ui-action="save"
                     data-ui-validation="none"
                     data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
-                <%: L.T("Student.Profile.UpdateProfile") %>
+                <i class="bi bi-check-lg" aria-hidden="true"></i> <%: L.T("Student.DisplayEditProfile.SaveChanges") %>
             </button>
 
         </div>
@@ -1045,8 +1204,11 @@
     closeButton.addEventListener("click", closeModal);
 
     cancelButton.addEventListener("click", function () {
-        window.location.href =
-            window.location.pathname + window.location.search;
+        modal.querySelectorAll("input,textarea").forEach(function (field) {
+            if (field.type === "file") field.value = "";
+            else field.value = field.defaultValue;
+        });
+        closeModal();
     });
 
     modal.addEventListener("click", function (event) {
@@ -1095,34 +1257,44 @@
         }
     });
 
-    // Accordion - one section open at a time
-    document.querySelectorAll(".sp-section").forEach(function (section) {
-
-        var button = section.querySelector(".sp-section-toggle");
-        var panel = section.querySelector(".sp-section-body");
-
-        button.addEventListener("click", function () {
-
-            var opening = !section.classList.contains("sp-open");
-
-            document.querySelectorAll(".sp-section").forEach(function (other) {
-
-                other.classList.remove("sp-open");
-
-                other.querySelector(".sp-section-toggle")
-                     .setAttribute("aria-expanded", "false");
-
-                other.querySelector(".sp-section-body").hidden = true;
-            });
-
-            if (opening) {
-                section.classList.add("sp-open");
-                button.setAttribute("aria-expanded", "true");
-                panel.hidden = false;
+    var successModal = document.getElementById("spSaveSuccess");
+    var successOkay = document.getElementById("spSuccessOkay");
+    if (successModal && successOkay) {
+        document.body.style.overflow = "hidden";
+        successOkay.focus();
+        successOkay.addEventListener("click", function () {
+            successModal.remove();
+            document.body.style.overflow = "";
+        });
+        successModal.addEventListener("click", function (event) {
+            if (event.target === successModal) {
+                successModal.remove();
+                document.body.style.overflow = "";
             }
         });
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape" && document.getElementById("spSaveSuccess")) {
+                successModal.remove();
+                document.body.style.overflow = "";
+            }
+        });
+    }
+    document.querySelectorAll("[data-skill-list]").forEach(function (list) {
+        var label = list.parentElement.querySelector("label");
+        var skills = list.textContent.split(/[,،;|\r\n]+/).map(function (skill) { return skill.trim(); }).filter(Boolean);
+        if (!skills.length) return;
+        list.replaceChildren();
+        list.setAttribute("role", "list");
+        if (label) list.setAttribute("aria-label", label.textContent.trim());
+        skills.forEach(function (skill, index) {
+            var tag = document.createElement("span");
+            tag.className = "sp-skill-tag";
+            tag.setAttribute("role", "listitem");
+            tag.style.animationDelay = Math.min(index * 45, 360) + "ms";
+            tag.textContent = skill;
+            list.appendChild(tag);
+        });
     });
-
     <% if (NoticeIsError) { %>
         openModal();
     <% } %>
