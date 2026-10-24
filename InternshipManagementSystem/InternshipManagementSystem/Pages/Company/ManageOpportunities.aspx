@@ -1415,22 +1415,16 @@
 
                 </a>
 
-                <button type="submit"
-
-                        class="mo-btn"
-                        name="moAction"
-                        value="save"
-                        data-ui-action="save"
+                
+              <button type="submit"
+                      class="mo-btn"
+                     name="moAction"
+                  value="save"
+                    data-ui-action="save"
                         data-ui-validation="none"
-                        data-loading-label="Saving…">
-
-                    class="mo-btn"
-                    name="moAction"
-                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
-
-                    <%: L.T("Company.ManageOpportunities.SaveChanges") %>
-
-                </button>
+                          data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
+                              <%: L.T("Company.ManageOpportunities.SaveChanges") %>
+                    </button>
 
             </div>
 
