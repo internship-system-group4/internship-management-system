@@ -14,8 +14,13 @@
 .explore-page {
     --ex-navy: var(--ui-primary);
     --ex-blue: #28547d;
+<<<<<<< HEAD
     --ex-muted: var(--th-fg-71839a, #71839a);
     --ex-line: var(--th-line-e0e8f2, #e0e8f2);
+=======
+    --ex-muted: var(--ui-muted);
+    --ex-line: var(--th-line-e0e8f2,#e0e8f2);
+>>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
     max-width: 1200px;
     margin: 0 auto;
     padding-bottom: 35px;
@@ -296,7 +301,11 @@
 
 .ex-description {
     margin: 17px 0;
+<<<<<<< HEAD
     color: var(--th-fg-687c92, #687c92);
+=======
+    color: var(--ui-muted);
+>>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
     font-size: 12px;
     line-height: 1.85;
     overflow-wrap: anywhere;
@@ -314,7 +323,11 @@
 
 .ex-detail-label {
     display: block;
+<<<<<<< HEAD
     color: var(--th-fg-8191a5, #8191a5);
+=======
+    color: var(--ui-muted);
+>>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
     font-size: 10px;
     font-weight: 700;
     margin-bottom: 5px;

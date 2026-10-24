@@ -4,6 +4,11 @@
 body.uims-portal .uims-sidebar { view-transition-name: portal-sidebar; }
 body.uims-portal .uims-topbar { view-transition-name: portal-header; position: relative; z-index: 10; }
 body.uims-portal .uims-main-inner { view-transition-name: portal-main; }
+/* Theme changes need one root snapshot for the circular reveal. Navigation names
+   otherwise lift the sidebar/main out of that snapshot, while :root disables it.
+   Scope the override to the existing theme class so normal route motion survives. */
+html.uims-theme-reveal { view-transition-name: root; }
+html.uims-theme-reveal body.uims-portal :is(.uims-sidebar,.uims-topbar,.uims-main-inner) { view-transition-name: none; }
 /* A named transition creates a stacking context; dialogs must stay above their backdrop. */
 body.uims-portal.modal-open .uims-main-inner { view-transition-name: none; }
 ::view-transition-group(portal-sidebar),
@@ -17,7 +22,7 @@ body.uims-portal.modal-open .uims-main-inner { view-transition-name: none; }
 .portal-loading-line > span { display: block; height: 100%; width: 36%; background: var(--theme-primary, #087f75); border-radius: 0 3px 3px 0; transform: translateX(-110%); box-shadow: 0 0 12px rgb(8 127 117 / 25%); }
 .portal-loading-line.is-loading > span { animation: portal-loading 1250ms cubic-bezier(.4,0,.2,1) infinite; }
 @keyframes portal-loading { to { transform: translateX(385%); } }
-.portal-route-status { position: fixed; inset-inline-end: 24px; bottom: 24px; z-index: 1100; max-width: min(360px, calc(100vw - 32px)); padding: 11px 16px; background: var(--theme-navy, #172c35); color: #fff; border: 1px solid #49616b; border-radius: 10px; box-shadow: 0 8px 24px rgb(23 44 53 / 14%); font: 500 12px/1.5 "Segoe UI", sans-serif; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity 160ms ease, transform 220ms ease; }
+.portal-route-status { position: fixed; inset-inline-end: 24px; bottom: 24px; z-index: 1100; max-width: min(360px, calc(100vw - 32px)); padding: 11px 16px; background: var(--theme-navy, #172c35); color: #fff; border: 1px solid var(--th-line-49616b,#49616b); border-radius: 10px; box-shadow: 0 8px 24px rgb(23 44 53 / 14%); font: 500 12px/1.5 "Segoe UI", sans-serif; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity 160ms ease, transform 220ms ease; }
 .portal-route-status.is-visible { opacity: 1; transform: none; }
 body.uims-portal a[data-pending-navigation] { opacity: .72; }
 @media (prefers-reduced-motion: reduce) {

@@ -58,9 +58,11 @@
   <data name="Login.LogIn" xml:space="preserve"><value>تسجيل الدخول</value></data>
   <data name="Login.NeedAnAccount" xml:space="preserve"><value>تحتاج إلى حساب؟</value></data>
   <data name="Login.Password" xml:space="preserve"><value>كلمة المرور</value></data>
+  <data name="Login.PauseMotion" xml:space="preserve"><value>إيقاف الحركة</value></data>
   <data name="Login.PauseScene" xml:space="preserve"><value>إيقاف المشهد</value></data>
   <data name="Login.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريد إلكتروني صحيح.</value></data>
   <data name="Login.PleaseEnterYourEmailAndPassword" xml:space="preserve"><value>يُرجى إدخال البريد الإلكتروني وكلمة المرور.</value></data>
+  <data name="Login.ResumeMotion" xml:space="preserve"><value>استئناف الحركة</value></data>
   <data name="Login.Show" xml:space="preserve"><value>إظهار</value></data>
   <data name="Login.ShowPassword" xml:space="preserve"><value>إظهار كلمة المرور</value></data>
   <data name="Login.TheSignInServiceIsNot" xml:space="preserve"><value>خدمة تسجيل الدخول غير مُعدّة. يُرجى التواصل مع منسّق التدريب.</value></data>

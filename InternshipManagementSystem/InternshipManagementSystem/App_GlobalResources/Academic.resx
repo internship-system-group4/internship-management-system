@@ -43,37 +43,54 @@
   <data name="Account.YourProfileInformationHasBeenUpdated" xml:space="preserve"><value>Your profile information has been updated successfully.</value></data>
   <data name="Dashboard.AcademicFollowUp" xml:space="preserve"><value>Academic follow-up</value></data>
   <data name="Dashboard.AcademicWork" xml:space="preserve"><value>Academic work</value></data>
+  <data name="Dashboard.AcademicWorkspace" xml:space="preserve"><value>Academic workspace</value></data>
   <data name="Dashboard.ApprovedEntriesOnly" xml:space="preserve"><value>Approved entries only</value></data>
   <data name="Dashboard.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
+  <data name="Dashboard.ApprovedRequiredHours" xml:space="preserve"><value>Approved / required hours</value></data>
   <data name="Dashboard.AssessmentAndFollowUpStayLinked" xml:space="preserve"><value>Assessment and follow-up stay linked to each assigned student.</value></data>
+  <data name="Dashboard.AssignedGroups" xml:space="preserve"><value>Supervision groups</value></data>
   <data name="Dashboard.AssignedStudents" xml:space="preserve"><value>Assigned students</value></data>
   <data name="Dashboard.CompanyAssessmentReceived" xml:space="preserve"><value>Company assessment received</value></data>
   <data name="Dashboard.CompanyAssessments" xml:space="preserve"><value>Company assessments</value></data>
   <data name="Dashboard.DivClassWsEmptyH4No" xml:space="preserve"><value>&lt;div class='ws-empty'&gt;&lt;h4&gt;No students assigned yet&lt;/h4&gt;&lt;p&gt;Your coordinator manages academic supervision assignments. Assigned students will appear here.&lt;/p&gt;&lt;/div&gt;</value></data>
+  <data name="Dashboard.EvaluationHelp" xml:space="preserve"><value>Review and submit academic assessments.</value></data>
   <data name="Dashboard.FollowUp" xml:space="preserve"><value>Follow-up</value></data>
   <data name="Dashboard.FollowYourAssignedStudentsAndAcademic" xml:space="preserve"><value>, follow your assigned students and academic work.</value></data>
+  <data name="Dashboard.GroupsWithStudents" xml:space="preserve"><value>Groups represented in your student list</value></data>
   <data name="Dashboard.HPending" xml:space="preserve"><value>h pending</value></data>
   <data name="Dashboard.HoursRequirementMet" xml:space="preserve"><value>Hours requirement met</value></data>
+  <data name="Dashboard.HoursTargetHelp" xml:space="preserve"><value>Hours target reached; other requirements still apply</value></data>
   <data name="Dashboard.InternalEvaluationFormsRemainRestrictedStudents" xml:space="preserve"><value>Internal evaluation forms remain restricted. Students see the released result only after coordinator approval.</value></data>
+  <data name="Dashboard.Major" xml:space="preserve"><value>Major</value></data>
+  <data name="Dashboard.Meetings" xml:space="preserve"><value>Meetings</value></data>
+  <data name="Dashboard.MeetingsHelp" xml:space="preserve"><value>View your scheduled meetings.</value></data>
+  <data name="Dashboard.NoAssignedStudents" xml:space="preserve"><value>No students assigned yet. Your coordinator manages supervision assignments.</value></data>
   <data name="Dashboard.NoReceivedCompanyAssessmentsAreWaiting" xml:space="preserve"><value>No received company assessments are waiting for your academic submission.</value></data>
   <data name="Dashboard.OpenAcademicEvaluations" xml:space="preserve"><value>Open academic evaluations</value></data>
   <data name="Dashboard.Placement" xml:space="preserve"><value>Placement</value></data>
   <data name="Dashboard.PlacementApprovedHoursAndTheNext" xml:space="preserve"><value>Placement, approved hours and the next academic action.</value></data>
   <data name="Dashboard.Retry" xml:space="preserve"><value>Retry</value></data>
   <data name="Dashboard.ReviewStudentRecords" xml:space="preserve"><value>Review student records</value></data>
+  <data name="Dashboard.SearchWorkspace" xml:space="preserve"><value>Search by student name, number, email, or major</value></data>
   <data name="Dashboard.Student" xml:space="preserve"><value>Student</value></data>
   <data name="Dashboard.StudentOversight" xml:space="preserve"><value>Student oversight</value></data>
+  <data name="Dashboard.StudentRecordsHelp" xml:space="preserve"><value>View training progress and student records.</value></data>
   <data name="Dashboard.StudentsAssignedToTheSignedIn" xml:space="preserve"><value>Students assigned to the signed-in academic supervisor</value></data>
   <data name="Dashboard.SubmittedForYourStudents" xml:space="preserve"><value>Submitted for your students</value></data>
   <data name="Dashboard.ViewProgress" xml:space="preserve"><value>View progress</value></data>
+  <data name="Dashboard.ViewProgressFor" xml:space="preserve"><value>View progress for</value></data>
   <data name="Dashboard.WeCouldNotLoadYourAssigned" xml:space="preserve"><value>We could not load your assigned students. Refresh to try again.</value></data>
+  <data name="Dashboard.WorkspaceSummary" xml:space="preserve"><value>Follow your assigned students, training hours, and academic work.</value></data>
   <data name="Dashboard.YourSupervisionGroup" xml:space="preserve"><value>Your supervision group</value></data>
   <data name="FinalEvaluation.1CompanySupervisorEvaluation" xml:space="preserve"><value>1. Company Supervisor Evaluation</value></data>
   <data name="FinalEvaluation.2AcademicFinalDecision" xml:space="preserve"><value>2. Academic Final Decision</value></data>
   <data name="FinalEvaluation.AcademicCommentsRemarks" xml:space="preserve"><value>Academic Comments &amp; Remarks</value></data>
   <data name="FinalEvaluation.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="FinalEvaluation.AllMajors" xml:space="preserve"><value>All Majors</value></data>
   <data name="FinalEvaluation.AreasForImprovement" xml:space="preserve"><value>Areas for Improvement:</value></data>
   <data name="FinalEvaluation.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="FinalEvaluation.ComputerEngineering" xml:space="preserve"><value>Computer Engineering</value></data>
+  <data name="FinalEvaluation.ComputerScience" xml:space="preserve"><value>Computer Science</value></data>
   <data name="FinalEvaluation.DecisionSubmittedSuccessfullyOn" xml:space="preserve"><value>Decision submitted successfully on {0}</value></data>
   <data name="FinalEvaluation.Evaluate" xml:space="preserve"><value>Evaluate:</value></data>
   <data name="FinalEvaluation.EvaluationForTheSelectedStudentHas" xml:space="preserve"><value>Evaluation for the selected student has been submitted to the Coordinator successfully!</value></data>
@@ -84,10 +101,14 @@
   <data name="FinalEvaluation.NoStudentsAssigned" xml:space="preserve"><value>No students are currently assigned to you.</value></data>
   <data name="FinalEvaluation.OverallComment" xml:space="preserve"><value>Overall Comment:</value></data>
   <data name="FinalEvaluation.Pass" xml:space="preserve"><value>Pass</value></data>
+  <data name="FinalEvaluation.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="FinalEvaluation.SearchAndViewStudentEvaluationAssignments" xml:space="preserve"><value>Search and view student evaluation assignments.</value></data>
+  <data name="FinalEvaluation.SearchNameOrID" xml:space="preserve"><value>Search name or ID...</value></data>
   <data name="FinalEvaluation.SelectAStudentToCompleteTheir" xml:space="preserve"><value>Select a student to complete their final evaluation.</value></data>
   <data name="FinalEvaluation.SelectDecision" xml:space="preserve"><value>-- Select Decision --</value></data>
   <data name="FinalEvaluation.Strengths" xml:space="preserve"><value>Strengths:</value></data>
   <data name="FinalEvaluation.StudentName" xml:space="preserve"><value>Student Name</value></data>
+  <data name="FinalEvaluation.StudentRecords" xml:space="preserve"><value>Student records</value></data>
   <data name="FinalEvaluation.SubmitToCoordinator" xml:space="preserve"><value>Submit to Coordinator</value></data>
   <data name="FinalEvaluation.SubmitYourFinalDecisionOnceSubmitted" xml:space="preserve"><value>Submit your final decision. Once submitted, it will be sent to the Coordinator.</value></data>
   <data name="FinalEvaluation.TheCompanySupervisorHasNotSubmitted" xml:space="preserve"><value>The company supervisor has not submitted their final evaluation yet.</value></data>
@@ -95,14 +116,21 @@
   <data name="FinalEvaluation.UniversityID" xml:space="preserve"><value>University ID</value></data>
   <data name="FinalEvaluation.UnknownStudent" xml:space="preserve"><value>Unknown Student</value></data>
   <data name="FinalEvaluation.ViewAndEvaluate" xml:space="preserve"><value>View &amp; Evaluate</value></data>
+  <data name="StudentProgress.0Hrs" xml:space="preserve"><value>0 hrs</value></data>
+  <data name="StudentProgress.160Hrs" xml:space="preserve"><value>/ 160 hrs</value></data>
   <data name="StudentProgress.AcademicCommentsFeedback" xml:space="preserve"><value>Academic Comments &amp; Feedback</value></data>
   <data name="StudentProgress.Action" xml:space="preserve"><value>Action</value></data>
   <data name="StudentProgress.AddANewComment" xml:space="preserve"><value>Add a New Comment</value></data>
+  <data name="StudentProgress.AllMajors" xml:space="preserve"><value>All Majors</value></data>
   <data name="StudentProgress.BackToStudentsList" xml:space="preserve"><value>Back to Students List</value></data>
   <data name="StudentProgress.CommentSavedSuccessfully" xml:space="preserve"><value>Comment saved successfully!</value></data>
   <data name="StudentProgress.CompanyName" xml:space="preserve"><value>Company Name</value></data>
   <data name="StudentProgress.CompanySupervisor" xml:space="preserve"><value>Company Supervisor</value></data>
+  <data name="StudentProgress.CompletedHours" xml:space="preserve"><value>Completed Hours:</value></data>
+  <data name="StudentProgress.ComputerEngineering" xml:space="preserve"><value>Computer Engineering</value></data>
+  <data name="StudentProgress.ComputerScience" xml:space="preserve"><value>Computer Science</value></data>
   <data name="StudentProgress.EstimatedHours" xml:space="preserve"><value>Estimated Hours</value></data>
+  <data name="StudentProgress.InProgress" xml:space="preserve"><value>In Progress ⏳</value></data>
   <data name="StudentProgress.Major" xml:space="preserve"><value>Major</value></data>
   <data name="StudentProgress.MakeThisCommentVisibleToThe" xml:space="preserve"><value>Make this comment visible to the student</value></data>
   <data name="StudentProgress.MaxScore" xml:space="preserve"><value>Max Score</value></data>
@@ -112,16 +140,22 @@
   <data name="StudentProgress.NotAssignedYet" xml:space="preserve"><value>Not assigned yet</value></data>
   <data name="StudentProgress.OpportunityTitle" xml:space="preserve"><value>Opportunity Title</value></data>
   <data name="StudentProgress.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="StudentProgress.PendingCompanyVerification" xml:space="preserve"><value>Pending Company Verification</value></data>
   <data name="StudentProgress.PlacementCompanyDetails" xml:space="preserve"><value>Placement &amp; Company Details</value></data>
   <data name="StudentProgress.ProceedToFinalEvaluation" xml:space="preserve"><value>Proceed to Final Evaluation</value></data>
   <data name="StudentProgress.SaveComment" xml:space="preserve"><value>Save Comment</value></data>
+  <data name="StudentProgress.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="StudentProgress.SearchAndViewStudentProgressAnd" xml:space="preserve"><value>Search and view student progress and assignment information.</value></data>
+  <data name="StudentProgress.SearchNameOrID" xml:space="preserve"><value>Search name or ID...</value></data>
   <data name="StudentProgress.SelectAStudentToViewTheir" xml:space="preserve"><value>Select a student to view their progress, tasks, and evaluations.</value></data>
   <data name="StudentProgress.Status" xml:space="preserve"><value>Status</value></data>
   <data name="StudentProgress.StudentName" xml:space="preserve"><value>Student Name</value></data>
   <data name="StudentProgress.StudentProgressMonitor" xml:space="preserve"><value>Student Progress Monitor</value></data>
+  <data name="StudentProgress.StudentRecords" xml:space="preserve"><value>Student records</value></data>
   <data name="StudentProgress.TaskTitle" xml:space="preserve"><value>Task Title</value></data>
   <data name="StudentProgress.TasksSubmissions" xml:space="preserve"><value>Tasks &amp; Submissions</value></data>
   <data name="StudentProgress.TrainingHours" xml:space="preserve"><value>Training Hours</value></data>
+  <data name="StudentProgress.TrainingHoursProgressOverview" xml:space="preserve"><value>Training Hours &amp; Progress Overview</value></data>
   <data name="StudentProgress.UniversityID" xml:space="preserve"><value>University ID</value></data>
   <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>View Progress</value></data>
   <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>Write your observation or feedback here...</value></data>

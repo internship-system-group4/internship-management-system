@@ -1,59 +1,66 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Students.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Students" Title="Student records" %>
-<%@ Register Src="StudentCreation.ascx" TagPrefix="uims" TagName="StudentCreation" %>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Students.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Students" Title="Student profile" %>
+<%-- Student profile (opened from "View profile" on the Students page). --%>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261022-creation-modal") %>" />
+    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-perf") %>" />
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="students-page">
-        <div class="students-intro">
-            <div><span class="students-eyebrow"><%: L.T("Coordinator.Students.CoordinatorStudents") %></span><h2><%: L.T("Coordinator.Students.StudentRecords") %></h2><p><%: L.T("Coordinator.Students.FindAStudentAndReviewTheir") %></p></div>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addStudentModal"><%: L.T("Coordinator.Students.AddStudent") %></button>
-        </div>
-        <uims:StudentCreation ID="StudentCreator" runat="server" OnCreated="StudentCreator_Created" />
-        <nav class="students-tabs" aria-label="<%: L.T("Coordinator.Students.StudentPages") %>">
-            <a class="active" aria-current="page" href="<%= ResolveUrl("~/Pages/Coordinator/Students.aspx") %>"><%: L.T("Coordinator.Students.ViewRecords") %></a>
-            <button type="button" data-bs-toggle="modal" data-bs-target="#addStudentModal"><%: L.T("Coordinator.Students.AddStudent2") %></button>
-            <a href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>"><%: L.T("Coordinator.Students.ManageStudents") %></a>
-        </nav>
+    <div class="students-page dir-page dir-profile">
+        <a class="dir-back" href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>"><span data-ui-icon="back" aria-hidden="true"></span> <%: L.T("Coordinator.Students.AllStudents") %></a>
 
-        <section class="students-card" aria-labelledby="records-heading">
-            <div class="students-card-heading"><div><h3 id="records-heading"><%: L.T("Coordinator.Students.Directory") %></h3><p><%: L.T("Coordinator.Students.SearchByNameStudentNumberEmail") %></p></div></div>
-            <asp:Label ID="lblListMessage" runat="server" Visible="false" role="alert" />
-            <div class="students-search">
-                <label for="<%= txtSearch.ClientID %>" class="visually-hidden"><%: L.T("Coordinator.Students.SearchStudentRecords") %></label>
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" MaxLength="120" placeholder="<%$ Resources:Coordinator, Students.SearchStudentRecords %>" />
-                <asp:Button ID="btnSearch" runat="server" Text="<%$ Resources:Coordinator, Students.Search %>" CssClass="btn btn-primary" OnClick="btnSearch_Click" CausesValidation="false" />
-                <asp:Button ID="btnClearSearch" runat="server" Text="<%$ Resources:Coordinator, Students.Clear %>" CssClass="btn btn-outline-secondary" OnClick="btnClearSearch_Click" CausesValidation="false" />
+        <% if (LoadError != null) { %>
+        <div class="dir-card dir-empty-card"><span data-ui-icon="warning" aria-hidden="true"></span><p role="alert"><%: LoadError %></p><a class="btn btn-brand" href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>"><%: L.T("Coordinator.Students.AllStudents") %></a></div>
+        <% } else { %>
+        <section class="dir-card dir-profile-hero" aria-labelledby="profileName">
+            <span class="dir-avatar dir-avatar-xl" aria-hidden="true"><%: Row.Initials %></span>
+            <div class="dir-hero-text">
+                <span class="dir-eyebrow"><%: L.T("Coordinator.Students.StudentProfile") %></span>
+                <h2 id="profileName"><%: Row.FullName %></h2>
+                <p><span data-ui-icon="mail" aria-hidden="true"></span> <%: Row.Email %> <span class='<%: Row.IsActive ? "dir-status is-active" : "dir-status is-inactive" %>'><%: Row.StatusText %></span></p>
             </div>
-            <div class="table-responsive">
-                <table class="table students-table align-middle">
-                    <thead><tr><th scope="col"><%: L.T("Coordinator.Students.Student") %></th><th scope="col"><%: L.T("Coordinator.Students.StudentNumber") %></th><th scope="col"><%: L.T("Coordinator.Students.Major") %></th><th scope="col"><%: L.T("Coordinator.Students.TrainingHours") %></th><th scope="col"><%: L.T("Coordinator.Students.Status") %></th><th scope="col"><%: L.T("Coordinator.Students.Record") %></th></tr></thead>
-                    <tbody><asp:Repeater ID="rptStudents" runat="server"><ItemTemplate><tr>
-                        <td><strong><%#: Eval("FullName") %></strong><small><%#: Eval("Email") %></small></td>
-                        <td><%#: Eval("StudentNumber") %></td><td><%#: Eval("Major") %></td>
-                        <td><%#: Eval("ApprovedHours") %> / <%#: Eval("RequiredHours") %></td>
-                        <td><span class='<%# (bool)Eval("IsActive") ? "students-status is-active" : "students-status is-inactive" %>'><%# (bool)Eval("IsActive") ? "Active" : "Inactive" %></span></td>
-                        <td><asp:LinkButton ID="btnView" runat="server" Text="<%$ Resources:Coordinator, Students.ViewRecord %>" CssClass="btn btn-sm btn-outline-primary" CommandArgument='<%# Eval("Id") %>' OnClick="btnView_Click" CausesValidation="false" /></td>
-                    </tr></ItemTemplate></asp:Repeater></tbody>
-                </table>
+            <div class="dir-hero-actions">
+                <% if (HasPlacement) { %><a class="btn btn-outline-primary" href="<%= ResolveUrl("~/Pages/Coordinator/PlacementDetails.aspx?id=" + Server.UrlEncode(Row.Id)) %>"><span data-ui-icon="chart" aria-hidden="true"></span> <%: L.T("Coordinator.Students.TrainingProgress") %></a><% } %>
+                <a class="btn btn-brand" href="<%= ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx?id=" + Server.UrlEncode(Row.Id)) %>"><span data-ui-icon="edit" aria-hidden="true"></span> <%: L.T("Coordinator.Students.ManageThisStudent") %></a>
             </div>
-            <asp:Label ID="lblNoStudents" runat="server" Visible="false" CssClass="students-empty" />
         </section>
 
-        <asp:Panel ID="pnlDetails" runat="server" Visible="false" CssClass="students-card students-detail" ClientIDMode="Static">
-            <div class="students-card-heading"><div><span class="students-eyebrow"><%: L.T("Coordinator.Students.SelectedRecord") %></span><h3><asp:Label ID="lblStudentName" runat="server" /></h3></div><asp:HyperLink ID="lnkManage" runat="server" CssClass="btn btn-outline-primary" Text="<%$ Resources:Coordinator, Students.ManageThisStudent %>" /></div>
-            <dl class="students-facts">
-                <div><dt><%: L.T("Coordinator.Students.StudentNumber") %></dt><dd><asp:Label ID="lblStudentNumber" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.LoginEmail") %></dt><dd><asp:Label ID="lblStudentEmail" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.Phone") %></dt><dd><asp:Label ID="lblStudentPhone" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.University") %></dt><dd><asp:Label ID="lblUniversity" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.College") %></dt><dd><asp:Label ID="lblCollege" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.Major") %></dt><dd><asp:Label ID="lblMajor" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.ApprovedHours") %></dt><dd><asp:Label ID="lblApprovedHours" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.RequiredHours") %></dt><dd><asp:Label ID="lblRequiredHours" runat="server" /></dd></div>
-                <div><dt><%: L.T("Coordinator.Students.AccountStatus") %></dt><dd><asp:Label ID="lblStatus" runat="server" /></dd></div>
-            </dl>
-        </asp:Panel>
+        <ul class="dir-profile-stats">
+            <li style="--dir-i:0"><span class="dir-stat-icon" data-ui-icon="clock" aria-hidden="true"></span><div><span class="dir-label"><%: L.T("Coordinator.Students.TrainingHours") %></span><strong><%: Row.HoursText %></strong><div class="dir-progress" aria-hidden="true"><span style="--dir-p:<%: Row.HoursPercent %>%"></span></div></div></li>
+            <li style="--dir-i:1"><span class="dir-stat-icon" data-ui-icon="briefcase" aria-hidden="true"></span><div><span class="dir-label"><%: L.T("Coordinator.Students.Placement") %></span><strong><%: Row.PlacementText %></strong></div></li>
+            <li style="--dir-i:2"><span class="dir-stat-icon" data-ui-icon="people" aria-hidden="true"></span><div><span class="dir-label"><%: L.T("Coordinator.Students.Group") %></span><strong><%: Row.GroupName %></strong></div></li>
+            <li style="--dir-i:3"><span class="dir-stat-icon" data-ui-icon="study" aria-hidden="true"></span><div><span class="dir-label"><%: L.T("Coordinator.Students.AcademicSupervisor") %></span><strong><%: Row.SupervisorName %></strong></div></li>
+        </ul>
+
+        <div class="dir-profile-grid">
+            <section class="dir-card"><h3><span data-ui-icon="person" aria-hidden="true"></span><%: L.T("Coordinator.Students.PersonalInformation") %></h3><dl class="dir-facts">
+                <div><dt><%: L.T("Coordinator.Students.StudentNumber") %></dt><dd class="dir-id"><%: Row.StudentNumber %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.LoginEmail") %></dt><dd><%: Row.Email %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.Phone") %></dt><dd><%: Row.Phone %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.AccountStatus") %></dt><dd><%: Row.StatusText %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.CreatedOn") %></dt><dd><%: Row.CreatedText %></dd></div>
+            </dl></section>
+            <section class="dir-card"><h3><span data-ui-icon="study" aria-hidden="true"></span><%: L.T("Coordinator.Students.AcademicInformation") %></h3><dl class="dir-facts">
+                <div><dt><%: L.T("Coordinator.Students.University") %></dt><dd><%: Row.University %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.College") %></dt><dd><%: Row.College %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.Major") %></dt><dd><%: Row.Major %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.ApprovedHours") %></dt><dd><%: Row.ApprovedHours %></dd></div>
+                <div><dt><%: L.T("Coordinator.Students.RequiredHours") %></dt><dd><%: Row.RequiredHours %></dd></div>
+            </dl></section>
+            <section class="dir-card dir-profile-wide"><h3><span data-ui-icon="briefcase" aria-hidden="true"></span><%: L.T("Coordinator.Students.InternshipPlacement") %></h3>
+                <% if (!HasPlacement) { %>
+                <p class="dir-muted"><%: L.T("Coordinator.Students.NoPlacementYet") %></p>
+                <% } else { %>
+                <dl class="dir-facts dir-facts-3">
+                    <div><dt><%: L.T("Coordinator.Students.Company") %></dt><dd><%: Placement.CompanyName %></dd></div>
+                    <div><dt><%: L.T("Coordinator.Students.Opportunity") %></dt><dd><%: Show(Placement.OpportunityTitle) %></dd></div>
+                    <div><dt><%: L.T("Coordinator.Students.Status") %></dt><dd><%: L.Value("PlacementStatus", Placement.Status) %></dd></div>
+                    <div><dt><%: L.T("Coordinator.Students.CompanySupervisor") %></dt><dd><%: Show(Placement.CompanySupervisorName) %></dd></div>
+                    <div><dt><%: L.T("Coordinator.Students.StartDate") %></dt><dd><%: DateText(Placement.StartDate) %></dd></div>
+                    <div><dt><%: L.T("Coordinator.Students.EndDate") %></dt><dd><%: DateText(Placement.EndDate) %></dd></div>
+                </dl>
+                <% } %>
+            </section>
+        </div>
+        <% } %>
     </div>
 </asp:Content>

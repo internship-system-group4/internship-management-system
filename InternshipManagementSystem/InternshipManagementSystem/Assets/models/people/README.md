@@ -14,3 +14,12 @@ Changes from the originals: posed, skinning baked, vertices welded, textures dow
 
 Regenerate with tools/rocketbox (see its README). Team members are shown with these same generic
 figures, chosen by seat; they are not likenesses of anyone.
+
+# Animated student for the Jisr homepage
+
+`Male_Adult_17_Animated.glb` is the Rocketbox avatar `Male_Adult_17` (MIT, same source and licence as
+above) kept as a skinned mesh with its full skeleton and three Rocketbox motion-capture clips:
+`walk` (`m_walk_neutral_01`, root motion removed, 1.215 m per 1.2 s cycle), `stop` (`m_walk_stop`) and
+`look` (`m_idle_look_around_01`). Metres, facing +z, feet on y = 0; 1024 px colour and normal maps.
+Scale tracks were dropped and redundant keys removed to keep the file at about 3.2 MB.
+Regenerate with `tools/rocketbox/convert-animated.html` (see tools/rocketbox/README.md).

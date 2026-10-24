@@ -6,6 +6,8 @@ Source of truth: tools/i18n/strings/<Area>.txt, UTF-8, one entry per block:
     en: English text
     ar: النص العربي
 
+Use \u0020 for a significant trailing space and \n for a line break.
+
 (blank line between entries; lines starting with # are comments). Output:
     App_GlobalResources/<Area>.resx      English (neutral, the fallback)
     App_GlobalResources/<Area>.ar.resx   Arabic
@@ -43,7 +45,7 @@ def parse(path):
         if not line.strip() or line.lstrip().startswith('#'): continue
         m = re.match(r'^\s*(en|ar):\s?(.*)$', line)
         if m and key is not None:
-            current[m.group(1)] = m.group(2).replace('\\n', '\n'); continue
+            current[m.group(1)] = m.group(2).replace('\\n', '\n').replace('\\u0020', ' '); continue
         flush(); key = line.strip(); current = {}
         if not re.match(r'^[A-Za-z][A-Za-z0-9_.]*$', key): errors.append('bad key: ' + key)
     flush()

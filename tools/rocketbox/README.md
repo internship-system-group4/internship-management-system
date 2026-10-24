@@ -23,3 +23,17 @@ Save each download as `Assets/models/people/<avatar>.glb`. `converter.preview(ur
 
 The seated frames (female 1.5 s, male 12 s) were chosen by sampling the clips for an upright posture with the
 forearms on the desk. The hall places the desk's near edge 12 cm in front of the pelvis to match.
+
+## Animated student (Jisr homepage)
+
+`convert-animated.html` / `convert-animated.js` keep the skeleton instead of freezing a pose. Download into the
+same scratch folder (repository paths kept):
+
+- `Assets/Avatars/Adults/Male_Adult_17/Export/Male_Adult_17.fbx`, `Textures/m022_body_color.tga`,
+  `m022_body_normal.tga`, `m022_head_color.tga`, `m022_head_normal.tga`
+- `Assets/Animations/all_animations_max_motextr_xy/m_walk_neutral_01.max.fbx` and `m_walk_stop.max.fbx`
+- `Assets/Animations/all_animations_max_motextr_static/m_idle_look_around_01.max.fbx`
+
+Serve `/repo` and `/raw` as above, open `/repo/tools/rocketbox/convert-animated.html` and run
+`animatedConverter.save('Male_Adult_17', { rootTrack: ['Bip01.position', 'MotionExtractionHelper.position'], axes: [0, 2] })`.
+The page POSTs the GLB to `/save/<name>_Animated.glb` on the dev server; copy it to `Assets/models/people/`.

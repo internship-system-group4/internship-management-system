@@ -400,6 +400,51 @@
         .uims-sidebar *::-webkit-scrollbar {
             display: none !important;
         }
+        
+/* ==========================================
+   BLUE SUMMARY ICONS
+   ========================================== */
+
+.cm-page .summary-icon,
+.cm-page .summary-icon.total,
+.cm-page .summary-icon.new,
+.cm-page .summary-icon.reviewed {
+    width: 52px;
+    height: 52px;
+
+    background: var(--th-bg-e4f0ff,#e4f0ff) !important;
+    color: var(--th-fg-1254a1,#1254a1) !important;
+
+    border-radius: 12px !important;
+
+    display: grid;
+    place-items: center;
+
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+/* ==========================================
+   BLUE NEW & REVIEWED STATUS
+   ========================================== */
+
+.cm-page .status-badge.new,
+.cm-page .status-badge.reviewed {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    background: var(--th-bg-e4f0ff,#e4f0ff) !important;
+    color: var(--th-fg-1254a1,#1254a1) !important;
+
+    border: 1px solid var(--th-line-cfe0f6,#cfe0f6);
+    border-radius: 999px;
+
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
     </style>
 
 </asp:Content>
@@ -616,7 +661,7 @@
                         <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Status %>">
                             <ItemTemplate>
                                 <span class='<%# Convert.ToString(Eval("Status")) == "Reviewed" ? "status-badge reviewed" : "status-badge new" %>'>
-                                    <%#: Eval("Status") %>
+                                    <%#: L.Value("Ui", Eval("Status")) %>
                                 </span>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -788,7 +833,7 @@
                                     runat="server"
                                     Text="<%$ Resources:Coordinator, ContactMessages.MarkAsReviewed %>"
                                     CssClass="btn btn-reviewed"
-                                    OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="Updating…"/>
+                                    OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="<%$ Resources:Shared, I18n.Updating %>"/>
 
                                 <asp:Button ID="btnClose"
                                     runat="server"

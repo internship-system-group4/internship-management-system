@@ -1,0 +1,75 @@
+/* A small detour through the campus: one entrance, then a calm, readable destination. */
+body.nf-page { background:var(--ui-canvas); color:var(--ui-ink); }
+.nf-page * { box-sizing:border-box; }
+.nf-scene { position:relative; isolation:isolate; min-height:100vh; min-height:100svh; }
+.nf-header { position:relative; z-index:2; display:flex; align-items:center; justify-content:space-between; gap:20px; max-width:1440px; margin:auto; padding:28px 48px; }
+.nf-brand { display:inline-flex; align-items:center; gap:12px; color:var(--ui-ink); text-decoration:none; }
+.nf-brand img { object-fit:contain; background:var(--ui-surface,#fff); border-radius:5px; }
+.nf-brand strong { display:block; font-size:16px; font-weight:650; line-height:1.4; }
+.nf-brand small { display:block; color:var(--ui-muted); font-size:12px; line-height:1.5; }
+.nf-controls { display:flex; align-items:center; gap:8px; flex:none; }
+.nf-main { position:relative; z-index:1; display:grid; place-items:center; min-height:calc(100vh - 100px); min-height:calc(100svh - 100px); padding:32px 28px 100px; }
+.nf-message { min-width:0; width:100%; max-width:680px; text-align:center; }
+.nf-number { position:relative; display:inline-block; margin:0 0 24px; color:var(--ui-primary-text,var(--ui-primary)); font:650 min(16rem,40vw)/.95 "Noto Sans",Arial,sans-serif; letter-spacing:-.075em; padding-inline-end:.075em; }
+.nf-stop { position:absolute; inset-inline-end:-.055em; bottom:.05em; width:.075em; height:.075em; background:var(--ui-accent); border-radius:50%; }
+.nf-page h1 { margin:0; font-size:clamp(1.75rem,3vw,2.5rem); font-weight:600; line-height:1.3; letter-spacing:-.035em; text-wrap:balance; }
+.nf-description { max-width:48ch; margin:20px auto 0; color:var(--ui-muted); font-size:18px; line-height:1.75; text-wrap:pretty; }
+.nf-actions { display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:32px; }
+body.nf-page .nf-action { display:inline-flex; align-items:center; justify-content:center; gap:10px; min-height:48px; padding:12px 22px; border:1px solid var(--ui-primary); border-radius:var(--ui-radius); background:var(--ui-primary); color:#fff; font:600 16px/1.5 var(--ui-font); text-decoration:none; }
+.nf-page .nf-home:hover { background:var(--ui-primary-hover); border-color:var(--ui-primary-hover); color:#fff; }
+body.nf-page .nf-back { background:var(--ui-surface); border-color:var(--ui-control-border); color:var(--ui-ink); }
+.nf-page .nf-back:hover { background:var(--ui-primary-soft); }
+.nf-action svg { flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.nf-page a:focus-visible { outline:3px solid var(--ui-focus); outline-offset:5px; }
+.nf-main:focus { outline:none; }
+.nf-skip { position:absolute; z-index:5; top:12px; inset-inline-start:16px; padding:12px 18px; background:var(--ui-surface); color:var(--ui-ink); transform:translateY(-160%); }
+.nf-skip:focus { transform:none; }
+.nf-visually-hidden { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.nf-decor { position:absolute; z-index:0; inset:0; overflow:hidden; pointer-events:none; }
+.nf-symbols { position:absolute; }
+.nf-circle { position:absolute; border-radius:50%; background:var(--ui-primary-soft); }
+.nf-circle-one { width:clamp(420px,65vw,1000px); aspect-ratio:1; right:-34%; top:-48%; opacity:.65; }
+.nf-circle-two { width:clamp(280px,38vw,620px); aspect-ratio:1; left:-23%; bottom:-34%; opacity:.7; }
+.nf-circle-three { width:80px; height:80px; left:10%; top:25%; background:var(--ui-accent); opacity:.12; }
+.nf-figure { position:absolute; color:var(--ui-primary-text,var(--ui-primary)); opacity:.5; }
+.nf-backpack { fill:var(--ui-accent); }
+.nf-figure-one { right:8%; top:23%; transform:rotate(14deg); }
+.nf-figure-two { left:7%; bottom:13%; transform:rotate(-12deg); }
+.nf-figure-three { right:14%; bottom:9%; width:50px; height:64px; opacity:.35; transform:rotate(9deg); }
+.nf-route { position:absolute; left:2%; bottom:5%; fill:none; stroke:var(--ui-control-border); stroke-width:1.2; stroke-dasharray:3 7; opacity:.4; }
+.nf-route circle { fill:var(--ui-accent); stroke:none; }
+.nf-entering .nf-circle-one { animation:nf-expand 2000ms cubic-bezier(.2,.7,.2,1) both; }
+.nf-entering .nf-circle-two { animation:nf-expand 1800ms 100ms cubic-bezier(.2,.7,.2,1) both; }
+.nf-entering .nf-circle-three { animation:nf-expand 1600ms 200ms ease-out both; }
+.nf-entering .nf-figure-one { animation:nf-travel-one 1900ms cubic-bezier(.2,.7,.2,1) both; }
+.nf-entering .nf-figure-two { animation:nf-travel-two 2100ms cubic-bezier(.2,.7,.2,1) both; }
+.nf-entering .nf-figure-three { animation:nf-travel-three 1800ms 150ms ease-out both; }
+@keyframes nf-expand { from { transform:scale(.08); } to { transform:scale(1); } }
+@keyframes nf-travel-one { from { transform:translate(20vw,-70px) rotate(-65deg); } to { transform:translate(0,0) rotate(14deg); } }
+@keyframes nf-travel-two { from { transform:translate(-18vw,45px) rotate(55deg); } to { transform:translate(0,0) rotate(-12deg); } }
+@keyframes nf-travel-three { from { transform:translate(18vw,35px) rotate(-50deg); } to { transform:translate(0,0) rotate(9deg); } }
+[dir="rtl"] .nf-action svg { transform:scaleX(-1); }
+[dir="rtl"] .nf-home svg { transform:none; }
+@media(max-width:760px) {
+ .nf-header { padding:20px 24px; gap:12px; }
+ .nf-brand small { max-width:160px; }
+ .nf-main { padding:32px 24px 116px; }
+ .nf-circle-one { right:-85%; top:-30%; }
+ .nf-circle-two { left:-65%; bottom:-12%; }
+ .nf-circle-three,.nf-figure-one,.nf-figure-three,.nf-route { display:none; }
+ .nf-figure-two { width:48px; height:60px; left:22px; bottom:24px; }
+ .nf-number { margin-bottom:28px; }
+}
+@media(max-width:380px) {
+ .nf-header { padding:18px 16px; }
+ .nf-brand { gap:8px; }
+ .nf-brand img { width:32px; height:30px; }
+ .nf-brand small { display:none; }
+ .nf-main { padding-inline:20px; }
+ .nf-description { font-size:16px; }
+ .nf-actions { flex-direction:column; align-items:stretch; }
+ body.nf-page .nf-action { flex:none; padding-inline:12px; font-size:15px; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .nf-entering .nf-circle,.nf-entering .nf-figure { animation:none!important; }
+}

@@ -228,6 +228,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 opportunity.CompanyId =
                     CurrentSupervisor.CompanyId;
 
+                var company = new CompanyRepository().GetById(CurrentSupervisor.CompanyId);
+                opportunity.CompanyName = company != null && !string.IsNullOrWhiteSpace(company.Name)
+                    ? company.Name.Trim() : CurrentSupervisor.CompanyName;
+                if (string.IsNullOrWhiteSpace(opportunity.CompanyName))
+                    throw new InvalidOperationException("The linked company needs a name before creating an opportunity.");
+                opportunity.CreatedBySupervisorId = CurrentSupervisor.Id;
+
                 opportunity.Title = title;
                 opportunity.Location = location;
                 opportunity.Description = description;
@@ -296,6 +303,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     Services.NotificationService
                         .OpportunityPublished(id);
                 }
+
+                // Homepage visitors see a public summary of open opportunities.
+                if (publish)
+                    new OpportunityRepository().SyncPublicPreview(id);
 
                 Notice = publish
                     ? L.T("Company.Opportunities.OpportunityPublishedSuccessfully")

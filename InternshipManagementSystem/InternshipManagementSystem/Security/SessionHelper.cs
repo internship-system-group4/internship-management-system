@@ -30,6 +30,15 @@ namespace InternshipManagementSystem.Security
             get { return Current != null; }
         }
 
+        public static string IdToken
+        {
+            get
+            {
+                if (HttpContext.Current == null || HttpContext.Current.Session == null) return null;
+                return HttpContext.Current.Session[Constants.SessionTokenKey] as string;
+            }
+        }
+
         /// <summary>Called by Login.aspx once Firebase has verified the
         /// password (card A02).</summary>
         public static void SignIn(Person person, string idToken)
@@ -58,6 +67,26 @@ namespace InternshipManagementSystem.Security
         {
             Person person = Current;
             return person != null && person.Role == role;
+        }
+
+        private const string FlashPrefix = "UIMS_Flash_";
+
+        /// <summary>Stores a one-time value for the next request, for example
+        /// "this approval just succeeded" so a success animation plays once and
+        /// never again on refresh.</summary>
+        public static void SetFlash(string key, string value)
+        {
+            if (HttpContext.Current == null || HttpContext.Current.Session == null) return;
+            HttpContext.Current.Session[FlashPrefix + key] = value;
+        }
+
+        /// <summary>Reads and removes a one-time value.</summary>
+        public static string TakeFlash(string key)
+        {
+            if (HttpContext.Current == null || HttpContext.Current.Session == null) return null;
+            string value = HttpContext.Current.Session[FlashPrefix + key] as string;
+            HttpContext.Current.Session.Remove(FlashPrefix + key);
+            return value;
         }
     }
 }

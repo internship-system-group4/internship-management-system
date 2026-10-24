@@ -10,6 +10,14 @@ namespace InternshipManagementSystem.Security
 {
     public abstract class CoordinatorPage : SecurePage
     {
+        protected static string AccessConfirmation(bool isActive, string name)
+        {
+            string message = string.Format(L.T(isActive
+                ? "Coordinator.AccountAccess.ConfirmBlock"
+                : "Coordinator.AccountAccess.ConfirmUnblock"), name);
+            return "if (!window.confirm(" + System.Web.HttpUtility.JavaScriptStringEncode(message, true) + ")) return false;";
+        }
+
         protected override UserRole[] AllowedRoles
         {
             get { return new[] { UserRole.Coordinator }; }

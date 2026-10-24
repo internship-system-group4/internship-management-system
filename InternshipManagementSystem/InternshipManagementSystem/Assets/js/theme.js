@@ -1,24 +1,20 @@
 (function () {
  'use strict';
- // UIMS Light / Dark / System. The inline script in each master's <head> already applied the stored theme before the
- // first paint; this file keeps it in step (System changes, other tabs) and runs the selectors.
- // Preference (what the visitor chose) and theme (what is shown) are separate:
- //   localStorage['uims-theme'] = light | dark | system      (missing or invalid -> light)
- //   <html data-theme-preference> = the preference; <html data-theme data-bs-theme> = light | dark
+ // Light/Dark preference is applied before first paint by each master's inline script.
+ // Controls share persistence, cross-tab synchronization and the interruptible circular reveal.
  if (window.UimsTheme) { window.UimsTheme.bind(document); return; }
- var KEY = 'uims-theme', VALID = ['light', 'dark', 'system'];
+ var KEY = 'uims-theme', VALID = ['light', 'dark'];
  var root = document.documentElement;
- var systemDark = window.matchMedia ? matchMedia('(prefers-color-scheme: dark)') : null;
  var reduce = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : null;
  // Labels come from the shared resources (window.uimsT, Assets/js/i18n.js); English if the dictionary is absent.
  var t = function (key, fallback) { return typeof window.uimsT === 'function' && window.UIMS_I18N && window.UIMS_I18N[key] ? window.uimsT.apply(null, arguments) : fallback; };
- var LABELS = { light:t('ThemeLight', 'Light'), dark:t('ThemeDark', 'Dark'), system:t('ThemeSystem', 'System') };
+ var LABELS = { light:t('ThemeLight', 'Light'), dark:t('ThemeDark', 'Dark') };
  var changingTimer = 0, iconTimer = 0, transitionRequest = 0, activeTransition = null;
 
  function valid(value) { return VALID.indexOf(value) >= 0 ? value : 'light'; }
  function read() { try { return valid(localStorage.getItem(KEY)); } catch (e) { return 'light'; } }
  function write(value) { try { localStorage.setItem(KEY, value); } catch (e) { /* private mode or blocked: this page still switches */ } }
- function resolve(preference) { return preference === 'system' ? (systemDark && systemDark.matches ? 'dark' : 'light') : preference; }
+ function resolve(preference) { return valid(preference); }
  var preference = valid(root.getAttribute('data-theme-preference') || read());
 
  function cancelReveal() {
@@ -60,7 +56,7 @@
     if (option.getAttribute('role') === 'radio') option.tabIndex = on ? 0 : -1;
    });
    var toggle = control.querySelector('[data-theme-toggle]');
-   if (toggle) { var name = LABELS[preference] + (preference === 'system' ? ' (' + LABELS[resolve('system')] + ')' : ''); toggle.setAttribute('aria-label', typeof window.uimsT === 'function' && window.UIMS_I18N && window.UIMS_I18N.ThemeLabel ? window.uimsT('ThemeLabel', name) : 'Colour theme: ' + name); }
+   if (toggle) { toggle.setAttribute('aria-pressed', String(preference === 'dark')); toggle.setAttribute('aria-label', LABELS.dark); toggle.title = LABELS[preference === 'dark' ? 'light' : 'dark']; }
   });
  }
 
@@ -86,7 +82,7 @@
    var radius = Math.hypot(Math.max(origin.x, origin.width - origin.x), Math.max(origin.y, origin.height - origin.y));
    try {
     var animation = root.animate({ clipPath:['circle(0px at ' + origin.x + 'px ' + origin.y + 'px)', 'circle(' + radius + 'px at ' + origin.x + 'px ' + origin.y + 'px)'] },
-     { duration:640, easing:'cubic-bezier(.16,1,.3,1)', pseudoElement:'::view-transition-new(root)' });
+     { duration:900, easing:'cubic-bezier(.4,0,.2,1)', pseudoElement:'::view-transition-new(root)' });
     Promise.resolve(animation.finished).catch(function () { /* skipped transitions are expected during rapid choices */ });
    } catch (error) { cancelReveal(); }
   }, function () { if (request === transitionRequest && root.getAttribute('data-theme') !== resolve(next)) apply(next, false); });
@@ -104,36 +100,26 @@
   apply(next, true, false, !!(control && beforePreference !== next));
  }
 
- // Menu button: Enter/Space/ArrowDown open on the checked item, arrows move, Home/End jump, Escape or Tab close.
- function bindMenu(control) {
-  var toggle = control.querySelector('[data-theme-toggle]'), menu = control.querySelector('[role="menu"]');
-  var items = Array.prototype.slice.call(menu.querySelectorAll('[role="menuitemradio"]'));
-  function open(focusItem) {
-   menu.hidden = false; toggle.setAttribute('aria-expanded', 'true');
-   var target = focusItem || items.filter(function (i) { return i.getAttribute('aria-checked') === 'true'; })[0] || items[0];
-   target.focus();
-  }
-  function close(refocus) { if (menu.hidden) return; menu.hidden = true; toggle.setAttribute('aria-expanded', 'false'); if (refocus) toggle.focus(); }
-  toggle.addEventListener('click', function () { if (menu.hidden) open(); else close(true); });
-  toggle.addEventListener('keydown', function (event) {
-   if (event.key === 'ArrowDown' || event.key === 'ArrowUp') { event.preventDefault(); open(event.key === 'ArrowUp' ? items[items.length - 1] : null); }
-  });
-  items.forEach(function (item, index) {
-   item.addEventListener('click', function () { choose(item.getAttribute('data-theme-value'), item); close(true); });
-   item.addEventListener('keydown', function (event) {
-    var next = null;
-    if (event.key === 'ArrowDown') next = items[(index + 1) % items.length];
-    else if (event.key === 'ArrowUp') next = items[(index - 1 + items.length) % items.length];
-    else if (event.key === 'Home') next = items[0];
-    else if (event.key === 'End') next = items[items.length - 1];
-    else if (event.key === 'Escape') { event.preventDefault(); close(true); return; }
-    else if (event.key === 'Tab') { close(false); return; }
-    if (next) { event.preventDefault(); next.focus(); }
-   });
-  });
-  document.addEventListener('click', function (event) { if (!control.contains(event.target)) close(false); });
-  control.addEventListener('focusout', function (event) { if (!menu.hidden && event.relatedTarget && !control.contains(event.relatedTarget)) close(false); });
+ // Native button handles mouse, touch, Enter and Space without a menu or delay.
+ function bindToggle(control) {
+  var toggle = control.querySelector('[data-theme-toggle]');
+  toggle.addEventListener('click', function () { choose(preference === 'dark' ? 'light' : 'dark', toggle); });
  }
+
+ // A root View Transition can hit-test a rapid second click against <html>, because
+ // the real control is temporarily represented by its snapshot. Forward only clicks
+ // inside a visible theme option; normal button clicks keep their native handler.
+ document.addEventListener('click', function (event) {
+  if (!activeTransition || event.target !== root || event.button !== 0) return;
+  var toggles = document.querySelectorAll('[data-theme-toggle], [data-theme-value]');
+  for (var i = 0; i < toggles.length; i++) {
+   var rect = toggles[i].getBoundingClientRect();
+   if (rect.width && rect.height && event.clientX >= rect.left && event.clientX <= rect.right && event.clientY >= rect.top && event.clientY <= rect.bottom) {
+    event.preventDefault(); event.stopImmediatePropagation();
+    choose(toggles[i].getAttribute('data-theme-value') || (preference === 'dark' ? 'light' : 'dark'), toggles[i]); break;
+   }
+  }
+ });
 
  // Radio group: one tab stop; arrows move and select.
  function bindInline(control) {
@@ -154,17 +140,12 @@
  function bind(scope) {
   scope.querySelectorAll('[data-theme-control]:not([data-theme-ready])').forEach(function (control) {
    control.setAttribute('data-theme-ready', '');
-   if (control.getAttribute('data-theme-control') === 'inline') bindInline(control); else bindMenu(control);
+   if (control.getAttribute('data-theme-control') === 'inline') bindInline(control); else bindToggle(control);
    control.hidden = false;
   });
   syncControls();
  }
 
- // System: follow the operating system only while System is the preference.
- if (systemDark) {
-  var onSystem = function () { if (preference === 'system') apply('system', true); };
-  if (systemDark.addEventListener) systemDark.addEventListener('change', onSystem); else systemDark.addListener(onSystem);
- }
  if (reduce) {
   var onReducedMotion = function (event) {
    if (!event.matches) return;

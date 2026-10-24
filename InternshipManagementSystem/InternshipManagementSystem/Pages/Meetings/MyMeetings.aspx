@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#"
+<%@ Page Language="C#"
     MasterPageFile="~/Layout/Public.master"
     AutoEventWireup="true"
     CodeBehind="MyMeetings.aspx.cs"
@@ -11,10 +11,11 @@
 
     <style>
         .meetings-page {
-            --ink: #1b3046;
-            --muted: #62748a;
-            --primary: #24636b;
-            --border: #e0e8ef;
+            --ink: var(--th-fg-1b3046,#1b3046);
+            --muted: var(--ui-muted);
+            --primary: #28567e;
+            --primary-text: var(--ink,#28567e);
+            --border: var(--th-line-e0e8ef,#e0e8ef);
             color: var(--ink);
             max-width: 1240px;
             margin: auto;
@@ -33,9 +34,9 @@
             gap: 24px;
             padding: 30px;
             margin-bottom: 24px;
-            border: 1px solid #dce9e8;
+            border: 1px solid var(--th-line-d9e5f2,#d9e5f2);
             border-radius: 22px;
-            background: linear-gradient(120deg, #eaf5f2, #f4f7fc);
+            background: linear-gradient(120deg, var(--th-bg-edf4fd,#edf4fd), var(--th-bg-f5f8ff,#f5f8ff));
         }
 
         .meeting-eyebrow {
@@ -43,7 +44,7 @@
             font-weight: 750;
             letter-spacing: .15em;
             text-transform: uppercase;
-            color: var(--primary);
+            color: var(--primary-text);
             margin: 0 0 8px;
         }
 
@@ -69,7 +70,7 @@
             padding: 10px 16px;
             border: 1px solid var(--border);
             border-radius: 10px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             color: var(--ink);
             font: inherit;
             font-size: 13px;
@@ -80,7 +81,7 @@
         }
 
         .meeting-btn:hover {
-            background: #f0f5f7;
+            background: var(--th-bg-f0f5f7,#f0f5f7);
             color: var(--ink);
         }
 
@@ -91,13 +92,13 @@
         }
 
         .meeting-btn-primary:hover {
-            background: #194e56;
+            background: var(--th-bg-194568,#194568);
             color: #fff;
         }
 
         .meeting-btn-danger {
-            color: #a13a4a;
-            border-color: #eed5db;
+            color: var(--th-fg-a13a4a,#a13a4a);
+            border-color: var(--th-line-eed5db,#eed5db);
         }
 
         .meeting-btn-small {
@@ -112,7 +113,7 @@
         }
 
         .meetings-page :is(button, input, textarea, select, a):focus-visible {
-            outline: 3px solid #69a8b5;
+            outline: 3px solid var(--th-line-8db8df,#8db8df);
             outline-offset: 3px;
         }
 
@@ -125,7 +126,7 @@
 
         .meeting-stat {
             padding: 20px 22px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             border: 1px solid var(--border);
             border-radius: 15px;
         }
@@ -152,17 +153,17 @@
         }
 
         .meeting-stat:first-child .meeting-stat-number {
-            color: #946511;
+            color: var(--th-fg-946511,#946511);
         }
 
         .meeting-stat:nth-child(3) .meeting-stat-number {
-            color: #246b52;
+            color: var(--th-fg-28567e,#28567e);
         }
 
         .meeting-panel {
             border: 1px solid var(--border);
             border-radius: 18px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             overflow: hidden;
             box-shadow: 0 6px 24px #1b304606;
         }
@@ -201,7 +202,7 @@
             gap: 15px;
             align-items: center;
             padding: 16px 24px;
-            background: #fbfcfe;
+            background: var(--th-bg-fbfcfe,#fbfcfe);
             border-bottom: 1px solid var(--border);
             font-size: 13px;
         }
@@ -229,10 +230,10 @@
 
         .meeting-table th {
             padding: 15px 19px;
-            background: #f4f7fa;
+            background: var(--th-bg-f4f7fa,#f4f7fa);
             border: 0 !important;
             border-bottom: 1px solid var(--border) !important;
-            color: #5b6c80;
+            color: var(--th-fg-5b6c80,#5b6c80);
             text-align: left;
             font-size: 12px;
             font-weight: 700;
@@ -242,7 +243,7 @@
             padding: 20px 19px;
             vertical-align: top;
             border: 0 !important;
-            border-bottom: 1px solid #edf1f5 !important;
+            border-bottom: 1px solid var(--th-line-edf1f5,#edf1f5) !important;
             overflow-wrap: anywhere;
         }
 
@@ -251,7 +252,7 @@
         }
 
         .meeting-table tr:hover td {
-            background: #fcfdfd;
+            background: var(--th-bg-fcfdfd,#fcfdfd);
         }
 
         .meeting-subtext {
@@ -273,32 +274,32 @@
             display: inline-block;
             padding: 6px 10px;
             border-radius: 8px;
-            background: #eff3f7;
-            color: #56677c;
+            background: var(--th-bg-eff3f7,#eff3f7);
+            color: var(--th-fg-56677c,#56677c);
             font-size: 11px;
             font-weight: 700;
             max-width: 180px;
         }
 
         .meeting-status[data-state="Pending approval"] {
-            background: #fff2d6;
-            color: #825b0d;
+            background: var(--th-bg-fff2d6,#fff2d6);
+            color: var(--th-fg-825b0d,#825b0d);
         }
 
         .meeting-status[data-state="Approved"] {
-            background: #e7f5ee;
-            color: #246b4d;
+            background: var(--th-bg-e3efff,#e3efff);
+            color: var(--th-fg-24547c,#24547c);
         }
 
         .meeting-status[data-state="Declined"],
         .meeting-status[data-state="Cancelled"] {
-            background: #fdecef;
-            color: #a13a4a;
+            background: var(--th-bg-fdecef,#fdecef);
+            color: var(--th-fg-a13a4a,#a13a4a);
         }
 
         .meeting-status[data-state="Completed"] {
-            background: #eaf0ff;
-            color: #3e5e9b;
+            background: var(--th-bg-eaf0ff,#eaf0ff);
+            color: var(--th-fg-3e5e9b,#3e5e9b);
         }
 
         .meeting-empty {
@@ -320,7 +321,7 @@
             font-size: 12px;
             color: var(--muted);
             line-height: 1.8;
-            background: #fcfdfe;
+            background: var(--th-bg-fcfdfe,#fcfdfe);
         }
 
         .meeting-dialog {
@@ -331,13 +332,13 @@
             margin: auto;
             border: 1px solid var(--border);
             border-radius: 20px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             overflow: auto;
             box-shadow: 0 30px 100px #10203040;
         }
 
         .meeting-dialog::backdrop {
-            background: #12263970;
+            background: var(--th-bg-12263970,#12263970);
             backdrop-filter: blur(7px);
             -webkit-backdrop-filter: blur(7px);
         }
@@ -376,14 +377,14 @@
             height: 38px;
             border: 1px solid var(--border);
             border-radius: 10px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             font-size: 24px;
-            color: #53667b;
+            color: var(--th-fg-53667b,#53667b);
             cursor: pointer;
         }
 
         .meeting-close:hover {
-            background: #f3f7fa;
+            background: var(--th-bg-f3f7fa,#f3f7fa);
         }
 
         .meeting-form {
@@ -407,9 +408,9 @@
         .meeting-control {
             width: 100%;
             min-height: 45px;
-            border: 1px solid #cfdbe4;
+            border: 1px solid var(--th-line-cfdbe4,#cfdbe4);
             border-radius: 10px;
-            background: #fff;
+            background: var(--ui-surface,#fff);
             padding: 11px 12px;
             font: inherit;
             font-size: 14px;
@@ -441,9 +442,9 @@
         .meeting-help {
             padding: 13px 16px;
             border-radius: 10px;
-            background: #f0f7f6;
+            background: var(--th-bg-edf4fd,#edf4fd);
             font-size: 12px;
-            color: #42666b;
+            color: var(--th-fg-345d81,#345d81);
             line-height: 1.8;
         }
 
@@ -491,7 +492,7 @@
         .meeting-room-host {
             height: 68vh;
             min-height: 320px;
-            background: #182b40;
+            background: var(--th-bg-182b40,#182b40);
         }
 
         .meeting-room-note {
@@ -587,24 +588,23 @@
 
         <header class="meeting-hero">
             <div>
-                <p class="meeting-eyebrow">Internship workspace</p>
+                <p class="meeting-eyebrow"><%: L.T("Meetings.MyMeetings.InternshipWorkspace") %></p>
 
-                <h1>My Meetings</h1>
+                <h1><%: L.T("Meetings.MyMeetings.MyMeetings") %></h1>
 
                 <p>
-                    Request a conversation, respond to invitations,
-                    and keep your meeting history in one place.
+                    <%: L.T("Meetings.MyMeetings.RequestAConversationRespondToInvitations") %>
                 </p>
             </div>
 
             <button type="button"
                 class="meeting-btn meeting-btn-primary"
                 onclick="showMeetingDialog('requestDialog')">
-                + Request a meeting
+                <%: L.T("Meetings.MyMeetings.RequestAMeeting") %>
             </button>
         </header>
 
-        <div class="meeting-stats" aria-label="Meeting overview">
+        <div class="meeting-stats" aria-label="<%: L.T("Meetings.MyMeetings.MeetingOverview") %>">
 
             <div class="meeting-stat">
                 <asp:Label ID="IncomingCount"
@@ -612,9 +612,9 @@
                     CssClass="meeting-stat-number"
                     Text="0" />
 
-                <span class="meeting-stat-label">Waiting for you</span>
+                <span class="meeting-stat-label"><%: L.T("Meetings.MyMeetings.WaitingForYou") %></span>
 
-                <small>Requests needing your response</small>
+                <small><%: L.T("Meetings.MyMeetings.RequestsNeedingYourResponse") %></small>
             </div>
 
             <div class="meeting-stat">
@@ -623,9 +623,9 @@
                     CssClass="meeting-stat-number"
                     Text="0" />
 
-                <span class="meeting-stat-label">Requests sent</span>
+                <span class="meeting-stat-label"><%: L.T("Meetings.MyMeetings.RequestsSent") %></span>
 
-                <small>Waiting for the other person</small>
+                <small><%: L.T("Meetings.MyMeetings.WaitingForTheOtherPerson") %></small>
             </div>
 
             <div class="meeting-stat">
@@ -634,9 +634,9 @@
                     CssClass="meeting-stat-number"
                     Text="0" />
 
-                <span class="meeting-stat-label">Approved meetings</span>
+                <span class="meeting-stat-label"><%: L.T("Meetings.MyMeetings.ApprovedMeetings") %></span>
 
-                <small>Upcoming or in progress</small>
+                <small><%: L.T("Meetings.MyMeetings.UpcomingOrInProgress") %></small>
             </div>
 
             <div class="meeting-stat">
@@ -645,9 +645,9 @@
                     CssClass="meeting-stat-number"
                     Text="0" />
 
-                <span class="meeting-stat-label">In your history</span>
+                <span class="meeting-stat-label"><%: L.T("Meetings.MyMeetings.InYourHistory") %></span>
 
-                <small>Past, completed, or closed</small>
+                <small><%: L.T("Meetings.MyMeetings.PastCompletedOrClosed") %></small>
             </div>
 
         </div>
@@ -657,11 +657,10 @@
 
             <div class="meeting-panel-heading">
                 <div>
-                    <h2 id="meetingListTitle">Meetings &amp; requests</h2>
+                    <h2 id="meetingListTitle"><%: L.T("Meetings.MyMeetings.MeetingsRequests") %></h2>
 
                     <p>
-                        Open the details, respond to a request,
-                        or join an approved meeting.
+                        <%: L.T("Meetings.MyMeetings.OpenTheDetailsRespondToA") %>
                     </p>
                 </div>
 
@@ -669,12 +668,12 @@
                     <button type="button"
                         class="meeting-btn"
                         onclick="showMeetingDialog('filterDialog')">
-                        Change view
+                        <%: L.T("Meetings.MyMeetings.ChangeView") %>
                     </button>
 
                     <asp:Button ID="RefreshButton"
                         runat="server"
-                        Text="Refresh list"
+                        Text="<%$ Resources:Meetings, MyMeetings.RefreshList %>"
                         CssClass="meeting-btn"
                         OnClick="Refresh_Click"
                         OnClientClick="return confirmMeetingAction(this,'refresh');"
@@ -686,12 +685,11 @@
                 <strong>
                     <asp:Label ID="MeetingViewName"
                         runat="server"
-                        Text="All my meetings" />
+                        Text="<%$ Resources:Meetings, MyMeetings.AllMyMeetings %>" />
                 </strong>
 
                 <span class="meeting-live-note">
-                    Times shown in Jordan local time.
-                    Refresh to update availability.
+                    <%: L.T("Meetings.MyMeetings.TimesShownInJordanLocalTime") %>
                 </span>
             </div>
 
@@ -706,7 +704,7 @@
 
                     <Columns>
 
-                        <asp:TemplateField HeaderText="Meeting">
+                        <asp:TemplateField HeaderText="<%$ Resources:Meetings, MyMeetings.Meeting %>">
                             <ItemTemplate>
                                 <strong><%#: Eval("Title") %></strong>
 
@@ -716,47 +714,47 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="People">
+                        <asp:TemplateField HeaderText="<%$ Resources:Meetings, MyMeetings.People %>">
                             <ItemTemplate>
                                 <div>
-                                    <strong>From:</strong>
+                                    <strong><%: L.T("Meetings.MyMeetings.From") %></strong>
                                     <%#: Eval("FromName") %>
                                 </div>
 
                                 <div class="meeting-subtext">
-                                    <strong>To:</strong>
+                                    <strong><%: L.T("Meetings.MyMeetings.To") %></strong>
                                     <%#: Eval("ToName") %>
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
 
                         <asp:BoundField DataField="DateText"
-                            HeaderText="Date &amp; time"
+                            HeaderText="<%$ Resources:Meetings, MyMeetings.DateTime %>"
                             HtmlEncode="true" />
 
-                        <asp:TemplateField HeaderText="Status">
+                        <asp:TemplateField HeaderText="<%$ Resources:Meetings, MyMeetings.Status %>">
                             <ItemTemplate>
                                 <span class="meeting-status"
                                     data-state='<%#: Eval("StateText") %>'>
-                                    <%#: Eval("StateText") %>
+                                    <%#: L.Value("Ui", Eval("StateText")) %>
                                 </span>
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Actions">
+                        <asp:TemplateField HeaderText="<%$ Resources:Meetings, MyMeetings.Actions %>">
                             <ItemTemplate>
 
                                 <div class="meeting-actions">
 
                                     <asp:LinkButton runat="server"
-                                        Text="Details"
+                                        Text="<%$ Resources:Meetings, MyMeetings.Details %>"
                                         CssClass="meeting-btn meeting-btn-small"
                                         CommandName="Details"
                                         CommandArgument='<%# Eval("Id") %>'
                                         CausesValidation="false" />
 
                                     <asp:LinkButton runat="server"
-                                        Text="Accept"
+                                        Text="<%$ Resources:Meetings, MyMeetings.Accept %>"
                                         CssClass="meeting-btn meeting-btn-small meeting-btn-primary"
                                         CommandName="Accept"
                                         CommandArgument='<%# Eval("Id") %>'
@@ -765,7 +763,7 @@
                                         CausesValidation="false" />
 
                                     <asp:LinkButton runat="server"
-                                        Text="Decline"
+                                        Text="<%$ Resources:Meetings, MyMeetings.Decline %>"
                                         CssClass="meeting-btn meeting-btn-small meeting-btn-danger"
                                         CommandName="Reject"
                                         CommandArgument='<%# Eval("Id") %>'
@@ -774,7 +772,7 @@
                                         CausesValidation="false" />
 
                                     <asp:LinkButton runat="server"
-                                        Text="Join meeting"
+                                        Text="<%$ Resources:Meetings, MyMeetings.JoinMeeting %>"
                                         CssClass="meeting-btn meeting-btn-small meeting-btn-primary"
                                         CommandName="Join"
                                         CommandArgument='<%# Eval("Id") %>'
@@ -782,7 +780,7 @@
                                         CausesValidation="false" />
 
                                     <asp:LinkButton runat="server"
-                                        Text="Mark completed"
+                                        Text="<%$ Resources:Meetings, MyMeetings.MarkCompleted %>"
                                         CssClass="meeting-btn meeting-btn-small"
                                         CommandName="Complete"
                                         CommandArgument='<%# Eval("Id") %>'
@@ -791,7 +789,7 @@
                                         CausesValidation="false" />
 
                                     <asp:LinkButton runat="server"
-                                        Text="Cancel meeting"
+                                        Text="<%$ Resources:Meetings, MyMeetings.CancelMeeting %>"
                                         CssClass="meeting-btn meeting-btn-small meeting-btn-danger"
                                         CommandName="CancelMeeting"
                                         CommandArgument='<%# Eval("Id") %>'
@@ -808,9 +806,9 @@
 
                     <EmptyDataTemplate>
                         <div class="meeting-empty">
-                            <strong>No meetings in this view</strong>
+                            <strong><%: L.T("Meetings.MyMeetings.NoMeetingsInThisView") %></strong>
 
-                            Choose another view or send your first meeting request.
+                            <%: L.T("Meetings.MyMeetings.ChooseAnotherViewOrSendYour") %>
 
                             <br />
 
@@ -818,7 +816,7 @@
                                 class="meeting-btn"
                                 style="margin-top: 16px"
                                 onclick="showMeetingDialog('requestDialog')">
-                                Request a meeting
+                                <%: L.T("Meetings.MyMeetings.RequestAMeeting2") %>
                             </button>
                         </div>
                     </EmptyDataTemplate>
@@ -828,11 +826,7 @@
             </div>
 
             <p class="meeting-footer-note">
-                Requests need the invited person's approval.
-                Join opens 15 minutes before an approved meeting and remains
-                available until its scheduled end.
-                Passing the scheduled end does not automatically confirm
-                attendance or completion.
+                <%: L.T("Meetings.MyMeetings.RequestsNeedTheInvitedPersonS") %>
             </p>
 
         </section>
@@ -845,18 +839,17 @@
 
             <div class="meeting-dialog-header">
                 <div>
-                    <h2 id="requestTitle">Request a meeting</h2>
+                    <h2 id="requestTitle"><%: L.T("Meetings.MyMeetings.RequestAMeeting2") %></h2>
 
                     <p>
-                        Choose a person and suggest a time.
-                        The request needs their approval.
+                        <%: L.T("Meetings.MyMeetings.ChooseAPersonAndSuggestA") %>
                     </p>
                 </div>
 
                 <button type="button"
                     class="meeting-close"
                     onclick="closeMeetingDialog('requestDialog')"
-                    aria-label="Close request form">
+                    aria-label="<%: L.T("Meetings.MyMeetings.CloseRequestForm") %>">
                     ×
                 </button>
             </div>
@@ -867,20 +860,20 @@
                     <asp:Label runat="server"
                         AssociatedControlID="MeetingTitle"
                         CssClass="meeting-label"
-                        Text="Meeting title" />
+                        Text="<%$ Resources:Meetings, MyMeetings.MeetingTitle2 %>" />
 
                     <asp:TextBox ID="MeetingTitle"
                         runat="server"
                         CssClass="meeting-control"
                         MaxLength="150"
-                        placeholder="e.g. Internship progress review" />
+                        placeholder="<%$ Resources:Meetings, MyMeetings.EGInternshipProgressReview %>" />
                 </div>
 
                 <div>
                     <asp:Label runat="server"
                         AssociatedControlID="Recipient"
                         CssClass="meeting-label"
-                        Text="Who would you like to meet?" />
+                        Text="<%$ Resources:Meetings, MyMeetings.WhoWouldYouLikeToMeet %>" />
 
                     <asp:DropDownList ID="Recipient"
                         runat="server"
@@ -891,7 +884,7 @@
                     <asp:Label runat="server"
                         AssociatedControlID="MeetingDate"
                         CssClass="meeting-label"
-                        Text="Date and time" />
+                        Text="<%$ Resources:Meetings, MyMeetings.DateAndTime2 %>" />
 
                     <asp:TextBox ID="MeetingDate"
                         runat="server"
@@ -900,7 +893,7 @@
                         aria-describedby="dateHint" />
 
                     <span id="dateHint" class="meeting-hint">
-                        Use Jordan local time.
+                        <%: L.T("Meetings.MyMeetings.UseJordanLocalTime") %>
                     </span>
                 </div>
 
@@ -908,21 +901,19 @@
                     <asp:Label runat="server"
                         AssociatedControlID="Duration"
                         CssClass="meeting-label"
-                        Text="Duration" />
+                        Text="<%$ Resources:Meetings, MyMeetings.Duration %>" />
 
                     <asp:DropDownList ID="Duration"
                         runat="server"
                         CssClass="meeting-control">
 
-                        <asp:ListItem Value="15">15 minutes</asp:ListItem>
+                        <asp:ListItem Value="15" Text="<%$ Resources:Meetings, I18n.15minutes %>" />
 
-                        <asp:ListItem Value="30" Selected="True">
-                            30 minutes
-                        </asp:ListItem>
+                        <asp:ListItem Value="30" Selected="True" Text="<%$ Resources:Meetings, MyMeetings.30Minutes %>" />
 
-                        <asp:ListItem Value="45">45 minutes</asp:ListItem>
+                        <asp:ListItem Value="45" Text="<%$ Resources:Meetings, MyMeetings.45Minutes %>" />
 
-                        <asp:ListItem Value="60">60 minutes</asp:ListItem>
+                        <asp:ListItem Value="60" Text="<%$ Resources:Meetings, MyMeetings.60Minutes %>" />
 
                     </asp:DropDownList>
                 </div>
@@ -931,20 +922,18 @@
                     <asp:Label runat="server"
                         AssociatedControlID="Agenda"
                         CssClass="meeting-label"
-                        Text="Agenda (optional)" />
+                        Text="<%$ Resources:Meetings, MyMeetings.AgendaOptional %>" />
 
                     <asp:TextBox ID="Agenda"
                         runat="server"
                         TextMode="MultiLine"
                         Rows="3"
                         CssClass="meeting-control"
-                        placeholder="What would you like to discuss?" />
+                        placeholder="<%$ Resources:Meetings, MyMeetings.WhatWouldYouLikeToDiscuss %>" />
                 </div>
 
                 <div class="meeting-wide meeting-help">
-                    One request invites one person.
-                    Your meeting stays pending until they accept.
-                    Each request gets its own Jitsi room.
+                    <%: L.T("Meetings.MyMeetings.OnlyPeopleLinkedToYourInternship") %>
                 </div>
 
             </div>
@@ -953,12 +942,12 @@
                 <button type="button"
                     class="meeting-btn"
                     onclick="closeMeetingDialog('requestDialog')">
-                    Keep editing later
+                    <%: L.T("Meetings.MyMeetings.KeepEditingLater") %>
                 </button>
 
                 <asp:Button ID="SendRequest"
                     runat="server"
-                    Text="Send request"
+                    Text="<%$ Resources:Meetings, MyMeetings.SendRequest %>"
                     CssClass="meeting-btn meeting-btn-primary"
                     OnClick="SendRequest_Click"
                     OnClientClick="return confirmMeetingAction(this,'send');"
@@ -974,12 +963,12 @@
             aria-labelledby="filterTitle">
 
             <div class="meeting-dialog-header">
-                <h2 id="filterTitle">Choose a view</h2>
+                <h2 id="filterTitle"><%: L.T("Meetings.MyMeetings.ChooseAView") %></h2>
 
                 <button type="button"
                     class="meeting-close"
                     onclick="closeMeetingDialog('filterDialog')"
-                    aria-label="Close view selector">
+                    aria-label="<%: L.T("Meetings.MyMeetings.CloseViewSelector") %>">
                     ×
                 </button>
             </div>
@@ -988,31 +977,21 @@
                 <asp:Label runat="server"
                     AssociatedControlID="MeetingFilter"
                     CssClass="meeting-label"
-                    Text="Show meetings" />
+                    Text="<%$ Resources:Meetings, MyMeetings.ShowMeetings %>" />
 
                 <asp:DropDownList ID="MeetingFilter"
                     runat="server"
                     CssClass="meeting-control">
 
-                    <asp:ListItem Value="all">
-                        All my meetings and requests
-                    </asp:ListItem>
+                    <asp:ListItem Value="all" Text="<%$ Resources:Meetings, I18n.Allmymeetingsandrequests %>" />
 
-                    <asp:ListItem Value="incoming">
-                        Waiting for my approval
-                    </asp:ListItem>
+                    <asp:ListItem Value="incoming" Text="<%$ Resources:Meetings, I18n.Waitingformyapproval %>" />
 
-                    <asp:ListItem Value="sent">
-                        Requests I sent - pending
-                    </asp:ListItem>
+                    <asp:ListItem Value="sent" Text="<%$ Resources:Meetings, I18n.RequestsIsentpending %>" />
 
-                    <asp:ListItem Value="upcoming">
-                        Approved meetings
-                    </asp:ListItem>
+                    <asp:ListItem Value="upcoming" Text="<%$ Resources:Meetings, MyMeetings.ApprovedMeetings %>" />
 
-                    <asp:ListItem Value="history">
-                        Meeting history
-                    </asp:ListItem>
+                    <asp:ListItem Value="history" Text="<%$ Resources:Meetings, I18n.Meetinghistory %>" />
 
                 </asp:DropDownList>
             </div>
@@ -1021,12 +1000,12 @@
                 <button type="button"
                     class="meeting-btn"
                     onclick="closeMeetingDialog('filterDialog')">
-                    Cancel
+                    <%: L.T("Meetings.MyMeetings.Cancel") %>
                 </button>
 
                 <asp:Button ID="ApplyFilter"
                     runat="server"
-                    Text="Apply view"
+                    Text="<%$ Resources:Meetings, MyMeetings.ApplyView %>"
                     CssClass="meeting-btn meeting-btn-primary"
                     OnClick="ApplyFilter_Click"
                     CausesValidation="false" />
@@ -1042,12 +1021,12 @@
             aria-describedby="confirmText">
 
             <div class="meeting-dialog-header">
-                <h2 id="confirmTitle">Confirm action</h2>
+                <h2 id="confirmTitle"><%: L.T("Meetings.MyMeetings.ConfirmAction") %></h2>
 
                 <button type="button"
                     class="meeting-close"
                     onclick="closeMeetingDialog('confirmDialog')"
-                    aria-label="Close confirmation">
+                    aria-label="<%: L.T("Meetings.MyMeetings.CloseConfirmation") %>">
                     ×
                 </button>
             </div>
@@ -1060,14 +1039,14 @@
                 <button type="button"
                     class="meeting-btn"
                     onclick="closeMeetingDialog('confirmDialog')">
-                    Go back
+                    <%: L.T("Meetings.MyMeetings.GoBack") %>
                 </button>
 
                 <button type="button"
                     id="confirmProceed"
                     class="meeting-btn meeting-btn-primary"
                     onclick="proceedMeetingAction()">
-                    Confirm
+                    <%: L.T("Meetings.MyMeetings.Confirm") %>
                 </button>
             </div>
 
@@ -1080,39 +1059,39 @@
             aria-labelledby="detailsHeading">
 
             <div class="meeting-dialog-header">
-                <h2 id="detailsHeading">Meeting details</h2>
+                <h2 id="detailsHeading"><%: L.T("Meetings.MyMeetings.MeetingDetails") %></h2>
 
                 <button type="button"
                     class="meeting-close"
                     onclick="closeMeetingDialog('detailsDialog')"
-                    aria-label="Close meeting details">
+                    aria-label="<%: L.T("Meetings.MyMeetings.CloseMeetingDetails") %>">
                     ×
                 </button>
             </div>
 
             <div class="meeting-dialog-body meeting-details">
                 <dl>
-                    <dt>Title</dt>
+                    <dt><%: L.T("Meetings.MyMeetings.Title") %></dt>
                     <dd>
                         <asp:Label ID="DetailTitle" runat="server" />
                     </dd>
 
-                    <dt>People</dt>
+                    <dt><%: L.T("Meetings.MyMeetings.People") %></dt>
                     <dd>
                         <asp:Label ID="DetailPeople" runat="server" />
                     </dd>
 
-                    <dt>When</dt>
+                    <dt><%: L.T("Meetings.MyMeetings.When") %></dt>
                     <dd>
                         <asp:Label ID="DetailTime" runat="server" />
                     </dd>
 
-                    <dt>Status</dt>
+                    <dt><%: L.T("Meetings.MyMeetings.Status") %></dt>
                     <dd>
                         <asp:Label ID="DetailState" runat="server" />
                     </dd>
 
-                    <dt>Agenda</dt>
+                    <dt><%: L.T("Meetings.MyMeetings.Agenda") %></dt>
                     <dd class="meeting-agenda">
                         <asp:Label ID="DetailAgenda" runat="server" />
                     </dd>
@@ -1123,7 +1102,7 @@
                 <button type="button"
                     class="meeting-btn meeting-btn-primary"
                     onclick="closeMeetingDialog('detailsDialog')">
-                    Close details
+                    <%: L.T("Meetings.MyMeetings.CloseDetails") %>
                 </button>
             </div>
 
@@ -1144,7 +1123,7 @@
                 <button type="button"
                     class="meeting-close"
                     onclick="closeMeetingDialog('noticeDialog')"
-                    aria-label="Close message">
+                    aria-label="<%: L.T("Meetings.MyMeetings.CloseMessage") %>">
                     ×
                 </button>
             </div>
@@ -1159,7 +1138,7 @@
                 <button type="button"
                     class="meeting-btn meeting-btn-primary"
                     onclick="closeMeetingDialog('noticeDialog')">
-                    Got it
+                    <%: L.T("Meetings.MyMeetings.GotIt") %>
                 </button>
             </div>
 
@@ -1173,17 +1152,17 @@
 
             <div class="meeting-dialog-header">
                 <div>
-                    <h2 id="roomHeading">Meeting room</h2>
+                    <h2 id="roomHeading"><%: L.T("Meetings.MyMeetings.MeetingRoom") %></h2>
 
                     <p>
-                        Review your camera and microphone settings before joining.
+                        <%: L.T("Meetings.MyMeetings.ReviewYourCameraAndMicrophoneSettings") %>
                     </p>
                 </div>
 
                 <button type="button"
                     class="meeting-close"
                     onclick="closeMeetingDialog('roomDialog')"
-                    aria-label="Leave and close meeting">
+                    aria-label="<%: L.T("Meetings.MyMeetings.LeaveAndCloseMeeting") %>">
                     ×
                 </button>
             </div>
@@ -1192,7 +1171,7 @@
                 class="meeting-room-note"
                 role="status"
                 aria-live="polite">
-                Preparing the meeting…
+                <%: L.T("Meetings.MyMeetings.PreparingTheMeeting") %>
             </p>
 
             <div id="meetingRoomHost"
@@ -1200,14 +1179,14 @@
 
             <div class="meeting-room-footer">
                 <span class="meeting-hint">
-                    The person starting the Jitsi room may need to sign in.
+                    <%: L.T("Meetings.MyMeetings.ThePersonStartingTheJitsiRoom") %>
                 </span>
 
                 <a id="roomFallback"
                     class="meeting-btn meeting-btn-small"
                     target="_blank"
                     rel="noopener noreferrer">
-                    Open separately if needed ↗
+                    <%: L.T("Meetings.MyMeetings.OpenSeparatelyIfNeeded") %>
                 </a>
             </div>
 
@@ -1245,39 +1224,39 @@
 
                 const messages = {
                     send: [
-                        'Send this request?',
-                        'The invited person will receive your request. It stays pending until they approve.',
-                        'Send request'
+                        uimsT('ArabicSendthisrequest'),
+                        uimsT('ArabicTheinvitedpersonwillreceiveyourrequestIt'),
+                        uimsT('ArabicSendrequest')
                     ],
 
                     accept: [
-                        'Accept this meeting?',
-                        'The requester will see your acceptance. Join becomes available during the joining window.',
-                        'Accept meeting'
+                        uimsT('ArabicAcceptthismeeting'),
+                        uimsT('ArabicTherequesterwillseeyouracceptanceJoinbecomes'),
+                        uimsT('ArabicAcceptmeeting')
                     ],
 
                     reject: [
-                        'Decline this request?',
-                        'The request will move to your history and the requester will see your response.',
-                        'Decline request'
+                        uimsT('ArabicDeclinethisrequest'),
+                        uimsT('ArabicTherequestwillmovetoyourhistoryand'),
+                        uimsT('ArabicDeclinerequest')
                     ],
 
                     complete: [
-                        'Mark meeting completed?',
-                        'Confirm that the meeting actually took place and has finished. This is a manual completion record.',
-                        'Mark completed'
+                        uimsT('ArabicMarkmeetingcompleted'),
+                        uimsT('ArabicConfirmthatthemeetingactuallytookplaceand'),
+                        uimsT('ArabicMarkcompleted')
                     ],
 
                     cancel: [
-                        'Cancel this meeting?',
-                        'The meeting will be cancelled for both people and kept in your history.',
-                        'Cancel meeting'
+                        uimsT('ArabicCancelthismeeting'),
+                        uimsT('ArabicThemeetingwillbecancelledforbothpeople'),
+                        uimsT('ArabicCancelmeeting')
                     ],
 
                     refresh: [
-                        'Refresh the list?',
-                        'Load the latest requests, responses, and join availability.',
-                        'Refresh list'
+                        uimsT('ArabicRefreshthelist'),
+                        uimsT('ArabicLoadthelatestrequestsresponsesandjoinavailability'),
+                        uimsT('ArabicRefreshlist')
                     ]
                 };
 
@@ -1368,7 +1347,7 @@
                                 script.remove();
 
                                 reject(
-                                    new Error('Meeting service unavailable')
+                                    new Error(uimsT('ArabicMeetingserviceunavailable'))
                                 );
                             };
 
@@ -1396,7 +1375,7 @@
                     document.getElementById('roomFallback').href =
                         'https://meet.jit.si/' + encodeURIComponent(room);
 
-                    message.textContent = 'Preparing the meeting…';
+                    message.textContent = uimsT('ArabicPreparingthemeeting');
 
                     showMeetingDialog('roomDialog');
 
@@ -1442,14 +1421,14 @@
                         );
 
                         message.textContent =
-                            'Follow the joining instructions below. The person starting the room may need to sign in.';
+                            uimsT('ArabicFollowthejoininginstructionsbelowThepersonstarting');
 
                         activeApi.addListener(
                             'videoConferenceJoined',
                             function () {
                                 if (version === roomVersion) {
                                     message.textContent =
-                                        'You have joined the meeting.';
+                                        uimsT('ArabicYouhavejoinedthemeeting');
                                 }
                             }
                         );
@@ -1465,7 +1444,7 @@
                     } catch (error) {
                         if (version === roomVersion) {
                             message.textContent =
-                                'Could not load the room. Try again or use Open separately if needed.';
+                                uimsT('ArabicCouldnotloadtheroomTryagainor');
                         }
                     }
                 };
@@ -1492,3 +1471,4 @@
     </div>
 
 </asp:Content>
+

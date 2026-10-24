@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
@@ -17,9 +17,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             if (IsPostBack == false)
             {
+                if (CurrentSupervisor == null || string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
+                {
+                    Response.Redirect("~/Login.aspx");
+                    return;
+                }
+
                 LoadTraineesDropdown();
 
-                // ربط اسم المشرف لطباعته على الشهادة التلقائية
                 if (CurrentSupervisor != null)
                 {
                     litCompanySupervisorName.Text = CurrentSupervisor.FullName;
@@ -72,11 +77,53 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         litStudentName.Text = student.FullName;
                         litStudentMajor.Text = student.Major;
                         litStudentInitials.Text = GetInitials(student.FullName);
+
+                        // منطق جلب السيرة الذاتية (CV) المطابق لصفحة التفاصيل
+                        string cvLink = "";
+                        try
+                        {
+                            cvLink = !string.IsNullOrEmpty(student.CvUrl) ? student.CvUrl :
+                                    (!string.IsNullOrEmpty(student.PortfolioUrl) ? student.PortfolioUrl : "");
+                        }
+                        catch { }
+
+                        // إظهار أو إخفاء زر الـ CV وتعيين الرابط
+                        if (!string.IsNullOrEmpty(cvLink))
+                        {
+                            hlViewCV.NavigateUrl = cvLink;
+                            divCvContainer.Visible = true;
+                        }
+                        else
+                        {
+                            divCvContainer.Visible = false;
+                            hlViewCV.NavigateUrl = "";
+                        }
                     }
+                    
                     litInternshipTitle.Text = placement.OpportunityTitle;
                     litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeWarningI");
 
-                    ClearFormFields();
+                    // جلب وتعبئة بيانات المسودة المحفوظة إن وجدت باستخدام التحويل الآمن
+                    txtTechSkills.Text = placement.EvalTech > 0 ? placement.EvalTech.ToString() : "";
+                    txtWorkQuality.Text = placement.EvalWork > 0 ? placement.EvalWork.ToString() : "";
+                    txtProfessionalism.Text = placement.EvalProf > 0 ? placement.EvalProf.ToString() : "";
+                    txtCommunication.Text = placement.EvalComm > 0 ? placement.EvalComm.ToString() : "";
+                    
+                    string hours = Convert.ToString(placement.ActualHours);
+                    txtActualHours.Text = (!string.IsNullOrEmpty(hours) && hours != "0") ? hours : "";
+
+                    if (!string.IsNullOrEmpty(placement.EvalPerformance))
+                        ddlPerformance.SelectedValue = placement.EvalPerformance;
+                    else
+                        ddlPerformance.SelectedIndex = 0;
+
+                    if (!string.IsNullOrEmpty(placement.CompanyRecommendation))
+                        ddlRecommendation.SelectedValue = placement.CompanyRecommendation;
+                    else
+                        ddlRecommendation.SelectedIndex = 0;
+
+                    txtStrengths.Text = placement.EvalStrengths ?? "";
+                    txtImprovements.Text = placement.EvalImprovements ?? "";
                 }
             }
             catch (Exception ex)
@@ -133,17 +180,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             try
             {
-                // حفظ البيانات شاملة الساعات والتوصية
+                int.TryParse(txtTechSkills.Text, out int tech);
+                int.TryParse(txtWorkQuality.Text, out int work);
+                int.TryParse(txtProfessionalism.Text, out int prof);
+                int.TryParse(txtCommunication.Text, out int comm);
+                int.TryParse(txtActualHours.Text, out int hours);
+
                 var updates = new Dictionary<string, object>
                 {
-                    { "EvalTech", txtTechSkills.Text },
-                    { "EvalWork", txtWorkQuality.Text },
-                    { "EvalProf", txtProfessionalism.Text },
-                    { "EvalComm", txtCommunication.Text },
+                    { "EvalTech", tech },
+                    { "EvalWork", work },
+                    { "EvalProf", prof },
+                    { "EvalComm", comm },
                     { "EvalPerformance", ddlPerformance.SelectedValue },
                     { "EvalStrengths", txtStrengths.Text },
                     { "EvalImprovements", txtImprovements.Text },
-                    { "ActualHours", txtActualHours.Text },
+                    { "ActualHours", hours },
                     { "CompanyRecommendation", ddlRecommendation.SelectedValue }
                 };
 
@@ -171,19 +223,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 int.TryParse(txtWorkQuality.Text, out int work);
                 int.TryParse(txtProfessionalism.Text, out int prof);
                 int.TryParse(txtCommunication.Text, out int comm);
+                int.TryParse(txtActualHours.Text, out int hours);
 
-                // تطبيق معايير GJU: (40, 25, 20, 15)
                 if (tech > 40 || work > 25 || prof > 20 || comm > 15)
                 {
                     ShowPopupMessage(L.T("Company.FinalEvaluation.InvalidScores"), L.T("Company.FinalEvaluation.PleaseCheckYourNumbersScoresCannot"), false);
                     return;
                 }
 
-                if (string.IsNullOrEmpty(ddlPerformance.SelectedValue) || string.IsNullOrEmpty(ddlRecommendation.SelectedValue) || string.IsNullOrEmpty(txtActualHours.Text))
+                if (string.IsNullOrEmpty(ddlPerformance.SelectedValue) || string.IsNullOrEmpty(ddlRecommendation.SelectedValue) || hours == 0)
                 {
                     ShowPopupMessage(L.T("Company.FinalEvaluation.MissingFields"), L.T("Company.FinalEvaluation.PleaseCompleteActualHoursFeedbackAnd"), false);
                     return;
                 }
+
+                string certificateId = "GJU-UIMS-CERT-" + Guid.NewGuid().ToString().Substring(0, 8).ToUpper();
+                string issueDate = DateTime.UtcNow.ToString("yyyy-MM-dd");
 
                 var updates = new Dictionary<string, object>
                 {
@@ -196,11 +251,16 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     { "EvalStrengths", txtStrengths.Text },
                     { "EvalImprovements", txtImprovements.Text },
                     { "FinalScore", (tech + work + prof + comm) },
-                    { "ActualHours", txtActualHours.Text },
-                    { "CompanyRecommendation", ddlRecommendation.SelectedValue }
+                    { "ActualHours", hours },
+                    { "CompanyRecommendation", ddlRecommendation.SelectedValue },
+                    { "CertificateId", certificateId },
+                    { "CertificateIssueDate", issueDate }
                 };
 
                 _placementRepo.Update(placementId, updates);
+
+                // The academic supervisor's final evaluation is now due.
+                Services.NotificationService.CompanyEvaluationSent(placementId);
 
                 litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassStatusBadgeGreenI");
                 ShowPopupMessage(L.T("Company.FinalEvaluation.CertificateIssued"), L.T("Company.FinalEvaluation.SuccessEvaluationSubmittedToTheGJU"), true);
@@ -220,9 +280,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             litModalMessage.Text = message;
 
             if (isSuccess)
-                litModalIcon.Text = L.T("Company.FinalEvaluation.IClassBiBiCheckCircle");
+                litModalIcon.Text = "<i class='bi bi-check-circle text-success'></i>";
             else
-                litModalIcon.Text = L.T("Company.FinalEvaluation.IClassBiBiExclamationCircle");
+                litModalIcon.Text = "<i class='bi bi-exclamation-circle text-danger'></i>";
 
             ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", "var myModal = new bootstrap.Modal(document.getElementById('serverMessageModal')); myModal.show();", true);
         }
@@ -234,6 +294,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             litStudentInitials.Text = "--";
             litInternshipTitle.Text = "-";
             litStatusBadge.Text = L.T("Company.FinalEvaluation.SpanClassBadgeBgSecondaryPending");
+            
+            // إخفاء زر الـ CV عند تفريغ البطاقة
+            divCvContainer.Visible = false;
+            hlViewCV.NavigateUrl = "";
         }
 
         private void ClearFormFields()

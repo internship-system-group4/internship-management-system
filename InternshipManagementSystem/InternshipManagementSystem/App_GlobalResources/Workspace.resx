@@ -238,4 +238,12 @@
   <data name="YourOwnApplicationConfirmedPlacementAndTraining" xml:space="preserve"><value>Your own application, confirmed placement and training record.</value></data>
   <data name="YourOwnInternshipRecordsCurrentTotalsAnd" xml:space="preserve"><value>Your own internship records. Current totals and dated approval activity.</value></data>
   <data name="YourSupervisorsManageTheFinalAssessmentsTheir" xml:space="preserve"><value>Your supervisors manage the final assessments. Their internal forms stay private; your released result appears only after coordinator approval.</value></data>
+  <data name="StudentsByMajor" xml:space="preserve"><value>Students by Major</value></data>
+  <data name="StudentsByMajorContext" xml:space="preserve"><value>Distribution of School of Computing students by academic major.</value></data>
+  <data name="MajorMissing" xml:space="preserve"><value>Major not recorded</value></data>
+  <data name="MajorUnrecognized" xml:space="preserve"><value>Unrecognized major</value></data>
+  <data name="MajorNotRecorded" xml:space="preserve"><value>Major not recorded</value></data>
+  <data name="RecordedMajor" xml:space="preserve"><value>Recorded major: </value></data>
+  <data name="MajorVerificationNotice" xml:space="preserve"><value>Academic information verification required for {0} student records.</value></data>
+  <data name="ViewStudentBreakdown" xml:space="preserve"><value>View student breakdown</value></data>
 </root>

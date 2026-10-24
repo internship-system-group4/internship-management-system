@@ -222,31 +222,36 @@ export async function createCampusScene(host, options) {
 
  const camera = new THREE.PerspectiveCamera(38,1,.1,260);
  let basePosition = new THREE.Vector3(), baseTarget = new THREE.Vector3(), reduced = options.reducedMotion, paused = false, disposed = false, raf = 0;
- let state = 'idle', progress = 0, entryStart = 0, resolveEntry, clock = 0, lastTime = 0, settling = 0;
- // Exit path runs midway between the two flagpoles (x = -3.2 and 1.55).
- const exitPosition = new THREE.Vector3(-.8,1.6,-2), exitTarget = new THREE.Vector3(-.8,1.7,-14);
+ let state = 'idle', progress = 0, entryStart = 0, resolveEntry, onVeil, veiled = false, clock = 0, lastTime = 0, settling = 0, baseFov = 38;
+ // Entry flight: a curve that lines up with the road first, then passes midway between
+ // the flagpoles (x = -3.2 and 1.55) and carries on down the campus approach.
+ const ENTRY_MS = 1400;
+ const entryVia = new THREE.Vector3(-.6,1.9,8), exitPosition = new THREE.Vector3(-.8,1.65,-7), exitTarget = new THREE.Vector3(-.8,1.75,-30);
+ const flightPoint = new THREE.Vector3(), flightLook = new THREE.Vector3();
+ const easeInOut = t => t < .5 ? 4*t*t*t : 1-Math.pow(-2*t+2,3)/2;
  function resize() {
   const {width,height} = container.getBoundingClientRect(); if (!width || !height) return;
   renderer.setSize(width,height,false); camera.aspect = width/height;
   const aspect = width/height;
-  if (aspect < .9) { basePosition.set(1.2,2.7,27.5); baseTarget.set(.7,2.2,0); camera.fov = 44; }
-  else if (width <= 1100) { basePosition.set(1.4,2.4,21); baseTarget.set(-2.6,2.8,0); camera.fov = 40; }
-  else { basePosition.set(1.4,2.1,20.5); baseTarget.set(-4.3,3,0); camera.fov = 38; }
-  if (!entryStart) { camera.position.copy(basePosition); camera.lookAt(baseTarget); }
+  if (aspect < .9) { basePosition.set(1.2,2.7,27.5); baseTarget.set(.7,2.2,0); baseFov = 44; }
+  else if (width <= 1100) { basePosition.set(1.4,2.4,21); baseTarget.set(-2.6,2.8,0); baseFov = 40; }
+  else { basePosition.set(1.4,2.1,20.5); baseTarget.set(-4.3,3,0); baseFov = 38; }
+  if (!entryStart) { camera.fov = baseFov; camera.position.copy(basePosition); camera.lookAt(baseTarget); }
   camera.updateProjectionMatrix(); draw();
  }
  function draw() { if (!disposed) renderer.render(scene,camera); }
  // Restrained target poses; the loop eases toward them instead of snapping.
  const targets = { visitorArmX:0, visitorArmZ:0, visitorHead:0, guardHeadX:0, guardHeadY:0, guardArmX:0, guardArmZ:0 };
  function setTargets() {
-  const checking = state === 'submitting', success = state === 'success';
+  const checking = state === 'submitting', success = state === 'success', denied = state === 'denied';
   Object.assign(targets, {
    visitorArmX: checking || success ? -1.05 : 0, visitorArmZ: checking ? -.3 : 0, visitorHead: checking ? .12 : 0,
-   guardHeadX: checking ? .22 : 0, guardHeadY: checking ? .35 : 0,
+   guardHeadX: checking ? .22 : denied ? .12 : 0, guardHeadY: checking ? .35 : denied ? .5 : 0,
    guardArmX: success ? -.55 : 0, guardArmZ: success ? -1.15 : 0
   });
-  lightMat.emissive.set(success ? '#2fae6b' : checking ? '#e3a21a' : '#000000');
-  lightMat.color.set(success ? '#2fae6b' : checking ? '#e3a21a' : '#3c4a52');
+  // Amber while checking, green when verified, red when the details were refused.
+  const light = success ? '#2fae6b' : checking ? '#e3a21a' : denied ? '#d64545' : null;
+  lightMat.emissive.set(light || '#000000'); lightMat.color.set(light || '#3c4a52');
   settling = reduced ? 0 : 1;
  }
  function applyPose(rate) {
@@ -269,10 +274,17 @@ export async function createCampusScene(host, options) {
   raf = 0; if (disposed || document.hidden) return;
   const delta = lastTime ? Math.min((now-lastTime)/1000,.05) : 0; clock += delta; lastTime = now;
   if (entryStart) {
-   progress = Math.min((now-entryStart)/1250,1);
-   const open = 1-Math.pow(1-Math.min(progress/.7,1),3), travel = progress<.15 ? 0 : 1-Math.pow(1-(progress-.15)/.85,2.4);
+   progress = Math.min((now-entryStart)/ENTRY_MS,1);
+   // Gates finish opening well before the camera reaches them (~66% of the flight).
+   const open = 1-Math.pow(1-Math.min(progress/.45,1),3);
+   const t = easeInOut(Math.max(0,(progress-.06)/.94)), u = 1-t;
    leaves.forEach((leaf,i) => leaf.position.x = (i?1:-1)*(2.5+5.1*open));
-   camera.position.copy(basePosition).lerp(exitPosition,travel); camera.lookAt(baseTarget.clone().lerp(exitTarget,travel));
+   flightPoint.copy(basePosition).multiplyScalar(u*u).addScaledVector(entryVia,2*u*t).addScaledVector(exitPosition,t*t);
+   flightLook.copy(baseTarget).lerp(exitTarget,1-Math.pow(1-Math.min(t/.7,1),2));
+   camera.position.copy(flightPoint); camera.lookAt(flightLook);
+   camera.fov = baseFov + 12*t*t; camera.updateProjectionMatrix();
+   // The page veil starts fading in as the camera crosses the gateway.
+   if (!veiled && progress >= .64) { veiled = true; onVeil?.(); }
    if(progress===1){entryStart=0;resolveEntry?.();resolveEntry=null;}
   }
   if (settling) applyPose(1-Math.exp(-delta*9));
@@ -290,7 +302,7 @@ export async function createCampusScene(host, options) {
  resize(); setTargets(); snap(); pause.hidden = reduced; start();
  return {
   setState(value){state=value;setTargets();if(reduced)snap();start();},setReducedMotion,
-  enter(){if(reduced)return Promise.resolve();return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();start();});},
+  enter(options={}){onVeil=options.onVeil;veiled=false;if(reduced){onVeil?.();return Promise.resolve();}return new Promise(resolve=>{resolveEntry=resolve;entryStart=performance.now();start();});},
   dispose(){
    if(disposed)return;disposed=true;cancelAnimationFrame(raf);observer.disconnect();
    document.removeEventListener('visibilitychange',visibility);pause.removeEventListener('click',togglePause);renderer.domElement.removeEventListener('webglcontextlost',lost);

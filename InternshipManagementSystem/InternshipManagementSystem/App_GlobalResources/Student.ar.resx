@@ -61,6 +61,7 @@
   <data name="Dashboard.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
   <data name="Dashboard.AwaitingApproval" xml:space="preserve"><value>بانتظار الاعتماد</value></data>
   <data name="Dashboard.CVPortfolio" xml:space="preserve"><value>السيرة الذاتية والملف المهني</value></data>
+  <data name="Dashboard.DocumentsHelp" xml:space="preserve"><value>أدر سيرتك الذاتية وملف أعمالك.</value></data>
   <data name="Dashboard.Due" xml:space="preserve"><value>الاستحقاق</value></data>
   <data name="Dashboard.ExploreOpportunities" xml:space="preserve"><value>استكشف فرص التدريب</value></data>
   <data name="Dashboard.FeedbackAvailableToYou" xml:space="preserve"><value>ملاحظات متاحة لك</value></data>
@@ -70,14 +71,18 @@
   <data name="Dashboard.KeepYourNextStepInView" xml:space="preserve"><value>، تابع خطوتك التالية من هنا.</value></data>
   <data name="Dashboard.LinkedToYourPlacement" xml:space="preserve"><value>مرتبطة بجهة تدريبك</value></data>
   <data name="Dashboard.Meetings" xml:space="preserve"><value>الاجتماعات</value></data>
+  <data name="Dashboard.MeetingsHelp" xml:space="preserve"><value>تابع اجتماعاتك المجدولة.</value></data>
   <data name="Dashboard.NoDeadline" xml:space="preserve"><value>بلا موعد نهائي</value></data>
   <data name="Dashboard.NoOpenTrainingTasks" xml:space="preserve"><value>لا توجد مهام تدريب مفتوحة</value></data>
   <data name="Dashboard.OnlyApprovedEntriesCountTowardYour" xml:space="preserve"><value>لا تُحتسب ضمن المطلوب إلا الساعات المعتمدة، ويبقى إنهاء التدريب بحاجة إلى موافقة منسّق التدريب.</value></data>
   <data name="Dashboard.OpenTasks" xml:space="preserve"><value>المهام المفتوحة</value></data>
   <data name="Dashboard.PendingHoursAreSeparate" xml:space="preserve"><value>الساعات المعلّقة تُحتسب بشكل منفصل</value></data>
+  <data name="Dashboard.ProfileHelp" xml:space="preserve"><value>حدّث بياناتك الجامعية.</value></data>
   <data name="Dashboard.RecentDecisionsWithYourOriginalSubmission" xml:space="preserve"><value>أحدث القرارات مع تواريخ التقديم الأصلية.</value></data>
   <data name="Dashboard.RefreshToTryAgain" xml:space="preserve"><value>حدّث الصفحة للمحاولة مرة أخرى</value></data>
+  <data name="Dashboard.SearchWorkspace" xml:space="preserve"><value>ابحث في المهام والطلبات الأخيرة أو الشركات</value></data>
   <data name="Dashboard.StudentResources" xml:space="preserve"><value>موارد الطالب</value></data>
+  <data name="Dashboard.StudentWorkspace" xml:space="preserve"><value>مساحة عمل الطالب</value></data>
   <data name="Dashboard.TargetNotSet" xml:space="preserve"><value>لم يُحدَّد الهدف</value></data>
   <data name="Dashboard.TasksAndSubmissionsInYourCurrent" xml:space="preserve"><value>المهام والتسليمات في جهة تدريبك الحالية.</value></data>
   <data name="Dashboard.TasksEvaluated" xml:space="preserve"><value>المهام المقيّمة</value></data>
@@ -123,6 +128,16 @@
   <data name="DisplayEditProfile.YourProfileHasBeenUpdatedSuccessfully" xml:space="preserve"><value>تم تحديث ملفك الشخصي بنجاح.</value></data>
   <data name="DisplayEditProfile.YourSoftSkills" xml:space="preserve"><value>مهاراتك الشخصية</value></data>
   <data name="DisplayEditProfile.YourTechnicalSkills" xml:space="preserve"><value>مهاراتك التقنية</value></data>
+  <data name="I18n.ChooseaPDFWordZIPPNGor" xml:space="preserve"><value>اختر ملف PDF أو Word أو ZIP أو PNG أو JPG.</value></data>
+  <data name="I18n.Downloadtaskattachment" xml:space="preserve"><value>تنزيل مرفق المهمة: </value></data>
+  <data name="I18n.Enteravalidlinkbeginningwithhttp" xml:space="preserve"><value>أدخل رابطًا صالحًا يبدأ بـ http:// أو https://.</value></data>
+  <data name="I18n.Filestorageisnotconfigured" xml:space="preserve"><value>لم يتم إعداد تخزين الملفات.</value></data>
+  <data name="I18n.Storagedidnotreturnadownloadlink" xml:space="preserve"><value>لم تُرجع خدمة التخزين رابط تنزيل.</value></data>
+  <data name="I18n.Thefilemustbelargerthanzero" xml:space="preserve"><value>يجب ألا يكون الملف فارغًا وألا يتجاوز حجمه 10 ميغابايت.</value></data>
+  <data name="I18n.Theselectedfilecouldnotberead" xml:space="preserve"><value>تعذرت قراءة الملف المحدد.</value></data>
+  <data name="I18n.Thistaskrequiresafilebutfile" xml:space="preserve"><value>تتطلب هذه المهمة ملفًا، لكن التخزين غير مهيأ. تواصل مع المسؤول قبل التسليم.</value></data>
+  <data name="I18n.ThistaskrequiresanattachmentChoosea" xml:space="preserve"><value>تتطلب هذه المهمة مرفقًا. اختر ملفًا قبل التسليم.</value></data>
+  <data name="I18n.YoursessionexpiredSigninagainbefore" xml:space="preserve"><value>انتهت جلستك. سجّل الدخول مجددًا قبل الرفع.</value></data>
   <data name="MyApplications.ApplicationSubmittedYourStatusIsPending" xml:space="preserve"><value>أُرسل الطلب. حالته الآن «قيد المراجعة»، ويمكن للشركة مراجعته.</value></data>
   <data name="MyApplications.ConfirmOffer" xml:space="preserve"><value>تأكيد العرض</value></data>
   <data name="MyApplications.ConfirmedInternship" xml:space="preserve"><value>التدريب المؤكَّد</value></data>
@@ -147,51 +162,100 @@
   <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>تم تأكيد تدريبك وحفظه، لكن علامة الطلب ما زالت بحاجة إلى مزامنة؛ استخدم «مزامنة التأكيد» أدناه.</value></data>
   <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>تم حفظ جهة تدريبك، ولا يمكنك تأكيد عرض آخر.</value></data>
   <data name="MyTasks.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>أضف ملاحظة أو رابطًا أو مرفقًا وفق المطلوب.</value></data>
+  <data name="MyTasks.AddANoteALinkOr2" xml:space="preserve"><value>أضف ملاحظة أو رابطًا أو مرفقًا قبل التسليم.</value></data>
+  <data name="MyTasks.AssignedTask" xml:space="preserve"><value>مهمة مسندة</value></data>
   <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>المهام المسندة</value></data>
+  <data name="MyTasks.AssignedTasks2" xml:space="preserve"><value>المهام المسندة</value></data>
+  <data name="MyTasks.AttachedFile" xml:space="preserve"><value>ملف مرفق</value></data>
+  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>مرفق (اختياري)</value></data>
   <data name="MyTasks.Attempt" xml:space="preserve"><value>المحاولة</value></data>
   <data name="MyTasks.Attempts" xml:space="preserve"><value>المحاولات</value></data>
+  <data name="MyTasks.ChooseATask" xml:space="preserve"><value>اختر مهمة</value></data>
   <data name="MyTasks.Close" xml:space="preserve"><value>إغلاق</value></data>
   <data name="MyTasks.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
+  <data name="MyTasks.Deadline2" xml:space="preserve"><value>الموعد النهائي:</value></data>
   <data name="MyTasks.Description" xml:space="preserve"><value>الوصف</value></data>
+  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>وصف أو ملاحظة (اختياري)</value></data>
+  <data name="MyTasks.DownloadSubmittedFile" xml:space="preserve"><value>تنزيل الملف المسلّم</value></data>
   <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>أدخل رابط http أو https صحيحًا.</value></data>
   <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>أدخل نص التسليم أو رابطًا.</value></data>
+  <data name="MyTasks.EvaluationCompleted" xml:space="preserve"><value>اكتمل التقييم.</value></data>
   <data name="MyTasks.EvaluationCriteria" xml:space="preserve"><value>معايير التقييم</value></data>
   <data name="MyTasks.ExampleTask" xml:space="preserve"><value>مهمة نموذجية</value></data>
   <data name="MyTasks.Feedback" xml:space="preserve"><value>الملاحظات</value></data>
   <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>رفع الملفات غير متاح حاليًا. سلّم نصًا أو رابطًا قابلًا للمشاركة.</value></data>
+  <data name="MyTasks.Instructions" xml:space="preserve"><value>التعليمات</value></data>
   <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>التعليمات والمتطلبات</value></data>
+  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>رابط (اختياري)</value></data>
   <data name="MyTasks.MyTasks" xml:space="preserve"><value>مهامي</value></data>
+  <data name="MyTasks.MyTasks2" xml:space="preserve"><value>مهامي</value></data>
+  <data name="MyTasks.NoAdditionalCriteriaWereProvided" xml:space="preserve"><value>لم تُحدد معايير إضافية.</value></data>
+  <data name="MyTasks.NoAdditionalInstructionsWereProvided" xml:space="preserve"><value>لم تُقدم تعليمات إضافية.</value></data>
+  <data name="MyTasks.NoDescriptionWasProvided" xml:space="preserve"><value>لم يُقدم وصف.</value></data>
   <data name="MyTasks.NoEvaluationCriteriaProvided" xml:space="preserve"><value>لم تُحدَّد معايير للتقييم.</value></data>
+  <data name="MyTasks.NoFeedbackYet" xml:space="preserve"><value>لا توجد ملاحظات بعد.</value></data>
   <data name="MyTasks.NoSubmissionAttemptsYet" xml:space="preserve"><value>لا توجد محاولات تسليم بعد.</value></data>
+  <data name="MyTasks.NoSubmissionsYet" xml:space="preserve"><value>لا توجد تسليمات بعد.</value></data>
   <data name="MyTasks.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>لم تُسند إليك أي مهام بعد.</value></data>
+  <data name="MyTasks.NoTasksHaveBeenAssignedTo2" xml:space="preserve"><value>لم تُسند مهام إلى تدريبك بعد.</value></data>
   <data name="MyTasks.NotSet" xml:space="preserve"><value>غير محددة</value></data>
   <data name="MyTasks.NotSubmitted" xml:space="preserve"><value>لم تُسلَّم</value></data>
   <data name="MyTasks.OfTheTask" xml:space="preserve"><value>% من المهمة)</value></data>
+  <data name="MyTasks.OpenSubmittedLink" xml:space="preserve"><value>فتح الرابط المسلَّم</value></data>
+  <data name="MyTasks.PDFWordZIPOrImageFile" xml:space="preserve"><value>ملف PDF أو Word أو ZIP أو صورة. الحجم الأقصى: 10 ميغابايت.</value></data>
   <data name="MyTasks.Points" xml:space="preserve"><value>نقطة (</value></data>
+  <data name="MyTasks.Points2" xml:space="preserve"><value>علامة</value></data>
+  <data name="MyTasks.ResubmitTask" xml:space="preserve"><value>إعادة تسليم المهمة</value></data>
+  <data name="MyTasks.ReviewTheTasksAssignedToYou" xml:space="preserve"><value>راجع المهام المسندة إليك وسلّم عملك قبل الموعد النهائي.</value></data>
+  <data name="MyTasks.RevisionRequested" xml:space="preserve"><value>مطلوب تعديلها</value></data>
+  <data name="MyTasks.RevisionRequested2" xml:space="preserve"><value>تم طلب التعديل.</value></data>
+  <data name="MyTasks.SelectATaskToViewIts" xml:space="preserve"><value>اختر مهمة لعرض تعليماتها وخيارات التسليم.</value></data>
+  <data name="MyTasks.SelectOneOfYourAssignedTasks" xml:space="preserve"><value>اختر إحدى مهامك لعرض تفاصيلها وتسليم عملك.</value></data>
+  <data name="MyTasks.Starts" xml:space="preserve"><value>يبدأ في </value></data>
   <data name="MyTasks.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="MyTasks.Status2" xml:space="preserve"><value>الحالة</value></data>
   <data name="MyTasks.SubmissionCouldNotBeSaved" xml:space="preserve"><value>تعذّر حفظ التسليم.</value></data>
   <data name="MyTasks.SubmissionCouldNotBeSavedTry" xml:space="preserve"><value>تعذّر حفظ التسليم. حاول مرة أخرى.</value></data>
   <data name="MyTasks.SubmissionHistory" xml:space="preserve"><value>سجل التسليمات</value></data>
+  <data name="MyTasks.SubmissionHistory2" xml:space="preserve"><value>سجل التسليمات</value></data>
   <data name="MyTasks.SubmissionLink" xml:space="preserve"><value>رابط التسليم</value></data>
   <data name="MyTasks.SubmissionSavedSuccessfully" xml:space="preserve"><value>تم حفظ التسليم بنجاح.</value></data>
   <data name="MyTasks.SubmissionText" xml:space="preserve"><value>نص التسليم</value></data>
   <data name="MyTasks.SubmissionWasSavedButTheTask" xml:space="preserve"><value>حُفظ التسليم، لكن تعذّر تحديث حالة المهمة. حدّث الصفحة.</value></data>
+  <data name="MyTasks.SubmitOrResubmitWork" xml:space="preserve"><value>تسليم العمل أو إعادة تسليمه</value></data>
   <data name="MyTasks.SubmitTask" xml:space="preserve"><value>تسليم المهمة</value></data>
+  <data name="MyTasks.SubmitTask2" xml:space="preserve"><value>تسليم المهمة</value></data>
   <data name="MyTasks.SubmitYourWork" xml:space="preserve"><value>سلّم عملك</value></data>
+  <data name="MyTasks.SubmitYourWorkHereEachResubmission" xml:space="preserve"><value>سلّم عملك هنا. تُحفظ كل إعادة تسليم كمحاولة جديدة.</value></data>
   <data name="MyTasks.SubmittedAt" xml:space="preserve"><value>وقت التسليم</value></data>
   <data name="MyTasks.Task" xml:space="preserve"><value>المهمة</value></data>
+  <data name="MyTasks.TaskCriteria" xml:space="preserve"><value>معايير المهمة</value></data>
   <data name="MyTasks.TaskDetailsAndSubmission" xml:space="preserve"><value>تفاصيل المهمة والتسليم</value></data>
+  <data name="MyTasks.TheAttachmentCouldNotBeUploaded" xml:space="preserve"><value>تعذر رفع المرفق. تحقق من اتصالك وحاول مجددًا.</value></data>
+  <data name="MyTasks.TheSubmissionCouldNotBeSaved" xml:space="preserve"><value>تعذر حفظ التسليم. يرجى المحاولة مجددًا.</value></data>
   <data name="MyTasks.TheSupervisorSInstructionsWillAppear" xml:space="preserve"><value>ستظهر تعليمات المشرف هنا.</value></data>
   <data name="MyTasks.TheTaskDescriptionWillAppearHere" xml:space="preserve"><value>سيظهر وصف المهمة هنا.</value></data>
   <data name="MyTasks.ThisTaskIsNotAcceptingSubmissions" xml:space="preserve"><value>لا تستقبل هذه المهمة تسليمات حاليًا.</value></data>
+  <data name="MyTasks.ThisTaskIsNotAcceptingSubmissions2" xml:space="preserve"><value>هذه المهمة لا تقبل التسليم حاليًا. راجع الحالة أعلاه أو تواصل مع مشرفك.</value></data>
+  <data name="MyTasks.ThisTaskIsNotAcceptingSubmissions3" xml:space="preserve"><value>هذه المهمة لا تقبل التسليم حاليًا.</value></data>
+  <data name="MyTasks.ThisTaskIsNotAssignedTo" xml:space="preserve"><value>هذه المهمة غير مسندة إلى حسابك.</value></data>
   <data name="MyTasks.ThisTaskRequiresAFileFile" xml:space="preserve"><value>تتطلب هذه المهمة ملفًا، ورفع الملفات غير متاح حاليًا.</value></data>
   <data name="MyTasks.ToBeSetBySupervisor" xml:space="preserve"><value>يحدّده المشرف</value></data>
   <data name="MyTasks.UTC" xml:space="preserve"><value>UTC</value></data>
+  <data name="MyTasks.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="MyTasks.UntitledTask" xml:space="preserve"><value>مهمة بلا عنوان</value></data>
+  <data name="MyTasks.UseAFullLinkBeginningWith" xml:space="preserve"><value>استخدم رابطًا كاملًا يبدأ بـ https:// أو http://.</value></data>
   <data name="MyTasks.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
   <data name="MyTasks.ViewYourAssignedTasksDeadlinesAnd" xml:space="preserve"><value>اطّلع على المهام المسندة إليك ومواعيدها النهائية وحالة تسليمها.</value></data>
   <data name="MyTasks.YouAlreadySubmittedThisTaskWait" xml:space="preserve"><value>سلّمت هذه المهمة بالفعل. انتظر طلب تعديل.</value></data>
   <data name="MyTasks.YouCanProvideTextALink" xml:space="preserve"><value>يمكنك تقديم نص أو رابط أو ملف، وتُحفظ كل عملية تسليم جديدة كمحاولة مستقلة.</value></data>
   <data name="MyTasks.YourConfirmedPlacementWasNotFound" xml:space="preserve"><value>لم يُعثر على جهة تدريبك المؤكَّدة.</value></data>
+  <data name="MyTasks.YourPlacementCouldNotBeVerified" xml:space="preserve"><value>تعذر التحقق من تدريبك.</value></data>
+  <data name="MyTasks.YourSubmissionIsWaitingForReview" xml:space="preserve"><value>تسليمك بانتظار المراجعة. يمكنك إعادة التسليم بعد طلب التعديل.</value></data>
+  <data name="MyTasks.YourSubmissionWasSavedButThe" xml:space="preserve"><value>تم حفظ تسليمك، لكن تعذر تحديث حالة المهمة. أعد تحميل الصفحة أو تواصل مع مشرفك.</value></data>
+  <data name="MyTasks.YourSupervisorSTasksWillAppear" xml:space="preserve"><value>ستظهر هنا مهام مشرفك عند إسنادها.</value></data>
+  <data name="MyTasks.YourTaskWasSubmittedSuccessfully" xml:space="preserve"><value>تم تسليم مهمتك بنجاح.</value></data>
   <data name="Opportunities.APPLICATIONDEADLINE" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
   <data name="Opportunities.AVAILABLESEATS" xml:space="preserve"><value>المقاعد المتاحة</value></data>
   <data name="Opportunities.AvailableOpportunities" xml:space="preserve"><value>الفرص المتاحة</value></data>
@@ -266,12 +330,15 @@
   <data name="Profile.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
   <data name="Profile.CVAndPortfolioFilesMustBe" xml:space="preserve"><value>يجب أن تكون ملفات السيرة الذاتية والملف المهني بصيغة PDF.</value></data>
   <data name="Profile.CVProfessionalPortfolio" xml:space="preserve"><value>السيرة الذاتية والملف المهني</value></data>
+  <data name="Profile.Cancel" xml:space="preserve"><value>إلغاء</value></data>
   <data name="Profile.ChooseProfilePhoto" xml:space="preserve"><value>اختيار الصورة الشخصية</value></data>
+  <data name="Profile.Close" xml:space="preserve"><value>إغلاق</value></data>
   <data name="Profile.College" xml:space="preserve"><value>الكلية</value></data>
   <data name="Profile.CommunicationLeadershipProblemSolvingAndTeamwork" xml:space="preserve"><value>التواصل والقيادة وحل المشكلات والعمل الجماعي.</value></data>
   <data name="Profile.CurriculumVitaeCV" xml:space="preserve"><value>السيرة الذاتية (CV)</value></data>
   <data name="Profile.DownloadCurrentCV" xml:space="preserve"><value>تنزيل السيرة الذاتية الحالية ←</value></data>
   <data name="Profile.DownloadCurrentPortfolio" xml:space="preserve"><value>تنزيل ملف المشاريع الحالي ←</value></data>
+  <data name="Profile.EditProfile" xml:space="preserve"><value>تعديل الملف الشخصي</value></data>
   <data name="Profile.ExampleCASPNETHTMLCSS" xml:space="preserve"><value>مثال: C#, ASP.NET, HTML, CSS, SQL, Git</value></data>
   <data name="Profile.ExampleTeamworkCommunicationTimeManagement" xml:space="preserve"><value>مثال: العمل الجماعي، التواصل، إدارة الوقت</value></data>
   <data name="Profile.FullName" xml:space="preserve"><value>الاسم الكامل *</value></data>
@@ -306,6 +373,7 @@
   <data name="Profile.ShowcaseYourAcademicProjectsPracticalWork" xml:space="preserve"><value>اعرض مشاريعك الأكاديمية وأعمالك التطبيقية وإنجازاتك وخبراتك المهنية.</value></data>
   <data name="Profile.SkillsCompetencies" xml:space="preserve"><value>المهارات والكفاءات</value></data>
   <data name="Profile.SoftSkills" xml:space="preserve"><value>المهارات الشخصية</value></data>
+  <data name="Profile.Student" xml:space="preserve"><value>الطالب</value></data>
   <data name="Profile.StudentAccountIsUnavailable" xml:space="preserve"><value>حساب الطالب غير متاح.</value></data>
   <data name="Profile.StudentID" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="Profile.StudentProfileCouldNotBeFound" xml:space="preserve"><value>لم يُعثر على ملف الطالب.</value></data>
@@ -322,72 +390,121 @@
   <data name="Profile.YourOfficialUniversityAndTrainingDetails" xml:space="preserve"><value>بياناتك الجامعية والتدريبية الرسمية.</value></data>
   <data name="Profile.YourProfileHasBeenUpdatedSuccessfully" xml:space="preserve"><value>تم تحديث ملفك الشخصي بنجاح.</value></data>
   <data name="Profile.YourProfileWasUpdatedElsewherePlease" xml:space="preserve"><value>حُدّث ملفك الشخصي من مكان آخر. يُرجى تحديث الصفحة والمحاولة مرة أخرى.</value></data>
+  <data name="Progress.AcademicSupervisorFeedback" xml:space="preserve"><value>ملاحظات المشرف الأكاديمي</value></data>
   <data name="Progress.Approved" xml:space="preserve"><value>معتمدة</value></data>
+  <data name="Progress.ApprovedEntry" xml:space="preserve"><value>سجل ساعات معتمد</value></data>
   <data name="Progress.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
   <data name="Progress.ApprovedHoursProgress" xml:space="preserve"><value>تقدّم الساعات المعتمدة</value></data>
   <data name="Progress.ApprovedOn" xml:space="preserve"><value>تاريخ الاعتماد</value></data>
+  <data name="Progress.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
+  <data name="Progress.AssignedTasks" xml:space="preserve"><value>المهام المسندة</value></data>
   <data name="Progress.Attempt" xml:space="preserve"><value>المحاولة</value></data>
   <data name="Progress.Attempts" xml:space="preserve"><value>المحاولات</value></data>
   <data name="Progress.AwaitingReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
   <data name="Progress.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="Progress.CompanyNotSpecified" xml:space="preserve"><value>لم تُحدد الشركة</value></data>
   <data name="Progress.CompanySupervisor" xml:space="preserve"><value>مشرف الشركة</value></data>
+  <data name="Progress.Complete" xml:space="preserve"><value>مكتمل ·</value></data>
+  <data name="Progress.CompletionReview" xml:space="preserve"><value>مراجعة الإتمام:</value></data>
   <data name="Progress.CompletionStatus" xml:space="preserve"><value>حالة الإنهاء</value></data>
   <data name="Progress.Date" xml:space="preserve"><value>التاريخ</value></data>
   <data name="Progress.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
+  <data name="Progress.Deadline2" xml:space="preserve"><value>الموعد النهائي:</value></data>
   <data name="Progress.Description" xml:space="preserve"><value>الوصف</value></data>
   <data name="Progress.Details" xml:space="preserve"><value>التفاصيل</value></data>
   <data name="Progress.DownloadPrintCompletionReportPDF" xml:space="preserve"><value>تنزيل / طباعة تقرير إنهاء التدريب (PDF)</value></data>
   <data name="Progress.EachTaskIsGradedOutOf" xml:space="preserve"><value>تُقيَّم كل مهمة من الدرجة القصوى التي يحددها لها مشرف الشركة.</value></data>
+  <data name="Progress.FinalResultAndCompletionReport" xml:space="preserve"><value>النتيجة النهائية وتقرير الإتمام</value></data>
   <data name="Progress.FinalScore" xml:space="preserve"><value>الدرجة النهائية</value></data>
+  <data name="Progress.FollowYourTaskSubmissionsFeedbackApproved" xml:space="preserve"><value>تابع تسليمات مهامك والملاحظات والساعات المعتمدة والنتيجة النهائية.</value></data>
   <data name="Progress.GoToMyApplications" xml:space="preserve"><value>الانتقال إلى طلباتي</value></data>
+  <data name="Progress.GoToMyTasks" xml:space="preserve"><value>الانتقال إلى مهامي</value></data>
   <data name="Progress.Grade" xml:space="preserve"><value>الدرجة</value></data>
   <data name="Progress.GradedOutOfAssigned" xml:space="preserve"><value>المقيّمة من أصل المسندة</value></data>
+  <data name="Progress.GradedTasks" xml:space="preserve"><value>المهام المقيّمة</value></data>
   <data name="Progress.Hours" xml:space="preserve"><value>الساعات</value></data>
+  <data name="Progress.InProgress" xml:space="preserve"><value>قيد التنفيذ</value></data>
+  <data name="Progress.IncludesALink" xml:space="preserve"><value>يتضمن رابطًا</value></data>
   <data name="Progress.InternshipCompletionOfficialReport" xml:space="preserve"><value>إنهاء التدريب والتقرير الرسمي</value></data>
+  <data name="Progress.InternshipPlacement" xml:space="preserve"><value>التدريب المعتمد</value></data>
+  <data name="Progress.LatestGrade" xml:space="preserve"><value>أحدث علامة:</value></data>
   <data name="Progress.MyInternship" xml:space="preserve"><value>تدريبي</value></data>
   <data name="Progress.MyProgressEvaluation" xml:space="preserve"><value>تقدّمي وتقييمي</value></data>
   <data name="Progress.MyTasks" xml:space="preserve"><value>مهامي</value></data>
+  <data name="Progress.NeedRevision" xml:space="preserve"><value>تحتاج إلى تعديل</value></data>
+  <data name="Progress.NeedsCorrections" xml:space="preserve"><value>تحتاج إلى تصحيح</value></data>
+  <data name="Progress.NoAcademicCommentsHaveBeenShared" xml:space="preserve"><value>لم تتم مشاركة ملاحظات أكاديمية معك بعد.</value></data>
   <data name="Progress.NoConfirmedInternshipYet" xml:space="preserve"><value>لا يوجد تدريب مؤكَّد بعد</value></data>
   <data name="Progress.NoFeedbackYet" xml:space="preserve"><value>لا توجد ملاحظات بعد</value></data>
+  <data name="Progress.NoSubmissionYet" xml:space="preserve"><value>لا يوجد تسليم بعد</value></data>
   <data name="Progress.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>لم تُسند إليك أي مهام بعد.</value></data>
+  <data name="Progress.NoTasksHaveBeenAssignedTo2" xml:space="preserve"><value>لم تُسند مهام إلى هذا التدريب بعد.</value></data>
+  <data name="Progress.NoTrainingHoursHaveBeenApproved" xml:space="preserve"><value>لم تُعتمد ساعات تدريب بعد.</value></data>
   <data name="Progress.NoTrainingHoursHaveBeenRecorded" xml:space="preserve"><value>لم تُسجَّل أي ساعات تدريب بعد.</value></data>
+  <data name="Progress.NoWrittenFeedbackWasProvided" xml:space="preserve"><value>لم تُقدم ملاحظات مكتوبة.</value></data>
+  <data name="Progress.NotGraded" xml:space="preserve"><value>لم تُرصد علامة</value></data>
   <data name="Progress.NotGradedYet" xml:space="preserve"><value>لم تُقيَّم بعد</value></data>
+  <data name="Progress.NotSet" xml:space="preserve"><value>غير محددة</value></data>
   <data name="Progress.OfRequiredHours" xml:space="preserve"><value>% من الساعات المطلوبة</value></data>
   <data name="Progress.OnlyHoursApprovedByYourSupervisor" xml:space="preserve"><value>لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك، وإنجاز المهمة لا يعني اعتماد ساعاتها تلقائيًا.</value></data>
   <data name="Progress.OpenRevisions" xml:space="preserve"><value>التعديلات المفتوحة</value></data>
+  <data name="Progress.OpenThePDFToDownloadOr" xml:space="preserve"><value>افتح ملف PDF لتنزيله أو طباعته من متصفحك.</value></data>
   <data name="Progress.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
   <data name="Progress.Outcome" xml:space="preserve"><value>النتيجة</value></data>
   <data name="Progress.PendingApproval" xml:space="preserve"><value>بانتظار الاعتماد</value></data>
   <data name="Progress.PlacementStatus" xml:space="preserve"><value>حالة جهة التدريب</value></data>
+  <data name="Progress.PleaseReviseThisSubmission" xml:space="preserve"><value>يرجى تعديل هذا التسليم.</value></data>
   <data name="Progress.Rejected" xml:space="preserve"><value>مرفوضة</value></data>
+  <data name="Progress.ReportedHoursAwaitingReviewOnlyApproved" xml:space="preserve"><value>ساعات مسجلة بانتظار المراجعة. تُحتسب الساعات المعتمدة فقط.</value></data>
+  <data name="Progress.RequiredHours" xml:space="preserve"><value>الساعات المطلوبة</value></data>
   <data name="Progress.Result" xml:space="preserve"><value>النتيجة</value></data>
   <data name="Progress.ReviewerNote" xml:space="preserve"><value>ملاحظة المراجِع</value></data>
   <data name="Progress.RevisionRequested" xml:space="preserve"><value>مطلوب تعديلها</value></data>
+  <data name="Progress.RevisionRequested2" xml:space="preserve"><value>مطلوب تعديلها</value></data>
   <data name="Progress.SomeSectionsCouldNotBeLoaded" xml:space="preserve"><value>تعذّر تحميل بعض الأقسام، وقد تظهر فارغة:</value></data>
   <data name="Progress.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Progress.SubmissionAndFeedbackHistory" xml:space="preserve"><value>سجل التسليمات والملاحظات</value></data>
   <data name="Progress.SubmissionsRevisionHistory" xml:space="preserve"><value>التسليمات وسجل التعديلات</value></data>
+  <data name="Progress.SubmitYourWorkFromMyTasks" xml:space="preserve"><value>سلّم عملك من صفحة مهامي.</value></data>
   <data name="Progress.Submitted" xml:space="preserve"><value>تاريخ الإرسال</value></data>
   <data name="Progress.SupervisorFeedback" xml:space="preserve"><value>ملاحظات المشرف</value></data>
   <data name="Progress.Task" xml:space="preserve"><value>المهمة</value></data>
+  <data name="Progress.TaskEvaluated" xml:space="preserve"><value>تم تقييم المهمة</value></data>
   <data name="Progress.TaskEvaluations" xml:space="preserve"><value>تقييمات المهام</value></data>
   <data name="Progress.TaskEvaluationsFeedback" xml:space="preserve"><value>تقييمات المهام والملاحظات</value></data>
   <data name="Progress.TaskGradeAverage" xml:space="preserve"><value>متوسط درجات المهام</value></data>
+  <data name="Progress.TaskProgressSummary" xml:space="preserve"><value>ملخص تقدم المهام</value></data>
+  <data name="Progress.TasksAndEvaluations" xml:space="preserve"><value>المهام والتقييمات</value></data>
   <data name="Progress.TasksGraded" xml:space="preserve"><value>المهام المقيّمة</value></data>
+  <data name="Progress.TasksSubmitted" xml:space="preserve"><value>المهام المسلّمة</value></data>
   <data name="Progress.TasksWaitingForYourResubmission" xml:space="preserve"><value>مهام بانتظار إعادة تسليمك</value></data>
+  <data name="Progress.TheApprovedReportIsNotAvailable" xml:space="preserve"><value>التقرير المعتمد غير متاح لهذا الحساب.</value></data>
+  <data name="Progress.TheCoordinatorCompletedTheReviewInternship" xml:space="preserve"><value>أكمل المنسق المراجعة ولم تتم الموافقة على إتمام التدريب.</value></data>
   <data name="Progress.TheInternshipCoordinatorIsReviewingYour" xml:space="preserve"><value>يراجع منسّق التدريب طلب إنهاء تدريبك.</value></data>
   <data name="Progress.TheOfficialCompletionReportIsBeing" xml:space="preserve"><value>يُعدّ منسّق التدريب تقرير الإنهاء الرسمي، وسيتاح للتنزيل هنا قريبًا.</value></data>
   <data name="Progress.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
   <data name="Progress.TrainingHours2" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Progress.TrainingHours3" xml:space="preserve"><value>ساعات التدريب</value></data>
   <data name="Progress.TrainingPeriod" xml:space="preserve"><value>فترة التدريب</value></data>
   <data name="Progress.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="Progress.UnderReview2" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="Progress.UntitledTask" xml:space="preserve"><value>مهمة بلا عنوان</value></data>
+  <data name="Progress.ViewMyApplications" xml:space="preserve"><value>عرض طلباتي</value></data>
+  <data name="Progress.ViewOrDownloadOfficialPDF" xml:space="preserve"><value>عرض ملف PDF الرسمي أو تنزيله</value></data>
   <data name="Progress.WeightedByEachTaskSWeight" xml:space="preserve"><value>موزون حسب وزن كل مهمة</value></data>
+  <data name="Progress.WorkDate" xml:space="preserve"><value>تاريخ العمل</value></data>
+  <data name="Progress.WorkSubmitted" xml:space="preserve"><value>تم تسليم العمل.</value></data>
   <data name="Progress.YouHaveNotSubmittedAnyWork" xml:space="preserve"><value>لم تسلّم أي عمل بعد. سلّم المهام من</value></data>
+  <data name="Progress.YourCompletionDecisionAndPermittedEvaluation" xml:space="preserve"><value>سيظهر قرار الإتمام ونتيجة التقييم المسموح بها بعد مراجعة المنسق. يتاح ملف PDF الخاص بالإتمام بعد الموافقة فقط.</value></data>
   <data name="Progress.YourCompletionWasNotApprovedPlease" xml:space="preserve"><value>لم يُعتمد إنهاء تدريبك. يُرجى التواصل مع منسّق التدريب.</value></data>
   <data name="Progress.YourFinalResultAndTheOfficial" xml:space="preserve"><value>ستظهر هنا نتيجتك النهائية وتقرير إنهاء التدريب الرسمي (PDF) بعد أن يعتمد منسّق التدريب في الجامعة إنهاء تدريبك.</value></data>
+  <data name="Progress.YourInternship" xml:space="preserve"><value>تدريبك</value></data>
   <data name="Progress.YourInternshipCompletionHasBeenApproved" xml:space="preserve"><value>اعتمد منسّق التدريب في الجامعة إنهاء تدريبك.</value></data>
   <data name="Progress.YourInternshipIsStillInProgress" xml:space="preserve"><value>ما زال تدريبك قيد التنفيذ.</value></data>
   <data name="Progress.YourProgressAndEvaluationsWillAppear" xml:space="preserve"><value>سيظهر تقدّمك وتقييماتك هنا بعد تأكيد أحد عروض التدريب المقبولة.</value></data>
   <data name="Progress.YourProgressCouldNotBeLoaded" xml:space="preserve"><value>تعذّر تحميل تقدّمك الآن. يُرجى تحديث الصفحة أو المحاولة لاحقًا.</value></data>
+  <data name="Progress.YourProgressWillAppearAfterYou" xml:space="preserve"><value>سيظهر تقدمك بعد تأكيد عرض تدريب مقبول.</value></data>
+  <data name="Progress.YourResultIsApprovedTheOfficial" xml:space="preserve"><value>تم اعتماد نتيجتك، لكن ملف PDF الرسمي لم يُنشر بعد.</value></data>
   <data name="Progress.YourSupervisorsArePreparingTheirFinal" xml:space="preserve"><value>يُعدّ مشرفوك تقييماتهم النهائية.</value></data>
   <data name="Progress.YourTaskGradesSupervisorFeedbackApproved" xml:space="preserve"><value>درجات مهامك وملاحظات المشرف وساعات التدريب المعتمدة وحالة إنهاء التدريب.</value></data>
   <data name="StudentCVPortfolio.AddALinkToYourOnline" xml:space="preserve"><value>أضف رابط سيرتك الذاتية على الإنترنت.</value></data>
@@ -430,4 +547,135 @@
   <data name="StudentCVPortfolio.ViewPortfolio" xml:space="preserve"><value>عرض الملف المهني</value></data>
   <data name="StudentCVPortfolio.ViewYourPreviouslySavedLinksAnd" xml:space="preserve"><value>اطّلع على الروابط والمستندات التي حفظتها سابقًا.</value></data>
   <data name="StudentCVPortfolio.YourInformationChangedRefreshAndTry" xml:space="preserve"><value>تغيّرت بياناتك. حدّث الصفحة وحاول مرة أخرى.</value></data>
+  <data name="Progress.Eyebrow" xml:space="preserve"><value>مساحة الطالب</value></data>
+  <data name="Progress.SectionTasks" xml:space="preserve"><value>المهام</value></data>
+  <data name="Progress.SectionSubmissions" xml:space="preserve"><value>التسليمات</value></data>
+  <data name="Progress.JourneyTitle" xml:space="preserve"><value>رحلتي التدريبية</value></data>
+  <data name="Progress.JourneyNote" xml:space="preserve"><value>أين وصل تدريبك، من التثبيت حتى تقرير الإتمام.</value></data>
+  <data name="Progress.Now" xml:space="preserve"><value>الآن</value></data>
+  <data name="Progress.JourneyAria" xml:space="preserve"><value>أُنجزت {0} من {1} مراحل</value></data>
+  <data name="Progress.StepNumber" xml:space="preserve"><value>المرحلة {0}</value></data>
+  <data name="Progress.JourneyDisclaimer" xml:space="preserve"><value>هذه مراحل سير عمل في النظام مبنية على بياناتك المسجّلة، وليست أسماء حالات MyGJU.</value></data>
+  <data name="Progress.StepPlacement" xml:space="preserve"><value>اعتماد التدريب</value></data>
+  <data name="Progress.StepPlacementDone" xml:space="preserve"><value>أُكِّد في {0}</value></data>
+  <data name="Progress.StepPlacementCancelled" xml:space="preserve"><value>أُلغي هذا التدريب</value></data>
+  <data name="Progress.StepPlacementHint" xml:space="preserve"><value>تحوّل عرضك المقبول إلى تدريب مؤكَّد في النظام.</value></data>
+  <data name="Progress.StepTraining" xml:space="preserve"><value>التدريب جارٍ</value></data>
+  <data name="Progress.StepTrainingHours" xml:space="preserve"><value>اعتُمدت {0} من {1} ساعة</value></data>
+  <data name="Progress.StepTrainingWeeks" xml:space="preserve"><value>{0} من {1} أسبوعًا</value></data>
+  <data name="Progress.StepOverdue" xml:space="preserve"><value>توجد مهمة متأخرة</value></data>
+  <data name="Progress.StepTrainingHint" xml:space="preserve"><value>تُحتسب فقط الساعات التي اعتمدها مشرفك. إنهاء مهمة لا يعتمد الساعات.</value></data>
+  <data name="Progress.StepDocuments" xml:space="preserve"><value>الوثائق والتقارير المطلوبة</value></data>
+  <data name="Progress.StepDocumentsDetail" xml:space="preserve"><value>تم التحقق من {0} من {1}</value></data>
+  <data name="Progress.StepDocumentsHint" xml:space="preserve"><value>نماذج التدريب والتقرير وأعمال المهام ومراجعة القسم، كما تحقق منها المنسّق.</value></data>
+  <data name="Progress.StepEvaluations" xml:space="preserve"><value>التقييمات النهائية</value></data>
+  <data name="Progress.StepEvaluationsDone" xml:space="preserve"><value>استلمها المنسّق</value></data>
+  <data name="Progress.StepEvaluationsActive" xml:space="preserve"><value>يُكملها مشرفاك بسرية</value></data>
+  <data name="Progress.StepEvaluationsPending" xml:space="preserve"><value>بعد استيفاء متطلب التدريب</value></data>
+  <data name="Progress.StepEvaluationsHint" xml:space="preserve"><value>نماذج تقييم الشركة والتقييم الأكاديمي سرّية. سترى النتيجة المعلنة لا النماذج.</value></data>
+  <data name="Progress.StepReview" xml:space="preserve"><value>مراجعة المنسّق للإتمام</value></data>
+  <data name="Progress.StepReviewApproved" xml:space="preserve"><value>اعتُمد في {0}</value></data>
+  <data name="Progress.StepReviewRejected" xml:space="preserve"><value>لم يُعتمد الإتمام</value></data>
+  <data name="Progress.StepReviewCorrections" xml:space="preserve"><value>أُعيد إليك للتصحيح</value></data>
+  <data name="Progress.StepReviewActive" xml:space="preserve"><value>يتحقق المنسّق من متطلباتك</value></data>
+  <data name="Progress.StepReviewPending" xml:space="preserve"><value>تبدأ بعد التقييمين النهائيين</value></data>
+  <data name="Progress.StepReviewHint" xml:space="preserve"><value>يتحقق المنسّق من التقييمات والساعات والوثائق قبل اعتماد الإتمام.</value></data>
+  <data name="Progress.StepReport" xml:space="preserve"><value>تقرير الإتمام الرسمي</value></data>
+  <data name="Progress.StepReportDone" xml:space="preserve"><value>جاهز للتنزيل</value></data>
+  <data name="Progress.StepReportPreparing" xml:space="preserve"><value>قيد التجهيز</value></data>
+  <data name="Progress.StepReportPending" xml:space="preserve"><value>متاح بعد الاعتماد</value></data>
+  <data name="Progress.StepReportHint" xml:space="preserve"><value>ملف PDF يصدره النظام يمكنك تنزيله وطباعته بعد اعتماد الإتمام.</value></data>
+  <data name="Progress.StateCompleted" xml:space="preserve"><value>مكتمل</value></data>
+  <data name="Progress.StateInProgress" xml:space="preserve"><value>قيد التنفيذ</value></data>
+  <data name="Progress.StatePending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Progress.StateAttention" xml:space="preserve"><value>يحتاج إلى انتباه</value></data>
+  <data name="Progress.StateRejected" xml:space="preserve"><value>مرفوض</value></data>
+  <data name="Progress.WeeksUnit" xml:space="preserve"><value>أسبوعًا</value></data>
+  <data name="Progress.WeeksFromDates" xml:space="preserve"><value>محسوبة من تواريخ تدريبك</value></data>
+  <data name="Progress.PercentOfRequired" xml:space="preserve"><value>{0}% من الساعات المطلوبة</value></data>
+  <data name="Progress.HoursValueText" xml:space="preserve"><value>{0} ساعة معتمدة من {1} مطلوبة ({2}%)</value></data>
+  <data name="Progress.AverageNote" xml:space="preserve"><value>المهام المقيَّمة فقط، كلٌّ على مقياسها. ليست علامتك النهائية في التدريب.</value></data>
+  <data name="Progress.InternshipType" xml:space="preserve"><value>نوع التدريب</value></data>
+  <data name="Progress.TypeLocal" xml:space="preserve"><value>تدريب ميداني محلي</value></data>
+  <data name="Progress.TypeInternational" xml:space="preserve"><value>تدريب دولي (السنة الألمانية)</value></data>
+  <data name="Progress.TypeDefault" xml:space="preserve"><value>افتراضي حتى يؤكده المنسّق</value></data>
+  <data name="Progress.AcademicProgram" xml:space="preserve"><value>البرنامج الأكاديمي</value></data>
+  <data name="Progress.CourseCode" xml:space="preserve"><value>مساق التدريب المحلي {0}</value></data>
+  <data name="Progress.ProgramCheck" xml:space="preserve"><value>ليس برنامجًا معروفًا في كلية الحوسبة؛ سيتحقق منه المنسّق</value></data>
+  <data name="Progress.NotRecorded" xml:space="preserve"><value>غير مسجّل</value></data>
+  <data name="Progress.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
+  <data name="Progress.NotAssigned" xml:space="preserve"><value>لم يُعيَّن بعد</value></data>
+  <data name="Progress.WeeksValue" xml:space="preserve"><value>{0} أسبوعًا</value></data>
+  <data name="Progress.ConfirmedOn" xml:space="preserve"><value>أُكِّد في {0}</value></data>
+  <data name="Progress.CurrentStatus" xml:space="preserve"><value>المرحلة الحالية</value></data>
+  <data name="Progress.ApplicableRequirement" xml:space="preserve"><value>متطلب التدريب</value></data>
+  <data name="Progress.RequirementLocal" xml:space="preserve"><value>{0} ساعة اتصال معتمدة</value></data>
+  <data name="Progress.RequirementInternational" xml:space="preserve"><value>{0} أسبوعًا على الأقل بدوام كامل</value></data>
+  <data name="Progress.RequirementSourceLocal" xml:space="preserve"><value>التدريب المحلي في كلية الحوسبة</value></data>
+  <data name="Progress.RequirementSourceIntl" xml:space="preserve"><value>تدريب السنة الألمانية في الجامعة</value></data>
+  <data name="Progress.OpenMyTasks" xml:space="preserve"><value>فتح مهامي</value></data>
+  <data name="Progress.Overdue" xml:space="preserve"><value>متأخرة</value></data>
+  <data name="Progress.DueToday" xml:space="preserve"><value>تستحق اليوم</value></data>
+  <data name="Progress.DueInDays" xml:space="preserve"><value>تستحق خلال {0} أيام</value></data>
+  <data name="Progress.GradedOutOf" xml:space="preserve"><value>تُقيَّم من {0}</value></data>
+  <data name="Progress.Graded" xml:space="preserve"><value>مقيَّمة</value></data>
+  <data name="Progress.GradeValue" xml:space="preserve"><value>العلامة ⁦{0} / {1}⁩</value></data>
+  <data name="Progress.HistoryNote" xml:space="preserve"><value>سُجِّلت {0} محاولة. تُحفظ كل محاولة، والأحدث أولًا.</value></data>
+  <data name="Progress.AttemptNumber" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="Progress.HoursOfRequired" xml:space="preserve"><value>⁦{0} / {1}⁩ ساعة معتمدة</value></data>
+  <data name="Progress.TargetNotSet" xml:space="preserve"><value>لم يُحدَّد هدف الساعات بعد</value></data>
+  <data name="Progress.HoursInternationalNote" xml:space="preserve"><value>يُتحقق من التدريب الدولي بالمدة (أسابيع) لا بعدد الساعات هذا.</value></data>
+  <data name="Progress.HoursLog" xml:space="preserve"><value>سجل الساعات ({0} إدخالات)</value></data>
+  <data name="Progress.DocsTitle" xml:space="preserve"><value>متطلبات التدريب والوثائق</value></data>
+  <data name="Progress.DocsNote" xml:space="preserve"><value>تأتي الحالة من تحقق المنسّق المسجّل. «قيد الانتظار» تعني أنه لم يُتحقق منه بعد، وليست رفضًا.</value></data>
+  <data name="Progress.DocPriorApproval" xml:space="preserve"><value>الموافقة المسبقة على التدريب</value></data>
+  <data name="Progress.DocPlacementConfirmed" xml:space="preserve"><value>أُكِّد التدريب في النظام في {0}.</value></data>
+  <data name="Progress.DocDeptNotVerified" xml:space="preserve"><value>لم يُتحقق من موافقة القسم بعد.</value></data>
+  <data name="Progress.DocHours" xml:space="preserve"><value>متطلب ساعات التدريب</value></data>
+  <data name="Progress.DocHoursDetail" xml:space="preserve"><value>اعتُمدت {0} من {1} ساعة</value></data>
+  <data name="Progress.DocDuration" xml:space="preserve"><value>مدة التدريب</value></data>
+  <data name="Progress.DocDurationDetail" xml:space="preserve"><value>{0} من {1} أسبوعًا</value></data>
+  <data name="Progress.DocReport" xml:space="preserve"><value>تقرير التدريب</value></data>
+  <data name="Progress.DocInternationalReport" xml:space="preserve"><value>تقرير التدريب</value></data>
+  <data name="Progress.DocForms" xml:space="preserve"><value>نماذج تدريب الشركة</value></data>
+  <data name="Progress.DocCertificate" xml:space="preserve"><value>شهادة التدريب</value></data>
+  <data name="Progress.DocTasks" xml:space="preserve"><value>توثيق المهام المطلوب</value></data>
+  <data name="Progress.DocTasksNone" xml:space="preserve"><value>لم تُسند مهام بعد</value></data>
+  <data name="Progress.DocTasksRevision" xml:space="preserve"><value>{0} مهمة بانتظار إعادة تسليمك</value></data>
+  <data name="Progress.DocTasksDetail" xml:space="preserve"><value>قُيِّمت {0} من {1} مهمة</value></data>
+  <data name="Progress.DocDepartment" xml:space="preserve"><value>مراجعة القسم</value></data>
+  <data name="Progress.DocEndorsement" xml:space="preserve"><value>اعتماد القسم والعميد</value></data>
+  <data name="Progress.DocFacultyValidation" xml:space="preserve"><value>مصادقة الكلية</value></data>
+  <data name="Progress.DocCoordinator" xml:space="preserve"><value>الاعتماد النهائي من المنسّق</value></data>
+  <data name="Progress.DocCoordinatorPending" xml:space="preserve"><value>لم يُتخذ قرار بعد</value></data>
+  <data name="Progress.DocCoordinatorApproved" xml:space="preserve"><value>اعتُمد في {0}</value></data>
+  <data name="Progress.DocVerifiedOn" xml:space="preserve"><value>تم التحقق في {0}</value></data>
+  <data name="Progress.DocPartlyVerified" xml:space="preserve"><value>تم التحقق من {0} من {1} بنود</value></data>
+  <data name="Progress.DocNotVerified" xml:space="preserve"><value>لم يُتحقق منه بعد</value></data>
+  <data name="Progress.DocStateVerified" xml:space="preserve"><value>تم التحقق</value></data>
+  <data name="Progress.DocStateSubmitted" xml:space="preserve"><value>مقدَّم</value></data>
+  <data name="Progress.DocStatePending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Progress.DocStateMissing" xml:space="preserve"><value>مفقود</value></data>
+  <data name="Progress.DocStateCorrections" xml:space="preserve"><value>يحتاج إلى تصحيح</value></data>
+  <data name="Progress.DocStateNA" xml:space="preserve"><value>لا ينطبق</value></data>
+  <data name="Progress.FinalNote" xml:space="preserve"><value>التقدّم والتقييم والاعتماد والنتيجة المعلنة خطوات منفصلة.</value></data>
+  <data name="Progress.TileProgress" xml:space="preserve"><value>تقدّم التدريب</value></data>
+  <data name="Progress.TileProvisional" xml:space="preserve"><value>التقييم المبدئي</value></data>
+  <data name="Progress.ProvisionalHidden" xml:space="preserve"><value>سرّي حتى الإعلان</value></data>
+  <data name="Progress.TileApproval" xml:space="preserve"><value>اعتماد الإتمام</value></data>
+  <data name="Progress.TileResult" xml:space="preserve"><value>النتيجة النهائية المعلنة</value></data>
+  <data name="Progress.ApprovalNotStarted" xml:space="preserve"><value>لم يبدأ</value></data>
+  <data name="Progress.ApprovalApproved" xml:space="preserve"><value>اعتُمد في {0}</value></data>
+  <data name="Progress.ApprovalRejected" xml:space="preserve"><value>غير معتمد</value></data>
+  <data name="Progress.ApprovalCorrections" xml:space="preserve"><value>أُعيد للتصحيح</value></data>
+  <data name="Progress.ApprovalWaiting" xml:space="preserve"><value>بانتظار مراجعة المنسّق</value></data>
+  <data name="Progress.NotReleased" xml:space="preserve"><value>لم تُعلن</value></data>
+  <data name="Progress.Pass" xml:space="preserve"><value>ناجح</value></data>
+  <data name="Progress.Fail" xml:space="preserve"><value>راسب</value></data>
+  <data name="Progress.CoordinatorNote" xml:space="preserve"><value>ملاحظة المنسّق</value></data>
+  <data name="Progress.ReleasedLine" xml:space="preserve"><value>النتيجة: {0} · العلامة الداعمة {1}% · اعتُمد في {2}</value></data>
+  <data name="Progress.ScoreMethodNote" xml:space="preserve"><value>تستخدم العلامة الداعمة الطريقة المقترحة في المشروع؛ والنتيجة المعلنة هي ناجح/راسب.</value></data>
+  <data name="Progress.DownloadReport" xml:space="preserve"><value>تنزيل تقرير الإتمام (PDF)</value></data>
+  <data name="Progress.PrintReport" xml:space="preserve"><value>طباعة التقرير</value></data>
+  <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>استُبدل بالنتيجة المعلنة</value></data>
 </root>

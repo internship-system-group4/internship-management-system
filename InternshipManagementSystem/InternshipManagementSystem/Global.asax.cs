@@ -19,7 +19,23 @@ namespace InternshipManagementSystem
             // track down. Setting it explicitly removes the whole class of bug.
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
-            // Firebase hands back self-describing JSON; no extra setup needed.
+            // Speed. By default .NET waits for a "100 Continue" reply before
+            // sending the body of every save (one extra trip to Firebase each
+            // time), delays small packets (Nagle), and allows only a couple of
+            // open connections, which makes parallel reads wait in line.
+            ServicePointManager.Expect100Continue = false;
+            ServicePointManager.UseNagleAlgorithm = false;
+            ServicePointManager.DefaultConnectionLimit = Math.Max(ServicePointManager.DefaultConnectionLimit, 48);
+        }
+
+        // Shows how long each page waited for Firebase in the browser dev tools
+        // (Network tab, select the page, Timing): "firebase" with the call count.
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            var stats = Data.FirebaseContext.Stats;
+            if (stats == null || Response.HeadersWritten) return;
+            Response.AppendHeader("Server-Timing", "firebase;dur=" + stats.Milliseconds +
+                ";desc=\"" + stats.Calls + " calls, " + stats.CacheHits + " cached\"");
         }
 
         // Interface language (Common/Localization.cs): a GET with ?ui-lang=en|ar saves the choice and redirects to the
@@ -36,13 +52,29 @@ namespace InternshipManagementSystem
             Common.L.Apply(Context);
             // Page titles come from each page directive (English); the translated title is looked up by route.
             var page = Context.Handler as System.Web.UI.Page;
-            if (page != null) page.PreRenderComplete += (s, args) => page.Title = Common.L.PageTitle(page);
+            // Pages without <head runat="server"> (standalone documents) have no Title to set.
+            if (page != null) page.PreRenderComplete += (s, args) => { if (page.Header != null) page.Title = Common.L.PageTitle(page); };
         }
 
         protected void Application_Error(object sender, EventArgs e)
         {
             Exception error = Server.GetLastError();
             if (error == null) return;
+
+            // ASP.NET 404s (including missing .aspx pages). Native/static 404s are
+            // executed by IIS httpErrors. Both paths keep the browser's original URL.
+            var httpError = error as HttpException;
+            if (httpError != null && httpError.GetHttpCode() == 404 &&
+                Context.Items["Uims.NotFound"] == null &&
+                !Request.Path.StartsWith(VirtualPathUtility.ToAbsolute("~/Assets/"), StringComparison.OrdinalIgnoreCase) &&
+                !Request.CurrentExecutionFilePath.Equals(VirtualPathUtility.ToAbsolute("~/Pages/Public/NotFound.aspx"), StringComparison.OrdinalIgnoreCase))
+            {
+                Context.Items["Uims.NotFound"] = true;
+                Server.ClearError();
+                Response.Clear();
+                Server.Transfer("~/Pages/Public/NotFound.aspx", false);
+                return;
+            }
 
             // A form posted after the session changed (expired, app restarted,
             // signed out in another tab) fails the viewstate check. Instead of

@@ -34,38 +34,65 @@
   <data name="Account.UpdateProfile" xml:space="preserve"><value>Update Profile</value></data>
   <data name="Account.YourAccountSettingsAndPictureHave" xml:space="preserve"><value>Your account settings and picture have been successfully saved.</value></data>
   <data name="ApplicantDocument.BackToApplications" xml:space="preserve"><value>← Back to applications</value></data>
+  <data name="ApplicantDocument.ExternalPreviewUnavailable" xml:space="preserve"><value>This document is an external link. Return to the application and use Open CV or Open portfolio.</value></data>
   <data name="ApplicantDocument.ThisApplicationIsNotAvailableTo" xml:space="preserve"><value>This application is not available to your company.</value></data>
   <data name="ApplicantDocument.ThisStudentHasNotSharedA" xml:space="preserve"><value>This student has not shared a CV that can be opened. Ask them to upload a PDF or add a public CV link on their profile.</value></data>
   <data name="ApplicantDocument.ThisStudentHasNotSharedA2" xml:space="preserve"><value>This student has not shared a portfolio.</value></data>
   <data name="ApplicantDocument.WeCouldNotLoadThisApplication" xml:space="preserve"><value>We could not load this application. Please try again.</value></data>
   <data name="Applications.AcceptApplication" xml:space="preserve"><value>Accept application</value></data>
   <data name="Applications.AcceptanceOffersAPlaceTheStudent" xml:space="preserve"><value>Acceptance offers a place. The student still needs to confirm one offer.</value></data>
+  <data name="Applications.AllApplications" xml:space="preserve"><value>All</value></data>
+  <data name="Applications.ApplicationNavigation" xml:space="preserve"><value>Navigate filtered applications</value></data>
+  <data name="Applications.ApplicationPosition" xml:space="preserve"><value>{0} of {1}</value></data>
   <data name="Applications.ApplicationsReview" xml:space="preserve"><value>Applications review</value></data>
   <data name="Applications.AppliedFor" xml:space="preserve"><value>Applied for</value></data>
+  <data name="Applications.AwaitingStudentConfirmation" xml:space="preserve"><value>Awaiting student confirmation</value></data>
   <data name="Applications.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Applications.ClearFilters" xml:space="preserve"><value>Clear search and filters</value></data>
+  <data name="Applications.CloseApplication" xml:space="preserve"><value>Close application details</value></data>
   <data name="Applications.College" xml:space="preserve"><value>College</value></data>
   <data name="Applications.ConfirmRejection" xml:space="preserve"><value>Confirm rejection</value></data>
   <data name="Applications.CoverLetter" xml:space="preserve"><value>Cover letter</value></data>
+  <data name="Applications.CvPreviewFor" xml:space="preserve"><value>CV preview for {0}</value></data>
   <data name="Applications.DocumentsAndLinks" xml:space="preserve"><value>Documents and links</value></data>
+  <data name="Applications.DownloadCv" xml:space="preserve"><value>Download CV</value></data>
+  <data name="Applications.DraftWarning" xml:space="preserve"><value>This rejection reason has not been submitted. Continue? Your text will remain in this page.</value></data>
   <data name="Applications.Email" xml:space="preserve"><value>Email</value></data>
   <data name="Applications.ExplainTheDecisionSoTheStudent" xml:space="preserve"><value>Explain the decision so the student knows why their application was rejected.</value></data>
+  <data name="Applications.ExternalCvHelp" xml:space="preserve"><value>This CV is an external link. Use Open CV to view it in a new tab.</value></data>
+  <data name="Applications.FilterByStatus" xml:space="preserve"><value>Filter applications by status</value></data>
   <data name="Applications.HideCandidateDetails" xml:space="preserve"><value>Hide candidate details</value></data>
+  <data name="Applications.HideCvPreview" xml:space="preserve"><value>Hide CV preview</value></data>
   <data name="Applications.LinkedInProfile" xml:space="preserve"><value>LinkedIn profile</value></data>
   <data name="Applications.Major" xml:space="preserve"><value>Major</value></data>
+  <data name="Applications.NextApplication" xml:space="preserve"><value>Next</value></data>
   <data name="Applications.NoApplicationsYetNewStudentApplications" xml:space="preserve"><value>No applications yet. New student applications for your company will appear here.</value></data>
+  <data name="Applications.NoMatchingApplications" xml:space="preserve"><value>No applications match your search and filters.</value></data>
   <data name="Applications.On" xml:space="preserve"><value>on</value></data>
   <data name="Applications.OpenCV" xml:space="preserve"><value>Open CV</value></data>
   <data name="Applications.OpenPortfolio" xml:space="preserve"><value>Open portfolio</value></data>
+  <data name="Applications.PdfPreviewHelp" xml:space="preserve"><value>If the PDF does not appear, use Open CV or Download CV.</value></data>
   <data name="Applications.Phone" xml:space="preserve"><value>Phone</value></data>
+  <data name="Applications.PlacementConfirmed" xml:space="preserve"><value>Student confirmed the placement</value></data>
+  <data name="Applications.PreviewCv" xml:space="preserve"><value>Preview CV</value></data>
+  <data name="Applications.PreviousApplication" xml:space="preserve"><value>Previous</value></data>
   <data name="Applications.ProfileCoverLetterAndCV" xml:space="preserve"><value>Profile, cover letter and CV</value></data>
   <data name="Applications.ReadyToMakeADecision" xml:space="preserve"><value>Ready to make a decision?</value></data>
   <data name="Applications.ReasonForRejectionRequired" xml:space="preserve"><value>Reason for rejection (required)</value></data>
   <data name="Applications.ReasonGiven" xml:space="preserve"><value>Reason given:</value></data>
   <data name="Applications.RefreshApplications" xml:space="preserve"><value>Refresh applications</value></data>
   <data name="Applications.Reject" xml:space="preserve"><value>Reject</value></data>
+  <data name="Applications.ReviewApplication" xml:space="preserve"><value>Review application</value></data>
   <data name="Applications.ReviewApplicationsForYourCompanyAnd" xml:space="preserve"><value>Review applications for your company and let students know your decision.</value></data>
+  <data name="Applications.ReviewDeskIntro" xml:space="preserve"><value>Review candidate profiles and make a decision. Pending applications appear first.</value></data>
+  <data name="Applications.SearchPlaceholder" xml:space="preserve"><value>Search by student name or opportunity</value></data>
+  <data name="Applications.SelectApplication" xml:space="preserve"><value>Select an application</value></data>
+  <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>Choose a student from the list to review their profile, documents, and application.</value></data>
+  <data name="Applications.ShowingApplications" xml:space="preserve"><value>Showing {0} of {1} applications</value></data>
   <data name="Applications.SoftSkills" xml:space="preserve"><value>Soft skills</value></data>
   <data name="Applications.StudentApplications" xml:space="preserve"><value>Student applications</value></data>
+  <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>The student has confirmed this offer.</value></data>
+  <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>The student has been offered a place and still needs to confirm it.</value></data>
   <data name="Applications.StudentNumber" xml:space="preserve"><value>Student number</value></data>
   <data name="Applications.Submitted" xml:space="preserve"><value>Submitted</value></data>
   <data name="Applications.TechnicalSkills" xml:space="preserve"><value>Technical skills</value></data>
@@ -74,6 +101,7 @@
   <data name="Applications.ThisStudentHasNotSharedA" xml:space="preserve"><value>This student has not shared a CV that can be opened yet.</value></data>
   <data name="Applications.Total" xml:space="preserve"><value>total</value></data>
   <data name="Applications.University" xml:space="preserve"><value>University</value></data>
+  <data name="Applications.ViewApplication" xml:space="preserve"><value>View application</value></data>
   <data name="Applications.ViewCandidateDetails" xml:space="preserve"><value>View candidate details</value></data>
   <data name="Applications.WeCouldNotConfirmTheDecision" xml:space="preserve"><value>We could not confirm the decision. Your reason is still here. Refresh to check the current status before trying again.</value></data>
   <data name="Applications.WeCouldNotLoadApplicationsRefresh" xml:space="preserve"><value>We could not load applications. Refresh to try again.</value></data>
@@ -84,7 +112,9 @@
   <data name="Dashboard.ApprovedProgressStaysSeparateFromReported" xml:space="preserve"><value>Approved progress stays separate from reported hours.</value></data>
   <data name="Dashboard.AwaitingADecision" xml:space="preserve"><value>awaiting a decision</value></data>
   <data name="Dashboard.Candidate" xml:space="preserve"><value>Candidate</value></data>
+  <data name="Dashboard.CompanyReviewWorkflow" xml:space="preserve"><value>Company Review Workflow</value></data>
   <data name="Dashboard.CompanyWorkspace" xml:space="preserve"><value>Company workspace</value></data>
+  <data name="Dashboard.Completed" xml:space="preserve"><value>Completed</value></data>
   <data name="Dashboard.ConfirmedPlacementRecords" xml:space="preserve"><value>confirmed placement records</value></data>
   <data name="Dashboard.ConfirmedTrainees" xml:space="preserve"><value>Confirmed trainees</value></data>
   <data name="Dashboard.ConfirmedTraineesWillAppearAfterA" xml:space="preserve"><value>Confirmed trainees will appear after a student accepts your offer.</value></data>
@@ -99,23 +129,76 @@
   <data name="Dashboard.OpenReviewQueue" xml:space="preserve"><value>Open review queue</value></data>
   <data name="Dashboard.OpeningsOpportunities" xml:space="preserve"><value>Openings &amp; opportunities</value></data>
   <data name="Dashboard.Opportunity" xml:space="preserve"><value>Opportunity</value></data>
+  <data name="Dashboard.PClassTextMutedSmallMy" xml:space="preserve"><value>&lt;p class='text-muted small my-3 text-center'&gt;No new applications to review.&lt;/p&gt;</value></data>
   <data name="Dashboard.PendingDecisionsFirstThenRecentApplications" xml:space="preserve"><value>Pending decisions first, then recent applications.</value></data>
   <data name="Dashboard.ReportedHours" xml:space="preserve"><value>Reported hours</value></data>
   <data name="Dashboard.ReviewApplications" xml:space="preserve"><value>Review applications</value></data>
   <data name="Dashboard.ReviewCandidatesSupportTraineesKeepDecisions" xml:space="preserve"><value>Review candidates. Support trainees. Keep decisions moving.</value></data>
   <data name="Dashboard.ReviewDesk" xml:space="preserve"><value>Review desk</value></data>
+  <data name="Dashboard.SearchByStudentNameOpportunityOr" xml:space="preserve"><value>Search by student name, opportunity, or task</value></data>
   <data name="Dashboard.SubmissionsWaiting" xml:space="preserve"><value>submissions waiting</value></data>
   <data name="Dashboard.SubmittedTrainingWork" xml:space="preserve"><value>Submitted training work</value></data>
   <data name="Dashboard.SubmittedWork" xml:space="preserve"><value>Submitted work</value></data>
   <data name="Dashboard.TrainingInYourCompany" xml:space="preserve"><value>Training in your company</value></data>
+  <data name="Dashboard.Unknown" xml:space="preserve"><value>Unknown</value></data>
   <data name="Dashboard.WeCouldNotLoadYourCompany" xml:space="preserve"><value>We could not load your company work queues. Refresh to try again.</value></data>
   <data name="Dashboard.WorkToReview" xml:space="preserve"><value>Work to review</value></data>
+  <data name="EvaluationReport.AcademicMajor" xml:space="preserve"><value>Academic Major:</value></data>
+  <data name="EvaluationReport.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="EvaluationReport.ActualTrainingHours" xml:space="preserve"><value>Actual Training Hours:</value></data>
+  <data name="EvaluationReport.AreasForImprovement" xml:space="preserve"><value>Areas for Improvement:</value></data>
+  <data name="EvaluationReport.AuthorizedCompanySignatureSeal" xml:space="preserve"><value>Authorized Company Signature &amp; Seal</value></data>
+  <data name="EvaluationReport.Awarded" xml:space="preserve"><value>Awarded</value></data>
+  <data name="EvaluationReport.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="EvaluationReport.CommunicationTeamwork" xml:space="preserve"><value>Communication &amp; Teamwork</value></data>
+  <data name="EvaluationReport.CompanyRecommendation" xml:space="preserve"><value>Company Recommendation:</value></data>
+  <data name="EvaluationReport.DescribeAreasToDevelop" xml:space="preserve"><value>Describe areas to develop...</value></data>
+  <data name="EvaluationReport.DescribeMainStrengths" xml:space="preserve"><value>Describe main strengths...</value></data>
+  <data name="EvaluationReport.DoNotRecommend" xml:space="preserve"><value>Do Not Recommend</value></data>
+  <data name="EvaluationReport.DownloadAsPDF" xml:space="preserve"><value>Download as PDF</value></data>
+  <data name="EvaluationReport.EvaluationCriteriaGJUStandard" xml:space="preserve"><value>Evaluation Criteria (GJU Standard)</value></data>
+  <data name="EvaluationReport.ExcellentA" xml:space="preserve"><value>Excellent (A)</value></data>
+  <data name="EvaluationReport.FinalPerformanceEvaluationGradeReport" xml:space="preserve"><value>Final Performance Evaluation &amp; Grade Report</value></data>
+  <data name="EvaluationReport.GermanJordanianUniversity" xml:space="preserve"><value>German Jordanian University</value></data>
+  <data name="EvaluationReport.GoodC" xml:space="preserve"><value>Good (C)</value></data>
+  <data name="EvaluationReport.HighlyRecommendedForHire" xml:space="preserve"><value>Highly Recommended for Hire</value></data>
+  <data name="EvaluationReport.Hours" xml:space="preserve"><value>Hours</value></data>
+  <data name="EvaluationReport.InternshipManagementSystemUIMSOfficialAcademic" xml:space="preserve"><value>Internship Management System (UIMS) - Official Academic Report</value></data>
+  <data name="EvaluationReport.InternshipPosition" xml:space="preserve"><value>Internship Position:</value></data>
+  <data name="EvaluationReport.KeyStrengths" xml:space="preserve"><value>Key Strengths:</value></data>
+  <data name="EvaluationReport.MaxScore" xml:space="preserve"><value>Max Score</value></data>
+  <data name="EvaluationReport.NeedsImprovementD" xml:space="preserve"><value>Needs Improvement (D)</value></data>
+  <data name="EvaluationReport.OfficialInternshipEvaluationReport" xml:space="preserve"><value>Official Internship Evaluation Report</value></data>
+  <data name="EvaluationReport.Okay" xml:space="preserve"><value>Okay</value></data>
+  <data name="EvaluationReport.PerformanceLevel" xml:space="preserve"><value>Performance Level:</value></data>
+  <data name="EvaluationReport.Print" xml:space="preserve"><value>Print</value></data>
+  <data name="EvaluationReport.PrintReport" xml:space="preserve"><value>Print Report</value></data>
+  <data name="EvaluationReport.ProfessionalismEthics" xml:space="preserve"><value>Professionalism &amp; Ethics</value></data>
+  <data name="EvaluationReport.QualityOfWorkLogic" xml:space="preserve"><value>Quality of Work &amp; Logic</value></data>
+  <data name="EvaluationReport.RecommendWithReservations" xml:space="preserve"><value>Recommend with Reservations</value></data>
+  <data name="EvaluationReport.Recommended" xml:space="preserve"><value>Recommended</value></data>
+  <data name="EvaluationReport.ReportGeneratedDate" xml:space="preserve"><value>Report Generated Date:</value></data>
+  <data name="EvaluationReport.ReviewOfficialReport" xml:space="preserve"><value>Review Official Report</value></data>
+  <data name="EvaluationReport.SaveFeedback" xml:space="preserve"><value>Save Feedback</value></data>
+  <data name="EvaluationReport.SaveScores" xml:space="preserve"><value>Save Scores</value></data>
+  <data name="EvaluationReport.SelectPerformanceLevel" xml:space="preserve"><value>Select Performance Level</value></data>
+  <data name="EvaluationReport.SelectRecommendation" xml:space="preserve"><value>Select Recommendation</value></data>
+  <data name="EvaluationReport.SendToAcademicSupervisor" xml:space="preserve"><value>Send to Academic Supervisor</value></data>
+  <data name="EvaluationReport.SendToTrainee" xml:space="preserve"><value>Send to Trainee</value></data>
+  <data name="EvaluationReport.SubmitTheConfidentialFinalEvaluationFor" xml:space="preserve"><value>Submit the confidential final evaluation for academic review</value></data>
+  <data name="EvaluationReport.TechnicalSkillsApplication" xml:space="preserve"><value>Technical Skills &amp; Application</value></data>
+  <data name="EvaluationReport.TotalCalculatedScore" xml:space="preserve"><value>Total Calculated Score</value></data>
+  <data name="EvaluationReport.TraineeName" xml:space="preserve"><value>Trainee Name</value></data>
+  <data name="EvaluationReport.TraineeStudent" xml:space="preserve"><value>Trainee Student:</value></data>
+  <data name="EvaluationReport.VeryGoodB" xml:space="preserve"><value>Very Good (B)</value></data>
+  <data name="EvaluationReport.YouHaveNoSavedDrafts" xml:space="preserve"><value>You have no saved drafts.</value></data>
   <data name="FinalEvaluation.1SelectTrainee" xml:space="preserve"><value>1. Select Trainee</value></data>
   <data name="FinalEvaluation.2EvaluationForms" xml:space="preserve"><value>2. Evaluation Forms</value></data>
   <data name="FinalEvaluation.Action" xml:space="preserve"><value>Action</value></data>
   <data name="FinalEvaluation.ActualTrainingHours" xml:space="preserve"><value>Actual Training Hours</value></data>
   <data name="FinalEvaluation.AreasForImprovement" xml:space="preserve"><value>Areas for improvement</value></data>
   <data name="FinalEvaluation.AsA" xml:space="preserve"><value>as a</value></data>
+  <data name="FinalEvaluation.AssignedInternship" xml:space="preserve"><value>Assigned internship</value></data>
   <data name="FinalEvaluation.AuthorizedSignature" xml:space="preserve"><value>Authorized Signature</value></data>
   <data name="FinalEvaluation.CalculatedTotal" xml:space="preserve"><value>Calculated Total:</value></data>
   <data name="FinalEvaluation.CertificateIssued" xml:space="preserve"><value>Certificate Issued!</value></data>
@@ -123,7 +206,12 @@
   <data name="FinalEvaluation.Close" xml:space="preserve"><value>Close</value></data>
   <data name="FinalEvaluation.CommunicationTeamwork" xml:space="preserve"><value>Communication &amp; Teamwork</value></data>
   <data name="FinalEvaluation.Company" xml:space="preserve"><value>Company</value></data>
+  <data name="FinalEvaluation.CompanyEvaluationReportAndCertificateTools" xml:space="preserve"><value>Company evaluation report and certificate tools</value></data>
+  <data name="FinalEvaluation.CompanyFinalEvaluation" xml:space="preserve"><value>Company Final Evaluation</value></data>
   <data name="FinalEvaluation.CompanyRecommendation" xml:space="preserve"><value>Company Recommendation</value></data>
+  <data name="FinalEvaluation.CompletionIsFinalizedEvidenceIsRead" xml:space="preserve"><value>Completion is finalized; evidence is read-only.</value></data>
+  <data name="FinalEvaluation.ConfidentialFinalEvaluationSubmittedSuccessfully" xml:space="preserve"><value>Confidential final evaluation submitted successfully.</value></data>
+  <data name="FinalEvaluation.ConfidentialSupervisorComments" xml:space="preserve"><value>Confidential supervisor comments</value></data>
   <data name="FinalEvaluation.ContinueDraft" xml:space="preserve"><value>Continue</value></data>
   <data name="FinalEvaluation.CouldNotLoadDrafts" xml:space="preserve"><value>Could not load drafts: {0}</value></data>
   <data name="FinalEvaluation.CouldNotLoadTraineeDetails" xml:space="preserve"><value>Could not load trainee details: {0}</value></data>
@@ -144,6 +232,8 @@
   <data name="FinalEvaluation.FeedbackRecommendation" xml:space="preserve"><value>Feedback &amp; Recommendation</value></data>
   <data name="FinalEvaluation.FillOutBothSectionsBelowAccording" xml:space="preserve"><value>Fill out both sections below according to GJU criteria before sending the final evaluation.</value></data>
   <data name="FinalEvaluation.FinalEvaluation" xml:space="preserve"><value>Final evaluation</value></data>
+  <data name="FinalEvaluation.FinalEvaluationHasNotBeenSubmitted" xml:space="preserve"><value>Final evaluation has not been submitted.</value></data>
+  <data name="FinalEvaluation.FinalEvaluationSubmittedThisSubmissionIs" xml:space="preserve"><value>Final evaluation submitted. This submission is read-only.</value></data>
   <data name="FinalEvaluation.GoodC" xml:space="preserve"><value>Good (C)</value></data>
   <data name="FinalEvaluation.HasSuccessfullyCompleted" xml:space="preserve"><value>has successfully completed</value></data>
   <data name="FinalEvaluation.HaveMetTheHighestStandardsOf" xml:space="preserve"><value>have met the highest standards of our organization.</value></data>
@@ -154,6 +244,7 @@
   <data name="FinalEvaluation.Internship" xml:space="preserve"><value>Internship</value></data>
   <data name="FinalEvaluation.InternshipProgram" xml:space="preserve"><value>Internship Program</value></data>
   <data name="FinalEvaluation.InvalidScores" xml:space="preserve"><value>Invalid Scores</value></data>
+  <data name="FinalEvaluation.MaximumScoreOnTheAssessmentScale" xml:space="preserve"><value>Maximum score on the assessment scale</value></data>
   <data name="FinalEvaluation.MissingFields" xml:space="preserve"><value>Missing Fields</value></data>
   <data name="FinalEvaluation.MyDrafts" xml:space="preserve"><value>My Drafts</value></data>
   <data name="FinalEvaluation.MySavedDrafts" xml:space="preserve"><value>My Saved Drafts</value></data>
@@ -183,6 +274,7 @@
   <data name="FinalEvaluation.SelectATraineeAndCompleteTheir" xml:space="preserve"><value>Select a trainee and complete their final internship assessment.</value></data>
   <data name="FinalEvaluation.SelectATraineePlaceholder" xml:space="preserve"><value>Select a trainee</value></data>
   <data name="FinalEvaluation.SelectATraineeToEvaluate" xml:space="preserve"><value>-- Select a trainee to evaluate --</value></data>
+  <data name="FinalEvaluation.SelectAnAssignedInternship" xml:space="preserve"><value>Select an assigned internship</value></data>
   <data name="FinalEvaluation.SelectPerformanceLevel" xml:space="preserve"><value>Select performance level</value></data>
   <data name="FinalEvaluation.SelectRecommendation" xml:space="preserve"><value>Select recommendation</value></data>
   <data name="FinalEvaluation.SelectTrainee" xml:space="preserve"><value>Select Trainee</value></data>
@@ -193,17 +285,40 @@
   <data name="FinalEvaluation.Status" xml:space="preserve"><value>Status</value></data>
   <data name="FinalEvaluation.Strengths" xml:space="preserve"><value>Strengths</value></data>
   <data name="FinalEvaluation.StudentName" xml:space="preserve"><value>Student Name</value></data>
+  <data name="FinalEvaluation.SubmissionCouldNotBeConfirmedReload" xml:space="preserve"><value>Submission could not be confirmed. Reload before retrying.</value></data>
+  <data name="FinalEvaluation.SubmitFinalEvaluationToAcademicSupervisor" xml:space="preserve"><value>Submit final evaluation to academic supervisor</value></data>
   <data name="FinalEvaluation.SuccessEvaluationSubmittedToTheGJU" xml:space="preserve"><value>Success! Evaluation submitted to the GJU Academic Supervisor. You may now print the certificate.</value></data>
   <data name="FinalEvaluation.TechSkillsApplication" xml:space="preserve"><value>Tech. Skills &amp; Application</value></data>
   <data name="FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism" xml:space="preserve"><value>Their dedication, technical skills, and professionalism</value></data>
+  <data name="FinalEvaluation.ThisFinalEvaluationIsConfidentialStudents" xml:space="preserve"><value>This final evaluation is confidential. Students cannot view it. Enter the score on the assessment's own scale; no official GJU scoring rubric is assumed.</value></data>
   <data name="FinalEvaluation.ThisIsToProudlyCertifyThat" xml:space="preserve"><value>This is to proudly certify that</value></data>
   <data name="FinalEvaluation.TotalScore" xml:space="preserve"><value>Total score</value></data>
+  <data name="FinalEvaluation.TotalScoreOptionalForEvidenceOnly" xml:space="preserve"><value>Total score (optional for evidence-only reviews)</value></data>
   <data name="FinalEvaluation.Trainee" xml:space="preserve"><value>Trainee</value></data>
   <data name="FinalEvaluation.TraineeDetails" xml:space="preserve"><value>Trainee Details</value></data>
   <data name="FinalEvaluation.TraineeName" xml:space="preserve"><value>Trainee Name</value></data>
+  <data name="FinalEvaluation.UnableToLoadAssignedInternshipsPlease" xml:space="preserve"><value>Unable to load assigned internships. Please retry.</value></data>
+  <data name="FinalEvaluation.UnableToLoadTheEvaluationPlease" xml:space="preserve"><value>Unable to load the evaluation. Please retry.</value></data>
   <data name="FinalEvaluation.VeryGoodB" xml:space="preserve"><value>Very Good (B)</value></data>
   <data name="FinalEvaluation.YouHaveNoSavedDrafts" xml:space="preserve"><value>You have no saved drafts.</value></data>
   <data name="FinalEvaluation.YourEvaluationHasBeenSafelySaved" xml:space="preserve"><value>Your evaluation has been safely saved to My Drafts.</value></data>
+  <data name="I18n.Accepted" xml:space="preserve"><value>Accepted</value></data>
+  <data name="I18n.Allstatuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="I18n.Alltaskstatuses" xml:space="preserve"><value>All task statuses</value></data>
+  <data name="I18n.AresubmissionwasrequestedInstructions" xml:space="preserve"><value>A resubmission was requested. Instructions: </value></data>
+  <data name="I18n.ChooseaPDForWordfile" xml:space="preserve"><value>Choose a PDF or Word file.</value></data>
+  <data name="I18n.ContinueDraft" xml:space="preserve"><value>Continue Draft</value></data>
+  <data name="I18n.Enteravalidscorefor" xml:space="preserve"><value>Enter a valid score for </value></data>
+  <data name="I18n.Feedback" xml:space="preserve"><value>. Feedback: </value></data>
+  <data name="I18n.FirebaseStorageisnotconfiguredAskthe" xml:space="preserve"><value>Firebase Storage is not configured. Ask the project admin to set Firebase.StorageBucket.</value></data>
+  <data name="I18n.Firebasedidnotreturnadownloadtoken" xml:space="preserve"><value>Firebase did not return a download token for the uploaded file.</value></data>
+  <data name="I18n.Revisionneeded" xml:space="preserve"><value>Revision needed</value></data>
+  <data name="I18n.Taskcreatedsuccessfullyforall0trainees" xml:space="preserve"><value>Task created successfully for all {0} trainees.</value></data>
+  <data name="I18n.Theattachmentcouldnotberead" xml:space="preserve"><value>The attachment could not be read.</value></data>
+  <data name="I18n.Theattachmentmustbesmallerthan10" xml:space="preserve"><value>The attachment must be smaller than 10 MB.</value></data>
+  <data name="I18n.Theselectedtraineedoesnotbelongto" xml:space="preserve"><value>The selected trainee does not belong to your company.</value></data>
+  <data name="I18n.Thissubmissionwasevaluated" xml:space="preserve"><value>This submission was evaluated: </value></data>
+  <data name="I18n.YoursessionexpiredSigninagainbefore" xml:space="preserve"><value>Your session expired. Sign in again before uploading.</value></data>
   <data name="ManageOpportunities.AcceptingApplications" xml:space="preserve"><value>Accepting applications</value></data>
   <data name="ManageOpportunities.Actions" xml:space="preserve"><value>Actions</value></data>
   <data name="ManageOpportunities.AddOpportunity" xml:space="preserve"><value>+ Add opportunity</value></data>
@@ -296,6 +411,7 @@
   <data name="Opportunities.EligibleSpecializations" xml:space="preserve"><value>Eligible specializations *</value></data>
   <data name="Opportunities.EndDate" xml:space="preserve"><value>End date *</value></data>
   <data name="Opportunities.EndDateMustBeAfterStart" xml:space="preserve"><value>End date must be after start date.</value></data>
+  <data name="Opportunities.LastDateToApply" xml:space="preserve"><value>Last Date to Apply</value></data>
   <data name="Opportunities.ListTheSkillsQualificationsAndRequirements" xml:space="preserve"><value>List the skills, qualifications and requirements...</value></data>
   <data name="Opportunities.Location" xml:space="preserve"><value>Location *</value></data>
   <data name="Opportunities.OneOrMoreFieldsAreToo" xml:space="preserve"><value>One or more fields are too long.</value></data>
@@ -319,20 +435,35 @@
   <data name="Opportunities.UnableToSaveTheOpportunityIn" xml:space="preserve"><value>Unable to save the opportunity in Firebase.</value></data>
   <data name="Opportunities.YourAccountIsNotLinkedTo" xml:space="preserve"><value>Your account is not linked to a company.</value></data>
   <data name="TaskReview.ANewerSubmissionAttemptExistsReview" xml:space="preserve"><value>A newer submission attempt exists. Review that one instead.</value></data>
+  <data name="TaskReview.ANewerSubmissionAttemptIsAvailable" xml:space="preserve"><value>A newer submission attempt is available. Review that attempt instead.</value></data>
+  <data name="TaskReview.Action" xml:space="preserve"><value>Action</value></data>
+  <data name="TaskReview.AddFeedbackAndSuggestions" xml:space="preserve"><value>Add feedback and suggestions...</value></data>
+  <data name="TaskReview.AssessTheSubmissionWithTheUniversity" xml:space="preserve"><value>Assess the submission with the university criteria.</value></data>
   <data name="TaskReview.Attempt" xml:space="preserve"><value>Attempt</value></data>
   <data name="TaskReview.Attempt1RevisionRequested" xml:space="preserve"><value>Attempt 1 · Revision Requested</value></data>
   <data name="TaskReview.Attempt2" xml:space="preserve"><value>Attempt:</value></data>
   <data name="TaskReview.Attempt2PendingReview" xml:space="preserve"><value>Attempt 2 · Pending Review</value></data>
+  <data name="TaskReview.AwaitingReview" xml:space="preserve"><value>Awaiting review</value></data>
   <data name="TaskReview.BackToChoices" xml:space="preserve"><value>← Back to choices</value></data>
+  <data name="TaskReview.BackToTasks" xml:space="preserve"><value>← Back to tasks</value></data>
   <data name="TaskReview.Close" xml:space="preserve"><value>Close</value></data>
   <data name="TaskReview.CloseReview" xml:space="preserve"><value>Close review</value></data>
+  <data name="TaskReview.CodeQuality" xml:space="preserve"><value>Code quality</value></data>
+  <data name="TaskReview.ContinueReview" xml:space="preserve"><value>Continue review</value></data>
+  <data name="TaskReview.CouldNotCompleteTheRevisionRequest" xml:space="preserve"><value>Could not complete the revision request. Check Firebase before trying again.</value></data>
   <data name="TaskReview.CouldNotLoadOrSaveThe" xml:space="preserve"><value>Could not load or save the evaluation. Please try again.</value></data>
   <data name="TaskReview.Criterion" xml:space="preserve"><value>Criterion</value></data>
+  <data name="TaskReview.DesignUsability" xml:space="preserve"><value>Design &amp; usability</value></data>
+  <data name="TaskReview.Documentation" xml:space="preserve"><value>Documentation</value></data>
+  <data name="TaskReview.DueDate" xml:space="preserve"><value>Due date</value></data>
   <data name="TaskReview.EnterAScoreForEachCriterion" xml:space="preserve"><value>Enter a score for each criterion.</value></data>
   <data name="TaskReview.EnterAValidScoreFor" xml:space="preserve"><value>Enter a valid score for: {0}</value></data>
   <data name="TaskReview.EnterScoresForTheTaskCriteria" xml:space="preserve"><value>Enter scores for the task criteria and leave feedback.</value></data>
+  <data name="TaskReview.EnterScoresToCalculateTheTotal" xml:space="preserve"><value>Enter scores to calculate the total.</value></data>
   <data name="TaskReview.EvaluateSubmission" xml:space="preserve"><value>Evaluate Submission</value></data>
+  <data name="TaskReview.EvaluateTheTraineeSWorkAnd" xml:space="preserve"><value>Evaluate the trainee's work and give constructive feedback.</value></data>
   <data name="TaskReview.Evaluation" xml:space="preserve"><value>Evaluation</value></data>
+  <data name="TaskReview.EvaluationAndFeedback" xml:space="preserve"><value>Evaluation and feedback</value></data>
   <data name="TaskReview.ExampleStudentAttempt2PendingReview" xml:space="preserve"><value>Example Student · Attempt 2 · Pending Review</value></data>
   <data name="TaskReview.ExampleSubmissionTextWillAppearHere" xml:space="preserve"><value>Example submission text will appear here.</value></data>
   <data name="TaskReview.ExampleTextForTheStudentS" xml:space="preserve"><value>Example text for the student's second attempt.</value></data>
@@ -340,71 +471,151 @@
   <data name="TaskReview.ExplainWhatTheStudentNeedsTo" xml:space="preserve"><value>Explain what the student needs to change before submitting again.</value></data>
   <data name="TaskReview.Feedback" xml:space="preserve"><value>Feedback</value></data>
   <data name="TaskReview.FeedbackForStudent" xml:space="preserve"><value>Feedback for student</value></data>
+  <data name="TaskReview.FeedbackForTrainee" xml:space="preserve"><value>Feedback for trainee</value></data>
   <data name="TaskReview.File" xml:space="preserve"><value>File:</value></data>
+  <data name="TaskReview.FilterBySubmissionStatus" xml:space="preserve"><value>Filter by submission status</value></data>
+  <data name="TaskReview.FilterByTrainee" xml:space="preserve"><value>Filter by trainee</value></data>
+  <data name="TaskReview.Functionality" xml:space="preserve"><value>Functionality</value></data>
   <data name="TaskReview.GradeSavedSuccessfully" xml:space="preserve"><value>Grade saved successfully.</value></data>
   <data name="TaskReview.Link" xml:space="preserve"><value>Link:</value></data>
   <data name="TaskReview.Max" xml:space="preserve"><value>— Max:</value></data>
   <data name="TaskReview.MaximumScore" xml:space="preserve"><value>Maximum Score</value></data>
+  <data name="TaskReview.NameUnavailable" xml:space="preserve"><value>Name unavailable</value></data>
   <data name="TaskReview.NoFileInThisExample" xml:space="preserve"><value>No file in this example</value></data>
   <data name="TaskReview.NoLinkInThisExample" xml:space="preserve"><value>No link in this example</value></data>
+  <data name="TaskReview.NoSubmissionsMatchTheseFilters" xml:space="preserve"><value>No submissions match these filters.</value></data>
   <data name="TaskReview.NoTextSubmitted" xml:space="preserve"><value>No text submitted.</value></data>
+  <data name="TaskReview.NotSet" xml:space="preserve"><value>Not set</value></data>
+  <data name="TaskReview.OpenASubmissionFirst" xml:space="preserve"><value>Open a submission first.</value></data>
   <data name="TaskReview.OpenASubmissionToEvaluateIt" xml:space="preserve"><value>Open a submission to evaluate it or request a new attempt.</value></data>
+  <data name="TaskReview.OpenASubmissionToReviewThe" xml:space="preserve"><value>Open a submission to review the trainee's work and choose the next action.</value></data>
   <data name="TaskReview.OpenAttachedFile" xml:space="preserve"><value>Open attached file</value></data>
   <data name="TaskReview.OpenSubmittedLink" xml:space="preserve"><value>Open submitted link</value></data>
   <data name="TaskReview.PleaseAddMoreDetailToThe" xml:space="preserve"><value>Please add more detail to the report.</value></data>
   <data name="TaskReview.PleaseEnterFeedbackForTheStudent" xml:space="preserve"><value>Please enter feedback for the student.</value></data>
   <data name="TaskReview.PreviousAttemptsWillStayHereEven" xml:space="preserve"><value>Previous attempts will stay here even after a revision.</value></data>
   <data name="TaskReview.ReportQualityExample" xml:space="preserve"><value>Report Quality (example)</value></data>
+  <data name="TaskReview.RequestChanges" xml:space="preserve"><value>Request changes</value></data>
   <data name="TaskReview.RequestRevision" xml:space="preserve"><value>Request Revision</value></data>
+  <data name="TaskReview.ReviewSubmission" xml:space="preserve"><value>Review submission</value></data>
   <data name="TaskReview.ReviewSubmissions" xml:space="preserve"><value>Review Submissions</value></data>
+  <data name="TaskReview.ReviewSubmissions2" xml:space="preserve"><value>Review submissions</value></data>
+  <data name="TaskReview.ReviewTraineeWorkProvideAnEvaluation" xml:space="preserve"><value>Review trainee work, provide an evaluation, or request a revision.</value></data>
   <data name="TaskReview.RevisionInstructions" xml:space="preserve"><value>Revision Instructions</value></data>
   <data name="TaskReview.RevisionInstructions2" xml:space="preserve"><value>Revision instructions:</value></data>
+  <data name="TaskReview.RevisionRequested" xml:space="preserve"><value>Revision requested</value></data>
+  <data name="TaskReview.RevisionRequestedSuccessfully" xml:space="preserve"><value>Revision requested successfully.</value></data>
   <data name="TaskReview.SaveEvaluation" xml:space="preserve"><value>Save Evaluation</value></data>
   <data name="TaskReview.SaveGrade" xml:space="preserve"><value>Save Grade</value></data>
   <data name="TaskReview.Score" xml:space="preserve"><value>Score</value></data>
+  <data name="TaskReview.SearchSubmissions" xml:space="preserve"><value>Search submissions</value></data>
+  <data name="TaskReview.SearchTasksOrTrainees" xml:space="preserve"><value>Search tasks or trainees</value></data>
   <data name="TaskReview.SendRevisionRequest" xml:space="preserve"><value>Send Revision Request</value></data>
   <data name="TaskReview.StartEvaluation" xml:space="preserve"><value>Start Evaluation</value></data>
   <data name="TaskReview.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="TaskReview.Status2" xml:space="preserve"><value>Status</value></data>
   <data name="TaskReview.StudentSText" xml:space="preserve"><value>Student's text:</value></data>
+  <data name="TaskReview.StudentSubmissions" xml:space="preserve"><value>Student submissions</value></data>
   <data name="TaskReview.SubmissionDetails" xml:space="preserve"><value>Submission Details</value></data>
+  <data name="TaskReview.SubmissionDetails2" xml:space="preserve"><value>Submission details</value></data>
   <data name="TaskReview.SubmissionHistory" xml:space="preserve"><value>Submission History</value></data>
+  <data name="TaskReview.SubmissionWasNotFound" xml:space="preserve"><value>Submission was not found.</value></data>
+  <data name="TaskReview.SubmitEvaluation" xml:space="preserve"><value>Submit evaluation</value></data>
   <data name="TaskReview.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="TaskReview.Submitted2" xml:space="preserve"><value>Submitted</value></data>
+  <data name="TaskReview.SubmittedAt" xml:space="preserve"><value>Submitted at</value></data>
   <data name="TaskReview.SubmittedWork" xml:space="preserve"><value>Submitted Work</value></data>
+  <data name="TaskReview.SubmittedWork2" xml:space="preserve"><value>Submitted work</value></data>
   <data name="TaskReview.Task" xml:space="preserve"><value>Task</value></data>
   <data name="TaskReview.Task2" xml:space="preserve"><value>Task:</value></data>
+  <data name="TaskReview.TaskTitle" xml:space="preserve"><value>Task title</value></data>
   <data name="TaskReview.TellTheStudentExactlyWhatTo" xml:space="preserve"><value>Tell the student exactly what to improve in the next attempt.</value></data>
+  <data name="TaskReview.TellTheStudentWhatNeedsTo" xml:space="preserve"><value>Tell the student what needs to be changed.</value></data>
   <data name="TaskReview.TheCriteriaAndMaximumScoresWill" xml:space="preserve"><value>The criteria and maximum scores will come from this task.</value></data>
   <data name="TaskReview.TheGradeCouldNotBeSaved" xml:space="preserve"><value>The grade could not be saved.</value></data>
   <data name="TaskReview.TheGradeWasSavedButThe" xml:space="preserve"><value>The grade was saved, but the task status was not updated. Check Firebase before trying again.</value></data>
+  <data name="TaskReview.TheRevisionRequestCouldNotBe" xml:space="preserve"><value>The revision request could not be saved. Please try again.</value></data>
   <data name="TaskReview.ThisIsADesignPreviewNothing" xml:space="preserve"><value>This is a design preview. Nothing was saved yet.</value></data>
   <data name="TaskReview.ThisSubmissionHasAlreadyBeenReviewed" xml:space="preserve"><value>This submission has already been reviewed.</value></data>
+  <data name="TaskReview.ThisSubmissionIsAlreadyReviewedOr" xml:space="preserve"><value>This submission is already reviewed or is not the latest attempt.</value></data>
   <data name="TaskReview.ThisTaskHasNoValidGrading" xml:space="preserve"><value>This task has no valid grading criteria.</value></data>
   <data name="TaskReview.ThisTaskIsNotWaitingFor" xml:space="preserve"><value>This task is not waiting for grading.</value></data>
+  <data name="TaskReview.TotalEvaluationScore" xml:space="preserve"><value>Total evaluation score</value></data>
   <data name="TaskReview.Trainee" xml:space="preserve"><value>Trainee</value></data>
+  <data name="TaskReview.Trainee2" xml:space="preserve"><value>Trainee</value></data>
+  <data name="TaskReview.UnderReview" xml:space="preserve"><value>Under review</value></data>
+  <data name="TaskReview.View" xml:space="preserve"><value>View </value></data>
+  <data name="TaskReview.ViewAttempt" xml:space="preserve"><value>View attempt</value></data>
   <data name="TaskReview.ViewDetails" xml:space="preserve"><value>View Details</value></data>
+  <data name="TaskReview.ViewEvaluation" xml:space="preserve"><value>View evaluation</value></data>
+  <data name="TaskReview.ViewRevisionRequest" xml:space="preserve"><value>View revision request</value></data>
+  <data name="TaskReview.ViewSubmissionFile" xml:space="preserve"><value>View submission file</value></data>
   <data name="TaskReview.WeeklyProgressReport" xml:space="preserve"><value>Weekly Progress Report</value></data>
   <data name="TaskReview.Weight" xml:space="preserve"><value>— Weight:</value></data>
   <data name="TaskReview.WhatWouldYouLikeToDo" xml:space="preserve"><value>What would you like to do?</value></data>
+  <data name="TaskReview.YouCannotReviewThisSubmission" xml:space="preserve"><value>You cannot review this submission.</value></data>
   <data name="Tasks.0Points" xml:space="preserve"><value>0 points</value></data>
+  <data name="Tasks.100Points" xml:space="preserve"><value>100 points</value></data>
+  <data name="Tasks.Action" xml:space="preserve"><value>Action</value></data>
   <data name="Tasks.Add" xml:space="preserve"><value>+ Add</value></data>
   <data name="Tasks.AddAtLeastOneCriterionIn" xml:space="preserve"><value>Add at least one criterion in step 2 so you can grade this task.</value></data>
   <data name="Tasks.AddEachThingYouWillCheck" xml:space="preserve"><value>Add each thing you will check and how many points it is worth. The task total is the sum of the points.</value></data>
+  <data name="Tasks.AddGradingCriteriaExpectedOutcomesAnd" xml:space="preserve"><value>Add grading criteria, expected outcomes, and submission instructions...</value></data>
+  <data name="Tasks.AllMyTrainees" xml:space="preserve"><value>All my trainees</value></data>
+  <data name="Tasks.AllTasks" xml:space="preserve"><value>&lt; All tasks</value></data>
+  <data name="Tasks.AssignTrainee" xml:space="preserve"><value>Assign trainee *</value></data>
   <data name="Tasks.AssignedTasks" xml:space="preserve"><value>Assigned Tasks</value></data>
   <data name="Tasks.AssignedTrainee" xml:space="preserve"><value>Assigned Trainee *</value></data>
+  <data name="Tasks.AssignmentsDeadlinesSubmissionsAndFeedback" xml:space="preserve"><value>assignments, deadlines, submissions, and feedback</value></data>
+  <data name="Tasks.AwaitingYourEvaluation" xml:space="preserve"><value>Awaiting your evaluation</value></data>
   <data name="Tasks.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Tasks.Cancel2" xml:space="preserve"><value>Cancel</value></data>
   <data name="Tasks.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="Tasks.Close2" xml:space="preserve"><value>Close</value></data>
+  <data name="Tasks.CloseTaskDetails" xml:space="preserve"><value>Close task details</value></data>
   <data name="Tasks.ComparedWithThisTraineeSOther" xml:space="preserve"><value>Compared with this trainee's other tasks. Choose Normal for most tasks.</value></data>
+  <data name="Tasks.CouldNotLoadTasksCheckFirebase" xml:space="preserve"><value>Could not load tasks. Check Firebase connection and database rules.</value></data>
+  <data name="Tasks.CouldNotLoadTraineesFromFirebase" xml:space="preserve"><value>Could not load trainees from Firebase.</value></data>
+  <data name="Tasks.CouldNotSaveTheTaskCheck" xml:space="preserve"><value>Could not save the task. Check Firebase connection and rules.</value></data>
   <data name="Tasks.CountsAs" xml:space="preserve"><value>Counts As</value></data>
+  <data name="Tasks.CreateATaskSetItsDeadline" xml:space="preserve"><value>Create a task, set its deadline, and define how it will be evaluated.</value></data>
   <data name="Tasks.CreateNewTask" xml:space="preserve"><value>+ Create New Task</value></data>
+  <data name="Tasks.CreateNewTask2" xml:space="preserve"><value>Create new task</value></data>
   <data name="Tasks.CreateTask" xml:space="preserve"><value>Create Task</value></data>
+  <data name="Tasks.CreateTask2" xml:space="preserve"><value>Create task</value></data>
+  <data name="Tasks.CreateTasksReviewSubmissionsAndTrack" xml:space="preserve"><value>Create tasks, review submissions, and track trainee progress.</value></data>
+  <data name="Tasks.CriteriaAndInstructions" xml:space="preserve"><value>Criteria and instructions *</value></data>
+  <data name="Tasks.CriteriaAndInstructions2" xml:space="preserve"><value>Criteria and instructions</value></data>
   <data name="Tasks.Criterion" xml:space="preserve"><value>Criterion</value></data>
+  <data name="Tasks.CriterionAddedSuccessfully" xml:space="preserve"><value>Criterion added successfully.</value></data>
   <data name="Tasks.Deadline" xml:space="preserve"><value>Deadline</value></data>
   <data name="Tasks.Deadline2" xml:space="preserve"><value>Deadline *</value></data>
+  <data name="Tasks.Deadline3" xml:space="preserve"><value>Deadline</value></data>
+  <data name="Tasks.DeadlineTime" xml:space="preserve"><value>Deadline &amp; time *</value></data>
+  <data name="Tasks.DefineHowTheTaskWillBe" xml:space="preserve"><value>Define how the task will be assessed.</value></data>
+  <data name="Tasks.DescribeWhatTheTraineeNeedsTo" xml:space="preserve"><value>Describe what the trainee needs to complete...</value></data>
   <data name="Tasks.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="Tasks.Description2" xml:space="preserve"><value>Description</value></data>
+  <data name="Tasks.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="Tasks.DueDate" xml:space="preserve"><value>Due date</value></data>
   <data name="Tasks.EGBuildTheLoginPage" xml:space="preserve"><value>e.g. Build the login page</value></data>
   <data name="Tasks.EGCleanReadableAndCommented" xml:space="preserve"><value>e.g. Clean, readable and commented code</value></data>
   <data name="Tasks.EGCodeQuality" xml:space="preserve"><value>e.g. Code quality</value></data>
+  <data name="Tasks.EnterACriterionWeightGreaterThan" xml:space="preserve"><value>Enter a criterion weight greater than zero and up to 100.</value></data>
+  <data name="Tasks.EnterAStartDateAndTime" xml:space="preserve"><value>Enter a start date and time that is in the future.</value></data>
+  <data name="Tasks.EnterATotalScoreGreaterThan" xml:space="preserve"><value>Enter a total score greater than zero.</value></data>
+  <data name="Tasks.EnterAValidCriterionMaximumScore" xml:space="preserve"><value>Enter a valid criterion maximum score.</value></data>
+  <data name="Tasks.EnterTaskTitle" xml:space="preserve"><value>Enter task title</value></data>
+  <data name="Tasks.EnterTheMainDetailsForThis" xml:space="preserve"><value>Enter the main details for this training task.</value></data>
+  <data name="Tasks.EnterTheTitleDescriptionAndCriteria" xml:space="preserve"><value>Enter the title, description, and criteria/instructions.</value></data>
+  <data name="Tasks.EvaluateSubmissionsUsingTheUniversityCriteria" xml:space="preserve"><value>Evaluate submissions using the university criteria, give constructive feedback, and request revisions when needed.</value></data>
+  <data name="Tasks.Evaluation" xml:space="preserve"><value>Evaluation</value></data>
+  <data name="Tasks.EvaluationCriteria" xml:space="preserve"><value>Evaluation criteria</value></data>
+  <data name="Tasks.EvaluationsCompleted" xml:space="preserve"><value>Evaluations completed</value></data>
+  <data name="Tasks.FeedbackSent" xml:space="preserve"><value>Feedback sent</value></data>
   <data name="Tasks.FieldsMarkedAreRequired" xml:space="preserve"><value>Fields marked * are required.</value></data>
+  <data name="Tasks.FilterByDepartment" xml:space="preserve"><value>Filter by department</value></data>
+  <data name="Tasks.FilterByTaskStatus" xml:space="preserve"><value>Filter by task status</value></data>
   <data name="Tasks.HowMuchDoesThisTaskCount" xml:space="preserve"><value>How much does this task count?</value></data>
   <data name="Tasks.HowWillYouGradeIt" xml:space="preserve"><value>How will you grade it?</value></data>
   <data name="Tasks.ImportantCountsTwice" xml:space="preserve"><value>Important - counts twice</value></data>
@@ -412,41 +623,92 @@
   <data name="Tasks.Instructions" xml:space="preserve"><value>Instructions</value></data>
   <data name="Tasks.MajorCountsThreeTimes" xml:space="preserve"><value>Major - counts three times</value></data>
   <data name="Tasks.MajorX3" xml:space="preserve"><value>Major (x3)</value></data>
+  <data name="Tasks.ManageReviewTasks" xml:space="preserve"><value>Manage &amp; review tasks</value></data>
   <data name="Tasks.ManageTasks" xml:space="preserve"><value>Manage Tasks</value></data>
+  <data name="Tasks.NextPage" xml:space="preserve"><value>Next page</value></data>
   <data name="Tasks.NoCriteriaYetAddAtLeast" xml:space="preserve"><value>No criteria yet. Add at least one above.</value></data>
   <data name="Tasks.NoTasksCreatedYet" xml:space="preserve"><value>No tasks created yet.</value></data>
+  <data name="Tasks.NoTasksMatchYourSearchOr" xml:space="preserve"><value>No tasks match your search or filters.</value></data>
+  <data name="Tasks.NoTasksYetCreateYourFirst" xml:space="preserve"><value>No tasks yet. Create your first task to get started.</value></data>
   <data name="Tasks.NormalCountsOnce" xml:space="preserve"><value>Normal - counts once</value></data>
   <data name="Tasks.NormalX1" xml:space="preserve"><value>Normal (x1)</value></data>
+  <data name="Tasks.NotEvaluated" xml:space="preserve"><value>Not evaluated</value></data>
+  <data name="Tasks.NotSet" xml:space="preserve"><value>Not set</value></data>
+  <data name="Tasks.NotSubmitted" xml:space="preserve"><value>Not submitted</value></data>
   <data name="Tasks.NotSureWhereToStart" xml:space="preserve"><value>Not sure where to start?</value></data>
   <data name="Tasks.Note" xml:space="preserve"><value>Note</value></data>
+  <data name="Tasks.OverdueTasks" xml:space="preserve"><value>Overdue tasks</value></data>
+  <data name="Tasks.PDFOrWordDocumentUpTo" xml:space="preserve"><value>PDF or Word document, up to 10 MB. The trainee can download it from task details.</value></data>
+  <data name="Tasks.PastTheirDueDate" xml:space="preserve"><value>Past their due date</value></data>
+  <data name="Tasks.PendingReview" xml:space="preserve"><value>Pending review</value></data>
   <data name="Tasks.PleaseChooseADeadline" xml:space="preserve"><value>Please choose a deadline.</value></data>
   <data name="Tasks.PleaseChooseATrainee" xml:space="preserve"><value>Please choose a trainee.</value></data>
+  <data name="Tasks.PleaseEnterACriterionName" xml:space="preserve"><value>Please enter a criterion name.</value></data>
   <data name="Tasks.PleaseEnterATaskTitle" xml:space="preserve"><value>Please enter a task title.</value></data>
+  <data name="Tasks.PleaseSelectATrainee" xml:space="preserve"><value>Please select a trainee.</value></data>
   <data name="Tasks.Points" xml:space="preserve"><value>Points</value></data>
   <data name="Tasks.PointsMustBeAWholeNumberFrom" xml:space="preserve"><value>Points must be a whole number from {0} to {1}.</value></data>
+  <data name="Tasks.PreviousPage" xml:space="preserve"><value>Previous page</value></data>
   <data name="Tasks.Remove" xml:space="preserve"><value>Remove</value></data>
+  <data name="Tasks.RequiredFields" xml:space="preserve"><value>* Required fields</value></data>
+  <data name="Tasks.Review" xml:space="preserve"><value>Review</value></data>
+  <data name="Tasks.ReviewReminder" xml:space="preserve"><value>ⓘ Review reminder</value></data>
+  <data name="Tasks.Reviewed" xml:space="preserve"><value>Reviewed</value></data>
   <data name="Tasks.RevisionRequested" xml:space="preserve"><value>Revision requested</value></data>
+  <data name="Tasks.SearchTasksOrTrainees" xml:space="preserve"><value>Search tasks or trainees</value></data>
   <data name="Tasks.SelectATrainee" xml:space="preserve"><value>Select a trainee</value></data>
+  <data name="Tasks.SelectATrainee2" xml:space="preserve"><value>Select a trainee</value></data>
+  <data name="Tasks.SelectTrainee" xml:space="preserve"><value>Select trainee</value></data>
   <data name="Tasks.ShareOfTask" xml:space="preserve"><value>Share of Task</value></data>
   <data name="Tasks.ShortNoteForTheTraineeOptional" xml:space="preserve"><value>Short note for the trainee (optional)</value></data>
+  <data name="Tasks.ShowAllCompanyTasks" xml:space="preserve"><value>Show all company tasks</value></data>
+  <data name="Tasks.Showing0Tasks" xml:space="preserve"><value>Showing 0 tasks</value></data>
+  <data name="Tasks.ShowingAllTasksFor" xml:space="preserve"><value>Showing all tasks for</value></data>
+  <data name="Tasks.StartDateAndTime" xml:space="preserve"><value>Start date and time</value></data>
+  <data name="Tasks.StartDateTime" xml:space="preserve"><value>Start date &amp; time *</value></data>
   <data name="Tasks.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Tasks.Status2" xml:space="preserve"><value>Status</value></data>
   <data name="Tasks.StepsLinksAndWhatTheTrainee" xml:space="preserve"><value>Steps, links and what the trainee should hand in.</value></data>
+  <data name="Tasks.Submission" xml:space="preserve"><value>Submission</value></data>
+  <data name="Tasks.SubmissionStatus" xml:space="preserve"><value>Submission status</value></data>
   <data name="Tasks.Task" xml:space="preserve"><value>Task</value></data>
+  <data name="Tasks.TaskAttachment" xml:space="preserve"><value>Task attachment</value></data>
+  <data name="Tasks.TaskAttachmentOptional" xml:space="preserve"><value>Task attachment (optional)</value></data>
+  <data name="Tasks.TaskCreated" xml:space="preserve"><value>Task created</value></data>
+  <data name="Tasks.TaskCreatedSuccessfully" xml:space="preserve"><value>Task created successfully.</value></data>
+  <data name="Tasks.TaskDescription" xml:space="preserve"><value>Task description *</value></data>
   <data name="Tasks.TaskDetails" xml:space="preserve"><value>Task details</value></data>
+  <data name="Tasks.TaskDirectory" xml:space="preserve"><value>Task directory</value></data>
+  <data name="Tasks.TaskInformation" xml:space="preserve"><value>Task information</value></data>
+  <data name="Tasks.TaskPages" xml:space="preserve"><value>Task pages</value></data>
+  <data name="Tasks.TaskStatus" xml:space="preserve"><value>Task status</value></data>
+  <data name="Tasks.TaskSummary" xml:space="preserve"><value>Task summary</value></data>
   <data name="Tasks.TaskTitle" xml:space="preserve"><value>Task Title *</value></data>
+  <data name="Tasks.TaskTitle2" xml:space="preserve"><value>Task title *</value></data>
   <data name="Tasks.TaskTotal" xml:space="preserve"><value>Task total</value></data>
+  <data name="Tasks.TaskTrainee" xml:space="preserve"><value>Task / trainee</value></data>
+  <data name="Tasks.Tasks" xml:space="preserve"><value>tasks</value></data>
+  <data name="Tasks.TheDeadlineMustBeAfterThe" xml:space="preserve"><value>The deadline must be after the start date and time.</value></data>
   <data name="Tasks.TheDeadlineMustBeInThe" xml:space="preserve"><value>The deadline must be in the future.</value></data>
+  <data name="Tasks.TheFileCouldNotBeUploaded" xml:space="preserve"><value>The file could not be uploaded to Firebase Storage. Check the bucket and storage rules.</value></data>
   <data name="Tasks.TheTaskCouldNotBeSaved" xml:space="preserve"><value>The task could not be saved. Please try again.</value></data>
+  <data name="Tasks.TheTaskWasSuccessfullyAssignedTo" xml:space="preserve"><value>The task was successfully assigned to the trainee.</value></data>
+  <data name="Tasks.TheTotalCriteriaWeightCannotExceed" xml:space="preserve"><value>The total criteria weight cannot exceed 100%.</value></data>
+  <data name="Tasks.ThereAreNoTraineesAvailableFor" xml:space="preserve"><value>There are no trainees available for this task.</value></data>
   <data name="Tasks.TotalPoints" xml:space="preserve"><value>Total Points</value></data>
+  <data name="Tasks.TotalScore" xml:space="preserve"><value>Total score *</value></data>
+  <data name="Tasks.TotalScore2" xml:space="preserve"><value>Total score</value></data>
   <data name="Tasks.Trainee" xml:space="preserve"><value>Trainee</value></data>
   <data name="Tasks.TwoStepsDescribeTheTaskThen" xml:space="preserve"><value>Two steps: describe the task, then list what you will grade.</value></data>
   <data name="Tasks.UnderReview" xml:space="preserve"><value>Under review</value></data>
   <data name="Tasks.UseASimpleStarterSetQuality" xml:space="preserve"><value>Use a simple starter set (Quality 10, Completeness 5, On time 5)</value></data>
   <data name="Tasks.ViewAndManageTasksAssignedTo" xml:space="preserve"><value>View and manage tasks assigned to your trainees.</value></data>
+  <data name="Tasks.ViewDetails" xml:space="preserve"><value>View details</value></data>
   <data name="Tasks.WhatIsTheTaskAbout" xml:space="preserve"><value>What is the task about?</value></data>
   <data name="Tasks.WhatWillYouCheck" xml:space="preserve"><value>What will you check?</value></data>
   <data name="Tasks.WriteWhatYouWillCheckFor" xml:space="preserve"><value>Write what you will check, for example "Code quality".</value></data>
   <data name="Tasks.YourSessionExpiredPleaseReloadThe" xml:space="preserve"><value>Your session expired. Please reload the page and try again.</value></data>
+  <data name="Tasks.YourSessionExpiredReloadThePage" xml:space="preserve"><value>Your session expired. Reload the page and add the criteria again.</value></data>
   <data name="TraineeDetails.AcademicSupervisor" xml:space="preserve"><value>Academic Supervisor</value></data>
   <data name="TraineeDetails.AccessDeniedThisTraineeBelongsTo" xml:space="preserve"><value>Access denied. This trainee belongs to another company.</value></data>
   <data name="TraineeDetails.Action" xml:space="preserve"><value>Action</value></data>

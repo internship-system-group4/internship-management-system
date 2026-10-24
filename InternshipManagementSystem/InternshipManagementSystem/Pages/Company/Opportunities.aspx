@@ -37,7 +37,7 @@
 
 .op-heading p {
     margin: 0;
-    color: var(--th-fg-718298,#718298);
+    color: var(--ui-muted);
     font-size: 14px;
 }
 
@@ -46,9 +46,9 @@
     max-width: none;
     box-sizing: border-box;
     padding: 24px 28px;
-    border: 1.5px solid #ccd9e7;
+    border: 1.5px solid var(--th-line-ccd9e7,#ccd9e7);
     border-radius: 11px;
-    background: #ffffff;
+    background: var(--ui-surface,#ffffff);
     box-shadow: 0 2px 8px rgba(23,52,81,.035);
 }
 
@@ -59,7 +59,7 @@
 }
 
 .op-subtitle {
-    color: var(--th-fg-718298,#718298);
+    color: var(--ui-muted);
     font-size: 13px;
     margin-bottom: 18px;
 }
@@ -86,7 +86,7 @@
 .op-field textarea {
     width: 100%;
     padding: 10px 12px;
-    border: 1px solid #d0dce8;
+    border: 1px solid var(--th-line-d0dce8,#d0dce8);
     border-radius: 7px;
     background: var(--ui-surface,#fff);
     color: var(--th-fg-173451,#173451);
@@ -110,7 +110,7 @@
 .op-hint {
     display: block;
     margin-top: 6px;
-    color: var(--th-fg-7a8ba0,#7a8ba0);
+    color: var(--ui-muted);
     font-size: 12px;
 }
 
@@ -185,7 +185,7 @@
 
 /* Required stars */
 .op-required-star {
-    color: #dc2626 !important;
+    color: var(--th-fg-dc2626,#dc2626) !important;
     font-weight: 800;
 }
 
@@ -211,8 +211,8 @@
     }
 
     .op-card {
-        background: #ffffff;
-        border: 2px solid #b8cadc;
+        background: var(--ui-surface,#ffffff);
+        border: 2px solid var(--th-line-b8cadc,#b8cadc);
         border-radius: 12px;
         padding: 24px 28px;
         width: 100%;
@@ -456,7 +456,7 @@
             <!-- Last Date to Apply: Below Start and End -->
             <div class="op-field">
                 <label for="opDeadline">
-                    Last Date to Apply
+                    <%: L.T("Company.Opportunities.LastDateToApply") %>
                     <span class="op-required-star">*</span>
                 </label>
                 <input id="opDeadline"
@@ -481,7 +481,7 @@
                 value="draft"
                 data-ui-action="save"
                 data-ui-validation="none"
-                data-loading-label="Saving…">
+                data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                 <%: L.T("Company.Opportunities.SaveDraft") %>
             </button>
 
@@ -491,7 +491,7 @@
                 value="publish"
                 data-ui-action="publish"
                 data-ui-validation="none"
-                data-loading-label="Publishing…">
+                data-loading-label="<%: L.T("Shared.I18n.Publishing") %>">
                 <%: L.T("Company.Opportunities.Publish") %>
             </button>
 

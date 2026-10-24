@@ -11,12 +11,6 @@ namespace InternshipManagementSystem.Layout
         /// <summary>head control.</summary>
         protected global::System.Web.UI.WebControls.ContentPlaceHolder head;
 
-        /// <summary>litUserName control.</summary>
-        protected global::System.Web.UI.WebControls.Literal litUserName;
-
-        /// <summary>litRoleName control.</summary>
-        protected global::System.Web.UI.WebControls.Literal litRoleName;
-
         /// <summary>Shared role navigation content.</summary>
         protected global::System.Web.UI.UserControl PortalSidebar;
 

@@ -29,6 +29,9 @@
         "ApplicationDeadline": {
           ".validate": "newData.isNumber() && (newData.val() <= 0 || newData.val() > now) && newData.val() === root.child('opportunities').child($id).child('ApplicationDeadline').val()"
         },
+        "Specialization": {
+          ".validate": "newData.isString() && newData.val().length <= 200"
+        },
         "PublishedAt": {
           ".validate": "newData.isNumber() && newData.val() > 0 && newData.val() <= now + 60000"
         },

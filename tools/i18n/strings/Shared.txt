@@ -1176,3 +1176,980 @@ ar: حسابي
 
 NotificationBell.JustNow
 en: Just now
+
+SimpleWorkspace.ClearSearch
+en: Clear search
+ar: مسح البحث
+
+SimpleWorkspace.MatchCount
+en: {0} of {1} records shown
+ar: عرض {0} من {1} سجل
+
+SimpleWorkspace.NoMatches
+en: No matching records. Try another search or clear the search field.
+ar: لا توجد سجلات مطابقة. جرّب بحثًا آخر أو امسح حقل البحث.
+
+Grades.GradesResults
+en: Grades & results
+ar: العلامات والنتائج
+
+Grades.ReviewInternshipGradesAndDownloadThe
+en: Review internship grades and download the current selection as an Excel workbook.
+ar: راجع علامات التدريب ونزّل النتائج المحددة في ملف Excel.
+
+Grades.ExportToExcelXlsx
+en: Export to Excel (.xlsx)
+ar: تصدير إلى Excel (.xlsx)
+
+Grades.FilterGradesAndResults
+en: Filter grades and results
+ar: تصفية العلامات والنتائج
+
+Grades.ConfidentialSupervisorAndCoordinatorAccess
+en: Confidential · Supervisor and coordinator access
+ar: سري · متاح للمشرفين والمنسق
+
+Grades.SearchStudentsOrCompanies
+en: Search students or companies
+ar: البحث عن الطلاب أو الشركات
+
+Grades.NameStudentNumberOrCompany
+en: Name, student number or company
+ar: الاسم أو الرقم الجامعي أو الشركة
+
+Grades.Result
+en: Result
+ar: النتيجة
+
+Grades.AllResults
+en: All results
+ar: جميع النتائج
+
+Grades.Pending
+en: Pending
+ar: قيد الانتظار
+
+Grades.Pass
+en: Pass
+ar: ناجح
+
+Grades.Fail
+en: Fail
+ar: راسب
+
+Grades.ApplyFilters
+en: Apply filters
+ar: تطبيق عوامل التصفية
+
+Grades.Reset
+en: Reset
+ar: إعادة ضبط
+
+Grades.StudentResults
+en: Student results
+ar: نتائج الطلاب
+
+Grades.GradesAndResultsTable
+en: Grades and results table
+ar: جدول العلامات والنتائج
+
+Grades.GradesForTheSelectedInternshipsPending
+en: Grades for the selected internships. Pending indicates a grade or released result is unavailable.
+ar: علامات التدريبات المحددة. تعني «قيد الانتظار» أن العلامة أو النتيجة المعتمدة غير متاحة.
+
+Grades.Student
+en: Student
+ar: الطالب
+
+Grades.Company
+en: Company
+ar: الشركة
+
+Grades.TasksGraded
+en: Tasks graded
+ar: المهام المقيّمة
+
+Grades.ApprovedHours
+en: Approved hours
+ar: الساعات المعتمدة
+
+Grades.Tasks
+en: Tasks
+ar: المهام
+
+Grades.CompanyGrade
+en: Company grade
+ar: علامة الشركة
+
+Grades.AcademicGrade
+en: Academic grade
+ar: العلامة الأكاديمية
+
+Grades.FinalGrade
+en: Final grade
+ar: العلامة النهائية
+
+Grades.ReviewStatus
+en: Review status
+ar: حالة المراجعة
+
+Grades.NoResultsToDisplay
+en: No results to display
+ar: لا توجد نتائج للعرض
+
+Grades.ThereAreNoAssignedInternshipsMatching
+en: There are no assigned internships matching your selection. Try resetting the filters.
+ar: لا توجد تدريبات مسندة تطابق اختيارك. جرّب إعادة ضبط عوامل التصفية.
+
+Grades.PendingGradesAreNeverTreatedAs
+en: Pending grades are never treated as zero. Final grades and Pass/Fail results appear after coordinator approval and use the saved completion record. The Excel file includes the same selection, numeric grades, and export notes.
+ar: لا تُعامل العلامات المعلقة كصفر. تظهر العلامات النهائية ونتائج النجاح أو الرسوب بعد موافقة المنسق، وفق سجل الإتمام المحفوظ. يتضمن ملف Excel الاختيار نفسه والعلامات الرقمية وملاحظات التصدير.
+
+Title.Pages.Public.Journey
+en: The Journey | GJU Internship Management System
+ar: رحلة التدريب | نظام إدارة التدريب – الجامعة الألمانية الأردنية
+
+Title.Pages.Public.404
+en: 404 - GJU Internship Management System
+ar: الصفحة غير موجودة | نظام إدارة التدريب
+
+Js.ArabicTaskdetails
+en: Task details
+ar: تفاصيل المهمة
+
+Js.ArabicNotset
+en: Not set
+ar: غير محدد
+
+Js.ArabicNotsubmitted
+en: Not submitted
+ar: لم يُسلّم
+
+Js.ArabicNotevaluated
+en: Not evaluated
+ar: لم يُقيّم
+
+Js.Arabicpoints
+en:  points
+ar:  علامة
+
+Js.ArabicNodescriptionprovided
+en: No description provided.
+ar: لم يُقدم وصف.
+
+Js.ArabicNoadditionalinstructions
+en: No additional instructions.
+ar: لا توجد تعليمات إضافية.
+
+Js.ArabicOpentaskattachment
+en: Open task attachment
+ar: فتح مرفق المهمة
+
+Js.ArabicShowing0tasks
+en: Showing 0 tasks
+ar: عرض 0 مهمة
+
+Js.ArabicThetaskwassuccessfullyassignedtothetrainee
+en: The task was successfully assigned to the trainee.
+ar: تم إسناد المهمة إلى المتدرب بنجاح.
+
+Js.ArabicSendthisrequest
+en: Send this request?
+ar: هل تريد إرسال هذا الطلب؟
+
+Js.ArabicTheinvitedpersonwillreceiveyourrequestIt
+en: The invited person will receive your request. It stays pending until they approve.
+ar: سيصل طلبك إلى الشخص المدعو ويبقى معلقًا حتى يوافق عليه.
+
+Js.ArabicSendrequest
+en: Send request
+ar: إرسال الطلب
+
+Js.ArabicAcceptthismeeting
+en: Accept this meeting?
+ar: هل تريد قبول هذا الاجتماع؟
+
+Js.ArabicTherequesterwillseeyouracceptanceJoinbecomes
+en: The requester will see your acceptance. Join becomes available during the joining window.
+ar: سيظهر قبولك لصاحب الطلب، ويتاح الانضمام خلال فترة الانضمام المحددة.
+
+Js.ArabicAcceptmeeting
+en: Accept meeting
+ar: قبول الاجتماع
+
+Js.ArabicDeclinethisrequest
+en: Decline this request?
+ar: هل تريد رفض هذا الطلب؟
+
+Js.ArabicTherequestwillmovetoyourhistoryand
+en: The request will move to your history and the requester will see your response.
+ar: سينتقل الطلب إلى السجل وسيظهر ردك لصاحب الطلب.
+
+Js.ArabicDeclinerequest
+en: Decline request
+ar: رفض الطلب
+
+Js.ArabicMarkmeetingcompleted
+en: Mark meeting completed?
+ar: هل تريد تحديد الاجتماع كمكتمل؟
+
+Js.ArabicConfirmthatthemeetingactuallytookplaceand
+en: Confirm that the meeting actually took place and has finished. This is a manual completion record.
+ar: أكد أن الاجتماع انعقد وانتهى بالفعل. هذا تسجيل يدوي للإتمام.
+
+Js.ArabicMarkcompleted
+en: Mark completed
+ar: تحديد كمكتمل
+
+Js.ArabicCancelthismeeting
+en: Cancel this meeting?
+ar: هل تريد إلغاء هذا الاجتماع؟
+
+Js.ArabicThemeetingwillbecancelledforbothpeople
+en: The meeting will be cancelled for both people and kept in your history.
+ar: سيُلغى الاجتماع للطرفين ويُحتفظ به في السجل.
+
+Js.ArabicCancelmeeting
+en: Cancel meeting
+ar: إلغاء الاجتماع
+
+Js.ArabicRefreshthelist
+en: Refresh the list?
+ar: هل تريد تحديث القائمة؟
+
+Js.ArabicLoadthelatestrequestsresponsesandjoinavailability
+en: Load the latest requests, responses, and join availability.
+ar: تحميل أحدث الطلبات والردود وإتاحة الانضمام.
+
+Js.ArabicRefreshlist
+en: Refresh list
+ar: تحديث القائمة
+
+Js.ArabicMeetingserviceunavailable
+en: Meeting service unavailable
+ar: خدمة الاجتماعات غير متاحة
+
+Js.ArabicPreparingthemeeting
+en: Preparing the meeting…
+ar: جارٍ تجهيز الاجتماع…
+
+Js.ArabicFollowthejoininginstructionsbelowThepersonstarting
+en: Follow the joining instructions below. The person starting the room may need to sign in.
+ar: اتبع تعليمات الانضمام أدناه. قد يحتاج الشخص الذي يبدأ الغرفة إلى تسجيل الدخول.
+
+Js.ArabicYouhavejoinedthemeeting
+en: You have joined the meeting.
+ar: لقد انضممت إلى الاجتماع.
+
+Js.ArabicCouldnotloadtheroomTryagainor
+en: Could not load the room. Try again or use Open separately if needed.
+ar: تعذر تحميل الغرفة. حاول مجددًا أو افتحها في نافذة مستقلة عند الحاجة.
+
+Js.ArabicNotprovided
+en: Not provided
+ar: غير متوفر
+
+Js.ArabicPasswordmustcontain8to128characters
+en: Password must contain 8 to 128 characters.
+ar: يجب أن تحتوي كلمة المرور على 8 إلى 128 محرفًا.
+
+Js.TasksShowingRange
+en: Showing {0}-{1} of {2} tasks
+ar: عرض {0}–{1} من أصل {2} مهمة
+
+Js.TasksCreatedMany
+en: {0} tasks were created, one for each of your trainees.
+ar: تم إنشاء {0} مهمة، واحدة لكل متدرب.
+
+Js.SubmissionsShowing
+en: Showing {0} of {1} submissions
+ar: عرض {0} من أصل {1} تسليم
+
+Value.Ui.Alltrainees
+en: All trainees
+ar: جميع المتدربين
+
+Value.Ui.Allstatuses
+en: All statuses
+ar: جميع الحالات
+
+Value.Ui.Awaitingreview
+en: Awaiting review
+ar: بانتظار المراجعة
+
+Value.Ui.Underreview
+en: Under review
+ar: قيد المراجعة
+
+Value.Ui.Revisionrequested
+en: Revision requested
+ar: طُلب تعديل
+
+Value.Ui.Reviewed
+en: Reviewed
+ar: تمت المراجعة
+
+Value.Ui.Accepted
+en: Accepted
+ar: مقبول
+
+Value.Ui.Alldepartments
+en: All departments
+ar: جميع الأقسام
+
+Value.Ui.Alltaskstatuses
+en: All task statuses
+ar: جميع حالات المهام
+
+Value.Ui.Pendingreview
+en: Pending review
+ar: بانتظار المراجعة
+
+Value.Ui.Revisionneeded
+en: Revision needed
+ar: تحتاج إلى تعديل
+
+Value.Ui.Inprogress
+en: In progress
+ar: قيد التنفيذ
+
+Value.Ui.AwaitingEvaluations
+en: Awaiting Evaluations
+ar: بانتظار التقييمات
+
+Value.Ui.ReadyforReview
+en: Ready for Review
+ar: جاهز للمراجعة
+
+Value.Ui.NeedsCorrections
+en: Needs Corrections
+ar: تحتاج إلى تصحيح
+
+Value.Ui.Approved
+en: Approved
+ar: معتمد
+
+Value.Ui.Rejected
+en: Rejected
+ar: مرفوض
+
+Value.Ui.15minutes
+en: 15 minutes
+ar: 15 دقيقة
+
+Value.Ui.30minutes
+en: 30 minutes
+ar: 30 دقيقة
+
+Value.Ui.45minutes
+en: 45 minutes
+ar: 45 دقيقة
+
+Value.Ui.60minutes
+en: 60 minutes
+ar: 60 دقيقة
+
+Value.Ui.Allmymeetingsandrequests
+en: All my meetings and requests
+ar: جميع اجتماعاتي وطلباتي
+
+Value.Ui.Waitingformyapproval
+en: Waiting for my approval
+ar: بانتظار موافقتي
+
+Value.Ui.RequestsIsentpending
+en: Requests I sent - pending
+ar: طلباتي المرسلة - معلقة
+
+Value.Ui.Meetinghistory
+en: Meeting history
+ar: سجل الاجتماعات
+
+Value.Ui.ContinueDraft
+en: Continue Draft
+ar: متابعة المسودة
+
+Value.Ui.Assigned
+en: Assigned
+ar: مسندة
+
+Value.Ui.Submitted
+en: Submitted
+ar: تم التسليم
+
+Value.Ui.Resubmitted
+en: Resubmitted
+ar: أعيد التسليم
+
+Value.Ui.Completed
+en: Completed
+ar: مكتمل
+
+Value.Ui.Scheduled
+en: Scheduled
+ar: مجدول
+
+Value.Ui.Cancelled
+en: Cancelled
+ar: ملغى
+
+Value.Ui.Expired
+en: Expired
+ar: منتهي
+
+Value.Ui.Pendingapproval
+en: Pending approval
+ar: بانتظار الموافقة
+
+Value.Ui.Pending
+en: Pending
+ar: قيد الانتظار
+
+Value.Ui.Waitingforresponse
+en: Waiting for response
+ar: بانتظار الرد
+
+Value.Ui.Upcoming
+en: Upcoming
+ar: قادم
+
+Value.Ui.Notsubmitted
+en: Not submitted
+ar: لم يُسلّم
+
+Value.Ui.Viewattempt
+en: View attempt
+ar: عرض المحاولة
+
+Value.Ui.Reviewsubmission
+en: Review submission
+ar: مراجعة التسليم
+
+Value.Ui.Continuereview
+en: Continue review
+ar: متابعة المراجعة
+
+Value.Ui.Viewrevisionrequest
+en: View revision request
+ar: عرض طلب التعديل
+
+Value.Ui.Viewevaluation
+en: View evaluation
+ar: عرض التقييم
+
+Value.Ui.Submit
+en: Submit
+ar: تسليم
+
+Value.Ui.Resubmit
+en: Resubmit
+ar: إعادة التسليم
+
+Value.Ui.Details
+en: Details
+ar: التفاصيل
+
+I18n.Uploading
+en: Uploading…
+ar: جارٍ الرفع…
+
+I18n.Saving
+en: Saving…
+ar: جارٍ الحفظ…
+
+I18n.Updating
+en: Updating…
+ar: جارٍ التحديث…
+
+I18n.Submitting
+en: Submitting…
+ar: جارٍ الإرسال…
+
+I18n.Changingpassword
+en: Changing password…
+ar: جارٍ تغيير كلمة المرور…
+
+I18n.Accepting
+en: Accepting…
+ar: جارٍ القبول…
+
+I18n.Confirming
+en: Confirming…
+ar: جارٍ التنفيذ…
+
+I18n.Closing
+en: Closing…
+ar: جارٍ التنفيذ…
+
+I18n.Publishing
+en: Publishing…
+ar: جارٍ التنفيذ…
+
+I18n.Creating
+en: Creating…
+ar: جارٍ الإنشاء…
+
+I18n.Saving2
+en: Saving...
+ar: جارٍ الحفظ…
+
+I18n.Updating2
+en: Updating...
+ar: جارٍ التحديث…
+
+I18n.Deleting
+en: Deleting…
+ar: جارٍ الحذف…
+
+I18n.Synchronizing
+en: Synchronizing…
+ar: جارٍ التنفيذ…
+
+Title.Pages.Company.EvaluationReport
+en: Company evaluation report
+ar: تقرير تقييم الشركة
+
+Title.Pages.Reports.Grades
+en: Grades & results
+ar: العلامات والنتائج
+
+I18n.Areyousureyouwanttosubmit
+en: Are you sure you want to submit this evaluation? It cannot be changed later.
+ar: هل تريد إرسال هذا التقييم؟ لا يمكن تغييره لاحقًا.
+
+I18n.SubmitthisconfidentialfinalevaluationSubmittedevaluations
+en: Submit this confidential final evaluation? Submitted evaluations are read-only.
+ar: هل تريد إرسال هذا التقييم النهائي السري؟ لا يمكن تعديل التقييمات المرسلة.
+
+I18n.Approvecompletionandreleasethestudentreport
+en: Approve completion and release the student report? This decision will be read-only.
+ar: هل تريد اعتماد إتمام التدريب وإتاحة تقرير الطالب؟ لا يمكن تعديل هذا القرار لاحقًا.
+
+I18n.RejectcompletionwiththedocumentedreasonThis
+en: Reject completion with the documented reason? This decision will be read-only.
+ar: هل تريد رفض إتمام التدريب وفق السبب الموثق؟ لا يمكن تعديل هذا القرار لاحقًا.
+
+Value.Ui.Active
+en: Active
+ar: نشط
+
+Value.Ui.Inactive
+en: Inactive
+ar: غير نشط
+
+Value.Directory.SchoolofComputing
+en: School of Computing
+ar: كلية الحوسبة
+
+Value.Directory.Whereideasbecometechnology
+en: Where ideas become technology.
+ar: حيث تتحول الأفكار إلى تقنية.
+
+Value.Directory.Programmes
+en: Programmes
+ar: البرامج
+
+Value.Directory.ComputerScience
+en: Computer Science
+ar: علم الحاسوب
+
+Value.Directory.ComputerEngineering
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+Value.Directory.MScComputerEngineering
+en: MSc Computer Engineering
+ar: ماجستير هندسة الحاسوب
+
+Value.Directory.MScEnterpriseSoftwareEngineering
+en: MSc Enterprise Software Engineering
+ar: ماجستير هندسة برمجيات المؤسسات
+
+Value.Directory.SchoolofAppliedTechnicalSciences
+en: School of Applied Technical Sciences
+ar: كلية العلوم التقنية التطبيقية
+
+Value.Directory.Engineeringthatworksonthefactoryfloor
+en: Engineering that works on the factory floor.
+ar: هندسة تُطبق في ميادين الصناعة.
+
+Value.Directory.MechanicalandMaintenanceEngineering
+en: Mechanical and Maintenance Engineering
+ar: الهندسة الميكانيكية والصيانة
+
+Value.Directory.IndustrialEngineering
+en: Industrial Engineering
+ar: الهندسة الصناعية
+
+Value.Directory.MechatronicsEngineering
+en: Mechatronics Engineering
+ar: هندسة الميكاترونكس
+
+Value.Directory.SchoolofSustainableSystemsEngineering
+en: School of Sustainable Systems Engineering
+ar: كلية هندسة النظم المستدامة
+
+Value.Directory.Engineeringasustainabletomorrow
+en: Engineering a sustainable tomorrow.
+ar: نبني بالغد هندسةً مستدامة.
+
+Value.Directory.CivilandEnvironmentalEngineering
+en: Civil and Environmental Engineering
+ar: الهندسة المدنية والبيئية
+
+Value.Directory.ElectricalandEnergyEngineering
+en: Electrical and Energy Engineering
+ar: الهندسة الكهربائية وهندسة الطاقة
+
+Value.Directory.SchoolofArchitectureandBuiltEnvironment
+en: School of Architecture and Built Environment
+ar: كلية العمارة والبيئة المبنية
+
+Value.Directory.Designingthespaceswelivein
+en: Designing the spaces we live in.
+ar: نصمم المساحات التي نعيش فيها.
+
+Value.Directory.ArchitectureandInteriorArchitecture
+en: Architecture and Interior Architecture
+ar: العمارة والعمارة الداخلية
+
+Value.Directory.BusinessSchool
+en: Business School
+ar: كلية الأعمال
+
+Value.Directory.Ideasthatgrowintoenterprises
+en: Ideas that grow into enterprises.
+ar: أفكار تنمو لتصبح مشاريع.
+
+Value.Directory.InternationalAccounting
+en: International Accounting
+ar: المحاسبة الدولية
+
+Value.Directory.LogisticsSciences
+en: Logistics Sciences
+ar: العلوم اللوجستية
+
+Value.Directory.DigitalMarketing
+en: Digital Marketing
+ar: التسويق الرقمي
+
+Value.Directory.MBA
+en: MBA
+ar: ماجستير إدارة الأعمال
+
+Value.Directory.MasterinLogisticsManagement
+en: Master in Logistics Management
+ar: ماجستير الإدارة اللوجستية
+
+Value.Directory.SchoolofAppliedMedicalSciences
+en: School of Applied Medical Sciences
+ar: كلية العلوم الطبية التطبيقية
+
+Value.Directory.Scienceintheserviceofhealth
+en: Science in the service of health.
+ar: العلم في خدمة الصحة.
+
+Value.Directory.BiomedicalEngineering
+en: Biomedical Engineering
+ar: الهندسة الطبية الحيوية
+
+Value.Directory.PharmaceuticalandChemicalEngineering
+en: Pharmaceutical and Chemical Engineering
+ar: الهندسة الصيدلانية والكيميائية
+
+Value.Directory.SchoolofAppliedHumanitiesandSocialSciences
+en: School of Applied Humanities and Social Sciences
+ar: كلية العلوم الإنسانية والاجتماعية التطبيقية
+
+Value.Directory.Languagespeopleandsociety
+en: Languages, people and society.
+ar: اللغات والإنسان والمجتمع.
+
+Value.Directory.Departments
+en: Departments
+ar: الأقسام
+
+Value.Directory.AppliedHumanities
+en: Applied Humanities
+ar: العلوم الإنسانية التطبيقية
+
+Value.Directory.SocialWork
+en: Social Work
+ar: العمل الاجتماعي
+
+Value.Directory.BasicEducation
+en: Basic Education
+ar: التعليم الأساسي
+
+Value.Directory.SchoolofNursing
+en: School of Nursing
+ar: كلية التمريض
+
+Value.Directory.Caregroundedinscience
+en: Care, grounded in science.
+ar: رعاية تستند إلى العلم.
+
+Value.Directory.Nursing
+en: Nursing
+ar: التمريض
+
+Title.Pages.Public.NotFound
+en: Page not found | UIMS
+ar: الصفحة غير موجودة | UIMS
+
+Value.Ui.Withdrawn
+en: Withdrawn
+ar: مسحوب
+
+Value.Ui.Draft
+en: Draft
+ar: مسودة
+
+Value.Ui.Open
+en: Open
+ar: مفتوحة
+
+Value.Ui.Closed
+en: Closed
+ar: مغلقة
+
+Value.Ui.Offered
+en: Offered
+ar: معروض
+
+Value.Ui.Confirmed
+en: Confirmed
+ar: مؤكَّد
+
+Value.Ui.Awaitingcompletion
+en: Awaiting completion
+ar: بانتظار الإتمام
+
+Value.Ui.Graded
+en: Graded
+ar: مُقيَّمة
+
+Value.Ui.Reported
+en: Reported
+ar: مُبلَّغ عنها
+
+Value.Ui.Notready
+en: Not ready
+ar: غير جاهز
+
+Value.Ui.Awaitingcompanyevaluation
+en: Awaiting company evaluation
+ar: بانتظار تقييم الشركة
+
+Value.Ui.Awaitingacademicevaluation
+en: Awaiting academic evaluation
+ar: بانتظار التقييم الأكاديمي
+
+Value.Ui.Undercoordinatorreview
+en: Under coordinator review
+ar: قيد مراجعة منسّق التدريب
+
+Value.Ui.Returned
+en: Returned
+ar: مُعاد
+
+Value.Ui.New
+en: New
+ar: جديدة
+
+Value.Ui.Onsite
+en: On-site
+ar: حضوري
+
+Value.Ui.Hybrid
+en: Hybrid
+ar: مدمج
+
+Value.Ui.Remote
+en: Remote
+ar: عن بُعد
+
+Value.Ui.Internship
+en: Internship
+ar: تدريب عملي
+
+Value.Ui.SchoolofComputing
+en: School of Computing
+ar: كلية الحوسبة
+
+Value.Ui.Whereideasbecometechnology
+en: Where ideas become technology.
+ar: حيث تتحول الأفكار إلى تقنية.
+
+Value.Ui.Programmes
+en: Programmes
+ar: البرامج
+
+Value.Ui.ComputerScience
+en: Computer Science
+ar: علم الحاسوب
+
+Value.Ui.ComputerEngineering
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+Value.Ui.MScComputerEngineering
+en: MSc Computer Engineering
+ar: ماجستير هندسة الحاسوب
+
+Value.Ui.MScEnterpriseSoftwareEngineering
+en: MSc Enterprise Software Engineering
+ar: ماجستير هندسة برمجيات المؤسسات
+
+Value.Ui.SchoolofAppliedTechnicalSciences
+en: School of Applied Technical Sciences
+ar: كلية العلوم التقنية التطبيقية
+
+Value.Ui.Engineeringthatworksonthefactoryfloor
+en: Engineering that works on the factory floor.
+ar: هندسة تُطبق في ميادين الصناعة.
+
+Value.Ui.MechanicalandMaintenanceEngineering
+en: Mechanical and Maintenance Engineering
+ar: الهندسة الميكانيكية والصيانة
+
+Value.Ui.IndustrialEngineering
+en: Industrial Engineering
+ar: الهندسة الصناعية
+
+Value.Ui.MechatronicsEngineering
+en: Mechatronics Engineering
+ar: هندسة الميكاترونكس
+
+Value.Ui.SchoolofSustainableSystemsEngineering
+en: School of Sustainable Systems Engineering
+ar: كلية هندسة النظم المستدامة
+
+Value.Ui.Engineeringasustainabletomorrow
+en: Engineering a sustainable tomorrow.
+ar: نبني بالغد هندسةً مستدامة.
+
+Value.Ui.CivilandEnvironmentalEngineering
+en: Civil and Environmental Engineering
+ar: الهندسة المدنية والبيئية
+
+Value.Ui.ElectricalandEnergyEngineering
+en: Electrical and Energy Engineering
+ar: الهندسة الكهربائية وهندسة الطاقة
+
+Value.Ui.SchoolofArchitectureandBuiltEnvironment
+en: School of Architecture and Built Environment
+ar: كلية العمارة والبيئة المبنية
+
+Value.Ui.Designingthespaceswelivein
+en: Designing the spaces we live in.
+ar: نصمم المساحات التي نعيش فيها.
+
+Value.Ui.ArchitectureandInteriorArchitecture
+en: Architecture and Interior Architecture
+ar: العمارة والعمارة الداخلية
+
+Value.Ui.BusinessSchool
+en: Business School
+ar: كلية الأعمال
+
+Value.Ui.Ideasthatgrowintoenterprises
+en: Ideas that grow into enterprises.
+ar: أفكار تنمو لتصبح مشاريع.
+
+Value.Ui.InternationalAccounting
+en: International Accounting
+ar: المحاسبة الدولية
+
+Value.Ui.LogisticsSciences
+en: Logistics Sciences
+ar: العلوم اللوجستية
+
+Value.Ui.DigitalMarketing
+en: Digital Marketing
+ar: التسويق الرقمي
+
+Value.Ui.MBA
+en: MBA
+ar: ماجستير إدارة الأعمال
+
+Value.Ui.MasterinLogisticsManagement
+en: Master in Logistics Management
+ar: ماجستير الإدارة اللوجستية
+
+Value.Ui.SchoolofAppliedMedicalSciences
+en: School of Applied Medical Sciences
+ar: كلية العلوم الطبية التطبيقية
+
+Value.Ui.Scienceintheserviceofhealth
+en: Science in the service of health.
+ar: العلم في خدمة الصحة.
+
+Value.Ui.BiomedicalEngineering
+en: Biomedical Engineering
+ar: الهندسة الطبية الحيوية
+
+Value.Ui.PharmaceuticalandChemicalEngineering
+en: Pharmaceutical and Chemical Engineering
+ar: الهندسة الصيدلانية والكيميائية
+
+Value.Ui.SchoolofAppliedHumanitiesandSocialSciences
+en: School of Applied Humanities and Social Sciences
+ar: كلية العلوم الإنسانية والاجتماعية التطبيقية
+
+Value.Ui.Languagespeopleandsociety
+en: Languages, people and society.
+ar: اللغات والإنسان والمجتمع.
+
+Value.Ui.Departments
+en: Departments
+ar: الأقسام
+
+Value.Ui.AppliedHumanities
+en: Applied Humanities
+ar: العلوم الإنسانية التطبيقية
+
+Value.Ui.SocialWork
+en: Social Work
+ar: العمل الاجتماعي
+
+Value.Ui.BasicEducation
+en: Basic Education
+ar: التعليم الأساسي
+
+Value.Ui.SchoolofNursing
+en: School of Nursing
+ar: كلية التمريض
+
+Value.Ui.Caregroundedinscience
+en: Care, grounded in science.
+ar: رعاية تستند إلى العلم.
+
+Value.Ui.Nursing
+en: Nursing
+ar: التمريض
+
+Value.Ui.Declined
+en: Declined
+ar: مرفوض
+
+Value.Ui.Legacymeeting
+en: Legacy meeting
+ar: اجتماع بالنظام السابق
+
+Value.Ui.Expiredwithoutapproval
+en: Expired without approval
+ar: انتهى دون موافقة
+
+Value.Ui.Pastcompletionnotrecorded
+en: Past - completion not recorded
+ar: انتهى موعده - لم يُسجل الإتمام
+
+Value.Ui.Unavailable
+en: Unavailable
+ar: غير متاح
+
+
+Title.Pages.Notifications.Inbox
+en: Notifications
+ar: الإشعارات

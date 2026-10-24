@@ -16,7 +16,7 @@
     --accent: #c8a349;
 
     --ink: #1d2733;
-    --muted: #6b7786;
+    --muted: var(--ui-muted); /* #6b7786 fell below 4.5:1 on the portal canvas */
     --line: #e3e8ee;
     --surface: #ffffff;
     --canvas: #f6f8fa;

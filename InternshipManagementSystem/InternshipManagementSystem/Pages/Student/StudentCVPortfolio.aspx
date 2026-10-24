@@ -28,7 +28,7 @@
 }
 
 .cv-muted {
-    color: var(--th-fg-64748b,#64748b);
+    color: var(--ui-muted);
     line-height: 1.7;
 }
 
@@ -73,7 +73,7 @@
 
 .cv-help {
     display: block;
-    color: var(--th-fg-718096,#718096);
+    color: var(--ui-muted);
     font-size: .85rem;
     margin-top: 7px;
 }
@@ -147,7 +147,7 @@
 }
 
 .cv-empty {
-    color: var(--th-fg-7b8797,#7b8797);
+    color: var(--ui-muted);
     font-size: .9rem;
 }
 
@@ -360,7 +360,7 @@
             <button type="submit"
                     name="cvAction"
                     value="save"
-                    class="cv-btn" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
+                    class="cv-btn" data-ui-action="save" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                 <%: L.T("Student.StudentCVPortfolio.SaveCVPortfolio") %>
             </button>
 
@@ -426,7 +426,7 @@
                                     name="cvAction"
                                     value="removeCv"
                                     class="cv-btn cv-btn-danger"
-                                    onclick="return confirm('Remove your CV file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="Deleting…">
+                                    onclick="return confirm('Remove your CV file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Deleting") %>">
                                 <%: L.T("Student.StudentCVPortfolio.Remove") %>
                             </button>
 
@@ -491,7 +491,7 @@
                                     name="cvAction"
                                     value="removePortfolio"
                                     class="cv-btn cv-btn-danger"
-                                    onclick="return confirm('Remove your portfolio file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="Deleting…">
+                                    onclick="return confirm('Remove your portfolio file?');" data-ui-action="delete" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Deleting") %>">
                                 <%: L.T("Student.StudentCVPortfolio.Remove") %>
                             </button>
 

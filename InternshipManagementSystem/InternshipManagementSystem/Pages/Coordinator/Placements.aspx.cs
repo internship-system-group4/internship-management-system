@@ -37,6 +37,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             catch (FirebaseException) { LoadError = L.T("Coordinator.Placements.WeCouldNotLoadPlacementsRefresh"); }
             catch (InvalidOperationException) { LoadError = L.T("Coordinator.Placements.FirebaseIsNotConfiguredContactThe"); }
         }
+        /// <summary>A company or opportunity name, or "Not recorded" when it is blank.</summary>
+        protected static string Show(string value) { return string.IsNullOrWhiteSpace(value) ? L.T("Coordinator.Placements.NoName") : value; }
         private static bool Contains(string value, string query) { return (value ?? "").IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0; }
         protected void Search_Click(object sender, EventArgs e)
         {

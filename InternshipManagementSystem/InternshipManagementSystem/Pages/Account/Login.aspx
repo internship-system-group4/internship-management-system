@@ -1,6 +1,6 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Public.master" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="InternshipManagementSystem.Pages.AccountArea.Login" Title="Login | UIMS" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/login-campus.css") %>" />
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/login-campus.css?v=20261024-handoff") %>" />
 <% if (VerifiedDestination != null) { %><meta name="robots" content="noindex" /><% } %>
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
@@ -24,5 +24,6 @@
  <div class="login-campus-caption"><span><%: L.T("Account.Login.GermanJordanianUniversityGate1") %></span><button type="button" data-campus-pause aria-pressed="false" hidden><%: L.T("Account.Login.PauseScene") %></button></div>
  </div>
 </div>
+<div class="login-campus-veil" aria-hidden="true"></div>
 </asp:Content>
-<asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server"><script src="<%: ResolveUrl("~/Assets/js/public-forms.js?v=20261021-4") %>"></script><script defer src="<%: ResolveUrl("~/Assets/js/login-campus.js?v=20261023-i18n") %>"></script></asp:Content>
+<asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server"><script src="<%: ResolveUrl("~/Assets/js/public-forms.js?v=20261021-4") %>"></script><script defer src="<%: ResolveUrl("~/Assets/js/login-campus.js?v=20261024-handoff") %>"></script></asp:Content>

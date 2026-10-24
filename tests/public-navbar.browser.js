@@ -23,7 +23,7 @@ async page=>{
  const originalMainTop=await page.locator('#public-content').evaluate(el=>el.getBoundingClientRect().top+scrollY);
  await scroll(50);check(await header.getAttribute('data-scrolled')==='true','Readable surface before content passes underneath');
  await scroll(130);check(await header.getAttribute('data-compact')==='true','Compact beyond threshold');
- check(Math.round((await bar.boundingBox()).width)===1000,'Compact content width');
+ check(Math.round((await bar.boundingBox()).width)===1200,'Compact content width');
  check((await bar.boundingBox()).y>=16&&(await bar.boundingBox()).y<=24,'Floating 16–24px offset');
  check(await page.locator('#public-content').evaluate(el=>el.getBoundingClientRect().top+scrollY)===originalMainTop,'No document shift on contraction');
  await scroll(98);check(await header.getAttribute('data-compact')==='true','Hysteresis retains compact near threshold');
@@ -69,7 +69,7 @@ async page=>{
  check(page.url().endsWith('#how-it-works'),'Back restores chapter');
  await page.goForward();await page.waitForFunction(()=>document.querySelector('#opportunities').getBoundingClientRect().top>=100&&document.querySelector('#opportunities').getBoundingClientRect().top<=120);
  check(page.url().endsWith('#opportunities'),'Forward restores normal-flow anchor');
- for(const width of [1120,960,768,390,320]){
+ for(const width of [1200,1120,960,768,390,320]){
   await page.setViewportSize({width,height:844});await page.goto(base+'/Pages/Public/About.aspx');
   await page.waitForFunction(()=>document.getElementById('publicNav').inert);
   const toggle=header.locator('.public-menu-toggle');

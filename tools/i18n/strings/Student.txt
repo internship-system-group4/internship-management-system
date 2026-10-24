@@ -1295,3 +1295,463 @@ ar:  ساعة
 Dashboard.HoursTargetNotSet
 en:  hours · target not set
 ar:  ساعة · لم يُحدَّد الهدف
+
+Dashboard.StudentWorkspace
+en: Student workspace
+ar: مساحة عمل الطالب
+
+Dashboard.SearchWorkspace
+en: Search recent tasks, applications, or companies
+ar: ابحث في المهام والطلبات الأخيرة أو الشركات
+
+Dashboard.ProfileHelp
+en: Keep your university details up to date.
+ar: حدّث بياناتك الجامعية.
+
+Dashboard.DocumentsHelp
+en: Manage your CV and portfolio.
+ar: أدر سيرتك الذاتية وملف أعمالك.
+
+Dashboard.MeetingsHelp
+en: View your scheduled meetings.
+ar: تابع اجتماعاتك المجدولة.
+
+MyTasks.MyTasks2
+en: My tasks
+ar: مهامي
+
+MyTasks.ReviewTheTasksAssignedToYou
+en: Review the tasks assigned to you and submit your work before the deadline.
+ar: راجع المهام المسندة إليك وسلّم عملك قبل الموعد النهائي.
+
+MyTasks.AssignedTasks2
+en: Assigned tasks
+ar: المهام المسندة
+
+MyTasks.SelectATaskToViewIts
+en: Select a task to view its instructions and submission options.
+ar: اختر مهمة لعرض تعليماتها وخيارات التسليم.
+
+MyTasks.Status2
+en: Status
+ar: الحالة
+
+MyTasks.NoTasksHaveBeenAssignedTo2
+en: No tasks have been assigned to your placement yet.
+ar: لم تُسند مهام إلى تدريبك بعد.
+
+MyTasks.YourSupervisorSTasksWillAppear
+en: Your supervisor's tasks will appear here when they are assigned.
+ar: ستظهر هنا مهام مشرفك عند إسنادها.
+
+MyTasks.ChooseATask
+en: Choose a task
+ar: اختر مهمة
+
+MyTasks.SelectOneOfYourAssignedTasks
+en: Select one of your assigned tasks to see its details and submit your work.
+ar: اختر إحدى مهامك لعرض تفاصيلها وتسليم عملك.
+
+MyTasks.SubmitYourWorkHereEachResubmission
+en: Submit your work here. Each resubmission is saved as a new attempt.
+ar: سلّم عملك هنا. تُحفظ كل إعادة تسليم كمحاولة جديدة.
+
+MyTasks.Deadline2
+en: Deadline:
+ar: الموعد النهائي:
+
+MyTasks.Instructions
+en: Instructions
+ar: التعليمات
+
+MyTasks.SubmitOrResubmitWork
+en: Submit or resubmit work
+ar: تسليم العمل أو إعادة تسليمه
+
+MyTasks.AddANoteALinkOr
+en: Add a note, a link, or an attachment as requested.
+ar: أضف ملاحظة أو رابطًا أو مرفقًا وفق المطلوب.
+
+MyTasks.DescriptionOrNoteOptional
+en: Description or note (optional)
+ar: وصف أو ملاحظة (اختياري)
+
+MyTasks.LinkOptional
+en: Link (optional)
+ar: رابط (اختياري)
+
+MyTasks.UseAFullLinkBeginningWith
+en: Use a full link beginning with https:// or http://.
+ar: استخدم رابطًا كاملًا يبدأ بـ https:// أو http://.
+
+MyTasks.AttachmentOptional
+en: Attachment (optional)
+ar: مرفق (اختياري)
+
+MyTasks.PDFWordZIPOrImageFile
+en: PDF, Word, ZIP, or image file. Maximum size: 10 MB.
+ar: ملف PDF أو Word أو ZIP أو صورة. الحجم الأقصى: 10 ميغابايت.
+
+MyTasks.SubmitTask2
+en: Submit task
+ar: تسليم المهمة
+
+MyTasks.ThisTaskIsNotAcceptingSubmissions2
+en: This task is not accepting submissions right now. Check the status above or contact your supervisor.
+ar: هذه المهمة لا تقبل التسليم حاليًا. راجع الحالة أعلاه أو تواصل مع مشرفك.
+
+MyTasks.TaskCriteria
+en: Task criteria
+ar: معايير المهمة
+
+MyTasks.Points2
+en: points
+ar: علامة
+
+MyTasks.NoAdditionalCriteriaWereProvided
+en: No additional criteria were provided.
+ar: لم تُحدد معايير إضافية.
+
+MyTasks.SubmissionHistory2
+en: Submission history
+ar: سجل التسليمات
+
+MyTasks.OpenSubmittedLink
+en: Open submitted link
+ar: فتح الرابط المسلَّم
+
+MyTasks.NoSubmissionsYet
+en: No submissions yet.
+ar: لا توجد تسليمات بعد.
+
+Profile.EditProfile
+en: Edit Profile
+ar: تعديل الملف الشخصي
+
+Profile.Student
+en: Student
+ar: الطالب
+
+Profile.Close
+en: Close
+ar: إغلاق
+
+Profile.Cancel
+en: Cancel
+ar: إلغاء
+
+Progress.FollowYourTaskSubmissionsFeedbackApproved
+en: Follow your task submissions, feedback, approved hours and final result.
+ar: تابع تسليمات مهامك والملاحظات والساعات المعتمدة والنتيجة النهائية.
+
+Progress.YourProgressWillAppearAfterYou
+en: Your progress will appear after you confirm an accepted internship offer.
+ar: سيظهر تقدمك بعد تأكيد عرض تدريب مقبول.
+
+Progress.ViewMyApplications
+en: View my applications
+ar: عرض طلباتي
+
+Progress.InternshipPlacement
+en: Internship placement
+ar: التدريب المعتمد
+
+Progress.TaskProgressSummary
+en: Task progress summary
+ar: ملخص تقدم المهام
+
+Progress.AssignedTasks
+en: Assigned tasks
+ar: المهام المسندة
+
+Progress.TasksSubmitted
+en: Tasks submitted
+ar: المهام المسلّمة
+
+Progress.NeedRevision
+en: Need revision
+ar: تحتاج إلى تعديل
+
+Progress.GradedTasks
+en: Graded tasks
+ar: المهام المقيّمة
+
+Progress.TasksAndEvaluations
+en: Tasks and evaluations
+ar: المهام والتقييمات
+
+Progress.GoToMyTasks
+en: Go to My Tasks
+ar: الانتقال إلى مهامي
+
+Progress.NoTasksHaveBeenAssignedTo2
+en: No tasks have been assigned to this internship yet.
+ar: لم تُسند مهام إلى هذا التدريب بعد.
+
+Progress.Deadline2
+en: Deadline:
+ar: الموعد النهائي:
+
+Progress.LatestGrade
+en: Latest grade:
+ar: أحدث علامة:
+
+Progress.SubmissionAndFeedbackHistory
+en: Submission and feedback history
+ar: سجل التسليمات والملاحظات
+
+Progress.ApprovedTrainingHours
+en: Approved training hours
+ar: ساعات التدريب المعتمدة
+
+Progress.RequiredHours
+en: required hours
+ar: الساعات المطلوبة
+
+Progress.Complete
+en: complete ·
+ar: مكتمل ·
+
+Progress.ReportedHoursAwaitingReviewOnlyApproved
+en: reported hours awaiting review. Only approved hours count.
+ar: ساعات مسجلة بانتظار المراجعة. تُحتسب الساعات المعتمدة فقط.
+
+Progress.WorkDate
+en: Work date
+ar: تاريخ العمل
+
+Progress.ApprovedEntry
+en: Approved entry
+ar: سجل ساعات معتمد
+
+Progress.NoTrainingHoursHaveBeenApproved
+en: No training hours have been approved yet.
+ar: لم تُعتمد ساعات تدريب بعد.
+
+Progress.AcademicSupervisorFeedback
+en: Academic supervisor feedback
+ar: ملاحظات المشرف الأكاديمي
+
+Progress.NoAcademicCommentsHaveBeenShared
+en: No academic comments have been shared with you yet.
+ar: لم تتم مشاركة ملاحظات أكاديمية معك بعد.
+
+Progress.FinalResultAndCompletionReport
+en: Final result and completion report
+ar: النتيجة النهائية وتقرير الإتمام
+
+Progress.CompletionReview
+en: Completion review:
+ar: مراجعة الإتمام:
+
+Progress.YourCompletionDecisionAndPermittedEvaluation
+en: Your completion decision and permitted evaluation result will appear after coordinator review. The completion PDF is released only after approval.
+ar: سيظهر قرار الإتمام ونتيجة التقييم المسموح بها بعد مراجعة المنسق. يتاح ملف PDF الخاص بالإتمام بعد الموافقة فقط.
+
+Progress.TheCoordinatorCompletedTheReviewInternship
+en: The coordinator completed the review. Internship completion was not approved.
+ar: أكمل المنسق المراجعة ولم تتم الموافقة على إتمام التدريب.
+
+Progress.ViewOrDownloadOfficialPDF
+en: View or download official PDF
+ar: عرض ملف PDF الرسمي أو تنزيله
+
+Progress.OpenThePDFToDownloadOr
+en: Open the PDF to download or print it from your browser.
+ar: افتح ملف PDF لتنزيله أو طباعته من متصفحك.
+
+Progress.YourResultIsApprovedTheOfficial
+en: Your result is approved. The official PDF has not been published yet.
+ar: تم اعتماد نتيجتك، لكن ملف PDF الرسمي لم يُنشر بعد.
+
+MyTasks.ThisTaskIsNotAssignedTo
+en: This task is not assigned to your account.
+ar: هذه المهمة غير مسندة إلى حسابك.
+
+MyTasks.ThisTaskIsNotAcceptingSubmissions3
+en: This task is not accepting submissions right now.
+ar: هذه المهمة لا تقبل التسليم حاليًا.
+
+MyTasks.YourPlacementCouldNotBeVerified
+en: Your placement could not be verified.
+ar: تعذر التحقق من تدريبك.
+
+MyTasks.AddANoteALinkOr2
+en: Add a note, a link, or an attachment before submitting.
+ar: أضف ملاحظة أو رابطًا أو مرفقًا قبل التسليم.
+
+MyTasks.YourSubmissionIsWaitingForReview
+en: Your submission is waiting for review. You can resubmit after a revision is requested.
+ar: تسليمك بانتظار المراجعة. يمكنك إعادة التسليم بعد طلب التعديل.
+
+MyTasks.TheAttachmentCouldNotBeUploaded
+en: The attachment could not be uploaded. Check your connection and try again.
+ar: تعذر رفع المرفق. تحقق من اتصالك وحاول مجددًا.
+
+MyTasks.TheSubmissionCouldNotBeSaved
+en: The submission could not be saved. Please try again.
+ar: تعذر حفظ التسليم. يرجى المحاولة مجددًا.
+
+MyTasks.YourSubmissionWasSavedButThe
+en: Your submission was saved, but the task status could not be refreshed. Reload the page or contact your supervisor.
+ar: تم حفظ تسليمك، لكن تعذر تحديث حالة المهمة. أعد تحميل الصفحة أو تواصل مع مشرفك.
+
+MyTasks.YourTaskWasSubmittedSuccessfully
+en: Your task was submitted successfully.
+ar: تم تسليم مهمتك بنجاح.
+
+Progress.TheApprovedReportIsNotAvailable
+en: The approved report is not available for this account.
+ar: التقرير المعتمد غير متاح لهذا الحساب.
+
+MyTasks.UntitledTask
+en: Untitled task
+ar: مهمة بلا عنوان
+
+MyTasks.Starts
+en: Starts\u0020
+ar: يبدأ في\u0020
+
+MyTasks.AssignedTask
+en: Assigned task
+ar: مهمة مسندة
+
+MyTasks.NoDescriptionWasProvided
+en: No description was provided.
+ar: لم يُقدم وصف.
+
+MyTasks.NoAdditionalInstructionsWereProvided
+en: No additional instructions were provided.
+ar: لم تُقدم تعليمات إضافية.
+
+MyTasks.AttachedFile
+en: Attached file
+ar: ملف مرفق
+
+MyTasks.ResubmitTask
+en: Resubmit task
+ar: إعادة تسليم المهمة
+
+MyTasks.RevisionRequested
+en: Revision requested
+
+MyTasks.NoFeedbackYet
+en: No feedback yet.
+ar: لا توجد ملاحظات بعد.
+
+MyTasks.RevisionRequested2
+en: Revision requested.
+ar: تم طلب التعديل.
+
+MyTasks.EvaluationCompleted
+en: Evaluation completed.
+ar: اكتمل التقييم.
+
+MyTasks.DownloadSubmittedFile
+en: Download submitted file
+ar: تنزيل الملف المسلّم
+
+MyTasks.UnderReview
+en: Under review
+
+Progress.YourInternship
+en: Your internship
+
+Progress.CompanyNotSpecified
+en: Company not specified
+ar: لم تُحدد الشركة
+
+Progress.TrainingHours3
+en: Training hours
+
+Progress.NotSet
+en: Not set
+
+Progress.NeedsCorrections
+en: Needs Corrections
+ar: تحتاج إلى تصحيح
+
+Progress.WorkSubmitted
+en: Work submitted.
+ar: تم تسليم العمل.
+
+Progress.IncludesALink
+en: Includes a link
+ar: يتضمن رابطًا
+
+Progress.RevisionRequested2
+en: Revision requested
+
+Progress.TaskEvaluated
+en: Task evaluated
+ar: تم تقييم المهمة
+
+Progress.NoWrittenFeedbackWasProvided
+en: No written feedback was provided.
+ar: لم تُقدم ملاحظات مكتوبة.
+
+Progress.NoSubmissionYet
+en: No submission yet
+ar: لا يوجد تسليم بعد
+
+Progress.SubmitYourWorkFromMyTasks
+en: Submit your work from My Tasks.
+ar: سلّم عملك من صفحة مهامي.
+
+Progress.UntitledTask
+en: Untitled task
+ar: مهمة بلا عنوان
+
+Progress.NotGraded
+en: Not graded
+ar: لم تُرصد علامة
+
+Progress.PleaseReviseThisSubmission
+en: Please revise this submission.
+ar: يرجى تعديل هذا التسليم.
+
+Progress.UnderReview2
+en: Under review
+
+Progress.InProgress
+en: In progress
+
+I18n.Enteravalidlinkbeginningwithhttp
+en: Enter a valid link beginning with http:// or https://.
+ar: أدخل رابطًا صالحًا يبدأ بـ http:// أو https://.
+
+I18n.Thistaskrequiresafilebutfile
+en: This task requires a file, but file storage is not configured. Contact your administrator before submitting.
+ar: تتطلب هذه المهمة ملفًا، لكن التخزين غير مهيأ. تواصل مع المسؤول قبل التسليم.
+
+I18n.ThistaskrequiresanattachmentChoosea
+en: This task requires an attachment. Choose a file before submitting.
+ar: تتطلب هذه المهمة مرفقًا. اختر ملفًا قبل التسليم.
+
+I18n.Downloadtaskattachment
+en: Download task attachment:\u0020
+ar: تنزيل مرفق المهمة:\u0020
+
+I18n.YoursessionexpiredSigninagainbefore
+en: Your session expired. Sign in again before uploading.
+ar: انتهت جلستك. سجّل الدخول مجددًا قبل الرفع.
+
+I18n.ChooseaPDFWordZIPPNGor
+en: Choose a PDF, Word, ZIP, PNG, or JPG file.
+ar: اختر ملف PDF أو Word أو ZIP أو PNG أو JPG.
+
+I18n.Thefilemustbelargerthanzero
+en: The file must be larger than zero and no bigger than 10 MB.
+ar: يجب ألا يكون الملف فارغًا وألا يتجاوز حجمه 10 ميغابايت.
+
+I18n.Filestorageisnotconfigured
+en: File storage is not configured.
+ar: لم يتم إعداد تخزين الملفات.
+
+I18n.Theselectedfilecouldnotberead
+en: The selected file could not be read.
+ar: تعذرت قراءة الملف المحدد.
+
+I18n.Storagedidnotreturnadownloadlink
+en: Storage did not return a download link.
+ar: لم تُرجع خدمة التخزين رابط تنزيل.

@@ -19,7 +19,89 @@
   <data name="Coordinator.CoordinatorPortal" xml:space="preserve"><value>Coordinator portal</value></data>
   <data name="Coordinator.LogOut" xml:space="preserve"><value>Log out</value></data>
   <data name="Coordinator.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
+  <data name="Grades.AcademicGrade" xml:space="preserve"><value>Academic grade</value></data>
+  <data name="Grades.AllResults" xml:space="preserve"><value>All results</value></data>
+  <data name="Grades.ApplyFilters" xml:space="preserve"><value>Apply filters</value></data>
+  <data name="Grades.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
+  <data name="Grades.Company" xml:space="preserve"><value>Company</value></data>
+  <data name="Grades.CompanyGrade" xml:space="preserve"><value>Company grade</value></data>
+  <data name="Grades.ConfidentialSupervisorAndCoordinatorAccess" xml:space="preserve"><value>Confidential · Supervisor and coordinator access</value></data>
+  <data name="Grades.ExportToExcelXlsx" xml:space="preserve"><value>Export to Excel (.xlsx)</value></data>
+  <data name="Grades.Fail" xml:space="preserve"><value>Fail</value></data>
+  <data name="Grades.FilterGradesAndResults" xml:space="preserve"><value>Filter grades and results</value></data>
+  <data name="Grades.FinalGrade" xml:space="preserve"><value>Final grade</value></data>
+  <data name="Grades.GradesAndResultsTable" xml:space="preserve"><value>Grades and results table</value></data>
+  <data name="Grades.GradesForTheSelectedInternshipsPending" xml:space="preserve"><value>Grades for the selected internships. Pending indicates a grade or released result is unavailable.</value></data>
+  <data name="Grades.GradesResults" xml:space="preserve"><value>Grades &amp; results</value></data>
+  <data name="Grades.NameStudentNumberOrCompany" xml:space="preserve"><value>Name, student number or company</value></data>
+  <data name="Grades.NoResultsToDisplay" xml:space="preserve"><value>No results to display</value></data>
+  <data name="Grades.Pass" xml:space="preserve"><value>Pass</value></data>
+  <data name="Grades.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Grades.PendingGradesAreNeverTreatedAs" xml:space="preserve"><value>Pending grades are never treated as zero. Final grades and Pass/Fail results appear after coordinator approval and use the saved completion record. The Excel file includes the same selection, numeric grades, and export notes.</value></data>
+  <data name="Grades.Reset" xml:space="preserve"><value>Reset</value></data>
+  <data name="Grades.Result" xml:space="preserve"><value>Result</value></data>
+  <data name="Grades.ReviewInternshipGradesAndDownloadThe" xml:space="preserve"><value>Review internship grades and download the current selection as an Excel workbook.</value></data>
+  <data name="Grades.ReviewStatus" xml:space="preserve"><value>Review status</value></data>
+  <data name="Grades.SearchStudentsOrCompanies" xml:space="preserve"><value>Search students or companies</value></data>
+  <data name="Grades.Student" xml:space="preserve"><value>Student</value></data>
+  <data name="Grades.StudentResults" xml:space="preserve"><value>Student results</value></data>
+  <data name="Grades.Tasks" xml:space="preserve"><value>Tasks</value></data>
+  <data name="Grades.TasksGraded" xml:space="preserve"><value>Tasks graded</value></data>
+  <data name="Grades.ThereAreNoAssignedInternshipsMatching" xml:space="preserve"><value>There are no assigned internships matching your selection. Try resetting the filters.</value></data>
+  <data name="I18n.Accepting" xml:space="preserve"><value>Accepting…</value></data>
+  <data name="I18n.Approvecompletionandreleasethestudentreport" xml:space="preserve"><value>Approve completion and release the student report? This decision will be read-only.</value></data>
+  <data name="I18n.Areyousureyouwanttosubmit" xml:space="preserve"><value>Are you sure you want to submit this evaluation? It cannot be changed later.</value></data>
+  <data name="I18n.Changingpassword" xml:space="preserve"><value>Changing password…</value></data>
+  <data name="I18n.Closing" xml:space="preserve"><value>Closing…</value></data>
+  <data name="I18n.Confirming" xml:space="preserve"><value>Confirming…</value></data>
+  <data name="I18n.Creating" xml:space="preserve"><value>Creating…</value></data>
+  <data name="I18n.Deleting" xml:space="preserve"><value>Deleting…</value></data>
+  <data name="I18n.Publishing" xml:space="preserve"><value>Publishing…</value></data>
+  <data name="I18n.RejectcompletionwiththedocumentedreasonThis" xml:space="preserve"><value>Reject completion with the documented reason? This decision will be read-only.</value></data>
+  <data name="I18n.Saving" xml:space="preserve"><value>Saving…</value></data>
+  <data name="I18n.Saving2" xml:space="preserve"><value>Saving...</value></data>
+  <data name="I18n.SubmitthisconfidentialfinalevaluationSubmittedevaluations" xml:space="preserve"><value>Submit this confidential final evaluation? Submitted evaluations are read-only.</value></data>
+  <data name="I18n.Submitting" xml:space="preserve"><value>Submitting…</value></data>
+  <data name="I18n.Synchronizing" xml:space="preserve"><value>Synchronizing…</value></data>
+  <data name="I18n.Updating" xml:space="preserve"><value>Updating…</value></data>
+  <data name="I18n.Updating2" xml:space="preserve"><value>Updating...</value></data>
+  <data name="I18n.Uploading" xml:space="preserve"><value>Uploading…</value></data>
   <data name="Js.ApprovedTrainingHours" xml:space="preserve"><value>Approved training hours</value></data>
+  <data name="Js.ArabicAcceptmeeting" xml:space="preserve"><value>Accept meeting</value></data>
+  <data name="Js.ArabicAcceptthismeeting" xml:space="preserve"><value>Accept this meeting?</value></data>
+  <data name="Js.ArabicCancelmeeting" xml:space="preserve"><value>Cancel meeting</value></data>
+  <data name="Js.ArabicCancelthismeeting" xml:space="preserve"><value>Cancel this meeting?</value></data>
+  <data name="Js.ArabicConfirmthatthemeetingactuallytookplaceand" xml:space="preserve"><value>Confirm that the meeting actually took place and has finished. This is a manual completion record.</value></data>
+  <data name="Js.ArabicCouldnotloadtheroomTryagainor" xml:space="preserve"><value>Could not load the room. Try again or use Open separately if needed.</value></data>
+  <data name="Js.ArabicDeclinerequest" xml:space="preserve"><value>Decline request</value></data>
+  <data name="Js.ArabicDeclinethisrequest" xml:space="preserve"><value>Decline this request?</value></data>
+  <data name="Js.ArabicFollowthejoininginstructionsbelowThepersonstarting" xml:space="preserve"><value>Follow the joining instructions below. The person starting the room may need to sign in.</value></data>
+  <data name="Js.ArabicLoadthelatestrequestsresponsesandjoinavailability" xml:space="preserve"><value>Load the latest requests, responses, and join availability.</value></data>
+  <data name="Js.ArabicMarkcompleted" xml:space="preserve"><value>Mark completed</value></data>
+  <data name="Js.ArabicMarkmeetingcompleted" xml:space="preserve"><value>Mark meeting completed?</value></data>
+  <data name="Js.ArabicMeetingserviceunavailable" xml:space="preserve"><value>Meeting service unavailable</value></data>
+  <data name="Js.ArabicNoadditionalinstructions" xml:space="preserve"><value>No additional instructions.</value></data>
+  <data name="Js.ArabicNodescriptionprovided" xml:space="preserve"><value>No description provided.</value></data>
+  <data name="Js.ArabicNotevaluated" xml:space="preserve"><value>Not evaluated</value></data>
+  <data name="Js.ArabicNotprovided" xml:space="preserve"><value>Not provided</value></data>
+  <data name="Js.ArabicNotset" xml:space="preserve"><value>Not set</value></data>
+  <data name="Js.ArabicNotsubmitted" xml:space="preserve"><value>Not submitted</value></data>
+  <data name="Js.ArabicOpentaskattachment" xml:space="preserve"><value>Open task attachment</value></data>
+  <data name="Js.ArabicPasswordmustcontain8to128characters" xml:space="preserve"><value>Password must contain 8 to 128 characters.</value></data>
+  <data name="Js.ArabicPreparingthemeeting" xml:space="preserve"><value>Preparing the meeting…</value></data>
+  <data name="Js.ArabicRefreshlist" xml:space="preserve"><value>Refresh list</value></data>
+  <data name="Js.ArabicRefreshthelist" xml:space="preserve"><value>Refresh the list?</value></data>
+  <data name="Js.ArabicSendrequest" xml:space="preserve"><value>Send request</value></data>
+  <data name="Js.ArabicSendthisrequest" xml:space="preserve"><value>Send this request?</value></data>
+  <data name="Js.ArabicShowing0tasks" xml:space="preserve"><value>Showing 0 tasks</value></data>
+  <data name="Js.ArabicTaskdetails" xml:space="preserve"><value>Task details</value></data>
+  <data name="Js.ArabicTheinvitedpersonwillreceiveyourrequestIt" xml:space="preserve"><value>The invited person will receive your request. It stays pending until they approve.</value></data>
+  <data name="Js.ArabicThemeetingwillbecancelledforbothpeople" xml:space="preserve"><value>The meeting will be cancelled for both people and kept in your history.</value></data>
+  <data name="Js.ArabicTherequesterwillseeyouracceptanceJoinbecomes" xml:space="preserve"><value>The requester will see your acceptance. Join becomes available during the joining window.</value></data>
+  <data name="Js.ArabicTherequestwillmovetoyourhistoryand" xml:space="preserve"><value>The request will move to your history and the requester will see your response.</value></data>
+  <data name="Js.ArabicThetaskwassuccessfullyassignedtothetrainee" xml:space="preserve"><value>The task was successfully assigned to the trainee.</value></data>
+  <data name="Js.ArabicYouhavejoinedthemeeting" xml:space="preserve"><value>You have joined the meeting.</value></data>
+  <data name="Js.Arabicpoints" xml:space="preserve"><value> points</value></data>
   <data name="Js.ChartCoordinatorNote" xml:space="preserve"><value>Explicit approvals in current retained records.</value></data>
   <data name="Js.ChartCurrentSnapshot" xml:space="preserve"><value>Current snapshot · {0} UTC</value></data>
   <data name="Js.ChartFailed" xml:space="preserve"><value>Analytics could not be displayed. Refresh to retry; current records remain available below.</value></data>
@@ -122,6 +204,9 @@
   <data name="Js.SoundOff" xml:space="preserve"><value>Turn sound off</value></data>
   <data name="Js.SoundOn" xml:space="preserve"><value>Turn sound on</value></data>
   <data name="Js.StoryStatus" xml:space="preserve"><value>GJU | Architectural miniature</value></data>
+  <data name="Js.SubmissionsShowing" xml:space="preserve"><value>Showing {0} of {1} submissions</value></data>
+  <data name="Js.TasksCreatedMany" xml:space="preserve"><value>{0} tasks were created, one for each of your trainees.</value></data>
+  <data name="Js.TasksShowingRange" xml:space="preserve"><value>Showing {0}-{1} of {2} tasks</value></data>
   <data name="Js.TeamMemberOf" xml:space="preserve"><value>Team member {0} of {1}</value></data>
   <data name="Js.ThemeDark" xml:space="preserve"><value>Dark</value></data>
   <data name="Js.ThemeLabel" xml:space="preserve"><value>Colour theme: {0}</value></data>
@@ -208,6 +293,9 @@
   <data name="Sidebar.Portal" xml:space="preserve"><value>Portal</value></data>
   <data name="Sidebar.ReviewSubmissions" xml:space="preserve"><value>Review Submissions</value></data>
   <data name="Sidebar.StudentProgress" xml:space="preserve"><value>Student Progress</value></data>
+  <data name="SimpleWorkspace.ClearSearch" xml:space="preserve"><value>Clear search</value></data>
+  <data name="SimpleWorkspace.MatchCount" xml:space="preserve"><value>{0} of {1} records shown</value></data>
+  <data name="SimpleWorkspace.NoMatches" xml:space="preserve"><value>No matching records. Try another search or clear the search field.</value></data>
   <data name="Student.CloseNavigationBackdrop" xml:space="preserve"><value>Close navigation backdrop</value></data>
   <data name="Student.LogOut" xml:space="preserve"><value>Log out</value></data>
   <data name="Student.OpenNavigation" xml:space="preserve"><value>Open navigation</value></data>
@@ -232,6 +320,7 @@
   <data name="Title.Pages.Company.ApplicantDocument" xml:space="preserve"><value>Applicant Document</value></data>
   <data name="Title.Pages.Company.Applications" xml:space="preserve"><value>Applications Review</value></data>
   <data name="Title.Pages.Company.Dashboard" xml:space="preserve"><value>Company Dashboard</value></data>
+  <data name="Title.Pages.Company.EvaluationReport" xml:space="preserve"><value>Company evaluation report</value></data>
   <data name="Title.Pages.Company.FinalEvaluation" xml:space="preserve"><value>Final Evaluation</value></data>
   <data name="Title.Pages.Company.ManageOpportunities" xml:space="preserve"><value>Manage Opportunities</value></data>
   <data name="Title.Pages.Company.Opportunities" xml:space="preserve"><value>Add Opportunity</value></data>
@@ -252,13 +341,18 @@
   <data name="Title.Pages.Coordinator.ManageStudents" xml:space="preserve"><value>Manage students</value></data>
   <data name="Title.Pages.Coordinator.PlacementDetails" xml:space="preserve"><value>Placement Details</value></data>
   <data name="Title.Pages.Coordinator.Placements" xml:space="preserve"><value>Placements &amp; Progress</value></data>
-  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>Student records</value></data>
+  <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>Student profile</value></data>
   <data name="Title.Pages.Meetings.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
   <data name="Title.Pages.Meetings.Schedule" xml:space="preserve"><value>Meetings</value></data>
+  <data name="Title.Pages.Notifications.Inbox" xml:space="preserve"><value>Notifications</value></data>
+  <data name="Title.Pages.Public.404" xml:space="preserve"><value>404 - GJU Internship Management System</value></data>
   <data name="Title.Pages.Public.About" xml:space="preserve"><value>About | GJU Internship Management System</value></data>
   <data name="Title.Pages.Public.AccessDenied" xml:space="preserve"><value>Access Denied | UIMS</value></data>
   <data name="Title.Pages.Public.Contact" xml:space="preserve"><value>Contact | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Public.Journey" xml:space="preserve"><value>The Journey | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>Page not found | UIMS</value></data>
   <data name="Title.Pages.Public.PoweredBy" xml:space="preserve"><value>Meet the Team | GJU Internship Management System</value></data>
+  <data name="Title.Pages.Reports.Grades" xml:space="preserve"><value>Grades &amp; results</value></data>
   <data name="Title.Pages.Student.Apply" xml:space="preserve"><value>Internship Application</value></data>
   <data name="Title.Pages.Student.Dashboard" xml:space="preserve"><value>Student Dashboard</value></data>
   <data name="Title.Pages.Student.MyApplications" xml:space="preserve"><value>My Applications</value></data>
@@ -280,6 +374,45 @@
   <data name="Value.CompletionStatus.UnderCoordinatorReview" xml:space="preserve"><value>Under coordinator review</value></data>
   <data name="Value.ContactMessageStatus.New" xml:space="preserve"><value>New</value></data>
   <data name="Value.ContactMessageStatus.Reviewed" xml:space="preserve"><value>Reviewed</value></data>
+  <data name="Value.Directory.AppliedHumanities" xml:space="preserve"><value>Applied Humanities</value></data>
+  <data name="Value.Directory.ArchitectureandInteriorArchitecture" xml:space="preserve"><value>Architecture and Interior Architecture</value></data>
+  <data name="Value.Directory.BasicEducation" xml:space="preserve"><value>Basic Education</value></data>
+  <data name="Value.Directory.BiomedicalEngineering" xml:space="preserve"><value>Biomedical Engineering</value></data>
+  <data name="Value.Directory.BusinessSchool" xml:space="preserve"><value>Business School</value></data>
+  <data name="Value.Directory.Caregroundedinscience" xml:space="preserve"><value>Care, grounded in science.</value></data>
+  <data name="Value.Directory.CivilandEnvironmentalEngineering" xml:space="preserve"><value>Civil and Environmental Engineering</value></data>
+  <data name="Value.Directory.ComputerEngineering" xml:space="preserve"><value>Computer Engineering</value></data>
+  <data name="Value.Directory.ComputerScience" xml:space="preserve"><value>Computer Science</value></data>
+  <data name="Value.Directory.Departments" xml:space="preserve"><value>Departments</value></data>
+  <data name="Value.Directory.Designingthespaceswelivein" xml:space="preserve"><value>Designing the spaces we live in.</value></data>
+  <data name="Value.Directory.DigitalMarketing" xml:space="preserve"><value>Digital Marketing</value></data>
+  <data name="Value.Directory.ElectricalandEnergyEngineering" xml:space="preserve"><value>Electrical and Energy Engineering</value></data>
+  <data name="Value.Directory.Engineeringasustainabletomorrow" xml:space="preserve"><value>Engineering a sustainable tomorrow.</value></data>
+  <data name="Value.Directory.Engineeringthatworksonthefactoryfloor" xml:space="preserve"><value>Engineering that works on the factory floor.</value></data>
+  <data name="Value.Directory.Ideasthatgrowintoenterprises" xml:space="preserve"><value>Ideas that grow into enterprises.</value></data>
+  <data name="Value.Directory.IndustrialEngineering" xml:space="preserve"><value>Industrial Engineering</value></data>
+  <data name="Value.Directory.InternationalAccounting" xml:space="preserve"><value>International Accounting</value></data>
+  <data name="Value.Directory.Languagespeopleandsociety" xml:space="preserve"><value>Languages, people and society.</value></data>
+  <data name="Value.Directory.LogisticsSciences" xml:space="preserve"><value>Logistics Sciences</value></data>
+  <data name="Value.Directory.MBA" xml:space="preserve"><value>MBA</value></data>
+  <data name="Value.Directory.MScComputerEngineering" xml:space="preserve"><value>MSc Computer Engineering</value></data>
+  <data name="Value.Directory.MScEnterpriseSoftwareEngineering" xml:space="preserve"><value>MSc Enterprise Software Engineering</value></data>
+  <data name="Value.Directory.MasterinLogisticsManagement" xml:space="preserve"><value>Master in Logistics Management</value></data>
+  <data name="Value.Directory.MechanicalandMaintenanceEngineering" xml:space="preserve"><value>Mechanical and Maintenance Engineering</value></data>
+  <data name="Value.Directory.MechatronicsEngineering" xml:space="preserve"><value>Mechatronics Engineering</value></data>
+  <data name="Value.Directory.Nursing" xml:space="preserve"><value>Nursing</value></data>
+  <data name="Value.Directory.PharmaceuticalandChemicalEngineering" xml:space="preserve"><value>Pharmaceutical and Chemical Engineering</value></data>
+  <data name="Value.Directory.Programmes" xml:space="preserve"><value>Programmes</value></data>
+  <data name="Value.Directory.SchoolofAppliedHumanitiesandSocialSciences" xml:space="preserve"><value>School of Applied Humanities and Social Sciences</value></data>
+  <data name="Value.Directory.SchoolofAppliedMedicalSciences" xml:space="preserve"><value>School of Applied Medical Sciences</value></data>
+  <data name="Value.Directory.SchoolofAppliedTechnicalSciences" xml:space="preserve"><value>School of Applied Technical Sciences</value></data>
+  <data name="Value.Directory.SchoolofArchitectureandBuiltEnvironment" xml:space="preserve"><value>School of Architecture and Built Environment</value></data>
+  <data name="Value.Directory.SchoolofComputing" xml:space="preserve"><value>School of Computing</value></data>
+  <data name="Value.Directory.SchoolofNursing" xml:space="preserve"><value>School of Nursing</value></data>
+  <data name="Value.Directory.SchoolofSustainableSystemsEngineering" xml:space="preserve"><value>School of Sustainable Systems Engineering</value></data>
+  <data name="Value.Directory.Scienceintheserviceofhealth" xml:space="preserve"><value>Science in the service of health.</value></data>
+  <data name="Value.Directory.SocialWork" xml:space="preserve"><value>Social Work</value></data>
+  <data name="Value.Directory.Whereideasbecometechnology" xml:space="preserve"><value>Where ideas become technology.</value></data>
   <data name="Value.HoursStatus.Approved" xml:space="preserve"><value>Approved</value></data>
   <data name="Value.HoursStatus.Rejected" xml:space="preserve"><value>Rejected</value></data>
   <data name="Value.HoursStatus.Reported" xml:space="preserve"><value>Reported</value></data>
@@ -305,6 +438,117 @@
   <data name="Value.TrainingMode.Hybrid" xml:space="preserve"><value>Hybrid</value></data>
   <data name="Value.TrainingMode.Onsite" xml:space="preserve"><value>On-site</value></data>
   <data name="Value.TrainingMode.Remote" xml:space="preserve"><value>Remote</value></data>
+  <data name="Value.Ui.15minutes" xml:space="preserve"><value>15 minutes</value></data>
+  <data name="Value.Ui.30minutes" xml:space="preserve"><value>30 minutes</value></data>
+  <data name="Value.Ui.45minutes" xml:space="preserve"><value>45 minutes</value></data>
+  <data name="Value.Ui.60minutes" xml:space="preserve"><value>60 minutes</value></data>
+  <data name="Value.Ui.Accepted" xml:space="preserve"><value>Accepted</value></data>
+  <data name="Value.Ui.Active" xml:space="preserve"><value>Active</value></data>
+  <data name="Value.Ui.Alldepartments" xml:space="preserve"><value>All departments</value></data>
+  <data name="Value.Ui.Allmymeetingsandrequests" xml:space="preserve"><value>All my meetings and requests</value></data>
+  <data name="Value.Ui.Allstatuses" xml:space="preserve"><value>All statuses</value></data>
+  <data name="Value.Ui.Alltaskstatuses" xml:space="preserve"><value>All task statuses</value></data>
+  <data name="Value.Ui.Alltrainees" xml:space="preserve"><value>All trainees</value></data>
+  <data name="Value.Ui.AppliedHumanities" xml:space="preserve"><value>Applied Humanities</value></data>
+  <data name="Value.Ui.Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="Value.Ui.ArchitectureandInteriorArchitecture" xml:space="preserve"><value>Architecture and Interior Architecture</value></data>
+  <data name="Value.Ui.Assigned" xml:space="preserve"><value>Assigned</value></data>
+  <data name="Value.Ui.AwaitingEvaluations" xml:space="preserve"><value>Awaiting Evaluations</value></data>
+  <data name="Value.Ui.Awaitingacademicevaluation" xml:space="preserve"><value>Awaiting academic evaluation</value></data>
+  <data name="Value.Ui.Awaitingcompanyevaluation" xml:space="preserve"><value>Awaiting company evaluation</value></data>
+  <data name="Value.Ui.Awaitingcompletion" xml:space="preserve"><value>Awaiting completion</value></data>
+  <data name="Value.Ui.Awaitingreview" xml:space="preserve"><value>Awaiting review</value></data>
+  <data name="Value.Ui.BasicEducation" xml:space="preserve"><value>Basic Education</value></data>
+  <data name="Value.Ui.BiomedicalEngineering" xml:space="preserve"><value>Biomedical Engineering</value></data>
+  <data name="Value.Ui.BusinessSchool" xml:space="preserve"><value>Business School</value></data>
+  <data name="Value.Ui.Cancelled" xml:space="preserve"><value>Cancelled</value></data>
+  <data name="Value.Ui.Caregroundedinscience" xml:space="preserve"><value>Care, grounded in science.</value></data>
+  <data name="Value.Ui.CivilandEnvironmentalEngineering" xml:space="preserve"><value>Civil and Environmental Engineering</value></data>
+  <data name="Value.Ui.Closed" xml:space="preserve"><value>Closed</value></data>
+  <data name="Value.Ui.Completed" xml:space="preserve"><value>Completed</value></data>
+  <data name="Value.Ui.ComputerEngineering" xml:space="preserve"><value>Computer Engineering</value></data>
+  <data name="Value.Ui.ComputerScience" xml:space="preserve"><value>Computer Science</value></data>
+  <data name="Value.Ui.Confirmed" xml:space="preserve"><value>Confirmed</value></data>
+  <data name="Value.Ui.ContinueDraft" xml:space="preserve"><value>Continue Draft</value></data>
+  <data name="Value.Ui.Continuereview" xml:space="preserve"><value>Continue review</value></data>
+  <data name="Value.Ui.Declined" xml:space="preserve"><value>Declined</value></data>
+  <data name="Value.Ui.Departments" xml:space="preserve"><value>Departments</value></data>
+  <data name="Value.Ui.Designingthespaceswelivein" xml:space="preserve"><value>Designing the spaces we live in.</value></data>
+  <data name="Value.Ui.Details" xml:space="preserve"><value>Details</value></data>
+  <data name="Value.Ui.DigitalMarketing" xml:space="preserve"><value>Digital Marketing</value></data>
+  <data name="Value.Ui.Draft" xml:space="preserve"><value>Draft</value></data>
+  <data name="Value.Ui.ElectricalandEnergyEngineering" xml:space="preserve"><value>Electrical and Energy Engineering</value></data>
+  <data name="Value.Ui.Engineeringasustainabletomorrow" xml:space="preserve"><value>Engineering a sustainable tomorrow.</value></data>
+  <data name="Value.Ui.Engineeringthatworksonthefactoryfloor" xml:space="preserve"><value>Engineering that works on the factory floor.</value></data>
+  <data name="Value.Ui.Expired" xml:space="preserve"><value>Expired</value></data>
+  <data name="Value.Ui.Expiredwithoutapproval" xml:space="preserve"><value>Expired without approval</value></data>
+  <data name="Value.Ui.Graded" xml:space="preserve"><value>Graded</value></data>
+  <data name="Value.Ui.Hybrid" xml:space="preserve"><value>Hybrid</value></data>
+  <data name="Value.Ui.Ideasthatgrowintoenterprises" xml:space="preserve"><value>Ideas that grow into enterprises.</value></data>
+  <data name="Value.Ui.Inactive" xml:space="preserve"><value>Inactive</value></data>
+  <data name="Value.Ui.IndustrialEngineering" xml:space="preserve"><value>Industrial Engineering</value></data>
+  <data name="Value.Ui.Inprogress" xml:space="preserve"><value>In progress</value></data>
+  <data name="Value.Ui.InternationalAccounting" xml:space="preserve"><value>International Accounting</value></data>
+  <data name="Value.Ui.Internship" xml:space="preserve"><value>Internship</value></data>
+  <data name="Value.Ui.Languagespeopleandsociety" xml:space="preserve"><value>Languages, people and society.</value></data>
+  <data name="Value.Ui.Legacymeeting" xml:space="preserve"><value>Legacy meeting</value></data>
+  <data name="Value.Ui.LogisticsSciences" xml:space="preserve"><value>Logistics Sciences</value></data>
+  <data name="Value.Ui.MBA" xml:space="preserve"><value>MBA</value></data>
+  <data name="Value.Ui.MScComputerEngineering" xml:space="preserve"><value>MSc Computer Engineering</value></data>
+  <data name="Value.Ui.MScEnterpriseSoftwareEngineering" xml:space="preserve"><value>MSc Enterprise Software Engineering</value></data>
+  <data name="Value.Ui.MasterinLogisticsManagement" xml:space="preserve"><value>Master in Logistics Management</value></data>
+  <data name="Value.Ui.MechanicalandMaintenanceEngineering" xml:space="preserve"><value>Mechanical and Maintenance Engineering</value></data>
+  <data name="Value.Ui.MechatronicsEngineering" xml:space="preserve"><value>Mechatronics Engineering</value></data>
+  <data name="Value.Ui.Meetinghistory" xml:space="preserve"><value>Meeting history</value></data>
+  <data name="Value.Ui.NeedsCorrections" xml:space="preserve"><value>Needs Corrections</value></data>
+  <data name="Value.Ui.New" xml:space="preserve"><value>New</value></data>
+  <data name="Value.Ui.Notready" xml:space="preserve"><value>Not ready</value></data>
+  <data name="Value.Ui.Notsubmitted" xml:space="preserve"><value>Not submitted</value></data>
+  <data name="Value.Ui.Nursing" xml:space="preserve"><value>Nursing</value></data>
+  <data name="Value.Ui.Offered" xml:space="preserve"><value>Offered</value></data>
+  <data name="Value.Ui.Onsite" xml:space="preserve"><value>On-site</value></data>
+  <data name="Value.Ui.Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Value.Ui.Pastcompletionnotrecorded" xml:space="preserve"><value>Past - completion not recorded</value></data>
+  <data name="Value.Ui.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="Value.Ui.Pendingapproval" xml:space="preserve"><value>Pending approval</value></data>
+  <data name="Value.Ui.Pendingreview" xml:space="preserve"><value>Pending review</value></data>
+  <data name="Value.Ui.PharmaceuticalandChemicalEngineering" xml:space="preserve"><value>Pharmaceutical and Chemical Engineering</value></data>
+  <data name="Value.Ui.Programmes" xml:space="preserve"><value>Programmes</value></data>
+  <data name="Value.Ui.ReadyforReview" xml:space="preserve"><value>Ready for Review</value></data>
+  <data name="Value.Ui.Rejected" xml:space="preserve"><value>Rejected</value></data>
+  <data name="Value.Ui.Remote" xml:space="preserve"><value>Remote</value></data>
+  <data name="Value.Ui.Reported" xml:space="preserve"><value>Reported</value></data>
+  <data name="Value.Ui.RequestsIsentpending" xml:space="preserve"><value>Requests I sent - pending</value></data>
+  <data name="Value.Ui.Resubmit" xml:space="preserve"><value>Resubmit</value></data>
+  <data name="Value.Ui.Resubmitted" xml:space="preserve"><value>Resubmitted</value></data>
+  <data name="Value.Ui.Returned" xml:space="preserve"><value>Returned</value></data>
+  <data name="Value.Ui.Reviewed" xml:space="preserve"><value>Reviewed</value></data>
+  <data name="Value.Ui.Reviewsubmission" xml:space="preserve"><value>Review submission</value></data>
+  <data name="Value.Ui.Revisionneeded" xml:space="preserve"><value>Revision needed</value></data>
+  <data name="Value.Ui.Revisionrequested" xml:space="preserve"><value>Revision requested</value></data>
+  <data name="Value.Ui.Scheduled" xml:space="preserve"><value>Scheduled</value></data>
+  <data name="Value.Ui.SchoolofAppliedHumanitiesandSocialSciences" xml:space="preserve"><value>School of Applied Humanities and Social Sciences</value></data>
+  <data name="Value.Ui.SchoolofAppliedMedicalSciences" xml:space="preserve"><value>School of Applied Medical Sciences</value></data>
+  <data name="Value.Ui.SchoolofAppliedTechnicalSciences" xml:space="preserve"><value>School of Applied Technical Sciences</value></data>
+  <data name="Value.Ui.SchoolofArchitectureandBuiltEnvironment" xml:space="preserve"><value>School of Architecture and Built Environment</value></data>
+  <data name="Value.Ui.SchoolofComputing" xml:space="preserve"><value>School of Computing</value></data>
+  <data name="Value.Ui.SchoolofNursing" xml:space="preserve"><value>School of Nursing</value></data>
+  <data name="Value.Ui.SchoolofSustainableSystemsEngineering" xml:space="preserve"><value>School of Sustainable Systems Engineering</value></data>
+  <data name="Value.Ui.Scienceintheserviceofhealth" xml:space="preserve"><value>Science in the service of health.</value></data>
+  <data name="Value.Ui.SocialWork" xml:space="preserve"><value>Social Work</value></data>
+  <data name="Value.Ui.Submit" xml:space="preserve"><value>Submit</value></data>
+  <data name="Value.Ui.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="Value.Ui.Unavailable" xml:space="preserve"><value>Unavailable</value></data>
+  <data name="Value.Ui.Undercoordinatorreview" xml:space="preserve"><value>Under coordinator review</value></data>
+  <data name="Value.Ui.Underreview" xml:space="preserve"><value>Under review</value></data>
+  <data name="Value.Ui.Upcoming" xml:space="preserve"><value>Upcoming</value></data>
+  <data name="Value.Ui.Viewattempt" xml:space="preserve"><value>View attempt</value></data>
+  <data name="Value.Ui.Viewevaluation" xml:space="preserve"><value>View evaluation</value></data>
+  <data name="Value.Ui.Viewrevisionrequest" xml:space="preserve"><value>View revision request</value></data>
+  <data name="Value.Ui.Waitingformyapproval" xml:space="preserve"><value>Waiting for my approval</value></data>
+  <data name="Value.Ui.Waitingforresponse" xml:space="preserve"><value>Waiting for response</value></data>
+  <data name="Value.Ui.Whereideasbecometechnology" xml:space="preserve"><value>Where ideas become technology.</value></data>
+  <data name="Value.Ui.Withdrawn" xml:space="preserve"><value>Withdrawn</value></data>
   <data name="WorkspaceChart.12Months" xml:space="preserve"><value>12 months</value></data>
   <data name="WorkspaceChart.6Months" xml:space="preserve"><value>6 months</value></data>
   <data name="WorkspaceChart.ActivityDataAndRecordDetails" xml:space="preserve"><value>Activity data and record details</value></data>
@@ -340,4 +584,124 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>Journey details</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>Select a stage for details</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>Swipe through stages. Select one to view its details.</value></data>
+  <data name="WorkspaceChart.Share" xml:space="preserve"><value>Share</value></data>
+  <data name="WorkspaceChart.OpenStudentList" xml:space="preserve"><value>Open student list</value></data>
+  <data name="Js.ReviewQueueShowing" xml:space="preserve"><value>Showing {0} of {1} internships</value></data>
+  <data name="Js.ChartNoStudentsByMajor" xml:space="preserve"><value>No student records yet.</value></data>
+  <data name="Title.Pages.Coordinator.DemoStudent" xml:space="preserve"><value>Demo student</value></data>
+  <data name="Js.GroupPickerSelected" xml:space="preserve"><value>{0} students selected</value></data>
+  <data name="Js.GroupPickerRemove" xml:space="preserve"><value>Remove {0}</value></data>
+  <data name="Js.ChartFixedRangeCaption" xml:space="preserve"><value>{0} – {1} · UTC. Approvals from the last {2} months; categories are current snapshots.</value></data>
+  <data name="Notify.Type.General" xml:space="preserve"><value>Update</value></data>
+  <data name="Notify.Type.Task" xml:space="preserve"><value>Task</value></data>
+  <data name="Notify.Type.Group" xml:space="preserve"><value>Group</value></data>
+  <data name="Notify.Type.Application" xml:space="preserve"><value>Application</value></data>
+  <data name="Notify.Type.Placement" xml:space="preserve"><value>Placement</value></data>
+  <data name="Notify.Type.Hours" xml:space="preserve"><value>Training hours</value></data>
+  <data name="Notify.Type.Evaluation" xml:space="preserve"><value>Evaluation</value></data>
+  <data name="Notify.Type.Comment" xml:space="preserve"><value>Supervisor note</value></data>
+  <data name="Notify.Type.Meeting" xml:space="preserve"><value>Meeting</value></data>
+  <data name="Notify.Type.Opportunity" xml:space="preserve"><value>Opportunity</value></data>
+  <data name="Notify.Type.Completion" xml:space="preserve"><value>Completion</value></data>
+  <data name="Notify.Type.Account" xml:space="preserve"><value>Account</value></data>
+  <data name="Notify.AStudent" xml:space="preserve"><value>A student</value></data>
+  <data name="Notify.MinutesAgo" xml:space="preserve"><value>{0} min ago</value></data>
+  <data name="Notify.HoursAgo" xml:space="preserve"><value>{0} h ago</value></data>
+  <data name="Notify.Yesterday" xml:space="preserve"><value>Yesterday</value></data>
+  <data name="Notify.MarkAllRead" xml:space="preserve"><value>Mark all as read</value></data>
+  <data name="Notify.Open" xml:space="preserve"><value>Open</value></data>
+  <data name="Notify.NewBadge" xml:space="preserve"><value>New</value></data>
+  <data name="Notify.FilterAll" xml:space="preserve"><value>All</value></data>
+  <data name="Notify.FilterUnread" xml:space="preserve"><value>Unread</value></data>
+  <data name="Notify.NoUnread" xml:space="preserve"><value>No unread notifications.</value></data>
+  <data name="Notify.UnreadCount" xml:space="preserve"><value>{0} unread</value></data>
+  <data name="Notify.PageIntro" xml:space="preserve"><value>Every update about your internship cycle. Select one to open the page where you can act on it.</value></data>
+  <data name="Notify.BlockedByRules" xml:space="preserve"><value>Notifications are blocked by the Firebase database rules. Publish the "notifications" rule from docs/05-firebase-setup.md (Firebase &gt; Realtime Database &gt; Rules).</value></data>
+  <data name="Notify.SomeNotDelivered" xml:space="preserve"><value>Some notifications could not be delivered because of the Firebase database rules. See docs/05-firebase-setup.md.</value></data>
+  <data name="Notify.OpportunityPublished.Title" xml:space="preserve"><value>New internship opportunity</value></data>
+  <data name="Notify.OpportunityPublished.Message" xml:space="preserve"><value>{0} posted “{1}”. Open it to check the details and apply.</value></data>
+  <data name="Notify.ApplicationSubmitted.Title" xml:space="preserve"><value>New application to review</value></data>
+  <data name="Notify.ApplicationSubmitted.Message" xml:space="preserve"><value>{0} applied for “{1}”. Open it to read the cover letter and CV, then accept or reject.</value></data>
+  <data name="Notify.ApplicationAccepted.Title" xml:space="preserve"><value>Your application was accepted</value></data>
+  <data name="Notify.ApplicationAccepted.Message" xml:space="preserve"><value>{0} accepted your application for “{1}”. Confirm the offer to secure your place.</value></data>
+  <data name="Notify.ApplicationRejected.Title" xml:space="preserve"><value>Application not accepted</value></data>
+  <data name="Notify.ApplicationRejected.Message" xml:space="preserve"><value>{0} did not accept your application for “{1}”. You can read the reason in My Applications.</value></data>
+  <data name="Notify.PlacementConfirmedCompany.Title" xml:space="preserve"><value>New trainee confirmed</value></data>
+  <data name="Notify.PlacementConfirmedCompany.Message" xml:space="preserve"><value>{0} confirmed the internship “{1}” and is now your trainee. You can start assigning tasks.</value></data>
+  <data name="Notify.PlacementConfirmedAcademic.Title" xml:space="preserve"><value>Student placement confirmed</value></data>
+  <data name="Notify.PlacementConfirmedAcademic.Message" xml:space="preserve"><value>{0} will train at {1}. Follow their progress from Student Progress.</value></data>
+  <data name="Notify.PlacementConfirmedCoordinator.Title" xml:space="preserve"><value>Placement confirmed</value></data>
+  <data name="Notify.PlacementConfirmedCoordinator.Message" xml:space="preserve"><value>{0} confirmed a placement at {1}.</value></data>
+  <data name="Notify.WelcomeStudent.Title" xml:space="preserve"><value>Welcome to UIMS</value></data>
+  <data name="Notify.WelcomeStudent.Message" xml:space="preserve"><value>Your student account is ready, {0}. Complete your profile, then browse internship opportunities.</value></data>
+  <data name="Notify.GroupAdded.Title" xml:space="preserve"><value>You were added to a group</value></data>
+  <data name="Notify.GroupAdded.Message" xml:space="preserve"><value>You are now in {0}. Your academic supervisor is {1}.</value></data>
+  <data name="Notify.GroupRemoved.Title" xml:space="preserve"><value>Removed from a group</value></data>
+  <data name="Notify.GroupRemoved.Message" xml:space="preserve"><value>You were removed from {0}. The coordinator will assign you a new group.</value></data>
+  <data name="Notify.GroupNewSupervisor.Title" xml:space="preserve"><value>New academic supervisor</value></data>
+  <data name="Notify.GroupNewSupervisor.Message" xml:space="preserve"><value>{0} is now the academic supervisor of {1}.</value></data>
+  <data name="Notify.GroupAssigned.Title" xml:space="preserve"><value>Group assigned to you</value></data>
+  <data name="Notify.GroupAssigned.Message" xml:space="preserve"><value>{0} is now assigned to you. Students in the group: {1}.</value></data>
+  <data name="Notify.GroupStudentsAdded.Title" xml:space="preserve"><value>New students in your group</value></data>
+  <data name="Notify.GroupStudentsAdded.Message" xml:space="preserve"><value>Students added to {0}: {1}.</value></data>
+  <data name="Notify.GroupReassigned.Title" xml:space="preserve"><value>Group reassigned</value></data>
+  <data name="Notify.GroupReassigned.Message" xml:space="preserve"><value>{0} is now supervised by {1}.</value></data>
+  <data name="Notify.GroupDeletedStudent.Title" xml:space="preserve"><value>Your group was removed</value></data>
+  <data name="Notify.GroupDeletedStudent.Message" xml:space="preserve"><value>{0} was deleted. The coordinator will assign you a new group.</value></data>
+  <data name="Notify.GroupDeletedSupervisor.Title" xml:space="preserve"><value>Group removed</value></data>
+  <data name="Notify.GroupDeletedSupervisor.Message" xml:space="preserve"><value>{0} was deleted and is no longer assigned to you.</value></data>
+  <data name="Notify.TaskAssigned.Title" xml:space="preserve"><value>New task assigned</value></data>
+  <data name="Notify.TaskAssigned.Message" xml:space="preserve"><value>Your supervisor assigned “{0}”, due {1}. Open it to read the instructions and submit your work.</value></data>
+  <data name="Notify.TaskAssignedNoDue.Title" xml:space="preserve"><value>New task assigned</value></data>
+  <data name="Notify.TaskAssignedNoDue.Message" xml:space="preserve"><value>Your supervisor assigned “{0}”. Open it to read the instructions and submit your work.</value></data>
+  <data name="Notify.TaskSubmitted.Title" xml:space="preserve"><value>Submission to review</value></data>
+  <data name="Notify.TaskSubmitted.Message" xml:space="preserve"><value>{0} submitted “{1}”. Open it to grade the work or ask for changes.</value></data>
+  <data name="Notify.TaskResubmitted.Title" xml:space="preserve"><value>Revised work to review</value></data>
+  <data name="Notify.TaskResubmitted.Message" xml:space="preserve"><value>{0} resubmitted “{1}” after your revision request. Open it to grade the new attempt.</value></data>
+  <data name="Notify.TaskGraded.Title" xml:space="preserve"><value>Your task was graded</value></data>
+  <data name="Notify.TaskGraded.Message" xml:space="preserve"><value>“{0}” was graded {1} / {2}. Open it to read your supervisor’s feedback.</value></data>
+  <data name="Notify.TaskRevision.Title" xml:space="preserve"><value>Changes requested on your task</value></data>
+  <data name="Notify.TaskRevision.Message" xml:space="preserve"><value>Your supervisor asked for changes to “{0}”: {1}</value></data>
+  <data name="Notify.CommentAdded.Title" xml:space="preserve"><value>New note from your academic supervisor</value></data>
+  <data name="Notify.CommentAdded.Message" xml:space="preserve"><value>{0}</value></data>
+  <data name="Notify.HoursReported.Title" xml:space="preserve"><value>Training hours to approve</value></data>
+  <data name="Notify.HoursReported.Message" xml:space="preserve"><value>{0} reported {1} training hours. Review them and approve or reject.</value></data>
+  <data name="Notify.HoursApproved.Title" xml:space="preserve"><value>Training hours approved</value></data>
+  <data name="Notify.HoursApproved.Message" xml:space="preserve"><value>{0} hours were added to your approved total.</value></data>
+  <data name="Notify.HoursRejected.Title" xml:space="preserve"><value>Training hours not approved</value></data>
+  <data name="Notify.HoursRejected.Message" xml:space="preserve"><value>{0} hours were not approved. Read the note on My Progress.</value></data>
+  <data name="Notify.CompanyEvalForAcademic.Title" xml:space="preserve"><value>Your final evaluation is due</value></data>
+  <data name="Notify.CompanyEvalForAcademic.Message" xml:space="preserve"><value>The company submitted its final evaluation for {0}. Please complete your academic evaluation.</value></data>
+  <data name="Notify.CompanyEvalForCoordinator.Title" xml:space="preserve"><value>Company evaluation submitted</value></data>
+  <data name="Notify.CompanyEvalForCoordinator.Message" xml:space="preserve"><value>{0} submitted the final evaluation for {1}.</value></data>
+  <data name="Notify.AcademicEvalForCoordinator.Title" xml:space="preserve"><value>Completion review needed</value></data>
+  <data name="Notify.AcademicEvalForCoordinator.Message" xml:space="preserve"><value>Both final evaluations for {0} are in. Review the file, then approve or return the completion.</value></data>
+  <data name="Notify.CompletionApproved.Title" xml:space="preserve"><value>Your final result is released</value></data>
+  <data name="Notify.CompletionApproved.Message" xml:space="preserve"><value>Your internship result is {0}. Open My Progress to see the details and download your report.</value></data>
+  <data name="Notify.CompletionApprovedSupervisor.Title" xml:space="preserve"><value>Internship completed</value></data>
+  <data name="Notify.CompletionApprovedSupervisor.Message" xml:space="preserve"><value>The coordinator approved the internship completion of {0}.</value></data>
+  <data name="Notify.CompletionRejected.Title" xml:space="preserve"><value>Internship completion not approved</value></data>
+  <data name="Notify.CompletionRejected.Message" xml:space="preserve"><value>Coordinator’s note: {0}</value></data>
+  <data name="Notify.CompletionRejectedNoNote.Title" xml:space="preserve"><value>Internship completion not approved</value></data>
+  <data name="Notify.CompletionRejectedNoNote.Message" xml:space="preserve"><value>The coordinator did not approve your internship completion.</value></data>
+  <data name="Notify.CompletionReturned.Title" xml:space="preserve"><value>Completion returned for corrections</value></data>
+  <data name="Notify.CompletionReturned.Message" xml:space="preserve"><value>Coordinator’s note: {0}</value></data>
+  <data name="Notify.CompletionReturnedNoNote.Title" xml:space="preserve"><value>Completion returned for corrections</value></data>
+  <data name="Notify.CompletionReturnedNoNote.Message" xml:space="preserve"><value>The coordinator returned your completion review. Open My Progress to see what is missing.</value></data>
+  <data name="Notify.MeetingRequest.Title" xml:space="preserve"><value>New meeting request</value></data>
+  <data name="Notify.MeetingRequest.Message" xml:space="preserve"><value>{0} invited you to “{1}” on {2}. Accept or decline the request.</value></data>
+  <data name="Notify.MeetingAccepted.Title" xml:space="preserve"><value>Meeting accepted</value></data>
+  <data name="Notify.MeetingAccepted.Message" xml:space="preserve"><value>{0} accepted “{1}” on {2}.</value></data>
+  <data name="Notify.MeetingDeclined.Title" xml:space="preserve"><value>Meeting declined</value></data>
+  <data name="Notify.MeetingDeclined.Message" xml:space="preserve"><value>{0} declined “{1}”.</value></data>
+  <data name="Notify.MeetingCompleted.Title" xml:space="preserve"><value>Meeting marked completed</value></data>
+  <data name="Notify.MeetingCompleted.Message" xml:space="preserve"><value>{0} marked “{1}” as completed.</value></data>
+  <data name="Notify.MeetingCancelled.Title" xml:space="preserve"><value>Meeting cancelled</value></data>
+  <data name="Notify.MeetingCancelled.Message" xml:space="preserve"><value>{0} cancelled “{1}” on {2}.</value></data>
+  <data name="Js.NotifyOpen" xml:space="preserve"><value>Open</value></data>
+  <data name="Js.NotifyMany" xml:space="preserve"><value>You have {0} new notifications</value></data>
+  <data name="Js.NotifyViewAll" xml:space="preserve"><value>View all</value></data>
+  <data name="Js.NotifyDismiss" xml:space="preserve"><value>Dismiss</value></data>
+  <data name="Js.NotifyUnread" xml:space="preserve"><value>{0} new</value></data>
+  <data name="Js.NotifyBellLabel" xml:space="preserve"><value>Notifications, {0} unread</value></data>
 </root>

@@ -12,6 +12,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class ConfiguredGroups : CoordinatorPage
     {
+        protected const int PageSize = 10;
+        protected int PageIndex
+        {
+            get { return (int)(ViewState["GroupPageIndex"] ?? 0); }
+            set { ViewState["GroupPageIndex"] = Math.Max(0, value); }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             // The details pop-up only opens for the View click that asked for it.
@@ -23,13 +30,41 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
+            PageIndex = 0;
             BindGroups();
         }
 
         protected void btnClearSearch_Click(object sender, EventArgs e)
         {
             txtSearch.Text = "";
+            ddlYear.ClearSelection();
+            ddlSemester.ClearSelection();
+            ddlSupervisor.ClearSelection();
+            PageIndex = 0;
             BindGroups();
+        }
+
+        protected void btnPrevious_Click(object sender, EventArgs e) { PageIndex--; BindGroups(); }
+        protected void btnNext_Click(object sender, EventArgs e) { PageIndex++; BindGroups(); }
+
+        protected string DisplayValue(string value) { return string.IsNullOrWhiteSpace(value) ? "—" : value; }
+
+        protected string GroupInitials(string name)
+        {
+            string[] words = (name ?? "").Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            if (words.Length == 0) return "—";
+            return (words.Length > 1 ? words[0].Substring(0, 1) + words[1].Substring(0, 1)
+                : words[0].Substring(0, Math.Min(2, words[0].Length))).ToUpperInvariant();
+        }
+
+        private void BindFilter(DropDownList control, IEnumerable<string> values, string label)
+        {
+            string selected = control.SelectedValue;
+            control.Items.Clear();
+            control.Items.Add(new ListItem(L.T("Coordinator.ConfiguredGroups." + label), ""));
+            foreach (string value in values.Where(v => !string.IsNullOrWhiteSpace(v)).Distinct(StringComparer.OrdinalIgnoreCase).OrderBy(v => v))
+                control.Items.Add(new ListItem(value, value));
+            if (control.Items.FindByValue(selected) != null) control.SelectedValue = selected;
         }
 
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -143,21 +178,47 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             try
             {
                 List<StudentGroup> groups = new GroupRepository().GetAll();
+                litTotalGroups.Text = groups.Count.ToString();
+                BindFilter(ddlYear, groups.Select(g => g.AcademicYear), "AllYears");
+                BindFilter(ddlSemester, groups.Select(g => g.Semester), "AllSemesters");
+                // Use IDs so supervisors with the same display name remain distinct.
+                string selectedSupervisor = ddlSupervisor.SelectedValue;
+                ddlSupervisor.Items.Clear();
+                ddlSupervisor.Items.Add(new ListItem(L.T("Coordinator.ConfiguredGroups.AllSupervisors"), ""));
+                foreach (var supervisor in groups.Where(g => !string.IsNullOrWhiteSpace(g.AcademicSupervisorId))
+                    .GroupBy(g => g.AcademicSupervisorId).Select(g => g.First()).OrderBy(g => g.AcademicSupervisorName))
+                    ddlSupervisor.Items.Add(new ListItem(DisplayValue(supervisor.AcademicSupervisorName), supervisor.AcademicSupervisorId));
+                if (ddlSupervisor.Items.FindByValue(selectedSupervisor) != null) ddlSupervisor.SelectedValue = selectedSupervisor;
                 string search = (txtSearch.Text ?? "").Trim();
                 if (search.Length > 0)
                     groups = groups.Where(group => Contains(group.Name, search)
                         || Contains(group.AcademicYear, search)
                         || Contains(group.Semester, search)
                         || Contains(group.AcademicSupervisorName, search)).ToList();
+                groups = groups.Where(g => (ddlYear.SelectedValue == "" || g.AcademicYear == ddlYear.SelectedValue)
+                    && (ddlSemester.SelectedValue == "" || g.Semester == ddlSemester.SelectedValue)
+                    && (ddlSupervisor.SelectedValue == "" || g.AcademicSupervisorId == ddlSupervisor.SelectedValue)).ToList();
                 groups.Sort((a, b) => string.Compare(a.Name, b.Name, StringComparison.OrdinalIgnoreCase));
-                rptGroups.DataSource = groups;
+                PageIndex = Math.Min(PageIndex, Math.Max(0, (groups.Count - 1) / PageSize));
+                rptGroups.DataSource = groups.Skip(PageIndex * PageSize).Take(PageSize).ToList();
                 rptGroups.DataBind();
-                lblNoGroups.Text = search.Length > 0 ? L.T("Coordinator.ConfiguredGroups.NoGroupsMatchYourSearch") : L.T("Coordinator.ConfiguredGroups.NoGroupsHaveBeenCreatedYet");
+                bool filtered = search.Length > 0 || ddlYear.SelectedValue != "" || ddlSemester.SelectedValue != "" || ddlSupervisor.SelectedValue != "";
+                lblNoGroups.Text = filtered ? L.T("Coordinator.ConfiguredGroups.NoGroupsMatchYourSearch") : L.T("Coordinator.ConfiguredGroups.NoGroupsHaveBeenCreatedYet");
                 lblNoGroups.Visible = groups.Count == 0;
+                lblResults.Text = string.Format(L.T("Coordinator.ConfiguredGroups.ShowingGroups"), groups.Count == 0 ? 0 : PageIndex * PageSize + 1,
+                    Math.Min((PageIndex + 1) * PageSize, groups.Count), groups.Count);
+                litPage.Text = (PageIndex + 1).ToString();
+                btnPrevious.Enabled = PageIndex > 0;
+                btnNext.Enabled = (PageIndex + 1) * PageSize < groups.Count;
                 return true;
             }
             catch (FirebaseException)
             {
+                rptGroups.DataSource = new List<StudentGroup>();
+                rptGroups.DataBind();
+                litTotalGroups.Text = "—";
+                lblResults.Text = "";
+                btnPrevious.Enabled = btnNext.Enabled = false;
                 ShowMessage(L.T("Coordinator.ConfiguredGroups.CouldNotLoadConfiguredGroupsPlease"), false);
                 return false;
             }

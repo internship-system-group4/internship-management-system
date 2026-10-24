@@ -78,6 +78,26 @@ namespace InternshipManagementSystem.Common
             return value ?? id;
         }
 
+        /// <summary>The English text for "Area.Key", whatever language the current
+        /// user reads. Used for text that is saved, such as a notification's fallback.</summary>
+        public static string InEnglish(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return "";
+            int dot = id.IndexOf('.');
+            if (dot <= 0) return id;
+            string value = Lookup(id.Substring(0, dot), id.Substring(dot + 1), CultureInfo.InvariantCulture, out bool exact);
+            return value ?? id;
+        }
+
+        /// <summary>True when "Area.Key" exists in the resource files.</summary>
+        public static bool Has(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return false;
+            int dot = id.IndexOf('.');
+            if (dot <= 0) return false;
+            return Lookup(id.Substring(0, dot), id.Substring(dot + 1), CultureInfo.InvariantCulture, out bool exact) != null;
+        }
+
         /// <summary>Formatted text: L.F("Portal.HoursOf", approved, required). Uses the display culture.</summary>
         public static string F(string id, params object[] args)
         {
@@ -126,8 +146,14 @@ namespace InternshipManagementSystem.Common
             var list = context.Items[MissingKey] as List<string>;
             if (list == null) context.Items[MissingKey] = list = new List<string>();
             if (!list.Contains(kind + ":" + id)) list.Add(kind + ":" + id);
-            System.Diagnostics.Trace.TraceWarning("UIMS localization " + kind + ": " + id);
+            // Trace output is slow while Visual Studio's debugger listens, and the
+            // same gaps repeat on every page, so each one is written only once.
+            bool first;
+            lock (traced) first = traced.Add(kind + ":" + id);
+            if (first) System.Diagnostics.Trace.TraceWarning("UIMS localization " + kind + ": " + id);
         }
+
+        private static readonly HashSet<string> traced = new HashSet<string>(StringComparer.Ordinal);
 
         /// <summary>Keys that fell back or were missing on this request (rendered as a data attribute for tests).</summary>
         public static string Gaps
@@ -161,25 +187,45 @@ namespace InternshipManagementSystem.Common
         public static string SwitchUrl(string lang)
         {
             HttpRequest request = HttpContext.Current.Request;
-            var query = HttpUtility.ParseQueryString(request.QueryString.ToString());
+            string path;
+            var query = OriginalQuery(request, out path);
             query.Remove(SwitchParameter);
             query[SwitchParameter] = Normalize(lang);
-            return request.Path + "?" + query.ToString();
+            return path + "?" + query.ToString();
         }
 
         /// <summary>Handles ?ui-lang= on a GET: saves the choice and redirects to the same URL without it.</summary>
         public static bool HandleSwitch(HttpContext context)
         {
             HttpRequest request = context.Request;
-            string requested = request.QueryString[SwitchParameter];
+            string path;
+            var query = OriginalQuery(request, out path);
+            string requested = query[SwitchParameter];
             if (requested == null || !string.Equals(request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase)) return false;
             Save(context, requested);
-            var query = HttpUtility.ParseQueryString(request.QueryString.ToString());
             query.Remove(SwitchParameter);
             string rest = query.ToString();
-            context.Response.Redirect(request.Path + (rest.Length > 0 ? "?" + rest : ""), false);
+            context.Response.Redirect(path + (rest.Length > 0 ? "?" + rest : ""), false);
             context.ApplicationInstance.CompleteRequest();
             return true;
+        }
+
+        // IIS ExecuteURL rewrites Path and QueryString to the error handler, while
+        // RawUrl retains the browser's original request. Keep one language controller
+        // for both normal pages and internally executed error documents.
+        private static System.Collections.Specialized.NameValueCollection OriginalQuery(HttpRequest request, out string path)
+        {
+            string raw = request.RawUrl ?? request.Path;
+            int marker = raw.IndexOf('?');
+            path = marker < 0 ? raw : raw.Substring(0, marker);
+            string decoded = HttpUtility.UrlDecode(path);
+            if (!decoded.StartsWith("/", StringComparison.Ordinal) || decoded.StartsWith("//", StringComparison.Ordinal) ||
+                decoded.IndexOf('\\') >= 0 || decoded.IndexOf('\r') >= 0 || decoded.IndexOf('\n') >= 0)
+            {
+                path = VirtualPathUtility.ToAbsolute("~/Default.aspx");
+                return HttpUtility.ParseQueryString("");
+            }
+            return HttpUtility.ParseQueryString(marker < 0 ? "" : raw.Substring(marker + 1));
         }
 
         // ------------------------------------------------------------------ display labels for stored values

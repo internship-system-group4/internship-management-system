@@ -39,7 +39,7 @@
 
 .sp-heading p {
     font-size: 13px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin: 0;
 }
 
@@ -125,7 +125,7 @@
 
 .sp-person p {
     font-size: 13px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin: 0 0 12px;
 }
 
@@ -171,7 +171,7 @@
 }
 
 .sp-section-toggle:focus-visible {
-    outline: 3px solid #7aa6cf;
+    outline: 3px solid var(--th-line-7aa6cf,#7aa6cf);
     outline-offset: -3px;
 }
 
@@ -190,7 +190,7 @@
 .sp-section-title small {
     display: block;
     font-size: 11px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin-top: 4px;
 }
 
@@ -214,7 +214,7 @@
 
 .sp-chevron {
     transition: transform .2s;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
 }
 
 .sp-open .sp-chevron {
@@ -252,7 +252,7 @@
     display: block;
     font-size: 11px;
     font-weight: 750;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin-bottom: 7px;
 }
 
@@ -282,7 +282,7 @@
 
 .sp-help {
     font-size: 11px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     display: block;
     margin-top: 7px;
 }
@@ -304,7 +304,7 @@
 
 .sp-file-row p {
     font-size: 12px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     margin: 0 0 7px;
 }
 
@@ -317,7 +317,7 @@
 .sp-readonly-badge {
     font-size: 10px;
     font-weight: 700;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     background: var(--th-bg-f0f4f8,#f0f4f8);
     padding: 6px 9px;
     border-radius: 20px;
@@ -410,7 +410,7 @@
     border: 0;
     background: transparent;
     font-size: 25px;
-    color: var(--th-fg-6b7786,#6b7786);
+    color: var(--ui-muted);
     cursor: pointer;
 }
 
@@ -505,7 +505,7 @@
         <div class="sp-cover">
             <button type="button" class="sp-edit-button" id="spOpenEdit">
                 <i class="bi bi-pencil-square" aria-hidden="true"></i>
-                Edit Profile
+                <%: L.T("Student.Profile.EditProfile") %>
             </button>
         </div>
 
@@ -528,7 +528,7 @@
             </p>
             <span class="sp-role">
                 <i class="bi bi-mortarboard" aria-hidden="true"></i>
-                Student
+                <%: L.T("Student.Profile.Student") %>
             </span>
         </div>
 
@@ -827,11 +827,11 @@
          id="spModalDialog">
 
         <div class="sp-modal-head">
-            <h3 id="spEditTitle">Edit Profile</h3>
+            <h3 id="spEditTitle"><%: L.T("Student.Profile.EditProfile") %></h3>
             <button type="button"
                     class="sp-modal-close"
                     id="spCloseEdit"
-                    aria-label="Close">
+                    aria-label="<%: L.T("Student.Profile.Close") %>">
                 &times;
             </button>
         </div>
@@ -952,7 +952,7 @@
             <button type="button"
                     class="sp-btn sp-btn-light"
                     id="spCancelEdit">
-                Cancel
+                <%: L.T("Student.Profile.Cancel") %>
             </button>
 
             <button class="sp-btn"
@@ -961,7 +961,7 @@
                     value="save"
                     data-ui-action="save"
                     data-ui-validation="none"
-                    data-loading-label="Saving…">
+                    data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                 <%: L.T("Student.Profile.UpdateProfile") %>
             </button>
 

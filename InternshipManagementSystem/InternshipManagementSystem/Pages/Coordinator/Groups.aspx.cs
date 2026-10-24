@@ -12,17 +12,35 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class Groups : CoordinatorPage
     {
+        /// <summary>One student in the group's student picker. The value in
+        /// brackets in the old list was StudentNumber (the student ID).</summary>
+        protected class StudentChoice
+        {
+            public string Id, FullName, Email, StudentNumber, Major, MajorKey, Initials, SearchText;
+            public bool IsActive, Selected;
+        }
+
+        protected List<StudentChoice> Choices = new List<StudentChoice>();
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack) return;
-            string editId = Request.QueryString["edit"];
+            string editId = ViewState["EditingGroupId"] as string;
+            if (IsPostBack)
+            {
+                // Rebuild the picker and keep what the coordinator ticked.
+                try { BindStudentChoices(editId, PostedStudentIds(), null); }
+                catch (FirebaseException) { ShowMessage(L.T("Coordinator.Groups.CouldNotLoadGroupsAndAccount"), false); }
+                return;
+            }
+
+            editId = Request.QueryString["edit"];
             try
             {
-                if (string.IsNullOrEmpty(editId)) BindChoices(null);
+                if (string.IsNullOrEmpty(editId)) BindChoices(null, null);
                 else if (Regex.IsMatch(editId, @"^[A-Za-z0-9_-]+$")) LoadGroup(editId);
                 else
                 {
-                    BindChoices(null);
+                    BindChoices(null, null);
                     ShowMessage(L.T("Coordinator.Groups.InvalidGroupLink"), false);
                 }
             }
@@ -34,19 +52,17 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             StudentGroup group = new GroupRepository().GetById(id);
             if (group == null)
             {
-                BindChoices(null);
+                BindChoices(null, null);
                 ShowMessage(L.T("Coordinator.Groups.GroupNotFound"), false);
                 return;
             }
             ViewState["EditingGroupId"] = group.Id;
-            BindChoices(group.Id);
+            BindChoices(group.Id, group.StudentIds ?? new List<string>());
             txtName.Text = group.Name;
             txtAcademicYear.Text = group.AcademicYear;
             txtSemester.Text = group.Semester;
             if (ddlSupervisor.Items.FindByValue(group.AcademicSupervisorId) != null)
                 ddlSupervisor.SelectedValue = group.AcademicSupervisorId;
-            foreach (ListItem item in cblStudents.Items)
-                item.Selected = group.StudentIds != null && group.StudentIds.Contains(item.Value);
             lblEditorTitle.Text = L.T("Coordinator.Groups.EditGroup");
             btnSave.Text = L.T("Coordinator.Groups.SaveChanges");
             btnCancel.Visible = true;
@@ -77,8 +93,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 Semester = semester,
                 AcademicSupervisorId = ddlSupervisor.SelectedValue
             };
-            List<string> selected = cblStudents.Items.Cast<ListItem>()
-                .Where(item => item.Selected).Select(item => item.Value).ToList();
+            // Only students that were offered in the picker can be saved.
+            HashSet<string> offered = new HashSet<string>(Choices.Select(c => c.Id));
+            List<string> selected = PostedStudentIds().Where(offered.Contains).ToList();
             try
             {
                 new GroupRepository().SaveAssignments(group, selected);
@@ -95,24 +112,50 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             Context.ApplicationInstance.CompleteRequest();
         }
 
-        private void BindChoices(string editingGroupId)
+        /// <summary>First load: supervisors drop-down and the student picker.</summary>
+        private void BindChoices(string editingGroupId, List<string> selectedIds)
         {
             List<Person> people = new UserRepository().GetAllPeople();
-            List<StudentGroup> groups = new GroupRepository().GetAll();
             ddlSupervisor.Items.Clear();
             ddlSupervisor.Items.Add(new ListItem(L.T("Coordinator.Groups.SelectASupervisor"), ""));
             foreach (AcademicSupervisor supervisor in people.OfType<AcademicSupervisor>().OrderBy(p => p.FullName))
                 if (supervisor.IsActive) ddlSupervisor.Items.Add(new ListItem(supervisor.FullName + " (" + supervisor.Email + ")", supervisor.Id));
+            BindStudentChoices(editingGroupId, selectedIds, people);
+        }
 
-            cblStudents.Items.Clear();
+        private void BindStudentChoices(string editingGroupId, List<string> selectedIds, List<Person> people)
+        {
+            if (people == null) people = new UserRepository().GetAllPeople();
+            List<StudentGroup> groups = new GroupRepository().GetAll();
+            HashSet<string> selected = new HashSet<string>(selectedIds ?? new List<string>());
+            string none = L.T("Coordinator.ManageStudents.NotRecorded");
+            Choices = new List<StudentChoice>();
             foreach (Student student in people.OfType<Student>().OrderBy(p => p.FullName))
             {
                 if (!GroupRepository.IsAvailableForGroup(student, groups, editingGroupId)) continue;
-                string label = student.FullName + " (" + student.StudentNumber + ")";
-                if (!student.IsActive) label += " — inactive";
-                cblStudents.Items.Add(new ListItem(label, student.Id));
+                AcademicProgram program = AcademicPrograms.Find(student.Major);
+                Choices.Add(new StudentChoice
+                {
+                    Id = student.Id,
+                    FullName = student.FullName ?? none,
+                    Email = student.Email ?? "",
+                    StudentNumber = string.IsNullOrWhiteSpace(student.StudentNumber) ? none : student.StudentNumber,
+                    Major = string.IsNullOrWhiteSpace(student.Major) ? none : student.Major,
+                    MajorKey = program != null ? program.Key
+                        : AcademicPrograms.Quality(student.Major) == MajorQuality.Missing ? AcademicPrograms.MissingKey : AcademicPrograms.UnrecognizedKey,
+                    Initials = StudentDirectoryRow.MakeInitials(student.FullName),
+                    IsActive = student.IsActive,
+                    Selected = selected.Contains(student.Id),
+                    SearchText = string.Join(" ", new[] { student.FullName, student.Email, student.StudentNumber, student.Major }).ToLowerInvariant()
+                });
             }
-            lblNoAvailableStudents.Visible = cblStudents.Items.Count == 0;
+        }
+
+        /// <summary>The ticked students in the picker (plain checkboxes named groupStudents).</summary>
+        private List<string> PostedStudentIds()
+        {
+            string[] values = Request.Form.GetValues("groupStudents") ?? new string[0];
+            return values.Where(v => !string.IsNullOrEmpty(v) && Regex.IsMatch(v, @"^[A-Za-z0-9_-]+$")).Distinct().ToList();
         }
 
         private void ShowMessage(string message, bool success)

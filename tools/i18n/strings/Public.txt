@@ -504,3 +504,643 @@ en: Go to my dashboard
 
 AccessDenied.GoToLogin
 en: Go to login
+
+Home.BannerIntro
+en: Explore a few examples of internship paths. Sign in to discover current opportunities and apply through your student portal.
+ar: استكشف أمثلة لمسارات التدريب. سجّل الدخول لاكتشاف الفرص الحالية والتقديم من خلال بوابة الطالب.
+
+Home.BrowseSummaries
+en: Explore internship examples
+ar: استكشف أمثلة فرص التدريب
+
+Home.PreviewTitle
+en: Find your next direction.
+ar: اكتشف مسارك القادم.
+
+Home.PreviewIntro
+en: Explore the kind of experience an internship could offer. Sign in to find current openings for your field of study.
+ar: تعرّف على تجارب قد تخوضها في تدريبك. سجّل الدخول للعثور على الفرص الحالية المناسبة لتخصصك.
+
+Home.AccessNote
+en: Open to explore. Sign in as a student to view full details or apply.
+ar: التصفّح متاح للجميع. سجّل الدخول كطالب لعرض التفاصيل الكاملة أو التقديم.
+
+Home.SignInBrowse
+en: Sign in to browse all
+ar: سجّل الدخول لتصفّح الكل
+
+Home.BrowseAll
+en: Browse all opportunities
+ar: تصفّح جميع الفرص
+
+Home.SignInDetails
+en: Sign in to view details
+ar: سجّل الدخول لعرض التفاصيل
+
+Home.ViewDetails
+en: View full details
+ar: عرض التفاصيل الكاملة
+
+Home.SignInApply
+en: Sign in to apply
+ar: سجّل الدخول للتقديم
+
+Home.Apply
+en: Apply for this opportunity
+ar: التقديم لهذه الفرصة
+
+Home.StudentOnly
+en: Full details and applications are available to eligible student accounts.
+ar: التفاصيل الكاملة والتقديم متاحان لحسابات الطلبة المؤهلين.
+
+Home.Location
+en: Location
+ar: الموقع
+
+Home.Specialization
+en: Field of study
+ar: التخصص
+
+Home.AvailableSeats
+en: Available seats
+ar: المقاعد المتاحة
+
+Home.Deadline
+en: Application deadline
+ar: آخر موعد للتقديم
+
+Home.NoDeadline
+en: No deadline listed
+ar: لم يُحدّد موعد نهائي
+
+Home.PreviewsUnavailable
+en: We could not load published summaries. Try again, or sign in to your portal.
+ar: تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.
+
+Home.UnavailableTitle
+en: Summaries are temporarily unavailable
+ar: الملخصات غير متاحة مؤقتًا
+
+Home.Retry
+en: Try again
+ar: المحاولة مجددًا
+
+Home.NoPreviewsTitle
+en: New opportunities will appear here
+ar: ستظهر الفرص الجديدة هنا
+
+Home.NoPreviewsText
+en: There are no published summaries available right now. Check back later or sign in to explore your student portal.
+ar: لا تتوفر ملخصات منشورة حاليًا. عُد لاحقًا أو سجّل الدخول لاستكشاف بوابة الطالب.
+
+Home.FaqTitle
+en: Frequently asked questions
+ar: الأسئلة الشائعة
+
+Home.FaqIntro
+en: From your first application to the final review, here is what to expect along the way.
+ar: من طلبك الأول إلى المراجعة النهائية، تعرّف على ما ينتظرك خلال رحلة التدريب.
+
+Home.MoreQuestions
+en: Still have a question? Contact us
+ar: لديك سؤال آخر؟ تواصل معنا
+
+Home.Faq1Question
+en: Can I explore opportunities before signing in?
+ar: هل يمكنني استكشاف الفرص قبل تسجيل الدخول؟
+
+Home.Faq1Answer
+en: The cards on this page are illustrative internship examples. Select More details to sign in, then explore current opportunities, full details, and applications in your student portal.
+ar: البطاقات في هذه الصفحة أمثلة توضيحية لفرص التدريب. اضغط مزيد من التفاصيل لتسجيل الدخول، ثم استكشف الفرص الحالية وتفاصيلها والتقديم داخل بوابة الطالب.
+
+Home.Faq2Question
+en: Who can apply, and how do I get an account?
+ar: من يمكنه التقديم، وكيف أحصل على حساب؟
+
+Home.Faq2Answer
+en: Eligible students with an active university internship account can apply. Your university coordinator manages accounts and supervision assignments. Contact the university if you need access.
+ar: يمكن للطلبة المؤهلين الذين لديهم حساب تدريب جامعي فعّال التقديم. يتولى منسق الجامعة إدارة الحسابات وتوزيع الإشراف. تواصل مع الجامعة إذا كنت بحاجة إلى صلاحية الدخول.
+
+Home.Faq3Question
+en: Why might an opportunity not be available to me?
+ar: لماذا قد لا تكون الفرصة متاحة لي؟
+
+Home.Faq3Answer
+en: Your student portal checks the opportunity’s college and major requirements, remaining seats, deadline, and current status. A public summary is a first look, not a guarantee of eligibility or availability.
+ar: تتحقق بوابة الطالب من متطلبات الكلية والتخصص والمقاعد المتبقية والموعد النهائي وحالة الفرصة. الملخص العام معاينة أولية، ولا يضمن الأهلية أو استمرار التوافر.
+
+Home.Faq4Question
+en: What happens after a company accepts my application?
+ar: ماذا يحدث بعد قبول الشركة لطلبي؟
+
+Home.Faq4Answer
+en: Review the offer in My Applications and confirm one accepted offer to establish your internship placement. A company’s acceptance alone does not confirm your placement.
+ar: راجع العرض في صفحة طلباتي وأكّد عرضًا مقبولًا واحدًا لتثبيت جهة تدريبك. قبول الشركة وحده لا يثبّت جهة التدريب.
+
+Home.Faq5Question
+en: How do I track my training and feedback?
+ar: كيف أتابع تدريبي والملاحظات عليه؟
+
+Home.Faq5Answer
+en: Your workspace links to training tasks, submissions, feedback, meetings, and hours. Only hours approved by your supervisor count toward your required training hours.
+ar: توصلك مساحة عملك إلى مهام التدريب والتسليمات والملاحظات والاجتماعات والساعات. لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك.
+
+Home.Faq6Question
+en: When is my internship considered complete?
+ar: متى يُعدّ تدريبي مكتملًا؟
+
+Home.Faq6Answer
+en: Reaching your hours target is one part of completion. Training work and supervisor evaluations must also be completed, followed by coordinator approval. Results and reports are released according to the completion workflow.
+ar: بلوغ هدف الساعات جزء من متطلبات الإنهاء. يجب أيضًا إكمال أعمال التدريب وتقييمات المشرفين، ثم الحصول على اعتماد المنسق. تُتاح النتائج والتقارير وفق مسار اعتماد الإنهاء.
+
+Home.FindCurrent
+en: Find current opportunities
+ar: اكتشف الفرص الحالية
+
+Home.DemoLabel
+en: Illustrative examples
+ar: أمثلة توضيحية
+
+Home.DemoNote
+en: These cards show possible internship paths, not current vacancies.
+ar: تعرض هذه البطاقات مسارات تدريب محتملة، وليست شواغر حالية.
+
+Home.MoreDetails
+en: More details
+ar: مزيد من التفاصيل
+
+Home.Demo1Title
+en: Software Engineering Intern
+ar: متدرب هندسة برمجيات
+
+Home.Demo1Company
+en: Example software team
+ar: فريق برمجيات افتراضي
+
+Home.Demo1Location
+en: Amman, Jordan
+ar: عمّان، الأردن
+
+Home.Demo1Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo1Summary
+en: Build web services, test new features, and learn how software teams ship useful products.
+ar: طوّر خدمات الويب واختبر ميزات جديدة، وتعرّف على طريقة عمل فرق البرمجيات.
+
+Home.Demo2Title
+en: Frontend Development Intern
+ar: متدرب تطوير واجهات
+
+Home.Demo2Company
+en: Example digital studio
+ar: استوديو رقمي افتراضي
+
+Home.Demo2Location
+en: Hybrid, Jordan
+ar: عمل هجين، الأردن
+
+Home.Demo2Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo2Summary
+en: Create accessible interfaces and bring thoughtful digital experiences to life.
+ar: صمّم واجهات ميسّرة وحوّل الأفكار إلى تجارب رقمية سهلة الاستخدام.
+
+Home.Demo3Title
+en: Data Analysis Intern
+ar: متدرب تحليل بيانات
+
+Home.Demo3Company
+en: Example analytics team
+ar: فريق تحليلات افتراضي
+
+Home.Demo3Location
+en: Amman, Jordan
+ar: عمّان، الأردن
+
+Home.Demo3Field
+en: Computer Science
+ar: علوم الحاسوب
+
+Home.Demo3Summary
+en: Turn datasets into clear dashboards and insights that help teams make better decisions.
+ar: حوّل البيانات إلى لوحات واضحة ونتائج تساعد الفرق على اتخاذ قرارات أفضل.
+
+Home.VideoScrollHint
+en: Scroll to expand the video. Scroll back to return.
+ar: مرّر للأسفل لتكبير الفيديو، وللأعلى للعودة إلى حجمه الأصلي.
+
+Home.PauseCards
+en: Pause cards
+ar: إيقاف حركة البطاقات
+
+Home.ResumeCards
+en: Resume movement
+ar: استئناف الحركة
+
+Home.CardMotionHint
+en: Hover over a card to pause and take a closer look.
+ar: ضع المؤشر على بطاقة لإيقاف الحركة وإلقاء نظرة أقرب.
+
+Home.Demo4Title
+en: Quality Assurance Intern
+ar: متدرب ضمان الجودة
+
+Home.Demo4Company
+en: Example product team
+ar: فريق منتجات افتراضي
+
+Home.Demo4Location
+en: Hybrid, Jordan
+ar: عمل هجين، الأردن
+
+Home.Demo4Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo4Summary
+en: Test real features, automate checks, and help teams deliver reliable software.
+ar: اختبر ميزات المنتجات وأتمت عمليات الفحص، وساهم في تطوير برمجيات موثوقة.
+
+Home.Demo5Title
+en: Cybersecurity Intern
+ar: متدرب الأمن السيبراني
+
+Home.Demo5Company
+en: Example security lab
+ar: مختبر أمن افتراضي
+
+Home.Demo5Location
+en: Amman, Jordan
+ar: عمّان، الأردن
+
+Home.Demo5Field
+en: Computer Science / Engineering
+ar: علوم وهندسة الحاسوب
+
+Home.Demo5Summary
+en: Explore secure systems, investigate risks, and learn practical security fundamentals.
+ar: استكشف الأنظمة الآمنة وتحليل المخاطر، وتعلّم أساسيات الأمن بشكل عملي.
+
+Home.Demo6Title
+en: Embedded Systems Intern
+ar: متدرب الأنظمة المدمجة
+
+Home.Demo6Company
+en: Example engineering team
+ar: فريق هندسي افتراضي
+
+Home.Demo6Location
+en: Madaba, Jordan
+ar: مادبا، الأردن
+
+Home.Demo6Field
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+Home.Demo6Summary
+en: Connect code with hardware through sensors, microcontrollers, and hands-on experiments.
+ar: اربط البرمجة بالأجهزة عبر الحساسات والمتحكمات الدقيقة والتجارب العملية.
+
+Page404.SECURITY
+en: SECURITY
+ar: الأمن
+
+Page404.GERMANJORDANIANUNIVERSITY
+en: GERMAN JORDANIAN UNIVERSITY
+ar: الجامعة الألمانية الأردنية
+
+Page404.LostOnCampus
+en: Lost on campus?
+ar: تائه في الحرم الجامعي؟
+
+Page404.WeLlGuideYouBack
+en: We’ll guide you back.
+ar: سنرشدك إلى الطريق.
+
+Page404.ThePageYouReLookingFor
+en: The page you’re looking for couldn’t be found. Let’s get you back to your internship journey at GJU.
+ar: تعذر العثور على الصفحة التي تبحث عنها. لنعد إلى رحلة تدريبك في الجامعة الألمانية الأردنية.
+
+Page404.BackToGJU
+en: Back to GJU
+ar: العودة إلى الجامعة
+
+Page404.UniversityInternshipManagementSystemGJU
+en: University Internship Management System | GJU
+ar: نظام إدارة التدريب الجامعي | الجامعة الألمانية الأردنية
+
+About.YourBrowserDoesNotSupportThe
+en: Your browser does not support the video tag.
+ar: متصفحك لا يدعم تشغيل الفيديو.
+
+Journey.AerialViewOfTheGermanJordanian
+en: Aerial view of the German Jordanian University campus in Madaba
+ar: منظر جوي لحرم الجامعة الألمانية الأردنية في مادبا
+
+Journey.GermanJordanianUniversity
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+Journey.PreparingTheDawn
+en: Preparing the dawn
+ar: جارٍ استقبال الفجر
+
+Journey.InternshipManagementSystem
+en: Internship Management System
+ar: نظام إدارة التدريب الميداني
+
+Journey.FromMadabaToTheWorld
+en: From Madaba to the world.
+ar: من مادبا إلى العالم.
+
+Journey.EveryGJUInternshipStartsHereOn
+en: Every GJU internship starts here, on a campus built as a bridge between Jordan and Germany.
+ar: يبدأ كل تدريب في الجامعة الألمانية الأردنية من هنا، من حرم بُني ليكون جسرًا بين الأردن وألمانيا.
+
+Journey.ScrollToBegin
+en: Scroll to begin
+ar: مرر للبدء
+
+Journey.TheGermanYear
+en: The German Year
+ar: السنة الألمانية
+
+Journey.ABridgeNotABorder
+en: A bridge, not a border.
+ar: جسر يجمع، لا حدود تفصل.
+
+Journey.EveryAutumnWhiteStorksFromGermany
+en: Every autumn, white storks from Germany fly south over Jordan. At GJU the crossing runs the other way too: the German Year takes students to a partner university and into German industry.
+ar: في كل خريف، تهاجر طيور اللقلق البيضاء من ألمانيا جنوبًا عبر الأردن. وفي الجامعة الألمانية الأردنية، يمتد التواصل في الاتجاه الآخر أيضًا؛ إذ تتيح السنة الألمانية للطلاب الدراسة في جامعة شريكة والتدرب في القطاع الصناعي الألماني.
+
+Journey.OneSystemForTheWholeJourney
+en: One system for the whole journey.
+ar: نظام واحد للرحلة كاملة.
+
+Journey.UIMSConnectsStudentsCompaniesAndUniversity
+en: UIMS connects students, companies and university supervisors, from the first application to the final evaluation.
+ar: يربط UIMS الطلاب والشركات والمشرفين الجامعيين من أول طلب وحتى التقييم النهائي.
+
+Journey.Students
+en: Students
+ar: الطلبة
+
+Journey.ExploreApplyLogHours
+en: Explore, apply, log hours
+ar: استكشف وقدّم وسجّل ساعاتك
+
+Journey.Companies
+en: Companies
+ar: الشركات
+
+Journey.PublishSelectMentor
+en: Publish, select, mentor
+ar: انشر الفرص واختر ووجّه
+
+Journey.Supervisors
+en: Supervisors
+ar: المشرفون
+
+Journey.FollowEvaluateApprove
+en: Follow, evaluate, approve
+ar: تابع وقيّم واعتمد
+
+Journey.Story
+en: Story
+ar: الحكاية
+
+Journey.EveryJourneyStartsWithAWalk
+en: Every journey starts with a walk across campus.
+ar: تبدأ كل رحلة بخطوة في الحرم الجامعي.
+
+Journey.SchoolOfComputing
+en: School of Computing
+ar: كلية الحوسبة
+
+Journey.WhereIdeasBecomeTechnology
+en: Where ideas become technology.
+ar: حيث تتحول الأفكار إلى تقنية.
+
+Journey.SchoolOfArchitectureAndBuiltEnvironment
+en: School of Architecture and Built Environment
+ar: كلية العمارة والبيئة المبنية
+
+Journey.DesigningTheSpacesWeLiveIn
+en: Designing the spaces we live in.
+ar: نصمم المساحات التي نعيش فيها.
+
+Journey.SchoolOfSustainableSystemsEngineering
+en: School of Sustainable Systems Engineering
+ar: كلية هندسة النظم المستدامة
+
+Journey.EngineeringASustainableTomorrow
+en: Engineering a sustainable tomorrow.
+ar: نبني بالغد هندسةً مستدامة.
+
+Journey.YourJourneyBeginsHere
+en: Your Journey Begins Here.
+ar: رحلتك تبدأ هنا.
+
+Journey.ExploreOpenInternships
+en: Explore open internships
+ar: استكشف فرص التدريب المتاحة
+
+Journey.JourneyChapters
+en: Journey chapters
+ar: فصول الرحلة
+
+Journey.Dawn
+en: Dawn
+ar: الفجر
+
+Journey.Bridge
+en: Bridge
+ar: الجسر
+
+Journey.System
+en: System
+ar: حسب النظام
+
+Journey.Campus
+en: Campus
+ar: الحرم
+
+Journey.Journey
+en: Journey
+ar: المسار
+
+Journey.PauseSceneMotion
+en: Pause scene motion
+ar: إيقاف حركة المشهد مؤقتًا
+
+Journey.OpenInternships
+en: Open internships
+ar: فرص التدريب المتاحة
+
+Journey.WhereWillYourJourneyTakeYou
+en: Where will your journey take you?
+ar: إلى أين ستأخذك رحلتك؟
+
+Journey.SummariesPublishedByOurPartnerCompanies
+en: Summaries published by our partner companies. Browse freely; sign in with your university account to see full details and apply.
+ar: ملخصات تنشرها شركاتنا الشريكة. تصفح بحرية، ثم سجّل الدخول بحسابك الجامعي للاطلاع على التفاصيل الكاملة والتقديم.
+
+Journey.NoInternshipSummariesArePublishedRight
+en: No internship summaries are published right now. Check back soon, or log in to see opportunities in your student portal.
+ar: لا توجد ملخصات فرص تدريب منشورة حاليًا. عد لاحقًا أو سجّل الدخول للاطلاع على الفرص في بوابة الطالب.
+
+Journey.Left
+en: left
+ar: متبقية
+
+Journey.ApplyNow
+en: Apply now
+ar: قدّم الآن
+
+Journey.OnlyPublishedSummariesArePublicFull
+en: Only published summaries are public. Full details and applications require a signed-in student account; after signing in you return to the opportunity you chose.
+ar: تتاح الملخصات المنشورة فقط للزوار. تتطلب التفاصيل الكاملة والتقديم حساب طالب مسجل الدخول؛ وبعد الدخول تعود إلى الفرصة التي اخترتها.
+
+Journey.AcademicDirectory
+en: Academic directory
+ar: دليل الكليات
+
+Journey.EightSchoolsOneUniversity
+en: Eight schools. One university.
+ar: ثماني كليات. جامعة واحدة.
+
+Journey.TheSchoolsOfGermanJordanianUniversity
+en: The schools of German Jordanian University. UIMS currently supports internships for the
+ar: كليات الجامعة الألمانية الأردنية. يدعم UIMS حاليًا التدريب في
+
+Journey.MoreSchoolsWillFollow
+en: ; more schools will follow.
+ar: ؛ وستُضاف كليات أخرى لاحقًا.
+
+Journey.OnUIMS
+en: On UIMS
+ar: متاح في UIMS
+
+Journey.Specializations
+en: Specializations:
+ar: التخصصات:
+
+Journey.ProgrammeNamesFromGjuEduJo
+en: Programme names from gju.edu.jo. The campus in the 3D scene is an artistic interpretation; schools are introduced thematically, not by building.
+ar: أسماء البرامج من gju.edu.jo. الحرم في المشهد ثلاثي الأبعاد تصور فني، وتُعرض الكليات بحسب تخصصاتها وليس بحسب المباني.
+
+Journey.HowItWorks
+en: How it works
+ar: كيف يعمل النظام
+
+Journey.LearnApplyGrow
+en: Learn. Apply. Grow.
+ar: تعلّم. طبّق. تطوّر.
+
+Journey.YourCompanyAndAcademicSupervisorsGuide
+en: Your company and academic supervisors guide your progress at every stage.
+ar: يرافق مشرف الشركة والمشرف الأكاديمي تقدمك في كل مرحلة.
+
+Journey.ExploreOpportunities
+en: Explore opportunities
+ar: استكشف فرص التدريب
+
+Journey.FindInternshipsThatMatchYourSchool
+en: Find internships that match your school and major.
+ar: ابحث عن فرص تدريب تناسب كليتك وتخصصك.
+
+Journey.ApplyAndConfirm
+en: Apply and confirm
+ar: قدّم وأكّد اختيارك
+
+Journey.ApplyFollowTheCompanyDecisionAnd
+en: Apply, follow the company decision and confirm one accepted offer.
+ar: قدّم طلبك، وتابع قرار الشركة، وأكِّد عرضًا مقبولًا واحدًا.
+
+Journey.TrainAndGrow
+en: Train and grow
+ar: تدرّب وتطوّر
+
+Journey.CompleteTasksSubmitWorkAndLearn
+en: Complete tasks, submit work and learn from your supervisors' feedback.
+ar: أنجز المهام، وسلّم أعمالك، واستفد من ملاحظات مشرفيك.
+
+Journey.CompleteYourReview
+en: Complete your review
+ar: أتمّ مراجعتك
+
+Journey.TrackApprovedHoursAndEvaluationsThrough
+en: Track approved hours and evaluations through the final university review.
+ar: تابع الساعات المعتمدة والتقييمات حتى المراجعة النهائية في الجامعة.
+
+Journey.ProcessVideo
+en: Process video
+ar: فيديو الخطوات
+
+Journey.SeeThePathAhead
+en: See the path ahead.
+ar: تعرّف على الطريق أمامك.
+
+Journey.AShortGuideToTheInternship
+en: A short guide to the internship process. Ask your coordinator about school-specific requirements.
+ar: دليل مختصر لمسار التدريب. اسأل منسقك عن المتطلبات الخاصة بكليتك.
+
+Journey.UniversityInternshipProcessVideo
+en: University internship process video
+ar: فيديو خطوات التدريب في الجامعة
+
+Journey.YourBrowserDoesNotSupportVideo
+en: Your browser does not support video.
+ar: لا يدعم متصفحك تشغيل الفيديو.
+
+Journey.OpenTheVideo
+en: Open the video
+ar: فتح الفيديو
+
+Journey.TheGermanJordanianUniversityCourtyardWith
+en: The German Jordanian University courtyard with its timber waterwheel
+ar: ساحة الجامعة الألمانية الأردنية وناعورتها الخشبية
+
+Journey.TheOfficialProcessVideoWillPlay
+en: The official process video will play here.
+ar: سيُعرض هنا الفيديو الرسمي لمسار التدريب.
+
+Journey.TheUniversitySInternshipProcessVideo
+en: The university's internship process video and captions have not been provided yet.
+ar: لم يتم توفير فيديو مسار التدريب الجامعي وترجمته النصية بعد.
+
+Journey.ReadyForYourNextChapter
+en: Ready for your next chapter?
+ar: هل أنت مستعد لفصلك التالي؟
+
+Journey.LogInToYourPortal
+en: Log in to your portal
+ar: سجّل الدخول إلى بوابتك
+
+NotFound.Code
+en: Error 404 — page not found
+ar: خطأ 404 — الصفحة غير موجودة
+
+NotFound.Heading
+en: This page is off the map
+ar: يبدو أنك خرجت عن المسار
+
+NotFound.Description
+en: We couldn’t find the page you’re looking for. It may have moved, or the link may be incorrect.
+ar: لم نتمكن من العثور على الصفحة المطلوبة. ربما تغيّر عنوانها أو كان الرابط غير صحيح.
+
+NotFound.Home
+en: Go Home
+ar: الصفحة الرئيسية
+
+NotFound.Back
+en: Go Back
+ar: رجوع
+
+NotFound.Contact
+en: Contact us
+ar: تواصل معنا

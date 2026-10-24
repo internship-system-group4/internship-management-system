@@ -49,7 +49,7 @@ namespace InternshipManagementSystem.Pages.AccountArea
                     if (user != null && user.CanLogin())
                     {
                         SessionHelper.Refresh(user);
-                        Response.Redirect(ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl), false);
+                        Response.Redirect(ResumeDestination(user) ?? ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl), false);
                         Context.ApplicationInstance.CompleteRequest();
                         return;
                     }
@@ -139,8 +139,9 @@ namespace InternshipManagementSystem.Pages.AccountArea
             }
 
             // Reject unknown roles and destinations before creating the session.
-            string destination = ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl);
-            if (!Enum.IsDefined(typeof(UserRole), user.Role) || !IsApprovedDestination(destination))
+            string resume = ResumeDestination(user);
+            string destination = resume ?? ResolveUrl(user.MustChangePassword ? Constants.Routes.ChangePassword : user.DashboardUrl);
+            if (!Enum.IsDefined(typeof(UserRole), user.Role) || (resume == null && !IsApprovedDestination(destination)))
             {
                 SessionHelper.SignOut();
                 ShowError(L.T("Account.Login.WeCouldNotVerifyYourAccount3"));
@@ -165,6 +166,26 @@ namespace InternshipManagementSystem.Pages.AccountArea
                 Response.Redirect(destination, false);
                 Context.ApplicationInstance.CompleteRequest();
             }
+        }
+
+        // Resume only the fixed student opportunity routes and a single valid key.
+        // Eligible accounts are still checked by the destination's StudentPage guard.
+        // Everything else still goes to the role dashboard, so this cannot become an open redirect.
+        private string ResumeDestination(Person user)
+        {
+            string requested = Request.QueryString["returnUrl"];
+            if (string.IsNullOrEmpty(requested) || user == null || user.Role != UserRole.Student || user.MustChangePassword) return null;
+            string browse = ResolveUrl("~/Pages/Student/Opportunities.aspx");
+            if (string.Equals(requested, browse, StringComparison.Ordinal)) return browse;
+            foreach (string prefix in new[] {
+                ResolveUrl("~/Pages/Student/Apply.aspx") + "?opportunityId=",
+                ResolveUrl("~/Pages/Student/OpportunityDetails.aspx") + "?id=" })
+            {
+                if (!requested.StartsWith(prefix, StringComparison.Ordinal)) continue;
+                string id = requested.Substring(prefix.Length);
+                return ApplicationRepository.IsValidKey(id) ? prefix + Uri.EscapeDataString(id) : null;
+            }
+            return null;
         }
 
         private bool IsApprovedDestination(string destination)

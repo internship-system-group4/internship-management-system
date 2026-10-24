@@ -40,6 +40,24 @@ namespace InternshipManagementSystem.Data
             }
             return result;
         }
+        /// <summary>Speed: reads every collection the coordinator overviews use
+        /// at the same time, so the many reads that follow come from the cache.</summary>
+        public static void PrefetchProgrammeData()
+        {
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Users),
+                FirebaseRead.Node(Constants.Paths.Companies),
+                FirebaseRead.Node(Constants.Paths.Opportunities),
+                FirebaseRead.Node(Constants.Paths.Placements),
+                FirebaseRead.Node(Constants.Paths.Tasks),
+                FirebaseRead.Node(Constants.Paths.Submissions),
+                FirebaseRead.Node(Constants.Paths.TrainingHours),
+                FirebaseRead.Node(Constants.Paths.CompanyEvaluations),
+                FirebaseRead.Node(Constants.Paths.AcademicEvaluations),
+                FirebaseRead.Node(Constants.Paths.TaskEvaluations),
+                FirebaseRead.Node(Constants.Paths.Completions));
+        }
+
         private static bool IsPlacement(Placement p)
         {
             return ApplicationRepository.IsValidKey(p.Id) && p.Id == p.StudentId
@@ -61,17 +79,55 @@ namespace InternshipManagementSystem.Data
                 };
             }).OrderByDescending(r => r.Placement.ConfirmedAt).ToList();
         }
+        /// <summary>Some placements were saved without a company or opportunity
+        /// name (their opportunity had none). Fill the blanks from the company and
+        /// opportunity records so no row shows an empty company. Display only:
+        /// nothing is written back to Firebase.</summary>
+        private static void FillNames(IEnumerable<Placement> placements, List<Company> companies, List<Opportunity> opportunities)
+        {
+            var companyNames = new Dictionary<string, string>();
+            foreach (var c in companies)
+                if (c != null && c.Id != null && !string.IsNullOrWhiteSpace(c.Name)) companyNames[c.Id] = c.Name.Trim();
+            var opportunityById = new Dictionary<string, Opportunity>();
+            foreach (var o in opportunities)
+                if (o != null && o.Id != null) opportunityById[o.Id] = o;
+
+            foreach (var p in placements)
+            {
+                Opportunity opportunity;
+                opportunityById.TryGetValue(p.OpportunityId ?? "", out opportunity);
+                if (string.IsNullOrWhiteSpace(p.CompanyName))
+                {
+                    string name;
+                    if (companyNames.TryGetValue(p.CompanyId ?? "", out name)) p.CompanyName = name;
+                    else if (opportunity != null && !string.IsNullOrWhiteSpace(opportunity.CompanyName)) p.CompanyName = opportunity.CompanyName.Trim();
+                }
+                if (string.IsNullOrWhiteSpace(p.OpportunityTitle) && opportunity != null && !string.IsNullOrWhiteSpace(opportunity.Title))
+                    p.OpportunityTitle = opportunity.Title.Trim();
+            }
+        }
+
         public List<PlacementOverview> LoadPlacements()
         {
-            return BuildRows(new PlacementRepository().GetAll(), new UserRepository().GetAllPeople().OfType<Student>().ToList(),
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Placements),
+                FirebaseRead.Node(Constants.Paths.Users),
+                FirebaseRead.Node(Constants.Paths.TrainingHours),
+                FirebaseRead.Node(Constants.Paths.Companies),
+                FirebaseRead.Node(Constants.Paths.Opportunities));
+            var placements = new PlacementRepository().GetAll();
+            FillNames(placements, new CompanyRepository().GetAll(), new OpportunityRepository().GetAll());
+            return BuildRows(placements, new UserRepository().GetAllPeople().OfType<Student>().ToList(),
                 new HoursRepository().GetAll());
         }
         public CoordinatorDashboardData LoadDashboard()
         {
+            PrefetchProgrammeData();
             var students = new UserRepository().GetAllPeople().OfType<Student>().ToList();
             var companies = new CompanyRepository().GetAll();
             var opportunities = new OpportunityRepository().GetAll();
             var placements = new PlacementRepository().GetAll().Where(IsPlacement).ToList();
+            FillNames(placements, companies, opportunities);
             var byId = placements.ToDictionary(p => p.Id);
             var tasks = new TaskRepository().GetAll().Where(t => byId.ContainsKey(t.PlacementId ?? "")
                 && t.StudentId == byId[t.PlacementId].StudentId && t.CompanyId == byId[t.PlacementId].CompanyId).ToList();
@@ -92,6 +148,7 @@ namespace InternshipManagementSystem.Data
                 TaskEvaluations = taskEvaluations.Count, CompanyFinals = companyFinals.Count, AcademicFinals = academicFinals.Count,
                 AwaitingCompletion = placements.Count(p => p.Status == PlacementStatus.AwaitingCompletion),
                 OverdueTasks = tasks.Count(t => t.IsOverdue),
+                OverdueTaskItems = tasks.Where(t => t.IsOverdue).OrderBy(t => t.Deadline).ToList(),
                 PendingHours = hours.Where(h => byId.ContainsKey(h.PlacementId ?? "") && h.StudentId == byId[h.PlacementId].StudentId && h.Status == HoursStatus.Reported && h.Hours > 0).Sum(h => (long)h.Hours),
                 Recent = BuildRows(placements, students, hours).Take(5).ToList()
             };
@@ -99,8 +156,31 @@ namespace InternshipManagementSystem.Data
         public PlacementProgressData LoadDetails(string id)
         {
             if (!ApplicationRepository.IsValidKey(id)) return null;
+            // Speed: everything about this placement is read at the same time.
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Placements + "/" + id),
+                FirebaseRead.Where(Constants.Paths.Tasks, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.Submissions, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.TaskEvaluations, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.TrainingHours, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.CompanyEvaluations, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.AcademicEvaluations, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.Completions, "PlacementId", id),
+                FirebaseRead.Where(Constants.Paths.AcademicComments, "PlacementId", id));
             var placement = new PlacementRepository().GetById(id);
             if (placement == null || !IsPlacement(placement)) return null;
+            if (string.IsNullOrWhiteSpace(placement.CompanyName) || string.IsNullOrWhiteSpace(placement.OpportunityTitle))
+            {
+                var company = ApplicationRepository.IsValidKey(placement.CompanyId) ? new CompanyRepository().GetById(placement.CompanyId) : null;
+                var opportunity = ApplicationRepository.IsValidKey(placement.OpportunityId) ? new OpportunityRepository().GetById(placement.OpportunityId) : null;
+                FillNames(new[] { placement },
+                    company == null ? new List<Company>() : new List<Company> { company },
+                    opportunity == null ? new List<Opportunity>() : new List<Opportunity> { opportunity });
+            }
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Users + "/" + placement.StudentId),
+                ApplicationRepository.IsValidKey(placement.CompanySupervisorId) ? FirebaseRead.Node(Constants.Paths.Users + "/" + placement.CompanySupervisorId) : null,
+                ApplicationRepository.IsValidKey(placement.AcademicSupervisorId) ? FirebaseRead.Node(Constants.Paths.Users + "/" + placement.AcademicSupervisorId) : null);
             var users = new UserRepository();
             var student = users.GetStudent(placement.StudentId);
             var tasks = Read<InternshipTask>(Constants.Paths.Tasks, "PlacementId", id)
@@ -134,11 +214,21 @@ namespace InternshipManagementSystem.Data
         /// state, for the Final Completion Review queue (card A10).</summary>
         public List<CompletionQueueRow> LoadCompletionQueue()
         {
+            FirebaseContext.Prefetch(
+                FirebaseRead.Node(Constants.Paths.Placements),
+                FirebaseRead.Node(Constants.Paths.Users),
+                FirebaseRead.Node(Constants.Paths.TrainingHours),
+                FirebaseRead.Node(Constants.Paths.CompanyEvaluations),
+                FirebaseRead.Node(Constants.Paths.AcademicEvaluations),
+                FirebaseRead.Node(Constants.Paths.Completions));
             var rows = LoadPlacements().Where(r => r.Placement.Status != PlacementStatus.Cancelled).ToList();
+            // Same matching as LoadDetails: an evaluation only counts when it was
+            // written by this placement's company / academic supervisor. Otherwise
+            // the queue could say "Ready" while the review page says "Missing".
             var companyDone = new HashSet<string>(Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations)
-                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId));
+                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId + "|" + e.CompanyId));
             var academicDone = new HashSet<string>(Read<FinalAcademicEvaluation>(Constants.Paths.AcademicEvaluations)
-                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId));
+                .Where(e => e.IsSubmitted).Select(e => e.PlacementId + "|" + e.StudentId + "|" + e.AcademicSupervisorId));
             var completions = Read<CompletionRecord>(Constants.Paths.Completions);
             return rows.Select(r =>
             {
@@ -146,8 +236,8 @@ namespace InternshipManagementSystem.Data
                 return new CompletionQueueRow
                 {
                     Overview = r,
-                    CompanySubmitted = companyDone.Contains(key),
-                    AcademicSubmitted = academicDone.Contains(key),
+                    CompanySubmitted = companyDone.Contains(key + "|" + r.Placement.CompanyId),
+                    AcademicSubmitted = academicDone.Contains(key + "|" + r.Placement.AcademicSupervisorId),
                     Completion = completions.Where(c => c.PlacementId == r.Placement.Id && c.StudentId == r.Placement.StudentId)
                         .OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt).FirstOrDefault()
                 };
@@ -170,8 +260,11 @@ namespace InternshipManagementSystem.Data
         public string StatusText { get { return Placement.Status == PlacementStatus.AwaitingCompletion ? L.T("Workspace.CoordinatorMonitoringRepository.AwaitingCompletion") : L.Value("PlacementStatus", Placement.Status); } }
         public string StudentNumber { get { return Student == null ? "—" : Student.StudentNumber; } }
         public string Major { get { return Student == null ? "—" : Student.Major; } }
-        public int HoursPercent { get { return Placement.RequiredHours <= 0 ? 0 : (int)Math.Min(100, ApprovedHours * 100 / Placement.RequiredHours); } }
-        public string HoursText { get { return Placement.RequiredHours > 0 ? ApprovedHours + " / " + Placement.RequiredHours + " " + L.T("Workspace.UnitH") : ApprovedHours + " " + L.T("Workspace.UnitH") + L.T("Workspace.RequirementNotConfigured"); } }
+        /// <summary>The hours target, never below 160 (see InternshipRules.RequiredHours).</summary>
+        public int RequiredHours { get { return InternshipRules.RequiredHours(Placement.RequiredHours, Student == null ? 0 : Student.RequiredHours); } }
+        public bool TrainingDone { get { return InternshipRules.TrainingDone(Placement, ApprovedHours, RequiredHours); } }
+        public int HoursPercent { get { return (int)Math.Min(100, ApprovedHours * 100 / RequiredHours); } }
+        public string HoursText { get { return ApprovedHours + " / " + RequiredHours + " " + L.T("Workspace.UnitH"); } }
     }
     public class CompletionQueueRow
     {
@@ -194,6 +287,50 @@ namespace InternshipManagementSystem.Data
         }
         // Ready first, then returned, then waiting for evaluations, approved last.
         public int SortOrder { get { return IsApproved ? 3 : IsReady ? (IsReturned ? 1 : 0) : 2; } }
+
+        // ---- Final Completion Review queue (added; the members above are unchanged) ----
+        public const string ReviewInProgress = "in-progress";
+        public const string ReviewAwaitingEvaluations = "awaiting";
+        public const string ReviewReady = "ready";
+        public const string ReviewCorrections = "corrections";
+        public const string ReviewApproved = "approved";
+        public const string ReviewRejected = "rejected";
+
+        /// <summary>UIMS review status of the row. These are application
+        /// labels, not the internal status names of any GJU system.</summary>
+        public string ReviewStatus
+        {
+            get
+            {
+                if (IsApproved) return ReviewApproved;
+                if (Completion != null && Completion.IsRejectedFinal) return ReviewRejected;
+                if (Completion != null && Completion.NeedsCorrections) return ReviewCorrections;
+                bool trainingDone = Overview.TrainingDone;
+                // "Ready" means the coordinator can actually approve the training
+                // part: both evaluations AND 160 hours (or 20 weeks abroad).
+                if (CompanySubmitted && AcademicSubmitted) return trainingDone ? ReviewReady : ReviewInProgress;
+                if (CompanySubmitted || AcademicSubmitted || trainingDone
+                    || Overview.Placement.Status == PlacementStatus.AwaitingCompletion) return ReviewAwaitingEvaluations;
+                return ReviewInProgress;
+            }
+        }
+
+        /// <summary>Queue order: needs a decision first, finished records last.</summary>
+        public int ReviewOrder
+        {
+            get
+            {
+                switch (ReviewStatus)
+                {
+                    case ReviewReady: return 0;
+                    case ReviewCorrections: return 1;
+                    case ReviewAwaitingEvaluations: return 2;
+                    case ReviewInProgress: return 3;
+                    case ReviewApproved: return 4;
+                    default: return 5;
+                }
+            }
+        }
     }
     public class CoordinatorDashboardData
     {
@@ -201,6 +338,7 @@ namespace InternshipManagementSystem.Data
             Placements, ActivePlacements, TaskEvaluations, CompanyFinals, AcademicFinals, AwaitingCompletion, OverdueTasks;
         public long PendingHours;
         public List<PlacementOverview> Recent;
+        public List<InternshipTask> OverdueTaskItems;
     }
     public class PlacementProgressData
     {

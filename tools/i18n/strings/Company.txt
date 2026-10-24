@@ -1664,3 +1664,1043 @@ en: Under review
 
 Tasks.RevisionRequested
 en: Revision requested
+
+Applications.StudentConfirmedOffer
+en: The student has confirmed this offer.
+ar: أكّد الطالب قبول هذا العرض.
+
+Applications.StudentMustConfirmOffer
+en: The student has been offered a place and still needs to confirm it.
+ar: تم تقديم عرض تدريب للطالب، وما زال عليه تأكيد قبوله.
+
+Applications.ReviewDeskIntro
+en: Review candidate profiles and make a decision. Pending applications appear first.
+ar: راجع ملفات المتقدمين واتخذ قرارك. تظهر الطلبات التي تنتظر المراجعة أولًا.
+
+Applications.SearchPlaceholder
+en: Search by student name or opportunity
+ar: ابحث باسم الطالب أو فرصة التدريب
+
+Applications.FilterByStatus
+en: Filter applications by status
+ar: تصفية الطلبات حسب الحالة
+
+Applications.AllApplications
+en: All
+ar: الكل
+
+Applications.ShowingApplications
+en: Showing {0} of {1} applications
+ar: عرض {0} من أصل {1} طلبات
+
+Applications.NoMatchingApplications
+en: No applications match your search and filters.
+ar: لا توجد طلبات تطابق البحث والفلاتر المحددة.
+
+Applications.ClearFilters
+en: Clear search and filters
+ar: مسح البحث والفلاتر
+
+Applications.ReviewApplication
+en: Review application
+ar: مراجعة الطلب
+
+Applications.ViewApplication
+en: View application
+ar: عرض الطلب
+
+Applications.DraftWarning
+en: This rejection reason has not been submitted. Continue? Your text will remain in this page.
+ar: لم يتم إرسال سبب الرفض بعد. هل تريد المتابعة؟ سيبقى النص محفوظًا داخل هذه الصفحة.
+
+Applications.ApplicationPosition
+en: {0} of {1}
+ar: {0} من {1}
+
+Applications.PreviewCv
+en: Preview CV
+ar: معاينة السيرة الذاتية
+
+Applications.HideCvPreview
+en: Hide CV preview
+ar: إخفاء معاينة السيرة
+
+Applications.DownloadCv
+en: Download CV
+ar: تنزيل السيرة الذاتية
+
+Applications.PdfPreviewHelp
+en: If the PDF does not appear, use Open CV or Download CV.
+ar: إذا لم يظهر ملف PDF، استخدم فتح السيرة الذاتية أو تنزيلها.
+
+Applications.CvPreviewFor
+en: CV preview for {0}
+ar: معاينة السيرة الذاتية لـ {0}
+
+Applications.ExternalCvHelp
+en: This CV is an external link. Use Open CV to view it in a new tab.
+ar: السيرة الذاتية رابط خارجي. استخدم فتح السيرة الذاتية لعرضها في تبويب جديد.
+
+Applications.CloseApplication
+en: Close application details
+ar: إغلاق تفاصيل الطلب
+
+Applications.ApplicationNavigation
+en: Navigate filtered applications
+ar: التنقل بين الطلبات المصفّاة
+
+Applications.PreviousApplication
+en: Previous
+ar: السابق
+
+Applications.NextApplication
+en: Next
+ar: التالي
+
+Applications.SelectApplication
+en: Select an application
+ar: اختر طلبًا للمراجعة
+
+Applications.SelectApplicationHelp
+en: Choose a student from the list to review their profile, documents, and application.
+ar: اختر طالبًا من القائمة لمراجعة بياناته ومستنداته وطلبه.
+
+Applications.PlacementConfirmed
+en: Student confirmed the placement
+ar: أكّد الطالب التدريب
+
+Applications.AwaitingStudentConfirmation
+en: Awaiting student confirmation
+ar: بانتظار تأكيد الطالب
+
+ApplicantDocument.ExternalPreviewUnavailable
+en: This document is an external link. Return to the application and use Open CV or Open portfolio.
+ar: هذا المستند رابط خارجي. ارجع إلى الطلب واستخدم فتح السيرة الذاتية أو الملف المهني.
+
+Dashboard.SearchByStudentNameOpportunityOr
+en: Search by student name, opportunity, or task
+ar: ابحث باسم الطالب أو الفرصة أو المهمة
+
+Dashboard.PClassTextMutedSmallMy
+en: <p class='text-muted small my-3 text-center'>No new applications to review.</p>
+ar: <p class='text-muted small my-3 text-center'>لا توجد طلبات جديدة للمراجعة.</p>
+
+Dashboard.Completed
+en: Completed
+ar: مكتمل
+
+Dashboard.CompanyReviewWorkflow
+en: Company Review Workflow
+ar: مسار المراجعة في الشركة
+
+EvaluationReport.SubmitTheConfidentialFinalEvaluationFor
+en: Submit the confidential final evaluation for academic review
+ar: إرسال التقييم النهائي السري للمراجعة الأكاديمية
+
+EvaluationReport.ReviewOfficialReport
+en: Review Official Report
+ar: مراجعة التقرير الرسمي
+
+EvaluationReport.Close
+en: Close
+ar: إغلاق
+
+EvaluationReport.DownloadAsPDF
+en: Download as PDF
+ar: تنزيل بصيغة PDF
+
+EvaluationReport.SendToTrainee
+en: Send to Trainee
+ar: إرسال إلى المتدرب
+
+EvaluationReport.Print
+en: Print
+ar: طباعة
+
+EvaluationReport.OfficialInternshipEvaluationReport
+en: Official Internship Evaluation Report
+ar: تقرير تقييم التدريب الرسمي
+
+EvaluationReport.GermanJordanianUniversity
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+EvaluationReport.InternshipManagementSystemUIMSOfficialAcademic
+en: Internship Management System (UIMS) - Official Academic Report
+ar: نظام إدارة التدريب الجامعي (UIMS) - التقرير الأكاديمي الرسمي
+
+EvaluationReport.FinalPerformanceEvaluationGradeReport
+en: Final Performance Evaluation & Grade Report
+ar: تقرير تقييم الأداء النهائي والعلامات
+
+EvaluationReport.TraineeStudent
+en: Trainee Student:
+ar: الطالب المتدرب:
+
+EvaluationReport.AcademicMajor
+en: Academic Major:
+ar: التخصص الأكاديمي:
+
+EvaluationReport.InternshipPosition
+en: Internship Position:
+ar: المسمى التدريبي:
+
+EvaluationReport.ActualTrainingHours
+en: Actual Training Hours:
+ar: ساعات التدريب الفعلية:
+
+EvaluationReport.Hours
+en: Hours
+ar: الساعات
+
+EvaluationReport.EvaluationCriteriaGJUStandard
+en: Evaluation Criteria (GJU Standard)
+ar: معايير التقييم (معيار الجامعة الألمانية الأردنية)
+
+EvaluationReport.MaxScore
+en: Max Score
+ar: الدرجة القصوى
+
+EvaluationReport.Awarded
+en: Awarded
+ar: العلامة الممنوحة
+
+EvaluationReport.TechnicalSkillsApplication
+en: Technical Skills & Application
+ar: المهارات التقنية والتطبيق
+
+EvaluationReport.QualityOfWorkLogic
+en: Quality of Work & Logic
+ar: جودة العمل والتفكير المنطقي
+
+EvaluationReport.ProfessionalismEthics
+en: Professionalism & Ethics
+ar: الاحترافية والأخلاقيات
+
+EvaluationReport.CommunicationTeamwork
+en: Communication & Teamwork
+ar: التواصل والعمل الجماعي
+
+EvaluationReport.TotalCalculatedScore
+en: Total Calculated Score
+ar: مجموع العلامات المحتسب
+
+EvaluationReport.PerformanceLevel
+en: Performance Level:
+ar: مستوى الأداء:
+
+EvaluationReport.CompanyRecommendation
+en: Company Recommendation:
+ar: توصية الشركة:
+
+EvaluationReport.KeyStrengths
+en: Key Strengths:
+ar: أبرز نقاط القوة:
+
+EvaluationReport.AreasForImprovement
+en: Areas for Improvement:
+ar: جوانب التحسين:
+
+EvaluationReport.ReportGeneratedDate
+en: Report Generated Date:
+ar: تاريخ إنشاء التقرير:
+
+EvaluationReport.AuthorizedCompanySignatureSeal
+en: Authorized Company Signature & Seal
+ar: توقيع الشركة المعتمد وختمها
+
+EvaluationReport.PrintReport
+en: Print Report
+ar: طباعة التقرير
+
+EvaluationReport.SendToAcademicSupervisor
+en: Send to Academic Supervisor
+ar: إرسال إلى المشرف الأكاديمي
+
+EvaluationReport.SaveScores
+en: Save Scores
+ar: حفظ الدرجات
+
+EvaluationReport.SelectPerformanceLevel
+en: Select Performance Level
+ar: اختر مستوى الأداء
+
+EvaluationReport.ExcellentA
+en: Excellent (A)
+ar: ممتاز (A)
+
+EvaluationReport.VeryGoodB
+en: Very Good (B)
+ar: جيد جدًا (B)
+
+EvaluationReport.GoodC
+en: Good (C)
+ar: جيد (C)
+
+EvaluationReport.NeedsImprovementD
+en: Needs Improvement (D)
+ar: يحتاج إلى تحسين (D)
+
+EvaluationReport.SelectRecommendation
+en: Select Recommendation
+ar: اختر التوصية
+
+EvaluationReport.HighlyRecommendedForHire
+en: Highly Recommended for Hire
+ar: يُوصى بتوظيفه بشدة
+
+EvaluationReport.Recommended
+en: Recommended
+ar: يُوصى به
+
+EvaluationReport.RecommendWithReservations
+en: Recommend with Reservations
+ar: يُوصى به مع تحفّظات
+
+EvaluationReport.DoNotRecommend
+en: Do Not Recommend
+ar: لا يُوصى به
+
+EvaluationReport.DescribeMainStrengths
+en: Describe main strengths...
+ar: صف أبرز نقاط القوة...
+
+EvaluationReport.DescribeAreasToDevelop
+en: Describe areas to develop...
+ar: صف الجوانب التي تحتاج إلى تطوير...
+
+EvaluationReport.SaveFeedback
+en: Save Feedback
+ar: حفظ الملاحظات
+
+EvaluationReport.YouHaveNoSavedDrafts
+en: You have no saved drafts.
+ar: لا توجد لديك مسودات محفوظة.
+
+EvaluationReport.TraineeName
+en: Trainee Name
+ar: اسم المتدرّب
+
+EvaluationReport.Action
+en: Action
+ar: الإجراء
+
+EvaluationReport.Okay
+en: Okay
+ar: حسنًا
+
+FinalEvaluation.CompanyFinalEvaluation
+en: Company Final Evaluation
+ar: التقييم النهائي للشركة
+
+FinalEvaluation.ThisFinalEvaluationIsConfidentialStudents
+en: This final evaluation is confidential. Students cannot view it. Enter the score on the assessment's own scale; no official GJU scoring rubric is assumed.
+ar: هذا التقييم النهائي سري ولا يمكن للطلاب الاطلاع عليه. أدخل العلامة وفق مقياس التقييم المستخدم؛ لا يفترض النظام وجود سلم تقييم رسمي للجامعة الألمانية الأردنية.
+
+FinalEvaluation.AssignedInternship
+en: Assigned internship
+ar: التدريب المسند
+
+FinalEvaluation.TotalScoreOptionalForEvidenceOnly
+en: Total score (optional for evidence-only reviews)
+ar: مجموع العلامات (اختياري للمراجعات التي تقتصر على الأدلة)
+
+FinalEvaluation.MaximumScoreOnTheAssessmentScale
+en: Maximum score on the assessment scale
+ar: العلامة القصوى في مقياس التقييم
+
+FinalEvaluation.ConfidentialSupervisorComments
+en: Confidential supervisor comments
+ar: ملاحظات المشرف السرية
+
+FinalEvaluation.SubmitFinalEvaluationToAcademicSupervisor
+en: Submit final evaluation to academic supervisor
+ar: إرسال التقييم النهائي إلى المشرف الأكاديمي
+
+FinalEvaluation.CompanyEvaluationReportAndCertificateTools
+en: Company evaluation report and certificate tools
+ar: تقرير تقييم الشركة وأدوات الشهادات
+
+Opportunities.LastDateToApply
+en: Last Date to Apply
+ar: آخر موعد للتقديم
+
+TaskReview.ReviewSubmissions2
+en: Review submissions
+ar: مراجعة التسليمات
+
+TaskReview.ReviewTraineeWorkProvideAnEvaluation
+en: Review trainee work, provide an evaluation, or request a revision.
+ar: راجع عمل المتدرب، وأضف التقييم، أو اطلب تعديلات.
+
+TaskReview.StudentSubmissions
+en: Student submissions
+ar: تسليمات الطلاب
+
+TaskReview.OpenASubmissionToReviewThe
+en: Open a submission to review the trainee's work and choose the next action.
+ar: افتح تسليمًا لمراجعة عمل المتدرب واختيار الإجراء التالي.
+
+TaskReview.SearchTasksOrTrainees
+en: Search tasks or trainees
+ar: ابحث عن المهام أو المتدربين
+
+TaskReview.SearchSubmissions
+en: Search submissions
+ar: البحث في التسليمات
+
+TaskReview.FilterByTrainee
+en: Filter by trainee
+ar: تصفية حسب المتدرب
+
+TaskReview.FilterBySubmissionStatus
+en: Filter by submission status
+ar: تصفية حسب حالة التسليم
+
+TaskReview.Trainee2
+en: Trainee
+ar: متدرّب
+
+TaskReview.Status2
+en: Status
+ar: الحالة
+
+TaskReview.SubmittedAt
+en: Submitted at
+ar: وقت التسليم
+
+TaskReview.Action
+en: Action
+ar: الإجراء
+
+TaskReview.NoSubmissionsMatchTheseFilters
+en: No submissions match these filters.
+ar: لا توجد تسليمات تطابق عوامل التصفية.
+
+TaskReview.BackToTasks
+en: ← Back to tasks
+ar: العودة إلى المهام
+
+TaskReview.ReviewSubmission
+en: Review submission
+ar: مراجعة التسليم
+
+TaskReview.EvaluateTheTraineeSWorkAnd
+en: Evaluate the trainee's work and give constructive feedback.
+ar: قيّم عمل المتدرب وقدّم ملاحظات بنّاءة.
+
+TaskReview.SubmissionDetails2
+en: Submission details
+ar: تفاصيل التسليم
+
+TaskReview.TaskTitle
+en: Task title
+ar: عنوان المهمة
+
+TaskReview.Submitted2
+en: Submitted
+ar: تاريخ الإرسال
+
+TaskReview.DueDate
+en: Due date
+ar: الموعد النهائي
+
+TaskReview.SubmittedWork2
+en: Submitted work
+ar: الأعمال المسلَّمة
+
+TaskReview.EvaluationAndFeedback
+en: Evaluation and feedback
+ar: التقييم والملاحظات
+
+TaskReview.AssessTheSubmissionWithTheUniversity
+en: Assess the submission with the university criteria.
+ar: قيّم التسليم وفق معايير الجامعة.
+
+TaskReview.CodeQuality
+en: Code quality
+ar: جودة الشيفرة
+
+TaskReview.Functionality
+en: Functionality
+ar: الأداء الوظيفي
+
+TaskReview.DesignUsability
+en: Design & usability
+ar: التصميم وسهولة الاستخدام
+
+TaskReview.Documentation
+en: Documentation
+ar: التوثيق
+
+TaskReview.TotalEvaluationScore
+en: Total evaluation score
+ar: مجموع علامات التقييم
+
+TaskReview.EnterScoresToCalculateTheTotal
+en: Enter scores to calculate the total.
+ar: أدخل العلامات لحساب المجموع.
+
+TaskReview.FeedbackForTrainee
+en: Feedback for trainee
+ar: ملاحظات للمتدرب
+
+TaskReview.AddFeedbackAndSuggestions
+en: Add feedback and suggestions...
+ar: أضف الملاحظات والاقتراحات...
+
+TaskReview.RequestChanges
+en: Request changes
+ar: طلب تعديلات
+
+TaskReview.SubmitEvaluation
+en: Submit evaluation
+ar: إرسال التقييم
+
+Tasks.ManageReviewTasks
+en: Manage & review tasks
+ar: إدارة المهام ومراجعتها
+
+Tasks.CreateTasksReviewSubmissionsAndTrack
+en: Create tasks, review submissions, and track trainee progress.
+ar: أنشئ المهام، وراجع التسليمات، وتابع تقدم المتدربين.
+
+Tasks.CreateNewTask2
+en: Create new task
+ar: إنشاء مهمة جديدة
+
+Tasks.ShowingAllTasksFor
+en: Showing all tasks for
+ar: عرض جميع المهام الخاصة بـ
+
+Tasks.ShowAllCompanyTasks
+en: Show all company tasks
+ar: عرض جميع مهام الشركة
+
+Tasks.TaskSummary
+en: Task summary
+ar: ملخص المهام
+
+Tasks.PendingReview
+en: Pending review
+ar: بانتظار المراجعة
+
+Tasks.AwaitingYourEvaluation
+en: Awaiting your evaluation
+ar: بانتظار تقييمك
+
+Tasks.Reviewed
+en: Reviewed
+ar: تمت مراجعتها
+
+Tasks.EvaluationsCompleted
+en: Evaluations completed
+ar: التقييمات المكتملة
+
+Tasks.OverdueTasks
+en: Overdue tasks
+ar: المهام المتأخرة
+
+Tasks.PastTheirDueDate
+en: Past their due date
+ar: تجاوزت موعدها النهائي
+
+Tasks.ReviewReminder
+en: ⓘ Review reminder
+ar: ⓘ تذكير بالمراجعة
+
+Tasks.EvaluateSubmissionsUsingTheUniversityCriteria
+en: Evaluate submissions using the university criteria, give constructive feedback, and request revisions when needed.
+ar: قيّم التسليمات وفق معايير الجامعة، وقدّم ملاحظات بنّاءة، واطلب التعديلات عند الحاجة.
+
+Tasks.TaskDirectory
+en: Task directory
+ar: قائمة المهام
+
+Tasks.Tasks
+en: tasks
+ar: مهام
+
+Tasks.AssignmentsDeadlinesSubmissionsAndFeedback
+en: assignments, deadlines, submissions, and feedback
+ar: التكليفات والمواعيد والتسليمات والملاحظات
+
+Tasks.SearchTasksOrTrainees
+en: Search tasks or trainees
+ar: ابحث عن المهام أو المتدربين
+
+Tasks.FilterByDepartment
+en: Filter by department
+ar: تصفية حسب القسم
+
+Tasks.FilterByTaskStatus
+en: Filter by task status
+ar: تصفية حسب حالة المهمة
+
+Tasks.TaskTrainee
+en: Task / trainee
+ar: المهمة / المتدرب
+
+Tasks.DueDate
+en: Due date
+ar: الموعد النهائي
+
+Tasks.Submission
+en: Submission
+ar: التسليم
+
+Tasks.Status2
+en: Status
+ar: الحالة
+
+Tasks.Evaluation
+en: Evaluation
+ar: التقييم
+
+Tasks.Action
+en: Action
+ar: الإجراء
+
+Tasks.Review
+en: Review
+ar: مراجعة
+
+Tasks.ViewDetails
+en: View details
+ar: عرض التفاصيل
+
+Tasks.NoTasksMatchYourSearchOr
+en: No tasks match your search or filters.
+ar: لا توجد مهام تطابق البحث أو عوامل التصفية.
+
+Tasks.Showing0Tasks
+en: Showing 0 tasks
+ar: عرض 0 مهمة
+
+Tasks.TaskPages
+en: Task pages
+ar: صفحات المهام
+
+Tasks.PreviousPage
+en: Previous page
+ar: الصفحة السابقة
+
+Tasks.NextPage
+en: Next page
+ar: الصفحة التالية
+
+Tasks.AllTasks
+en: < All tasks
+ar: جميع المهام
+
+Tasks.Close2
+en: Close
+ar: إغلاق
+
+Tasks.CreateATaskSetItsDeadline
+en: Create a task, set its deadline, and define how it will be evaluated.
+ar: أنشئ مهمة وحدد موعدها النهائي وطريقة تقييمها.
+
+Tasks.TaskInformation
+en: Task information
+ar: معلومات المهمة
+
+Tasks.EnterTheMainDetailsForThis
+en: Enter the main details for this training task.
+ar: أدخل التفاصيل الأساسية لهذه المهمة التدريبية.
+
+Tasks.TaskTitle2
+en: Task title *
+ar: عنوان المهمة *
+
+Tasks.EnterTaskTitle
+en: Enter task title
+ar: أدخل عنوان المهمة
+
+Tasks.TaskDescription
+en: Task description *
+ar: وصف المهمة *
+
+Tasks.DescribeWhatTheTraineeNeedsTo
+en: Describe what the trainee needs to complete...
+ar: صف ما ينبغي للمتدرب إنجازه...
+
+Tasks.AssignTrainee
+en: Assign trainee *
+ar: تعيين المتدرب *
+
+Tasks.SelectTrainee
+en: Select trainee
+ar: اختر المتدرب
+
+Tasks.StartDateTime
+en: Start date & time *
+ar: تاريخ البدء ووقته *
+
+Tasks.DeadlineTime
+en: Deadline & time *
+ar: الموعد النهائي ووقته *
+
+Tasks.EvaluationCriteria
+en: Evaluation criteria
+ar: معايير التقييم
+
+Tasks.DefineHowTheTaskWillBe
+en: Define how the task will be assessed.
+ar: حدد كيفية تقييم المهمة.
+
+Tasks.TotalScore
+en: Total score *
+ar: مجموع العلامات *
+
+Tasks.100Points
+en: 100 points
+ar: 100 علامة
+
+Tasks.CriteriaAndInstructions
+en: Criteria and instructions *
+ar: المعايير والتعليمات *
+
+Tasks.AddGradingCriteriaExpectedOutcomesAnd
+en: Add grading criteria, expected outcomes, and submission instructions...
+ar: أضف معايير التقييم والنتائج المتوقعة وتعليمات التسليم...
+
+Tasks.TaskAttachmentOptional
+en: Task attachment (optional)
+ar: مرفق المهمة (اختياري)
+
+Tasks.PDFOrWordDocumentUpTo
+en: PDF or Word document, up to 10 MB. The trainee can download it from task details.
+ar: ملف PDF أو Word بحجم لا يتجاوز 10 ميغابايت. يمكن للمتدرب تنزيله من تفاصيل المهمة.
+
+Tasks.RequiredFields
+en: * Required fields
+ar: * حقول مطلوبة
+
+Tasks.Cancel2
+en: Cancel
+ar: إلغاء
+
+Tasks.CreateTask2
+en: Create task
+ar: إنشاء المهمة
+
+Tasks.CloseTaskDetails
+en: Close task details
+ar: إغلاق تفاصيل المهمة
+
+Tasks.TaskStatus
+en: Task status
+ar: حالة المهمة
+
+Tasks.SubmissionStatus
+en: Submission status
+ar: حالة التسليم
+
+Tasks.TotalScore2
+en: Total score
+ar: الدرجة الكلية
+
+Tasks.StartDateAndTime
+en: Start date and time
+ar: تاريخ البدء ووقته
+
+Tasks.Deadline3
+en: Deadline
+ar: الموعد النهائي
+
+Tasks.Description2
+en: Description
+ar: الوصف
+
+Tasks.CriteriaAndInstructions2
+en: Criteria and instructions
+ar: المعايير والتعليمات
+
+Tasks.TaskAttachment
+en: Task attachment
+ar: مرفق المهمة
+
+Tasks.TaskCreated
+en: Task created
+ar: تم إنشاء المهمة
+
+Tasks.TheTaskWasSuccessfullyAssignedTo
+en: The task was successfully assigned to the trainee.
+ar: تم إسناد المهمة إلى المتدرب بنجاح.
+
+Tasks.Done
+en: Done
+ar: تم
+
+TaskReview.ANewerSubmissionAttemptIsAvailable
+en: A newer submission attempt is available. Review that attempt instead.
+ar: توجد محاولة تسليم أحدث. يرجى مراجعتها بدلًا من هذه المحاولة.
+
+TaskReview.ThisSubmissionIsAlreadyReviewedOr
+en: This submission is already reviewed or is not the latest attempt.
+ar: تمت مراجعة هذا التسليم بالفعل، أو أنه ليس المحاولة الأحدث.
+
+TaskReview.OpenASubmissionFirst
+en: Open a submission first.
+ar: افتح تسليمًا أولًا.
+
+TaskReview.SubmissionWasNotFound
+en: Submission was not found.
+ar: لم يتم العثور على التسليم.
+
+TaskReview.YouCannotReviewThisSubmission
+en: You cannot review this submission.
+ar: لا تملك صلاحية مراجعة هذا التسليم.
+
+TaskReview.TellTheStudentWhatNeedsTo
+en: Tell the student what needs to be changed.
+ar: وضّح للطالب التعديلات المطلوبة.
+
+TaskReview.TheRevisionRequestCouldNotBe
+en: The revision request could not be saved. Please try again.
+ar: تعذر حفظ طلب التعديل. يرجى المحاولة مجددًا.
+
+TaskReview.RevisionRequestedSuccessfully
+en: Revision requested successfully.
+ar: تم طلب التعديلات بنجاح.
+
+TaskReview.CouldNotCompleteTheRevisionRequest
+en: Could not complete the revision request. Check Firebase before trying again.
+ar: تعذر إكمال طلب التعديل. تحقق من Firebase قبل المحاولة مجددًا.
+
+Tasks.EnterTheTitleDescriptionAndCriteria
+en: Enter the title, description, and criteria/instructions.
+ar: أدخل العنوان والوصف والمعايير والتعليمات.
+
+Tasks.PleaseSelectATrainee
+en: Please select a trainee.
+ar: يرجى اختيار متدرب.
+
+Tasks.EnterAStartDateAndTime
+en: Enter a start date and time that is in the future.
+ar: أدخل تاريخ بدء ووقتًا في المستقبل.
+
+Tasks.TheDeadlineMustBeAfterThe
+en: The deadline must be after the start date and time.
+ar: يجب أن يكون الموعد النهائي بعد تاريخ البدء ووقته.
+
+Tasks.EnterATotalScoreGreaterThan
+en: Enter a total score greater than zero.
+ar: أدخل مجموع علامات أكبر من الصفر.
+
+Tasks.ThereAreNoTraineesAvailableFor
+en: There are no trainees available for this task.
+ar: لا يوجد متدربون متاحون لهذه المهمة.
+
+Tasks.PleaseEnterACriterionName
+en: Please enter a criterion name.
+ar: يرجى إدخال اسم المعيار.
+
+Tasks.EnterAValidCriterionMaximumScore
+en: Enter a valid criterion maximum score.
+ar: أدخل علامة قصوى صالحة للمعيار.
+
+Tasks.EnterACriterionWeightGreaterThan
+en: Enter a criterion weight greater than zero and up to 100.
+ar: أدخل وزنًا للمعيار أكبر من الصفر ولا يتجاوز 100.
+
+Tasks.YourSessionExpiredReloadThePage
+en: Your session expired. Reload the page and add the criteria again.
+ar: انتهت جلستك. أعد تحميل الصفحة وأضف المعايير مجددًا.
+
+Tasks.TheTotalCriteriaWeightCannotExceed
+en: The total criteria weight cannot exceed 100%.
+ar: يجب ألا يتجاوز مجموع أوزان المعايير 100%.
+
+Tasks.CriterionAddedSuccessfully
+en: Criterion added successfully.
+ar: تمت إضافة المعيار بنجاح.
+
+Tasks.NoTasksYetCreateYourFirst
+en: No tasks yet. Create your first task to get started.
+ar: لا توجد مهام بعد. أنشئ مهمتك الأولى للبدء.
+
+Tasks.CouldNotLoadTasksCheckFirebase
+en: Could not load tasks. Check Firebase connection and database rules.
+ar: تعذر تحميل المهام. تحقق من الاتصال بـFirebase وقواعد قاعدة البيانات.
+
+Dashboard.Unknown
+en: Unknown
+
+FinalEvaluation.SelectAnAssignedInternship
+en: Select an assigned internship
+ar: اختر تدريبًا مسندًا
+
+FinalEvaluation.UnableToLoadAssignedInternshipsPlease
+en: Unable to load assigned internships. Please retry.
+ar: تعذر تحميل التدريبات المسندة. يرجى المحاولة مجددًا.
+
+FinalEvaluation.UnableToLoadTheEvaluationPlease
+en: Unable to load the evaluation. Please retry.
+ar: تعذر تحميل التقييم. يرجى المحاولة مجددًا.
+
+FinalEvaluation.FinalEvaluationSubmittedThisSubmissionIs
+en: Final evaluation submitted. This submission is read-only.
+ar: تم إرسال التقييم النهائي. هذا التسليم للقراءة فقط.
+
+FinalEvaluation.CompletionIsFinalizedEvidenceIsRead
+en: Completion is finalized; evidence is read-only.
+ar: تم اعتماد قرار الإتمام؛ الأدلة للقراءة فقط.
+
+FinalEvaluation.FinalEvaluationHasNotBeenSubmitted
+en: Final evaluation has not been submitted.
+ar: لم يتم إرسال التقييم النهائي.
+
+FinalEvaluation.ConfidentialFinalEvaluationSubmittedSuccessfully
+en: Confidential final evaluation submitted successfully.
+ar: تم إرسال التقييم النهائي السري بنجاح.
+
+FinalEvaluation.SubmissionCouldNotBeConfirmedReload
+en: Submission could not be confirmed. Reload before retrying.
+ar: تعذر تأكيد التسليم. أعد تحميل الصفحة قبل المحاولة مجددًا.
+
+TaskReview.NameUnavailable
+en: Name unavailable
+ar: الاسم غير متاح
+
+TaskReview.NotSet
+en: Not set
+
+TaskReview.ViewSubmissionFile
+en: View submission file
+ar: عرض ملف التسليم
+
+TaskReview.View
+en: View\u0020
+ar: عرض\u0020
+
+TaskReview.RevisionRequested
+en: Revision requested
+
+TaskReview.AwaitingReview
+en: Awaiting review
+
+TaskReview.UnderReview
+en: Under review
+
+TaskReview.ContinueReview
+en: Continue review
+ar: متابعة المراجعة
+
+TaskReview.ViewRevisionRequest
+en: View revision request
+ar: عرض طلب التعديل
+
+TaskReview.ViewEvaluation
+en: View evaluation
+ar: عرض التقييم
+
+TaskReview.ViewAttempt
+en: View attempt
+ar: عرض المحاولة
+
+Tasks.TaskCreatedSuccessfully
+en: Task created successfully.
+ar: تم إنشاء المهمة بنجاح.
+
+Tasks.CouldNotSaveTheTaskCheck
+en: Could not save the task. Check Firebase connection and rules.
+ar: تعذر حفظ المهمة. تحقق من الاتصال بـFirebase وقواعده.
+
+Tasks.TheFileCouldNotBeUploaded
+en: The file could not be uploaded to Firebase Storage. Check the bucket and storage rules.
+ar: تعذر رفع الملف إلى Firebase Storage. تحقق من حاوية التخزين وقواعدها.
+
+Tasks.SelectATrainee2
+en: Select a trainee
+
+Tasks.AllMyTrainees
+en: All my trainees
+ar: جميع متدربيّ
+
+Tasks.CouldNotLoadTraineesFromFirebase
+en: Could not load trainees from Firebase.
+ar: تعذر تحميل المتدربين من Firebase.
+
+Tasks.NotEvaluated
+en: Not evaluated
+ar: لم يُقيّم
+
+Tasks.FeedbackSent
+en: Feedback sent
+ar: تم إرسال الملاحظات
+
+Tasks.NotSet
+en: Not set
+
+Tasks.NotSubmitted
+en: Not submitted
+
+I18n.Allstatuses
+en: All statuses
+ar: جميع الحالات
+
+I18n.Accepted
+en: Accepted
+ar: مقبول
+
+I18n.Alltaskstatuses
+en: All task statuses
+ar: جميع حالات المهام
+
+I18n.Revisionneeded
+en: Revision needed
+ar: تحتاج إلى تعديل
+
+I18n.ContinueDraft
+en: Continue Draft
+ar: متابعة المسودة
+
+I18n.AresubmissionwasrequestedInstructions
+en: A resubmission was requested. Instructions:\u0020
+ar: طُلبت إعادة التسليم. التعليمات:\u0020
+
+I18n.Thissubmissionwasevaluated
+en: This submission was evaluated:\u0020
+ar: تم تقييم هذا التسليم:\u0020
+
+I18n.Feedback
+en: . Feedback:\u0020
+ar: . الملاحظات:\u0020
+
+I18n.Enteravalidscorefor
+en: Enter a valid score for\u0020
+ar: أدخل علامة صالحة للمعيار:\u0020
+
+I18n.ChooseaPDForWordfile
+en: Choose a PDF or Word file.
+ar: اختر ملف PDF أو Word.
+
+I18n.Theattachmentmustbesmallerthan10
+en: The attachment must be smaller than 10 MB.
+ar: يجب أن يكون حجم المرفق أقل من 10 ميغابايت.
+
+I18n.FirebaseStorageisnotconfiguredAskthe
+en: Firebase Storage is not configured. Ask the project admin to set Firebase.StorageBucket.
+ar: لم يتم إعداد Firebase Storage. اطلب من مسؤول المشروع إعداد Firebase.StorageBucket.
+
+I18n.YoursessionexpiredSigninagainbefore
+en: Your session expired. Sign in again before uploading.
+ar: انتهت جلستك. سجّل الدخول مجددًا قبل الرفع.
+
+I18n.Theattachmentcouldnotberead
+en: The attachment could not be read.
+ar: تعذرت قراءة المرفق.
+
+I18n.Firebasedidnotreturnadownloadtoken
+en: Firebase did not return a download token for the uploaded file.
+ar: لم تُرجع خدمة التخزين رمز تنزيل للملف المرفوع.
+
+I18n.Theselectedtraineedoesnotbelongto
+en: The selected trainee does not belong to your company.
+ar: المتدرب المحدد غير تابع لشركتك.
+
+I18n.Taskcreatedsuccessfullyforall0trainees
+en: Task created successfully for all {0} trainees.
+ar: تم إنشاء المهمة لجميع المتدربين وعددهم {0} بنجاح.

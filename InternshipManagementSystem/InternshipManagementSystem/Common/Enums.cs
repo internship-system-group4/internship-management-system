@@ -79,7 +79,8 @@ namespace InternshipManagementSystem.Common
         AwaitingAcademicEvaluation = 2,
         UnderCoordinatorReview = 3,
         Approved = 4,
-        Rejected = 5
+        Rejected = 5,
+        NeedsCorrections = 6
     }
 
     public enum ContactMessageStatus

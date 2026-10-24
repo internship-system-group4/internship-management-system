@@ -35,6 +35,26 @@ namespace InternshipManagementSystem.Data
             return id;
         }
 
+        /// <summary>Saves several notifications (to any people) in ONE request,
+        /// using a Firebase multi-path update. Much faster than one Add each
+        /// when, for example, every eligible student is told about a new opportunity.</summary>
+        public void AddMany(IList<Notification> notifications)
+        {
+            var changes = new Dictionary<string, object>();
+            var keys = new List<KeyValuePair<Notification, string>>();
+            foreach (Notification notification in notifications)
+            {
+                if (notification == null || string.IsNullOrEmpty(notification.RecipientId)) continue;
+                string id = FirebaseContext.NewKey();
+                changes[notification.RecipientId + "/" + id] = notification;
+                keys.Add(new KeyValuePair<Notification, string>(notification, id));
+            }
+            if (changes.Count == 0) return;
+            FirebaseContext.Patch(Constants.Paths.Notifications, changes);
+            // Like Add, the Id is filled in only after saving, so it is not stored in the record.
+            foreach (KeyValuePair<Notification, string> pair in keys) pair.Key.Id = pair.Value;
+        }
+
         /// <summary>The newest notifications first.</summary>
         public List<Notification> GetLatest(string userId, int count)
         {
@@ -81,6 +101,49 @@ namespace InternshipManagementSystem.Data
                 if (!item.IsRead) changes[item.Id + "/IsRead"] = true;
             }
             if (changes.Count > 0) FirebaseContext.Patch(UserPath(userId), changes);
+        }
+
+        // ---------------------------------------------------------------------
+        //  Used by the sidebar bell (Layout/NotificationBell.cs, Pages/Notifications)
+        //  and the email channel (Services/EmailNotificationService). They read and
+        //  write the same notifications/{uid}/{id} records as the methods above.
+        // ---------------------------------------------------------------------
+
+        public void Add(UserNotification item)
+        {
+            if (item == null || string.IsNullOrEmpty(item.RecipientId)) return;
+            item.Message = item.Message ?? item.Detail;
+            item.Link = item.Link ?? "~/" + (item.Page ?? "").TrimStart('~', '/');
+            item.Id = FirebaseContext.Push(UserPath(item.RecipientId), item);
+        }
+
+        internal void SetEmailStatus(UserNotification item, string status)
+        {
+            if (item == null || string.IsNullOrEmpty(item.RecipientId) || string.IsNullOrEmpty(item.Id)) return;
+            FirebaseContext.Patch(UserPath(item.RecipientId) + "/" + item.Id,
+                new Dictionary<string, object> { { "EmailStatus", status } });
+        }
+
+        /// <summary>The signed-in person's newest notifications.</summary>
+        public List<UserNotification> GetMine()
+        {
+            var user = Security.SessionHelper.Current;
+            if (user == null || !user.IsActive) throw new System.UnauthorizedAccessException();
+            return GetLatest(user.Id, 100).Select(n => new UserNotification
+            {
+                Id = n.Id, RecipientId = user.Id, Title = n.Title, Message = n.Message, Detail = n.Message,
+                Link = n.Link, Page = (n.Link ?? "").TrimStart('~', '/'), Type = n.Type,
+                IsRead = n.IsRead, CreatedAt = n.CreatedAt
+            }).ToList();
+        }
+
+        /// <summary>Marks one of the signed-in person's notifications read, or all of them with "all".</summary>
+        public void MarkRead(string id)
+        {
+            var user = Security.SessionHelper.Current;
+            if (user == null || !user.IsActive) throw new System.UnauthorizedAccessException();
+            if (id == "all") MarkAllRead(user.Id);
+            else MarkRead(user.Id, id);
         }
     }
 }

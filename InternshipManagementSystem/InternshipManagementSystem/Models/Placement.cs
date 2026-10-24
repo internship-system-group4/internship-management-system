@@ -22,6 +22,19 @@ namespace InternshipManagementSystem.Models
     /// </summary>
     public class Placement
     {
+
+      
+        public int EvalTech { get; set; }
+        public int EvalWork { get; set; }
+        public int EvalProf { get; set; }
+        public int EvalComm { get; set; }
+        public int ActualHours { get; set; }
+        public string EvalPerformance { get; set; }
+        public string CompanyRecommendation { get; set; }
+        public string EvalStrengths { get; set; }
+        public string EvalImprovements { get; set; }
+
+
         public string Id { get; set; }
 
         public string StudentId { get; set; }
@@ -49,6 +62,11 @@ namespace InternshipManagementSystem.Models
         public PlacementStatus Status { get; set; }
         public long ConfirmedAt { get; set; }
 
+        /// <summary>"Local" (field training in Jordan) or "International"
+        /// (German Year internship). Optional: older placements have no value
+        /// and are treated as local. See Common/InternshipRequirements.cs.</summary>
+        public string InternshipType { get; set; }
+
         public Placement()
         {
             Status = PlacementStatus.Confirmed;
@@ -58,7 +76,7 @@ namespace InternshipManagementSystem.Models
         [ScriptIgnore]
         public bool HoursRequirementMet
         {
-            get { return RequiredHours > 0 && ApprovedHours >= RequiredHours; }
+            get { return ApprovedHours >= InternshipRules.RequiredHours(RequiredHours, 0); }
         }
     }
 }

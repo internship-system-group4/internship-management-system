@@ -9,9 +9,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class CompletionReview
     {
+        protected global::System.Web.UI.WebControls.Panel pnlType;
+        protected global::System.Web.UI.WebControls.DropDownList ddlType;
+        protected global::System.Web.UI.WebControls.Button btnSaveType;
+        protected global::System.Web.UI.WebControls.Panel pnlChecks;
+        protected global::System.Web.UI.WebControls.Repeater rptChecks;
+        protected global::System.Web.UI.WebControls.Button btnSaveChecks;
         protected global::System.Web.UI.WebControls.Panel pnlDecision;
         protected global::System.Web.UI.WebControls.TextBox txtNote;
         protected global::System.Web.UI.WebControls.Button btnApprove;
         protected global::System.Web.UI.WebControls.Button btnReturn;
+        protected global::System.Web.UI.WebControls.Button btnReject;
     }
 }

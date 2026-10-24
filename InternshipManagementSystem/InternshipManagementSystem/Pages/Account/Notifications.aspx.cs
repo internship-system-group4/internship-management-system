@@ -112,9 +112,11 @@ namespace InternshipManagementSystem.Pages.AccountArea
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Trace.TraceWarning("Could not load notifications: " + ex.Message);
+                System.Diagnostics.Trace.TraceError("[UIMS notifications] Could not load notifications: " + ex.Message);
                 Entries = new List<Notification>();
-                ShowMessage(L.T("Account.Notifications.NotificationsAreUnavailableRightNow"));
+                ShowMessage(ex.Message.IndexOf("Permission denied", StringComparison.OrdinalIgnoreCase) >= 0
+                    ? L.T("Shared.Notify.BlockedByRules")
+                    : L.T("Account.Notifications.NotificationsAreUnavailableRightNow"));
             }
             UnreadCount = Entries.Count(n => !n.IsRead);
             btnMarkAllRead.Visible = UnreadCount > 0;

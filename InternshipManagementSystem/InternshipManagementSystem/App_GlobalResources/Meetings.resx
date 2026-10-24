@@ -4,48 +4,160 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="I18n.15minutes" xml:space="preserve"><value>15 minutes</value></data>
+  <data name="I18n.Allmymeetingsandrequests" xml:space="preserve"><value>All my meetings and requests</value></data>
+  <data name="I18n.Chooseavalidduration" xml:space="preserve"><value>Choose a valid duration.</value></data>
+  <data name="I18n.From" xml:space="preserve"><value>From: </value></data>
+  <data name="I18n.Joinisavailablefrom15minutesbefore" xml:space="preserve"><value>Join is available from 15 minutes before the approved meeting until its scheduled end. Refresh the list.</value></data>
+  <data name="I18n.Jordantime" xml:space="preserve"><value> (Jordan time) - </value></data>
+  <data name="I18n.Meetinghistory" xml:space="preserve"><value>Meeting history</value></data>
+  <data name="I18n.Meetingnotfoundoraccessdenied" xml:space="preserve"><value>Meeting not found or access denied.</value></data>
+  <data name="I18n.RequestsIsentpending" xml:space="preserve"><value>Requests I sent - pending</value></data>
+  <data name="I18n.ThisisanoldermeetinglinkCreate" xml:space="preserve"><value>This is an older meeting link. Create a new request to use the embedded room.</value></data>
+  <data name="I18n.To" xml:space="preserve"><value> | To: </value></data>
+  <data name="I18n.Waitingformyapproval" xml:space="preserve"><value>Waiting for my approval</value></data>
+  <data name="I18n.min" xml:space="preserve"><value> min</value></data>
+  <data name="I18n.minutes" xml:space="preserve"><value> minutes</value></data>
   <data name="MyMeetings.30Minutes" xml:space="preserve"><value>30 minutes</value></data>
   <data name="MyMeetings.45Minutes" xml:space="preserve"><value>45 minutes</value></data>
   <data name="MyMeetings.60Minutes" xml:space="preserve"><value>60 minutes</value></data>
+  <data name="MyMeetings.Accept" xml:space="preserve"><value>Accept</value></data>
+  <data name="MyMeetings.AccountUnavailable" xml:space="preserve"><value>Account unavailable</value></data>
+  <data name="MyMeetings.ActionNotConfirmed" xml:space="preserve"><value>Action not confirmed</value></data>
+  <data name="MyMeetings.ActionUnavailable" xml:space="preserve"><value>Action unavailable</value></data>
+  <data name="MyMeetings.Actions" xml:space="preserve"><value>Actions</value></data>
   <data name="MyMeetings.Agenda" xml:space="preserve"><value>Agenda</value></data>
+  <data name="MyMeetings.AgendaOptional" xml:space="preserve"><value>Agenda (optional)</value></data>
+  <data name="MyMeetings.AllMyMeetings" xml:space="preserve"><value>All my meetings</value></data>
+  <data name="MyMeetings.ApplyView" xml:space="preserve"><value>Apply view</value></data>
+  <data name="MyMeetings.ApprovedMeetings" xml:space="preserve"><value>Approved meetings</value></data>
   <data name="MyMeetings.AvailableParticipantsWillAppearHereAfter" xml:space="preserve"><value>Available participants will appear here after we connect the page to the project data.</value></data>
   <data name="MyMeetings.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="MyMeetings.CancelMeeting" xml:space="preserve"><value>Cancel meeting</value></data>
+  <data name="MyMeetings.ChangeView" xml:space="preserve"><value>Change view</value></data>
+  <data name="MyMeetings.CheckTheTime" xml:space="preserve"><value>Check the time</value></data>
+  <data name="MyMeetings.CheckYourConnectionAndFirebaseRules" xml:space="preserve"><value>Check your connection and Firebase rules, then refresh.</value></data>
+  <data name="MyMeetings.CheckYourConnectionAndTryAgain" xml:space="preserve"><value>Check your connection and try again.</value></data>
+  <data name="MyMeetings.CheckYourRequest" xml:space="preserve"><value>Check your request</value></data>
+  <data name="MyMeetings.ChooseAPersonAndSuggestA" xml:space="preserve"><value>Choose a person and suggest a time. The request needs their approval.</value></data>
+  <data name="MyMeetings.ChooseAView" xml:space="preserve"><value>Choose a view</value></data>
+  <data name="MyMeetings.ChooseAnotherViewOrSendYour" xml:space="preserve"><value>Choose another view or send your first meeting request.</value></data>
   <data name="MyMeetings.Close" xml:space="preserve"><value>Close</value></data>
+  <data name="MyMeetings.CloseConfirmation" xml:space="preserve"><value>Close confirmation</value></data>
+  <data name="MyMeetings.CloseDetails" xml:space="preserve"><value>Close details</value></data>
   <data name="MyMeetings.CloseForm" xml:space="preserve"><value>Close form</value></data>
+  <data name="MyMeetings.CloseMeetingDetails" xml:space="preserve"><value>Close meeting details</value></data>
+  <data name="MyMeetings.CloseMessage" xml:space="preserve"><value>Close message</value></data>
+  <data name="MyMeetings.CloseRequestForm" xml:space="preserve"><value>Close request form</value></data>
+  <data name="MyMeetings.CloseViewSelector" xml:space="preserve"><value>Close view selector</value></data>
+  <data name="MyMeetings.Confirm" xml:space="preserve"><value>Confirm</value></data>
+  <data name="MyMeetings.ConfirmAction" xml:space="preserve"><value>Confirm action</value></data>
+  <data name="MyMeetings.CouldNotConfirmSavingCheckThe" xml:space="preserve"><value>Could not confirm saving. Check the list before trying again.</value></data>
+  <data name="MyMeetings.CouldNotLoadMeetings" xml:space="preserve"><value>Could not load meetings</value></data>
+  <data name="MyMeetings.CouldNotRefresh" xml:space="preserve"><value>Could not refresh</value></data>
   <data name="MyMeetings.DateAndTime" xml:space="preserve"><value>Date and Time</value></data>
+  <data name="MyMeetings.DateAndTime2" xml:space="preserve"><value>Date and time</value></data>
+  <data name="MyMeetings.DateTime" xml:space="preserve"><value>Date &amp; time</value></data>
+  <data name="MyMeetings.Decline" xml:space="preserve"><value>Decline</value></data>
+  <data name="MyMeetings.Details" xml:space="preserve"><value>Details</value></data>
   <data name="MyMeetings.Duration" xml:space="preserve"><value>Duration</value></data>
   <data name="MyMeetings.EGInternshipProgressMeeting" xml:space="preserve"><value>e.g. Internship Progress Meeting</value></data>
+  <data name="MyMeetings.EGInternshipProgressReview" xml:space="preserve"><value>e.g. Internship progress review</value></data>
+  <data name="MyMeetings.EnterAValidDateAndTime" xml:space="preserve"><value>Enter a valid date and time in Jordan local time.</value></data>
   <data name="MyMeetings.EnterTheMeetingDetailsAndPaste" xml:space="preserve"><value>Enter the meeting details and paste its Zoom link.</value></data>
+  <data name="MyMeetings.From" xml:space="preserve"><value>From:</value></data>
+  <data name="MyMeetings.GoBack" xml:space="preserve"><value>Go back</value></data>
+  <data name="MyMeetings.GotIt" xml:space="preserve"><value>Got it</value></data>
+  <data name="MyMeetings.InYourHistory" xml:space="preserve"><value>In your history</value></data>
+  <data name="MyMeetings.InternshipWorkspace" xml:space="preserve"><value>Internship workspace</value></data>
+  <data name="MyMeetings.JoinMeeting" xml:space="preserve"><value>Join meeting</value></data>
+  <data name="MyMeetings.KeepEditingLater" xml:space="preserve"><value>Keep editing later</value></data>
+  <data name="MyMeetings.LeaveAndCloseMeeting" xml:space="preserve"><value>Leave and close meeting</value></data>
+  <data name="MyMeetings.ListUpdated" xml:space="preserve"><value>List updated</value></data>
+  <data name="MyMeetings.MarkCompleted" xml:space="preserve"><value>Mark completed</value></data>
+  <data name="MyMeetings.Meeting" xml:space="preserve"><value>Meeting</value></data>
+  <data name="MyMeetings.MeetingAcceptedUseJoinMeetingDuring" xml:space="preserve"><value>Meeting accepted. Use Join meeting during the joining window.</value></data>
+  <data name="MyMeetings.MeetingDetails" xml:space="preserve"><value>Meeting details</value></data>
+  <data name="MyMeetings.MeetingOverview" xml:space="preserve"><value>Meeting overview</value></data>
+  <data name="MyMeetings.MeetingRequestsAreNotAvailableFor" xml:space="preserve"><value>Meeting requests are not available for this role</value></data>
+  <data name="MyMeetings.MeetingRoom" xml:space="preserve"><value>Meeting room</value></data>
   <data name="MyMeetings.MeetingTitle" xml:space="preserve"><value>Meeting Title</value></data>
+  <data name="MyMeetings.MeetingTitle2" xml:space="preserve"><value>Meeting title</value></data>
+  <data name="MyMeetings.MeetingsRequests" xml:space="preserve"><value>Meetings &amp; requests</value></data>
   <data name="MyMeetings.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
+  <data name="MyMeetings.NoAgendaProvided" xml:space="preserve"><value>No agenda provided.</value></data>
+  <data name="MyMeetings.NoAssignedContactsAvailable" xml:space="preserve"><value>No assigned contacts available</value></data>
+  <data name="MyMeetings.NoMeetingsInThisView" xml:space="preserve"><value>No meetings in this view</value></data>
+  <data name="MyMeetings.OnlyPeopleLinkedToYourInternship" xml:space="preserve"><value>Only people linked to your internship or academic supervision assignment are listed. Each request invites one person and stays pending until they accept.</value></data>
+  <data name="MyMeetings.OpenSeparatelyIfNeeded" xml:space="preserve"><value>Open separately if needed ↗</value></data>
+  <data name="MyMeetings.OpenTheDetailsRespondToA" xml:space="preserve"><value>Open the details, respond to a request, or join an approved meeting.</value></data>
   <data name="MyMeetings.Participants" xml:space="preserve"><value>Participants</value></data>
+  <data name="MyMeetings.PastCompletedOrClosed" xml:space="preserve"><value>Past, completed, or closed</value></data>
   <data name="MyMeetings.PastMeetings" xml:space="preserve"><value>Past Meetings</value></data>
+  <data name="MyMeetings.People" xml:space="preserve"><value>People</value></data>
+  <data name="MyMeetings.PreparingTheMeeting" xml:space="preserve"><value>Preparing the meeting…</value></data>
+  <data name="MyMeetings.RefreshList" xml:space="preserve"><value>Refresh list</value></data>
+  <data name="MyMeetings.RefreshTheListToCheckThe" xml:space="preserve"><value>Refresh the list to check the latest state before trying again.</value></data>
+  <data name="MyMeetings.RequestAConversationRespondToInvitations" xml:space="preserve"><value>Request a conversation, respond to invitations, and keep your meeting history in one place.</value></data>
+  <data name="MyMeetings.RequestAMeeting" xml:space="preserve"><value>+ Request a meeting</value></data>
+  <data name="MyMeetings.RequestAMeeting2" xml:space="preserve"><value>Request a meeting</value></data>
+  <data name="MyMeetings.RequestNotConfirmed" xml:space="preserve"><value>Request not confirmed</value></data>
+  <data name="MyMeetings.RequestsNeedTheInvitedPersonS" xml:space="preserve"><value>Requests need the invited person's approval. Join opens 15 minutes before an approved meeting and remains available until its scheduled end. Passing the scheduled end does not automatically confirm attendance or completion.</value></data>
+  <data name="MyMeetings.RequestsNeedingYourResponse" xml:space="preserve"><value>Requests needing your response</value></data>
+  <data name="MyMeetings.RequestsSent" xml:space="preserve"><value>Requests sent</value></data>
+  <data name="MyMeetings.ReviewYourCameraAndMicrophoneSettings" xml:space="preserve"><value>Review your camera and microphone settings before joining.</value></data>
   <data name="MyMeetings.ScheduleAMeeting" xml:space="preserve"><value>Schedule a Meeting</value></data>
   <data name="MyMeetings.ScheduleMeeting" xml:space="preserve"><value>+ Schedule Meeting</value></data>
   <data name="MyMeetings.ScheduleMeeting2" xml:space="preserve"><value>Schedule Meeting</value></data>
+  <data name="MyMeetings.SelectAPerson" xml:space="preserve"><value>Select a person</value></data>
+  <data name="MyMeetings.SendRequest" xml:space="preserve"><value>Send request</value></data>
+  <data name="MyMeetings.ShowMeetings" xml:space="preserve"><value>Show meetings</value></data>
+  <data name="MyMeetings.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="MyMeetings.TheMeetingWasCancelled" xml:space="preserve"><value>The meeting was cancelled.</value></data>
+  <data name="MyMeetings.TheMeetingWasMarkedCompleted" xml:space="preserve"><value>The meeting was marked completed.</value></data>
+  <data name="MyMeetings.ThePersonStartingTheJitsiRoom" xml:space="preserve"><value>The person starting the Jitsi room may need to sign in.</value></data>
+  <data name="MyMeetings.TheRequestWasDeclined" xml:space="preserve"><value>The request was declined.</value></data>
   <data name="MyMeetings.ThisIsADesignPreviewNo" xml:space="preserve"><value>This is a design preview. No meeting was saved yet.</value></data>
+  <data name="MyMeetings.TimesShownInJordanLocalTime" xml:space="preserve"><value>Times shown in Jordan local time. Refresh to update availability.</value></data>
+  <data name="MyMeetings.Title" xml:space="preserve"><value>Title</value></data>
+  <data name="MyMeetings.To" xml:space="preserve"><value>To:</value></data>
   <data name="MyMeetings.UpcomingMeetings" xml:space="preserve"><value>Upcoming Meetings</value></data>
+  <data name="MyMeetings.UpcomingOrInProgress" xml:space="preserve"><value>Upcoming or in progress</value></data>
+  <data name="MyMeetings.UseJordanLocalTime" xml:space="preserve"><value>Use Jordan local time.</value></data>
   <data name="MyMeetings.ViewYourScheduledMeetingsAndJoin" xml:space="preserve"><value>View your scheduled meetings and join them from here.</value></data>
+  <data name="MyMeetings.WaitingForTheOtherPerson" xml:space="preserve"><value>Waiting for the other person</value></data>
+  <data name="MyMeetings.WaitingForYou" xml:space="preserve"><value>Waiting for you</value></data>
   <data name="MyMeetings.WhatWillYouDiscuss" xml:space="preserve"><value>What will you discuss?</value></data>
+  <data name="MyMeetings.WhatWouldYouLikeToDiscuss" xml:space="preserve"><value>What would you like to discuss?</value></data>
+  <data name="MyMeetings.When" xml:space="preserve"><value>When</value></data>
+  <data name="MyMeetings.WhoWouldYouLikeToMeet" xml:space="preserve"><value>Who would you like to meet?</value></data>
+  <data name="MyMeetings.YouAreViewingTheLatestMeeting" xml:space="preserve"><value>You are viewing the latest meeting requests and responses.</value></data>
   <data name="MyMeetings.YouHaveNoUpcomingMeetingsYet" xml:space="preserve"><value>You have no upcoming meetings yet.</value></data>
   <data name="MyMeetings.YourPastMeetingsWillAppearHere" xml:space="preserve"><value>Your past meetings will appear here.</value></data>
+  <data name="MyMeetings.YourRequestWasSentItWill" xml:space="preserve"><value>Your request was sent. It will stay pending until the invited person responds.</value></data>
   <data name="MyMeetings.ZoomMeetingLink" xml:space="preserve"><value>Zoom Meeting Link</value></data>
   <data name="Schedule.30Minutes" xml:space="preserve"><value>30 minutes</value></data>
   <data name="Schedule.45Minutes" xml:space="preserve"><value>45 minutes</value></data>
   <data name="Schedule.60Minutes" xml:space="preserve"><value>60 minutes</value></data>
   <data name="Schedule.Agenda" xml:space="preserve"><value>Agenda</value></data>
   <data name="Schedule.Agenda2" xml:space="preserve"><value>Agenda:</value></data>
+  <data name="Schedule.AgendaOptional" xml:space="preserve"><value>Agenda (optional)</value></data>
   <data name="Schedule.ChooseAFutureDateAndTime" xml:space="preserve"><value>Choose a future date and time.</value></data>
+  <data name="Schedule.ChooseATimeAtLeastA" xml:space="preserve"><value>Choose a time at least a minute in the future.</value></data>
   <data name="Schedule.CouldNotLoadMeetingsPleaseTry" xml:space="preserve"><value>Could not load meetings. Please try again.</value></data>
   <data name="Schedule.CouldNotLoadParticipants" xml:space="preserve"><value>Could not load participants.</value></data>
   <data name="Schedule.CouldNotOpenThisMeeting" xml:space="preserve"><value>Could not open this meeting.</value></data>
   <data name="Schedule.CouldNotReadYourTimeZone" xml:space="preserve"><value>Could not read your time zone. Refresh and try again.</value></data>
   <data name="Schedule.CouldNotSaveTheMeetingTry" xml:space="preserve"><value>Could not save the meeting. Try again.</value></data>
   <data name="Schedule.CreateTheMeetingInZoomThen" xml:space="preserve"><value>Create the meeting in Zoom, then paste its link here.</value></data>
+  <data name="Schedule.CreateZoomMeeting" xml:space="preserve"><value>Create Zoom meeting</value></data>
   <data name="Schedule.DateAndTime" xml:space="preserve"><value>Date and Time</value></data>
+  <data name="Schedule.DateAndTimeYourLocalTime" xml:space="preserve"><value>Date and time (your local time)</value></data>
   <data name="Schedule.Duration" xml:space="preserve"><value>Duration</value></data>
   <data name="Schedule.Duration2" xml:space="preserve"><value>Duration:</value></data>
+  <data name="Schedule.DurationMinutes" xml:space="preserve"><value>Duration (minutes)</value></data>
   <data name="Schedule.EnterAMeetingTitle" xml:space="preserve"><value>Enter a meeting title.</value></data>
+  <data name="Schedule.EnterATitleValidLocalDate" xml:space="preserve"><value>Enter a title, valid local date and time, and a duration from 1 to 1440 minutes.</value></data>
   <data name="Schedule.EnterAValidHTTPSZoomLink" xml:space="preserve"><value>Enter a valid HTTPS Zoom link.</value></data>
   <data name="Schedule.EnterAValidMeetingDateAnd" xml:space="preserve"><value>Enter a valid meeting date and time.</value></data>
   <data name="Schedule.Internship" xml:space="preserve"><value>Internship</value></data>
@@ -59,11 +171,16 @@
   <data name="Schedule.Meetings" xml:space="preserve"><value>Meetings</value></data>
   <data name="Schedule.Min" xml:space="preserve"><value>min</value></data>
   <data name="Schedule.MyMeetings" xml:space="preserve"><value>My Meetings</value></data>
+  <data name="Schedule.MyMeetings2" xml:space="preserve"><value>My meetings</value></data>
   <data name="Schedule.NoMeetingsToShow" xml:space="preserve"><value>No meetings to show.</value></data>
   <data name="Schedule.NotSet" xml:space="preserve"><value>Not set</value></data>
+  <data name="Schedule.OneOfTheSelectedParticipantsIs" xml:space="preserve"><value>One of the selected participants is no longer available. Reload the page and try again.</value></data>
   <data name="Schedule.Participants" xml:space="preserve"><value>Participants</value></data>
+  <data name="Schedule.Participants2" xml:space="preserve"><value>Participants</value></data>
+  <data name="Schedule.ParticipantsCouldNotBeLoadedPlease" xml:space="preserve"><value>Participants could not be loaded. Please try again.</value></data>
   <data name="Schedule.ScheduleAMeeting" xml:space="preserve"><value>Schedule a Meeting</value></data>
   <data name="Schedule.ScheduleAMeetingAndShareA" xml:space="preserve"><value>Schedule a meeting and share a Zoom link with its participants.</value></data>
+  <data name="Schedule.ScheduleAZoomMeeting" xml:space="preserve"><value>Schedule a Zoom meeting</value></data>
   <data name="Schedule.ScheduleMeeting" xml:space="preserve"><value>Schedule Meeting</value></data>
   <data name="Schedule.ScheduledAtUTC" xml:space="preserve"><value>Scheduled At (UTC)</value></data>
   <data name="Schedule.ScheduledAtUTC2" xml:space="preserve"><value>Scheduled At (UTC):</value></data>
@@ -71,9 +188,13 @@
   <data name="Schedule.SelectAnInternship" xml:space="preserve"><value>Select an internship</value></data>
   <data name="Schedule.SelectAtLeastOneParticipant" xml:space="preserve"><value>Select at least one participant.</value></data>
   <data name="Schedule.SelectOneOfYourInternships" xml:space="preserve"><value>Select one of your internships.</value></data>
+  <data name="Schedule.SelectThePeopleWhoShouldSee" xml:space="preserve"><value>Select the people who should see and join this meeting. You are included automatically.</value></data>
+  <data name="Schedule.TheParticipantListCouldNotBe" xml:space="preserve"><value>The participant list could not be verified. Please try again.</value></data>
   <data name="Schedule.Title" xml:space="preserve"><value>Title:</value></data>
+  <data name="Schedule.Title2" xml:space="preserve"><value>Title</value></data>
   <data name="Schedule.UseTheLocalTimeOnYour" xml:space="preserve"><value>Use the local time on your device.</value></data>
   <data name="Schedule.ViewDetails" xml:space="preserve"><value>View Details</value></data>
   <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>You do not have access to this meeting.</value></data>
+  <data name="Schedule.ZoomCreatedTheMeetingButIt" xml:space="preserve"><value>Zoom created the meeting, but it could not be saved here. Contact the administrator before retrying to avoid a duplicate.</value></data>
   <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>Zoom Meeting Link</value></data>
 </root>
