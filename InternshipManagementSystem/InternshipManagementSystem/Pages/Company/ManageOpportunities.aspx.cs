@@ -1,5 +1,4 @@
-﻿// Edit & colse page opportunities 
-
+﻿
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
@@ -47,8 +46,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 {
                     string action = Request.Form["moAction"];
 
-                    if (action == "close")
-                        CloseOpportunity(Request.Form["moId"]);
+                    if (action == "toggle")
+                        ToggleOpportunity(Request.Form["moId"]);
 
                     if (action == "save")
                         SaveEdit();
@@ -57,7 +56,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 LoadOpportunities();
 
                 string editId = Request.QueryString["edit"];
-
                 string viewId = Request.QueryString["view"];
 
                 if (!string.IsNullOrWhiteSpace(editId))
@@ -149,7 +147,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             Editing = GetOwned(id, out etag);
         }
 
-        // Read-only details for the View button.
         private void LoadViewing(string id)
         {
             string etag;
@@ -161,7 +158,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             return string.IsNullOrWhiteSpace(value) ? "-" : value;
         }
 
-        private void CloseOpportunity(string id)
+        private void ToggleOpportunity(string id)
         {
             string etag;
 
@@ -171,13 +168,42 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (item == null)
                 return;
 
-            if (item.Status == OpportunityStatus.Closed)
+            // Closed is reused as temporary Inactive.
+            if (item.Status != OpportunityStatus.Open &&
+                item.Status != OpportunityStatus.Closed)
             {
-                ShowError(L.T("Company.ManageOpportunities.ThisOpportunityIsAlreadyClosed"));
+                ShowError(
+                    "Only open or inactive opportunities can be toggled.");
                 return;
             }
 
-            item.Status = OpportunityStatus.Closed;
+            bool activating =
+                item.Status == OpportunityStatus.Closed;
+
+            if (activating)
+            {
+                if (item.ApplicationDeadline <= 0 ||
+                    DateTimeOffset
+                        .FromUnixTimeMilliseconds(item.ApplicationDeadline)
+                        .ToLocalTime()
+                        .Date < DateTime.Today)
+                {
+                    ShowError(
+                        "Last Date to Apply has passed. Edit the deadline before activating this opportunity.");
+                    return;
+                }
+
+                if (item.TotalSeats <= item.FilledSeats)
+                {
+                    ShowError(
+                        "No available seats. Edit the seats before activating this opportunity.");
+                    return;
+                }
+            }
+
+            item.Status = activating
+                ? OpportunityStatus.Open
+                : OpportunityStatus.Closed;
 
             string path =
                 Constants.Paths.Opportunities + "/" + id;
@@ -187,8 +213,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
+
+                Notice = activating
+                    ? "Opportunity activated successfully."
+                    : "Opportunity deactivated successfully.";
+
+
                 new OpportunityRepository().SyncPublicPreview(id);
                 Notice = L.T("Company.ManageOpportunities.OpportunityClosedSuccessfully");
+
                 IsError = false;
             }
             else
@@ -269,10 +302,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 majors.Count == 0 ||
                 selected.Length != majors.Count ||
                 !validSeats || seats < 1 || seats > 10000 ||
-                !validDuration || duration < 1 || duration > 104 ||
+                !validDuration || duration < 1 || duration > 13 ||
                 !validDeadline || !validStart || !validEnd)
             {
-                ShowError(L.T("Company.ManageOpportunities.PleaseCheckAllOpportunityFields"));
+                ShowError(
+                    L.T("Company.ManageOpportunities.PleaseCheckAllOpportunityFields"));
                 return;
             }
 
@@ -295,7 +329,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 mode != "Hybrid" &&
                 mode != "Remote")
             {
-                ShowError(L.T("Company.ManageOpportunities.InvalidTrainingMode"));
+                ShowError(
+                    L.T("Company.ManageOpportunities.InvalidTrainingMode"));
                 return;
             }
 
@@ -325,8 +360,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
+
+                Notice =
+                    L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
+
+
                 new OpportunityRepository().SyncPublicPreview(id);
                 Notice = L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
+
                 IsError = false;
             }
             else
@@ -369,6 +410,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected string StatusText(Opportunity item)
         {
+            if (item.Status == OpportunityStatus.Closed)
+                return "Inactive";
+
             return L.Value("OpportunityStatus", item.Status);
         }
 
