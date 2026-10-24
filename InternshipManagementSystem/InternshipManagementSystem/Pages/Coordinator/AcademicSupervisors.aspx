@@ -67,7 +67,7 @@
                     </div>
                     <div class="modal-footer bg-light px-4 border-top-0">
                         <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Cancel") %></button>
-                        <asp:Button ID="btnCreate" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.CreateSupervisor %>" CssClass="btn btn-primary rounded-pill px-4" OnClick="btnCreate_Click" data-ui-action="create" data-loading-label="Creating…" />
+                        <asp:Button ID="btnCreate" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.CreateSupervisor %>" CssClass="btn btn-primary rounded-pill px-4" OnClick="btnCreate_Click" data-ui-action="create" data-loading-label="<%$ Resources:Shared, I18n.Creating %>" />
                     </div>
                 </asp:Panel>
             </div>
@@ -108,9 +108,9 @@
                         <div class="col-md-6"><label for="<%= txtEditDepartment.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Department") %></label><asp:TextBox ID="txtEditDepartment" runat="server" CssClass="form-control" MaxLength="120" /></div>
                         <div class="col-md-6"><label for="<%= txtEditAcademicRank.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.AcademicRank") %> <span class="text-muted"><%: L.T("Coordinator.AcademicSupervisors.Optional") %></span></label><asp:TextBox ID="txtEditAcademicRank" runat="server" CssClass="form-control" MaxLength="80" /></div>
                     </div>
-                    <div class="students-access"><div><h4><%: L.T("Coordinator.AcademicSupervisors.AccountAccess") %></h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click" data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none" /></div>
+                    <div class="students-access"><div><h4><%: L.T("Coordinator.AcademicSupervisors.AccountAccess") %></h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click" data-ui-action="update" data-loading-label="<%$ Resources:Shared, I18n.Updating %>" data-ui-validation="none" /></div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Close") %></button><asp:Button ID="btnSaveDetails" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.SaveChanges %>" CssClass="btn btn-primary" OnClick="btnSaveDetails_Click" data-ui-action="save" data-loading-label="Saving…" /></div>
+                <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Close") %></button><asp:Button ID="btnSaveDetails" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.SaveChanges %>" CssClass="btn btn-primary" OnClick="btnSaveDetails_Click" data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>" /></div>
             </div></div>
         </asp:Panel>
     </div>

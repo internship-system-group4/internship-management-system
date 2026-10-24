@@ -12,7 +12,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack) return;
-            ddlMajor.Items.Add(new System.Web.UI.WebControls.ListItem("Select a major", ""));
+            ddlMajor.Items.Add(new System.Web.UI.WebControls.ListItem(L.T("Coordinator.AddStudent.SelectAMajor"), ""));
             foreach (string program in Constants.Programs)
                 ddlMajor.Items.Add(new System.Web.UI.WebControls.ListItem(program, program));
             txtUniversity.Text = Constants.UniversityName;
@@ -32,46 +32,46 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
             if (name == null || university == null || college == null || major == null || email.Length == 0)
             {
-                ShowMessage("Complete all required fields.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.CompleteAllRequiredFields"), false);
                 return;
             }
             if (name.Length > 120 || email.Length > 254 || (phone != null && phone.Length > 40)
                 || university.Length > 120 || college.Length > 120 || major.Length > 120
                 || Array.IndexOf(Constants.Programs, major) < 0)
             {
-                ShowMessage("One or more fields are too long.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.OneOrMoreFieldsAreToo"), false);
                 return;
             }
             if (!InternshipManagementSystem.Common.Validators.IsEmail(email))
             {
-                ShowMessage("Enter a valid email address.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.EnterAValidEmailAddress"), false);
                 return;
             }
             if (!int.TryParse(txtRequiredHours.Text, out requiredHours) || requiredHours <= 0)
             {
-                ShowMessage("Required training hours must be a positive whole number.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.RequiredTrainingHoursMustBeA"), false);
                 return;
             }
             if (!InternshipManagementSystem.Common.Validators.IsStrongEnoughPassword(txtPassword.Text))
             {
-                ShowMessage("The temporary password must be at least 6 characters.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.TheTemporaryPasswordMustBeAt"), false);
                 return;
             }
             if (txtPassword.Text != txtConfirmPassword.Text)
             {
-                ShowMessage("The passwords do not match.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.ThePasswordsDoNotMatch"), false);
                 return;
             }
             if (!FirebaseContext.IsConfigured)
             {
-                ShowMessage("Firebase is not configured. Ask the project administrator to check the local settings.", false);
+                ShowMessage(L.T("Coordinator.AddStudent.FirebaseIsNotConfiguredAskThe"), false);
                 return;
             }
 
             AuthResult account = AuthService.CreateAccount(email, txtPassword.Text);
             if (!account.Success || string.IsNullOrEmpty(account.Uid) || string.IsNullOrEmpty(account.IdToken))
             {
-                ShowMessage(account.ErrorMessage ?? "Could not create the account.", false);
+                ShowMessage(account.ErrorMessage ?? L.T("Coordinator.AddStudent.CouldNotCreateTheAccount"), false);
                 return;
             }
 
@@ -110,9 +110,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 if (!rollback.Success)
                 {
                     System.Diagnostics.Trace.TraceError("Student Auth rollback failed for UID {0}: {1}", account.Uid, rollback.ErrorCode);
-                    ShowMessage("The account was created but its profile could not be saved. Contact the administrator before retrying.", false);
+                    ShowMessage(L.T("Coordinator.AddStudent.TheAccountWasCreatedButIts"), false);
                 }
-                else ShowMessage("The student could not be saved. Please try again.", false);
+                else ShowMessage(L.T("Coordinator.AddStudent.TheStudentCouldNotBeSaved"), false);
                 return;
             }
 

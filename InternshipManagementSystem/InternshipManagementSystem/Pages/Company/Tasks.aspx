@@ -24,12 +24,12 @@
 .tasks-filters{display:grid;grid-template-columns:minmax(220px,1.4fr) minmax(150px,.9fr) minmax(160px,.9fr);gap:10px;max-width:720px}
 .tasks-filter-control{min-height:40px;color:var(--th-fg-344b60,#344b60);background:var(--ui-surface,#fff);border:1px solid var(--th-line-d9e5f2,#d9e5f2);border-radius:7px;font-size:.82rem}
 .tasks-search-wrap{position:relative}
-.tasks-search-wrap:before{position:absolute;top:13px;left:12px;width:10px;height:10px;content:"";border:1.5px solid var(--th-line-496b8c,#496b8c);border-radius:50%;pointer-events:none}
-.tasks-search-wrap:after{position:absolute;top:24px;left:22px;width:6px;height:1.5px;content:"";background:var(--th-bg-496b8c,#496b8c);transform:rotate(45deg);pointer-events:none}
+.tasks-search-wrap:before{position:absolute;top:13px;inset-inline-start:12px;width:10px;height:10px;content:"";border:1.5px solid var(--th-line-496b8c,#496b8c);border-radius:50%;pointer-events:none}
+.tasks-search-wrap:after{position:absolute;top:24px;inset-inline-start:22px;width:6px;height:1.5px;content:"";background:var(--th-bg-496b8c,#496b8c);transform:rotate(45deg);pointer-events:none}
 .tasks-search{width:100%;padding:8px 12px 8px 36px}
 .tasks-table-wrap{overflow-x:auto;border-top:1px solid var(--th-line-d9e5f2,#d9e5f2)}
 .tasks-table{width:100%;min-width:780px;margin:0;border-collapse:collapse}
-.tasks-table thead th{padding:11px 13px;color:var(--th-fg-123f63,#123f63);background:var(--th-bg-edf4fd,#edf4fd);border-bottom:1px solid var(--th-line-d9e5f2,#d9e5f2);font-size:.77rem;font-weight:700;text-align:left;white-space:nowrap}
+.tasks-table thead th{padding:11px 13px;color:var(--th-fg-123f63,#123f63);background:var(--th-bg-edf4fd,#edf4fd);border-bottom:1px solid var(--th-line-d9e5f2,#d9e5f2);font-size:.77rem;font-weight:700;text-align:start;white-space:nowrap}
 .tasks-table tbody td{padding:11px 13px;color:var(--th-fg-4b5563,#4b5563);border-bottom:1px solid var(--th-line-e2eaf3,#e2eaf3);font-size:.79rem;vertical-align:middle}
 .tasks-table tbody tr:last-child td{border-bottom:0}
 .tasks-table tbody tr:hover{background:var(--th-bg-fbfdff,#fbfdff)}
@@ -108,77 +108,77 @@
 <div id="tasksListView" class="tasks-page">
     <div class="tasks-page-header">
         <div>
-            <h2 class="tasks-page-title">Manage &amp; review tasks</h2>
-            <p class="tasks-page-subtitle">Create tasks, review submissions, and track trainee progress.</p>
+            <h2 class="tasks-page-title"><%: L.T("Company.Tasks.ManageReviewTasks") %></h2>
+            <p class="tasks-page-subtitle"><%: L.T("Company.Tasks.CreateTasksReviewSubmissionsAndTrack") %></p>
         </div>
         <button type="button" id="btnOpenCreateTask" class="btn tasks-create-button" onclick="showTaskForm()">
-            <span aria-hidden="true">+</span> Create new task
+            <span aria-hidden="true">+</span> <%: L.T("Company.Tasks.CreateNewTask2") %>
         </button>
     </div>
 
     <asp:Panel ID="pnlStudentTaskFilter" runat="server" Visible="false" CssClass="student-filter-banner">
-        <span>Showing all tasks for <strong><asp:Label ID="lblStudentTaskFilterName" runat="server" /></strong></span>
-        <a href="Tasks.aspx">Show all company tasks</a>
+        <span><%: L.T("Company.Tasks.ShowingAllTasksFor") %> <strong><asp:Label ID="lblStudentTaskFilterName" runat="server" /></strong></span>
+        <a href="Tasks.aspx"><%: L.T("Company.Tasks.ShowAllCompanyTasks") %></a>
     </asp:Panel>
 
-    <section class="tasks-stats" aria-label="Task summary">
+    <section class="tasks-stats" aria-label="<%: L.T("Company.Tasks.TaskSummary") %>">
         <article class="tasks-stat-card">
             <div>
-                <p class="tasks-stat-label">Pending review</p>
+                <p class="tasks-stat-label"><%: L.T("Company.Tasks.PendingReview") %></p>
                 <p class="tasks-stat-number"><asp:Literal ID="litPendingReview" runat="server" /></p>
-                <p class="tasks-stat-note">Awaiting your evaluation</p>
+                <p class="tasks-stat-note"><%: L.T("Company.Tasks.AwaitingYourEvaluation") %></p>
             </div>
             <span class="tasks-stat-icon" aria-hidden="true">&#9719;</span>
         </article>
         <article class="tasks-stat-card">
             <div>
-                <p class="tasks-stat-label">Reviewed</p>
+                <p class="tasks-stat-label"><%: L.T("Company.Tasks.Reviewed") %></p>
                 <p class="tasks-stat-number"><asp:Literal ID="litReviewedTasks" runat="server" /></p>
-                <p class="tasks-stat-note">Evaluations completed</p>
+                <p class="tasks-stat-note"><%: L.T("Company.Tasks.EvaluationsCompleted") %></p>
             </div>
             <span class="tasks-stat-icon" aria-hidden="true">&#10003;</span>
         </article>
         <article class="tasks-stat-card">
             <div>
-                <p class="tasks-stat-label">Overdue tasks</p>
+                <p class="tasks-stat-label"><%: L.T("Company.Tasks.OverdueTasks") %></p>
                 <p class="tasks-stat-number"><asp:Literal ID="litOverdueTasks" runat="server" /></p>
-                <p class="tasks-stat-note">Past their due date</p>
+                <p class="tasks-stat-note"><%: L.T("Company.Tasks.PastTheirDueDate") %></p>
             </div>
             <span class="tasks-stat-icon" aria-hidden="true">!</span>
         </article>
     </section>
 
     <aside class="tasks-reminder">
-        <p class="tasks-reminder-title">&#9432; &nbsp; Review reminder</p>
-        <p class="tasks-reminder-text">Evaluate submissions using the university criteria, give constructive feedback, and request revisions when needed.</p>
+        <p class="tasks-reminder-title"><%: L.T("Company.Tasks.ReviewReminder") %></p>
+        <p class="tasks-reminder-text"><%: L.T("Company.Tasks.EvaluateSubmissionsUsingTheUniversityCriteria") %></p>
     </aside>
 
     <section class="tasks-directory" aria-labelledby="tasksDirectoryTitle">
         <div class="tasks-directory-header">
-            <h3 id="tasksDirectoryTitle" class="tasks-directory-title">Task directory</h3>
+            <h3 id="tasksDirectoryTitle" class="tasks-directory-title"><%: L.T("Company.Tasks.TaskDirectory") %></h3>
             <p class="tasks-directory-description">
-                <asp:Literal ID="litTaskCount" runat="server" /> tasks
+                <asp:Literal ID="litTaskCount" runat="server" /> <%: L.T("Company.Tasks.Tasks") %>
                 <span aria-hidden="true">&middot;</span>
-                assignments, deadlines, submissions, and feedback
+                <%: L.T("Company.Tasks.AssignmentsDeadlinesSubmissionsAndFeedback") %>
             </p>
 
             <div class="tasks-filters">
                 <div class="tasks-search-wrap">
                     <input id="tasksSearch" type="search" class="tasks-filter-control tasks-search"
-                           placeholder="Search tasks or trainees" aria-label="Search tasks or trainees"
+                           placeholder="<%: L.T("Company.Tasks.SearchTasksOrTrainees") %>" aria-label="<%: L.T("Company.Tasks.SearchTasksOrTrainees") %>"
                            oninput="filterCompanyTasks()" />
                 </div>
                 <select id="tasksDepartmentFilter" class="form-select tasks-filter-control"
-                        aria-label="Filter by department" onchange="filterCompanyTasks()">
-                    <option value="">All departments</option>
+                        aria-label="<%: L.T("Company.Tasks.FilterByDepartment") %>" onchange="filterCompanyTasks()">
+                    <option value=""><%: L.T("Company.Trainees.AllDepartments") %></option>
                 </select>
                 <select id="tasksStatusFilter" class="form-select tasks-filter-control"
-                        aria-label="Filter by task status" onchange="filterCompanyTasks()">
-                    <option value="">All task statuses</option>
-                    <option value="Pending review">Pending review</option>
-                    <option value="Reviewed">Reviewed</option>
-                    <option value="Revision needed">Revision needed</option>
-                    <option value="In progress">In progress</option>
+                        aria-label="<%: L.T("Company.Tasks.FilterByTaskStatus") %>" onchange="filterCompanyTasks()">
+                    <option value=""><%: L.T("Company.I18n.Alltaskstatuses") %></option>
+                    <option value="Pending review"><%: L.T("Company.Tasks.PendingReview") %></option>
+                    <option value="Reviewed"><%: L.T("Company.Tasks.Reviewed") %></option>
+                    <option value="Revision needed"><%: L.T("Company.I18n.Revisionneeded") %></option>
+                    <option value="In progress"><%: L.T("Company.Trainees.InProgress") %></option>
                 </select>
             </div>
         </div>
@@ -187,12 +187,12 @@
             <table class="tasks-table">
                 <thead>
                     <tr>
-                        <th scope="col">Task / trainee</th>
-                        <th scope="col">Due date</th>
-                        <th scope="col">Submission</th>
-                        <th scope="col">Status</th>
-                        <th scope="col">Evaluation</th>
-                        <th scope="col">Action</th>
+                        <th scope="col"><%: L.T("Company.Tasks.TaskTrainee") %></th>
+                        <th scope="col"><%: L.T("Company.Tasks.DueDate") %></th>
+                        <th scope="col"><%: L.T("Company.Tasks.Submission") %></th>
+                        <th scope="col"><%: L.T("Company.Tasks.Status2") %></th>
+                        <th scope="col"><%: L.T("Company.Tasks.Evaluation") %></th>
+                        <th scope="col"><%: L.T("Company.Tasks.Action") %></th>
                     </tr>
                 </thead>
                 <tbody id="companyTasksBody">
@@ -207,8 +207,8 @@
                                 data-task-instructions='<%#: Eval("Instructions") %>'
                                 data-task-start='<%#: Eval("StartDate") %>'
                                 data-task-deadline='<%#: Eval("Deadline") %>'
-                                data-task-status-label='<%#: Eval("TaskStatusLabel") %>'
-                                data-task-submission-status='<%#: Eval("SubmissionStatus") %>'
+                                data-task-status-label='<%#: L.Value("Ui", Eval("TaskStatusLabel")) %>'
+                                data-task-submission-status='<%#: L.Value("Ui", Eval("SubmissionStatus")) %>'
                                 data-task-evaluation='<%#: Eval("EvaluationSummary") %>'
                                 data-task-max-score='<%#: Eval("MaxScore") %>'
                                 data-task-attachment-name='<%#: Eval("AttachmentName") %>'
@@ -219,18 +219,18 @@
                                     <div class="tasks-trainee-department"><%#: Eval("Department") %></div>
                                 </td>
                                 <td><%#: Eval("Deadline") %></td>
-                                <td><span class="tasks-submission-status"><%#: Eval("SubmissionStatus") %></span></td>
-                                <td><span class="<%#: Eval("TaskStatusCss") %>"><%#: Eval("TaskStatusLabel") %></span></td>
+                                <td><span class="tasks-submission-status"><%#: L.Value("Ui", Eval("SubmissionStatus")) %></span></td>
+                                <td><span class="<%#: Eval("TaskStatusCss") %>"><%#: L.Value("Ui", Eval("TaskStatusLabel")) %></span></td>
                                 <td><span class="tasks-evaluation"><%#: Eval("EvaluationSummary") %></span></td>
                                 <td>
                                     <asp:HyperLink runat="server"
                                         Visible='<%# Convert.ToBoolean(Eval("NeedsReview")) %>'
                                         NavigateUrl='<%# "TaskReview.aspx?taskId=" + Eval("TaskId") %>'
-                                        Text="Review"
+                                        Text="<%$ Resources:Company, Tasks.Review %>"
                                         CssClass="tasks-review-button" />
                                     <a href="#" class="tasks-details-button"
                                        style='<%# Convert.ToBoolean(Eval("NeedsReview")) ? "display:none" : "" %>'
-                                       onclick="return showTaskDetails(this);">View details</a>
+                                       onclick="return showTaskDetails(this);"><%: L.T("Company.Tasks.ViewDetails") %></a>
                                 </td>
                             </tr>
                         </ItemTemplate>
@@ -240,20 +240,20 @@
         </div>
 
         <asp:Label ID="lblNoCompanyTasks" runat="server"
-            Text="No tasks created yet." CssClass="tasks-empty" Visible="false" />
+            Text="<%$ Resources:Company, Tasks.NoTasksCreatedYet %>" CssClass="tasks-empty" Visible="false" />
 
         <div id="tasksFilteredEmpty" class="tasks-empty" style="display:none">
-            No tasks match your search or filters.
+            <%: L.T("Company.Tasks.NoTasksMatchYourSearchOr") %>
         </div>
 
         <div class="tasks-directory-footer">
-            <span id="tasksPageSummary">Showing 0 tasks</span>
-            <nav class="tasks-pagination" aria-label="Task pages">
+            <span id="tasksPageSummary"><%: L.T("Company.Tasks.Showing0Tasks") %></span>
+            <nav class="tasks-pagination" aria-label="<%: L.T("Company.Tasks.TaskPages") %>">
                 <button type="button" class="tasks-page-button" id="tasksPrevPage"
-                        onclick="changeTasksPage(-1)" aria-label="Previous page">&lsaquo;</button>
+                        onclick="changeTasksPage(-1)" aria-label="<%: L.T("Company.Tasks.PreviousPage") %>">&lsaquo;</button>
                 <span id="tasksPageButtons"></span>
                 <button type="button" class="tasks-page-button" id="tasksNextPage"
-                        onclick="changeTasksPage(1)" aria-label="Next page">&rsaquo;</button>
+                        onclick="changeTasksPage(1)" aria-label="<%: L.T("Company.Tasks.NextPage") %>">&rsaquo;</button>
             </nav>
         </div>
     </section>
@@ -263,66 +263,66 @@
      role="dialog" aria-modal="true" aria-labelledby="createTaskTitle"
      onclick="if(event.target===this){showTasksList();}">
     <div class="create-task-dialog">
-        <a href="javascript:void(0)" class="create-task-back" onclick="showTasksList()">&lt; All tasks</a>
-        <button type="button" class="btn-close float-end" aria-label="Close" onclick="showTasksList()"></button>
-        <h1 id="createTaskTitle" class="create-task-title">Create new task</h1>
-        <p class="create-task-subtitle">Create a task, set its deadline, and define how it will be evaluated.</p>
+        <a href="javascript:void(0)" class="create-task-back" onclick="showTasksList()"><%: L.T("Company.Tasks.AllTasks") %></a>
+        <button type="button" class="btn-close float-end" aria-label="<%: L.T("Company.Tasks.Close2") %>" onclick="showTasksList()"></button>
+        <h1 id="createTaskTitle" class="create-task-title"><%: L.T("Company.Tasks.CreateNewTask2") %></h1>
+        <p class="create-task-subtitle"><%: L.T("Company.Tasks.CreateATaskSetItsDeadline") %></p>
 
         <div class="create-task-card">
-            <h2 class="create-task-section-title">Task information</h2>
-            <p class="create-task-section-note">Enter the main details for this training task.</p>
+            <h2 class="create-task-section-title"><%: L.T("Company.Tasks.TaskInformation") %></h2>
+            <p class="create-task-section-note"><%: L.T("Company.Tasks.EnterTheMainDetailsForThis") %></p>
 
             <div class="mb-3">
-                <asp:Label ID="lblTaskTitle" runat="server" AssociatedControlID="txtTitle" CssClass="form-label" Text="Task title *" />
-                <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" MaxLength="120" placeholder="Enter task title" />
+                <asp:Label ID="lblTaskTitle" runat="server" AssociatedControlID="txtTitle" CssClass="form-label" Text="<%$ Resources:Company, Tasks.TaskTitle2 %>" />
+                <asp:TextBox ID="txtTitle" runat="server" CssClass="form-control" MaxLength="120" placeholder="<%$ Resources:Company, Tasks.EnterTaskTitle %>" />
             </div>
             <div class="mb-3">
-                <asp:Label ID="lblDescription" runat="server" AssociatedControlID="txtDescription" CssClass="form-label" Text="Task description *" />
-                <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" placeholder="Describe what the trainee needs to complete..." />
+                <asp:Label ID="lblDescription" runat="server" AssociatedControlID="txtDescription" CssClass="form-label" Text="<%$ Resources:Company, Tasks.TaskDescription %>" />
+                <asp:TextBox ID="txtDescription" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="3" placeholder="<%$ Resources:Company, Tasks.DescribeWhatTheTraineeNeedsTo %>" />
             </div>
 
             <div class="row">
                 <div class="col-md-4 mb-3">
-                    <asp:Label ID="lblTrainee" runat="server" AssociatedControlID="ddlTrainee" CssClass="form-label" Text="Assign trainee *" />
+                    <asp:Label ID="lblTrainee" runat="server" AssociatedControlID="ddlTrainee" CssClass="form-label" Text="<%$ Resources:Company, Tasks.AssignTrainee %>" />
                     <asp:DropDownList ID="ddlTrainee" runat="server" CssClass="form-select">
-                        <asp:ListItem Text="Select trainee" Value="" />
+                        <asp:ListItem Text="<%$ Resources:Company, Tasks.SelectTrainee %>" Value="" />
                     </asp:DropDownList>
                 </div>
                 <div class="col-md-4 mb-3">
-                    <asp:Label ID="lblStartDate" runat="server" AssociatedControlID="txtStartDate" CssClass="form-label" Text="Start date &amp; time *" />
+                    <asp:Label ID="lblStartDate" runat="server" AssociatedControlID="txtStartDate" CssClass="form-label" Text="<%$ Resources:Company, Tasks.StartDateTime %>" />
                     <asp:TextBox ID="txtStartDate" runat="server" CssClass="form-control" TextMode="DateTimeLocal" />
                 </div>
                 <div class="col-md-4 mb-3">
-                    <asp:Label ID="lblDeadline" runat="server" AssociatedControlID="txtDeadline" CssClass="form-label" Text="Deadline &amp; time *" />
+                    <asp:Label ID="lblDeadline" runat="server" AssociatedControlID="txtDeadline" CssClass="form-label" Text="<%$ Resources:Company, Tasks.DeadlineTime %>" />
                     <asp:TextBox ID="txtDeadline" runat="server" CssClass="form-control" TextMode="DateTimeLocal" />
                 </div>
             </div>
 
             <hr class="create-task-divider" />
-            <h2 class="create-task-section-title">Evaluation criteria</h2>
-            <p class="create-task-section-note">Define how the task will be assessed.</p>
+            <h2 class="create-task-section-title"><%: L.T("Company.Tasks.EvaluationCriteria") %></h2>
+            <p class="create-task-section-note"><%: L.T("Company.Tasks.DefineHowTheTaskWillBe") %></p>
 
             <div class="mb-3">
-                <asp:Label ID="lblMaxScore" runat="server" AssociatedControlID="txtMaxScore" CssClass="form-label" Text="Total score *" />
-                <asp:TextBox ID="txtMaxScore" runat="server" CssClass="form-control" TextMode="Number" min="1" step="1" placeholder="100 points" />
+                <asp:Label ID="lblMaxScore" runat="server" AssociatedControlID="txtMaxScore" CssClass="form-label" Text="<%$ Resources:Company, Tasks.TotalScore %>" />
+                <asp:TextBox ID="txtMaxScore" runat="server" CssClass="form-control" TextMode="Number" min="1" step="1" placeholder="<%$ Resources:Company, Tasks.100Points %>" />
             </div>
             <div class="mb-3">
-                <asp:Label ID="lblInstructions" runat="server" AssociatedControlID="txtInstructions" CssClass="form-label" Text="Criteria and instructions *" />
-                <asp:TextBox ID="txtInstructions" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Add grading criteria, expected outcomes, and submission instructions..." />
+                <asp:Label ID="lblInstructions" runat="server" AssociatedControlID="txtInstructions" CssClass="form-label" Text="<%$ Resources:Company, Tasks.CriteriaAndInstructions %>" />
+                <asp:TextBox ID="txtInstructions" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="<%$ Resources:Company, Tasks.AddGradingCriteriaExpectedOutcomesAnd %>" />
             </div>
 
             <div class="mb-3">
-                <asp:Label ID="lblTaskAttachment" runat="server" AssociatedControlID="fuTaskAttachment" CssClass="form-label" Text="Task attachment (optional)" />
+                <asp:Label ID="lblTaskAttachment" runat="server" AssociatedControlID="fuTaskAttachment" CssClass="form-label" Text="<%$ Resources:Company, Tasks.TaskAttachmentOptional %>" />
                 <asp:FileUpload ID="fuTaskAttachment" runat="server" CssClass="form-control" accept=".pdf,.doc,.docx" />
-                <small class="text-muted">PDF or Word document, up to 10 MB. The trainee can download it from task details.</small>
+                <small class="text-muted"><%: L.T("Company.Tasks.PDFOrWordDocumentUpTo") %></small>
             </div>
 
             <asp:Label ID="lblMessage" runat="server" EnableViewState="false" CssClass="d-block mt-2" />
             <div class="create-task-footer">
-                <span class="create-task-required">* Required fields</span>
+                <span class="create-task-required"><%: L.T("Company.Tasks.RequiredFields") %></span>
                 <div class="d-flex gap-2">
-                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="showTasksList()">Cancel</button>
-                    <asp:Button ID="btnCreateTask" runat="server" Text="Create task" CssClass="btn tasks-create-button btn-sm"
+                    <button type="button" class="btn btn-outline-secondary btn-sm" onclick="showTasksList()"><%: L.T("Company.Tasks.Cancel2") %></button>
+                    <asp:Button ID="btnCreateTask" runat="server" Text="<%$ Resources:Company, Tasks.CreateTask2 %>" CssClass="btn tasks-create-button btn-sm"
                         OnClientClick="rememberTaskForm();" OnClick="btnCreateTask_Click" />
                 </div>
             </div>
@@ -342,22 +342,22 @@
 
 <div id="taskDetailsOverlay" class="task-modal-overlay" style="display:none;" role="dialog" aria-modal="true" aria-labelledby="taskDetailsTitle" onclick="if(event.target===this){closeTaskDetails();}">
     <section class="task-modal-dialog task-details-dialog">
-        <button type="button" class="btn-close float-end" aria-label="Close task details" onclick="closeTaskDetails()"></button>
-        <span class="tasks-stat-label">Task details</span>
+        <button type="button" class="btn-close float-end" aria-label="<%: L.T("Company.Tasks.CloseTaskDetails") %>" onclick="closeTaskDetails()"></button>
+        <span class="tasks-stat-label"><%: L.T("Company.Tasks.TaskDetails") %></span>
         <h2 id="taskDetailsTitle" class="tasks-directory-title"></h2>
         <p id="taskDetailsTrainee" class="tasks-page-subtitle"></p>
         <div class="task-details-grid">
-            <div><span>Task status</span><strong id="taskDetailsStatus"></strong></div>
-            <div><span>Submission status</span><strong id="taskDetailsSubmissionStatus"></strong></div>
-            <div><span>Evaluation</span><strong id="taskDetailsEvaluation"></strong></div>
-            <div><span>Total score</span><strong id="taskDetailsMaxScore"></strong></div>
-            <div><span>Start date and time</span><strong id="taskDetailsStart"></strong></div>
-            <div><span>Deadline</span><strong id="taskDetailsDeadline"></strong></div>
+            <div><span><%: L.T("Company.Tasks.TaskStatus") %></span><strong id="taskDetailsStatus"></strong></div>
+            <div><span><%: L.T("Company.Tasks.SubmissionStatus") %></span><strong id="taskDetailsSubmissionStatus"></strong></div>
+            <div><span><%: L.T("Company.Tasks.Evaluation") %></span><strong id="taskDetailsEvaluation"></strong></div>
+            <div><span><%: L.T("Company.Tasks.TotalScore2") %></span><strong id="taskDetailsMaxScore"></strong></div>
+            <div><span><%: L.T("Company.Tasks.StartDateAndTime") %></span><strong id="taskDetailsStart"></strong></div>
+            <div><span><%: L.T("Company.Tasks.Deadline3") %></span><strong id="taskDetailsDeadline"></strong></div>
         </div>
-        <div class="task-details-section"><h3>Description</h3><p id="taskDetailsDescription"></p></div>
-        <div class="task-details-section"><h3>Criteria and instructions</h3><p id="taskDetailsInstructions"></p></div>
-        <div id="taskDetailsAttachmentArea" class="task-details-section" style="display:none"><h3>Task attachment</h3><a id="taskDetailsAttachment" target="_blank" rel="noopener noreferrer"></a></div>
-        <div class="text-end mt-4"><button type="button" class="btn btn-outline-secondary" onclick="closeTaskDetails()">Close</button></div>
+        <div class="task-details-section"><h3><%: L.T("Company.Tasks.Description2") %></h3><p id="taskDetailsDescription"></p></div>
+        <div class="task-details-section"><h3><%: L.T("Company.Tasks.CriteriaAndInstructions2") %></h3><p id="taskDetailsInstructions"></p></div>
+        <div id="taskDetailsAttachmentArea" class="task-details-section" style="display:none"><h3><%: L.T("Company.Tasks.TaskAttachment") %></h3><a id="taskDetailsAttachment" target="_blank" rel="noopener noreferrer"></a></div>
+        <div class="text-end mt-4"><button type="button" class="btn btn-outline-secondary" onclick="closeTaskDetails()"><%: L.T("Company.Tasks.Close2") %></button></div>
     </section>
 </div>
 
@@ -366,9 +366,9 @@
         <div class="task-success-check" aria-hidden="true">
             <svg viewBox="0 0 24 24" focusable="false"><path d="m5 12.5 4.2 4.2L19 7" /></svg>
         </div>
-        <h2 id="taskSuccessTitle">Task created</h2>
-        <p id="taskSuccessMessage">The task was successfully assigned to the trainee.</p>
-        <button type="button" class="btn tasks-create-button" onclick="closeTaskSuccessDialog()">Done</button>
+        <h2 id="taskSuccessTitle"><%: L.T("Company.Tasks.TaskCreated") %></h2>
+        <p id="taskSuccessMessage"><%: L.T("Company.Tasks.TheTaskWasSuccessfullyAssignedTo") %></p>
+        <button type="button" class="btn tasks-create-button" onclick="closeTaskSuccessDialog()"><%: L.T("Company.Tasks.Done") %></button>
     </div>
 </div>
 
@@ -377,23 +377,23 @@
         var row = link.closest("tr");
         if (!row) return false;
         var data = row.dataset;
-        document.getElementById("taskDetailsTitle").textContent = data.taskTitle || "Task details";
+        document.getElementById("taskDetailsTitle").textContent = data.taskTitle || uimsT('ArabicTaskdetails');
         document.getElementById("taskDetailsTrainee").textContent = (data.taskTrainee || "") + (data.taskDepartment ? " - " + data.taskDepartment : "");
-        document.getElementById("taskDetailsStatus").textContent = data.taskStatusLabel || "Not set";
-        document.getElementById("taskDetailsSubmissionStatus").textContent = data.taskSubmissionStatus || "Not submitted";
-        document.getElementById("taskDetailsEvaluation").textContent = data.taskEvaluation || "Not evaluated";
-        document.getElementById("taskDetailsMaxScore").textContent = data.taskMaxScore ? data.taskMaxScore + " points" : "Not set";
-        document.getElementById("taskDetailsStart").textContent = data.taskStart || "Not set";
-        document.getElementById("taskDetailsDeadline").textContent = data.taskDeadline || "Not set";
-        document.getElementById("taskDetailsDescription").textContent = data.taskDescription || "No description provided.";
-        document.getElementById("taskDetailsInstructions").textContent = data.taskInstructions || "No additional instructions.";
+        document.getElementById("taskDetailsStatus").textContent = data.taskStatusLabel || uimsT('ArabicNotset');
+        document.getElementById("taskDetailsSubmissionStatus").textContent = data.taskSubmissionStatus || uimsT('ArabicNotsubmitted');
+        document.getElementById("taskDetailsEvaluation").textContent = data.taskEvaluation || uimsT('ArabicNotevaluated');
+        document.getElementById("taskDetailsMaxScore").textContent = data.taskMaxScore ? data.taskMaxScore + uimsT('Arabicpoints') : uimsT('ArabicNotset');
+        document.getElementById("taskDetailsStart").textContent = data.taskStart || uimsT('ArabicNotset');
+        document.getElementById("taskDetailsDeadline").textContent = data.taskDeadline || uimsT('ArabicNotset');
+        document.getElementById("taskDetailsDescription").textContent = data.taskDescription || uimsT('ArabicNodescriptionprovided');
+        document.getElementById("taskDetailsInstructions").textContent = data.taskInstructions || uimsT('ArabicNoadditionalinstructions');
         var attachmentArea = document.getElementById("taskDetailsAttachmentArea");
         var attachmentLink = document.getElementById("taskDetailsAttachment");
         var safeUrl = null;
         try { safeUrl = new URL(data.taskAttachmentUrl || "", window.location.href); } catch (ignore) { safeUrl = null; }
         if (safeUrl && (safeUrl.protocol === "https:" || safeUrl.protocol === "http:") && data.taskAttachmentUrl) {
             attachmentLink.href = safeUrl.href;
-            attachmentLink.textContent = data.taskAttachmentName || "Open task attachment";
+            attachmentLink.textContent = data.taskAttachmentName || uimsT('ArabicOpentaskattachment');
             attachmentArea.style.display = "";
         } else {
             attachmentLink.removeAttribute("href");
@@ -484,11 +484,9 @@
 
         if (summary) {
             if (matchingRows.length === 0) {
-                summary.textContent = "Showing 0 tasks";
+                summary.textContent = uimsT('ArabicShowing0tasks');
             } else {
-                summary.textContent = "Showing " + (start + 1) + "-" +
-                    Math.min(end, matchingRows.length) + " of " +
-                    matchingRows.length + " tasks";
+                summary.textContent = uimsT('TasksShowingRange', start + 1, Math.min(end, matchingRows.length), matchingRows.length);
             }
         }
 
@@ -581,8 +579,8 @@
     function showTaskSuccessDialog(taskCount) {
         showTasksList();
         document.getElementById("taskSuccessMessage").textContent = taskCount === 1
-            ? "The task was successfully assigned to the trainee."
-            : taskCount + " tasks were created, one for each of your trainees.";
+            ? uimsT('ArabicThetaskwassuccessfullyassignedtothetrainee')
+            : uimsT('TasksCreatedMany', taskCount);
         document.getElementById("taskSuccessOverlay").style.display = "flex";
         document.body.style.overflow = "hidden";
     }

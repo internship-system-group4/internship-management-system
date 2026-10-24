@@ -53,9 +53,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
             {
                 StudentTaskRow row = new StudentTaskRow();
                 row.Id = task.Id;
-                row.Title = task.Title ?? "Untitled task";
-                row.StartLabel = task.StartDate > 0 ? "Starts " + FormatDate(task.StartDate) : "Assigned task";
-                row.DeadlineLabel = task.Deadline > 0 ? FormatDate(task.Deadline) : "Not set";
+                row.Title = task.Title ?? L.T("Student.MyTasks.UntitledTask");
+                row.StartLabel = task.StartDate > 0 ? L.T("Student.MyTasks.Starts") + FormatDate(task.StartDate) : L.T("Student.MyTasks.AssignedTask");
+                row.DeadlineLabel = task.Deadline > 0 ? FormatDate(task.Deadline) : L.T("Student.MyTasks.NotSet");
                 row.StatusLabel = FriendlyStatus(task.Status);
                 row.StatusClass = StatusClass(task.Status);
                 row.AttemptsLabel = CountAttempts(repo.GetByTask(task.Id), task).ToString();
@@ -86,27 +86,27 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected void btnSubmitTask_Click(object sender, EventArgs e)
         {
             InternshipTask task = GetSelectedTask();
-            if (!OwnsTask(task)) { ShowMessage("This task is not assigned to your account.", false); return; }
-            if (!task.AcceptsSubmission) { ShowMessage("This task is not accepting submissions right now.", false); return; }
+            if (!OwnsTask(task)) { ShowMessage(L.T("Student.MyTasks.ThisTaskIsNotAssignedTo"), false); return; }
+            if (!task.AcceptsSubmission) { ShowMessage(L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions3"), false); return; }
 
             Placement placement = new PlacementRepository().GetById(CurrentStudent.Id);
             if (placement == null || placement.StudentId != CurrentStudent.Id ||
                 placement.Id != task.PlacementId)
-            { ShowMessage("Your placement could not be verified.", false); return; }
+            { ShowMessage(L.T("Student.MyTasks.YourPlacementCouldNotBeVerified"), false); return; }
 
             string note = (txtSubmissionText.Text ?? "").Trim();
             string link = (txtSubmissionLink.Text ?? "").Trim();
             bool hasFile = fuSubmission.HasFile;
             if (link.Length > 0 && !IsHttpUrl(link))
-            { ShowMessage("Enter a valid link beginning with http:// or https://.", false); return; }
-            if (task.RequiresFileUpload && !hasFile) { string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"]; ShowMessage(string.IsNullOrWhiteSpace(bucket) ? "This task requires a file, but file storage is not configured. Contact your administrator before submitting." : "This task requires an attachment. Choose a file before submitting.", false); return; }
+            { ShowMessage(L.T("Student.I18n.Enteravalidlinkbeginningwithhttp"), false); return; }
+            if (task.RequiresFileUpload && !hasFile) { string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"]; ShowMessage(string.IsNullOrWhiteSpace(bucket) ? L.T("Student.I18n.Thistaskrequiresafilebutfile") : L.T("Student.I18n.ThistaskrequiresanattachmentChoosea"), false); return; }
             if (note.Length == 0 && link.Length == 0 && !hasFile)
-            { ShowMessage("Add a note, a link, or an attachment before submitting.", false); return; }
+            { ShowMessage(L.T("Student.MyTasks.AddANoteALinkOr2"), false); return; }
 
             SubmissionRepository repo = new SubmissionRepository();
             int previousAttempt = CountAttempts(repo.GetByTask(task.Id), task);
             if (previousAttempt > 0 && task.Status != InternshipTaskStatus.RevisionRequested)
-            { ShowMessage("Your submission is waiting for review. You can resubmit after a revision is requested.", false); return; }
+            { ShowMessage(L.T("Student.MyTasks.YourSubmissionIsWaitingForReview"), false); return; }
 
             Submission submission = new Submission();
             submission.TaskId = task.Id;
@@ -124,17 +124,17 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     submission.FileUrl = UploadFile(fuSubmission.PostedFile, task.Id, CurrentStudent.Id, out savedFileName);
                     submission.FileName = savedFileName;
                 }
-                catch (WebException) { ShowMessage("The attachment could not be uploaded. Check your connection and try again.", false); return; }
+                catch (WebException) { ShowMessage(L.T("Student.MyTasks.TheAttachmentCouldNotBeUploaded"), false); return; }
                 catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); return; }
             }
 
             try
             {
                 if (string.IsNullOrEmpty(repo.Insert(submission)))
-                { ShowMessage("The submission could not be saved. Please try again.", false); return; }
+                { ShowMessage(L.T("Student.MyTasks.TheSubmissionCouldNotBeSaved"), false); return; }
             }
             catch (FirebaseException)
-            { ShowMessage("The submission could not be saved. Please try again.", false); return; }
+            { ShowMessage(L.T("Student.MyTasks.TheSubmissionCouldNotBeSaved"), false); return; }
 
             InternshipTaskStatus status = previousAttempt == 0
                 ? InternshipTaskStatus.Submitted : InternshipTaskStatus.Resubmitted;
@@ -145,7 +145,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             }
             catch (FirebaseException)
             {
-                ShowMessage("Your submission was saved, but the task status could not be refreshed. Reload the page or contact your supervisor.", false);
+                ShowMessage(L.T("Student.MyTasks.YourSubmissionWasSavedButThe"), false);
                 return;
             }
 
@@ -153,7 +153,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             txtSubmissionLink.Text = "";
             ViewState["SelectedTaskId"] = task.Id;
             LoadTasks();
-            ShowMessage("Your task was submitted successfully.", true);
+            ShowMessage(L.T("Student.MyTasks.YourTaskWasSubmittedSuccessfully"), true);
         }
 
         private InternshipTask GetSelectedTask()
@@ -176,9 +176,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
             pnlSelectTask.Visible = false;
             litTaskTitle.Text = task.Title ?? "";
             litStatus.Text = FriendlyStatus(task.Status);
-            litDescription.Text = string.IsNullOrWhiteSpace(task.Description) ? "No description was provided." : task.Description;
-            litInstructions.Text = string.IsNullOrWhiteSpace(task.Instructions) ? "No additional instructions were provided." : task.Instructions;
-            litDeadline.Text = task.Deadline > 0 ? FormatDate(task.Deadline) : "Not set";
+            litDescription.Text = string.IsNullOrWhiteSpace(task.Description) ? L.T("Student.MyTasks.NoDescriptionWasProvided") : task.Description;
+            litInstructions.Text = string.IsNullOrWhiteSpace(task.Instructions) ? L.T("Student.MyTasks.NoAdditionalInstructionsWereProvided") : task.Instructions;
+            litDeadline.Text = task.Deadline > 0 ? FormatDate(task.Deadline) : L.T("Student.MyTasks.NotSet");
 
             Uri attachment;
             lnkTaskAttachment.Visible = Uri.TryCreate(task.AttachmentUrl, UriKind.Absolute, out attachment) &&
@@ -187,13 +187,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
             {
                 lnkTaskAttachment.NavigateUrl = task.AttachmentUrl;
                 lnkTaskAttachment.Attributes["rel"] = "noopener noreferrer";
-                lnkTaskAttachment.Text = "Download task attachment: " +
-                    Server.HtmlEncode(string.IsNullOrWhiteSpace(task.AttachmentName) ? "Attached file" : task.AttachmentName);
+                lnkTaskAttachment.Text = L.T("Student.I18n.Downloadtaskattachment") +
+                    Server.HtmlEncode(string.IsNullOrWhiteSpace(task.AttachmentName) ? L.T("Student.MyTasks.AttachedFile") : task.AttachmentName);
             }
 
             pnlSubmissionForm.Visible = task.AcceptsSubmission;
             pnlSubmissionClosed.Visible = !task.AcceptsSubmission;
-            btnSubmitTask.Text = task.Status == InternshipTaskStatus.RevisionRequested ? "Resubmit task" : "Submit task";
+            btnSubmitTask.Text = task.Status == InternshipTaskStatus.RevisionRequested ? L.T("Student.MyTasks.ResubmitTask") : L.T("Student.MyTasks.SubmitTask2");
             bool storageReady = !string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["Firebase.StorageBucket"]);
             fuSubmission.Enabled = storageReady;
             litFileRequirement.Text = !storageReady
@@ -225,13 +225,13 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 row.SubmittedLabel = FormatDate(s.SubmittedAt);
                 row.StatusLabel = evaluation == null
                     ? SubmissionStatusLabel(s.Status)
-                    : (evaluation.RevisionRequested ? "Revision requested" : "Reviewed");
-                row.Feedback = evaluation == null ? "No feedback yet." :
+                    : (evaluation.RevisionRequested ? L.T("Student.MyTasks.RevisionRequested") : "Reviewed");
+                row.Feedback = evaluation == null ? L.T("Student.MyTasks.NoFeedbackYet") :
                     (evaluation.RevisionRequested
-                        ? (evaluation.RevisionInstructions ?? evaluation.Feedback ?? "Revision requested.")
-                        : (evaluation.Feedback ?? "Evaluation completed."));
+                        ? (evaluation.RevisionInstructions ?? evaluation.Feedback ?? L.T("Student.MyTasks.RevisionRequested2"))
+                        : (evaluation.Feedback ?? L.T("Student.MyTasks.EvaluationCompleted")));
                 row.FileUrl = SafeStorageUrl(s.FileUrl) ? s.FileUrl : "";
-                row.FileName = string.IsNullOrWhiteSpace(s.FileName) ? "Download submitted file" : s.FileName;
+                row.FileName = string.IsNullOrWhiteSpace(s.FileName) ? L.T("Student.MyTasks.DownloadSubmittedFile") : s.FileName;
                 row.HasFile = row.FileUrl.Length > 0;
                 row.LinkUrl = IsHttpUrl(s.LinkUrl) ? s.LinkUrl : "";
                 row.HasLink = row.LinkUrl.Length > 0;
@@ -259,8 +259,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             switch (s)
             {
                 case InternshipTaskStatus.Submitted: return "Submitted";
-                case InternshipTaskStatus.UnderReview: return "Under review";
-                case InternshipTaskStatus.RevisionRequested: return "Revision requested";
+                case InternshipTaskStatus.UnderReview: return L.T("Student.MyTasks.UnderReview");
+                case InternshipTaskStatus.RevisionRequested: return L.T("Student.MyTasks.RevisionRequested");
                 case InternshipTaskStatus.Resubmitted: return "Resubmitted";
                 case InternshipTaskStatus.Graded: return "Reviewed";
                 default: return "Assigned";
@@ -271,8 +271,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             switch (s)
             {
-                case SubmissionStatus.UnderReview: return "Under review";
-                case SubmissionStatus.RevisionRequested: return "Revision requested";
+                case SubmissionStatus.UnderReview: return L.T("Student.MyTasks.UnderReview");
+                case SubmissionStatus.RevisionRequested: return L.T("Student.MyTasks.RevisionRequested");
                 case SubmissionStatus.Accepted: return "Reviewed";
                 default: return "Submitted";
             }
@@ -289,7 +289,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         private static string FormatDate(long ms)
         {
-            if (ms <= 0) return "Not set";
+            if (ms <= 0) return L.T("Student.MyTasks.NotSet");
             DateTimeOffset d = DateTimeOffset.FromUnixTimeMilliseconds(ms);
             try { return TimeZoneInfo.ConvertTime(d, TimeZoneInfo.FindSystemTimeZoneById("Jordan Standard Time")).ToString("dd MMM yyyy, h:mm tt"); }
             catch { return d.UtcDateTime.ToString("dd MMM yyyy, h:mm tt") + " UTC"; }
@@ -316,16 +316,16 @@ namespace InternshipManagementSystem.Pages.StudentArea
             string[] allowed = { ".pdf", ".doc", ".docx", ".zip", ".png", ".jpg", ".jpeg" };
             bool valid = false;
             foreach (string item in allowed) if (ext == item) valid = true;
-            if (!valid) throw new InvalidOperationException("Choose a PDF, Word, ZIP, PNG, or JPG file.");
+            if (!valid) throw new InvalidOperationException(L.T("Student.I18n.ChooseaPDFWordZIPPNGor"));
             if (file.ContentLength <= 0 || file.ContentLength > MaxFileBytes)
-                throw new InvalidOperationException("The file must be larger than zero and no bigger than 10 MB.");
+                throw new InvalidOperationException(L.T("Student.I18n.Thefilemustbelargerthanzero"));
 
             string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"];
-            if (string.IsNullOrWhiteSpace(bucket)) throw new InvalidOperationException("File storage is not configured.");
+            if (string.IsNullOrWhiteSpace(bucket)) throw new InvalidOperationException(L.T("Student.I18n.Filestorageisnotconfigured"));
             bucket = bucket.Trim();
             if (bucket.StartsWith("gs://", StringComparison.OrdinalIgnoreCase)) bucket = bucket.Substring(5).TrimEnd('/');
             string token = HttpContext.Current.Session[Constants.SessionTokenKey] as string;
-            if (string.IsNullOrWhiteSpace(token)) throw new InvalidOperationException("Your session expired. Sign in again before uploading.");
+            if (string.IsNullOrWhiteSpace(token)) throw new InvalidOperationException(L.T("Student.I18n.YoursessionexpiredSigninagainbefore"));
 
             string objectName = "task-submissions/" + studentId + "/" + taskId + "/" + Guid.NewGuid().ToString("N") + ext;
             byte[] bytes = new byte[file.ContentLength];
@@ -336,7 +336,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 if (read <= 0) break;
                 total += read;
             }
-            if (total != bytes.Length) throw new InvalidOperationException("The selected file could not be read.");
+            if (total != bytes.Length) throw new InvalidOperationException(L.T("Student.I18n.Theselectedfilecouldnotberead"));
 
             string url = "https://firebasestorage.googleapis.com/v0/b/" + Uri.EscapeDataString(bucket) +
                 "/o?uploadType=media&name=" + Uri.EscapeDataString(objectName);
@@ -354,7 +354,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             object tokenValue;
             string downloadToken = responseMap != null && responseMap.TryGetValue("downloadTokens", out tokenValue)
                 ? Convert.ToString(tokenValue) : null;
-            if (string.IsNullOrWhiteSpace(downloadToken)) throw new InvalidOperationException("Storage did not return a download link.");
+            if (string.IsNullOrWhiteSpace(downloadToken)) throw new InvalidOperationException(L.T("Student.I18n.Storagedidnotreturnadownloadlink"));
             return "https://firebasestorage.googleapis.com/v0/b/" + Uri.EscapeDataString(bucket) +
                 "/o/" + Uri.EscapeDataString(objectName) + "?alt=media&token=" + Uri.EscapeDataString(downloadToken);
         }

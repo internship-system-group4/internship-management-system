@@ -55,7 +55,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     placement.StudentId == task.StudentId &&
                     !string.IsNullOrWhiteSpace(placement.StudentName)
                         ? placement.StudentName
-                        : "Name unavailable";
+                        : L.T("Company.TaskReview.NameUnavailable");
 
                 foreach (Submission submission in submissions)
                 {
@@ -130,8 +130,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             txtDesignUsability.Enabled = canReview;
             txtDocumentation.Enabled = canReview;
             txtFeedback.Enabled = canReview;
-            lblReviewStatus.Text = GetSubmissionStatusLabel(
-                submission, taskEvaluations);
+            lblReviewStatus.Text = L.Value("Ui", GetSubmissionStatusLabel(
+                submission, taskEvaluations));
             lblReviewStatus.CssClass = canReview
                 ? "review-pending-badge"
                 : existingEvaluation != null && existingEvaluation.RevisionRequested
@@ -149,18 +149,18 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     ? existingEvaluation.RevisionInstructions
                     : existingEvaluation.Feedback;
                 string reviewSummary = existingEvaluation.RevisionRequested
-                    ? "A resubmission was requested. Instructions: "
-                    : "This submission was evaluated: " +
+                    ? L.T("Company.I18n.AresubmissionwasrequestedInstructions")
+                    : L.T("Company.I18n.Thissubmissionwasevaluated") +
                       existingEvaluation.TotalScore.ToString("0.##") + " / " +
                       existingEvaluation.MaxScore.ToString("0.##") +
-                      ". Feedback: ";
+                      L.T("Company.I18n.Feedback");
                 lblReviewMessage.Text = Server.HtmlEncode(
                     reviewSummary + (recordedFeedback ?? ""));
             }
             else if (!canReview)
             {
                 lblReviewMessage.Text =
-                    "A newer submission attempt is available. Review that attempt instead.";
+                    L.T("Company.TaskReview.ANewerSubmissionAttemptIsAvailable");
             }
 
             lblDetailTask.Text = Server.HtmlEncode(task.Title ?? "");
@@ -198,7 +198,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             lblDetailDeadline.Text = task.Deadline > 0
                 ? DateTimeOffset.FromUnixTimeMilliseconds(task.Deadline)
                     .ToLocalTime().ToString("dd MMM yyyy, h:mm tt")
-                : "Not set";
+                : L.T("Company.TaskReview.NotSet");
 
             lblDetailText.Text = Server.HtmlEncode(
                 string.IsNullOrWhiteSpace(submission.DescriptionText)
@@ -227,8 +227,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 lnkDetailFile.NavigateUrl = submission.FileUrl;
                 lnkDetailFile.Text = string.IsNullOrWhiteSpace(submission.FileName)
-                    ? "View submission file"
-                    : "View " + Server.HtmlEncode(submission.FileName);
+                    ? L.T("Company.TaskReview.ViewSubmissionFile")
+                    : L.T("Company.TaskReview.View") + Server.HtmlEncode(submission.FileName);
             }
         }
 
@@ -299,8 +299,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (IsReviewableSubmission(submission, task, attempts, evaluations))
             {
                 return submission.Status == SubmissionStatus.UnderReview
-                    ? "Continue review"
-                    : "Review submission";
+                    ? L.T("Company.TaskReview.ContinueReview")
+                    : L.T("Company.TaskReview.ReviewSubmission");
             }
 
             TaskEvaluation evaluation =
@@ -308,11 +308,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (evaluation != null)
             {
                 return evaluation.RevisionRequested
-                    ? "View revision request"
-                    : "View evaluation";
+                    ? L.T("Company.TaskReview.ViewRevisionRequest")
+                    : L.T("Company.TaskReview.ViewEvaluation");
             }
 
-            return "View attempt";
+            return L.T("Company.TaskReview.ViewAttempt");
         }
         private bool IsReviewableSubmission(
             Submission submission,
@@ -390,7 +390,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     submissionRepository.GetByTask(task.Id),
                     new TaskEvaluationRepository().GetByTask(task.Id)))
             {
-                lblReviewMessage.Text = "This submission is already reviewed or is not the latest attempt."; 
+                lblReviewMessage.Text = L.T("Company.TaskReview.ThisSubmissionIsAlreadyReviewedOr");
                 return;
             }
 
@@ -478,7 +478,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         score < 0 ||
                         score > criterion.MaxScore)
                     {
-                        lblReviewMessage.Text = "Enter a valid score for " +
+                        lblReviewMessage.Text = L.T("Company.I18n.Enteravalidscorefor") +
                             Server.HtmlEncode(criterion.Name) + " (0 to " +
                             criterion.MaxScore.ToString(
                                 "0.##", System.Globalization.CultureInfo.InvariantCulture) + ").";
@@ -589,7 +589,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string submissionId = ViewState["SelectedSubmissionId"] as string;
             if (string.IsNullOrEmpty(submissionId))
             {
-                lblReviewMessage.Text = "Open a submission first.";
+                lblReviewMessage.Text = L.T("Company.TaskReview.OpenASubmissionFirst");
                 return;
             }
 
@@ -598,7 +598,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (submission == null)
             {
-                lblReviewMessage.Text = "Submission was not found.";
+                lblReviewMessage.Text = L.T("Company.TaskReview.SubmissionWasNotFound");
                 return;
             }
 
@@ -611,7 +611,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 task.StudentId != submission.StudentId ||
                 task.PlacementId != submission.PlacementId)
             {
-                lblReviewMessage.Text = "You cannot review this submission.";
+                lblReviewMessage.Text = L.T("Company.TaskReview.YouCannotReviewThisSubmission");
                 return;
             }
 
@@ -621,7 +621,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     new SubmissionRepository().GetByTask(task.Id),
                     new TaskEvaluationRepository().GetByTask(task.Id)))
             {
-                lblReviewMessage.Text = "This submission is already reviewed or is not the latest attempt."; 
+                lblReviewMessage.Text = L.T("Company.TaskReview.ThisSubmissionIsAlreadyReviewedOr");
                 return;
             }
 
@@ -629,7 +629,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (instructions == "")
             {
-                lblReviewMessage.Text = "Tell the student what needs to be changed.";
+                lblReviewMessage.Text = L.T("Company.TaskReview.TellTheStudentWhatNeedsTo");
                 return;
             }
 
@@ -688,7 +688,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 if (!revisionSaved)
                 {
-                    lblReviewMessage.Text = "The revision request could not be saved. Please try again.";
+                    lblReviewMessage.Text = L.T("Company.TaskReview.TheRevisionRequestCouldNotBe");
                     return;
                 }
 
@@ -700,14 +700,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     });
 
                 lblReviewMessage.CssClass = "text-success d-block mt-3";
-                lblReviewMessage.Text = "Revision requested successfully.";
+                lblReviewMessage.Text = L.T("Company.TaskReview.RevisionRequestedSuccessfully");
                 txtFeedback.Text = "";
                 LoadCompanySubmissions();
             }
             catch (FirebaseException)
             {
                 lblReviewMessage.Text =
-                    "Could not complete the revision request. Check Firebase before trying again.";
+                    L.T("Company.TaskReview.CouldNotCompleteTheRevisionRequest");
             }
         }
     }

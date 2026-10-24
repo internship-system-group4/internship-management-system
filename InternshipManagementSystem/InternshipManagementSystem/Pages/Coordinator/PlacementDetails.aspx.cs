@@ -17,11 +17,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             string studentId = Request.QueryString["id"];
             if (string.IsNullOrEmpty(studentId) || !Regex.IsMatch(studentId, @"\A[A-Za-z0-9_-]{1,128}\z"))
             {
-                ShowMissing("Choose a placement from Placements & Progress.");
+                ShowMissing(L.T("Coordinator.PlacementDetails.ChooseAPlacementFromPlacementsProgress"));
                 return;
             }
             try { LoadDetails(studentId); }
-            catch (FirebaseException) { ShowMissing("Could not load this placement. Please try again."); }
+            catch (FirebaseException) { ShowMissing(L.T("Coordinator.PlacementDetails.CouldNotLoadThisPlacementPlease")); }
         }
 
         private void LoadDetails(string studentId)
@@ -29,7 +29,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             Placement placement = new PlacementRepository().GetById(studentId);
             if (placement == null || placement.StudentId != studentId)
             {
-                ShowMissing("Placement not found.");
+                ShowMissing(L.T("Coordinator.PlacementDetails.PlacementNotFound"));
                 return;
             }
             Student student = new UserRepository().GetStudent(studentId);
@@ -45,7 +45,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             litPeriod.Text = Time.DisplayDate(placement.StartDate) + " to " + Time.DisplayDate(placement.EndDate);
             AcademicSupervisor academic = string.IsNullOrEmpty(placement.AcademicSupervisorId) ? null :
                 new UserRepository().GetAcademicSupervisor(placement.AcademicSupervisorId);
-            litAcademicSupervisor.Text = Encode(academic == null ? "Not assigned" : academic.FullName);
+            litAcademicSupervisor.Text = Encode(academic == null ? L.T("Coordinator.PlacementDetails.NotAssigned") : academic.FullName);
             lnkFinalReview.NavigateUrl = ResolveUrl("~/Pages/Coordinator/CompletionReview.aspx?id=" +
                 Server.UrlEncode(studentId));
 
@@ -82,7 +82,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 .Select(h => new HoursRow
                 {
                     Date = Time.DisplayDate(h.WorkDate > 0 ? h.WorkDate : h.ReportedAt),
-                    Description = string.IsNullOrWhiteSpace(h.Description) ? "Training entry" : h.Description,
+                    Description = string.IsNullOrWhiteSpace(h.Description) ? L.T("Coordinator.PlacementDetails.TrainingEntry") : h.Description,
                     Hours = h.Hours.ToString(CultureInfo.InvariantCulture),
                     Status = h.Status.ToString()
                 }).ToList();
@@ -92,13 +92,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             EvaluationRepository finalEvaluations = new EvaluationRepository();
             FinalCompanyEvaluation company = finalEvaluations.GetCompanyFinalForPlacement(placement.Id);
             FinalAcademicEvaluation academicFinal = finalEvaluations.GetAcademicFinalForPlacement(placement.Id);
-            litCompanyEvaluation.Text = company != null && company.IsSubmitted ? "Submitted" : "Pending";
-            litAcademicEvaluation.Text = academicFinal != null && academicFinal.IsSubmitted ? "Submitted" : "Pending";
+            litCompanyEvaluation.Text = company != null && company.IsSubmitted ? "Submitted" : L.T("Coordinator.PlacementDetails.Pending");
+            litAcademicEvaluation.Text = academicFinal != null && academicFinal.IsSubmitted ? "Submitted" : L.T("Coordinator.PlacementDetails.Pending");
             CompletionRecord completion = new CompletionRepository().GetByPlacement(placement.Id);
-            litCompletion.Text = completion == null ? "Not reviewed" :
-                completion.Status == CompletionStatus.Approved ? "Approved - Pass" :
+            litCompletion.Text = completion == null ? L.T("Coordinator.PlacementDetails.NotReviewed") :
+                completion.Status == CompletionStatus.Approved ? L.T("Coordinator.PlacementDetails.ApprovedPass") :
                 completion.Status == CompletionStatus.Rejected ?
-                    (completion.Result == "Fail" ? "Reviewed - Fail" : "Rejected") : "Awaiting review";
+                    (completion.Result == "Fail" ? L.T("Coordinator.PlacementDetails.ReviewedFail") : L.T("Coordinator.PlacementDetails.Rejected")) : L.T("Coordinator.PlacementDetails.AwaitingReview");
         }
 
         private static TaskRow BuildTaskRow(InternshipTask task, List<Submission> submissions,
@@ -112,18 +112,18 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                           lastAttempt != null && latest.EvaluatedAt >= lastAttempt.SubmittedAt;
             return new TaskRow
             {
-                Title = string.IsNullOrWhiteSpace(task.Title) ? "Untitled task" : task.Title,
+                Title = string.IsNullOrWhiteSpace(task.Title) ? L.T("Coordinator.PlacementDetails.UntitledTask") : task.Title,
                 Deadline = Time.DisplayDate(task.Deadline),
                 Status = latest != null && latest.RevisionRequested &&
                          (lastAttempt == null || latest.EvaluatedAt >= lastAttempt.SubmittedAt)
-                    ? "Revision requested" : graded ? "Graded" : task.Status.ToString(),
+                    ? L.T("Coordinator.PlacementDetails.RevisionRequested") : graded ? "Graded" : task.Status.ToString(),
                 Attempts = attempts.Count.ToString(CultureInfo.InvariantCulture),
                 Grade = graded ? latest.TotalScore.ToString("0.##", CultureInfo.InvariantCulture) + " / " +
                     latest.MaxScore.ToString("0.##", CultureInfo.InvariantCulture) : "—",
-                Feedback = latest == null ? "No feedback yet" :
+                Feedback = latest == null ? L.T("Coordinator.PlacementDetails.NoFeedbackYet") :
                     latest.RevisionRequested ? First(latest.RevisionInstructions,
-                        First(latest.Feedback, "Revision requested")) :
-                    First(latest.Feedback, "No written feedback"),
+                        First(latest.Feedback, L.T("Coordinator.PlacementDetails.RevisionRequested"))) :
+                    First(latest.Feedback, L.T("Coordinator.PlacementDetails.NoWrittenFeedback")),
                 Graded = graded
             };
         }

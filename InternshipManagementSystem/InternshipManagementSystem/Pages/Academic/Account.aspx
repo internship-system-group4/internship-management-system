@@ -46,7 +46,7 @@
                 <asp:Literal ID="litProfileDept" runat="server" Text="<%$ Resources:Academic, Account.AcademicSupervisorPlaceholder %>" /> <%: L.T("Academic.Account.GermanJordanianUniversity") %>
             </div>
             <!-- Hidden upload button for backend handling if needed -->
-            <asp:Button ID="btnUploadPhoto" runat="server" Text="<%$ Resources:Academic, Account.Upload %>" CssClass="d-none" CausesValidation="false" formnovalidate="true" data-ui-action="upload" data-loading-label="Uploading…" data-ui-validation="none" />
+            <asp:Button ID="btnUploadPhoto" runat="server" Text="<%$ Resources:Academic, Account.Upload %>" CssClass="d-none" CausesValidation="false" formnovalidate="true" data-ui-action="upload" data-loading-label="<%$ Resources:Shared, I18n.Uploading %>" data-ui-validation="none" />
         </div>
     </div>
 
@@ -119,7 +119,7 @@
     </div>
 
     <div class="text-end mb-4">
-        <asp:Button ID="btnSaveChanges" runat="server" Text="<%$ Resources:Academic, Account.SaveChanges %>" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true" data-ui-action="save" data-loading-label="Saving…" data-ui-validation="none" />
+        <asp:Button ID="btnSaveChanges" runat="server" Text="<%$ Resources:Academic, Account.SaveChanges %>" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true" data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>" data-ui-validation="none" />
     </div>
 
     <!-- Change Password Modal -->
@@ -142,7 +142,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><%: L.T("Academic.Account.Cancel") %></button>
-                    <asp:Button ID="btnSavePassword" runat="server" Text="<%$ Resources:Academic, Account.UpdatePassword %>" CssClass="btn btn-brand" OnClick="btnSavePassword_Click" CausesValidation="false" formnovalidate="true" data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none" />
+                    <asp:Button ID="btnSavePassword" runat="server" Text="<%$ Resources:Academic, Account.UpdatePassword %>" CssClass="btn btn-brand" OnClick="btnSavePassword_Click" CausesValidation="false" formnovalidate="true" data-ui-action="update" data-loading-label="<%$ Resources:Shared, I18n.Updating %>" data-ui-validation="none" />
                 </div>
             </div>
         </div>

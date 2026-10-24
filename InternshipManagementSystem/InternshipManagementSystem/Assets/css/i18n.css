@@ -52,3 +52,6 @@ body.uims-public .uims-public-nav .public-theme-desktop { position:static; displ
 [dir="rtl"] :is(.ws-journey-marker,.ws-journey-connector,.ws-reference .ra-range-marker,.uims-public-nav .uims-public-nav-highlight) { inset-inline-start:auto; inset-inline-end:auto; left:0; }
 /* Directional arrows point the reading direction; icons such as checks, clocks and logos are never mirrored. */
 [dir="rtl"] :is(.ws-row-arrow,[data-dir-icon],.ui-chevron,.bi-arrow-right,.bi-chevron-right,.bi-arrow-left,.bi-chevron-left,.bi-box-arrow-right,.bi-arrow-right-short) { transform:scaleX(-1); display:inline-block; }
+
+/* Standalone Journey shares the full-bleed scene with Home. */
+html[dir="rtl"] body.uims-public .uims-main > .jisr { margin-inline:calc(50% - 50vw); }

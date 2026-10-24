@@ -19,7 +19,89 @@
   <data name="Coordinator.CoordinatorPortal" xml:space="preserve"><value>بوابة منسّق التدريب</value></data>
   <data name="Coordinator.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
   <data name="Coordinator.OpenNavigation" xml:space="preserve"><value>فتح قائمة التنقّل</value></data>
+  <data name="Grades.AcademicGrade" xml:space="preserve"><value>العلامة الأكاديمية</value></data>
+  <data name="Grades.AllResults" xml:space="preserve"><value>جميع النتائج</value></data>
+  <data name="Grades.ApplyFilters" xml:space="preserve"><value>تطبيق عوامل التصفية</value></data>
+  <data name="Grades.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
+  <data name="Grades.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="Grades.CompanyGrade" xml:space="preserve"><value>علامة الشركة</value></data>
+  <data name="Grades.ConfidentialSupervisorAndCoordinatorAccess" xml:space="preserve"><value>سري · متاح للمشرفين والمنسق</value></data>
+  <data name="Grades.ExportToExcelXlsx" xml:space="preserve"><value>تصدير إلى Excel (.xlsx)</value></data>
+  <data name="Grades.Fail" xml:space="preserve"><value>راسب</value></data>
+  <data name="Grades.FilterGradesAndResults" xml:space="preserve"><value>تصفية العلامات والنتائج</value></data>
+  <data name="Grades.FinalGrade" xml:space="preserve"><value>العلامة النهائية</value></data>
+  <data name="Grades.GradesAndResultsTable" xml:space="preserve"><value>جدول العلامات والنتائج</value></data>
+  <data name="Grades.GradesForTheSelectedInternshipsPending" xml:space="preserve"><value>علامات التدريبات المحددة. تعني «قيد الانتظار» أن العلامة أو النتيجة المعتمدة غير متاحة.</value></data>
+  <data name="Grades.GradesResults" xml:space="preserve"><value>العلامات والنتائج</value></data>
+  <data name="Grades.NameStudentNumberOrCompany" xml:space="preserve"><value>الاسم أو الرقم الجامعي أو الشركة</value></data>
+  <data name="Grades.NoResultsToDisplay" xml:space="preserve"><value>لا توجد نتائج للعرض</value></data>
+  <data name="Grades.Pass" xml:space="preserve"><value>ناجح</value></data>
+  <data name="Grades.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Grades.PendingGradesAreNeverTreatedAs" xml:space="preserve"><value>لا تُعامل العلامات المعلقة كصفر. تظهر العلامات النهائية ونتائج النجاح أو الرسوب بعد موافقة المنسق، وفق سجل الإتمام المحفوظ. يتضمن ملف Excel الاختيار نفسه والعلامات الرقمية وملاحظات التصدير.</value></data>
+  <data name="Grades.Reset" xml:space="preserve"><value>إعادة ضبط</value></data>
+  <data name="Grades.Result" xml:space="preserve"><value>النتيجة</value></data>
+  <data name="Grades.ReviewInternshipGradesAndDownloadThe" xml:space="preserve"><value>راجع علامات التدريب ونزّل النتائج المحددة في ملف Excel.</value></data>
+  <data name="Grades.ReviewStatus" xml:space="preserve"><value>حالة المراجعة</value></data>
+  <data name="Grades.SearchStudentsOrCompanies" xml:space="preserve"><value>البحث عن الطلاب أو الشركات</value></data>
+  <data name="Grades.Student" xml:space="preserve"><value>الطالب</value></data>
+  <data name="Grades.StudentResults" xml:space="preserve"><value>نتائج الطلاب</value></data>
+  <data name="Grades.Tasks" xml:space="preserve"><value>المهام</value></data>
+  <data name="Grades.TasksGraded" xml:space="preserve"><value>المهام المقيّمة</value></data>
+  <data name="Grades.ThereAreNoAssignedInternshipsMatching" xml:space="preserve"><value>لا توجد تدريبات مسندة تطابق اختيارك. جرّب إعادة ضبط عوامل التصفية.</value></data>
+  <data name="I18n.Accepting" xml:space="preserve"><value>جارٍ القبول…</value></data>
+  <data name="I18n.Approvecompletionandreleasethestudentreport" xml:space="preserve"><value>هل تريد اعتماد إتمام التدريب وإتاحة تقرير الطالب؟ لا يمكن تعديل هذا القرار لاحقًا.</value></data>
+  <data name="I18n.Areyousureyouwanttosubmit" xml:space="preserve"><value>هل تريد إرسال هذا التقييم؟ لا يمكن تغييره لاحقًا.</value></data>
+  <data name="I18n.Changingpassword" xml:space="preserve"><value>جارٍ تغيير كلمة المرور…</value></data>
+  <data name="I18n.Closing" xml:space="preserve"><value>جارٍ التنفيذ…</value></data>
+  <data name="I18n.Confirming" xml:space="preserve"><value>جارٍ التنفيذ…</value></data>
+  <data name="I18n.Creating" xml:space="preserve"><value>جارٍ الإنشاء…</value></data>
+  <data name="I18n.Deleting" xml:space="preserve"><value>جارٍ الحذف…</value></data>
+  <data name="I18n.Publishing" xml:space="preserve"><value>جارٍ التنفيذ…</value></data>
+  <data name="I18n.RejectcompletionwiththedocumentedreasonThis" xml:space="preserve"><value>هل تريد رفض إتمام التدريب وفق السبب الموثق؟ لا يمكن تعديل هذا القرار لاحقًا.</value></data>
+  <data name="I18n.Saving" xml:space="preserve"><value>جارٍ الحفظ…</value></data>
+  <data name="I18n.Saving2" xml:space="preserve"><value>جارٍ الحفظ…</value></data>
+  <data name="I18n.SubmitthisconfidentialfinalevaluationSubmittedevaluations" xml:space="preserve"><value>هل تريد إرسال هذا التقييم النهائي السري؟ لا يمكن تعديل التقييمات المرسلة.</value></data>
+  <data name="I18n.Submitting" xml:space="preserve"><value>جارٍ الإرسال…</value></data>
+  <data name="I18n.Synchronizing" xml:space="preserve"><value>جارٍ التنفيذ…</value></data>
+  <data name="I18n.Updating" xml:space="preserve"><value>جارٍ التحديث…</value></data>
+  <data name="I18n.Updating2" xml:space="preserve"><value>جارٍ التحديث…</value></data>
+  <data name="I18n.Uploading" xml:space="preserve"><value>جارٍ الرفع…</value></data>
   <data name="Js.ApprovedTrainingHours" xml:space="preserve"><value>ساعات التدريب المعتمدة</value></data>
+  <data name="Js.ArabicAcceptmeeting" xml:space="preserve"><value>قبول الاجتماع</value></data>
+  <data name="Js.ArabicAcceptthismeeting" xml:space="preserve"><value>هل تريد قبول هذا الاجتماع؟</value></data>
+  <data name="Js.ArabicCancelmeeting" xml:space="preserve"><value>إلغاء الاجتماع</value></data>
+  <data name="Js.ArabicCancelthismeeting" xml:space="preserve"><value>هل تريد إلغاء هذا الاجتماع؟</value></data>
+  <data name="Js.ArabicConfirmthatthemeetingactuallytookplaceand" xml:space="preserve"><value>أكد أن الاجتماع انعقد وانتهى بالفعل. هذا تسجيل يدوي للإتمام.</value></data>
+  <data name="Js.ArabicCouldnotloadtheroomTryagainor" xml:space="preserve"><value>تعذر تحميل الغرفة. حاول مجددًا أو افتحها في نافذة مستقلة عند الحاجة.</value></data>
+  <data name="Js.ArabicDeclinerequest" xml:space="preserve"><value>رفض الطلب</value></data>
+  <data name="Js.ArabicDeclinethisrequest" xml:space="preserve"><value>هل تريد رفض هذا الطلب؟</value></data>
+  <data name="Js.ArabicFollowthejoininginstructionsbelowThepersonstarting" xml:space="preserve"><value>اتبع تعليمات الانضمام أدناه. قد يحتاج الشخص الذي يبدأ الغرفة إلى تسجيل الدخول.</value></data>
+  <data name="Js.ArabicLoadthelatestrequestsresponsesandjoinavailability" xml:space="preserve"><value>تحميل أحدث الطلبات والردود وإتاحة الانضمام.</value></data>
+  <data name="Js.ArabicMarkcompleted" xml:space="preserve"><value>تحديد كمكتمل</value></data>
+  <data name="Js.ArabicMarkmeetingcompleted" xml:space="preserve"><value>هل تريد تحديد الاجتماع كمكتمل؟</value></data>
+  <data name="Js.ArabicMeetingserviceunavailable" xml:space="preserve"><value>خدمة الاجتماعات غير متاحة</value></data>
+  <data name="Js.ArabicNoadditionalinstructions" xml:space="preserve"><value>لا توجد تعليمات إضافية.</value></data>
+  <data name="Js.ArabicNodescriptionprovided" xml:space="preserve"><value>لم يُقدم وصف.</value></data>
+  <data name="Js.ArabicNotevaluated" xml:space="preserve"><value>لم يُقيّم</value></data>
+  <data name="Js.ArabicNotprovided" xml:space="preserve"><value>غير متوفر</value></data>
+  <data name="Js.ArabicNotset" xml:space="preserve"><value>غير محدد</value></data>
+  <data name="Js.ArabicNotsubmitted" xml:space="preserve"><value>لم يُسلّم</value></data>
+  <data name="Js.ArabicOpentaskattachment" xml:space="preserve"><value>فتح مرفق المهمة</value></data>
+  <data name="Js.ArabicPasswordmustcontain8to128characters" xml:space="preserve"><value>يجب أن تحتوي كلمة المرور على 8 إلى 128 محرفًا.</value></data>
+  <data name="Js.ArabicPreparingthemeeting" xml:space="preserve"><value>جارٍ تجهيز الاجتماع…</value></data>
+  <data name="Js.ArabicRefreshlist" xml:space="preserve"><value>تحديث القائمة</value></data>
+  <data name="Js.ArabicRefreshthelist" xml:space="preserve"><value>هل تريد تحديث القائمة؟</value></data>
+  <data name="Js.ArabicSendrequest" xml:space="preserve"><value>إرسال الطلب</value></data>
+  <data name="Js.ArabicSendthisrequest" xml:space="preserve"><value>هل تريد إرسال هذا الطلب؟</value></data>
+  <data name="Js.ArabicShowing0tasks" xml:space="preserve"><value>عرض 0 مهمة</value></data>
+  <data name="Js.ArabicTaskdetails" xml:space="preserve"><value>تفاصيل المهمة</value></data>
+  <data name="Js.ArabicTheinvitedpersonwillreceiveyourrequestIt" xml:space="preserve"><value>سيصل طلبك إلى الشخص المدعو ويبقى معلقًا حتى يوافق عليه.</value></data>
+  <data name="Js.ArabicThemeetingwillbecancelledforbothpeople" xml:space="preserve"><value>سيُلغى الاجتماع للطرفين ويُحتفظ به في السجل.</value></data>
+  <data name="Js.ArabicTherequesterwillseeyouracceptanceJoinbecomes" xml:space="preserve"><value>سيظهر قبولك لصاحب الطلب، ويتاح الانضمام خلال فترة الانضمام المحددة.</value></data>
+  <data name="Js.ArabicTherequestwillmovetoyourhistoryand" xml:space="preserve"><value>سينتقل الطلب إلى السجل وسيظهر ردك لصاحب الطلب.</value></data>
+  <data name="Js.ArabicThetaskwassuccessfullyassignedtothetrainee" xml:space="preserve"><value>تم إسناد المهمة إلى المتدرب بنجاح.</value></data>
+  <data name="Js.ArabicYouhavejoinedthemeeting" xml:space="preserve"><value>لقد انضممت إلى الاجتماع.</value></data>
+  <data name="Js.Arabicpoints" xml:space="preserve"><value> علامة</value></data>
   <data name="Js.ChartCoordinatorNote" xml:space="preserve"><value>اعتمادات صريحة في السجلات المحفوظة حاليًا.</value></data>
   <data name="Js.ChartCurrentSnapshot" xml:space="preserve"><value>الوضع الحالي · {0} UTC</value></data>
   <data name="Js.ChartFailed" xml:space="preserve"><value>تعذّر عرض التحليلات. حدّث الصفحة لإعادة المحاولة، وما زالت السجلات الحالية متاحة أدناه.</value></data>
@@ -122,6 +204,9 @@
   <data name="Js.SoundOff" xml:space="preserve"><value>كتم الصوت</value></data>
   <data name="Js.SoundOn" xml:space="preserve"><value>تشغيل الصوت</value></data>
   <data name="Js.StoryStatus" xml:space="preserve"><value>الجامعة الألمانية الأردنية | مجسّم معماري</value></data>
+  <data name="Js.SubmissionsShowing" xml:space="preserve"><value>عرض {0} من أصل {1} تسليم</value></data>
+  <data name="Js.TasksCreatedMany" xml:space="preserve"><value>تم إنشاء {0} مهمة، واحدة لكل متدرب.</value></data>
+  <data name="Js.TasksShowingRange" xml:space="preserve"><value>عرض {0}–{1} من أصل {2} مهمة</value></data>
   <data name="Js.TeamMemberOf" xml:space="preserve"><value>العضو {0} من {1}</value></data>
   <data name="Js.ThemeDark" xml:space="preserve"><value>داكن</value></data>
   <data name="Js.ThemeLabel" xml:space="preserve"><value>سمة الألوان: {0}</value></data>
@@ -208,6 +293,9 @@
   <data name="Sidebar.Portal" xml:space="preserve"><value>البوابة</value></data>
   <data name="Sidebar.ReviewSubmissions" xml:space="preserve"><value>مراجعة التسليمات</value></data>
   <data name="Sidebar.StudentProgress" xml:space="preserve"><value>تقدّم الطلبة</value></data>
+  <data name="SimpleWorkspace.ClearSearch" xml:space="preserve"><value>مسح البحث</value></data>
+  <data name="SimpleWorkspace.MatchCount" xml:space="preserve"><value>عرض {0} من {1} سجل</value></data>
+  <data name="SimpleWorkspace.NoMatches" xml:space="preserve"><value>لا توجد سجلات مطابقة. جرّب بحثًا آخر أو امسح حقل البحث.</value></data>
   <data name="Student.CloseNavigationBackdrop" xml:space="preserve"><value>إغلاق خلفية التنقّل</value></data>
   <data name="Student.LogOut" xml:space="preserve"><value>تسجيل الخروج</value></data>
   <data name="Student.OpenNavigation" xml:space="preserve"><value>فتح قائمة التنقّل</value></data>
@@ -232,6 +320,7 @@
   <data name="Title.Pages.Company.ApplicantDocument" xml:space="preserve"><value>مستند المتقدّم</value></data>
   <data name="Title.Pages.Company.Applications" xml:space="preserve"><value>مراجعة الطلبات</value></data>
   <data name="Title.Pages.Company.Dashboard" xml:space="preserve"><value>لوحة تحكم الشركة</value></data>
+  <data name="Title.Pages.Company.EvaluationReport" xml:space="preserve"><value>تقرير تقييم الشركة</value></data>
   <data name="Title.Pages.Company.FinalEvaluation" xml:space="preserve"><value>التقييم النهائي</value></data>
   <data name="Title.Pages.Company.ManageOpportunities" xml:space="preserve"><value>إدارة فرص التدريب</value></data>
   <data name="Title.Pages.Company.Opportunities" xml:space="preserve"><value>إضافة فرصة تدريب</value></data>
@@ -255,10 +344,15 @@
   <data name="Title.Pages.Coordinator.Students" xml:space="preserve"><value>سجلات الطلبة</value></data>
   <data name="Title.Pages.Meetings.MyMeetings" xml:space="preserve"><value>اجتماعاتي</value></data>
   <data name="Title.Pages.Meetings.Schedule" xml:space="preserve"><value>الاجتماعات</value></data>
+  <data name="Title.Pages.Notifications.Inbox" xml:space="preserve"><value>الإشعارات</value></data>
+  <data name="Title.Pages.Public.404" xml:space="preserve"><value>الصفحة غير موجودة | نظام إدارة التدريب</value></data>
   <data name="Title.Pages.Public.About" xml:space="preserve"><value>من نحن | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
   <data name="Title.Pages.Public.AccessDenied" xml:space="preserve"><value>الوصول مرفوض | نظام إدارة التدريب</value></data>
   <data name="Title.Pages.Public.Contact" xml:space="preserve"><value>تواصل معنا | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Public.Journey" xml:space="preserve"><value>رحلة التدريب | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>الصفحة غير موجودة | UIMS</value></data>
   <data name="Title.Pages.Public.PoweredBy" xml:space="preserve"><value>تعرّف على الفريق | نظام إدارة التدريب – الجامعة الألمانية الأردنية</value></data>
+  <data name="Title.Pages.Reports.Grades" xml:space="preserve"><value>العلامات والنتائج</value></data>
   <data name="Title.Pages.Student.Apply" xml:space="preserve"><value>طلب التدريب</value></data>
   <data name="Title.Pages.Student.Dashboard" xml:space="preserve"><value>لوحة تحكم الطالب</value></data>
   <data name="Title.Pages.Student.MyApplications" xml:space="preserve"><value>طلباتي</value></data>
@@ -280,6 +374,45 @@
   <data name="Value.CompletionStatus.UnderCoordinatorReview" xml:space="preserve"><value>قيد مراجعة منسّق التدريب</value></data>
   <data name="Value.ContactMessageStatus.New" xml:space="preserve"><value>جديدة</value></data>
   <data name="Value.ContactMessageStatus.Reviewed" xml:space="preserve"><value>تمت مراجعتها</value></data>
+  <data name="Value.Directory.AppliedHumanities" xml:space="preserve"><value>العلوم الإنسانية التطبيقية</value></data>
+  <data name="Value.Directory.ArchitectureandInteriorArchitecture" xml:space="preserve"><value>العمارة والعمارة الداخلية</value></data>
+  <data name="Value.Directory.BasicEducation" xml:space="preserve"><value>التعليم الأساسي</value></data>
+  <data name="Value.Directory.BiomedicalEngineering" xml:space="preserve"><value>الهندسة الطبية الحيوية</value></data>
+  <data name="Value.Directory.BusinessSchool" xml:space="preserve"><value>كلية الأعمال</value></data>
+  <data name="Value.Directory.Caregroundedinscience" xml:space="preserve"><value>رعاية تستند إلى العلم.</value></data>
+  <data name="Value.Directory.CivilandEnvironmentalEngineering" xml:space="preserve"><value>الهندسة المدنية والبيئية</value></data>
+  <data name="Value.Directory.ComputerEngineering" xml:space="preserve"><value>هندسة الحاسوب</value></data>
+  <data name="Value.Directory.ComputerScience" xml:space="preserve"><value>علم الحاسوب</value></data>
+  <data name="Value.Directory.Departments" xml:space="preserve"><value>الأقسام</value></data>
+  <data name="Value.Directory.Designingthespaceswelivein" xml:space="preserve"><value>نصمم المساحات التي نعيش فيها.</value></data>
+  <data name="Value.Directory.DigitalMarketing" xml:space="preserve"><value>التسويق الرقمي</value></data>
+  <data name="Value.Directory.ElectricalandEnergyEngineering" xml:space="preserve"><value>الهندسة الكهربائية وهندسة الطاقة</value></data>
+  <data name="Value.Directory.Engineeringasustainabletomorrow" xml:space="preserve"><value>نبني بالغد هندسةً مستدامة.</value></data>
+  <data name="Value.Directory.Engineeringthatworksonthefactoryfloor" xml:space="preserve"><value>هندسة تُطبق في ميادين الصناعة.</value></data>
+  <data name="Value.Directory.Ideasthatgrowintoenterprises" xml:space="preserve"><value>أفكار تنمو لتصبح مشاريع.</value></data>
+  <data name="Value.Directory.IndustrialEngineering" xml:space="preserve"><value>الهندسة الصناعية</value></data>
+  <data name="Value.Directory.InternationalAccounting" xml:space="preserve"><value>المحاسبة الدولية</value></data>
+  <data name="Value.Directory.Languagespeopleandsociety" xml:space="preserve"><value>اللغات والإنسان والمجتمع.</value></data>
+  <data name="Value.Directory.LogisticsSciences" xml:space="preserve"><value>العلوم اللوجستية</value></data>
+  <data name="Value.Directory.MBA" xml:space="preserve"><value>ماجستير إدارة الأعمال</value></data>
+  <data name="Value.Directory.MScComputerEngineering" xml:space="preserve"><value>ماجستير هندسة الحاسوب</value></data>
+  <data name="Value.Directory.MScEnterpriseSoftwareEngineering" xml:space="preserve"><value>ماجستير هندسة برمجيات المؤسسات</value></data>
+  <data name="Value.Directory.MasterinLogisticsManagement" xml:space="preserve"><value>ماجستير الإدارة اللوجستية</value></data>
+  <data name="Value.Directory.MechanicalandMaintenanceEngineering" xml:space="preserve"><value>الهندسة الميكانيكية والصيانة</value></data>
+  <data name="Value.Directory.MechatronicsEngineering" xml:space="preserve"><value>هندسة الميكاترونكس</value></data>
+  <data name="Value.Directory.Nursing" xml:space="preserve"><value>التمريض</value></data>
+  <data name="Value.Directory.PharmaceuticalandChemicalEngineering" xml:space="preserve"><value>الهندسة الصيدلانية والكيميائية</value></data>
+  <data name="Value.Directory.Programmes" xml:space="preserve"><value>البرامج</value></data>
+  <data name="Value.Directory.SchoolofAppliedHumanitiesandSocialSciences" xml:space="preserve"><value>كلية العلوم الإنسانية والاجتماعية التطبيقية</value></data>
+  <data name="Value.Directory.SchoolofAppliedMedicalSciences" xml:space="preserve"><value>كلية العلوم الطبية التطبيقية</value></data>
+  <data name="Value.Directory.SchoolofAppliedTechnicalSciences" xml:space="preserve"><value>كلية العلوم التقنية التطبيقية</value></data>
+  <data name="Value.Directory.SchoolofArchitectureandBuiltEnvironment" xml:space="preserve"><value>كلية العمارة والبيئة المبنية</value></data>
+  <data name="Value.Directory.SchoolofComputing" xml:space="preserve"><value>كلية الحوسبة</value></data>
+  <data name="Value.Directory.SchoolofNursing" xml:space="preserve"><value>كلية التمريض</value></data>
+  <data name="Value.Directory.SchoolofSustainableSystemsEngineering" xml:space="preserve"><value>كلية هندسة النظم المستدامة</value></data>
+  <data name="Value.Directory.Scienceintheserviceofhealth" xml:space="preserve"><value>العلم في خدمة الصحة.</value></data>
+  <data name="Value.Directory.SocialWork" xml:space="preserve"><value>العمل الاجتماعي</value></data>
+  <data name="Value.Directory.Whereideasbecometechnology" xml:space="preserve"><value>حيث تتحول الأفكار إلى تقنية.</value></data>
   <data name="Value.HoursStatus.Approved" xml:space="preserve"><value>معتمدة</value></data>
   <data name="Value.HoursStatus.Rejected" xml:space="preserve"><value>مرفوضة</value></data>
   <data name="Value.HoursStatus.Reported" xml:space="preserve"><value>مُبلَّغ عنها</value></data>
@@ -305,6 +438,117 @@
   <data name="Value.TrainingMode.Hybrid" xml:space="preserve"><value>مدمج</value></data>
   <data name="Value.TrainingMode.Onsite" xml:space="preserve"><value>حضوري</value></data>
   <data name="Value.TrainingMode.Remote" xml:space="preserve"><value>عن بُعد</value></data>
+  <data name="Value.Ui.15minutes" xml:space="preserve"><value>15 دقيقة</value></data>
+  <data name="Value.Ui.30minutes" xml:space="preserve"><value>30 دقيقة</value></data>
+  <data name="Value.Ui.45minutes" xml:space="preserve"><value>45 دقيقة</value></data>
+  <data name="Value.Ui.60minutes" xml:space="preserve"><value>60 دقيقة</value></data>
+  <data name="Value.Ui.Accepted" xml:space="preserve"><value>مقبول</value></data>
+  <data name="Value.Ui.Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="Value.Ui.Alldepartments" xml:space="preserve"><value>جميع الأقسام</value></data>
+  <data name="Value.Ui.Allmymeetingsandrequests" xml:space="preserve"><value>جميع اجتماعاتي وطلباتي</value></data>
+  <data name="Value.Ui.Allstatuses" xml:space="preserve"><value>جميع الحالات</value></data>
+  <data name="Value.Ui.Alltaskstatuses" xml:space="preserve"><value>جميع حالات المهام</value></data>
+  <data name="Value.Ui.Alltrainees" xml:space="preserve"><value>جميع المتدربين</value></data>
+  <data name="Value.Ui.AppliedHumanities" xml:space="preserve"><value>العلوم الإنسانية التطبيقية</value></data>
+  <data name="Value.Ui.Approved" xml:space="preserve"><value>معتمد</value></data>
+  <data name="Value.Ui.ArchitectureandInteriorArchitecture" xml:space="preserve"><value>العمارة والعمارة الداخلية</value></data>
+  <data name="Value.Ui.Assigned" xml:space="preserve"><value>مسندة</value></data>
+  <data name="Value.Ui.AwaitingEvaluations" xml:space="preserve"><value>بانتظار التقييمات</value></data>
+  <data name="Value.Ui.Awaitingacademicevaluation" xml:space="preserve"><value>بانتظار التقييم الأكاديمي</value></data>
+  <data name="Value.Ui.Awaitingcompanyevaluation" xml:space="preserve"><value>بانتظار تقييم الشركة</value></data>
+  <data name="Value.Ui.Awaitingcompletion" xml:space="preserve"><value>بانتظار الإتمام</value></data>
+  <data name="Value.Ui.Awaitingreview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
+  <data name="Value.Ui.BasicEducation" xml:space="preserve"><value>التعليم الأساسي</value></data>
+  <data name="Value.Ui.BiomedicalEngineering" xml:space="preserve"><value>الهندسة الطبية الحيوية</value></data>
+  <data name="Value.Ui.BusinessSchool" xml:space="preserve"><value>كلية الأعمال</value></data>
+  <data name="Value.Ui.Cancelled" xml:space="preserve"><value>ملغى</value></data>
+  <data name="Value.Ui.Caregroundedinscience" xml:space="preserve"><value>رعاية تستند إلى العلم.</value></data>
+  <data name="Value.Ui.CivilandEnvironmentalEngineering" xml:space="preserve"><value>الهندسة المدنية والبيئية</value></data>
+  <data name="Value.Ui.Closed" xml:space="preserve"><value>مغلقة</value></data>
+  <data name="Value.Ui.Completed" xml:space="preserve"><value>مكتمل</value></data>
+  <data name="Value.Ui.ComputerEngineering" xml:space="preserve"><value>هندسة الحاسوب</value></data>
+  <data name="Value.Ui.ComputerScience" xml:space="preserve"><value>علم الحاسوب</value></data>
+  <data name="Value.Ui.Confirmed" xml:space="preserve"><value>مؤكَّد</value></data>
+  <data name="Value.Ui.ContinueDraft" xml:space="preserve"><value>متابعة المسودة</value></data>
+  <data name="Value.Ui.Continuereview" xml:space="preserve"><value>متابعة المراجعة</value></data>
+  <data name="Value.Ui.Declined" xml:space="preserve"><value>مرفوض</value></data>
+  <data name="Value.Ui.Departments" xml:space="preserve"><value>الأقسام</value></data>
+  <data name="Value.Ui.Designingthespaceswelivein" xml:space="preserve"><value>نصمم المساحات التي نعيش فيها.</value></data>
+  <data name="Value.Ui.Details" xml:space="preserve"><value>التفاصيل</value></data>
+  <data name="Value.Ui.DigitalMarketing" xml:space="preserve"><value>التسويق الرقمي</value></data>
+  <data name="Value.Ui.Draft" xml:space="preserve"><value>مسودة</value></data>
+  <data name="Value.Ui.ElectricalandEnergyEngineering" xml:space="preserve"><value>الهندسة الكهربائية وهندسة الطاقة</value></data>
+  <data name="Value.Ui.Engineeringasustainabletomorrow" xml:space="preserve"><value>نبني بالغد هندسةً مستدامة.</value></data>
+  <data name="Value.Ui.Engineeringthatworksonthefactoryfloor" xml:space="preserve"><value>هندسة تُطبق في ميادين الصناعة.</value></data>
+  <data name="Value.Ui.Expired" xml:space="preserve"><value>منتهي</value></data>
+  <data name="Value.Ui.Expiredwithoutapproval" xml:space="preserve"><value>انتهى دون موافقة</value></data>
+  <data name="Value.Ui.Graded" xml:space="preserve"><value>مُقيَّمة</value></data>
+  <data name="Value.Ui.Hybrid" xml:space="preserve"><value>مدمج</value></data>
+  <data name="Value.Ui.Ideasthatgrowintoenterprises" xml:space="preserve"><value>أفكار تنمو لتصبح مشاريع.</value></data>
+  <data name="Value.Ui.Inactive" xml:space="preserve"><value>غير نشط</value></data>
+  <data name="Value.Ui.IndustrialEngineering" xml:space="preserve"><value>الهندسة الصناعية</value></data>
+  <data name="Value.Ui.Inprogress" xml:space="preserve"><value>قيد التنفيذ</value></data>
+  <data name="Value.Ui.InternationalAccounting" xml:space="preserve"><value>المحاسبة الدولية</value></data>
+  <data name="Value.Ui.Internship" xml:space="preserve"><value>تدريب عملي</value></data>
+  <data name="Value.Ui.Languagespeopleandsociety" xml:space="preserve"><value>اللغات والإنسان والمجتمع.</value></data>
+  <data name="Value.Ui.Legacymeeting" xml:space="preserve"><value>اجتماع بالنظام السابق</value></data>
+  <data name="Value.Ui.LogisticsSciences" xml:space="preserve"><value>العلوم اللوجستية</value></data>
+  <data name="Value.Ui.MBA" xml:space="preserve"><value>ماجستير إدارة الأعمال</value></data>
+  <data name="Value.Ui.MScComputerEngineering" xml:space="preserve"><value>ماجستير هندسة الحاسوب</value></data>
+  <data name="Value.Ui.MScEnterpriseSoftwareEngineering" xml:space="preserve"><value>ماجستير هندسة برمجيات المؤسسات</value></data>
+  <data name="Value.Ui.MasterinLogisticsManagement" xml:space="preserve"><value>ماجستير الإدارة اللوجستية</value></data>
+  <data name="Value.Ui.MechanicalandMaintenanceEngineering" xml:space="preserve"><value>الهندسة الميكانيكية والصيانة</value></data>
+  <data name="Value.Ui.MechatronicsEngineering" xml:space="preserve"><value>هندسة الميكاترونكس</value></data>
+  <data name="Value.Ui.Meetinghistory" xml:space="preserve"><value>سجل الاجتماعات</value></data>
+  <data name="Value.Ui.NeedsCorrections" xml:space="preserve"><value>تحتاج إلى تصحيح</value></data>
+  <data name="Value.Ui.New" xml:space="preserve"><value>جديدة</value></data>
+  <data name="Value.Ui.Notready" xml:space="preserve"><value>غير جاهز</value></data>
+  <data name="Value.Ui.Notsubmitted" xml:space="preserve"><value>لم يُسلّم</value></data>
+  <data name="Value.Ui.Nursing" xml:space="preserve"><value>التمريض</value></data>
+  <data name="Value.Ui.Offered" xml:space="preserve"><value>معروض</value></data>
+  <data name="Value.Ui.Onsite" xml:space="preserve"><value>حضوري</value></data>
+  <data name="Value.Ui.Open" xml:space="preserve"><value>مفتوحة</value></data>
+  <data name="Value.Ui.Pastcompletionnotrecorded" xml:space="preserve"><value>انتهى موعده - لم يُسجل الإتمام</value></data>
+  <data name="Value.Ui.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Value.Ui.Pendingapproval" xml:space="preserve"><value>بانتظار الموافقة</value></data>
+  <data name="Value.Ui.Pendingreview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
+  <data name="Value.Ui.PharmaceuticalandChemicalEngineering" xml:space="preserve"><value>الهندسة الصيدلانية والكيميائية</value></data>
+  <data name="Value.Ui.Programmes" xml:space="preserve"><value>البرامج</value></data>
+  <data name="Value.Ui.ReadyforReview" xml:space="preserve"><value>جاهز للمراجعة</value></data>
+  <data name="Value.Ui.Rejected" xml:space="preserve"><value>مرفوض</value></data>
+  <data name="Value.Ui.Remote" xml:space="preserve"><value>عن بُعد</value></data>
+  <data name="Value.Ui.Reported" xml:space="preserve"><value>مُبلَّغ عنها</value></data>
+  <data name="Value.Ui.RequestsIsentpending" xml:space="preserve"><value>طلباتي المرسلة - معلقة</value></data>
+  <data name="Value.Ui.Resubmit" xml:space="preserve"><value>إعادة التسليم</value></data>
+  <data name="Value.Ui.Resubmitted" xml:space="preserve"><value>أعيد التسليم</value></data>
+  <data name="Value.Ui.Returned" xml:space="preserve"><value>مُعاد</value></data>
+  <data name="Value.Ui.Reviewed" xml:space="preserve"><value>تمت المراجعة</value></data>
+  <data name="Value.Ui.Reviewsubmission" xml:space="preserve"><value>مراجعة التسليم</value></data>
+  <data name="Value.Ui.Revisionneeded" xml:space="preserve"><value>تحتاج إلى تعديل</value></data>
+  <data name="Value.Ui.Revisionrequested" xml:space="preserve"><value>طُلب تعديل</value></data>
+  <data name="Value.Ui.Scheduled" xml:space="preserve"><value>مجدول</value></data>
+  <data name="Value.Ui.SchoolofAppliedHumanitiesandSocialSciences" xml:space="preserve"><value>كلية العلوم الإنسانية والاجتماعية التطبيقية</value></data>
+  <data name="Value.Ui.SchoolofAppliedMedicalSciences" xml:space="preserve"><value>كلية العلوم الطبية التطبيقية</value></data>
+  <data name="Value.Ui.SchoolofAppliedTechnicalSciences" xml:space="preserve"><value>كلية العلوم التقنية التطبيقية</value></data>
+  <data name="Value.Ui.SchoolofArchitectureandBuiltEnvironment" xml:space="preserve"><value>كلية العمارة والبيئة المبنية</value></data>
+  <data name="Value.Ui.SchoolofComputing" xml:space="preserve"><value>كلية الحوسبة</value></data>
+  <data name="Value.Ui.SchoolofNursing" xml:space="preserve"><value>كلية التمريض</value></data>
+  <data name="Value.Ui.SchoolofSustainableSystemsEngineering" xml:space="preserve"><value>كلية هندسة النظم المستدامة</value></data>
+  <data name="Value.Ui.Scienceintheserviceofhealth" xml:space="preserve"><value>العلم في خدمة الصحة.</value></data>
+  <data name="Value.Ui.SocialWork" xml:space="preserve"><value>العمل الاجتماعي</value></data>
+  <data name="Value.Ui.Submit" xml:space="preserve"><value>تسليم</value></data>
+  <data name="Value.Ui.Submitted" xml:space="preserve"><value>تم التسليم</value></data>
+  <data name="Value.Ui.Unavailable" xml:space="preserve"><value>غير متاح</value></data>
+  <data name="Value.Ui.Undercoordinatorreview" xml:space="preserve"><value>قيد مراجعة منسّق التدريب</value></data>
+  <data name="Value.Ui.Underreview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="Value.Ui.Upcoming" xml:space="preserve"><value>قادم</value></data>
+  <data name="Value.Ui.Viewattempt" xml:space="preserve"><value>عرض المحاولة</value></data>
+  <data name="Value.Ui.Viewevaluation" xml:space="preserve"><value>عرض التقييم</value></data>
+  <data name="Value.Ui.Viewrevisionrequest" xml:space="preserve"><value>عرض طلب التعديل</value></data>
+  <data name="Value.Ui.Waitingformyapproval" xml:space="preserve"><value>بانتظار موافقتي</value></data>
+  <data name="Value.Ui.Waitingforresponse" xml:space="preserve"><value>بانتظار الرد</value></data>
+  <data name="Value.Ui.Whereideasbecometechnology" xml:space="preserve"><value>حيث تتحول الأفكار إلى تقنية.</value></data>
+  <data name="Value.Ui.Withdrawn" xml:space="preserve"><value>مسحوب</value></data>
   <data name="WorkspaceChart.12Months" xml:space="preserve"><value>12 شهرًا</value></data>
   <data name="WorkspaceChart.6Months" xml:space="preserve"><value>6 أشهر</value></data>
   <data name="WorkspaceChart.ActivityDataAndRecordDetails" xml:space="preserve"><value>بيانات النشاط وتفاصيل السجلات</value></data>
@@ -340,8 +584,4 @@
   <data name="WorkspaceJourney.JourneyDetails" xml:space="preserve"><value>تفاصيل المسار</value></data>
   <data name="WorkspaceJourney.SelectAStageForDetails" xml:space="preserve"><value>اختر مرحلة لعرض تفاصيلها</value></data>
   <data name="WorkspaceJourney.SwipeThroughStagesSelectOneTo" xml:space="preserve"><value>تنقّل بين المراحل، واختر إحداها لعرض تفاصيلها.</value></data>
-  <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>الصفحة غير موجودة | UIMS</value></data>
-  <data name="SimpleWorkspace.ClearSearch" xml:space="preserve"><value>مسح البحث</value></data>
-  <data name="SimpleWorkspace.MatchCount" xml:space="preserve"><value>عرض {0} من {1} سجل</value></data>
-  <data name="SimpleWorkspace.NoMatches" xml:space="preserve"><value>لا توجد سجلات مطابقة. جرّب بحثًا آخر أو امسح حقل البحث.</value></data>
 </root>

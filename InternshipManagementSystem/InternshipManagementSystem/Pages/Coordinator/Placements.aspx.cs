@@ -37,8 +37,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                                 Contains(p.CompanyName, search) || Contains(p.OpportunityTitle, search))
                     .OrderBy(p => p.StudentName).Select(p => new PlacementRow
                     {
-                        Student = string.IsNullOrWhiteSpace(p.StudentName) ? "Unnamed student" : p.StudentName,
-                        Company = string.IsNullOrWhiteSpace(p.CompanyName) ? "Company not recorded" : p.CompanyName,
+                        Student = string.IsNullOrWhiteSpace(p.StudentName) ? L.T("Coordinator.Placements.UnnamedStudent") : p.StudentName,
+                        Company = string.IsNullOrWhiteSpace(p.CompanyName) ? L.T("Coordinator.Placements.CompanyNotRecorded") : p.CompanyName,
                         Opportunity = string.IsNullOrWhiteSpace(p.OpportunityTitle) ? "Internship" : p.OpportunityTitle,
                         Status = p.Status.ToString(),
                         Hours = p.ApprovedHours + " / " + p.RequiredHours,
@@ -48,13 +48,13 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 rptPlacements.DataSource = rows;
                 rptPlacements.DataBind();
                 pnlEmpty.Visible = rows.Count == 0;
-                litEmpty.Text = search.Length == 0 ? "No confirmed internships yet." :
-                    "No placements match your search.";
+                litEmpty.Text = search.Length == 0 ? L.T("Coordinator.Placements.NoConfirmedInternshipsYet") :
+                    L.T("Coordinator.Placements.NoPlacementsMatchYourSearch");
             }
             catch (FirebaseException)
             {
                 pnlEmpty.Visible = true;
-                litEmpty.Text = "Could not load placements. Please try again.";
+                litEmpty.Text = L.T("Coordinator.Placements.CouldNotLoadPlacementsPleaseTry");
             }
         }
 

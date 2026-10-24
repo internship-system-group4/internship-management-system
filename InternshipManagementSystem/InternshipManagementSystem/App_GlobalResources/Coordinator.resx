@@ -74,41 +74,103 @@
   <data name="AcademicSupervisors.ThisSupervisorCannotSignInRestore" xml:space="preserve"><value>This supervisor cannot sign in. Restore access when needed.</value></data>
   <data name="AcademicSupervisors.View" xml:space="preserve"><value>View</value></data>
   <data name="AcademicSupervisors.ViewRecords" xml:space="preserve"><value>View records</value></data>
+  <data name="Account.ACCOUNTSECURITY" xml:space="preserve"><value>ACCOUNT SECURITY</value></data>
   <data name="Account.AccountSettings" xml:space="preserve"><value>Account settings</value></data>
   <data name="Account.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Account.Cancel2" xml:space="preserve"><value>Cancel</value></data>
+  <data name="Account.Change" xml:space="preserve"><value>Change</value></data>
   <data name="Account.ChangePassword" xml:space="preserve"><value>Change password</value></data>
+  <data name="Account.ChangePassword2" xml:space="preserve"><value>Change Password</value></data>
   <data name="Account.ChangesDiscarded" xml:space="preserve"><value>Changes discarded.</value></data>
   <data name="Account.ChooseAPasswordDifferentFromThe" xml:space="preserve"><value>Choose a password different from the current one.</value></data>
+  <data name="Account.Close" xml:space="preserve"><value>Close</value></data>
   <data name="Account.College" xml:space="preserve"><value>College</value></data>
+  <data name="Account.CollegeHeading" xml:space="preserve"><value>COLLEGE</value></data>
   <data name="Account.CompleteAllPasswordFields" xml:space="preserve"><value>Complete all password fields.</value></data>
   <data name="Account.ConfirmNewPassword" xml:space="preserve"><value>Confirm new password *</value></data>
+  <data name="Account.ConfirmNewPassword2" xml:space="preserve"><value>Confirm New Password</value></data>
   <data name="Account.CouldNotChangePasswordPleaseTry" xml:space="preserve"><value>Could not change password. Please try again.</value></data>
   <data name="Account.CouldNotSaveProfilePleaseTry" xml:space="preserve"><value>Could not save profile. Please try again.</value></data>
   <data name="Account.CurrentPassword" xml:space="preserve"><value>Current password *</value></data>
+  <data name="Account.CurrentPassword2" xml:space="preserve"><value>Current Password</value></data>
   <data name="Account.CurrentPasswordIsIncorrectPleaseTry" xml:space="preserve"><value>Current password is incorrect. Please try again.</value></data>
+  <data name="Account.EMAILADDRESSREADONLY" xml:space="preserve"><value>EMAIL ADDRESS (READ-ONLY)</value></data>
+  <data name="Account.EditProfile" xml:space="preserve"><value>✎ Edit Profile</value></data>
+  <data name="Account.EditProfile2" xml:space="preserve"><value>Edit Profile</value></data>
   <data name="Account.EmailAddress" xml:space="preserve"><value>Email address</value></data>
   <data name="Account.EnterAValidFullName2" xml:space="preserve"><value>Enter a valid full name (2–100 characters).</value></data>
   <data name="Account.EnterAValidPhoneNumber" xml:space="preserve"><value>Enter a valid phone number.</value></data>
   <data name="Account.EnterPhoneNumber" xml:space="preserve"><value>Enter phone number</value></data>
   <data name="Account.EnterYourCurrentPasswordToSet" xml:space="preserve"><value>Enter your current password to set a new one.</value></data>
   <data name="Account.FullName" xml:space="preserve"><value>Full name *</value></data>
+  <data name="Account.FullName2" xml:space="preserve"><value>Full Name</value></data>
   <data name="Account.FullNameIsRequired" xml:space="preserve"><value>Full name is required.</value></data>
+  <data name="Account.KeepYourAccountSecureByUpdating" xml:space="preserve"><value>Keep your account secure by updating your password.</value></data>
+  <data name="Account.ManageYourPersonalProfileAndView" xml:space="preserve"><value>Manage your personal profile and view your system associations.</value></data>
   <data name="Account.ManageYourProfileInformationAndAccount" xml:space="preserve"><value>Manage your profile information and account security.</value></data>
+  <data name="Account.MyAccount" xml:space="preserve"><value>My Account</value></data>
+  <data name="Account.MyProfile" xml:space="preserve"><value>My Profile</value></data>
   <data name="Account.NewPassword" xml:space="preserve"><value>New password *</value></data>
+  <data name="Account.NewPassword2" xml:space="preserve"><value>New Password</value></data>
   <data name="Account.NewPasswordMustContain8128" xml:space="preserve"><value>New password must contain 8–128 characters.</value></data>
   <data name="Account.NewPasswordsDoNotMatch" xml:space="preserve"><value>New passwords do not match.</value></data>
+  <data name="Account.Password" xml:space="preserve"><value>Password</value></data>
   <data name="Account.PasswordUpdateFailed" xml:space="preserve"><value>Password update failed.</value></data>
   <data name="Account.PasswordUpdatedSuccessfully" xml:space="preserve"><value>Password updated successfully.</value></data>
   <data name="Account.PhoneNumber" xml:space="preserve"><value>Phone number</value></data>
+  <data name="Account.PhoneNumber2" xml:space="preserve"><value>Phone Number</value></data>
+  <data name="Account.PhoneNumberHeading" xml:space="preserve"><value>PHONE NUMBER</value></data>
   <data name="Account.ProfileInformation" xml:space="preserve"><value>Profile information</value></data>
   <data name="Account.ProfileUpdatedSuccessfully" xml:space="preserve"><value>Profile updated successfully.</value></data>
+  <data name="Account.STAFFIDREADONLY" xml:space="preserve"><value>STAFF ID (READ-ONLY)</value></data>
   <data name="Account.SaveChanges" xml:space="preserve"><value>Save changes</value></data>
   <data name="Account.StaffID" xml:space="preserve"><value>Staff ID</value></data>
+  <data name="Account.UNIVERSITYREADONLY" xml:space="preserve"><value>UNIVERSITY (READ-ONLY)</value></data>
   <data name="Account.University" xml:space="preserve"><value>University</value></data>
   <data name="Account.UniversityAndRoleInformationAreManaged" xml:space="preserve"><value>University and role information are managed by the system.</value></data>
+  <data name="Account.UniversityCoordinator" xml:space="preserve"><value>University Coordinator</value></data>
   <data name="Account.UpdatePassword" xml:space="preserve"><value>Update password</value></data>
   <data name="Account.UpdateYourNameAndContactInformation" xml:space="preserve"><value>Update your name and contact information.</value></data>
+  <data name="Account.UpdateYourPersonalInformationBelow" xml:space="preserve"><value>Update your personal information below.</value></data>
+  <data name="Account.Use8128Characters" xml:space="preserve"><value>Use 8–128 characters.</value></data>
   <data name="Account.UseAtLeast8Characters" xml:space="preserve"><value>Use at least 8 characters.</value></data>
+  <data name="AddStudent.AcademicInformation" xml:space="preserve"><value>Academic information</value></data>
+  <data name="AddStudent.AccountAccess" xml:space="preserve"><value>Account access</value></data>
+  <data name="AddStudent.AddStudent" xml:space="preserve"><value>Add student</value></data>
+  <data name="AddStudent.BackToRecords" xml:space="preserve"><value>Back to records</value></data>
+  <data name="AddStudent.College" xml:space="preserve"><value>College</value></data>
+  <data name="AddStudent.CompleteAllRequiredFields" xml:space="preserve"><value>Complete all required fields.</value></data>
+  <data name="AddStudent.ConfirmTemporaryPassword" xml:space="preserve"><value>Confirm temporary password</value></data>
+  <data name="AddStudent.CoordinatorStudents" xml:space="preserve"><value>Coordinator / Students</value></data>
+  <data name="AddStudent.CouldNotCreateTheAccount" xml:space="preserve"><value>Could not create the account.</value></data>
+  <data name="AddStudent.CreateAnAccountAndEnterThe" xml:space="preserve"><value>Create an account and enter the student's academic information.</value></data>
+  <data name="AddStudent.CreateStudent" xml:space="preserve"><value>Create student</value></data>
+  <data name="AddStudent.EnterAValidEmailAddress" xml:space="preserve"><value>Enter a valid email address.</value></data>
+  <data name="AddStudent.FirebaseIsNotConfiguredAskThe" xml:space="preserve"><value>Firebase is not configured. Ask the project administrator to check the local settings.</value></data>
+  <data name="AddStudent.FullName" xml:space="preserve"><value>Full name</value></data>
+  <data name="AddStudent.GeneratedAutomaticallyWhenTheAccountIs" xml:space="preserve"><value>Generated automatically when the account is created.</value></data>
+  <data name="AddStudent.LoginEmail" xml:space="preserve"><value>Login email</value></data>
+  <data name="AddStudent.Major" xml:space="preserve"><value>Major</value></data>
+  <data name="AddStudent.ManageStudents" xml:space="preserve"><value>Manage students</value></data>
+  <data name="AddStudent.OneOrMoreFieldsAreToo" xml:space="preserve"><value>One or more fields are too long.</value></data>
+  <data name="AddStudent.Optional" xml:space="preserve"><value>(optional)</value></data>
+  <data name="AddStudent.PersonalInformation" xml:space="preserve"><value>Personal information</value></data>
+  <data name="AddStudent.PhoneNumber" xml:space="preserve"><value>Phone number</value></data>
+  <data name="AddStudent.RequiredTrainingHours" xml:space="preserve"><value>Required training hours</value></data>
+  <data name="AddStudent.RequiredTrainingHoursMustBeA" xml:space="preserve"><value>Required training hours must be a positive whole number.</value></data>
+  <data name="AddStudent.SelectAMajor" xml:space="preserve"><value>Select a major</value></data>
+  <data name="AddStudent.ShareTheEmailAndTemporaryPassword" xml:space="preserve"><value>Share the email and temporary password privately. The student must change the password after signing in.</value></data>
+  <data name="AddStudent.StudentID" xml:space="preserve"><value>Student ID</value></data>
+  <data name="AddStudent.StudentPages" xml:space="preserve"><value>Student pages</value></data>
+  <data name="AddStudent.TemporaryPassword" xml:space="preserve"><value>Temporary password</value></data>
+  <data name="AddStudent.TheAccountWasCreatedButIts" xml:space="preserve"><value>The account was created but its profile could not be saved. Contact the administrator before retrying.</value></data>
+  <data name="AddStudent.ThePasswordsDoNotMatch" xml:space="preserve"><value>The passwords do not match.</value></data>
+  <data name="AddStudent.TheStudentCouldNotBeSaved" xml:space="preserve"><value>The student could not be saved. Please try again.</value></data>
+  <data name="AddStudent.TheTemporaryPasswordMustBeAt" xml:space="preserve"><value>The temporary password must be at least 6 characters.</value></data>
+  <data name="AddStudent.TheseDetailsAppearInTheStudent" xml:space="preserve"><value>These details appear in the student's record.</value></data>
+  <data name="AddStudent.University" xml:space="preserve"><value>University</value></data>
+  <data name="AddStudent.UseTheStudentSOfficialName" xml:space="preserve"><value>Use the student's official name and login email.</value></data>
+  <data name="AddStudent.ViewRecords" xml:space="preserve"><value>View records</value></data>
   <data name="Companies.AccountAccess" xml:space="preserve"><value>Account access</value></data>
   <data name="Companies.AccountCreatedSuccessfullySupervisorIsLinked" xml:space="preserve"><value>Account created successfully! Supervisor is linked to {0}</value></data>
   <data name="Companies.AccountRole" xml:space="preserve"><value>Account role</value></data>
@@ -182,18 +244,26 @@
   <data name="Companies.ViewAction" xml:space="preserve"><value>View</value></data>
   <data name="Companies.Website" xml:space="preserve"><value>Website</value></data>
   <data name="Companies.YesIMSure" xml:space="preserve"><value>Yes, I'm sure</value></data>
+  <data name="CompletionReview.APassingEvaluationDoesNotApprove" xml:space="preserve"><value>A passing evaluation does not approve completion. Only the coordinator can approve after verifying all applicable requirements.</value></data>
   <data name="CompletionReview.Academic" xml:space="preserve"><value>Academic:</value></data>
   <data name="CompletionReview.AcademicComments" xml:space="preserve"><value>Academic comments:</value></data>
   <data name="CompletionReview.AcademicFinalEvaluation" xml:space="preserve"><value>Academic final evaluation</value></data>
+  <data name="CompletionReview.AcademicFinalEvaluation2" xml:space="preserve"><value>Academic Final Evaluation</value></data>
   <data name="CompletionReview.AcademicFinalEvaluationSubmitted" xml:space="preserve"><value>Academic final evaluation submitted</value></data>
+  <data name="CompletionReview.AcademicProgram" xml:space="preserve"><value>Academic program</value></data>
   <data name="CompletionReview.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
   <data name="CompletionReview.Action" xml:space="preserve"><value>Action</value></data>
   <data name="CompletionReview.AllMustBeMetBeforeApproval" xml:space="preserve"><value>All must be met before approval</value></data>
+  <data name="CompletionReview.ApplicableEvaluationAndTrainingRule" xml:space="preserve"><value>Applicable evaluation and training rule</value></data>
+  <data name="CompletionReview.ApplyFilters" xml:space="preserve"><value>Apply filters</value></data>
   <data name="CompletionReview.ApprovalIsLockedUntilEveryRequirement" xml:space="preserve"><value>Approval is locked until every requirement above is met. You can still return the completion with a note.</value></data>
   <data name="CompletionReview.ApproveCompletion" xml:space="preserve"><value>Approve completion</value></data>
+  <data name="CompletionReview.ApproveInternshipCompletion" xml:space="preserve"><value>Approve Internship Completion</value></data>
   <data name="CompletionReview.Approved" xml:space="preserve"><value>Approved</value></data>
+  <data name="CompletionReview.ApprovedDocuments" xml:space="preserve"><value>Approved Documents</value></data>
   <data name="CompletionReview.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
   <data name="CompletionReview.ApprovedOn" xml:space="preserve"><value>Approved on</value></data>
+  <data name="CompletionReview.ApprovedTrainingHours" xml:space="preserve"><value>Approved training hours</value></data>
   <data name="CompletionReview.AreasForImprovement" xml:space="preserve"><value>Areas for improvement:</value></data>
   <data name="CompletionReview.AwaitingEvaluations" xml:space="preserve"><value>Awaiting evaluations</value></data>
   <data name="CompletionReview.BothFinalEvaluationsSubmitted" xml:space="preserve"><value>Both final evaluations submitted</value></data>
@@ -202,6 +272,7 @@
   <data name="CompletionReview.Company" xml:space="preserve"><value>Company</value></data>
   <data name="CompletionReview.Company2" xml:space="preserve"><value>Company:</value></data>
   <data name="CompletionReview.CompanyFinalEvaluation" xml:space="preserve"><value>Company final evaluation</value></data>
+  <data name="CompletionReview.CompanyFinalEvaluation2" xml:space="preserve"><value>Company Final Evaluation</value></data>
   <data name="CompletionReview.CompanyFinalEvaluationSubmitted" xml:space="preserve"><value>Company final evaluation submitted</value></data>
   <data name="CompletionReview.CompanyOrAcademicFormMissing" xml:space="preserve"><value>Company or academic form missing</value></data>
   <data name="CompletionReview.CompanySupervisor" xml:space="preserve"><value>Company supervisor</value></data>
@@ -210,20 +281,48 @@
   <data name="CompletionReview.CompletionQueue" xml:space="preserve"><value>Completion queue</value></data>
   <data name="CompletionReview.CompletionQueue2" xml:space="preserve"><value>← Completion queue</value></data>
   <data name="CompletionReview.CompletionReturnedToTheStudentWith" xml:space="preserve"><value>Completion returned to the student with your note.</value></data>
+  <data name="CompletionReview.CompletionReviewStatus" xml:space="preserve"><value>Completion review status</value></data>
+  <data name="CompletionReview.CompletionWasApprovedAndTheReport" xml:space="preserve"><value>Completion was approved and the report released. Placement summary could not sync; reload before any further action.</value></data>
   <data name="CompletionReview.Component" xml:space="preserve"><value>Component</value></data>
   <data name="CompletionReview.Confidential" xml:space="preserve"><value>Confidential</value></data>
+  <data name="CompletionReview.ConfigurationRequired" xml:space="preserve"><value>Configuration required</value></data>
+  <data name="CompletionReview.CoordinatorNoteRequiredForCorrectionsOr" xml:space="preserve"><value>Coordinator note (required for corrections or rejection)</value></data>
+  <data name="CompletionReview.CoordinatorVerification" xml:space="preserve"><value>Coordinator Verification</value></data>
+  <data name="CompletionReview.CouldNotLoadTheQueuePlease" xml:space="preserve"><value>Could not load the queue. Please retry.</value></data>
+  <data name="CompletionReview.DateOfSchoolApprovalBeforeTraining" xml:space="preserve"><value>Date of school approval (before training)</value></data>
+  <data name="CompletionReview.DownloadInternshipCompletionReport" xml:space="preserve"><value>Download Internship Completion Report</value></data>
+  <data name="CompletionReview.EvaluationEvidence" xml:space="preserve"><value>Evaluation Evidence</value></data>
+  <data name="CompletionReview.EvaluationOnSubmittedScale" xml:space="preserve"><value>Evaluation on submitted scale</value></data>
+  <data name="CompletionReview.EvaluationStatus" xml:space="preserve"><value>Evaluation status</value></data>
+  <data name="CompletionReview.EvidenceVerification" xml:space="preserve"><value>Evidence verification</value></data>
   <data name="CompletionReview.FinalCompletionReview" xml:space="preserve"><value>Final Completion Review</value></data>
+  <data name="CompletionReview.FinalCompletionStatus" xml:space="preserve"><value>Final Completion Status:</value></data>
+  <data name="CompletionReview.FinalDecision" xml:space="preserve"><value>Final Decision</value></data>
   <data name="CompletionReview.FinalEvaluations" xml:space="preserve"><value>Final evaluations</value></data>
   <data name="CompletionReview.FinalResult" xml:space="preserve"><value>Final result</value></data>
   <data name="CompletionReview.FinalScore" xml:space="preserve"><value>Final score</value></data>
+  <data name="CompletionReview.FinalSupervisorEvaluationsAndCommentsAre" xml:space="preserve"><value>Final supervisor evaluations and comments are confidential and remain available only to authorized staff.</value></data>
   <data name="CompletionReview.FullProgressHistory" xml:space="preserve"><value>Full progress &amp; history</value></data>
+  <data name="CompletionReview.GenerateInternshipCompletionCertificate" xml:space="preserve"><value>Generate Internship Completion Certificate</value></data>
   <data name="CompletionReview.GradedTasks" xml:space="preserve"><value>Graded tasks</value></data>
   <data name="CompletionReview.HReportedByTheCompany" xml:space="preserve"><value>h reported by the company</value></data>
   <data name="CompletionReview.HoursApproved" xml:space="preserve"><value>hours approved</value></data>
+  <data name="CompletionReview.InspectTheSupportingRecordsBeforeConfirming" xml:space="preserve"><value>Inspect the supporting records before confirming each requirement. Record a document identifier, secure archive location or other traceable evidence reference. Save verification before approving.</value></data>
+  <data name="CompletionReview.InternalConfiguredScore" xml:space="preserve"><value>Internal configured score:</value></data>
   <data name="CompletionReview.Internship" xml:space="preserve"><value>Internship</value></data>
+  <data name="CompletionReview.InternshipCompletionReviews" xml:space="preserve"><value>Internship Completion Reviews</value></data>
+  <data name="CompletionReview.InternshipType" xml:space="preserve"><value>Internship type</value></data>
   <data name="CompletionReview.LastDecisionBy" xml:space="preserve"><value>Last decision by</value></data>
   <data name="CompletionReview.NoConfirmedPlacementsYet" xml:space="preserve"><value>No confirmed placements yet.</value></data>
+  <data name="CompletionReview.NoInternshipsMatchTheseFilters" xml:space="preserve"><value>No internships match these filters.</value></data>
+  <data name="CompletionReview.NoSubmittedAcademicComments" xml:space="preserve"><value>No submitted academic comments.</value></data>
+  <data name="CompletionReview.NoSubmittedCompanyComments" xml:space="preserve"><value>No submitted company comments.</value></data>
+  <data name="CompletionReview.NoValidNumericScoreOnSubmitted" xml:space="preserve"><value>No valid numeric score on submitted scale</value></data>
+  <data name="CompletionReview.NotAssigned" xml:space="preserve"><value>Not assigned</value></data>
+  <data name="CompletionReview.NotRecorded" xml:space="preserve"><value>Not recorded</value></data>
   <data name="CompletionReview.NotScored" xml:space="preserve"><value>Not scored</value></data>
+  <data name="CompletionReview.NotSubmitted" xml:space="preserve"><value>Not submitted</value></data>
+  <data name="CompletionReview.NotVerified" xml:space="preserve"><value>Not verified</value></data>
   <data name="CompletionReview.NoteOnTheReport" xml:space="preserve"><value>Note on the report:</value></data>
   <data name="CompletionReview.NoteToTheStudent" xml:space="preserve"><value>Note to the student</value></data>
   <data name="CompletionReview.Of" xml:space="preserve"><value>of</value></data>
@@ -235,39 +334,78 @@
   <data name="CompletionReview.OverallComment" xml:space="preserve"><value>Overall comment:</value></data>
   <data name="CompletionReview.PassMark" xml:space="preserve"><value>Pass mark</value></data>
   <data name="CompletionReview.PassingFinalResult" xml:space="preserve"><value>Passing final result (</value></data>
+  <data name="CompletionReview.PendingConfigurationNeeded" xml:space="preserve"><value>Pending / configuration needed</value></data>
+  <data name="CompletionReview.PendingEvidenceOrConfiguration" xml:space="preserve"><value>Pending evidence or configuration</value></data>
+  <data name="CompletionReview.PlacementStatus" xml:space="preserve"><value>Placement status</value></data>
   <data name="CompletionReview.Placements" xml:space="preserve"><value>placements</value></data>
   <data name="CompletionReview.PlacementsAndTheirCompletionStage" xml:space="preserve"><value>Placements and their completion stage</value></data>
   <data name="CompletionReview.Points" xml:space="preserve"><value>Points</value></data>
   <data name="CompletionReview.PrintCertificatePDF" xml:space="preserve"><value>Print certificate (PDF)</value></data>
+  <data name="CompletionReview.ProvisionalEvaluationResult" xml:space="preserve"><value>Provisional Evaluation Result:</value></data>
   <data name="CompletionReview.ReadyForReview" xml:space="preserve"><value>Ready for review</value></data>
   <data name="CompletionReview.ReadyToApprove" xml:space="preserve"><value>Ready to approve</value></data>
+  <data name="CompletionReview.RejectCompletion" xml:space="preserve"><value>Reject Completion</value></data>
   <data name="CompletionReview.RemarksOnTheCompanyEvaluation" xml:space="preserve"><value>Remarks on the company evaluation:</value></data>
   <data name="CompletionReview.ReportReleasedToTheStudent" xml:space="preserve"><value>Report released to the student</value></data>
+  <data name="CompletionReview.RequiredHoursDuration" xml:space="preserve"><value>Required hours / duration</value></data>
   <data name="CompletionReview.RequiredTrainingHoursApproved" xml:space="preserve"><value>Required training hours approved</value></data>
   <data name="CompletionReview.RequirementsNotMet" xml:space="preserve"><value>Requirements not met</value></data>
   <data name="CompletionReview.Result" xml:space="preserve"><value>Result</value></data>
   <data name="CompletionReview.Retry" xml:space="preserve"><value>Retry</value></data>
+  <data name="CompletionReview.ReturnForCorrections" xml:space="preserve"><value>Return for Corrections</value></data>
   <data name="CompletionReview.ReturnToStudent" xml:space="preserve"><value>Return to student</value></data>
   <data name="CompletionReview.Returned" xml:space="preserve"><value>Returned</value></data>
   <data name="CompletionReview.ReturnedOnTheLastReview" xml:space="preserve"><value>Returned on the last review:</value></data>
+  <data name="CompletionReview.Review" xml:space="preserve"><value>Review</value></data>
   <data name="CompletionReview.ReviewBothFinalEvaluationsAndThe" xml:space="preserve"><value>Review both final evaluations and the university's requirements, then approve completion. Nothing is marked complete without this approval.</value></data>
+  <data name="CompletionReview.ReviewConfidentialEvaluationsAndVerifiedTraining" xml:space="preserve"><value>Review confidential evaluations and verified training evidence before recording the final completion decision.</value></data>
+  <data name="CompletionReview.ReviewConfiguration" xml:space="preserve"><value>Review configuration</value></data>
+  <data name="CompletionReview.ReviewHistory" xml:space="preserve"><value>Review history</value></data>
+  <data name="CompletionReview.SaveEvidenceVerification" xml:space="preserve"><value>Save evidence verification</value></data>
+  <data name="CompletionReview.SaveReviewConfiguration" xml:space="preserve"><value>Save review configuration</value></data>
+  <data name="CompletionReview.SchoolApprovalBeforeTraining" xml:space="preserve"><value>School approval before training</value></data>
   <data name="CompletionReview.Score" xml:space="preserve"><value>Score</value></data>
+  <data name="CompletionReview.SearchStudentNumberProgramOrCompany" xml:space="preserve"><value>Search student, number, program or company</value></data>
+  <data name="CompletionReview.SelectAStudent" xml:space="preserve"><value>Select a student</value></data>
+  <data name="CompletionReview.SelectAnApplicableRule" xml:space="preserve"><value>Select an applicable rule</value></data>
+  <data name="CompletionReview.SelectTheActualInternshipTypeChanging" xml:space="preserve"><value>Select the actual internship type. Changing configuration clears earlier evidence confirmations. Missing rules must be configured by the application administrator.</value></data>
   <data name="CompletionReview.Stage" xml:space="preserve"><value>Stage</value></data>
   <data name="CompletionReview.Strengths" xml:space="preserve"><value>Strengths:</value></data>
   <data name="CompletionReview.Student" xml:space="preserve"><value>Student</value></data>
   <data name="CompletionReview.StudentEmail" xml:space="preserve"><value>Student email</value></data>
+  <data name="CompletionReview.StudentInternshipInformation" xml:space="preserve"><value>Student &amp; Internship Information</value></data>
+  <data name="CompletionReview.StudentNumber" xml:space="preserve"><value>Student number</value></data>
+  <data name="CompletionReview.StudentNumber2" xml:space="preserve"><value>Student number</value></data>
+  <data name="CompletionReview.StudentOrPlacementNotFoundSelect" xml:space="preserve"><value>Student or placement not found. Select a valid internship from the queue.</value></data>
+  <data name="CompletionReview.SubmissionDate" xml:space="preserve"><value>Submission date</value></data>
+  <data name="CompletionReview.SubmissionStatus" xml:space="preserve"><value>Submission status</value></data>
+  <data name="CompletionReview.SubmittedToCoordinator" xml:space="preserve"><value>Submitted to coordinator</value></data>
+  <data name="CompletionReview.SupportingEvidenceReference" xml:space="preserve"><value>Supporting evidence reference</value></data>
+  <data name="CompletionReview.Tasks" xml:space="preserve"><value>Tasks </value></data>
   <data name="CompletionReview.TasksGraded" xml:space="preserve"><value>Tasks graded</value></data>
   <data name="CompletionReview.TheAcademicFinalEvaluationHasNot" xml:space="preserve"><value>The academic final evaluation has not been submitted.</value></data>
   <data name="CompletionReview.TheCompanyFinalEvaluationHasNot" xml:space="preserve"><value>The company final evaluation has not been submitted.</value></data>
   <data name="CompletionReview.TheDecisionCouldNotBeSaved" xml:space="preserve"><value>The decision could not be saved. Please try again.</value></data>
+  <data name="CompletionReview.TheQueueCouldNotBeLoaded" xml:space="preserve"><value>The queue could not be loaded from Firebase. Please retry.</value></data>
   <data name="CompletionReview.TheReportHasBeenSentTo" xml:space="preserve"><value>The report has been sent to the student. They can download and print it from their Progress page.</value></data>
+  <data name="CompletionReview.TheReportIsReleasedToThe" xml:space="preserve"><value>The report is released to the approved student. The separate certificate can be generated and printed by the coordinator.</value></data>
+  <data name="CompletionReview.TheReviewCouldNotBeLoaded" xml:space="preserve"><value>The review could not be loaded from Firebase. Retry after checking the connection.</value></data>
+  <data name="CompletionReview.TheReviewCouldNotBeSaved" xml:space="preserve"><value>The review could not be saved. Reload to check the latest state before retrying.</value></data>
   <data name="CompletionReview.TheStudentSeesOnlyTheFinal" xml:space="preserve"><value>%. The student sees only the final score and result, never the two evaluation forms.</value></data>
+  <data name="CompletionReview.TheseAreProjectProposedRulesNot" xml:space="preserve"><value>These are project-proposed rules, not verified GJU internship grading policy.</value></data>
   <data name="CompletionReview.ThisConfirmedPlacementCouldNotBe" xml:space="preserve"><value>This confirmed placement could not be found.</value></data>
+  <data name="CompletionReview.TrainingEnd" xml:space="preserve"><value>Training end</value></data>
   <data name="CompletionReview.TrainingPeriod" xml:space="preserve"><value>Training period</value></data>
+  <data name="CompletionReview.TrainingRequirementsDocuments" xml:space="preserve"><value>Training Requirements &amp; Documents</value></data>
+  <data name="CompletionReview.TrainingStart" xml:space="preserve"><value>Training start</value></data>
+  <data name="CompletionReview.TrainingStatus" xml:space="preserve"><value>Training status</value></data>
   <data name="CompletionReview.UniversityRequirements" xml:space="preserve"><value>University requirements</value></data>
+  <data name="CompletionReview.UseViewDetailsToReviewAn" xml:space="preserve"><value>Use View details to review an internship.</value></data>
+  <data name="CompletionReview.ViewDetails" xml:space="preserve"><value>View details</value></data>
   <data name="CompletionReview.WeCouldNotLoadCompletionData" xml:space="preserve"><value>We could not load completion data. Refresh to try again.</value></data>
   <data name="CompletionReview.Weight" xml:space="preserve"><value>Weight</value></data>
   <data name="CompletionReview.WithAFinalResultOf" xml:space="preserve"><value>with a final result of</value></data>
+  <data name="CompletionReview.WorkflowStatusesAreApplicationStatusesA" xml:space="preserve"><value>Workflow statuses are application statuses. A confirmed placement does not establish completion.</value></data>
   <data name="ConfiguredGroups.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
   <data name="ConfiguredGroups.AcademicYear" xml:space="preserve"><value>Academic year</value></data>
   <data name="ConfiguredGroups.AcademicYearSemester" xml:space="preserve"><value>Academic year / semester</value></data>
@@ -343,48 +481,100 @@
   <data name="ContactMessages.Unknown" xml:space="preserve"><value>Unknown</value></data>
   <data name="ContactMessages.ViewAndManageMessagesSubmittedThrough" xml:space="preserve"><value>View and manage messages submitted through the Contact Us form.</value></data>
   <data name="ContactMessages.ViewMessageDetails" xml:space="preserve"><value>View Message Details</value></data>
+  <data name="Dashboard.AClearViewOfYourStudents" xml:space="preserve"><value>A clear view of your students, their progress, and what comes next.</value></data>
   <data name="Dashboard.Academic" xml:space="preserve"><value>academic</value></data>
   <data name="Dashboard.AcademicSupervisors" xml:space="preserve"><value>Academic supervisors</value></data>
   <data name="Dashboard.Action" xml:space="preserve"><value>Action</value></data>
   <data name="Dashboard.Active" xml:space="preserve"><value>active</value></data>
   <data name="Dashboard.ActiveAccounts" xml:space="preserve"><value>active accounts</value></data>
+  <data name="Dashboard.ActivePlacements" xml:space="preserve"><value>Active placements</value></data>
   <data name="Dashboard.ActiveStudentProfilesHaveNoAcademic" xml:space="preserve"><value>active student profiles have no academic supervisor recorded.</value></data>
+  <data name="Dashboard.AddAStudent" xml:space="preserve"><value>Add a student</value></data>
+  <data name="Dashboard.AddStudent" xml:space="preserve"><value>Add student</value></data>
   <data name="Dashboard.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
+  <data name="Dashboard.AssignStudentGroups" xml:space="preserve"><value>Assign student groups</value></data>
   <data name="Dashboard.Assignments" xml:space="preserve"><value>Assignments</value></data>
+  <data name="Dashboard.AvailableToStudents" xml:space="preserve"><value>Available to students</value></data>
   <data name="Dashboard.BothEvaluationsNotYetApproved" xml:space="preserve"><value>Both evaluations; not yet approved</value></data>
   <data name="Dashboard.Companies" xml:space="preserve"><value>companies ·</value></data>
   <data name="Dashboard.Company" xml:space="preserve"><value>company ·</value></data>
+  <data name="Dashboard.Company2" xml:space="preserve"><value>Company</value></data>
   <data name="Dashboard.CompletionQueue" xml:space="preserve"><value>Completion queue</value></data>
+  <data name="Dashboard.CompletionReviews" xml:space="preserve"><value>Completion reviews</value></data>
   <data name="Dashboard.CompletionWorkAndApprovedHoursFor" xml:space="preserve"><value>Completion work and approved hours for confirmed placements</value></data>
+  <data name="Dashboard.ConfirmedInProgress" xml:space="preserve"><value>Confirmed &amp; in progress</value></data>
   <data name="Dashboard.ConfirmedOrActive" xml:space="preserve"><value>confirmed or active</value></data>
   <data name="Dashboard.ConfirmedPlacements" xml:space="preserve"><value>Confirmed placements</value></data>
+  <data name="Dashboard.ConnectStudentsAndSupervisors" xml:space="preserve"><value>Connect students and supervisors</value></data>
   <data name="Dashboard.CoordinationDesk" xml:space="preserve"><value>Coordination desk</value></data>
+  <data name="Dashboard.CoordinatorActions" xml:space="preserve"><value>Coordinator actions</value></data>
+  <data name="Dashboard.CoordinatorWorkspace" xml:space="preserve"><value>Coordinator workspace</value></data>
+  <data name="Dashboard.CurrentProgramOverview" xml:space="preserve"><value>Current program overview</value></data>
+  <data name="Dashboard.Details" xml:space="preserve"><value>Details</value></data>
   <data name="Dashboard.EachStudentNeedsAnIndividualCoordinator" xml:space="preserve"><value>Each student needs an individual coordinator decision.</value></data>
+  <data name="Dashboard.ExplorePlacements" xml:space="preserve"><value>Explore placements →</value></data>
   <data name="Dashboard.FinalAssessmentsReceived" xml:space="preserve"><value>Final assessments received</value></data>
+  <data name="Dashboard.FromClassroomToCareer" xml:space="preserve"><value>From classroom to career</value></data>
+  <data name="Dashboard.GoToPlacements" xml:space="preserve"><value>Go to placements →</value></data>
+  <data name="Dashboard.GoodToSeeYou" xml:space="preserve"><value>Good to see you,</value></data>
+  <data name="Dashboard.GreatFuturesStartWithGoodGuidance" xml:space="preserve"><value>Great futures start with good guidance.</value></data>
+  <data name="Dashboard.HelpStudentsTakeTheFinalStep" xml:space="preserve"><value>Help students take the final step. Check their evaluations and completion requirements.</value></data>
+  <data name="Dashboard.Hours" xml:space="preserve"><value>Hours</value></data>
+  <data name="Dashboard.InReview" xml:space="preserve"><value>In review</value></data>
   <data name="Dashboard.KeepAssignmentsTrainingExceptionsAndCompletion" xml:space="preserve"><value>Keep assignments, training exceptions and completion decisions in view.</value></data>
+  <data name="Dashboard.KeepEveryInternshipMovingForwardConnect" xml:space="preserve"><value>Keep every internship moving forward. Connect the right people, follow their progress, and celebrate the milestones.</value></data>
+  <data name="Dashboard.Latest" xml:space="preserve"><value>Latest</value></data>
   <data name="Dashboard.LinkedTaskEvaluations" xml:space="preserve"><value>linked task evaluations</value></data>
+  <data name="Dashboard.MakeThingsHappen" xml:space="preserve"><value>Make things happen</value></data>
+  <data name="Dashboard.MakeTimeForAConversation" xml:space="preserve"><value>Make time for a conversation</value></data>
   <data name="Dashboard.ManageGroupsAssignments" xml:space="preserve"><value>Manage groups &amp; assignments</value></data>
   <data name="Dashboard.ManageStudentRecords" xml:space="preserve"><value>Manage student records</value></data>
+  <data name="Dashboard.NoCompletionRecordsAreCurrentlyAwaiting" xml:space="preserve"><value>No completion records are currently awaiting coordinator review.</value></data>
   <data name="Dashboard.NoConfirmedPlacementsYet" xml:space="preserve"><value>No confirmed placements yet</value></data>
   <data name="Dashboard.Open" xml:space="preserve"><value>open</value></data>
   <data name="Dashboard.OpenCompletionReview" xml:space="preserve"><value>Open completion review</value></data>
+  <data name="Dashboard.OpenCompletionReview2" xml:space="preserve"><value>Open completion review →</value></data>
+  <data name="Dashboard.OpenOpportunities" xml:space="preserve"><value>Open opportunities</value></data>
   <data name="Dashboard.OpenPlacements" xml:space="preserve"><value>Open placements</value></data>
+  <data name="Dashboard.OpenTheReviewWorkspaceToCheck" xml:space="preserve"><value>Open the review workspace to check final evaluations and internship completion.</value></data>
   <data name="Dashboard.Opportunities" xml:space="preserve"><value>opportunities ·</value></data>
+  <data name="Dashboard.PartnerCompanies" xml:space="preserve"><value>Partner companies</value></data>
   <data name="Dashboard.PlacementsAwaitingCompletion" xml:space="preserve"><value>placements awaiting completion</value></data>
+  <data name="Dashboard.PlacementsProgressReflectsApprovedTrainingHours" xml:space="preserve"><value>placements · Progress reflects approved training hours.</value></data>
   <data name="Dashboard.ReadyForReview" xml:space="preserve"><value>Ready for review</value></data>
+  <data name="Dashboard.RecentPlacements" xml:space="preserve"><value>Recent placements</value></data>
+  <data name="Dashboard.RegisteredCompanies" xml:space="preserve"><value>Registered companies</value></data>
   <data name="Dashboard.ReportedAwaitingCompanyApproval" xml:space="preserve"><value>reported, awaiting company approval</value></data>
   <data name="Dashboard.Retry" xml:space="preserve"><value>Retry</value></data>
   <data name="Dashboard.Review" xml:space="preserve"><value>Review</value></data>
   <data name="Dashboard.ReviewStage" xml:space="preserve"><value>Review stage</value></data>
+  <data name="Dashboard.RoomForTheNextMilestone" xml:space="preserve"><value>Room for the next milestone</value></data>
+  <data name="Dashboard.ScheduleAMeeting" xml:space="preserve"><value>Schedule a meeting</value></data>
+  <data name="Dashboard.SmallStepsRealProgress" xml:space="preserve"><value>Small steps. Real progress.</value></data>
+  <data name="Dashboard.StartANewInternshipJourney" xml:space="preserve"><value>Start a new internship journey</value></data>
+  <data name="Dashboard.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Dashboard.Student" xml:space="preserve"><value>Student</value></data>
+  <data name="Dashboard.StudentAccounts" xml:space="preserve"><value>Student accounts</value></data>
   <data name="Dashboard.StudentCompany" xml:space="preserve"><value>Student &amp; company</value></data>
   <data name="Dashboard.Students" xml:space="preserve"><value>Students</value></data>
   <data name="Dashboard.StudentsAppearHereAfterConfirmingOne" xml:space="preserve"><value>Students appear here after confirming one accepted offer.</value></data>
+  <data name="Dashboard.TheNextMilestone" xml:space="preserve"><value>The next milestone</value></data>
+  <data name="Dashboard.TheProgramOverviewIsUnavailableUntil" xml:space="preserve"><value>The program overview is unavailable until the database is configured.</value></data>
+  <data name="Dashboard.TotalStudents" xml:space="preserve"><value>Total students</value></data>
   <data name="Dashboard.TrainingExceptions" xml:space="preserve"><value>Training exceptions</value></data>
+  <data name="Dashboard.TryAgain" xml:space="preserve"><value>Try again</value></data>
+  <data name="Dashboard.UIMSABetterPathFromLearning" xml:space="preserve"><value>UIMS · A better path from learning to doing.</value></data>
   <data name="Dashboard.UTC" xml:space="preserve"><value>UTC</value></data>
   <data name="Dashboard.UngradedTasksPastTheirDeadline" xml:space="preserve"><value>ungraded tasks past their deadline</value></data>
   <data name="Dashboard.UpdatedOnPageLoad" xml:space="preserve"><value>Updated on page load ·</value></data>
+  <data name="Dashboard.ViewAll" xml:space="preserve"><value>View all →</value></data>
   <data name="Dashboard.ViewQueue" xml:space="preserve"><value>View queue</value></data>
+  <data name="Dashboard.ViewResults" xml:space="preserve"><value>View results</value></data>
   <data name="Dashboard.WeCouldNotLoadTheProgramme" xml:space="preserve"><value>We could not load the programme work queues. Refresh to try again.</value></data>
+  <data name="Dashboard.WeCouldnTLoadYourProgram" xml:space="preserve"><value>We couldn't load your program overview. Please try again.</value></data>
+  <data name="Dashboard.YourCoordinatorWorkspace" xml:space="preserve"><value>Your coordinator workspace</value></data>
+  <data name="Dashboard.YourEverydayActionsOneClickAway" xml:space="preserve"><value>Your everyday actions, one click away.</value></data>
+  <data name="Dashboard.YourProgramAtAGlance" xml:space="preserve"><value>Your program at a glance</value></data>
   <data name="Groups.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
   <data name="Groups.AcademicYearOptional" xml:space="preserve"><value>Academic year (optional)</value></data>
   <data name="Groups.CancelEdit" xml:space="preserve"><value>Cancel edit</value></data>
@@ -410,6 +600,14 @@
   <data name="Groups.SelectASupervisor" xml:space="preserve"><value>Select a supervisor</value></data>
   <data name="Groups.SemesterOptional" xml:space="preserve"><value>Semester (optional)</value></data>
   <data name="Groups.Students" xml:space="preserve"><value>Students</value></data>
+  <data name="I18n.AwaitingEvaluations" xml:space="preserve"><value>Awaiting Evaluations</value></data>
+  <data name="I18n.Complete" xml:space="preserve"><value>Complete</value></data>
+  <data name="I18n.InProgress" xml:space="preserve"><value>In Progress</value></data>
+  <data name="I18n.Missingdraftorinvalidsubmission" xml:space="preserve"><value>Missing, draft or invalid submission</value></data>
+  <data name="I18n.NeedsCorrections" xml:space="preserve"><value>Needs Corrections</value></data>
+  <data name="I18n.ReadyforReview" xml:space="preserve"><value>Ready for Review</value></data>
+  <data name="I18n.Totalassignedtasks0Completedtaskswith" xml:space="preserve"><value>Total assigned tasks: {0} · Completed tasks with current grades: {1} · Outstanding tasks: {2}</value></data>
+  <data name="I18n.Trainingongoing" xml:space="preserve"><value> · Training ongoing</value></data>
   <data name="ManageStudents.AcademicInformation" xml:space="preserve"><value>Academic information</value></data>
   <data name="ManageStudents.AccountAccess" xml:space="preserve"><value>Account access</value></data>
   <data name="ManageStudents.Action" xml:space="preserve"><value>Action</value></data>
@@ -460,76 +658,122 @@
   <data name="ManageStudents.ViewRecord" xml:space="preserve"><value>View record</value></data>
   <data name="ManageStudents.ViewRecords" xml:space="preserve"><value>View records</value></data>
   <data name="PlacementDetails.AcademicFinalEvaluation" xml:space="preserve"><value>Academic final evaluation</value></data>
+  <data name="PlacementDetails.AcademicFinalEvaluation2" xml:space="preserve"><value>Academic final evaluation</value></data>
   <data name="PlacementDetails.AcademicFollowUp" xml:space="preserve"><value>Academic follow-up</value></data>
   <data name="PlacementDetails.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
+  <data name="PlacementDetails.AcademicSupervisor2" xml:space="preserve"><value>Academic supervisor</value></data>
   <data name="PlacementDetails.AllAttemptsNewestFirst" xml:space="preserve"><value>All attempts, newest first</value></data>
   <data name="PlacementDetails.ApprovalIsSeparateFromTaskCompletion" xml:space="preserve"><value>Approval is separate from task completion</value></data>
+  <data name="PlacementDetails.ApprovedHoursProgress" xml:space="preserve"><value>Approved hours progress</value></data>
+  <data name="PlacementDetails.ApprovedPass" xml:space="preserve"><value>Approved - Pass</value></data>
+  <data name="PlacementDetails.ApprovedRequired" xml:space="preserve"><value>approved / required ·</value></data>
   <data name="PlacementDetails.ApprovedTrainingHours" xml:space="preserve"><value>Approved training hours</value></data>
   <data name="PlacementDetails.AreasForImprovement" xml:space="preserve"><value>Areas for improvement:</value></data>
   <data name="PlacementDetails.Assigned" xml:space="preserve"><value>assigned</value></data>
+  <data name="PlacementDetails.AssignedTasks" xml:space="preserve"><value>assigned tasks</value></data>
   <data name="PlacementDetails.Attempt" xml:space="preserve"><value>· Attempt</value></data>
   <data name="PlacementDetails.Attempt2" xml:space="preserve"><value>Attempt</value></data>
   <data name="PlacementDetails.Attempts" xml:space="preserve"><value>Attempts</value></data>
+  <data name="PlacementDetails.AwaitingReview" xml:space="preserve"><value>Awaiting review</value></data>
+  <data name="PlacementDetails.BackToPlacements" xml:space="preserve"><value>Back to placements</value></data>
+  <data name="PlacementDetails.ChooseAPlacementFromPlacementsProgress" xml:space="preserve"><value>Choose a placement from Placements &amp; Progress.</value></data>
   <data name="PlacementDetails.ChooseAStudentFromPlacementsProgress" xml:space="preserve"><value>Choose a student from Placements &amp; Progress to view their internship.</value></data>
   <data name="PlacementDetails.Comments" xml:space="preserve"><value>comments</value></data>
   <data name="PlacementDetails.Company" xml:space="preserve"><value>Company</value></data>
+  <data name="PlacementDetails.Company2" xml:space="preserve"><value>Company</value></data>
   <data name="PlacementDetails.CompanyEvaluationRemarks" xml:space="preserve"><value>Company evaluation remarks:</value></data>
   <data name="PlacementDetails.CompanyFinalEvaluation" xml:space="preserve"><value>Company final evaluation</value></data>
+  <data name="PlacementDetails.CompanyFinalEvaluation2" xml:space="preserve"><value>Company final evaluation</value></data>
   <data name="PlacementDetails.CompanySupervisor" xml:space="preserve"><value>Company supervisor</value></data>
+  <data name="PlacementDetails.CompanySupervisor2" xml:space="preserve"><value>Company supervisor</value></data>
+  <data name="PlacementDetails.Completion" xml:space="preserve"><value>Completion</value></data>
   <data name="PlacementDetails.CompletionOfficialResult" xml:space="preserve"><value>Completion &amp; official result</value></data>
   <data name="PlacementDetails.Confirmed" xml:space="preserve"><value>Confirmed</value></data>
   <data name="PlacementDetails.CoordinatorAccess" xml:space="preserve"><value>Coordinator access</value></data>
+  <data name="PlacementDetails.CouldNotLoadThisPlacementPlease" xml:space="preserve"><value>Could not load this placement. Please try again.</value></data>
   <data name="PlacementDetails.Deadline" xml:space="preserve"><value>Deadline</value></data>
   <data name="PlacementDetails.Description" xml:space="preserve"><value>Description</value></data>
+  <data name="PlacementDetails.Entry" xml:space="preserve"><value>Entry</value></data>
   <data name="PlacementDetails.EvaluationCriteria" xml:space="preserve"><value>Evaluation criteria</value></data>
   <data name="PlacementDetails.FinalResultAndReportAreAwaiting" xml:space="preserve"><value>Final result and report are awaiting coordinator approval.</value></data>
+  <data name="PlacementDetails.FinalReviewStatus" xml:space="preserve"><value>Final review status</value></data>
   <data name="PlacementDetails.FirebaseIsNotConfiguredContactThe" xml:space="preserve"><value>Firebase is not configured. Contact the project administrator.</value></data>
   <data name="PlacementDetails.Graded" xml:space="preserve"><value>graded</value></data>
+  <data name="PlacementDetails.GradedTasks" xml:space="preserve"><value>graded tasks</value></data>
   <data name="PlacementDetails.HReportedAwaitingApprovalOnlyApproved" xml:space="preserve"><value>h reported, awaiting approval. Only approved entries count.</value></data>
   <data name="PlacementDetails.HRequiresSeparateApproval" xml:space="preserve"><value>h (requires separate approval).</value></data>
   <data name="PlacementDetails.Hours" xml:space="preserve"><value>Hours</value></data>
+  <data name="PlacementDetails.Hours2" xml:space="preserve"><value>Hours</value></data>
   <data name="PlacementDetails.InternshipDetails" xml:space="preserve"><value>Internship details</value></data>
+  <data name="PlacementDetails.LatestFeedback" xml:space="preserve"><value>Latest feedback</value></data>
+  <data name="PlacementDetails.LatestGrade" xml:space="preserve"><value>Latest grade</value></data>
   <data name="PlacementDetails.MarkScale" xml:space="preserve"><value>Mark scale</value></data>
   <data name="PlacementDetails.NoAcademicCommentsHaveBeenRecorded" xml:space="preserve"><value>No academic comments have been recorded yet.</value></data>
   <data name="PlacementDetails.NoAcademicFinalEvaluationReceived" xml:space="preserve"><value>No academic final evaluation received.</value></data>
   <data name="PlacementDetails.NoCompanyFinalEvaluationReceived" xml:space="preserve"><value>No company final evaluation received.</value></data>
   <data name="PlacementDetails.NoCompletionReviewRecordYetTraining" xml:space="preserve"><value>No completion review record yet. Training hours and task completion do not automatically approve this internship.</value></data>
+  <data name="PlacementDetails.NoFeedbackYet" xml:space="preserve"><value>No feedback yet</value></data>
+  <data name="PlacementDetails.NoHoursHaveBeenReportedYet" xml:space="preserve"><value>No hours have been reported yet.</value></data>
   <data name="PlacementDetails.NoSubmissionsHaveBeenRecordedFor" xml:space="preserve"><value>No submissions have been recorded for these tasks.</value></data>
   <data name="PlacementDetails.NoTaskEvaluationsHaveBeenRecorded" xml:space="preserve"><value>No task evaluations have been recorded yet.</value></data>
   <data name="PlacementDetails.NoTasksHaveBeenAssignedTo" xml:space="preserve"><value>No tasks have been assigned to this placement yet.</value></data>
+  <data name="PlacementDetails.NoTasksHaveBeenAssignedYet" xml:space="preserve"><value>No tasks have been assigned yet.</value></data>
   <data name="PlacementDetails.NoTrainingHoursHaveBeenReported" xml:space="preserve"><value>No training hours have been reported for this placement.</value></data>
+  <data name="PlacementDetails.NoWrittenFeedback" xml:space="preserve"><value>No written feedback</value></data>
+  <data name="PlacementDetails.NotAssigned" xml:space="preserve"><value>Not assigned</value></data>
+  <data name="PlacementDetails.NotReviewed" xml:space="preserve"><value>Not reviewed</value></data>
   <data name="PlacementDetails.NotScored" xml:space="preserve"><value>Not scored</value></data>
+  <data name="PlacementDetails.OfRequiredHoursApproved" xml:space="preserve"><value>of required hours approved.</value></data>
   <data name="PlacementDetails.OpenAttachment" xml:space="preserve"><value>Open attachment:</value></data>
   <data name="PlacementDetails.OpenCompletionReview" xml:space="preserve"><value>Open completion review</value></data>
+  <data name="PlacementDetails.OpenFinalCompletionReview" xml:space="preserve"><value>Open final completion review</value></data>
   <data name="PlacementDetails.OpenOfficialCompletionReport" xml:space="preserve"><value>Open official completion report</value></data>
   <data name="PlacementDetails.OpenSubmittedLink" xml:space="preserve"><value>Open submitted link</value></data>
   <data name="PlacementDetails.Opportunity" xml:space="preserve"><value>Opportunity</value></data>
+  <data name="PlacementDetails.Opportunity2" xml:space="preserve"><value>Opportunity</value></data>
   <data name="PlacementDetails.OverallComment" xml:space="preserve"><value>Overall comment:</value></data>
   <data name="PlacementDetails.PastDeadline" xml:space="preserve"><value>Past deadline</value></data>
   <data name="PlacementDetails.PastDeadlineAndNotGraded" xml:space="preserve"><value>past deadline and not graded ·</value></data>
+  <data name="PlacementDetails.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="PlacementDetails.PlacementDetails" xml:space="preserve"><value>Placement details</value></data>
+  <data name="PlacementDetails.PlacementNotFound" xml:space="preserve"><value>Placement not found.</value></data>
   <data name="PlacementDetails.PlacementsProgress" xml:space="preserve"><value>← Placements &amp; progress</value></data>
+  <data name="PlacementDetails.Program" xml:space="preserve"><value>Program</value></data>
   <data name="PlacementDetails.RecordedFinalResult" xml:space="preserve"><value>Recorded final result:</value></data>
   <data name="PlacementDetails.Records" xml:space="preserve"><value>records</value></data>
+  <data name="PlacementDetails.Rejected" xml:space="preserve"><value>Rejected</value></data>
   <data name="PlacementDetails.ReportedForThisAttempt" xml:space="preserve"><value>Reported for this attempt:</value></data>
   <data name="PlacementDetails.ReportedHoursAndReviewDecisions" xml:space="preserve"><value>Reported hours and review decisions</value></data>
+  <data name="PlacementDetails.ReportedHoursAwaitingReview" xml:space="preserve"><value>reported hours awaiting review</value></data>
   <data name="PlacementDetails.RequestedChanges" xml:space="preserve"><value>Requested changes:</value></data>
   <data name="PlacementDetails.ReviewNote" xml:space="preserve"><value>Review note</value></data>
   <data name="PlacementDetails.ReviewStatus" xml:space="preserve"><value>Review status:</value></data>
+  <data name="PlacementDetails.ReviewedFail" xml:space="preserve"><value>Reviewed - Fail</value></data>
+  <data name="PlacementDetails.RevisionRequested" xml:space="preserve"><value>Revision requested</value></data>
   <data name="PlacementDetails.Score" xml:space="preserve"><value>Score:</value></data>
   <data name="PlacementDetails.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="PlacementDetails.Status2" xml:space="preserve"><value>Status</value></data>
   <data name="PlacementDetails.Strengths" xml:space="preserve"><value>Strengths:</value></data>
   <data name="PlacementDetails.StudentEmail" xml:space="preserve"><value>Student email</value></data>
+  <data name="PlacementDetails.StudentNumber" xml:space="preserve"><value>Student number</value></data>
   <data name="PlacementDetails.SubmissionAttempts" xml:space="preserve"><value>submission attempts</value></data>
   <data name="PlacementDetails.SubmissionHistory" xml:space="preserve"><value>Submission history</value></data>
+  <data name="PlacementDetails.Submissions" xml:space="preserve"><value>submissions</value></data>
   <data name="PlacementDetails.Task" xml:space="preserve"><value>Task</value></data>
   <data name="PlacementDetails.TaskEvaluationsFeedback" xml:space="preserve"><value>Task evaluations &amp; feedback</value></data>
   <data name="PlacementDetails.TaskProgress" xml:space="preserve"><value>Task progress</value></data>
   <data name="PlacementDetails.Tasks" xml:space="preserve"><value>Tasks</value></data>
+  <data name="PlacementDetails.TasksAndEvaluations" xml:space="preserve"><value>Tasks and evaluations</value></data>
   <data name="PlacementDetails.TasksAndHoursAreSeparateCompleting" xml:space="preserve"><value>Tasks and hours are separate. Completing tasks does not approve training hours or internship completion.</value></data>
   <data name="PlacementDetails.TasksAssignedToThisStudentPlacement" xml:space="preserve"><value>Tasks assigned to this student placement</value></data>
+  <data name="PlacementDetails.TasksSubmissionsEvaluationsAndTrainingHours" xml:space="preserve"><value>Tasks, submissions, evaluations and training hours for one confirmed internship.</value></data>
   <data name="PlacementDetails.ThisConfirmedPlacementCouldNotBe" xml:space="preserve"><value>This confirmed placement could not be found.</value></data>
+  <data name="PlacementDetails.TrainingEntry" xml:space="preserve"><value>Training entry</value></data>
+  <data name="PlacementDetails.TrainingHours" xml:space="preserve"><value>Training hours</value></data>
   <data name="PlacementDetails.TrainingHoursLog" xml:space="preserve"><value>Training hours log</value></data>
   <data name="PlacementDetails.TrainingPeriod" xml:space="preserve"><value>Training period</value></data>
+  <data name="PlacementDetails.TrainingPeriod2" xml:space="preserve"><value>Training period</value></data>
+  <data name="PlacementDetails.UntitledTask" xml:space="preserve"><value>Untitled task</value></data>
   <data name="PlacementDetails.ViewConfidentialAcademicEvaluation" xml:space="preserve"><value>View confidential academic evaluation</value></data>
   <data name="PlacementDetails.ViewConfidentialCompanyEvaluation" xml:space="preserve"><value>View confidential company evaluation</value></data>
   <data name="PlacementDetails.WeCouldNotLoadInternshipProgress" xml:space="preserve"><value>We could not load internship progress. Refresh to try again.</value></data>
@@ -538,32 +782,50 @@
   <data name="Placements.Action" xml:space="preserve"><value>Action</value></data>
   <data name="Placements.AllStatuses" xml:space="preserve"><value>All statuses</value></data>
   <data name="Placements.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
+  <data name="Placements.ApprovedHours2" xml:space="preserve"><value>Approved hours</value></data>
   <data name="Placements.BackToDashboard" xml:space="preserve"><value>Back to dashboard</value></data>
+  <data name="Placements.Clear" xml:space="preserve"><value>Clear</value></data>
   <data name="Placements.ClearFilters" xml:space="preserve"><value>Clear filters</value></data>
+  <data name="Placements.Company" xml:space="preserve"><value>Company</value></data>
+  <data name="Placements.CompanyNotRecorded" xml:space="preserve"><value>Company not recorded</value></data>
   <data name="Placements.CompanyOpportunity" xml:space="preserve"><value>Company / opportunity</value></data>
+  <data name="Placements.ConfirmedInternships" xml:space="preserve"><value>Confirmed internships</value></data>
   <data name="Placements.ConfirmedStudentPlacementsAndApprovedHour" xml:space="preserve"><value>Confirmed student placements and approved-hour progress</value></data>
+  <data name="Placements.CouldNotLoadPlacementsPleaseTry" xml:space="preserve"><value>Could not load placements. Please try again.</value></data>
+  <data name="Placements.Details" xml:space="preserve"><value>Details</value></data>
   <data name="Placements.FindAStudentSConfirmedInternship" xml:space="preserve"><value>Find a student's confirmed internship and review their progress.</value></data>
   <data name="Placements.FirebaseIsNotConfiguredContactThe" xml:space="preserve"><value>Firebase is not configured. Contact the project administrator.</value></data>
   <data name="Placements.HoursAreCalculatedFromApprovedTraining" xml:space="preserve"><value>Hours are calculated from approved training-hour entries. Completing a task does not approve hours or complete an internship.</value></data>
   <data name="Placements.Major" xml:space="preserve"><value>Major</value></data>
   <data name="Placements.Matching" xml:space="preserve"><value>matching ·</value></data>
+  <data name="Placements.MonitorEachConfirmedInternshipAndOpen" xml:space="preserve"><value>Monitor each confirmed internship and open its task, evaluation and hours details.</value></data>
   <data name="Placements.Next" xml:space="preserve"><value>Next</value></data>
+  <data name="Placements.NoConfirmedInternshipsYet" xml:space="preserve"><value>No confirmed internships yet.</value></data>
+  <data name="Placements.NoPlacementsMatchYourSearch" xml:space="preserve"><value>No placements match your search.</value></data>
   <data name="Placements.Of" xml:space="preserve"><value>of</value></data>
+  <data name="Placements.Opportunity" xml:space="preserve"><value>Opportunity</value></data>
   <data name="Placements.Page" xml:space="preserve"><value>Page</value></data>
   <data name="Placements.PlacementStatus" xml:space="preserve"><value>Placement status</value></data>
   <data name="Placements.PlacementsPagination" xml:space="preserve"><value>Placements pagination</value></data>
   <data name="Placements.PlacementsProgress" xml:space="preserve"><value>Placements &amp; progress</value></data>
+  <data name="Placements.PlacementsProgress2" xml:space="preserve"><value>Placements &amp; Progress</value></data>
   <data name="Placements.Previous" xml:space="preserve"><value>Previous</value></data>
   <data name="Placements.Retry" xml:space="preserve"><value>Retry</value></data>
   <data name="Placements.Search" xml:space="preserve"><value>Search</value></data>
+  <data name="Placements.Search2" xml:space="preserve"><value>Search</value></data>
   <data name="Placements.SearchPlacements" xml:space="preserve"><value>Search placements</value></data>
+  <data name="Placements.SearchStudentCompanyOrOpportunity" xml:space="preserve"><value>Search student, company or opportunity</value></data>
   <data name="Placements.Showing" xml:space="preserve"><value>· Showing</value></data>
   <data name="Placements.Status" xml:space="preserve"><value>Status</value></data>
+  <data name="Placements.Status2" xml:space="preserve"><value>Status</value></data>
   <data name="Placements.Student" xml:space="preserve"><value>Student</value></data>
+  <data name="Placements.Student2" xml:space="preserve"><value>Student</value></data>
   <data name="Placements.StudentNameNumberUIDOrCompany" xml:space="preserve"><value>Student name, number, UID or company</value></data>
   <data name="Placements.StudentPlacements" xml:space="preserve"><value>Student placements</value></data>
   <data name="Placements.Total" xml:space="preserve"><value>total</value></data>
+  <data name="Placements.UnnamedStudent" xml:space="preserve"><value>Unnamed student</value></data>
   <data name="Placements.ViewDetails" xml:space="preserve"><value>View details</value></data>
+  <data name="Placements.ViewDetails2" xml:space="preserve"><value>View details</value></data>
   <data name="Placements.WeCouldNotLoadPlacementsRefresh" xml:space="preserve"><value>We could not load placements. Refresh to try again.</value></data>
   <data name="StudentCreation.AcademicInformation" xml:space="preserve"><value>Academic information</value></data>
   <data name="StudentCreation.AccountAccess" xml:space="preserve"><value>Account access</value></data>

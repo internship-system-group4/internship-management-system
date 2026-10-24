@@ -214,7 +214,7 @@
 
                 <div class="modal-footer bg-light px-4 border-top-0">
                     <button type="button" class="btn btn-outline-secondary rounded-pill px-4 fw-bold" data-bs-dismiss="modal" onclick="resetFormState()"><%: L.T("Coordinator.Companies.Cancel") %></button>
-                    <asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Coordinator, Companies.CreateAccount %>" CssClass="btn bg-brand rounded-pill px-4 shadow-sm fw-bold" OnClientClick="return validateAndConfirm();" OnClick="btnSave_Click" CausesValidation="false" data-ui-action="create" data-loading-label="Creating…" />
+                    <asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Coordinator, Companies.CreateAccount %>" CssClass="btn bg-brand rounded-pill px-4 shadow-sm fw-bold" OnClientClick="return validateAndConfirm();" OnClick="btnSave_Click" CausesValidation="false" data-ui-action="create" data-loading-label="<%$ Resources:Shared, I18n.Creating %>" />
                 </div>
 
             </div>

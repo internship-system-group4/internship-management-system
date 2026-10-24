@@ -456,7 +456,7 @@
             <!-- Last Date to Apply: Below Start and End -->
             <div class="op-field">
                 <label for="opDeadline">
-                    Last Date to Apply
+                    <%: L.T("Company.Opportunities.LastDateToApply") %>
                     <span class="op-required-star">*</span>
                 </label>
                 <input id="opDeadline"
@@ -481,7 +481,7 @@
                 value="draft"
                 data-ui-action="save"
                 data-ui-validation="none"
-                data-loading-label="Saving…">
+                data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                 <%: L.T("Company.Opportunities.SaveDraft") %>
             </button>
 
@@ -491,7 +491,7 @@
                 value="publish"
                 data-ui-action="publish"
                 data-ui-validation="none"
-                data-loading-label="Publishing…">
+                data-loading-label="<%: L.T("Shared.I18n.Publishing") %>">
                 <%: L.T("Company.Opportunities.Publish") %>
             </button>
 

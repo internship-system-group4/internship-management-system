@@ -29,7 +29,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     if (initial != null) BindRequirements(initial);
                 }
                 catch (FirebaseAuthExpiredException) { throw; }
-                catch (FirebaseException) { loadError = "The review could not be loaded from Firebase. Retry after checking the connection."; }
+                catch (FirebaseException) { loadError = L.T("Coordinator.CompletionReview.TheReviewCouldNotBeLoaded"); }
                 catch (InvalidOperationException ex) { loadError = ex.Message; }
             }
         }
@@ -46,10 +46,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             {
                 BindPlacements();
                 if (initial != null) DisplayReview(initial, initialVersion);
-                else if (Request.QueryString["id"] != null) ShowMessage("Student or placement not found. Select a valid internship from the queue.", false);
+                else if (Request.QueryString["id"] != null) ShowMessage(L.T("Coordinator.CompletionReview.StudentOrPlacementNotFoundSelect"), false);
             }
             catch (FirebaseAuthExpiredException) { throw; }
-            catch (FirebaseException) { ShowMessage("The queue could not be loaded from Firebase. Please retry.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.CompletionReview.TheQueueCouldNotBeLoaded"), false); }
             catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
         }
         private CompletionReviewEvidence ReadReview(string studentId, out string version)
@@ -77,7 +77,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             try { BindPlacements(); if (initial != null) DisplayReview(initial, initialVersion); }
             catch (FirebaseAuthExpiredException) { throw; }
-            catch (FirebaseException) { ShowMessage("Could not load the queue. Please retry.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.CompletionReview.CouldNotLoadTheQueuePlease"), false); }
             catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
         }
         private void BindPlacements()
@@ -93,10 +93,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 string searchable = string.Join(" ", new[] { e.Student.FullName, e.Student.StudentNumber, e.Student.Major, p.CompanyName });
                 if (!string.IsNullOrEmpty(ddlStatus.SelectedValue) && status != ddlStatus.SelectedValue) continue;
                 if (!string.IsNullOrWhiteSpace(txtSearch.Text) && searchable.IndexOf(txtSearch.Text.Trim(), StringComparison.OrdinalIgnoreCase) < 0) continue;
-                rows.Add(new PlacementListRow { StudentName = First(e.Student.FullName, p.StudentName), StudentNumber = First(e.Student.StudentNumber, "Not recorded"), Program = First(e.Student.Major, "Not recorded"), Company = p.CompanyName,
-                    InternshipType = e.Rule == null ? "Configuration required" : e.Rule.InternshipType,
-                    TrainingStatus = p.Status + (p.EndDate > Time.NowMs() ? " · Training ongoing" : ""),
-                    EvaluationStatus = a.EvaluationIssues.Count == 0 ? "Complete" : "Pending / configuration needed",
+                rows.Add(new PlacementListRow { StudentName = First(e.Student.FullName, p.StudentName), StudentNumber = First(e.Student.StudentNumber, L.T("Coordinator.CompletionReview.NotRecorded")), Program = First(e.Student.Major, L.T("Coordinator.CompletionReview.NotRecorded")), Company = p.CompanyName,
+                    InternshipType = e.Rule == null ? L.T("Coordinator.CompletionReview.ConfigurationRequired") : e.Rule.InternshipType,
+                    TrainingStatus = p.Status + (p.EndDate > Time.NowMs() ? L.T("Coordinator.I18n.Trainingongoing") : ""),
+                    EvaluationStatus = a.EvaluationIssues.Count == 0 ? L.T("Coordinator.I18n.Complete") : L.T("Coordinator.CompletionReview.PendingConfigurationNeeded"),
                     Status = status, ReviewUrl = ResolveUrl("~/Pages/Coordinator/CompletionReview.aspx?id=" + Server.UrlEncode(p.StudentId)) });
             }
             rptPlacements.DataSource = rows;
@@ -122,29 +122,29 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             ViewState["ReviewVersion"] = version;
             litStudent.Text = Encode(First(e.Student.FullName, e.Placement.StudentName));
             var academic = new UserRepository().GetAcademicSupervisor(e.Placement.AcademicSupervisorId);
-            litFacts.Text = Fact("Student number", e.Student.StudentNumber) + Fact("Academic program", e.Student.Major) +
-                Fact("Company", e.Placement.CompanyName) + Fact("Company supervisor", e.Placement.CompanySupervisorName) +
-                Fact("Academic supervisor", academic == null ? "Not assigned" : academic.FullName) +
-                Fact("Internship type", e.Rule == null ? "Configuration required" : e.Rule.InternshipType) +
-                Fact("Training start", Time.DisplayDate(e.Placement.StartDate)) + Fact("Training end", Time.DisplayDate(e.Placement.EndDate)) +
-                Fact("Placement status", e.Placement.Status.ToString()) +
-                Fact("School approval before training", PriorApprovalLabel(e)) +
-                Fact("Approved training hours", a.ApprovedHours.ToString(CultureInfo.InvariantCulture)) +
-                Fact("Required hours / duration", e.Rule == null ? "Configuration required" : e.Rule.RequiredHours + " hours / " + e.Rule.RequiredDurationDays + " days (where configured)");
-            litCompanyEvidence.Text = Fact("Submission status", a.CompanySubmitted ? "Submitted" : "Missing, draft or invalid submission") +
-                Fact("Evaluation on submitted scale", a.CompanySubmitted ? Score(e.Company.TotalScore, e.Company.MaxScore) : "Not submitted") +
-                Fact("Company supervisor", e.Placement.CompanySupervisorName) + Fact("Submission date", a.CompanySubmitted ? Time.Display(e.Company.SubmittedAt) : "Not submitted");
-            litAcademicEvidence.Text = Fact("Submission status", a.AcademicSubmitted ? "Submitted to coordinator" : "Missing, draft or invalid submission") +
-                Fact("Evaluation on submitted scale", a.AcademicSubmitted ? Score(e.Academic.TotalScore, e.Academic.MaxScore) : "Not submitted") +
-                Fact("Academic supervisor", academic == null ? "Not assigned" : academic.FullName) + Fact("Submission date", a.AcademicSubmitted ? Time.Display(e.Academic.SubmittedAt) : "Not submitted");
-            litCompanyComments.Text = Encode(!a.CompanySubmitted ? "No submitted company comments." : string.Join("\n", new[] { e.Company.Strengths, e.Company.AreasForImprovement, e.Company.OverallComment }.Where(s => !string.IsNullOrWhiteSpace(s))));
-            litAcademicComments.Text = Encode(!a.AcademicSubmitted ? "No submitted academic comments." : string.Join("\n", new[] { e.Academic.AcademicComments, e.Academic.CompanyEvaluationRemarks }.Where(s => !string.IsNullOrWhiteSpace(s))));
-            litTasks.Text = "<p>" + Encode("Total assigned tasks: " + e.Tasks.Count + " · Completed tasks with current grades: " + a.CompletedTasks + " · Outstanding tasks: " + (e.Tasks.Count - a.CompletedTasks)) + "</p>";
+            litFacts.Text = Fact(L.T("Coordinator.CompletionReview.StudentNumber2"), e.Student.StudentNumber) + Fact(L.T("Coordinator.CompletionReview.AcademicProgram"), e.Student.Major) +
+                Fact(L.T("Coordinator.CompletionReview.Company"), e.Placement.CompanyName) + Fact(L.T("Coordinator.CompletionReview.CompanySupervisor"), e.Placement.CompanySupervisorName) +
+                Fact(L.T("Coordinator.CompletionReview.AcademicSupervisor"), academic == null ? L.T("Coordinator.CompletionReview.NotAssigned") : academic.FullName) +
+                Fact(L.T("Coordinator.CompletionReview.InternshipType"), e.Rule == null ? L.T("Coordinator.CompletionReview.ConfigurationRequired") : e.Rule.InternshipType) +
+                Fact(L.T("Coordinator.CompletionReview.TrainingStart"), Time.DisplayDate(e.Placement.StartDate)) + Fact(L.T("Coordinator.CompletionReview.TrainingEnd"), Time.DisplayDate(e.Placement.EndDate)) +
+                Fact(L.T("Coordinator.CompletionReview.PlacementStatus"), e.Placement.Status.ToString()) +
+                Fact(L.T("Coordinator.CompletionReview.SchoolApprovalBeforeTraining"), PriorApprovalLabel(e)) +
+                Fact(L.T("Coordinator.CompletionReview.ApprovedTrainingHours"), a.ApprovedHours.ToString(CultureInfo.InvariantCulture)) +
+                Fact(L.T("Coordinator.CompletionReview.RequiredHoursDuration"), e.Rule == null ? L.T("Coordinator.CompletionReview.ConfigurationRequired") : e.Rule.RequiredHours + " hours / " + e.Rule.RequiredDurationDays + " days (where configured)");
+            litCompanyEvidence.Text = Fact(L.T("Coordinator.CompletionReview.SubmissionStatus"), a.CompanySubmitted ? "Submitted" : L.T("Coordinator.I18n.Missingdraftorinvalidsubmission")) +
+                Fact(L.T("Coordinator.CompletionReview.EvaluationOnSubmittedScale"), a.CompanySubmitted ? Score(e.Company.TotalScore, e.Company.MaxScore) : L.T("Coordinator.CompletionReview.NotSubmitted")) +
+                Fact(L.T("Coordinator.CompletionReview.CompanySupervisor"), e.Placement.CompanySupervisorName) + Fact(L.T("Coordinator.CompletionReview.SubmissionDate"), a.CompanySubmitted ? Time.Display(e.Company.SubmittedAt) : L.T("Coordinator.CompletionReview.NotSubmitted"));
+            litAcademicEvidence.Text = Fact(L.T("Coordinator.CompletionReview.SubmissionStatus"), a.AcademicSubmitted ? L.T("Coordinator.CompletionReview.SubmittedToCoordinator") : L.T("Coordinator.I18n.Missingdraftorinvalidsubmission")) +
+                Fact(L.T("Coordinator.CompletionReview.EvaluationOnSubmittedScale"), a.AcademicSubmitted ? Score(e.Academic.TotalScore, e.Academic.MaxScore) : L.T("Coordinator.CompletionReview.NotSubmitted")) +
+                Fact(L.T("Coordinator.CompletionReview.AcademicSupervisor"), academic == null ? L.T("Coordinator.CompletionReview.NotAssigned") : academic.FullName) + Fact(L.T("Coordinator.CompletionReview.SubmissionDate"), a.AcademicSubmitted ? Time.Display(e.Academic.SubmittedAt) : L.T("Coordinator.CompletionReview.NotSubmitted"));
+            litCompanyComments.Text = Encode(!a.CompanySubmitted ? L.T("Coordinator.CompletionReview.NoSubmittedCompanyComments") : string.Join("\n", new[] { e.Company.Strengths, e.Company.AreasForImprovement, e.Company.OverallComment }.Where(s => !string.IsNullOrWhiteSpace(s))));
+            litAcademicComments.Text = Encode(!a.AcademicSubmitted ? L.T("Coordinator.CompletionReview.NoSubmittedAcademicComments") : string.Join("\n", new[] { e.Academic.AcademicComments, e.Academic.CompanyEvaluationRemarks }.Where(s => !string.IsNullOrWhiteSpace(s))));
+            litTasks.Text = "<p>" + Encode(L.F("Coordinator.I18n.Totalassignedtasks0Completedtaskswith", e.Tasks.Count, a.CompletedTasks, e.Tasks.Count - a.CompletedTasks)) + "</p>";
             litRule.Text = e.Rule == null ? "<p role=\"status\">Configuration required. No default evaluation policy has been applied.</p>" :
                 "<p>" + Encode("Evaluation Method: " + e.Rule.SourceClassification + " · " + e.Rule.EvaluationMethod + " · " + e.Rule.Id) + "</p>" +
-                (e.Rule.EvaluationMethod == "Weighted" ? "<p>" + Encode("Tasks " + e.Rule.TaskWeight + "% / Company " + e.Rule.CompanyWeight + "% / Academic " + e.Rule.AcademicWeight + "%; passing criterion " + e.Rule.PassingPercent + "%. " +
-                    (e.Rule.SourceClassification == "Project-Proposed" ? "These are project-proposed rules, not verified GJU internship grading policy." : "Official source reference: " + e.Rule.SourceUrl)) + "</p>" : "");
-            ddlRule.Items.Clear(); ddlRule.Items.Add(new ListItem("Select an applicable rule", ""));
+                (e.Rule.EvaluationMethod == "Weighted" ? "<p>" + Encode(L.T("Coordinator.CompletionReview.Tasks") + e.Rule.TaskWeight + "% / Company " + e.Rule.CompanyWeight + "% / Academic " + e.Rule.AcademicWeight + "%; passing criterion " + e.Rule.PassingPercent + "%. " +
+                    (e.Rule.SourceClassification == "Project-Proposed" ? L.T("Coordinator.CompletionReview.TheseAreProjectProposedRulesNot") : "Official source reference: " + e.Rule.SourceUrl)) + "</p>" : "");
+            ddlRule.Items.Clear(); ddlRule.Items.Add(new ListItem(L.T("Coordinator.CompletionReview.SelectAnApplicableRule"), ""));
             foreach (var rule in new CompletionRuleRepository().GetAll().Where(rule => CompletionReviewService.Applies(rule, e.Student)))
                 ddlRule.Items.Add(new ListItem(rule.InternshipType + " · " + rule.SourceClassification + " · " + rule.Id, rule.Id));
             if (e.Rule != null && ddlRule.Items.FindByValue(e.Rule.Id) != null) ddlRule.SelectedValue = e.Rule.Id;
@@ -155,7 +155,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             BindRequirements(e);
             btnVerify.Visible = !finalized && e.Rule != null;
             litReviewStatus.Text = Encode(Workflow(e, a));
-            litProposedResult.Text = Encode(finalized ? First(r.ProvisionalResult, First(r.Result, "Not recorded")) : First(a.Result, "Pending evidence or configuration"));
+            litProposedResult.Text = Encode(finalized ? First(r.ProvisionalResult, First(r.Result, L.T("Coordinator.CompletionReview.NotRecorded"))) : First(a.Result, L.T("Coordinator.CompletionReview.PendingEvidenceOrConfiguration")));
             var score = finalized ? r.ProvisionalScore : a.Score;
             pnlInternalScore.Visible = score.HasValue;
             litInternalScore.Text = score.HasValue ? Encode(score.Value.ToString("0.##", CultureInfo.InvariantCulture) + "%") : "";
@@ -172,7 +172,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         private static string PriorApprovalLabel(CompletionReviewEvidence e)
         {
             var v = e.Record == null || e.Record.Verifications == null ? null : e.Record.Verifications.FirstOrDefault(x => x.Key == "prior-approval" && x.Confirmed);
-            return v != null && v.EvidenceDate > 0 && v.EvidenceDate < e.Placement.StartDate ? "Verified · " + Time.DisplayDate(v.EvidenceDate) : "Not verified";
+            return v != null && v.EvidenceDate > 0 && v.EvidenceDate < e.Placement.StartDate ? "Verified · " + Time.DisplayDate(v.EvidenceDate) : L.T("Coordinator.CompletionReview.NotVerified");
         }
         private void BindRequirements(CompletionReviewEvidence e)
         {
@@ -183,7 +183,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     Confirmed = v != null && v.Confirmed, Reference = v == null ? "" : v.EvidenceReference,
                     Date = v == null || v.EvidenceDate <= 0 ? "" : Time.FromUnixMs(v.EvidenceDate).ToString("yyyy-MM-dd"),
                     NeedsDate = q.RequiresPriorApprovalDate, Editable = !CompletionReviewService.IsFinal(e.Record),
-                    Audit = v == null ? "Not verified" : "Saved by " + v.CoordinatorId + " · " + Time.Display(v.VerifiedAt) };
+                    Audit = v == null ? L.T("Coordinator.CompletionReview.NotVerified") : "Saved by " + v.CoordinatorId + " · " + Time.Display(v.VerifiedAt) };
             }).ToList();
             rptRequirements.DataBind();
         }
@@ -203,7 +203,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 action(e, version);
             }
             catch (FirebaseAuthExpiredException) { throw; }
-            catch (FirebaseException) { ShowMessage("The review could not be saved. Reload to check the latest state before retrying.", false); }
+            catch (FirebaseException) { ShowMessage(L.T("Coordinator.CompletionReview.TheReviewCouldNotBeSaved"), false); }
             catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
         }
         private void Save(CompletionReviewEvidence e, CompletionRecord r, string version, string action, string note)
@@ -229,7 +229,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 if (issue != null) throw new InvalidOperationException(issue);
                 var r = Record(e); r.EvaluationRuleSnapshot = rule; r.Verifications = new List<RequirementVerification>();
                 r.Status = CompletionStatus.UnderCoordinatorReview;
-                Save(e, r, version, "Review configuration", rule.Id);
+                Save(e, r, version, L.T("Coordinator.CompletionReview.ReviewConfiguration"), rule.Id);
             });
         }
         protected void btnVerify_Click(object sender, EventArgs args)
@@ -261,7 +261,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 }
                 if (verifications.Select(v => v.Key).Distinct().Count() != e.Rule.Requirements.Count) throw new InvalidOperationException("Reload the complete verification checklist.");
                 r.Verifications = verifications;
-                Save(e, r, version, "Evidence verification", "Supporting evidence references recorded for " + verifications.Count + " requirements.");
+                Save(e, r, version, L.T("Coordinator.CompletionReview.EvidenceVerification"), "Supporting evidence references recorded for " + verifications.Count + " requirements.");
             });
         }
         protected void btnApprove_Click(object sender, EventArgs e) { Decide(CompletionStatus.Approved); }
@@ -296,12 +296,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     PdfReportService.CreateCompletionReportPdf(r, e.Student, e.Placement);
                     PdfReportService.CreateCertificatePdf(r, e.Student, e.Placement);
                 }
-                Save(e, r, version, status == CompletionStatus.NeedsCorrections ? "Return for Corrections" : status.ToString(), note);
+                Save(e, r, version, status == CompletionStatus.NeedsCorrections ? L.T("Coordinator.CompletionReview.ReturnForCorrections") : status.ToString(), note);
                 if (status == CompletionStatus.Approved)
                 {
                     try { new PlacementRepository().Update(e.Placement.Id, new Dictionary<string, object> { { "Status", (int)PlacementStatus.Completed }, { "ApprovedHours", a.ApprovedHours } }); }
                     catch (FirebaseAuthExpiredException) { throw; }
-                    catch (FirebaseException) { ShowMessage("Completion was approved and the report released. Placement summary could not sync; reload before any further action.", false); }
+                    catch (FirebaseException) { ShowMessage(L.T("Coordinator.CompletionReview.CompletionWasApprovedAndTheReport"), false); }
                 }
             });
         }
@@ -320,9 +320,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         }
         private void ShowMessage(string message, bool success) { lblMessage.Text = Encode(message); lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block"; lblMessage.Visible = true; }
         private string Encode(string text) { return Server.HtmlEncode(text ?? ""); }
-        private string Fact(string label, string value) { return "<div class=\"review-fact\"><small>" + Encode(label) + "</small><strong>" + Encode(First(value, "Not recorded")) + "</strong></div>"; }
+        private string Fact(string label, string value) { return "<div class=\"review-fact\"><small>" + Encode(label) + "</small><strong>" + Encode(First(value, L.T("Coordinator.CompletionReview.NotRecorded"))) + "</strong></div>"; }
         private static string First(string value, string fallback) { return string.IsNullOrWhiteSpace(value) ? fallback : value; }
-        private static string Score(double score, double max) { return CompletionReviewService.ValidScore(score, max) ? score.ToString("0.##", CultureInfo.InvariantCulture) + " / " + max.ToString("0.##", CultureInfo.InvariantCulture) : "No valid numeric score on submitted scale"; }
+        private static string Score(double score, double max) { return CompletionReviewService.ValidScore(score, max) ? score.ToString("0.##", CultureInfo.InvariantCulture) + " / " + max.ToString("0.##", CultureInfo.InvariantCulture) : L.T("Coordinator.CompletionReview.NoValidNumericScoreOnSubmitted"); }
         private static bool IsValidId(string id) { return !string.IsNullOrEmpty(id) && Regex.IsMatch(id, @"\A[A-Za-z0-9_-]{1,128}\z"); }
         public sealed class PlacementListRow
         {

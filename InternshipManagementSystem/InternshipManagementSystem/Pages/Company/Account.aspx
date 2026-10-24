@@ -139,7 +139,7 @@
           </div>
           <div class="modal-footer border-top-0 pt-0 px-4 pb-4">
             <button type="button" class="btn btn-light rounded-pill px-4 fw-semibold" data-bs-dismiss="modal"><%: L.T("Company.Account.Cancel") %></button>
-            <asp:Button ID="btnSaveChanges" runat="server" Text="<%$ Resources:Company, Account.SaveChanges %>" CssClass="btn btn-save px-4 py-2 rounded-pill shadow-sm" OnClick="BtnSaveChanges_Click"  data-ui-action="save" data-loading-label="Saving…"/>
+            <asp:Button ID="btnSaveChanges" runat="server" Text="<%$ Resources:Company, Account.SaveChanges %>" CssClass="btn btn-save px-4 py-2 rounded-pill shadow-sm" OnClick="BtnSaveChanges_Click"  data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>"/>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-﻿
+
 <%@ Page Language="C#"
     MasterPageFile="~/Layout/Coordinator.master"
     AutoEventWireup="true"
@@ -59,7 +59,7 @@
 
 .ca-edit {
     position: absolute;
-    right: 16px;
+    inset-inline-end: 16px;
     top: 16px;
     background: #fff;
     border: 1px solid #dce6f0;
@@ -173,7 +173,7 @@
     stroke-width: 1.8;
     fill: none;
     vertical-align: middle;
-    margin-right: 9px;
+    margin-inline-end: 9px;
 }
 
 /* ==============================
@@ -188,7 +188,7 @@
 }
 
 .ca-password-icon {
-    margin-right: 7px;
+    margin-inline-end: 7px;
     font-size: 17px;
 }
 
@@ -265,7 +265,7 @@
 .ca-modal-close {
     position: absolute;
     top: 18px;
-    right: 20px;
+    inset-inline-end: 20px;
     border: none;
     background: #edf2f7;
     color: #315572;
@@ -486,9 +486,9 @@ body.ca-modal-active {
     <!-- PAGE HEADING -->
 
     <div class="ca-heading">
-        <h2>My Account</h2>
+        <h2><%: L.T("Coordinator.Account.MyAccount") %></h2>
         <p>
-            Manage your personal profile and view your system associations.
+            <%: L.T("Coordinator.Account.ManageYourPersonalProfileAndView") %>
         </p>
     </div>
 
@@ -507,7 +507,7 @@ body.ca-modal-active {
                 type="button"
                 class="ca-edit"
                 onclick="caOpenEdit()">
-                &#9998; &nbsp; Edit Profile
+                <%: L.T("Coordinator.Account.EditProfile") %>
             </button>
 
         </div>
@@ -525,11 +525,11 @@ body.ca-modal-active {
             <div class="ca-identity">
 
                 <h3 id="caDisplayName">
-                    My Profile
+                    <%: L.T("Coordinator.Account.MyProfile") %>
                 </h3>
 
                 <span class="ca-role">
-                    University Coordinator
+                    <%: L.T("Coordinator.Account.UniversityCoordinator") %>
                 </span>
 
                 <div>
@@ -550,7 +550,7 @@ body.ca-modal-active {
                 <div class="ca-info-box">
 
                     <label>
-                        EMAIL ADDRESS (READ-ONLY)
+                        <%: L.T("Coordinator.Account.EMAILADDRESSREADONLY") %>
                     </label>
 
                     <div class="ca-info-value">
@@ -571,7 +571,7 @@ body.ca-modal-active {
                 <div class="ca-info-box">
 
                     <label>
-                        UNIVERSITY (READ-ONLY)
+                        <%: L.T("Coordinator.Account.UNIVERSITYREADONLY") %>
                     </label>
 
                     <div class="ca-info-value">
@@ -593,7 +593,7 @@ body.ca-modal-active {
                 <div class="ca-info-box">
 
                     <label>
-                        PHONE NUMBER
+                        <%: L.T("Coordinator.Account.PhoneNumberHeading") %>
                     </label>
 
                     <div class="ca-info-value">
@@ -622,7 +622,7 @@ body.ca-modal-active {
                 <div class="ca-info-box">
 
                     <label>
-                        COLLEGE
+                        <%: L.T("Coordinator.Account.CollegeHeading") %>
                     </label>
 
                     <div class="ca-info-value">
@@ -644,7 +644,7 @@ body.ca-modal-active {
                 <div class="ca-info-box">
 
                     <label>
-                        STAFF ID (READ-ONLY)
+                        <%: L.T("Coordinator.Account.STAFFIDREADONLY") %>
                     </label>
 
                     <div class="ca-info-value">
@@ -660,7 +660,7 @@ body.ca-modal-active {
                     <div>
 
                         <label>
-                            ACCOUNT SECURITY
+                            <%: L.T("Coordinator.Account.ACCOUNTSECURITY") %>
                         </label>
 
                         <div class="ca-info-value">
@@ -669,7 +669,7 @@ body.ca-modal-active {
                                 &#128274;
                             </span>
 
-                            Password
+                            <%: L.T("Coordinator.Account.Password") %>
 
                         </div>
 
@@ -679,7 +679,7 @@ body.ca-modal-active {
                         type="button"
                         class="ca-password-change"
                         onclick="caOpenPassword()">
-                        Change
+                        <%: L.T("Coordinator.Account.Change") %>
                     </button>
 
                 </div>
@@ -707,7 +707,7 @@ body.ca-modal-active {
             <button
                 type="button"
                 class="ca-modal-close"
-                aria-label="Close"
+                aria-label="<%: L.T("Coordinator.Account.Close") %>"
                 onclick="caCloseEdit()">
                 &times;
             </button>
@@ -717,11 +717,11 @@ body.ca-modal-active {
             </div>
 
             <h3 id="caModalTitle">
-                Edit Profile
+                <%: L.T("Coordinator.Account.EditProfile2") %>
             </h3>
 
             <p>
-                Update your personal information below.
+                <%: L.T("Coordinator.Account.UpdateYourPersonalInformationBelow") %>
             </p>
 
             <!-- FULL NAME -->
@@ -729,7 +729,7 @@ body.ca-modal-active {
             <div class="ca-field">
 
                 <label for="<%= txtName.ClientID %>">
-                    Full Name
+                    <%: L.T("Coordinator.Account.FullName2") %>
                 </label>
 
                 <asp:TextBox
@@ -754,7 +754,7 @@ body.ca-modal-active {
             <div class="ca-field">
 
                 <label for="<%= txtPhone.ClientID %>">
-                    Phone Number
+                    <%: L.T("Coordinator.Account.PhoneNumber2") %>
                 </label>
 
                 <asp:TextBox
@@ -800,7 +800,7 @@ body.ca-modal-active {
                     type="button"
                     class="btn btn-outline-primary"
                     onclick="caCloseEdit()">
-                    Cancel
+                    <%: L.T("Coordinator.Account.Cancel2") %>
                 </button>
 
                 <asp:Button
@@ -812,7 +812,7 @@ body.ca-modal-active {
                     OnClick="btnSave_Click"
                     OnClientClick="return caValidateProfile();"
                     data-ui-action="save"
-                    data-loading-label="Saving..." />
+                    data-loading-label="<%$ Resources:Shared, I18n.Saving2 %>" />
 
             </div>
 
@@ -849,7 +849,7 @@ body.ca-modal-active {
             <button
                 type="button"
                 class="ca-modal-close"
-                aria-label="Close"
+                aria-label="<%: L.T("Coordinator.Account.Close") %>"
                 onclick="caClosePassword()">
                 &times;
             </button>
@@ -861,11 +861,11 @@ body.ca-modal-active {
             </div>
 
             <h3 id="caPasswordTitle">
-                Change Password
+                <%: L.T("Coordinator.Account.ChangePassword2") %>
             </h3>
 
             <p>
-                Keep your account secure by updating your password.
+                <%: L.T("Coordinator.Account.KeepYourAccountSecureByUpdating") %>
             </p>
 
             <!-- CURRENT PASSWORD -->
@@ -873,7 +873,7 @@ body.ca-modal-active {
             <div class="ca-field">
 
                 <label for="<%= txtCurrentPassword.ClientID %>">
-                    Current Password
+                    <%: L.T("Coordinator.Account.CurrentPassword2") %>
                 </label>
 
                 <asp:TextBox
@@ -890,7 +890,7 @@ body.ca-modal-active {
             <div class="ca-field">
 
                 <label for="<%= txtNewPassword.ClientID %>">
-                    New Password
+                    <%: L.T("Coordinator.Account.NewPassword2") %>
                 </label>
 
                 <asp:TextBox
@@ -901,7 +901,7 @@ body.ca-modal-active {
                     autocomplete="new-password" />
 
                 <small class="ca-password-hint">
-                    Use 8–128 characters.
+                    <%: L.T("Coordinator.Account.Use8128Characters") %>
                 </small>
 
             </div>
@@ -911,7 +911,7 @@ body.ca-modal-active {
             <div class="ca-field">
 
                 <label for="<%= txtConfirmPassword.ClientID %>">
-                    Confirm New Password
+                    <%: L.T("Coordinator.Account.ConfirmNewPassword2") %>
                 </label>
 
                 <asp:TextBox
@@ -931,7 +931,7 @@ body.ca-modal-active {
                     type="button"
                     class="btn btn-outline-primary"
                     onclick="caClosePassword()">
-                    Cancel
+                    <%: L.T("Coordinator.Account.Cancel2") %>
                 </button>
 
                 <asp:Button
@@ -942,7 +942,7 @@ body.ca-modal-active {
                     CausesValidation="false"
                     OnClick="btnChangePassword_Click"
                     data-ui-action="update"
-                    data-loading-label="Updating..."
+                    data-loading-label="<%$ Resources:Shared, I18n.Updating2 %>"
                     data-ui-validation="none" />
 
             </div>
@@ -1230,7 +1230,7 @@ document.addEventListener("keydown", function(event) {
             var el = document.getElementById(id);
 
             if (el) {
-                el.textContent = v || "Not provided";
+                el.textContent = v || uimsT('ArabicNotprovided');
             }
         }
 
@@ -1309,7 +1309,7 @@ document.addEventListener("DOMContentLoaded", function () {
             message = window.uimsT('PwCompleteAll');
         }
         else if (newValue.length < 8 || newValue.length > 128) {
-            message = "Password must contain 8 to 128 characters.";
+            message = uimsT('ArabicPasswordmustcontain8to128characters');
         }
         else if (newValue !== confirmValue) {
             message = window.uimsT('PwNewMismatch');

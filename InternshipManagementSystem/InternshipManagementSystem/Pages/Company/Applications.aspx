@@ -96,7 +96,7 @@
                                 <div><strong><%: L.T("Company.Applications.ReadyToMakeADecision") %></strong><p class="application-help"><%: L.T("Company.Applications.AcceptanceOffersAPlaceTheStudent") %></p></div>
                                 <div class="review-decision-actions">
                                     <button type="button" class="btn review-reject-toggle" aria-expanded="false" aria-controls="reject-<%#: Eval("Id") %>"><%: L.T("Company.Applications.Reject") %></button>
-                                    <asp:Button runat="server" CommandName="Accept" CommandArgument='<%# Eval("Id") %>' Text="<%$ Resources:Company, Applications.AcceptApplication %>" CssClass="btn btn-brand review-accept-button"  data-ui-action="accept" data-loading-label="Accepting…"/>
+                                    <asp:Button runat="server" CommandName="Accept" CommandArgument='<%# Eval("Id") %>' Text="<%$ Resources:Company, Applications.AcceptApplication %>" CssClass="btn btn-brand review-accept-button"  data-ui-action="accept" data-loading-label="<%$ Resources:Shared, I18n.Accepting %>"/>
                                 </div>
                             </div>
                             <div class="review-reject-fields" id="reject-<%#: Eval("Id") %>" hidden>
@@ -105,7 +105,7 @@
                                 <p class="application-help"><%: L.T("Company.Applications.ThisReasonWillBeVisibleTo") %></p>
                                 <div class="review-reject-actions">
                                     <button type="button" class="btn review-cancel-button" data-reject-cancel><%: L.T("Company.Applications.Cancel") %></button>
-                                    <asp:Button runat="server" CommandName="Reject" CommandArgument='<%# Eval("Id") %>' Text="<%$ Resources:Company, Applications.ConfirmRejection %>" CssClass="btn review-reject-button"  data-ui-action="confirm" data-loading-label="Confirming…"/>
+                                    <asp:Button runat="server" CommandName="Reject" CommandArgument='<%# Eval("Id") %>' Text="<%$ Resources:Company, Applications.ConfirmRejection %>" CssClass="btn review-reject-button"  data-ui-action="confirm" data-loading-label="<%$ Resources:Shared, I18n.Confirming %>"/>
                                 </div>
                             </div>
                         </div>

@@ -20,20 +20,20 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 var placements = Academic ? new PlacementRepository().GetByAcademicSupervisor(CurrentUser.Id) :
                     new PlacementRepository().GetByCompany(((CompanySupervisor)CurrentUser).CompanyId).Where(p => p.CompanySupervisorId == CurrentUser.Id).ToList();
-                ddlPlacement.Items.Clear(); ddlPlacement.Items.Add(new System.Web.UI.WebControls.ListItem("Select an assigned internship", ""));
+                ddlPlacement.Items.Clear(); ddlPlacement.Items.Add(new System.Web.UI.WebControls.ListItem(L.T("Company.FinalEvaluation.SelectAnAssignedInternship"), ""));
                 foreach (var p in placements.Where(p => p.Status != PlacementStatus.Cancelled && p.Status != PlacementStatus.Offered))
                     ddlPlacement.Items.Add(new System.Web.UI.WebControls.ListItem(p.StudentName + " · " + p.CompanyName, p.Id));
                 string id = Request.QueryString["id"];
                 if (id != null && ddlPlacement.Items.FindByValue(id) != null) { ddlPlacement.SelectedValue = id; LoadEvaluation(); }
             }
             catch (FirebaseAuthExpiredException) { throw; }
-            catch (FirebaseException) { Message("Unable to load assigned internships. Please retry.", false); }
+            catch (FirebaseException) { Message(L.T("Company.FinalEvaluation.UnableToLoadAssignedInternshipsPlease"), false); }
         }
         protected void ddlPlacement_SelectedIndexChanged(object sender, EventArgs e)
         {
             try { LoadEvaluation(); }
             catch (FirebaseAuthExpiredException) { throw; }
-            catch (FirebaseException) { Message("Unable to load the evaluation. Please retry.", false); }
+            catch (FirebaseException) { Message(L.T("Company.FinalEvaluation.UnableToLoadTheEvaluationPlease"), false); }
             catch (InvalidOperationException ex) { Message(ex.Message, false); }
         }
         private Placement AssignedPlacement()
@@ -66,7 +66,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     Server.HtmlEncode(string.Join("\n", new[] { company.Strengths, company.AreasForImprovement, company.OverallComment })) + "</p></div>" : "<p>Awaiting the company supervisor's submitted final evaluation.</p>";
             pnlForm.Visible = true;
             txtScore.Enabled = txtMaximum.Enabled = txtComments.Enabled = btnSubmit.Enabled = !submitted && !final;
-            litStatus.Text = submitted ? "Final evaluation submitted. This submission is read-only." : final ? "Completion is finalized; evidence is read-only." : "Final evaluation has not been submitted.";
+            litStatus.Text = submitted ? L.T("Company.FinalEvaluation.FinalEvaluationSubmittedThisSubmissionIs") : final ? L.T("Company.FinalEvaluation.CompletionIsFinalizedEvidenceIsRead") : L.T("Company.FinalEvaluation.FinalEvaluationHasNotBeenSubmitted");
         }
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
@@ -101,10 +101,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     company.IsSubmitted = true; company.SubmittedAt = Time.NowMs();
                     repository.SaveCompanyFinal(company);
                 }
-                LoadEvaluation(); Message("Confidential final evaluation submitted successfully.", true);
+                LoadEvaluation(); Message(L.T("Company.FinalEvaluation.ConfidentialFinalEvaluationSubmittedSuccessfully"), true);
             }
             catch (FirebaseAuthExpiredException) { throw; }
-            catch (FirebaseException) { Message("Submission could not be confirmed. Reload before retrying.", false); }
+            catch (FirebaseException) { Message(L.T("Company.FinalEvaluation.SubmissionCouldNotBeConfirmedReload"), false); }
             catch (InvalidOperationException ex) { Message(ex.Message, false); }
         }
         private void Message(string text, bool success) { lblMessage.Text = Server.HtmlEncode(text); lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block"; lblMessage.Visible = true; }

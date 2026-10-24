@@ -16,8 +16,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected string CompanyCount { get; private set; } = "—";
         protected string ActivePlacementCount { get; private set; } = "—";
         protected string OpportunityCount { get; private set; } = "—";
-        protected string ReviewHeading { get; private set; } = "Completion reviews";
-        protected string ReviewDescription { get; private set; } = "Open the review workspace to check final evaluations and internship completion.";
+        protected string ReviewHeading { get; private set; } = L.T("Coordinator.Dashboard.CompletionReviews");
+        protected string ReviewDescription { get; private set; } = L.T("Coordinator.Dashboard.OpenTheReviewWorkspaceToCheck");
         protected List<Placement> RecentPlacements { get; private set; } = new List<Placement>();
 
         protected string FirstName
@@ -35,7 +35,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (IsPostBack) return;
             if (!FirebaseContext.IsConfigured)
             {
-                LoadError = "The program overview is unavailable until the database is configured.";
+                LoadError = L.T("Coordinator.Dashboard.TheProgramOverviewIsUnavailableUntil");
                 return;
             }
 
@@ -58,16 +58,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     .ThenBy(p => p.Id, StringComparer.Ordinal).Take(5).ToList();
 
                 int pending = completions.Count(c => c.Status == CompletionStatus.UnderCoordinatorReview);
-                ReviewHeading = pending == 0 ? "Room for the next milestone" :
+                ReviewHeading = pending == 0 ? L.T("Coordinator.Dashboard.RoomForTheNextMilestone") :
                     Count(pending) + (pending == 1 ? " review awaits you" : " reviews await you");
                 ReviewDescription = pending == 0
-                    ? "No completion records are currently awaiting coordinator review."
-                    : "Help students take the final step. Check their evaluations and completion requirements.";
+                    ? L.T("Coordinator.Dashboard.NoCompletionRecordsAreCurrentlyAwaiting")
+                    : L.T("Coordinator.Dashboard.HelpStudentsTakeTheFinalStep");
                 HasData = true;
             }
             catch (FirebaseException)
             {
-                LoadError = "We couldn't load your program overview. Please try again.";
+                LoadError = L.T("Coordinator.Dashboard.WeCouldnTLoadYourProgram");
             }
             // FirebaseAuthExpiredException intentionally reaches SecurePage's login redirect.
         }
@@ -97,7 +97,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             {
                 case PlacementStatus.Confirmed: return "Confirmed";
                 case PlacementStatus.Active: return "Active";
-                case PlacementStatus.AwaitingCompletion: return "In review";
+                case PlacementStatus.AwaitingCompletion: return L.T("Coordinator.Dashboard.InReview");
                 case PlacementStatus.Completed: return "Completed";
                 case PlacementStatus.Cancelled: return "Cancelled";
                 default: return "Offered";

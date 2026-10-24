@@ -57,8 +57,8 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 if (Recipient.Items.Count <= 1)
                 {
                     Recipient.Items[0].Text = CurrentUser.Role == UserRole.Coordinator
-                        ? "Meeting requests are not available for this role"
-                        : "No assigned contacts available";
+                        ? L.T("Meetings.MyMeetings.MeetingRequestsAreNotAvailableFor")
+                        : L.T("Meetings.MyMeetings.NoAssignedContactsAvailable");
                 }
                 SendRequest.Enabled = Recipient.Items.Count > 1;
 
@@ -84,8 +84,8 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             catch (FirebaseException)
             {
                 Notice(
-                    "Could not load meetings",
-                    "Check your connection and Firebase rules, then refresh.",
+                    L.T("Meetings.MyMeetings.CouldNotLoadMeetings"),
+                    L.T("Meetings.MyMeetings.CheckYourConnectionAndFirebaseRules"),
                     false);
             }
         }
@@ -93,7 +93,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
         private void LoadAllowedRecipients()
         {
             Recipient.Items.Clear();
-            Recipient.Items.Add(new ListItem("Select a person", ""));
+            Recipient.Items.Add(new ListItem(L.T("Meetings.MyMeetings.SelectAPerson"), ""));
             UserRepository users = new UserRepository();
             PlacementRepository placements = new PlacementRepository();
             Dictionary<string, Person> allowed = new Dictionary<string, Person>(StringComparer.Ordinal);
@@ -197,7 +197,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     out duration))
                 {
                     throw new InvalidOperationException(
-                        "Choose a valid duration.");
+                        L.T("Meetings.I18n.Chooseavalidduration"));
                 }
 
                 Meeting meeting = new Meeting
@@ -225,7 +225,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                 Finish(
                     "sent",
-                    "Your request was sent. It will stay pending until the invited person responds.");
+                    L.T("Meetings.MyMeetings.YourRequestWasSentItWill"));
             }
             catch (FirebaseAuthExpiredException)
             {
@@ -234,22 +234,22 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             catch (FirebaseException)
             {
                 Notice(
-                    "Request not confirmed",
-                    "Could not confirm saving. Check the list before trying again.",
+                    L.T("Meetings.MyMeetings.RequestNotConfirmed"),
+                    L.T("Meetings.MyMeetings.CouldNotConfirmSavingCheckThe"),
                     true);
             }
             catch (InvalidOperationException ex)
             {
                 Notice(
-                    "Check your request",
+                    L.T("Meetings.MyMeetings.CheckYourRequest"),
                     ex.Message,
                     true);
             }
             catch (ArgumentException)
             {
                 Notice(
-                    "Check the time",
-                    "Enter a valid date and time in Jordan local time.",
+                    L.T("Meetings.MyMeetings.CheckTheTime"),
+                    L.T("Meetings.MyMeetings.EnterAValidDateAndTime"),
                     true);
             }
         }
@@ -344,7 +344,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                         meeting.ScheduledAt),
 
                     DurationText =
-                        meeting.DurationMinutes + " min",
+                        meeting.DurationMinutes + L.T("Meetings.I18n.min"),
 
                     StateText =
                         meeting.DisplayStatus(now),
@@ -414,7 +414,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 return person.FullName;
             }
 
-            return "Account unavailable";
+            return L.T("Meetings.MyMeetings.AccountUnavailable");
         }
 
         private static string LocalDate(long milliseconds)
@@ -471,7 +471,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     || !meeting.CanBeViewedBy(CurrentUser.Id))
                 {
                     throw new InvalidOperationException(
-                        "Meeting not found or access denied.");
+                        L.T("Meetings.I18n.Meetingnotfoundoraccessdenied"));
                 }
 
                 // عرض التفاصيل داخل Popup.
@@ -487,26 +487,26 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                     DetailPeople.Text =
                         Server.HtmlEncode(
-                            "From: "
+                            L.T("Meetings.I18n.From")
                             + Name(people, meeting.CreatedById)
-                            + " | To: "
+                            + L.T("Meetings.I18n.To")
                             + Name(people, meeting.RequestedToId));
 
                     DetailTime.Text =
                         Server.HtmlEncode(
                             LocalDate(meeting.ScheduledAt)
-                            + " (Jordan time) - "
+                            + L.T("Meetings.I18n.Jordantime")
                             + meeting.DurationMinutes
-                            + " minutes");
+                            + L.T("Meetings.I18n.minutes"));
 
                     DetailState.Text =
                         Server.HtmlEncode(
-                            meeting.DisplayStatus(Time.NowMs()));
+                            L.Value("Ui", meeting.DisplayStatus(Time.NowMs())));
 
                     DetailAgenda.Text =
                         Server.HtmlEncode(
                             string.IsNullOrWhiteSpace(meeting.Agenda)
-                                ? "No agenda provided."
+                                ? L.T("Meetings.MyMeetings.NoAgendaProvided")
                                 : meeting.Agenda);
 
                     RunScript(
@@ -521,7 +521,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     if (!CanJoin(meeting, Time.NowMs()))
                     {
                         throw new InvalidOperationException(
-                            "Join is available from 15 minutes before the approved meeting until its scheduled end. Refresh the list.");
+                            L.T("Meetings.I18n.Joinisavailablefrom15minutesbefore"));
                     }
 
                     Uri uri;
@@ -542,7 +542,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                             @"^/UIMS-[a-f0-9]{32}$"))
                     {
                         throw new InvalidOperationException(
-                            "This is an older meeting link. Create a new request to use the embedded room.");
+                            L.T("Meetings.I18n.ThisisanoldermeetinglinkCreate"));
                     }
 
                     string roomName =
@@ -575,7 +575,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 {
                     Finish(
                         "upcoming",
-                        "Meeting accepted. Use Join meeting during the joining window.");
+                        L.T("Meetings.MyMeetings.MeetingAcceptedUseJoinMeetingDuring"));
                 }
                 else
                 {
@@ -583,15 +583,15 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
 
                     if (action == "Reject")
                     {
-                        message = "The request was declined.";
+                        message = L.T("Meetings.MyMeetings.TheRequestWasDeclined");
                     }
                     else if (action == "Complete")
                     {
-                        message = "The meeting was marked completed.";
+                        message = L.T("Meetings.MyMeetings.TheMeetingWasMarkedCompleted");
                     }
                     else
                     {
-                        message = "The meeting was cancelled.";
+                        message = L.T("Meetings.MyMeetings.TheMeetingWasCancelled");
                     }
 
                     Finish(
@@ -606,14 +606,14 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             catch (FirebaseException)
             {
                 Notice(
-                    "Action not confirmed",
-                    "Refresh the list to check the latest state before trying again.",
+                    L.T("Meetings.MyMeetings.ActionNotConfirmed"),
+                    L.T("Meetings.MyMeetings.RefreshTheListToCheckThe"),
                     false);
             }
             catch (InvalidOperationException ex)
             {
                 Notice(
-                    "Action unavailable",
+                    L.T("Meetings.MyMeetings.ActionUnavailable"),
                     ex.Message,
                     false);
             }
@@ -644,8 +644,8 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 if (notify)
                 {
                     Notice(
-                        "List updated",
-                        "You are viewing the latest meeting requests and responses.",
+                        L.T("Meetings.MyMeetings.ListUpdated"),
+                        L.T("Meetings.MyMeetings.YouAreViewingTheLatestMeeting"),
                         false);
                 }
             }
@@ -656,8 +656,8 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             catch (FirebaseException)
             {
                 Notice(
-                    "Could not refresh",
-                    "Check your connection and try again.",
+                    L.T("Meetings.MyMeetings.CouldNotRefresh"),
+                    L.T("Meetings.MyMeetings.CheckYourConnectionAndTryAgain"),
                     false);
             }
         }

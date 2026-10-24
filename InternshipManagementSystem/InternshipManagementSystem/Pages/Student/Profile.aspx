@@ -505,7 +505,7 @@
         <div class="sp-cover">
             <button type="button" class="sp-edit-button" id="spOpenEdit">
                 <i class="bi bi-pencil-square" aria-hidden="true"></i>
-                Edit Profile
+                <%: L.T("Student.Profile.EditProfile") %>
             </button>
         </div>
 
@@ -528,7 +528,7 @@
             </p>
             <span class="sp-role">
                 <i class="bi bi-mortarboard" aria-hidden="true"></i>
-                Student
+                <%: L.T("Student.Profile.Student") %>
             </span>
         </div>
 
@@ -827,11 +827,11 @@
          id="spModalDialog">
 
         <div class="sp-modal-head">
-            <h3 id="spEditTitle">Edit Profile</h3>
+            <h3 id="spEditTitle"><%: L.T("Student.Profile.EditProfile") %></h3>
             <button type="button"
                     class="sp-modal-close"
                     id="spCloseEdit"
-                    aria-label="Close">
+                    aria-label="<%: L.T("Student.Profile.Close") %>">
                 &times;
             </button>
         </div>
@@ -952,7 +952,7 @@
             <button type="button"
                     class="sp-btn sp-btn-light"
                     id="spCancelEdit">
-                Cancel
+                <%: L.T("Student.Profile.Cancel") %>
             </button>
 
             <button class="sp-btn"
@@ -961,7 +961,7 @@
                     value="save"
                     data-ui-action="save"
                     data-ui-validation="none"
-                    data-loading-label="Saving…">
+                    data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                 <%: L.T("Student.Profile.UpdateProfile") %>
             </button>
 

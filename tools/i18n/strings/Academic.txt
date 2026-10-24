@@ -430,3 +430,83 @@ ar: الاجتماعات
 Dashboard.MeetingsHelp
 en: View your scheduled meetings.
 ar: تابع اجتماعاتك المجدولة.
+
+FinalEvaluation.StudentRecords
+en: Student records
+ar: سجلات الطلبة
+
+FinalEvaluation.SearchAndViewStudentEvaluationAssignments
+en: Search and view student evaluation assignments.
+ar: ابحث عن الطلاب واعرض التكليفات الخاصة بتقييمهم.
+
+FinalEvaluation.SearchNameOrID
+en: Search name or ID...
+ar: ابحث بالاسم أو الرقم الجامعي...
+
+FinalEvaluation.Search
+en: Search
+ar: بحث
+
+FinalEvaluation.AllMajors
+en: All Majors
+ar: جميع التخصصات
+
+FinalEvaluation.ComputerScience
+en: Computer Science
+ar: علم الحاسوب
+
+FinalEvaluation.ComputerEngineering
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+StudentProgress.StudentRecords
+en: Student records
+ar: سجلات الطلبة
+
+StudentProgress.SearchAndViewStudentProgressAnd
+en: Search and view student progress and assignment information.
+ar: ابحث عن الطلاب واعرض معلومات تقدمهم وتكليفاتهم.
+
+StudentProgress.SearchNameOrID
+en: Search name or ID...
+ar: ابحث بالاسم أو الرقم الجامعي...
+
+StudentProgress.Search
+en: Search
+ar: بحث
+
+StudentProgress.AllMajors
+en: All Majors
+ar: جميع التخصصات
+
+StudentProgress.ComputerScience
+en: Computer Science
+ar: علم الحاسوب
+
+StudentProgress.ComputerEngineering
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+StudentProgress.TrainingHoursProgressOverview
+en: Training Hours & Progress Overview
+ar: نظرة عامة على ساعات التدريب والتقدم
+
+StudentProgress.InProgress
+en: In Progress ⏳
+ar: قيد التنفيذ ⏳
+
+StudentProgress.CompletedHours
+en: Completed Hours:
+ar: الساعات المكتملة:
+
+StudentProgress.0Hrs
+en: 0 hrs
+ar: 0 ساعة
+
+StudentProgress.160Hrs
+en: / 160 hrs
+ar: / 160 ساعة
+
+StudentProgress.PendingCompanyVerification
+en: Pending Company Verification
+ar: بانتظار تحقق الشركة

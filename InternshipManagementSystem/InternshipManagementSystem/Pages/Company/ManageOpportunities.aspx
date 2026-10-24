@@ -702,7 +702,7 @@
                         class="mo-btn mo-btn-danger"
                         name="moAction"
                         value="close"
-                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="Closing…">
+                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Closing") %>">
                         <%: L.T("Company.ManageOpportunities.CloseOpportunity") %>
                     </button>
 
@@ -993,7 +993,7 @@
                 <button type="submit"
                     class="mo-btn"
                     name="moAction"
-                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
+                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                     <%: L.T("Company.ManageOpportunities.SaveChanges") %>
                 </button>
 

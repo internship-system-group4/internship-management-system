@@ -1928,3 +1928,1037 @@ en: No students found. Add a student to get started.
 
 Students.NoStudentsMatchYourSearch
 en: No students match your search.
+
+Account.MyAccount
+en: My Account
+ar: حسابي
+
+Account.ManageYourPersonalProfileAndView
+en: Manage your personal profile and view your system associations.
+ar: أدِر ملفك الشخصي واطّلع على ارتباطاتك في النظام.
+
+Account.EditProfile
+en: ✎ Edit Profile
+ar: ✎ تعديل الملف الشخصي
+
+Account.MyProfile
+en: My Profile
+ar: ملفي الشخصي
+
+Account.UniversityCoordinator
+en: University Coordinator
+ar: منسق الجامعة
+
+Account.EMAILADDRESSREADONLY
+en: EMAIL ADDRESS (READ-ONLY)
+ar: البريد الإلكتروني (للقراءة فقط)
+
+Account.UNIVERSITYREADONLY
+en: UNIVERSITY (READ-ONLY)
+ar: الجامعة (للقراءة فقط)
+
+Account.PhoneNumberHeading
+en: PHONE NUMBER
+ar: رقم الهاتف
+
+Account.CollegeHeading
+en: COLLEGE
+ar: الكلية
+
+Account.STAFFIDREADONLY
+en: STAFF ID (READ-ONLY)
+ar: الرقم الوظيفي (للقراءة فقط)
+
+Account.ACCOUNTSECURITY
+en: ACCOUNT SECURITY
+ar: أمان الحساب
+
+Account.Password
+en: Password
+ar: كلمة المرور
+
+Account.Change
+en: Change
+ar: تغيير
+
+Account.Close
+en: Close
+ar: إغلاق
+
+Account.EditProfile2
+en: Edit Profile
+ar: تعديل الملف الشخصي
+
+Account.UpdateYourPersonalInformationBelow
+en: Update your personal information below.
+ar: حدّث معلوماتك الشخصية أدناه.
+
+Account.FullName2
+en: Full Name
+ar: الاسم الكامل
+
+Account.PhoneNumber2
+en: Phone Number
+ar: رقم الهاتف
+
+Account.Cancel2
+en: Cancel
+ar: إلغاء
+
+Account.ChangePassword2
+en: Change Password
+ar: تغيير كلمة المرور
+
+Account.KeepYourAccountSecureByUpdating
+en: Keep your account secure by updating your password.
+ar: حافظ على أمان حسابك بتحديث كلمة المرور.
+
+Account.CurrentPassword2
+en: Current Password
+ar: كلمة المرور الحالية
+
+Account.NewPassword2
+en: New Password
+ar: كلمة المرور الجديدة
+
+Account.Use8128Characters
+en: Use 8–128 characters.
+ar: استخدم من 8 إلى 128 محرفًا.
+
+Account.ConfirmNewPassword2
+en: Confirm New Password
+ar: تأكيد كلمة المرور الجديدة
+
+AddStudent.CoordinatorStudents
+en: Coordinator / Students
+ar: منسّق التدريب / الطلبة
+
+AddStudent.AddStudent
+en: Add student
+ar: إضافة طالب
+
+AddStudent.CreateAnAccountAndEnterThe
+en: Create an account and enter the student's academic information.
+ar: أنشئ حسابًا وأدخل البيانات الأكاديمية للطالب.
+
+AddStudent.StudentPages
+en: Student pages
+ar: صفحات الطلبة
+
+AddStudent.ViewRecords
+en: View records
+ar: عرض السجلات
+
+AddStudent.ManageStudents
+en: Manage students
+ar: إدارة الطلبة
+
+AddStudent.PersonalInformation
+en: Personal information
+ar: البيانات الشخصية
+
+AddStudent.UseTheStudentSOfficialName
+en: Use the student's official name and login email.
+ar: استخدم الاسم الرسمي للطالب وبريد تسجيل الدخول.
+
+AddStudent.FullName
+en: Full name
+ar: الاسم الكامل
+
+AddStudent.StudentID
+en: Student ID
+ar: الرقم الجامعي
+
+AddStudent.GeneratedAutomaticallyWhenTheAccountIs
+en: Generated automatically when the account is created.
+ar: يُنشأ تلقائيًا عند إنشاء الحساب.
+
+AddStudent.LoginEmail
+en: Login email
+ar: بريد تسجيل الدخول
+
+AddStudent.PhoneNumber
+en: Phone number
+ar: رقم الهاتف
+
+AddStudent.Optional
+en: (optional)
+ar: (اختياري)
+
+AddStudent.AcademicInformation
+en: Academic information
+ar: البيانات الأكاديمية
+
+AddStudent.TheseDetailsAppearInTheStudent
+en: These details appear in the student's record.
+ar: تظهر هذه البيانات في سجل الطالب.
+
+AddStudent.University
+en: University
+ar: الجامعة
+
+AddStudent.College
+en: College
+ar: الكلية
+
+AddStudent.Major
+en: Major
+ar: التخصص
+
+AddStudent.RequiredTrainingHours
+en: Required training hours
+ar: ساعات التدريب المطلوبة
+
+AddStudent.AccountAccess
+en: Account access
+ar: الوصول إلى الحساب
+
+AddStudent.ShareTheEmailAndTemporaryPassword
+en: Share the email and temporary password privately. The student must change the password after signing in.
+ar: شارك البريد الإلكتروني وكلمة المرور المؤقتة بشكل خاص، ويجب على الطالب تغيير كلمة المرور بعد تسجيل الدخول.
+
+AddStudent.TemporaryPassword
+en: Temporary password
+ar: كلمة المرور المؤقتة
+
+AddStudent.ConfirmTemporaryPassword
+en: Confirm temporary password
+ar: تأكيد كلمة المرور المؤقتة
+
+AddStudent.CreateStudent
+en: Create student
+ar: إنشاء الطالب
+
+AddStudent.BackToRecords
+en: Back to records
+ar: العودة إلى السجلات
+
+CompletionReview.ReviewConfidentialEvaluationsAndVerifiedTraining
+en: Review confidential evaluations and verified training evidence before recording the final completion decision.
+ar: راجع التقييمات السرية وأدلة التدريب المتحقق منها قبل تسجيل قرار إتمام التدريب النهائي.
+
+CompletionReview.InternshipCompletionReviews
+en: Internship Completion Reviews
+ar: مراجعات إتمام التدريب
+
+CompletionReview.WorkflowStatusesAreApplicationStatusesA
+en: Workflow statuses are application statuses. A confirmed placement does not establish completion.
+ar: حالات سير العمل هي حالات داخل النظام. تأكيد فرصة التدريب لا يعني إتمام التدريب.
+
+CompletionReview.SearchStudentNumberProgramOrCompany
+en: Search student, number, program or company
+ar: ابحث باسم الطالب أو رقمه أو برنامجه أو شركته
+
+CompletionReview.CompletionReviewStatus
+en: Completion review status
+ar: حالة مراجعة الإنهاء
+
+CompletionReview.ApplyFilters
+en: Apply filters
+ar: تطبيق عوامل التصفية
+
+CompletionReview.StudentNumber
+en: Student number
+ar: الرقم الجامعي
+
+CompletionReview.AcademicProgram
+en: Academic program
+ar: البرنامج الأكاديمي
+
+CompletionReview.InternshipType
+en: Internship type
+ar: نوع التدريب
+
+CompletionReview.TrainingStatus
+en: Training status
+ar: حالة التدريب
+
+CompletionReview.EvaluationStatus
+en: Evaluation status
+ar: حالة التقييم
+
+CompletionReview.Review
+en: Review
+ar: مراجعة
+
+CompletionReview.ViewDetails
+en: View details
+ar: عرض التفاصيل
+
+CompletionReview.NoInternshipsMatchTheseFilters
+en: No internships match these filters.
+ar: لا توجد تدريبات تطابق عوامل التصفية.
+
+CompletionReview.SelectAStudent
+en: Select a student
+ar: اختر طالبًا
+
+CompletionReview.UseViewDetailsToReviewAn
+en: Use View details to review an internship.
+ar: استخدم «عرض التفاصيل» لمراجعة التدريب.
+
+CompletionReview.StudentInternshipInformation
+en: Student & Internship Information
+ar: معلومات الطالب والتدريب
+
+CompletionReview.EvaluationEvidence
+en: Evaluation Evidence
+ar: أدلة التقييم
+
+CompletionReview.FinalSupervisorEvaluationsAndCommentsAre
+en: Final supervisor evaluations and comments are confidential and remain available only to authorized staff.
+ar: تقييمات المشرفين النهائية وملاحظاتهم سرية، ولا تتاح إلا للموظفين المخولين.
+
+CompletionReview.CompanyFinalEvaluation2
+en: Company Final Evaluation
+ar: التقييم النهائي للشركة
+
+CompletionReview.AcademicFinalEvaluation2
+en: Academic Final Evaluation
+ar: التقييم الأكاديمي النهائي
+
+CompletionReview.TrainingRequirementsDocuments
+en: Training Requirements & Documents
+ar: متطلبات التدريب ومستنداته
+
+CompletionReview.ApplicableEvaluationAndTrainingRule
+en: Applicable evaluation and training rule
+ar: قاعدة التقييم والتدريب المطبقة
+
+CompletionReview.SaveReviewConfiguration
+en: Save review configuration
+ar: حفظ إعدادات المراجعة
+
+CompletionReview.SelectTheActualInternshipTypeChanging
+en: Select the actual internship type. Changing configuration clears earlier evidence confirmations. Missing rules must be configured by the application administrator.
+ar: اختر نوع التدريب الفعلي. يؤدي تغيير الإعدادات إلى مسح تأكيدات الأدلة السابقة. يجب على مسؤول النظام إعداد القواعد غير المتوفرة.
+
+CompletionReview.CoordinatorVerification
+en: Coordinator Verification
+ar: تحقق المنسق
+
+CompletionReview.InspectTheSupportingRecordsBeforeConfirming
+en: Inspect the supporting records before confirming each requirement. Record a document identifier, secure archive location or other traceable evidence reference. Save verification before approving.
+ar: راجع السجلات الداعمة قبل تأكيد كل متطلب. سجّل معرف المستند أو موقع الأرشيف الآمن أو مرجعًا آخر يمكن تتبعه. احفظ التحقق قبل الموافقة.
+
+CompletionReview.SupportingEvidenceReference
+en: Supporting evidence reference
+ar: مرجع الدليل الداعم
+
+CompletionReview.DateOfSchoolApprovalBeforeTraining
+en: Date of school approval (before training)
+ar: تاريخ موافقة الكلية (قبل التدريب)
+
+CompletionReview.SaveEvidenceVerification
+en: Save evidence verification
+ar: حفظ التحقق من الأدلة
+
+CompletionReview.FinalDecision
+en: Final Decision
+ar: القرار النهائي
+
+CompletionReview.FinalCompletionStatus
+en: Final Completion Status:
+ar: حالة إتمام التدريب النهائية:
+
+CompletionReview.ProvisionalEvaluationResult
+en: Provisional Evaluation Result:
+ar: نتيجة التقييم الأولية:
+
+CompletionReview.InternalConfiguredScore
+en: Internal configured score:
+ar: العلامة الداخلية بحسب الإعدادات:
+
+CompletionReview.APassingEvaluationDoesNotApprove
+en: A passing evaluation does not approve completion. Only the coordinator can approve after verifying all applicable requirements.
+ar: النجاح في التقييم لا يعني الموافقة على إتمام التدريب. يمكن للمنسق وحده الموافقة بعد التحقق من جميع المتطلبات المطبقة.
+
+CompletionReview.CoordinatorNoteRequiredForCorrectionsOr
+en: Coordinator note (required for corrections or rejection)
+ar: ملاحظة المنسق (مطلوبة عند طلب التصحيح أو الرفض)
+
+CompletionReview.ApproveInternshipCompletion
+en: Approve Internship Completion
+ar: الموافقة على إتمام التدريب
+
+CompletionReview.ReturnForCorrections
+en: Return for Corrections
+ar: إعادة للتصحيح
+
+CompletionReview.RejectCompletion
+en: Reject Completion
+ar: رفض إتمام التدريب
+
+CompletionReview.ApprovedDocuments
+en: Approved Documents
+ar: المستندات المعتمدة
+
+CompletionReview.TheReportIsReleasedToThe
+en: The report is released to the approved student. The separate certificate can be generated and printed by the coordinator.
+ar: يُتاح التقرير للطالب بعد الموافقة. ويمكن للمنسق إنشاء شهادة مستقلة وطباعتها.
+
+CompletionReview.DownloadInternshipCompletionReport
+en: Download Internship Completion Report
+ar: تنزيل تقرير إتمام التدريب
+
+CompletionReview.GenerateInternshipCompletionCertificate
+en: Generate Internship Completion Certificate
+ar: إنشاء شهادة إتمام التدريب
+
+CompletionReview.ReviewHistory
+en: Review history
+ar: سجل المراجعات
+
+Dashboard.YourCoordinatorWorkspace
+en: Your coordinator workspace
+ar: مساحة عمل المنسق
+
+Dashboard.GoodToSeeYou
+en: Good to see you,
+ar: أهلًا بك،
+
+Dashboard.AClearViewOfYourStudents
+en: A clear view of your students, their progress, and what comes next.
+ar: نظرة واضحة على طلابك وتقدمهم والخطوة التالية.
+
+Dashboard.ViewResults
+en: View results
+ar: عرض النتائج
+
+Dashboard.AddStudent
+en: Add student
+ar: إضافة طالب
+
+Dashboard.TryAgain
+en: Try again
+ar: المحاولة مجددًا
+
+Dashboard.FromClassroomToCareer
+en: From classroom to career
+ar: من الدراسة إلى العمل
+
+Dashboard.GreatFuturesStartWithGoodGuidance
+en: Great futures start with good guidance.
+ar: مستقبل واعد يبدأ بتوجيه جيد.
+
+Dashboard.KeepEveryInternshipMovingForwardConnect
+en: Keep every internship moving forward. Connect the right people, follow their progress, and celebrate the milestones.
+ar: ساعد كل تدريب على التقدم. اربط الأشخاص المناسبين، وتابع تقدمهم، واحتفِ بإنجازاتهم.
+
+Dashboard.ExplorePlacements
+en: Explore placements →
+ar: استعراض التدريبات ←
+
+Dashboard.YourProgramAtAGlance
+en: Your program at a glance
+ar: برنامجك في لمحة
+
+Dashboard.CurrentProgramOverview
+en: Current program overview
+ar: نظرة عامة على البرنامج الحالي
+
+Dashboard.TotalStudents
+en: Total students
+ar: إجمالي الطلاب
+
+Dashboard.StudentAccounts
+en: Student accounts
+ar: حسابات الطلاب
+
+Dashboard.ActivePlacements
+en: Active placements
+ar: التدريبات النشطة
+
+Dashboard.ConfirmedInProgress
+en: Confirmed & in progress
+ar: مؤكدة وقيد التنفيذ
+
+Dashboard.PartnerCompanies
+en: Partner companies
+ar: الشركات الشريكة
+
+Dashboard.RegisteredCompanies
+en: Registered companies
+ar: الشركات المسجلة
+
+Dashboard.OpenOpportunities
+en: Open opportunities
+ar: الفرص المفتوحة
+
+Dashboard.AvailableToStudents
+en: Available to students
+ar: متاحة للطلاب
+
+Dashboard.RecentPlacements
+en: Recent placements
+ar: أحدث التدريبات
+
+Dashboard.SmallStepsRealProgress
+en: Small steps. Real progress.
+ar: خطوات صغيرة. تقدم حقيقي.
+
+Dashboard.ViewAll
+en: View all →
+ar: عرض الكل ←
+
+Dashboard.Student
+en: Student
+ar: الطالب
+
+Dashboard.Company2
+en: Company
+ar: الشركة
+
+Dashboard.Hours
+en: Hours
+ar: الساعات
+
+Dashboard.Status
+en: Status
+ar: الحالة
+
+Dashboard.Details
+en: Details
+ar: التفاصيل
+
+Dashboard.Latest
+en: Latest
+ar: أحدث
+
+Dashboard.PlacementsProgressReflectsApprovedTrainingHours
+en: placements · Progress reflects approved training hours.
+ar: تدريبات · يعكس التقدم ساعات التدريب المعتمدة.
+
+Dashboard.GoToPlacements
+en: Go to placements →
+ar: الانتقال إلى التدريبات ←
+
+Dashboard.CoordinatorActions
+en: Coordinator actions
+ar: إجراءات المنسق
+
+Dashboard.MakeThingsHappen
+en: Make things happen
+ar: أنجز الخطوة التالية
+
+Dashboard.YourEverydayActionsOneClickAway
+en: Your everyday actions, one click away.
+ar: إجراءاتك اليومية على بعد نقرة واحدة.
+
+Dashboard.AddAStudent
+en: Add a student
+ar: إضافة طالب
+
+Dashboard.StartANewInternshipJourney
+en: Start a new internship journey
+ar: ابدأ رحلة تدريب جديدة
+
+Dashboard.AssignStudentGroups
+en: Assign student groups
+ar: تعيين مجموعات الطلاب
+
+Dashboard.ConnectStudentsAndSupervisors
+en: Connect students and supervisors
+ar: اربط الطلاب بالمشرفين
+
+Dashboard.ScheduleAMeeting
+en: Schedule a meeting
+ar: جدولة اجتماع
+
+Dashboard.MakeTimeForAConversation
+en: Make time for a conversation
+ar: خصص وقتًا للحوار
+
+Dashboard.TheNextMilestone
+en: The next milestone
+ar: الإنجاز التالي
+
+Dashboard.OpenCompletionReview2
+en: Open completion review →
+ar: فتح مراجعة الإتمام ←
+
+Dashboard.UIMSABetterPathFromLearning
+en: UIMS · A better path from learning to doing.
+ar: UIMS · طريق أفضل من التعلم إلى التطبيق.
+
+Dashboard.CoordinatorWorkspace
+en: Coordinator workspace
+ar: مساحة عمل المنسق
+
+PlacementDetails.PlacementDetails
+en: Placement details
+ar: تفاصيل التدريب
+
+PlacementDetails.TasksSubmissionsEvaluationsAndTrainingHours
+en: Tasks, submissions, evaluations and training hours for one confirmed internship.
+ar: المهام والتسليمات والتقييمات وساعات التدريب لتدريب واحد مؤكد.
+
+PlacementDetails.BackToPlacements
+en: Back to placements
+ar: العودة إلى التدريبات
+
+PlacementDetails.OpenFinalCompletionReview
+en: Open final completion review
+ar: فتح مراجعة الإتمام النهائية
+
+PlacementDetails.StudentNumber
+en: Student number
+ar: الرقم الجامعي
+
+PlacementDetails.Program
+en: Program
+ar: البرنامج
+
+PlacementDetails.Status2
+en: Status
+ar: الحالة
+
+PlacementDetails.Company2
+en: Company
+ar: الشركة
+
+PlacementDetails.Opportunity2
+en: Opportunity
+ar: الفرصة
+
+PlacementDetails.CompanySupervisor2
+en: Company supervisor
+ar: مشرف الشركة
+
+PlacementDetails.AcademicSupervisor2
+en: Academic supervisor
+ar: المشرف الأكاديمي
+
+PlacementDetails.TrainingPeriod2
+en: Training period
+ar: فترة التدريب
+
+PlacementDetails.TasksAndEvaluations
+en: Tasks and evaluations
+ar: المهام والتقييمات
+
+PlacementDetails.AssignedTasks
+en: assigned tasks
+ar: المهام المسندة
+
+PlacementDetails.Submissions
+en: submissions
+ar: التسليمات
+
+PlacementDetails.GradedTasks
+en: graded tasks
+ar: المهام المقيّمة
+
+PlacementDetails.LatestGrade
+en: Latest grade
+ar: أحدث علامة
+
+PlacementDetails.LatestFeedback
+en: Latest feedback
+ar: أحدث ملاحظات
+
+PlacementDetails.NoTasksHaveBeenAssignedYet
+en: No tasks have been assigned yet.
+ar: لم يتم إسناد مهام بعد.
+
+PlacementDetails.TrainingHours
+en: Training hours
+ar: ساعات التدريب
+
+PlacementDetails.ApprovedRequired
+en: approved / required ·
+ar: المعتمدة / المطلوبة ·
+
+PlacementDetails.ReportedHoursAwaitingReview
+en: reported hours awaiting review
+ar: ساعات مسجلة بانتظار المراجعة
+
+PlacementDetails.ApprovedHoursProgress
+en: Approved hours progress
+ar: تقدّم الساعات المعتمدة
+
+PlacementDetails.OfRequiredHoursApproved
+en: of required hours approved.
+ar: من الساعات المطلوبة معتمدة.
+
+PlacementDetails.Entry
+en: Entry
+ar: السجل
+
+PlacementDetails.Hours2
+en: Hours
+ar: الساعات
+
+PlacementDetails.NoHoursHaveBeenReportedYet
+en: No hours have been reported yet.
+ar: لم يتم تسجيل ساعات بعد.
+
+PlacementDetails.FinalReviewStatus
+en: Final review status
+ar: حالة المراجعة النهائية
+
+PlacementDetails.CompanyFinalEvaluation2
+en: Company final evaluation
+ar: التقييم النهائي للشركة
+
+PlacementDetails.AcademicFinalEvaluation2
+en: Academic final evaluation
+ar: التقييم الأكاديمي النهائي
+
+PlacementDetails.Completion
+en: Completion
+ar: الإنهاء
+
+Placements.PlacementsProgress2
+en: Placements & Progress
+ar: أماكن التدريب والتقدّم
+
+Placements.MonitorEachConfirmedInternshipAndOpen
+en: Monitor each confirmed internship and open its task, evaluation and hours details.
+ar: تابع كل تدريب مؤكد واعرض تفاصيل المهام والتقييم والساعات.
+
+Placements.ConfirmedInternships
+en: Confirmed internships
+ar: التدريبات المؤكدة
+
+Placements.SearchStudentCompanyOrOpportunity
+en: Search student, company or opportunity
+ar: ابحث باسم الطالب أو الشركة أو الفرصة
+
+Placements.Search2
+en: Search
+ar: بحث
+
+Placements.Clear
+en: Clear
+ar: مسح
+
+Placements.Student2
+en: Student
+ar: الطالب
+
+Placements.Company
+en: Company
+ar: الشركة
+
+Placements.Opportunity
+en: Opportunity
+ar: الفرصة
+
+Placements.ApprovedHours2
+en: Approved hours
+ar: الساعات المعتمدة
+
+Placements.Status2
+en: Status
+ar: الحالة
+
+Placements.Details
+en: Details
+ar: التفاصيل
+
+Placements.ViewDetails2
+en: View details
+ar: عرض التفاصيل
+
+AddStudent.CompleteAllRequiredFields
+en: Complete all required fields.
+ar: أكمل جميع الحقول المطلوبة.
+
+AddStudent.OneOrMoreFieldsAreToo
+en: One or more fields are too long.
+ar: حقل واحد أو أكثر أطول من المسموح.
+
+AddStudent.EnterAValidEmailAddress
+en: Enter a valid email address.
+ar: أدخل بريدًا إلكترونيًا صحيحًا.
+
+AddStudent.RequiredTrainingHoursMustBeA
+en: Required training hours must be a positive whole number.
+ar: يجب أن تكون ساعات التدريب المطلوبة عددًا صحيحًا موجبًا.
+
+AddStudent.TheTemporaryPasswordMustBeAt
+en: The temporary password must be at least 6 characters.
+ar: يجب أن تتكوّن كلمة المرور المؤقتة من 6 أحرف على الأقل.
+
+AddStudent.ThePasswordsDoNotMatch
+en: The passwords do not match.
+ar: كلمتا المرور غير متطابقتين.
+
+AddStudent.FirebaseIsNotConfiguredAskThe
+en: Firebase is not configured. Ask the project administrator to check the local settings.
+ar: لم تُعدّ Firebase بعد. اطلب من مسؤول المشروع التحقق من الإعدادات المحلية.
+
+AddStudent.TheAccountWasCreatedButIts
+en: The account was created but its profile could not be saved. Contact the administrator before retrying.
+ar: أُنشئ الحساب لكن تعذّر حفظ ملفه. تواصل مع المسؤول قبل إعادة المحاولة.
+
+AddStudent.TheStudentCouldNotBeSaved
+en: The student could not be saved. Please try again.
+ar: تعذّر حفظ الطالب. يُرجى المحاولة مرة أخرى.
+
+CompletionReview.StudentOrPlacementNotFoundSelect
+en: Student or placement not found. Select a valid internship from the queue.
+ar: لم يتم العثور على الطالب أو التدريب. اختر تدريبًا صالحًا من قائمة المراجعة.
+
+CompletionReview.CouldNotLoadTheQueuePlease
+en: Could not load the queue. Please retry.
+ar: تعذر تحميل قائمة المراجعة. يرجى المحاولة مجددًا.
+
+CompletionReview.TheReviewCouldNotBeSaved
+en: The review could not be saved. Reload to check the latest state before retrying.
+ar: تعذر حفظ المراجعة. أعد تحميل الصفحة للتحقق من الحالة الأحدث قبل المحاولة مجددًا.
+
+CompletionReview.CompletionWasApprovedAndTheReport
+en: Completion was approved and the report released. Placement summary could not sync; reload before any further action.
+ar: تم اعتماد الإتمام وإتاحة التقرير، لكن تعذرت مزامنة ملخص التدريب. أعد تحميل الصفحة قبل اتخاذ أي إجراء آخر.
+
+Dashboard.TheProgramOverviewIsUnavailableUntil
+en: The program overview is unavailable until the database is configured.
+ar: لا تتاح النظرة العامة على البرنامج حتى يتم إعداد قاعدة البيانات.
+
+Dashboard.WeCouldnTLoadYourProgram
+en: We couldn't load your program overview. Please try again.
+ar: تعذر تحميل النظرة العامة على البرنامج. يرجى المحاولة مجددًا.
+
+PlacementDetails.ChooseAPlacementFromPlacementsProgress
+en: Choose a placement from Placements & Progress.
+ar: اختر تدريبًا من صفحة التدريبات والتقدم.
+
+PlacementDetails.CouldNotLoadThisPlacementPlease
+en: Could not load this placement. Please try again.
+ar: تعذر تحميل هذا التدريب. يرجى المحاولة مجددًا.
+
+PlacementDetails.PlacementNotFound
+en: Placement not found.
+ar: لم يتم العثور على التدريب.
+
+Placements.CouldNotLoadPlacementsPleaseTry
+en: Could not load placements. Please try again.
+ar: تعذر تحميل التدريبات. يرجى المحاولة مجددًا.
+
+AddStudent.SelectAMajor
+en: Select a major
+
+AddStudent.CouldNotCreateTheAccount
+en: Could not create the account.
+
+CompletionReview.TheReviewCouldNotBeLoaded
+en: The review could not be loaded from Firebase. Retry after checking the connection.
+ar: تعذر تحميل المراجعة من Firebase. تحقق من الاتصال وحاول مجددًا.
+
+CompletionReview.TheQueueCouldNotBeLoaded
+en: The queue could not be loaded from Firebase. Please retry.
+ar: تعذر تحميل قائمة المراجعة من Firebase. يرجى المحاولة مجددًا.
+
+CompletionReview.NotRecorded
+en: Not recorded
+
+CompletionReview.ConfigurationRequired
+en: Configuration required
+ar: يلزم إعداد القواعد
+
+CompletionReview.PendingConfigurationNeeded
+en: Pending / configuration needed
+ar: قيد الانتظار / يلزم الإعداد
+
+CompletionReview.StudentNumber2
+en: Student number
+
+CompletionReview.NotAssigned
+en: Not assigned
+
+CompletionReview.TrainingStart
+en: Training start
+ar: بداية التدريب
+
+CompletionReview.TrainingEnd
+en: Training end
+ar: نهاية التدريب
+
+CompletionReview.PlacementStatus
+en: Placement status
+
+CompletionReview.SchoolApprovalBeforeTraining
+en: School approval before training
+ar: موافقة الكلية قبل التدريب
+
+CompletionReview.ApprovedTrainingHours
+en: Approved training hours
+
+CompletionReview.RequiredHoursDuration
+en: Required hours / duration
+ar: الساعات أو المدة المطلوبة
+
+CompletionReview.SubmissionStatus
+en: Submission status
+ar: حالة التسليم
+
+CompletionReview.EvaluationOnSubmittedScale
+en: Evaluation on submitted scale
+ar: التقييم وفق المقياس المستخدم
+
+CompletionReview.NotSubmitted
+en: Not submitted
+
+CompletionReview.SubmissionDate
+en: Submission date
+ar: تاريخ التسليم
+
+CompletionReview.SubmittedToCoordinator
+en: Submitted to coordinator
+ar: تم الإرسال إلى المنسق
+
+CompletionReview.NoSubmittedCompanyComments
+en: No submitted company comments.
+ar: لا توجد ملاحظات مقدمة من الشركة.
+
+CompletionReview.NoSubmittedAcademicComments
+en: No submitted academic comments.
+ar: لا توجد ملاحظات أكاديمية مقدمة.
+
+CompletionReview.Tasks
+en: Tasks\u0020
+ar: المهام\u0020
+
+CompletionReview.TheseAreProjectProposedRulesNot
+en: These are project-proposed rules, not verified GJU internship grading policy.
+ar: هذه قواعد مقترحة للمشروع وليست سياسة تقييم تدريب معتمدة من الجامعة الألمانية الأردنية.
+
+CompletionReview.SelectAnApplicableRule
+en: Select an applicable rule
+ar: اختر قاعدة مناسبة
+
+CompletionReview.PendingEvidenceOrConfiguration
+en: Pending evidence or configuration
+ar: بانتظار الأدلة أو الإعداد
+
+CompletionReview.NotVerified
+en: Not verified
+ar: لم يتم التحقق
+
+CompletionReview.ReviewConfiguration
+en: Review configuration
+ar: إعدادات المراجعة
+
+CompletionReview.EvidenceVerification
+en: Evidence verification
+ar: التحقق من الأدلة
+
+CompletionReview.NoValidNumericScoreOnSubmitted
+en: No valid numeric score on submitted scale
+ar: لا توجد علامة رقمية صالحة وفق المقياس المستخدم
+
+Dashboard.CompletionReviews
+en: Completion reviews
+ar: مراجعات الإتمام
+
+Dashboard.OpenTheReviewWorkspaceToCheck
+en: Open the review workspace to check final evaluations and internship completion.
+ar: افتح مساحة المراجعة للتحقق من التقييمات النهائية وإتمام التدريب.
+
+Dashboard.RoomForTheNextMilestone
+en: Room for the next milestone
+ar: نحو الإنجاز التالي
+
+Dashboard.NoCompletionRecordsAreCurrentlyAwaiting
+en: No completion records are currently awaiting coordinator review.
+ar: لا توجد سجلات إتمام بانتظار مراجعة المنسق حاليًا.
+
+Dashboard.HelpStudentsTakeTheFinalStep
+en: Help students take the final step. Check their evaluations and completion requirements.
+ar: ساعد الطلاب على إتمام الخطوة الأخيرة. راجع تقييماتهم ومتطلبات إتمام التدريب.
+
+Dashboard.InReview
+en: In review
+ar: قيد المراجعة
+
+PlacementDetails.NotAssigned
+en: Not assigned
+
+PlacementDetails.TrainingEntry
+en: Training entry
+ar: سجل تدريب
+
+PlacementDetails.Pending
+en: Pending
+
+PlacementDetails.NotReviewed
+en: Not reviewed
+ar: لم تتم المراجعة
+
+PlacementDetails.ApprovedPass
+en: Approved - Pass
+ar: معتمد - ناجح
+
+PlacementDetails.ReviewedFail
+en: Reviewed - Fail
+ar: تمت المراجعة - راسب
+
+PlacementDetails.Rejected
+en: Rejected
+
+PlacementDetails.AwaitingReview
+en: Awaiting review
+
+PlacementDetails.UntitledTask
+en: Untitled task
+ar: مهمة بلا عنوان
+
+PlacementDetails.RevisionRequested
+en: Revision requested
+
+PlacementDetails.NoFeedbackYet
+en: No feedback yet
+
+PlacementDetails.NoWrittenFeedback
+en: No written feedback
+ar: لا توجد ملاحظات مكتوبة
+
+Placements.UnnamedStudent
+en: Unnamed student
+ar: طالب بلا اسم
+
+Placements.CompanyNotRecorded
+en: Company not recorded
+ar: لم تُسجل الشركة
+
+Placements.NoConfirmedInternshipsYet
+en: No confirmed internships yet.
+ar: لا توجد تدريبات مؤكدة بعد.
+
+Placements.NoPlacementsMatchYourSearch
+en: No placements match your search.
+ar: لا توجد تدريبات تطابق بحثك.
+
+I18n.InProgress
+en: In Progress
+ar: قيد التنفيذ
+
+I18n.AwaitingEvaluations
+en: Awaiting Evaluations
+ar: بانتظار التقييمات
+
+I18n.ReadyforReview
+en: Ready for Review
+ar: جاهز للمراجعة
+
+I18n.NeedsCorrections
+en: Needs Corrections
+ar: تحتاج إلى تصحيح
+
+I18n.Missingdraftorinvalidsubmission
+en: Missing, draft or invalid submission
+ar: التسليم مفقود أو مسودة أو غير صالح
+
+I18n.Complete
+en: Complete
+ar: مكتمل
+
+I18n.Trainingongoing
+en:  · Training ongoing
+ar:  · التدريب مستمر
+
+I18n.Totalassignedtasks0Completedtaskswith
+en: Total assigned tasks: {0} · Completed tasks with current grades: {1} · Outstanding tasks: {2}
+ar: إجمالي المهام المسندة: {0} · المهام المكتملة ذات العلامات الحالية: {1} · المهام المتبقية: {2}

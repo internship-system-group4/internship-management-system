@@ -38,8 +38,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             var completionRule = completion != null && completion.StudentId == student.Id && completion.PlacementId == placement.Id
                 ? completion.EvaluationRuleSnapshot : null;
             litPlacement.Text = Server.HtmlEncode(string.IsNullOrWhiteSpace(placement.OpportunityTitle)
-                ? "Your internship" : placement.OpportunityTitle);
-            litCompany.Text = Server.HtmlEncode(placement.CompanyName ?? "Company not specified");
+                ? L.T("Student.Progress.YourInternship") : placement.OpportunityTitle);
+            litCompany.Text = Server.HtmlEncode(placement.CompanyName ?? L.T("Student.Progress.CompanyNotSpecified"));
 
             List<InternshipTask> tasks = new TaskRepository().GetByPlacement(placement.Id)
                 .Where(t => t.StudentId == student.Id && !string.IsNullOrEmpty(t.Id)).ToList();
@@ -67,7 +67,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 .Select(h => new HoursRow
                 {
                     Date = Time.DisplayDate(h.WorkDate > 0 ? h.WorkDate : h.ReportedAt),
-                    Description = string.IsNullOrWhiteSpace(h.Description) ? "Training hours" : h.Description,
+                    Description = string.IsNullOrWhiteSpace(h.Description) ? L.T("Student.Progress.TrainingHours3") : h.Description,
                     Hours = h.Hours.ToString(CultureInfo.InvariantCulture)
                 }).ToList();
             int approvedHours = entries.Where(h => h.Status == HoursStatus.Approved).Sum(h => Math.Max(0, h.Hours));
@@ -79,7 +79,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             litHours.Text = approvedHours.ToString(CultureInfo.InvariantCulture);
             litRequiredHours.Text = requiredHours > 0
                 ? requiredHours.ToString(CultureInfo.InvariantCulture) : completionRule != null && completionRule.RequiredDurationDays > 0
-                    ? Server.HtmlEncode("Duration requirement: " + completionRule.RequiredDurationDays + " days") : "Not set";
+                    ? Server.HtmlEncode("Duration requirement: " + completionRule.RequiredDurationDays + " days") : L.T("Student.Progress.NotSet");
             litPendingHours.Text = pendingHours.ToString(CultureInfo.InvariantCulture);
             litHoursPercent.Text = percent.ToString(CultureInfo.InvariantCulture) + "%";
             hoursBar.Style["width"] = percent.ToString(CultureInfo.InvariantCulture) + "%";
@@ -105,7 +105,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             pnlAdministrativeDecision.Visible = returnedOrRejected;
             if (returnedOrRejected)
             {
-                litCompletionStatus.Text = completion.Status == CompletionStatus.NeedsCorrections ? "Needs Corrections" : "Rejected";
+                litCompletionStatus.Text = completion.Status == CompletionStatus.NeedsCorrections ? L.T("Student.Progress.NeedsCorrections") : L.T("Student.Progress.Rejected");
                 litCompletionNote.Text = Server.HtmlEncode(completion.CoordinatorNote ?? "");
             }
             bool approvedResult = completion != null && completion.PlacementId == placement.Id &&
@@ -140,7 +140,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 !IsSafeReportUrl(completion.ReportFileUrl))
             {
                 Response.StatusCode = 403;
-                litReportError.Text = "The approved report is not available for this account.";
+                litReportError.Text = L.T("Student.Progress.TheApprovedReportIsNotAvailable");
                 return;
             }
 
@@ -200,8 +200,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     Date = Time.Display(attempt.SubmittedAt),
                     Label = "Submission · attempt " + attempt.AttemptNumber.ToString(CultureInfo.InvariantCulture),
                     Detail = string.IsNullOrWhiteSpace(attempt.DescriptionText)
-                        ? "Work submitted." : attempt.DescriptionText,
-                    Meta = !string.IsNullOrWhiteSpace(attempt.LinkUrl) ? "Includes a link" :
+                        ? L.T("Student.Progress.WorkSubmitted") : attempt.DescriptionText,
+                    Meta = !string.IsNullOrWhiteSpace(attempt.LinkUrl) ? L.T("Student.Progress.IncludesALink") :
                            !string.IsNullOrWhiteSpace(attempt.FileName) ? "File: " + attempt.FileName : ""
                 });
             }
@@ -211,10 +211,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 {
                     SortTime = review.EvaluatedAt,
                     Date = Time.Display(review.EvaluatedAt),
-                    Label = review.RevisionRequested ? "Revision requested" : "Task evaluated",
+                    Label = review.RevisionRequested ? L.T("Student.Progress.RevisionRequested2") : L.T("Student.Progress.TaskEvaluated"),
                     Detail = review.RevisionRequested
                         ? RevisionDetail(review)
-                        : FirstText(review.Feedback, "No written feedback was provided."),
+                        : FirstText(review.Feedback, L.T("Student.Progress.NoWrittenFeedbackWasProvided")),
                     Meta = review.RevisionRequested || review.MaxScore <= 0 ? "" :
                         Score(review.TotalScore) + " / " + Score(review.MaxScore)
                 });
@@ -224,21 +224,21 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 history.Add(new HistoryRow
                 {
                     Date = "",
-                    Label = "No submission yet",
-                    Detail = "Submit your work from My Tasks.",
+                    Label = L.T("Student.Progress.NoSubmissionYet"),
+                    Detail = L.T("Student.Progress.SubmitYourWorkFromMyTasks"),
                     Meta = ""
                 });
             }
             return new TaskRow
             {
-                Title = string.IsNullOrWhiteSpace(task.Title) ? "Untitled task" : task.Title,
+                Title = string.IsNullOrWhiteSpace(task.Title) ? L.T("Student.Progress.UntitledTask") : task.Title,
                 Deadline = Time.DisplayDate(task.Deadline),
-                Status = needsRevision ? "Revision requested" : hasCurrentGrade ? "Graded" :
+                Status = needsRevision ? L.T("Student.Progress.RevisionRequested2") : hasCurrentGrade ? "Graded" :
                     resubmitted ? "Resubmitted" : StatusLabel(task.Status),
                 StatusClass = needsRevision ? "uims-pill-rejected" :
                     hasCurrentGrade ? "uims-pill-accepted" : "uims-pill-info",
                 Grade = !hasCurrentGrade
-                    ? "Not graded" : Score(latestGrade.TotalScore) + " / " + Score(latestGrade.MaxScore),
+                    ? L.T("Student.Progress.NotGraded") : Score(latestGrade.TotalScore) + " / " + Score(latestGrade.MaxScore),
                 HasGrade = hasCurrentGrade,
                 HasSubmission = attempts.Count > 0,
                 NeedsRevision = needsRevision,
@@ -260,7 +260,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         {
             string detail = string.Join("\n", new[] { review.RevisionInstructions, review.Feedback }
                 .Where(value => !string.IsNullOrWhiteSpace(value)).Distinct().ToArray());
-            return string.IsNullOrEmpty(detail) ? "Please revise this submission." : detail;
+            return string.IsNullOrEmpty(detail) ? L.T("Student.Progress.PleaseReviseThisSubmission") : detail;
         }
 
         private static string StatusLabel(InternshipTaskStatus status)
@@ -269,11 +269,11 @@ namespace InternshipManagementSystem.Pages.StudentArea
             {
                 case InternshipTaskStatus.Assigned: return "Assigned";
                 case InternshipTaskStatus.Submitted: return "Submitted";
-                case InternshipTaskStatus.UnderReview: return "Under review";
-                case InternshipTaskStatus.RevisionRequested: return "Revision requested";
+                case InternshipTaskStatus.UnderReview: return L.T("Student.Progress.UnderReview2");
+                case InternshipTaskStatus.RevisionRequested: return L.T("Student.Progress.RevisionRequested2");
                 case InternshipTaskStatus.Resubmitted: return "Resubmitted";
                 case InternshipTaskStatus.Graded: return "Graded";
-                default: return "In progress";
+                default: return L.T("Student.Progress.InProgress");
             }
         }
 

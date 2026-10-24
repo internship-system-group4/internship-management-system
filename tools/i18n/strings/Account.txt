@@ -230,3 +230,11 @@ en: This report is not available.
 
 Login.FirebaseIsNotConfiguredYetSee
 en: Firebase is not configured yet. See docs/05-firebase-setup.md.
+
+Login.PauseMotion
+en: Pause motion
+ar: إيقاف الحركة
+
+Login.ResumeMotion
+en: Resume motion
+ar: استئناف الحركة

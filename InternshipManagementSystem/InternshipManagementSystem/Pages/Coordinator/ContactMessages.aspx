@@ -661,7 +661,7 @@
                         <asp:TemplateField HeaderText="<%$ Resources:Coordinator, ContactMessages.Status %>">
                             <ItemTemplate>
                                 <span class='<%# Convert.ToString(Eval("Status")) == "Reviewed" ? "status-badge reviewed" : "status-badge new" %>'>
-                                    <%#: Eval("Status") %>
+                                    <%#: L.Value("Ui", Eval("Status")) %>
                                 </span>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -833,7 +833,7 @@
                                     runat="server"
                                     Text="<%$ Resources:Coordinator, ContactMessages.MarkAsReviewed %>"
                                     CssClass="btn btn-reviewed"
-                                    OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="Updating…"/>
+                                    OnClick="btnMarkReviewed_Click"  data-ui-action="mark" data-loading-label="<%$ Resources:Shared, I18n.Updating %>"/>
 
                                 <asp:Button ID="btnClose"
                                     runat="server"

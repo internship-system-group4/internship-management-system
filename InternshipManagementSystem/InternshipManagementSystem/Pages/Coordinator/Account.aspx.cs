@@ -50,8 +50,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             txtCollege.Text = user.College ?? "";
 
             lblStatus.Text = user.IsActive
-                ? "Active"
-                : "Inactive";
+                ? L.Value("Ui", "Active")
+                : L.Value("Ui", "Inactive");
         }
 
         protected void btnCancel_Click(object sender, EventArgs e)

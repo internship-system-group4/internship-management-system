@@ -28,7 +28,7 @@
                     <asp:Label ID="lblNoAvailableStudents" runat="server" CssClass="text-muted" Visible="false" Text="<%$ Resources:Coordinator, Groups.NoAvailableStudents %>" />
                 </div>
                 <div class="col-12 d-flex gap-2">
-                    <asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Coordinator, Groups.CreateGroup %>" CssClass="btn btn-primary" OnClick="btnSave_Click"  data-ui-action="create" data-loading-label="Creating…"/>
+                    <asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Coordinator, Groups.CreateGroup %>" CssClass="btn btn-primary" OnClick="btnSave_Click"  data-ui-action="create" data-loading-label="<%$ Resources:Shared, I18n.Creating %>"/>
                     <asp:Button ID="btnCancel" runat="server" Text="<%$ Resources:Coordinator, Groups.CancelEdit %>" CssClass="btn btn-outline-secondary" OnClick="btnCancel_Click" CausesValidation="false" Visible="false" />
                 </div>
             </div>

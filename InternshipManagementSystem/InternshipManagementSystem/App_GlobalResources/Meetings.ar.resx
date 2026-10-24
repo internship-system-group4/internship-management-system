@@ -4,48 +4,160 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="I18n.15minutes" xml:space="preserve"><value>15 دقيقة</value></data>
+  <data name="I18n.Allmymeetingsandrequests" xml:space="preserve"><value>جميع اجتماعاتي وطلباتي</value></data>
+  <data name="I18n.Chooseavalidduration" xml:space="preserve"><value>اختر مدة صالحة.</value></data>
+  <data name="I18n.From" xml:space="preserve"><value>من: </value></data>
+  <data name="I18n.Joinisavailablefrom15minutesbefore" xml:space="preserve"><value>يتاح الانضمام قبل الاجتماع الموافق عليه بـ15 دقيقة وحتى موعد نهايته. حدّث القائمة.</value></data>
+  <data name="I18n.Jordantime" xml:space="preserve"><value> (بتوقيت الأردن) - </value></data>
+  <data name="I18n.Meetinghistory" xml:space="preserve"><value>سجل الاجتماعات</value></data>
+  <data name="I18n.Meetingnotfoundoraccessdenied" xml:space="preserve"><value>لم يتم العثور على الاجتماع أو لا تملك صلاحية الوصول إليه.</value></data>
+  <data name="I18n.RequestsIsentpending" xml:space="preserve"><value>طلباتي المرسلة - معلقة</value></data>
+  <data name="I18n.ThisisanoldermeetinglinkCreate" xml:space="preserve"><value>هذا رابط اجتماع قديم. أنشئ طلبًا جديدًا لاستخدام الغرفة المضمنة.</value></data>
+  <data name="I18n.To" xml:space="preserve"><value> | إلى: </value></data>
+  <data name="I18n.Waitingformyapproval" xml:space="preserve"><value>بانتظار موافقتي</value></data>
+  <data name="I18n.min" xml:space="preserve"><value> دقيقة</value></data>
+  <data name="I18n.minutes" xml:space="preserve"><value> دقيقة</value></data>
   <data name="MyMeetings.30Minutes" xml:space="preserve"><value>30 دقيقة</value></data>
   <data name="MyMeetings.45Minutes" xml:space="preserve"><value>45 دقيقة</value></data>
   <data name="MyMeetings.60Minutes" xml:space="preserve"><value>60 دقيقة</value></data>
+  <data name="MyMeetings.Accept" xml:space="preserve"><value>قبول</value></data>
+  <data name="MyMeetings.AccountUnavailable" xml:space="preserve"><value>الحساب غير متاح</value></data>
+  <data name="MyMeetings.ActionNotConfirmed" xml:space="preserve"><value>لم يتم تأكيد الإجراء</value></data>
+  <data name="MyMeetings.ActionUnavailable" xml:space="preserve"><value>الإجراء غير متاح</value></data>
+  <data name="MyMeetings.Actions" xml:space="preserve"><value>الإجراءات</value></data>
   <data name="MyMeetings.Agenda" xml:space="preserve"><value>جدول الأعمال</value></data>
+  <data name="MyMeetings.AgendaOptional" xml:space="preserve"><value>جدول الأعمال (اختياري)</value></data>
+  <data name="MyMeetings.AllMyMeetings" xml:space="preserve"><value>جميع اجتماعاتي</value></data>
+  <data name="MyMeetings.ApplyView" xml:space="preserve"><value>تطبيق العرض</value></data>
+  <data name="MyMeetings.ApprovedMeetings" xml:space="preserve"><value>الاجتماعات الموافق عليها</value></data>
   <data name="MyMeetings.AvailableParticipantsWillAppearHereAfter" xml:space="preserve"><value>سيظهر المشاركون المتاحون هنا بعد ربط الصفحة ببيانات المشروع.</value></data>
   <data name="MyMeetings.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="MyMeetings.CancelMeeting" xml:space="preserve"><value>إلغاء الاجتماع</value></data>
+  <data name="MyMeetings.ChangeView" xml:space="preserve"><value>تغيير العرض</value></data>
+  <data name="MyMeetings.CheckTheTime" xml:space="preserve"><value>تحقق من الوقت</value></data>
+  <data name="MyMeetings.CheckYourConnectionAndFirebaseRules" xml:space="preserve"><value>تحقق من اتصالك وقواعد Firebase، ثم حدّث الصفحة.</value></data>
+  <data name="MyMeetings.CheckYourConnectionAndTryAgain" xml:space="preserve"><value>تحقق من اتصالك وحاول مجددًا.</value></data>
+  <data name="MyMeetings.CheckYourRequest" xml:space="preserve"><value>راجع طلبك</value></data>
+  <data name="MyMeetings.ChooseAPersonAndSuggestA" xml:space="preserve"><value>اختر شخصًا واقترح موعدًا. يحتاج الطلب إلى موافقته.</value></data>
+  <data name="MyMeetings.ChooseAView" xml:space="preserve"><value>اختيار العرض</value></data>
+  <data name="MyMeetings.ChooseAnotherViewOrSendYour" xml:space="preserve"><value>اختر عرضًا آخر أو أرسل طلب اجتماعك الأول.</value></data>
   <data name="MyMeetings.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="MyMeetings.CloseConfirmation" xml:space="preserve"><value>إغلاق التأكيد</value></data>
+  <data name="MyMeetings.CloseDetails" xml:space="preserve"><value>إغلاق التفاصيل</value></data>
   <data name="MyMeetings.CloseForm" xml:space="preserve"><value>إغلاق النموذج</value></data>
+  <data name="MyMeetings.CloseMeetingDetails" xml:space="preserve"><value>إغلاق تفاصيل الاجتماع</value></data>
+  <data name="MyMeetings.CloseMessage" xml:space="preserve"><value>إغلاق الرسالة</value></data>
+  <data name="MyMeetings.CloseRequestForm" xml:space="preserve"><value>إغلاق نموذج الطلب</value></data>
+  <data name="MyMeetings.CloseViewSelector" xml:space="preserve"><value>إغلاق خيارات العرض</value></data>
+  <data name="MyMeetings.Confirm" xml:space="preserve"><value>تأكيد</value></data>
+  <data name="MyMeetings.ConfirmAction" xml:space="preserve"><value>تأكيد الإجراء</value></data>
+  <data name="MyMeetings.CouldNotConfirmSavingCheckThe" xml:space="preserve"><value>تعذر تأكيد الحفظ. تحقق من القائمة قبل المحاولة مجددًا.</value></data>
+  <data name="MyMeetings.CouldNotLoadMeetings" xml:space="preserve"><value>تعذر تحميل الاجتماعات</value></data>
+  <data name="MyMeetings.CouldNotRefresh" xml:space="preserve"><value>تعذر التحديث</value></data>
   <data name="MyMeetings.DateAndTime" xml:space="preserve"><value>التاريخ والوقت</value></data>
+  <data name="MyMeetings.DateAndTime2" xml:space="preserve"><value>التاريخ والوقت</value></data>
+  <data name="MyMeetings.DateTime" xml:space="preserve"><value>التاريخ والوقت</value></data>
+  <data name="MyMeetings.Decline" xml:space="preserve"><value>رفض</value></data>
+  <data name="MyMeetings.Details" xml:space="preserve"><value>التفاصيل</value></data>
   <data name="MyMeetings.Duration" xml:space="preserve"><value>المدة</value></data>
   <data name="MyMeetings.EGInternshipProgressMeeting" xml:space="preserve"><value>مثال: اجتماع متابعة تقدّم التدريب</value></data>
+  <data name="MyMeetings.EGInternshipProgressReview" xml:space="preserve"><value>مثال: مراجعة تقدم التدريب</value></data>
+  <data name="MyMeetings.EnterAValidDateAndTime" xml:space="preserve"><value>أدخل تاريخًا ووقتًا صالحين بالتوقيت المحلي للأردن.</value></data>
   <data name="MyMeetings.EnterTheMeetingDetailsAndPaste" xml:space="preserve"><value>أدخل تفاصيل الاجتماع والصق رابط Zoom الخاص به.</value></data>
+  <data name="MyMeetings.From" xml:space="preserve"><value>من:</value></data>
+  <data name="MyMeetings.GoBack" xml:space="preserve"><value>رجوع</value></data>
+  <data name="MyMeetings.GotIt" xml:space="preserve"><value>حسنًا</value></data>
+  <data name="MyMeetings.InYourHistory" xml:space="preserve"><value>في سجلك</value></data>
+  <data name="MyMeetings.InternshipWorkspace" xml:space="preserve"><value>مساحة عمل التدريب</value></data>
+  <data name="MyMeetings.JoinMeeting" xml:space="preserve"><value>الانضمام إلى الاجتماع</value></data>
+  <data name="MyMeetings.KeepEditingLater" xml:space="preserve"><value>متابعة التحرير لاحقًا</value></data>
+  <data name="MyMeetings.LeaveAndCloseMeeting" xml:space="preserve"><value>مغادرة الاجتماع وإغلاقه</value></data>
+  <data name="MyMeetings.ListUpdated" xml:space="preserve"><value>تم تحديث القائمة</value></data>
+  <data name="MyMeetings.MarkCompleted" xml:space="preserve"><value>تحديد كمكتمل</value></data>
+  <data name="MyMeetings.Meeting" xml:space="preserve"><value>الاجتماع</value></data>
+  <data name="MyMeetings.MeetingAcceptedUseJoinMeetingDuring" xml:space="preserve"><value>تم قبول الاجتماع. استخدم زر الانضمام خلال فترة الانضمام المتاحة.</value></data>
+  <data name="MyMeetings.MeetingDetails" xml:space="preserve"><value>تفاصيل الاجتماع</value></data>
+  <data name="MyMeetings.MeetingOverview" xml:space="preserve"><value>نظرة عامة على الاجتماعات</value></data>
+  <data name="MyMeetings.MeetingRequestsAreNotAvailableFor" xml:space="preserve"><value>طلبات الاجتماعات غير متاحة لهذا الدور</value></data>
+  <data name="MyMeetings.MeetingRoom" xml:space="preserve"><value>غرفة الاجتماع</value></data>
   <data name="MyMeetings.MeetingTitle" xml:space="preserve"><value>عنوان الاجتماع</value></data>
+  <data name="MyMeetings.MeetingTitle2" xml:space="preserve"><value>عنوان الاجتماع</value></data>
+  <data name="MyMeetings.MeetingsRequests" xml:space="preserve"><value>الاجتماعات والطلبات</value></data>
   <data name="MyMeetings.MyMeetings" xml:space="preserve"><value>اجتماعاتي</value></data>
+  <data name="MyMeetings.NoAgendaProvided" xml:space="preserve"><value>لم يُحدد جدول أعمال.</value></data>
+  <data name="MyMeetings.NoAssignedContactsAvailable" xml:space="preserve"><value>لا توجد جهات اتصال مرتبطة متاحة</value></data>
+  <data name="MyMeetings.NoMeetingsInThisView" xml:space="preserve"><value>لا توجد اجتماعات في هذا العرض</value></data>
+  <data name="MyMeetings.OnlyPeopleLinkedToYourInternship" xml:space="preserve"><value>تظهر فقط الأسماء المرتبطة بتدريبك أو إشرافك الأكاديمي. يدعو كل طلب شخصًا واحدًا ويبقى معلقًا حتى يقبله.</value></data>
+  <data name="MyMeetings.OpenSeparatelyIfNeeded" xml:space="preserve"><value>فتح في نافذة مستقلة عند الحاجة ↗</value></data>
+  <data name="MyMeetings.OpenTheDetailsRespondToA" xml:space="preserve"><value>افتح التفاصيل، أو ردّ على طلب، أو انضم إلى اجتماع موافق عليه.</value></data>
   <data name="MyMeetings.Participants" xml:space="preserve"><value>المشاركون</value></data>
+  <data name="MyMeetings.PastCompletedOrClosed" xml:space="preserve"><value>سابقة أو مكتملة أو مغلقة</value></data>
   <data name="MyMeetings.PastMeetings" xml:space="preserve"><value>الاجتماعات السابقة</value></data>
+  <data name="MyMeetings.People" xml:space="preserve"><value>الأشخاص</value></data>
+  <data name="MyMeetings.PreparingTheMeeting" xml:space="preserve"><value>جارٍ تجهيز الاجتماع…</value></data>
+  <data name="MyMeetings.RefreshList" xml:space="preserve"><value>تحديث القائمة</value></data>
+  <data name="MyMeetings.RefreshTheListToCheckThe" xml:space="preserve"><value>حدّث القائمة للتحقق من الحالة الأحدث قبل المحاولة مجددًا.</value></data>
+  <data name="MyMeetings.RequestAConversationRespondToInvitations" xml:space="preserve"><value>اطلب اجتماعًا، وردّ على الدعوات، واحتفظ بسجل اجتماعاتك في مكان واحد.</value></data>
+  <data name="MyMeetings.RequestAMeeting" xml:space="preserve"><value>+ طلب اجتماع</value></data>
+  <data name="MyMeetings.RequestAMeeting2" xml:space="preserve"><value>طلب اجتماع</value></data>
+  <data name="MyMeetings.RequestNotConfirmed" xml:space="preserve"><value>لم يتم تأكيد الطلب</value></data>
+  <data name="MyMeetings.RequestsNeedTheInvitedPersonS" xml:space="preserve"><value>تحتاج الطلبات إلى موافقة الشخص المدعو. يُتاح الانضمام قبل الاجتماع الموافق عليه بـ15 دقيقة ويستمر حتى موعد نهايته. تجاوز موعد النهاية لا يؤكد الحضور أو الإتمام تلقائيًا.</value></data>
+  <data name="MyMeetings.RequestsNeedingYourResponse" xml:space="preserve"><value>طلبات تحتاج إلى ردك</value></data>
+  <data name="MyMeetings.RequestsSent" xml:space="preserve"><value>الطلبات المرسلة</value></data>
+  <data name="MyMeetings.ReviewYourCameraAndMicrophoneSettings" xml:space="preserve"><value>راجع إعدادات الكاميرا والميكروفون قبل الانضمام.</value></data>
   <data name="MyMeetings.ScheduleAMeeting" xml:space="preserve"><value>جدولة اجتماع</value></data>
   <data name="MyMeetings.ScheduleMeeting" xml:space="preserve"><value>+ جدولة اجتماع</value></data>
   <data name="MyMeetings.ScheduleMeeting2" xml:space="preserve"><value>جدولة الاجتماع</value></data>
+  <data name="MyMeetings.SelectAPerson" xml:space="preserve"><value>اختر شخصًا</value></data>
+  <data name="MyMeetings.SendRequest" xml:space="preserve"><value>إرسال الطلب</value></data>
+  <data name="MyMeetings.ShowMeetings" xml:space="preserve"><value>عرض الاجتماعات</value></data>
+  <data name="MyMeetings.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="MyMeetings.TheMeetingWasCancelled" xml:space="preserve"><value>تم إلغاء الاجتماع.</value></data>
+  <data name="MyMeetings.TheMeetingWasMarkedCompleted" xml:space="preserve"><value>تم تحديد الاجتماع كمكتمل.</value></data>
+  <data name="MyMeetings.ThePersonStartingTheJitsiRoom" xml:space="preserve"><value>قد يحتاج الشخص الذي يبدأ غرفة Jitsi إلى تسجيل الدخول.</value></data>
+  <data name="MyMeetings.TheRequestWasDeclined" xml:space="preserve"><value>تم رفض الطلب.</value></data>
   <data name="MyMeetings.ThisIsADesignPreviewNo" xml:space="preserve"><value>هذه معاينة للتصميم، ولم يُحفظ أي اجتماع بعد.</value></data>
+  <data name="MyMeetings.TimesShownInJordanLocalTime" xml:space="preserve"><value>تُعرض المواعيد بالتوقيت المحلي للأردن. حدّث الصفحة لمعرفة الإتاحة الحالية.</value></data>
+  <data name="MyMeetings.Title" xml:space="preserve"><value>العنوان</value></data>
+  <data name="MyMeetings.To" xml:space="preserve"><value>إلى:</value></data>
   <data name="MyMeetings.UpcomingMeetings" xml:space="preserve"><value>الاجتماعات القادمة</value></data>
+  <data name="MyMeetings.UpcomingOrInProgress" xml:space="preserve"><value>قادمة أو جارية</value></data>
+  <data name="MyMeetings.UseJordanLocalTime" xml:space="preserve"><value>استخدم التوقيت المحلي للأردن.</value></data>
   <data name="MyMeetings.ViewYourScheduledMeetingsAndJoin" xml:space="preserve"><value>اعرض اجتماعاتك المجدولة وانضم إليها من هنا.</value></data>
+  <data name="MyMeetings.WaitingForTheOtherPerson" xml:space="preserve"><value>بانتظار الطرف الآخر</value></data>
+  <data name="MyMeetings.WaitingForYou" xml:space="preserve"><value>بانتظارك</value></data>
   <data name="MyMeetings.WhatWillYouDiscuss" xml:space="preserve"><value>ما الذي ستناقشونه؟</value></data>
+  <data name="MyMeetings.WhatWouldYouLikeToDiscuss" xml:space="preserve"><value>ما الموضوع الذي تودّ مناقشته؟</value></data>
+  <data name="MyMeetings.When" xml:space="preserve"><value>الموعد</value></data>
+  <data name="MyMeetings.WhoWouldYouLikeToMeet" xml:space="preserve"><value>مع من ترغب في الاجتماع؟</value></data>
+  <data name="MyMeetings.YouAreViewingTheLatestMeeting" xml:space="preserve"><value>أنت تعرض أحدث طلبات الاجتماعات والردود.</value></data>
   <data name="MyMeetings.YouHaveNoUpcomingMeetingsYet" xml:space="preserve"><value>لا توجد لديك اجتماعات قادمة بعد.</value></data>
   <data name="MyMeetings.YourPastMeetingsWillAppearHere" xml:space="preserve"><value>ستظهر اجتماعاتك السابقة هنا.</value></data>
+  <data name="MyMeetings.YourRequestWasSentItWill" xml:space="preserve"><value>تم إرسال طلبك، وسيبقى معلقًا حتى يرد الشخص المدعو.</value></data>
   <data name="MyMeetings.ZoomMeetingLink" xml:space="preserve"><value>رابط اجتماع Zoom</value></data>
   <data name="Schedule.30Minutes" xml:space="preserve"><value>30 دقيقة</value></data>
   <data name="Schedule.45Minutes" xml:space="preserve"><value>45 دقيقة</value></data>
   <data name="Schedule.60Minutes" xml:space="preserve"><value>60 دقيقة</value></data>
   <data name="Schedule.Agenda" xml:space="preserve"><value>جدول الأعمال</value></data>
   <data name="Schedule.Agenda2" xml:space="preserve"><value>جدول الأعمال:</value></data>
+  <data name="Schedule.AgendaOptional" xml:space="preserve"><value>جدول الأعمال (اختياري)</value></data>
   <data name="Schedule.ChooseAFutureDateAndTime" xml:space="preserve"><value>اختر تاريخًا ووقتًا في المستقبل.</value></data>
+  <data name="Schedule.ChooseATimeAtLeastA" xml:space="preserve"><value>اختر موعدًا يبدأ بعد دقيقة على الأقل من الآن.</value></data>
   <data name="Schedule.CouldNotLoadMeetingsPleaseTry" xml:space="preserve"><value>تعذّر تحميل الاجتماعات. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="Schedule.CouldNotLoadParticipants" xml:space="preserve"><value>تعذّر تحميل المشاركين.</value></data>
   <data name="Schedule.CouldNotOpenThisMeeting" xml:space="preserve"><value>تعذّر فتح هذا الاجتماع.</value></data>
   <data name="Schedule.CouldNotReadYourTimeZone" xml:space="preserve"><value>تعذّرت قراءة منطقتك الزمنية. حدّث الصفحة وحاول مرة أخرى.</value></data>
   <data name="Schedule.CouldNotSaveTheMeetingTry" xml:space="preserve"><value>تعذّر حفظ الاجتماع. حاول مرة أخرى.</value></data>
   <data name="Schedule.CreateTheMeetingInZoomThen" xml:space="preserve"><value>أنشئ الاجتماع في Zoom، ثم الصق رابطه هنا.</value></data>
+  <data name="Schedule.CreateZoomMeeting" xml:space="preserve"><value>إنشاء اجتماع Zoom</value></data>
   <data name="Schedule.DateAndTime" xml:space="preserve"><value>التاريخ والوقت</value></data>
+  <data name="Schedule.DateAndTimeYourLocalTime" xml:space="preserve"><value>التاريخ والوقت (بتوقيتك المحلي)</value></data>
   <data name="Schedule.Duration" xml:space="preserve"><value>المدة</value></data>
   <data name="Schedule.Duration2" xml:space="preserve"><value>المدة:</value></data>
+  <data name="Schedule.DurationMinutes" xml:space="preserve"><value>المدة (بالدقائق)</value></data>
   <data name="Schedule.EnterAMeetingTitle" xml:space="preserve"><value>أدخل عنوان الاجتماع.</value></data>
+  <data name="Schedule.EnterATitleValidLocalDate" xml:space="preserve"><value>أدخل عنوانًا وتاريخًا ووقتًا محليين صالحين، ومدة من 1 إلى 1440 دقيقة.</value></data>
   <data name="Schedule.EnterAValidHTTPSZoomLink" xml:space="preserve"><value>أدخل رابط Zoom صحيحًا يبدأ بـ HTTPS.</value></data>
   <data name="Schedule.EnterAValidMeetingDateAnd" xml:space="preserve"><value>أدخل تاريخًا ووقتًا صحيحين للاجتماع.</value></data>
   <data name="Schedule.Internship" xml:space="preserve"><value>التدريب</value></data>
@@ -59,11 +171,16 @@
   <data name="Schedule.Meetings" xml:space="preserve"><value>الاجتماعات</value></data>
   <data name="Schedule.Min" xml:space="preserve"><value>دقيقة</value></data>
   <data name="Schedule.MyMeetings" xml:space="preserve"><value>اجتماعاتي</value></data>
+  <data name="Schedule.MyMeetings2" xml:space="preserve"><value>اجتماعاتي</value></data>
   <data name="Schedule.NoMeetingsToShow" xml:space="preserve"><value>لا توجد اجتماعات لعرضها.</value></data>
   <data name="Schedule.NotSet" xml:space="preserve"><value>غير محددة</value></data>
+  <data name="Schedule.OneOfTheSelectedParticipantsIs" xml:space="preserve"><value>أحد المشاركين المحددين لم يعد متاحًا. أعد تحميل الصفحة وحاول مجددًا.</value></data>
   <data name="Schedule.Participants" xml:space="preserve"><value>المشاركون</value></data>
+  <data name="Schedule.Participants2" xml:space="preserve"><value>المشاركون</value></data>
+  <data name="Schedule.ParticipantsCouldNotBeLoadedPlease" xml:space="preserve"><value>تعذر تحميل المشاركين. يرجى المحاولة مجددًا.</value></data>
   <data name="Schedule.ScheduleAMeeting" xml:space="preserve"><value>جدولة اجتماع</value></data>
   <data name="Schedule.ScheduleAMeetingAndShareA" xml:space="preserve"><value>جدوِل اجتماعًا وشارك رابط Zoom مع المشاركين فيه.</value></data>
+  <data name="Schedule.ScheduleAZoomMeeting" xml:space="preserve"><value>جدولة اجتماع Zoom</value></data>
   <data name="Schedule.ScheduleMeeting" xml:space="preserve"><value>جدولة الاجتماع</value></data>
   <data name="Schedule.ScheduledAtUTC" xml:space="preserve"><value>موعد الاجتماع (UTC)</value></data>
   <data name="Schedule.ScheduledAtUTC2" xml:space="preserve"><value>موعد الاجتماع (UTC):</value></data>
@@ -71,9 +188,13 @@
   <data name="Schedule.SelectAnInternship" xml:space="preserve"><value>اختر تدريبًا</value></data>
   <data name="Schedule.SelectAtLeastOneParticipant" xml:space="preserve"><value>اختر مشاركًا واحدًا على الأقل.</value></data>
   <data name="Schedule.SelectOneOfYourInternships" xml:space="preserve"><value>اختر أحد تدريباتك.</value></data>
+  <data name="Schedule.SelectThePeopleWhoShouldSee" xml:space="preserve"><value>اختر الأشخاص الذين يمكنهم رؤية هذا الاجتماع والانضمام إليه. تتم إضافتك تلقائيًا.</value></data>
+  <data name="Schedule.TheParticipantListCouldNotBe" xml:space="preserve"><value>تعذر التحقق من قائمة المشاركين. يرجى المحاولة مجددًا.</value></data>
   <data name="Schedule.Title" xml:space="preserve"><value>العنوان:</value></data>
+  <data name="Schedule.Title2" xml:space="preserve"><value>العنوان</value></data>
   <data name="Schedule.UseTheLocalTimeOnYour" xml:space="preserve"><value>استخدم التوقيت المحلي لجهازك.</value></data>
   <data name="Schedule.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
   <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>لا تملك صلاحية الوصول إلى هذا الاجتماع.</value></data>
+  <data name="Schedule.ZoomCreatedTheMeetingButIt" xml:space="preserve"><value>أنشأ Zoom الاجتماع، لكن تعذر حفظه هنا. تواصل مع المسؤول قبل المحاولة مجددًا لتجنب تكراره.</value></data>
   <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>رابط اجتماع Zoom</value></data>
 </root>
