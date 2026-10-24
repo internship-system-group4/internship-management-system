@@ -10,17 +10,21 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" />
 
 <style>
+
 .sp-page {
-    --sp-primary: var(--ui-primary,#173a60);
-    --sp-ink: var(--ui-primary-text,#173a60);
-    --sp-border: var(--th-line-e3e8ee,#e3e8ee);
+    --sp-primary: var(--ui-primary, #173a60);
+    --sp-ink: var(--ui-primary-text, #173a60);
+    --sp-border: var(--th-line-e3e8ee, #e3e8ee);
+
     width: 100%;
-    max-width: 960px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 10px 18px 40px;
+    padding: 10px 24px 40px;
+
     box-sizing: border-box;
-    color: var(--th-fg-1d2733,#1d2733);
+    color: var(--th-fg-1d2733, #1d2733);
 }
+
 
 .sp-page * { box-sizing: border-box; }
 
@@ -480,6 +484,47 @@
     .sp-modal-head { padding: 19px 17px 9px; }
     .sp-modal-foot { padding: 0 17px 20px; }
 }
+
+/* ==========================================
+   STUDENT PROFILE - RESPONSIVE PAGE SPACING
+   ========================================== */
+
+/* Large desktop screens */
+@media (min-width: 1600px) {
+    .sp-page {
+        max-width: 1450px;
+        padding-left: 32px;
+        padding-right: 32px;
+    }
+}
+
+/* Standard desktop and laptop */
+@media (min-width: 1024px) and (max-width: 1599px) {
+    .sp-page {
+        max-width: 1400px;
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+}
+
+/* Tablets */
+@media (min-width: 701px) and (max-width: 1023px) {
+    .sp-page {
+        max-width: 100%;
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    .sp-page {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 10px 28px;
+    }
+}
+
 </style>
 </asp:Content>
 
