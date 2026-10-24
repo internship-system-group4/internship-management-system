@@ -497,12 +497,12 @@ UIMS is an **Orange Academy Group 4** team project. The application's **Powered 
 | Team member | Project role |
 | --- | --- |
 | **Ahmad Bani Hamad** | Scrum Master |
-| **سارة الدولات** | Quality Assurance (QA) |
-| **سارة رجوب** | Product Owner |
-| **ندى علاونة** | Team Member |
-| **سجى** | Team Member |
-| *Osama Banihani** | Team Member |
-| **فاطمة** | Team Member |
+| **Sarah Al-Dawlat** | Quality Assurance (QA) |
+| **Sarah Rajoub** | Product Owner |
+| **Nada Alawneh** | Team Member |
+| **Saja Dhiabat** | Team Member |
+| **Osama Banihani** | Team Member |
+| **Fatima Tawalbeh** | Team Member |
 
 ### 🎨 Design and task management
 
