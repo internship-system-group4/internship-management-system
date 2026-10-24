@@ -7,6 +7,7 @@
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
 using InternshipManagementSystem.Common;
+using System.Collections.Generic;
 
 namespace InternshipManagementSystem.Models
 {
@@ -33,6 +34,12 @@ namespace InternshipManagementSystem.Models
         /// docs/01-university-rules.md (card A11).</summary>
         public double FinalScore { get; set; }
         public string Result { get; set; }
+        public CompletionRule EvaluationRuleSnapshot { get; set; }
+        public double? ProvisionalScore { get; set; }
+        public string ProvisionalResult { get; set; }
+        public List<RequirementVerification> Verifications { get; set; }
+        public List<CompletionAuditEntry> AuditTrail { get; set; }
+        public CompletionDocumentSnapshot DocumentSnapshot { get; set; }
 
         public int ApprovedHours { get; set; }
         public int RequiredHours { get; set; }
@@ -41,10 +48,15 @@ namespace InternshipManagementSystem.Models
 
         public string ReviewedByCoordinatorId { get; set; }
         public string CoordinatorNote { get; set; }
+        public bool PriorApprovalVerified { get; set; }
+        public bool TrainingConditionsVerified { get; set; }
+        public bool DocumentsVerified { get; set; }
+        public bool AcademicSignoffVerified { get; set; }
+        public long ReviewedAt { get; set; }
         public long ApprovedAt { get; set; }
 
-        /// <summary>Set once the PDF exists (card A13). The student's download
-        /// (card A16) must stay unavailable while this is null.</summary>
+        /// <summary>Protected PDF route published after approval (card A13).
+        /// The student's download stays unavailable while this is null.</summary>
         public string ReportFileUrl { get; set; }
         public string CertificateFileUrl { get; set; }
 
@@ -106,6 +118,8 @@ namespace InternshipManagementSystem.Models
         {
             Status = CompletionStatus.NotReady;
             CreatedAt = Time.NowMs();
+            Verifications = new List<RequirementVerification>();
+            AuditTrail = new List<CompletionAuditEntry>();
         }
 
         /// <summary>Gate for card A16: the student may download only after this

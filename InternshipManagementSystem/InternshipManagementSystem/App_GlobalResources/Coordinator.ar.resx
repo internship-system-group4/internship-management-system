@@ -1072,4 +1072,25 @@
   <data name="Dashboard.MajorGameDesign" xml:space="preserve"><value>تصميم الألعاب وعلم حاسوب الوسائط</value></data>
   <data name="Dashboard.AllClearTitle" xml:space="preserve"><value>لا توجد حالات تحتاج إلى متابعة حاليًا</value></data>
   <data name="Dashboard.AllClearHelp" xml:space="preserve"><value>لا توجد إسنادات معلّقة أو مهام متأخرة أو ساعات تنتظر الاعتماد أو حالات إكمال معادة في السجلات الحالية.</value></data>
+  <data name="ConfiguredGroups.TotalGroups" xml:space="preserve"><value>إجمالي المجموعات</value></data>
+  <data name="ConfiguredGroups.AllYears" xml:space="preserve"><value>جميع الأعوام</value></data>
+  <data name="ConfiguredGroups.AllSemesters" xml:space="preserve"><value>جميع الفصول</value></data>
+  <data name="ConfiguredGroups.AllSupervisors" xml:space="preserve"><value>جميع المشرفين</value></data>
+  <data name="ConfiguredGroups.CreateGroupLabel" xml:space="preserve"><value>إنشاء مجموعة</value></data>
+  <data name="ConfiguredGroups.Edit" xml:space="preserve"><value>تعديل</value></data>
+  <data name="ConfiguredGroups.SearchPlaceholder" xml:space="preserve"><value>ابحث باسم المجموعة أو العام أو الفصل أو المشرف...</value></data>
+  <data name="ConfiguredGroups.ShowingGroups" xml:space="preserve"><value>عرض {0} إلى {1} من {2} مجموعات</value></data>
+  <data name="ConfiguredGroups.Pagination" xml:space="preserve"><value>صفحات المجموعات</value></data>
+  <data name="ConfiguredGroups.Previous" xml:space="preserve"><value>الصفحة السابقة</value></data>
+  <data name="ConfiguredGroups.Next" xml:space="preserve"><value>الصفحة التالية</value></data>
+  <data name="AccountAccess.Block" xml:space="preserve"><value>حظر</value></data>
+  <data name="AccountAccess.Unblock" xml:space="preserve"><value>إلغاء الحظر</value></data>
+  <data name="AccountAccess.Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="AccountAccess.Blocked" xml:space="preserve"><value>محظور</value></data>
+  <data name="AccountAccess.ConfirmBlock" xml:space="preserve"><value>هل أنت متأكد من حظر {0}؟ لن يتمكن من تسجيل الدخول، وسيتم الاحتفاظ بسجلاته وتاريخه.</value></data>
+  <data name="AccountAccess.ConfirmUnblock" xml:space="preserve"><value>هل أنت متأكد من إلغاء حظر {0}؟ سيتمكن من تسجيل الدخول مجددًا.</value></data>
+  <data name="AccountAccess.StudentBlocked" xml:space="preserve"><value>تم حظر الطالب مع الاحتفاظ بسجله وتاريخ تدريبه.</value></data>
+  <data name="AccountAccess.StudentUnblocked" xml:space="preserve"><value>تم إلغاء حظر الطالب ويمكنه تسجيل الدخول مجددًا.</value></data>
+  <data name="AccountAccess.SupervisorBlocked" xml:space="preserve"><value>تم حظر المشرف الأكاديمي مع الاحتفاظ بالمجموعات المسندة والسجل.</value></data>
+  <data name="AccountAccess.SupervisorUnblocked" xml:space="preserve"><value>تم إلغاء حظر المشرف الأكاديمي ويمكنه تسجيل الدخول مجددًا.</value></data>
 </root>

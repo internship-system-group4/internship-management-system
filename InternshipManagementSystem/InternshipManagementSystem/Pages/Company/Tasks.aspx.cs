@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  Manage Tasks
 //  Owner : Fatima
 //  Cards : F01, F02
@@ -132,7 +132,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 task.Weight = weight;
                 task.Criteria = new List<GradeComponent>(criteria);
 
-                string taskId = new TaskRepository().Insert(task);
+                string taskId = Services.TaskWorkflowService.Assign(task);
 
                 if (string.IsNullOrEmpty(taskId))
                 {
@@ -156,9 +156,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 gvCriteria.DataBind();
                 LoadCompanyTasks();
             }
-            catch (FirebaseException)
+            catch (Exception ex)
             {
-                lblMessage.Text = "Could not save the task. Please try again.";
+                Services.EmailNotificationService.LogFailure(ex);
+                lblMessage.Text = Server.HtmlEncode(ex is InvalidOperationException || ex is UnauthorizedAccessException ? ex.Message : "Could not save the task. Please try again.");
             }
         }
         private void LoadTrainees()
@@ -171,7 +172,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             PlacementRepository repository = new PlacementRepository();
 
-            List<Placement> placements = repository.GetAll();
+            List<Placement> placements = Services.TaskWorkflowService.CompanyPlacements();
 
             foreach (Placement placement in placements)
             {

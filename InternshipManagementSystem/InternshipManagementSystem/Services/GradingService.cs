@@ -53,15 +53,27 @@ namespace InternshipManagementSystem.Services
                 }
             }
 
-            double weightTotal = 0;
-            double earned = 0;
+            // An evaluated resubmission replaces the earlier grade. A newer
+            // revision request leaves that task ungraded until it is reviewed.
+            Dictionary<string, TaskEvaluation> latestByTask = new Dictionary<string, TaskEvaluation>();
             foreach (TaskEvaluation evaluation in evaluations)
             {
-                if (evaluation.RevisionRequested) continue;   // not a grade yet
+                if (evaluation == null || string.IsNullOrEmpty(evaluation.TaskId) ||
+                    !weightByTask.ContainsKey(evaluation.TaskId)) continue;
+                TaskEvaluation previous;
+                if (!latestByTask.TryGetValue(evaluation.TaskId, out previous) ||
+                    evaluation.EvaluatedAt >= previous.EvaluatedAt)
+                    latestByTask[evaluation.TaskId] = evaluation;
+            }
 
-                double weight;
-                if (!weightByTask.TryGetValue(evaluation.TaskId ?? string.Empty, out weight)) weight = 1;
+            double weightTotal = 0;
+            double earned = 0;
+            foreach (KeyValuePair<string, TaskEvaluation> pair in latestByTask)
+            {
+                TaskEvaluation evaluation = pair.Value;
+                if (evaluation.RevisionRequested || evaluation.MaxScore <= 0) continue;
 
+                double weight = weightByTask[pair.Key];
                 weightTotal += weight;
                 earned += (evaluation.Percentage / 100.0) * weight;
             }

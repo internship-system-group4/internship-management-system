@@ -1,170 +1,112 @@
-﻿using System;
+using System;
+using System.Globalization;
+using System.Linq;
+using System.Web.UI;
 using InternshipManagementSystem.Common;
-using System.Collections.Generic;
-using InternshipManagementSystem.Models;
-using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Data;
-
-namespace InternshipManagementSystem.Pages.Academic
+using InternshipManagementSystem.Models;
+using InternshipManagementSystem.Services;
+namespace InternshipManagementSystem.Pages.AcademicArea
 {
-    public partial class FinalEvaluation : AcademicPage
+    public partial class FinalEvaluation : InternshipManagementSystem.Security.AcademicPage
     {
+        private static readonly bool Academic = true;
+        protected override void OnInit(EventArgs e) { ViewStateUserKey = Session.SessionID; base.OnInit(e); }
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            Response.Cache.SetNoStore();
+            if (IsPostBack) return;
+            try
             {
-                LoadStudentsTable();
-
-                // Opened from a notification: open that student's evaluation.
-                string fromLink = Request.QueryString["id"];
-                if (!string.IsNullOrEmpty(fromLink)) OpenEvaluation(fromLink);
+                var placements = Academic ? new PlacementRepository().GetByAcademicSupervisor(CurrentUser.Id) :
+                    new PlacementRepository().GetByCompany(((CompanySupervisor)CurrentUser).CompanyId).Where(p => p.CompanySupervisorId == CurrentUser.Id).ToList();
+                ddlPlacement.Items.Clear(); ddlPlacement.Items.Add(new System.Web.UI.WebControls.ListItem("Select an assigned internship", ""));
+                foreach (var p in placements.Where(p => p.Status != PlacementStatus.Cancelled && p.Status != PlacementStatus.Offered))
+                    ddlPlacement.Items.Add(new System.Web.UI.WebControls.ListItem(p.StudentName + " · " + p.CompanyName, p.Id));
+                string id = Request.QueryString["id"];
+                if (id != null && ddlPlacement.Items.FindByValue(id) != null) { ddlPlacement.SelectedValue = id; LoadEvaluation(); }
             }
+            catch (FirebaseAuthExpiredException) { throw; }
+            catch (FirebaseException) { Message("Unable to load assigned internships. Please retry.", false); }
         }
-
-        private void LoadStudentsTable()
+        protected void ddlPlacement_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // جلب الطلاب المخصصين للمشرف لعرضهم في الجدول
-            UserRepository userRepo = new UserRepository();
-            List<Student> myStudents = userRepo.GetStudentsBySupervisor(CurrentSupervisor.Id);
-
-            if (myStudents != null && myStudents.Count > 0)
-            {
-                rptStudents.DataSource = myStudents;
-                rptStudents.DataBind();
-                litNoData.Visible = false;
-            }
-            else
-            {
-                litNoData.Visible = true;
-            }
+            try { LoadEvaluation(); }
+            catch (FirebaseAuthExpiredException) { throw; }
+            catch (FirebaseException) { Message("Unable to load the evaluation. Please retry.", false); }
+            catch (InvalidOperationException ex) { Message(ex.Message, false); }
         }
-
-        // هذا الحدث يعمل عندما يضغط الدكتور على زر View لأي طالب
-        protected void btnOpenModal_Click(object sender, EventArgs e)
+        private Placement AssignedPlacement()
         {
-            // إخفاء رسالة النجاح السابقة إن وجدت
-            pnlSuccessMessage.Visible = false;
-
-            // أخذ الـ ID الخاص بالطالب الذي تم الضغط عليه
-            System.Web.UI.WebControls.LinkButton btn = (System.Web.UI.WebControls.LinkButton)sender;
-            OpenEvaluation(btn.CommandArgument);
+            if (!System.Text.RegularExpressions.Regex.IsMatch(ddlPlacement.SelectedValue, @"\A[A-Za-z0-9_-]{1,128}\z")) return null;
+            var p = new PlacementRepository().GetById(ddlPlacement.SelectedValue);
+            if (p == null || !CurrentUser.IsActive || (Academic ? CurrentUser.Role != UserRole.AcademicSupervisor || p.AcademicSupervisorId != CurrentUser.Id :
+                CurrentUser.Role != UserRole.CompanySupervisor || p.CompanySupervisorId != CurrentUser.Id || p.CompanyId != ((CompanySupervisor)CurrentUser).CompanyId))
+                return null;
+            return p;
         }
-
-        private void OpenEvaluation(string studentId)
+        private void LoadEvaluation()
         {
-            pnlSuccessMessage.Visible = false;
-            if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
-            // حفظه في Hidden Field لنستخدمه عند الضغط على إرسال التقييم
-            hfSelectedStudentId.Value = studentId;
-
-            // 1. جلب اسم الطالب
-            UserRepository userRepo = new UserRepository();
-            Student student = userRepo.GetStudent(studentId);
-            litModalStudentName.Text = student != null ? student.FullName : L.T("Academic.FinalEvaluation.UnknownStudent");
-
-            // 2. جلب تقييم الشركة إن وجد
-            EvaluationRepository evalRepo = new EvaluationRepository();
-            FinalCompanyEvaluation companyEval = evalRepo.GetCompanyFinalForPlacement(studentId);
-
-            if (companyEval != null && companyEval.IsSubmitted)
-            {
-                pnlCompanyEvalExists.Visible = true;
-                pnlNoCompanyEval.Visible = false;
-
-                litCompanyScore.Text = companyEval.TotalScore.ToString();
-                litCompanyMaxScore.Text = companyEval.MaxScore.ToString();
-                litStrengths.Text = string.IsNullOrEmpty(companyEval.Strengths) ? "N/A" : companyEval.Strengths;
-                litImprovements.Text = string.IsNullOrEmpty(companyEval.AreasForImprovement) ? "N/A" : companyEval.AreasForImprovement;
-                litCompanyComment.Text = string.IsNullOrEmpty(companyEval.OverallComment) ? "N/A" : companyEval.OverallComment;
-            }
-            else
-            {
-                pnlCompanyEvalExists.Visible = false;
-                pnlNoCompanyEval.Visible = true;
-            }
-
-            // 3. التحقق إذا كان التقييم الأكاديمي محفوظ مسبقاً لهذا الطالب
-            FinalAcademicEvaluation academicEval = evalRepo.GetAcademicFinalForPlacement(studentId);
-
-            if (academicEval != null && academicEval.IsSubmitted)
-            {
-                ddlPassFail.SelectedValue = academicEval.TotalScore > 0 ? "100" : "0";
-                ddlPassFail.Enabled = false;
-                txtAcademicComments.Text = academicEval.AcademicComments;
-                txtAcademicComments.Enabled = false;
-
-                btnSubmitEvaluation.Visible = false;
-                pnlAlreadySubmitted.Visible = true;
-
-                DateTime submitDate = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(academicEval.SubmittedAt).ToLocalTime();
-                litAlreadySubmittedText.Text = L.F("Academic.FinalEvaluation.DecisionSubmittedSuccessfullyOn", submitDate.ToString("dd/MM/yyyy"));
-            }
-            else
-            {
-                // إذا لم يتم التقييم بعد، نفتح النموذج
-                ddlPassFail.SelectedValue = "";
-                ddlPassFail.Enabled = true;
-                txtAcademicComments.Text = "";
-                txtAcademicComments.Enabled = true;
-                btnSubmitEvaluation.Visible = true;
-                pnlAlreadySubmitted.Visible = false;
-            }
-
-            // 4. كود جافاسكريبت متطور لإظهار النافذة المنبثقة (Modal) بأمان
-            string script = @"
-        setTimeout(function() {
-            var modalEl = document.getElementById('evaluationModal');
-            if(modalEl) {
-                var myModal = new bootstrap.Modal(modalEl);
-                myModal.show();
-            }
-        }, 100);
-    ";
-            ClientScript.RegisterStartupScript(this.GetType(), "ShowEvaluationModal", script, true);
+            pnlForm.Visible = false; litCompanyEvidence.Text = ""; litStatus.Text = "";
+            var p = AssignedPlacement();
+            if (p == null) return;
+            var repository = new EvaluationRepository();
+            var company = repository.GetCompanyFinalForPlacement(p.Id);
+            var academic = Academic ? repository.GetAcademicFinalForPlacement(p.Id) : null;
+            bool submitted = Academic ? academic != null && academic.IsSubmitted : company != null && company.IsSubmitted;
+            bool final = CompletionReviewService.IsFinal(new CompletionRepository().GetByPlacement(p.Id));
+            txtScore.Text = Academic ? (academic == null || academic.MaxScore <= 0 ? "" : academic.TotalScore.ToString(CultureInfo.InvariantCulture)) :
+                (company == null || company.MaxScore <= 0 ? "" : company.TotalScore.ToString(CultureInfo.InvariantCulture));
+            txtMaximum.Text = Academic ? (academic == null || academic.MaxScore <= 0 ? "" : academic.MaxScore.ToString(CultureInfo.InvariantCulture)) :
+                (company == null || company.MaxScore <= 0 ? "" : company.MaxScore.ToString(CultureInfo.InvariantCulture));
+            txtComments.Text = Academic ? (academic == null ? "" : academic.AcademicComments) : (company == null ? "" : company.OverallComment);
+            if (Academic)
+                litCompanyEvidence.Text = company != null && company.IsSubmitted ? "<div class=\"alert alert-light\"><strong>Confidential company evaluation</strong><p>" +
+                    Server.HtmlEncode(company.TotalScore.ToString(CultureInfo.InvariantCulture) + " / " + company.MaxScore.ToString(CultureInfo.InvariantCulture)) + "</p><p>" +
+                    Server.HtmlEncode(string.Join("\n", new[] { company.Strengths, company.AreasForImprovement, company.OverallComment })) + "</p></div>" : "<p>Awaiting the company supervisor's submitted final evaluation.</p>";
+            pnlForm.Visible = true;
+            txtScore.Enabled = txtMaximum.Enabled = txtComments.Enabled = btnSubmit.Enabled = !submitted && !final;
+            litStatus.Text = submitted ? "Final evaluation submitted. This submission is read-only." : final ? "Completion is finalized; evidence is read-only." : "Final evaluation has not been submitted.";
         }
-
-        // هذا الحدث يعمل عندما يضغط الدكتور "إرسال" من داخل النافذة المنبثقة
-        protected void btnSubmitEvaluation_Click(object sender, EventArgs e)
+        protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string studentId = hfSelectedStudentId.Value;
-
-            if (string.IsNullOrEmpty(studentId) || string.IsNullOrEmpty(ddlPassFail.SelectedValue))
+            try
             {
-                return;
+                var p = AssignedPlacement();
+                if (p == null || p.Status == PlacementStatus.Cancelled || p.Status == PlacementStatus.Offered) throw new InvalidOperationException("Select an eligible assigned internship.");
+                var repository = new EvaluationRepository();
+                var company = repository.GetCompanyFinalForPlacement(p.Id);
+                var academic = Academic ? repository.GetAcademicFinalForPlacement(p.Id) : null;
+                if (Academic && (company == null || !company.IsSubmitted)) throw new InvalidOperationException("Review the submitted company final evaluation before submitting to the coordinator.");
+                if (Academic ? academic != null && academic.IsSubmitted : company != null && company.IsSubmitted) throw new InvalidOperationException("This evaluation has already been submitted.");
+                double score = 0, maximum = 0;
+                bool blank = string.IsNullOrWhiteSpace(txtScore.Text) && string.IsNullOrWhiteSpace(txtMaximum.Text);
+                if (!blank && (!double.TryParse(txtScore.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out score) ||
+                    !double.TryParse(txtMaximum.Text, NumberStyles.Float, CultureInfo.InvariantCulture, out maximum) || !CompletionReviewService.ValidScore(score, maximum)))
+                    throw new InvalidOperationException("Enter a finite score between zero and the positive maximum on this assessment's scale.");
+                if ((txtComments.Text ?? "").Length > 4000 || blank && string.IsNullOrWhiteSpace(txtComments.Text)) throw new InvalidOperationException("Provide comments for an evidence-only evaluation; comments must be no more than 4,000 characters.");
+                if (Academic)
+                {
+                    academic = academic ?? new FinalAcademicEvaluation();
+                    academic.PlacementId = p.Id; academic.StudentId = p.StudentId; academic.AcademicSupervisorId = CurrentUser.Id;
+                    academic.TotalScore = score; academic.MaxScore = maximum; academic.AcademicComments = txtComments.Text.Trim();
+                    academic.IsSubmitted = true; academic.SubmittedAt = Time.NowMs();
+                    repository.SaveAcademicFinal(academic);
+                }
+                else
+                {
+                    company = company ?? new FinalCompanyEvaluation();
+                    company.PlacementId = p.Id; company.StudentId = p.StudentId; company.CompanyId = p.CompanyId; company.SupervisorId = CurrentUser.Id;
+                    company.TotalScore = score; company.MaxScore = maximum; company.OverallComment = txtComments.Text.Trim();
+                    company.IsSubmitted = true; company.SubmittedAt = Time.NowMs();
+                    repository.SaveCompanyFinal(company);
+                }
+                LoadEvaluation(); Message("Confidential final evaluation submitted successfully.", true);
             }
-
-            if (!CanEvaluate(studentId)) { Response.Redirect("FinalEvaluation.aspx", false); Context.ApplicationInstance.CompleteRequest(); return; }
-            var existing = new EvaluationRepository().GetAcademicFinalForPlacement(studentId);
-            if (existing != null && existing.IsSubmitted) return;
-            double totalScore = double.Parse(ddlPassFail.SelectedValue);
-
-            FinalAcademicEvaluation eval = new FinalAcademicEvaluation
-            {
-                StudentId = studentId,
-                PlacementId = studentId,
-                AcademicSupervisorId = CurrentSupervisor.Id,
-                TotalScore = totalScore,
-                MaxScore = 100,
-                AcademicComments = txtAcademicComments.Text,
-                IsSubmitted = true,
-                SubmittedAt = Common.Time.NowMs()
-            };
-
-            EvaluationRepository evalRepo = new EvaluationRepository();
-            evalRepo.SaveAcademicFinal(eval);
-
-            // إظهار رسالة النجاح في الشاشة الرئيسية (لأن النافذة ستغلق تلقائياً بعد الإرسال)
-            pnlSuccessMessage.Visible = true;
-            litSuccessMessage.Text = L.T("Academic.FinalEvaluation.EvaluationForTheSelectedStudentHas");
+            catch (FirebaseAuthExpiredException) { throw; }
+            catch (FirebaseException) { Message("Submission could not be confirmed. Reload before retrying.", false); }
+            catch (InvalidOperationException ex) { Message(ex.Message, false); }
         }
-        private bool CanEvaluate(string studentId)
-        {
-            if (!ApplicationRepository.IsValidKey(studentId)) return false;
-            var student = new UserRepository().GetStudent(studentId);
-            var placement = new PlacementRepository().GetById(studentId);
-            return student != null && student.AcademicSupervisorId == CurrentSupervisor.Id
-                && placement != null && placement.StudentId == studentId
-                && placement.AcademicSupervisorId == CurrentSupervisor.Id;
-        }
+        private void Message(string text, bool success) { lblMessage.Text = Server.HtmlEncode(text); lblMessage.CssClass = success ? "alert alert-success d-block" : "alert alert-danger d-block"; lblMessage.Visible = true; }
     }
 }

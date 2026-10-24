@@ -187,25 +187,45 @@ namespace InternshipManagementSystem.Common
         public static string SwitchUrl(string lang)
         {
             HttpRequest request = HttpContext.Current.Request;
-            var query = HttpUtility.ParseQueryString(request.QueryString.ToString());
+            string path;
+            var query = OriginalQuery(request, out path);
             query.Remove(SwitchParameter);
             query[SwitchParameter] = Normalize(lang);
-            return request.Path + "?" + query.ToString();
+            return path + "?" + query.ToString();
         }
 
         /// <summary>Handles ?ui-lang= on a GET: saves the choice and redirects to the same URL without it.</summary>
         public static bool HandleSwitch(HttpContext context)
         {
             HttpRequest request = context.Request;
-            string requested = request.QueryString[SwitchParameter];
+            string path;
+            var query = OriginalQuery(request, out path);
+            string requested = query[SwitchParameter];
             if (requested == null || !string.Equals(request.HttpMethod, "GET", StringComparison.OrdinalIgnoreCase)) return false;
             Save(context, requested);
-            var query = HttpUtility.ParseQueryString(request.QueryString.ToString());
             query.Remove(SwitchParameter);
             string rest = query.ToString();
-            context.Response.Redirect(request.Path + (rest.Length > 0 ? "?" + rest : ""), false);
+            context.Response.Redirect(path + (rest.Length > 0 ? "?" + rest : ""), false);
             context.ApplicationInstance.CompleteRequest();
             return true;
+        }
+
+        // IIS ExecuteURL rewrites Path and QueryString to the error handler, while
+        // RawUrl retains the browser's original request. Keep one language controller
+        // for both normal pages and internally executed error documents.
+        private static System.Collections.Specialized.NameValueCollection OriginalQuery(HttpRequest request, out string path)
+        {
+            string raw = request.RawUrl ?? request.Path;
+            int marker = raw.IndexOf('?');
+            path = marker < 0 ? raw : raw.Substring(0, marker);
+            string decoded = HttpUtility.UrlDecode(path);
+            if (!decoded.StartsWith("/", StringComparison.Ordinal) || decoded.StartsWith("//", StringComparison.Ordinal) ||
+                decoded.IndexOf('\\') >= 0 || decoded.IndexOf('\r') >= 0 || decoded.IndexOf('\n') >= 0)
+            {
+                path = VirtualPathUtility.ToAbsolute("~/Default.aspx");
+                return HttpUtility.ParseQueryString("");
+            }
+            return HttpUtility.ParseQueryString(marker < 0 ? "" : raw.Substring(marker + 1));
         }
 
         // ------------------------------------------------------------------ display labels for stored values

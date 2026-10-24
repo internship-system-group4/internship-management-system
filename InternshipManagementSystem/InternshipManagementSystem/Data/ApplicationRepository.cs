@@ -14,7 +14,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class ApplicationRepository : RepositoryBase<InternshipApplication>
+    public class ApplicationRepository : NotifyingRepositoryBase<InternshipApplication>
     {
         protected override string Collection
         {
@@ -78,7 +78,7 @@ namespace InternshipManagementSystem.Data
             if (!FirebaseContext.PutIfUnchanged(path, record, etag))
                 throw new InvalidOperationException("This application changed during review. Refresh before making another decision.");
 
-            Services.NotificationService.ApplicationDecided(application, decision);
+            Services.EmailNotificationService.Saved(Json.Deserialize<InternshipApplication>(json), Json.Deserialize<InternshipApplication>(Json.Serialize(record)));
         }
 
         public static bool IsSafeDocumentUrl(string value)
@@ -137,7 +137,7 @@ namespace InternshipManagementSystem.Data
             if (!FirebaseContext.PutIfEmpty(Collection + "/" + id, application))
                 throw new InvalidOperationException("You have already applied to this internship. Check My Applications.");
 
-            Services.NotificationService.ApplicationSubmitted(application);
+            Services.EmailNotificationService.Saved(null, application);
             return application;
         }
     }

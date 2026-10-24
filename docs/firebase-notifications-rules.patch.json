@@ -1,0 +1,23 @@
+{
+  "rules": {
+    "notifications": {
+      "$uid": {
+        ".read": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && auth.uid === $uid",
+        ".indexOn": [
+          "CreatedAt"
+        ],
+        "$id": {
+          ".write": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && newData.exists() && ((!data.exists() && newData.child('RecipientId').val() === $uid && newData.child('SenderId').val() === auth.uid && root.child('users').child($uid).child('IsActive').val() === true) || (data.exists() && (auth.uid === $uid || data.child('SenderId').val() === auth.uid)))",
+          ".validate": "newData.hasChildren(['RecipientId','Title','CreatedAt','IsRead']) && newData.child('RecipientId').val() === $uid && newData.child('Title').isString() && newData.child('Title').val().length <= 200 && newData.child('CreatedAt').isNumber() && newData.child('IsRead').isBoolean() && ((!data.exists() && newData.child('IsRead').val() === false && newData.child('CreatedAt').val() <= now + 60000) || (data.exists() && (newData.child('Id').val() === data.child('Id').val() && newData.child('RecipientId').val() === data.child('RecipientId').val() && newData.child('SenderId').val() === data.child('SenderId').val() && newData.child('Title').val() === data.child('Title').val() && newData.child('Detail').val() === data.child('Detail').val() && newData.child('Page').val() === data.child('Page').val() && newData.child('Message').val() === data.child('Message').val() && newData.child('Link').val() === data.child('Link').val() && newData.child('Type').val() === data.child('Type').val() && newData.child('MeetingId').val() === data.child('MeetingId').val() && newData.child('CreatedAt').val() === data.child('CreatedAt').val()) && (auth.uid === $uid || newData.child('IsRead').val() === data.child('IsRead').val()) && (data.child('SenderId').val() === auth.uid || newData.child('EmailStatus').val() === data.child('EmailStatus').val())))"
+        }
+      }
+    },
+    "tasks": {
+      "$taskId": {
+        "Status": {
+          ".write": "auth != null && root.child('users').child(auth.uid).child('IsActive').val() === true && root.child('users').child(auth.uid).child('Role').val() === 1 && data.parent().child('StudentId').val() === auth.uid && root.child('placements').child(data.parent().child('PlacementId').val()).child('StudentId').val() === auth.uid && (data.val() === 0 && newData.val() === 1 || data.val() === 3 && newData.val() === 4) && root.child('completions').child(data.parent().child('PlacementId').val()).child('Status').val() !== 4 && root.child('completions').child(data.parent().child('PlacementId').val()).child('Status').val() !== 5 && root.child('placements').child(data.parent().child('PlacementId').val()).child('Status').val() !== 4 && root.child('placements').child(data.parent().child('PlacementId').val()).child('Status').val() !== 5"
+        }
+      }
+    }
+  }
+}

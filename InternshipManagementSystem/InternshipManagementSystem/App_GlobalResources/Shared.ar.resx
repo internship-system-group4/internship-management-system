@@ -460,4 +460,5 @@
   <data name="Js.NotifyDismiss" xml:space="preserve"><value>إغلاق</value></data>
   <data name="Js.NotifyUnread" xml:space="preserve"><value>{0} جديد</value></data>
   <data name="Js.NotifyBellLabel" xml:space="preserve"><value>الإشعارات، {0} غير مقروءة</value></data>
+  <data name="Title.Pages.Public.NotFound" xml:space="preserve"><value>الصفحة غير موجودة | UIMS</value></data>
 </root>

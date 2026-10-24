@@ -3,7 +3,7 @@ body.uims-public .uims-public-nav { position:fixed; inset-block-start:0; inset-i
 /* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ body.uims-public .uims-public-nav .public-header-inner { position:relative; display:flex; flex-wrap:nowrap; align-items:center; justify-content:space-between; gap:20px; width:min(1280px,calc(100% - 48px)); max-width:none; min-height:76px; margin-inline:auto; padding:12px 20px; border:1px solid transparent; border-radius:999px; background:transparent; pointer-events:auto; transition:width 260ms ease,transform 260ms ease,background-color 200ms ease,box-shadow 200ms ease,border-color 200ms ease; }
 body.uims-public .uims-public-nav[data-scrolled="true"]:not([data-compact="true"]) .public-header-inner { background:rgb(255 255 255 / 96%); }
 /* The requested glass and soft elevation identify the floating state; opaque white is the fallback. */
-/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { width:min(1000px,calc(100% - 48px)); transform:translateY(4px); background:var(--ui-surface,#fff); border-color:rgb(38 79 115 / 12%); box-shadow:0 6px 24px rgb(20 42 58 / 9%); }
+/* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { width:min(1200px,calc(100% - 48px)); transform:translateY(4px); background:var(--ui-surface,#fff); border-color:rgb(38 79 115 / 12%); box-shadow:0 6px 24px rgb(20 42 58 / 9%); }
 /* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */ @supports ((backdrop-filter:blur(10px)) or (-webkit-backdrop-filter:blur(10px))) {
 /* taste-skill-ignore: Requested floating navbar/dropdown border, blur or overlay shadow. */  body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { background:rgb(255 255 255 / 90%); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); }
 }
@@ -30,7 +30,7 @@ body.uims-public .campus-chapter-nav { inset-block-start:140px; }
 body.uims-public .home-page>.home-section { scroll-margin-block-start:108px; }
 body.uims-public :is(.public-page,.public-auth,.public-status) [id] { scroll-margin-block-start:112px; }
 body.uims-public .public-skip { position:fixed; z-index:1200; }
-@media(max-width:1120px) {
+@media(max-width:1200px) {
  body.uims-public .uims-public-nav { padding-block-start:12px; }
  body.uims-public .uims-public-nav .public-header-inner { width:calc(100% - 32px); min-height:72px; padding:10px 16px; gap:12px; border-radius:18px; }
  body.uims-public .uims-public-nav[data-compact="true"] .public-header-inner { width:calc(100% - 40px); border-radius:18px; transform:translateY(8px); }

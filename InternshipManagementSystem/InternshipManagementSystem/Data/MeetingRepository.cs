@@ -7,7 +7,7 @@ using InternshipManagementSystem.Models;
 
 namespace InternshipManagementSystem.Data
 {
-    public class MeetingRepository : RepositoryBase<Meeting>
+    public class MeetingRepository : NotifyingRepositoryBase<Meeting>
     {
         protected override string Collection
         {

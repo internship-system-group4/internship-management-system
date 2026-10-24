@@ -16,7 +16,7 @@ body.uims-portal .uims-sidebar-brand small {display:block;color:var(--ui-nav-mut
 .uims-sidebar-pin {width:100%;display:flex;align-items:center;gap:14px;min-height:44px;margin:20px 0 12px;padding:10px 12px;background:transparent;border:0;border-radius:6px;color:var(--ui-nav-muted);font-size:14px;text-align:start;overflow:hidden;flex:none;}
 .uims-sidebar-pin svg {width:22px;height:22px;flex:none;}
 .uims-sidebar-pin:hover {background:var(--th-bg-e3e8ec,#e3e8ec);color:var(--ui-ink);}.uims-sidebar-pin[aria-pressed=true] svg {transform:scaleX(-1);}
-.uims-sidebar-navigation {flex:1;min-height:0;overflow:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#6d8290 transparent;}
+.uims-sidebar-navigation {flex:1;min-height:0;overflow:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-width:none;-ms-overflow-style:none;}
 body.uims-portal .uims-side-nav {list-style:none;margin:0;padding:0;display:block;}
 body.uims-portal .uims-side-link {display:flex;align-items:center;gap:14px;min-height:48px;height:auto;padding:12px;margin:3px 0;border:0;border-radius:6px;text-decoration:none;overflow:hidden;color:var(--ui-nav-text);font-size:15px;font-weight:400;line-height:1.5;}
 body.uims-portal .uims-side-link svg {width:22px;height:22px;flex:none;}
@@ -71,3 +71,131 @@ body.uims-portal .uims-main-inner {width:100%;max-width:1560px;margin:0 auto;pad
  body.uims-portal .uims-page-title {overflow-wrap:anywhere;}
 }
 @media(prefers-reduced-motion:reduce) {body.uims-portal .uims-sidebar,.uims-sidebar-label {transition:none!important;}}
+
+/* The shared sidebar owns page context, preferences, notifications and account details. */
+body.uims-portal .uims-sidebar {padding-top:16px;}
+body.uims-portal .uims-sidebar .uims-sidebar-brand {min-height:76px;}
+.uims-sidebar-context {flex:none;min-width:0;padding:8px 12px 12px;overflow:hidden;max-height:150px;opacity:1;transition:opacity 160ms ease;}
+.uims-sidebar-context>small {display:block;margin-bottom:5px;color:var(--ui-nav-muted);font-size:12px;line-height:1.5;}
+body.uims-portal .uims-sidebar .uims-page-title {color:var(--ui-ink);font-size:15px;font-weight:600;line-height:1.5;white-space:normal;overflow-wrap:anywhere;}
+body.uims-portal .uims-sidebar .uims-page-title::before {content:none;}
+body.uims-portal .uims-sidebar-pin {margin:2px 0 8px;}
+.uims-sidebar-navigation::-webkit-scrollbar,.uims-sidebar .uims-notify-list::-webkit-scrollbar {display:none;width:0;height:0;}
+.uims-sidebar .uims-notify-list {scrollbar-width:none;-ms-overflow-style:none;}
+.uims-sidebar-tools {position:relative;display:flex;align-items:center;justify-content:space-between;gap:8px;flex:none;padding:14px 8px 0;margin-top:10px;border-top:1px solid var(--ui-border);}
+.uims-sidebar-tools .uims-theme {display:flex;}
+body.uims-portal .uims-sidebar-tools :is(.uims-lang-control,.uims-theme-button,.uims-notify-button) {width:44px;height:44px;flex:none;background:var(--ui-nav);border-color:var(--ui-border);color:var(--ui-ink);}
+.uims-sidebar-tools .uims-notify {position:static;}
+body.uims-portal .uims-sidebar-tools .uims-notify-menu {position:absolute;inset-inline-start:0;inset-inline-end:auto;inset-block-start:auto;inset-block-end:calc(100% + 8px);width:min(340px,calc(100vw - 64px));max-height:var(--sidebar-notify-height,360px);margin:0;transform:none;z-index:1110;}
+.uims-sidebar-tools .uims-notify-menu.show {display:flex;flex-direction:column;}
+.uims-sidebar-tools :is(.uims-notify-head,.uims-notify-all) {flex:none;}
+.uims-sidebar-tools .uims-notify-list {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;}
+body.uims-portal .uims-sidebar-account {min-height:84px;padding:14px 8px;margin-top:12px;border-top:0;}
+body.uims-portal .uims-sidebar-account-meta :is(strong,small,span) {white-space:normal;overflow-wrap:anywhere;}
+body.uims-portal .uims-sidebar-account-meta strong {display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+body.uims-portal .uims-sidebar-account-meta>span {font-size:12px;margin-top:3px;}
+/* The former header has only the drawer opener; desktop content uses the freed space. */
+body.uims-portal .uims-topbar {display:none;}
+@media(min-width:901px) {
+ html.student-nav-ready .uims-sidebar:not([data-expanded=true]) .uims-sidebar-context {max-height:0;opacity:0;padding-block:0;}
+ html.student-nav-ready .uims-sidebar:not([data-expanded=true]) .uims-sidebar-tools {flex-direction:column;padding:12px 0 0;}
+ html.student-nav-ready .uims-sidebar:not([data-expanded=true]) .uims-sidebar-account {min-height:60px;margin-top:8px;padding-inline:8px;}
+}
+@media(max-width:900px) {
+ body.uims-portal .uims-topbar {display:flex;min-height:64px;padding:10px 18px;border-bottom:0;background:var(--ui-canvas);}
+ body.uims-portal .uims-sidebar .uims-sidebar-heading {margin-bottom:0;gap:10px;}
+ body.uims-portal .uims-sidebar-context {padding-inline:8px;}
+ body.uims-portal .uims-sidebar-tools {justify-content:flex-start;gap:12px;}
+ body.uims-portal .uims-sidebar .uims-sidebar-account-meta {display:block;}
+ html:not(.student-nav-ready) body.uims-portal .uims-topbar {display:none;}
+}
+@media(max-height:640px) {
+ body.uims-portal .uims-sidebar {padding-block:8px;}
+ body.uims-portal .uims-sidebar .uims-sidebar-brand {min-height:52px;}
+ body.uims-portal .uims-sidebar-context {padding-block:4px 6px;}
+ body.uims-portal .uims-sidebar-brand small {margin-top:2px;}
+ body.uims-portal .uims-sidebar-pin {min-height:36px;margin-block:0 4px;padding-block:6px;}
+ body.uims-portal .uims-sidebar-account {min-height:64px;margin-top:4px;padding-block:8px;}
+ body.uims-portal .uims-sidebar-tools {padding-top:8px;margin-top:6px;}
+ body.uims-portal .student-logout a {min-height:40px;padding-block:8px;}
+}
+@media(prefers-reduced-motion:reduce) {.uims-sidebar-context {transition:none;}}
+
+/* Refined university navigation: compact identity, quiet selection and grouped utilities. */
+body.uims-portal .uims-sidebar {border-inline-end:1px solid var(--ui-border);padding:18px 14px 12px;}
+body.uims-portal .uims-sidebar-heading {display:flex;align-items:center;gap:8px;}
+body.uims-portal .uims-sidebar .uims-sidebar-brand {flex:1;min-width:0;min-height:66px;gap:10px;padding:0 4px;}
+body.uims-portal .uims-sidebar-brand img {width:36px;max-height:40px;object-fit:contain;}
+body.uims-portal .uims-sidebar-identity {min-width:0;}
+body.uims-portal .uims-sidebar-brand strong {font-size:18px;line-height:1.3;letter-spacing:-.025em;}
+body.uims-portal .uims-sidebar-brand small {margin-top:3px;max-width:145px;font-size:12px;line-height:1.55;color:var(--ui-nav-muted);}
+body.uims-portal .uims-sidebar-heading .uims-sidebar-pin {display:flex;justify-content:center;align-items:center;flex:0 0 32px;width:32px;min-height:36px;margin:0;padding:6px;border:1px solid transparent;border-radius:8px;overflow:visible;color:var(--ui-nav-muted);cursor:pointer;}
+.uims-sidebar-heading .uims-sidebar-pin svg {width:19px;height:19px;}
+.uims-sidebar-heading .uims-sidebar-pin .uims-sidebar-label {display:none;}
+body.uims-portal .uims-sidebar-heading .uims-sidebar-pin:hover {background:var(--ui-surface);border-color:var(--ui-border);color:var(--ui-ink);}
+.uims-sidebar-pin:focus-visible,.uims-sidebar-account:focus-visible,.uims-sidebar-signout:focus-visible {outline:3px solid var(--ui-focus);outline-offset:2px;}
+body.uims-portal .uims-sidebar-context {padding:13px 10px 16px;margin:8px 0 12px;border-bottom:1px solid var(--ui-border);}
+.uims-sidebar-context>small {font-size:12px;line-height:1.6;color:var(--ui-nav-muted);margin-bottom:4px;}
+body.uims-portal .uims-sidebar .uims-page-title {font-size:14px;font-weight:600;line-height:1.55;}
+body.uims-portal .uims-side-link {position:relative;gap:12px;min-height:48px;padding:11px 12px;margin:3px 0;border-radius:var(--ui-radius);color:var(--ui-nav-text);transition:background-color 160ms ease,color 160ms ease;}
+body.uims-portal .uims-side-link svg {width:21px;height:21px;stroke-width:1.65;}
+body.uims-portal .uims-side-link:hover {background:var(--ui-neutral-soft);color:var(--ui-ink);}
+body.uims-portal .uims-side-link[aria-current=page] {background:var(--ui-primary-soft);color:var(--ui-primary-text,var(--ui-primary));font-weight:600;}
+body.uims-portal .uims-sidebar-tools {min-height:60px;padding:7px;margin-top:16px;border:1px solid var(--ui-border);border-radius:12px;background:var(--ui-neutral-soft);justify-content:space-between;gap:4px;}
+body.uims-portal .uims-sidebar-tools :is(.uims-lang-control,.uims-theme-button,.uims-notify-button) {border-color:transparent;background:transparent;}
+body.uims-portal .uims-sidebar-tools :is(.uims-lang-control,.uims-theme-button,.uims-notify-button):hover {background:var(--ui-surface);border-color:var(--ui-control-border);}
+body.uims-portal .uims-sidebar-account {gap:10px;min-height:88px;padding:12px 10px;margin-top:10px;border:1px solid var(--ui-border);border-radius:12px;background:var(--ui-surface);transition:background-color 160ms ease,border-color 160ms ease;}
+body.uims-portal .uims-sidebar-account:hover {background:var(--ui-primary-soft);border-color:var(--ui-control-border);}
+body.uims-portal .uims-sidebar-avatar {width:34px;height:34px;font-size:11px;background:var(--ui-primary-soft);color:var(--ui-primary-text,var(--ui-primary));}
+body.uims-portal .uims-sidebar .uims-sidebar-account-meta strong {font-size:13px;font-weight:600;line-height:1.5;color:var(--ui-ink);}
+body.uims-portal .uims-sidebar .uims-sidebar-account-meta small {font-size:12px;line-height:1.55;margin-top:3px;}
+body.uims-portal .uims-sidebar .uims-sidebar-account-meta>span {font-size:12px;line-height:1.5;color:var(--ui-primary-text,var(--ui-primary));margin-top:4px;}
+.uims-sidebar-account-arrow {width:16px;height:16px;flex:none;margin-inline-start:auto;color:var(--ui-nav-muted);}
+[dir=rtl] .uims-sidebar-account-arrow {transform:scaleX(-1);}
+body.uims-portal .student-logout {padding-top:5px;}
+body.uims-portal .student-logout a {min-height:44px;padding:10px 12px;gap:12px;font-size:13px;border-radius:var(--ui-radius);color:var(--ui-nav-muted);}
+body.uims-portal .student-logout a:hover {color:var(--ui-danger);background:var(--ui-danger-soft);}
+body.uims-portal .student-logout svg {width:21px;height:21px;}
+@media(min-width:901px) {
+ html.student-nav-ready body.uims-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-heading {flex-wrap:wrap;justify-content:center;gap:8px;}
+ html.student-nav-ready body.uims-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-brand {flex-basis:100%;min-height:42px;padding-inline:4px;}
+ html.student-nav-ready body.uims-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-brand img {width:36px;}
+ html.student-nav-ready body.uims-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-context {margin:0 0 10px;padding:0;border:0;}
+ html.student-nav-ready body.uims-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-tools {padding:7px 0;gap:3px;border-color:transparent;background:transparent;}
+ html.student-nav-ready body.uims-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-account {padding:8px 6px;min-height:52px;background:transparent;border-color:transparent;}
+}
+@media(max-width:900px) {
+ html.student-nav-ready body.uims-portal .uims-sidebar {padding:16px 16px 12px;}
+ html.student-nav-ready body.uims-portal .uims-sidebar-heading .uims-sidebar-pin {display:none;}
+ body.uims-portal .uims-sidebar .uims-sidebar-brand {min-height:64px;}
+ body.uims-portal .uims-sidebar-brand small {max-width:180px;font-size:12px;}
+ body.uims-portal .uims-sidebar-context {padding-inline:10px;margin-top:4px;}
+ body.uims-portal .uims-sidebar-tools {justify-content:space-around;}
+}
+@media(max-height:640px) {
+ body.uims-portal .uims-sidebar,html.student-nav-ready body.uims-portal .uims-sidebar {padding-block:8px;}
+ body.uims-portal .uims-sidebar .uims-sidebar-brand {min-height:52px;}
+ body.uims-portal .uims-sidebar-context {margin-block:0 6px;padding-block:6px 8px;}
+ body.uims-portal .uims-sidebar-tools {margin-top:8px;min-height:52px;padding-block:3px;}
+ body.uims-portal .uims-sidebar-account {margin-top:6px;min-height:72px;padding-block:8px;}
+ body.uims-portal .student-logout a {min-height:40px;padding-block:8px;}
+}
+@media(prefers-reduced-motion:reduce) {body.uims-portal :is(.uims-side-link,.uims-sidebar-account) {transition:none;}}
+
+/* The live activity bell opens above its sidebar utility row, inside the drawer. */
+@media(min-width:901px) {body.uims-portal .uims-sidebar {z-index:20;}}
+body.uims-portal .uims-sidebar-tools .notice-bell {position:static;color:var(--ui-ink);}
+body.uims-portal .uims-sidebar-tools .notice-bell summary {width:44px;height:44px;border:1px solid transparent;border-radius:var(--ui-radius);background:transparent;color:var(--ui-ink);}
+body.uims-portal .uims-sidebar-tools .notice-bell summary:hover,
+body.uims-portal .uims-sidebar-tools .notice-bell[open] summary {background:var(--ui-surface);border-color:var(--ui-control-border);}
+body.uims-portal .uims-sidebar-tools .notice-bell .notice-panel {position:absolute;inset:auto;inset-inline-start:0;inset-block-end:calc(100% + 8px);width:min(360px,calc(100vw - 40px));max-height:var(--sidebar-notify-height,360px);margin:0;z-index:1110;background:var(--ui-surface);color:var(--ui-ink);border-color:var(--ui-border);text-align:start;box-shadow:0 12px 36px rgb(10 30 43 / 18%);}
+body.uims-portal .uims-sidebar-tools .notice-bell[open] .notice-panel {display:flex;flex-direction:column;}
+body.uims-portal .uims-sidebar-tools .notice-bell:not([open]) .notice-panel {display:none;}
+.uims-sidebar-tools .notice-panel :is(.notice-header,.notice-filters,.notice-footer) {flex:none;}
+.uims-sidebar-tools .notice-panel .notice-header {gap:8px;flex-wrap:wrap;padding:16px;}
+.uims-sidebar-tools .notice-panel .notice-header h2 {font-size:18px;}
+.uims-sidebar-tools .notice-panel .notice-filters {padding:0 16px 12px;flex-wrap:wrap;}
+.uims-sidebar-tools .notice-panel .notice-list {flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;}
+.uims-sidebar-tools .notice-panel .notice-item {padding:14px 16px;}
+.uims-sidebar-tools .notice-panel .notice-copy strong {overflow-wrap:anywhere;}
+.uims-sidebar-tools .notice-panel .notice-footer {padding:12px 16px;}

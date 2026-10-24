@@ -170,4 +170,10 @@
   <data name="PoweredBy.TheDevelopmentTeam" xml:space="preserve"><value>The development team</value></data>
   <data name="PoweredBy.TheStudentsOfGroup4Designed" xml:space="preserve"><value>The students of Group 4 designed and built UIMS.</value></data>
   <data name="PoweredBy.ViewFullHall" xml:space="preserve"><value>View full hall</value></data>
+  <data name="NotFound.Code" xml:space="preserve"><value>Error 404 — page not found</value></data>
+  <data name="NotFound.Heading" xml:space="preserve"><value>This page is off the map</value></data>
+  <data name="NotFound.Description" xml:space="preserve"><value>We couldn’t find the page you’re looking for. It may have moved, or the link may be incorrect.</value></data>
+  <data name="NotFound.Home" xml:space="preserve"><value>Go Home</value></data>
+  <data name="NotFound.Back" xml:space="preserve"><value>Go Back</value></data>
+  <data name="NotFound.Contact" xml:space="preserve"><value>Contact us</value></data>
 </root>

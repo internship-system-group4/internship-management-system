@@ -269,19 +269,19 @@
   <data name="CompletionReview.Weight" xml:space="preserve"><value>Weight</value></data>
   <data name="CompletionReview.WithAFinalResultOf" xml:space="preserve"><value>with a final result of</value></data>
   <data name="ConfiguredGroups.AcademicSupervisor" xml:space="preserve"><value>Academic supervisor</value></data>
-  <data name="ConfiguredGroups.AcademicYear" xml:space="preserve"><value>Academic year</value></data>
+  <data name="ConfiguredGroups.AcademicYear" xml:space="preserve"><value>Academic Year</value></data>
   <data name="ConfiguredGroups.AcademicYearSemester" xml:space="preserve"><value>Academic year / semester</value></data>
   <data name="ConfiguredGroups.Account" xml:space="preserve"><value>Account</value></data>
   <data name="ConfiguredGroups.Actions" xml:space="preserve"><value>Actions</value></data>
   <data name="ConfiguredGroups.ApprovedHours" xml:space="preserve"><value>Approved hours</value></data>
   <data name="ConfiguredGroups.Clear" xml:space="preserve"><value>Clear</value></data>
   <data name="ConfiguredGroups.Close" xml:space="preserve"><value>Close</value></data>
-  <data name="ConfiguredGroups.ConfiguredGroups" xml:space="preserve"><value>Configured groups</value></data>
+  <data name="ConfiguredGroups.ConfiguredGroups" xml:space="preserve"><value>Configured Groups</value></data>
   <data name="ConfiguredGroups.CoordinatorGroups" xml:space="preserve"><value>Coordinator / Groups</value></data>
   <data name="ConfiguredGroups.CouldNotDeleteTheGroupPlease" xml:space="preserve"><value>Could not delete the group. Please try again.</value></data>
   <data name="ConfiguredGroups.CouldNotLoadConfiguredGroupsPlease" xml:space="preserve"><value>Could not load configured groups. Please try again.</value></data>
   <data name="ConfiguredGroups.CouldNotLoadTheGroupDetails" xml:space="preserve"><value>Could not load the group details. Please try again.</value></data>
-  <data name="ConfiguredGroups.CreateEditGroup" xml:space="preserve"><value>Create / edit group</value></data>
+  <data name="ConfiguredGroups.CreateEditGroup" xml:space="preserve"><value>Create / Edit Group</value></data>
   <data name="ConfiguredGroups.CreateGroup" xml:space="preserve"><value>+ Create group</value></data>
   <data name="ConfiguredGroups.Created" xml:space="preserve"><value>Created</value></data>
   <data name="ConfiguredGroups.Delete" xml:space="preserve"><value>Delete</value></data>
@@ -305,7 +305,7 @@
   <data name="ConfiguredGroups.NotAssigned" xml:space="preserve"><value>Not assigned</value></data>
   <data name="ConfiguredGroups.ReviewGroupMembershipAndSupervisorAssignments" xml:space="preserve"><value>Review group membership and supervisor assignments.</value></data>
   <data name="ConfiguredGroups.Search" xml:space="preserve"><value>Search</value></data>
-  <data name="ConfiguredGroups.SearchByGroupNameAcademicYear" xml:space="preserve"><value>Search by group name, academic year, semester, or supervisor.</value></data>
+  <data name="ConfiguredGroups.SearchByGroupNameAcademicYear" xml:space="preserve"><value>Search by group name, academic year, semester, or supervisor to find a specific group.</value></data>
   <data name="ConfiguredGroups.SearchConfiguredGroups" xml:space="preserve"><value>Search configured groups</value></data>
   <data name="ConfiguredGroups.Semester" xml:space="preserve"><value>Semester</value></data>
   <data name="ConfiguredGroups.StudentID" xml:space="preserve"><value>Student ID</value></data>
@@ -1072,4 +1072,25 @@
   <data name="Dashboard.MajorGameDesign" xml:space="preserve"><value>Game Design and Media Informatics</value></data>
   <data name="Dashboard.AllClearTitle" xml:space="preserve"><value>No follow-up needed right now</value></data>
   <data name="Dashboard.AllClearHelp" xml:space="preserve"><value>No pending assignments, overdue tasks, reported hours or returned completions in the current records.</value></data>
+  <data name="ConfiguredGroups.TotalGroups" xml:space="preserve"><value>Total Groups</value></data>
+  <data name="ConfiguredGroups.AllYears" xml:space="preserve"><value>All Years</value></data>
+  <data name="ConfiguredGroups.AllSemesters" xml:space="preserve"><value>All Semesters</value></data>
+  <data name="ConfiguredGroups.AllSupervisors" xml:space="preserve"><value>All Supervisors</value></data>
+  <data name="ConfiguredGroups.CreateGroupLabel" xml:space="preserve"><value>Create Group</value></data>
+  <data name="ConfiguredGroups.Edit" xml:space="preserve"><value>Edit</value></data>
+  <data name="ConfiguredGroups.SearchPlaceholder" xml:space="preserve"><value>Search by group name, year, semester, or supervisor...</value></data>
+  <data name="ConfiguredGroups.ShowingGroups" xml:space="preserve"><value>Showing {0} to {1} of {2} groups</value></data>
+  <data name="ConfiguredGroups.Pagination" xml:space="preserve"><value>Group pages</value></data>
+  <data name="ConfiguredGroups.Previous" xml:space="preserve"><value>Previous page</value></data>
+  <data name="ConfiguredGroups.Next" xml:space="preserve"><value>Next page</value></data>
+  <data name="AccountAccess.Block" xml:space="preserve"><value>Block</value></data>
+  <data name="AccountAccess.Unblock" xml:space="preserve"><value>Unblock</value></data>
+  <data name="AccountAccess.Active" xml:space="preserve"><value>Active</value></data>
+  <data name="AccountAccess.Blocked" xml:space="preserve"><value>Blocked</value></data>
+  <data name="AccountAccess.ConfirmBlock" xml:space="preserve"><value>Are you sure you want to block {0}? They will no longer be able to sign in. Their records and history will be retained.</value></data>
+  <data name="AccountAccess.ConfirmUnblock" xml:space="preserve"><value>Are you sure you want to unblock {0}? They will be able to sign in again.</value></data>
+  <data name="AccountAccess.StudentBlocked" xml:space="preserve"><value>Student blocked. Their record and training history are retained.</value></data>
+  <data name="AccountAccess.StudentUnblocked" xml:space="preserve"><value>Student unblocked. They can sign in again.</value></data>
+  <data name="AccountAccess.SupervisorBlocked" xml:space="preserve"><value>Academic supervisor blocked. Assigned groups and history are retained.</value></data>
+  <data name="AccountAccess.SupervisorUnblocked" xml:space="preserve"><value>Academic supervisor unblocked. They can sign in again.</value></data>
 </root>

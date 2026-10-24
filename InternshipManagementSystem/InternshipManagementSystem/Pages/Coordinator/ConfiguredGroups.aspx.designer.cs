@@ -4,8 +4,17 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
     {
         protected global::System.Web.UI.WebControls.Label lblMessage;
         protected global::System.Web.UI.WebControls.TextBox txtSearch;
-        protected global::System.Web.UI.WebControls.Button btnSearch;
-        protected global::System.Web.UI.WebControls.Button btnClearSearch;
+        protected global::System.Web.UI.WebControls.Panel pnlSearch;
+        protected global::System.Web.UI.WebControls.DropDownList ddlYear;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSemester;
+        protected global::System.Web.UI.WebControls.DropDownList ddlSupervisor;
+        protected global::System.Web.UI.WebControls.LinkButton btnSearch;
+        protected global::System.Web.UI.WebControls.LinkButton btnClearSearch;
+        protected global::System.Web.UI.WebControls.Literal litTotalGroups;
+        protected global::System.Web.UI.WebControls.Label lblResults;
+        protected global::System.Web.UI.WebControls.Literal litPage;
+        protected global::System.Web.UI.WebControls.LinkButton btnPrevious;
+        protected global::System.Web.UI.WebControls.LinkButton btnNext;
         protected global::System.Web.UI.WebControls.Repeater rptGroups;
         protected global::System.Web.UI.WebControls.Label lblNoGroups;
         protected global::System.Web.UI.WebControls.Panel pnlView;

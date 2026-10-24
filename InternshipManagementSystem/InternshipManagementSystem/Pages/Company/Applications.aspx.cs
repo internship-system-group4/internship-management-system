@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.UI.WebControls;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
@@ -9,6 +10,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 {
     public partial class Applications : Security.CompanyPage
     {
+        protected string ReviewSearch { get { return (IsPostBack ? Request.Form["reviewSearch"] : Session["CompanyReviewSearch"] as string) ?? ""; } }
+        protected string ReviewFilter { get { return (IsPostBack ? Request.Form["review-status-filter"] : Session["CompanyReviewFilter"] as string) ?? "all"; } }
+        protected string ReviewSelection { get { return (IsPostBack ? Request.Form["reviewSelection"] : Session["CompanyReviewSelection"] as string) ?? ""; } }
         /// <summary>One application plus the applicant's profile details.</summary>
         public class ApplicantRow
         {
@@ -33,6 +37,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             public string SoftSkills { get; set; }
             public string LinkedInUrl { get; set; }
             public bool HasCv { get; set; }
+            public bool HasInlineCv { get; set; }
             public bool HasPortfolio { get; set; }
         }
 
@@ -55,7 +60,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             try
             {
-                var applications = new ApplicationRepository().GetByCompany(CurrentSupervisor.CompanyId);
+                var applications = new ApplicationRepository().GetByCompany(CurrentSupervisor.CompanyId)
+                    .OrderBy(a => a.Status == ApplicationStatus.Pending ? 0 : 1)
+                    .ThenByDescending(a => a.SubmittedAt).ToList();
                 ApplicationRepeater.DataSource = BuildRows(applications);
                 ApplicationRepeater.DataBind();
                 EmptyPanel.Visible = applications.Count == 0;
@@ -108,8 +115,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 row.LinkedInUrl = ApplicationRepository.IsSafeDocumentUrl(extras.LinkedInUrl) ? extras.LinkedInUrl : "";
 
                 // Same order ApplicantDocument.aspx uses to open the file.
+                string localCv = StudentDocumentService.UploadedFilePath(application.StudentId, documents.CvStorageName);
+                row.HasInlineCv = !StudentDocumentService.IsExternalLink(application.CvUrl) && localCv != null;
                 row.HasCv = StudentDocumentService.IsExternalLink(application.CvUrl)
-                    || StudentDocumentService.UploadedFilePath(application.StudentId, documents.CvStorageName) != null
+                    || localCv != null
                     || StudentDocumentService.IsExternalLink(documents.CvUrl);
                 row.HasPortfolio = StudentDocumentService.IsExternalLink(documents.PortfolioUrl)
                     || StudentDocumentService.UploadedFilePath(application.StudentId, documents.PortfolioStorageName) != null;
@@ -132,6 +141,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     decision, reason == null ? "" : reason.Text);
                 Session["CompanyDecisionNotice"] = "Application " + decision.ToString().ToLowerInvariant()
                     + ". The student can now see your decision.";
+                string search = Request.Form["reviewSearch"] ?? "";
+                Session["CompanyReviewSearch"] = search.Substring(0, Math.Min(search.Length, 200));
+                string filter = Request.Form["review-status-filter"];
+                Session["CompanyReviewFilter"] = new[] { "all", "Pending", "Accepted", "Rejected" }.Contains(filter) ? filter : "all";
+                Session["CompanyReviewSelection"] = Convert.ToString(e.CommandArgument);
                 Response.Redirect("Applications.aspx", false);
                 Context.ApplicationInstance.CompleteRequest();
             }

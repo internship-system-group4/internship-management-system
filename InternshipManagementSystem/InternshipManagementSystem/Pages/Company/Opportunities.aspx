@@ -6,13 +6,14 @@
     CodeBehind="Opportunities.aspx.cs"
     Inherits="InternshipManagementSystem.Pages.CompanyArea.Opportunities" %>
 
-<asp:Content ID="Head" ContentPlaceHolderID="head"
-    runat="server">
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 
 <style>
 .op-page {
-    max-width: 1120px;
+    width: 100%;
+    max-width: 1280px;
     margin: 0 auto;
+    box-sizing: border-box;
     color: var(--th-fg-173451,#173451);
     font-family: inherit;
 }
@@ -25,26 +26,30 @@
 }
 
 .op-heading {
-    margin: 14px 0 24px;
+    margin: 12px 0 18px;
 }
 
 .op-heading h2 {
     font-size: 26px;
     font-weight: 750;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .op-heading p {
+    margin: 0;
     color: var(--th-fg-718298,#718298);
     font-size: 14px;
 }
 
 .op-card {
-    background: var(--ui-surface,#fff);
-    border: 1px solid var(--th-line-dce5ef,#dce5ef);
-    border-radius: 12px;
-    padding: 26px;
-    max-width: 850px;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    padding: 24px 28px;
+    border: 1.5px solid #ccd9e7;
+    border-radius: 11px;
+    background: #ffffff;
+    box-shadow: 0 2px 8px rgba(23,52,81,.035);
 }
 
 .op-card h3 {
@@ -56,32 +61,32 @@
 .op-subtitle {
     color: var(--th-fg-718298,#718298);
     font-size: 13px;
-    margin-bottom: 24px;
+    margin-bottom: 18px;
 }
 
 .op-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 12px 22px;
 }
 
 .op-field {
-    margin-bottom: 19px;
+    margin-bottom: 12px;
 }
 
 .op-field label {
     display: block;
     font-size: 13px;
     font-weight: 700;
-    margin-bottom: 7px;
+    margin-bottom: 6px;
 }
 
 .op-field input,
 .op-field select,
 .op-field textarea {
     width: 100%;
-    padding: 11px 12px;
-    border: 1px solid var(--th-line-d6e1eb,#d6e1eb);
+    padding: 10px 12px;
+    border: 1px solid #d0dce8;
     border-radius: 7px;
     background: var(--ui-surface,#fff);
     color: var(--th-fg-173451,#173451);
@@ -91,7 +96,7 @@
 }
 
 .op-field textarea {
-    min-height: 105px;
+    min-height: 95px;
     resize: vertical;
 }
 
@@ -112,14 +117,14 @@
 .op-majors {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 8px;
+    gap: 9px;
+    margin-top: 6px;
 }
 
 .op-major {
     border: 1px solid var(--th-line-dbe5ef,#dbe5ef);
     border-radius: 8px;
-    padding: 9px 12px;
+    padding: 8px 11px;
     font-size: 13px;
     background: var(--th-bg-f8fafc,#f8fafc);
 }
@@ -131,17 +136,17 @@
 
 .op-footer {
     border-top: 1px solid var(--th-line-e5ebf1,#e5ebf1);
-    padding-top: 20px;
-    margin-top: 14px;
+    padding-top: 18px;
+    margin-top: 12px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 9px;
 }
 
 .op-btn {
-    padding: 11px 19px;
+    padding: 10px 18px;
     border-radius: 7px;
     font-size: 13px;
     font-weight: 700;
@@ -150,6 +155,8 @@
     border: 1px solid var(--th-line-244f77,#244f77);
     background: var(--th-bg-244f77,#244f77);
     color: #fff;
+    transition: background-color .2s ease,
+                border-color .2s ease;
 }
 
 .op-btn-light {
@@ -167,7 +174,8 @@
     background: var(--th-bg-e6f5ed,#e6f5ed);
     color: var(--th-fg-17613d,#17613d);
     margin-bottom: 20px;
-    max-width: 850px;
+    max-width: none;
+    box-sizing: border-box;
 }
 
 .op-notice.error {
@@ -175,115 +183,18 @@
     color: var(--th-fg-a3392b,#a3392b);
 }
 
-@media (max-width: 650px) {
-    .op-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .op-card {
-        padding: 17px;
-    }
+/* Required stars */
+.op-required-star {
+    color: #dc2626 !important;
+    font-weight: 800;
 }
 
-/* =========================================
-   Add Opportunity - Layout Improvements
-   ========================================= */
-
-/* Use available page space */
-.op-page {
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    box-sizing: border-box;
+/* Duration spinner */
+#opDuration {
+    appearance: auto;
+    -moz-appearance: auto;
 }
 
-/* Compact page heading */
-.op-heading {
-    margin: 12px 0 18px;
-}
-
-.op-heading h2 {
-    margin-bottom: 4px;
-}
-
-.op-heading p {
-    margin: 0;
-}
-
-/* Wider card with a clearer border */
-.op-card {
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
-    padding: 24px 28px;
-    border: 1.5px solid #ccd9e7;
-    border-radius: 11px;
-    background: #ffffff;
-    box-shadow: 0 2px 8px rgba(23, 52, 81, 0.035);
-}
-
-/* Reduce unnecessary vertical spacing */
-.op-subtitle {
-    margin-bottom: 18px;
-}
-
-.op-grid {
-    gap: 12px 22px;
-}
-
-.op-field {
-    margin-bottom: 12px;
-}
-
-.op-field label {
-    margin-bottom: 6px;
-}
-
-/* Consistent input appearance */
-.op-field input,
-.op-field select,
-.op-field textarea {
-    padding: 10px 12px;
-    border: 1px solid #d0dce8;
-    border-radius: 7px;
-}
-
-/* Compact text areas */
-.op-field textarea {
-    min-height: 95px;
-}
-
-/* Better checkbox spacing */
-.op-majors {
-    gap: 9px;
-    margin-top: 6px;
-}
-
-.op-major {
-    padding: 8px 11px;
-}
-
-/* Align footer buttons */
-.op-footer {
-    margin-top: 12px;
-    padding-top: 18px;
-    gap: 9px;
-}
-
-.op-btn {
-    padding: 10px 18px;
-    border-radius: 7px;
-    transition: background-color 0.2s ease,
-                border-color 0.2s ease;
-}
-
-/* Keep messages aligned with the card */
-.op-notice {
-    max-width: none;
-    box-sizing: border-box;
-}
-
-/* Responsive layout */
 @media (max-width: 900px) {
     .op-card {
         padding: 20px;
@@ -300,17 +211,14 @@
     }
 
     .op-card {
-      
-         background: #ffffff;
-    border: 2px solid #b8cadc;
-    border-radius: 12px;
-    padding: 24px 28px;
-
-    width: 100%;
-    max-width: none;
-    box-sizing: border-box;
-
-    box-shadow: 0 3px 12px rgba(23, 52, 81, 0.06);
+        background: #ffffff;
+        border: 2px solid #b8cadc;
+        border-radius: 12px;
+        padding: 24px 28px;
+        width: 100%;
+        max-width: none;
+        box-sizing: border-box;
+        box-shadow: 0 3px 12px rgba(23,52,81,.06);
     }
 
     .op-grid {
@@ -322,12 +230,12 @@
         justify-content: flex-start;
     }
 }
-
 </style>
 
 </asp:Content>
 
-<asp:Content ID="Body" ContentPlaceHolderID="MainContent"
+<asp:Content ID="Body"
+    ContentPlaceHolderID="MainContent"
     runat="server">
 
 <div class="op-page">
@@ -337,7 +245,9 @@
     </a>
 
     <div class="op-heading">
-        <h2><%: L.T("Company.Opportunities.AddNewOpportunity") %></h2>
+        <h2>
+            <%: L.T("Company.Opportunities.AddNewOpportunity") %>
+        </h2>
         <p>
             <%: L.T("Company.Opportunities.CompleteTheDetailsBelowToCreate") %>
         </p>
@@ -351,63 +261,93 @@
 
     <div class="op-card">
 
-        <h3><%: L.T("Company.Opportunities.BasicInformation") %></h3>
+        <h3>
+            <%: L.T("Company.Opportunities.BasicInformation") %>
+        </h3>
+
         <p class="op-subtitle">
             <%: L.T("Company.Opportunities.ProvideTheMainDetailsOfThis") %>
         </p>
 
+        <!-- Basic Information -->
         <div class="op-grid">
 
             <div class="op-field">
-                <label for="opTitle"><%: L.T("Company.Opportunities.OpportunityTitle") %></label>
-                <input id="opTitle" name="opTitle"
+                <label for="opTitle">
+                    <%: L.T("Company.Opportunities.OpportunityTitle") %>
+                </label>
+                <input id="opTitle"
+                    name="opTitle"
                     maxlength="160"
                     placeholder="<%: L.T("Company.Opportunities.EGWebDeveloperIntern") %>"
                     value="<%: Request.Form["opTitle"] %>" />
             </div>
 
             <div class="op-field">
-                <label for="opDepartment"><%: L.T("Company.Opportunities.Department") %></label>
-                <input id="opDepartment" name="opDepartment"
+                <label for="opDepartment">
+                    <%: L.T("Company.Opportunities.Department") %>
+                </label>
+                <input id="opDepartment"
+                    name="opDepartment"
                     maxlength="120"
                     placeholder="<%: L.T("Company.Opportunities.EGInformationTechnology") %>"
                     value="<%: Request.Form["opDepartment"] %>" />
             </div>
 
             <div class="op-field">
-                <label><%: L.T("Company.Opportunities.EligibleCollege") %></label>
+                <label>
+                    <%: L.T("Company.Opportunities.EligibleCollege") %>
+                </label>
                 <input value="<%: CollegeName %>"
                     readonly="readonly" />
             </div>
 
             <div class="op-field">
-                <label for="opType"><%: L.T("Company.Opportunities.OpportunityType") %></label>
+                <label for="opType">
+                    <%: L.T("Company.Opportunities.OpportunityType") %>
+                </label>
                 <select id="opType" name="opType">
-                    <option value="Internship"><%: L.T("Shared.Value.OpportunityType.Internship") %></option>
+                    <option value="Internship">
+                        <%: L.T("Shared.Value.OpportunityType.Internship") %>
+                    </option>
                 </select>
             </div>
 
             <div class="op-field">
-                <label for="opLocation"><%: L.T("Company.Opportunities.Location") %></label>
-                <input id="opLocation" name="opLocation"
+                <label for="opLocation">
+                    <%: L.T("Company.Opportunities.Location") %>
+                </label>
+                <input id="opLocation"
+                    name="opLocation"
                     maxlength="160"
                     placeholder="<%: L.T("Company.Opportunities.EGAmmanJordan") %>"
                     value="<%: Request.Form["opLocation"] %>" />
             </div>
 
             <div class="op-field">
-                <label for="opMode"><%: L.T("Company.Opportunities.TrainingMode") %></label>
+                <label for="opMode">
+                    <%: L.T("Company.Opportunities.TrainingMode") %>
+                </label>
                 <select id="opMode" name="opMode">
-                    <option value="On-site"><%: L.T("Shared.Value.TrainingMode.Onsite") %></option>
-                    <option value="Hybrid"><%: L.T("Shared.Value.TrainingMode.Hybrid") %></option>
-                    <option value="Remote"><%: L.T("Shared.Value.TrainingMode.Remote") %></option>
+                    <option value="On-site">
+                        <%: L.T("Shared.Value.TrainingMode.Onsite") %>
+                    </option>
+                    <option value="Hybrid">
+                        <%: L.T("Shared.Value.TrainingMode.Hybrid") %>
+                    </option>
+                    <option value="Remote">
+                        <%: L.T("Shared.Value.TrainingMode.Remote") %>
+                    </option>
                 </select>
             </div>
 
         </div>
 
+        <!-- Eligible Specializations -->
         <div class="op-field">
-            <label><%: L.T("Company.Opportunities.EligibleSpecializations") %></label>
+            <label>
+                <%: L.T("Company.Opportunities.EligibleSpecializations") %>
+            </label>
 
             <div class="op-majors">
                 <% foreach (string major in Majors) { %>
@@ -425,22 +365,29 @@
             </span>
         </div>
 
+        <!-- Description -->
         <div class="op-field">
-            <label for="opDescription"><%: L.T("Company.Opportunities.Description") %></label>
+            <label for="opDescription">
+                <%: L.T("Company.Opportunities.Description") %>
+            </label>
             <textarea id="opDescription"
                 name="opDescription"
                 maxlength="5000"
                 placeholder="<%: L.T("Company.Opportunities.DescribeTheRoleResponsibilitiesAndLearning") %>"><%: Request.Form["opDescription"] %></textarea>
         </div>
 
+        <!-- Requirements -->
         <div class="op-field">
-            <label for="opRequirements"><%: L.T("Company.Opportunities.Requirements") %></label>
+            <label for="opRequirements">
+                <%: L.T("Company.Opportunities.Requirements") %>
+            </label>
             <textarea id="opRequirements"
                 name="opRequirements"
                 maxlength="3000"
                 placeholder="<%: L.T("Company.Opportunities.ListTheSkillsQualificationsAndRequirements") %>"><%: Request.Form["opRequirements"] %></textarea>
         </div>
 
+        <!-- Technologies -->
         <div class="op-field">
             <label for="opTechnologies">
                 <%: L.T("Company.Opportunities.TechnologiesUsed") %>
@@ -452,70 +399,157 @@
                 value="<%: Request.Form["opTechnologies"] %>" />
         </div>
 
+        <!-- Seats, Duration, Dates -->
         <div class="op-grid">
 
+            <!-- Available Seats -->
             <div class="op-field">
-                <label for="opSeats"><%: L.T("Company.Opportunities.AvailableSeats") %></label>
-                <input id="opSeats" name="opSeats"
-                    type="number" min="1" max="10000"
+                <label for="opSeats">
+                    <%: L.T("Company.Opportunities.AvailableSeats") %>
+                </label>
+                <input id="opSeats"
+                    name="opSeats"
+                    type="number"
+                    min="1"
+                    max="10000"
                     placeholder="e.g. 5"
                     value="<%: Request.Form["opSeats"] %>" />
             </div>
 
+            <!-- Duration -->
             <div class="op-field">
                 <label for="opDuration">
                     <%: L.T("Company.Opportunities.DurationWeeks") %>
                 </label>
-                <input id="opDuration" name="opDuration"
-                    type="number" min="1" max="104"
+                <input id="opDuration"
+                    name="opDuration"
+                    type="number"
+                    min="1"
+                    max="13"
+                    step="1"
                     placeholder="e.g. 12"
                     value="<%: Request.Form["opDuration"] %>" />
             </div>
 
+            <!-- Start Date: Left -->
             <div class="op-field">
-                <label for="opDeadline">
-                    <%: L.T("Company.Opportunities.ApplicationDeadline") %>
+                <label for="opStart">
+                    <%: L.T("Company.Opportunities.StartDate") %>
                 </label>
-                <input id="opDeadline" name="opDeadline"
-                    type="date"
-                    value="<%: Request.Form["opDeadline"] %>" />
-            </div>
-
-            <div class="op-field">
-                <label for="opStart"><%: L.T("Company.Opportunities.StartDate") %></label>
-                <input id="opStart" name="opStart"
+                <input id="opStart"
+                    name="opStart"
                     type="date"
                     value="<%: Request.Form["opStart"] %>" />
             </div>
 
+            <!-- End Date: Right -->
             <div class="op-field">
-                <label for="opEnd"><%: L.T("Company.Opportunities.EndDate") %></label>
-                <input id="opEnd" name="opEnd"
+                <label for="opEnd">
+                    <%: L.T("Company.Opportunities.EndDate") %>
+                </label>
+                <input id="opEnd"
+                    name="opEnd"
                     type="date"
                     value="<%: Request.Form["opEnd"] %>" />
             </div>
 
+            <!-- Last Date to Apply: Below Start and End -->
+            <div class="op-field">
+                <label for="opDeadline">
+                    Last Date to Apply
+                    <span class="op-required-star">*</span>
+                </label>
+                <input id="opDeadline"
+                    name="opDeadline"
+                    type="date"
+                    value="<%: Request.Form["opDeadline"] %>" />
+            </div>
+
         </div>
 
+        <!-- Footer Buttons -->
         <div class="op-footer">
+
             <a class="op-btn op-btn-light"
                 href="ManageOpportunities.aspx">
                 <%: L.T("Company.Opportunities.Cancel") %>
             </a>
 
             <button class="op-btn op-btn-light"
-                type="submit" name="opAction" value="draft" data-ui-action="save" data-ui-validation="none" data-loading-label="Saving…">
+                type="submit"
+                name="opAction"
+                value="draft"
+                data-ui-action="save"
+                data-ui-validation="none"
+                data-loading-label="Saving…">
                 <%: L.T("Company.Opportunities.SaveDraft") %>
             </button>
 
             <button class="op-btn"
-                type="submit" name="opAction" value="publish" data-ui-action="publish" data-ui-validation="none" data-loading-label="Publishing…">
+                type="submit"
+                name="opAction"
+                value="publish"
+                data-ui-action="publish"
+                data-ui-validation="none"
+                data-loading-label="Publishing…">
                 <%: L.T("Company.Opportunities.Publish") %>
             </button>
+
         </div>
 
     </div>
 
 </div>
+
+<script type="text/javascript">
+(function () {
+    function highlightRequiredStars() {
+        var labels = document.querySelectorAll(
+            '.op-page .op-field label'
+        );
+
+        Array.prototype.forEach.call(labels, function (label) {
+            Array.prototype.forEach.call(
+                Array.prototype.slice.call(label.childNodes),
+                function (node) {
+                    if (node.nodeType !== 3 ||
+                        node.nodeValue.indexOf('*') === -1) {
+                        return;
+                    }
+
+                    var parts = node.nodeValue.split('*');
+                    var fragment = document.createDocumentFragment();
+
+                    parts.forEach(function (part, index) {
+                        if (index > 0) {
+                            var star = document.createElement('span');
+                            star.className = 'op-required-star';
+                            star.textContent = '*';
+                            fragment.appendChild(star);
+                        }
+
+                        if (part) {
+                            fragment.appendChild(
+                                document.createTextNode(part)
+                            );
+                        }
+                    });
+
+                    node.parentNode.replaceChild(fragment, node);
+                }
+            );
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener(
+            'DOMContentLoaded',
+            highlightRequiredStars
+        );
+    } else {
+        highlightRequiredStars();
+    }
+})();
+</script>
 
 </asp:Content>

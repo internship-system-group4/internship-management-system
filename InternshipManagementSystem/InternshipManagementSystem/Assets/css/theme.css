@@ -79,12 +79,11 @@ html.uims-public[data-theme="dark"] {
 .uims-theme-button { position:relative; display:inline-grid; place-items:center; width:44px; height:44px; padding:0; border:1px solid var(--ui-border); border-radius:50%; background:var(--ui-surface); color:var(--ui-ink); cursor:pointer; }
 .uims-theme-button:hover { border-color:var(--ui-control-border); }
 .uims-theme-button:focus-visible,.uims-theme-option:focus-visible,.uims-theme-inline [role="radio"]:focus-visible { outline:3px solid var(--ui-focus); outline-offset:3px; }
-.uims-theme svg { width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.uims-theme svg,.uims-theme-inline svg { width:20px; height:20px; flex:none; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
 .uims-theme-button [data-theme-icon] { position:absolute; inset:0; margin:auto; opacity:0; transform:scale(.72) rotate(-24deg); }
 .uims-theme-icon-changing .uims-theme-button [data-theme-icon] { transition:opacity 150ms ease,transform 280ms cubic-bezier(.16,1,.3,1); }
 :root[data-theme-preference="light"] .uims-theme-button [data-theme-icon="light"],
 :root[data-theme-preference="dark"] .uims-theme-button [data-theme-icon="dark"],
-:root[data-theme-preference="system"] .uims-theme-button [data-theme-icon="system"],
 :root:not([data-theme-preference]) .uims-theme-button [data-theme-icon="light"] { opacity:1; transform:scale(1) rotate(0); }
 .uims-theme-menu { position:absolute; z-index:1300; inset-block-start:calc(100% + 8px); inset-inline-end:0; min-width:180px; margin:0; padding:6px; border:1px solid var(--ui-border); border-radius:10px; background:var(--ui-surface); box-shadow:0 12px 32px rgb(11 36 51 / 16%); list-style:none; }
 [data-theme="dark"] .uims-theme-menu { background:var(--ui-surface-raised); box-shadow:var(--ui-elevation); }
@@ -94,10 +93,10 @@ html.uims-public[data-theme="dark"] {
 .uims-theme-option[aria-checked="true"] { font-weight:650; }
 .uims-theme-option .uims-theme-check { margin-inline-start:auto; visibility:hidden; }
 .uims-theme-option[aria-checked="true"] .uims-theme-check { visibility:visible; }
-/* Inline variant (mobile navigation): a labelled row of three choices. */
+/* Inline variant (mobile navigation): a labelled row of two choices. */
 .uims-theme-inline { display:grid; gap:8px; }
 .uims-theme-inline-label { font-size:13px; font-weight:650; color:var(--ui-muted); }
-.uims-theme-inline [role="radiogroup"] { display:grid; grid-template-columns:repeat(3,1fr); gap:6px; }
+.uims-theme-inline [role="radiogroup"] { display:grid; grid-template-columns:repeat(2,1fr); gap:6px; }
 .uims-theme-inline [role="radio"] { display:flex; align-items:center; justify-content:center; gap:6px; min-height:44px; padding:0 8px; border:1px solid var(--ui-border); border-radius:8px; background:var(--ui-surface); color:var(--ui-ink); font:500 14px/1.2 var(--ui-font); cursor:pointer; }
 .uims-theme-inline [role="radio"][aria-checked="true"] { border-color:var(--ui-primary); background:var(--ui-primary-soft); font-weight:650; box-shadow:inset 0 0 0 1px var(--ui-primary); }
 
@@ -129,11 +128,11 @@ html.uims-public[data-theme="dark"] {
 [data-theme="dark"] [data-chart-tone=purple] { --chart-color:#a98bd6; } [data-theme="dark"] [data-chart-tone=red] { --chart-color:#e57d87; }
 [data-theme="dark"] .ws-reference { --ra-active:#6fa3d4; }
 
-/* Public navbar: the menu button sits before "Log in" on wide screens; the radio row sits inside the mobile menu. */
+/* Public navbar: direct theme toggle beside language; two theme choices inside mobile navigation. */
 body.uims-public .uims-public-nav .public-links { padding-inline-end:196px; }
 body.uims-public .uims-public-nav .public-theme-desktop { position:absolute; z-index:2; inset-inline-end:136px; inset-block-start:0; }
 body.uims-public .public-theme-mobile { display:none; }
-@media(max-width:1120px) {
+@media(max-width:1200px) {
  body.uims-public .uims-public-nav .public-links { padding-inline-end:12px; }
  body.uims-public .uims-public-nav .public-theme-desktop { display:none!important; }
  body.uims-public .public-theme-mobile { display:block; margin-top:12px; padding:12px 4px 2px; border-top:1px solid var(--ui-border); }
@@ -157,6 +156,7 @@ body.uims-portal .uims-user .uims-theme-button { width:44px; height:44px; }
 }
 
 /* Explicit theme choices use a scoped View Transition; all other theme updates keep the existing path. */
+html.uims-theme-reveal::view-transition { pointer-events:none; }
 html.uims-theme-reveal .uims-theme-button[data-theme-toggle] { view-transition-name:uims-theme-control; }
 html.uims-theme-reveal::view-transition-old(root), html.uims-theme-reveal::view-transition-new(root) { animation:none; }
 html.uims-theme-reveal::view-transition-group(uims-theme-control) { z-index:1; }

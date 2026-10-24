@@ -170,4 +170,10 @@
   <data name="PoweredBy.TheDevelopmentTeam" xml:space="preserve"><value>فريق التطوير</value></data>
   <data name="PoweredBy.TheStudentsOfGroup4Designed" xml:space="preserve"><value>صمّم طلبة المجموعة 4 نظام إدارة التدريب وبنوه.</value></data>
   <data name="PoweredBy.ViewFullHall" xml:space="preserve"><value>عرض القاعة كاملة</value></data>
+  <data name="NotFound.Code" xml:space="preserve"><value>خطأ 404 — الصفحة غير موجودة</value></data>
+  <data name="NotFound.Heading" xml:space="preserve"><value>يبدو أنك خرجت عن المسار</value></data>
+  <data name="NotFound.Description" xml:space="preserve"><value>لم نتمكن من العثور على الصفحة المطلوبة. ربما تغيّر عنوانها أو كان الرابط غير صحيح.</value></data>
+  <data name="NotFound.Home" xml:space="preserve"><value>الصفحة الرئيسية</value></data>
+  <data name="NotFound.Back" xml:space="preserve"><value>رجوع</value></data>
+  <data name="NotFound.Contact" xml:space="preserve"><value>تواصل معنا</value></data>
 </root>

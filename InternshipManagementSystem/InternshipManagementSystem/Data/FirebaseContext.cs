@@ -250,6 +250,23 @@ namespace InternshipManagementSystem.Data
             return Write("PUT", path, Json.Serialize(value), matchEtag: etag) != null;
         }
 
+        // Names used by the completion and evaluation repositories.
+        // Unlike GetWithEtag, GetVersioned returns a null version instead of throwing;
+        // PutIfVersion then refuses the write.
+        public static string GetVersioned(string path, out string etag)
+        {
+            string version = null;
+            string json = Send("GET", path, null, captureEtag: value => version = value);
+            etag = version;
+            return json;
+        }
+
+        public static bool PutIfVersion(string path, object value, string etag)
+        {
+            if (string.IsNullOrEmpty(etag)) throw new InvalidOperationException("Missing Firebase version; reload the review.");
+            return PutIfUnchanged(path, value, etag);
+        }
+
         // ------------------------------------------------------------------
         //  Read cache and parallel reads
         // ------------------------------------------------------------------

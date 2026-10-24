@@ -1,0 +1,74 @@
+[
+  {
+    "InternshipType": "Local Training",
+    "Course": "CE391 / CS391 / DMI3900",
+    "RequiredHours": 160,
+    "AcademicWeight": 25,
+    "SourceClassification": "Project-Proposed",
+    "University": "German Jordanian University",
+    "Programs": [
+      "Computer Engineering",
+      "Computer Science"
+    ],
+    "TaskWeight": 30,
+    "RequireCurrentTaskGrades": true,
+    "SourceUrl": "",
+    "School": "School of Computing",
+    "Id": "gju-sc-local-proposed-v1",
+    "CompanyWeight": 45,
+    "Requirements": [
+      {
+        "Key": "prior-approval",
+        "SourceClassification": "Official",
+        "RequiresPriorApprovalDate": true,
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "School and department approval of the company and duration before training began"
+      },
+      {
+        "Key": "specialization",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "Training and company activity relevant to the student specialization"
+      },
+      {
+        "Key": "continuity",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "160 contact hours over four continuous weeks in the same approved company"
+      },
+      {
+        "Key": "calendar",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "Training took place during semester breaks or an unregistered semester; overlapping hours excluded"
+      },
+      {
+        "Key": "company",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "Company eligibility verified, including no next of kin and no unapproved change of company"
+      },
+      {
+        "Key": "documents",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "Completed training forms signed and stamped by the company supervisor, with the company task list"
+      },
+      {
+        "Key": "report",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "Training report received and reviewed"
+      },
+      {
+        "Key": "endorsements",
+        "SourceClassification": "Official",
+        "SourceUrl": "https://gju.edu.jo/content/local-training-14477",
+        "Label": "Department head approval and dean endorsement verified"
+      }
+    ],
+    "PassingPercent": 60,
+    "RequiredDurationDays": 28,
+    "EvaluationMethod": "Weighted"
+  }
+]

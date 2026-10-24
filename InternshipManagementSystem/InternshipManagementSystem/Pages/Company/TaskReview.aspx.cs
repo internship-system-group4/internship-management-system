@@ -1,4 +1,4 @@
-﻿using InternshipManagementSystem.Common;
+using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
@@ -128,281 +128,35 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
         }
 
-        protected void btnSaveGrade_Click(object sender, EventArgs e)
+        protected void btnSaveGrade_Click(object sender, EventArgs e) { SaveReview(false); }
+        protected void btnRequestRevision_Click(object sender, EventArgs e) { SaveReview(true); }
+        private void SaveReview(bool revision)
         {
-            string submissionId =
-                ViewState["SelectedSubmissionId"] as string;
-
-            if (string.IsNullOrEmpty(submissionId)) return;
-
-            SubmissionRepository submissionRepository =
-                new SubmissionRepository();
-
-            Submission submission =
-                submissionRepository.GetById(submissionId);
-
-            if (submission == null) return;
-
-            TaskRepository taskRepository = new TaskRepository();
-            InternshipTask task =
-                taskRepository.GetById(submission.TaskId);
-
-            // نعيد فحص الصلاحية عند الحفظ، حتى لو فُتحت التفاصيل سابقًا.
-            if (task == null ||
-                task.CompanyId != CurrentSupervisor.CompanyId ||
-                task.StudentId != submission.StudentId ||
-                task.PlacementId != submission.PlacementId)
-            {
-                return;
-            }
-
             pnlSubmissionDetails.Visible = true;
             lblReviewMessage.CssClass = "text-danger d-block mt-3";
-            lblReviewMessage.Text = "";
-
-            if (task.Status != InternshipTaskStatus.Submitted &&
-                task.Status != InternshipTaskStatus.Resubmitted)
-            {
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.ThisTaskIsNotWaitingFor");
-                return;
-            }
-
-            if (task.Criteria == null ||
-                task.Criteria.Count == 0 ||
-                task.MaxScore <= 0)
-            {
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.ThisTaskHasNoValidGrading");
-                return;
-            }
-
-            string feedback = txtFeedback.Text.Trim();
-
-            if (feedback == "")
-            {
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.PleaseEnterFeedbackForTheStudent");
-                return;
-            }
-
-            try
-            {
-                // نقيّم أحدث محاولة فقط.
-                foreach (Submission attempt in
-                    submissionRepository.GetByTask(task.Id))
-                {
-                    if (attempt.StudentId == submission.StudentId &&
-                        attempt.PlacementId == submission.PlacementId &&
-                        attempt.AttemptNumber >
-                            submission.AttemptNumber)
-                    {
-                        lblReviewMessage.Text =
-                            L.T("Company.TaskReview.ANewerSubmissionAttemptExistsReview");
-                        return;
+            try {
+                string id = ViewState["SelectedSubmissionId"] as string;
+                var submission = new SubmissionRepository().GetById(id);
+                var task = submission == null ? null : new TaskRepository().GetById(submission.TaskId);
+                if (task == null) throw new InvalidOperationException("Select a submission first.");
+                var scores = new List<double>();
+                if (!revision) {
+                    rptReviewCriteria.DataSource = task.Criteria; rptReviewCriteria.DataBind();
+                    foreach (RepeaterItem item in rptReviewCriteria.Items) {
+                        var box = (TextBox)item.FindControl("txtScore"); double score;
+                        if (!double.TryParse(Request.Form[box.UniqueID], System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out score))
+                            throw new InvalidOperationException("Enter a numeric mark for each criterion.");
+                        scores.Add(score);
                     }
                 }
-
-                TaskEvaluationRepository evaluationRepository =
-                    new TaskEvaluationRepository();
-
-                // لا ننشئ تقييمًا ثانيًا لنفس محاولة التسليم.
-                foreach (TaskEvaluation previous in
-                    evaluationRepository.GetAll())
-                {
-                    if (previous.SubmissionId == submission.Id)
-                    {
-                        lblReviewMessage.Text =
-                            L.T("Company.TaskReview.ThisSubmissionHasAlreadyBeenReviewed");
-                        return;
-                    }
-                }
-
-                // نستخدم معايير المهمة المحفوظة، لا أرقامًا من المتصفح.
-                rptReviewCriteria.DataSource = task.Criteria;
-                rptReviewCriteria.DataBind();
-
-                TaskEvaluation evaluation = new TaskEvaluation
-                {
-                    TaskId = task.Id,
-                    SubmissionId = submission.Id,
-                    PlacementId = submission.PlacementId,
-                    StudentId = submission.StudentId,
-                    EvaluatedBySupervisorId =
-                        CurrentSupervisor.Id,
-                    Feedback = feedback,
-                    MaxScore = task.MaxScore
-                };
-
-                for (int i = 0; i < task.Criteria.Count; i++)
-                {
-                    GradeComponent criterion =
-                        task.Criteria[i];
-
-                    TextBox scoreBox =
-                        (TextBox)rptReviewCriteria.Items[i]
-                            .FindControl("txtScore");
-
-                    string enteredScore =
-                        Request.Form[scoreBox.UniqueID];
-
-                    double score;
-                    bool validScore = double.TryParse(
-                        enteredScore,
-                        System.Globalization.NumberStyles.Float,
-                        System.Globalization.CultureInfo
-                            .InvariantCulture,
-                        out score);
-
-                    if (!validScore ||
-                        double.IsNaN(score) ||
-                        double.IsInfinity(score) ||
-                        score < 0 ||
-                        score > criterion.MaxScore)
-                    {
-                        lblReviewMessage.Text =
-                            L.F("Company.TaskReview.EnterAValidScoreFor", Server.HtmlEncode(criterion.Name));
-                        return;
-                    }
-
-                    evaluation.Components.Add(
-                        new GradeComponent
-                        {
-                            Name = criterion.Name,
-                            Description =
-                                criterion.Description,
-                            MaxScore = criterion.MaxScore,
-                            Weight = criterion.Weight,
-                            Score = score
-                        });
-                }
-
-                // PercentOf يرجع نسبة؛ نحولها لعلامة من MaxScore
-                // الخاص بهذه المهمة، وليس دائمًا من 100.
-                evaluation.TotalScore =
-                    GradingService.PercentOf(
-                        evaluation.Components)
-                    * task.MaxScore / 100.0;
-
-                string evaluationId =
-                    evaluationRepository.Insert(evaluation);
-
-                if (string.IsNullOrEmpty(evaluationId))
-                {
-                    lblReviewMessage.Text =
-                        L.T("Company.TaskReview.TheGradeCouldNotBeSaved");
-                    return;
-                }
-
-                try
-                {
-                    taskRepository.Update(
-                        task.Id,
-                        new Dictionary<string, object>
-                        {
-                            {
-                                "Status",
-                                InternshipTaskStatus.Graded
-                            }
-                        });
-                }
-                catch (FirebaseException)
-                {
-                    lblReviewMessage.Text =
-                        L.T("Company.TaskReview.TheGradeWasSavedButThe");
-                    return;
-                }
-
-                lblReviewMessage.CssClass =
-                    "text-success d-block mt-3";
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.GradeSavedSuccessfully");
-            }
-            catch (FirebaseException)
-            {
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.CouldNotLoadOrSaveThe");
-            }
-        }
-        protected void btnRequestRevision_Click(object sender, EventArgs e)
-        {
-            lblReviewMessage.CssClass = "text-danger d-block mt-3";
-            pnlSubmissionDetails.Visible = true;
-
-            string submissionId = ViewState["SelectedSubmissionId"] as string;
-            if (string.IsNullOrEmpty(submissionId))
-            {
-                lblReviewMessage.Text = "Open a submission first.";
-                return;
-            }
-
-            Submission submission =
-                new SubmissionRepository().GetById(submissionId);
-
-            if (submission == null)
-            {
-                lblReviewMessage.Text = "Submission was not found.";
-                return;
-            }
-
-            InternshipTask task =
-                new TaskRepository().GetById(submission.TaskId);
-
-            // نتأكد على السيرفر أن هذا التسليم تابع لشركة المشرف.
-            if (task == null ||
-                task.CompanyId != CurrentSupervisor.CompanyId ||
-                task.StudentId != submission.StudentId ||
-                task.PlacementId != submission.PlacementId)
-            {
-                lblReviewMessage.Text = "You cannot review this submission.";
-                return;
-            }
-
-            if (task.Status != InternshipTaskStatus.Submitted &&
-                task.Status != InternshipTaskStatus.Resubmitted)
-            {
-                lblReviewMessage.Text = "This task is not waiting for review.";
-                return;
-            }
-
-            string instructions = txtRevisionInstructions.Text.Trim();
-
-            if (instructions == "")
-            {
-                lblReviewMessage.Text = "Tell the student what needs to be changed.";
-                return;
-            }
-
-            TaskEvaluation revision = new TaskEvaluation();
-            revision.TaskId = task.Id;
-            revision.SubmissionId = submission.Id;
-            revision.PlacementId = submission.PlacementId;
-            revision.StudentId = submission.StudentId;
-            revision.EvaluatedBySupervisorId = CurrentSupervisor.Id;
-            revision.RevisionRequested = true;
-            revision.RevisionInstructions = instructions;
-            revision.MaxScore = task.MaxScore;
-
-            try
-            {
-                new TaskEvaluationRepository().Insert(revision);
-
-                new TaskRepository().Update(
-                    task.Id,
-                    new Dictionary<string, object>
-                    {
-                { "Status", InternshipTaskStatus.RevisionRequested }
-                    });
-
+                TaskWorkflowService.Review(id, revision, scores, revision ? txtRevisionInstructions.Text.Trim() : txtFeedback.Text.Trim());
                 lblReviewMessage.CssClass = "text-success d-block mt-3";
-                lblReviewMessage.Text = "Revision requested successfully.";
-                txtRevisionInstructions.Text = "";
+                lblReviewMessage.Text = revision ? "Revision requested successfully." : L.T("Company.TaskReview.GradeSavedSuccessfully");
+                txtRevisionInstructions.Text = txtFeedback.Text = "";
                 LoadCompanySubmissions();
-            }
-            catch (FirebaseException)
-            {
-                lblReviewMessage.Text =
-                    "Could not complete the revision request. Check Firebase before trying again.";
+            } catch (Exception ex) {
+                EmailNotificationService.LogFailure(ex);
+                lblReviewMessage.Text = Server.HtmlEncode(ex is InvalidOperationException || ex is UnauthorizedAccessException ? ex.Message : "Could not save this review. Please try again.");
             }
         }
     }
