@@ -4,11 +4,11 @@ async page => {
  // Run against tests/Start-LoginTestHost.ps1 (57992) with the campus-login simulation (4910). Read-only.
  const base='http://localhost:57992', LANGS=['en','ar'], WIDTHS=[[1440,900],[390,844],[320,700]], SHOTS=null; // e.g. SHOTS='tests/artifacts/i18n/routes/'
  const routes={
-  public:['/Default.aspx','/Pages/Public/About.aspx','/Pages/Public/Contact.aspx','/Pages/Public/PoweredBy.aspx','/Pages/Public/AccessDenied.aspx','/Pages/Account/Login.aspx','/Pages/Account/ForgotPassword.aspx'],
-  'student-one':['/Pages/Student/Dashboard.aspx','/Pages/Student/Opportunities.aspx','/Pages/Student/OpportunityDetails.aspx?id=internship-one','/Pages/Student/Apply.aspx?opportunityId=internship-one','/Pages/Student/MyApplications.aspx','/Pages/Student/MyTasks.aspx','/Pages/Student/Progress.aspx','/Pages/Student/Profile.aspx','/Pages/Student/DisplayEditProfile.aspx','/Pages/Student/StudentCVPortfolio.aspx','/Pages/Account/Notifications.aspx','/Pages/Account/ChangePassword.aspx','/Pages/Meetings/MyMeetings.aspx'],
-  'supervisor-one':['/Pages/Company/Dashboard.aspx','/Pages/Company/Opportunities.aspx','/Pages/Company/ManageOpportunities.aspx','/Pages/Company/ViewOpportunity.aspx?id=internship-one','/Pages/Company/Applications.aspx','/Pages/Company/Trainees.aspx','/Pages/Company/TraineeDetails.aspx','/Pages/Company/Tasks.aspx','/Pages/Company/TaskReview.aspx','/Pages/Company/FinalEvaluation.aspx','/Pages/Company/Account.aspx','/Pages/Meetings/Schedule.aspx'],
-  'academic-one':['/Pages/Academic/Dashboard.aspx','/Pages/Academic/StudentProgress.aspx','/Pages/Academic/FinalEvaluation.aspx','/Pages/Academic/Account.aspx'],
-  'coordinator-one':['/Pages/Coordinator/Dashboard.aspx','/Pages/Coordinator/Students.aspx','/Pages/Coordinator/ManageStudents.aspx','/Pages/Coordinator/Companies.aspx','/Pages/Coordinator/AcademicSupervisors.aspx','/Pages/Coordinator/Groups.aspx','/Pages/Coordinator/ConfiguredGroups.aspx','/Pages/Coordinator/Placements.aspx','/Pages/Coordinator/PlacementDetails.aspx','/Pages/Coordinator/CompletionReview.aspx','/Pages/Coordinator/ContactMessages.aspx']
+  public:['/Default.aspx','/Pages/Public/About.aspx','/Pages/Public/Contact.aspx','/Pages/Public/PoweredBy.aspx','/Pages/Public/AccessDenied.aspx','/Pages/Public/Journey.aspx','/Pages/Public/404.aspx','/Pages/Public/NotFound.aspx','/Pages/Account/Login.aspx','/Pages/Account/ForgotPassword.aspx'],
+  'student-one':['/Pages/Student/Dashboard.aspx','/Pages/Student/Opportunities.aspx','/Pages/Student/exploreOpport.aspx','/Pages/Student/OpportunityDetails.aspx?id=internship-one','/Pages/Student/Apply.aspx?opportunityId=internship-one','/Pages/Student/MyApplications.aspx','/Pages/Student/MyTasks.aspx','/Pages/Student/Progress.aspx','/Pages/Student/Profile.aspx','/Pages/Student/DisplayEditProfile.aspx','/Pages/Student/StudentCVPortfolio.aspx','/Pages/Account/Notifications.aspx','/Pages/Notifications/Inbox.aspx','/Pages/Account/ChangePassword.aspx','/Pages/Meetings/MyMeetings.aspx'],
+  'supervisor-one':['/Pages/Company/Dashboard.aspx','/Pages/Company/Opportunities.aspx','/Pages/Company/ManageOpportunities.aspx','/Pages/Company/ViewOpportunity.aspx?id=internship-one','/Pages/Company/Applications.aspx','/Pages/Company/Trainees.aspx','/Pages/Company/TraineeDetails.aspx','/Pages/Company/Tasks.aspx','/Pages/Company/TaskReview.aspx','/Pages/Company/FinalEvaluation.aspx','/Pages/Company/EvaluationReport.aspx','/Pages/Company/Account.aspx','/Pages/Meetings/MyMeetings.aspx','/Pages/Meetings/Schedule.aspx'],
+  'academic-one':['/Pages/Academic/Dashboard.aspx','/Pages/Academic/StudentProgress.aspx','/Pages/Academic/FinalEvaluation.aspx','/Pages/Academic/Account.aspx','/Pages/Reports/Grades.aspx','/Pages/Meetings/Schedule.aspx'],
+  'coordinator-one':['/Pages/Coordinator/Dashboard.aspx','/Pages/Coordinator/Students.aspx','/Pages/Coordinator/ManageStudents.aspx','/Pages/Coordinator/Companies.aspx','/Pages/Coordinator/AcademicSupervisors.aspx','/Pages/Coordinator/Groups.aspx','/Pages/Coordinator/ConfiguredGroups.aspx','/Pages/Coordinator/Placements.aspx','/Pages/Coordinator/PlacementDetails.aspx','/Pages/Coordinator/CompletionReview.aspx','/Pages/Coordinator/ContactMessages.aspx','/Pages/Coordinator/Account.aspx','/Pages/Coordinator/AddStudent.aspx']
  };
  const rows=[];
  for(const lang of LANGS)for(const [w,h] of WIDTHS)for(const [who,list] of Object.entries(routes)){
@@ -26,7 +26,7 @@ async page => {
   }
   await ctx.close();
  }
- const problems=rows.filter(r=>r.status!==200||r.server||r.err||r.htmlLang!==r.lang||r.overflow>0||r.errors.length||(r.lang==='ar'&&r.dir!=='rtl'));
+ const problems=rows.filter(r=>(r.status!==200&&!(r.status===404&&/\/Pages\/Public\/(404|NotFound)\.aspx/.test(r.route)))||r.server||r.err||r.htmlLang!==r.lang||r.overflow>0||r.errors.length||(r.lang==='ar'&&(r.dir!=='rtl'||(r.gaps&&r.gaps.length>0))));
  const gapCount=rows.filter(r=>r.lang==='ar').reduce((n,r)=>n+(r.gaps?r.gaps.length:0),0);
  return {routes:rows.length,problems,gapCount,gaps:[...new Set(rows.flatMap(r=>r.gaps||[]))].slice(0,80)};
 }

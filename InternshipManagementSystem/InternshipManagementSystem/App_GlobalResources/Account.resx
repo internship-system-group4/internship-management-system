@@ -58,9 +58,11 @@
   <data name="Login.LogIn" xml:space="preserve"><value>Log in</value></data>
   <data name="Login.NeedAnAccount" xml:space="preserve"><value>Need an account?</value></data>
   <data name="Login.Password" xml:space="preserve"><value>Password</value></data>
+  <data name="Login.PauseMotion" xml:space="preserve"><value>Pause motion</value></data>
   <data name="Login.PauseScene" xml:space="preserve"><value>Pause scene</value></data>
   <data name="Login.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>Please enter a valid email address.</value></data>
   <data name="Login.PleaseEnterYourEmailAndPassword" xml:space="preserve"><value>Please enter your email and password.</value></data>
+  <data name="Login.ResumeMotion" xml:space="preserve"><value>Resume motion</value></data>
   <data name="Login.Show" xml:space="preserve"><value>Show</value></data>
   <data name="Login.ShowPassword" xml:space="preserve"><value>Show password</value></data>
   <data name="Login.TheSignInServiceIsNot" xml:space="preserve"><value>The sign-in service is not configured. Please contact the coordinator.</value></data>
@@ -80,6 +82,4 @@
   <data name="Notifications.Notifications" xml:space="preserve"><value>Notifications</value></data>
   <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>Notifications are unavailable right now.</value></data>
   <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>You're all caught up. New tasks, decisions and updates will appear here.</value></data>
-  <data name="Login.PauseMotion" xml:space="preserve"><value>Pause motion</value></data>
-  <data name="Login.ResumeMotion" xml:space="preserve"><value>Resume motion</value></data>
 </root>

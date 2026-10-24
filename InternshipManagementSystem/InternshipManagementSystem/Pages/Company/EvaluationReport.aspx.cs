@@ -33,7 +33,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 List<Placement> allPlacements = _placementRepo.GetAll();
                 ddlTrainees.Items.Clear();
-                ddlTrainees.Items.Add(new ListItem("-- Select a trainee to evaluate --", ""));
+                ddlTrainees.Items.Add(new ListItem(L.T("Company.FinalEvaluation.SelectATraineeToEvaluate"), ""));
 
                 foreach (Placement p in allPlacements)
                 {

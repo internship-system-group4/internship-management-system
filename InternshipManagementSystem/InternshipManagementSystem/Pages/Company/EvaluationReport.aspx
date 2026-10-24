@@ -143,7 +143,7 @@
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<p class="mb-3"><a href="<%= ResolveUrl("~/Pages/Company/FinalEvaluation.aspx") %>">Submit the confidential final evaluation for academic review</a></p>
+<p class="mb-3"><a href="<%= ResolveUrl("~/Pages/Company/FinalEvaluation.aspx") %>"><%: L.T("Company.EvaluationReport.SubmitTheConfidentialFinalEvaluationFor") %></a></p>
     <div class="container-fluid px-4 py-4">
 
         <div class="d-flex justify-content-between align-items-end mb-4 border-bottom pb-3">
@@ -188,7 +188,7 @@
                     <div class="d-flex justify-content-end align-items-center gap-3 pt-3 border-top flex-wrap">
                         <!-- زر معاينة التقرير الرسمي للمشرف الأكاديمي -->
                         <button type="button" class="btn btn-outline-dark rounded-pill px-3 fw-semibold shadow-sm me-auto" onclick="showOfficialReportModal()">
-                            <i class="bi bi-file-earmark-text-fill me-1 text-primary"></i> Review Official Report
+                            <i class="bi bi-file-earmark-text-fill me-1 text-primary"></i> <%: L.T("Company.EvaluationReport.ReviewOfficialReport") %>
                         </button>
 
                         <!-- زر معاينة الشهادة -->
@@ -196,7 +196,7 @@
                             <i class="bi bi-award-fill me-1 fs-5"></i><%: L.T("Company.FinalEvaluation.PreviewCertificate") %>
                         </button>
 
-                        <asp:Button ID="btnSaveDraft" runat="server" Text="<%$ Resources:Company, FinalEvaluation.SaveAsDraft %>" CssClass="btn btn-draft px-3 py-2 rounded-3" OnClick="BtnSaveDraft_Click" data-ui-action="save" data-loading-label="Saving…" />
+                        <asp:Button ID="btnSaveDraft" runat="server" Text="<%$ Resources:Company, FinalEvaluation.SaveAsDraft %>" CssClass="btn btn-draft px-3 py-2 rounded-3" OnClick="BtnSaveDraft_Click" data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>" />
                     </div>
                 </div>
             </div>
@@ -238,7 +238,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0 shadow-lg" style="background: transparent;">
           <div class="modal-header border-bottom-0 pb-0 justify-content-end pe-3 pt-3">
-              <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="Close" style="opacity: 1;"></button>
+              <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="<%: L.T("Company.EvaluationReport.Close") %>" style="opacity: 1;"></button>
           </div>
           <div class="modal-body p-0" id="certificatePrintArea">
               <div class="cert-container">
@@ -251,7 +251,7 @@
                           <%: L.T("Company.FinalEvaluation.HasSuccessfullyCompleted") %> <strong id="certHours" style="color:var(--th-fg-0f4c81,#0f4c81);">___</strong> <%: L.T("Company.FinalEvaluation.HoursOfPracticalTraining") %><br />
                           <%: L.T("Company.FinalEvaluation.AsA") %> <strong><span id="certRole"><%: L.T("Company.FinalEvaluation.Trainee") %></span></strong>.<br />
                           <br />
-                          <%: L.T("Company.FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism") %> <br /><%: L.T("Company.FinalFooter.HaveMetTheHighestStandardsOf") %>
+                          <%: L.T("Company.FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism") %> <br /><%: L.T("Company.FinalEvaluation.HaveMetTheHighestStandardsOf") %>
                       </div>
                   </div>
                   <div class="cert-signature-area">
@@ -261,7 +261,7 @@
                       </div>
                       <div class="gold-seal"><%: L.T("Company.FinalEvaluation.Official") %><br/><%: L.T("Company.FinalEvaluation.Company") %><br/><%: L.T("Company.FinalEvaluation.Seal") %></div>
                       <div class="cert-signature-line">
-                          <asp:Literal ID="litCompanySupervisorName" runat="server">Company Supervisor</asp:Literal><br />
+                          <asp:Literal ID="litCompanySupervisorName" runat="server" Text="<%$ Resources:Shared, Role.CompanySupervisor %>" /><br />
                           <span style="font-size: 0.75rem; color: var(--th-fg-888888,#888);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
                       </div>
                   </div>
@@ -269,13 +269,13 @@
           </div>
           <div class="modal-footer bg-white border-top-0 rounded-bottom-4 d-flex justify-content-center align-items-center flex-wrap gap-2 py-3 px-4">
               <button type="button" class="btn btn-outline-primary px-3 rounded-pill fw-semibold" onclick="downloadCertificatePDF()">
-                  <i class="bi bi-file-earmark-pdf me-1"></i> Download as PDF
+                  <i class="bi bi-file-earmark-pdf me-1"></i> <%: L.T("Company.EvaluationReport.DownloadAsPDF") %>
               </button>
               <button type="button" class="btn btn-outline-primary px-3 rounded-pill fw-semibold" onclick="sendCertificateToTrainee()">
-                  <i class="bi bi-send-check me-1"></i> Send to Trainee
+                  <i class="bi bi-send-check me-1"></i> <%: L.T("Company.EvaluationReport.SendToTrainee") %>
               </button>
               <button type="button" class="btn btn-primary px-3 rounded-pill fw-semibold" style="background-color:var(--th-bg-0f4c81,#0f4c81);" onclick="window.print()">
-                  <i class="bi bi-printer me-1"></i> Print
+                  <i class="bi bi-printer me-1"></i> <%: L.T("Company.EvaluationReport.Print") %>
               </button>
           </div>
         </div>
@@ -288,34 +288,34 @@
         <div class="modal-content border-0 shadow-lg rounded-4">
           <div class="modal-header bg-light border-bottom-0 pt-4 px-4">
             <h5 class="modal-title fw-bold text-dark">
-              <i class="bi bi-journal-check text-primary me-2"></i> Official Internship Evaluation Report
+              <i class="bi bi-journal-check text-primary me-2"></i> <%: L.T("Company.EvaluationReport.OfficialInternshipEvaluationReport") %>
             </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.EvaluationReport.Close") %>"></button>
           </div>
           <div class="modal-body p-4 p-md-5 bg-white" id="reportPrintArea">
               <div class="text-center border-bottom pb-4 mb-4">
-                  <h4 class="fw-bold text-uppercase text-primary mb-1">German Jordanian University</h4>
-                  <p class="text-muted small mb-0">Internship Management System (UIMS) - Official Academic Report</p>
+                  <h4 class="fw-bold text-uppercase text-primary mb-1"><%: L.T("Company.EvaluationReport.GermanJordanianUniversity") %></h4>
+                  <p class="text-muted small mb-0"><%: L.T("Company.EvaluationReport.InternshipManagementSystemUIMSOfficialAcademic") %></p>
                   <hr class="w-25 mx-auto my-3 border-primary">
-                  <h5 class="fw-bold text-dark mt-2">Final Performance Evaluation & Grade Report</h5>
+                  <h5 class="fw-bold text-dark mt-2"><%: L.T("Company.EvaluationReport.FinalPerformanceEvaluationGradeReport") %></h5>
               </div>
 
               <div class="row mb-4 bg-light p-3 rounded-3 border g-2">
                   <div class="col-md-6">
-                      <span class="text-muted small d-block">Trainee Student:</span>
+                      <span class="text-muted small d-block"><%: L.T("Company.EvaluationReport.TraineeStudent") %></span>
                       <strong class="text-dark fs-6" id="repStudentName">--</strong>
                   </div>
                   <div class="col-md-6">
-                      <span class="text-muted small d-block">Academic Major:</span>
+                      <span class="text-muted small d-block"><%: L.T("Company.EvaluationReport.AcademicMajor") %></span>
                       <strong class="text-dark fs-6" id="repMajor">--</strong>
                   </div>
                   <div class="col-md-6 mt-2">
-                      <span class="text-muted small d-block">Internship Position:</span>
+                      <span class="text-muted small d-block"><%: L.T("Company.EvaluationReport.InternshipPosition") %></span>
                       <strong class="text-dark" id="repRole">--</strong>
                   </div>
                   <div class="col-md-6 mt-2">
-                      <span class="text-muted small d-block">Actual Training Hours:</span>
-                      <strong class="text-primary" id="repHours">--</strong> Hours
+                      <span class="text-muted small d-block"><%: L.T("Company.EvaluationReport.ActualTrainingHours") %></span>
+                      <strong class="text-primary" id="repHours">--</strong> <%: L.T("Company.EvaluationReport.Hours") %>
                   </div>
               </div>
 
@@ -323,34 +323,34 @@
                   <table class="table table-bordered align-middle">
                       <thead class="table-light">
                           <tr>
-                              <th>Evaluation Criteria (GJU Standard)</th>
-                              <th class="text-center" style="width: 120px;">Max Score</th>
-                              <th class="text-center" style="width: 120px;">Awarded</th>
+                              <th><%: L.T("Company.EvaluationReport.EvaluationCriteriaGJUStandard") %></th>
+                              <th class="text-center" style="width: 120px;"><%: L.T("Company.EvaluationReport.MaxScore") %></th>
+                              <th class="text-center" style="width: 120px;"><%: L.T("Company.EvaluationReport.Awarded") %></th>
                           </tr>
                       </thead>
                       <tbody>
                           <tr>
-                              <td><strong>Technical Skills & Application</strong></td>
+                              <td><strong><%: L.T("Company.EvaluationReport.TechnicalSkillsApplication") %></strong></td>
                               <td class="text-center text-muted">40</td>
                               <td class="text-center fw-bold text-primary" id="repTech">0</td>
                           </tr>
                           <tr>
-                              <td><strong>Quality of Work & Logic</strong></td>
+                              <td><strong><%: L.T("Company.EvaluationReport.QualityOfWorkLogic") %></strong></td>
                               <td class="text-center text-muted">25</td>
                               <td class="text-center fw-bold text-primary" id="repWork">0</td>
                           </tr>
                           <tr>
-                              <td><strong>Professionalism & Ethics</strong></td>
+                              <td><strong><%: L.T("Company.EvaluationReport.ProfessionalismEthics") %></strong></td>
                               <td class="text-center text-muted">20</td>
                               <td class="text-center fw-bold text-primary" id="repProf">0</td>
                           </tr>
                           <tr>
-                              <td><strong>Communication & Teamwork</strong></td>
+                              <td><strong><%: L.T("Company.EvaluationReport.CommunicationTeamwork") %></strong></td>
                               <td class="text-center text-muted">15</td>
                               <td class="text-center fw-bold text-primary" id="repComm">0</td>
                           </tr>
                           <tr class="table-primary">
-                              <td><strong>Total Calculated Score</strong></td>
+                              <td><strong><%: L.T("Company.EvaluationReport.TotalCalculatedScore") %></strong></td>
                               <td class="text-center"><strong>100</strong></td>
                               <td class="text-center fw-bold fs-5 text-dark" id="repTotalScore">-- / 100</td>
                           </tr>
@@ -362,13 +362,13 @@
                   <div class="row g-3">
                       <div class="col-md-6">
                           <div class="p-3 border rounded-3 bg-light h-100">
-                              <span class="text-muted small d-block fw-bold mb-1">Performance Level:</span>
+                              <span class="text-muted small d-block fw-bold mb-1"><%: L.T("Company.EvaluationReport.PerformanceLevel") %></span>
                               <span class="text-dark fw-semibold" id="repPerformance">-</span>
                           </div>
                       </div>
                       <div class="col-md-6">
                           <div class="p-3 border rounded-3 bg-light h-100">
-                              <span class="text-muted small d-block fw-bold mb-1">Company Recommendation:</span>
+                              <span class="text-muted small d-block fw-bold mb-1"><%: L.T("Company.EvaluationReport.CompanyRecommendation") %></span>
                               <span class="text-primary fw-semibold" id="repRecommendation">-</span>
                           </div>
                       </div>
@@ -376,37 +376,37 @@
               </div>
 
               <div class="mb-4">
-                  <span class="text-muted small d-block fw-bold mb-1">Key Strengths:</span>
+                  <span class="text-muted small d-block fw-bold mb-1"><%: L.T("Company.EvaluationReport.KeyStrengths") %></span>
                   <p class="p-3 border rounded-3 bg-light mb-2 text-dark small" id="repStrengths">-</p>
                   
-                  <span class="text-muted small d-block fw-bold mb-1">Areas for Improvement:</span>
+                  <span class="text-muted small d-block fw-bold mb-1"><%: L.T("Company.EvaluationReport.AreasForImprovement") %></span>
                   <p class="p-3 border rounded-3 bg-light mb-0 text-dark small" id="repImprovements">-</p>
               </div>
 
               <div class="d-flex justify-content-between align-items-end mt-5 pt-4 border-top">
                   <div>
-                      <p class="text-muted small mb-1">Report Generated Date:</p>
+                      <p class="text-muted small mb-1"><%: L.T("Company.EvaluationReport.ReportGeneratedDate") %></p>
                       <strong class="text-dark" id="repDate">--</strong>
                   </div>
                   <div class="text-end">
                       <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 1.1rem; color: var(--th-fg-0f4c81,#0f4c81);" class="mb-1">
-                          <asp:Literal ID="litReportSupervisorSig" runat="server">Company Supervisor</asp:Literal>
+                          <asp:Literal ID="litReportSupervisorSig" runat="server" Text="<%$ Resources:Shared, Role.CompanySupervisor %>" />
                       </div>
                       <div class="border-top border-dark pt-1" style="width: 200px;">
-                          <span class="small text-muted text-uppercase fw-bold" style="font-size: 0.7rem;">Authorized Company Signature & Seal</span>
+                          <span class="small text-muted text-uppercase fw-bold" style="font-size: 0.7rem;"><%: L.T("Company.EvaluationReport.AuthorizedCompanySignatureSeal") %></span>
                       </div>
                   </div>
               </div>
           </div>
 
           <div class="modal-footer bg-light border-top-0 rounded-bottom-4 px-4 py-3 d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary px-4 rounded-pill" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-secondary px-4 rounded-pill" data-bs-dismiss="modal"><%: L.T("Company.EvaluationReport.Close") %></button>
             <div class="d-flex gap-2">
                 <button type="button" class="btn btn-outline-primary px-3 rounded-pill" onclick="window.print()">
-                    <i class="bi bi-printer me-1"></i> Print Report
+                    <i class="bi bi-printer me-1"></i> <%: L.T("Company.EvaluationReport.PrintReport") %>
                 </button>
                 <button type="button" class="btn btn-primary px-4 rounded-pill fw-semibold shadow-sm" style="background-color: var(--th-bg-0f4c81,#0f4c81);" onclick="sendReportToAcademicSupervisor()">
-                    <i class="bi bi-send-fill me-2"></i> Send to Academic Supervisor
+                    <i class="bi bi-send-fill me-2"></i> <%: L.T("Company.EvaluationReport.SendToAcademicSupervisor") %>
                 </button>
             </div>
           </div>
@@ -451,7 +451,7 @@
               </div>
           </div>
           <div class="modal-footer border-top-0 px-4 pb-4">
-            <button type="button" class="btn w-100 text-white rounded-3" style="background-color: var(--th-bg-0f4c81,#0f4c81);" data-bs-dismiss="modal">Save Scores</button>
+            <button type="button" class="btn w-100 text-white rounded-3" style="background-color: var(--th-bg-0f4c81,#0f4c81);" data-bs-dismiss="modal"><%: L.T("Company.EvaluationReport.SaveScores") %></button>
           </div>
         </div>
       </div>
@@ -470,35 +470,35 @@
                     <div class="col-md-6">
                         <label class="form-label fw-semibold small"><%: L.T("Company.FinalEvaluation.PerformanceLevel") %></label>
                         <asp:DropDownList ID="ddlPerformance" runat="server" CssClass="form-select bg-light">
-                            <asp:ListItem Text="Select Performance Level" Value="" />
-                            <asp:ListItem Text="Excellent (A)" Value="Excellent" />
-                            <asp:ListItem Text="Very Good (B)" Value="VeryGood" />
-                            <asp:ListItem Text="Good (C)" Value="Good" />
-                            <asp:ListItem Text="Needs Improvement (D)" Value="NeedsImprovement" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.SelectPerformanceLevel %>" Value="" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.ExcellentA %>" Value="Excellent" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.VeryGoodB %>" Value="VeryGood" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.GoodC %>" Value="Good" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.NeedsImprovementD %>" Value="NeedsImprovement" />
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-semibold small text-primary"><%: L.T("Company.FinalEvaluation.CompanyRecommendation") %></label>
                         <asp:DropDownList ID="ddlRecommendation" runat="server" CssClass="form-select bg-light border-primary">
-                            <asp:ListItem Text="Select Recommendation" Value="" />
-                            <asp:ListItem Text="Highly Recommended for Hire" Value="HighlyRecommend" />
-                            <asp:ListItem Text="Recommended" Value="Recommend" />
-                            <asp:ListItem Text="Recommend with Reservations" Value="Reservations" />
-                            <asp:ListItem Text="Do Not Recommend" Value="DoNotRecommend" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.SelectRecommendation %>" Value="" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.HighlyRecommendedForHire %>" Value="HighlyRecommend" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.Recommended %>" Value="Recommend" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.RecommendWithReservations %>" Value="Reservations" />
+                            <asp:ListItem Text="<%$ Resources:Company, EvaluationReport.DoNotRecommend %>" Value="DoNotRecommend" />
                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="mb-4">
                     <label class="form-label fw-semibold small"><%: L.T("Company.FinalEvaluation.Strengths") %></label>
-                    <asp:TextBox ID="txtStrengths" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="Describe main strengths..."></asp:TextBox>
+                    <asp:TextBox ID="txtStrengths" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="<%$ Resources:Company, EvaluationReport.DescribeMainStrengths %>"></asp:TextBox>
                 </div>
                 <div class="mb-2">
                     <label class="form-label fw-semibold small"><%: L.T("Company.FinalEvaluation.AreasForImprovement") %></label>
-                    <asp:TextBox ID="txtImprovements" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="Describe areas to develop..."></asp:TextBox>
+                    <asp:TextBox ID="txtImprovements" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="<%$ Resources:Company, EvaluationReport.DescribeAreasToDevelop %>"></asp:TextBox>
                 </div>
           </div>
           <div class="modal-footer border-top-0 px-4 pb-4">
-            <button type="button" class="btn px-4 text-white rounded-3" style="background-color: var(--th-bg-0f4c81,#0f4c81);" data-bs-dismiss="modal">Save Feedback</button>
+            <button type="button" class="btn px-4 text-white rounded-3" style="background-color: var(--th-bg-0f4c81,#0f4c81);" data-bs-dismiss="modal"><%: L.T("Company.EvaluationReport.SaveFeedback") %></button>
           </div>
         </div>
       </div>
@@ -513,13 +513,13 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
           </div>
           <div class="modal-body p-4">
-              <asp:GridView ID="gvDrafts" runat="server" CssClass="table table-hover align-middle mb-0" AutoGenerateColumns="False" EmptyDataText="You have no saved drafts." GridLines="None" OnRowCommand="GvDrafts_RowCommand">
+              <asp:GridView ID="gvDrafts" runat="server" CssClass="table table-hover align-middle mb-0" AutoGenerateColumns="False" EmptyDataText="<%$ Resources:Company, EvaluationReport.YouHaveNoSavedDrafts %>" GridLines="None" OnRowCommand="GvDrafts_RowCommand">
                   <HeaderStyle CssClass="bg-light text-muted small text-uppercase" />
                   <Columns>
-                      <asp:BoundField DataField="StudentName" HeaderText="Trainee Name" ItemStyle-CssClass="fw-bold text-dark" />
-                      <asp:TemplateField HeaderText="Action">
+                      <asp:BoundField DataField="StudentName" HeaderText="<%$ Resources:Company, EvaluationReport.TraineeName %>" ItemStyle-CssClass="fw-bold text-dark" />
+                      <asp:TemplateField HeaderText="<%$ Resources:Company, EvaluationReport.Action %>">
                           <ItemTemplate>
-                              <asp:LinkButton ID="btnLoadDraft" runat="server" CommandName="LoadDraft" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-sm btn-outline-primary rounded-pill px-3">Continue Draft</asp:LinkButton>
+                              <asp:LinkButton ID="btnLoadDraft" runat="server" CommandName="LoadDraft" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-sm btn-outline-primary rounded-pill px-3" Text="<%$ Resources:Company, I18n.ContinueDraft %>" />
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
@@ -536,7 +536,7 @@
           <div class="mb-3"><asp:Literal ID="litModalIcon" runat="server"></asp:Literal></div>
           <h5 class="fw-bold mb-2 text-dark"><asp:Literal ID="litModalTitle" runat="server"></asp:Literal></h5>
           <p class="text-muted small mb-4"><asp:Literal ID="litModalMessage" runat="server"></asp:Literal></p>
-          <button type="button" class="btn btn-primary rounded-pill px-4 w-100" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); border: none;">Okay</button>
+          <button type="button" class="btn btn-primary rounded-pill px-4 w-100" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); border: none;"><%: L.T("Company.EvaluationReport.Okay") %></button>
         </div>
       </div>
     </div>

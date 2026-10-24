@@ -50,7 +50,7 @@
 
                 <small id="passwordError" class="text-danger d-block mb-2"></small>
 
-                <asp:Button ID="btnChange" data-ui-action="save" data-loading-label="Changing password&#8230;" runat="server"
+                <asp:Button ID="btnChange" data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Changingpassword %>" runat="server"
                     Text="<%$ Resources:Account, ChangePassword.ChangePassword %>"
                     CssClass="btn btn-primary w-100"
                     OnClientClick="return validatePasswords();"

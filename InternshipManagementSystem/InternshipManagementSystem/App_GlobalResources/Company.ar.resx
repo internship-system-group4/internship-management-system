@@ -34,38 +34,65 @@
   <data name="Account.UpdateProfile" xml:space="preserve"><value>تحديث الملف الشخصي</value></data>
   <data name="Account.YourAccountSettingsAndPictureHave" xml:space="preserve"><value>تم حفظ إعدادات حسابك وصورتك بنجاح.</value></data>
   <data name="ApplicantDocument.BackToApplications" xml:space="preserve"><value>→ العودة إلى الطلبات</value></data>
+  <data name="ApplicantDocument.ExternalPreviewUnavailable" xml:space="preserve"><value>هذا المستند رابط خارجي. ارجع إلى الطلب واستخدم فتح السيرة الذاتية أو الملف المهني.</value></data>
   <data name="ApplicantDocument.ThisApplicationIsNotAvailableTo" xml:space="preserve"><value>هذا الطلب غير متاح لشركتك.</value></data>
   <data name="ApplicantDocument.ThisStudentHasNotSharedA" xml:space="preserve"><value>لم يشارك هذا الطالب سيرة ذاتية يمكن فتحها. اطلب منه رفع ملف PDF أو إضافة رابط عام لسيرته الذاتية في ملفه.</value></data>
   <data name="ApplicantDocument.ThisStudentHasNotSharedA2" xml:space="preserve"><value>لم يشارك هذا الطالب ملفًا مهنيًا.</value></data>
   <data name="ApplicantDocument.WeCouldNotLoadThisApplication" xml:space="preserve"><value>تعذّر تحميل هذا الطلب. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="Applications.AcceptApplication" xml:space="preserve"><value>قبول الطلب</value></data>
   <data name="Applications.AcceptanceOffersAPlaceTheStudent" xml:space="preserve"><value>القبول يمنح الطالب مقعدًا، ويبقى عليه تأكيد عرض واحد.</value></data>
+  <data name="Applications.AllApplications" xml:space="preserve"><value>الكل</value></data>
+  <data name="Applications.ApplicationNavigation" xml:space="preserve"><value>التنقل بين الطلبات المصفّاة</value></data>
+  <data name="Applications.ApplicationPosition" xml:space="preserve"><value>{0} من {1}</value></data>
   <data name="Applications.ApplicationsReview" xml:space="preserve"><value>مراجعة الطلبات</value></data>
   <data name="Applications.AppliedFor" xml:space="preserve"><value>الفرصة المتقدَّم إليها</value></data>
+  <data name="Applications.AwaitingStudentConfirmation" xml:space="preserve"><value>بانتظار تأكيد الطالب</value></data>
   <data name="Applications.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="Applications.ClearFilters" xml:space="preserve"><value>مسح البحث والفلاتر</value></data>
+  <data name="Applications.CloseApplication" xml:space="preserve"><value>إغلاق تفاصيل الطلب</value></data>
   <data name="Applications.College" xml:space="preserve"><value>الكلية</value></data>
   <data name="Applications.ConfirmRejection" xml:space="preserve"><value>تأكيد الرفض</value></data>
   <data name="Applications.CoverLetter" xml:space="preserve"><value>رسالة التقديم</value></data>
+  <data name="Applications.CvPreviewFor" xml:space="preserve"><value>معاينة السيرة الذاتية لـ {0}</value></data>
   <data name="Applications.DocumentsAndLinks" xml:space="preserve"><value>المستندات والروابط</value></data>
+  <data name="Applications.DownloadCv" xml:space="preserve"><value>تنزيل السيرة الذاتية</value></data>
+  <data name="Applications.DraftWarning" xml:space="preserve"><value>لم يتم إرسال سبب الرفض بعد. هل تريد المتابعة؟ سيبقى النص محفوظًا داخل هذه الصفحة.</value></data>
   <data name="Applications.Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
   <data name="Applications.ExplainTheDecisionSoTheStudent" xml:space="preserve"><value>وضّح القرار ليعرف الطالب سبب رفض طلبه.</value></data>
+  <data name="Applications.ExternalCvHelp" xml:space="preserve"><value>السيرة الذاتية رابط خارجي. استخدم فتح السيرة الذاتية لعرضها في تبويب جديد.</value></data>
+  <data name="Applications.FilterByStatus" xml:space="preserve"><value>تصفية الطلبات حسب الحالة</value></data>
   <data name="Applications.HideCandidateDetails" xml:space="preserve"><value>إخفاء تفاصيل المتقدّم</value></data>
+  <data name="Applications.HideCvPreview" xml:space="preserve"><value>إخفاء معاينة السيرة</value></data>
   <data name="Applications.LinkedInProfile" xml:space="preserve"><value>حساب LinkedIn</value></data>
   <data name="Applications.Major" xml:space="preserve"><value>التخصص</value></data>
+  <data name="Applications.NextApplication" xml:space="preserve"><value>التالي</value></data>
   <data name="Applications.NoApplicationsYetNewStudentApplications" xml:space="preserve"><value>لا توجد طلبات بعد. ستظهر هنا طلبات الطلبة الجديدة المقدّمة إلى شركتك.</value></data>
+  <data name="Applications.NoMatchingApplications" xml:space="preserve"><value>لا توجد طلبات تطابق البحث والفلاتر المحددة.</value></data>
   <data name="Applications.On" xml:space="preserve"><value>في</value></data>
   <data name="Applications.OpenCV" xml:space="preserve"><value>فتح السيرة الذاتية</value></data>
   <data name="Applications.OpenPortfolio" xml:space="preserve"><value>فتح الملف المهني</value></data>
+  <data name="Applications.PdfPreviewHelp" xml:space="preserve"><value>إذا لم يظهر ملف PDF، استخدم فتح السيرة الذاتية أو تنزيلها.</value></data>
   <data name="Applications.Phone" xml:space="preserve"><value>الهاتف</value></data>
+  <data name="Applications.PlacementConfirmed" xml:space="preserve"><value>أكّد الطالب التدريب</value></data>
+  <data name="Applications.PreviewCv" xml:space="preserve"><value>معاينة السيرة الذاتية</value></data>
+  <data name="Applications.PreviousApplication" xml:space="preserve"><value>السابق</value></data>
   <data name="Applications.ProfileCoverLetterAndCV" xml:space="preserve"><value>الملف الشخصي ورسالة التقديم والسيرة الذاتية</value></data>
   <data name="Applications.ReadyToMakeADecision" xml:space="preserve"><value>هل أنت مستعد لاتخاذ القرار؟</value></data>
   <data name="Applications.ReasonForRejectionRequired" xml:space="preserve"><value>سبب الرفض (مطلوب)</value></data>
   <data name="Applications.ReasonGiven" xml:space="preserve"><value>السبب المذكور:</value></data>
   <data name="Applications.RefreshApplications" xml:space="preserve"><value>تحديث الطلبات</value></data>
   <data name="Applications.Reject" xml:space="preserve"><value>رفض</value></data>
+  <data name="Applications.ReviewApplication" xml:space="preserve"><value>مراجعة الطلب</value></data>
   <data name="Applications.ReviewApplicationsForYourCompanyAnd" xml:space="preserve"><value>راجع الطلبات المقدّمة إلى شركتك وأبلغ الطلبة بقرارك.</value></data>
+  <data name="Applications.ReviewDeskIntro" xml:space="preserve"><value>راجع ملفات المتقدمين واتخذ قرارك. تظهر الطلبات التي تنتظر المراجعة أولًا.</value></data>
+  <data name="Applications.SearchPlaceholder" xml:space="preserve"><value>ابحث باسم الطالب أو فرصة التدريب</value></data>
+  <data name="Applications.SelectApplication" xml:space="preserve"><value>اختر طلبًا للمراجعة</value></data>
+  <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>اختر طالبًا من القائمة لمراجعة بياناته ومستنداته وطلبه.</value></data>
+  <data name="Applications.ShowingApplications" xml:space="preserve"><value>عرض {0} من أصل {1} طلبات</value></data>
   <data name="Applications.SoftSkills" xml:space="preserve"><value>المهارات الشخصية</value></data>
   <data name="Applications.StudentApplications" xml:space="preserve"><value>طلبات الطلبة</value></data>
+  <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>أكّد الطالب قبول هذا العرض.</value></data>
+  <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>تم تقديم عرض تدريب للطالب، وما زال عليه تأكيد قبوله.</value></data>
   <data name="Applications.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="Applications.Submitted" xml:space="preserve"><value>تاريخ الإرسال</value></data>
   <data name="Applications.TechnicalSkills" xml:space="preserve"><value>المهارات التقنية</value></data>
@@ -74,6 +101,7 @@
   <data name="Applications.ThisStudentHasNotSharedA" xml:space="preserve"><value>لم يشارك هذا الطالب سيرة ذاتية يمكن فتحها بعد.</value></data>
   <data name="Applications.Total" xml:space="preserve"><value>إجمالًا</value></data>
   <data name="Applications.University" xml:space="preserve"><value>الجامعة</value></data>
+  <data name="Applications.ViewApplication" xml:space="preserve"><value>عرض الطلب</value></data>
   <data name="Applications.ViewCandidateDetails" xml:space="preserve"><value>عرض تفاصيل المتقدّم</value></data>
   <data name="Applications.WeCouldNotConfirmTheDecision" xml:space="preserve"><value>تعذّر تأكيد القرار، وما زال السبب الذي كتبته محفوظًا. حدّث الصفحة للتحقق من الحالة الحالية قبل المحاولة مرة أخرى.</value></data>
   <data name="Applications.WeCouldNotLoadApplicationsRefresh" xml:space="preserve"><value>تعذّر تحميل الطلبات. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
@@ -84,7 +112,9 @@
   <data name="Dashboard.ApprovedProgressStaysSeparateFromReported" xml:space="preserve"><value>يُحتسب التقدّم المعتمد بشكل منفصل عن الساعات المسجّلة.</value></data>
   <data name="Dashboard.AwaitingADecision" xml:space="preserve"><value>بانتظار القرار</value></data>
   <data name="Dashboard.Candidate" xml:space="preserve"><value>المتقدّم</value></data>
+  <data name="Dashboard.CompanyReviewWorkflow" xml:space="preserve"><value>مسار المراجعة في الشركة</value></data>
   <data name="Dashboard.CompanyWorkspace" xml:space="preserve"><value>مساحة عمل الشركة</value></data>
+  <data name="Dashboard.Completed" xml:space="preserve"><value>مكتمل</value></data>
   <data name="Dashboard.ConfirmedPlacementRecords" xml:space="preserve"><value>سجل تدريب مؤكَّد</value></data>
   <data name="Dashboard.ConfirmedTrainees" xml:space="preserve"><value>المتدرّبون المؤكَّدون</value></data>
   <data name="Dashboard.ConfirmedTraineesWillAppearAfterA" xml:space="preserve"><value>سيظهر المتدرّبون المؤكَّدون بعد أن يقبل الطالب عرضك.</value></data>
@@ -99,23 +129,76 @@
   <data name="Dashboard.OpenReviewQueue" xml:space="preserve"><value>فتح قائمة المراجعة</value></data>
   <data name="Dashboard.OpeningsOpportunities" xml:space="preserve"><value>الشواغر والفرص</value></data>
   <data name="Dashboard.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
+  <data name="Dashboard.PClassTextMutedSmallMy" xml:space="preserve"><value>&lt;p class='text-muted small my-3 text-center'&gt;لا توجد طلبات جديدة للمراجعة.&lt;/p&gt;</value></data>
   <data name="Dashboard.PendingDecisionsFirstThenRecentApplications" xml:space="preserve"><value>القرارات المعلّقة أولًا، ثم أحدث الطلبات.</value></data>
   <data name="Dashboard.ReportedHours" xml:space="preserve"><value>الساعات المسجّلة</value></data>
   <data name="Dashboard.ReviewApplications" xml:space="preserve"><value>مراجعة الطلبات</value></data>
   <data name="Dashboard.ReviewCandidatesSupportTraineesKeepDecisions" xml:space="preserve"><value>راجع المتقدّمين، وادعم المتدرّبين، وأبقِ القرارات في مسارها.</value></data>
   <data name="Dashboard.ReviewDesk" xml:space="preserve"><value>مكتب المراجعة</value></data>
+  <data name="Dashboard.SearchByStudentNameOpportunityOr" xml:space="preserve"><value>ابحث باسم الطالب أو الفرصة أو المهمة</value></data>
   <data name="Dashboard.SubmissionsWaiting" xml:space="preserve"><value>تسليمات بالانتظار</value></data>
   <data name="Dashboard.SubmittedTrainingWork" xml:space="preserve"><value>أعمال التدريب المسلَّمة</value></data>
   <data name="Dashboard.SubmittedWork" xml:space="preserve"><value>الأعمال المسلَّمة</value></data>
   <data name="Dashboard.TrainingInYourCompany" xml:space="preserve"><value>التدريب في شركتك</value></data>
+  <data name="Dashboard.Unknown" xml:space="preserve"><value>غير معروف</value></data>
   <data name="Dashboard.WeCouldNotLoadYourCompany" xml:space="preserve"><value>تعذّر تحميل قوائم عمل شركتك. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
   <data name="Dashboard.WorkToReview" xml:space="preserve"><value>أعمال للمراجعة</value></data>
+  <data name="EvaluationReport.AcademicMajor" xml:space="preserve"><value>التخصص الأكاديمي:</value></data>
+  <data name="EvaluationReport.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="EvaluationReport.ActualTrainingHours" xml:space="preserve"><value>ساعات التدريب الفعلية:</value></data>
+  <data name="EvaluationReport.AreasForImprovement" xml:space="preserve"><value>جوانب التحسين:</value></data>
+  <data name="EvaluationReport.AuthorizedCompanySignatureSeal" xml:space="preserve"><value>توقيع الشركة المعتمد وختمها</value></data>
+  <data name="EvaluationReport.Awarded" xml:space="preserve"><value>العلامة الممنوحة</value></data>
+  <data name="EvaluationReport.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="EvaluationReport.CommunicationTeamwork" xml:space="preserve"><value>التواصل والعمل الجماعي</value></data>
+  <data name="EvaluationReport.CompanyRecommendation" xml:space="preserve"><value>توصية الشركة:</value></data>
+  <data name="EvaluationReport.DescribeAreasToDevelop" xml:space="preserve"><value>صف الجوانب التي تحتاج إلى تطوير...</value></data>
+  <data name="EvaluationReport.DescribeMainStrengths" xml:space="preserve"><value>صف أبرز نقاط القوة...</value></data>
+  <data name="EvaluationReport.DoNotRecommend" xml:space="preserve"><value>لا يُوصى به</value></data>
+  <data name="EvaluationReport.DownloadAsPDF" xml:space="preserve"><value>تنزيل بصيغة PDF</value></data>
+  <data name="EvaluationReport.EvaluationCriteriaGJUStandard" xml:space="preserve"><value>معايير التقييم (معيار الجامعة الألمانية الأردنية)</value></data>
+  <data name="EvaluationReport.ExcellentA" xml:space="preserve"><value>ممتاز (A)</value></data>
+  <data name="EvaluationReport.FinalPerformanceEvaluationGradeReport" xml:space="preserve"><value>تقرير تقييم الأداء النهائي والعلامات</value></data>
+  <data name="EvaluationReport.GermanJordanianUniversity" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="EvaluationReport.GoodC" xml:space="preserve"><value>جيد (C)</value></data>
+  <data name="EvaluationReport.HighlyRecommendedForHire" xml:space="preserve"><value>يُوصى بتوظيفه بشدة</value></data>
+  <data name="EvaluationReport.Hours" xml:space="preserve"><value>الساعات</value></data>
+  <data name="EvaluationReport.InternshipManagementSystemUIMSOfficialAcademic" xml:space="preserve"><value>نظام إدارة التدريب الجامعي (UIMS) - التقرير الأكاديمي الرسمي</value></data>
+  <data name="EvaluationReport.InternshipPosition" xml:space="preserve"><value>المسمى التدريبي:</value></data>
+  <data name="EvaluationReport.KeyStrengths" xml:space="preserve"><value>أبرز نقاط القوة:</value></data>
+  <data name="EvaluationReport.MaxScore" xml:space="preserve"><value>الدرجة القصوى</value></data>
+  <data name="EvaluationReport.NeedsImprovementD" xml:space="preserve"><value>يحتاج إلى تحسين (D)</value></data>
+  <data name="EvaluationReport.OfficialInternshipEvaluationReport" xml:space="preserve"><value>تقرير تقييم التدريب الرسمي</value></data>
+  <data name="EvaluationReport.Okay" xml:space="preserve"><value>حسنًا</value></data>
+  <data name="EvaluationReport.PerformanceLevel" xml:space="preserve"><value>مستوى الأداء:</value></data>
+  <data name="EvaluationReport.Print" xml:space="preserve"><value>طباعة</value></data>
+  <data name="EvaluationReport.PrintReport" xml:space="preserve"><value>طباعة التقرير</value></data>
+  <data name="EvaluationReport.ProfessionalismEthics" xml:space="preserve"><value>الاحترافية والأخلاقيات</value></data>
+  <data name="EvaluationReport.QualityOfWorkLogic" xml:space="preserve"><value>جودة العمل والتفكير المنطقي</value></data>
+  <data name="EvaluationReport.RecommendWithReservations" xml:space="preserve"><value>يُوصى به مع تحفّظات</value></data>
+  <data name="EvaluationReport.Recommended" xml:space="preserve"><value>يُوصى به</value></data>
+  <data name="EvaluationReport.ReportGeneratedDate" xml:space="preserve"><value>تاريخ إنشاء التقرير:</value></data>
+  <data name="EvaluationReport.ReviewOfficialReport" xml:space="preserve"><value>مراجعة التقرير الرسمي</value></data>
+  <data name="EvaluationReport.SaveFeedback" xml:space="preserve"><value>حفظ الملاحظات</value></data>
+  <data name="EvaluationReport.SaveScores" xml:space="preserve"><value>حفظ الدرجات</value></data>
+  <data name="EvaluationReport.SelectPerformanceLevel" xml:space="preserve"><value>اختر مستوى الأداء</value></data>
+  <data name="EvaluationReport.SelectRecommendation" xml:space="preserve"><value>اختر التوصية</value></data>
+  <data name="EvaluationReport.SendToAcademicSupervisor" xml:space="preserve"><value>إرسال إلى المشرف الأكاديمي</value></data>
+  <data name="EvaluationReport.SendToTrainee" xml:space="preserve"><value>إرسال إلى المتدرب</value></data>
+  <data name="EvaluationReport.SubmitTheConfidentialFinalEvaluationFor" xml:space="preserve"><value>إرسال التقييم النهائي السري للمراجعة الأكاديمية</value></data>
+  <data name="EvaluationReport.TechnicalSkillsApplication" xml:space="preserve"><value>المهارات التقنية والتطبيق</value></data>
+  <data name="EvaluationReport.TotalCalculatedScore" xml:space="preserve"><value>مجموع العلامات المحتسب</value></data>
+  <data name="EvaluationReport.TraineeName" xml:space="preserve"><value>اسم المتدرّب</value></data>
+  <data name="EvaluationReport.TraineeStudent" xml:space="preserve"><value>الطالب المتدرب:</value></data>
+  <data name="EvaluationReport.VeryGoodB" xml:space="preserve"><value>جيد جدًا (B)</value></data>
+  <data name="EvaluationReport.YouHaveNoSavedDrafts" xml:space="preserve"><value>لا توجد لديك مسودات محفوظة.</value></data>
   <data name="FinalEvaluation.1SelectTrainee" xml:space="preserve"><value>1. اختيار المتدرّب</value></data>
   <data name="FinalEvaluation.2EvaluationForms" xml:space="preserve"><value>2. نماذج التقييم</value></data>
   <data name="FinalEvaluation.Action" xml:space="preserve"><value>الإجراء</value></data>
   <data name="FinalEvaluation.ActualTrainingHours" xml:space="preserve"><value>ساعات التدريب الفعلية</value></data>
   <data name="FinalEvaluation.AreasForImprovement" xml:space="preserve"><value>جوانب التحسين</value></data>
   <data name="FinalEvaluation.AsA" xml:space="preserve"><value>بصفة</value></data>
+  <data name="FinalEvaluation.AssignedInternship" xml:space="preserve"><value>التدريب المسند</value></data>
   <data name="FinalEvaluation.AuthorizedSignature" xml:space="preserve"><value>التوقيع المعتمد</value></data>
   <data name="FinalEvaluation.CalculatedTotal" xml:space="preserve"><value>المجموع المحسوب:</value></data>
   <data name="FinalEvaluation.CertificateIssued" xml:space="preserve"><value>تم إصدار الشهادة!</value></data>
@@ -123,7 +206,12 @@
   <data name="FinalEvaluation.Close" xml:space="preserve"><value>إغلاق</value></data>
   <data name="FinalEvaluation.CommunicationTeamwork" xml:space="preserve"><value>التواصل والعمل الجماعي</value></data>
   <data name="FinalEvaluation.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="FinalEvaluation.CompanyEvaluationReportAndCertificateTools" xml:space="preserve"><value>تقرير تقييم الشركة وأدوات الشهادات</value></data>
+  <data name="FinalEvaluation.CompanyFinalEvaluation" xml:space="preserve"><value>التقييم النهائي للشركة</value></data>
   <data name="FinalEvaluation.CompanyRecommendation" xml:space="preserve"><value>توصية الشركة</value></data>
+  <data name="FinalEvaluation.CompletionIsFinalizedEvidenceIsRead" xml:space="preserve"><value>تم اعتماد قرار الإتمام؛ الأدلة للقراءة فقط.</value></data>
+  <data name="FinalEvaluation.ConfidentialFinalEvaluationSubmittedSuccessfully" xml:space="preserve"><value>تم إرسال التقييم النهائي السري بنجاح.</value></data>
+  <data name="FinalEvaluation.ConfidentialSupervisorComments" xml:space="preserve"><value>ملاحظات المشرف السرية</value></data>
   <data name="FinalEvaluation.ContinueDraft" xml:space="preserve"><value>متابعة</value></data>
   <data name="FinalEvaluation.CouldNotLoadDrafts" xml:space="preserve"><value>تعذّر تحميل المسودات: {0}</value></data>
   <data name="FinalEvaluation.CouldNotLoadTraineeDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل المتدرّب: {0}</value></data>
@@ -144,6 +232,8 @@
   <data name="FinalEvaluation.FeedbackRecommendation" xml:space="preserve"><value>الملاحظات والتوصية</value></data>
   <data name="FinalEvaluation.FillOutBothSectionsBelowAccording" xml:space="preserve"><value>املأ القسمين أدناه وفق معايير الجامعة الألمانية الأردنية قبل إرسال التقييم النهائي.</value></data>
   <data name="FinalEvaluation.FinalEvaluation" xml:space="preserve"><value>التقييم النهائي</value></data>
+  <data name="FinalEvaluation.FinalEvaluationHasNotBeenSubmitted" xml:space="preserve"><value>لم يتم إرسال التقييم النهائي.</value></data>
+  <data name="FinalEvaluation.FinalEvaluationSubmittedThisSubmissionIs" xml:space="preserve"><value>تم إرسال التقييم النهائي. هذا التسليم للقراءة فقط.</value></data>
   <data name="FinalEvaluation.GoodC" xml:space="preserve"><value>جيد (C)</value></data>
   <data name="FinalEvaluation.HasSuccessfullyCompleted" xml:space="preserve"><value>قد أتمّ بنجاح</value></data>
   <data name="FinalEvaluation.HaveMetTheHighestStandardsOf" xml:space="preserve"><value>أعلى معايير مؤسستنا.</value></data>
@@ -154,6 +244,7 @@
   <data name="FinalEvaluation.Internship" xml:space="preserve"><value>التدريب</value></data>
   <data name="FinalEvaluation.InternshipProgram" xml:space="preserve"><value>برنامج التدريب</value></data>
   <data name="FinalEvaluation.InvalidScores" xml:space="preserve"><value>درجات غير صحيحة</value></data>
+  <data name="FinalEvaluation.MaximumScoreOnTheAssessmentScale" xml:space="preserve"><value>العلامة القصوى في مقياس التقييم</value></data>
   <data name="FinalEvaluation.MissingFields" xml:space="preserve"><value>حقول ناقصة</value></data>
   <data name="FinalEvaluation.MyDrafts" xml:space="preserve"><value>مسوداتي</value></data>
   <data name="FinalEvaluation.MySavedDrafts" xml:space="preserve"><value>مسوداتي المحفوظة</value></data>
@@ -183,6 +274,7 @@
   <data name="FinalEvaluation.SelectATraineeAndCompleteTheir" xml:space="preserve"><value>اختر متدرّبًا وأكمل تقييمه النهائي للتدريب.</value></data>
   <data name="FinalEvaluation.SelectATraineePlaceholder" xml:space="preserve"><value>اختر متدرّبًا</value></data>
   <data name="FinalEvaluation.SelectATraineeToEvaluate" xml:space="preserve"><value>-- اختر متدرّبًا لتقييمه --</value></data>
+  <data name="FinalEvaluation.SelectAnAssignedInternship" xml:space="preserve"><value>اختر تدريبًا مسندًا</value></data>
   <data name="FinalEvaluation.SelectPerformanceLevel" xml:space="preserve"><value>اختر مستوى الأداء</value></data>
   <data name="FinalEvaluation.SelectRecommendation" xml:space="preserve"><value>اختر التوصية</value></data>
   <data name="FinalEvaluation.SelectTrainee" xml:space="preserve"><value>اختر متدرّبًا</value></data>
@@ -193,17 +285,40 @@
   <data name="FinalEvaluation.Status" xml:space="preserve"><value>الحالة</value></data>
   <data name="FinalEvaluation.Strengths" xml:space="preserve"><value>نقاط القوة</value></data>
   <data name="FinalEvaluation.StudentName" xml:space="preserve"><value>اسم الطالب</value></data>
+  <data name="FinalEvaluation.SubmissionCouldNotBeConfirmedReload" xml:space="preserve"><value>تعذر تأكيد التسليم. أعد تحميل الصفحة قبل المحاولة مجددًا.</value></data>
+  <data name="FinalEvaluation.SubmitFinalEvaluationToAcademicSupervisor" xml:space="preserve"><value>إرسال التقييم النهائي إلى المشرف الأكاديمي</value></data>
   <data name="FinalEvaluation.SuccessEvaluationSubmittedToTheGJU" xml:space="preserve"><value>تم بنجاح! أُرسل التقييم إلى المشرف الأكاديمي في الجامعة الألمانية الأردنية، ويمكنك الآن طباعة الشهادة.</value></data>
   <data name="FinalEvaluation.TechSkillsApplication" xml:space="preserve"><value>المهارات التقنية وتطبيقها</value></data>
   <data name="FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism" xml:space="preserve"><value>وقد حقّق تفانيه ومهاراته التقنية واحترافيته</value></data>
+  <data name="FinalEvaluation.ThisFinalEvaluationIsConfidentialStudents" xml:space="preserve"><value>هذا التقييم النهائي سري ولا يمكن للطلاب الاطلاع عليه. أدخل العلامة وفق مقياس التقييم المستخدم؛ لا يفترض النظام وجود سلم تقييم رسمي للجامعة الألمانية الأردنية.</value></data>
   <data name="FinalEvaluation.ThisIsToProudlyCertifyThat" xml:space="preserve"><value>نشهد بكل فخر بأن</value></data>
   <data name="FinalEvaluation.TotalScore" xml:space="preserve"><value>الدرجة الكلية</value></data>
+  <data name="FinalEvaluation.TotalScoreOptionalForEvidenceOnly" xml:space="preserve"><value>مجموع العلامات (اختياري للمراجعات التي تقتصر على الأدلة)</value></data>
   <data name="FinalEvaluation.Trainee" xml:space="preserve"><value>متدرّب</value></data>
   <data name="FinalEvaluation.TraineeDetails" xml:space="preserve"><value>تفاصيل المتدرّب</value></data>
   <data name="FinalEvaluation.TraineeName" xml:space="preserve"><value>اسم المتدرّب</value></data>
+  <data name="FinalEvaluation.UnableToLoadAssignedInternshipsPlease" xml:space="preserve"><value>تعذر تحميل التدريبات المسندة. يرجى المحاولة مجددًا.</value></data>
+  <data name="FinalEvaluation.UnableToLoadTheEvaluationPlease" xml:space="preserve"><value>تعذر تحميل التقييم. يرجى المحاولة مجددًا.</value></data>
   <data name="FinalEvaluation.VeryGoodB" xml:space="preserve"><value>جيد جدًا (B)</value></data>
   <data name="FinalEvaluation.YouHaveNoSavedDrafts" xml:space="preserve"><value>لا توجد لديك مسودات محفوظة.</value></data>
   <data name="FinalEvaluation.YourEvaluationHasBeenSafelySaved" xml:space="preserve"><value>حُفظ تقييمك بأمان في مسوداتي.</value></data>
+  <data name="I18n.Accepted" xml:space="preserve"><value>مقبول</value></data>
+  <data name="I18n.Allstatuses" xml:space="preserve"><value>جميع الحالات</value></data>
+  <data name="I18n.Alltaskstatuses" xml:space="preserve"><value>جميع حالات المهام</value></data>
+  <data name="I18n.AresubmissionwasrequestedInstructions" xml:space="preserve"><value>طُلبت إعادة التسليم. التعليمات: </value></data>
+  <data name="I18n.ChooseaPDForWordfile" xml:space="preserve"><value>اختر ملف PDF أو Word.</value></data>
+  <data name="I18n.ContinueDraft" xml:space="preserve"><value>متابعة المسودة</value></data>
+  <data name="I18n.Enteravalidscorefor" xml:space="preserve"><value>أدخل علامة صالحة للمعيار: </value></data>
+  <data name="I18n.Feedback" xml:space="preserve"><value>. الملاحظات: </value></data>
+  <data name="I18n.FirebaseStorageisnotconfiguredAskthe" xml:space="preserve"><value>لم يتم إعداد Firebase Storage. اطلب من مسؤول المشروع إعداد Firebase.StorageBucket.</value></data>
+  <data name="I18n.Firebasedidnotreturnadownloadtoken" xml:space="preserve"><value>لم تُرجع خدمة التخزين رمز تنزيل للملف المرفوع.</value></data>
+  <data name="I18n.Revisionneeded" xml:space="preserve"><value>تحتاج إلى تعديل</value></data>
+  <data name="I18n.Taskcreatedsuccessfullyforall0trainees" xml:space="preserve"><value>تم إنشاء المهمة لجميع المتدربين وعددهم {0} بنجاح.</value></data>
+  <data name="I18n.Theattachmentcouldnotberead" xml:space="preserve"><value>تعذرت قراءة المرفق.</value></data>
+  <data name="I18n.Theattachmentmustbesmallerthan10" xml:space="preserve"><value>يجب أن يكون حجم المرفق أقل من 10 ميغابايت.</value></data>
+  <data name="I18n.Theselectedtraineedoesnotbelongto" xml:space="preserve"><value>المتدرب المحدد غير تابع لشركتك.</value></data>
+  <data name="I18n.Thissubmissionwasevaluated" xml:space="preserve"><value>تم تقييم هذا التسليم: </value></data>
+  <data name="I18n.YoursessionexpiredSigninagainbefore" xml:space="preserve"><value>انتهت جلستك. سجّل الدخول مجددًا قبل الرفع.</value></data>
   <data name="ManageOpportunities.AcceptingApplications" xml:space="preserve"><value>تستقبل الطلبات</value></data>
   <data name="ManageOpportunities.Actions" xml:space="preserve"><value>الإجراءات</value></data>
   <data name="ManageOpportunities.AddOpportunity" xml:space="preserve"><value>+ إضافة فرصة</value></data>
@@ -296,6 +411,7 @@
   <data name="Opportunities.EligibleSpecializations" xml:space="preserve"><value>التخصصات المؤهلة *</value></data>
   <data name="Opportunities.EndDate" xml:space="preserve"><value>تاريخ الانتهاء *</value></data>
   <data name="Opportunities.EndDateMustBeAfterStart" xml:space="preserve"><value>يجب أن يكون تاريخ الانتهاء بعد تاريخ البدء.</value></data>
+  <data name="Opportunities.LastDateToApply" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
   <data name="Opportunities.ListTheSkillsQualificationsAndRequirements" xml:space="preserve"><value>اذكر المهارات والمؤهلات والمتطلبات...</value></data>
   <data name="Opportunities.Location" xml:space="preserve"><value>الموقع *</value></data>
   <data name="Opportunities.OneOrMoreFieldsAreToo" xml:space="preserve"><value>حقل واحد أو أكثر أطول من المسموح.</value></data>
@@ -319,20 +435,35 @@
   <data name="Opportunities.UnableToSaveTheOpportunityIn" xml:space="preserve"><value>تعذّر حفظ الفرصة في Firebase.</value></data>
   <data name="Opportunities.YourAccountIsNotLinkedTo" xml:space="preserve"><value>حسابك غير مرتبط بأي شركة.</value></data>
   <data name="TaskReview.ANewerSubmissionAttemptExistsReview" xml:space="preserve"><value>توجد محاولة تسليم أحدث، فراجعها بدلًا من هذه.</value></data>
+  <data name="TaskReview.ANewerSubmissionAttemptIsAvailable" xml:space="preserve"><value>توجد محاولة تسليم أحدث. يرجى مراجعتها بدلًا من هذه المحاولة.</value></data>
+  <data name="TaskReview.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="TaskReview.AddFeedbackAndSuggestions" xml:space="preserve"><value>أضف الملاحظات والاقتراحات...</value></data>
+  <data name="TaskReview.AssessTheSubmissionWithTheUniversity" xml:space="preserve"><value>قيّم التسليم وفق معايير الجامعة.</value></data>
   <data name="TaskReview.Attempt" xml:space="preserve"><value>المحاولة</value></data>
   <data name="TaskReview.Attempt1RevisionRequested" xml:space="preserve"><value>المحاولة 1 · طُلب تعديلها</value></data>
   <data name="TaskReview.Attempt2" xml:space="preserve"><value>المحاولة:</value></data>
   <data name="TaskReview.Attempt2PendingReview" xml:space="preserve"><value>المحاولة 2 · بانتظار المراجعة</value></data>
+  <data name="TaskReview.AwaitingReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
   <data name="TaskReview.BackToChoices" xml:space="preserve"><value>→ العودة إلى الخيارات</value></data>
+  <data name="TaskReview.BackToTasks" xml:space="preserve"><value>العودة إلى المهام</value></data>
   <data name="TaskReview.Close" xml:space="preserve"><value>إغلاق</value></data>
   <data name="TaskReview.CloseReview" xml:space="preserve"><value>إغلاق المراجعة</value></data>
+  <data name="TaskReview.CodeQuality" xml:space="preserve"><value>جودة الشيفرة</value></data>
+  <data name="TaskReview.ContinueReview" xml:space="preserve"><value>متابعة المراجعة</value></data>
+  <data name="TaskReview.CouldNotCompleteTheRevisionRequest" xml:space="preserve"><value>تعذر إكمال طلب التعديل. تحقق من Firebase قبل المحاولة مجددًا.</value></data>
   <data name="TaskReview.CouldNotLoadOrSaveThe" xml:space="preserve"><value>تعذّر تحميل التقييم أو حفظه. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="TaskReview.Criterion" xml:space="preserve"><value>المعيار</value></data>
+  <data name="TaskReview.DesignUsability" xml:space="preserve"><value>التصميم وسهولة الاستخدام</value></data>
+  <data name="TaskReview.Documentation" xml:space="preserve"><value>التوثيق</value></data>
+  <data name="TaskReview.DueDate" xml:space="preserve"><value>الموعد النهائي</value></data>
   <data name="TaskReview.EnterAScoreForEachCriterion" xml:space="preserve"><value>أدخل درجة لكل معيار.</value></data>
   <data name="TaskReview.EnterAValidScoreFor" xml:space="preserve"><value>أدخل درجة صحيحة للمعيار: {0}</value></data>
   <data name="TaskReview.EnterScoresForTheTaskCriteria" xml:space="preserve"><value>أدخل درجات معايير المهمة واكتب ملاحظاتك.</value></data>
+  <data name="TaskReview.EnterScoresToCalculateTheTotal" xml:space="preserve"><value>أدخل العلامات لحساب المجموع.</value></data>
   <data name="TaskReview.EvaluateSubmission" xml:space="preserve"><value>تقييم التسليم</value></data>
+  <data name="TaskReview.EvaluateTheTraineeSWorkAnd" xml:space="preserve"><value>قيّم عمل المتدرب وقدّم ملاحظات بنّاءة.</value></data>
   <data name="TaskReview.Evaluation" xml:space="preserve"><value>التقييم</value></data>
+  <data name="TaskReview.EvaluationAndFeedback" xml:space="preserve"><value>التقييم والملاحظات</value></data>
   <data name="TaskReview.ExampleStudentAttempt2PendingReview" xml:space="preserve"><value>طالب نموذجي · المحاولة 2 · بانتظار المراجعة</value></data>
   <data name="TaskReview.ExampleSubmissionTextWillAppearHere" xml:space="preserve"><value>سيظهر هنا نص تسليم نموذجي.</value></data>
   <data name="TaskReview.ExampleTextForTheStudentS" xml:space="preserve"><value>نص نموذجي لمحاولة الطالب الثانية.</value></data>
@@ -340,71 +471,151 @@
   <data name="TaskReview.ExplainWhatTheStudentNeedsTo" xml:space="preserve"><value>وضّح ما يجب على الطالب تغييره قبل إعادة التسليم.</value></data>
   <data name="TaskReview.Feedback" xml:space="preserve"><value>الملاحظات</value></data>
   <data name="TaskReview.FeedbackForStudent" xml:space="preserve"><value>ملاحظات للطالب</value></data>
+  <data name="TaskReview.FeedbackForTrainee" xml:space="preserve"><value>ملاحظات للمتدرب</value></data>
   <data name="TaskReview.File" xml:space="preserve"><value>الملف:</value></data>
+  <data name="TaskReview.FilterBySubmissionStatus" xml:space="preserve"><value>تصفية حسب حالة التسليم</value></data>
+  <data name="TaskReview.FilterByTrainee" xml:space="preserve"><value>تصفية حسب المتدرب</value></data>
+  <data name="TaskReview.Functionality" xml:space="preserve"><value>الأداء الوظيفي</value></data>
   <data name="TaskReview.GradeSavedSuccessfully" xml:space="preserve"><value>تم حفظ الدرجة بنجاح.</value></data>
   <data name="TaskReview.Link" xml:space="preserve"><value>الرابط:</value></data>
   <data name="TaskReview.Max" xml:space="preserve"><value>— الحد الأقصى:</value></data>
   <data name="TaskReview.MaximumScore" xml:space="preserve"><value>الدرجة القصوى</value></data>
+  <data name="TaskReview.NameUnavailable" xml:space="preserve"><value>الاسم غير متاح</value></data>
   <data name="TaskReview.NoFileInThisExample" xml:space="preserve"><value>لا يوجد ملف في هذا المثال</value></data>
   <data name="TaskReview.NoLinkInThisExample" xml:space="preserve"><value>لا يوجد رابط في هذا المثال</value></data>
+  <data name="TaskReview.NoSubmissionsMatchTheseFilters" xml:space="preserve"><value>لا توجد تسليمات تطابق عوامل التصفية.</value></data>
   <data name="TaskReview.NoTextSubmitted" xml:space="preserve"><value>لم يُسلَّم أي نص.</value></data>
+  <data name="TaskReview.NotSet" xml:space="preserve"><value>غير محددة</value></data>
+  <data name="TaskReview.OpenASubmissionFirst" xml:space="preserve"><value>افتح تسليمًا أولًا.</value></data>
   <data name="TaskReview.OpenASubmissionToEvaluateIt" xml:space="preserve"><value>افتح تسليمًا لتقييمه أو لطلب محاولة جديدة.</value></data>
+  <data name="TaskReview.OpenASubmissionToReviewThe" xml:space="preserve"><value>افتح تسليمًا لمراجعة عمل المتدرب واختيار الإجراء التالي.</value></data>
   <data name="TaskReview.OpenAttachedFile" xml:space="preserve"><value>فتح الملف المرفق</value></data>
   <data name="TaskReview.OpenSubmittedLink" xml:space="preserve"><value>فتح الرابط المسلَّم</value></data>
   <data name="TaskReview.PleaseAddMoreDetailToThe" xml:space="preserve"><value>يُرجى إضافة مزيد من التفاصيل إلى التقرير.</value></data>
   <data name="TaskReview.PleaseEnterFeedbackForTheStudent" xml:space="preserve"><value>يُرجى كتابة ملاحظات للطالب.</value></data>
   <data name="TaskReview.PreviousAttemptsWillStayHereEven" xml:space="preserve"><value>ستبقى المحاولات السابقة هنا حتى بعد التعديل.</value></data>
   <data name="TaskReview.ReportQualityExample" xml:space="preserve"><value>جودة التقرير (مثال)</value></data>
+  <data name="TaskReview.RequestChanges" xml:space="preserve"><value>طلب تعديلات</value></data>
   <data name="TaskReview.RequestRevision" xml:space="preserve"><value>طلب تعديل</value></data>
+  <data name="TaskReview.ReviewSubmission" xml:space="preserve"><value>مراجعة التسليم</value></data>
   <data name="TaskReview.ReviewSubmissions" xml:space="preserve"><value>مراجعة التسليمات</value></data>
+  <data name="TaskReview.ReviewSubmissions2" xml:space="preserve"><value>مراجعة التسليمات</value></data>
+  <data name="TaskReview.ReviewTraineeWorkProvideAnEvaluation" xml:space="preserve"><value>راجع عمل المتدرب، وأضف التقييم، أو اطلب تعديلات.</value></data>
   <data name="TaskReview.RevisionInstructions" xml:space="preserve"><value>تعليمات التعديل</value></data>
   <data name="TaskReview.RevisionInstructions2" xml:space="preserve"><value>تعليمات التعديل:</value></data>
+  <data name="TaskReview.RevisionRequested" xml:space="preserve"><value>مطلوب تعديلها</value></data>
+  <data name="TaskReview.RevisionRequestedSuccessfully" xml:space="preserve"><value>تم طلب التعديلات بنجاح.</value></data>
   <data name="TaskReview.SaveEvaluation" xml:space="preserve"><value>حفظ التقييم</value></data>
   <data name="TaskReview.SaveGrade" xml:space="preserve"><value>حفظ الدرجة</value></data>
   <data name="TaskReview.Score" xml:space="preserve"><value>الدرجة</value></data>
+  <data name="TaskReview.SearchSubmissions" xml:space="preserve"><value>البحث في التسليمات</value></data>
+  <data name="TaskReview.SearchTasksOrTrainees" xml:space="preserve"><value>ابحث عن المهام أو المتدربين</value></data>
   <data name="TaskReview.SendRevisionRequest" xml:space="preserve"><value>إرسال طلب التعديل</value></data>
   <data name="TaskReview.StartEvaluation" xml:space="preserve"><value>بدء التقييم</value></data>
   <data name="TaskReview.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="TaskReview.Status2" xml:space="preserve"><value>الحالة</value></data>
   <data name="TaskReview.StudentSText" xml:space="preserve"><value>نص الطالب:</value></data>
+  <data name="TaskReview.StudentSubmissions" xml:space="preserve"><value>تسليمات الطلاب</value></data>
   <data name="TaskReview.SubmissionDetails" xml:space="preserve"><value>تفاصيل التسليم</value></data>
+  <data name="TaskReview.SubmissionDetails2" xml:space="preserve"><value>تفاصيل التسليم</value></data>
   <data name="TaskReview.SubmissionHistory" xml:space="preserve"><value>سجل التسليمات</value></data>
+  <data name="TaskReview.SubmissionWasNotFound" xml:space="preserve"><value>لم يتم العثور على التسليم.</value></data>
+  <data name="TaskReview.SubmitEvaluation" xml:space="preserve"><value>إرسال التقييم</value></data>
   <data name="TaskReview.Submitted" xml:space="preserve"><value>تاريخ الإرسال</value></data>
+  <data name="TaskReview.Submitted2" xml:space="preserve"><value>تاريخ الإرسال</value></data>
+  <data name="TaskReview.SubmittedAt" xml:space="preserve"><value>وقت التسليم</value></data>
   <data name="TaskReview.SubmittedWork" xml:space="preserve"><value>العمل المسلَّم</value></data>
+  <data name="TaskReview.SubmittedWork2" xml:space="preserve"><value>الأعمال المسلَّمة</value></data>
   <data name="TaskReview.Task" xml:space="preserve"><value>المهمة</value></data>
   <data name="TaskReview.Task2" xml:space="preserve"><value>المهمة:</value></data>
+  <data name="TaskReview.TaskTitle" xml:space="preserve"><value>عنوان المهمة</value></data>
   <data name="TaskReview.TellTheStudentExactlyWhatTo" xml:space="preserve"><value>أخبر الطالب بدقة بما يجب تحسينه في المحاولة التالية.</value></data>
+  <data name="TaskReview.TellTheStudentWhatNeedsTo" xml:space="preserve"><value>وضّح للطالب التعديلات المطلوبة.</value></data>
   <data name="TaskReview.TheCriteriaAndMaximumScoresWill" xml:space="preserve"><value>ستُؤخذ المعايير والدرجات القصوى من هذه المهمة.</value></data>
   <data name="TaskReview.TheGradeCouldNotBeSaved" xml:space="preserve"><value>تعذّر حفظ الدرجة.</value></data>
   <data name="TaskReview.TheGradeWasSavedButThe" xml:space="preserve"><value>حُفظت الدرجة، لكن لم تُحدَّث حالة المهمة. تحقّق من Firebase قبل المحاولة مرة أخرى.</value></data>
+  <data name="TaskReview.TheRevisionRequestCouldNotBe" xml:space="preserve"><value>تعذر حفظ طلب التعديل. يرجى المحاولة مجددًا.</value></data>
   <data name="TaskReview.ThisIsADesignPreviewNothing" xml:space="preserve"><value>هذه معاينة للتصميم، ولم يُحفظ أي شيء بعد.</value></data>
   <data name="TaskReview.ThisSubmissionHasAlreadyBeenReviewed" xml:space="preserve"><value>رُوجع هذا التسليم بالفعل.</value></data>
+  <data name="TaskReview.ThisSubmissionIsAlreadyReviewedOr" xml:space="preserve"><value>تمت مراجعة هذا التسليم بالفعل، أو أنه ليس المحاولة الأحدث.</value></data>
   <data name="TaskReview.ThisTaskHasNoValidGrading" xml:space="preserve"><value>لا توجد لهذه المهمة معايير تقييم صالحة.</value></data>
   <data name="TaskReview.ThisTaskIsNotWaitingFor" xml:space="preserve"><value>هذه المهمة ليست بانتظار التقييم.</value></data>
+  <data name="TaskReview.TotalEvaluationScore" xml:space="preserve"><value>مجموع علامات التقييم</value></data>
   <data name="TaskReview.Trainee" xml:space="preserve"><value>متدرّب</value></data>
+  <data name="TaskReview.Trainee2" xml:space="preserve"><value>متدرّب</value></data>
+  <data name="TaskReview.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="TaskReview.View" xml:space="preserve"><value>عرض </value></data>
+  <data name="TaskReview.ViewAttempt" xml:space="preserve"><value>عرض المحاولة</value></data>
   <data name="TaskReview.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
+  <data name="TaskReview.ViewEvaluation" xml:space="preserve"><value>عرض التقييم</value></data>
+  <data name="TaskReview.ViewRevisionRequest" xml:space="preserve"><value>عرض طلب التعديل</value></data>
+  <data name="TaskReview.ViewSubmissionFile" xml:space="preserve"><value>عرض ملف التسليم</value></data>
   <data name="TaskReview.WeeklyProgressReport" xml:space="preserve"><value>تقرير التقدّم الأسبوعي</value></data>
   <data name="TaskReview.Weight" xml:space="preserve"><value>— الوزن:</value></data>
   <data name="TaskReview.WhatWouldYouLikeToDo" xml:space="preserve"><value>ماذا تريد أن تفعل؟</value></data>
+  <data name="TaskReview.YouCannotReviewThisSubmission" xml:space="preserve"><value>لا تملك صلاحية مراجعة هذا التسليم.</value></data>
   <data name="Tasks.0Points" xml:space="preserve"><value>0 نقطة</value></data>
+  <data name="Tasks.100Points" xml:space="preserve"><value>100 علامة</value></data>
+  <data name="Tasks.Action" xml:space="preserve"><value>الإجراء</value></data>
   <data name="Tasks.Add" xml:space="preserve"><value>+ إضافة</value></data>
   <data name="Tasks.AddAtLeastOneCriterionIn" xml:space="preserve"><value>أضف معيارًا واحدًا على الأقل في الخطوة 2 لتتمكن من تقييم هذه المهمة.</value></data>
   <data name="Tasks.AddEachThingYouWillCheck" xml:space="preserve"><value>أضف كل عنصر ستقيّمه وعدد نقاطه، ومجموع المهمة هو مجموع هذه النقاط.</value></data>
+  <data name="Tasks.AddGradingCriteriaExpectedOutcomesAnd" xml:space="preserve"><value>أضف معايير التقييم والنتائج المتوقعة وتعليمات التسليم...</value></data>
+  <data name="Tasks.AllMyTrainees" xml:space="preserve"><value>جميع متدربيّ</value></data>
+  <data name="Tasks.AllTasks" xml:space="preserve"><value>جميع المهام</value></data>
+  <data name="Tasks.AssignTrainee" xml:space="preserve"><value>تعيين المتدرب *</value></data>
   <data name="Tasks.AssignedTasks" xml:space="preserve"><value>المهام المسندة</value></data>
   <data name="Tasks.AssignedTrainee" xml:space="preserve"><value>المتدرّب المسند إليه *</value></data>
+  <data name="Tasks.AssignmentsDeadlinesSubmissionsAndFeedback" xml:space="preserve"><value>التكليفات والمواعيد والتسليمات والملاحظات</value></data>
+  <data name="Tasks.AwaitingYourEvaluation" xml:space="preserve"><value>بانتظار تقييمك</value></data>
   <data name="Tasks.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="Tasks.Cancel2" xml:space="preserve"><value>إلغاء</value></data>
   <data name="Tasks.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="Tasks.Close2" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="Tasks.CloseTaskDetails" xml:space="preserve"><value>إغلاق تفاصيل المهمة</value></data>
   <data name="Tasks.ComparedWithThisTraineeSOther" xml:space="preserve"><value>مقارنةً بمهام المتدرّب الأخرى. اختر «عادية» لمعظم المهام.</value></data>
+  <data name="Tasks.CouldNotLoadTasksCheckFirebase" xml:space="preserve"><value>تعذر تحميل المهام. تحقق من الاتصال بـFirebase وقواعد قاعدة البيانات.</value></data>
+  <data name="Tasks.CouldNotLoadTraineesFromFirebase" xml:space="preserve"><value>تعذر تحميل المتدربين من Firebase.</value></data>
+  <data name="Tasks.CouldNotSaveTheTaskCheck" xml:space="preserve"><value>تعذر حفظ المهمة. تحقق من الاتصال بـFirebase وقواعده.</value></data>
   <data name="Tasks.CountsAs" xml:space="preserve"><value>تُحتسب</value></data>
+  <data name="Tasks.CreateATaskSetItsDeadline" xml:space="preserve"><value>أنشئ مهمة وحدد موعدها النهائي وطريقة تقييمها.</value></data>
   <data name="Tasks.CreateNewTask" xml:space="preserve"><value>+ إنشاء مهمة جديدة</value></data>
+  <data name="Tasks.CreateNewTask2" xml:space="preserve"><value>إنشاء مهمة جديدة</value></data>
   <data name="Tasks.CreateTask" xml:space="preserve"><value>إنشاء مهمة</value></data>
+  <data name="Tasks.CreateTask2" xml:space="preserve"><value>إنشاء المهمة</value></data>
+  <data name="Tasks.CreateTasksReviewSubmissionsAndTrack" xml:space="preserve"><value>أنشئ المهام، وراجع التسليمات، وتابع تقدم المتدربين.</value></data>
+  <data name="Tasks.CriteriaAndInstructions" xml:space="preserve"><value>المعايير والتعليمات *</value></data>
+  <data name="Tasks.CriteriaAndInstructions2" xml:space="preserve"><value>المعايير والتعليمات</value></data>
   <data name="Tasks.Criterion" xml:space="preserve"><value>المعيار</value></data>
+  <data name="Tasks.CriterionAddedSuccessfully" xml:space="preserve"><value>تمت إضافة المعيار بنجاح.</value></data>
   <data name="Tasks.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
   <data name="Tasks.Deadline2" xml:space="preserve"><value>الموعد النهائي *</value></data>
+  <data name="Tasks.Deadline3" xml:space="preserve"><value>الموعد النهائي</value></data>
+  <data name="Tasks.DeadlineTime" xml:space="preserve"><value>الموعد النهائي ووقته *</value></data>
+  <data name="Tasks.DefineHowTheTaskWillBe" xml:space="preserve"><value>حدد كيفية تقييم المهمة.</value></data>
+  <data name="Tasks.DescribeWhatTheTraineeNeedsTo" xml:space="preserve"><value>صف ما ينبغي للمتدرب إنجازه...</value></data>
   <data name="Tasks.Description" xml:space="preserve"><value>الوصف</value></data>
+  <data name="Tasks.Description2" xml:space="preserve"><value>الوصف</value></data>
+  <data name="Tasks.Done" xml:space="preserve"><value>تم</value></data>
+  <data name="Tasks.DueDate" xml:space="preserve"><value>الموعد النهائي</value></data>
   <data name="Tasks.EGBuildTheLoginPage" xml:space="preserve"><value>مثال: بناء صفحة تسجيل الدخول</value></data>
   <data name="Tasks.EGCleanReadableAndCommented" xml:space="preserve"><value>مثال: شيفرة نظيفة ومقروءة وموثّقة بالتعليقات</value></data>
   <data name="Tasks.EGCodeQuality" xml:space="preserve"><value>مثال: جودة الشيفرة</value></data>
+  <data name="Tasks.EnterACriterionWeightGreaterThan" xml:space="preserve"><value>أدخل وزنًا للمعيار أكبر من الصفر ولا يتجاوز 100.</value></data>
+  <data name="Tasks.EnterAStartDateAndTime" xml:space="preserve"><value>أدخل تاريخ بدء ووقتًا في المستقبل.</value></data>
+  <data name="Tasks.EnterATotalScoreGreaterThan" xml:space="preserve"><value>أدخل مجموع علامات أكبر من الصفر.</value></data>
+  <data name="Tasks.EnterAValidCriterionMaximumScore" xml:space="preserve"><value>أدخل علامة قصوى صالحة للمعيار.</value></data>
+  <data name="Tasks.EnterTaskTitle" xml:space="preserve"><value>أدخل عنوان المهمة</value></data>
+  <data name="Tasks.EnterTheMainDetailsForThis" xml:space="preserve"><value>أدخل التفاصيل الأساسية لهذه المهمة التدريبية.</value></data>
+  <data name="Tasks.EnterTheTitleDescriptionAndCriteria" xml:space="preserve"><value>أدخل العنوان والوصف والمعايير والتعليمات.</value></data>
+  <data name="Tasks.EvaluateSubmissionsUsingTheUniversityCriteria" xml:space="preserve"><value>قيّم التسليمات وفق معايير الجامعة، وقدّم ملاحظات بنّاءة، واطلب التعديلات عند الحاجة.</value></data>
+  <data name="Tasks.Evaluation" xml:space="preserve"><value>التقييم</value></data>
+  <data name="Tasks.EvaluationCriteria" xml:space="preserve"><value>معايير التقييم</value></data>
+  <data name="Tasks.EvaluationsCompleted" xml:space="preserve"><value>التقييمات المكتملة</value></data>
+  <data name="Tasks.FeedbackSent" xml:space="preserve"><value>تم إرسال الملاحظات</value></data>
   <data name="Tasks.FieldsMarkedAreRequired" xml:space="preserve"><value>الحقول المميّزة بـ * مطلوبة.</value></data>
+  <data name="Tasks.FilterByDepartment" xml:space="preserve"><value>تصفية حسب القسم</value></data>
+  <data name="Tasks.FilterByTaskStatus" xml:space="preserve"><value>تصفية حسب حالة المهمة</value></data>
   <data name="Tasks.HowMuchDoesThisTaskCount" xml:space="preserve"><value>ما وزن هذه المهمة؟</value></data>
   <data name="Tasks.HowWillYouGradeIt" xml:space="preserve"><value>كيف ستقيّمها؟</value></data>
   <data name="Tasks.ImportantCountsTwice" xml:space="preserve"><value>مهمة - تُحتسب مرتين</value></data>
@@ -412,41 +623,92 @@
   <data name="Tasks.Instructions" xml:space="preserve"><value>التعليمات</value></data>
   <data name="Tasks.MajorCountsThreeTimes" xml:space="preserve"><value>رئيسية - تُحتسب ثلاث مرات</value></data>
   <data name="Tasks.MajorX3" xml:space="preserve"><value>رئيسية (×3)</value></data>
+  <data name="Tasks.ManageReviewTasks" xml:space="preserve"><value>إدارة المهام ومراجعتها</value></data>
   <data name="Tasks.ManageTasks" xml:space="preserve"><value>إدارة المهام</value></data>
+  <data name="Tasks.NextPage" xml:space="preserve"><value>الصفحة التالية</value></data>
   <data name="Tasks.NoCriteriaYetAddAtLeast" xml:space="preserve"><value>لا توجد معايير بعد. أضف معيارًا واحدًا على الأقل أعلاه.</value></data>
   <data name="Tasks.NoTasksCreatedYet" xml:space="preserve"><value>لم تُنشأ أي مهام بعد.</value></data>
+  <data name="Tasks.NoTasksMatchYourSearchOr" xml:space="preserve"><value>لا توجد مهام تطابق البحث أو عوامل التصفية.</value></data>
+  <data name="Tasks.NoTasksYetCreateYourFirst" xml:space="preserve"><value>لا توجد مهام بعد. أنشئ مهمتك الأولى للبدء.</value></data>
   <data name="Tasks.NormalCountsOnce" xml:space="preserve"><value>عادية - تُحتسب مرة واحدة</value></data>
   <data name="Tasks.NormalX1" xml:space="preserve"><value>عادية (×1)</value></data>
+  <data name="Tasks.NotEvaluated" xml:space="preserve"><value>لم يُقيّم</value></data>
+  <data name="Tasks.NotSet" xml:space="preserve"><value>غير محددة</value></data>
+  <data name="Tasks.NotSubmitted" xml:space="preserve"><value>لم تُسلَّم</value></data>
   <data name="Tasks.NotSureWhereToStart" xml:space="preserve"><value>لست متأكدًا من أين تبدأ؟</value></data>
   <data name="Tasks.Note" xml:space="preserve"><value>ملاحظة</value></data>
+  <data name="Tasks.OverdueTasks" xml:space="preserve"><value>المهام المتأخرة</value></data>
+  <data name="Tasks.PDFOrWordDocumentUpTo" xml:space="preserve"><value>ملف PDF أو Word بحجم لا يتجاوز 10 ميغابايت. يمكن للمتدرب تنزيله من تفاصيل المهمة.</value></data>
+  <data name="Tasks.PastTheirDueDate" xml:space="preserve"><value>تجاوزت موعدها النهائي</value></data>
+  <data name="Tasks.PendingReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
   <data name="Tasks.PleaseChooseADeadline" xml:space="preserve"><value>يُرجى اختيار موعد نهائي.</value></data>
   <data name="Tasks.PleaseChooseATrainee" xml:space="preserve"><value>يُرجى اختيار متدرّب.</value></data>
+  <data name="Tasks.PleaseEnterACriterionName" xml:space="preserve"><value>يرجى إدخال اسم المعيار.</value></data>
   <data name="Tasks.PleaseEnterATaskTitle" xml:space="preserve"><value>يُرجى إدخال عنوان المهمة.</value></data>
+  <data name="Tasks.PleaseSelectATrainee" xml:space="preserve"><value>يرجى اختيار متدرب.</value></data>
   <data name="Tasks.Points" xml:space="preserve"><value>النقاط</value></data>
   <data name="Tasks.PointsMustBeAWholeNumberFrom" xml:space="preserve"><value>يجب أن تكون النقاط عددًا صحيحًا من {0} إلى {1}.</value></data>
+  <data name="Tasks.PreviousPage" xml:space="preserve"><value>الصفحة السابقة</value></data>
   <data name="Tasks.Remove" xml:space="preserve"><value>إزالة</value></data>
+  <data name="Tasks.RequiredFields" xml:space="preserve"><value>* حقول مطلوبة</value></data>
+  <data name="Tasks.Review" xml:space="preserve"><value>مراجعة</value></data>
+  <data name="Tasks.ReviewReminder" xml:space="preserve"><value>ⓘ تذكير بالمراجعة</value></data>
+  <data name="Tasks.Reviewed" xml:space="preserve"><value>تمت مراجعتها</value></data>
   <data name="Tasks.RevisionRequested" xml:space="preserve"><value>مطلوب تعديلها</value></data>
+  <data name="Tasks.SearchTasksOrTrainees" xml:space="preserve"><value>ابحث عن المهام أو المتدربين</value></data>
   <data name="Tasks.SelectATrainee" xml:space="preserve"><value>اختر متدرّبًا</value></data>
+  <data name="Tasks.SelectATrainee2" xml:space="preserve"><value>اختر متدرّبًا</value></data>
+  <data name="Tasks.SelectTrainee" xml:space="preserve"><value>اختر المتدرب</value></data>
   <data name="Tasks.ShareOfTask" xml:space="preserve"><value>النسبة من المهمة</value></data>
   <data name="Tasks.ShortNoteForTheTraineeOptional" xml:space="preserve"><value>ملاحظة قصيرة للمتدرّب (اختيارية)</value></data>
+  <data name="Tasks.ShowAllCompanyTasks" xml:space="preserve"><value>عرض جميع مهام الشركة</value></data>
+  <data name="Tasks.Showing0Tasks" xml:space="preserve"><value>عرض 0 مهمة</value></data>
+  <data name="Tasks.ShowingAllTasksFor" xml:space="preserve"><value>عرض جميع المهام الخاصة بـ</value></data>
+  <data name="Tasks.StartDateAndTime" xml:space="preserve"><value>تاريخ البدء ووقته</value></data>
+  <data name="Tasks.StartDateTime" xml:space="preserve"><value>تاريخ البدء ووقته *</value></data>
   <data name="Tasks.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Tasks.Status2" xml:space="preserve"><value>الحالة</value></data>
   <data name="Tasks.StepsLinksAndWhatTheTrainee" xml:space="preserve"><value>الخطوات والروابط وما يجب أن يسلّمه المتدرّب.</value></data>
+  <data name="Tasks.Submission" xml:space="preserve"><value>التسليم</value></data>
+  <data name="Tasks.SubmissionStatus" xml:space="preserve"><value>حالة التسليم</value></data>
   <data name="Tasks.Task" xml:space="preserve"><value>المهمة</value></data>
+  <data name="Tasks.TaskAttachment" xml:space="preserve"><value>مرفق المهمة</value></data>
+  <data name="Tasks.TaskAttachmentOptional" xml:space="preserve"><value>مرفق المهمة (اختياري)</value></data>
+  <data name="Tasks.TaskCreated" xml:space="preserve"><value>تم إنشاء المهمة</value></data>
+  <data name="Tasks.TaskCreatedSuccessfully" xml:space="preserve"><value>تم إنشاء المهمة بنجاح.</value></data>
+  <data name="Tasks.TaskDescription" xml:space="preserve"><value>وصف المهمة *</value></data>
   <data name="Tasks.TaskDetails" xml:space="preserve"><value>تفاصيل المهمة</value></data>
+  <data name="Tasks.TaskDirectory" xml:space="preserve"><value>قائمة المهام</value></data>
+  <data name="Tasks.TaskInformation" xml:space="preserve"><value>معلومات المهمة</value></data>
+  <data name="Tasks.TaskPages" xml:space="preserve"><value>صفحات المهام</value></data>
+  <data name="Tasks.TaskStatus" xml:space="preserve"><value>حالة المهمة</value></data>
+  <data name="Tasks.TaskSummary" xml:space="preserve"><value>ملخص المهام</value></data>
   <data name="Tasks.TaskTitle" xml:space="preserve"><value>عنوان المهمة *</value></data>
+  <data name="Tasks.TaskTitle2" xml:space="preserve"><value>عنوان المهمة *</value></data>
   <data name="Tasks.TaskTotal" xml:space="preserve"><value>مجموع المهمة</value></data>
+  <data name="Tasks.TaskTrainee" xml:space="preserve"><value>المهمة / المتدرب</value></data>
+  <data name="Tasks.Tasks" xml:space="preserve"><value>مهام</value></data>
+  <data name="Tasks.TheDeadlineMustBeAfterThe" xml:space="preserve"><value>يجب أن يكون الموعد النهائي بعد تاريخ البدء ووقته.</value></data>
   <data name="Tasks.TheDeadlineMustBeInThe" xml:space="preserve"><value>يجب أن يكون الموعد النهائي في المستقبل.</value></data>
+  <data name="Tasks.TheFileCouldNotBeUploaded" xml:space="preserve"><value>تعذر رفع الملف إلى Firebase Storage. تحقق من حاوية التخزين وقواعدها.</value></data>
   <data name="Tasks.TheTaskCouldNotBeSaved" xml:space="preserve"><value>تعذّر حفظ المهمة. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="Tasks.TheTaskWasSuccessfullyAssignedTo" xml:space="preserve"><value>تم إسناد المهمة إلى المتدرب بنجاح.</value></data>
+  <data name="Tasks.TheTotalCriteriaWeightCannotExceed" xml:space="preserve"><value>يجب ألا يتجاوز مجموع أوزان المعايير 100%.</value></data>
+  <data name="Tasks.ThereAreNoTraineesAvailableFor" xml:space="preserve"><value>لا يوجد متدربون متاحون لهذه المهمة.</value></data>
   <data name="Tasks.TotalPoints" xml:space="preserve"><value>مجموع النقاط</value></data>
+  <data name="Tasks.TotalScore" xml:space="preserve"><value>مجموع العلامات *</value></data>
+  <data name="Tasks.TotalScore2" xml:space="preserve"><value>الدرجة الكلية</value></data>
   <data name="Tasks.Trainee" xml:space="preserve"><value>متدرّب</value></data>
   <data name="Tasks.TwoStepsDescribeTheTaskThen" xml:space="preserve"><value>خطوتان: صِف المهمة، ثم حدّد ما ستقيّمه.</value></data>
   <data name="Tasks.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
   <data name="Tasks.UseASimpleStarterSetQuality" xml:space="preserve"><value>استخدم مجموعة بداية بسيطة (الجودة 10، الاكتمال 5، الالتزام بالموعد 5)</value></data>
   <data name="Tasks.ViewAndManageTasksAssignedTo" xml:space="preserve"><value>اعرض المهام المسندة إلى متدرّبيك وأدِرها.</value></data>
+  <data name="Tasks.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
   <data name="Tasks.WhatIsTheTaskAbout" xml:space="preserve"><value>ما موضوع المهمة؟</value></data>
   <data name="Tasks.WhatWillYouCheck" xml:space="preserve"><value>ما الذي ستقيّمه؟</value></data>
   <data name="Tasks.WriteWhatYouWillCheckFor" xml:space="preserve"><value>اكتب ما ستقيّمه، مثل «جودة الشيفرة».</value></data>
   <data name="Tasks.YourSessionExpiredPleaseReloadThe" xml:space="preserve"><value>انتهت جلستك. يُرجى إعادة تحميل الصفحة والمحاولة مرة أخرى.</value></data>
+  <data name="Tasks.YourSessionExpiredReloadThePage" xml:space="preserve"><value>انتهت جلستك. أعد تحميل الصفحة وأضف المعايير مجددًا.</value></data>
   <data name="TraineeDetails.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
   <data name="TraineeDetails.AccessDeniedThisTraineeBelongsTo" xml:space="preserve"><value>الوصول مرفوض، فهذا المتدرّب تابع لشركة أخرى.</value></data>
   <data name="TraineeDetails.Action" xml:space="preserve"><value>الإجراء</value></data>
@@ -545,32 +807,4 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل الفرصة.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>أسابيع</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>حسابك غير مرتبط بأي شركة.</value></data>
-  <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>أكّد الطالب قبول هذا العرض.</value></data>
-  <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>تم تقديم عرض تدريب للطالب، وما زال عليه تأكيد قبوله.</value></data>
-  <data name="Applications.ReviewDeskIntro" xml:space="preserve"><value>راجع ملفات المتقدمين واتخذ قرارك. تظهر الطلبات التي تنتظر المراجعة أولًا.</value></data>
-  <data name="Applications.SearchPlaceholder" xml:space="preserve"><value>ابحث باسم الطالب أو فرصة التدريب</value></data>
-  <data name="Applications.FilterByStatus" xml:space="preserve"><value>تصفية الطلبات حسب الحالة</value></data>
-  <data name="Applications.AllApplications" xml:space="preserve"><value>الكل</value></data>
-  <data name="Applications.ShowingApplications" xml:space="preserve"><value>عرض {0} من أصل {1} طلبات</value></data>
-  <data name="Applications.NoMatchingApplications" xml:space="preserve"><value>لا توجد طلبات تطابق البحث والفلاتر المحددة.</value></data>
-  <data name="Applications.ClearFilters" xml:space="preserve"><value>مسح البحث والفلاتر</value></data>
-  <data name="Applications.ReviewApplication" xml:space="preserve"><value>مراجعة الطلب</value></data>
-  <data name="Applications.ViewApplication" xml:space="preserve"><value>عرض الطلب</value></data>
-  <data name="Applications.DraftWarning" xml:space="preserve"><value>لم يتم إرسال سبب الرفض بعد. هل تريد المتابعة؟ سيبقى النص محفوظًا داخل هذه الصفحة.</value></data>
-  <data name="Applications.ApplicationPosition" xml:space="preserve"><value>{0} من {1}</value></data>
-  <data name="Applications.PreviewCv" xml:space="preserve"><value>معاينة السيرة الذاتية</value></data>
-  <data name="Applications.HideCvPreview" xml:space="preserve"><value>إخفاء معاينة السيرة</value></data>
-  <data name="Applications.DownloadCv" xml:space="preserve"><value>تنزيل السيرة الذاتية</value></data>
-  <data name="Applications.PdfPreviewHelp" xml:space="preserve"><value>إذا لم يظهر ملف PDF، استخدم فتح السيرة الذاتية أو تنزيلها.</value></data>
-  <data name="Applications.CvPreviewFor" xml:space="preserve"><value>معاينة السيرة الذاتية لـ {0}</value></data>
-  <data name="Applications.ExternalCvHelp" xml:space="preserve"><value>السيرة الذاتية رابط خارجي. استخدم فتح السيرة الذاتية لعرضها في تبويب جديد.</value></data>
-  <data name="Applications.CloseApplication" xml:space="preserve"><value>إغلاق تفاصيل الطلب</value></data>
-  <data name="Applications.ApplicationNavigation" xml:space="preserve"><value>التنقل بين الطلبات المصفّاة</value></data>
-  <data name="Applications.PreviousApplication" xml:space="preserve"><value>السابق</value></data>
-  <data name="Applications.NextApplication" xml:space="preserve"><value>التالي</value></data>
-  <data name="Applications.SelectApplication" xml:space="preserve"><value>اختر طلبًا للمراجعة</value></data>
-  <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>اختر طالبًا من القائمة لمراجعة بياناته ومستنداته وطلبه.</value></data>
-  <data name="Applications.PlacementConfirmed" xml:space="preserve"><value>أكّد الطالب التدريب</value></data>
-  <data name="Applications.AwaitingStudentConfirmation" xml:space="preserve"><value>بانتظار تأكيد الطالب</value></data>
-  <data name="ApplicantDocument.ExternalPreviewUnavailable" xml:space="preserve"><value>هذا المستند رابط خارجي. ارجع إلى الطلب واستخدم فتح السيرة الذاتية أو الملف المهني.</value></data>
 </root>

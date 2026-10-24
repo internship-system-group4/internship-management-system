@@ -11,11 +11,11 @@
         .search-container { background: #fff; padding: 1.25rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border: 1px solid var(--th-line-e3e8ee, #e3e8ee); margin-bottom: 1.5rem; }
         .search-input-group { max-width: 600px; }
         .search-input-group .form-control { border-radius: 8px; padding-top: 0.6rem; padding-bottom: 0.6rem; font-size: 0.9rem; }
-        .search-input-group .input-group-text { background: transparent; border-right: none; border-radius: 8px 0 0 8px; color: #6c757d; }
-        .search-input-group .form-control { border-left: none; }
-        .search-input-group .form-control:focus { box-shadow: none; border-color: #dee2e6; }
+        .search-input-group .input-group-text { background: transparent; border-inline-end: none; border-radius: 8px 0 0 8px; color: var(--th-fg-6c757d,#6c757d); }
+        .search-input-group .form-control { border-inline-start: none; }
+        .search-input-group .form-control:focus { box-shadow: none; border-color: var(--th-line-dee2e6,#dee2e6); }
 
-        .metric-card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--th-bg-0f4c81,#0f4c81) !important; transition: transform 0.2s; }
+        .metric-card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-inline-start: 4px solid var(--th-bg-0f4c81,#0f4c81) !important; transition: transform 0.2s; }
         .metric-card:hover { transform: translateY(-3px); }
         .metric-card .title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--ui-muted); letter-spacing: 0.5px; margin-bottom: 0.5rem; }
         .metric-card .value { font-size: 1.5rem; font-weight: 800; color: var(--th-fg-1d2733,#1d2733); margin-bottom: 0.2rem; }
@@ -63,7 +63,7 @@
         <div class="search-container">
             <div class="input-group search-input-group">
                 <span class="input-group-text"><i class="bi bi-search"></i></span>
-                <input type="text" class="form-control" placeholder="Search by student name, opportunity, or task" onkeyup="filterDashboard(this)" />
+                <input type="text" class="form-control" placeholder="<%: L.T("Company.Dashboard.SearchByStudentNameOpportunityOr") %>" onkeyup="filterDashboard(this)" />
             </div>
         </div>
 
@@ -110,7 +110,7 @@
                     </div>
                     <div class="card-body px-4 pt-3 pb-4">
                         <div class="table-responsive">
-                            <asp:GridView ID="gvRecentApplications" runat="server" CssClass="table table-hover align-middle border-top mb-0" AutoGenerateColumns="False" EmptyDataText="<p class='text-muted small my-3 text-center'>No new applications to review.</p>" GridLines="None">
+                            <asp:GridView ID="gvRecentApplications" runat="server" CssClass="table table-hover align-middle border-top mb-0" AutoGenerateColumns="False" EmptyDataText="<%$ Resources:Company, Dashboard.PClassTextMutedSmallMy %>" GridLines="None">
                                 <Columns>
                                     <asp:TemplateField HeaderText="<%$ Resources:Company, Dashboard.Candidate %>">
                                         <ItemTemplate>
@@ -160,7 +160,7 @@
                                     <div class="text-end pe-2">
                                         <div class="fw-bold text-dark" style="font-size: 0.85rem;"><%: row.HoursText %></div>
                                         <% if (row.HoursText != null && row.HoursText.Contains("160 / 160")) { %>
-                                            <span class="badge bg-success bg-opacity-10 text-success rounded-pill mt-1" style="font-size: 0.7rem;">Completed</span>
+                                            <span class="badge bg-success bg-opacity-10 text-success rounded-pill mt-1" style="font-size: 0.7rem;"><%: L.T("Company.Dashboard.Completed") %></span>
                                         <% } else { %>
                                             <div class="text-warning fw-semibold" style="font-size: 0.7rem;"><%: row.PendingHours %> <%: L.T("Company.Dashboard.HPending") %></div>
                                         <% } %>
@@ -184,7 +184,7 @@
             <div class="col-lg-4">
                 <div class="card card-custom bg-light border border-light shadow-sm">
                     <div class="card-body p-4">
-                        <h6 class="fw-bold mb-3 pb-2 border-bottom" style="color: var(--th-fg-0f4c81,#0f4c81);"><i class="bi bi-list-check me-2"></i>Company Review Workflow</h6>
+                        <h6 class="fw-bold mb-3 pb-2 border-bottom" style="color: var(--th-fg-0f4c81,#0f4c81);"><i class="bi bi-list-check me-2"></i><%: L.T("Company.Dashboard.CompanyReviewWorkflow") %></h6>
                         
                         <a href="TaskReview.aspx" class="workflow-link shadow-sm searchable-item">
                             <div class="d-flex align-items-center gap-3">

@@ -93,6 +93,7 @@
   <data name="About.WhatMakesGJUDistinctive" xml:space="preserve"><value>ما الذي يميّز الجامعة</value></data>
   <data name="About.WhereLearningMeetsExperience" xml:space="preserve"><value>حيث يلتقي التعلّم بالخبرة</value></data>
   <data name="About.YourBrowserCannotPlayThisVideo" xml:space="preserve"><value>لا يستطيع متصفحك تشغيل هذا الفيديو هنا.</value></data>
+  <data name="About.YourBrowserDoesNotSupportThe" xml:space="preserve"><value>متصفحك لا يدعم تشغيل الفيديو.</value></data>
   <data name="AccessDenied.DifferentAccess" xml:space="preserve"><value>صلاحية مختلفة.</value></data>
   <data name="AccessDenied.GetHelpWithAccess" xml:space="preserve"><value>احصل على مساعدة في الوصول</value></data>
   <data name="AccessDenied.GoToLogin" xml:space="preserve"><value>الانتقال إلى تسجيل الدخول</value></data>
@@ -151,6 +152,165 @@
   <data name="Contact.YourNameNeedsAtLeast2" xml:space="preserve"><value>يجب أن يتكوّن الاسم من حرفين على الأقل.</value></data>
   <data name="Contact.YourSubjectNeeds5To150" xml:space="preserve"><value>يجب أن يتكوّن الموضوع من 5 إلى 150 حرفًا.</value></data>
   <data name="Contact.YourSubjectNeedsAtLeast5" xml:space="preserve"><value>يجب أن يتكوّن الموضوع من 5 أحرف على الأقل.</value></data>
+  <data name="Home.AccessNote" xml:space="preserve"><value>التصفّح متاح للجميع. سجّل الدخول كطالب لعرض التفاصيل الكاملة أو التقديم.</value></data>
+  <data name="Home.Apply" xml:space="preserve"><value>التقديم لهذه الفرصة</value></data>
+  <data name="Home.AvailableSeats" xml:space="preserve"><value>المقاعد المتاحة</value></data>
+  <data name="Home.BannerIntro" xml:space="preserve"><value>استكشف أمثلة لمسارات التدريب. سجّل الدخول لاكتشاف الفرص الحالية والتقديم من خلال بوابة الطالب.</value></data>
+  <data name="Home.BrowseAll" xml:space="preserve"><value>تصفّح جميع الفرص</value></data>
+  <data name="Home.BrowseSummaries" xml:space="preserve"><value>استكشف أمثلة فرص التدريب</value></data>
+  <data name="Home.CardMotionHint" xml:space="preserve"><value>ضع المؤشر على بطاقة لإيقاف الحركة وإلقاء نظرة أقرب.</value></data>
+  <data name="Home.Deadline" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
+  <data name="Home.Demo1Company" xml:space="preserve"><value>فريق برمجيات افتراضي</value></data>
+  <data name="Home.Demo1Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
+  <data name="Home.Demo1Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
+  <data name="Home.Demo1Summary" xml:space="preserve"><value>طوّر خدمات الويب واختبر ميزات جديدة، وتعرّف على طريقة عمل فرق البرمجيات.</value></data>
+  <data name="Home.Demo1Title" xml:space="preserve"><value>متدرب هندسة برمجيات</value></data>
+  <data name="Home.Demo2Company" xml:space="preserve"><value>استوديو رقمي افتراضي</value></data>
+  <data name="Home.Demo2Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
+  <data name="Home.Demo2Location" xml:space="preserve"><value>عمل هجين، الأردن</value></data>
+  <data name="Home.Demo2Summary" xml:space="preserve"><value>صمّم واجهات ميسّرة وحوّل الأفكار إلى تجارب رقمية سهلة الاستخدام.</value></data>
+  <data name="Home.Demo2Title" xml:space="preserve"><value>متدرب تطوير واجهات</value></data>
+  <data name="Home.Demo3Company" xml:space="preserve"><value>فريق تحليلات افتراضي</value></data>
+  <data name="Home.Demo3Field" xml:space="preserve"><value>علوم الحاسوب</value></data>
+  <data name="Home.Demo3Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
+  <data name="Home.Demo3Summary" xml:space="preserve"><value>حوّل البيانات إلى لوحات واضحة ونتائج تساعد الفرق على اتخاذ قرارات أفضل.</value></data>
+  <data name="Home.Demo3Title" xml:space="preserve"><value>متدرب تحليل بيانات</value></data>
+  <data name="Home.Demo4Company" xml:space="preserve"><value>فريق منتجات افتراضي</value></data>
+  <data name="Home.Demo4Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
+  <data name="Home.Demo4Location" xml:space="preserve"><value>عمل هجين، الأردن</value></data>
+  <data name="Home.Demo4Summary" xml:space="preserve"><value>اختبر ميزات المنتجات وأتمت عمليات الفحص، وساهم في تطوير برمجيات موثوقة.</value></data>
+  <data name="Home.Demo4Title" xml:space="preserve"><value>متدرب ضمان الجودة</value></data>
+  <data name="Home.Demo5Company" xml:space="preserve"><value>مختبر أمن افتراضي</value></data>
+  <data name="Home.Demo5Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
+  <data name="Home.Demo5Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
+  <data name="Home.Demo5Summary" xml:space="preserve"><value>استكشف الأنظمة الآمنة وتحليل المخاطر، وتعلّم أساسيات الأمن بشكل عملي.</value></data>
+  <data name="Home.Demo5Title" xml:space="preserve"><value>متدرب الأمن السيبراني</value></data>
+  <data name="Home.Demo6Company" xml:space="preserve"><value>فريق هندسي افتراضي</value></data>
+  <data name="Home.Demo6Field" xml:space="preserve"><value>هندسة الحاسوب</value></data>
+  <data name="Home.Demo6Location" xml:space="preserve"><value>مادبا، الأردن</value></data>
+  <data name="Home.Demo6Summary" xml:space="preserve"><value>اربط البرمجة بالأجهزة عبر الحساسات والمتحكمات الدقيقة والتجارب العملية.</value></data>
+  <data name="Home.Demo6Title" xml:space="preserve"><value>متدرب الأنظمة المدمجة</value></data>
+  <data name="Home.DemoLabel" xml:space="preserve"><value>أمثلة توضيحية</value></data>
+  <data name="Home.DemoNote" xml:space="preserve"><value>تعرض هذه البطاقات مسارات تدريب محتملة، وليست شواغر حالية.</value></data>
+  <data name="Home.Faq1Answer" xml:space="preserve"><value>البطاقات في هذه الصفحة أمثلة توضيحية لفرص التدريب. اضغط مزيد من التفاصيل لتسجيل الدخول، ثم استكشف الفرص الحالية وتفاصيلها والتقديم داخل بوابة الطالب.</value></data>
+  <data name="Home.Faq1Question" xml:space="preserve"><value>هل يمكنني استكشاف الفرص قبل تسجيل الدخول؟</value></data>
+  <data name="Home.Faq2Answer" xml:space="preserve"><value>يمكن للطلبة المؤهلين الذين لديهم حساب تدريب جامعي فعّال التقديم. يتولى منسق الجامعة إدارة الحسابات وتوزيع الإشراف. تواصل مع الجامعة إذا كنت بحاجة إلى صلاحية الدخول.</value></data>
+  <data name="Home.Faq2Question" xml:space="preserve"><value>من يمكنه التقديم، وكيف أحصل على حساب؟</value></data>
+  <data name="Home.Faq3Answer" xml:space="preserve"><value>تتحقق بوابة الطالب من متطلبات الكلية والتخصص والمقاعد المتبقية والموعد النهائي وحالة الفرصة. الملخص العام معاينة أولية، ولا يضمن الأهلية أو استمرار التوافر.</value></data>
+  <data name="Home.Faq3Question" xml:space="preserve"><value>لماذا قد لا تكون الفرصة متاحة لي؟</value></data>
+  <data name="Home.Faq4Answer" xml:space="preserve"><value>راجع العرض في صفحة طلباتي وأكّد عرضًا مقبولًا واحدًا لتثبيت جهة تدريبك. قبول الشركة وحده لا يثبّت جهة التدريب.</value></data>
+  <data name="Home.Faq4Question" xml:space="preserve"><value>ماذا يحدث بعد قبول الشركة لطلبي؟</value></data>
+  <data name="Home.Faq5Answer" xml:space="preserve"><value>توصلك مساحة عملك إلى مهام التدريب والتسليمات والملاحظات والاجتماعات والساعات. لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك.</value></data>
+  <data name="Home.Faq5Question" xml:space="preserve"><value>كيف أتابع تدريبي والملاحظات عليه؟</value></data>
+  <data name="Home.Faq6Answer" xml:space="preserve"><value>بلوغ هدف الساعات جزء من متطلبات الإنهاء. يجب أيضًا إكمال أعمال التدريب وتقييمات المشرفين، ثم الحصول على اعتماد المنسق. تُتاح النتائج والتقارير وفق مسار اعتماد الإنهاء.</value></data>
+  <data name="Home.Faq6Question" xml:space="preserve"><value>متى يُعدّ تدريبي مكتملًا؟</value></data>
+  <data name="Home.FaqIntro" xml:space="preserve"><value>من طلبك الأول إلى المراجعة النهائية، تعرّف على ما ينتظرك خلال رحلة التدريب.</value></data>
+  <data name="Home.FaqTitle" xml:space="preserve"><value>الأسئلة الشائعة</value></data>
+  <data name="Home.FindCurrent" xml:space="preserve"><value>اكتشف الفرص الحالية</value></data>
+  <data name="Home.Location" xml:space="preserve"><value>الموقع</value></data>
+  <data name="Home.MoreDetails" xml:space="preserve"><value>مزيد من التفاصيل</value></data>
+  <data name="Home.MoreQuestions" xml:space="preserve"><value>لديك سؤال آخر؟ تواصل معنا</value></data>
+  <data name="Home.NoDeadline" xml:space="preserve"><value>لم يُحدّد موعد نهائي</value></data>
+  <data name="Home.NoPreviewsText" xml:space="preserve"><value>لا تتوفر ملخصات منشورة حاليًا. عُد لاحقًا أو سجّل الدخول لاستكشاف بوابة الطالب.</value></data>
+  <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>ستظهر الفرص الجديدة هنا</value></data>
+  <data name="Home.PauseCards" xml:space="preserve"><value>إيقاف حركة البطاقات</value></data>
+  <data name="Home.PreviewIntro" xml:space="preserve"><value>تعرّف على تجارب قد تخوضها في تدريبك. سجّل الدخول للعثور على الفرص الحالية المناسبة لتخصصك.</value></data>
+  <data name="Home.PreviewTitle" xml:space="preserve"><value>اكتشف مسارك القادم.</value></data>
+  <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.</value></data>
+  <data name="Home.ResumeCards" xml:space="preserve"><value>استئناف الحركة</value></data>
+  <data name="Home.Retry" xml:space="preserve"><value>المحاولة مجددًا</value></data>
+  <data name="Home.SignInApply" xml:space="preserve"><value>سجّل الدخول للتقديم</value></data>
+  <data name="Home.SignInBrowse" xml:space="preserve"><value>سجّل الدخول لتصفّح الكل</value></data>
+  <data name="Home.SignInDetails" xml:space="preserve"><value>سجّل الدخول لعرض التفاصيل</value></data>
+  <data name="Home.Specialization" xml:space="preserve"><value>التخصص</value></data>
+  <data name="Home.StudentOnly" xml:space="preserve"><value>التفاصيل الكاملة والتقديم متاحان لحسابات الطلبة المؤهلين.</value></data>
+  <data name="Home.UnavailableTitle" xml:space="preserve"><value>الملخصات غير متاحة مؤقتًا</value></data>
+  <data name="Home.VideoScrollHint" xml:space="preserve"><value>مرّر للأسفل لتكبير الفيديو، وللأعلى للعودة إلى حجمه الأصلي.</value></data>
+  <data name="Home.ViewDetails" xml:space="preserve"><value>عرض التفاصيل الكاملة</value></data>
+  <data name="Journey.ABridgeNotABorder" xml:space="preserve"><value>جسر يجمع، لا حدود تفصل.</value></data>
+  <data name="Journey.AShortGuideToTheInternship" xml:space="preserve"><value>دليل مختصر لمسار التدريب. اسأل منسقك عن المتطلبات الخاصة بكليتك.</value></data>
+  <data name="Journey.AcademicDirectory" xml:space="preserve"><value>دليل الكليات</value></data>
+  <data name="Journey.AerialViewOfTheGermanJordanian" xml:space="preserve"><value>منظر جوي لحرم الجامعة الألمانية الأردنية في مادبا</value></data>
+  <data name="Journey.ApplyAndConfirm" xml:space="preserve"><value>قدّم وأكّد اختيارك</value></data>
+  <data name="Journey.ApplyFollowTheCompanyDecisionAnd" xml:space="preserve"><value>قدّم طلبك، وتابع قرار الشركة، وأكِّد عرضًا مقبولًا واحدًا.</value></data>
+  <data name="Journey.ApplyNow" xml:space="preserve"><value>قدّم الآن</value></data>
+  <data name="Journey.Bridge" xml:space="preserve"><value>الجسر</value></data>
+  <data name="Journey.Campus" xml:space="preserve"><value>الحرم</value></data>
+  <data name="Journey.Companies" xml:space="preserve"><value>الشركات</value></data>
+  <data name="Journey.CompleteTasksSubmitWorkAndLearn" xml:space="preserve"><value>أنجز المهام، وسلّم أعمالك، واستفد من ملاحظات مشرفيك.</value></data>
+  <data name="Journey.CompleteYourReview" xml:space="preserve"><value>أتمّ مراجعتك</value></data>
+  <data name="Journey.Dawn" xml:space="preserve"><value>الفجر</value></data>
+  <data name="Journey.DesigningTheSpacesWeLiveIn" xml:space="preserve"><value>نصمم المساحات التي نعيش فيها.</value></data>
+  <data name="Journey.EightSchoolsOneUniversity" xml:space="preserve"><value>ثماني كليات. جامعة واحدة.</value></data>
+  <data name="Journey.EngineeringASustainableTomorrow" xml:space="preserve"><value>نبني بالغد هندسةً مستدامة.</value></data>
+  <data name="Journey.EveryAutumnWhiteStorksFromGermany" xml:space="preserve"><value>في كل خريف، تهاجر طيور اللقلق البيضاء من ألمانيا جنوبًا عبر الأردن. وفي الجامعة الألمانية الأردنية، يمتد التواصل في الاتجاه الآخر أيضًا؛ إذ تتيح السنة الألمانية للطلاب الدراسة في جامعة شريكة والتدرب في القطاع الصناعي الألماني.</value></data>
+  <data name="Journey.EveryGJUInternshipStartsHereOn" xml:space="preserve"><value>يبدأ كل تدريب في الجامعة الألمانية الأردنية من هنا، من حرم بُني ليكون جسرًا بين الأردن وألمانيا.</value></data>
+  <data name="Journey.EveryJourneyStartsWithAWalk" xml:space="preserve"><value>تبدأ كل رحلة بخطوة في الحرم الجامعي.</value></data>
+  <data name="Journey.ExploreApplyLogHours" xml:space="preserve"><value>استكشف وقدّم وسجّل ساعاتك</value></data>
+  <data name="Journey.ExploreOpenInternships" xml:space="preserve"><value>استكشف فرص التدريب المتاحة</value></data>
+  <data name="Journey.ExploreOpportunities" xml:space="preserve"><value>استكشف فرص التدريب</value></data>
+  <data name="Journey.FindInternshipsThatMatchYourSchool" xml:space="preserve"><value>ابحث عن فرص تدريب تناسب كليتك وتخصصك.</value></data>
+  <data name="Journey.FollowEvaluateApprove" xml:space="preserve"><value>تابع وقيّم واعتمد</value></data>
+  <data name="Journey.FromMadabaToTheWorld" xml:space="preserve"><value>من مادبا إلى العالم.</value></data>
+  <data name="Journey.GermanJordanianUniversity" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="Journey.HowItWorks" xml:space="preserve"><value>كيف يعمل النظام</value></data>
+  <data name="Journey.InternshipManagementSystem" xml:space="preserve"><value>نظام إدارة التدريب الميداني</value></data>
+  <data name="Journey.Journey" xml:space="preserve"><value>المسار</value></data>
+  <data name="Journey.JourneyChapters" xml:space="preserve"><value>فصول الرحلة</value></data>
+  <data name="Journey.LearnApplyGrow" xml:space="preserve"><value>تعلّم. طبّق. تطوّر.</value></data>
+  <data name="Journey.Left" xml:space="preserve"><value>متبقية</value></data>
+  <data name="Journey.LogInToYourPortal" xml:space="preserve"><value>سجّل الدخول إلى بوابتك</value></data>
+  <data name="Journey.MoreSchoolsWillFollow" xml:space="preserve"><value>؛ وستُضاف كليات أخرى لاحقًا.</value></data>
+  <data name="Journey.NoInternshipSummariesArePublishedRight" xml:space="preserve"><value>لا توجد ملخصات فرص تدريب منشورة حاليًا. عد لاحقًا أو سجّل الدخول للاطلاع على الفرص في بوابة الطالب.</value></data>
+  <data name="Journey.OnUIMS" xml:space="preserve"><value>متاح في UIMS</value></data>
+  <data name="Journey.OneSystemForTheWholeJourney" xml:space="preserve"><value>نظام واحد للرحلة كاملة.</value></data>
+  <data name="Journey.OnlyPublishedSummariesArePublicFull" xml:space="preserve"><value>تتاح الملخصات المنشورة فقط للزوار. تتطلب التفاصيل الكاملة والتقديم حساب طالب مسجل الدخول؛ وبعد الدخول تعود إلى الفرصة التي اخترتها.</value></data>
+  <data name="Journey.OpenInternships" xml:space="preserve"><value>فرص التدريب المتاحة</value></data>
+  <data name="Journey.OpenTheVideo" xml:space="preserve"><value>فتح الفيديو</value></data>
+  <data name="Journey.PauseSceneMotion" xml:space="preserve"><value>إيقاف حركة المشهد مؤقتًا</value></data>
+  <data name="Journey.PreparingTheDawn" xml:space="preserve"><value>جارٍ استقبال الفجر</value></data>
+  <data name="Journey.ProcessVideo" xml:space="preserve"><value>فيديو الخطوات</value></data>
+  <data name="Journey.ProgrammeNamesFromGjuEduJo" xml:space="preserve"><value>أسماء البرامج من gju.edu.jo. الحرم في المشهد ثلاثي الأبعاد تصور فني، وتُعرض الكليات بحسب تخصصاتها وليس بحسب المباني.</value></data>
+  <data name="Journey.PublishSelectMentor" xml:space="preserve"><value>انشر الفرص واختر ووجّه</value></data>
+  <data name="Journey.ReadyForYourNextChapter" xml:space="preserve"><value>هل أنت مستعد لفصلك التالي؟</value></data>
+  <data name="Journey.SchoolOfArchitectureAndBuiltEnvironment" xml:space="preserve"><value>كلية العمارة والبيئة المبنية</value></data>
+  <data name="Journey.SchoolOfComputing" xml:space="preserve"><value>كلية الحوسبة</value></data>
+  <data name="Journey.SchoolOfSustainableSystemsEngineering" xml:space="preserve"><value>كلية هندسة النظم المستدامة</value></data>
+  <data name="Journey.ScrollToBegin" xml:space="preserve"><value>مرر للبدء</value></data>
+  <data name="Journey.SeeThePathAhead" xml:space="preserve"><value>تعرّف على الطريق أمامك.</value></data>
+  <data name="Journey.Specializations" xml:space="preserve"><value>التخصصات:</value></data>
+  <data name="Journey.Story" xml:space="preserve"><value>الحكاية</value></data>
+  <data name="Journey.Students" xml:space="preserve"><value>الطلبة</value></data>
+  <data name="Journey.SummariesPublishedByOurPartnerCompanies" xml:space="preserve"><value>ملخصات تنشرها شركاتنا الشريكة. تصفح بحرية، ثم سجّل الدخول بحسابك الجامعي للاطلاع على التفاصيل الكاملة والتقديم.</value></data>
+  <data name="Journey.Supervisors" xml:space="preserve"><value>المشرفون</value></data>
+  <data name="Journey.System" xml:space="preserve"><value>حسب النظام</value></data>
+  <data name="Journey.TheGermanJordanianUniversityCourtyardWith" xml:space="preserve"><value>ساحة الجامعة الألمانية الأردنية وناعورتها الخشبية</value></data>
+  <data name="Journey.TheGermanYear" xml:space="preserve"><value>السنة الألمانية</value></data>
+  <data name="Journey.TheOfficialProcessVideoWillPlay" xml:space="preserve"><value>سيُعرض هنا الفيديو الرسمي لمسار التدريب.</value></data>
+  <data name="Journey.TheSchoolsOfGermanJordanianUniversity" xml:space="preserve"><value>كليات الجامعة الألمانية الأردنية. يدعم UIMS حاليًا التدريب في</value></data>
+  <data name="Journey.TheUniversitySInternshipProcessVideo" xml:space="preserve"><value>لم يتم توفير فيديو مسار التدريب الجامعي وترجمته النصية بعد.</value></data>
+  <data name="Journey.TrackApprovedHoursAndEvaluationsThrough" xml:space="preserve"><value>تابع الساعات المعتمدة والتقييمات حتى المراجعة النهائية في الجامعة.</value></data>
+  <data name="Journey.TrainAndGrow" xml:space="preserve"><value>تدرّب وتطوّر</value></data>
+  <data name="Journey.UIMSConnectsStudentsCompaniesAndUniversity" xml:space="preserve"><value>يربط UIMS الطلاب والشركات والمشرفين الجامعيين من أول طلب وحتى التقييم النهائي.</value></data>
+  <data name="Journey.UniversityInternshipProcessVideo" xml:space="preserve"><value>فيديو خطوات التدريب في الجامعة</value></data>
+  <data name="Journey.WhereIdeasBecomeTechnology" xml:space="preserve"><value>حيث تتحول الأفكار إلى تقنية.</value></data>
+  <data name="Journey.WhereWillYourJourneyTakeYou" xml:space="preserve"><value>إلى أين ستأخذك رحلتك؟</value></data>
+  <data name="Journey.YourBrowserDoesNotSupportVideo" xml:space="preserve"><value>لا يدعم متصفحك تشغيل الفيديو.</value></data>
+  <data name="Journey.YourCompanyAndAcademicSupervisorsGuide" xml:space="preserve"><value>يرافق مشرف الشركة والمشرف الأكاديمي تقدمك في كل مرحلة.</value></data>
+  <data name="Journey.YourJourneyBeginsHere" xml:space="preserve"><value>رحلتك تبدأ هنا.</value></data>
+  <data name="NotFound.Back" xml:space="preserve"><value>رجوع</value></data>
+  <data name="NotFound.Code" xml:space="preserve"><value>خطأ 404 — الصفحة غير موجودة</value></data>
+  <data name="NotFound.Contact" xml:space="preserve"><value>تواصل معنا</value></data>
+  <data name="NotFound.Description" xml:space="preserve"><value>لم نتمكن من العثور على الصفحة المطلوبة. ربما تغيّر عنوانها أو كان الرابط غير صحيح.</value></data>
+  <data name="NotFound.Heading" xml:space="preserve"><value>يبدو أنك خرجت عن المسار</value></data>
+  <data name="NotFound.Home" xml:space="preserve"><value>الصفحة الرئيسية</value></data>
+  <data name="Page404.BackToGJU" xml:space="preserve"><value>العودة إلى الجامعة</value></data>
+  <data name="Page404.GERMANJORDANIANUNIVERSITY" xml:space="preserve"><value>الجامعة الألمانية الأردنية</value></data>
+  <data name="Page404.LostOnCampus" xml:space="preserve"><value>تائه في الحرم الجامعي؟</value></data>
+  <data name="Page404.SECURITY" xml:space="preserve"><value>الأمن</value></data>
+  <data name="Page404.ThePageYouReLookingFor" xml:space="preserve"><value>تعذر العثور على الصفحة التي تبحث عنها. لنعد إلى رحلة تدريبك في الجامعة الألمانية الأردنية.</value></data>
+  <data name="Page404.UniversityInternshipManagementSystemGJU" xml:space="preserve"><value>نظام إدارة التدريب الجامعي | الجامعة الألمانية الأردنية</value></data>
+  <data name="Page404.WeLlGuideYouBack" xml:space="preserve"><value>سنرشدك إلى الطريق.</value></data>
   <data name="PoweredBy.CloseProfile" xml:space="preserve"><value>إغلاق الملف التعريفي</value></data>
   <data name="PoweredBy.DevelopmentCreditOnlyNotAStatement" xml:space="preserve"><value>هذا تعريف بفريق التطوير فقط، وليس إعلانًا عن ملكية الجامعة للمشروع أو اعتمادها له. المعلومات الرسمية:</value></data>
   <data name="PoweredBy.EachHasAMarkedSeatIn" xml:space="preserve"><value>ولكلٍّ منهم مقعد محدّد في هذه القاعة.</value></data>
@@ -170,85 +330,4 @@
   <data name="PoweredBy.TheDevelopmentTeam" xml:space="preserve"><value>فريق التطوير</value></data>
   <data name="PoweredBy.TheStudentsOfGroup4Designed" xml:space="preserve"><value>صمّم طلبة المجموعة 4 نظام إدارة التدريب وبنوه.</value></data>
   <data name="PoweredBy.ViewFullHall" xml:space="preserve"><value>عرض القاعة كاملة</value></data>
-  <data name="NotFound.Code" xml:space="preserve"><value>خطأ 404 — الصفحة غير موجودة</value></data>
-  <data name="NotFound.Heading" xml:space="preserve"><value>يبدو أنك خرجت عن المسار</value></data>
-  <data name="NotFound.Description" xml:space="preserve"><value>لم نتمكن من العثور على الصفحة المطلوبة. ربما تغيّر عنوانها أو كان الرابط غير صحيح.</value></data>
-  <data name="NotFound.Home" xml:space="preserve"><value>الصفحة الرئيسية</value></data>
-  <data name="NotFound.Back" xml:space="preserve"><value>رجوع</value></data>
-  <data name="NotFound.Contact" xml:space="preserve"><value>تواصل معنا</value></data>
-  <data name="Home.BannerIntro" xml:space="preserve"><value>استكشف أمثلة لمسارات التدريب. سجّل الدخول لاكتشاف الفرص الحالية والتقديم من خلال بوابة الطالب.</value></data>
-  <data name="Home.BrowseSummaries" xml:space="preserve"><value>استكشف أمثلة فرص التدريب</value></data>
-  <data name="Home.PreviewTitle" xml:space="preserve"><value>اكتشف مسارك القادم.</value></data>
-  <data name="Home.PreviewIntro" xml:space="preserve"><value>تعرّف على تجارب قد تخوضها في تدريبك. سجّل الدخول للعثور على الفرص الحالية المناسبة لتخصصك.</value></data>
-  <data name="Home.AccessNote" xml:space="preserve"><value>التصفّح متاح للجميع. سجّل الدخول كطالب لعرض التفاصيل الكاملة أو التقديم.</value></data>
-  <data name="Home.SignInBrowse" xml:space="preserve"><value>سجّل الدخول لتصفّح الكل</value></data>
-  <data name="Home.BrowseAll" xml:space="preserve"><value>تصفّح جميع الفرص</value></data>
-  <data name="Home.SignInDetails" xml:space="preserve"><value>سجّل الدخول لعرض التفاصيل</value></data>
-  <data name="Home.ViewDetails" xml:space="preserve"><value>عرض التفاصيل الكاملة</value></data>
-  <data name="Home.SignInApply" xml:space="preserve"><value>سجّل الدخول للتقديم</value></data>
-  <data name="Home.Apply" xml:space="preserve"><value>التقديم لهذه الفرصة</value></data>
-  <data name="Home.StudentOnly" xml:space="preserve"><value>التفاصيل الكاملة والتقديم متاحان لحسابات الطلبة المؤهلين.</value></data>
-  <data name="Home.Location" xml:space="preserve"><value>الموقع</value></data>
-  <data name="Home.Specialization" xml:space="preserve"><value>التخصص</value></data>
-  <data name="Home.AvailableSeats" xml:space="preserve"><value>المقاعد المتاحة</value></data>
-  <data name="Home.Deadline" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
-  <data name="Home.NoDeadline" xml:space="preserve"><value>لم يُحدّد موعد نهائي</value></data>
-  <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.</value></data>
-  <data name="Home.UnavailableTitle" xml:space="preserve"><value>الملخصات غير متاحة مؤقتًا</value></data>
-  <data name="Home.Retry" xml:space="preserve"><value>المحاولة مجددًا</value></data>
-  <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>ستظهر الفرص الجديدة هنا</value></data>
-  <data name="Home.NoPreviewsText" xml:space="preserve"><value>لا تتوفر ملخصات منشورة حاليًا. عُد لاحقًا أو سجّل الدخول لاستكشاف بوابة الطالب.</value></data>
-  <data name="Home.FaqTitle" xml:space="preserve"><value>الأسئلة الشائعة</value></data>
-  <data name="Home.FaqIntro" xml:space="preserve"><value>من طلبك الأول إلى المراجعة النهائية، تعرّف على ما ينتظرك خلال رحلة التدريب.</value></data>
-  <data name="Home.MoreQuestions" xml:space="preserve"><value>لديك سؤال آخر؟ تواصل معنا</value></data>
-  <data name="Home.Faq1Question" xml:space="preserve"><value>هل يمكنني استكشاف الفرص قبل تسجيل الدخول؟</value></data>
-  <data name="Home.Faq1Answer" xml:space="preserve"><value>البطاقات في هذه الصفحة أمثلة توضيحية لفرص التدريب. اضغط مزيد من التفاصيل لتسجيل الدخول، ثم استكشف الفرص الحالية وتفاصيلها والتقديم داخل بوابة الطالب.</value></data>
-  <data name="Home.Faq2Question" xml:space="preserve"><value>من يمكنه التقديم، وكيف أحصل على حساب؟</value></data>
-  <data name="Home.Faq2Answer" xml:space="preserve"><value>يمكن للطلبة المؤهلين الذين لديهم حساب تدريب جامعي فعّال التقديم. يتولى منسق الجامعة إدارة الحسابات وتوزيع الإشراف. تواصل مع الجامعة إذا كنت بحاجة إلى صلاحية الدخول.</value></data>
-  <data name="Home.Faq3Question" xml:space="preserve"><value>لماذا قد لا تكون الفرصة متاحة لي؟</value></data>
-  <data name="Home.Faq3Answer" xml:space="preserve"><value>تتحقق بوابة الطالب من متطلبات الكلية والتخصص والمقاعد المتبقية والموعد النهائي وحالة الفرصة. الملخص العام معاينة أولية، ولا يضمن الأهلية أو استمرار التوافر.</value></data>
-  <data name="Home.Faq4Question" xml:space="preserve"><value>ماذا يحدث بعد قبول الشركة لطلبي؟</value></data>
-  <data name="Home.Faq4Answer" xml:space="preserve"><value>راجع العرض في صفحة طلباتي وأكّد عرضًا مقبولًا واحدًا لتثبيت جهة تدريبك. قبول الشركة وحده لا يثبّت جهة التدريب.</value></data>
-  <data name="Home.Faq5Question" xml:space="preserve"><value>كيف أتابع تدريبي والملاحظات عليه؟</value></data>
-  <data name="Home.Faq5Answer" xml:space="preserve"><value>توصلك مساحة عملك إلى مهام التدريب والتسليمات والملاحظات والاجتماعات والساعات. لا تُحتسب ضمن الساعات المطلوبة إلا الساعات التي يعتمدها مشرفك.</value></data>
-  <data name="Home.Faq6Question" xml:space="preserve"><value>متى يُعدّ تدريبي مكتملًا؟</value></data>
-  <data name="Home.Faq6Answer" xml:space="preserve"><value>بلوغ هدف الساعات جزء من متطلبات الإنهاء. يجب أيضًا إكمال أعمال التدريب وتقييمات المشرفين، ثم الحصول على اعتماد المنسق. تُتاح النتائج والتقارير وفق مسار اعتماد الإنهاء.</value></data>
-  <data name="Home.FindCurrent" xml:space="preserve"><value>اكتشف الفرص الحالية</value></data>
-  <data name="Home.DemoLabel" xml:space="preserve"><value>أمثلة توضيحية</value></data>
-  <data name="Home.DemoNote" xml:space="preserve"><value>تعرض هذه البطاقات مسارات تدريب محتملة، وليست شواغر حالية.</value></data>
-  <data name="Home.MoreDetails" xml:space="preserve"><value>مزيد من التفاصيل</value></data>
-  <data name="Home.Demo1Title" xml:space="preserve"><value>متدرب هندسة برمجيات</value></data>
-  <data name="Home.Demo1Company" xml:space="preserve"><value>فريق برمجيات افتراضي</value></data>
-  <data name="Home.Demo1Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
-  <data name="Home.Demo1Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
-  <data name="Home.Demo1Summary" xml:space="preserve"><value>طوّر خدمات الويب واختبر ميزات جديدة، وتعرّف على طريقة عمل فرق البرمجيات.</value></data>
-  <data name="Home.Demo2Title" xml:space="preserve"><value>متدرب تطوير واجهات</value></data>
-  <data name="Home.Demo2Company" xml:space="preserve"><value>استوديو رقمي افتراضي</value></data>
-  <data name="Home.Demo2Location" xml:space="preserve"><value>عمل هجين، الأردن</value></data>
-  <data name="Home.Demo2Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
-  <data name="Home.Demo2Summary" xml:space="preserve"><value>صمّم واجهات ميسّرة وحوّل الأفكار إلى تجارب رقمية سهلة الاستخدام.</value></data>
-  <data name="Home.Demo3Title" xml:space="preserve"><value>متدرب تحليل بيانات</value></data>
-  <data name="Home.Demo3Company" xml:space="preserve"><value>فريق تحليلات افتراضي</value></data>
-  <data name="Home.Demo3Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
-  <data name="Home.Demo3Field" xml:space="preserve"><value>علوم الحاسوب</value></data>
-  <data name="Home.Demo3Summary" xml:space="preserve"><value>حوّل البيانات إلى لوحات واضحة ونتائج تساعد الفرق على اتخاذ قرارات أفضل.</value></data>
-  <data name="Home.VideoScrollHint" xml:space="preserve"><value>مرّر للأسفل لتكبير الفيديو، وللأعلى للعودة إلى حجمه الأصلي.</value></data>
-  <data name="Home.PauseCards" xml:space="preserve"><value>إيقاف حركة البطاقات</value></data>
-  <data name="Home.ResumeCards" xml:space="preserve"><value>استئناف الحركة</value></data>
-  <data name="Home.CardMotionHint" xml:space="preserve"><value>ضع المؤشر على بطاقة لإيقاف الحركة وإلقاء نظرة أقرب.</value></data>
-  <data name="Home.Demo4Title" xml:space="preserve"><value>متدرب ضمان الجودة</value></data>
-  <data name="Home.Demo4Company" xml:space="preserve"><value>فريق منتجات افتراضي</value></data>
-  <data name="Home.Demo4Location" xml:space="preserve"><value>عمل هجين، الأردن</value></data>
-  <data name="Home.Demo4Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
-  <data name="Home.Demo4Summary" xml:space="preserve"><value>اختبر ميزات المنتجات وأتمت عمليات الفحص، وساهم في تطوير برمجيات موثوقة.</value></data>
-  <data name="Home.Demo5Title" xml:space="preserve"><value>متدرب الأمن السيبراني</value></data>
-  <data name="Home.Demo5Company" xml:space="preserve"><value>مختبر أمن افتراضي</value></data>
-  <data name="Home.Demo5Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
-  <data name="Home.Demo5Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
-  <data name="Home.Demo5Summary" xml:space="preserve"><value>استكشف الأنظمة الآمنة وتحليل المخاطر، وتعلّم أساسيات الأمن بشكل عملي.</value></data>
-  <data name="Home.Demo6Title" xml:space="preserve"><value>متدرب الأنظمة المدمجة</value></data>
-  <data name="Home.Demo6Company" xml:space="preserve"><value>فريق هندسي افتراضي</value></data>
-  <data name="Home.Demo6Location" xml:space="preserve"><value>مادبا، الأردن</value></data>
-  <data name="Home.Demo6Field" xml:space="preserve"><value>هندسة الحاسوب</value></data>
-  <data name="Home.Demo6Summary" xml:space="preserve"><value>اربط البرمجة بالأجهزة عبر الحساسات والمتحكمات الدقيقة والتجارب العملية.</value></data>
 </root>

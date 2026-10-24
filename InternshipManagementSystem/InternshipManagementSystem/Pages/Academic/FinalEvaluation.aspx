@@ -26,17 +26,17 @@
         
         <!-- التنسيق الجديد: عنوان الكارد + شريط البحث والفلتر -->
         <div class="p-4 border-bottom">
-            <h4 style="color: var(--brand-text,var(--brand-dark, #1a365d)); font-weight: 700; margin-bottom: 0.25rem;">Student records</h4>
-            <p class="text-muted mb-4" style="font-size: 0.9rem;">Search and view student evaluation assignments.</p>
+            <h4 style="color: var(--brand-text,var(--brand-dark, #1a365d)); font-weight: 700; margin-bottom: 0.25rem;"><%: L.T("Academic.FinalEvaluation.StudentRecords") %></h4>
+            <p class="text-muted mb-4" style="font-size: 0.9rem;"><%: L.T("Academic.FinalEvaluation.SearchAndViewStudentEvaluationAssignments") %></p>
             
             <div class="d-flex flex-wrap gap-3">
-                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search name or ID..." style="border-radius: 6px; flex-grow: 1;"></asp:TextBox>
-                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-brand" OnClick="btnSearch_Click" style="border-radius: 6px; padding: 0.4rem 1.5rem; font-weight: 600;" />
+                <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="<%$ Resources:Academic, FinalEvaluation.SearchNameOrID %>" style="border-radius: 6px; flex-grow: 1;"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" Text="<%$ Resources:Academic, FinalEvaluation.Search %>" CssClass="btn btn-brand" OnClick="btnSearch_Click" style="border-radius: 6px; padding: 0.4rem 1.5rem; font-weight: 600;" />
                 
                 <asp:DropDownList ID="ddlMajorFilter" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMajorFilter_SelectedIndexChanged" style="border-radius: 6px; border-color: var(--th-line-d1d5db,#d1d5db); font-weight: 500; min-width: 200px; max-width: 250px;">
-                    <asp:ListItem Text="All Majors" Value="All"></asp:ListItem>
-                    <asp:ListItem Text="Computer Science" Value="Computer Science"></asp:ListItem>
-                    <asp:ListItem Text="Computer Engineering" Value="Computer Engineering"></asp:ListItem>
+                    <asp:ListItem Text="<%$ Resources:Academic, FinalEvaluation.AllMajors %>" Value="All"></asp:ListItem>
+                    <asp:ListItem Text="<%$ Resources:Academic, FinalEvaluation.ComputerScience %>" Value="Computer Science"></asp:ListItem>
+                    <asp:ListItem Text="<%$ Resources:Academic, FinalEvaluation.ComputerEngineering %>" Value="Computer Engineering"></asp:ListItem>
                 </asp:DropDownList>
             </div>
         </div>
@@ -143,7 +143,7 @@
                 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-light" data-bs-dismiss="modal"><%: L.T("Academic.FinalEvaluation.Close") %></button>
-                    <asp:Button ID="btnSubmitEvaluation" runat="server" Text="<%$ Resources:Academic, FinalEvaluation.SubmitToCoordinator %>" CssClass="btn btn-brand" OnClick="btnSubmitEvaluation_Click" OnClientClick="return confirm('Are you sure you want to submit this evaluation? It cannot be changed later.');"  data-ui-action="submit" data-loading-label="Submitting…"/>
+                    <asp:Button ID="btnSubmitEvaluation" runat="server" Text="<%$ Resources:Academic, FinalEvaluation.SubmitToCoordinator %>" CssClass="btn btn-brand" OnClick="btnSubmitEvaluation_Click" data-i18n-confirm="<%$ Resources:Shared, I18n.Areyousureyouwanttosubmit %>" OnClientClick="return confirm(this.getAttribute('data-i18n-confirm'));"  data-ui-action="submit" data-loading-label="<%$ Resources:Shared, I18n.Submitting %>"/>
                 </div>
             </div>
         </div>

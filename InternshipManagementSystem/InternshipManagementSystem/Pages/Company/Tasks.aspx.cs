@@ -46,12 +46,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (title.Length == 0 || description.Length == 0 || instructions.Length == 0)
             {
-                ShowMessage("Enter the title, description, and criteria/instructions.", false);
+                ShowMessage(L.T("Company.Tasks.EnterTheTitleDescriptionAndCriteria"), false);
                 return;
             }
             if (string.IsNullOrWhiteSpace(placementId))
             {
-                ShowMessage("Please select a trainee.", false);
+                ShowMessage(L.T("Company.Tasks.PleaseSelectATrainee"), false);
                 return;
             }
 
@@ -59,7 +59,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (!TryParseTaskDateTime(txtStartDate.Text, out startDate) ||
                 startDate < DateTime.Now)
             {
-                ShowMessage("Enter a start date and time that is in the future.", false);
+                ShowMessage(L.T("Company.Tasks.EnterAStartDateAndTime"), false);
                 return;
             }
 
@@ -67,14 +67,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (!TryParseTaskDateTime(txtDeadline.Text, out deadline) ||
                 deadline <= startDate)
             {
-                ShowMessage("The deadline must be after the start date and time.", false);
+                ShowMessage(L.T("Company.Tasks.TheDeadlineMustBeAfterThe"), false);
                 return;
             }
 
             double maxScore;
             if (!TryReadPositiveNumber(txtMaxScore.Text, out maxScore))
             {
-                ShowMessage("Enter a total score greater than zero.", false);
+                ShowMessage(L.T("Company.Tasks.EnterATotalScoreGreaterThan"), false);
                 return;
             }
 
@@ -90,7 +90,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 targetCount = targetPlacements.Count;
                 if (targetCount == 0)
                 {
-                    ShowMessage("There are no trainees available for this task.", false);
+                    ShowMessage(L.T("Company.Tasks.ThereAreNoTraineesAvailableFor"), false);
                     return;
                 }
 
@@ -147,8 +147,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 ResetTaskForm();
                 ShowMessage(targetCount == 1
-                    ? "Task created successfully."
-                    : "Task created successfully for all " + targetCount + " trainees.", true);
+                    ? L.T("Company.Tasks.TaskCreatedSuccessfully")
+                    : L.F("Company.I18n.Taskcreatedsuccessfullyforall0trainees", targetCount), true);
                 LoadCompanyTasks();
                 ClientScript.RegisterStartupScript(
                     GetType(), "taskCreateSuccess",
@@ -158,13 +158,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             {
                 if (createdTaskIds.Count == 0) DeleteTaskAttachment(attachmentObjectName);
                 ShowTaskCreationFailure(createdTaskIds.Count, targetCount,
-                    "Could not save the task. Check Firebase connection and rules.");
+                    L.T("Company.Tasks.CouldNotSaveTheTaskCheck"));
             }
             catch (WebException)
             {
                 if (createdTaskIds.Count == 0) DeleteTaskAttachment(attachmentObjectName);
                 ShowTaskCreationFailure(createdTaskIds.Count, targetCount,
-                    "The file could not be uploaded to Firebase Storage. Check the bucket and storage rules.");
+                    L.T("Company.Tasks.TheFileCouldNotBeUploaded"));
             }
             catch (InvalidOperationException ex)
             {
@@ -183,13 +183,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string extension = Path.GetExtension(originalName).ToLowerInvariant();
 
             if (extension != ".pdf" && extension != ".doc" && extension != ".docx")
-                throw new InvalidOperationException("Choose a PDF or Word file.");
+                throw new InvalidOperationException(L.T("Company.I18n.ChooseaPDForWordfile"));
             if (file.ContentLength <= 0 || file.ContentLength > 10 * 1024 * 1024)
-                throw new InvalidOperationException("The attachment must be smaller than 10 MB.");
+                throw new InvalidOperationException(L.T("Company.I18n.Theattachmentmustbesmallerthan10"));
 
             string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"];
             if (string.IsNullOrWhiteSpace(bucket))
-                throw new InvalidOperationException("Firebase Storage is not configured. Ask the project admin to set Firebase.StorageBucket.");
+                throw new InvalidOperationException(L.T("Company.I18n.FirebaseStorageisnotconfiguredAskthe"));
 
             bucket = bucket.Trim();
             if (bucket.StartsWith("gs://", StringComparison.OrdinalIgnoreCase))
@@ -197,7 +197,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             string idToken = HttpContext.Current.Session[Constants.SessionTokenKey] as string;
             if (string.IsNullOrWhiteSpace(idToken))
-                throw new InvalidOperationException("Your session expired. Sign in again before uploading.");
+                throw new InvalidOperationException(L.T("Company.I18n.YoursessionexpiredSigninagainbefore"));
 
             objectName = "task-attachments/" + companyId + "/" +
                 Guid.NewGuid().ToString("N") + extension;
@@ -211,7 +211,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 totalRead += count;
             }
             if (totalRead != bytes.Length)
-                throw new InvalidOperationException("The attachment could not be read.");
+                throw new InvalidOperationException(L.T("Company.I18n.Theattachmentcouldnotberead"));
 
             string uploadUrl = "https://firebasestorage.googleapis.com/v0/b/" +
                 Uri.EscapeDataString(bucket) + "/o?uploadType=media&name=" +
@@ -238,7 +238,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 responseMap.TryGetValue("downloadTokens", out tokenValue)
                     ? Convert.ToString(tokenValue) : null;
             if (string.IsNullOrWhiteSpace(downloadToken))
-                throw new InvalidOperationException("Firebase did not return a download token for the uploaded file.");
+                throw new InvalidOperationException(L.T("Company.I18n.Firebasedidnotreturnadownloadtoken"));
 
             return "https://firebasestorage.googleapis.com/v0/b/" +
                 Uri.EscapeDataString(bucket) + "/o/" +
@@ -281,7 +281,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (name.Length == 0)
             {
-                ShowMessage("Please enter a criterion name.", false);
+                ShowMessage(L.T("Company.Tasks.PleaseEnterACriterionName"), false);
                 return;
             }
 
@@ -291,7 +291,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     out maxScore))
             {
                 ShowMessage(
-                    "Enter a valid criterion maximum score.",
+                    L.T("Company.Tasks.EnterAValidCriterionMaximumScore"),
                     false);
                 return;
             }
@@ -303,7 +303,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 weight > 100)
             {
                 ShowMessage(
-                    "Enter a criterion weight greater than zero and up to 100.",
+                    L.T("Company.Tasks.EnterACriterionWeightGreaterThan"),
                     false);
                 return;
             }
@@ -314,7 +314,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (criteria == null)
             {
                 ShowMessage(
-                    "Your session expired. Reload the page and add the criteria again.",
+                    L.T("Company.Tasks.YourSessionExpiredReloadThePage"),
                     false);
                 return;
             }
@@ -328,7 +328,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (totalWeight > 100.000001)
             {
                 ShowMessage(
-                    "The total criteria weight cannot exceed 100%.",
+                    L.T("Company.Tasks.TheTotalCriteriaWeightCannotExceed"),
                     false);
                 return;
             }
@@ -350,7 +350,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             txtCriterionMaxScore.Text = "";
             txtCriterionWeight.Text = "";
 
-            ShowMessage("Criterion added successfully.", true);
+            ShowMessage(L.T("Company.Tasks.CriterionAddedSuccessfully"), true);
         }
 
         private List<Placement> GetTaskTargetPlacements(string placementId)
@@ -384,7 +384,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 string.IsNullOrWhiteSpace(selected.StudentId))
             {
                 throw new InvalidOperationException(
-                    "The selected trainee does not belong to your company.");
+                    L.T("Company.I18n.Theselectedtraineedoesnotbelongto"));
             }
 
             targets.Add(selected);
@@ -409,7 +409,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             ddlTrainee.Items.Clear();
             ddlTrainee.Items.Add(
-                new ListItem("Select a trainee", "")
+                new ListItem(L.T("Company.Tasks.SelectATrainee2"), "")
             );
 
             try
@@ -442,14 +442,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 {
                     ddlTrainee.Items.Insert(
                         1,
-                        new ListItem("All my trainees", AllTraineesValue));
+                        new ListItem(L.T("Company.Tasks.AllMyTrainees"), AllTraineesValue));
                 }
             }
             catch (FirebaseException)
             {
                 lblNoCompanyTasks.Visible = true;
                 lblNoCompanyTasks.Text =
-                    "Could not load trainees from Firebase.";
+                    L.T("Company.Tasks.CouldNotLoadTraineesFromFirebase");
             }
         }
 
@@ -591,7 +591,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         overdueCount++;
                     }
 
-                    string evaluationSummary = "Not evaluated";
+                    string evaluationSummary = L.T("Company.Tasks.NotEvaluated");
 
                     if (latestSubmission != null)
                     {
@@ -623,7 +623,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         {
                             evaluationSummary =
                                 latestEvaluation.RevisionRequested
-                                    ? "Feedback sent"
+                                    ? L.T("Company.Tasks.FeedbackSent")
                                     : latestEvaluation.TotalScore.ToString("0.##") +
                                       " / " +
                                       latestEvaluation.MaxScore.ToString("0.##");
@@ -643,13 +643,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                                 .FromUnixTimeMilliseconds(task.StartDate)
                                 .ToLocalTime()
                                 .ToString("dd MMM yyyy, h:mm tt")
-                            : "Not set",
+                            : L.T("Company.Tasks.NotSet"),
                         Deadline = task.Deadline > 0
                             ? DateTimeOffset
                                 .FromUnixTimeMilliseconds(task.Deadline)
                                 .ToLocalTime()
                                 .ToString("dd MMM yyyy, h:mm tt")
-                            : "Not set",
+                            : L.T("Company.Tasks.NotSet"),
                         Description = task.Description ?? "",
                         Instructions = task.Instructions ?? "",
                         MaxScore = task.MaxScore.ToString("0.##", CultureInfo.InvariantCulture),
@@ -659,7 +659,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                             : "",
 
                         SubmissionStatus = latestSubmission == null
-                            ? "Not submitted"
+                            ? L.T("Company.Tasks.NotSubmitted")
                             : latestSubmission.Status.ToString(),
 
                         TaskStatus = task.Status.ToString(),
@@ -684,7 +684,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 if (rows.Count == 0)
                 {
                     lblNoCompanyTasks.Text =
-                        "No tasks yet. Create your first task to get started.";
+                        L.T("Company.Tasks.NoTasksYetCreateYourFirst");
                 }
 
                 litPendingReview.Text = pendingCount.ToString();
@@ -699,7 +699,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 lblNoCompanyTasks.Visible = true;
                 lblNoCompanyTasks.Text =
-                    "Could not load tasks. Check Firebase connection and database rules.";
+                    L.T("Company.Tasks.CouldNotLoadTasksCheckFirebase");
 
                 litPendingReview.Text = "—";
                 litReviewedTasks.Text = "—";

@@ -12,7 +12,7 @@
                 <p><%: L.T("Shared.Notify.PageIntro") %></p>
             </div>
             <asp:Button ID="btnMarkAllRead" runat="server" Text="<%$ Resources:Shared, Notify.MarkAllRead %>" CssClass="btn btn-outline-secondary btn-sm"
-                        OnClick="btnMarkAllRead_Click" CausesValidation="false"  data-ui-action="mark" data-loading-label="Updating…" data-ui-validation="none"/>
+                        OnClick="btnMarkAllRead_Click" CausesValidation="false"  data-ui-action="mark" data-loading-label="<%$ Resources:Shared, I18n.Updating %>" data-ui-validation="none"/>
         </div>
 
         <% if (Entries.Count > 0) { %>

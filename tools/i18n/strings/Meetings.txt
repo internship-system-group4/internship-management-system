@@ -218,3 +218,487 @@ en: Select an internship
 
 Schedule.NotSet
 en: Not set
+
+MyMeetings.InternshipWorkspace
+en: Internship workspace
+ar: مساحة عمل التدريب
+
+MyMeetings.RequestAConversationRespondToInvitations
+en: Request a conversation, respond to invitations, and keep your meeting history in one place.
+ar: اطلب اجتماعًا، وردّ على الدعوات، واحتفظ بسجل اجتماعاتك في مكان واحد.
+
+MyMeetings.RequestAMeeting
+en: + Request a meeting
+ar: + طلب اجتماع
+
+MyMeetings.MeetingOverview
+en: Meeting overview
+ar: نظرة عامة على الاجتماعات
+
+MyMeetings.WaitingForYou
+en: Waiting for you
+ar: بانتظارك
+
+MyMeetings.RequestsNeedingYourResponse
+en: Requests needing your response
+ar: طلبات تحتاج إلى ردك
+
+MyMeetings.RequestsSent
+en: Requests sent
+ar: الطلبات المرسلة
+
+MyMeetings.WaitingForTheOtherPerson
+en: Waiting for the other person
+ar: بانتظار الطرف الآخر
+
+MyMeetings.ApprovedMeetings
+en: Approved meetings
+ar: الاجتماعات الموافق عليها
+
+MyMeetings.UpcomingOrInProgress
+en: Upcoming or in progress
+ar: قادمة أو جارية
+
+MyMeetings.InYourHistory
+en: In your history
+ar: في سجلك
+
+MyMeetings.PastCompletedOrClosed
+en: Past, completed, or closed
+ar: سابقة أو مكتملة أو مغلقة
+
+MyMeetings.MeetingsRequests
+en: Meetings & requests
+ar: الاجتماعات والطلبات
+
+MyMeetings.OpenTheDetailsRespondToA
+en: Open the details, respond to a request, or join an approved meeting.
+ar: افتح التفاصيل، أو ردّ على طلب، أو انضم إلى اجتماع موافق عليه.
+
+MyMeetings.ChangeView
+en: Change view
+ar: تغيير العرض
+
+MyMeetings.RefreshList
+en: Refresh list
+ar: تحديث القائمة
+
+MyMeetings.AllMyMeetings
+en: All my meetings
+ar: جميع اجتماعاتي
+
+MyMeetings.TimesShownInJordanLocalTime
+en: Times shown in Jordan local time. Refresh to update availability.
+ar: تُعرض المواعيد بالتوقيت المحلي للأردن. حدّث الصفحة لمعرفة الإتاحة الحالية.
+
+MyMeetings.Meeting
+en: Meeting
+ar: الاجتماع
+
+MyMeetings.People
+en: People
+ar: الأشخاص
+
+MyMeetings.From
+en: From:
+ar: من:
+
+MyMeetings.To
+en: To:
+ar: إلى:
+
+MyMeetings.DateTime
+en: Date & time
+ar: التاريخ والوقت
+
+MyMeetings.Status
+en: Status
+ar: الحالة
+
+MyMeetings.Actions
+en: Actions
+ar: الإجراءات
+
+MyMeetings.Details
+en: Details
+ar: التفاصيل
+
+MyMeetings.Accept
+en: Accept
+ar: قبول
+
+MyMeetings.Decline
+en: Decline
+ar: رفض
+
+MyMeetings.JoinMeeting
+en: Join meeting
+ar: الانضمام إلى الاجتماع
+
+MyMeetings.MarkCompleted
+en: Mark completed
+ar: تحديد كمكتمل
+
+MyMeetings.CancelMeeting
+en: Cancel meeting
+ar: إلغاء الاجتماع
+
+MyMeetings.NoMeetingsInThisView
+en: No meetings in this view
+ar: لا توجد اجتماعات في هذا العرض
+
+MyMeetings.ChooseAnotherViewOrSendYour
+en: Choose another view or send your first meeting request.
+ar: اختر عرضًا آخر أو أرسل طلب اجتماعك الأول.
+
+MyMeetings.RequestAMeeting2
+en: Request a meeting
+ar: طلب اجتماع
+
+MyMeetings.RequestsNeedTheInvitedPersonS
+en: Requests need the invited person's approval. Join opens 15 minutes before an approved meeting and remains available until its scheduled end. Passing the scheduled end does not automatically confirm attendance or completion.
+ar: تحتاج الطلبات إلى موافقة الشخص المدعو. يُتاح الانضمام قبل الاجتماع الموافق عليه بـ15 دقيقة ويستمر حتى موعد نهايته. تجاوز موعد النهاية لا يؤكد الحضور أو الإتمام تلقائيًا.
+
+MyMeetings.ChooseAPersonAndSuggestA
+en: Choose a person and suggest a time. The request needs their approval.
+ar: اختر شخصًا واقترح موعدًا. يحتاج الطلب إلى موافقته.
+
+MyMeetings.CloseRequestForm
+en: Close request form
+ar: إغلاق نموذج الطلب
+
+MyMeetings.MeetingTitle2
+en: Meeting title
+ar: عنوان الاجتماع
+
+MyMeetings.EGInternshipProgressReview
+en: e.g. Internship progress review
+ar: مثال: مراجعة تقدم التدريب
+
+MyMeetings.WhoWouldYouLikeToMeet
+en: Who would you like to meet?
+ar: مع من ترغب في الاجتماع؟
+
+MyMeetings.DateAndTime2
+en: Date and time
+ar: التاريخ والوقت
+
+MyMeetings.UseJordanLocalTime
+en: Use Jordan local time.
+ar: استخدم التوقيت المحلي للأردن.
+
+MyMeetings.AgendaOptional
+en: Agenda (optional)
+ar: جدول الأعمال (اختياري)
+
+MyMeetings.WhatWouldYouLikeToDiscuss
+en: What would you like to discuss?
+ar: ما الموضوع الذي تودّ مناقشته؟
+
+MyMeetings.OnlyPeopleLinkedToYourInternship
+en: Only people linked to your internship or academic supervision assignment are listed. Each request invites one person and stays pending until they accept.
+ar: تظهر فقط الأسماء المرتبطة بتدريبك أو إشرافك الأكاديمي. يدعو كل طلب شخصًا واحدًا ويبقى معلقًا حتى يقبله.
+
+MyMeetings.KeepEditingLater
+en: Keep editing later
+ar: متابعة التحرير لاحقًا
+
+MyMeetings.SendRequest
+en: Send request
+ar: إرسال الطلب
+
+MyMeetings.ChooseAView
+en: Choose a view
+ar: اختيار العرض
+
+MyMeetings.CloseViewSelector
+en: Close view selector
+ar: إغلاق خيارات العرض
+
+MyMeetings.ShowMeetings
+en: Show meetings
+ar: عرض الاجتماعات
+
+MyMeetings.ApplyView
+en: Apply view
+ar: تطبيق العرض
+
+MyMeetings.ConfirmAction
+en: Confirm action
+ar: تأكيد الإجراء
+
+MyMeetings.CloseConfirmation
+en: Close confirmation
+ar: إغلاق التأكيد
+
+MyMeetings.GoBack
+en: Go back
+ar: رجوع
+
+MyMeetings.Confirm
+en: Confirm
+ar: تأكيد
+
+MyMeetings.MeetingDetails
+en: Meeting details
+ar: تفاصيل الاجتماع
+
+MyMeetings.CloseMeetingDetails
+en: Close meeting details
+ar: إغلاق تفاصيل الاجتماع
+
+MyMeetings.Title
+en: Title
+ar: العنوان
+
+MyMeetings.When
+en: When
+ar: الموعد
+
+MyMeetings.CloseDetails
+en: Close details
+ar: إغلاق التفاصيل
+
+MyMeetings.CloseMessage
+en: Close message
+ar: إغلاق الرسالة
+
+MyMeetings.GotIt
+en: Got it
+ar: حسنًا
+
+MyMeetings.MeetingRoom
+en: Meeting room
+ar: غرفة الاجتماع
+
+MyMeetings.ReviewYourCameraAndMicrophoneSettings
+en: Review your camera and microphone settings before joining.
+ar: راجع إعدادات الكاميرا والميكروفون قبل الانضمام.
+
+MyMeetings.LeaveAndCloseMeeting
+en: Leave and close meeting
+ar: مغادرة الاجتماع وإغلاقه
+
+MyMeetings.PreparingTheMeeting
+en: Preparing the meeting…
+ar: جارٍ تجهيز الاجتماع…
+
+MyMeetings.ThePersonStartingTheJitsiRoom
+en: The person starting the Jitsi room may need to sign in.
+ar: قد يحتاج الشخص الذي يبدأ غرفة Jitsi إلى تسجيل الدخول.
+
+MyMeetings.OpenSeparatelyIfNeeded
+en: Open separately if needed ↗
+ar: فتح في نافذة مستقلة عند الحاجة ↗
+
+Schedule.ScheduleAZoomMeeting
+en: Schedule a Zoom meeting
+ar: جدولة اجتماع Zoom
+
+Schedule.MyMeetings2
+en: My meetings
+ar: اجتماعاتي
+
+Schedule.Title2
+en: Title
+ar: العنوان
+
+Schedule.AgendaOptional
+en: Agenda (optional)
+ar: جدول الأعمال (اختياري)
+
+Schedule.DateAndTimeYourLocalTime
+en: Date and time (your local time)
+ar: التاريخ والوقت (بتوقيتك المحلي)
+
+Schedule.DurationMinutes
+en: Duration (minutes)
+ar: المدة (بالدقائق)
+
+Schedule.Participants2
+en: Participants
+ar: المشاركون
+
+Schedule.SelectThePeopleWhoShouldSee
+en: Select the people who should see and join this meeting. You are included automatically.
+ar: اختر الأشخاص الذين يمكنهم رؤية هذا الاجتماع والانضمام إليه. تتم إضافتك تلقائيًا.
+
+Schedule.CreateZoomMeeting
+en: Create Zoom meeting
+ar: إنشاء اجتماع Zoom
+
+Schedule.ParticipantsCouldNotBeLoadedPlease
+en: Participants could not be loaded. Please try again.
+ar: تعذر تحميل المشاركين. يرجى المحاولة مجددًا.
+
+Schedule.EnterATitleValidLocalDate
+en: Enter a title, valid local date and time, and a duration from 1 to 1440 minutes.
+ar: أدخل عنوانًا وتاريخًا ووقتًا محليين صالحين، ومدة من 1 إلى 1440 دقيقة.
+
+Schedule.ChooseATimeAtLeastA
+en: Choose a time at least a minute in the future.
+ar: اختر موعدًا يبدأ بعد دقيقة على الأقل من الآن.
+
+Schedule.OneOfTheSelectedParticipantsIs
+en: One of the selected participants is no longer available. Reload the page and try again.
+ar: أحد المشاركين المحددين لم يعد متاحًا. أعد تحميل الصفحة وحاول مجددًا.
+
+MyMeetings.MeetingRequestsAreNotAvailableFor
+en: Meeting requests are not available for this role
+ar: طلبات الاجتماعات غير متاحة لهذا الدور
+
+MyMeetings.NoAssignedContactsAvailable
+en: No assigned contacts available
+ar: لا توجد جهات اتصال مرتبطة متاحة
+
+MyMeetings.CouldNotLoadMeetings
+en: Could not load meetings
+ar: تعذر تحميل الاجتماعات
+
+MyMeetings.CheckYourConnectionAndFirebaseRules
+en: Check your connection and Firebase rules, then refresh.
+ar: تحقق من اتصالك وقواعد Firebase، ثم حدّث الصفحة.
+
+MyMeetings.SelectAPerson
+en: Select a person
+ar: اختر شخصًا
+
+MyMeetings.YourRequestWasSentItWill
+en: Your request was sent. It will stay pending until the invited person responds.
+ar: تم إرسال طلبك، وسيبقى معلقًا حتى يرد الشخص المدعو.
+
+MyMeetings.RequestNotConfirmed
+en: Request not confirmed
+ar: لم يتم تأكيد الطلب
+
+MyMeetings.CouldNotConfirmSavingCheckThe
+en: Could not confirm saving. Check the list before trying again.
+ar: تعذر تأكيد الحفظ. تحقق من القائمة قبل المحاولة مجددًا.
+
+MyMeetings.CheckYourRequest
+en: Check your request
+ar: راجع طلبك
+
+MyMeetings.CheckTheTime
+en: Check the time
+ar: تحقق من الوقت
+
+MyMeetings.EnterAValidDateAndTime
+en: Enter a valid date and time in Jordan local time.
+ar: أدخل تاريخًا ووقتًا صالحين بالتوقيت المحلي للأردن.
+
+MyMeetings.AccountUnavailable
+en: Account unavailable
+ar: الحساب غير متاح
+
+MyMeetings.NoAgendaProvided
+en: No agenda provided.
+ar: لم يُحدد جدول أعمال.
+
+MyMeetings.MeetingAcceptedUseJoinMeetingDuring
+en: Meeting accepted. Use Join meeting during the joining window.
+ar: تم قبول الاجتماع. استخدم زر الانضمام خلال فترة الانضمام المتاحة.
+
+MyMeetings.TheRequestWasDeclined
+en: The request was declined.
+ar: تم رفض الطلب.
+
+MyMeetings.TheMeetingWasMarkedCompleted
+en: The meeting was marked completed.
+ar: تم تحديد الاجتماع كمكتمل.
+
+MyMeetings.TheMeetingWasCancelled
+en: The meeting was cancelled.
+ar: تم إلغاء الاجتماع.
+
+MyMeetings.ActionNotConfirmed
+en: Action not confirmed
+ar: لم يتم تأكيد الإجراء
+
+MyMeetings.RefreshTheListToCheckThe
+en: Refresh the list to check the latest state before trying again.
+ar: حدّث القائمة للتحقق من الحالة الأحدث قبل المحاولة مجددًا.
+
+MyMeetings.ActionUnavailable
+en: Action unavailable
+ar: الإجراء غير متاح
+
+MyMeetings.ListUpdated
+en: List updated
+ar: تم تحديث القائمة
+
+MyMeetings.YouAreViewingTheLatestMeeting
+en: You are viewing the latest meeting requests and responses.
+ar: أنت تعرض أحدث طلبات الاجتماعات والردود.
+
+MyMeetings.CouldNotRefresh
+en: Could not refresh
+ar: تعذر التحديث
+
+MyMeetings.CheckYourConnectionAndTryAgain
+en: Check your connection and try again.
+ar: تحقق من اتصالك وحاول مجددًا.
+
+Schedule.ZoomCreatedTheMeetingButIt
+en: Zoom created the meeting, but it could not be saved here. Contact the administrator before retrying to avoid a duplicate.
+ar: أنشأ Zoom الاجتماع، لكن تعذر حفظه هنا. تواصل مع المسؤول قبل المحاولة مجددًا لتجنب تكراره.
+
+Schedule.TheParticipantListCouldNotBe
+en: The participant list could not be verified. Please try again.
+ar: تعذر التحقق من قائمة المشاركين. يرجى المحاولة مجددًا.
+
+I18n.15minutes
+en: 15 minutes
+ar: 15 دقيقة
+
+I18n.Allmymeetingsandrequests
+en: All my meetings and requests
+ar: جميع اجتماعاتي وطلباتي
+
+I18n.Waitingformyapproval
+en: Waiting for my approval
+ar: بانتظار موافقتي
+
+I18n.RequestsIsentpending
+en: Requests I sent - pending
+ar: طلباتي المرسلة - معلقة
+
+I18n.Meetinghistory
+en: Meeting history
+ar: سجل الاجتماعات
+
+I18n.From
+en: From:\u0020
+ar: من:\u0020
+
+I18n.To
+en:  | To:\u0020
+ar:  | إلى:\u0020
+
+I18n.Jordantime
+en:  (Jordan time) -\u0020
+ar:  (بتوقيت الأردن) -\u0020
+
+I18n.minutes
+en:  minutes
+ar:  دقيقة
+
+I18n.min
+en:  min
+ar:  دقيقة
+
+I18n.Chooseavalidduration
+en: Choose a valid duration.
+ar: اختر مدة صالحة.
+
+I18n.Meetingnotfoundoraccessdenied
+en: Meeting not found or access denied.
+ar: لم يتم العثور على الاجتماع أو لا تملك صلاحية الوصول إليه.
+
+I18n.Joinisavailablefrom15minutesbefore
+en: Join is available from 15 minutes before the approved meeting until its scheduled end. Refresh the list.
+ar: يتاح الانضمام قبل الاجتماع الموافق عليه بـ15 دقيقة وحتى موعد نهايته. حدّث القائمة.
+
+I18n.ThisisanoldermeetinglinkCreate
+en: This is an older meeting link. Create a new request to use the embedded room.
+ar: هذا رابط اجتماع قديم. أنشئ طلبًا جديدًا لاستخدام الغرفة المضمنة.

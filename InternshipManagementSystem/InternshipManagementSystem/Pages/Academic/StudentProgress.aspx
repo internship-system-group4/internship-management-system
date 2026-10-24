@@ -23,17 +23,17 @@
         <div class="uims-card">
             <!-- التنسيق الجديد: عنوان الكارد + شريط البحث والفلتر -->
             <div class="p-4 border-bottom">
-                <h4 style="color: var(--brand-text,var(--brand-dark, #1a365d)); font-weight: 700; margin-bottom: 0.25rem;">Student records</h4>
-                <p class="text-muted mb-4" style="font-size: 0.9rem;">Search and view student progress and assignment information.</p>
+                <h4 style="color: var(--brand-text,var(--brand-dark, #1a365d)); font-weight: 700; margin-bottom: 0.25rem;"><%: L.T("Academic.StudentProgress.StudentRecords") %></h4>
+                <p class="text-muted mb-4" style="font-size: 0.9rem;"><%: L.T("Academic.StudentProgress.SearchAndViewStudentProgressAnd") %></p>
                 
                 <div class="d-flex flex-wrap gap-3">
-                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="Search name or ID..." style="border-radius: 6px; flex-grow: 1;"></asp:TextBox>
-                    <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-brand" OnClick="btnSearch_Click" style="border-radius: 6px; padding: 0.4rem 1.5rem; font-weight: 600;" />
+                    <asp:TextBox ID="txtSearch" runat="server" CssClass="form-control" placeholder="<%$ Resources:Academic, StudentProgress.SearchNameOrID %>" style="border-radius: 6px; flex-grow: 1;"></asp:TextBox>
+                    <asp:Button ID="btnSearch" runat="server" Text="<%$ Resources:Academic, StudentProgress.Search %>" CssClass="btn btn-brand" OnClick="btnSearch_Click" style="border-radius: 6px; padding: 0.4rem 1.5rem; font-weight: 600;" />
                     
                     <asp:DropDownList ID="ddlMajorFilter" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlMajorFilter_SelectedIndexChanged" style="border-radius: 6px; border-color: var(--th-line-d1d5db,#d1d5db); font-weight: 500; min-width: 200px; max-width: 250px;">
-                        <asp:ListItem Text="All Majors" Value="All"></asp:ListItem>
-                        <asp:ListItem Text="Computer Science" Value="Computer Science"></asp:ListItem>
-                        <asp:ListItem Text="Computer Engineering" Value="Computer Engineering"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Academic, StudentProgress.AllMajors %>" Value="All"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Academic, StudentProgress.ComputerScience %>" Value="Computer Science"></asp:ListItem>
+                        <asp:ListItem Text="<%$ Resources:Academic, StudentProgress.ComputerEngineering %>" Value="Computer Engineering"></asp:ListItem>
                     </asp:DropDownList>
                 </div>
             </div>
@@ -106,9 +106,9 @@
             <div class="card shadow-sm mb-4 border-0" style="background-color: var(--th-bg-f8f9fa,#f8f9fa); border-radius: 10px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <h6 class="fw-bold text-dark m-0">Training Hours & Progress Overview</h6>
+                        <h6 class="fw-bold text-dark m-0"><%: L.T("Academic.StudentProgress.TrainingHoursProgressOverview") %></h6>
                         <!-- Dynamic Status Badge -->
-                        <span class="badge bg-warning text-dark px-3 py-2" id="badgeStatus" runat="server">In Progress ⏳</span>
+                        <span class="badge bg-warning text-dark px-3 py-2" id="badgeStatus" runat="server"><%: L.T("Academic.StudentProgress.InProgress") %></span>
                     </div>
                     
                     <!-- Progress Bar -->
@@ -117,8 +117,8 @@
                     </div>
                     
                     <div class="d-flex justify-content-between text-muted" style="font-size: 0.85rem;">
-                        <span>Completed Hours: <b>0 hrs</b> / 160 hrs</span>
-                        <span>Pending Company Verification</span>
+                        <span><%: L.T("Academic.StudentProgress.CompletedHours") %> <b><%: L.T("Academic.StudentProgress.0Hrs") %></b> <%: L.T("Academic.StudentProgress.160Hrs") %></span>
+                        <span><%: L.T("Academic.StudentProgress.PendingCompanyVerification") %></span>
                     </div>
                 </div>
             </div>
@@ -178,7 +178,7 @@
                                         <ItemTemplate>
                                             <tr>
                                                 <td><strong><%# Eval("Title") %></strong></td>
-                                                <td><span class="uims-pill uims-pill-info"><%# Eval("Status") %></span></td>
+                                                <td><span class="uims-pill uims-pill-info"><%#: L.Value("Ui", Eval("Status")) %></span></td>
                                                 <td><%# Eval("MaxScore") %></td>
                                                 <td><%# Eval("EstimatedHours") %> h</td>
                                             </tr>
@@ -227,7 +227,7 @@
                             <asp:CheckBox ID="chkVisibleToStudent" runat="server" CssClass="form-check-input" />
                             <label class="form-check-label text-muted" for="chkVisibleToStudent"><%: L.T("Academic.StudentProgress.MakeThisCommentVisibleToThe") %></label>
                         </div>
-                        <asp:Button ID="btnSaveComment" runat="server" Text="<%$ Resources:Academic, StudentProgress.SaveComment %>" CssClass="btn btn-brand" OnClick="btnSaveComment_Click"  data-ui-action="save" data-loading-label="Saving…"/>
+                        <asp:Button ID="btnSaveComment" runat="server" Text="<%$ Resources:Academic, StudentProgress.SaveComment %>" CssClass="btn btn-brand" OnClick="btnSaveComment_Click"  data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>"/>
                         
                         <div class="mt-2">
                             <asp:Label ID="lblCommentStatus" runat="server" CssClass="text-success" style="font-weight: 600;" Visible="false"></asp:Label>

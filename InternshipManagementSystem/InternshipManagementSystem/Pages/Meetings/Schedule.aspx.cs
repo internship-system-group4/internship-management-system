@@ -39,7 +39,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             }
             catch (FirebaseException)
             {
-                ShowMessage("Participants could not be loaded. Please try again.");
+                ShowMessage(L.T("Meetings.Schedule.ParticipantsCouldNotBeLoadedPlease"));
                 btnCreate.Enabled = false;
             }
         }
@@ -59,20 +59,20 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     CultureInfo.InvariantCulture, DateTimeStyles.None, out localStart)
                 || !int.TryParse(hdnOffset.Value, out offset) || offset < -840 || offset > 840)
             {
-                ShowMessage("Enter a title, valid local date and time, and a duration from 1 to 1440 minutes.");
+                ShowMessage(L.T("Meetings.Schedule.EnterATitleValidLocalDate"));
                 return;
             }
             DateTime startUtc = DateTime.SpecifyKind(localStart.AddMinutes(offset), DateTimeKind.Utc);
             if (startUtc <= DateTime.UtcNow.AddMinutes(1))
             {
-                ShowMessage("Choose a time at least a minute in the future.");
+                ShowMessage(L.T("Meetings.Schedule.ChooseATimeAtLeastA"));
                 return;
             }
             List<string> selected = lstParticipants.Items.Cast<ListItem>()
                 .Where(item => item.Selected).Select(item => item.Value).Distinct().ToList();
             if (selected.Count == 0)
             {
-                ShowMessage("Select at least one participant.");
+                ShowMessage(L.T("Meetings.Schedule.SelectAtLeastOneParticipant"));
                 return;
             }
             bool zoomCreated = false;
@@ -82,7 +82,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                     .Where(p => p.IsActive && p.Id != CurrentUser.Id).Select(p => p.Id));
                 if (selected.Any(id => !validIds.Contains(id)))
                 {
-                    ShowMessage("One of the selected participants is no longer available. Reload the page and try again.");
+                    ShowMessage(L.T("Meetings.Schedule.OneOfTheSelectedParticipantsIs"));
                     return;
                 }
                 ZoomMeetingResult zoom = ZoomMeetingService.Create(title, agenda, startUtc, duration);
@@ -110,8 +110,8 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             catch (FirebaseException)
             {
                 ShowMessage(zoomCreated
-                    ? "Zoom created the meeting, but it could not be saved here. Contact the administrator before retrying to avoid a duplicate."
-                    : "The participant list could not be verified. Please try again.");
+                    ? L.T("Meetings.Schedule.ZoomCreatedTheMeetingButIt")
+                    : L.T("Meetings.Schedule.TheParticipantListCouldNotBe"));
             }
         }
 

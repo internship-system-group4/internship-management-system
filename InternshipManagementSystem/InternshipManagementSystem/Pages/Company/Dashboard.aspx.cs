@@ -37,7 +37,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                             .Take(3)
                             .Select(a => new RecentAppViewModel
                             {
-                                StudentName = a.StudentName ?? "Unknown",
+                                StudentName = a.StudentName ?? L.T("Company.Dashboard.Unknown"),
                                 Major = a.StudentMajor ?? "N/A",
                                 OpportunityTitle = a.OpportunityTitle ?? "N/A",
                                 Status = a.Status.ToString(),

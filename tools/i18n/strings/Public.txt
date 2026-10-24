@@ -804,3 +804,343 @@ ar: هندسة الحاسوب
 Home.Demo6Summary
 en: Connect code with hardware through sensors, microcontrollers, and hands-on experiments.
 ar: اربط البرمجة بالأجهزة عبر الحساسات والمتحكمات الدقيقة والتجارب العملية.
+
+Page404.SECURITY
+en: SECURITY
+ar: الأمن
+
+Page404.GERMANJORDANIANUNIVERSITY
+en: GERMAN JORDANIAN UNIVERSITY
+ar: الجامعة الألمانية الأردنية
+
+Page404.LostOnCampus
+en: Lost on campus?
+ar: تائه في الحرم الجامعي؟
+
+Page404.WeLlGuideYouBack
+en: We’ll guide you back.
+ar: سنرشدك إلى الطريق.
+
+Page404.ThePageYouReLookingFor
+en: The page you’re looking for couldn’t be found. Let’s get you back to your internship journey at GJU.
+ar: تعذر العثور على الصفحة التي تبحث عنها. لنعد إلى رحلة تدريبك في الجامعة الألمانية الأردنية.
+
+Page404.BackToGJU
+en: Back to GJU
+ar: العودة إلى الجامعة
+
+Page404.UniversityInternshipManagementSystemGJU
+en: University Internship Management System | GJU
+ar: نظام إدارة التدريب الجامعي | الجامعة الألمانية الأردنية
+
+About.YourBrowserDoesNotSupportThe
+en: Your browser does not support the video tag.
+ar: متصفحك لا يدعم تشغيل الفيديو.
+
+Journey.AerialViewOfTheGermanJordanian
+en: Aerial view of the German Jordanian University campus in Madaba
+ar: منظر جوي لحرم الجامعة الألمانية الأردنية في مادبا
+
+Journey.GermanJordanianUniversity
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+Journey.PreparingTheDawn
+en: Preparing the dawn
+ar: جارٍ استقبال الفجر
+
+Journey.InternshipManagementSystem
+en: Internship Management System
+ar: نظام إدارة التدريب الميداني
+
+Journey.FromMadabaToTheWorld
+en: From Madaba to the world.
+ar: من مادبا إلى العالم.
+
+Journey.EveryGJUInternshipStartsHereOn
+en: Every GJU internship starts here, on a campus built as a bridge between Jordan and Germany.
+ar: يبدأ كل تدريب في الجامعة الألمانية الأردنية من هنا، من حرم بُني ليكون جسرًا بين الأردن وألمانيا.
+
+Journey.ScrollToBegin
+en: Scroll to begin
+ar: مرر للبدء
+
+Journey.TheGermanYear
+en: The German Year
+ar: السنة الألمانية
+
+Journey.ABridgeNotABorder
+en: A bridge, not a border.
+ar: جسر يجمع، لا حدود تفصل.
+
+Journey.EveryAutumnWhiteStorksFromGermany
+en: Every autumn, white storks from Germany fly south over Jordan. At GJU the crossing runs the other way too: the German Year takes students to a partner university and into German industry.
+ar: في كل خريف، تهاجر طيور اللقلق البيضاء من ألمانيا جنوبًا عبر الأردن. وفي الجامعة الألمانية الأردنية، يمتد التواصل في الاتجاه الآخر أيضًا؛ إذ تتيح السنة الألمانية للطلاب الدراسة في جامعة شريكة والتدرب في القطاع الصناعي الألماني.
+
+Journey.OneSystemForTheWholeJourney
+en: One system for the whole journey.
+ar: نظام واحد للرحلة كاملة.
+
+Journey.UIMSConnectsStudentsCompaniesAndUniversity
+en: UIMS connects students, companies and university supervisors, from the first application to the final evaluation.
+ar: يربط UIMS الطلاب والشركات والمشرفين الجامعيين من أول طلب وحتى التقييم النهائي.
+
+Journey.Students
+en: Students
+ar: الطلبة
+
+Journey.ExploreApplyLogHours
+en: Explore, apply, log hours
+ar: استكشف وقدّم وسجّل ساعاتك
+
+Journey.Companies
+en: Companies
+ar: الشركات
+
+Journey.PublishSelectMentor
+en: Publish, select, mentor
+ar: انشر الفرص واختر ووجّه
+
+Journey.Supervisors
+en: Supervisors
+ar: المشرفون
+
+Journey.FollowEvaluateApprove
+en: Follow, evaluate, approve
+ar: تابع وقيّم واعتمد
+
+Journey.Story
+en: Story
+ar: الحكاية
+
+Journey.EveryJourneyStartsWithAWalk
+en: Every journey starts with a walk across campus.
+ar: تبدأ كل رحلة بخطوة في الحرم الجامعي.
+
+Journey.SchoolOfComputing
+en: School of Computing
+ar: كلية الحوسبة
+
+Journey.WhereIdeasBecomeTechnology
+en: Where ideas become technology.
+ar: حيث تتحول الأفكار إلى تقنية.
+
+Journey.SchoolOfArchitectureAndBuiltEnvironment
+en: School of Architecture and Built Environment
+ar: كلية العمارة والبيئة المبنية
+
+Journey.DesigningTheSpacesWeLiveIn
+en: Designing the spaces we live in.
+ar: نصمم المساحات التي نعيش فيها.
+
+Journey.SchoolOfSustainableSystemsEngineering
+en: School of Sustainable Systems Engineering
+ar: كلية هندسة النظم المستدامة
+
+Journey.EngineeringASustainableTomorrow
+en: Engineering a sustainable tomorrow.
+ar: نبني بالغد هندسةً مستدامة.
+
+Journey.YourJourneyBeginsHere
+en: Your Journey Begins Here.
+ar: رحلتك تبدأ هنا.
+
+Journey.ExploreOpenInternships
+en: Explore open internships
+ar: استكشف فرص التدريب المتاحة
+
+Journey.JourneyChapters
+en: Journey chapters
+ar: فصول الرحلة
+
+Journey.Dawn
+en: Dawn
+ar: الفجر
+
+Journey.Bridge
+en: Bridge
+ar: الجسر
+
+Journey.System
+en: System
+ar: حسب النظام
+
+Journey.Campus
+en: Campus
+ar: الحرم
+
+Journey.Journey
+en: Journey
+ar: المسار
+
+Journey.PauseSceneMotion
+en: Pause scene motion
+ar: إيقاف حركة المشهد مؤقتًا
+
+Journey.OpenInternships
+en: Open internships
+ar: فرص التدريب المتاحة
+
+Journey.WhereWillYourJourneyTakeYou
+en: Where will your journey take you?
+ar: إلى أين ستأخذك رحلتك؟
+
+Journey.SummariesPublishedByOurPartnerCompanies
+en: Summaries published by our partner companies. Browse freely; sign in with your university account to see full details and apply.
+ar: ملخصات تنشرها شركاتنا الشريكة. تصفح بحرية، ثم سجّل الدخول بحسابك الجامعي للاطلاع على التفاصيل الكاملة والتقديم.
+
+Journey.NoInternshipSummariesArePublishedRight
+en: No internship summaries are published right now. Check back soon, or log in to see opportunities in your student portal.
+ar: لا توجد ملخصات فرص تدريب منشورة حاليًا. عد لاحقًا أو سجّل الدخول للاطلاع على الفرص في بوابة الطالب.
+
+Journey.Left
+en: left
+ar: متبقية
+
+Journey.ApplyNow
+en: Apply now
+ar: قدّم الآن
+
+Journey.OnlyPublishedSummariesArePublicFull
+en: Only published summaries are public. Full details and applications require a signed-in student account; after signing in you return to the opportunity you chose.
+ar: تتاح الملخصات المنشورة فقط للزوار. تتطلب التفاصيل الكاملة والتقديم حساب طالب مسجل الدخول؛ وبعد الدخول تعود إلى الفرصة التي اخترتها.
+
+Journey.AcademicDirectory
+en: Academic directory
+ar: دليل الكليات
+
+Journey.EightSchoolsOneUniversity
+en: Eight schools. One university.
+ar: ثماني كليات. جامعة واحدة.
+
+Journey.TheSchoolsOfGermanJordanianUniversity
+en: The schools of German Jordanian University. UIMS currently supports internships for the
+ar: كليات الجامعة الألمانية الأردنية. يدعم UIMS حاليًا التدريب في
+
+Journey.MoreSchoolsWillFollow
+en: ; more schools will follow.
+ar: ؛ وستُضاف كليات أخرى لاحقًا.
+
+Journey.OnUIMS
+en: On UIMS
+ar: متاح في UIMS
+
+Journey.Specializations
+en: Specializations:
+ar: التخصصات:
+
+Journey.ProgrammeNamesFromGjuEduJo
+en: Programme names from gju.edu.jo. The campus in the 3D scene is an artistic interpretation; schools are introduced thematically, not by building.
+ar: أسماء البرامج من gju.edu.jo. الحرم في المشهد ثلاثي الأبعاد تصور فني، وتُعرض الكليات بحسب تخصصاتها وليس بحسب المباني.
+
+Journey.HowItWorks
+en: How it works
+ar: كيف يعمل النظام
+
+Journey.LearnApplyGrow
+en: Learn. Apply. Grow.
+ar: تعلّم. طبّق. تطوّر.
+
+Journey.YourCompanyAndAcademicSupervisorsGuide
+en: Your company and academic supervisors guide your progress at every stage.
+ar: يرافق مشرف الشركة والمشرف الأكاديمي تقدمك في كل مرحلة.
+
+Journey.ExploreOpportunities
+en: Explore opportunities
+ar: استكشف فرص التدريب
+
+Journey.FindInternshipsThatMatchYourSchool
+en: Find internships that match your school and major.
+ar: ابحث عن فرص تدريب تناسب كليتك وتخصصك.
+
+Journey.ApplyAndConfirm
+en: Apply and confirm
+ar: قدّم وأكّد اختيارك
+
+Journey.ApplyFollowTheCompanyDecisionAnd
+en: Apply, follow the company decision and confirm one accepted offer.
+ar: قدّم طلبك، وتابع قرار الشركة، وأكِّد عرضًا مقبولًا واحدًا.
+
+Journey.TrainAndGrow
+en: Train and grow
+ar: تدرّب وتطوّر
+
+Journey.CompleteTasksSubmitWorkAndLearn
+en: Complete tasks, submit work and learn from your supervisors' feedback.
+ar: أنجز المهام، وسلّم أعمالك، واستفد من ملاحظات مشرفيك.
+
+Journey.CompleteYourReview
+en: Complete your review
+ar: أتمّ مراجعتك
+
+Journey.TrackApprovedHoursAndEvaluationsThrough
+en: Track approved hours and evaluations through the final university review.
+ar: تابع الساعات المعتمدة والتقييمات حتى المراجعة النهائية في الجامعة.
+
+Journey.ProcessVideo
+en: Process video
+ar: فيديو الخطوات
+
+Journey.SeeThePathAhead
+en: See the path ahead.
+ar: تعرّف على الطريق أمامك.
+
+Journey.AShortGuideToTheInternship
+en: A short guide to the internship process. Ask your coordinator about school-specific requirements.
+ar: دليل مختصر لمسار التدريب. اسأل منسقك عن المتطلبات الخاصة بكليتك.
+
+Journey.UniversityInternshipProcessVideo
+en: University internship process video
+ar: فيديو خطوات التدريب في الجامعة
+
+Journey.YourBrowserDoesNotSupportVideo
+en: Your browser does not support video.
+ar: لا يدعم متصفحك تشغيل الفيديو.
+
+Journey.OpenTheVideo
+en: Open the video
+ar: فتح الفيديو
+
+Journey.TheGermanJordanianUniversityCourtyardWith
+en: The German Jordanian University courtyard with its timber waterwheel
+ar: ساحة الجامعة الألمانية الأردنية وناعورتها الخشبية
+
+Journey.TheOfficialProcessVideoWillPlay
+en: The official process video will play here.
+ar: سيُعرض هنا الفيديو الرسمي لمسار التدريب.
+
+Journey.TheUniversitySInternshipProcessVideo
+en: The university's internship process video and captions have not been provided yet.
+ar: لم يتم توفير فيديو مسار التدريب الجامعي وترجمته النصية بعد.
+
+Journey.ReadyForYourNextChapter
+en: Ready for your next chapter?
+ar: هل أنت مستعد لفصلك التالي؟
+
+Journey.LogInToYourPortal
+en: Log in to your portal
+ar: سجّل الدخول إلى بوابتك
+
+NotFound.Code
+en: Error 404 — page not found
+ar: خطأ 404 — الصفحة غير موجودة
+
+NotFound.Heading
+en: This page is off the map
+ar: يبدو أنك خرجت عن المسار
+
+NotFound.Description
+en: We couldn’t find the page you’re looking for. It may have moved, or the link may be incorrect.
+ar: لم نتمكن من العثور على الصفحة المطلوبة. ربما تغيّر عنوانها أو كان الرابط غير صحيح.
+
+NotFound.Home
+en: Go Home
+ar: الصفحة الرئيسية
+
+NotFound.Back
+en: Go Back
+ar: رجوع
+
+NotFound.Contact
+en: Contact us
+ar: تواصل معنا

@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="~/Assets/css/ui-system.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/workspace.css?v=20261024-perf" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261024-v3" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261024-v4" runat="server" />
     
     <%-- Global Navbar Master Fix --%>
     <style>

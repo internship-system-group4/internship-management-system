@@ -180,7 +180,7 @@
                         <asp:TemplateField HeaderText="<%$ Resources:Company, TraineeDetails.Status %>">
                             <ItemTemplate>
                                 <span class='<%# GetTaskStatusCss(Eval("Status") != null ? Eval("Status").ToString() : "") %>'>
-                                    <%# Eval("Status") %>
+                                    <%#: L.Value("Ui", Eval("Status")) %>
                                 </span>
                             </ItemTemplate>
                         </asp:TemplateField>

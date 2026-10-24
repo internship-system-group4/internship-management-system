@@ -77,7 +77,7 @@
    <figure class="about-figure" data-reveal="clip" data-parallax>
     <video autoplay muted loop playsinline preload="metadata">
      <source src="<%: ResolveUrl("~/Assets/video/aboutGate.mp4") %>" type="video/mp4" />
-     Your browser does not support the video tag.
+     <%: L.T("Public.About.YourBrowserDoesNotSupportThe") %>
     </video>
    </figure>
   </div>
@@ -163,7 +163,7 @@
    <figure class="about-figure" data-reveal="clip">
     <video autoplay muted loop playsinline preload="metadata">
      <source src="<%: ResolveUrl("~/Assets/video/Academic Community.mp4") %>" type="video/mp4" />
-     Your browser does not support the video tag.
+     <%: L.T("Public.About.YourBrowserDoesNotSupportThe") %>
     </video>
    </figure>
   </div>
@@ -187,7 +187,7 @@
     <figure class="about-figure" data-reveal="clip">
      <video autoplay muted loop playsinline preload="metadata">
       <source src="<%: ResolveUrl("~/Assets/video/About UIMS.mp4") %>" type="video/mp4" />
-      Your browser does not support the video tag.
+      <%: L.T("Public.About.YourBrowserDoesNotSupportThe") %>
      </video>
     </figure>
    </div>

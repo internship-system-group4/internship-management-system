@@ -71,7 +71,7 @@
             border-bottom: 1px solid var(--th-line-d9e5f2,#d9e5f2);
             font-size: .77rem;
             font-weight: 700;
-            text-align: left;
+            text-align: start;
             white-space: nowrap;
         }
 
@@ -191,7 +191,7 @@
         .review-back-link:hover { color: var(--th-fg-123f63,#123f63); text-decoration: underline; }
 
         .review-page-heading { margin-bottom: 18px; }
-        .review-page-heading .review-dialog-title { display: inline-block; margin-right: 8px; }
+        .review-page-heading .review-dialog-title { display: inline-block; margin-inline-end: 8px; }
         .review-complete-badge { color: var(--th-fg-176447,#176447); background: var(--th-bg-e7f5ec,#e7f5ec); }
 .review-revision-badge { color: var(--th-fg-8a4b00,#8a4b00); background: var(--th-bg-fff1df,#fff1df); }
         .review-pending-badge { display: inline-block; padding: 4px 9px; color: var(--th-fg-24547c,#24547c); background: var(--th-bg-e3efff,#e3efff); border-radius: 999px; font-size: .7rem; font-weight: 650; vertical-align: 3px; }
@@ -305,7 +305,7 @@
         }
 
         .review-summary-item strong {
-            margin-right: 5px;
+            margin-inline-end: 5px;
             color: var(--th-fg-123f63,#123f63);
         }
 
@@ -479,35 +479,35 @@
     <asp:Panel ID="pnlSubmissionDirectory" runat="server">
     <div class="submission-page">
         <header class="submission-header">
-            <h2 class="submission-title">Review submissions</h2>
+            <h2 class="submission-title"><%: L.T("Company.TaskReview.ReviewSubmissions2") %></h2>
             <p class="submission-subtitle">
-                Review trainee work, provide an evaluation, or request a revision.
+                <%: L.T("Company.TaskReview.ReviewTraineeWorkProvideAnEvaluation") %>
             </p>
         </header>
 
         <section class="submission-card" aria-labelledby="submissionListTitle">
             <div class="submission-card-header">
-                <h3 id="submissionListTitle" class="submission-card-title">Student submissions</h3>
+                <h3 id="submissionListTitle" class="submission-card-title"><%: L.T("Company.TaskReview.StudentSubmissions") %></h3>
                 <p class="submission-card-description">
-                    Open a submission to review the trainee's work and choose the next action.
+                    <%: L.T("Company.TaskReview.OpenASubmissionToReviewThe") %>
                 </p>
             </div>
 
             <div class="submission-filters" role="search">
                 <input id="submissionSearch" type="search" class="submission-filter-control"
-                       placeholder="Search tasks or trainees" aria-label="Search submissions"
+                       placeholder="<%: L.T("Company.TaskReview.SearchTasksOrTrainees") %>" aria-label="<%: L.T("Company.TaskReview.SearchSubmissions") %>"
                        oninput="filterCompanySubmissions()" />
                 <select id="submissionTraineeFilter" class="submission-filter-control"
-                        aria-label="Filter by trainee" onchange="filterCompanySubmissions()">
-                    <option value="">All trainees</option>
+                        aria-label="<%: L.T("Company.TaskReview.FilterByTrainee") %>" onchange="filterCompanySubmissions()">
+                    <option value=""><%: L.T("Company.Dashboard.AllTrainees") %></option>
                 </select>
-                <select id="submissionStatusFilter" class="submission-filter-control" aria-label="Filter by submission status" onchange="filterCompanySubmissions()">
-                    <option value="">All statuses</option>
-                    <option value="Awaiting review">Awaiting review</option>
-                    <option value="Under review">Under review</option>
-                    <option value="Revision requested">Revision requested</option>
-                    <option value="Reviewed">Reviewed</option>
-                    <option value="Accepted">Accepted</option>
+                <select id="submissionStatusFilter" class="submission-filter-control" aria-label="<%: L.T("Company.TaskReview.FilterBySubmissionStatus") %>" onchange="filterCompanySubmissions()">
+                    <option value=""><%: L.T("Company.I18n.Allstatuses") %></option>
+                    <option value="Awaiting review"><%: L.T("Company.TaskReview.AwaitingReview") %></option>
+                    <option value="Under review"><%: L.T("Company.Tasks.UnderReview") %></option>
+                    <option value="Revision requested"><%: L.T("Company.Tasks.RevisionRequested") %></option>
+                    <option value="Reviewed"><%: L.T("Company.Tasks.Reviewed") %></option>
+                    <option value="Accepted"><%: L.T("Company.I18n.Accepted") %></option>
                 </select>
             </div>
 
@@ -515,12 +515,12 @@
                 <table class="submission-table">
                     <thead>
                         <tr>
-                            <th scope="col">Task</th>
-                            <th scope="col">Trainee</th>
-                            <th scope="col">Attempt</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Submitted at</th>
-                            <th scope="col">Action</th>
+                            <th scope="col"><%: L.T("Company.TaskReview.Task") %></th>
+                            <th scope="col"><%: L.T("Company.TaskReview.Trainee2") %></th>
+                            <th scope="col"><%: L.T("Company.TaskReview.Attempt") %></th>
+                            <th scope="col"><%: L.T("Company.TaskReview.Status2") %></th>
+                            <th scope="col"><%: L.T("Company.TaskReview.SubmittedAt") %></th>
+                            <th scope="col"><%: L.T("Company.TaskReview.Action") %></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -532,7 +532,7 @@
                                     <td class="submission-task-name"><%#: Eval("TaskTitle") %></td>
                                     <td class="submission-trainee-name"><%#: Eval("TraineeName") %></td>
                                     <td><%#: Eval("AttemptNumber") %></td>
-                                    <td><span class="<%#: Eval("StatusCss") %>"><%#: Eval("Status") %></span></td>
+                                    <td><span class="<%#: Eval("StatusCss") %>"><%#: L.Value("Ui", Eval("Status")) %></span></td>
                                     <td>
                                         <%# DateTimeOffset
                                             .FromUnixTimeMilliseconds(Convert.ToInt64(Eval("SubmittedAt")))
@@ -542,7 +542,7 @@
                                     <td>
                                         <asp:LinkButton ID="btnViewDetails"
                                             runat="server"
-                                            Text='<%#: Eval("ActionLabel") %>'
+                                            Text='<%#: L.Value("Ui", Eval("ActionLabel")) %>'
                                             CssClass="submission-view-button"
                                             CommandName="ViewDetails"
                                             CommandArgument='<%# Eval("Id") %>' />
@@ -555,7 +555,7 @@
             </div>
             <div class="submission-filter-summary">
                 <span id="submissionFilterSummary" aria-live="polite"></span>
-                <span id="submissionNoMatches" hidden>No submissions match these filters.</span>
+                <span id="submissionNoMatches" hidden><%: L.T("Company.TaskReview.NoSubmissionsMatchTheseFilters") %></span>
             </div>
         </section>
     </div>
@@ -567,45 +567,45 @@
         CssClass="review-overlay">
 
         <div class="review-dialog">
-    <a href="Tasks.aspx" class="review-back-link">&larr; Back to tasks</a>
+    <a href="Tasks.aspx" class="review-back-link"><%: L.T("Company.TaskReview.BackToTasks") %></a>
     <div class="review-page-heading">
-        <h3 class="review-dialog-title">Review submission</h3>
+        <h3 class="review-dialog-title"><%: L.T("Company.TaskReview.ReviewSubmission") %></h3>
         <asp:Label ID="lblReviewStatus" runat="server" CssClass="review-pending-badge" />
-        <p class="review-dialog-subtitle">Evaluate the trainee's work and give constructive feedback.</p>
+        <p class="review-dialog-subtitle"><%: L.T("Company.TaskReview.EvaluateTheTraineeSWorkAnd") %></p>
     </div>
     <asp:Label ID="lblReviewMessage" runat="server" EnableViewState="false" CssClass="review-message" />
     <div class="review-columns">
         <section class="review-card" aria-labelledby="submissionDetailsTitle">
-            <h4 id="submissionDetailsTitle" class="review-card-title">Submission details</h4>
+            <h4 id="submissionDetailsTitle" class="review-card-title"><%: L.T("Company.TaskReview.SubmissionDetails2") %></h4>
             <div class="review-details-grid">
-                <div><span class="review-detail-label">Trainee</span><span class="review-detail-value"><asp:Label ID="lblDetailTrainee" runat="server" /></span></div>
-                <div><span class="review-detail-label">Task title</span><span class="review-detail-value"><asp:Label ID="lblDetailTask" runat="server" /></span></div>
-                <div><span class="review-detail-label">Submitted</span><span class="review-detail-value"><asp:Label ID="lblDetailSubmittedAt" runat="server" /></span></div>
-                <div><span class="review-detail-label">Due date</span><span class="review-detail-value"><asp:Label ID="lblDetailDeadline" runat="server" /></span></div>
-                <div><span class="review-detail-label">Attempt</span><span class="review-detail-value"><asp:Label ID="lblDetailAttempt" runat="server" /></span></div>
+                <div><span class="review-detail-label"><%: L.T("Company.TaskReview.Trainee2") %></span><span class="review-detail-value"><asp:Label ID="lblDetailTrainee" runat="server" /></span></div>
+                <div><span class="review-detail-label"><%: L.T("Company.TaskReview.TaskTitle") %></span><span class="review-detail-value"><asp:Label ID="lblDetailTask" runat="server" /></span></div>
+                <div><span class="review-detail-label"><%: L.T("Company.TaskReview.Submitted2") %></span><span class="review-detail-value"><asp:Label ID="lblDetailSubmittedAt" runat="server" /></span></div>
+                <div><span class="review-detail-label"><%: L.T("Company.TaskReview.DueDate") %></span><span class="review-detail-value"><asp:Label ID="lblDetailDeadline" runat="server" /></span></div>
+                <div><span class="review-detail-label"><%: L.T("Company.TaskReview.Attempt") %></span><span class="review-detail-value"><asp:Label ID="lblDetailAttempt" runat="server" /></span></div>
             </div>
             <div class="review-work-area">
-                <span class="review-detail-label">Submitted work</span>
+                <span class="review-detail-label"><%: L.T("Company.TaskReview.SubmittedWork2") %></span>
                 <div class="review-work-text"><asp:Label ID="lblDetailText" runat="server" /></div>
-                <asp:HyperLink ID="lnkDetailWork" runat="server" Text="Open submitted link" Target="_blank" Visible="false" CssClass="review-work-link" />
-                <asp:HyperLink ID="lnkDetailFile" runat="server" Text="Open attached file" Target="_blank" Visible="false" CssClass="review-work-link" />
+                <asp:HyperLink ID="lnkDetailWork" runat="server" Text="<%$ Resources:Company, TaskReview.OpenSubmittedLink %>" Target="_blank" Visible="false" CssClass="review-work-link" />
+                <asp:HyperLink ID="lnkDetailFile" runat="server" Text="<%$ Resources:Company, TaskReview.OpenAttachedFile %>" Target="_blank" Visible="false" CssClass="review-work-link" />
             </div>
         </section>
         <section class="review-card" aria-labelledby="evaluationTitle">
-            <h4 id="evaluationTitle" class="review-card-title">Evaluation and feedback</h4>
-            <p class="review-card-note">Assess the submission with the university criteria.</p>
-            <div class="review-rubric-row"><label for="<%= txtCodeQuality.ClientID %>" class="review-rubric-label">Code quality <span>/ 25</span></label><asp:TextBox ID="txtCodeQuality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
-            <div class="review-rubric-row"><label for="<%= txtFunctionality.ClientID %>" class="review-rubric-label">Functionality <span>/ 35</span></label><asp:TextBox ID="txtFunctionality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="35" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
-            <div class="review-rubric-row"><label for="<%= txtDesignUsability.ClientID %>" class="review-rubric-label">Design &amp; usability <span>/ 25</span></label><asp:TextBox ID="txtDesignUsability" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
-            <div class="review-rubric-row"><label for="<%= txtDocumentation.ClientID %>" class="review-rubric-label">Documentation <span>/ 15</span></label><asp:TextBox ID="txtDocumentation" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="15" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
-            <div class="review-total"><span>Total evaluation score<small>Enter scores to calculate the total.</small></span><span><strong id="reviewComputedScore">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
+            <h4 id="evaluationTitle" class="review-card-title"><%: L.T("Company.TaskReview.EvaluationAndFeedback") %></h4>
+            <p class="review-card-note"><%: L.T("Company.TaskReview.AssessTheSubmissionWithTheUniversity") %></p>
+            <div class="review-rubric-row"><label for="<%= txtCodeQuality.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.CodeQuality") %> <span>/ 25</span></label><asp:TextBox ID="txtCodeQuality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-rubric-row"><label for="<%= txtFunctionality.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.Functionality") %> <span>/ 35</span></label><asp:TextBox ID="txtFunctionality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="35" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-rubric-row"><label for="<%= txtDesignUsability.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.DesignUsability") %> <span>/ 25</span></label><asp:TextBox ID="txtDesignUsability" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-rubric-row"><label for="<%= txtDocumentation.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.Documentation") %> <span>/ 15</span></label><asp:TextBox ID="txtDocumentation" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="15" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
+            <div class="review-total"><span><%: L.T("Company.TaskReview.TotalEvaluationScore") %><small><%: L.T("Company.TaskReview.EnterScoresToCalculateTheTotal") %></small></span><span><strong id="reviewComputedScore">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
             <div class="mb-2">
-                <asp:Label ID="lblFeedback" runat="server" AssociatedControlID="txtFeedback" CssClass="review-form-label" Text="Feedback for trainee" />
-                <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="Add feedback and suggestions..." />
+                <asp:Label ID="lblFeedback" runat="server" AssociatedControlID="txtFeedback" CssClass="review-form-label" Text="<%$ Resources:Company, TaskReview.FeedbackForTrainee %>" />
+                <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="<%$ Resources:Company, TaskReview.AddFeedbackAndSuggestions %>" />
             </div>
             <div class="review-actions">
-                <asp:Button ID="btnRequestRevision" runat="server" Text="Request changes" CssClass="review-secondary-button" OnClick="btnRequestRevision_Click" />
-                <asp:Button ID="btnSaveGrade" runat="server" Text="Submit evaluation" CssClass="review-primary-button" OnClick="btnSaveGrade_Click" />
+                <asp:Button ID="btnRequestRevision" runat="server" Text="<%$ Resources:Company, TaskReview.RequestChanges %>" CssClass="review-secondary-button" OnClick="btnRequestRevision_Click" />
+                <asp:Button ID="btnSaveGrade" runat="server" Text="<%$ Resources:Company, TaskReview.SubmitEvaluation %>" CssClass="review-primary-button" OnClick="btnSaveGrade_Click" />
             </div>
         </section>
     </div>
@@ -643,7 +643,7 @@
         }
 
         document.getElementById("submissionFilterSummary").textContent =
-            "Showing " + visibleCount + " of " + rows.length + " submissions";
+            uimsT('SubmissionsShowing', visibleCount, rows.length);
         document.getElementById("submissionNoMatches").hidden =
             visibleCount !== 0;
     }

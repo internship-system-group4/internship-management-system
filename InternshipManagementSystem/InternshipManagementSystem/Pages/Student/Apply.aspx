@@ -38,7 +38,7 @@
             <div class="application-submit">
                 <div class="application-confirm"><asp:CheckBox ID="Confirm" runat="server" Text="<%$ Resources:Student, Apply.IConfirmThatMyInformationIs %>" /></div>
                 <p class="application-help"><%: L.T("Student.Apply.YourApplicationWillBeMarkedPending") %></p>
-                <div class="application-actions"><a href="Opportunities.aspx"><%: L.T("Student.Apply.Cancel") %></a><asp:Button ID="SubmitApplication" runat="server" Text="<%$ Resources:Student, Apply.SubmitApplication %>" OnClick="Submit_Click" CssClass="btn btn-brand"  data-ui-action="submit" data-loading-label="Submitting…"/></div>
+                <div class="application-actions"><a href="Opportunities.aspx"><%: L.T("Student.Apply.Cancel") %></a><asp:Button ID="SubmitApplication" runat="server" Text="<%$ Resources:Student, Apply.SubmitApplication %>" OnClick="Submit_Click" CssClass="btn btn-brand"  data-ui-action="submit" data-loading-label="<%$ Resources:Shared, I18n.Submitting %>"/></div>
             </div>
         </asp:Panel>
         <asp:Panel ID="ViewPanel" runat="server" Visible="false" CssClass="application-sheet">
