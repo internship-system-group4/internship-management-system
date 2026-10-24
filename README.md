@@ -501,7 +501,7 @@ UIMS is an **Orange Academy Group 4** team project. The application's **Powered 
 | **سارة رجوب** | Product Owner |
 | **ندى علاونة** | Team Member |
 | **سجى** | Team Member |
-| **اسامة بني هاني** | Team Member |
+| *Osama Banihani** | Team Member |
 | **فاطمة** | Team Member |
 
 ### 🎨 Design and task management
