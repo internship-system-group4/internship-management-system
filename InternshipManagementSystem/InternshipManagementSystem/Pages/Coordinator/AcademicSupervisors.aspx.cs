@@ -63,6 +63,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.EnterAValidEmailAddress"), false);
                 return;
             }
+            // The phone is required: exactly 10 digits (e.g. 0791234567).
+            if (!InternshipManagementSystem.Common.Validators.IsPhone10(phone))
+            {
+                ShowCreateMessage(L.T("Coordinator.Phone.Invalid"), false);
+                return;
+            }
             if (!InternshipManagementSystem.Common.Validators.IsStrongEnoughPassword(txtPassword.Text))
             {
                 ShowCreateMessage(L.T("Coordinator.AcademicSupervisors.TheTemporaryPasswordMustBeAt"), false);
@@ -144,13 +150,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
-        /// <summary>Deletes the supervisor's profile. Only allowed when no group
-        /// and no student still points to them, so nobody is left without a
-        /// supervisor. Their sign-in stops working because the profile is gone.</summary>
-        protected void btnConfirmDelete_Click(object sender, EventArgs e)
+        /// <summary>The row's Active / Inactive switch (after the confirm pop-up).
+        /// Turns the supervisor's sign-in on or off; nothing is deleted.</summary>
+        protected void btnConfirmToggle_Click(object sender, EventArgs e)
         {
-            string id = hfDeleteId.Value;
-            hfDeleteId.Value = "";
+            string id = hfToggleId.Value;
+            hfToggleId.Value = "";
             pnlDetails.Visible = false;
             if (!IsValidSupervisorId(id))
             {
@@ -167,20 +172,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     BindSupervisors();
                     return;
                 }
-                bool hasGroups = new GroupRepository().GetAll().Any(g => g.AcademicSupervisorId == id);
-                bool hasStudents = users.GetStudentsBySupervisor(id).Count > 0;
-                if (hasGroups || hasStudents)
-                {
-                    ShowListMessage(L.T("Coordinator.AcademicSupervisors.DeleteBlocked"), false);
-                    return;
-                }
-                users.Delete(id);
+                bool activate = !supervisor.IsActive;
+                users.SetActive(id, activate);
                 BindSupervisors();
-                ShowListMessage(L.F("Coordinator.AcademicSupervisors.SupervisorDeleted", supervisor.FullName), true);
+                ShowListMessage(L.F(activate ? "Coordinator.Toggle.NowActive" : "Coordinator.Toggle.NowInactive", supervisor.FullName), true);
             }
             catch (FirebaseException)
             {
-                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotDeleteSupervisor"), false);
+                ShowListMessage(L.T("Coordinator.AcademicSupervisors.CouldNotChangeSupervisorAccessPlease"), false);
             }
         }
 
@@ -201,6 +200,11 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (name == null || department == null)
             {
                 ShowDetailsMessage(L.T("Coordinator.AcademicSupervisors.EnterANameAndDepartment"), false);
+                return;
+            }
+            if (!InternshipManagementSystem.Common.Validators.IsPhone10(phone))
+            {
+                ShowDetailsMessage(L.T("Coordinator.Phone.Invalid"), false);
                 return;
             }
             if (name.Length > 120 || department.Length > 120

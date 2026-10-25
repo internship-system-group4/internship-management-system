@@ -214,7 +214,9 @@
   <data name="Home.NoPreviewsText" xml:space="preserve"><value>لا تتوفر ملخصات منشورة حاليًا. عُد لاحقًا أو سجّل الدخول لاستكشاف بوابة الطالب.</value></data>
   <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>ستظهر الفرص الجديدة هنا</value></data>
   <data name="Home.PauseCards" xml:space="preserve"><value>إيقاف حركة البطاقات</value></data>
-  <data name="Home.PreviewIntro" xml:space="preserve"><value>تعرّف على تجارب قد تخوضها في تدريبك. سجّل الدخول للعثور على الفرص الحالية المناسبة لتخصصك.</value></data>
+  <data name="Home.PreviewIntro" xml:space="preserve"><value>استكشف فرص التدريب الحالية التي تنشرها الشركات الشريكة. سجّل الدخول لمعرفة الفرص المناسبة لتخصصك.</value></data>
+  <data name="Home.LiveNote" xml:space="preserve"><value>الفرص المنشورة حاليًا. تعرض بوابة الطالب الفرص التي يمكنك التقدم إليها.</value></data>
+  <data name="Home.PreviewUnavailable" xml:space="preserve"><value>تعذّر تحميل فرص التدريب الحالية الآن. حاول لاحقًا أو سجّل الدخول إلى بوابة الطالب.</value></data>
   <data name="Home.PreviewTitle" xml:space="preserve"><value>اكتشف مسارك القادم.</value></data>
   <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.</value></data>
   <data name="Home.ResumeCards" xml:space="preserve"><value>استئناف الحركة</value></data>

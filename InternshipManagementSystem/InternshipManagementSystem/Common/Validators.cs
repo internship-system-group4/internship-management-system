@@ -35,6 +35,14 @@ namespace InternshipManagementSystem.Common
                    && (parsed.Scheme == Uri.UriSchemeHttp || parsed.Scheme == Uri.UriSchemeHttps);
         }
 
+        private static readonly Regex PhonePattern = new Regex(@"^\d{10}$", RegexOptions.Compiled);
+
+        /// <summary>A supervisor phone number: exactly 10 digits, e.g. 0791234567.</summary>
+        public static bool IsPhone10(string value)
+        {
+            return !string.IsNullOrWhiteSpace(value) && PhonePattern.IsMatch(value.Trim());
+        }
+
         public static bool IsRequired(string value)
         {
             return !string.IsNullOrWhiteSpace(value);

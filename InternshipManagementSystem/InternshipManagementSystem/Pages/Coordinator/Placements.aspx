@@ -35,7 +35,7 @@
                 <tbody>
                 <% for (int i = 0; i < Rows.Count; i++) { var row = Rows[i]; %>
                     <tr data-student-id="<%: row.Placement.StudentId %>" style="--dir-i:<%: i %>">
-                        <td><div class="dir-person"><span class="dir-avatar" aria-hidden="true"><%: StudentDirectoryRow.MakeInitials(row.StudentName) %></span><div><strong><%: row.StudentName %></strong><small><%: row.StudentNumber %></small></div></div></td>
+                        <td><div class="dir-person"><span class="dir-avatar" aria-hidden="true"><%: StudentDirectoryRow.MakeInitials(row.StudentName) %></span><div><strong><%: row.StudentName %></strong></div></div></td>
                         <td><%: row.Major %></td>
                         <td><strong><%: Show(row.Placement.CompanyName) %></strong><small><%: Show(row.Placement.OpportunityTitle) %></small></td>
                         <td><span class="<%: PlacementStatusStyle.Css(row.Placement.Status) %>"><%: row.StatusText %></span></td>

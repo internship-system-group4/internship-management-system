@@ -1,4 +1,4 @@
-<%@ Page Language="C#"
+﻿<%@ Page Language="C#"
     MasterPageFile="~/Layout/Public.master"
     AutoEventWireup="true"
     CodeBehind="MyMeetings.aspx.cs"
@@ -417,21 +417,30 @@
             color: var(--ink);
         }
 
-        .meeting-recipient-list {
-            min-height: 180px;
-            margin-top: 8px;
-            padding: 5px;
-        }
-
-        .meeting-recipient-list option {
-            padding: 10px 12px;
-            border-radius: 7px;
-        }
-
-        .meeting-recipient-list option:checked {
-            background: var(--primary);
-            color: #fff;
-        }
+        /* People picker in the request pop-up: one field that opens a searchable list. */
+        .mp-native { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+        .mp { position: relative; }
+        .mp-toggle { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 8px 14px; font: inherit; text-align: start; color: var(--ui-muted); background: var(--ui-surface,#fff); border: 1px solid var(--ui-control-border,var(--border)); border-radius: 14px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+        .mp-toggle:hover { border-color: var(--ui-primary); }
+        .mp.is-open .mp-toggle, .mp-toggle:focus-visible { border-color: var(--ui-primary); box-shadow: 0 0 0 4px var(--ui-primary-soft); outline: none; }
+        .mp.has-choice .mp-toggle { color: var(--ui-ink); font-weight: 650; }
+        .mp-summary { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .mp-avatar { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; font-size: 14px; font-weight: 700; color: var(--ui-primary-text,var(--ui-primary)); background: var(--ui-primary-soft); }
+        .mp-caret { width: 9px; height: 9px; border-inline-end: 2px solid var(--ui-muted); border-bottom: 2px solid var(--ui-muted); transform: translateY(-2px) rotate(45deg); transition: transform .25s; }
+        .mp.is-open .mp-caret { transform: translateY(2px) rotate(-135deg); }
+        .mp-panel { margin-top: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 16px; background: var(--ui-surface,#fff); box-shadow: 0 24px 50px -28px rgba(10,30,55,.45); animation: mpOpen .22s cubic-bezier(.16,1,.3,1); }
+        .mp-panel[hidden] { display: none; }
+        .mp-search { margin-bottom: 8px; }
+        .mp-list { max-height: 232px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+        .mp-list li { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 12px; cursor: pointer; transition: background-color .15s; }
+        .mp-list li:hover, .mp-list li:focus-visible { background: var(--ui-neutral-soft); outline: none; }
+        .mp-list li[aria-selected="true"] { background: var(--ui-primary-soft); }
+        .mp-name { min-width: 0; }
+        .mp-name strong { display: block; color: var(--ui-ink); font-weight: 650; }
+        .mp-name small { display: block; color: var(--ui-muted); }
+        .mp-empty { margin: 0; padding: 14px; text-align: center; color: var(--ui-muted); }
+        @keyframes mpOpen { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .mp-panel { animation: none; } .mp-caret, .mp-toggle { transition: none; } }
 
         .meeting-search {
             max-width: 270px;
@@ -594,8 +603,25 @@
             }
         }
 
+        /* Pop-ups: same look as the coordinator pop-ups (soft header, rounded fields, pill buttons). */
+        body.uims-portal .meeting-dialog { border: 0; border-radius: 22px; box-shadow: 0 30px 80px -24px rgba(10,30,55,.45); }
+        body.uims-portal .meeting-dialog[open] { animation: meetingPop .32s cubic-bezier(.16,1,.3,1); }
+        body.uims-portal .meeting-dialog-header { padding: 22px 28px; background: linear-gradient(120deg,var(--ui-primary-soft),var(--ui-surface,#fff) 70%); }
+        body.uims-portal .uims-main-inner .meeting-dialog-header h2 { font-size: 22px; line-height: 1.3; }
+        body.uims-portal .meeting-dialog-header p { font-size: 15px; }
+        body.uims-portal .meeting-close { border-radius: 50%; }
+        body.uims-portal .meeting-form { padding: 24px 28px; gap: 18px 20px; }
+        body.uims-portal .meeting-label { font-size: 15px !important; font-weight: 700; color: var(--ui-ink); }
+        body.uims-portal .meeting-control { border-radius: 12px; min-height: 48px; }
+        body.uims-portal .meeting-control:focus { border-color: var(--ui-primary); box-shadow: 0 0 0 4px var(--ui-primary-soft); outline: none; }
+        body.uims-portal .meeting-hint { font-size: 14px !important; }
+        body.uims-portal .meeting-help { border-radius: 12px; font-size: 15px; background: var(--ui-primary-soft); }
+        body.uims-portal .meeting-dialog-actions { padding: 16px 28px; background: var(--ui-canvas,var(--ui-neutral-soft)); }
+        body.uims-portal .meeting-dialog .meeting-btn { border-radius: 999px; padding-inline: 1.3rem; }
+        @keyframes meetingPop { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+
         @media (prefers-reduced-motion: reduce) {
-            .meeting-dialog[open] {
+            .meeting-dialog[open], body.uims-portal .meeting-dialog[open] {
                 animation: none;
             }
         }
@@ -901,20 +927,25 @@
                         placeholder="<%$ Resources:Meetings, MyMeetings.EGInternshipProgressReview %>" />
                 </div>
 
-                <div>
-                    <asp:Label runat="server"
-                        AssociatedControlID="Recipient"
-                        CssClass="meeting-label"
-                        Text="<%$ Resources:Meetings, MyMeetings.WhoWouldYouLikeToMeet %>" />
+                <div class="meeting-wide">
+                    <span class="meeting-label" id="recipientLabel"><%: L.T("Meetings.MyMeetings.WhoWouldYouLikeToMeet") %></span>
 
-                    <label for="recipientSearch" class="visually-hidden"><%: L.T("Meetings.MyMeetings.SearchPeople") %></label>
-                    <input id="recipientSearch" type="search" class="meeting-control"
-                        autocomplete="off" placeholder="<%: L.T("Meetings.MyMeetings.SearchPeople") %>" />
-
-                    <asp:DropDownList ID="Recipient"
-                        runat="server"
-                        CssClass="meeting-control meeting-recipient-list"
-                        size="6" />
+                    <%-- People picker: one field that opens a searchable list. The hidden
+                         drop-down below still carries the chosen person to the server. --%>
+                    <div class="mp" data-mp>
+                        <button type="button" class="mp-toggle" aria-expanded="false" aria-controls="mpPanel" aria-labelledby="recipientLabel mpSummary">
+                            <span class="mp-avatar" data-mp-avatar aria-hidden="true">?</span>
+                            <span class="mp-summary" id="mpSummary" data-mp-summary><%: L.T("Meetings.MyMeetings.SelectAPerson") %></span>
+                            <span class="mp-caret" aria-hidden="true"></span>
+                        </button>
+                        <div class="mp-panel" id="mpPanel" hidden>
+                            <label for="recipientSearch" class="visually-hidden"><%: L.T("Meetings.MyMeetings.SearchPeople") %></label>
+                            <input id="recipientSearch" type="search" class="meeting-control mp-search" autocomplete="off" placeholder="<%: L.T("Meetings.MyMeetings.SearchPeople") %>" />
+                            <ul class="mp-list" role="listbox" aria-labelledby="recipientLabel" data-mp-list></ul>
+                            <p class="mp-empty" data-mp-empty hidden><%: L.T("Meetings.MyMeetings.NoPeopleMatch") %></p>
+                        </div>
+                    </div>
+                    <asp:DropDownList ID="Recipient" runat="server" CssClass="mp-native" tabindex="-1" aria-hidden="true" />
                     <span id="recipientCount" class="meeting-hint" aria-live="polite"></span>
                 </div>
 
@@ -1247,28 +1278,102 @@
                 const recipient = document.getElementById('<%= Recipient.ClientID %>');
                 const recipientSearch = document.getElementById('recipientSearch');
                 const recipientCount = document.getElementById('recipientCount');
-                const recipientOptions = Array.from(recipient.options).map(function (option) {
-                    return { value: option.value, text: option.text };
-                });
+                const picker = document.querySelector('[data-mp]');
+                const pickerToggle = picker.querySelector('.mp-toggle');
+                const pickerPanel = picker.querySelector('.mp-panel');
+                const pickerList = picker.querySelector('[data-mp-list]');
+                const pickerEmpty = picker.querySelector('[data-mp-empty]');
+                const pickerSummary = picker.querySelector('[data-mp-summary]');
+                const pickerAvatar = picker.querySelector('[data-mp-avatar]');
+                const placeholderText = recipient.options.length ? recipient.options[0].text : '';
+
+                // Each option reads "Full Name - Role".
+                function personOf(option) {
+                    const cut = option.text.lastIndexOf(' - ');
+                    const name = cut > 0 ? option.text.slice(0, cut) : option.text;
+                    const role = cut > 0 ? option.text.slice(cut + 3) : '';
+                    const parts = name.trim().split(/\s+/).filter(function (w) { return /^\p{L}/u.test(w); });
+                    const initials = ((parts[0] || '?').charAt(0) + (parts.length > 1 ? parts[parts.length - 1].charAt(0) : '')).toUpperCase();
+                    return { value: option.value, name: name, role: role, initials: initials };
+                }
+                const people = Array.from(recipient.options).filter(function (o) { return o.value; }).map(personOf);
+
+                function showChoice() {
+                    const chosen = people.find(function (p) { return p.value === recipient.value; });
+                    picker.classList.toggle('has-choice', !!chosen);
+                    pickerAvatar.textContent = chosen ? chosen.initials : '?';
+                    pickerSummary.textContent = chosen ? chosen.name + (chosen.role ? ' · ' + chosen.role : '') : placeholderText;
+                }
+
+                function openPicker(open) {
+                    pickerPanel.hidden = !open;
+                    picker.classList.toggle('is-open', open);
+                    pickerToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    if (open) { recipientSearch.value = ''; filterRecipients(); recipientSearch.focus(); }
+                }
 
                 function filterRecipients() {
                     const query = recipientSearch.value.trim().toLocaleLowerCase();
-                    const selected = recipient.value;
-                    const matches = recipientOptions.filter(function (option) {
-                        return option.value && option.text.toLocaleLowerCase().includes(query);
+                    pickerList.replaceChildren();
+                    let shown = 0;
+                    people.forEach(function (person) {
+                        if (query && (person.name + ' ' + person.role).toLocaleLowerCase().indexOf(query) < 0) return;
+                        shown++;
+                        const item = document.createElement('li');
+                        item.setAttribute('role', 'option');
+                        item.tabIndex = 0;
+                        item.dataset.value = person.value;
+                        item.setAttribute('aria-selected', person.value === recipient.value ? 'true' : 'false');
+                        const avatar = document.createElement('span');
+                        avatar.className = 'mp-avatar';
+                        avatar.textContent = person.initials;
+                        avatar.setAttribute('aria-hidden', 'true');
+                        const text = document.createElement('span');
+                        text.className = 'mp-name';
+                        const strong = document.createElement('strong');
+                        strong.textContent = person.name;
+                        const small = document.createElement('small');
+                        small.textContent = person.role;
+                        text.append(strong, small);
+                        item.append(avatar, text);
+                        pickerList.append(item);
                     });
-                    recipient.replaceChildren();
-                    recipient.add(new Option(recipientOptions[0].text, ''));
-                    matches.forEach(function (option) {
-                        recipient.add(new Option(option.text, option.value));
-                    });
-                    recipient.value = matches.some(function (option) { return option.value === selected; })
-                        ? selected : '';
-                    recipientCount.textContent = matches.length + ' <%: L.T("Meetings.MyMeetings.PeopleAvailable") %>';
+                    pickerEmpty.hidden = shown > 0;
+                    recipientCount.textContent = people.length + ' <%: L.T("Meetings.MyMeetings.PeopleAvailable") %>';
                 }
+
+                function choose(item) {
+                    recipient.value = item.dataset.value;
+                    showChoice();
+                    openPicker(false);
+                    pickerToggle.focus();
+                }
+
+                pickerToggle.addEventListener('click', function () { openPicker(pickerPanel.hidden); });
+                pickerList.addEventListener('click', function (event) {
+                    const item = event.target.closest('[role="option"]');
+                    if (item) choose(item);
+                });
+                pickerList.addEventListener('keydown', function (event) {
+                    const item = event.target.closest('[role="option"]');
+                    if (!item) return;
+                    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(item); }
+                    else if (event.key === 'ArrowDown' && item.nextElementSibling) { event.preventDefault(); item.nextElementSibling.focus(); }
+                    else if (event.key === 'ArrowUp') { event.preventDefault(); (item.previousElementSibling || recipientSearch).focus(); }
+                });
+                recipientSearch.addEventListener('keydown', function (event) {
+                    if (event.key === 'ArrowDown' && pickerList.firstElementChild) { event.preventDefault(); pickerList.firstElementChild.focus(); }
+                    else if (event.key === 'Enter') { event.preventDefault(); if (pickerList.firstElementChild) choose(pickerList.firstElementChild); }
+                });
+                picker.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape' && !pickerPanel.hidden) { event.preventDefault(); event.stopPropagation(); openPicker(false); pickerToggle.focus(); }
+                });
+                document.addEventListener('click', function (event) { if (!picker.contains(event.target)) openPicker(false); });
 
                 recipientSearch.addEventListener('input', filterRecipients);
                 filterRecipients();
+                showChoice();
+
 
                 const meetingSearch = document.getElementById('meetingSearch');
                 const meetingRows = Array.from(document.querySelectorAll('#<%= MeetingGrid.ClientID %> tr'))

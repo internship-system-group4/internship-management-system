@@ -123,6 +123,14 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Content Include="Layout\WorkspaceChart.ascx" />
+    <Compile Include="Layout\FinalEvaluations.ascx.cs">
+      <DependentUpon>FinalEvaluations.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layout\FinalEvaluations.ascx.designer.cs">
+      <DependentUpon>FinalEvaluations.ascx</DependentUpon>
+    </Compile>
+    <Content Include="Layout\FinalEvaluations.ascx" />
     <Content Include="Assets\css\interface.css" />
     <Content Include="Assets\css\reference-analytics.css" />
     <Content Include="Assets\js\workspace-charts.js" />
@@ -709,6 +717,8 @@
     <Content Include="Assets\js\coordinator-dashboard.js" />
     <Content Include="Assets\css\students.css" />
     <Content Include="Assets\css\coordinator-ui.css" />
+    <Content Include="Assets\css\coordinator-pages.css" />
+    <Content Include="Assets\js\coordinator-pages.js" />
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />

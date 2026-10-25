@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Groups.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Groups" Title="Groups & Assignments" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="Groups.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.Groups" Title="Groups & Assignments" %>
 <%@ Import Namespace="InternshipManagementSystem.Common" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">

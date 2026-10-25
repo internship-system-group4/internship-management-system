@@ -12,6 +12,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected global::System.Web.UI.WebControls.Panel pnlType;
         protected global::System.Web.UI.WebControls.DropDownList ddlType;
         protected global::System.Web.UI.WebControls.Button btnSaveType;
+        protected global::InternshipManagementSystem.Layout.FinalEvaluations ucFinal;
         protected global::System.Web.UI.WebControls.Panel pnlChecks;
         protected global::System.Web.UI.WebControls.Repeater rptChecks;
         protected global::System.Web.UI.WebControls.Button btnSaveChecks;

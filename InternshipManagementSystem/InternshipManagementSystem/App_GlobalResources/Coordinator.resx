@@ -817,7 +817,7 @@
   <data name="Placements.Status2" xml:space="preserve"><value>Status</value></data>
   <data name="Placements.Student" xml:space="preserve"><value>Student</value></data>
   <data name="Placements.Student2" xml:space="preserve"><value>Student</value></data>
-  <data name="Placements.StudentNameNumberUIDOrCompany" xml:space="preserve"><value>Student name, number, UID or company</value></data>
+  <data name="Placements.StudentNameNumberUIDOrCompany" xml:space="preserve"><value>Student name, number or company</value></data>
   <data name="Placements.StudentPlacements" xml:space="preserve"><value>Student placements</value></data>
   <data name="Placements.Total" xml:space="preserve"><value>total</value></data>
   <data name="Placements.UnnamedStudent" xml:space="preserve"><value>Unnamed student</value></data>
@@ -1198,7 +1198,7 @@
   <data name="AcademicSupervisors.DeletePermanently" xml:space="preserve"><value>Delete permanently</value></data>
   <data name="AcademicSupervisors.DeleteSupervisorQuestion" xml:space="preserve"><value>Delete this supervisor?</value></data>
   <data name="AcademicSupervisors.DirectoryHelp" xml:space="preserve"><value>Search, filter, view details or manage any supervisor.</value></data>
-  <data name="AcademicSupervisors.DirectoryIntro" xml:space="preserve"><value>Create supervisor accounts, review their groups and students, and manage or delete accounts.</value></data>
+  <data name="AcademicSupervisors.DirectoryIntro" xml:space="preserve"><value>Create supervisor accounts, review their groups and students, and turn their access on or off.</value></data>
   <data name="AcademicSupervisors.NoGroupsYet" xml:space="preserve"><value>No groups yet</value></data>
   <data name="AcademicSupervisors.OpenGroups" xml:space="preserve"><value>Open groups</value></data>
   <data name="AcademicSupervisors.Students" xml:space="preserve"><value>Students</value></data>
@@ -1410,4 +1410,68 @@
   <data name="ContactMessages.DirectoryHelp" xml:space="preserve"><value>Search by sender or subject, then open a message to review it.</value></data>
   <data name="CompletionReview.Crumb" xml:space="preserve"><value>Coordinator / Completion review</value></data>
   <data name="CompletionReview.ReadEvaluations" xml:space="preserve"><value>Read evaluations</value></data>
+  <data name="Toggle.ClickToDeactivate" xml:space="preserve"><value>Active — click to deactivate</value></data>
+  <data name="Toggle.ClickToActivate" xml:space="preserve"><value>Inactive — click to activate</value></data>
+  <data name="Toggle.ActivateTitle" xml:space="preserve"><value>Activate {0}?</value></data>
+  <data name="Toggle.DeactivateTitle" xml:space="preserve"><value>Deactivate {0}?</value></data>
+  <data name="Toggle.ActivateText" xml:space="preserve"><value>They will be able to sign in again straight away.</value></data>
+  <data name="Toggle.DeactivateText" xml:space="preserve"><value>They will not be able to sign in until you activate the account again. Nothing is deleted.</value></data>
+  <data name="Toggle.DeactivateSupervisorText" xml:space="preserve"><value>They will not be able to sign in until you activate the account again. Their groups and students stay assigned to them.</value></data>
+  <data name="Toggle.ActivateButton" xml:space="preserve"><value>Yes, activate</value></data>
+  <data name="Toggle.DeactivateButton" xml:space="preserve"><value>Yes, deactivate</value></data>
+  <data name="Toggle.NowActive" xml:space="preserve"><value>{0}'s account is now active.</value></data>
+  <data name="Toggle.NowInactive" xml:space="preserve"><value>{0}'s account is now inactive.</value></data>
+  <data name="Phone.Hint" xml:space="preserve"><value>10 digits, numbers only — e.g. 0791234567</value></data>
+  <data name="Phone.Invalid" xml:space="preserve"><value>Enter the supervisor's phone number: exactly 10 digits, numbers only (e.g. 0791234567).</value></data>
+  <data name="Companies.AccountCreatedTitle" xml:space="preserve"><value>Account created</value></data>
+  <data name="Final.Title" xml:space="preserve"><value>Final evaluation</value></data>
+  <data name="Final.CompanyKicker" xml:space="preserve"><value>Company supervisor</value></data>
+  <data name="Final.AcademicKicker" xml:space="preserve"><value>Academic supervisor</value></data>
+  <data name="Final.DraftTitle" xml:space="preserve"><value>Draft saved, not submitted</value></data>
+  <data name="Final.WaitingTitle" xml:space="preserve"><value>Not received yet</value></data>
+  <data name="Final.DraftText" xml:space="preserve"><value>{0} started this evaluation but has not submitted it. It does not count until it is submitted.</value></data>
+  <data name="Final.WaitingText" xml:space="preserve"><value>Waiting for {0} to submit the final evaluation.</value></data>
+  <data name="Final.SubmittedOn" xml:space="preserve"><value>Submitted {0}</value></data>
+  <data name="Final.Criteria" xml:space="preserve"><value>Criteria</value></data>
+  <data name="Final.Weight" xml:space="preserve"><value>Counts for {0}% of the final result</value></data>
+  <data name="Final.Strengths" xml:space="preserve"><value>Strengths</value></data>
+  <data name="Final.Improve" xml:space="preserve"><value>Areas for improvement</value></data>
+  <data name="Final.Overall" xml:space="preserve"><value>Overall comment</value></data>
+  <data name="Final.AcademicComments" xml:space="preserve"><value>Academic supervisor's comments</value></data>
+  <data name="Final.CompanyRemarks" xml:space="preserve"><value>Remarks on the company evaluation</value></data>
+  <data name="Final.NotAssigned" xml:space="preserve"><value>Not assigned</value></data>
+  <data name="Final.SectionTitle" xml:space="preserve"><value>Final evaluations</value></data>
+  <data name="Final.SectionCount" xml:space="preserve"><value>{0} of 2 received</value></data>
+  <data name="Review.ChecksVerified" xml:space="preserve"><value>{0} of {1} verified</value></data>
+  <data name="Review.PartTasks" xml:space="preserve"><value>Graded tasks ({0}%)</value></data>
+  <data name="Review.PartCompany" xml:space="preserve"><value>Company evaluation ({0}%)</value></data>
+  <data name="Review.PartAcademic" xml:space="preserve"><value>Academic evaluation ({0}%)</value></data>
+  <data name="Review.Points" xml:space="preserve"><value>pts</value></data>
+  <data name="Review.ReadyTitle" xml:space="preserve"><value>Ready for approval</value></data>
+  <data name="Review.MissingShort" xml:space="preserve"><value>Missing</value></data>
+  <data name="Review.ApprovedLine" xml:space="preserve"><value>Approved by {0} on {1}.</value></data>
+  <data name="Review.ReadyToApprove" xml:space="preserve"><value>Everything is in place. You can approve this internship.</value></data>
+  <data name="Review.NotReadyToApprove" xml:space="preserve"><value>Approval unlocks when every line above is green.</value></data>
+  <data name="Pd.TasksGraded" xml:space="preserve"><value>tasks graded</value></data>
+  <data name="Pd.WaitingHours" xml:space="preserve"><value>Hours waiting for approval</value></data>
+  <data name="Pd.WaitingHoursNote" xml:space="preserve"><value>Reported, not approved yet</value></data>
+  <data name="Pd.FinalsNote" xml:space="preserve"><value>Company and academic supervisors</value></data>
+  <data name="Pd.Sections" xml:space="preserve"><value>Progress sections</value></data>
+  <data name="Pd.TabOverview" xml:space="preserve"><value>Overview</value></data>
+  <data name="Pd.TabSubmissions" xml:space="preserve"><value>Submissions &amp; feedback</value></data>
+  <data name="Pd.TabHours" xml:space="preserve"><value>Training hours</value></data>
+  <data name="Pd.ConfirmedOn" xml:space="preserve"><value>Confirmed {0}</value></data>
+  <data name="Pd.People" xml:space="preserve"><value>Supervisors &amp; contact</value></data>
+  <data name="Pd.VisibleToStudent" xml:space="preserve"><value>Visible to student</value></data>
+  <data name="Pd.HiddenFromStudent" xml:space="preserve"><value>Not visible to student</value></data>
+  <data name="Pd.Grade" xml:space="preserve"><value>Grade</value></data>
+  <data name="Pd.AttemptN" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="Pd.NoFeedbackYet" xml:space="preserve"><value>Waiting for the company supervisor's review</value></data>
+  <data name="Pd.Feedback" xml:space="preserve"><value>Supervisor feedback</value></data>
+  <data name="Queue.Intro" xml:space="preserve"><value>Open an internship to read both final evaluations and record the completion decision.</value></data>
+  <data name="Queue.All" xml:space="preserve"><value>All internships</value></data>
+  <data name="Queue.Help" xml:space="preserve"><value>Click a tile above to filter. Highlighted rows are ready for your decision.</value></data>
+  <data name="Queue.Search" xml:space="preserve"><value>Search student, company or programme</value></data>
+  <data name="Queue.Company" xml:space="preserve"><value>Company evaluation</value></data>
+  <data name="Queue.Academic" xml:space="preserve"><value>Academic evaluation</value></data>
 </root>

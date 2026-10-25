@@ -61,7 +61,9 @@
                                 <div class="dir-actions">
                                     <asp:LinkButton ID="btnView" runat="server" CommandName="ViewDetails" CommandArgument='<%# Eval("Id") %>' CssClass="dir-btn" CausesValidation="false"><span data-ui-icon="eye" aria-hidden="true"></span> <%# L.T("Coordinator.AcademicSupervisors.ViewDetails") %></asp:LinkButton>
                                     <a class="dir-btn dir-btn-primary" href="<%#: ResolveUrl("~/Pages/Coordinator/SupervisorProfile.aspx?id=" + Uri.EscapeDataString((string)Eval("Id"))) %>"><span data-ui-icon="person" aria-hidden="true"></span> <%# L.T("Coordinator.ManageStudents.ViewProfile") %></a>
-                                    <asp:LinkButton ID="btnToggle" runat="server" CssClass='<%# (bool)Eval("IsActive") ? "dir-btn dir-btn-danger" : "dir-btn dir-btn-success" %>' CausesValidation="false" OnClientClick='<%# "return openConfirmModal(\"" + Eval("Id") + "\");" %>'><span data-ui-icon='<%# (bool)Eval("IsActive") ? "close" : "approved" %>' aria-hidden="true"></span> <%# (bool)Eval("IsActive") ? L.T("Coordinator.Companies.Deactivate") : L.T("Coordinator.Companies.Activate") %></asp:LinkButton>
+                                    <button type="button" class='<%# (bool)Eval("IsActive") ? "dir-btn dir-toggle is-on" : "dir-btn dir-toggle" %>' role="switch" aria-checked='<%# (bool)Eval("IsActive") ? "true" : "false" %>'
+                                        title='<%#: (bool)Eval("IsActive") ? L.T("Coordinator.Toggle.ClickToDeactivate") : L.T("Coordinator.Toggle.ClickToActivate") %>'
+                                        data-status-toggle="confirmToggleModal" data-id='<%#: Eval("Id") %>' data-name='<%#: Eval("FullName") %>' data-active='<%# (bool)Eval("IsActive") ? "true" : "false" %>'><span class="dir-switch" aria-hidden="true"></span><%#: (bool)Eval("IsActive") ? L.T("Coordinator.ManageStudents.StatusActive") : L.T("Coordinator.ManageStudents.StatusInactive") %><span class="visually-hidden">: <%#: Eval("FullName") %></span></button>
                                 </div>
                             </ItemTemplate>
                         </asp:TemplateField>
@@ -151,7 +153,7 @@
                             <div class="col-md-6"><label class="form-label" for="<%= txtSupervisorName.ClientID %>"><%: L.T("Coordinator.Companies.FullName") %></label><asp:TextBox ID="txtSupervisorName" runat="server" CssClass="form-control" placeholder="<%$ Resources:Coordinator, Companies.EGAhmadKhaled %>"></asp:TextBox></div>
                             <div class="col-md-6"><label class="form-label" for="<%= txtJobTitle.ClientID %>"><%: L.T("Coordinator.Companies.JobTitle") %></label><asp:TextBox ID="txtJobTitle" runat="server" CssClass="form-control" placeholder="<%$ Resources:Coordinator, Companies.EGHRManager %>"></asp:TextBox></div>
                             <div class="col-md-6"><label class="form-label" for="<%= txtSupervisorEmail.ClientID %>"><%: L.T("Coordinator.Companies.EmailAddress") %></label><asp:TextBox ID="txtSupervisorEmail" runat="server" CssClass="form-control" TextMode="Email" placeholder="name@company.com"></asp:TextBox></div>
-                            <div class="col-md-6"><label class="form-label" for="<%= txtSupervisorPhone.ClientID %>"><%: L.T("Coordinator.Companies.PhoneNumber") %></label><asp:TextBox ID="txtSupervisorPhone" runat="server" CssClass="form-control" placeholder="+962..."></asp:TextBox></div>
+                            <div class="col-md-6"><label class="form-label" for="<%= txtSupervisorPhone.ClientID %>"><%: L.T("Coordinator.Companies.PhoneNumber") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtSupervisorPhone" runat="server" CssClass="form-control" TextMode="Phone" MaxLength="10" inputmode="numeric" pattern="[0-9]{10}" title="<%$ Resources:Coordinator, Phone.Hint %>" placeholder="07XXXXXXXX" aria-describedby="supPhoneHint"></asp:TextBox><span id="supPhoneHint" class="dir-field-hint"><%: L.T("Coordinator.Phone.Hint") %></span></div>
                         </div>
                     </div>
 
@@ -201,27 +203,32 @@
     </div>
 
     <%-- Confirm before changing a supervisor's access. --%>
-    <div class="modal fade dir-modal" id="confirmToggleModal" tabindex="-1" aria-labelledby="confirmToggleTitle" aria-hidden="true">
+    <%-- Confirm before changing a supervisor's access (filled by Assets/js/coordinator-pages.js). --%>
+    <div class="modal fade dir-modal dir-confirm" id="confirmToggleModal" tabindex="-1" aria-labelledby="confirmToggleTitle" aria-hidden="true"
+         data-hidden-id="<%= hfToggleSupervisorId.ClientID %>"
+         data-title-on="<%: L.T("Coordinator.Toggle.ActivateTitle") %>" data-title-off="<%: L.T("Coordinator.Toggle.DeactivateTitle") %>"
+         data-text-on="<%: L.T("Coordinator.Toggle.ActivateText") %>" data-text-off="<%: L.T("Coordinator.Toggle.DeactivateText") %>"
+         data-btn-on="<%: L.T("Coordinator.Toggle.ActivateButton") %>" data-btn-off="<%: L.T("Coordinator.Toggle.DeactivateButton") %>">
         <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-            <div class="modal-body text-center p-4">
-                <div class="dir-delete-icon"><span data-ui-icon="warning" aria-hidden="true"></span></div>
-                <h3 class="h5 fw-bold mb-2" id="confirmToggleTitle"><%: L.T("Coordinator.Companies.ConfirmAction") %></h3>
-                <p class="text-muted small mb-0"><%: L.T("Coordinator.Companies.AreYouSureYouWantTo") %></p>
+            <div class="modal-body dir-confirm-body">
+                <div class="dir-result-icon is-danger" data-confirm-icon><span data-ui-icon="people" aria-hidden="true"></span></div>
+                <h3 id="confirmToggleTitle" data-confirm-title><%: L.T("Coordinator.Companies.ConfirmAction") %></h3>
+                <p data-confirm-text><%: L.T("Coordinator.Companies.AreYouSureYouWantTo") %></p>
             </div>
-            <div class="modal-footer justify-content-center">
+            <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.Companies.Cancel") %></button>
-                <asp:Button ID="btnConfirmToggle" runat="server" Text="<%$ Resources:Coordinator, Companies.YesIMSure %>" CssClass="btn btn-danger" OnClick="btnConfirmToggle_Click" CausesValidation="false" />
+                <asp:Button ID="btnConfirmToggle" runat="server" Text="<%$ Resources:Coordinator, Companies.YesIMSure %>" CssClass="btn btn-danger" OnClick="btnConfirmToggle_Click" CausesValidation="false" formnovalidate="formnovalidate" data-confirm-go="true" />
             </div>
         </div></div>
     </div>
 
     <%-- Result of a server action. --%>
-    <div class="modal fade dir-modal" id="serverMessageModal" tabindex="-1" aria-labelledby="serverMessageTitle" aria-hidden="true">
+    <div class="modal fade dir-modal dir-confirm" id="serverMessageModal" tabindex="-1" aria-labelledby="serverMessageTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-            <div class="modal-body text-center p-4">
-                <div class="mb-3 fs-1"><asp:Literal ID="litModalIcon" runat="server"></asp:Literal></div>
-                <h3 class="h5 fw-bold mb-2" id="serverMessageTitle"><asp:Literal ID="litModalTitle" runat="server"></asp:Literal></h3>
-                <p class="text-muted small mb-0"><asp:Literal ID="litModalMessage" runat="server"></asp:Literal></p>
+            <div class="modal-body dir-confirm-body">
+                <asp:Literal ID="litModalIcon" runat="server"></asp:Literal>
+                <h3 id="serverMessageTitle"><asp:Literal ID="litModalTitle" runat="server"></asp:Literal></h3>
+                <p><asp:Literal ID="litModalMessage" runat="server"></asp:Literal></p>
             </div>
             <div class="modal-footer justify-content-center"><button type="button" class="btn btn-brand" data-bs-dismiss="modal"><%: L.T("Coordinator.Companies.Okay") %></button></div>
         </div></div>
@@ -279,11 +286,6 @@
             if (window.bootstrap) new bootstrap.Tab(document.getElementById('tab-new')).show();
         }
 
-        function openConfirmModal(supervisorId) {
-            document.getElementById('<%= hfToggleSupervisorId.ClientID %>').value = supervisorId;
-            openSystemModal('confirmToggleModal');
-            return false;
-        }
     </script>
 </asp:Content>
 

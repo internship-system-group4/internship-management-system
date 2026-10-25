@@ -51,6 +51,21 @@ namespace InternshipManagementSystem.Common
             return FromUnixMs(ms).ToLocalTime().ToString("yyyy-MM-dd");
         }
 
+        /// <summary>Readable date and time for pages, e.g. "25 Oct 2026, 12:41 AM"
+        /// (month names follow the current language).</summary>
+        public static string Friendly(long ms)
+        {
+            if (ms <= 0) return "—";
+            return FromUnixMs(ms).ToLocalTime().ToString("d MMM yyyy, h:mm tt", System.Globalization.CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>Readable date only, e.g. "25 Oct 2026".</summary>
+        public static string FriendlyDate(long ms)
+        {
+            if (ms <= 0) return "—";
+            return FromUnixMs(ms).ToLocalTime().ToString("d MMM yyyy", System.Globalization.CultureInfo.CurrentCulture);
+        }
+
         public static bool IsPast(long ms)
         {
             return ms > 0 && ms < NowMs();

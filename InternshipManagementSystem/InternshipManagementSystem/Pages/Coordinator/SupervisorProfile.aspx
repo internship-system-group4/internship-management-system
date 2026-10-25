@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="SupervisorProfile.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.SupervisorProfile" Title="Supervisor profile" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="SupervisorProfile.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.SupervisorProfile" Title="Supervisor profile" %>
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="InternshipManagementSystem.Pages.CoordinatorArea" %>
 <%-- Supervisor profile (opened from "View profile" on Academic supervisors and Manage companies). --%>

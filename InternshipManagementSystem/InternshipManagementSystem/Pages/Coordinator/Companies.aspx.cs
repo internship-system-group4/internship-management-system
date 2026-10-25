@@ -61,11 +61,17 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             string supEmail = txtSupervisorEmail.Text;
             string tempPass = txtTempPassword.Text;
             string jobTitle = txtJobTitle.Text;
-            string supPhone = txtSupervisorPhone.Text;
+            string supPhone = (txtSupervisorPhone.Text ?? "").Trim();
 
             if (supName == "" || supEmail == "" || tempPass == "")
             {
                 ShowPopupMessage(L.T("Coordinator.Companies.MissingFields"), L.T("Coordinator.Companies.PleaseFillInAllRequiredSupervisor"), false);
+                return;
+            }
+            // The supervisor's phone is required: exactly 10 digits (e.g. 0791234567).
+            if (!InternshipManagementSystem.Common.Validators.IsPhone10(supPhone))
+            {
+                ShowPopupMessage(L.T("Coordinator.Companies.MissingFields"), L.T("Coordinator.Phone.Invalid"), false);
                 return;
             }
 
@@ -138,9 +144,9 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 BindExistingCompanies();
                 BindSupervisors();
 
-                litModalTitle.Text = "Success!";
-                litModalMessage.Text = L.F("Coordinator.Companies.AccountCreatedSuccessfullySupervisorIsLinked", finalCompanyName);
-                litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiCheckCircle");
+                litModalTitle.Text = InternshipManagementSystem.Common.Validators.Safe(L.T("Coordinator.Companies.AccountCreatedTitle"));
+                litModalMessage.Text = InternshipManagementSystem.Common.Validators.Safe(L.F("Coordinator.Companies.AccountCreatedSuccessfullySupervisorIsLinked", finalCompanyName));
+                litModalIcon.Text = ResultIcon(true);
 
                 ClientScript.RegisterStartupScript(this.GetType(), "ShowSuccess", "hideSystemModal('addSupervisorModal'); openSystemModal('serverMessageModal');", true);
             }
@@ -207,11 +213,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                         _userRepo.SetActive(supervisorId, newStatus);
                         BindSupervisors();
 
-                        string statusWord = newStatus ? "Activated" : "Deactivated";
-
-                        litModalTitle.Text = L.T("Coordinator.Companies.StatusUpdated");
-                        litModalMessage.Text = $"The supervisor account has been {statusWord} successfully.";
-                        litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiCheckCircle");
+                        litModalTitle.Text = InternshipManagementSystem.Common.Validators.Safe(L.T("Coordinator.Companies.StatusUpdated"));
+                        litModalMessage.Text = InternshipManagementSystem.Common.Validators.Safe(L.F(
+                            newStatus ? "Coordinator.Toggle.NowActive" : "Coordinator.Toggle.NowInactive", person.FullName));
+                        litModalIcon.Text = ResultIcon(true);
 
                         ClientScript.RegisterStartupScript(this.GetType(), "ToggleSuccess", "hideSystemModal('confirmToggleModal'); openSystemModal('serverMessageModal');", true);
                     }
@@ -225,15 +230,20 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 
         private void ShowPopupMessage(string title, string message, bool isSuccess)
         {
-            litModalTitle.Text = title;
-            litModalMessage.Text = message;
-
-            if (isSuccess)
-                litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiCheckCircle");
-            else
-                litModalIcon.Text = L.T("Coordinator.Companies.IClassBiBiExclamationCircle");
+            // Literals do not encode, so the texts are encoded here.
+            litModalTitle.Text = InternshipManagementSystem.Common.Validators.Safe(title);
+            litModalMessage.Text = InternshipManagementSystem.Common.Validators.Safe(message);
+            litModalIcon.Text = ResultIcon(isSuccess);
 
             ClientScript.RegisterStartupScript(this.GetType(), "ShowMessage", "openSystemModal('serverMessageModal');", true);
+        }
+
+        /// <summary>The round icon at the top of the result pop-up (coordinator-pages.css).</summary>
+        private static string ResultIcon(bool success)
+        {
+            return success
+                ? "<div class=\"dir-result-icon is-success\"><span data-ui-icon=\"approved\" aria-hidden=\"true\"></span></div>"
+                : "<div class=\"dir-result-icon is-warning\"><span data-ui-icon=\"warning\" aria-hidden=\"true\"></span></div>";
         }
 
         private void ClearForm()

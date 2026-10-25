@@ -201,4 +201,5 @@
   <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>people available</value></data>
   <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>Search meetings</value></data>
   <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>No meetings match your search.</value></data>
+  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>No people match your search.</value></data>
 </root>

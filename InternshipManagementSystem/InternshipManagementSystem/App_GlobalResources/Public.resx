@@ -214,7 +214,9 @@
   <data name="Home.NoPreviewsText" xml:space="preserve"><value>There are no published summaries available right now. Check back later or sign in to explore your student portal.</value></data>
   <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>New opportunities will appear here</value></data>
   <data name="Home.PauseCards" xml:space="preserve"><value>Pause cards</value></data>
-  <data name="Home.PreviewIntro" xml:space="preserve"><value>Explore the kind of experience an internship could offer. Sign in to find current openings for your field of study.</value></data>
+  <data name="Home.PreviewIntro" xml:space="preserve"><value>Explore current internships published by partner companies. Sign in to see which opportunities match your field of study.</value></data>
+  <data name="Home.LiveNote" xml:space="preserve"><value>Current published opportunities. Your student portal shows those you are eligible for.</value></data>
+  <data name="Home.PreviewUnavailable" xml:space="preserve"><value>We could not load current internships right now. Please try again later or sign in to your student portal.</value></data>
   <data name="Home.PreviewTitle" xml:space="preserve"><value>Find your next direction.</value></data>
   <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>We could not load published summaries. Try again, or sign in to your portal.</value></data>
   <data name="Home.ResumeCards" xml:space="preserve"><value>Resume movement</value></data>
