@@ -14,7 +14,7 @@
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <script>document.documentElement.classList.add('rv-js');setTimeout(function(){if(!window.UimsReview)document.documentElement.classList.remove('rv-js');},2500);</script>
     <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261024-qa-20261024-8") %>" />
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/completion-review.css?v=20261024-qa-20261024-8") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/completion-review.css?v=20261025-confirm1") %>" />
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
@@ -232,6 +232,24 @@
                     <asp:Button ID="btnReturn" runat="server" Text="<%$ Resources:Coordinator, Review.ReturnForCorrections %>" CssClass="btn btn-outline-warning" OnClick="Return_Click" data-ui-action="return" data-ui-validation="none" />
                     <asp:Button ID="btnReject" runat="server" Text="<%$ Resources:Coordinator, Review.RejectCompletion %>" CssClass="btn btn-outline-danger" OnClick="Reject_Click" data-ui-action="reject" data-ui-validation="none" />
                 </div>
+                <%-- Confirm pop-up for the three decisions; completion-review.js fills it from the button's data-cr-* text. --%>
+                <div class="cr-confirm" role="dialog" aria-modal="true" aria-labelledby="crConfirmTitle" aria-describedby="crConfirmText" data-cr-confirm-dialog hidden>
+                    <div class="cr-confirm-card">
+                        <div class="cr-confirm-icon" aria-hidden="true">
+                            <svg data-cr-icon="approve" viewBox="0 0 24 24"><path d="M12 2.8 14.4 4.6l3-.2.9 2.9 2.5 1.7-1 2.8 1 2.8-2.5 1.7-.9 2.9-3-.2L12 21.2 9.6 19.4l-3 .2-.9-2.9-2.5-1.7 1-2.8-1-2.8 2.5-1.7.9-2.9 3 .2z"/><path d="m8.4 12.2 2.4 2.4 4.8-5"/></svg>
+                            <svg data-cr-icon="return" viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+                            <svg data-cr-icon="reject" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m15 9-6 6m0-6 6 6"/></svg>
+                        </div>
+                        <h3 id="crConfirmTitle" data-cr-confirm-title></h3>
+                        <p id="crConfirmText" data-cr-confirm-text></p>
+                        <ul class="cr-confirm-points" data-cr-confirm-points></ul>
+                        <div class="cr-confirm-note" data-cr-confirm-note hidden><span><%: L.T("Coordinator.Review.DialogNote") %></span><p data-cr-confirm-note-text></p></div>
+                        <div class="cr-confirm-actions">
+                            <button type="button" class="btn btn-outline-secondary" data-cr-confirm-cancel><%: L.T("Coordinator.Review.DialogCancel") %></button>
+                            <button type="button" class="btn cr-confirm-go" data-cr-confirm-go></button>
+                        </div>
+                    </div>
+                </div>
             </asp:Panel>
         </section>
 
@@ -283,5 +301,5 @@
 
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
     <script src="<%: ResolveUrl("~/Assets/js/review-system.js?v=20261023-rv6") %>"></script>
-    <script src="<%: ResolveUrl("~/Assets/js/completion-review.js?v=20261023-rv6") %>"></script>
+    <script src="<%: ResolveUrl("~/Assets/js/completion-review.js?v=20261025-confirm1") %>"></script>
 </asp:Content>

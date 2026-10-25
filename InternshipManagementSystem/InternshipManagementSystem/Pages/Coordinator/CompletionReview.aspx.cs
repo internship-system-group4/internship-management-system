@@ -131,9 +131,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             if (IsEditable)
             {
                 btnApprove.Enabled = Summary.CanApprove;
-                btnApprove.OnClientClick = Confirm("Coordinator.Review.ConfirmApprove");
-                btnReturn.OnClientClick = Confirm("Coordinator.Review.ConfirmCorrections");
-                btnReject.OnClientClick = Confirm("Coordinator.Review.ConfirmReject");
+                string student = Progress.Overview.StudentName;
+                SetConfirm(btnApprove, "Approve", "Coordinator.Review.ConfirmApprove", student);
+                SetConfirm(btnReturn, "Return", "Coordinator.Review.ConfirmCorrections", student);
+                SetConfirm(btnReject, "Reject", "Coordinator.Review.ConfirmReject", student);
             }
         }
 
@@ -229,9 +230,19 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             return true;
         }
 
-        private static string Confirm(string key)
+        /// <summary>Gives a decision button the text for its confirm pop-up
+        /// (drawn by completion-review.js). Without JavaScript the browser's
+        /// own confirm box is used instead.</summary>
+        private static void SetConfirm(Button button, string kind, string fallbackKey, string student)
         {
-            return "return confirm('" + System.Web.HttpUtility.JavaScriptStringEncode(L.T(key)) + "');";
+            string prefix = "Coordinator.Review.Dialog" + kind;
+            button.Attributes["data-cr-confirm"] = kind.ToLowerInvariant();
+            button.Attributes["data-cr-title"] = L.T(prefix + "Title");
+            button.Attributes["data-cr-text"] = L.F(prefix + "Text", student ?? "");
+            button.Attributes["data-cr-points"] = L.T(prefix + "Points");
+            button.Attributes["data-cr-go"] = L.T(prefix + "Go");
+            button.OnClientClick = "return window.UimsCrConfirm ? UimsCrConfirm(this) : confirm('"
+                + System.Web.HttpUtility.JavaScriptStringEncode(L.T(fallbackKey)) + "');";
         }
 
         private void LoadReview()

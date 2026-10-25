@@ -160,32 +160,32 @@
   <data name="Home.BrowseSummaries" xml:space="preserve"><value>Explore internship examples</value></data>
   <data name="Home.CardMotionHint" xml:space="preserve"><value>Hover over a card to pause and take a closer look.</value></data>
   <data name="Home.Deadline" xml:space="preserve"><value>Application deadline</value></data>
-  <data name="Home.Demo1Company" xml:space="preserve"><value>Example software team</value></data>
+  <data name="Home.Demo1Company" xml:space="preserve"><value>Nabd Software Labs</value></data>
   <data name="Home.Demo1Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
   <data name="Home.Demo1Location" xml:space="preserve"><value>Amman, Jordan</value></data>
   <data name="Home.Demo1Summary" xml:space="preserve"><value>Build web services, test new features, and learn how software teams ship useful products.</value></data>
   <data name="Home.Demo1Title" xml:space="preserve"><value>Software Engineering Intern</value></data>
-  <data name="Home.Demo2Company" xml:space="preserve"><value>Example digital studio</value></data>
+  <data name="Home.Demo2Company" xml:space="preserve"><value>Zaytoon Digital Studio</value></data>
   <data name="Home.Demo2Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
   <data name="Home.Demo2Location" xml:space="preserve"><value>Hybrid, Jordan</value></data>
   <data name="Home.Demo2Summary" xml:space="preserve"><value>Create accessible interfaces and bring thoughtful digital experiences to life.</value></data>
   <data name="Home.Demo2Title" xml:space="preserve"><value>Frontend Development Intern</value></data>
-  <data name="Home.Demo3Company" xml:space="preserve"><value>Example analytics team</value></data>
+  <data name="Home.Demo3Company" xml:space="preserve"><value>Wadi Data Analytics</value></data>
   <data name="Home.Demo3Field" xml:space="preserve"><value>Computer Science</value></data>
   <data name="Home.Demo3Location" xml:space="preserve"><value>Amman, Jordan</value></data>
   <data name="Home.Demo3Summary" xml:space="preserve"><value>Turn datasets into clear dashboards and insights that help teams make better decisions.</value></data>
   <data name="Home.Demo3Title" xml:space="preserve"><value>Data Analysis Intern</value></data>
-  <data name="Home.Demo4Company" xml:space="preserve"><value>Example product team</value></data>
+  <data name="Home.Demo4Company" xml:space="preserve"><value>Qamar Product House</value></data>
   <data name="Home.Demo4Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
   <data name="Home.Demo4Location" xml:space="preserve"><value>Hybrid, Jordan</value></data>
   <data name="Home.Demo4Summary" xml:space="preserve"><value>Test real features, automate checks, and help teams deliver reliable software.</value></data>
   <data name="Home.Demo4Title" xml:space="preserve"><value>Quality Assurance Intern</value></data>
-  <data name="Home.Demo5Company" xml:space="preserve"><value>Example security lab</value></data>
+  <data name="Home.Demo5Company" xml:space="preserve"><value>Hisn Cyber Lab</value></data>
   <data name="Home.Demo5Field" xml:space="preserve"><value>Computer Science / Engineering</value></data>
   <data name="Home.Demo5Location" xml:space="preserve"><value>Amman, Jordan</value></data>
   <data name="Home.Demo5Summary" xml:space="preserve"><value>Explore secure systems, investigate risks, and learn practical security fundamentals.</value></data>
   <data name="Home.Demo5Title" xml:space="preserve"><value>Cybersecurity Intern</value></data>
-  <data name="Home.Demo6Company" xml:space="preserve"><value>Example engineering team</value></data>
+  <data name="Home.Demo6Company" xml:space="preserve"><value>Madar Embedded Systems</value></data>
   <data name="Home.Demo6Field" xml:space="preserve"><value>Computer Engineering</value></data>
   <data name="Home.Demo6Location" xml:space="preserve"><value>Madaba, Jordan</value></data>
   <data name="Home.Demo6Summary" xml:space="preserve"><value>Connect code with hardware through sensors, microcontrollers, and hands-on experiments.</value></data>
@@ -215,7 +215,7 @@
   <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>New opportunities will appear here</value></data>
   <data name="Home.PauseCards" xml:space="preserve"><value>Pause cards</value></data>
   <data name="Home.PreviewIntro" xml:space="preserve"><value>Explore current internships published by partner companies. Sign in to see which opportunities match your field of study.</value></data>
-  <data name="Home.LiveNote" xml:space="preserve"><value>Current published opportunities. Your student portal shows those you are eligible for.</value></data>
+  <data name="Home.LiveNote" xml:space="preserve"><value>A preview of internship opportunities. Your student portal shows the ones you are eligible for.</value></data>
   <data name="Home.PreviewUnavailable" xml:space="preserve"><value>We could not load current internships right now. Please try again later or sign in to your student portal.</value></data>
   <data name="Home.PreviewTitle" xml:space="preserve"><value>Find your next direction.</value></data>
   <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>We could not load published summaries. Try again, or sign in to your portal.</value></data>

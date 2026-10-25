@@ -160,32 +160,32 @@
   <data name="Home.BrowseSummaries" xml:space="preserve"><value>استكشف أمثلة فرص التدريب</value></data>
   <data name="Home.CardMotionHint" xml:space="preserve"><value>ضع المؤشر على بطاقة لإيقاف الحركة وإلقاء نظرة أقرب.</value></data>
   <data name="Home.Deadline" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
-  <data name="Home.Demo1Company" xml:space="preserve"><value>فريق برمجيات افتراضي</value></data>
+  <data name="Home.Demo1Company" xml:space="preserve"><value>مختبرات نبض للبرمجيات</value></data>
   <data name="Home.Demo1Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
   <data name="Home.Demo1Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
   <data name="Home.Demo1Summary" xml:space="preserve"><value>طوّر خدمات الويب واختبر ميزات جديدة، وتعرّف على طريقة عمل فرق البرمجيات.</value></data>
   <data name="Home.Demo1Title" xml:space="preserve"><value>متدرب هندسة برمجيات</value></data>
-  <data name="Home.Demo2Company" xml:space="preserve"><value>استوديو رقمي افتراضي</value></data>
+  <data name="Home.Demo2Company" xml:space="preserve"><value>استوديو زيتون الرقمي</value></data>
   <data name="Home.Demo2Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
   <data name="Home.Demo2Location" xml:space="preserve"><value>عمل هجين، الأردن</value></data>
   <data name="Home.Demo2Summary" xml:space="preserve"><value>صمّم واجهات ميسّرة وحوّل الأفكار إلى تجارب رقمية سهلة الاستخدام.</value></data>
   <data name="Home.Demo2Title" xml:space="preserve"><value>متدرب تطوير واجهات</value></data>
-  <data name="Home.Demo3Company" xml:space="preserve"><value>فريق تحليلات افتراضي</value></data>
+  <data name="Home.Demo3Company" xml:space="preserve"><value>وادي لتحليل البيانات</value></data>
   <data name="Home.Demo3Field" xml:space="preserve"><value>علوم الحاسوب</value></data>
   <data name="Home.Demo3Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
   <data name="Home.Demo3Summary" xml:space="preserve"><value>حوّل البيانات إلى لوحات واضحة ونتائج تساعد الفرق على اتخاذ قرارات أفضل.</value></data>
   <data name="Home.Demo3Title" xml:space="preserve"><value>متدرب تحليل بيانات</value></data>
-  <data name="Home.Demo4Company" xml:space="preserve"><value>فريق منتجات افتراضي</value></data>
+  <data name="Home.Demo4Company" xml:space="preserve"><value>بيت قمر للمنتجات</value></data>
   <data name="Home.Demo4Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
   <data name="Home.Demo4Location" xml:space="preserve"><value>عمل هجين، الأردن</value></data>
   <data name="Home.Demo4Summary" xml:space="preserve"><value>اختبر ميزات المنتجات وأتمت عمليات الفحص، وساهم في تطوير برمجيات موثوقة.</value></data>
   <data name="Home.Demo4Title" xml:space="preserve"><value>متدرب ضمان الجودة</value></data>
-  <data name="Home.Demo5Company" xml:space="preserve"><value>مختبر أمن افتراضي</value></data>
+  <data name="Home.Demo5Company" xml:space="preserve"><value>مختبر حصن السيبراني</value></data>
   <data name="Home.Demo5Field" xml:space="preserve"><value>علوم وهندسة الحاسوب</value></data>
   <data name="Home.Demo5Location" xml:space="preserve"><value>عمّان، الأردن</value></data>
   <data name="Home.Demo5Summary" xml:space="preserve"><value>استكشف الأنظمة الآمنة وتحليل المخاطر، وتعلّم أساسيات الأمن بشكل عملي.</value></data>
   <data name="Home.Demo5Title" xml:space="preserve"><value>متدرب الأمن السيبراني</value></data>
-  <data name="Home.Demo6Company" xml:space="preserve"><value>فريق هندسي افتراضي</value></data>
+  <data name="Home.Demo6Company" xml:space="preserve"><value>مدار للأنظمة المدمجة</value></data>
   <data name="Home.Demo6Field" xml:space="preserve"><value>هندسة الحاسوب</value></data>
   <data name="Home.Demo6Location" xml:space="preserve"><value>مادبا، الأردن</value></data>
   <data name="Home.Demo6Summary" xml:space="preserve"><value>اربط البرمجة بالأجهزة عبر الحساسات والمتحكمات الدقيقة والتجارب العملية.</value></data>
@@ -215,7 +215,7 @@
   <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>ستظهر الفرص الجديدة هنا</value></data>
   <data name="Home.PauseCards" xml:space="preserve"><value>إيقاف حركة البطاقات</value></data>
   <data name="Home.PreviewIntro" xml:space="preserve"><value>استكشف فرص التدريب الحالية التي تنشرها الشركات الشريكة. سجّل الدخول لمعرفة الفرص المناسبة لتخصصك.</value></data>
-  <data name="Home.LiveNote" xml:space="preserve"><value>الفرص المنشورة حاليًا. تعرض بوابة الطالب الفرص التي يمكنك التقدم إليها.</value></data>
+  <data name="Home.LiveNote" xml:space="preserve"><value>لمحة عن فرص التدريب. تعرض بوابة الطالب الفرص التي يمكنك التقدم إليها.</value></data>
   <data name="Home.PreviewUnavailable" xml:space="preserve"><value>تعذّر تحميل فرص التدريب الحالية الآن. حاول لاحقًا أو سجّل الدخول إلى بوابة الطالب.</value></data>
   <data name="Home.PreviewTitle" xml:space="preserve"><value>اكتشف مسارك القادم.</value></data>
   <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.</value></data>

@@ -558,22 +558,17 @@
  <header class="hd-section-heading"><div><h2 id="preview-title"><%: L.T("Public.Home.PreviewTitle") %></h2><p><%: L.T("Public.Home.PreviewIntro") %></p></div><a class="hd-browse" href="<%: ResolveUrl("~/Pages/Account/Login.aspx") %>"><%: L.T("Public.Home.FindCurrent") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></header>
  <div class="hd-rail-toolbar"><p class="hd-access-note"><span><%: L.T("Public.Home.LiveNote") %></span></p>
  </div>
- <% if (PreviewError != null) { %>
- <p class="jisr-notice" role="status"><%: PreviewError %></p>
- <% } else if (Previews.Count == 0) { %>
- <p class="jisr-notice" role="status"><%: L.T("Public.Journey.NoInternshipSummariesArePublishedRight") %></p>
- <% } else { %>
- <div class="hd-preview-grid" role="region" aria-labelledby="preview-title">
+ <div class="hd-preview-grid" data-preview-carousel role="region" aria-labelledby="preview-title">
  <% foreach (var preview in Previews) { %>
- <article class="hd-preview" data-opportunity-id="<%: preview.Id %>">
-  <div class="hd-card-top"><span class="hd-role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h18v16H3zM3 9h18M7 6.5h.01M10 6.5h.01" /></svg></span><p class="hd-company"><%: preview.CompanyName %></p></div><div class="hd-preview-heading"><h3><%: preview.Title %></h3></div>
+ <article class="hd-preview">
+  <div class="hd-card-top"><span class="hd-role-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="<%: preview.IconPath %>" /></svg></span><p class="hd-company"><%: preview.CompanyName %></p></div><div class="hd-preview-heading"><h3><%: preview.Title %></h3></div>
   <p class="hd-summary"><%: preview.Summary %></p>
   <dl class="hd-preview-facts"><div><dt class="visually-hidden"><%: L.T("Public.Home.Location") %></dt><dd><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0zM15 10a3 3 0 1 1-6 0 3 3 0 0 1 6 0" /></svg><%: preview.Location %></dd></div><div><dt class="visually-hidden"><%: L.T("Public.Home.Specialization") %></dt><dd><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="m2 8 10-5 10 5-10 5zM6 11v7l6 3 6-3v-7m4-3v9" /></svg><%: preview.Specialization %></dd></div></dl>
-  <div class="hd-preview-actions"><a class="hd-details" href="<%: ResolveUrl("~/Pages/Student/OpportunityDetails.aspx") + "?id=" + Server.UrlEncode(preview.Id) %>"><%: L.T("Public.Home.MoreDetails") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></div>
+  <div class="hd-preview-actions"><a class="hd-details" href="<%: preview.Link %>"><%: L.T("Public.Home.MoreDetails") %><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></a></div>
  </article>
  <% } %>
  </div>
- <% } %>
+ <div class="hd-preview-motion-controls" data-preview-controls hidden><button type="button" class="hd-motion-toggle" data-preview-pause aria-pressed="false" data-pause-label="<%: L.T("Public.Home.PauseCards") %>" data-resume-label="<%: L.T("Public.Home.ResumeCards") %>"><svg class="hd-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path data-preview-pause-icon d="M8 5v14M16 5v14" /></svg><span data-preview-pause-text><%: L.T("Public.Home.PauseCards") %></span></button><span class="visually-hidden"><%: L.T("Public.Home.CardMotionHint") %></span></div>
 </section>
 
 

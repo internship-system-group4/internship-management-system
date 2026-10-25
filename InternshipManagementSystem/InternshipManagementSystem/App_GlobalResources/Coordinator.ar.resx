@@ -1105,6 +1105,20 @@
   <data name="Review.ConfirmApprove" xml:space="preserve"><value>اعتماد إتمام التدريب؟ سيصدر تقرير الإتمام للطالب.</value></data>
   <data name="Review.ConfirmCorrections" xml:space="preserve"><value>إعادة هذا الإتمام إلى الطالب للتصحيح؟</value></data>
   <data name="Review.ConfirmReject" xml:space="preserve"><value>رفض الإتمام؟ سيُغلق هذا المراجعة ولا يمكن التراجع عنه هنا.</value></data>
+  <data name="Review.DialogApproveTitle" xml:space="preserve"><value>اعتماد إتمام التدريب؟</value></data>
+  <data name="Review.DialogApproveText" xml:space="preserve"><value>استوفى {0} جميع متطلبات الإتمام. عند الاعتماد:</value></data>
+  <data name="Review.DialogApprovePoints" xml:space="preserve"><value>يصدر تقرير الإتمام للطالب|تصبح شهادة الإتمام متاحة للتنزيل</value></data>
+  <data name="Review.DialogApproveGo" xml:space="preserve"><value>نعم، اعتمد الإتمام</value></data>
+  <data name="Review.DialogReturnTitle" xml:space="preserve"><value>إعادة للتصحيح؟</value></data>
+  <data name="Review.DialogReturnText" xml:space="preserve"><value>سيُعاد الإتمام إلى {0} لاستكمال العناصر الناقصة.</value></data>
+  <data name="Review.DialogReturnPoints" xml:space="preserve"><value>يرى الطالب ملاحظتك ويمكنه إعادة التقديم|لا يصدر أي شيء حتى تعتمد الإتمام</value></data>
+  <data name="Review.DialogReturnGo" xml:space="preserve"><value>إعادة للتصحيح</value></data>
+  <data name="Review.DialogRejectTitle" xml:space="preserve"><value>رفض هذا الإتمام؟</value></data>
+  <data name="Review.DialogRejectText" xml:space="preserve"><value>سيُغلق هذا مراجعة {0}.</value></data>
+  <data name="Review.DialogRejectPoints" xml:space="preserve"><value>لن يصدر تقرير إتمام أو شهادة|لا يمكن التراجع عن ذلك من هذه الصفحة</value></data>
+  <data name="Review.DialogRejectGo" xml:space="preserve"><value>رفض الإتمام</value></data>
+  <data name="Review.DialogCancel" xml:space="preserve"><value>ليس الآن</value></data>
+  <data name="Review.DialogNote" xml:space="preserve"><value>ملاحظتك</value></data>
   <data name="Review.DoneApproved" xml:space="preserve"><value>اعتُمد الإتمام. التقرير متاح الآن للطالب.</value></data>
   <data name="Review.DoneCorrections" xml:space="preserve"><value>أُعيد إلى الطالب للتصحيح. يمكنك مراجعته لاحقًا.</value></data>
   <data name="Review.DoneRejected" xml:space="preserve"><value>رُفض الإتمام. أُبلغ الطالب بالسبب.</value></data>

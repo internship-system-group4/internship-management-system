@@ -81,9 +81,85 @@
     stage.addEventListener('click', function (event) { if (event.target === stage) finish(); });
   }
 
+  // ---- decision confirm pop-up -------------------------------------------------
+  // The buttons call UimsCrConfirm(this) from OnClientClick. The first click opens
+  // the pop-up and stops the postback; "confirm" clicks the button again for real.
+  function initConfirm() {
+    var dialog = document.querySelector('[data-cr-confirm-dialog]');
+    if (!dialog) return;
+    document.body.appendChild(dialog);
+    var title = dialog.querySelector('[data-cr-confirm-title]');
+    var text = dialog.querySelector('[data-cr-confirm-text]');
+    var points = dialog.querySelector('[data-cr-confirm-points]');
+    var note = dialog.querySelector('[data-cr-confirm-note]');
+    var noteText = dialog.querySelector('[data-cr-confirm-note-text]');
+    var go = dialog.querySelector('[data-cr-confirm-go]');
+    var cancel = dialog.querySelector('[data-cr-confirm-cancel]');
+    var current = null, previousOverflow = '';
+
+    function open(button) {
+      current = button;
+      var kind = button.getAttribute('data-cr-confirm');
+      dialog.setAttribute('data-kind', kind);
+      dialog.querySelectorAll('[data-cr-icon]').forEach(function (icon) { icon.style.display = icon.getAttribute('data-cr-icon') === kind ? '' : 'none'; });
+      title.textContent = button.getAttribute('data-cr-title');
+      text.textContent = button.getAttribute('data-cr-text');
+      go.textContent = button.getAttribute('data-cr-go');
+      points.innerHTML = '';
+      (button.getAttribute('data-cr-points') || '').split('|').forEach(function (line) {
+        if (!line) return;
+        var li = document.createElement('li');
+        li.textContent = line;
+        points.appendChild(li);
+      });
+      var field = document.querySelector('.crx-decision-form textarea');
+      var typed = field ? field.value.trim() : '';
+      note.hidden = !typed;
+      noteText.textContent = typed;
+      previousOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      dialog.classList.remove('is-leaving');
+      dialog.hidden = false;
+      document.addEventListener('keydown', onKey);
+      setTimeout(function () { cancel.focus({ preventScroll: true }); }, reduced ? 0 : 60);
+    }
+    function close(confirmed) {
+      var button = current;
+      document.removeEventListener('keydown', onKey);
+      dialog.classList.add('is-leaving');
+      setTimeout(function () {
+        dialog.hidden = true;
+        dialog.classList.remove('is-leaving');
+        document.body.style.overflow = previousOverflow;
+        if (!button) return;
+        if (confirmed) { button.setAttribute('data-cr-confirmed', '1'); button.click(); }
+        else button.focus({ preventScroll: true });
+      }, reduced ? 0 : 180);
+      current = null;
+    }
+    function onKey(event) {
+      if (event.key === 'Escape') { event.preventDefault(); close(false); return; }
+      if (event.key !== 'Tab') return;
+      // Keep focus inside the two buttons while the pop-up is open.
+      var first = cancel, last = go;
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+    }
+    go.addEventListener('click', function () { close(true); });
+    cancel.addEventListener('click', function () { close(false); });
+    dialog.addEventListener('click', function (event) { if (event.target === dialog) close(false); });
+
+    window.UimsCrConfirm = function (button) {
+      if (button.getAttribute('data-cr-confirmed') === '1') { button.removeAttribute('data-cr-confirmed'); return true; }
+      open(button);
+      return false;
+    };
+  }
+
   function init() {
     document.querySelectorAll('[data-cr-queue]').forEach(initQueue);
     initStamp();
+    initConfirm();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 }());

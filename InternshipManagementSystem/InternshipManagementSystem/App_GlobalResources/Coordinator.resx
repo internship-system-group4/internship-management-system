@@ -1105,6 +1105,20 @@
   <data name="Review.ConfirmApprove" xml:space="preserve"><value>Approve internship completion? The completion report will be released to the student.</value></data>
   <data name="Review.ConfirmCorrections" xml:space="preserve"><value>Return this completion to the student for corrections?</value></data>
   <data name="Review.ConfirmReject" xml:space="preserve"><value>Reject completion? This closes the review and cannot be undone here.</value></data>
+  <data name="Review.DialogApproveTitle" xml:space="preserve"><value>Approve internship completion?</value></data>
+  <data name="Review.DialogApproveText" xml:space="preserve"><value>{0} has met every completion requirement. When you approve:</value></data>
+  <data name="Review.DialogApprovePoints" xml:space="preserve"><value>The completion report is released to the student|The completion certificate becomes available to download</value></data>
+  <data name="Review.DialogApproveGo" xml:space="preserve"><value>Yes, approve completion</value></data>
+  <data name="Review.DialogReturnTitle" xml:space="preserve"><value>Return for corrections?</value></data>
+  <data name="Review.DialogReturnText" xml:space="preserve"><value>The completion goes back to {0} so the missing items can be fixed.</value></data>
+  <data name="Review.DialogReturnPoints" xml:space="preserve"><value>The student sees your note and can resubmit|Nothing is released until you approve</value></data>
+  <data name="Review.DialogReturnGo" xml:space="preserve"><value>Return for corrections</value></data>
+  <data name="Review.DialogRejectTitle" xml:space="preserve"><value>Reject this completion?</value></data>
+  <data name="Review.DialogRejectText" xml:space="preserve"><value>This closes the review for {0}.</value></data>
+  <data name="Review.DialogRejectPoints" xml:space="preserve"><value>No completion report or certificate is released|This cannot be undone from this page</value></data>
+  <data name="Review.DialogRejectGo" xml:space="preserve"><value>Reject completion</value></data>
+  <data name="Review.DialogCancel" xml:space="preserve"><value>Not yet</value></data>
+  <data name="Review.DialogNote" xml:space="preserve"><value>Your note</value></data>
   <data name="Review.DoneApproved" xml:space="preserve"><value>Completion approved. The report is now available to the student.</value></data>
   <data name="Review.DoneCorrections" xml:space="preserve"><value>Returned to the student for corrections. You can review it again later.</value></data>
   <data name="Review.DoneRejected" xml:space="preserve"><value>Completion rejected. The student has been notified with your reason.</value></data>
