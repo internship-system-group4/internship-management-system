@@ -343,8 +343,8 @@
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
       <DependentUpon>ManageOpportunities.aspx</DependentUpon>
@@ -605,6 +605,10 @@
     <Compile Include="Layout\NotificationBell.cs" />
     <Compile Include="Pages\Notifications\Feed.ashx.cs" />
     <Compile Include="Pages\Student\SubmissionFile.ashx.cs" />
+    <Compile Include="Pages\Student\SubmissionDetails.aspx.cs">
+      <DependentUpon>SubmissionDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\Notifications\Inbox.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -788,6 +792,8 @@
     <Content Include="Assets\js\site.js" />
     <Content Include="Assets\js\ui-system.js" />
     <Content Include="Assets\css\ui-system.css" />
+    <Content Include="Assets\css\supervisor-ui.css" />
+    <Content Include="Assets\js\supervisor-ui.js" />
     <Content Include="Assets\css\workspace.css" />
     <Content Include="Assets\js\workspace.js" />
     <Content Include="Assets\css\ui-tokens.css" />
@@ -810,7 +816,7 @@
     <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />
     <Content Include="Assets\images\contact\contact-walkway.jpg" />
-    <Content Include="Assets\images\about\about-film-poster.jpg" />
+    <Content Include="Assets\video\about-film-poster.jpg" />
     <Content Include="Assets\images\university\materials\-578791943103387727.mp4" />
     <Content Include="Assets\js\public-footer.js" />
     <Content Include="Assets\js\public-footer-map.js" />
@@ -917,6 +923,8 @@
     <Content Include="Pages\Student\MyApplications.aspx" />
     <Content Include="Pages\Student\MyTasks.aspx" />
     <Content Include="Pages\Student\SubmissionFile.ashx" />
+    <Content Include="Pages\Student\SubmissionDetails.aspx" />
+    <Content Include="Assets\css\student-submission.css" />
     <Content Include="Pages\Student\Opportunities.aspx" />
     <Content Include="Pages\Student\OpportunityDetails.aspx" />
     <Content Include="Pages\Student\Profile.aspx" />

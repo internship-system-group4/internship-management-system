@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="Applications.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.Applications" Title="Applications Review" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/applications.css?v=20261024-review-panel-4") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="application-page company-applications" data-draft-warning="<%: L.T("Company.Applications.DraftWarning") %>" data-position-template="<%: L.T("Company.Applications.ApplicationPosition") %>" data-initial-search="<%: ReviewSearch %>" data-initial-filter="<%: ReviewFilter %>" data-initial-selection="<%: ReviewSelection %>">
+<div class="application-page company-applications" data-draft-warning="<%: L.T("Company.Applications.DraftWarning") %>" data-position-template="<%: L.T("Company.Applications.ApplicationPosition") %>" data-details-loading="<%: L.T("Company.Applications.LoadingDetails") %>" data-details-error="<%: L.T("Company.Applications.DetailsLoadFailed") %>" data-initial-search="<%: ReviewSearch %>" data-initial-filter="<%: ReviewFilter %>" data-initial-selection="<%: ReviewSelection %>">
     <input type="hidden" name="reviewSelection" value="" />
     <div class="application-heading"><h2><%: L.T("Company.Applications.ApplicationsReview") %></h2><p><%: L.T("Company.Applications.ReviewDeskIntro") %></p></div>
     <asp:Panel ID="NoticePanel" runat="server" Visible="false" CssClass="application-message application-success" role="status"><asp:Literal ID="NoticeText" runat="server" Mode="Encode" /></asp:Panel>
@@ -51,9 +51,14 @@
                             </button>
                         </div>
                     </div>
-                    <details class="review-application-details" id="candidate-<%#: Eval("Id") %>" aria-labelledby="applicant-<%#: Eval("Id") %>">
+                    <details <%# (bool)Eval("DetailsLoaded") ? "open" : "" %> class="review-application-details" id="candidate-<%#: Eval("Id") %>" aria-labelledby="applicant-<%#: Eval("Id") %>">
                         <summary><span class="candidate-toggle-label candidate-toggle-show"><%: L.T("Company.Applications.ViewCandidateDetails") %></span><span class="candidate-toggle-label candidate-toggle-hide"><%: L.T("Company.Applications.HideCandidateDetails") %></span><span class="candidate-toggle-hint"><%: L.T("Company.Applications.ProfileCoverLetterAndCV") %></span></summary>
-                        <div class="candidate-panel">
+                        <div class="candidate-panel" data-details-loaded="<%# (bool)Eval("DetailsLoaded") ? "true" : "false" %>">
+                        <asp:PlaceHolder runat="server" Visible='<%# !(bool)Eval("DetailsLoaded") %>'>
+                            <p class="application-help" role="status" data-details-status></p>
+                            <a class="candidate-link" data-load-candidate href="Applications.aspx?candidate=<%#: System.Uri.EscapeDataString((string)Eval("Id")) %>"><%: L.T("Company.Applications.ViewCandidateDetails") %></a>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder runat="server" Visible='<%# (bool)Eval("DetailsLoaded") %>'>
                             <div class="candidate-profile">
                             <dl class="candidate-details">
                                 <div><dt><%: L.T("Company.Applications.StudentNumber") %></dt><dd><%#: OrDash(Eval("StudentNumber")) %></dd></div>
@@ -89,6 +94,7 @@
                                 <asp:PlaceHolder runat="server" Visible='<%# (bool)Eval("HasCv") && !(bool)Eval("HasInlineCv") %>'><p class="application-help"><%: L.T("Company.Applications.ExternalCvHelp") %></p></asp:PlaceHolder>
                             </div>
                         </div>
+                        </asp:PlaceHolder>
                         </div>
                     <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Pending %>'>
                         <div class="review-decision">
@@ -137,5 +143,5 @@
 </div>
 </asp:Content>
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
-<script src="<%: ResolveUrl("~/Assets/js/company-applications.js?v=20261024-panel-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/company-applications.js?v=20261024-lazy-details-2") %>"></script>
 </asp:Content>

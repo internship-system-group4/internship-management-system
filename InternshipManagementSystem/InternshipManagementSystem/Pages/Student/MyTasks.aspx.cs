@@ -26,6 +26,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         /// <summary>Colour class for the status badge in the task details panel.</summary>
         protected string SelectedStatusClass = "";
         protected int TaskCount;
+        protected string ResultDetailsUrl = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -38,6 +39,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
             }
             else
             {
+                if (Session["TaskSubmissionNotice"] is bool && (bool)Session["TaskSubmissionNotice"])
+                    ShowMessage(L.T("Student.MyTasks.YourTaskWasSubmittedSuccessfully"), true);
+                Session.Remove("TaskSubmissionNotice");
                 // Opened from a notification (MyTasks.aspx?task={id}): show that task straight away.
                 string fromLink = Request.QueryString["task"];
                 if (ApplicationRepository.IsValidKey(fromLink))
@@ -80,11 +84,23 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 row.DeadlineLabel = task.Deadline > 0 ? FormatDate(task.Deadline) : L.T("Student.MyTasks.NotSet");
                 row.StatusLabel = FriendlyStatus(task.Status);
                 row.StatusClass = StatusClass(task.Status);
-                row.AttemptsLabel = CountAttempts(repo.GetByTask(task.Id), task).ToString();
-                row.ActionLabel = task.AcceptsSubmission
-                    ? (task.Status == InternshipTaskStatus.RevisionRequested ? "Resubmit" : "Submit")
-                    : "Details";
-                // Submit / Resubmit opens the popup straight away; Details only selects the task.
+                List<Submission> prior = repo.GetByTask(task.Id);
+                row.AttemptsLabel = CountAttempts(prior, task).ToString();
+                Submission latest = null;
+                foreach (Submission attempt in prior)
+                    if (attempt != null && attempt.StudentId == CurrentStudent.Id &&
+                        attempt.PlacementId == task.PlacementId &&
+                        (latest == null || attempt.AttemptNumber > latest.AttemptNumber ||
+                         (attempt.AttemptNumber == latest.AttemptNumber && attempt.SubmittedAt > latest.SubmittedAt))) latest = attempt;
+                row.HasDetails = !task.AcceptsSubmission && latest != null;
+                row.DetailsUrl = latest == null ? "" : "SubmissionDetails.aspx?id=" + Server.UrlEncode(latest.Id);
+                row.ActionLabel = row.HasDetails
+                    ? L.T(task.Status == InternshipTaskStatus.Resubmitted
+                        ? "Student.SubmissionDetails.ViewResubmittedDetails" : "Student.SubmissionDetails.ViewSubmittedDetails")
+                    : task.AcceptsSubmission
+                        ? L.T(task.Status == InternshipTaskStatus.RevisionRequested ? "Student.MyTasks.SendResubmission" : "Student.MyTasks.SubmitTask2")
+                        : L.T("Student.MyTasks.ViewDetails");
+                // A sent attempt has its own student-only details page; open submissions use the popup.
                 row.CommandName = task.AcceptsSubmission ? "OpenSubmit" : "SelectTask";
                 row.RowClass = selected != null && selected.Id == task.Id ? "is-selected" : "";
                 rows.Add(row);
@@ -175,11 +191,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 return;
             }
 
-            txtSubmissionText.Text = "";
-            txtSubmissionLink.Text = "";
-            ViewState["SelectedTaskId"] = task.Id;
-            LoadTasks();
-            ShowResult(task, submission.AttemptNumber);
+            // Redirect after saving so refresh cannot create a duplicate attempt.
+            // The student lands on the exact record just saved.
+            Response.Redirect("SubmissionDetails.aspx?id=" + Uri.EscapeDataString(submission.Id), false);
+            Context.ApplicationInstance.CompleteRequest();
         }
 
         private InternshipTask GetSelectedTask()
@@ -261,8 +276,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
         }
 
         /// <summary>Shows the "work sent" popup after the server saved the attempt.</summary>
-        private void ShowResult(InternshipTask task, int attempt)
+        private void ShowResult(InternshipTask task, Submission submission)
         {
+            int attempt = submission.AttemptNumber;
+            ResultDetailsUrl = "SubmissionDetails.aspx?id=" + Server.UrlEncode(submission.Id);
             phResultDialog.Visible = true;
             litResultTitle.Text = attempt > 1 ? L.T("Student.MyTasks.ResubmissionSent") : L.T("Student.MyTasks.SubmissionSent");
             litResultMessage.Text = L.F("Student.MyTasks.SentText", attempt, task.Title ?? "");
@@ -293,6 +310,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     (evaluation.RevisionRequested
                         ? (evaluation.RevisionInstructions ?? evaluation.Feedback ?? L.T("Student.MyTasks.RevisionRequested2"))
                         : (evaluation.Feedback ?? L.T("Student.MyTasks.EvaluationCompleted")));
+                row.DetailsUrl = "SubmissionDetails.aspx?id=" + Server.UrlEncode(s.Id);
                 row.FileUrl = SafeStorageUrl(s.FileUrl) ? s.FileUrl : "";
                 row.FileName = string.IsNullOrWhiteSpace(s.FileName) ? L.T("Student.MyTasks.DownloadSubmittedFile") : s.FileName;
                 row.HasFile = row.FileUrl.Length > 0;
@@ -438,6 +456,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             public string DeadlineLabel { get; set; }
             public string StatusLabel { get; set; }
             public string StatusClass { get; set; }
+            public bool HasDetails { get; set; }
+            public string DetailsUrl { get; set; }
             public string AttemptsLabel { get; set; }
             public string ActionLabel { get; set; }
             public string CommandName { get; set; }
@@ -446,6 +466,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         public class HistoryRow
         {
+            public string DetailsUrl { get; set; }
             public string AttemptLabel { get; set; }
             public string SubmittedLabel { get; set; }
             public string StatusLabel { get; set; }

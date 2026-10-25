@@ -34,7 +34,10 @@ namespace InternshipManagementSystem.Pages.Academic
 
                 if (!string.IsNullOrEmpty(CurrentSupervisor.FullName))
                 {
-                    litAvatarInitials.Text = CurrentSupervisor.FullName.Substring(0, 1).ToUpper();
+                    var nameParts = CurrentSupervisor.FullName.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    litAvatarInitials.Text = nameParts.Length > 1
+                        ? (nameParts[0].Substring(0, 1) + nameParts[nameParts.Length - 1].Substring(0, 1)).ToUpper()
+                        : CurrentSupervisor.FullName.Substring(0, 1).ToUpper();
                 }
 
                 // Personal Info

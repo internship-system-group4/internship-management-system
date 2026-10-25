@@ -1,4 +1,4 @@
-// Compiled with the notification/repository sources and an in-memory Firebase fixture.
+﻿// Compiled with the notification/repository sources and an in-memory Firebase fixture.
 // No production accounts, mailboxes, credentials or network services are used.
 using System;
 using System.Collections.Generic;
@@ -157,7 +157,7 @@ class EmailNotificationsSmoke
             EvaluationRepository evaluations = new EvaluationRepository();
             // Final evaluations now require the assigned author and are immutable once submitted.
             UseUser("company");
-            FinalCompanyEvaluation company = new FinalCompanyEvaluation { StudentId = "s", PlacementId = "s", CompanyId = "c", SupervisorId = "company", IsSubmitted = true, SubmittedAt = Time.NowMs() };
+            FinalCompanyEvaluation company = new FinalCompanyEvaluation { StudentId = "s", PlacementId = "s", CompanyId = "c", SupervisorId = "company", TotalScore = 80, MaxScore = 100, IsSubmitted = true, SubmittedAt = Time.NowMs() };
             evaluations.SaveCompanyFinal(company);
             Check(smtp.Count == 5, "Company final did not notify coordinator and academic");
             try { evaluations.SaveCompanyFinal(company); throw new Exception("Submitted company evaluation was mutable"); }
@@ -167,6 +167,7 @@ class EmailNotificationsSmoke
             FinalAcademicEvaluation draft = new FinalAcademicEvaluation { StudentId = "s", PlacementId = "s", AcademicSupervisorId = "academic" };
             string evaluationId = evaluations.SaveAcademicFinal(draft);
             Check(smtp.Count == 5 && draft.Id == evaluationId, "Draft mail or missing generated ID");
+            draft.TotalScore = 80; draft.MaxScore = 100;
             draft.IsSubmitted = true;
             draft.SubmittedAt = Time.NowMs();
             evaluations.SaveAcademicFinal(draft);

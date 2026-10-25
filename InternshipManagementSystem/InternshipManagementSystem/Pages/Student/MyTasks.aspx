@@ -28,7 +28,7 @@
                     <article class='student-task-item <%# Eval("RowClass") %>'>
                         <div class="student-task-item-main"><span class="student-task-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h3Z"/><path d="M14 3v5h6M8 13h8M8 17h5"/></svg></span><div><span class="student-task-title"><%#: Eval("Title") %></span><span class="student-task-subtitle"><%#: Eval("StartLabel") %></span></div></div>
                         <div class="student-task-item-meta"><span class='student-status <%#: Eval("StatusClass") %>'><%#: L.Value("Ui", Eval("StatusLabel")) %></span><span class="student-task-deadline"><span><%: L.T("Student.MyTasks.Deadline") %></span><strong><%#: Eval("DeadlineLabel") %></strong></span><span class="student-task-attempts"><%: L.T("Student.MyTasks.Attempts") %> <strong><%#: Eval("AttemptsLabel") %></strong></span></div>
-                        <div class="student-task-item-action"><asp:LinkButton ID="lnkSelectTask" runat="server" CssClass="student-select-button" Text='<%# L.Value("Ui", Eval("ActionLabel")) %>' CommandName='<%# Eval("CommandName") %>' CommandArgument='<%# Eval("Id") %>' CausesValidation="false" /></div>
+                        <div class="student-task-item-action"><asp:HyperLink ID="lnkSubmissionDetails" runat="server" CssClass="student-select-button" NavigateUrl='<%# Eval("DetailsUrl") %>' Text='<%# Eval("ActionLabel") %>' Visible='<%# Eval("HasDetails") %>' /><asp:LinkButton ID="lnkSelectTask" runat="server" CssClass="student-select-button" Text='<%# Eval("ActionLabel") %>' CommandName='<%# Eval("CommandName") %>' CommandArgument='<%# Eval("Id") %>' Visible='<%# !(bool)Eval("HasDetails") %>' CausesValidation="false" /></div>
                     </article>
                 </ItemTemplate></asp:Repeater>
                 <asp:PlaceHolder ID="phNoTaskRows" runat="server" Visible="false"><p class="student-empty-selection"><%: L.T("Student.MyTasks.NoTasksHaveBeenAssignedTo2") %></p></asp:PlaceHolder>
@@ -75,8 +75,7 @@
                 <asp:Panel ID="pnlSubmissionClosed" runat="server" CssClass="task-dialog-callout is-info" Visible="false"><%: L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions2") %></asp:Panel>
                 <section class="student-history"><h4><%: L.T("Student.MyTasks.SubmissionHistory2") %></h4><asp:Repeater ID="rptHistory" runat="server"><ItemTemplate>
                     <div class="student-history-row"><strong><%: L.T("Student.MyTasks.Attempt") %> <%#: Eval("AttemptLabel") %></strong><span> &#183; <%#: Eval("SubmittedLabel") %> &#183; <%#: Eval("StatusLabel") %></span><div><%#: Eval("Feedback") %></div>
-                        <asp:HyperLink ID="lnkSubmissionFile" runat="server" NavigateUrl='<%# Eval("FileUrl") %>' Text='<%# Eval("FileName") %>' Target="_blank" Visible='<%# Eval("HasFile") %>' CssClass="student-attachment-link" />
-                        <asp:HyperLink ID="lnkSubmissionLink" runat="server" NavigateUrl='<%# Eval("LinkUrl") %>' Text="<%$ Resources:Student, MyTasks.OpenSubmittedLink %>" Target="_blank" Visible='<%# Eval("HasLink") %>' CssClass="student-attachment-link" />
+                        <a class="student-attachment-link" href='<%#: Eval("DetailsUrl") %>'><%: L.T("Student.SubmissionDetails.ViewAttemptDetails") %> &#8594;</a>
                     </div>
                 </ItemTemplate></asp:Repeater><asp:PlaceHolder ID="phNoAttempts" runat="server" Visible="true"><p class="text-muted small mb-0"><%: L.T("Student.MyTasks.NoSubmissionsYet") %></p></asp:PlaceHolder></section>
 
@@ -100,7 +99,8 @@
                 <h2 id="submitResultTitle"><asp:Literal ID="litResultTitle" runat="server" Mode="Encode" /></h2>
                 <p><asp:Literal ID="litResultMessage" runat="server" Mode="Encode" /></p>
                 <ul class="task-result-facts"><li><asp:Literal ID="litResultAttempt" runat="server" Mode="Encode" /></li><li><%: L.T("Student.MyTasks.WaitingForReview") %></li></ul>
-                <button type="button" class="task-dialog-btn task-dialog-btn-primary" data-task-dialog-close="true"><%: L.T("Student.MyTasks.Done") %></button>
+                <a class="task-dialog-btn task-dialog-btn-primary" href="<%: ResultDetailsUrl %>"><%: L.T("Student.SubmissionDetails.ViewSubmittedDetails") %></a>
+                <button type="button" class="task-dialog-btn task-dialog-btn-secondary" data-task-dialog-close="true"><%: L.T("Student.MyTasks.Done") %></button>
             </div>
         </div>
     </div>

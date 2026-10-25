@@ -4,7 +4,7 @@
 <%@ Register TagPrefix="uims" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <%@ Register TagPrefix="live" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
 <!DOCTYPE html>
-<html lang="<%: L.Lang %>" dir="<%: L.Dir %>" class="company-portal uims-portal">
+<html lang="<%: L.Lang %>" dir="<%: L.Dir %>" class="company-portal uims-portal uims-supervisor">
 <head runat="server">
     <meta charset="utf-8" />
     <%-- Theme: applied before the first paint. Missing or invalid preference -> Light (see Assets/js/theme.js). --%>
@@ -29,10 +29,11 @@
 <link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/reference-analytics.css?v=20261024-perf" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261024-v4" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/supervisor-ui.css?v=20261024-5" runat="server" />
     <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>
     <script>window.UIMS_I18N=<%= L.ScriptDictionary() %>;window.uimsT=function(k){var d=window.UIMS_I18N,t=Object.prototype.hasOwnProperty.call(d,k)?d[k]:k,a=arguments;return t.replace(/\{(\d+)\}/g,function(m,i){var v=a[+i+1];return v===undefined?m:String(v);});};window.uimsLang='<%= L.Lang %>';</script>
 </head>
-<body data-ui-owner="<%: InternshipManagementSystem.Security.SessionHelper.Current == null ? "" : InternshipManagementSystem.Security.SessionHelper.Current.Id %>" class="company-portal uims-portal">
+<body data-ui-owner="<%: InternshipManagementSystem.Security.SessionHelper.Current == null ? "" : InternshipManagementSystem.Security.SessionHelper.Current.Id %>" class="company-portal uims-portal uims-supervisor">
 <form id="mainForm" runat="server">
     <div class="uims-shell">
         <aside id="companySidebar" data-portal-sidebar="true" class="uims-sidebar" aria-label="<%: L.T("Shared.Company.CompanyNavigation") %>" tabindex="-1">
@@ -67,6 +68,7 @@
 <script src="<%: ResolveUrl("~/Assets/js/ui-system.js?v=20261023-5") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/workspace.js?v=20261023-5") %>"></script>
 <script src="<%: ResolveUrl("~/Assets/js/workspace-charts.js?v=20261024-perf") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/supervisor-ui.js?v=20261024-3") %>"></script>
 <%-- Text that fell back to English on this request (read by the localization tests). --%>
 <script type="application/json" id="uims-i18n-gaps"><%= new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(L.Gaps) %></script>
 </body>

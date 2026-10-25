@@ -129,24 +129,21 @@
 
         <!-- Accordion for detailed sections -->
         <div class="accordion" id="progressAccordion">
-            <!-- Interactive Progress Summary Card (Bonus Feature) -->
+            <!-- The summary uses the same server-loaded hours as the student header. -->
             <div class="card shadow-sm mb-4 border-0" style="background-color: var(--th-bg-f8f9fa,#f8f9fa); border-radius: 10px;">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h6 class="fw-bold text-dark m-0"><%: L.T("Academic.StudentProgress.TrainingHoursProgressOverview") %></h6>
                         <!-- Dynamic Status Badge -->
-                        <span class="badge bg-warning text-dark px-3 py-2" id="badgeStatus" runat="server"><%: L.T("Academic.StudentProgress.InProgress") %></span>
+                        <span class="badge px-3 py-2" id="badgeStatus" runat="server"><%: litPlacementStatus.Text %></span>
                     </div>
                     
                     <!-- Progress Bar -->
-                    <div class="progress mb-2" style="height: 12px; border-radius: 6px;">
-                        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= HoursPercent %>%;" aria-valuenow="<%= HoursPercent %>" aria-valuemin="0" aria-valuemax="100"><%= HoursPercent %>%</div>
+                    <div class="su-progress-label"><span><%: L.T("Academic.StudentProgress.CompletedHours") %></span><span dir="ltr"><%: litApprovedHours.Text %> / <%: litRequiredHours.Text %> h</span></div>
+                    <div class="progress mb-2">
+                        <div class="progress-bar" data-ui-progress="true" data-ui-approved="<%: litApprovedHours.Text %>" data-ui-target="<%: litRequiredHours.Text %>" style="width:0%"></div>
                     </div>
-                    
-                    <div class="d-flex justify-content-between text-muted" style="font-size: 0.85rem;">
-                        <span><%: L.T("Academic.StudentProgress.CompletedHours") %> <b><%= ApprovedHours %> h</b> / <%= RequiredHours %> h</span>
-                        <span><%= PendingHours %> <%: L.T("Academic.StudentProgress.PendingApprovalHours") %></span>
-                    </div>
+                    <div class="text-muted" style="font-size: 0.85rem;"><%= PendingHours %> <%: L.T("Academic.StudentProgress.PendingApprovalHours") %></div>
                 </div>
             </div>
             

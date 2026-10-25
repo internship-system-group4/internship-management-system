@@ -30,11 +30,7 @@
 }
 
 .mo-muted {
-<<<<<<< HEAD
-    color: var(--th-fg-718298, #718298);
-=======
     color: var(--ui-muted);
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
     font-size: 13px;
     line-height: 1.6;
 }
@@ -436,8 +432,6 @@
         grid-template-columns: 1fr;
     }
 
-<<<<<<< HEAD
-=======
     .mo-form-grid {
         grid-template-columns: 1fr;
     }
@@ -671,7 +665,7 @@
                 </p>
             </div>
 
-           
+
              <a href="Opportunities.aspx" class="mo-btn">
                  <%: L.T("Company.ManageOpportunities.AddOpportunity") %>
                    </a>
@@ -776,9 +770,6 @@
                                     <%: item.Title %>
                                 </div>
 
-                                <span class="mo-muted">
-                                    <%: item.Id %>
-                                </span>
                             </td>
 
                             <td>
@@ -891,17 +882,23 @@
              role="dialog"
              aria-modal="true"
              aria-labelledby="moDialogTitle"
+             data-activate-title="<%: L.T("Company.ManageOpportunities.ActivateTitle") %>"
+             data-deactivate-title="<%: L.T("Company.ManageOpportunities.DeactivateTitle") %>"
+             data-activate-label="<%: L.T("Company.ManageOpportunities.ActivateLabel") %>"
+             data-deactivate-label="<%: L.T("Company.ManageOpportunities.DeactivateLabel") %>"
+             data-activate-message="<%: L.T("Company.ManageOpportunities.ActivateMessage") %>"
+             data-deactivate-message="<%: L.T("Company.ManageOpportunities.DeactivateMessage") %>"
              aria-hidden="true">
 
             <div class="mo-dialog-box">
 
                 <div id="moDialogIcon" class="mo-dialog-icon"
                      aria-hidden="true">
-                    ↻
+                    <span data-ui-icon="warning" aria-hidden="true"></span>
                 </div>
 
                 <h3 id="moDialogTitle">
-                    Confirm Action
+                    <%: L.T("Company.ManageOpportunities.ConfirmAction") %>
                 </h3>
 
                 <p class="mo-muted"
@@ -927,13 +924,7 @@
                             data-ui-action="toggle"
                             data-ui-validation="none">
 
-                        Confirm
-
-                        class="mo-btn mo-btn-danger"
-                        name="moAction"
-                        value="close"
-                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Closing") %>">
-                        <%: L.T("Company.ManageOpportunities.CloseOpportunity") %>
+                        <%: L.T("Company.ManageOpportunities.ConfirmAction") %>
                     </button>
 
                 </div>
@@ -956,7 +947,7 @@
         <a href="ManageOpportunities.aspx"
            class="mo-muted mo-back">
 
-            ← <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+            <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
 
         </a>
 
@@ -1136,7 +1127,7 @@
         <a href="ManageOpportunities.aspx"
            class="mo-muted mo-back">
 
-            ← <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+            <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
 
         </a>
 
@@ -1422,11 +1413,7 @@
                         value="save"
                         data-ui-action="save"
                         data-ui-validation="none"
-                        data-loading-label="Saving…">
-
-                    class="mo-btn"
-                    name="moAction"
-                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
+                        data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
 
                     <%: L.T("Company.ManageOpportunities.SaveChanges") %>
 
@@ -1475,15 +1462,13 @@
         if (action === "deactivate") {
 
             dialogTitle.textContent =
-                "Deactivate Opportunity";
+                dialog.dataset.deactivateTitle;
 
             message.textContent =
-                'Are you sure you want to deactivate "' +
-                title +
-                '"? This opportunity will no longer be available for new student applications. Existing applications will be preserved.';
+                dialog.dataset.deactivateMessage.replace('{0}', function () { return title; });
 
             confirmButton.textContent =
-                "Deactivate";
+                dialog.dataset.deactivateLabel;
 
             confirmButton.classList.remove(
                 "mo-btn-success"
@@ -1495,21 +1480,20 @@
 
             if (dialogIcon) {
                 dialogIcon.textContent = "−";
+                if (window.UimsUI) dialogIcon.replaceChildren(window.UimsUI.icon('warning'));
                 dialogIcon.classList.remove("activate");
             }
 
         } else {
 
             dialogTitle.textContent =
-                "Activate Opportunity";
+                dialog.dataset.activateTitle;
 
             message.textContent =
-                'Are you sure you want to activate "' +
-                title +
-                '"? Students will be able to apply again if the application deadline has not passed and seats are available.';
+                dialog.dataset.activateMessage.replace('{0}', function () { return title; });
 
             confirmButton.textContent =
-                "Activate";
+                dialog.dataset.activateLabel;
 
             confirmButton.classList.remove(
                 "mo-btn-danger"
@@ -1521,13 +1505,14 @@
 
             if (dialogIcon) {
                 dialogIcon.textContent = "✓";
+                if (window.UimsUI) dialogIcon.replaceChildren(window.UimsUI.icon('approved'));
                 dialogIcon.classList.add("activate");
             }
         }
 
         dialog.classList.add("show");
         dialog.setAttribute("aria-hidden", "false");
-        confirmButton.focus();
+        // The shared supervisor dialog enhancement manages focus and keyboard navigation.
     }
 
     function hideToggleDialog() {

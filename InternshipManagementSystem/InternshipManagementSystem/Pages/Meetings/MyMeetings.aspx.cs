@@ -351,12 +351,20 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 Server.HtmlEncode(
                     MeetingFilter.SelectedItem.Text);
 
-            MeetingGrid.DataSource = filtered
+            // Only the supervisor enhancement needs the complete authorized set for live filtering.
+            // Other roles keep their existing server-filtered rendering.
+            bool liveSupervisorViews = CurrentUser.Role == UserRole.CompanySupervisor
+                || CurrentUser.Role == UserRole.AcademicSupervisor;
+            var selectedIds = new HashSet<string>(filtered.Select(meeting => meeting.Id));
+            MeetingGrid.DataSource = (liveSupervisorViews ? all : filtered)
                 .Select(meeting => new
                 {
                     meeting.Id,
 
                     meeting.Title,
+
+                    ViewGroups = MeetingViewGroups(meeting, now),
+                    MatchesView = selectedIds.Contains(meeting.Id),
 
                     FromName = Name(
                         people,
@@ -398,6 +406,17 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 .ToList();
 
             MeetingGrid.DataBind();
+        }
+
+        private string MeetingViewGroups(Meeting meeting, long now)
+        {
+            // Reuse the same predicates as the existing server view selector, not display-status text.
+            var groups = new List<string> { "all" };
+            if (CanRespond(meeting, now)) groups.Add("incoming");
+            if (IsPending(meeting, now) && meeting.CreatedById == CurrentUser.Id) groups.Add("sent");
+            if (meeting.IsApproved() && meeting.EndsAt() > now) groups.Add("upcoming");
+            if (meeting.IsHistory(now)) groups.Add("history");
+            return string.Join(" ", groups);
         }
 
         private static bool IsPending(

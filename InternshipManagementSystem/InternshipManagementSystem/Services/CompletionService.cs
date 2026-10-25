@@ -1,4 +1,4 @@
-// =============================================================================
+﻿// =============================================================================
 //  UIMS - Group 4   |   Owner: Ahmad  (Trello cards A10 - A12)
 //  Final completion review: requirement checks, provisional result and the
 //  coordinator's decision.
@@ -97,10 +97,11 @@ namespace InternshipManagementSystem.Services
             summary.AcademicSubmitted = progress.AcademicFinal != null && progress.AcademicFinal.IsSubmitted;
 
             // Hours come from the approved entries themselves, never from a counter.
-            summary.ApprovedHours = progress.Overview.ApprovedHours;
+            summary.ApprovedHours = CompletionReviewService.ApprovedHours(progress.Hours, placement, Time.NowMs());
             summary.PendingHours = progress.Overview.PendingHours;
             // Never below 160: a smaller stored target cannot shorten the training.
-            summary.RequiredHours = progress.Overview.RequiredHours;
+            summary.RequiredHours = CompletionReviewService.RequiredHours(placement, student,
+                progress.Completion == null ? null : progress.Completion.EvaluationRuleSnapshot);
 
             summary.TasksTotal = progress.Tasks.Count;
             summary.TasksGraded = progress.Tasks.Count(t => t.Status == InternshipTaskStatus.Graded);
@@ -365,6 +366,11 @@ namespace InternshipManagementSystem.Services
             record.TrainingStart = placement.StartDate;
             record.TrainingEnd = placement.EndDate;
             record.CoordinatorName = coordinator.FullName;
+            record.DocumentSnapshot = new CompletionDocumentSnapshot {
+                StudentName = record.StudentName, StudentNumber = record.StudentNumber,
+                Program = record.Program, CompanyName = record.CompanyName,
+                InternshipType = record.InternshipType, StartDate = record.TrainingStart, EndDate = record.TrainingEnd
+            };
         }
 
         /// <summary>A final evaluation as a 0-100 percentage. Uses the stored

@@ -1,4 +1,4 @@
-// Run with tests/Run-GradesExportSmoke.ps1. Uses local fixtures, never live Firebase.
+﻿// Run with tests/Run-GradesExportSmoke.ps1. Uses local fixtures, never live Firebase.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -82,7 +82,7 @@ class GradesExportSmoke
         var row = new GradeResultRow { StudentName = "=SUM(1,2) طالب 😀\u0001", StudentNumber = "00123", CompanyName = "A&B <Company>", TaskPercent = 0, CompanyPercent = 90, AcademicPercent = 70, FinalPercent = 82.5, Result = "Pass", ReviewStatus = "Approved" };
         foreach (string role in new[] { "company1", "academic1", "coordinator1" })
         {
-            byte[] bytes = ExcelExportService.CreateGradesWorkbook((Person)fixtures["users"][role], new[] { row }, DateTime.UtcNow);
+            byte[] bytes = GradesExcelExportService.CreateGradesWorkbook((Person)fixtures["users"][role], new[] { row }, DateTime.UtcNow);
             File.WriteAllBytes(Path.Combine(output, role + ".xlsx"), bytes);
             using (ZipArchive zip = new ZipArchive(new MemoryStream(bytes)))
             {
@@ -264,7 +264,7 @@ class GradesExportSmoke
                     Directory.CreateDirectory(Path.GetDirectoryName(target));
                     File.Copy(file, target, true);
                 }
-            File.WriteAllText(Path.Combine(host, "Web.config"), "<configuration><appSettings><add key='Firebase.DatabaseUrl' value='http://localhost:19081'/><add key='Firebase.ApiKey' value='fixture'/></appSettings><system.web><compilation debug='true' targetFramework='4.7.2'/><pages><namespaces><add namespace='InternshipManagementSystem.Common'/></namespaces></pages><httpRuntime targetFramework='4.7.2'/><customErrors mode='Off'/></system.web></configuration>");
+            File.WriteAllText(Path.Combine(host, "Web.config"), "<configuration><appSettings><add key='Firebase.DatabaseUrl' value='http://localhost:19081'/><add key='Firebase.ApiKey' value='fixture'/><add key='Firebase.ReadCacheSeconds' value='0'/></appSettings><system.web><compilation debug='true' targetFramework='4.7.2'/><pages><namespaces><add namespace='InternshipManagementSystem.Common'/></namespaces></pages><httpRuntime targetFramework='4.7.2'/><customErrors mode='Off'/></system.web></configuration>");
             File.WriteAllText(Path.Combine(host, "FixtureLogin.aspx"), "<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><script runat=\"server\">protected void Page_Load(object sender, EventArgs e) { SessionHelper.SignIn(new UserRepository().GetPerson(Request.QueryString[\"id\"]), Request.QueryString[\"id\"]); Response.Write(\"Fixture session ready\"); }</script><head runat=\"server\"><title>Fixture login</title></head>");
             iis = Process.Start(new ProcessStartInfo {
                 FileName = @"C:\Program Files\IIS Express\iisexpress.exe", Arguments = "/path:\"" + host + "\" /port:19082 /systray:false",

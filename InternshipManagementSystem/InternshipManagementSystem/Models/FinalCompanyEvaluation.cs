@@ -34,6 +34,9 @@ namespace InternshipManagementSystem.Models
         public string AreasForImprovement { get; set; }
         public string OverallComment { get; set; }
 
+        public string Performance { get; set; }
+        public string Recommendation { get; set; }
+
         public int ReportedTotalHours { get; set; }
 
         /// <summary>False while still a draft; true once sent on to the

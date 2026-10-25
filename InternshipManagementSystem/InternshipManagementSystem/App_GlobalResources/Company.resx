@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -826,4 +826,21 @@
   <data name="TaskReview.Saving" xml:space="preserve"><value>Saving…</value></data>
   <data name="TaskReview.BackToSubmissions" xml:space="preserve"><value>Back to submissions</value></data>
   <data name="TaskReview.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="ManageOpportunities.ConfirmAction" xml:space="preserve"><value>Confirm action</value></data>
+  <data name="ManageOpportunities.ActivateTitle" xml:space="preserve"><value>Activate opportunity</value></data>
+  <data name="ManageOpportunities.DeactivateTitle" xml:space="preserve"><value>Deactivate opportunity</value></data>
+  <data name="ManageOpportunities.ActivateLabel" xml:space="preserve"><value>Activate</value></data>
+  <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>Activate “{0}”? Students can apply again if the deadline has not passed and seats are available.</value></data>
+  <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>Deactivate “{0}”? New applications will stop. Existing applications will be preserved.</value></data>
+  <data name="Applications.LoadingDetails" xml:space="preserve"><value>Loading candidate details…</value></data>
+  <data name="Applications.DetailsLoadFailed" xml:space="preserve"><value>Could not load details. Try again using the link below.</value></data>
+  <data name="FinalEvaluation.SelectTraineePrompt" xml:space="preserve"><value>-- Select a trainee to evaluate --</value></data>
+  <data name="FinalEvaluation.UnassignedPlacement" xml:space="preserve"><value>This trainee is not assigned to your supervision.</value></data>
+  <data name="FinalEvaluation.SubmittedStatus" xml:space="preserve"><value>Final evaluation submitted</value></data>
+  <data name="FinalEvaluation.SubmittedTitle" xml:space="preserve"><value>Evaluation submitted</value></data>
+  <data name="FinalEvaluation.SubmittedMessage" xml:space="preserve"><value>The company evaluation was submitted to the academic supervisor. Completion and report release still require coordinator approval.</value></data>
+  <data name="FinalEvaluation.InvalidScoreRange" xml:space="preserve"><value>Enter whole-number scores from zero up to the maximum shown for each criterion.</value></data>
+  <data name="FinalEvaluation.PreviewNotice" xml:space="preserve"><value>Draft preview only. This is not an approved completion document. Final reports require coordinator approval.</value></data>
+  <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>Evaluation criteria (UIMS project)</value></data>
 </root>

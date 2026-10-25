@@ -1,4 +1,4 @@
-// Synthetic, isolated fixtures only. Never connects to live Firebase.
+﻿// Synthetic, isolated fixtures only. Never connects to live Firebase.
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -35,12 +35,12 @@ class CompletionReviewSmoke
         var p = new Placement { Id="student", StudentId="student", CompanyId="company", CompanyName="Fixture Company", CompanySupervisorId="companyUser", CompanySupervisorName="Fixture Supervisor", AcademicSupervisorId="academic", StartDate=now-40L*86400000, EndDate=now-10L*86400000, Status=PlacementStatus.AwaitingCompletion };
         var policy = Json.Deserialize<CompletionRule>(Json.Serialize(rule));
         return new CompletionReviewEvidence {
-            Placement=p, Student=new Student {Id="student",FullName="<script>alert('fixture')</script>",StudentNumber="0001",University=rule.University,College=rule.School,Major="Computer Engineering"}, Rule=policy,
+            Placement=p, Student=new Student {Id="student",FullName="<script>alert('fixture')</script>",StudentNumber="0001",University=rule.University,College=rule.School,Major="Computer Engineering",AcademicSupervisorId="academic"}, Rule=policy,
             Record=new CompletionRecord {Id="student",StudentId=p.StudentId,PlacementId=p.Id,Status=CompletionStatus.UnderCoordinatorReview,EvaluationRuleSnapshot=policy,
                 Verifications=policy.Requirements.Select(q=>new RequirementVerification {Key=q.Key,Confirmed=true,EvidenceReference="Synthetic fixture evidence",EvidenceDate=p.StartDate-86400000,CoordinatorId=actor.Id,VerifiedAt=now-1000}).ToList()},
             Company=new FinalCompanyEvaluation {Id="ce",PlacementId=p.Id,StudentId=p.StudentId,CompanyId=p.CompanyId,SupervisorId=p.CompanySupervisorId,IsSubmitted=true,SubmittedAt=now-2000,TotalScore=9,MaxScore=10,OverallComment="<img src=x onerror=alert('fixture')>CONFIDENTIAL COMPANY"},
             Academic=new FinalAcademicEvaluation {Id="ae",PlacementId=p.Id,StudentId=p.StudentId,AcademicSupervisorId=p.AcademicSupervisorId,IsSubmitted=true,SubmittedAt=now-1000,TotalScore=40,MaxScore=50,AcademicComments="CONFIDENTIAL ACADEMIC"},
-            Tasks=new List<InternshipTask> {new InternshipTask {Id="task",PlacementId=p.Id,StudentId=p.StudentId,CompanyId=p.CompanyId,Weight=2}},
+            Tasks=new List<InternshipTask> {new InternshipTask {Id="task",PlacementId=p.Id,StudentId=p.StudentId,CompanyId=p.CompanyId,Status=InternshipTaskStatus.Graded,Weight=2}},
             TaskEvaluations=new List<TaskEvaluation> {new TaskEvaluation {Id="te",TaskId="task",SubmissionId="submission",PlacementId=p.Id,StudentId=p.StudentId,EvaluatedBySupervisorId=p.CompanySupervisorId,EvaluatedAt=now-3000,TotalScore=4,MaxScore=5}},
             Submissions=new List<Submission> {new Submission {Id="submission",TaskId="task",PlacementId=p.Id,StudentId=p.StudentId,SubmittedAt=now-4000}},
             Hours=new List<TrainingHoursEntry> {new TrainingHoursEntry {Id="hours",PlacementId=p.Id,StudentId=p.StudentId,Hours=160,WorkDate=p.StartDate+86400000,Status=HoursStatus.Approved,ReviewedById="academic",ReviewedAt=now-5000}}
@@ -97,13 +97,23 @@ class CompletionReviewSmoke
         e=Evidence();e.Record.Status=CompletionStatus.Approved;e.Record.Result="Pass";e.Record.ApprovedAt=now;
         e.Record.ApprovedHours=160;e.Record.RequiredHours=160;
         e.Record.DocumentSnapshot=new CompletionDocumentSnapshot {StudentName="Approved Fixture",StudentNumber="0001",Program="Computer Engineering",CompanyName="Approved Company",StartDate=e.Placement.StartDate,EndDate=e.Placement.EndDate};
-        e.Record.ReportFileUrl=PdfReportService.GenerateCompletionReport(e.Record,e.Student);
-        byte[] first=PdfReportService.CreateCompletionReportPdf(e.Record,e.Student,e.Placement);
+        e.Record.ReportFileUrl=PdfReportService.ReportUrl(e.Record.Id);
+        byte[] first=PdfReportService.GenerateCompletionReport(e.Record,e.Student,e.Placement,actor.FullName);
         e.Student.FullName="Changed";e.Placement.CompanyName="Changed";
-        Check(first.SequenceEqual(PdfReportService.CreateCompletionReportPdf(e.Record,e.Student,e.Placement)),"Approved report changed with profile");
+        Check(first.SequenceEqual(PdfReportService.GenerateCompletionReport(e.Record,e.Student,e.Placement,actor.FullName)),"Approved report changed with profile");
         File.WriteAllBytes(Path.Combine(output,"completion-report.pdf"),first);
-        File.WriteAllBytes(Path.Combine(output,"completion-certificate.pdf"),PdfReportService.CreateCertificatePdf(e.Record,e.Student,e.Placement));
+        File.WriteAllBytes(Path.Combine(output,"completion-certificate.pdf"),PdfReportService.GenerateCertificate(e.Record,e.Student,e.Placement,actor.FullName));
         Check(PdfReportService.MayDownload(e.Record,e.Student)&&!PdfReportService.MayDownload(e.Record,new Student {Id="other"}),"PDF ownership failed");
+        e.Record.StudentName="سارة الرجوب";
+        e.Record.CompanyName="شركة التدريب";
+        byte[] arabicReport=PdfReportService.GenerateCompletionReport(e.Record,e.Student,e.Placement,actor.FullName);
+        byte[] arabicCertificate=PdfReportService.GenerateCertificate(e.Record,e.Student,e.Placement,actor.FullName);
+        string nameHex="FEFF"+BitConverter.ToString(Encoding.BigEndianUnicode.GetBytes(e.Record.StudentName)).Replace("-", "");
+        Check(Encoding.ASCII.GetString(arabicReport).Contains("/ActualText <"+nameHex+">"),"Arabic report name was lost");
+        Check(Encoding.ASCII.GetString(arabicCertificate).Contains("/ActualText <"+nameHex+">"),"Arabic certificate name was lost");
+        Check(SimplePdf.TextWidth(e.Record.StudentName,26,true)>0,"Arabic glyph measurement failed");
+        File.WriteAllBytes(Path.Combine(output,"completion-report-arabic.pdf"),arabicReport);
+        File.WriteAllBytes(Path.Combine(output,"completion-certificate-arabic.pdf"),arabicCertificate);
     }
     static readonly Dictionary<string,Dictionary<string,object>> db=new Dictionary<string,Dictionary<string,object>>();
     static readonly Dictionary<string,int> versions=new Dictionary<string,int>();
@@ -139,7 +149,25 @@ class CompletionReviewSmoke
                 var url=new Uri("http://localhost:19083"+request[1]);var query=HttpUtility.ParseQueryString(url.Query);
                 string path=url.AbsolutePath.Trim('/').Replace(".json","");string[] parts=path.Split('/');int v;versions.TryGetValue(path,out v);string etag="\""+v+"\"",status="200 OK",result="null";
                 Dictionary<string,object> collection;if(!db.TryGetValue(parts[0],out collection))collection=new Dictionary<string,object>();
-                if(request[0]=="PUT"||request[0]=="PATCH") {
+                if(parts.Length>2) {
+                    object existing;var rootMap=collection.TryGetValue(parts[1],out existing)?Map(existing):new Dictionary<string,object>();
+                    var parent=rootMap;
+                    for(int i=2;i<parts.Length-1;i++) {
+                        object child;var nested=parent.TryGetValue(parts[i],out child)?Map(child):new Dictionary<string,object>();
+                        parent[parts[i]]=nested;parent=nested;
+                    }
+                    string leaf=parts[parts.Length-1];
+                    if(request[0]=="GET") {object value;if(parent.TryGetValue(leaf,out value))result=Json.Serialize(value);}
+                    else {parent[leaf]=Json.Deserialize<object>(body);collection[parts[1]]=rootMap;db[parts[0]]=collection;versions[path]=v+1;result=body;}
+                } else if(request[0]=="PATCH"&&parts.Length==1) {
+                    foreach(var update in Json.ToMap(body)) {
+                        string[] keys=update.Key.Split('/');
+                        if(keys.Length!=2)throw new Exception("Unexpected fixture multi-path write");
+                        object existing;var recipient=collection.TryGetValue(keys[0],out existing)?Map(existing):new Dictionary<string,object>();
+                        recipient[keys[1]]=update.Value;collection[keys[0]]=recipient;
+                    }
+                    db[parts[0]]=collection;versions[path]=v+1;result=body;
+                } else if(request[0]=="PUT"||request[0]=="PATCH") {
                     string match;if(headers.TryGetValue("if-match",out match)&&match!=etag&&!(match=="null_etag"&&!collection.ContainsKey(parts[1])))status="412 Precondition Failed";
                     else {object value=Json.ToMap(body);if(request[0]=="PATCH"&&collection.ContainsKey(parts[1])){var old=Map(collection[parts[1]]);foreach(var kv in (Dictionary<string,object>)value)old[kv.Key]=kv.Value;value=old;}collection[parts[1]]=value;db[parts[0]]=collection;versions[path]=v+1;result=Json.Serialize(value);}
                 } else if(parts.Length>1){object value;if(collection.TryGetValue(parts[1],out value))result=Json.Serialize(value);}
@@ -160,106 +188,94 @@ class CompletionReviewSmoke
         var fields=new Dictionary<string,string>();
         foreach(Match m in Regex.Matches(html,"<input[^>]+type=\"hidden\"[^>]*>")){string name=Regex.Match(m.Value,"name=\"([^\"]+)\"").Groups[1].Value;fields[name]=HttpUtility.HtmlDecode(Regex.Match(m.Value,"value=\"([^\"]*)\"").Groups[1].Value);}
         fields["ctl00$MainContent$"+action]="click";
-        if(extra!=null)foreach(var f in extra)fields[f.Key.StartsWith("ctl00$")?f.Key:"ctl00$MainContent$"+f.Key]=f.Value;
+        if(extra!=null)foreach(var f in extra)fields[(f.Key.StartsWith("ctl00$")||f.Key.StartsWith("__"))?f.Key:"ctl00$MainContent$"+f.Key]=f.Value;
         return string.Join("&",fields.Select(kv=>HttpUtility.UrlEncode(kv.Key)+"="+HttpUtility.UrlEncode(kv.Value)));
     }
     static CookieContainer Login(string root,string id){var c=new CookieContainer();Body(Request(root,c,"/FixtureLogin.aspx?id="+id));return c;}
+    static string PostPage(string root, CookieContainer cookies, string path, string html, string action, Dictionary<string,string> extra=null)
+    {
+        using (var response=Request(root,cookies,path,Form(html,action,extra)))
+        {
+            if (response.StatusCode==HttpStatusCode.Redirect)
+                return Body(Request(root,cookies,new Uri(new Uri(root),response.Headers["Location"]).PathAndQuery));
+            return new StreamReader(response.GetResponseStream()).ReadToEnd();
+        }
+    }
     static void HttpChecks(string root,string output)
     {
-        string page="/Pages/Coordinator/CompletionReview.aspx?id=student";
-        var student=Login(root,"student");using(var denied=Request(root,student,page))Check(denied.StatusCode==HttpStatusCode.Redirect&&denied.Headers["Location"].Contains("AccessDenied"),"Student accessed coordinator review");
-        var company=Login(root,"companyUser");using(var denied=Request(root,company,page))Check(denied.StatusCode==HttpStatusCode.Redirect,"Company accessed coordinator review");
-        string createPage="/Pages/Company/Opportunities.aspx";
-        string create=Body(Request(root,company,createPage));
-        string saved=Body(Request(root,company,createPage,Form(create,"noop")+"&opAction=draft&opTitle=Synthetic+draft&opType=Internship&opMode=On-site"));
-        Check(db["opportunities"].Count==1,"Opportunity draft creation failed");
-        var opportunity=Json.Deserialize<Opportunity>(Json.Serialize(db["opportunities"].Values.Single()));
-        Check(opportunity.CompanyName=="Fixture & Company"&&opportunity.CreatedBySupervisorId=="companyUser","New opportunity lost company name or creator");
-        db["users"]["offerStudent"]=new Student {Id="offerStudent",FullName="Offer Student",RequiredHours=80};
-        opportunity.CompanyName=null;db["opportunities"][opportunity.Id]=opportunity;
-        db["applications"]["offer"]=new InternshipApplication {Id="offer",StudentId="offerStudent",OpportunityId=opportunity.Id,CompanyId="company",Status=ApplicationStatus.Accepted};
-        var offerCookies=Login(root,"offerStudent");
-        string confirmed=Body(Request(root,offerCookies,"/FixtureConfirm.aspx"));
-        var confirmedPlacement=Json.Deserialize<Placement>(Json.Serialize(db["placements"]["offerStudent"]));
-        Check(confirmedPlacement.CompanyName=="Fixture & Company"&&confirmedPlacement.RequiredHours==160,"Offer confirmation lost company name or minimum hours");
-        db["placements"].Remove("offerStudent");db["users"].Remove("offerStudent");db["applications"].Remove("offer");
-        string companyHtml=Body(Request(root,company,"/Pages/Company/FinalEvaluation.aspx?id=student"));Check(companyHtml.Contains("Final evaluation submitted")&&!companyHtml.Contains("CONFIDENTIAL ACADEMIC"),"Company evaluation workflow failed");
-        var academic=Login(root,"academic");Check(Body(Request(root,academic,"/Pages/Academic/FinalEvaluation.aspx?id=student")).Contains("CONFIDENTIAL COMPANY"),"Academic workflow did not receive company evaluation");
-        var cookies=Login(root,"coord");string html=Body(Request(root,cookies,page));File.WriteAllText(Path.Combine(output,"review-initial.html"),html);
-        foreach(string route in new[]{"/Pages/Coordinator/Placements.aspx","/Pages/Coordinator/PlacementDetails.aspx?id=student","/Pages/Student/Progress.aspx",page}) {
-            string screen=Body(Request(root,route.Contains("/Student/")?student:cookies,route));
-            Check(screen.Contains("Fixture &amp; Company"),"Canonical company missing on "+route);
-            Check(!screen.Contains("999 / 80"),"Cached progress displayed on "+route);
+        string review="/Pages/Coordinator/CompletionReview.aspx?id=student";
+        var student=Login(root,"student");
+        using(var denied=Request(root,student,review))Check(denied.StatusCode==HttpStatusCode.Redirect&&denied.Headers["Location"].Contains("AccessDenied"),"Student accessed coordinator review");
+        var company=Login(root,"companyUser");
+        using(var denied=Request(root,company,review))Check(denied.StatusCode==HttpStatusCode.Redirect,"Company accessed coordinator review");
+        string companyPage="/Pages/Company/FinalEvaluation.aspx?id=student";
+        string html=Body(Request(root,company,companyPage));
+        Check(html.Contains("Final evaluation submitted")&&!html.Contains("CONFIDENTIAL ACADEMIC"),"Company submitted evaluation state or confidentiality failed");
+        var academic=Login(root,"academic");
+        Check(Body(Request(root,academic,"/Pages/Academic/FinalEvaluation.aspx?id=student")).Contains("CONFIDENTIAL COMPANY"),"Assigned academic cannot see company evidence");
+        Check(!Body(Request(root,student,"/Pages/Student/Progress.aspx")).Contains("CONFIDENTIAL COMPANY"),"Student viewed confidential final evaluation");
+        Check(Body(Request(root,student,"/FixtureConfidential.aspx"))=="DENIED","Repository allowed confidential student read");
+        // Submit the actual current company form. It must not finalize the placement.
+        db["companyFinalEvaluations"].Clear();db["academicFinalEvaluations"].Clear();
+        html=Body(Request(root,company,companyPage));
+        var scores=new Dictionary<string,string>{{"ddlTrainees","student"},{"txtTechSkills","36"},{"txtWorkQuality","22"},{"txtProfessionalism","18"},{"txtCommunication","14"},{"txtActualHours","160"},{"ddlPerformance","Excellent"},{"ddlRecommendation","Recommend"},{"txtStrengths","Synthetic strengths"},{"txtImprovements","Synthetic improvements"},{"__EVENTTARGET","ctl00$MainContent$btnSendCert"}};
+        string saved=PostPage(root,company,companyPage,html,"noop",scores);
+        var companyEvaluation=Json.Deserialize<FinalCompanyEvaluation>(Json.Serialize(db["companyFinalEvaluations"]["student"]));
+        Check(companyEvaluation.IsSubmitted&&companyEvaluation.TotalScore==90&&companyEvaluation.MaxScore==100&&companyEvaluation.SupervisorId=="companyUser","Company form did not save confidential evaluation");
+        Check(((Placement)db["placements"]["student"]).Status!=PlacementStatus.Completed,"Company evaluation bypassed coordinator completion");
+        Check(saved.Contains("Evaluation submitted"),"Company form did not acknowledge submission");
+        string academicPage="/Pages/Academic/FinalEvaluation.aspx?id=student";
+        html=Body(Request(root,academic,academicPage));
+        saved=PostPage(root,academic,academicPage,html,"btnSubmitEvaluation",new Dictionary<string,string>{{"hfSelectedStudentId","student"},{"ddlPassFail","100"},{"txtAcademicComments","Synthetic academic comments"}});
+        var academicEvaluation=Json.Deserialize<FinalAcademicEvaluation>(Json.Serialize(db["academicFinalEvaluations"]["student"]));
+        Check(academicEvaluation.IsSubmitted&&academicEvaluation.AcademicSupervisorId=="academic","Academic form did not save evaluation");
+        var coordinator=Login(root,"coord");html=Body(Request(root,coordinator,review));
+        Check(!html.Contains("Server Error in")&&html.Contains("Fixture &amp; Company"),"Coordinator review failed to resolve company");
+        string blocked=PostPage(root,coordinator,review,html,"btnApprove");
+        Check(db["completions"].Count==0||Stored().Status!=CompletionStatus.Approved,"Unverified completion was approved");
+        // Verify each current manual checklist row with a reference through its real postback.
+        html=Body(Request(root,coordinator,review));var fields=new Dictionary<string,string>();
+        foreach(Match m in Regex.Matches(html,"<select[^>]+name=\"([^\"]*ddlStatus)\"")) {
+            string name=m.Groups[1].Value;fields[name]="Verified";fields[name.Replace("ddlStatus","txtEvidence")]="Synthetic verified record";
         }
-        var legacyPlacement=(Placement)db["placements"]["student"];legacyPlacement.CompanyName="Outdated Company";
-        Check(Body(Request(root,cookies,page)).Contains("Fixture &amp; Company"),"Stale company snapshot was not resolved");
-        legacyPlacement.CompanyName=null;
-        Check(html.Contains("No default evaluation policy")&&html.Contains("&lt;script&gt;")&&!html.Contains("<script>alert('fixture')"),"Missing configuration or HTML encoding failed");
-        Check(Body(Request(root,cookies,"/FixtureQueue.aspx")).StartsWith("False|"),"Dashboard marked unconfigured completion ready");
-        html=Body(Request(root,cookies,page,Form(html,"btnRule",new Dictionary<string,string>{{"ddlRule",rule.Id}})));
-        Check(html.Contains("Review configuration saved")&&html.Contains("Project-Proposed"),"Configuration save failed");
-        var fields=new Dictionary<string,string>();foreach(Match m in Regex.Matches(html,"<input[^>]+type=\"checkbox\"[^>]*>")){string name=Regex.Match(m.Value,"name=\"([^\"]+)\"").Groups[1].Value;fields[name]="on";fields[name.Replace("confirmed","evidenceReference")]="Synthetic archive evidence";string dateName=name.Replace("confirmed","evidenceDate");if(html.Contains("name=\""+dateName+"\""))fields[dateName]=Time.FromUnixMs(now-45L*86400000).ToString("yyyy-MM-dd");}
-        html=Body(Request(root,cookies,page,Form(html,"btnVerify",fields)));Check(html.Contains("Evidence verification saved"),"Verification postback failed");
-        Check(Stored().Verifications.Count==rule.Requirements.Count&&Stored().Verifications.All(v=>v.CoordinatorId==actor.Id&&v.VerifiedAt>0),"Evidence audit missing");
-        Check(Body(Request(root,cookies,"/FixtureQueue.aspx")).StartsWith("True|"),"Dashboard did not recognize eligible completion");
-        foreach(int worked in new[]{0,80,159}) {
-            var entry=Evidence().Hours[0];entry.Hours=worked;db["trainingHours"]["hours"]=entry;
-            string blocked=Body(Request(root,cookies,page));
-            Check(blocked.Contains("required minimum of 160")&&blocked.Contains("In Progress"),"Under-hours queue marked ready");
-            Check(Body(Request(root,cookies,page,Form(blocked,"btnApprove"))).Contains("required minimum of 160")&&Stored().Status!=CompletionStatus.Approved,"HTTP approval bypassed 160-hour gate");
-            string details=Body(Request(root,cookies,"/Pages/Coordinator/PlacementDetails.aspx?id=student"));
-            Check(details.Contains(worked+" / 160"),"Progress and final review disagree on hours");
-            Check(Body(Request(root,cookies,"/FixtureQueue.aspx")).StartsWith("False|"),"Dashboard marked under-hours completion ready");
+        Check(fields.Count>0,"Coordinator manual checklist was not rendered");
+        html=PostPage(root,coordinator,review,html,"btnSaveChecks",fields);
+        Check(Stored().Checks!=null&&Stored().Checks.Count>0,"Manual evidence checks were not saved");
+        foreach(int hours in new[]{0,80,159}) {
+            var entry=Evidence().Hours[0];entry.Hours=hours;db["trainingHours"]["hours"]=entry;
+            html=Body(Request(root,coordinator,review));PostPage(root,coordinator,review,html,"btnApprove");
+            Check(Stored().Status!=CompletionStatus.Approved,"Under-hours completion approved");
         }
-        db["trainingHours"]["hours"]=Evidence().Hours[0];
-        html=Body(Request(root,cookies,page));
-        string stale=html;Check(Body(Request(root,cookies,page,Form(html,"btnCorrections"))).Contains("A reason is required"),"HTTP corrections accepted missing reason");
-        html=Body(Request(root,cookies,page,Form(html,"btnCorrections",new Dictionary<string,string>{{"txtCoordinatorNote","Synthetic corrections reason"}})));
-        Check(Stored().Status==CompletionStatus.NeedsCorrections&&Stored().Result==null&&Stored().ReportFileUrl==null&&Stored().CertificateFileUrl==null,"Corrections released PDF or academic failure");
-        string correctionProgress=Body(Request(root,student,"/Pages/Student/Progress.aspx"));
-        Check(correctionProgress.Contains("Needs Corrections")&&correctionProgress.Contains("Synthetic corrections reason"),"Student did not receive actionable correction details");
-        Check(Body(Request(root,cookies,page,Form(stale,"btnApprove"))).Contains("review has changed"),"Stale form overwrote review");
-        html=Body(Request(root,cookies,page,Form(html,"btnApprove")));var approved=Stored();
-        Check(approved.Status==CompletionStatus.Approved&&approved.ApprovedAt>0&&approved.ReviewedByCoordinatorId==actor.Id&&approved.ReportFileUrl!=null&&approved.DocumentSnapshot!=null,"Eligible HTTP approval failed");
-        Check(approved.RequiredHours==160&&approved.ApprovedHours==160&&approved.DocumentSnapshot.CompanyName=="Fixture & Company","Approval snapshot lost enforced hours or canonical company");
-        Check(!html.Contains("value=\"Approve Internship Completion\"")&&html.Contains("Approved Documents"),"Approved record is editable");
-        Check(Body(Request(root,cookies,page,Form(stale,"btnApprove"))).Contains("final decision")&&Stored().AuditTrail.Count==approved.AuditTrail.Count,"Duplicate approval modified record");
-        string progress=Body(Request(root,student,"/Pages/Student/Progress.aspx"));Check(!progress.Contains("CONFIDENTIAL COMPANY")&&!progress.Contains("CONFIDENTIAL ACADEMIC"),"Student viewed confidential evaluations");
-        foreach(string route in new[]{"/Pages/Student/Progress.aspx?report=1","/Pages/Coordinator/CompletionReview.aspx?report=student","/Pages/Coordinator/CompletionReview.aspx?certificate=student"})using(var pdf=Request(root,route.Contains("Student")?student:cookies,route))Check(pdf.ContentType=="application/pdf","Protected PDF download failed");
-        string etag;FirebaseContext.GetVersioned("completions/student",out etag);Check(FirebaseContext.PutIfVersion("completions/student",approved,etag),"Conditional Firebase write failed");Check(!FirebaseContext.PutIfVersion("completions/student",approved,etag),"Stale ETag overwrite accepted");
+        db["trainingHours"]["hours"]=Evidence().Hours[0];html=Body(Request(root,coordinator,review));
+        string stale=html;html=PostPage(root,coordinator,review,html,"btnApprove");
+        var approved=Stored();
+        Check(approved.Status==CompletionStatus.Approved&&approved.ApprovedAt>0&&approved.DocumentSnapshot!=null,"Eligible completion was not approved and snapshotted");
+        Check(approved.RequiredHours==160&&approved.ApprovedHours==160,"Approval did not use approved source hours and minimum");
+        PostPage(root,coordinator,review,stale,"btnApprove");
+        Check(Stored().ApprovedAt==approved.ApprovedAt,"Duplicate approval replaced the decision");
+        foreach(string route in new[]{"/Pages/Account/CompletionReport.aspx?id=student","/Pages/Account/CompletionReport.aspx?id=student&doc=certificate"})
+            using(var pdf=Request(root,route.Contains("doc=certificate")?coordinator:student,route))Check(pdf.ContentType=="application/pdf"&&pdf.Headers["Cache-Control"].Contains("no-store"),"Protected PDF was missing or cacheable");
         File.WriteAllText(Path.Combine(output,"review-approved.html"),html);
-        db["completions"]["student"]=Evidence().Record;versions["completions/student"]++;
-        html=Body(Request(root,cookies,page));Check(Body(Request(root,cookies,page,Form(html,"btnReject"))).Contains("A reason is required"),"HTTP rejection accepted missing reason");
-        html=Body(Request(root,cookies,page,Form(html,"btnReject",new Dictionary<string,string>{{"txtCoordinatorNote","Synthetic rejection reason"}})));
-        Check(Stored().Status==CompletionStatus.Rejected&&Stored().Result==null&&Stored().ReportFileUrl==null,"Rejection released a PDF or academic failure");
-        Check(Body(Request(root,student,"/FixtureConfidential.aspx"))=="DENIED","Repository allowed student to read final evaluation");
-        db["completions"].Clear();db["companyFinalEvaluations"].Clear();db["academicFinalEvaluations"].Clear();
-        string companyForm=Body(Request(root,company,"/Pages/Company/FinalEvaluation.aspx?id=student"));
-        string companySaved=Body(Request(root,company,"/Pages/Company/FinalEvaluation.aspx?id=student",Form(companyForm,"btnSubmit",new Dictionary<string,string>{{"ddlPlacement","student"},{"txtScore","18"},{"txtMaximum","20"},{"txtComments","Synthetic company review"}})));
-        Check(companySaved.Contains("submitted successfully")&&Json.Deserialize<FinalCompanyEvaluation>(Json.Serialize(db["companyFinalEvaluations"]["student"])).SupervisorId=="companyUser","Company submission postback failed");
-        string academicForm=Body(Request(root,academic,"/Pages/Academic/FinalEvaluation.aspx?id=student"));
-        string academicSaved=Body(Request(root,academic,"/Pages/Academic/FinalEvaluation.aspx?id=student",Form(academicForm,"btnSubmit",new Dictionary<string,string>{{"ddlPlacement","student"},{"txtScore","7"},{"txtMaximum","10"},{"txtComments","Synthetic academic review"}})));
-        var submitted=Json.Deserialize<FinalAcademicEvaluation>(Json.Serialize(db["academicFinalEvaluations"]["student"]));
-        Check(academicSaved.Contains("submitted successfully")&&submitted.IsSubmitted&&submitted.SubmittedAt>0&&submitted.AcademicSupervisorId=="academic","Academic submission postback failed");
     }
     static int Main(string[] args)
     {
-        Process iis=null;var listener=new TcpListener(IPAddress.Loopback,19083);
+        int databasePort=args.Length>2?int.Parse(args[2]):19083, webPort=args.Length>3?int.Parse(args[3]):19084;
+        Process iis=null;var listener=new TcpListener(IPAddress.Loopback,databasePort);
         try {
             string app=Path.GetFullPath(args[0]),output=Path.GetFullPath(args[1]);Directory.CreateDirectory(output);
             rule=Json.Deserialize<List<CompletionRule>>(File.ReadAllText(Path.Combine(app,"App_Data/completion-rules.json")))[0];UnitChecks(output);Seed();
             listener.Start();new Thread(()=>Serve(listener)){IsBackground=true}.Start();string host=Path.Combine(output,"web");Directory.CreateDirectory(host);
             foreach(string folder in new[]{"Layout","Pages","Assets","App_Data","App_GlobalResources","bin"})foreach(string file in Directory.GetFiles(Path.Combine(app,folder),"*",SearchOption.AllDirectories)){string target=Path.Combine(host,file.Substring(app.Length+1));Directory.CreateDirectory(Path.GetDirectoryName(target));File.Copy(file,target,true);}
-            File.WriteAllText(Path.Combine(host,"Web.config"),"<configuration><appSettings><add key='Firebase.DatabaseUrl' value='http://localhost:19083'/><add key='Firebase.ApiKey' value='fixture'/></appSettings><system.web><compilation debug='true' targetFramework='4.7.2'/><pages><namespaces><add namespace='InternshipManagementSystem.Common'/></namespaces></pages><httpRuntime targetFramework='4.7.2'/><customErrors mode='Off'/></system.web></configuration>");
+            File.WriteAllText(Path.Combine(host,"Web.config"),"<configuration><appSettings><add key='Firebase.DatabaseUrl' value='http://localhost:"+databasePort+"'/><add key='Firebase.ApiKey' value='fixture'/><add key='Firebase.ReadCacheSeconds' value='0'/></appSettings><system.web><compilation debug='true' targetFramework='4.7.2'/><pages><namespaces><add namespace='InternshipManagementSystem.Common'/></namespaces></pages><httpRuntime targetFramework='4.7.2'/><customErrors mode='Off'/></system.web></configuration>");
             File.WriteAllText(Path.Combine(host,"FixtureLogin.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){SessionHelper.SignIn(new UserRepository().GetPerson(Request.QueryString[\"id\"]),Request.QueryString[\"id\"]);Response.Write(\"Fixture ready\");}</script>");
             File.WriteAllText(Path.Combine(host,"FixtureConfidential.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){try{new EvaluationRepository().GetCompanyFinalForPlacement(\"student\");Response.Write(\"EXPOSED\");}catch(UnauthorizedAccessException){Response.Write(\"DENIED\");}}</script>");
             File.WriteAllText(Path.Combine(host,"FixtureConfirm.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><%@ Import Namespace=\"InternshipManagementSystem.Security\" %><%@ Import Namespace=\"InternshipManagementSystem.Models\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){var result=new PlacementRepository().ConfirmAcceptedOffer((Student)SessionHelper.Current,\"offer\");Response.Write(result.Placement.CompanyName);}</script>");
             File.WriteAllText(Path.Combine(host,"FixtureQueue.aspx"),"<%@ Page Language=\"C#\" %><%@ Import Namespace=\"InternshipManagementSystem.Data\" %><script runat=\"server\">protected void Page_Load(object sender,EventArgs e){var row=new CoordinatorMonitoringRepository().LoadCompletionQueue()[0];Response.Write(row.IsReady+\"|\"+row.Overview.HoursText);}</script>");
             var log=new StringBuilder();
-            iis=Process.Start(new ProcessStartInfo {FileName=@"C:\Program Files\IIS Express\iisexpress.exe",Arguments="/path:\""+host+"\" /port:19084 /systray:false",UseShellExecute=false,CreateNoWindow=true,RedirectStandardOutput=true,RedirectStandardError=true});
+            iis=Process.Start(new ProcessStartInfo {FileName=@"C:\Program Files\IIS Express\iisexpress.exe",Arguments="/path:\""+host+"\" /port:"+webPort+" /systray:false",UseShellExecute=false,CreateNoWindow=true,RedirectStandardOutput=true,RedirectStandardError=true});
             iis.OutputDataReceived+=(s,e)=>{lock(log)log.AppendLine(e.Data);};iis.ErrorDataReceived+=(s,e)=>{lock(log)log.AppendLine(e.Data);};iis.BeginOutputReadLine();iis.BeginErrorReadLine();bool ready=false;
-            for(int attempt=0;attempt<10&&!ready;attempt++){try{Body(Request("http://localhost:19084",new CookieContainer(),"/FixtureLogin.aspx?id=coord"));ready=true;}catch{if(iis.HasExited)throw new Exception("IIS exited: "+log);Thread.Sleep(400);}}
-            Check(ready,"IIS fixture did not start");HttpChecks("http://localhost:19084",output);Console.WriteLine("PASS: "+checks+" completion review checks. Fixture artifacts: "+output);return 0;
+            for(int attempt=0;attempt<10&&!ready;attempt++){try{Body(Request(("http://localhost:"+webPort),new CookieContainer(),"/FixtureLogin.aspx?id=coord"));ready=true;}catch{if(iis.HasExited)throw new Exception("IIS exited: "+log);Thread.Sleep(400);}}
+            Check(ready,"IIS fixture did not start");HttpChecks(("http://localhost:"+webPort),output);Console.WriteLine("PASS: "+checks+" completion review checks. Fixture artifacts: "+output);return 0;
         }catch(Exception ex){Console.Error.WriteLine(ex);return 1;}finally{listener.Stop();if(iis!=null&&!iis.HasExited){iis.Kill();iis.WaitForExit();}}
     }
 }

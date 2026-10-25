@@ -232,18 +232,19 @@ namespace InternshipManagementSystem.Services
             public static Details From(CompletionRecord r, Student s, Placement p, string coordinatorName)
             {
                 Details d = new Details();
-                d.StudentName = Clean(r.StudentName ?? s.FullName);
-                d.StudentNumber = Clean(r.StudentNumber ?? s.StudentNumber);
-                string programName = r.Program ?? s.Major;
+                CompletionDocumentSnapshot snapshot = r.DocumentSnapshot;
+                d.StudentName = Clean(r.StudentName ?? snapshot?.StudentName ?? s.FullName);
+                d.StudentNumber = Clean(r.StudentNumber ?? snapshot?.StudentNumber ?? s.StudentNumber);
+                string programName = r.Program ?? snapshot?.Program ?? s.Major;
                 AcademicProgram program = AcademicPrograms.Find(programName);
-                d.International = (r.InternshipType ?? InternshipTypes.Of(p)) == InternshipTypes.International;
+                d.International = (r.InternshipType ?? snapshot?.InternshipType ?? InternshipTypes.Of(p)) == InternshipTypes.International;
                 d.ProgramLine = program == null ? Clean(programName)
                     : program.Name + (d.International ? "" : "  (local training course " + program.LocalCourse + ")");
                 d.TypeLine = d.International ? "International internship (German Year)" : "Local field training";
-                d.CompanyName = Clean(r.CompanyName ?? p.CompanyName);
+                d.CompanyName = Clean(r.CompanyName ?? snapshot?.CompanyName ?? p.CompanyName);
                 d.OpportunityTitle = Clean(r.OpportunityTitle ?? p.OpportunityTitle);
-                d.Start = r.TrainingStart > 0 ? r.TrainingStart : p.StartDate;
-                d.End = r.TrainingEnd > 0 ? r.TrainingEnd : p.EndDate;
+                d.Start = r.TrainingStart > 0 ? r.TrainingStart : snapshot != null && snapshot.StartDate > 0 ? snapshot.StartDate : p.StartDate;
+                d.End = r.TrainingEnd > 0 ? r.TrainingEnd : snapshot != null && snapshot.EndDate > 0 ? snapshot.EndDate : p.EndDate;
                 d.CoordinatorName = Clean(r.CoordinatorName ?? coordinatorName ?? "Internship Coordinator");
                 double weeks = d.Start > 0 && d.End > d.Start ? (d.End - d.Start) / (7.0 * 24 * 3600 * 1000) : 0;
                 if (d.International)
@@ -310,8 +311,8 @@ namespace InternshipManagementSystem.Services
     }
 
     /// <summary>
-    /// A very small PDF writer: text in the built-in Helvetica fonts, lines,
-    /// rectangles and circles. Enough for a one-page report, with no NuGet
+    /// A very small PDF writer: Helvetica for ASCII, shaped glyph outlines
+    /// for Arabic/Unicode, lines, rectangles and circles, with no NuGet
     /// package. Coordinates are in points from the bottom-left of the page.
     /// </summary>
     public class SimplePdf
@@ -329,6 +330,11 @@ namespace InternshipManagementSystem.Services
         public void Text(double x, double y, double size, bool bold, string text,
                          double r = 0.08, double g = 0.12, double b = 0.18)
         {
+            if (NeedsUnicode(text))
+            {
+                UnicodeText(x, y, size, bold, text, r, g, b);
+                return;
+            }
             content.AppendFormat("BT {0} rg /{1} {2} Tf {3} {4} Td ({5}) Tj ET\n",
                 Colour(r, g, b), bold ? "F2" : "F1", N(size), N(x), N(y), Escape(text));
         }
@@ -347,6 +353,13 @@ namespace InternshipManagementSystem.Services
             double a = degrees * Math.PI / 180, cos = Math.Cos(a), sin = Math.Sin(a);
             double lx = -TextWidth(text, size, bold) / 2, ly = offsetY;
             double x = cx + lx * cos - ly * sin, y = cy + lx * sin + ly * cos;
+            if (NeedsUnicode(text))
+            {
+                content.AppendFormat("q {0} {1} {2} {3} {4} {5} cm\n", N(cos), N(sin), N(-sin), N(cos), N(x), N(y));
+                UnicodeText(0, 0, size, bold, text, r, g, b);
+                content.Append("Q\n");
+                return;
+            }
             content.AppendFormat("BT {0} rg /{1} {2} Tf {3} {4} {5} {6} {7} {8} Tm ({9}) Tj ET\n",
                 Colour(r, g, b), bold ? "F2" : "F1", N(size), N(cos), N(sin), N(-sin), N(cos), N(x), N(y), Escape(text));
         }
@@ -397,7 +410,75 @@ namespace InternshipManagementSystem.Services
         /// <summary>Approximate Helvetica width - good enough to centre and wrap text.</summary>
         public static double TextWidth(string text, double size, bool bold)
         {
+            if (NeedsUnicode(text))
+                using (var path = TextPath(text, size, bold)) return path.GetBounds().Width;
             return Ascii(text).Length * size * (bold ? 0.5 : 0.47);
+        }
+
+        private static bool NeedsUnicode(string text)
+        {
+            if (text == null) return false;
+            foreach (char c in text) if (c > 126 && !char.IsControl(c)) return true;
+            return false;
+        }
+
+        // GDI+ shapes Arabic and mixed-direction text on our Windows ASP.NET host.
+        // Export outlines so readers need no locally installed font. ActualText retains
+        // the original Unicode value for copy/search and assistive PDF readers.
+        private static System.Drawing.Drawing2D.GraphicsPath TextPath(string text, double size, bool bold)
+        {
+            var path = new System.Drawing.Drawing2D.GraphicsPath();
+            using (var family = new System.Drawing.FontFamily("Arial"))
+            using (var format = (System.Drawing.StringFormat)System.Drawing.StringFormat.GenericTypographic.Clone())
+            {
+                foreach (char c in text ?? "")
+                {
+                    if (c >= '\u0590' && c <= '\u08ff')
+                    {
+                        format.FormatFlags |= System.Drawing.StringFormatFlags.DirectionRightToLeft;
+                        break;
+                    }
+                    if (char.IsLetter(c)) break;
+                }
+                path.AddString(text ?? "", family, (int)(bold ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular),
+                    (float)size, new System.Drawing.PointF(0, 0), format);
+            }
+            return path;
+        }
+
+        private void UnicodeText(double x, double y, double size, bool bold, string text, double r, double g, double b)
+        {
+            using (var path = TextPath(text, size, bold))
+            using (var family = new System.Drawing.FontFamily("Arial"))
+            {
+                var style = bold ? System.Drawing.FontStyle.Bold : System.Drawing.FontStyle.Regular;
+                double baseline = size * family.GetCellAscent(style) / family.GetEmHeight(style);
+                var bounds = path.GetBounds();
+                var points = path.PathPoints;
+                var types = path.PathTypes;
+                content.AppendFormat("/Span << /ActualText <{0}> >> BDC\n{1} rg\n", UnicodeHex(text), Colour(r, g, b));
+                for (int i = 0; i < points.Length; i++)
+                {
+                    int kind = types[i] & 7;
+                    if (kind == 0 || kind == 1)
+                        content.AppendFormat("{0} {1} {2}\n", N(x + points[i].X - bounds.Left), N(y + baseline - points[i].Y), kind == 0 ? "m" : "l");
+                    else if (kind == 3 && i + 2 < points.Length)
+                    {
+                        content.AppendFormat("{0} {1} {2} {3} {4} {5} c\n",
+                            N(x + points[i].X - bounds.Left), N(y + baseline - points[i].Y),
+                            N(x + points[i + 1].X - bounds.Left), N(y + baseline - points[i + 1].Y),
+                            N(x + points[i + 2].X - bounds.Left), N(y + baseline - points[i + 2].Y));
+                        i += 2;
+                    }
+                    if ((types[i] & 128) != 0) content.Append("h\n");
+                }
+                content.Append("f*\nEMC\n");
+            }
+        }
+
+        private static string UnicodeHex(string text)
+        {
+            return "FEFF" + BitConverter.ToString(Encoding.BigEndianUnicode.GetBytes(text ?? "")).Replace("-", "");
         }
 
         public static List<string> Wrap(string text, double size, double maxWidth)
@@ -436,7 +517,7 @@ namespace InternshipManagementSystem.Services
                 "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 " + N(width) + " " + N(height) + "] "
                     + "/Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>",
                 "<< /Length " + stream.Length + " >>\nstream\n" + stream + "endstream",
-                "<< /Title (" + Escape(title) + ") /Producer (UIMS) >>"
+                "<< /Title <" + UnicodeHex(title) + "> /Producer (UIMS) >>"
             };
 
             StringBuilder pdf = new StringBuilder("%PDF-1.4\n");
