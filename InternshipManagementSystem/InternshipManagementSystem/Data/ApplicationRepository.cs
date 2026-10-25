@@ -28,7 +28,28 @@ namespace InternshipManagementSystem.Data
 
         public List<InternshipApplication> GetByStudent(string studentId)
         {
-            return GetWhere("StudentId", studentId).OrderByDescending(a => a.SubmittedAt).ToList();
+            return DistinctForStudent(GetWhere("StudentId", studentId));
+        }
+
+        // Older Firebase data can contain more than one record per opportunity.
+        // Student pages show one record, keeping the confirmed or accepted decision.
+        public static List<InternshipApplication> DistinctForStudent(
+            IEnumerable<InternshipApplication> applications, string confirmedApplicationId = null)
+        {
+            return (applications ?? Enumerable.Empty<InternshipApplication>())
+                .Where(a => a != null)
+                .GroupBy(a => string.IsNullOrWhiteSpace(a.OpportunityId)
+                    ? "record:" + a.Id : "opportunity:" + a.OpportunityId,
+                    StringComparer.OrdinalIgnoreCase)
+                .Select(group => group
+                    .OrderByDescending(a => !string.IsNullOrEmpty(confirmedApplicationId)
+                        && a.Id == confirmedApplicationId)
+                    .ThenByDescending(a => a.IsConfirmedByStudent)
+                    .ThenByDescending(a => a.Status == ApplicationStatus.Accepted)
+                    .ThenByDescending(a => a.SubmittedAt)
+                    .First())
+                .OrderByDescending(a => a.SubmittedAt)
+                .ToList();
         }
 
         public List<InternshipApplication> GetByCompany(string companyId)

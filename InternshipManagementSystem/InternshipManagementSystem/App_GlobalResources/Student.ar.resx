@@ -275,6 +275,7 @@
   <data name="Opportunities.NoMatchingOpportunities" xml:space="preserve"><value>لا توجد فرص مطابقة</value></data>
   <data name="Opportunities.NotSpecified" xml:space="preserve"><value>غير محدد</value></data>
   <data name="Opportunities.Of" xml:space="preserve"><value>من</value></data>
+  <data name="Opportunities.Applied" xml:space="preserve"><value>تم التقديم</value></data>
   <data name="Opportunities.Open" xml:space="preserve"><value>مفتوحة</value></data>
   <data name="Opportunities.PleaseContactTheInternshipCoordinator" xml:space="preserve"><value>يُرجى التواصل مع منسّق التدريب.</value></data>
   <data name="Opportunities.PleaseSignInAsAStudent" xml:space="preserve"><value>يُرجى تسجيل الدخول بحساب طالب.</value></data>

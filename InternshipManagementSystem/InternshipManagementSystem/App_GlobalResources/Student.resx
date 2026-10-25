@@ -275,6 +275,7 @@
   <data name="Opportunities.NoMatchingOpportunities" xml:space="preserve"><value>No Matching Opportunities</value></data>
   <data name="Opportunities.NotSpecified" xml:space="preserve"><value>Not specified</value></data>
   <data name="Opportunities.Of" xml:space="preserve"><value>of</value></data>
+  <data name="Opportunities.Applied" xml:space="preserve"><value>Applied</value></data>
   <data name="Opportunities.Open" xml:space="preserve"><value>Open</value></data>
   <data name="Opportunities.PleaseContactTheInternshipCoordinator" xml:space="preserve"><value>Please contact the internship coordinator.</value></data>
   <data name="Opportunities.PleaseSignInAsAStudent" xml:space="preserve"><value>Please sign in as a student.</value></data>

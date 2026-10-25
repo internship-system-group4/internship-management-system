@@ -32,7 +32,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     PlacementTitle.Text = ConfirmedPlacement.OpportunityTitle;
                     PlacementCompany.Text = ConfirmedPlacement.CompanyName;
                 }
-                var applications = new ApplicationRepository().GetByStudent(CurrentStudent.Id);
+                var applications = ApplicationRepository.DistinctForStudent(
+                    new ApplicationRepository().GetWhere("StudentId", CurrentStudent.Id),
+                    ConfirmedPlacement == null ? null : ConfirmedPlacement.ApplicationId);
                 ApplicationRepeater.DataSource = applications;
                 ApplicationRepeater.DataBind();
                 EmptyPanel.Visible = applications.Count == 0;

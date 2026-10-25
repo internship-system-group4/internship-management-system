@@ -1,4 +1,4 @@
-﻿
+
 <%@ Page Language="C#" MasterPageFile="~/Layout/Student.master"
     AutoEventWireup="true" CodeBehind="Opportunities.aspx.cs"
     Inherits="InternshipManagementSystem.Pages.StudentArea.Opportunities"
@@ -484,7 +484,7 @@
 
             <% foreach (var opportunity in AvailableOpportunities) { %>
 
-                <article class="ex-card">
+                <article class='ex-card <%= HasApplied(opportunity.Id) ? "ex-card-applied" : "" %>'>
 
                     <div class="ex-card-header">
 
@@ -500,8 +500,8 @@
                             </div>
                         </div>
 
-                        <span class="ex-status">
-                            <%: L.T("Student.Opportunities.Open") %>
+                        <span class='ex-status <%= HasApplied(opportunity.Id) ? "ex-status-applied" : "" %>'>
+                            <%: ApplicationLabel(opportunity.Id) %>
                         </span>
 
                     </div>
