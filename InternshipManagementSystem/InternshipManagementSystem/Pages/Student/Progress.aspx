@@ -208,6 +208,20 @@
                     <div class="is-rejected"><dt><%: L.T("Student.Progress.Rejected") %></dt><dd class="rv-num"><%: RejectedHours %> h</dd></div>
                 </dl>
             </div>
+            <% if (CanReportHours) { %>
+            <div class="pg-report-hours">
+                <div><h4><%: L.T("Student.Progress.LogHours") %></h4><p><%: L.T("Student.Progress.LogHoursHint") %></p></div>
+                <div class="pg-report-hours-grid">
+                    <div><asp:Label ID="lblWorkDate" runat="server" AssociatedControlID="txtWorkDate" Text="<%$ Resources:Student, Progress.WorkDate %>" /><asp:TextBox ID="txtWorkDate" runat="server" TextMode="Date" CssClass="form-control" required="required" /></div>
+                    <div><asp:Label ID="lblWorkedHours" runat="server" AssociatedControlID="txtWorkedHours" Text="<%$ Resources:Student, Progress.HoursWorked %>" /><asp:TextBox ID="txtWorkedHours" runat="server" TextMode="Number" CssClass="form-control" min="1" max="24" required="required" /></div>
+                    <div class="pg-report-description"><asp:Label ID="lblWorkDescription" runat="server" AssociatedControlID="txtWorkDescription" Text="<%$ Resources:Student, Progress.WorkDescription %>" /><asp:TextBox ID="txtWorkDescription" runat="server" TextMode="MultiLine" Rows="2" MaxLength="500" CssClass="form-control" required="required" /></div>
+                    <div class="pg-report-submit"><asp:Button ID="btnReportHours" runat="server" Text="<%$ Resources:Student, Progress.SubmitHours %>" CssClass="btn btn-primary" OnClick="btnReportHours_Click" /></div>
+                </div>
+                <asp:Label ID="lblHoursMessage" runat="server" Visible="false" EnableViewState="false" role="status" />
+            </div>
+            <% } else { %>
+            <p class="rv-note pg-intl-note"><%: L.T("Student.Progress.HoursReportingClosed") %></p>
+            <% } %>
             <% if (HoursLog.Count == 0) { %>
                 <div class="rv-empty"><%: L.T("Student.Progress.NoTrainingHoursHaveBeenRecorded") %></div>
             <% } else { %>

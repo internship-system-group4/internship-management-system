@@ -159,4 +159,15 @@
   <data name="StudentProgress.UniversityID" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>عرض التقدّم</value></data>
   <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>اكتب ملاحظتك أو تعليقك هنا...</value></data>
+  <data name="StudentProgress.ReviewHours" xml:space="preserve"><value>مراجعة ساعات التدريب</value></data>
+  <data name="StudentProgress.ReviewHoursHint" xml:space="preserve"><value>اعتمد ساعات العمل الفعلية أو ارفضها مع توضيح السبب. لا تُحتسب الساعات المبلّغ عنها تلقائيًا.</value></data>
+  <data name="StudentProgress.HourUnit" xml:space="preserve"><value>ساعة</value></data>
+  <data name="StudentProgress.ReviewNote" xml:space="preserve"><value>ملاحظة المراجعة</value></data>
+  <data name="StudentProgress.ApproveHours" xml:space="preserve"><value>اعتماد</value></data>
+  <data name="StudentProgress.RejectHours" xml:space="preserve"><value>رفض</value></data>
+  <data name="StudentProgress.NoPendingHours" xml:space="preserve"><value>لا توجد ساعات بانتظار الاعتماد.</value></data>
+  <data name="StudentProgress.PendingApprovalHours" xml:space="preserve"><value>ساعة بانتظار الاعتماد</value></data>
+  <data name="StudentProgress.RejectNeedsNote" xml:space="preserve"><value>اكتب سبب الرفض أولًا (حتى 500 حرف).</value></data>
+  <data name="StudentProgress.HoursDecisionSaved" xml:space="preserve"><value>حُفظ قرار مراجعة الساعات.</value></data>
+  <data name="StudentProgress.HoursDecisionFailed" xml:space="preserve"><value>تعذر حفظ قرار الساعات. حاول مجددًا.</value></data>
 </root>

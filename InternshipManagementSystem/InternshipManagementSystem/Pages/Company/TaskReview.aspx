@@ -6,7 +6,7 @@
     Title="Review Submissions" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261024-3") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261025-4") %>" />
     <style>
         .submission-page {
             color: var(--th-fg-123f63,#123f63);
@@ -675,7 +675,7 @@
     </div>
 </div>
 </asp:PlaceHolder>
-<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261024-3") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261025-4") %>"></script>
 <script type="text/javascript">
     function filterCompanySubmissions() {
         // The list is not on the page while one submission is open.

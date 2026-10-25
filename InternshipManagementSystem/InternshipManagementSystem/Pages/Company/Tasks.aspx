@@ -1,7 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.Tasks" Title="Manage Tasks" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261024-3") %>" />
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261025-4") %>" />
 <style>
 .tasks-page{color:var(--th-fg-123f63,#123f63)}
 .tasks-page-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
@@ -586,8 +586,7 @@
     }
 
     function closeTaskSuccessDialog() {
-        var popup = window.bootstrap && bootstrap.Modal.getInstance(document.getElementById("taskSuccessOverlay"));
-        if (popup) popup.hide();
+        if (window.UimsTaskDialog) window.UimsTaskDialog.close();
     }
 
     populateDepartmentFilter();
@@ -598,7 +597,7 @@
         showTaskForm();
     }
 </script>
-<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261024-3") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261025-4") %>"></script>
 </asp:Content>
 
 

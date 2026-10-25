@@ -244,11 +244,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 lnkDetailWork.NavigateUrl = submission.LinkUrl;
             }
 
-            Uri file;
             lnkDetailFile.Visible =
-                Uri.TryCreate(
-                    submission.FileUrl, UriKind.Absolute, out file) &&
-                file.Scheme == Uri.UriSchemeHttps;
+                TaskSubmissionStorage.IsSafeUrl(submission.FileUrl);
 
             if (lnkDetailFile.Visible)
             {

@@ -203,3 +203,28 @@ body.student-portal .pg-page .pg-timeline-card {border-radius:12px;}
   body.student-portal .student-task-item,body.student-portal .student-applications-page .application-row {animation:none; transition:none;}
   body.student-portal .student-task-item:hover {transform:none;}
 }
+
+
+/* Assigned tasks fill the page; task details open above them. */
+body.student-portal .student-tasks-layout{display:block}
+body.student-portal .student-task-card{width:100%}
+body.student-portal .student-task-list{gap:12px;padding:20px}
+body.student-portal .student-task-item{grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:20px 23px}
+body.student-portal .student-task-item-meta{grid-column:1/-1}
+body.student-portal .student-task-item-action{align-self:center}
+body.student-portal .student-select-button{min-width:125px;min-height:42px;font-size:13px}
+@media(max-width:600px){body.student-portal .student-task-list{padding:12px}body.student-portal .student-task-item{grid-template-columns:1fr;padding:17px}body.student-portal .student-task-item-action{grid-column:1;grid-row:auto}body.student-portal .student-task-item-action .student-select-button{width:100%}}
+
+body.student-portal .pg-report-hours{margin:22px 0;padding:20px;border:1px solid var(--ui-border);border-radius:14px;background:var(--ui-canvas)}
+body.student-portal .pg-report-hours h4{margin:0 0 4px;color:var(--ui-ink);font-size:17px;font-weight:750}
+body.student-portal .pg-report-hours p{margin:0 0 16px;color:var(--ui-muted);font-size:13px;line-height:1.6}
+body.student-portal .pg-report-hours-grid{display:grid;grid-template-columns:minmax(140px,1fr) minmax(120px,.7fr) minmax(210px,2fr) auto;gap:12px;align-items:end}
+body.student-portal .pg-report-hours-grid label{display:block;margin-bottom:6px;color:var(--ui-ink);font-size:12px;font-weight:750}
+body.student-portal .pg-report-hours-grid .form-control{min-height:42px;border-color:var(--ui-border);background:var(--ui-surface);color:var(--ui-ink)}
+body.student-portal .pg-report-hours-grid textarea{height:42px;min-height:42px}
+body.student-portal .pg-report-submit .btn{min-height:42px;white-space:nowrap}
+body.student-portal .pg-hours-message{display:block;margin-top:12px;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:700}
+body.student-portal .pg-hours-message.is-success{background:var(--ui-success-soft);color:var(--ui-success)}
+body.student-portal .pg-hours-message.is-error{background:var(--ui-danger-soft);color:var(--ui-danger)}
+@media(max-width:1000px){body.student-portal .pg-report-hours-grid{grid-template-columns:1fr 1fr}body.student-portal .pg-report-description{grid-column:1/-1}body.student-portal .pg-report-submit{grid-column:1/-1}}
+@media(max-width:560px){body.student-portal .pg-report-hours-grid{grid-template-columns:1fr}body.student-portal .pg-report-description,body.student-portal .pg-report-submit{grid-column:1}body.student-portal .pg-report-submit .btn{width:100%}}

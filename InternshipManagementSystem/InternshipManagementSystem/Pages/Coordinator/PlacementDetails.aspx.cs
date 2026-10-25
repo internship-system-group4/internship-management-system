@@ -25,6 +25,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             return maximum > 0 ? value.ToString("0.##", CultureInfo.InvariantCulture) + " / " + maximum.ToString("0.##", CultureInfo.InvariantCulture) : L.T("Coordinator.PlacementDetails.NotScored");
         }
         protected string StatusLabel(Enum value) { return System.Text.RegularExpressions.Regex.Replace(value.ToString(), "([a-z])([A-Z])", "$1 $2"); }
-        protected bool SafeLink(string value) { return ApplicationRepository.IsSafeDocumentUrl(value); }
+        protected bool SafeLink(string value) { return ApplicationRepository.IsSafeDocumentUrl(value) || InternshipManagementSystem.Services.TaskSubmissionStorage.IsSafeUrl(value); }
     }
 }

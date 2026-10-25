@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Student Progress" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="StudentProgress.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.StudentProgress" %>
+<%@ Page Title="Student Progress" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="StudentProgress.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.StudentProgress" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -6,6 +6,17 @@
         .back-link:hover { color: var(--brand-text,var(--brand)); }
         .btn-outline-brand { border: 1px solid var(--brand); color: var(--brand-text,var(--brand)); background: transparent; font-weight: 600; padding: 0.4rem 1rem; border-radius: 6px; }
         .btn-outline-brand:hover { background-color: var(--brand-light); color: var(--brand-text,var(--brand-dark)); }
+        .academic-hours-review{margin:0 0 24px;padding:22px;border:1px solid var(--ui-border,#dce5ee);border-radius:16px;background:var(--ui-surface,#fff);box-shadow:0 12px 32px -25px rgba(12,48,76,.4)}
+        .academic-hours-review h3{margin:0 0 5px;color:var(--ui-ink,#163a58);font-size:19px;font-weight:750}
+        .academic-hours-review>p{margin:0 0 16px;color:var(--ui-muted,#63798a);font-size:13px}
+        .academic-hours-entry{display:grid;grid-template-columns:1fr auto;gap:14px;padding:15px 0;border-top:1px solid var(--ui-border,#dce5ee)}
+        .academic-hours-entry strong{display:block;color:var(--ui-ink,#163a58)}
+        .academic-hours-entry small{display:block;color:var(--ui-muted,#63798a)}
+        .academic-hours-entry p{margin:6px 0 0;overflow-wrap:anywhere}
+        .academic-hours-actions{display:flex;flex-wrap:wrap;align-items:end;gap:8px}
+        .academic-hours-actions .form-control{min-width:180px;max-width:260px}
+        .academic-hours-message{display:block;margin:0 0 13px;font-weight:700}
+        @media(max-width:800px){.academic-hours-entry{grid-template-columns:1fr}.academic-hours-actions .form-control{width:100%;max-width:none}}
     </style>
 </asp:Content>
 
@@ -100,6 +111,22 @@
             </div>
         </div>
 
+        <section class="academic-hours-review" aria-labelledby="academicHoursTitle">
+            <h3 id="academicHoursTitle"><%: L.T("Academic.StudentProgress.ReviewHours") %></h3>
+            <p><%: L.T("Academic.StudentProgress.ReviewHoursHint") %></p>
+            <asp:Label ID="lblHoursReviewMessage" runat="server" Visible="false" EnableViewState="false" CssClass="academic-hours-message" role="status" />
+            <asp:Repeater ID="rptPendingHours" runat="server" OnItemCommand="rptPendingHours_ItemCommand"><ItemTemplate>
+                <div class="academic-hours-entry">
+                    <div><strong><%#: Eval("Hours") %> <%: L.T("Academic.StudentProgress.HourUnit") %> · <%#: Eval("Date") %></strong><p><%#: Eval("Description") %></p></div>
+                    <div class="academic-hours-actions"><asp:TextBox ID="txtHoursReviewNote" runat="server" CssClass="form-control" MaxLength="500" placeholder="<%$ Resources:Academic, StudentProgress.ReviewNote %>" />
+                        <asp:LinkButton ID="btnApproveHours" runat="server" CommandName="ApproveHours" CommandArgument='<%# Eval("Id") %>' CausesValidation="false" CssClass="btn btn-success" Text="<%$ Resources:Academic, StudentProgress.ApproveHours %>" />
+                        <asp:LinkButton ID="btnRejectHours" runat="server" CommandName="RejectHours" CommandArgument='<%# Eval("Id") %>' CausesValidation="false" CssClass="btn btn-outline-danger" Text="<%$ Resources:Academic, StudentProgress.RejectHours %>" />
+                    </div>
+                </div>
+            </ItemTemplate></asp:Repeater>
+            <asp:PlaceHolder ID="phNoPendingHours" runat="server"><p class="text-muted mb-0"><%: L.T("Academic.StudentProgress.NoPendingHours") %></p></asp:PlaceHolder>
+        </section>
+
         <!-- Accordion for detailed sections -->
         <div class="accordion" id="progressAccordion">
             <!-- Interactive Progress Summary Card (Bonus Feature) -->
@@ -113,12 +140,12 @@
                     
                     <!-- Progress Bar -->
                     <div class="progress mb-2" style="height: 12px; border-radius: 6px;">
-                        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+                        <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated" role="progressbar" style="width: <%= HoursPercent %>%;" aria-valuenow="<%= HoursPercent %>" aria-valuemin="0" aria-valuemax="100"><%= HoursPercent %>%</div>
                     </div>
                     
                     <div class="d-flex justify-content-between text-muted" style="font-size: 0.85rem;">
-                        <span><%: L.T("Academic.StudentProgress.CompletedHours") %> <b><%: L.T("Academic.StudentProgress.0Hrs") %></b> <%: L.T("Academic.StudentProgress.160Hrs") %></span>
-                        <span><%: L.T("Academic.StudentProgress.PendingCompanyVerification") %></span>
+                        <span><%: L.T("Academic.StudentProgress.CompletedHours") %> <b><%= ApprovedHours %> h</b> / <%= RequiredHours %> h</span>
+                        <span><%= PendingHours %> <%: L.T("Academic.StudentProgress.PendingApprovalHours") %></span>
                     </div>
                 </div>
             </div>

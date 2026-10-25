@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="MyTasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.MyTasks" Title="My Tasks" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261024-3") %>" />
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261025-4") %>" />
 <style>
 .student-tasks-page{color:var(--th-fg-183f60,#183f60)}.student-tasks-heading{margin-bottom:22px}.student-tasks-heading h2{margin:0 0 6px;font-size:1.8rem;font-weight:700;color:var(--th-fg-123d60,#123d60)}.student-tasks-heading p{margin:0;color:var(--ui-muted)}
 .student-tasks-layout{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(320px,.85fr);gap:18px;align-items:start}.student-task-card,.student-submit-card{background:var(--ui-surface,#fff);border:1px solid var(--th-line-d8e4f1,#d8e4f1);border-radius:12px;overflow:hidden}
@@ -35,35 +35,6 @@
             </div>
             <asp:Panel ID="pnlNoTasks" runat="server" CssClass="student-empty-selection" Visible="false"><%: L.T("Student.MyTasks.YourSupervisorSTasksWillAppear") %></asp:Panel>
         </section>
-        <section class="student-submit-card" aria-labelledby="submitTaskHeading">
-            <asp:Panel ID="pnlSelectTask" runat="server" CssClass="student-empty-selection" Visible="true"><strong><%: L.T("Student.MyTasks.ChooseATask") %></strong><%: L.T("Student.MyTasks.SelectOneOfYourAssignedTasks") %></asp:Panel>
-            <asp:Panel ID="pnlSelectedTask" runat="server" Visible="false">
-                <div class="student-card-heading"><h3 id="submitTaskHeading"><%: L.T("Student.MyTasks.TaskDetailsAndSubmission") %></h3><p><%: L.T("Student.MyTasks.SubmitYourWorkHereEachResubmission") %></p></div>
-                <div class="student-submit-body">
-                    <div class="student-selected-meta"><div><h4><asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" /></h4><p><%: L.T("Student.MyTasks.Deadline2") %> <asp:Literal ID="litDeadline" runat="server" Mode="Encode" /></p></div><span class="student-status <%: SelectedStatusClass %>"><asp:Literal ID="litStatus" runat="server" Mode="Encode" /></span></div>
-                    <div class="student-detail-block"><h5><%: L.T("Student.MyTasks.Description") %></h5><p><asp:Literal ID="litDescription" runat="server" Mode="Encode" /></p></div>
-                    <div class="student-detail-block"><h5><%: L.T("Student.MyTasks.Instructions") %></h5><p><asp:Literal ID="litInstructions" runat="server" Mode="Encode" /></p><asp:HyperLink ID="lnkTaskAttachment" runat="server" CssClass="student-attachment-link" Target="_blank" Visible="false" /></div>
-                    <asp:Panel ID="pnlSubmissionForm" runat="server" CssClass="student-submit-form">
-                        <h4><%: L.T("Student.MyTasks.SubmitOrResubmitWork") %></h4><p class="text-muted small mb-3"><%: L.T("Student.MyTasks.AddANoteALinkOr") %></p>
-                        <asp:PlaceHolder ID="phRevisionNote" runat="server" Visible="false">
-                            <div class="task-dialog-callout"><strong><%: L.T("Student.MyTasks.SupervisorRequestedChanges") %></strong><p><asp:Literal ID="litRevisionNote" runat="server" Mode="Encode" /></p></div>
-                        </asp:PlaceHolder>
-                        <button type="button" id="btnOpenSubmitDialog" class="task-dialog-btn task-dialog-btn-primary task-dialog-open" data-task-dialog="submitWorkDialog">
-                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5M4 17v4h16v-4" /></svg>
-                            <asp:Literal ID="litOpenSubmitLabel" runat="server" Mode="Encode" />
-                        </button>
-                    </asp:Panel>
-                    <asp:Panel ID="pnlSubmissionClosed" runat="server" CssClass="alert alert-info mt-3" Visible="false"><%: L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions2") %></asp:Panel>
-                    <div class="student-criteria"><h4><%: L.T("Student.MyTasks.TaskCriteria") %></h4><asp:Repeater ID="rptCriteria" runat="server"><ItemTemplate><div class="student-criterion"><strong><%#: Eval("Name") %></strong> <span><%#: Eval("Description") %></span><div><%#: Eval("MaxScore", "{0:0.##}") %> <%: L.T("Student.MyTasks.Points2") %></div></div></ItemTemplate></asp:Repeater><asp:Label ID="lblNoCriteria" runat="server" CssClass="text-muted small" Text="<%$ Resources:Student, MyTasks.NoAdditionalCriteriaWereProvided %>" Visible="false" /></div>
-                    <div class="student-history"><h4><%: L.T("Student.MyTasks.SubmissionHistory2") %></h4><asp:Repeater ID="rptHistory" runat="server"><ItemTemplate>
-                        <div class="student-history-row"><strong><%: L.T("Student.MyTasks.Attempt") %> <%#: Eval("AttemptLabel") %></strong><span> &#183; <%#: Eval("SubmittedLabel") %> &#183; <%#: Eval("StatusLabel") %></span><div><%#: Eval("Feedback") %></div>
-                            <asp:HyperLink ID="lnkSubmissionFile" runat="server" NavigateUrl='<%# Eval("FileUrl") %>' Text='<%# Eval("FileName") %>' Target="_blank" Visible='<%# Eval("HasFile") %>' CssClass="student-attachment-link" />
-                            <asp:HyperLink ID="lnkSubmissionLink" runat="server" NavigateUrl='<%# Eval("LinkUrl") %>' Text="<%$ Resources:Student, MyTasks.OpenSubmittedLink %>" Target="_blank" Visible='<%# Eval("HasLink") %>' CssClass="student-attachment-link" />
-                        </div>
-                    </ItemTemplate></asp:Repeater><asp:PlaceHolder ID="phNoAttempts" runat="server" Visible="true"><p class="text-muted small mb-0"><%: L.T("Student.MyTasks.NoSubmissionsYet") %></p></asp:PlaceHolder></div>
-                </div>
-            </asp:Panel>
-        </section>
     </div>
 </div>
 
@@ -79,20 +50,39 @@
                     <h2 class="modal-title" id="submitWorkTitle"><asp:Literal ID="litDialogTitle" runat="server" Mode="Encode" /></h2>
                     <p class="task-dialog-sub"><asp:Literal ID="litDialogTask" runat="server" Mode="Encode" /></p>
                 </div>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Student.MyTasks.Cancel") %>"></button>
+                <button type="button" class="btn-close" data-task-dialog-close="true" aria-label="<%: L.T("Student.MyTasks.Cancel") %>"></button>
             </div>
             <div class="modal-body">
                 <asp:Label ID="lblSubmitMessage" runat="server" Visible="false" EnableViewState="false" CssClass="task-dialog-alert" role="alert" />
+                <asp:Panel ID="pnlSelectedTask" runat="server" Visible="false" CssClass="task-modal-details">
+                    <div class="student-selected-meta"><div><h3><asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" /></h3><p><%: L.T("Student.MyTasks.Deadline2") %> <asp:Literal ID="litDeadline" runat="server" Mode="Encode" /></p></div><span class="student-status <%: SelectedStatusClass %>"><asp:Literal ID="litStatus" runat="server" Mode="Encode" /></span></div>
+                    <div class="task-modal-detail-grid">
+                        <div class="student-detail-block"><h4><%: L.T("Student.MyTasks.Description") %></h4><p><asp:Literal ID="litDescription" runat="server" Mode="Encode" /></p></div>
+                        <div class="student-detail-block"><h4><%: L.T("Student.MyTasks.Instructions") %></h4><p><asp:Literal ID="litInstructions" runat="server" Mode="Encode" /></p><asp:HyperLink ID="lnkTaskAttachment" runat="server" CssClass="student-attachment-link" Target="_blank" Visible="false" /></div>
+                    </div>
+                    <div class="student-criteria"><h4><%: L.T("Student.MyTasks.TaskCriteria") %></h4><asp:Repeater ID="rptCriteria" runat="server"><ItemTemplate><div class="student-criterion"><strong><%#: Eval("Name") %></strong><span><%#: Eval("Description") %></span><b><%#: Eval("MaxScore", "{0:0.##}") %> <%: L.T("Student.MyTasks.Points2") %></b></div></ItemTemplate></asp:Repeater><asp:Label ID="lblNoCriteria" runat="server" CssClass="text-muted small" Text="<%$ Resources:Student, MyTasks.NoAdditionalCriteriaWereProvided %>" Visible="false" /></div>
+                </asp:Panel>
                 <asp:PlaceHolder ID="phDialogRevisionNote" runat="server" Visible="false">
                     <div class="task-dialog-callout"><strong><%: L.T("Student.MyTasks.SupervisorRequestedChanges") %></strong><p><asp:Literal ID="litDialogRevisionNote" runat="server" Mode="Encode" /></p></div>
                 </asp:PlaceHolder>
-                <div class="task-dialog-field"><asp:Label ID="lblSubmissionText" runat="server" AssociatedControlID="txtSubmissionText" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.DescriptionOrNoteOptional %>" /><asp:TextBox ID="txtSubmissionText" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" MaxLength="2000" /></div>
-                <div class="task-dialog-field"><asp:Label ID="lblSubmissionLink" runat="server" AssociatedControlID="txtSubmissionLink" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.LinkOptional %>" /><asp:TextBox ID="txtSubmissionLink" runat="server" CssClass="form-control" TextMode="Url" MaxLength="2000" /><div class="task-dialog-help"><%: L.T("Student.MyTasks.UseAFullLinkBeginningWith") %></div></div>
-                <div class="task-dialog-field"><asp:Label ID="lblSubmissionFile" runat="server" AssociatedControlID="fuSubmission" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.AttachmentOptional %>" /><asp:FileUpload ID="fuSubmission" runat="server" CssClass="form-control" /><div class="task-dialog-help"><%: L.T("Student.MyTasks.PDFWordZIPOrImageFile") %></div><asp:Literal ID="litFileRequirement" runat="server" Mode="PassThrough" /></div>
+                <asp:Panel ID="pnlSubmissionForm" runat="server" CssClass="task-modal-form">
+                    <div class="task-modal-section-title"><h3><%: L.T("Student.MyTasks.SubmitOrResubmitWork") %></h3><p><%: L.T("Student.MyTasks.AllThreeRequired") %></p></div>
+                <div class="task-dialog-field"><asp:Label ID="lblSubmissionText" runat="server" AssociatedControlID="txtSubmissionText" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.DescriptionOrNoteOptional %>" /><asp:TextBox ID="txtSubmissionText" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" MaxLength="2000" required="required" aria-required="true" /></div>
+                <div class="task-dialog-field"><asp:Label ID="lblSubmissionLink" runat="server" AssociatedControlID="txtSubmissionLink" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.LinkOptional %>" /><asp:TextBox ID="txtSubmissionLink" runat="server" CssClass="form-control" TextMode="Url" MaxLength="2000" required="required" aria-required="true" /><div class="task-dialog-help"><%: L.T("Student.MyTasks.UseAFullLinkBeginningWith") %></div></div>
+                <div class="task-dialog-field"><asp:Label ID="lblSubmissionFile" runat="server" AssociatedControlID="fuSubmission" CssClass="form-label" Text="<%$ Resources:Student, MyTasks.AttachmentOptional %>" /><asp:FileUpload ID="fuSubmission" runat="server" CssClass="form-control" required="required" aria-required="true" accept=".pdf,.doc,.docx,.zip,.png,.jpg,.jpeg" /><div class="task-dialog-help"><%: L.T("Student.MyTasks.PDFWordZIPOrImageFile") %></div><asp:Literal ID="litFileRequirement" runat="server" Mode="PassThrough" /></div>
                 <div class="task-dialog-callout is-info"><strong><%: L.T("Student.MyTasks.WhatHappensNext") %></strong><p><asp:Literal ID="litDialogNext" runat="server" Mode="Encode" /></p></div>
+                </asp:Panel>
+                <asp:Panel ID="pnlSubmissionClosed" runat="server" CssClass="task-dialog-callout is-info" Visible="false"><%: L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions2") %></asp:Panel>
+                <section class="student-history"><h4><%: L.T("Student.MyTasks.SubmissionHistory2") %></h4><asp:Repeater ID="rptHistory" runat="server"><ItemTemplate>
+                    <div class="student-history-row"><strong><%: L.T("Student.MyTasks.Attempt") %> <%#: Eval("AttemptLabel") %></strong><span> &#183; <%#: Eval("SubmittedLabel") %> &#183; <%#: Eval("StatusLabel") %></span><div><%#: Eval("Feedback") %></div>
+                        <asp:HyperLink ID="lnkSubmissionFile" runat="server" NavigateUrl='<%# Eval("FileUrl") %>' Text='<%# Eval("FileName") %>' Target="_blank" Visible='<%# Eval("HasFile") %>' CssClass="student-attachment-link" />
+                        <asp:HyperLink ID="lnkSubmissionLink" runat="server" NavigateUrl='<%# Eval("LinkUrl") %>' Text="<%$ Resources:Student, MyTasks.OpenSubmittedLink %>" Target="_blank" Visible='<%# Eval("HasLink") %>' CssClass="student-attachment-link" />
+                    </div>
+                </ItemTemplate></asp:Repeater><asp:PlaceHolder ID="phNoAttempts" runat="server" Visible="true"><p class="text-muted small mb-0"><%: L.T("Student.MyTasks.NoSubmissionsYet") %></p></asp:PlaceHolder></section>
+
             </div>
             <div class="task-dialog-footer">
-                <button type="button" class="task-dialog-btn task-dialog-btn-secondary" data-bs-dismiss="modal"><%: L.T("Student.MyTasks.Cancel") %></button>
+                <button type="button" class="task-dialog-btn task-dialog-btn-secondary" data-task-dialog-close="true"><%: L.T("Student.MyTasks.Cancel") %></button>
                 <asp:Button ID="btnSubmitTask" runat="server" Text="<%$ Resources:Student, MyTasks.SubmitTask2 %>" CssClass="task-dialog-btn task-dialog-btn-primary" OnClick="btnSubmitTask_Click" data-ui-action="submit" data-loading-label="<%$ Resources:Student, MyTasks.Sending %>" />
             </div>
         </div>
@@ -110,11 +100,11 @@
                 <h2 id="submitResultTitle"><asp:Literal ID="litResultTitle" runat="server" Mode="Encode" /></h2>
                 <p><asp:Literal ID="litResultMessage" runat="server" Mode="Encode" /></p>
                 <ul class="task-result-facts"><li><asp:Literal ID="litResultAttempt" runat="server" Mode="Encode" /></li><li><%: L.T("Student.MyTasks.WaitingForReview") %></li></ul>
-                <button type="button" class="task-dialog-btn task-dialog-btn-primary" data-bs-dismiss="modal"><%: L.T("Student.MyTasks.Done") %></button>
+                <button type="button" class="task-dialog-btn task-dialog-btn-primary" data-task-dialog-close="true"><%: L.T("Student.MyTasks.Done") %></button>
             </div>
         </div>
     </div>
 </div>
 </asp:PlaceHolder>
-<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261024-3") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261025-4") %>"></script>
 </asp:Content>

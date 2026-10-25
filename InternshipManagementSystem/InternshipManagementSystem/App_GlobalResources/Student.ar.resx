@@ -162,13 +162,13 @@
   <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>تم تأكيد تدريبك وحفظه، لكن علامة الطلب ما زالت بحاجة إلى مزامنة؛ استخدم «مزامنة التأكيد» أدناه.</value></data>
   <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>تم حفظ جهة تدريبك، ولا يمكنك تأكيد عرض آخر.</value></data>
   <data name="MyTasks.Action" xml:space="preserve"><value>الإجراء</value></data>
-  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>أضف ملاحظة أو رابطًا أو مرفقًا وفق المطلوب.</value></data>
+  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>أدخل الوصف ورابط العمل وأرفق ملفًا لإرسال المهمة.</value></data>
   <data name="MyTasks.AddANoteALinkOr2" xml:space="preserve"><value>أضف ملاحظة أو رابطًا أو مرفقًا قبل التسليم.</value></data>
   <data name="MyTasks.AssignedTask" xml:space="preserve"><value>مهمة مسندة</value></data>
   <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>المهام المسندة</value></data>
   <data name="MyTasks.AssignedTasks2" xml:space="preserve"><value>المهام المسندة</value></data>
   <data name="MyTasks.AttachedFile" xml:space="preserve"><value>ملف مرفق</value></data>
-  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>مرفق (اختياري)</value></data>
+  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>المرفق (إلزامي)</value></data>
   <data name="MyTasks.Attempt" xml:space="preserve"><value>المحاولة</value></data>
   <data name="MyTasks.Attempts" xml:space="preserve"><value>المحاولات</value></data>
   <data name="MyTasks.ChooseATask" xml:space="preserve"><value>اختر مهمة</value></data>
@@ -176,7 +176,7 @@
   <data name="MyTasks.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
   <data name="MyTasks.Deadline2" xml:space="preserve"><value>الموعد النهائي:</value></data>
   <data name="MyTasks.Description" xml:space="preserve"><value>الوصف</value></data>
-  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>وصف أو ملاحظة (اختياري)</value></data>
+  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>الوصف أو الملاحظة (إلزامي)</value></data>
   <data name="MyTasks.DownloadSubmittedFile" xml:space="preserve"><value>تنزيل الملف المسلّم</value></data>
   <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>أدخل رابط http أو https صحيحًا.</value></data>
   <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>أدخل نص التسليم أو رابطًا.</value></data>
@@ -187,7 +187,7 @@
   <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>رفع الملفات غير متاح حاليًا. سلّم نصًا أو رابطًا قابلًا للمشاركة.</value></data>
   <data name="MyTasks.Instructions" xml:space="preserve"><value>التعليمات</value></data>
   <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>التعليمات والمتطلبات</value></data>
-  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>رابط (اختياري)</value></data>
+  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>رابط العمل (إلزامي)</value></data>
   <data name="MyTasks.MyTasks" xml:space="preserve"><value>مهامي</value></data>
   <data name="MyTasks.MyTasks2" xml:space="preserve"><value>مهامي</value></data>
   <data name="MyTasks.NoAdditionalCriteriaWereProvided" xml:space="preserve"><value>لم تُحدد معايير إضافية.</value></data>
@@ -703,4 +703,18 @@
   <data name="Workspace.OneApplicationPerOpportunity" xml:space="preserve"><value>سجل واضح واحد لكل فرصة تقدّمت إليها.</value></data>
   <data name="Workspace.TaskWorkflow" xml:space="preserve"><value>خطوات المهام: اختر المهمة، قدّم عملك، ثم تابع الملاحظات.</value></data>
   <data name="Workspace.JourneyCompletion" xml:space="preserve"><value>مراحل مكتملة</value></data>
+  <data name="MyTasks.AllThreeRequired" xml:space="preserve"><value>كل الحقول الثلاثة مطلوبة لإرسال المهمة.</value></data>
+  <data name="MyTasks.EnterDescription" xml:space="preserve"><value>اكتب وصفًا أو ملاحظة للعمل (حتى 2000 حرف).</value></data>
+  <data name="MyTasks.EnterLink" xml:space="preserve"><value>أدخل رابط عمل صالحًا يبدأ بـ http أو https.</value></data>
+  <data name="MyTasks.AttachFile" xml:space="preserve"><value>أرفق ملفًا قبل التسليم.</value></data>
+  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>أُغلق هذا التدريب. يمكنك مراجعة الساعات المسجّلة سابقًا، لكن لا يمكنك إضافة ساعات جديدة.</value></data>
+  <data name="Progress.LogHours" xml:space="preserve"><value>سجّل ساعات التدريب</value></data>
+  <data name="Progress.LogHoursHint" xml:space="preserve"><value>أدخل ساعات العمل الفعلية؛ لا تُحتسب ضمن المطلوب إلا بعد اعتماد المشرف الأكاديمي.</value></data>
+  <data name="Progress.WorkDate" xml:space="preserve"><value>تاريخ العمل</value></data>
+  <data name="Progress.HoursWorked" xml:space="preserve"><value>الساعات المنجزة</value></data>
+  <data name="Progress.WorkDescription" xml:space="preserve"><value>وصف العمل المنجز</value></data>
+  <data name="Progress.SubmitHours" xml:space="preserve"><value>إرسال الساعات للمراجعة</value></data>
+  <data name="Progress.HoursReportInvalid" xml:space="preserve"><value>تحقق من التاريخ ضمن فترة تدريبك، ومن الساعات (1–24) والوصف.</value></data>
+  <data name="Progress.HoursReportFailed" xml:space="preserve"><value>تعذر حفظ الساعات الآن. حاول مجددًا.</value></data>
+  <data name="Progress.HoursReportSaved" xml:space="preserve"><value>سُجّلت الساعات وبانتظار اعتماد المشرف الأكاديمي.</value></data>
 </root>

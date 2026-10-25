@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  My Progress & Evaluation
 //  Owner : Ahmad
 //  Cards : A15, A16
@@ -36,6 +36,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected string LoadErrorDetail;
         protected readonly List<string> Problems = new List<string>();
         protected bool HasPlacement;
+        protected bool CanReportHours;
 
         protected Placement Placement;
         protected CompletionRecord Completion;
@@ -76,6 +77,67 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 // Show the real Firebase error only when running on this machine.
                 if (Request.IsLocal) LoadErrorDetail = ex.Message;
             }
+        }
+
+        protected void btnReportHours_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Placement placement = new PlacementRepository().GetById(CurrentStudent.Id);
+                DateTime workDate;
+                int amount;
+                string description = (txtWorkDescription.Text ?? "").Trim();
+                bool validDate = DateTime.TryParseExact((txtWorkDate.Text ?? "").Trim(), "yyyy-MM-dd",
+                    CultureInfo.InvariantCulture, DateTimeStyles.None, out workDate);
+                bool validHours = int.TryParse(txtWorkedHours.Text, out amount) && amount >= 1 && amount <= 24;
+                if (placement == null || placement.StudentId != CurrentStudent.Id ||
+                    !validDate || workDate.Date > DateTime.Today || !validHours ||
+                    description.Length == 0 || description.Length > 500 ||
+                    (placement.StartDate > 0 && workDate.Date < DateTimeOffset.FromUnixTimeMilliseconds(placement.StartDate).ToOffset(TimeSpan.FromHours(3)).Date) ||
+                    (placement.EndDate > 0 && workDate.Date > DateTimeOffset.FromUnixTimeMilliseconds(placement.EndDate).ToOffset(TimeSpan.FromHours(3)).Date))
+                {
+                    HoursMessage(L.T("Student.Progress.HoursReportInvalid"), false);
+                }
+                else
+                {
+                    var entry = new TrainingHoursEntry
+                    {
+                        PlacementId = placement.Id,
+                        StudentId = CurrentStudent.Id,
+                        Hours = amount,
+                        WorkDate = new DateTimeOffset(workDate, TimeSpan.FromHours(3)).ToUnixTimeMilliseconds(),
+                        Description = description
+                    };
+                    if (string.IsNullOrEmpty(HoursService.Report(entry)))
+                        HoursMessage(L.T("Student.Progress.HoursReportFailed"), false);
+                    else
+                    {
+                        txtWorkDate.Text = "";
+                        txtWorkedHours.Text = "";
+                        txtWorkDescription.Text = "";
+                        HoursMessage(L.T("Student.Progress.HoursReportSaved"), true);
+                    }
+                }
+                LoadPage();
+            }
+            catch (FirebaseException ex)
+            {
+                System.Diagnostics.Trace.TraceError("Report hours failed: " + ex);
+                HoursMessage(L.T("Student.Progress.HoursReportFailed"), false);
+                try { LoadPage(); } catch (FirebaseException) { LoadFailed = true; }
+            }
+            catch (InvalidOperationException)
+            {
+                HoursMessage(L.T("Student.Progress.HoursReportInvalid"), false);
+                try { LoadPage(); } catch (FirebaseException) { LoadFailed = true; }
+            }
+        }
+
+        private void HoursMessage(string text, bool success)
+        {
+            lblHoursMessage.Text = text;
+            lblHoursMessage.CssClass = success ? "pg-hours-message is-success" : "pg-hours-message is-error";
+            lblHoursMessage.Visible = true;
         }
 
         /// <summary>
@@ -165,6 +227,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 .Where(c => c.PlacementId == placement.Id)
                 .OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt)
                 .FirstOrDefault();
+
+            CanReportHours = placement.Status != PlacementStatus.Completed &&
+                placement.Status != PlacementStatus.Cancelled &&
+                !CompletionReviewService.IsFinal(Completion);
 
             InternshipType = InternshipTypes.Of(placement);
             TypeIsDefault = !InternshipTypes.IsSet(placement);

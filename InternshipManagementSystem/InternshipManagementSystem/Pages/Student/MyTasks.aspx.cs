@@ -9,6 +9,7 @@ using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.StudentArea
 {
@@ -92,8 +93,6 @@ namespace InternshipManagementSystem.Pages.StudentArea
             rptTasks.DataBind();
             pnlNoTasks.Visible = tasks.Count == 0;
             phNoTaskRows.Visible = false;
-            pnlSelectTask.Visible = tasks.Count == 0;
-            pnlSelectedTask.Visible = selected != null;
             if (selected != null) ShowTask(selected);
         }
 
@@ -104,7 +103,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (!OwnsTask(task)) return;
             ViewState["SelectedTaskId"] = task.Id;
             LoadTasks();
-            if (e.CommandName == "OpenSubmit" && task.AcceptsSubmission) OpenDialog = "submit";
+            OpenDialog = "submit";
         }
 
         protected void btnSubmitTask_Click(object sender, EventArgs e)
@@ -121,11 +120,12 @@ namespace InternshipManagementSystem.Pages.StudentArea
             string note = (txtSubmissionText.Text ?? "").Trim();
             string link = (txtSubmissionLink.Text ?? "").Trim();
             bool hasFile = fuSubmission.HasFile;
-            if (link.Length > 0 && !IsHttpUrl(link))
-            { ShowMessage(L.T("Student.I18n.Enteravalidlinkbeginningwithhttp"), false); return; }
-            if (task.RequiresFileUpload && !hasFile) { string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"]; ShowMessage(string.IsNullOrWhiteSpace(bucket) ? L.T("Student.I18n.Thistaskrequiresafilebutfile") : L.T("Student.I18n.ThistaskrequiresanattachmentChoosea"), false); return; }
-            if (note.Length == 0 && link.Length == 0 && !hasFile)
-            { ShowMessage(L.T("Student.MyTasks.AddANoteALinkOr2"), false); return; }
+            if (note.Length == 0 || note.Length > 2000)
+            { ShowMessage(L.T("Student.MyTasks.EnterDescription"), false); return; }
+            if (link.Length == 0 || link.Length > 2000 || !IsHttpUrl(link))
+            { ShowMessage(L.T("Student.MyTasks.EnterLink"), false); return; }
+            if (!hasFile)
+            { ShowMessage(L.T("Student.MyTasks.AttachFile"), false); return; }
 
             SubmissionRepository repo = new SubmissionRepository();
             int previousAttempt = CountAttempts(repo.GetByTask(task.Id), task);
@@ -149,6 +149,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     submission.FileName = savedFileName;
                 }
                 catch (WebException) { ShowMessage(L.T("Student.MyTasks.TheAttachmentCouldNotBeUploaded"), false); return; }
+                catch (IOException) { ShowMessage(L.T("Student.MyTasks.TheAttachmentCouldNotBeUploaded"), false); return; }
+                catch (UnauthorizedAccessException) { ShowMessage(L.T("Student.MyTasks.TheAttachmentCouldNotBeUploaded"), false); return; }
                 catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); return; }
             }
 
@@ -195,9 +197,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         private void ShowTask(InternshipTask task)
         {
-            if (!OwnsTask(task)) { pnlSelectedTask.Visible = false; pnlSelectTask.Visible = true; return; }
+            if (!OwnsTask(task)) { pnlSelectedTask.Visible = false; phSubmitDialog.Visible = false; return; }
             pnlSelectedTask.Visible = true;
-            pnlSelectTask.Visible = false;
             litTaskTitle.Text = task.Title ?? "";
             litStatus.Text = L.Value("Ui", FriendlyStatus(task.Status));
             SelectedStatusClass = StatusClass(task.Status);
@@ -219,13 +220,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             pnlSubmissionForm.Visible = task.AcceptsSubmission;
             pnlSubmissionClosed.Visible = !task.AcceptsSubmission;
             BindSubmitDialog(task);
-            bool storageReady = !string.IsNullOrWhiteSpace(WebConfigurationManager.AppSettings["Firebase.StorageBucket"]);
-            fuSubmission.Enabled = storageReady;
-            litFileRequirement.Text = !storageReady
-                ? (task.RequiresFileUpload
-                    ? "<span class=\"text-danger small d-block mt-1\">This task requires a file, but file storage is not configured.</span>"
-                    : "<span class=\"text-muted small d-block mt-1\">File uploads are not configured yet. You can submit a link instead.</span>")
-                : (task.RequiresFileUpload ? "<span class=\"text-danger small d-block mt-1\">An attachment is required for this task.</span>" : "");
+            fuSubmission.Enabled = true;
+            litFileRequirement.Text = "";
             rptCriteria.DataSource = task.Criteria;
             rptCriteria.DataBind();
             lblNoCriteria.Visible = task.Criteria == null || task.Criteria.Count == 0;
@@ -239,15 +235,14 @@ namespace InternshipManagementSystem.Pages.StudentArea
             int nextAttempt = CountAttempts(new SubmissionRepository().GetByTask(task.Id), task) + 1;
             string note = IsResubmission ? LatestRevisionNote(task) : "";
 
-            phSubmitDialog.Visible = task.AcceptsSubmission;
-            litOpenSubmitLabel.Text = IsResubmission ? L.T("Student.MyTasks.ResubmitTask") : L.T("Student.MyTasks.SubmitTask2");
-            phRevisionNote.Visible = note.Length > 0;
-            litRevisionNote.Text = note;
+            phSubmitDialog.Visible = true;
+            btnSubmitTask.Visible = task.AcceptsSubmission;
             phDialogRevisionNote.Visible = note.Length > 0;
             litDialogRevisionNote.Text = note;
 
             litDialogEyebrow.Text = L.F(IsResubmission ? "Student.MyTasks.ResubmissionAttempt" : "Student.MyTasks.NewSubmissionAttempt", nextAttempt);
-            litDialogTitle.Text = IsResubmission ? L.T("Student.MyTasks.ResubmitWork") : L.T("Student.MyTasks.SubmitWork");
+            litDialogTitle.Text = !task.AcceptsSubmission ? L.T("Student.MyTasks.TaskDetailsAndSubmission") :
+                (IsResubmission ? L.T("Student.MyTasks.ResubmitWork") : L.T("Student.MyTasks.SubmitWork"));
             litDialogTask.Text = (task.Title ?? "") + (task.Deadline > 0 ? " · " + L.T("Student.MyTasks.Deadline2") + " " + FormatDate(task.Deadline) : "");
             litDialogNext.Text = L.F("Student.MyTasks.WhatHappensNextText", nextAttempt);
             btnSubmitTask.Text = IsResubmission ? L.T("Student.MyTasks.SendResubmission") : L.T("Student.MyTasks.SendSubmission");
@@ -372,9 +367,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         private static bool SafeStorageUrl(string value)
         {
-            Uri uri;
-            return Uri.TryCreate(value, UriKind.Absolute, out uri) && uri.Scheme == Uri.UriSchemeHttps &&
-                uri.Host == "firebasestorage.googleapis.com";
+            return TaskSubmissionStorage.IsSafeUrl(value);
         }
 
         private static string UploadFile(HttpPostedFile file, string taskId, string studentId, out string fileName)
@@ -389,7 +382,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 throw new InvalidOperationException(L.T("Student.I18n.Thefilemustbelargerthanzero"));
 
             string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"];
-            if (string.IsNullOrWhiteSpace(bucket)) throw new InvalidOperationException(L.T("Student.I18n.Filestorageisnotconfigured"));
+            if (string.IsNullOrWhiteSpace(bucket))
+                return TaskSubmissionStorage.SaveLocal(file, studentId, taskId);
             bucket = bucket.Trim();
             if (bucket.StartsWith("gs://", StringComparison.OrdinalIgnoreCase)) bucket = bucket.Substring(5).TrimEnd('/');
             string token = HttpContext.Current.Session[Constants.SessionTokenKey] as string;

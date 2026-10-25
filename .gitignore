@@ -49,3 +49,6 @@ google-services.json
 .playwright-cli/
 .taste-skill/
 tests/artifacts/
+
+# Private task files saved by the local Visual Studio site
+InternshipManagementSystem/InternshipManagementSystem/App_Data/TaskSubmissions/

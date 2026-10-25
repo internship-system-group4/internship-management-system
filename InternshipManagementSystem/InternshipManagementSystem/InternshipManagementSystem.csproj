@@ -596,6 +596,7 @@
     <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Layout\NotificationBell.cs" />
     <Compile Include="Pages\Notifications\Feed.ashx.cs" />
+    <Compile Include="Pages\Student\SubmissionFile.ashx.cs" />
     <Compile Include="Pages\Notifications\Inbox.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -644,6 +645,7 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PdfReportService.cs" />
     <Compile Include="Services\StorageService.cs" />
+    <Compile Include="Services\TaskSubmissionStorage.cs" />
     <Compile Include="Services\StudentDocumentService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -904,6 +906,7 @@
     <Content Include="Pages\Student\Dashboard.aspx" />
     <Content Include="Pages\Student\MyApplications.aspx" />
     <Content Include="Pages\Student\MyTasks.aspx" />
+    <Content Include="Pages\Student\SubmissionFile.ashx" />
     <Content Include="Pages\Student\Opportunities.aspx" />
     <Content Include="Pages\Student\OpportunityDetails.aspx" />
     <Content Include="Pages\Student\Profile.aspx" />

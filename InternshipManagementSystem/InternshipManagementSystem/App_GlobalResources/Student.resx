@@ -162,13 +162,13 @@
   <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>Your internship is confirmed and saved. The application flag still needs syncing; use Sync confirmation below.</value></data>
   <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>Your placement is saved. You cannot confirm another offer.</value></data>
   <data name="MyTasks.Action" xml:space="preserve"><value>Action</value></data>
-  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>Add a note, a link, or an attachment as requested.</value></data>
+  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>Enter a description and work link, and attach a file to submit.</value></data>
   <data name="MyTasks.AddANoteALinkOr2" xml:space="preserve"><value>Add a note, a link, or an attachment before submitting.</value></data>
   <data name="MyTasks.AssignedTask" xml:space="preserve"><value>Assigned task</value></data>
   <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>Assigned Tasks</value></data>
   <data name="MyTasks.AssignedTasks2" xml:space="preserve"><value>Assigned tasks</value></data>
   <data name="MyTasks.AttachedFile" xml:space="preserve"><value>Attached file</value></data>
-  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>Attachment (optional)</value></data>
+  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>Attachment (required)</value></data>
   <data name="MyTasks.Attempt" xml:space="preserve"><value>Attempt</value></data>
   <data name="MyTasks.Attempts" xml:space="preserve"><value>Attempts</value></data>
   <data name="MyTasks.ChooseATask" xml:space="preserve"><value>Choose a task</value></data>
@@ -176,7 +176,7 @@
   <data name="MyTasks.Deadline" xml:space="preserve"><value>Deadline</value></data>
   <data name="MyTasks.Deadline2" xml:space="preserve"><value>Deadline:</value></data>
   <data name="MyTasks.Description" xml:space="preserve"><value>Description</value></data>
-  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>Description or note (optional)</value></data>
+  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>Description or note (required)</value></data>
   <data name="MyTasks.DownloadSubmittedFile" xml:space="preserve"><value>Download submitted file</value></data>
   <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>Enter a valid http or https link.</value></data>
   <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>Enter submission text or a link.</value></data>
@@ -187,7 +187,7 @@
   <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>File uploads are not available yet. Submit text or a shareable link.</value></data>
   <data name="MyTasks.Instructions" xml:space="preserve"><value>Instructions</value></data>
   <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>Instructions and Requirements</value></data>
-  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>Link (optional)</value></data>
+  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>Work link (required)</value></data>
   <data name="MyTasks.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
   <data name="MyTasks.MyTasks2" xml:space="preserve"><value>My tasks</value></data>
   <data name="MyTasks.NoAdditionalCriteriaWereProvided" xml:space="preserve"><value>No additional criteria were provided.</value></data>
@@ -703,4 +703,18 @@
   <data name="Workspace.OneApplicationPerOpportunity" xml:space="preserve"><value>One clear record for every opportunity you've applied to.</value></data>
   <data name="Workspace.TaskWorkflow" xml:space="preserve"><value>Task workflow: choose a task, submit work, then follow feedback.</value></data>
   <data name="Workspace.JourneyCompletion" xml:space="preserve"><value>milestones completed</value></data>
+  <data name="MyTasks.AllThreeRequired" xml:space="preserve"><value>All three fields are required to submit this task.</value></data>
+  <data name="MyTasks.EnterDescription" xml:space="preserve"><value>Enter a description or note (up to 2,000 characters).</value></data>
+  <data name="MyTasks.EnterLink" xml:space="preserve"><value>Enter a valid work link beginning with http or https.</value></data>
+  <data name="MyTasks.AttachFile" xml:space="preserve"><value>Attach a file before submitting.</value></data>
+  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>This placement is closed. You can review previously reported hours, but cannot add new ones.</value></data>
+  <data name="Progress.LogHours" xml:space="preserve"><value>Log training hours</value></data>
+  <data name="Progress.LogHoursHint" xml:space="preserve"><value>Record actual work hours. They count toward the target only after academic supervisor approval.</value></data>
+  <data name="Progress.WorkDate" xml:space="preserve"><value>Work date</value></data>
+  <data name="Progress.HoursWorked" xml:space="preserve"><value>Hours worked</value></data>
+  <data name="Progress.WorkDescription" xml:space="preserve"><value>Work completed</value></data>
+  <data name="Progress.SubmitHours" xml:space="preserve"><value>Send hours for review</value></data>
+  <data name="Progress.HoursReportInvalid" xml:space="preserve"><value>Check the date is within your placement, the hours are 1–24, and the description is filled in.</value></data>
+  <data name="Progress.HoursReportFailed" xml:space="preserve"><value>The hours could not be saved. Please try again.</value></data>
+  <data name="Progress.HoursReportSaved" xml:space="preserve"><value>Hours recorded and awaiting academic supervisor approval.</value></data>
 </root>
