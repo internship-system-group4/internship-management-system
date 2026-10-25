@@ -494,9 +494,7 @@
                             </h3>
 
                             <div class="ex-company">
-                                <%: string.IsNullOrWhiteSpace(opportunity.CompanyName)
-                                    ? "Partner Company"
-                                    : opportunity.CompanyName %>
+                                <%: CompanyNameFor(opportunity) %>
                             </div>
                         </div>
 

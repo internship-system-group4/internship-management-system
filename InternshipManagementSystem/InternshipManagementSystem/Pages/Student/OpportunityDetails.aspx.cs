@@ -115,9 +115,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     return L.T("Student.OpportunityDetails.NotSpecified");
                 }
 
-                return ValueOrDefault(
-                    SelectedOpportunity.CompanyName
-                );
+                string name = SelectedOpportunity.CompanyName;
+                if (string.IsNullOrWhiteSpace(name) && ExistingApplication != null)
+                    name = ExistingApplication.CompanyName;
+                return ValueOrDefault(name);
             }
         }
 

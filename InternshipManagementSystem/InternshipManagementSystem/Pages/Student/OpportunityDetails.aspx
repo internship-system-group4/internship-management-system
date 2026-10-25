@@ -305,7 +305,7 @@
                 </div>
 
                 <span class='od-badge <%= ExistingApplication == null && !CanApply ? "od-badge-unavailable" : "" %>'>
-                    <%: ExistingApplication != null ? L.T("Student.Opportunities.Applied") + " · " + L.Value("Ui", ExistingApplication.Status) : CanApply ? L.T("Student.Opportunities.Open") : L.T("Student.OpportunityDetails.ApplicationsUnavailable") %>
+                    <%: ExistingApplication != null ? L.T("Student.Opportunities.Applied") + " \u00B7 " + L.Value("Ui", ExistingApplication.Status) : CanApply ? L.T("Student.Opportunities.Open") : L.T("Student.OpportunityDetails.ApplicationsUnavailable") %>
                 </span>
             </div>
 

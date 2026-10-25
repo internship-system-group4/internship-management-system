@@ -45,6 +45,17 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 : L.T("Student.Opportunities.Open");
         }
 
+        protected string CompanyNameFor(Opportunity opportunity)
+        {
+            if (!string.IsNullOrWhiteSpace(opportunity.CompanyName))
+                return opportunity.CompanyName;
+            InternshipApplication application;
+            if (ApplicationsByOpportunity.TryGetValue(opportunity.Id ?? "", out application)
+                && !string.IsNullOrWhiteSpace(application.CompanyName))
+                return application.CompanyName;
+            return "Partner Company";
+        }
+
         protected string SearchText = "";
         protected string Notice = "";
         protected string StudentCollege = "";
