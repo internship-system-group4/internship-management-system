@@ -1045,8 +1045,7 @@
     closeButton.addEventListener("click", closeModal);
 
     cancelButton.addEventListener("click", function () {
-        window.location.href =
-            window.location.pathname + window.location.search;
+        window.location.href = window.location.pathname;
     });
 
     modal.addEventListener("click", function (event) {

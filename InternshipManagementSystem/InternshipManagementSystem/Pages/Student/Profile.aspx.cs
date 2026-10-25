@@ -14,7 +14,6 @@
 using System;
 using System.IO;
 using System.Web;
-using System.Text;
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
@@ -57,7 +56,6 @@ namespace InternshipManagementSystem.Pages.StudentArea
             "StudentCVPortfolio.aspx?download=portfolio";
 
         private const int MaxPhotoSize = 2 * 1024 * 1024;
-        private const int MaxPdfSize = 5 * 1024 * 1024;
 
         private Student student;
         private ExtraProfile extra = new ExtraProfile();
@@ -150,14 +148,21 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 }
 
                 if (IsPostBack &&
-                    Request.Form["spAction"] == "save")
+                    Request.Form["spAction"] == "save" &&
+                    SaveProfile())
                 {
-                    SaveProfile();
+                    // Reload the page with a normal GET: it shows the saved
+                    // values and a refresh does not send the form again.
+                    Response.Redirect(
+                        ResolveUrl("~/Pages/Student/Profile.aspx?saved=1"), false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
 
-                    // Reload values saved to Firebase.
-                    student = new UserRepository().GetStudent(StudentId);
-                    LoadExtra();
-                    LoadDocuments();
+                if (!IsPostBack && Request.QueryString["saved"] == "1")
+                {
+                    Notice = L.T("Student.Profile.YourProfileHasBeenUpdatedSuccessfully");
+                    NoticeIsError = false;
                 }
 
                 DisplayProfile();
@@ -282,244 +287,111 @@ namespace InternshipManagementSystem.Pages.StudentArea
             return savedValue ?? "";
         }
 
-        private void SaveProfile()
+        /// <summary>Validates the Edit Profile form and saves it.
+        /// Returns true only when everything was saved.</summary>
+        private bool SaveProfile()
         {
-            string fullName =
-                (Request.Form["spName"] ?? "").Trim();
-
-            string phone =
-                (Request.Form["spPhone"] ?? "").Trim();
-
-            string ageText =
-                (Request.Form["spAge"] ?? "").Trim();
-
-            string technical =
-                (Request.Form["spTechnical"] ?? "").Trim();
-
-            string soft =
-                (Request.Form["spSoft"] ?? "").Trim();
-
-            string linkedIn =
-                (Request.Form["spLinkedIn"] ?? "").Trim();
-
-            string portfolioUrl =
-                (Request.Form["spPortfolioUrl"] ?? "").Trim();
-
-            string cvUrl =
-                (Request.Form["spCvUrl"] ?? "").Trim();
-
+            string fullName = (Request.Form["spName"] ?? "").Trim();
+            string phone = (Request.Form["spPhone"] ?? "").Trim();
+            string ageText = (Request.Form["spAge"] ?? "").Trim();
+            string technical = (Request.Form["spTechnical"] ?? "").Trim();
+            string soft = (Request.Form["spSoft"] ?? "").Trim();
+            string linkedIn = (Request.Form["spLinkedIn"] ?? "").Trim();
             int age = 0;
 
             if (fullName.Length < 2 || fullName.Length > 120)
             {
                 ShowError(L.T("Student.Profile.FullNameMustBeBetween2"));
-                return;
+                return false;
             }
 
-            if (phone.Length > 25 ||
-                technical.Length > 1500 ||
-                soft.Length > 1500)
+            if (phone.Length > 25 || technical.Length > 1500 || soft.Length > 1500)
             {
                 ShowError(L.T("Student.Profile.OneOrMoreFieldsExceedThe"));
-                return;
+                return false;
             }
 
             if (!string.IsNullOrEmpty(ageText) &&
-                (!int.TryParse(ageText, out age) ||
-                 age < 16 || age > 100))
+                (!int.TryParse(ageText, out age) || age < 16 || age > 100))
             {
                 ShowError(L.T("Student.Profile.PleaseEnterAValidAgeBetween"));
-                return;
+                return false;
             }
 
-            if (!ValidUrl(linkedIn) ||
-                !ValidUrl(portfolioUrl) ||
-                !ValidUrl(cvUrl))
+            if (!ValidUrl(linkedIn))
             {
                 ShowError(L.T("Student.Profile.PleaseEnterValidHTTPOrHTTPS"));
-                return;
+                return false;
             }
 
             if (!string.IsNullOrWhiteSpace(linkedIn))
             {
                 Uri linkedInUri = new Uri(linkedIn);
-
-                if (!linkedInUri.Host.Equals(
-                        "linkedin.com",
-                        StringComparison.OrdinalIgnoreCase) &&
-                    !linkedInUri.Host.EndsWith(
-                        ".linkedin.com",
-                        StringComparison.OrdinalIgnoreCase))
+                if (!linkedInUri.Host.Equals("linkedin.com", StringComparison.OrdinalIgnoreCase) &&
+                    !linkedInUri.Host.EndsWith(".linkedin.com", StringComparison.OrdinalIgnoreCase))
                 {
                     ShowError(L.T("Student.Profile.PleaseEnterAValidLinkedInProfile"));
-                    return;
+                    return false;
                 }
             }
 
             HttpPostedFile photo = Request.Files["spPhoto"];
-            HttpPostedFile cv = Request.Files["spCvFile"];
-            HttpPostedFile portfolio =
-                Request.Files["spPortfolioFile"];
-
-            if (!ValidatePhoto(photo) ||
-                !ValidatePdf(cv) ||
-                !ValidatePdf(portfolio))
-            {
-                return;
-            }
+            if (!ValidatePhoto(photo))
+                return false;
 
             string photoName = "";
-            string cvName = "";
-            string portfolioName = "";
 
             try
             {
-                Directory.CreateDirectory(StorageFolder);
-
                 if (HasUpload(photo))
                 {
-                    string extension = Path.GetExtension(
-                        photo.FileName).ToLowerInvariant();
-
-                    photoName = Guid.NewGuid().ToString("N") + extension;
-
-                    photo.SaveAs(Path.Combine(
-                        StorageFolder, photoName));
+                    Directory.CreateDirectory(StorageFolder);
+                    photoName = Guid.NewGuid().ToString("N") +
+                                Path.GetExtension(photo.FileName).ToLowerInvariant();
+                    photo.SaveAs(Path.Combine(StorageFolder, photoName));
                 }
 
-                if (HasUpload(cv))
+                long now = Time.NowMs();
+
+                // Personal extras: PATCH only changes these fields and keeps
+                // everything else in the node. (The old read-then-replace save
+                // could fail with "updated elsewhere" after name and phone were
+                // already saved, so the profile ended up half updated.)
+                var extraFields = new System.Collections.Generic.Dictionary<string, object>
                 {
-                    cvName = Guid.NewGuid().ToString("N") + ".pdf";
+                    { "Age", age },
+                    { "TechnicalSkills", technical },
+                    { "SoftSkills", soft },
+                    { "LinkedInUrl", linkedIn },
+                    { "UpdatedAt", now }
+                };
+                if (!string.IsNullOrEmpty(photoName))
+                    extraFields["PhotoStorageName"] = photoName;
 
-                    cv.SaveAs(Path.Combine(
-                        StorageFolder, cvName));
-                }
+                FirebaseContext.Patch(ExtraPath, extraFields);
 
-                if (HasUpload(portfolio))
-                {
-                    portfolioName =
-                        Guid.NewGuid().ToString("N") + ".pdf";
-
-                    portfolio.SaveAs(Path.Combine(
-                        StorageFolder, portfolioName));
-                }
-
-                // Update only permitted account fields.
-                // Academic fields are deliberately not included.
+                // Account fields the student may change. Academic fields and the
+                // CV / portfolio links are not touched here (the links are managed
+                // on StudentCVPortfolio.aspx; this form used to blank them out).
                 FirebaseContext.Patch(
                     Constants.Paths.Users + "/" + StudentId,
-                    new
-                    {
-                        FullName = fullName,
-                        PhoneNumber = phone,
-                        CvUrl = cvUrl,
-                        PortfolioUrl = portfolioUrl
-                    });
+                    new { FullName = fullName, PhoneNumber = phone });
 
-                // Save personal extras without modifying Student.cs.
-                string extraEtag;
-                string extraJson = FirebaseContext.GetWithEtag(
-                    ExtraPath, out extraEtag);
-
-                ExtraProfile updatedExtra =
-                    string.IsNullOrWhiteSpace(extraJson)
-                        ? new ExtraProfile()
-                        : Json.Deserialize<ExtraProfile>(extraJson);
-
-                if (updatedExtra == null)
-                    updatedExtra = new ExtraProfile();
-
-                updatedExtra.Age = age;
-                updatedExtra.TechnicalSkills = technical;
-                updatedExtra.SoftSkills = soft;
-                updatedExtra.LinkedInUrl = linkedIn;
-                updatedExtra.UpdatedAt = Time.NowMs();
-
-                if (!string.IsNullOrEmpty(photoName))
-                    updatedExtra.PhotoStorageName = photoName;
-
-                if (!FirebaseContext.PutIfUnchanged(
-                    ExtraPath, updatedExtra, extraEtag))
-                {
-                    ShowError(
-                        L.T("Student.Profile.YourProfileWasUpdatedElsewherePlease"));
-                    return;
-                }
-
-                // Save CV and portfolio using the same Firebase node
-                // as the existing StudentCVPortfolio page.
-                string documentsEtag;
-                string documentsJson =
-                    FirebaseContext.GetWithEtag(
-                        DocumentsPath, out documentsEtag);
-
-                CvPortfolioData updatedDocuments =
-                    string.IsNullOrWhiteSpace(documentsJson)
-                        ? new CvPortfolioData()
-                        : Json.Deserialize<CvPortfolioData>(
-                            documentsJson);
-
-                if (updatedDocuments == null)
-                    updatedDocuments = new CvPortfolioData();
-
-                updatedDocuments.CvUrl = cvUrl;
-                updatedDocuments.PortfolioUrl = portfolioUrl;
-
-                if (!string.IsNullOrEmpty(cvName))
-                {
-                    updatedDocuments.CvFileName =
-                        Path.GetFileName(cv.FileName);
-
-                    updatedDocuments.CvStorageName = cvName;
-                }
-
-                if (!string.IsNullOrEmpty(portfolioName))
-                {
-                    updatedDocuments.PortfolioFileName =
-                        Path.GetFileName(portfolio.FileName);
-
-                    updatedDocuments.PortfolioStorageName =
-                        portfolioName;
-                }
-
-                updatedDocuments.UpdatedAt = Time.NowMs();
-
-                if (!FirebaseContext.PutIfUnchanged(
-                    DocumentsPath,
-                    updatedDocuments,
-                    documentsEtag))
-                {
-                    ShowError(
-                        L.T("Student.Profile.YourCVOrPortfolioCouldNot"));
-                    return;
-                }
-
-                // Refresh the current session's student details.
+                // Refresh the session copy so the sidebar shows the new name and photo.
                 student.FullName = fullName;
                 student.PhoneNumber = phone;
-                student.CvUrl = cvUrl;
-                student.PortfolioUrl = portfolioUrl;
-                if (!string.IsNullOrEmpty(updatedExtra.PhotoStorageName))
-                    student.ProfileImageUrl = "~/Pages/Student/Profile.aspx?photo=1&v=" + updatedExtra.UpdatedAt;
+                if (!string.IsNullOrEmpty(photoName))
+                    student.ProfileImageUrl = "~/Pages/Student/Profile.aspx?photo=1&v=" + now;
+                SessionHelper.Refresh(student);
 
-                Session[Constants.SessionUserKey] = student;
-
-                Notice = L.T("Student.Profile.YourProfileHasBeenUpdatedSuccessfully");
-                NoticeIsError = false;
+                return true;
             }
             catch
             {
-                // Remove newly uploaded files if the save failed.
+                // Remove the newly uploaded photo if the save failed.
                 // Existing files are never deleted here.
                 if (!string.IsNullOrEmpty(photoName))
                     DeleteFile(photoName);
-
-                if (!string.IsNullOrEmpty(cvName))
-                    DeleteFile(cvName);
-
-                if (!string.IsNullOrEmpty(portfolioName))
-                    DeleteFile(portfolioName);
-
                 throw;
             }
         }
@@ -580,42 +452,6 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (!valid)
             {
                 ShowError(L.T("Student.Profile.TheSelectedPhotoIsNotA"));
-                return false;
-            }
-
-            return true;
-        }
-
-        private bool ValidatePdf(HttpPostedFile file)
-        {
-            if (!HasUpload(file))
-                return true;
-
-            if (file.ContentLength > MaxPdfSize)
-            {
-                ShowError(L.T("Student.Profile.PDFFilesMustBe5MB"));
-                return false;
-            }
-
-            if (!string.Equals(
-                Path.GetExtension(file.FileName),
-                ".pdf",
-                StringComparison.OrdinalIgnoreCase))
-            {
-                ShowError(L.T("Student.Profile.CVAndPortfolioFilesMustBe"));
-                return false;
-            }
-
-            byte[] header = new byte[5];
-            int count = file.InputStream.Read(
-                header, 0, header.Length);
-
-            file.InputStream.Position = 0;
-
-            if (count != 5 ||
-                Encoding.ASCII.GetString(header) != "%PDF-")
-            {
-                ShowError(L.T("Student.Profile.TheSelectedFileIsNotA"));
                 return false;
             }
 
