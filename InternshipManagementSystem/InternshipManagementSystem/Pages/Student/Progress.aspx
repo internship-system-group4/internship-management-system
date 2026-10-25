@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="Progress.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.Progress" Title="My Progress & Evaluation" %>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="Progress.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.Progress" Title="My Progress & Evaluation" %>
 <%-- ===================================================================
      My Progress & Evaluation
      Owner : Ahmad
@@ -18,12 +18,13 @@
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="rv-scope pg-page">
 
-    <header class="rv-heading" data-rv-reveal>
+    <header class="rv-heading student-workspace-hero" data-rv-reveal>
         <div>
             <span class="rv-eyebrow"><%: L.T("Student.Progress.Eyebrow") %></span>
             <h2><%: L.T("Student.Progress.MyProgressEvaluation") %></h2>
             <p><%: L.T("Student.Progress.YourTaskGradesSupervisorFeedbackApproved") %></p>
         </div>
+        <span class="student-hero-metric"><strong><bdi dir="ltr"><%: CompletedRun %> / <%: Journey.Count %></bdi></strong><span><%: L.T("Student.Workspace.JourneyCompletion") %></span></span>
     </header>
 
     <% if (LoadFailed) { %>

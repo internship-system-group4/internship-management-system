@@ -24,6 +24,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         /// <summary>Colour class for the status badge in the task details panel.</summary>
         protected string SelectedStatusClass = "";
+        protected int TaskCount;
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -56,6 +57,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     if (task != null && task.StudentId == CurrentStudent.Id &&
                         task.PlacementId == placement.Id) tasks.Add(task);
 
+            TaskCount = tasks.Count;
             string selectedId = ViewState["SelectedTaskId"] as string;
             InternshipTask selected = null;
             foreach (InternshipTask task in tasks)
@@ -89,7 +91,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             rptTasks.DataSource = rows;
             rptTasks.DataBind();
             pnlNoTasks.Visible = tasks.Count == 0;
-            phNoTaskRows.Visible = tasks.Count == 0;
+            phNoTaskRows.Visible = false;
             pnlSelectTask.Visible = tasks.Count == 0;
             pnlSelectedTask.Visible = selected != null;
             if (selected != null) ShowTask(selected);

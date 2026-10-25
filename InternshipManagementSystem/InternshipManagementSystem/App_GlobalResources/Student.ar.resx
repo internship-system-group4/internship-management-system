@@ -696,4 +696,11 @@
   <data name="MyTasks.AttemptNumber" xml:space="preserve"><value>المحاولة {0}</value></data>
   <data name="MyTasks.WaitingForReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
   <data name="MyTasks.Done" xml:space="preserve"><value>تم</value></data>
+  <data name="Workspace.StudentJourney" xml:space="preserve"><value>رحلة الطالب</value></data>
+  <data name="Workspace.ApplicationsLabel" xml:space="preserve"><value>طلبات</value></data>
+  <data name="Workspace.TasksLabel" xml:space="preserve"><value>مهام مكلّف بها</value></data>
+  <data name="Workspace.ApplicationHistory" xml:space="preserve"><value>سجل الطلبات</value></data>
+  <data name="Workspace.OneApplicationPerOpportunity" xml:space="preserve"><value>سجل واضح واحد لكل فرصة تقدّمت إليها.</value></data>
+  <data name="Workspace.TaskWorkflow" xml:space="preserve"><value>خطوات المهام: اختر المهمة، قدّم عملك، ثم تابع الملاحظات.</value></data>
+  <data name="Workspace.JourneyCompletion" xml:space="preserve"><value>مراحل مكتملة</value></data>
 </root>

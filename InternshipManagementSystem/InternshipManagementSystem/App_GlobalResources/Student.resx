@@ -696,4 +696,11 @@
   <data name="MyTasks.AttemptNumber" xml:space="preserve"><value>Attempt {0}</value></data>
   <data name="MyTasks.WaitingForReview" xml:space="preserve"><value>Waiting for review</value></data>
   <data name="MyTasks.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="Workspace.StudentJourney" xml:space="preserve"><value>STUDENT JOURNEY</value></data>
+  <data name="Workspace.ApplicationsLabel" xml:space="preserve"><value>applications</value></data>
+  <data name="Workspace.TasksLabel" xml:space="preserve"><value>assigned tasks</value></data>
+  <data name="Workspace.ApplicationHistory" xml:space="preserve"><value>Application history</value></data>
+  <data name="Workspace.OneApplicationPerOpportunity" xml:space="preserve"><value>One clear record for every opportunity you've applied to.</value></data>
+  <data name="Workspace.TaskWorkflow" xml:space="preserve"><value>Task workflow: choose a task, submit work, then follow feedback.</value></data>
+  <data name="Workspace.JourneyCompletion" xml:space="preserve"><value>milestones completed</value></data>
 </root>

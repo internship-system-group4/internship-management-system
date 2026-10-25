@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="MyTasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.MyTasks" Title="My Tasks" %>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="MyTasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.MyTasks" Title="My Tasks" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261024-3") %>" />
 <style>
@@ -18,23 +18,21 @@
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="student-tasks-page">
-    <div class="student-tasks-heading"><h2><%: L.T("Student.MyTasks.MyTasks2") %></h2><p><%: L.T("Student.MyTasks.ReviewTheTasksAssignedToYou") %></p></div>
+    <header class="student-tasks-heading student-workspace-hero"><div class="student-hero-copy"><span class="student-hero-kicker"><%: L.T("Student.Workspace.StudentJourney") %></span><h2><%: L.T("Student.MyTasks.MyTasks2") %></h2><p><%: L.T("Student.MyTasks.ReviewTheTasksAssignedToYou") %></p></div><span class="student-hero-metric"><strong><%= TaskCount %></strong><span><%: L.T("Student.Workspace.TasksLabel") %></span></span></header>
+    <div class="student-workflow-strip" aria-label="<%: L.T("Student.Workspace.TaskWorkflow") %>"><span><b>01</b><%: L.T("Student.MyTasks.ChooseATask") %></span><span><b>02</b><%: L.T("Student.MyTasks.SubmitOrResubmitWork") %></span><span><b>03</b><%: L.T("Student.MyTasks.SubmissionHistory2") %></span></div>
     <div class="student-tasks-layout">
         <section class="student-task-card" aria-labelledby="assignedTasksHeading">
             <div class="student-card-heading"><h3 id="assignedTasksHeading"><%: L.T("Student.MyTasks.AssignedTasks2") %></h3><p><%: L.T("Student.MyTasks.SelectATaskToViewIts") %></p></div>
-            <div class="table-responsive"><table class="student-task-table">
-                <thead><tr><th><%: L.T("Student.MyTasks.Task") %></th><th><%: L.T("Student.MyTasks.Deadline") %></th><th><%: L.T("Student.MyTasks.Status2") %></th><th><%: L.T("Student.MyTasks.Attempts") %></th><th></th></tr></thead>
-                <tbody>
-                    <asp:Repeater ID="rptTasks" runat="server" OnItemCommand="rptTasks_ItemCommand"><ItemTemplate>
-                        <tr class='<%# Eval("RowClass") %>'>
-                            <td><span class="student-task-title"><%#: Eval("Title") %></span><span class="student-task-subtitle"><%#: Eval("StartLabel") %></span></td>
-                            <td><%#: Eval("DeadlineLabel") %></td><td><span class='student-status <%#: Eval("StatusClass") %>'><%#: L.Value("Ui", Eval("StatusLabel")) %></span></td><td><%#: Eval("AttemptsLabel") %></td>
-                            <td><asp:LinkButton ID="lnkSelectTask" runat="server" CssClass="student-select-button" Text='<%# L.Value("Ui", Eval("ActionLabel")) %>' CommandName='<%# Eval("CommandName") %>' CommandArgument='<%# Eval("Id") %>' CausesValidation="false" /></td>
-                        </tr>
-                    </ItemTemplate></asp:Repeater>
-                    <asp:PlaceHolder ID="phNoTaskRows" runat="server" Visible="false"><tr><td colspan="5" class="text-center py-4"><%: L.T("Student.MyTasks.NoTasksHaveBeenAssignedTo2") %></td></tr></asp:PlaceHolder>
-                </tbody>
-            </table></div>
+            <div class="student-task-list">
+                <asp:Repeater ID="rptTasks" runat="server" OnItemCommand="rptTasks_ItemCommand"><ItemTemplate>
+                    <article class='student-task-item <%# Eval("RowClass") %>'>
+                        <div class="student-task-item-main"><span class="student-task-item-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3h8l4 4v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h3Z"/><path d="M14 3v5h6M8 13h8M8 17h5"/></svg></span><div><span class="student-task-title"><%#: Eval("Title") %></span><span class="student-task-subtitle"><%#: Eval("StartLabel") %></span></div></div>
+                        <div class="student-task-item-meta"><span class='student-status <%#: Eval("StatusClass") %>'><%#: L.Value("Ui", Eval("StatusLabel")) %></span><span class="student-task-deadline"><span><%: L.T("Student.MyTasks.Deadline") %></span><strong><%#: Eval("DeadlineLabel") %></strong></span><span class="student-task-attempts"><%: L.T("Student.MyTasks.Attempts") %> <strong><%#: Eval("AttemptsLabel") %></strong></span></div>
+                        <div class="student-task-item-action"><asp:LinkButton ID="lnkSelectTask" runat="server" CssClass="student-select-button" Text='<%# L.Value("Ui", Eval("ActionLabel")) %>' CommandName='<%# Eval("CommandName") %>' CommandArgument='<%# Eval("Id") %>' CausesValidation="false" /></div>
+                    </article>
+                </ItemTemplate></asp:Repeater>
+                <asp:PlaceHolder ID="phNoTaskRows" runat="server" Visible="false"><p class="student-empty-selection"><%: L.T("Student.MyTasks.NoTasksHaveBeenAssignedTo2") %></p></asp:PlaceHolder>
+            </div>
             <asp:Panel ID="pnlNoTasks" runat="server" CssClass="student-empty-selection" Visible="false"><%: L.T("Student.MyTasks.YourSupervisorSTasksWillAppear") %></asp:Panel>
         </section>
         <section class="student-submit-card" aria-labelledby="submitTaskHeading">
@@ -58,7 +56,7 @@
                     <asp:Panel ID="pnlSubmissionClosed" runat="server" CssClass="alert alert-info mt-3" Visible="false"><%: L.T("Student.MyTasks.ThisTaskIsNotAcceptingSubmissions2") %></asp:Panel>
                     <div class="student-criteria"><h4><%: L.T("Student.MyTasks.TaskCriteria") %></h4><asp:Repeater ID="rptCriteria" runat="server"><ItemTemplate><div class="student-criterion"><strong><%#: Eval("Name") %></strong> <span><%#: Eval("Description") %></span><div><%#: Eval("MaxScore", "{0:0.##}") %> <%: L.T("Student.MyTasks.Points2") %></div></div></ItemTemplate></asp:Repeater><asp:Label ID="lblNoCriteria" runat="server" CssClass="text-muted small" Text="<%$ Resources:Student, MyTasks.NoAdditionalCriteriaWereProvided %>" Visible="false" /></div>
                     <div class="student-history"><h4><%: L.T("Student.MyTasks.SubmissionHistory2") %></h4><asp:Repeater ID="rptHistory" runat="server"><ItemTemplate>
-                        <div class="student-history-row"><strong><%: L.T("Student.MyTasks.Attempt") %> <%#: Eval("AttemptLabel") %></strong><span> · <%#: Eval("SubmittedLabel") %> · <%#: Eval("StatusLabel") %></span><div><%#: Eval("Feedback") %></div>
+                        <div class="student-history-row"><strong><%: L.T("Student.MyTasks.Attempt") %> <%#: Eval("AttemptLabel") %></strong><span> &#183; <%#: Eval("SubmittedLabel") %> &#183; <%#: Eval("StatusLabel") %></span><div><%#: Eval("Feedback") %></div>
                             <asp:HyperLink ID="lnkSubmissionFile" runat="server" NavigateUrl='<%# Eval("FileUrl") %>' Text='<%# Eval("FileName") %>' Target="_blank" Visible='<%# Eval("HasFile") %>' CssClass="student-attachment-link" />
                             <asp:HyperLink ID="lnkSubmissionLink" runat="server" NavigateUrl='<%# Eval("LinkUrl") %>' Text="<%$ Resources:Student, MyTasks.OpenSubmittedLink %>" Target="_blank" Visible='<%# Eval("HasLink") %>' CssClass="student-attachment-link" />
                         </div>

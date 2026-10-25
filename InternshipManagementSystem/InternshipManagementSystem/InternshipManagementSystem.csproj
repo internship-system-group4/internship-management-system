@@ -716,6 +716,7 @@
     <Content Include="Assets\css\review-system.css" />
     <Content Include="Pages\Coordinator\DemoStudent.aspx" />
     <Content Include="Assets\css\student-progress.css" />
+    <Content Include="Assets\css\student-workspace.css" />
     <Content Include="Assets\css\coordinator-monitoring.css" />
     <Content Include="Assets\css\home.css" />
     <Content Include="Assets\images\home-campus.jpg" />
