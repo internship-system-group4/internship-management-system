@@ -33,7 +33,7 @@ namespace InternshipManagementSystem.Services
                 placement == null || placement.StudentId != actor.Id ||
                 entry.StudentId != actor.Id || entry.Hours <= 0 || entry.Hours > 24 ||
                 entry.WorkDate <= 0 || string.IsNullOrWhiteSpace(entry.Description) ||
-                placement.Status == PlacementStatus.Completed || placement.Status == PlacementStatus.Cancelled ||
+                placement.Status == PlacementStatus.Cancelled ||
                 CompletionReviewService.IsFinal(new CompletionRepository().GetByPlacement(placement.Id)))
                 throw new InvalidOperationException("This training-hours entry cannot be reported.");
             entry.Status = HoursStatus.Reported;

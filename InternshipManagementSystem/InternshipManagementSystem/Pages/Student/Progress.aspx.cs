@@ -228,8 +228,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 .OrderByDescending(c => c.ApprovedAt).ThenByDescending(c => c.CreatedAt)
                 .FirstOrDefault();
 
-            CanReportHours = placement.Status != PlacementStatus.Completed &&
-                placement.Status != PlacementStatus.Cancelled &&
+            CanReportHours = placement.Status != PlacementStatus.Cancelled &&
                 !CompletionReviewService.IsFinal(Completion);
 
             InternshipType = InternshipTypes.Of(placement);

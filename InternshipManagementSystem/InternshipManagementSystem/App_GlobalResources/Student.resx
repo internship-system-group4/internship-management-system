@@ -707,7 +707,7 @@
   <data name="MyTasks.EnterDescription" xml:space="preserve"><value>Enter a description or note (up to 2,000 characters).</value></data>
   <data name="MyTasks.EnterLink" xml:space="preserve"><value>Enter a valid work link beginning with http or https.</value></data>
   <data name="MyTasks.AttachFile" xml:space="preserve"><value>Attach a file before submitting.</value></data>
-  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>This placement is closed. You can review previously reported hours, but cannot add new ones.</value></data>
+  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>This placement is cancelled or its completion is finalized. You can review previously reported hours, but cannot add new ones.</value></data>
   <data name="Progress.LogHours" xml:space="preserve"><value>Log training hours</value></data>
   <data name="Progress.LogHoursHint" xml:space="preserve"><value>Record actual work hours. They count toward the target only after academic supervisor approval.</value></data>
   <data name="Progress.WorkDate" xml:space="preserve"><value>Work date</value></data>

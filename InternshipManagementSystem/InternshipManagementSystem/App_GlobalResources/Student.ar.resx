@@ -707,7 +707,7 @@
   <data name="MyTasks.EnterDescription" xml:space="preserve"><value>اكتب وصفًا أو ملاحظة للعمل (حتى 2000 حرف).</value></data>
   <data name="MyTasks.EnterLink" xml:space="preserve"><value>أدخل رابط عمل صالحًا يبدأ بـ http أو https.</value></data>
   <data name="MyTasks.AttachFile" xml:space="preserve"><value>أرفق ملفًا قبل التسليم.</value></data>
-  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>أُغلق هذا التدريب. يمكنك مراجعة الساعات المسجّلة سابقًا، لكن لا يمكنك إضافة ساعات جديدة.</value></data>
+  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>أُلغي هذا التدريب أو اعتُمد إكماله نهائيًا. يمكنك مراجعة الساعات المسجّلة سابقًا، لكن لا يمكنك إضافة ساعات جديدة.</value></data>
   <data name="Progress.LogHours" xml:space="preserve"><value>سجّل ساعات التدريب</value></data>
   <data name="Progress.LogHoursHint" xml:space="preserve"><value>أدخل ساعات العمل الفعلية؛ لا تُحتسب ضمن المطلوب إلا بعد اعتماد المشرف الأكاديمي.</value></data>
   <data name="Progress.WorkDate" xml:space="preserve"><value>تاريخ العمل</value></data>
