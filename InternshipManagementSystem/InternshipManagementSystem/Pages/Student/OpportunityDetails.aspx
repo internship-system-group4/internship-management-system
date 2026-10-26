@@ -323,7 +323,7 @@
                 <div class="od-highlight">
                     <span class="od-highlight-label"><%: L.T("Student.OpportunityDetails.DURATION") %></span>
                     <span class="od-highlight-value">
-                        <%: SelectedOpportunity.DurationWeeks %> <%: L.T("Student.OpportunityDetails.Weeks") %>
+                        <%: InternshipManagementSystem.Services.OpportunityFormRules.DurationLabel(SelectedOpportunity.DurationWeeks) %>
                     </span>
                 </div>
 
@@ -414,7 +414,7 @@
                     <div class="od-info-item">
                         <span class="od-info-label"><%: L.T("Student.OpportunityDetails.TrainingDuration") %></span>
                         <span class="od-info-value">
-                            <%: SelectedOpportunity.DurationWeeks %> <%: L.T("Student.OpportunityDetails.Weeks") %>
+                            <%: InternshipManagementSystem.Services.OpportunityFormRules.DurationLabel(SelectedOpportunity.DurationWeeks) %>
                         </span>
                     </div>
 

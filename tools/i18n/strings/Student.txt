@@ -1775,3 +1775,7 @@ ar: تغيير الصورة
 Profile.TrainingHours
 en: Training hours
 ar: ساعات التدريب
+
+Opportunities.YouCannotApplyToOtherInternships
+en: You cannot apply to other internships.
+ar: لا يمكنك التقديم على فرص تدريب أخرى.

@@ -3,6 +3,7 @@ using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using InternshipManagementSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -19,6 +20,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             new List<Opportunity>();
 
         protected Opportunities.CompanyOpportunity Editing;
+
+        // Shared Add/Edit rules; the errors of a failed edit are shown under each field.
+        protected Services.OpportunityFormRules EditForm = new Services.OpportunityFormRules();
+        private Opportunities.CompanyOpportunity FailedEdit;
         protected Opportunities.CompanyOpportunity Viewing;
 
         protected string Notice = "";
@@ -56,10 +61,21 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 LoadOpportunities();
 
+                // Success message from Opportunities.aspx after a new posting.
+                string saved = Session["OpportunitySavedNotice"] as string;
+                if (!IsPostBack && !string.IsNullOrEmpty(saved))
+                {
+                    Session.Remove("OpportunitySavedNotice");
+                    Notice = saved;
+                    IsError = false;
+                }
+
                 string editId = Request.QueryString["edit"];
                 string viewId = Request.QueryString["view"];
 
-                if (!string.IsNullOrWhiteSpace(editId))
+                if (FailedEdit != null)
+                    Editing = FailedEdit;
+                else if (!string.IsNullOrWhiteSpace(editId))
                     LoadEditing(editId);
                 else if (!string.IsNullOrWhiteSpace(viewId))
                     LoadViewing(viewId);
@@ -225,115 +241,34 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (item == null)
                 return;
 
-            string title = Value("moTitle");
-            string department = Value("moDepartment");
-            string location = Value("moLocation");
-            string description = Value("moDescription");
-            string requirements = Value("moRequirements");
-            string technologies = Value("moTechnologies");
-            string mode = Value("moMode");
+            // Same rules as the Add form. "Not in the past" only applies when the
+            // last date to apply was changed, so older postings can still be edited.
+            EditForm = OpportunityFormRules.Read(Request.Form, "mo", Majors);
+            bool deadlineChanged = Request.Form["moDeadline"] != DateText(item.ApplicationDeadline);
+            EditForm.Check(true, deadlineChanged, item.FilledSeats);
 
-            string[] selected =
-                Request.Form.GetValues("moMajors") ?? new string[0];
-
-            List<string> majors = selected
-                .Where(x => Majors.Contains(x))
-                .Distinct()
-                .ToList();
-
-            int seats;
-            int duration;
-            DateTime deadline;
-            DateTime start;
-            DateTime end;
-
-            bool validSeats = int.TryParse(
-                Request.Form["moSeats"], out seats);
-
-            bool validDuration = int.TryParse(
-                Request.Form["moDuration"], out duration);
-
-            bool validDeadline = DateTime.TryParseExact(
-                Request.Form["moDeadline"],
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out deadline);
-
-            bool validStart = DateTime.TryParseExact(
-                Request.Form["moStart"],
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out start);
-
-            bool validEnd = DateTime.TryParseExact(
-                Request.Form["moEnd"],
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out end);
-
-            if (title.Length < 4 || title.Length > 160 ||
-                department.Length == 0 || department.Length > 120 ||
-                location.Length < 2 || location.Length > 160 ||
-                description.Length < 20 ||
-                description.Length > 5000 ||
-                requirements.Length < 5 ||
-                requirements.Length > 3000 ||
-                technologies.Length > 1000 ||
-                majors.Count == 0 ||
-                selected.Length != majors.Count ||
-                !validSeats || seats < 1 || seats > 10000 ||
-                !validDuration || duration < 1 || duration > 13 ||
-                !validDeadline || !validStart || !validEnd)
-            {
-                ShowError(
-                    L.T("Company.ManageOpportunities.PleaseCheckAllOpportunityFields"));
-                return;
-            }
-
-            if (seats < item.FilledSeats)
-            {
-                ShowError(
-                    L.T("Company.ManageOpportunities.SeatsCannotBeLessThanFilled"));
-                return;
-            }
-
-            if (start.Date <= deadline.Date ||
-                end.Date <= start.Date)
-            {
-                ShowError(
-                    L.T("Company.ManageOpportunities.StartDateMustFollowTheDeadline"));
-                return;
-            }
-
-            if (mode != "On-site" &&
-                mode != "Hybrid" &&
-                mode != "Remote")
-            {
-                ShowError(
-                    L.T("Company.ManageOpportunities.InvalidTrainingMode"));
-                return;
-            }
-
-            item.Title = title;
-            item.Department = department;
-            item.Location = location;
-            item.Description = description;
-            item.Requirements = requirements;
-            item.TechnologiesUsed = technologies;
-            item.TrainingMode = mode;
-
+            // Put the typed values on the item so a failed save keeps them on screen.
+            item.Title = EditForm.Title;
+            item.Department = EditForm.Department;
+            item.Location = EditForm.Location;
+            item.Description = EditForm.Description;
+            item.Requirements = EditForm.Requirements;
+            item.TechnologiesUsed = EditForm.Technologies;
+            item.TrainingMode = EditForm.Mode;
             item.EligibleCollege = CollegeName;
-            item.EligibleMajors = majors;
+            item.EligibleMajors = EditForm.Majors;
+            item.TotalSeats = EditForm.HasSeats ? EditForm.Seats : 0;
+            item.ApplicationDeadline = EditForm.HasDeadline ? OpportunityFormRules.DayEndMs(EditForm.Deadline) : 0;
+            item.StartDate = EditForm.HasStart ? OpportunityFormRules.DayStartMs(EditForm.Start) : 0;
+            item.EndDate = EditForm.HasStart ? OpportunityFormRules.DayStartMs(EditForm.End) : 0;
+            item.DurationWeeks = EditForm.DurationWeeks;
 
-            item.TotalSeats = seats;
-            item.DurationWeeks = duration;
-
-            item.ApplicationDeadline = ToUnix(deadline);
-            item.StartDate = ToUnix(start);
-            item.EndDate = ToUnix(end);
+            if (!EditForm.IsValid)
+            {
+                FailedEdit = item;
+                ShowError(L.T("Company.OpportunityForm.FixErrors"));
+                return;
+            }
 
             string path =
                 Constants.Paths.Opportunities + "/" + id;
@@ -352,6 +287,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
             else
             {
+                FailedEdit = item;
                 ShowError(
                     L.T("Company.ManageOpportunities.OpportunityChangedRefreshAndTryAgain"));
             }
@@ -366,6 +302,50 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         {
             return new DateTimeOffset(
                 date.Date).ToUnixTimeMilliseconds();
+        }
+
+        // ---- Edit form helpers (errors under each field, 3-month end date) ----
+
+        protected string EditError(string field) { return EditForm.ErrorFor(field); }
+
+        protected string EditInvalid(string field)
+        {
+            return string.IsNullOrEmpty(EditForm.ErrorFor(field)) ? "" : " is-invalid";
+        }
+
+        protected string EditHidden(string field)
+        {
+            return string.IsNullOrEmpty(EditForm.ErrorFor(field)) ? "hidden" : "";
+        }
+
+        protected string FormMessagesJson
+        {
+            get { return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(OpportunityFormRules.ScriptMessages()); }
+        }
+
+        protected string TodayText
+        {
+            get { return DateTime.Today.ToString("yyyy-MM-dd", CultureInfo.InvariantCulture); }
+        }
+
+        /// <summary>End date shown on the edit form: always start + 3 months.</summary>
+        protected string EditEndText
+        {
+            get
+            {
+                if (Editing == null || Editing.StartDate <= 0) return "—";
+                DateTime start = DateTimeOffset.FromUnixTimeMilliseconds(Editing.StartDate).ToLocalTime().Date;
+                return OpportunityFormRules.Show(OpportunityFormRules.EndFor(start));
+            }
+        }
+
+        protected string EditDurationText
+        {
+            get
+            {
+                if (Editing == null || Editing.StartDate <= 0) return L.T("Company.OpportunityForm.DurationEmpty");
+                return L.F("Company.OpportunityForm.Duration", DateText(Editing.StartDate), EditEndText);
+            }
         }
 
         protected static string DateText(long value)

@@ -747,6 +747,7 @@
 [data-theme="dark"] .mo-stat.is-inactive { --mo-stat-accent: #f0a050; }
 
 </style>
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/opportunity-form.css?v=20261026-1") %>" />
 
 </asp:Content>
 
@@ -1185,8 +1186,7 @@
                         <%: L.T("Company.ManageOpportunities.Duration") %>
                     </span>
                     <p>
-                        <%: Viewing.DurationWeeks %>
-                        <%: L.T("Company.ManageOpportunities.Weeks") %>
+                        <%: InternshipManagementSystem.Services.OpportunityFormRules.DurationLabel(Viewing.DurationWeeks) %>
                     </p>
                 </div>
 
@@ -1253,268 +1253,149 @@
 
         </div>
 
-        <div class="mo-card">
+        <div class="mo-card oppf"
+             data-opp-form
+             data-prefix="mo"
+             data-past-rule="changed"
+             data-filled="<%: Editing.FilledSeats %>"
+             data-today="<%: TodayText %>"
+             data-messages="<%: FormMessagesJson %>">
 
-            <h3>
-                <%: L.T("Company.ManageOpportunities.OpportunityInformation") %>
-            </h3>
+            <div class="oppf-summary" data-summary role="alert" hidden></div>
 
-            <p class="mo-muted">
-                <%: L.T("Company.ManageOpportunities.ProvideTheMainDetailsOfThis") %>
-            </p>
+            <input type="hidden" name="moId" value="<%: Editing.Id %>" />
 
-            <input type="hidden"
-                   name="moId"
-                   value="<%: Editing.Id %>" />
+            <!-- 1. Basic details -->
+            <section class="oppf-step">
+                <h3><span class="oppf-step-no">1</span><%: L.T("Company.OpportunityForm.StepBasics") %></h3>
 
-            <div class="mo-form-grid">
+                <div class="mo-form-grid">
+                    <div class="mo-field op-field<%= EditInvalid("Title") %>" data-field>
+                        <label for="moTitle"><%: L.T("Company.ManageOpportunities.OpportunityTitle") %></label>
+                        <input id="moTitle" name="moTitle" maxlength="160" value="<%: Editing.Title %>" />
+                        <span class="oppf-error" data-error-for="Title" <%= EditHidden("Title") %>><%: EditError("Title") %></span>
+                    </div>
 
-                <!-- TITLE -->
+                    <div class="mo-field op-field<%= EditInvalid("Department") %>" data-field>
+                        <label for="moDepartment"><%: L.T("Company.ManageOpportunities.Department2") %></label>
+                        <input id="moDepartment" name="moDepartment" maxlength="120" value="<%: Editing.Department %>" />
+                        <span class="oppf-error" data-error-for="Department" <%= EditHidden("Department") %>><%: EditError("Department") %></span>
+                    </div>
 
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.OpportunityTitle") %>
-                    </label>
+                    <div class="mo-field op-field<%= EditInvalid("Location") %>" data-field>
+                        <label for="moLocation"><%: L.T("Company.ManageOpportunities.Location2") %></label>
+                        <input id="moLocation" name="moLocation" maxlength="160" value="<%: Editing.Location %>" />
+                        <span class="oppf-error" data-error-for="Location" <%= EditHidden("Location") %>><%: EditError("Location") %></span>
+                    </div>
 
-                    <input name="moTitle"
-                           maxlength="160"
-                           value="<%: Editing.Title %>" />
+                    <div class="mo-field op-field<%= EditInvalid("Mode") %>" data-field>
+                        <label for="moMode"><%: L.T("Company.ManageOpportunities.TrainingMode") %></label>
+                        <select id="moMode" name="moMode">
+                            <option value="On-site" <%= Editing.TrainingMode == "On-site" || string.IsNullOrEmpty(Editing.TrainingMode) ? "selected" : "" %>><%: L.T("Shared.Value.TrainingMode.Onsite") %></option>
+                            <option value="Hybrid" <%= Editing.TrainingMode == "Hybrid" ? "selected" : "" %>><%: L.T("Shared.Value.TrainingMode.Hybrid") %></option>
+                            <option value="Remote" <%= Editing.TrainingMode == "Remote" ? "selected" : "" %>><%: L.T("Shared.Value.TrainingMode.Remote") %></option>
+                        </select>
+                        <span class="oppf-error" data-error-for="Mode" <%= EditHidden("Mode") %>><%: EditError("Mode") %></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 2. Who can apply -->
+            <section class="oppf-step">
+                <h3><span class="oppf-step-no">2</span><%: L.T("Company.OpportunityForm.StepWho") %></h3>
+                <p class="mo-muted oppf-lead"><%: L.T("Company.ManageOpportunities.EligibleCollege") %>: <strong><%: CollegeName %></strong></p>
+
+                <div class="mo-field op-field<%= EditInvalid("Majors") %>" data-field>
+                    <span class="oppf-label"><%: L.T("Company.ManageOpportunities.EligibleSpecializations2") %></span>
+                    <div class="mo-majors">
+                        <% foreach (string major in Majors) { %>
+                            <label class="mo-major">
+                                <input type="checkbox" name="moMajors" value="<%: major %>" <%= IsMajorSelected(major) ? "checked" : "" %> />
+                                <%: major %>
+                            </label>
+                        <% } %>
+                    </div>
+                    <span class="oppf-error" data-error-for="Majors" <%= EditHidden("Majors") %>><%: EditError("Majors") %></span>
+                </div>
+            </section>
+
+            <!-- 3. About the role -->
+            <section class="oppf-step">
+                <h3><span class="oppf-step-no">3</span><%: L.T("Company.OpportunityForm.StepRole") %></h3>
+
+                <div class="mo-field op-field<%= EditInvalid("Description") %>" data-field>
+                    <label for="moDescription"><%: L.T("Company.ManageOpportunities.Description2") %></label>
+                    <textarea id="moDescription" name="moDescription" maxlength="5000"><%: Editing.Description %></textarea>
+                    <span class="mo-muted oppf-hint-small"><%: L.T("Company.OpportunityForm.DescriptionHint") %></span>
+                    <span class="oppf-error" data-error-for="Description" <%= EditHidden("Description") %>><%: EditError("Description") %></span>
                 </div>
 
-                <!-- DEPARTMENT -->
+                <div class="mo-form-grid">
+                    <div class="mo-field op-field<%= EditInvalid("Requirements") %>" data-field>
+                        <label for="moRequirements"><%: L.T("Company.ManageOpportunities.Requirements2") %></label>
+                        <textarea id="moRequirements" name="moRequirements" maxlength="3000"><%: Editing.Requirements %></textarea>
+                        <span class="oppf-error" data-error-for="Requirements" <%= EditHidden("Requirements") %>><%: EditError("Requirements") %></span>
+                    </div>
 
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.Department2") %>
-                    </label>
+                    <div class="mo-field op-field<%= EditInvalid("Technologies") %>" data-field>
+                        <label for="moTechnologies"><%: L.T("Company.ManageOpportunities.TechnologiesUsed") %></label>
+                        <textarea id="moTechnologies" name="moTechnologies" maxlength="1000"><%: Editing.TechnologiesUsed %></textarea>
+                        <span class="oppf-error" data-error-for="Technologies" <%= EditHidden("Technologies") %>><%: EditError("Technologies") %></span>
+                    </div>
+                </div>
+            </section>
 
-                    <input name="moDepartment"
-                           maxlength="120"
-                           value="<%: Editing.Department %>" />
+            <!-- 4. Seats and dates: last date to apply -> start -> end (always 3 months) -->
+            <section class="oppf-step">
+                <h3><span class="oppf-step-no">4</span><%: L.T("Company.OpportunityForm.StepDates") %></h3>
+                <p class="mo-muted oppf-lead"><%: L.T("Company.OpportunityForm.DatesHelp") %></p>
+
+                <div class="oppf-dates">
+                    <div class="mo-field op-field<%= EditInvalid("Seats") %>" data-field>
+                        <label for="moSeats"><%: L.T("Company.ManageOpportunities.AvailableSeats") %></label>
+                        <input id="moSeats" name="moSeats" type="number" min="<%: Math.Max(1, Editing.FilledSeats) %>" max="500" step="1" inputmode="numeric"
+                               value="<%: Editing.TotalSeats > 0 ? Editing.TotalSeats.ToString() : "" %>" />
+                        <span class="oppf-error" data-error-for="Seats" <%= EditHidden("Seats") %>><%: EditError("Seats") %></span>
+                    </div>
+
+                    <div class="mo-field op-field<%= EditInvalid("Deadline") %>" data-field>
+                        <label for="moDeadline"><%: L.T("Company.ManageOpportunities.ApplicationDeadline2") %></label>
+                        <input id="moDeadline" name="moDeadline" type="date" value="<%: DateText(Editing.ApplicationDeadline) %>" />
+                        <span class="oppf-error" data-error-for="Deadline" <%= EditHidden("Deadline") %>><%: EditError("Deadline") %></span>
+                    </div>
+
+                    <div class="mo-field op-field<%= EditInvalid("Start") %>" data-field>
+                        <label for="moStart"><%: L.T("Company.ManageOpportunities.StartDate2") %></label>
+                        <input id="moStart" name="moStart" type="date" value="<%: DateText(Editing.StartDate) %>" />
+                        <span class="oppf-error" data-error-for="Start" <%= EditHidden("Start") %>><%: EditError("Start") %></span>
+                    </div>
+
+                    <div class="mo-field op-field" data-field>
+                        <span class="oppf-label"><%: L.T("Company.ManageOpportunities.EndDate") %></span>
+                        <div class="oppf-auto" data-end-date><%: EditEndText %></div>
+                        <span class="mo-muted oppf-hint-small"><%: L.T("Company.OpportunityForm.EndAuto") %></span>
+                    </div>
                 </div>
 
-                <!-- COLLEGE -->
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.EligibleCollege") %>
-                    </label>
-
-                    <input readonly="readonly"
-                           value="<%: CollegeName %>" />
-                </div>
-
-                <!-- TRAINING MODE -->
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.TrainingMode") %>
-                    </label>
-
-                    <select name="moMode">
-
-                        <option value="On-site"
-                            <%= Editing.TrainingMode == "On-site"
-                                ? "selected" : "" %>>
-
-                            <%: L.T("Shared.Value.TrainingMode.Onsite") %>
-
-                        </option>
-
-                        <option value="Hybrid"
-                            <%= Editing.TrainingMode == "Hybrid"
-                                ? "selected" : "" %>>
-
-                            <%: L.T("Shared.Value.TrainingMode.Hybrid") %>
-
-                        </option>
-
-                        <option value="Remote"
-                            <%= Editing.TrainingMode == "Remote"
-                                ? "selected" : "" %>>
-
-                            <%: L.T("Shared.Value.TrainingMode.Remote") %>
-
-                        </option>
-
-                    </select>
-                </div>
-
-                <!-- LOCATION -->
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.Location2") %>
-                    </label>
-
-                    <input name="moLocation"
-                           maxlength="160"
-                           value="<%: Editing.Location %>" />
-                </div>
-
-                <!-- TECHNOLOGIES -->
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.TechnologiesUsed") %>
-                    </label>
-
-                    <input name="moTechnologies"
-                           maxlength="1000"
-                           value="<%: Editing.TechnologiesUsed %>" />
-                </div>
-
-            </div>
-
-            <!-- ELIGIBLE MAJORS -->
-
-            <div class="mo-field">
-
-                <label>
-                    <%: L.T("Company.ManageOpportunities.EligibleSpecializations2") %>
-                </label>
-
-                <div class="mo-majors">
-
-                    <% foreach (string major in Majors) { %>
-
-                        <label class="mo-major">
-
-                            <input type="checkbox"
-                                   name="moMajors"
-                                   value="<%: major %>"
-                                   <%= IsMajorSelected(major)
-                                       ? "checked" : "" %> />
-
-                            <%: major %>
-
-                        </label>
-
-                    <% } %>
-
-                </div>
-
-            </div>
-
-            <!-- DESCRIPTION -->
-
-            <div class="mo-field">
-                <label>
-                    <%: L.T("Company.ManageOpportunities.Description2") %>
-                </label>
-
-                <textarea name="moDescription"
-                          maxlength="5000"><%: Editing.Description %></textarea>
-            </div>
-
-            <!-- REQUIREMENTS -->
-
-            <div class="mo-field">
-                <label>
-                    <%: L.T("Company.ManageOpportunities.Requirements2") %>
-                </label>
-
-                <textarea name="moRequirements"
-                          maxlength="3000"><%: Editing.Requirements %></textarea>
-            </div>
-
-            <!-- SEATS AND DURATION -->
-
-            <div class="mo-form-grid">
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.AvailableSeats") %>
-                    </label>
-
-                    <input type="number"
-                           name="moSeats"
-                           min="1"
-                           max="10000"
-                           value="<%: Editing.TotalSeats %>" />
-                </div>
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.DurationWeeks") %>
-                    </label>
-
-                    <input type="number"
-                           name="moDuration"
-                           min="1"
-                           max="13"
-                           value="<%: Editing.DurationWeeks %>" />
-                </div>
-
-            </div>
-
-            <!-- START AND END DATES -->
-
-            <div class="mo-form-grid">
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.StartDate2") %>
-                    </label>
-
-                    <input type="date"
-                           name="moStart"
-                           value="<%: DateText(Editing.StartDate) %>" />
-                </div>
-
-                <div class="mo-field">
-                    <label>
-                        <%: L.T("Company.ManageOpportunities.EndDate2") %>
-                    </label>
-
-                    <input type="date"
-                           name="moEnd"
-                           value="<%: DateText(Editing.EndDate) %>" />
-                </div>
-
-            </div>
-
-            <!-- LAST DATE TO APPLY -->
-
-            <div class="mo-form-grid">
-
-                <div class="mo-field">
-                    <label>
-                        Last Date to Apply
-                        <span class="mo-required">*</span>
-                    </label>
-
-                    <input type="date"
-                           name="moDeadline"
-                           value="<%: DateText(Editing.ApplicationDeadline) %>" />
-                </div>
-
-            </div>
+                <p class="oppf-duration" data-duration data-empty="<%: L.T("Company.OpportunityForm.DurationEmpty") %>" aria-live="polite"><%: EditDurationText %></p>
+            </section>
 
             <!-- FOOTER -->
-
             <div class="mo-form-footer">
-
-                <a class="mo-btn mo-btn-light"
-                   href="ManageOpportunities.aspx">
-
+                <a class="mo-btn mo-btn-light" href="ManageOpportunities.aspx">
                     <%: L.T("Company.ManageOpportunities.Cancel") %>
-
                 </a>
 
                 <button type="submit"
-
                         class="mo-btn"
                         name="moAction"
                         value="save"
+                        data-opp-submit="complete"
                         data-ui-action="save"
                         data-ui-validation="none"
                         data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
-
                     <%: L.T("Company.ManageOpportunities.SaveChanges") %>
-
                 </button>
-
             </div>
 
         </div>
@@ -1648,4 +1529,5 @@
 
 </script>
 
+<script src="<%: ResolveUrl("~/Assets/js/opportunity-form.js?v=20261026-2") %>"></script>
 </asp:Content>

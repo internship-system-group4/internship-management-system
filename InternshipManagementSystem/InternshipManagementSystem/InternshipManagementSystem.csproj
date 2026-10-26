@@ -137,6 +137,7 @@
     <Content Include="Assets\js\review-system.js" />
     <Content Include="Assets\js\completion-review.js" />
     <Content Include="Assets\js\company-applications.js" />
+    <Content Include="Assets\js\opportunity-form.js" />
     <Content Include="Assets\css\simple-workspace.css" />
     <Content Include="Assets\css\home-discovery.css" />
     <Content Include="Assets\css\home-video-zoom.css" />
@@ -654,6 +655,11 @@
       <DependentUpon>Grades.aspx</DependentUpon>
     </Compile>
     <Compile Include="Services\HoursService.cs" />
+    <Compile Include="Services\OpportunityFormRules.cs" />
+    <Compile Include="Services\TaskAttachmentStorage.cs" />
+    <Compile Include="Pages\Account\TaskAttachment.ashx.cs">
+      <DependentUpon>TaskAttachment.ashx</DependentUpon>
+    </Compile>
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PdfReportService.cs" />
     <Compile Include="Services\StorageService.cs" />
@@ -716,6 +722,7 @@
     <Content Include="Assets\theme.css" />
     <Content Include="Assets\css\coordinator-dashboard.css" />
     <Content Include="Assets\css\coordinator-sidebar.css" />
+    <Content Include="Assets\css\opportunity-form.css" />
     <Content Include="Assets\css\portal-motion.css" />
     <Content Include="Assets\js\portal-motion.js" />
     <Content Include="Assets\js\coordinator-dashboard.js" />
@@ -877,6 +884,7 @@
     <Content Include="Pages\Account\Login.aspx" />
     <Content Include="Pages\Account\Notifications.aspx" />
     <Content Include="Pages\Account\NotificationFeed.ashx" />
+    <Content Include="Pages\Account\TaskAttachment.ashx" />
     <Content Include="Pages\Company\Account.aspx" />
     <Content Include="Pages\Company\ApplicantDocument.aspx" />
     <Content Include="Pages\Company\Applications.aspx" />

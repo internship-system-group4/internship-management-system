@@ -861,4 +861,29 @@
   <data name="FinalEvaluation.CertificateSharedMessage" xml:space="preserve"><value>يمكن للمتدرّب فتح الشهادة المعتمدة من الإشعارات.</value></data>
   <data name="FinalEvaluation.CertificateShareFailed" xml:space="preserve"><value>تعذّرت مشاركة الشهادة. يرجى المحاولة مجددًا.</value></data>
   <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>معايير التقييم (مشروع UIMS)</value></data>
+  <data name="OpportunityForm.TitleRequired" xml:space="preserve"><value>أدخل عنواناً من 3 أحرف على الأقل.</value></data>
+  <data name="OpportunityForm.DepartmentRequired" xml:space="preserve"><value>أدخل اسم القسم.</value></data>
+  <data name="OpportunityForm.LocationRequired" xml:space="preserve"><value>أدخل مكان التدريب.</value></data>
+  <data name="OpportunityForm.MajorsRequired" xml:space="preserve"><value>اختر تخصصاً واحداً على الأقل.</value></data>
+  <data name="OpportunityForm.DescriptionRequired" xml:space="preserve"><value>اكتب وصفاً من 20 حرفاً على الأقل.</value></data>
+  <data name="OpportunityForm.RequirementsRequired" xml:space="preserve"><value>أدخل المتطلبات.</value></data>
+  <data name="OpportunityForm.SeatsInvalid" xml:space="preserve"><value>أدخل عدد مقاعد من 1 إلى 500.</value></data>
+  <data name="OpportunityForm.SeatsBelowFilled" xml:space="preserve"><value>لا يمكن أن يقل عدد المقاعد عن {0} مقعداً مشغولاً.</value></data>
+  <data name="OpportunityForm.DeadlineRequired" xml:space="preserve"><value>اختر آخر موعد للتقديم.</value></data>
+  <data name="OpportunityForm.DeadlinePast" xml:space="preserve"><value>لا يمكن أن يكون آخر موعد للتقديم في الماضي.</value></data>
+  <data name="OpportunityForm.StartRequired" xml:space="preserve"><value>اختر تاريخ بدء التدريب.</value></data>
+  <data name="OpportunityForm.StartBeforeDeadline" xml:space="preserve"><value>يجب أن يبدأ التدريب في آخر موعد للتقديم ({0}) أو بعده.</value></data>
+  <data name="OpportunityForm.Duration" xml:space="preserve"><value>مدة التدريب 3 أشهر: من {0} إلى {1}.</value></data>
+  <data name="OpportunityForm.DurationEmpty" xml:space="preserve"><value>مدة التدريب دائماً 3 أشهر. اختر تاريخ البدء وسيُحدَّد تاريخ الانتهاء تلقائياً.</value></data>
+  <data name="OpportunityForm.EndAuto" xml:space="preserve"><value>يُحدَّد تلقائياً: تاريخ البدء + 3 أشهر.</value></data>
+  <data name="OpportunityForm.FixErrors" xml:space="preserve"><value>بعض الحقول تحتاج إلى تصحيح. يرجى مراجعة الحقول المحددة أدناه.</value></data>
+  <data name="OpportunityForm.TooLong" xml:space="preserve"><value>هذا النص طويل جداً.</value></data>
+  <data name="OpportunityForm.ModeRequired" xml:space="preserve"><value>اختر نوع التدريب (حضوري، مدمج، عن بُعد).</value></data>
+  <data name="OpportunityForm.StepBasics" xml:space="preserve"><value>المعلومات الأساسية</value></data>
+  <data name="OpportunityForm.StepWho" xml:space="preserve"><value>من يمكنه التقديم</value></data>
+  <data name="OpportunityForm.StepRole" xml:space="preserve"><value>تفاصيل الدور</value></data>
+  <data name="OpportunityForm.StepDates" xml:space="preserve"><value>المقاعد والتواريخ</value></data>
+  <data name="OpportunityForm.DatesHelp" xml:space="preserve"><value>يقدّم الطلاب حتى آخر موعد للتقديم. يمكن أن يبدأ التدريب في ذلك اليوم أو بعده، ومدته دائماً 3 أشهر.</value></data>
+  <data name="OpportunityForm.DescriptionHint" xml:space="preserve"><value>20 حرفاً على الأقل.</value></data>
+  <data name="OpportunityForm.DraftHint" xml:space="preserve"><value>المسودة تحتاج إلى عنوان فقط، أما النشر فيتطلب كل الحقول.</value></data>
 </root>

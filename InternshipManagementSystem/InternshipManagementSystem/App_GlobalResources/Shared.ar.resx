@@ -725,4 +725,7 @@
   <data name="SupervisorAccount.PersonalHelp" xml:space="preserve"><value>معلومات التواصل وبيانات ملفك الشخصي.</value></data>
   <data name="SupervisorAccount.OrganizationTitle" xml:space="preserve"><value>الجهة والارتباط المؤسسي</value></data>
   <data name="SupervisorAccount.OrganizationHelp" xml:space="preserve"><value>بيانات الحساب الرسمية التي تديرها الجامعة.</value></data>
+  <data name="Duration.ThreeMonths" xml:space="preserve"><value>3 أشهر</value></data>
+  <data name="Duration.Weeks" xml:space="preserve"><value>{0} أسابيع</value></data>
+  <data name="Duration.NotSpecified" xml:space="preserve"><value>غير محدد</value></data>
 </root>

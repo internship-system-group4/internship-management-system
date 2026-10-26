@@ -163,7 +163,33 @@ namespace InternshipManagementSystem.Data
                 // The placement is the durable source of truth. A retry repairs the display flag.
                 syncPending = true;
             }
+            WithdrawOtherApplications(applications, student.Id, applicationId);
             return new OfferConfirmationResult { Placement = placement, ApplicationSyncPending = syncPending };
+        }
+
+        /// <summary>Once one internship is confirmed, every other pending or accepted
+        /// application of the student is marked Withdrawn, so companies stop reviewing
+        /// it and the student is locked to the confirmed internship. Best effort: the
+        /// placement is already the source of truth if one of these writes fails.</summary>
+        private static void WithdrawOtherApplications(ApplicationRepository applications, string studentId, string keptApplicationId)
+        {
+            List<InternshipApplication> mine;
+            try { mine = applications.GetWhere("StudentId", studentId); }
+            catch (FirebaseException) { return; }
+            foreach (var other in mine)
+            {
+                if (other == null || other.Id == keptApplicationId) continue;
+                if (other.Status != ApplicationStatus.Pending && other.Status != ApplicationStatus.Accepted) continue;
+                try
+                {
+                    applications.Update(other.Id, new Dictionary<string, object>
+                    {
+                        { "Status", (int)ApplicationStatus.Withdrawn },
+                        { "WithdrawnAt", Time.NowMs() }
+                    });
+                }
+                catch (FirebaseException) { }
+            }
         }
 
         public override string Insert(Placement entity)

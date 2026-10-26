@@ -36,6 +36,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 var applications = ApplicationRepository.DistinctForStudent(
                     new ApplicationRepository().GetWhere("StudentId", CurrentStudent.Id),
                     ConfirmedPlacement == null ? null : ConfirmedPlacement.ApplicationId);
+                // Locked to one internship: the other offers are no longer shown.
+                if (ConfirmedPlacement != null)
+                    applications = applications.FindAll(a => a.Id == ConfirmedPlacement.ApplicationId);
                 ApplicationCount = applications.Count;
                 ApplicationRepeater.DataSource = applications;
                 ApplicationRepeater.DataBind();

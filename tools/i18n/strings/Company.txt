@@ -2752,3 +2752,103 @@ ar: المتدرب المحدد غير تابع لشركتك.
 I18n.Taskcreatedsuccessfullyforall0trainees
 en: Task created successfully for all {0} trainees.
 ar: تم إنشاء المهمة لجميع المتدربين وعددهم {0} بنجاح.
+
+OpportunityForm.TitleRequired
+en: Enter a title of at least 3 characters.
+ar: أدخل عنواناً من 3 أحرف على الأقل.
+
+OpportunityForm.DepartmentRequired
+en: Enter the department.
+ar: أدخل اسم القسم.
+
+OpportunityForm.LocationRequired
+en: Enter where the training takes place.
+ar: أدخل مكان التدريب.
+
+OpportunityForm.MajorsRequired
+en: Choose at least one specialization.
+ar: اختر تخصصاً واحداً على الأقل.
+
+OpportunityForm.DescriptionRequired
+en: Write a description of at least 20 characters.
+ar: اكتب وصفاً من 20 حرفاً على الأقل.
+
+OpportunityForm.RequirementsRequired
+en: Enter the requirements.
+ar: أدخل المتطلبات.
+
+OpportunityForm.SeatsInvalid
+en: Enter a number of seats from 1 to 500.
+ar: أدخل عدد مقاعد من 1 إلى 500.
+
+OpportunityForm.SeatsBelowFilled
+en: Seats cannot be fewer than the {0} already filled.
+ar: لا يمكن أن يقل عدد المقاعد عن {0} مقعداً مشغولاً.
+
+OpportunityForm.DeadlineRequired
+en: Choose the last date to apply.
+ar: اختر آخر موعد للتقديم.
+
+OpportunityForm.DeadlinePast
+en: The last date to apply cannot be in the past.
+ar: لا يمكن أن يكون آخر موعد للتقديم في الماضي.
+
+OpportunityForm.StartRequired
+en: Choose the training start date.
+ar: اختر تاريخ بدء التدريب.
+
+OpportunityForm.StartBeforeDeadline
+en: Training must start on or after the last date to apply ({0}).
+ar: يجب أن يبدأ التدريب في آخر موعد للتقديم ({0}) أو بعده.
+
+OpportunityForm.Duration
+en: Training lasts 3 months: from {0} to {1}.
+ar: مدة التدريب 3 أشهر: من {0} إلى {1}.
+
+OpportunityForm.DurationEmpty
+en: Training always lasts 3 months. Choose a start date and the end date is set for you.
+ar: مدة التدريب دائماً 3 أشهر. اختر تاريخ البدء وسيُحدَّد تاريخ الانتهاء تلقائياً.
+
+OpportunityForm.EndAuto
+en: Set automatically: start date + 3 months.
+ar: يُحدَّد تلقائياً: تاريخ البدء + 3 أشهر.
+
+OpportunityForm.FixErrors
+en: Some fields need attention. Please check the highlighted fields below.
+ar: بعض الحقول تحتاج إلى تصحيح. يرجى مراجعة الحقول المحددة أدناه.
+
+OpportunityForm.TooLong
+en: This text is too long.
+ar: هذا النص طويل جداً.
+
+OpportunityForm.ModeRequired
+en: Choose a training mode.
+ar: اختر نوع التدريب (حضوري، مدمج، عن بُعد).
+
+OpportunityForm.StepBasics
+en: Basic details
+ar: المعلومات الأساسية
+
+OpportunityForm.StepWho
+en: Who can apply
+ar: من يمكنه التقديم
+
+OpportunityForm.StepRole
+en: About the role
+ar: تفاصيل الدور
+
+OpportunityForm.StepDates
+en: Seats and dates
+ar: المقاعد والتواريخ
+
+OpportunityForm.DatesHelp
+en: Students apply until the last date to apply. Training can start on that day or later and always lasts 3 months.
+ar: يقدّم الطلاب حتى آخر موعد للتقديم. يمكن أن يبدأ التدريب في ذلك اليوم أو بعده، ومدته دائماً 3 أشهر.
+
+OpportunityForm.DescriptionHint
+en: At least 20 characters.
+ar: 20 حرفاً على الأقل.
+
+OpportunityForm.DraftHint
+en: A draft needs only a title. Publishing checks every field.
+ar: المسودة تحتاج إلى عنوان فقط، أما النشر فيتطلب كل الحقول.

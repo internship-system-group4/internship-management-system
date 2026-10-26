@@ -189,11 +189,6 @@
     font-weight: 800;
 }
 
-/* Duration spinner */
-#opDuration {
-    appearance: auto;
-    -moz-appearance: auto;
-}
 
 @media (max-width: 900px) {
     .op-card {
@@ -231,6 +226,7 @@
     }
 }
 </style>
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/opportunity-form.css?v=20261026-1") %>" />
 
 </asp:Content>
 
@@ -245,311 +241,174 @@
     </a>
 
     <div class="op-heading">
-        <h2>
-            <%: L.T("Company.Opportunities.AddNewOpportunity") %>
-        </h2>
-        <p>
-            <%: L.T("Company.Opportunities.CompleteTheDetailsBelowToCreate") %>
-        </p>
+        <h2><%: L.T("Company.Opportunities.AddNewOpportunity") %></h2>
+        <p><%: L.T("Company.Opportunities.CompleteTheDetailsBelowToCreate") %></p>
     </div>
 
     <% if (!string.IsNullOrEmpty(Notice)) { %>
-        <div class='op-notice <%= IsError ? "error" : "" %>'>
+        <div class='op-notice <%= IsError ? "error" : "" %>' role="alert">
             <%: Notice %>
         </div>
     <% } %>
 
-    <div class="op-card">
+    <div class="op-card oppf"
+         data-opp-form
+         data-prefix="op"
+         data-past-rule="always"
+         data-filled="0"
+         data-today="<%: Today %>"
+         data-messages="<%: MessagesJson %>">
 
-        <h3>
-            <%: L.T("Company.Opportunities.BasicInformation") %>
-        </h3>
+        <div class="oppf-summary" data-summary role="alert" hidden></div>
 
-        <p class="op-subtitle">
-            <%: L.T("Company.Opportunities.ProvideTheMainDetailsOfThis") %>
-        </p>
+        <!-- 1. Basic details -->
+        <section class="oppf-step">
+            <h3><span class="oppf-step-no">1</span><%: L.T("Company.OpportunityForm.StepBasics") %></h3>
 
-        <!-- Basic Information -->
-        <div class="op-grid">
+            <div class="op-grid">
+                <div class="op-field<%= Invalid("Title") %>" data-field>
+                    <label for="opTitle"><%: L.T("Company.Opportunities.OpportunityTitle") %></label>
+                    <input id="opTitle" name="opTitle" maxlength="160" autocomplete="off"
+                        placeholder="<%: L.T("Company.Opportunities.EGWebDeveloperIntern") %>"
+                        value="<%: Posted("opTitle") %>" />
+                    <span class="oppf-error" data-error-for="Title" <%= Hidden("Title") %>><%: Error("Title") %></span>
+                </div>
 
-            <div class="op-field">
-                <label for="opTitle">
-                    <%: L.T("Company.Opportunities.OpportunityTitle") %>
-                </label>
-                <input id="opTitle"
-                    name="opTitle"
-                    maxlength="160"
-                    placeholder="<%: L.T("Company.Opportunities.EGWebDeveloperIntern") %>"
-                    value="<%: Request.Form["opTitle"] %>" />
+                <div class="op-field<%= Invalid("Department") %>" data-field>
+                    <label for="opDepartment"><%: L.T("Company.Opportunities.Department") %></label>
+                    <input id="opDepartment" name="opDepartment" maxlength="120"
+                        placeholder="<%: L.T("Company.Opportunities.EGInformationTechnology") %>"
+                        value="<%: Posted("opDepartment") %>" />
+                    <span class="oppf-error" data-error-for="Department" <%= Hidden("Department") %>><%: Error("Department") %></span>
+                </div>
+
+                <div class="op-field<%= Invalid("Location") %>" data-field>
+                    <label for="opLocation"><%: L.T("Company.Opportunities.Location") %></label>
+                    <input id="opLocation" name="opLocation" maxlength="160"
+                        placeholder="<%: L.T("Company.Opportunities.EGAmmanJordan") %>"
+                        value="<%: Posted("opLocation") %>" />
+                    <span class="oppf-error" data-error-for="Location" <%= Hidden("Location") %>><%: Error("Location") %></span>
+                </div>
+
+                <div class="op-field<%= Invalid("Mode") %>" data-field>
+                    <label for="opMode"><%: L.T("Company.Opportunities.TrainingMode") %></label>
+                    <select id="opMode" name="opMode">
+                        <option value="On-site" <%= Selected("opMode", "On-site", true) %>><%: L.T("Shared.Value.TrainingMode.Onsite") %></option>
+                        <option value="Hybrid" <%= Selected("opMode", "Hybrid", false) %>><%: L.T("Shared.Value.TrainingMode.Hybrid") %></option>
+                        <option value="Remote" <%= Selected("opMode", "Remote", false) %>><%: L.T("Shared.Value.TrainingMode.Remote") %></option>
+                    </select>
+                    <span class="oppf-error" data-error-for="Mode" <%= Hidden("Mode") %>><%: Error("Mode") %></span>
+                </div>
+            </div>
+            <input type="hidden" name="opType" value="Internship" />
+        </section>
+
+        <!-- 2. Who can apply -->
+        <section class="oppf-step">
+            <h3><span class="oppf-step-no">2</span><%: L.T("Company.OpportunityForm.StepWho") %></h3>
+            <p class="op-hint oppf-lead"><%: L.T("Company.Opportunities.EligibleCollege") %>: <strong><%: CollegeName %></strong></p>
+
+            <div class="op-field<%= Invalid("Majors") %>" data-field>
+                <span class="oppf-label"><%: L.T("Company.Opportunities.EligibleSpecializations") %></span>
+                <div class="op-majors" role="group" aria-label="<%: L.T("Company.Opportunities.EligibleSpecializations") %>">
+                    <% foreach (string major in Majors) { %>
+                        <label class="op-major">
+                            <input type="checkbox" name="opMajors" value="<%: major %>" <%= MajorChecked(major) %> />
+                            <%: major %>
+                        </label>
+                    <% } %>
+                </div>
+                <span class="oppf-error" data-error-for="Majors" <%= Hidden("Majors") %>><%: Error("Majors") %></span>
+            </div>
+        </section>
+
+        <!-- 3. About the role -->
+        <section class="oppf-step">
+            <h3><span class="oppf-step-no">3</span><%: L.T("Company.OpportunityForm.StepRole") %></h3>
+
+            <div class="op-field<%= Invalid("Description") %>" data-field>
+                <label for="opDescription"><%: L.T("Company.Opportunities.Description") %></label>
+                <textarea id="opDescription" name="opDescription" maxlength="5000"
+                    placeholder="<%: L.T("Company.Opportunities.DescribeTheRoleResponsibilitiesAndLearning") %>"><%: Posted("opDescription") %></textarea>
+                <span class="op-hint"><%: L.T("Company.OpportunityForm.DescriptionHint") %></span>
+                <span class="oppf-error" data-error-for="Description" <%= Hidden("Description") %>><%: Error("Description") %></span>
             </div>
 
-            <div class="op-field">
-                <label for="opDepartment">
-                    <%: L.T("Company.Opportunities.Department") %>
-                </label>
-                <input id="opDepartment"
-                    name="opDepartment"
-                    maxlength="120"
-                    placeholder="<%: L.T("Company.Opportunities.EGInformationTechnology") %>"
-                    value="<%: Request.Form["opDepartment"] %>" />
+            <div class="op-grid">
+                <div class="op-field<%= Invalid("Requirements") %>" data-field>
+                    <label for="opRequirements"><%: L.T("Company.Opportunities.Requirements") %></label>
+                    <textarea id="opRequirements" name="opRequirements" maxlength="3000"
+                        placeholder="<%: L.T("Company.Opportunities.ListTheSkillsQualificationsAndRequirements") %>"><%: Posted("opRequirements") %></textarea>
+                    <span class="oppf-error" data-error-for="Requirements" <%= Hidden("Requirements") %>><%: Error("Requirements") %></span>
+                </div>
+
+                <div class="op-field<%= Invalid("Technologies") %>" data-field>
+                    <label for="opTechnologies"><%: L.T("Company.Opportunities.TechnologiesUsed") %></label>
+                    <textarea id="opTechnologies" name="opTechnologies" maxlength="1000" class="oppf-short"
+                        placeholder="<%: L.T("Company.Opportunities.EGCASPNETSQL") %>"><%: Posted("opTechnologies") %></textarea>
+                    <span class="oppf-error" data-error-for="Technologies" <%= Hidden("Technologies") %>><%: Error("Technologies") %></span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Seats and dates: last date to apply -> start -> end -->
+        <section class="oppf-step">
+            <h3><span class="oppf-step-no">4</span><%: L.T("Company.OpportunityForm.StepDates") %></h3>
+            <p class="op-hint oppf-lead"><%: L.T("Company.OpportunityForm.DatesHelp") %></p>
+
+            <div class="oppf-dates">
+                <div class="op-field<%= Invalid("Seats") %>" data-field>
+                    <label for="opSeats"><%: L.T("Company.Opportunities.AvailableSeats") %></label>
+                    <input id="opSeats" name="opSeats" type="number" min="1" max="500" step="1" inputmode="numeric"
+                        placeholder="5" value="<%: Posted("opSeats") %>" />
+                    <span class="oppf-error" data-error-for="Seats" <%= Hidden("Seats") %>><%: Error("Seats") %></span>
+                </div>
+
+                <div class="op-field<%= Invalid("Deadline") %>" data-field>
+                    <label for="opDeadline"><%: L.T("Company.Opportunities.ApplicationDeadline") %></label>
+                    <input id="opDeadline" name="opDeadline" type="date" min="<%: Today %>" value="<%: Posted("opDeadline") %>" />
+                    <span class="oppf-error" data-error-for="Deadline" <%= Hidden("Deadline") %>><%: Error("Deadline") %></span>
+                </div>
+
+                <div class="op-field<%= Invalid("Start") %>" data-field>
+                    <label for="opStart"><%: L.T("Company.Opportunities.StartDate") %></label>
+                    <input id="opStart" name="opStart" type="date" value="<%: Posted("opStart") %>" />
+                    <span class="oppf-error" data-error-for="Start" <%= Hidden("Start") %>><%: Error("Start") %></span>
+                </div>
+
+                <div class="op-field" data-field>
+                    <span class="oppf-label"><%: L.T("Company.ManageOpportunities.EndDate") %></span>
+                    <div class="oppf-auto" data-end-date><%: AutoEndText %></div>
+                    <span class="op-hint"><%: L.T("Company.OpportunityForm.EndAuto") %></span>
+                </div>
             </div>
 
-            <div class="op-field">
-                <label>
-                    <%: L.T("Company.Opportunities.EligibleCollege") %>
-                </label>
-                <input value="<%: CollegeName %>"
-                    readonly="readonly" />
-            </div>
+            <p class="oppf-duration" data-duration data-empty="<%: L.T("Company.OpportunityForm.DurationEmpty") %>" aria-live="polite"><%: DurationText %></p>
+        </section>
 
-            <div class="op-field">
-                <label for="opType">
-                    <%: L.T("Company.Opportunities.OpportunityType") %>
-                </label>
-                <select id="opType" name="opType">
-                    <option value="Internship">
-                        <%: L.T("Shared.Value.OpportunityType.Internship") %>
-                    </option>
-                </select>
-            </div>
-
-            <div class="op-field">
-                <label for="opLocation">
-                    <%: L.T("Company.Opportunities.Location") %>
-                </label>
-                <input id="opLocation"
-                    name="opLocation"
-                    maxlength="160"
-                    placeholder="<%: L.T("Company.Opportunities.EGAmmanJordan") %>"
-                    value="<%: Request.Form["opLocation"] %>" />
-            </div>
-
-            <div class="op-field">
-                <label for="opMode">
-                    <%: L.T("Company.Opportunities.TrainingMode") %>
-                </label>
-                <select id="opMode" name="opMode">
-                    <option value="On-site">
-                        <%: L.T("Shared.Value.TrainingMode.Onsite") %>
-                    </option>
-                    <option value="Hybrid">
-                        <%: L.T("Shared.Value.TrainingMode.Hybrid") %>
-                    </option>
-                    <option value="Remote">
-                        <%: L.T("Shared.Value.TrainingMode.Remote") %>
-                    </option>
-                </select>
-            </div>
-
-        </div>
-
-        <!-- Eligible Specializations -->
-        <div class="op-field">
-            <label>
-                <%: L.T("Company.Opportunities.EligibleSpecializations") %>
-            </label>
-
-            <div class="op-majors">
-                <% foreach (string major in Majors) { %>
-                    <label class="op-major">
-                        <input type="checkbox"
-                            name="opMajors"
-                            value="<%: major %>" />
-                        <%: major %>
-                    </label>
-                <% } %>
-            </div>
-
-            <span class="op-hint">
-                <%: L.T("Company.Opportunities.SelectTheUniversityMajorsEligibleTo") %>
-            </span>
-        </div>
-
-        <!-- Description -->
-        <div class="op-field">
-            <label for="opDescription">
-                <%: L.T("Company.Opportunities.Description") %>
-            </label>
-            <textarea id="opDescription"
-                name="opDescription"
-                maxlength="5000"
-                placeholder="<%: L.T("Company.Opportunities.DescribeTheRoleResponsibilitiesAndLearning") %>"><%: Request.Form["opDescription"] %></textarea>
-        </div>
-
-        <!-- Requirements -->
-        <div class="op-field">
-            <label for="opRequirements">
-                <%: L.T("Company.Opportunities.Requirements") %>
-            </label>
-            <textarea id="opRequirements"
-                name="opRequirements"
-                maxlength="3000"
-                placeholder="<%: L.T("Company.Opportunities.ListTheSkillsQualificationsAndRequirements") %>"><%: Request.Form["opRequirements"] %></textarea>
-        </div>
-
-        <!-- Technologies -->
-        <div class="op-field">
-            <label for="opTechnologies">
-                <%: L.T("Company.Opportunities.TechnologiesUsed") %>
-            </label>
-            <input id="opTechnologies"
-                name="opTechnologies"
-                maxlength="1000"
-                placeholder="<%: L.T("Company.Opportunities.EGCASPNETSQL") %>"
-                value="<%: Request.Form["opTechnologies"] %>" />
-        </div>
-
-        <!-- Seats, Duration, Dates -->
-        <div class="op-grid">
-
-            <!-- Available Seats -->
-            <div class="op-field">
-                <label for="opSeats">
-                    <%: L.T("Company.Opportunities.AvailableSeats") %>
-                </label>
-                <input id="opSeats"
-                    name="opSeats"
-                    type="number"
-                    min="1"
-                    max="10000"
-                    placeholder="e.g. 5"
-                    value="<%: Request.Form["opSeats"] %>" />
-            </div>
-
-            <!-- Duration -->
-            <div class="op-field">
-                <label for="opDuration">
-                    <%: L.T("Company.Opportunities.DurationWeeks") %>
-                </label>
-                <input id="opDuration"
-                    name="opDuration"
-                    type="number"
-                    min="1"
-                    max="13"
-                    step="1"
-                    placeholder="e.g. 12"
-                    value="<%: Request.Form["opDuration"] %>" />
-            </div>
-
-            <!-- Start Date: Left -->
-            <div class="op-field">
-                <label for="opStart">
-                    <%: L.T("Company.Opportunities.StartDate") %>
-                </label>
-                <input id="opStart"
-                    name="opStart"
-                    type="date"
-                    value="<%: Request.Form["opStart"] %>" />
-            </div>
-
-            <!-- End Date: Right -->
-            <div class="op-field">
-                <label for="opEnd">
-                    <%: L.T("Company.Opportunities.EndDate") %>
-                </label>
-                <input id="opEnd"
-                    name="opEnd"
-                    type="date"
-                    value="<%: Request.Form["opEnd"] %>" />
-            </div>
-
-            <!-- Last Date to Apply: Below Start and End -->
-            <div class="op-field">
-                <label for="opDeadline">
-                    <%: L.T("Company.Opportunities.LastDateToApply") %>
-                    <span class="op-required-star">*</span>
-                </label>
-                <input id="opDeadline"
-                    name="opDeadline"
-                    type="date"
-                    value="<%: Request.Form["opDeadline"] %>" />
-            </div>
-
-        </div>
-
-        <!-- Footer Buttons -->
         <div class="op-footer">
+            <span class="op-hint oppf-footer-hint"><%: L.T("Company.OpportunityForm.DraftHint") %></span>
 
-            <a class="op-btn op-btn-light"
-                href="ManageOpportunities.aspx">
+            <a class="op-btn op-btn-light" href="ManageOpportunities.aspx">
                 <%: L.T("Company.Opportunities.Cancel") %>
             </a>
 
-            <button class="op-btn op-btn-light"
-                type="submit"
-                name="opAction"
-                value="draft"
-                data-ui-action="save"
-                data-ui-validation="none"
+            <button class="op-btn op-btn-light" type="submit" name="opAction" value="draft"
+                data-opp-submit="draft"
+                data-ui-action="save" data-ui-validation="none"
                 data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
                 <%: L.T("Company.Opportunities.SaveDraft") %>
             </button>
 
-            <button class="op-btn"
-                type="submit"
-                name="opAction"
-                value="publish"
-                data-ui-action="publish"
-                data-ui-validation="none"
+            <button class="op-btn" type="submit" name="opAction" value="publish"
+                data-opp-submit="complete"
+                data-ui-action="publish" data-ui-validation="none"
                 data-loading-label="<%: L.T("Shared.I18n.Publishing") %>">
                 <%: L.T("Company.Opportunities.Publish") %>
             </button>
-
         </div>
-
     </div>
-
 </div>
 
-<script type="text/javascript">
-(function () {
-    function highlightRequiredStars() {
-        var labels = document.querySelectorAll(
-            '.op-page .op-field label'
-        );
-
-        Array.prototype.forEach.call(labels, function (label) {
-            Array.prototype.forEach.call(
-                Array.prototype.slice.call(label.childNodes),
-                function (node) {
-                    if (node.nodeType !== 3 ||
-                        node.nodeValue.indexOf('*') === -1) {
-                        return;
-                    }
-
-                    var parts = node.nodeValue.split('*');
-                    var fragment = document.createDocumentFragment();
-
-                    parts.forEach(function (part, index) {
-                        if (index > 0) {
-                            var star = document.createElement('span');
-                            star.className = 'op-required-star';
-                            star.textContent = '*';
-                            fragment.appendChild(star);
-                        }
-
-                        if (part) {
-                            fragment.appendChild(
-                                document.createTextNode(part)
-                            );
-                        }
-                    });
-
-                    node.parentNode.replaceChild(fragment, node);
-                }
-            );
-        });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener(
-            'DOMContentLoaded',
-            highlightRequiredStars
-        );
-    } else {
-        highlightRequiredStars();
-    }
-})();
-</script>
-
+<script src="<%: ResolveUrl("~/Assets/js/opportunity-form.js?v=20261026-2") %>"></script>
 </asp:Content>

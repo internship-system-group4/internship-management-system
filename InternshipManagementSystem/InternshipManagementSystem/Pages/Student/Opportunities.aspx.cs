@@ -101,6 +101,11 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     .Where(a => !string.IsNullOrWhiteSpace(a.OpportunityId))
                     .ToDictionary(a => a.OpportunityId, StringComparer.OrdinalIgnoreCase);
 
+                // A student with a confirmed internship cannot apply anywhere else.
+                if (new PlacementRepository().Exists(CurrentStudent.Id))
+                    Notice = L.T("Student.Apply.YouAlreadyHaveAConfirmedInternship") + " " +
+                             L.T("Student.Opportunities.YouCannotApplyToOtherInternships");
+
                 // R03: Only open opportunities that match the student's
                 // college and major can be displayed.
                 AvailableOpportunities = allOpportunities

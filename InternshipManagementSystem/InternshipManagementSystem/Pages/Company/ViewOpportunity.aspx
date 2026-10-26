@@ -343,7 +343,7 @@
                         <%: L.T("Company.ViewOpportunity.Duration") %>
                     </span>
                     <div class="vo-value">
-                        <%: Item.DurationWeeks %> <%: L.T("Company.ViewOpportunity.Weeks") %>
+                        <%: InternshipManagementSystem.Services.OpportunityFormRules.DurationLabel(Item.DurationWeeks) %>
                     </div>
                 </div>
 

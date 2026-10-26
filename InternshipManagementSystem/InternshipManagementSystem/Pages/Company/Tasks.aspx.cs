@@ -56,8 +56,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
 
             DateTime startDate;
+            // A start of "now" is fine: allow a few minutes for filling in the form.
             if (!TryParseTaskDateTime(txtStartDate.Text, out startDate) ||
-                startDate < DateTime.Now)
+                startDate < DateTime.Now.AddMinutes(-15))
             {
                 ShowMessage(L.T("Company.Tasks.EnterAStartDateAndTime"), false);
                 return;
@@ -189,7 +190,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"];
             if (string.IsNullOrWhiteSpace(bucket))
-                throw new InvalidOperationException(L.T("Company.I18n.FirebaseStorageisnotconfiguredAskthe"));
+            {
+                // No Firebase Storage bucket: keep the file on the server instead,
+                // the same way student submissions are kept.
+                string storageName;
+                string localUrl = Services.TaskAttachmentStorage.SaveLocal(file, companyId, out storageName);
+                objectName = LocalPrefix + companyId + "/" + storageName;
+                return localUrl;
+            }
 
             bucket = bucket.Trim();
             if (bucket.StartsWith("gs://", StringComparison.OrdinalIgnoreCase))
@@ -246,9 +254,18 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 "?alt=media&token=" + Uri.EscapeDataString(downloadToken);
         }
 
+        // Marks an attachment kept on the server (see TaskAttachmentStorage).
+        private const string LocalPrefix = "local:";
+
         private static void DeleteTaskAttachment(string objectName)
         {
             if (string.IsNullOrWhiteSpace(objectName)) return;
+            if (objectName.StartsWith(LocalPrefix, StringComparison.Ordinal))
+            {
+                string[] parts = objectName.Substring(LocalPrefix.Length).Split('/');
+                if (parts.Length == 2) Services.TaskAttachmentStorage.DeleteLocal(parts[0], parts[1]);
+                return;
+            }
             try
             {
                 string bucket = WebConfigurationManager.AppSettings["Firebase.StorageBucket"];

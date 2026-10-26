@@ -82,7 +82,7 @@
             <h3><%: SelectedOpportunity.Title %></h3><p class="application-company"><%: SelectedOpportunity.CompanyName %></p>
             <dl class="application-facts">
                 <div><dt><%: L.T("Student.Apply.Location") %></dt><dd><%: SelectedOpportunity.Location %></dd></div>
-                <div><dt><%: L.T("Student.Apply.Duration") %></dt><dd><%: SelectedOpportunity.DurationWeeks > 0 ? SelectedOpportunity.DurationWeeks + " weeks" : "Not specified" %></dd></div>
+                <div><dt><%: L.T("Student.Apply.Duration") %></dt><dd><%: InternshipManagementSystem.Services.OpportunityFormRules.DurationLabel(SelectedOpportunity.DurationWeeks) %></dd></div>
                 <div><dt><%: L.T("Student.Apply.Starts") %></dt><dd><%: Time.DisplayDate(SelectedOpportunity.StartDate) %></dd></div>
                 <div><dt><%: L.T("Student.Apply.ApplyBy") %></dt><dd><%: SelectedOpportunity.ApplicationDeadline > 0 ? Time.DisplayDate(SelectedOpportunity.ApplicationDeadline) : "No deadline set" %></dd></div>
                 <div><dt><%: L.T("Student.Apply.AvailableSeats") %></dt><dd><%: SelectedOpportunity.RemainingSeats %></dd></div>

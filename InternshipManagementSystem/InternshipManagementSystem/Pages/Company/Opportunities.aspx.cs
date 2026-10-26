@@ -1,17 +1,20 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.Script.Serialization;
 
 using InternshipManagementSystem.Common;
 using InternshipManagementSystem.Data;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.CompanyArea
 {
+    /// <summary>Add a new opportunity. The rules live in Services/OpportunityFormRules.cs
+    /// (shared with the Edit form). Training always lasts 3 months: the supervisor
+    /// picks the start date and the end date is set for them.</summary>
     public partial class Opportunities : CompanyPage
     {
         protected string Notice = "";
@@ -19,6 +22,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected string CollegeName = Constants.CollegeName;
         protected string[] Majors = Constants.Programs;
+
+        // Errors of the last post, shown under each field.
+        protected OpportunityFormRules Form = new OpportunityFormRules();
 
         // Additional fields required by the Figma design.
         // Inherit from the existing Opportunity model.
@@ -39,9 +45,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             string action = Request.Form["opAction"];
 
             if (action == "draft" || action == "publish")
-            {
                 SaveOpportunity(action == "publish");
-            }
         }
 
         private void SaveOpportunity(bool publish)
@@ -49,184 +53,26 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (CurrentSupervisor == null ||
                 string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
             {
-                ShowError(
-                    L.T("Company.Opportunities.YourAccountIsNotLinkedTo")
-                );
+                ShowError(L.T("Company.Opportunities.YourAccountIsNotLinkedTo"));
                 return;
             }
 
-            string title = Value("opTitle");
-            string department = Value("opDepartment");
-            string location = Value("opLocation");
-            string type = Value("opType");
-            string mode = Value("opMode");
-            string description = Value("opDescription");
-            string requirements = Value("opRequirements");
-            string technologies = Value("opTechnologies");
+            // Read and check every field at once (a draft only needs a title).
+            Form = OpportunityFormRules.Read(Request.Form, "op", Majors);
+            Form.Check(publish, true, 0);
 
-            string[] selectedMajors =
-                Request.Form.GetValues("opMajors") ?? new string[0];
-
-            List<string> eligibleMajors = selectedMajors
-                .Where(x => Majors.Contains(x))
-                .Distinct()
-                .ToList();
-
-            int seats;
-            int duration;
-
-            DateTime deadline;
-            DateTime start;
-            DateTime end;
-
-            bool validSeats = int.TryParse(
-                Request.Form["opSeats"],
-                out seats
-            );
-
-            bool validDuration = int.TryParse(
-                Request.Form["opDuration"],
-                out duration
-            );
-
-            // Last Date to Apply
-            bool validDeadline = DateTime.TryParseExact(
-                Request.Form["opDeadline"],
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out deadline
-            );
-
-            bool validStart = DateTime.TryParseExact(
-                Request.Form["opStart"],
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out start
-            );
-
-            bool validEnd = DateTime.TryParseExact(
-                Request.Form["opEnd"],
-                "yyyy-MM-dd",
-                CultureInfo.InvariantCulture,
-                DateTimeStyles.None,
-                out end
-            );
-
-            if (title.Length > 160 ||
-                department.Length > 120 ||
-                location.Length > 160 ||
-                description.Length > 5000 ||
-                requirements.Length > 3000 ||
-                technologies.Length > 1000)
+            if (!Form.IsValid)
             {
-                ShowError(
-                    L.T("Company.Opportunities.OneOrMoreFieldsAreToo")
-                );
-                return;
-            }
-
-            if (selectedMajors.Length != eligibleMajors.Count)
-            {
-                ShowError(
-                    L.T("Company.Opportunities.PleaseSelectValidSpecializations")
-                );
-                return;
-            }
-
-            // All required fields must be valid before publishing.
-            if (publish)
-            {
-                if (title.Length < 4 ||
-                    department.Length == 0 ||
-                    location.Length < 2 ||
-                    description.Length < 20 ||
-                    requirements.Length < 5 ||
-                    eligibleMajors.Count == 0 ||
-                    !validSeats ||
-                    seats < 1 ||
-                    seats > 10000 ||
-                    !validDuration ||
-                    duration < 1 ||
-                    duration > 13 ||
-                    !validDeadline ||
-                    !validStart ||
-                    !validEnd)
-                {
-                    ShowError(
-                        L.T("Company.Opportunities.PleaseCompleteAllRequiredFields")
-                    );
-                    return;
-                }
-            }
-
-            // Validate seats and duration for drafts and publishing.
-            if ((validSeats &&
-                 (seats < 1 || seats > 10000)) ||
-                (validDuration &&
-                 (duration < 1 || duration > 13)))
-            {
-                ShowError(
-                    L.T("Company.Opportunities.PleaseEnterValidSeatsAndDuration")
-                );
-                return;
-            }
-
-            // Start date must be after the last date to apply.
-            if (validDeadline &&
-                validStart &&
-                start.Date <= deadline.Date)
-            {
-                ShowError(
-                    L.T("Company.Opportunities.StartDateMustBeAfterThe")
-                );
-                return;
-            }
-
-            // End date must be after the start date.
-            if (validStart &&
-                validEnd &&
-                end.Date <= start.Date)
-            {
-                ShowError(
-                    L.T("Company.Opportunities.EndDateMustBeAfterStart")
-                );
-                return;
-            }
-
-            // The deadline cannot be in the past when publishing.
-            if (publish &&
-                deadline.Date < DateTime.Today)
-            {
-                ShowError(
-                    L.T("Company.Opportunities.ApplicationDeadlineCannotBeInThe")
-                );
-                return;
-            }
-
-            if (type != "Internship" ||
-                (mode != "On-site" &&
-                 mode != "Hybrid" &&
-                 mode != "Remote"))
-            {
-                ShowError(
-                    L.T("Company.Opportunities.PleaseSelectAValidOpportunityType")
-                );
+                ShowError(L.T("Company.OpportunityForm.FixErrors"));
                 return;
             }
 
             try
             {
                 string id = Guid.NewGuid().ToString("N");
-
-                CompanyOpportunity opportunity =
-                    new CompanyOpportunity();
-
+                var opportunity = new CompanyOpportunity();
                 opportunity.Id = id;
-
-                opportunity.CompanyId =
-                    CurrentSupervisor.CompanyId;
+                opportunity.CompanyId = CurrentSupervisor.CompanyId;
 
                 var company = new CompanyRepository().GetById(CurrentSupervisor.CompanyId);
                 opportunity.CompanyName = company != null && !string.IsNullOrWhiteSpace(company.Name)
@@ -235,107 +81,115 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     throw new InvalidOperationException("The linked company needs a name before creating an opportunity.");
                 opportunity.CreatedBySupervisorId = CurrentSupervisor.Id;
 
-                opportunity.Title = title;
-                opportunity.Location = location;
-                opportunity.Description = description;
-                opportunity.Requirements = requirements;
+                opportunity.Title = Form.Title;
+                opportunity.Department = Form.Department;
+                opportunity.Location = Form.Location;
+                opportunity.Description = Form.Description;
+                opportunity.Requirements = Form.Requirements;
+                opportunity.TechnologiesUsed = Form.Technologies;
+                opportunity.OpportunityType = "Internship";
+                opportunity.TrainingMode = Form.Mode;
 
                 opportunity.EligibleCollege = CollegeName;
-                opportunity.EligibleMajors = eligibleMajors;
+                opportunity.EligibleMajors = Form.Majors;
 
-                opportunity.TotalSeats =
-                    validSeats ? seats : 0;
-
+                opportunity.TotalSeats = Form.HasSeats ? Form.Seats : 0;
                 opportunity.FilledSeats = 0;
 
-                opportunity.DurationWeeks =
-                    validDuration ? duration : 0;
+                // Students can apply until the end of the last date to apply.
+                opportunity.ApplicationDeadline = Form.HasDeadline ? OpportunityFormRules.DayEndMs(Form.Deadline) : 0;
+                opportunity.StartDate = Form.HasStart ? OpportunityFormRules.DayStartMs(Form.Start) : 0;
+                opportunity.EndDate = Form.HasStart ? OpportunityFormRules.DayStartMs(Form.End) : 0;
+                opportunity.DurationWeeks = Form.DurationWeeks;
 
-                // Keep the existing Firebase property.
-                opportunity.ApplicationDeadline =
-                    validDeadline ? ToUnix(deadline) : 0;
+                opportunity.Status = publish ? OpportunityStatus.Open : OpportunityStatus.Draft;
+                opportunity.CreatedAt = DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
 
-                opportunity.StartDate =
-                    validStart ? ToUnix(start) : 0;
-
-                opportunity.EndDate =
-                    validEnd ? ToUnix(end) : 0;
-
-                opportunity.Department = department;
-                opportunity.OpportunityType = type;
-                opportunity.TrainingMode = mode;
-                opportunity.TechnologiesUsed = technologies;
-
-                opportunity.Status = publish
-                    ? OpportunityStatus.Open
-                    : OpportunityStatus.Draft;
-
-                opportunity.CreatedAt =
-                    DateTimeOffset.UtcNow.ToUnixTimeMilliseconds();
-
-                string path =
-                    Constants.Paths.Opportunities + "/" + id;
-
-                string etag;
-
-                FirebaseContext.GetWithEtag(
-                    path,
-                    out etag
-                );
-
-                bool saved = FirebaseContext.PutIfUnchanged(
-                    path,
-                    opportunity,
-                    etag
-                );
-
-                if (!saved)
+                string path = Constants.Paths.Opportunities + "/" + id;
+                if (!FirebaseContext.PutIfEmpty(path, opportunity))
                 {
-                    ShowError(
-                        L.T("Company.Opportunities.UnableToSavePleaseTryAgain")
-                    );
+                    ShowError(L.T("Company.Opportunities.UnableToSavePleaseTryAgain"));
                     return;
                 }
 
-                // Tell eligible students about a newly published opportunity.
                 if (publish)
                 {
-                    Services.NotificationService
-                        .OpportunityPublished(id);
+                    // Tell eligible students and update the public homepage preview.
+                    NotificationService.OpportunityPublished(id);
+                    new OpportunityRepository().SyncPublicPreview(id);
                 }
 
-                // Homepage visitors see a public summary of open opportunities.
-                if (publish)
-                    new OpportunityRepository().SyncPublicPreview(id);
-
-                Notice = publish
+                // Go back to the list (Post/Redirect/Get) so a refresh or a
+                // second click cannot post the same opportunity twice.
+                Session["OpportunitySavedNotice"] = publish
                     ? L.T("Company.Opportunities.OpportunityPublishedSuccessfully")
                     : L.T("Company.Opportunities.DraftSavedSuccessfully");
-
-                IsError = false;
+                Response.Redirect("ManageOpportunities.aspx", false);
+                Context.ApplicationInstance.CompleteRequest();
             }
             catch (Exception ex)
             {
-                System.Diagnostics.Trace.TraceError(
-                    "Create opportunity: " + ex
-                );
-
-                ShowError(
-                    L.T("Company.Opportunities.UnableToSaveTheOpportunityIn")
-                );
+                System.Diagnostics.Trace.TraceError("Create opportunity: " + ex);
+                ShowError(L.T("Company.Opportunities.UnableToSaveTheOpportunityIn"));
             }
         }
 
-        private string Value(string key)
+        // ---- Helpers used by the markup ----
+
+        protected string Today
         {
-            return (Request.Form[key] ?? "").Trim();
+            get { return DateTime.Today.ToString("yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture); }
         }
 
-        private static long ToUnix(DateTime date)
+        protected string MessagesJson
         {
-            return new DateTimeOffset(
-                date.Date
-            ).ToUnixTimeMilliseconds();
+            get { return new JavaScriptSerializer().Serialize(OpportunityFormRules.ScriptMessages()); }
+        }
+
+        /// <summary>The posted value, so nothing typed is lost when a check fails.</summary>
+        protected string Posted(string name)
+        {
+            return IsPostBack ? (Request.Form[name] ?? "").Trim() : "";
+        }
+
+        protected string Error(string field) { return Form.ErrorFor(field); }
+
+        protected string Invalid(string field)
+        {
+            return string.IsNullOrEmpty(Form.ErrorFor(field)) ? "" : " is-invalid";
+        }
+
+        protected string Hidden(string field)
+        {
+            return string.IsNullOrEmpty(Form.ErrorFor(field)) ? "hidden" : "";
+        }
+
+        protected string Selected(string name, string value, bool isDefault)
+        {
+            string posted = IsPostBack ? Request.Form[name] : null;
+            bool selected = string.IsNullOrEmpty(posted) ? isDefault : posted == value;
+            return selected ? "selected" : "";
+        }
+
+        protected string MajorChecked(string major)
+        {
+            string[] posted = IsPostBack ? Request.Form.GetValues("opMajors") : null;
+            return posted != null && posted.Contains(major) ? "checked" : "";
+        }
+
+        protected string AutoEndText
+        {
+            get { return Form.HasStart ? OpportunityFormRules.Show(Form.End) : "—"; }
+        }
+
+        protected string DurationText
+        {
+            get
+            {
+                return Form.HasStart
+                    ? L.F("Company.OpportunityForm.Duration", OpportunityFormRules.Show(Form.Start), OpportunityFormRules.Show(Form.End))
+                    : L.T("Company.OpportunityForm.DurationEmpty");
+            }
         }
 
         private void ShowError(string message)

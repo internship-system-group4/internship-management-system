@@ -52,3 +52,4 @@ tests/artifacts/
 
 # Private task files saved by the local Visual Studio site
 InternshipManagementSystem/InternshipManagementSystem/App_Data/TaskSubmissions/
+InternshipManagementSystem/InternshipManagementSystem/App_Data/TaskAttachments/

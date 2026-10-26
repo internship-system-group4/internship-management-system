@@ -861,4 +861,29 @@
   <data name="FinalEvaluation.CertificateSharedMessage" xml:space="preserve"><value>The trainee can open the approved certificate from their notifications.</value></data>
   <data name="FinalEvaluation.CertificateShareFailed" xml:space="preserve"><value>Could not share the certificate. Please try again.</value></data>
   <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>Evaluation criteria (UIMS project)</value></data>
+  <data name="OpportunityForm.TitleRequired" xml:space="preserve"><value>Enter a title of at least 3 characters.</value></data>
+  <data name="OpportunityForm.DepartmentRequired" xml:space="preserve"><value>Enter the department.</value></data>
+  <data name="OpportunityForm.LocationRequired" xml:space="preserve"><value>Enter where the training takes place.</value></data>
+  <data name="OpportunityForm.MajorsRequired" xml:space="preserve"><value>Choose at least one specialization.</value></data>
+  <data name="OpportunityForm.DescriptionRequired" xml:space="preserve"><value>Write a description of at least 20 characters.</value></data>
+  <data name="OpportunityForm.RequirementsRequired" xml:space="preserve"><value>Enter the requirements.</value></data>
+  <data name="OpportunityForm.SeatsInvalid" xml:space="preserve"><value>Enter a number of seats from 1 to 500.</value></data>
+  <data name="OpportunityForm.SeatsBelowFilled" xml:space="preserve"><value>Seats cannot be fewer than the {0} already filled.</value></data>
+  <data name="OpportunityForm.DeadlineRequired" xml:space="preserve"><value>Choose the last date to apply.</value></data>
+  <data name="OpportunityForm.DeadlinePast" xml:space="preserve"><value>The last date to apply cannot be in the past.</value></data>
+  <data name="OpportunityForm.StartRequired" xml:space="preserve"><value>Choose the training start date.</value></data>
+  <data name="OpportunityForm.StartBeforeDeadline" xml:space="preserve"><value>Training must start on or after the last date to apply ({0}).</value></data>
+  <data name="OpportunityForm.Duration" xml:space="preserve"><value>Training lasts 3 months: from {0} to {1}.</value></data>
+  <data name="OpportunityForm.DurationEmpty" xml:space="preserve"><value>Training always lasts 3 months. Choose a start date and the end date is set for you.</value></data>
+  <data name="OpportunityForm.EndAuto" xml:space="preserve"><value>Set automatically: start date + 3 months.</value></data>
+  <data name="OpportunityForm.FixErrors" xml:space="preserve"><value>Some fields need attention. Please check the highlighted fields below.</value></data>
+  <data name="OpportunityForm.TooLong" xml:space="preserve"><value>This text is too long.</value></data>
+  <data name="OpportunityForm.ModeRequired" xml:space="preserve"><value>Choose a training mode.</value></data>
+  <data name="OpportunityForm.StepBasics" xml:space="preserve"><value>Basic details</value></data>
+  <data name="OpportunityForm.StepWho" xml:space="preserve"><value>Who can apply</value></data>
+  <data name="OpportunityForm.StepRole" xml:space="preserve"><value>About the role</value></data>
+  <data name="OpportunityForm.StepDates" xml:space="preserve"><value>Seats and dates</value></data>
+  <data name="OpportunityForm.DatesHelp" xml:space="preserve"><value>Students apply until the last date to apply. Training can start on that day or later and always lasts 3 months.</value></data>
+  <data name="OpportunityForm.DescriptionHint" xml:space="preserve"><value>At least 20 characters.</value></data>
+  <data name="OpportunityForm.DraftHint" xml:space="preserve"><value>A draft needs only a title. Publishing checks every field.</value></data>
 </root>

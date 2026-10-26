@@ -725,4 +725,7 @@
   <data name="SupervisorAccount.PersonalHelp" xml:space="preserve"><value>Your contact information and profile details.</value></data>
   <data name="SupervisorAccount.OrganizationTitle" xml:space="preserve"><value>Organization &amp; association</value></data>
   <data name="SupervisorAccount.OrganizationHelp" xml:space="preserve"><value>Official account details managed by your university.</value></data>
+  <data name="Duration.ThreeMonths" xml:space="preserve"><value>3 months</value></data>
+  <data name="Duration.Weeks" xml:space="preserve"><value>{0} weeks</value></data>
+  <data name="Duration.NotSpecified" xml:space="preserve"><value>Not specified</value></data>
 </root>

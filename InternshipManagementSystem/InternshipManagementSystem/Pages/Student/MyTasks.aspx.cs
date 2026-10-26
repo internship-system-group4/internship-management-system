@@ -222,8 +222,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
             litDeadline.Text = task.Deadline > 0 ? FormatDate(task.Deadline) : L.T("Student.MyTasks.NotSet");
 
             Uri attachment;
-            lnkTaskAttachment.Visible = Uri.TryCreate(task.AttachmentUrl, UriKind.Absolute, out attachment) &&
-                attachment.Scheme == Uri.UriSchemeHttps && attachment.Host == "firebasestorage.googleapis.com";
+            // Firebase Storage link, or a file kept on the server (TaskAttachmentStorage).
+            lnkTaskAttachment.Visible = (Uri.TryCreate(task.AttachmentUrl, UriKind.Absolute, out attachment) &&
+                attachment.Scheme == Uri.UriSchemeHttps && attachment.Host == "firebasestorage.googleapis.com") ||
+                Services.TaskAttachmentStorage.IsLocalUrl(task.AttachmentUrl);
             if (lnkTaskAttachment.Visible)
             {
                 lnkTaskAttachment.NavigateUrl = task.AttachmentUrl;

@@ -2153,3 +2153,15 @@ ar: غير متاح
 Title.Pages.Notifications.Inbox
 en: Notifications
 ar: الإشعارات
+
+Duration.ThreeMonths
+en: 3 months
+ar: 3 أشهر
+
+Duration.Weeks
+en: {0} weeks
+ar: {0} أسابيع
+
+Duration.NotSpecified
+en: Not specified
+ar: غير محدد

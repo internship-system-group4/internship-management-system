@@ -529,8 +529,7 @@
                             </span>
 
                             <span class="ex-detail-value">
-                                <%: opportunity.DurationWeeks %>
-                                <%: L.T("Student.Opportunities.Weeks") %>
+                                <%: InternshipManagementSystem.Services.OpportunityFormRules.DurationLabel(opportunity.DurationWeeks) %>
                             </span>
                         </div>
 

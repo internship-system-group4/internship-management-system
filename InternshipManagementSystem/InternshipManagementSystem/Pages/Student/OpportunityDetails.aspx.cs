@@ -78,9 +78,16 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 ExistingApplication = new ApplicationRepository().GetByStudent(CurrentStudent.Id)
                     .FirstOrDefault(a => string.Equals(a.OpportunityId, opportunityId,
                         StringComparison.OrdinalIgnoreCase));
-                CanApply = SelectedOpportunity.IsOpenForApplications && ExistingApplication == null;
+                // A student with a confirmed internship cannot apply anywhere else.
+                bool hasPlacement = new PlacementRepository().Exists(CurrentStudent.Id);
+                CanApply = SelectedOpportunity.IsOpenForApplications && ExistingApplication == null && !hasPlacement;
 
-                if (CanApply || ExistingApplication != null)
+                if (hasPlacement && ExistingApplication == null)
+                {
+                    Notice = L.T("Student.Apply.YouAlreadyHaveAConfirmedInternship") + " " +
+                             L.T("Student.Opportunities.YouCannotApplyToOtherInternships");
+                }
+                else if (CanApply || ExistingApplication != null)
                 {
                     // Osama's Apply.aspx expects opportunityId.
                     ApplyUrl = "Apply.aspx?opportunityId=" +
