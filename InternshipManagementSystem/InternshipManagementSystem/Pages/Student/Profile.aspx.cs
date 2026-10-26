@@ -57,7 +57,11 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         private const int MaxPhotoSize = 2 * 1024 * 1024;
 
-        private Student student;
+        protected Student student;
+
+        // True right after a successful save; the page shows an animated "Saved" toast.
+        protected bool JustSaved = false;
+        protected int HoursPercent = 0;
         private ExtraProfile extra = new ExtraProfile();
         private CvPortfolioData documents = new CvPortfolioData();
 
@@ -161,8 +165,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 if (!IsPostBack && Request.QueryString["saved"] == "1")
                 {
-                    Notice = L.T("Student.Profile.YourProfileHasBeenUpdatedSuccessfully");
-                    NoticeIsError = false;
+                    JustSaved = true;
                 }
 
                 DisplayProfile();
@@ -226,6 +229,9 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
             RequiredHoursText = student.RequiredHours.ToString();
             ApprovedHoursText = student.ApprovedHours.ToString();
+            HoursPercent = student.RequiredHours > 0
+                ? (int)Math.Min(100, Math.Round(student.ApprovedHours * 100.0 / student.RequiredHours))
+                : 0;
 
             AgeText = extra.Age > 0
                 ? extra.Age.ToString()

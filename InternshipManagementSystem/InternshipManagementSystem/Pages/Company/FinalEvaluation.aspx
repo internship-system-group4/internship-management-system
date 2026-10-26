@@ -306,10 +306,10 @@
                   <i class="bi bi-file-earmark-pdf me-1"></i> Download as PDF
               </button>
               
-              <!-- الإرسال الفعلي لقاعدة البيانات عبر الباك إند -->
-              <asp:LinkButton ID="btnSendCert" runat="server" CssClass="btn btn-outline-primary px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;" OnClick="BtnSendEvaluation_Click">
-                  <i class="bi bi-send-check me-1"></i> Send to Trainee
+              <asp:LinkButton ID="btnSendCert" runat="server" CssClass="btn btn-outline-primary px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;" OnClick="BtnSendCertificate_Click" CausesValidation="false">
+                  <i class="bi bi-send-check me-1"></i><%: L.T("Company.FinalEvaluation.SendApprovedCertificate") %>
               </asp:LinkButton>
+              <small class="text-muted w-100 text-center"><%: L.T("Company.FinalEvaluation.CertificateRequiresApproval") %></small>
               
               <button type="button" class="btn btn-primary px-3 rounded-pill fw-semibold" style="background-color:var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" onclick="window.print()">
                   <i class="bi bi-printer me-1"></i> Print

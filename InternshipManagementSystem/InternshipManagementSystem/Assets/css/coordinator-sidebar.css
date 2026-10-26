@@ -1,39 +1,39 @@
-/* Coordinator navigation: a compact, calm rail that keeps every destination visible. */
-body.coordinator-portal .uims-sidebar {
+/* Staff navigation (coordinator, company supervisor, academic supervisor): a compact, calm rail that keeps every destination visible. */
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar {
     --sidebar-width: 232px;
     padding: 12px 10px 10px;
     background: var(--ui-nav);
 }
-html.student-nav-ready body.coordinator-portal .uims-sidebar { --sidebar-width: 64px; }
-html.student-nav-ready body.coordinator-portal .uims-sidebar[data-expanded=true] { --sidebar-width: 232px; }
+html.student-nav-ready body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar { --sidebar-width: 64px; }
+html.student-nav-ready body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar[data-expanded=true] { --sidebar-width: 232px; }
 
-body.coordinator-portal .uims-sidebar-heading { gap: 4px; }
-body.coordinator-portal .uims-sidebar .uims-sidebar-brand {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-heading { gap: 4px; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar .uims-sidebar-brand {
     min-height: 48px;
     gap: 9px;
     padding: 0 6px;
 }
-body.coordinator-portal .uims-sidebar-brand img { width: 30px; max-height: 34px; }
-body.coordinator-portal .uims-sidebar-brand strong { font-size: 16px; line-height: 1.2; }
-body.coordinator-portal .uims-sidebar-brand small {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-brand img { width: 30px; max-height: 34px; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-brand strong { font-size: 16px; line-height: 1.2; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-brand small {
     max-width: 145px;
     margin-top: 1px;
     font-size: 10px;
     line-height: 1.3;
 }
-body.coordinator-portal .uims-sidebar-heading .uims-sidebar-pin {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-heading .uims-sidebar-pin {
     flex-basis: 30px;
     width: 30px;
     min-height: 32px;
     border-radius: 8px;
 }
 
-body.coordinator-portal .uims-sidebar-context {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-context {
     margin: 3px 6px 9px;
     padding: 6px 7px 9px;
     border-bottom: 1px solid var(--ui-border);
 }
-body.coordinator-portal .uims-sidebar-context > small {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-context > small {
     margin: 0;
     color: var(--ui-nav-muted);
     font-size: 10px;
@@ -42,7 +42,7 @@ body.coordinator-portal .uims-sidebar-context > small {
     line-height: 1.4;
     text-transform: uppercase;
 }
-body.coordinator-portal .uims-sidebar-context .uims-page-title {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-context .uims-page-title {
     position: absolute;
     width: 1px;
     height: 1px;
@@ -54,14 +54,15 @@ body.coordinator-portal .uims-sidebar-context .uims-page-title {
     border: 0;
 }
 
-body.coordinator-portal .uims-side-nav > li:nth-child(2),
-body.coordinator-portal .uims-side-nav > li:nth-child(6),
-body.coordinator-portal .uims-side-nav > li:nth-child(8) {
+/* Group dividers: overview | people/places | work and reviews | messages and meetings. */
+body.coordinator-portal .uims-side-nav > li:is(:nth-child(2),:nth-child(6),:nth-child(8)),
+body.company-portal .uims-side-nav > li:is(:nth-child(2),:nth-child(5),:nth-child(8)),
+body.academic-portal .uims-side-nav > li:is(:nth-child(2),:nth-child(4)) {
     margin-top: 8px;
     padding-top: 8px;
     border-top: 1px solid var(--ui-border);
 }
-body.coordinator-portal .uims-side-link {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-side-link {
     min-height: 40px;
     gap: 10px;
     margin: 1px 0;
@@ -71,22 +72,22 @@ body.coordinator-portal .uims-side-link {
     font-weight: 500;
     line-height: 1.3;
 }
-body.coordinator-portal .uims-side-link svg {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar .uims-side-link svg {
     width: 18px;
     height: 18px;
     stroke-width: 1.8;
 }
-body.coordinator-portal .uims-side-link .uims-sidebar-label {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-side-link .uims-sidebar-label {
     white-space: normal;
     line-height: 1.3;
 }
-body.coordinator-portal .uims-side-link:hover { background: var(--ui-neutral-soft); }
-body.coordinator-portal .uims-side-link[aria-current=page] {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-side-link:hover { background: var(--ui-neutral-soft); }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-side-link[aria-current=page] {
     background: var(--ui-primary-soft);
     color: var(--ui-primary-text,var(--ui-primary));
     font-weight: 700;
 }
-body.coordinator-portal .uims-side-link[aria-current=page]::before {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-side-link[aria-current=page]::before {
     content: '';
     position: absolute;
     inset-block: 10px;
@@ -95,53 +96,53 @@ body.coordinator-portal .uims-side-link[aria-current=page]::before {
     border-radius: 3px;
     background: currentColor;
 }
-body.coordinator-portal .uims-side-link:focus-visible {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-side-link:focus-visible {
     outline: 3px solid var(--ui-focus);
     outline-offset: 2px;
 }
 
-body.coordinator-portal .uims-sidebar-tools {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-tools {
     min-height: 46px;
     margin-top: 7px;
     padding: 2px 5px;
     border-radius: 10px;
 }
-body.coordinator-portal .uims-sidebar-tools :is(.uims-lang-control,.uims-theme-button,.uims-notify-button),
-body.coordinator-portal .uims-sidebar-tools .notice-bell summary {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-tools :is(.uims-lang-control,.uims-theme-button,.uims-notify-button),
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-tools .notice-bell summary {
     width: 38px;
     height: 38px;
 }
-body.coordinator-portal .uims-sidebar-account {
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-account {
     min-height: 59px;
     gap: 8px;
     margin-top: 7px;
     padding: 7px 9px;
     border-radius: 10px;
 }
-body.coordinator-portal .uims-sidebar-avatar { width: 30px; height: 30px; }
-body.coordinator-portal .uims-sidebar .uims-sidebar-account-meta strong { font-size: 12px; line-height: 1.3; }
-body.coordinator-portal .uims-sidebar .uims-sidebar-account-meta small { margin-top: 1px; font-size: 11px; line-height: 1.25; }
-body.coordinator-portal .uims-sidebar .uims-sidebar-account-meta > span { display: none; }
-body.coordinator-portal .student-logout { padding-top: 2px; }
-body.coordinator-portal .student-logout a { min-height: 36px; padding: 6px 10px; font-size: 12px; }
-body.coordinator-portal .student-logout svg { width: 18px; height: 18px; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-avatar { width: 30px; height: 30px; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar .uims-sidebar-account-meta strong { font-size: 12px; line-height: 1.3; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar .uims-sidebar-account-meta small { margin-top: 1px; font-size: 11px; line-height: 1.25; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar .uims-sidebar-account-meta > span { display: none; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .student-logout { padding-top: 2px; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .student-logout a { min-height: 36px; padding: 6px 10px; font-size: 12px; }
+body:is(.coordinator-portal,.company-portal,.academic-portal) .student-logout svg { width: 18px; height: 18px; }
 
 @media (min-width: 901px) {
-    html.student-nav-ready body.coordinator-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-brand { min-height: 38px; }
-    html.student-nav-ready body.coordinator-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-tools { padding-inline: 0; }
-    html.student-nav-ready body.coordinator-portal .uims-sidebar:not([data-expanded=true]) .uims-side-nav > li { border-color: transparent; }
+    html.student-nav-ready body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar:not([data-expanded=true]) .uims-sidebar-brand { min-height: 38px; }
+    html.student-nav-ready body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar:not([data-expanded=true]) .uims-sidebar-tools { padding-inline: 0; }
+    html.student-nav-ready body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar:not([data-expanded=true]) .uims-side-nav > li { border-color: transparent; }
 }
 @media (max-width: 900px) {
-    html.student-nav-ready body.coordinator-portal .uims-sidebar {
+    html.student-nav-ready body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar {
         width: min(296px,calc(100% - 24px));
         padding: 12px 10px 10px;
     }
-    body.coordinator-portal .uims-sidebar-heading { margin-bottom: 0; }
-    body.coordinator-portal .uims-sidebar .uims-sidebar-brand { min-height: 48px; }
+    body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-heading { margin-bottom: 0; }
+    body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar .uims-sidebar-brand { min-height: 48px; }
 }
 @media (max-height: 640px) {
-    body.coordinator-portal .uims-sidebar-context { margin-bottom: 4px; padding-bottom: 5px; }
-    body.coordinator-portal .uims-side-nav > li:nth-child(2),
-    body.coordinator-portal .uims-side-nav > li:nth-child(6),
-    body.coordinator-portal .uims-side-nav > li:nth-child(8) { margin-top: 4px; padding-top: 4px; }
+    body:is(.coordinator-portal,.company-portal,.academic-portal) .uims-sidebar-context { margin-bottom: 4px; padding-bottom: 5px; }
+    body.coordinator-portal .uims-side-nav > li:is(:nth-child(2),:nth-child(6),:nth-child(8)),
+    body.company-portal .uims-side-nav > li:is(:nth-child(2),:nth-child(5),:nth-child(8)),
+    body.academic-portal .uims-side-nav > li:is(:nth-child(2),:nth-child(4)) { margin-top: 4px; padding-top: 4px; }
 }

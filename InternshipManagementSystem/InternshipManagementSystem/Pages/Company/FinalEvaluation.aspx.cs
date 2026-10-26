@@ -58,7 +58,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         protected void DdlTrainees_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearTraineeCard(); ClearFormFields();
-            btnSaveDraft.Enabled = true; btnSendCert.Enabled = true;
+            btnSaveDraft.Enabled = true;
             if (string.IsNullOrEmpty(ddlTrainees.SelectedValue)) return;
             try
             {
@@ -97,7 +97,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     SelectValue(ddlRecommendation, evaluation.Recommendation);
                     if (evaluation.IsSubmitted)
                     {
-                        btnSaveDraft.Enabled = false; btnSendCert.Enabled = false;
+                        btnSaveDraft.Enabled = false;
                         litStatusBadge.Text = "<span class=\"badge bg-success\">" + Server.HtmlEncode(L.T("Company.FinalEvaluation.SubmittedStatus")) + "</span>";
                         return;
                     }
@@ -187,6 +187,31 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected void BtnSaveDraft_Click(object sender, EventArgs e) { SaveEvaluation(false); }
         protected void BtnSendEvaluation_Click(object sender, EventArgs e) { SaveEvaluation(true); }
+
+        protected void BtnSendCertificate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                Placement placement = SelectedPlacement();
+                CompletionRecord completion = new CompletionRepository().GetByPlacement(placement.Id);
+                if (completion == null || completion.StudentId != placement.StudentId ||
+                    !completion.IsReleasedToStudent() || string.IsNullOrWhiteSpace(completion.CertificateFileUrl))
+                    throw new InvalidOperationException(L.T("Company.FinalEvaluation.CertificateAwaitingApproval"));
+
+                Services.NotificationService.ApprovedCertificateShared(completion);
+                ShowPopupMessage(L.T("Company.FinalEvaluation.CertificateSharedTitle"),
+                    L.T("Company.FinalEvaluation.CertificateSharedMessage"), true);
+            }
+            catch (InvalidOperationException ex)
+            {
+                ShowPopupMessage(L.T("Shared.Popup.Error"), ex.Message, false);
+            }
+            catch (Exception)
+            {
+                ShowPopupMessage(L.T("Shared.Popup.Error"),
+                    L.T("Company.FinalEvaluation.CertificateShareFailed"), false);
+            }
+        }
 
         private void ShowPopupMessage(string title, string message, bool isSuccess)
         {

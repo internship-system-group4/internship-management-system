@@ -41,10 +41,8 @@ namespace InternshipManagementSystem.Pages.AccountArea
             Person coordinator = users.GetPerson(record.ReviewedByCoordinatorId);
             string coordinatorName = coordinator == null ? "Internship Coordinator" : coordinator.FullName;
 
-            // The certificate is printed by the coordinator (card A14); the
-            // student receives the completion report.
             bool certificate = Request.QueryString["doc"] == "certificate";
-            if (certificate && CurrentUser.Role != UserRole.Coordinator)
+            if (certificate && string.IsNullOrWhiteSpace(record.CertificateFileUrl))
             {
                 Fail(404, L.T("Account.CompletionReport.ThisReportIsNotAvailable"));
                 return;

@@ -760,4 +760,10 @@
   <data name="Progress.HoursReportInvalid" xml:space="preserve"><value>Check the date is within your placement, the hours are 1–24, and the description is filled in.</value></data>
   <data name="Progress.HoursReportFailed" xml:space="preserve"><value>The hours could not be saved. Please try again.</value></data>
   <data name="Progress.HoursReportSaved" xml:space="preserve"><value>Hours recorded and awaiting academic supervisor approval.</value></data>
+  <data name="Profile.SaveChanges" xml:space="preserve"><value>Save changes</value></data>
+  <data name="Profile.Saved" xml:space="preserve"><value>Saved</value></data>
+  <data name="Profile.AllChangesSaved" xml:space="preserve"><value>All changes saved</value></data>
+  <data name="Profile.UnsavedChanges" xml:space="preserve"><value>You have unsaved changes</value></data>
+  <data name="Profile.ChangePhoto" xml:space="preserve"><value>Change photo</value></data>
+  <data name="Profile.TrainingHours" xml:space="preserve"><value>Training hours</value></data>
 </root>

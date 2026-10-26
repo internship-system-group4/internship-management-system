@@ -124,7 +124,7 @@ class CompletionReviewSmoke
         db["companies"]=new Dictionary<string,object>{{"company",new Company {Id="company",Name="Fixture & Company"}}};
         db["opportunities"]=new Dictionary<string,object>();
         db["applications"]=new Dictionary<string,object>();
-        db["users"]=new Dictionary<string,object>{{"student",e.Student},{"coord",actor},{"academic",new AcademicSupervisor {Id="academic",FullName="Fixture Academic"}},{"companyUser",new CompanySupervisor {Id="companyUser",CompanyId="company",FullName="Fixture Company Supervisor"}}};
+        db["users"]=new Dictionary<string,object>{{"student",e.Student},{"other",new Student {Id="other",FullName="Other fixture student"}},{"coord",actor},{"academic",new AcademicSupervisor {Id="academic",FullName="Fixture Academic"}},{"companyUser",new CompanySupervisor {Id="companyUser",CompanyId="company",FullName="Fixture Company Supervisor"}}};
         db["placements"]=new Dictionary<string,object>{{"student",e.Placement}};
         db["completions"]=new Dictionary<string,object>();
         db["companyFinalEvaluations"]=new Dictionary<string,object>{{"ce",e.Company}};
@@ -134,6 +134,7 @@ class CompletionReviewSmoke
         db["submissions"]=new Dictionary<string,object>{{"submission",e.Submissions[0]}};
         db["trainingHours"]=new Dictionary<string,object>{{"hours",e.Hours[0]}};
         db["academicComments"]=new Dictionary<string,object>();db["studentGroups"]=new Dictionary<string,object>();
+        db["notifications"]=new Dictionary<string,object>();
     }
     static Dictionary<string,object> Map(object value) { return Json.ToMap(Json.Serialize(value)); }
     static CompletionRecord Stored() { return Json.Deserialize<CompletionRecord>(Json.Serialize(db["completions"]["student"])); }
@@ -159,6 +160,10 @@ class CompletionReviewSmoke
                     string leaf=parts[parts.Length-1];
                     if(request[0]=="GET") {object value;if(parent.TryGetValue(leaf,out value))result=Json.Serialize(value);}
                     else {parent[leaf]=Json.Deserialize<object>(body);collection[parts[1]]=rootMap;db[parts[0]]=collection;versions[path]=v+1;result=body;}
+                } else if(request[0]=="POST"&&parts.Length==2) {
+                    object existing;var recipient=collection.TryGetValue(parts[1],out existing)?Map(existing):new Dictionary<string,object>();
+                    string key="notice-"+(recipient.Count+1);recipient[key]=Json.Deserialize<object>(body);
+                    collection[parts[1]]=recipient;db[parts[0]]=collection;result=Json.Serialize(new Dictionary<string,string>{{"name",key}});
                 } else if(request[0]=="PATCH"&&parts.Length==1) {
                     foreach(var update in Json.ToMap(body)) {
                         string[] keys=update.Key.Split('/');
@@ -210,6 +215,7 @@ class CompletionReviewSmoke
         using(var denied=Request(root,company,review))Check(denied.StatusCode==HttpStatusCode.Redirect,"Company accessed coordinator review");
         string companyPage="/Pages/Company/FinalEvaluation.aspx?id=student";
         string html=Body(Request(root,company,companyPage));
+        Check(html.Contains("Send approved certificate to trainee"),"Company certificate sharing action did not render");
         Check(html.Contains("Final evaluation submitted")&&!html.Contains("CONFIDENTIAL ACADEMIC"),"Company submitted evaluation state or confidentiality failed");
         var academic=Login(root,"academic");
         Check(Body(Request(root,academic,"/Pages/Academic/FinalEvaluation.aspx?id=student")).Contains("CONFIDENTIAL COMPANY"),"Assigned academic cannot see company evidence");
@@ -218,12 +224,16 @@ class CompletionReviewSmoke
         // Submit the actual current company form. It must not finalize the placement.
         db["companyFinalEvaluations"].Clear();db["academicFinalEvaluations"].Clear();
         html=Body(Request(root,company,companyPage));
-        var scores=new Dictionary<string,string>{{"ddlTrainees","student"},{"txtTechSkills","36"},{"txtWorkQuality","22"},{"txtProfessionalism","18"},{"txtCommunication","14"},{"txtActualHours","160"},{"ddlPerformance","Excellent"},{"ddlRecommendation","Recommend"},{"txtStrengths","Synthetic strengths"},{"txtImprovements","Synthetic improvements"},{"__EVENTTARGET","ctl00$MainContent$btnSendCert"}};
+        var scores=new Dictionary<string,string>{{"ddlTrainees","student"},{"txtTechSkills","36"},{"txtWorkQuality","22"},{"txtProfessionalism","18"},{"txtCommunication","14"},{"txtActualHours","160"},{"ddlPerformance","Excellent"},{"ddlRecommendation","Recommend"},{"txtStrengths","Synthetic strengths"},{"txtImprovements","Synthetic improvements"},{"__EVENTTARGET","ctl00$MainContent$btnSendReport"}};
         string saved=PostPage(root,company,companyPage,html,"noop",scores);
         var companyEvaluation=Json.Deserialize<FinalCompanyEvaluation>(Json.Serialize(db["companyFinalEvaluations"]["student"]));
         Check(companyEvaluation.IsSubmitted&&companyEvaluation.TotalScore==90&&companyEvaluation.MaxScore==100&&companyEvaluation.SupervisorId=="companyUser","Company form did not save confidential evaluation");
         Check(((Placement)db["placements"]["student"]).Status!=PlacementStatus.Completed,"Company evaluation bypassed coordinator completion");
         Check(saved.Contains("Evaluation submitted"),"Company form did not acknowledge submission");
+        html=Body(Request(root,company,companyPage));
+        string tooEarly=PostPage(root,company,companyPage,html,"noop",new Dictionary<string,string>{{"ddlTrainees","student"},{"__EVENTTARGET","ctl00$MainContent$btnSendCert"}});
+        Check(tooEarly.Contains("approved certificate is not available yet")&&!db["notifications"].ContainsKey("student"),
+            "Certificate was shared before coordinator approval");
         string academicPage="/Pages/Academic/FinalEvaluation.aspx?id=student";
         html=Body(Request(root,academic,academicPage));
         saved=PostPage(root,academic,academicPage,html,"btnSubmitEvaluation",new Dictionary<string,string>{{"hfSelectedStudentId","student"},{"ddlPassFail","100"},{"txtAcademicComments","Synthetic academic comments"}});
@@ -253,8 +263,18 @@ class CompletionReviewSmoke
         Check(approved.RequiredHours==160&&approved.ApprovedHours==160,"Approval did not use approved source hours and minimum");
         PostPage(root,coordinator,review,stale,"btnApprove");
         Check(Stored().ApprovedAt==approved.ApprovedAt,"Duplicate approval replaced the decision");
+        html=Body(Request(root,company,companyPage));
+        string shared=PostPage(root,company,companyPage,html,"noop",new Dictionary<string,string>{{"ddlTrainees","student"},{"__EVENTTARGET","ctl00$MainContent$btnSendCert"}});
+        Check(shared.Contains("Certificate shared"),"Company could not share the approved certificate");
+        var notices=Map(db["notifications"]["student"]);
+        Check(notices.Values.Select(Map).Any(n=>Convert.ToString(n["Key"])=="ApprovedCertificateShared"&&
+            Convert.ToString(n["Link"]).Contains("doc=certificate")),"Trainee did not receive the certificate link");
         foreach(string route in new[]{"/Pages/Account/CompletionReport.aspx?id=student","/Pages/Account/CompletionReport.aspx?id=student&doc=certificate"})
-            using(var pdf=Request(root,route.Contains("doc=certificate")?coordinator:student,route))Check(pdf.ContentType=="application/pdf"&&pdf.Headers["Cache-Control"].Contains("no-store"),"Protected PDF was missing or cacheable");
+            using(var pdf=Request(root,student,route))Check(pdf.ContentType=="application/pdf"&&pdf.Headers["Cache-Control"].Contains("no-store"),"Protected PDF was missing or cacheable");
+        bool otherDenied=false;
+        try { Body(Request(root,Login(root,"other"),"/Pages/Account/CompletionReport.aspx?id=student&doc=certificate")); }
+        catch(Exception ex) { otherDenied=ex.Message.Contains("not available"); }
+        Check(otherDenied,"Another student accessed the approved certificate");
         File.WriteAllText(Path.Combine(output,"review-approved.html"),html);
     }
     static int Main(string[] args)

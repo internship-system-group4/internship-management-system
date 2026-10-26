@@ -30,7 +30,7 @@
 <link rel="stylesheet" href="~/Assets/css/interface.css?v=20261023-5" runat="server" />
 <link rel="stylesheet" href="~/Assets/css/reference-analytics.css?v=20261024-perf" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/i18n.css?v=20261024-v4" runat="server" />
-    <link rel="stylesheet" href="~/Assets/css/coordinator-sidebar.css?v=20261024-1" runat="server" />
+    <link rel="stylesheet" href="~/Assets/css/coordinator-sidebar.css?v=20261026-staff-1" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/coordinator-ui.css?v=20261024-2" runat="server" />
     <link rel="stylesheet" href="~/Assets/css/coordinator-pages.css?v=20261025-2" runat="server" />
     <%-- Script text from App_GlobalResources/Shared (Js.*); uimsT('Key', a, b) fills {0}, {1}. Defined before any script runs. --%>

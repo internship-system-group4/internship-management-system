@@ -62,6 +62,7 @@ Existing `Notification` entries with `Message` and `Link` remain readable. New e
 | Training hours approved or rejected | Student |
 | Public academic feedback added or updated | Student; hidden comments produce no student notice |
 | Company final evaluation submitted | Academic supervisor and active coordinators |
+| Approved completion certificate shared by the assigned company supervisor | Trainee; link opens the protected PDF after coordinator approval |
 | Academic final evaluation submitted | Active coordinators |
 | Completion awaits a final evaluation | Relevant assigned supervisor |
 | Completion enters coordinator review | Active coordinators |

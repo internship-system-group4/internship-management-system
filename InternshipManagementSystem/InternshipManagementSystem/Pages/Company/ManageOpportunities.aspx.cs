@@ -388,6 +388,19 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             return Editing.EligibleMajors.Contains(major);
         }
 
+        protected string StatusClass(Opportunity item)
+        {
+            if (item == null)
+                return "is-draft";
+
+            if (item.Status == OpportunityStatus.Open)
+                return "is-open";
+
+            return item.Status == OpportunityStatus.Closed
+                ? "is-inactive"
+                : "is-draft";
+        }
+
         protected string StatusText(Opportunity item)
         {
             if (item.Status == OpportunityStatus.Closed)

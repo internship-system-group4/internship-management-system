@@ -90,6 +90,18 @@
   <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>Choose a student from the list to review their profile, documents, and application.</value></data>
   <data name="Applications.ShowingApplications" xml:space="preserve"><value>Showing {0} of {1} applications</value></data>
   <data name="Applications.SoftSkills" xml:space="preserve"><value>Soft skills</value></data>
+  <data name="Applications.StudentProfile" xml:space="preserve"><value>Student profile</value></data>
+  <data name="Applications.Skills" xml:space="preserve"><value>Skills</value></data>
+  <data name="Applications.ConfirmAcceptTitle" xml:space="preserve"><value>Accept this application?</value></data>
+  <data name="Applications.ConfirmAcceptText" xml:space="preserve"><value>{0} will be offered a place in {1}.</value></data>
+  <data name="Applications.ConfirmAcceptPoint1" xml:space="preserve"><value>The student will see your decision right away.</value></data>
+  <data name="Applications.ConfirmAcceptPoint2" xml:space="preserve"><value>The placement starts only after the student confirms the offer.</value></data>
+  <data name="Applications.ConfirmRejectTitle" xml:space="preserve"><value>Reject this application?</value></data>
+  <data name="Applications.ConfirmRejectText" xml:space="preserve"><value>{0}'s application for {1} will be rejected.</value></data>
+  <data name="Applications.ConfirmRejectPoint1" xml:space="preserve"><value>The student will see the reason you wrote.</value></data>
+  <data name="Applications.ConfirmRejectPoint2" xml:space="preserve"><value>This decision cannot be undone.</value></data>
+  <data name="Applications.YourReason" xml:space="preserve"><value>Your reason</value></data>
+  <data name="Applications.GoBack" xml:space="preserve"><value>Go back</value></data>
   <data name="Applications.StudentApplications" xml:space="preserve"><value>Student applications</value></data>
   <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>The student has confirmed this offer.</value></data>
   <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>The student has been offered a place and still needs to confirm it.</value></data>
@@ -842,5 +854,11 @@
   <data name="FinalEvaluation.SubmittedMessage" xml:space="preserve"><value>The company evaluation was submitted to the academic supervisor. Completion and report release still require coordinator approval.</value></data>
   <data name="FinalEvaluation.InvalidScoreRange" xml:space="preserve"><value>Enter whole-number scores from zero up to the maximum shown for each criterion.</value></data>
   <data name="FinalEvaluation.PreviewNotice" xml:space="preserve"><value>Draft preview only. This is not an approved completion document. Final reports require coordinator approval.</value></data>
+  <data name="FinalEvaluation.SendApprovedCertificate" xml:space="preserve"><value>Send approved certificate to trainee</value></data>
+  <data name="FinalEvaluation.CertificateRequiresApproval" xml:space="preserve"><value>Available only after the coordinator approves completion. The trainee receives the official PDF link, not this draft preview.</value></data>
+  <data name="FinalEvaluation.CertificateAwaitingApproval" xml:space="preserve"><value>The approved certificate is not available yet. Ask the coordinator to complete the approval first.</value></data>
+  <data name="FinalEvaluation.CertificateSharedTitle" xml:space="preserve"><value>Certificate shared</value></data>
+  <data name="FinalEvaluation.CertificateSharedMessage" xml:space="preserve"><value>The trainee can open the approved certificate from their notifications.</value></data>
+  <data name="FinalEvaluation.CertificateShareFailed" xml:space="preserve"><value>Could not share the certificate. Please try again.</value></data>
   <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>Evaluation criteria (UIMS project)</value></data>
 </root>

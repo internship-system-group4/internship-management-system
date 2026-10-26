@@ -616,6 +616,40 @@ namespace InternshipManagementSystem.Services
             });
         }
 
+        /// <summary>Share only the coordinator-approved certificate with its trainee.
+        /// A failed inbox write is returned to the supervisor instead of claiming it was sent.</summary>
+        public static void ApprovedCertificateShared(CompletionRecord record)
+        {
+            if (record == null || !record.IsReleasedToStudent() ||
+                string.IsNullOrWhiteSpace(record.CertificateFileUrl) || string.IsNullOrWhiteSpace(record.Id))
+                throw new InvalidOperationException("The approved certificate is not available yet.");
+            if (!EmailNotificationService.InboxEnabled)
+                throw new InvalidOperationException("Trainee notifications are disabled.");
+
+            Person sender = SessionHelper.Current;
+            Person trainee = new UserRepository().GetPerson(record.StudentId);
+            if (sender == null || trainee == null || trainee.Role != UserRole.Student || !trainee.IsActive)
+                throw new InvalidOperationException("The trainee account is not available.");
+            Placement placement = new PlacementRepository().GetById(record.PlacementId);
+            if (sender.Role != UserRole.CompanySupervisor || placement == null ||
+                placement.CompanySupervisorId != sender.Id || placement.StudentId != trainee.Id)
+                throw new UnauthorizedAccessException("This certificate is not assigned to your supervision.");
+
+            const string key = "ApprovedCertificateShared";
+            string link = PdfReportService.CertificateUrl(record.Id);
+            Notification notification = new Notification
+            {
+                RecipientId = trainee.Id, SenderId = sender.Id, Type = TypeCompletion,
+                Key = key, Args = new List<string>(),
+                Title = L.InEnglish("Shared.Notify." + key + ".Title"),
+                Message = L.InEnglish("Shared.Notify." + key + ".Message"),
+                Link = link, IsRead = false
+            };
+            if (string.IsNullOrEmpty(new NotificationRepository().Add(notification)))
+                throw new InvalidOperationException("The certificate notification could not be saved.");
+            EmailNotificationService.EmailOnly(trainee, notification.Title, notification.Message, link);
+        }
+
         /// <summary>The academic supervisor submitted the final evaluation:
         /// the coordinators now need to review the completion.</summary>
         public static void AcademicFinalSubmitted(FinalAcademicEvaluation evaluation)

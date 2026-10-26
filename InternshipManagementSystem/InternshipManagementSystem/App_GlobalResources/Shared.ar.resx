@@ -675,6 +675,8 @@
   <data name="Notify.CompanyEvalForAcademic.Message" xml:space="preserve"><value>أرسلت الشركة تقييمها النهائي للطالب {0}. يرجى إكمال التقييم الأكاديمي.</value></data>
   <data name="Notify.CompanyEvalForCoordinator.Title" xml:space="preserve"><value>تم إرسال تقييم الشركة</value></data>
   <data name="Notify.CompanyEvalForCoordinator.Message" xml:space="preserve"><value>أرسلت {0} التقييم النهائي للطالب {1}.</value></data>
+  <data name="Notify.ApprovedCertificateShared.Title" xml:space="preserve"><value>شهادة إتمام التدريب المعتمدة جاهزة</value></data>
+  <data name="Notify.ApprovedCertificateShared.Message" xml:space="preserve"><value>افتح هذا الإشعار لعرض شهادة إتمام التدريب المعتمدة أو تنزيلها.</value></data>
   <data name="Notify.AcademicEvalForCoordinator.Title" xml:space="preserve"><value>مطلوب مراجعة إنهاء تدريب</value></data>
   <data name="Notify.AcademicEvalForCoordinator.Message" xml:space="preserve"><value>اكتمل التقييمان النهائيان للطالب {0}. راجع الملف ثم اعتمد إنهاء التدريب أو أعده للتصحيح.</value></data>
   <data name="Notify.CompletionApproved.Title" xml:space="preserve"><value>صدرت نتيجتك النهائية</value></data>

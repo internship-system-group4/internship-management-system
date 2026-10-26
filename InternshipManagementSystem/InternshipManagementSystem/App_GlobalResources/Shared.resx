@@ -675,6 +675,8 @@
   <data name="Notify.CompanyEvalForAcademic.Message" xml:space="preserve"><value>The company submitted its final evaluation for {0}. Please complete your academic evaluation.</value></data>
   <data name="Notify.CompanyEvalForCoordinator.Title" xml:space="preserve"><value>Company evaluation submitted</value></data>
   <data name="Notify.CompanyEvalForCoordinator.Message" xml:space="preserve"><value>{0} submitted the final evaluation for {1}.</value></data>
+  <data name="Notify.ApprovedCertificateShared.Title" xml:space="preserve"><value>Your approved internship certificate is ready</value></data>
+  <data name="Notify.ApprovedCertificateShared.Message" xml:space="preserve"><value>Open this notification to view or download your approved internship certificate.</value></data>
   <data name="Notify.AcademicEvalForCoordinator.Title" xml:space="preserve"><value>Completion review needed</value></data>
   <data name="Notify.AcademicEvalForCoordinator.Message" xml:space="preserve"><value>Both final evaluations for {0} are in. Review the file, then approve or return the completion.</value></data>
   <data name="Notify.CompletionApproved.Title" xml:space="preserve"><value>Your final result is released</value></data>
