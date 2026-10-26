@@ -197,4 +197,9 @@
   <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>You do not have access to this meeting.</value></data>
   <data name="Schedule.ZoomCreatedTheMeetingButIt" xml:space="preserve"><value>Zoom created the meeting, but it could not be saved here. Contact the administrator before retrying to avoid a duplicate.</value></data>
   <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>Zoom Meeting Link</value></data>
+  <data name="MyMeetings.SearchPeople" xml:space="preserve"><value>Search people</value></data>
+  <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>people available</value></data>
+  <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>Search meetings</value></data>
+  <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>No meetings match your search.</value></data>
+  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>No people match your search.</value></data>
 </root>

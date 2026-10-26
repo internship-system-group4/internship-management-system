@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/jisr.css?v=20261023-21") %>" />
 <script defer src="<%: ResolveUrl("~/Assets/js/vendor/gsap.min.js") %>"></script>
 <script defer src="<%: ResolveUrl("~/Assets/js/vendor/ScrollTrigger.min.js") %>"></script>
-<script type="module" src="<%: ResolveUrl("~/Assets/js/jisr/jisr-hero.js?v=20261023-26") %>"></script>
+<script type="module" src="<%: ResolveUrl("~/Assets/js/jisr/jisr-hero.js?v=20261024-grounding") %>"></script>
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="jisr jisr--static" data-jisr data-logo="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" data-stone="<%: ResolveUrl("~/Assets/images/university/materials/stone-albedo.png") %>" data-student="<%: ResolveUrl("~/Assets/models/people/Male_Adult_17_Animated.web.glb") %>">

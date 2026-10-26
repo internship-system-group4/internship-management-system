@@ -80,8 +80,17 @@ namespace InternshipManagementSystem.Data
             placement.Id = studentUid;
             placement.StudentId = studentUid;
             bool confirmed = FirebaseContext.PutIfEmpty(Collection + "/" + studentUid, placement);
-            if (confirmed) Services.EmailNotificationService.Saved(null, placement);
+            if (confirmed) NotifySaved(null, placement);
             return confirmed;
+        }
+
+        /// <summary>A confirmed placement tells the company supervisor, the academic
+        /// supervisor and the coordinators. Later edits keep the email service's notice.</summary>
+        protected override bool SendNotice(Placement previous, Placement current)
+        {
+            if (previous != null) return false;
+            Services.NotificationService.PlacementConfirmed(current);
+            return true;
         }
 
         public OfferConfirmationResult ConfirmAcceptedOffer(Student student, string applicationId)
@@ -134,7 +143,7 @@ namespace InternshipManagementSystem.Data
                 if (Confirm(student.Id, placement))
                 {
                     // Only the first, successful confirmation sends notifications.
-                    // Confirm already dispatched both notification channels.
+                    // Confirm already sent the notifications and emails.
                 }
                 else
                 {

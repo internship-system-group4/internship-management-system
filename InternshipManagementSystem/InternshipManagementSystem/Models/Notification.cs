@@ -22,6 +22,10 @@ namespace InternshipManagementSystem.Models
         public string Id { get; set; }
         public string RecipientId { get; set; }
 
+        /// <summary>Who caused the notification (the signed-in user). The database
+        /// rules require it so nobody can write a notice in someone else's name.</summary>
+        public string SenderId { get; set; }
+
         /// <summary>Short category used for the icon: Task, Group, Application,
         /// Placement, Hours, Evaluation, Comment, Meeting, Opportunity, Completion.</summary>
         public string Type { get; set; }

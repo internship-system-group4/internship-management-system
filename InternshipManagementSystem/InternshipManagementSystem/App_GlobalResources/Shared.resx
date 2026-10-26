@@ -187,6 +187,7 @@
   <data name="Js.PwMismatch" xml:space="preserve"><value>The new passwords do not match.</value></data>
   <data name="Js.PwNewMismatch" xml:space="preserve"><value>New passwords do not match.</value></data>
   <data name="Js.RequestingReset" xml:space="preserve"><value>Requesting reset link…</value></data>
+  <data name="Js.RecoveryOffline" xml:space="preserve"><value>We could not reach the server. Check your connection and try again.</value></data>
   <data name="Js.ResumeCampusMotion" xml:space="preserve"><value>Resume campus motion</value></data>
   <data name="Js.ResumeScene" xml:space="preserve"><value>Resume scene</value></data>
   <data name="Js.ResumeWheelMotion" xml:space="preserve"><value>Resume wheel motion</value></data>
@@ -674,12 +675,16 @@
   <data name="Notify.CompanyEvalForAcademic.Message" xml:space="preserve"><value>The company submitted its final evaluation for {0}. Please complete your academic evaluation.</value></data>
   <data name="Notify.CompanyEvalForCoordinator.Title" xml:space="preserve"><value>Company evaluation submitted</value></data>
   <data name="Notify.CompanyEvalForCoordinator.Message" xml:space="preserve"><value>{0} submitted the final evaluation for {1}.</value></data>
+  <data name="Notify.ApprovedCertificateShared.Title" xml:space="preserve"><value>Your approved internship certificate is ready</value></data>
+  <data name="Notify.ApprovedCertificateShared.Message" xml:space="preserve"><value>Open this notification to view or download your approved internship certificate.</value></data>
   <data name="Notify.AcademicEvalForCoordinator.Title" xml:space="preserve"><value>Completion review needed</value></data>
   <data name="Notify.AcademicEvalForCoordinator.Message" xml:space="preserve"><value>Both final evaluations for {0} are in. Review the file, then approve or return the completion.</value></data>
   <data name="Notify.CompletionApproved.Title" xml:space="preserve"><value>Your final result is released</value></data>
   <data name="Notify.CompletionApproved.Message" xml:space="preserve"><value>Your internship result is {0}. Open My Progress to see the details and download your report.</value></data>
   <data name="Notify.CompletionApprovedSupervisor.Title" xml:space="preserve"><value>Internship completed</value></data>
   <data name="Notify.CompletionApprovedSupervisor.Message" xml:space="preserve"><value>The coordinator approved the internship completion of {0}.</value></data>
+  <data name="Notify.CompletionApprovedNoResult.Title" xml:space="preserve"><value>Your final result is released</value></data>
+  <data name="Notify.CompletionApprovedNoResult.Message" xml:space="preserve"><value>The coordinator approved your internship completion. Open My Progress to see your result and download your report.</value></data>
   <data name="Notify.CompletionRejected.Title" xml:space="preserve"><value>Internship completion not approved</value></data>
   <data name="Notify.CompletionRejected.Message" xml:space="preserve"><value>Coordinator’s note: {0}</value></data>
   <data name="Notify.CompletionRejectedNoNote.Title" xml:space="preserve"><value>Internship completion not approved</value></data>
@@ -704,4 +709,20 @@
   <data name="Js.NotifyDismiss" xml:space="preserve"><value>Dismiss</value></data>
   <data name="Js.NotifyUnread" xml:space="preserve"><value>{0} new</value></data>
   <data name="Js.NotifyBellLabel" xml:space="preserve"><value>Notifications, {0} unread</value></data>
+  <data name="Js.SupervisorProgress" xml:space="preserve"><value>Training progress</value></data>
+  <data name="Js.MeetingSearchLabel" xml:space="preserve"><value>Search meetings</value></data>
+  <data name="Js.MeetingSearchPlaceholder" xml:space="preserve"><value>Search by meeting title or person</value></data>
+  <data name="Js.MeetingClearSearch" xml:space="preserve"><value>Clear meeting search</value></data>
+  <data name="Js.MeetingSearchResults" xml:space="preserve"><value>Showing {0} of {1} meetings</value></data>
+  <data name="Js.MeetingSearchEmpty" xml:space="preserve"><value>No meetings match this search and view.</value></data>
+  <data name="SupervisorAccount.Title" xml:space="preserve"><value>My Account</value></data>
+  <data name="SupervisorAccount.Intro" xml:space="preserve"><value>Manage your profile and view your account associations.</value></data>
+  <data name="SupervisorAccount.EditProfile" xml:space="preserve"><value>Edit profile</value></data>
+  <data name="SupervisorAccount.ReadOnly" xml:space="preserve"><value>Read-only</value></data>
+  <data name="SupervisorAccount.NotProvided" xml:space="preserve"><value>Not provided</value></data>
+  <data name="SupervisorAccount.PhotoUploadHint" xml:space="preserve"><value>Choose a JPG or PNG photo. Selecting a file uploads it immediately.</value></data>
+  <data name="SupervisorAccount.PersonalTitle" xml:space="preserve"><value>Personal details</value></data>
+  <data name="SupervisorAccount.PersonalHelp" xml:space="preserve"><value>Your contact information and profile details.</value></data>
+  <data name="SupervisorAccount.OrganizationTitle" xml:space="preserve"><value>Organization &amp; association</value></data>
+  <data name="SupervisorAccount.OrganizationHelp" xml:space="preserve"><value>Official account details managed by your university.</value></data>
 </root>

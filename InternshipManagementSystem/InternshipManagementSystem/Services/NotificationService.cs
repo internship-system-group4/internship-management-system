@@ -107,9 +107,30 @@ namespace InternshipManagementSystem.Services
         //  Basic sending
         // ------------------------------------------------------------------
 
-        /// <summary>Sends one notification. Nothing is sent to the person who
-        /// did the action themselves.</summary>
+        /// <summary>Sends one bell notification (no email). Use this for events whose
+        /// email already comes from EmailNotificationService (repository saves such
+        /// as a new task). Nothing is sent to the person who did the action themselves.</summary>
         public static void Send(string recipientId, string type, string key, string link, params string[] args)
+        {
+            Deliver(recipientId, type, key, link, args, true, false);
+        }
+
+        /// <summary>Sends the bell notification AND an email with the same English
+        /// text. Use this for events that only this class handles.</summary>
+        private static void SendAndEmail(string recipientId, string type, string key, string link, params string[] args)
+        {
+            Deliver(recipientId, type, key, link, args, true, true);
+        }
+
+        /// <summary>Only the email, for when the email must say less than the bell
+        /// (for example without the coordinator's private note).</summary>
+        private static void EmailOnly(string recipientId, string key, string link, params string[] args)
+        {
+            Deliver(recipientId, null, key, link, args, false, true);
+        }
+
+        private static void Deliver(string recipientId, string type, string key, string link, string[] args,
+                                    bool inbox, bool email)
         {
             if (string.IsNullOrEmpty(recipientId)) return;
             Person current = SessionHelper.Current;
@@ -119,6 +140,8 @@ namespace InternshipManagementSystem.Services
             var notification = new Notification
             {
                 RecipientId = recipientId,
+                // The database rules only accept a notification whose sender is the signed-in user.
+                SenderId = current == null ? null : current.Id,
                 Type = type,
                 Key = key,
                 Args = values,
@@ -128,6 +151,12 @@ namespace InternshipManagementSystem.Services
                 IsRead = false
             };
 
+            if (email) QueueEmail(notification);
+
+            // Notifications.Enabled = false in Web.config turns the whole bell off
+            // (emails still follow Email.Enabled).
+            if (!inbox || !EmailNotificationService.InboxEnabled) return;
+
             // Inside an event (see Safely) the notifications are collected and
             // saved together at the end, in one request.
             if (pending != null)
@@ -136,6 +165,40 @@ namespace InternshipManagementSystem.Services
                 return;
             }
             SaveOne(notification);
+        }
+
+        private static void QueueEmail(Notification notification)
+        {
+            if (!EmailNotificationService.Enabled) return;
+            if (pendingEmails != null)
+            {
+                pendingEmails.Add(notification);
+                return;
+            }
+            SendEmails(new List<Notification> { notification });
+        }
+
+        /// <summary>Emails each person once per event (the same address is not
+        /// emailed twice). A failed email is only logged.</summary>
+        private static void SendEmails(List<Notification> emails)
+        {
+            if (emails.Count == 0) return;
+            var addresses = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            UserRepository users = new UserRepository();
+            foreach (Notification email in emails)
+            {
+                try
+                {
+                    Person person = users.GetPerson(email.RecipientId);
+                    if (person == null || !person.IsActive || string.IsNullOrWhiteSpace(person.Email)) continue;
+                    if (!addresses.Add(person.Email.Trim())) continue;
+                    EmailNotificationService.EmailOnly(person, email.Title, email.Message, email.Link);
+                }
+                catch (Exception ex)
+                {
+                    EmailNotificationService.LogFailure(ex);
+                }
+            }
         }
 
         private static string EnglishMessage(string key, List<string> values)
@@ -162,12 +225,20 @@ namespace InternshipManagementSystem.Services
         /// One per thread, and a web request runs on one thread.</summary>
         [ThreadStatic] private static List<Notification> pending;
 
+        /// <summary>Emails collected by the event that is running now; sent after
+        /// the bell notifications are saved.</summary>
+        [ThreadStatic] private static List<Notification> pendingEmails;
+
         /// <summary>Runs one event safely: a failed lookup only skips the notification.
-        /// Everything the event sends is saved at the end in ONE request.</summary>
+        /// Everything the event sends is saved at the end in ONE request, then emailed.</summary>
         private static void Safely(string eventName, Action action)
         {
             bool outermost = pending == null;
-            if (outermost) pending = new List<Notification>();
+            if (outermost)
+            {
+                pending = new List<Notification>();
+                pendingEmails = new List<Notification>();
+            }
             try
             {
                 action();
@@ -181,8 +252,11 @@ namespace InternshipManagementSystem.Services
                 if (outermost)
                 {
                     List<Notification> batch = pending;
+                    List<Notification> emails = pendingEmails;
                     pending = null;
+                    pendingEmails = null;
                     SaveAll(batch);
+                    SendEmails(emails);
                 }
             }
         }
@@ -205,11 +279,11 @@ namespace InternshipManagementSystem.Services
             }
         }
 
-        private static void SendToCoordinators(string type, string key, string link, params string[] args)
+        private static void SendToCoordinators(bool email, string type, string key, string link, params string[] args)
         {
             foreach (Person coordinator in new UserRepository().GetByRole(UserRole.Coordinator))
             {
-                if (coordinator.IsActive) Send(coordinator.Id, type, key, link, args);
+                if (coordinator.IsActive) Deliver(coordinator.Id, type, key, link, args, true, email);
             }
         }
 
@@ -263,7 +337,7 @@ namespace InternshipManagementSystem.Services
                 {
                     Student student = person as Student;
                     if (student == null || !student.IsActive || !opportunity.IsEligible(student)) continue;
-                    Send(student.Id, TypeOpportunity, "OpportunityPublished",
+                    SendAndEmail(student.Id, TypeOpportunity, "OpportunityPublished",
                         WithId("~/Pages/Student/OpportunityDetails.aspx", opportunity.Id),
                         companyName, opportunity.Title);
                 }
@@ -336,7 +410,8 @@ namespace InternshipManagementSystem.Services
                     WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId),
                     placement.StudentName, placement.CompanyName);
 
-                SendToCoordinators(TypePlacement, "PlacementConfirmedCoordinator",
+                // The placement email itself comes from EmailNotificationService.
+                SendToCoordinators(false, TypePlacement, "PlacementConfirmedCoordinator",
                     WithId("~/Pages/Coordinator/PlacementDetails.aspx", placement.Id),
                     placement.StudentName, placement.CompanyName);
             });
@@ -352,7 +427,7 @@ namespace InternshipManagementSystem.Services
             Safely("StudentAccountCreated", () =>
             {
                 if (student == null) return;
-                Send(student.Id, TypeAccount, "WelcomeStudent", "~/Pages/Student/Profile.aspx", student.FullName);
+                SendAndEmail(student.Id, TypeAccount, "WelcomeStudent", "~/Pages/Student/Profile.aspx", student.FullName);
             });
         }
 
@@ -367,32 +442,32 @@ namespace InternshipManagementSystem.Services
                 bool supervisorChanged = formerSupervisorId != supervisor.Id;
 
                 foreach (string studentId in addedStudentIds)
-                    Send(studentId, TypeGroup, "GroupAdded", "~/Pages/Student/Dashboard.aspx", groupName, supervisor.FullName);
+                    SendAndEmail(studentId, TypeGroup, "GroupAdded", "~/Pages/Student/Dashboard.aspx", groupName, supervisor.FullName);
 
                 foreach (string studentId in removedStudentIds)
-                    Send(studentId, TypeGroup, "GroupRemoved", "~/Pages/Student/Dashboard.aspx", groupName);
+                    SendAndEmail(studentId, TypeGroup, "GroupRemoved", "~/Pages/Student/Dashboard.aspx", groupName);
 
                 if (supervisorChanged)
                 {
                     foreach (string studentId in keptStudentIds)
-                        Send(studentId, TypeGroup, "GroupNewSupervisor", "~/Pages/Student/Dashboard.aspx", supervisor.FullName, groupName);
+                        SendAndEmail(studentId, TypeGroup, "GroupNewSupervisor", "~/Pages/Student/Dashboard.aspx", supervisor.FullName, groupName);
                 }
 
                 int total = addedStudentIds.Count + keptStudentIds.Count;
                 if (supervisorChanged)
                 {
-                    Send(supervisor.Id, TypeGroup, "GroupAssigned", "~/Pages/Academic/Dashboard.aspx",
+                    SendAndEmail(supervisor.Id, TypeGroup, "GroupAssigned", "~/Pages/Academic/Dashboard.aspx",
                         groupName, total.ToString(CultureInfo.InvariantCulture));
                 }
                 else if (addedStudentIds.Count > 0)
                 {
-                    Send(supervisor.Id, TypeGroup, "GroupStudentsAdded", "~/Pages/Academic/Dashboard.aspx",
+                    SendAndEmail(supervisor.Id, TypeGroup, "GroupStudentsAdded", "~/Pages/Academic/Dashboard.aspx",
                         groupName, addedStudentIds.Count.ToString(CultureInfo.InvariantCulture));
                 }
 
                 if (supervisorChanged && !string.IsNullOrEmpty(formerSupervisorId))
                 {
-                    Send(formerSupervisorId, TypeGroup, "GroupReassigned", "~/Pages/Academic/Dashboard.aspx",
+                    SendAndEmail(formerSupervisorId, TypeGroup, "GroupReassigned", "~/Pages/Academic/Dashboard.aspx",
                         groupName, supervisor.FullName);
                 }
             });
@@ -404,10 +479,10 @@ namespace InternshipManagementSystem.Services
             Safely("GroupDeleted", () =>
             {
                 foreach (string studentId in studentIds)
-                    Send(studentId, TypeGroup, "GroupDeletedStudent", "~/Pages/Student/Dashboard.aspx", groupName);
+                    SendAndEmail(studentId, TypeGroup, "GroupDeletedStudent", "~/Pages/Student/Dashboard.aspx", groupName);
 
                 if (!string.IsNullOrEmpty(supervisorId))
-                    Send(supervisorId, TypeGroup, "GroupDeletedSupervisor", "~/Pages/Academic/Dashboard.aspx", groupName);
+                    SendAndEmail(supervisorId, TypeGroup, "GroupDeletedSupervisor", "~/Pages/Academic/Dashboard.aspx", groupName);
             });
         }
 
@@ -436,12 +511,11 @@ namespace InternshipManagementSystem.Services
                 InternshipTask task = new TaskRepository().GetById(submission.TaskId);
                 if (task == null) return;
 
-                string recipient = task.CreatedBySupervisorId;
-                if (string.IsNullOrEmpty(recipient))
-                {
-                    Placement placement = new PlacementRepository().GetById(task.PlacementId);
-                    if (placement != null) recipient = placement.CompanySupervisorId;
-                }
+                // The trainee's current company supervisor (the same person who gets
+                // the email). Older tasks without a placement fall back to the task's author.
+                Placement placement = new PlacementRepository().GetById(submission.PlacementId ?? task.PlacementId);
+                string recipient = placement != null && !string.IsNullOrEmpty(placement.CompanySupervisorId)
+                    ? placement.CompanySupervisorId : task.CreatedBySupervisorId;
 
                 Send(recipient, TypeTask, submission.AttemptNumber > 1 ? "TaskResubmitted" : "TaskSubmitted",
                     With("~/Pages/Company/TaskReview.aspx", "submission", submission.Id),
@@ -518,12 +592,14 @@ namespace InternshipManagementSystem.Services
         public static void CompanyFinalSubmitted(FinalCompanyEvaluation evaluation)
         {
             if (evaluation == null || !evaluation.IsSubmitted) return;
-            CompanyEvaluationSent(evaluation.PlacementId);
+            // EvaluationRepository.SaveCompanyFinal already sends the emails.
+            CompanyEvaluationSent(evaluation.PlacementId, false);
         }
 
         /// <summary>The company sent its final evaluation for a placement: the
-        /// academic supervisor's evaluation is now due, and the coordinators are told.</summary>
-        public static void CompanyEvaluationSent(string placementId)
+        /// academic supervisor's evaluation is now due, and the coordinators are told.
+        /// The emails say only who the student is - never scores or comments.</summary>
+        public static void CompanyEvaluationSent(string placementId, bool sendEmail = true)
         {
             Safely("CompanyEvaluationSent", () =>
             {
@@ -531,13 +607,47 @@ namespace InternshipManagementSystem.Services
                 if (placement == null) return;
                 string student = string.IsNullOrWhiteSpace(placement.StudentName) ? NameOf(placement.StudentId) : placement.StudentName;
 
-                Send(placement.AcademicSupervisorId, TypeEvaluation, "CompanyEvalForAcademic",
-                    WithId("~/Pages/Academic/FinalEvaluation.aspx", placement.StudentId), student);
+                Deliver(placement.AcademicSupervisorId, TypeEvaluation, "CompanyEvalForAcademic",
+                    WithId("~/Pages/Academic/FinalEvaluation.aspx", placement.StudentId), new[] { student }, true, sendEmail);
 
-                SendToCoordinators(TypeEvaluation, "CompanyEvalForCoordinator",
+                SendToCoordinators(sendEmail, TypeEvaluation, "CompanyEvalForCoordinator",
                     WithId("~/Pages/Coordinator/PlacementDetails.aspx", placement.Id),
                     placement.CompanyName ?? "", student);
             });
+        }
+
+        /// <summary>Share only the coordinator-approved certificate with its trainee.
+        /// A failed inbox write is returned to the supervisor instead of claiming it was sent.</summary>
+        public static void ApprovedCertificateShared(CompletionRecord record)
+        {
+            if (record == null || !record.IsReleasedToStudent() ||
+                string.IsNullOrWhiteSpace(record.CertificateFileUrl) || string.IsNullOrWhiteSpace(record.Id))
+                throw new InvalidOperationException("The approved certificate is not available yet.");
+            if (!EmailNotificationService.InboxEnabled)
+                throw new InvalidOperationException("Trainee notifications are disabled.");
+
+            Person sender = SessionHelper.Current;
+            Person trainee = new UserRepository().GetPerson(record.StudentId);
+            if (sender == null || trainee == null || trainee.Role != UserRole.Student || !trainee.IsActive)
+                throw new InvalidOperationException("The trainee account is not available.");
+            Placement placement = new PlacementRepository().GetById(record.PlacementId);
+            if (sender.Role != UserRole.CompanySupervisor || placement == null ||
+                placement.CompanySupervisorId != sender.Id || placement.StudentId != trainee.Id)
+                throw new UnauthorizedAccessException("This certificate is not assigned to your supervision.");
+
+            const string key = "ApprovedCertificateShared";
+            string link = PdfReportService.CertificateUrl(record.Id);
+            Notification notification = new Notification
+            {
+                RecipientId = trainee.Id, SenderId = sender.Id, Type = TypeCompletion,
+                Key = key, Args = new List<string>(),
+                Title = L.InEnglish("Shared.Notify." + key + ".Title"),
+                Message = L.InEnglish("Shared.Notify." + key + ".Message"),
+                Link = link, IsRead = false
+            };
+            if (string.IsNullOrEmpty(new NotificationRepository().Add(notification)))
+                throw new InvalidOperationException("The certificate notification could not be saved.");
+            EmailNotificationService.EmailOnly(trainee, notification.Title, notification.Message, link);
         }
 
         /// <summary>The academic supervisor submitted the final evaluation:
@@ -547,13 +657,16 @@ namespace InternshipManagementSystem.Services
             Safely("AcademicFinalSubmitted", () =>
             {
                 if (!evaluation.IsSubmitted) return;
-                SendToCoordinators(TypeEvaluation, "AcademicEvalForCoordinator",
+                // EvaluationRepository.SaveAcademicFinal already sends the emails.
+                SendToCoordinators(false, TypeEvaluation, "AcademicEvalForCoordinator",
                     WithId("~/Pages/Coordinator/CompletionReview.aspx", evaluation.StudentId),
                     NameOf(evaluation.StudentId));
             });
         }
 
-        /// <summary>The coordinator approved, returned or rejected a completion record.</summary>
+        /// <summary>The coordinator approved, returned or rejected a completion record.
+        /// The bell shows the result or the coordinator's note; the student's email
+        /// never does (they read it after signing in).</summary>
         public static void CompletionDecided(CompletionRecord record)
         {
             Safely("CompletionDecided", () =>
@@ -565,15 +678,16 @@ namespace InternshipManagementSystem.Services
                 if (record.Status == CompletionStatus.Approved)
                 {
                     Send(record.StudentId, TypeCompletion, "CompletionApproved", progress, record.Result ?? "");
+                    EmailOnly(record.StudentId, "CompletionApprovedNoResult", progress);
 
                     // The supervisors who followed the student hear that it is done.
                     Placement placement = new PlacementRepository().GetById(record.StudentId);
                     if (placement != null)
                     {
                         string student = string.IsNullOrWhiteSpace(placement.StudentName) ? NameOf(record.StudentId) : placement.StudentName;
-                        Send(placement.AcademicSupervisorId, TypeCompletion, "CompletionApprovedSupervisor",
+                        SendAndEmail(placement.AcademicSupervisorId, TypeCompletion, "CompletionApprovedSupervisor",
                             WithId("~/Pages/Academic/StudentProgress.aspx", placement.StudentId), student);
-                        Send(placement.CompanySupervisorId, TypeCompletion, "CompletionApprovedSupervisor",
+                        SendAndEmail(placement.CompanySupervisorId, TypeCompletion, "CompletionApprovedSupervisor",
                             WithId("~/Pages/Company/TraineeDetails.aspx", placement.Id), student);
                     }
                 }
@@ -581,11 +695,13 @@ namespace InternshipManagementSystem.Services
                 {
                     if (hasNote) Send(record.StudentId, TypeCompletion, "CompletionRejected", progress, note);
                     else Send(record.StudentId, TypeCompletion, "CompletionRejectedNoNote", progress);
+                    EmailOnly(record.StudentId, "CompletionRejectedNoNote", progress);
                 }
                 else if (record.Status == CompletionStatus.Rejected)
                 {
                     if (hasNote) Send(record.StudentId, TypeCompletion, "CompletionReturned", progress, note);
                     else Send(record.StudentId, TypeCompletion, "CompletionReturnedNoNote", progress);
+                    EmailOnly(record.StudentId, "CompletionReturnedNoNote", progress);
                 }
             });
         }
@@ -602,7 +718,7 @@ namespace InternshipManagementSystem.Services
             Safely("MeetingChanged", () =>
             {
                 if (meeting == null) return;
-                Send(recipientId, TypeMeeting, key, "~/Pages/Meetings/MyMeetings.aspx",
+                SendAndEmail(recipientId, TypeMeeting, key, "~/Pages/Meetings/MyMeetings.aspx",
                     NameOf(actorId), meeting.Title, Time.Display(meeting.ScheduledAt));
             });
         }

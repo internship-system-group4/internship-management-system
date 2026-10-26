@@ -1,0 +1,170 @@
+/* Student navigation: a compact, calm rail that keeps every destination visible. */
+body.student-portal .uims-sidebar {
+    --sidebar-width: 232px;
+    padding: 12px 10px 10px;
+    background: var(--ui-nav);
+}
+html.student-nav-ready body.student-portal .uims-sidebar { --sidebar-width: 64px; }
+html.student-nav-ready body.student-portal .uims-sidebar[data-expanded=true] { --sidebar-width: 232px; }
+
+body.student-portal .uims-sidebar-heading { gap: 4px; }
+body.student-portal .uims-sidebar .uims-sidebar-brand {
+    min-height: 48px;
+    gap: 9px;
+    padding: 0 6px;
+}
+body.student-portal .uims-sidebar-brand img { width: 30px; max-height: 34px; }
+body.student-portal .uims-sidebar-brand strong { font-size: 16px; line-height: 1.2; }
+body.student-portal .uims-sidebar-brand small {
+    max-width: 145px;
+    margin-top: 1px;
+    font-size: 10px;
+    line-height: 1.3;
+}
+body.student-portal .uims-sidebar-heading .uims-sidebar-pin {
+    flex-basis: 30px;
+    width: 30px;
+    min-height: 32px;
+    border-radius: 8px;
+}
+
+body.student-portal .uims-sidebar-context {
+    margin: 3px 6px 9px;
+    padding: 6px 7px 9px;
+    border-bottom: 1px solid var(--ui-border);
+}
+body.student-portal .uims-sidebar-context > small {
+    margin: 0;
+    color: var(--ui-nav-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    line-height: 1.4;
+    text-transform: uppercase;
+}
+body.student-portal .uims-sidebar-context .uims-page-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0,0,0,0);
+    white-space: nowrap;
+    border: 0;
+}
+
+body.student-portal .uims-side-nav > li:nth-child(2),
+body.student-portal .uims-side-nav > li:nth-child(6),
+body.student-portal .uims-side-nav > li:nth-child(8) {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--ui-border);
+}
+body.student-portal .uims-side-link {
+    min-height: 40px;
+    gap: 10px;
+    margin: 1px 0;
+    padding: 8px 10px;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+body.student-portal .uims-side-link svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 1.8;
+}
+body.student-portal .uims-side-link .uims-sidebar-label {
+    white-space: normal;
+    line-height: 1.3;
+}
+body.student-portal .uims-side-link:hover { background: var(--ui-neutral-soft); }
+body.student-portal .uims-side-link[aria-current=page] {
+    background: var(--ui-primary-soft);
+    color: var(--ui-primary-text,var(--ui-primary));
+    font-weight: 700;
+}
+body.student-portal .uims-side-link[aria-current=page]::before {
+    content: '';
+    position: absolute;
+    inset-block: 10px;
+    inset-inline-start: 0;
+    width: 3px;
+    border-radius: 3px;
+    background: currentColor;
+}
+body.student-portal .uims-side-link:focus-visible {
+    outline: 3px solid var(--ui-focus);
+    outline-offset: 2px;
+}
+
+body.student-portal .uims-sidebar-tools {
+    min-height: 46px;
+    margin-top: 7px;
+    padding: 2px 5px;
+    border-radius: 10px;
+}
+body.student-portal .uims-sidebar-tools :is(.uims-lang-control,.uims-theme-button,.uims-notify-button),
+body.student-portal .uims-sidebar-tools .notice-bell summary {
+    width: 38px;
+    height: 38px;
+}
+body.student-portal .uims-sidebar-account {
+    min-height: 59px;
+    gap: 8px;
+    margin-top: 7px;
+    padding: 7px 9px;
+    border-radius: 10px;
+}
+body.student-portal .uims-sidebar-avatar { width: 30px; height: 30px; }
+body.student-portal .uims-sidebar .uims-sidebar-account-meta strong { font-size: 12px; line-height: 1.3; }
+body.student-portal .uims-sidebar .uims-sidebar-account-meta small { margin-top: 1px; font-size: 11px; line-height: 1.25; }
+body.student-portal .uims-sidebar .uims-sidebar-account-meta > span { display: none; }
+body.student-portal .student-logout { padding-top: 2px; }
+body.student-portal .student-logout a { min-height: 36px; padding: 6px 10px; font-size: 12px; }
+body.student-portal .student-logout svg { width: 18px; height: 18px; }
+
+@media (min-width: 901px) {
+    html.student-nav-ready body.student-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-brand { min-height: 38px; }
+    html.student-nav-ready body.student-portal .uims-sidebar:not([data-expanded=true]) .uims-sidebar-tools { padding-inline: 0; }
+    html.student-nav-ready body.student-portal .uims-sidebar:not([data-expanded=true]) .uims-side-nav > li { border-color: transparent; }
+}
+@media (max-width: 900px) {
+    html.student-nav-ready body.student-portal .uims-sidebar {
+        width: min(296px,calc(100% - 24px));
+        padding: 12px 10px 10px;
+    }
+    body.student-portal .uims-sidebar-heading { margin-bottom: 0; }
+    body.student-portal .uims-sidebar .uims-sidebar-brand { min-height: 48px; }
+}
+@media (max-height: 640px) {
+    body.student-portal .uims-sidebar-context { margin-bottom: 4px; padding-bottom: 5px; }
+    body.student-portal .uims-side-nav > li:nth-child(2),
+    body.student-portal .uims-side-nav > li:nth-child(6),
+    body.student-portal .uims-side-nav > li:nth-child(8) { margin-top: 4px; padding-top: 4px; }
+}
+
+/* A shared page hierarchy and softer surfaces throughout the student journey. */
+body.student-portal .uims-main-inner {background:radial-gradient(circle at 88% 0%,var(--ui-primary-soft),transparent 37%);}
+body.student-portal .uims-main-inner :is(.explore-page,.od-page,.application-page,.student-tasks-page,.profile-page,.sp-page,.cv-page,.pg-page,.simple-workspace) {max-width:1200px;margin-inline:auto;}
+body.student-portal .uims-main-inner :is(.ex-heading,.application-heading,.student-tasks-heading,.profile-heading,.cv-heading,.sp-heading,.pg-heading,.rv-heading) {margin-bottom:28px;}
+body.student-portal .uims-main-inner :is(.ex-heading,.application-heading,.student-tasks-heading,.profile-heading,.cv-heading,.sp-heading,.pg-heading,.rv-heading) :is(h1,h2) {font-size:clamp(1.75rem,2.5vw,2.35rem);font-weight:750;letter-spacing:-.035em;line-height:1.2;color:var(--ui-primary-text,var(--ui-primary));}
+body.student-portal .uims-main-inner :is(.ex-heading,.application-heading,.student-tasks-heading,.profile-heading,.cv-heading,.sp-heading,.pg-heading,.rv-heading) p {font-size:1rem;line-height:1.65;color:var(--ui-muted);}
+body.student-portal .uims-main-inner :is(.ex-filter-panel,.ex-card,.od-header,.od-panel,.application-sheet,.application-opportunity,.application-row,.confirmed-placement,.student-task-card,.student-submit-card,.profile-card,.sp-card,.cv-panel,.rv-card,.sw-panel) {border-radius:16px;border:1px solid var(--ui-border);box-shadow:0 10px 30px rgba(24,53,83,.045);background:var(--ui-surface);}
+body.student-portal .uims-main-inner :is(.ex-card,.application-row,.student-task-card,.student-submit-card,.profile-card,.cv-panel,.sw-panel) {animation:student-rise .38s cubic-bezier(.16,1,.3,1) both;}
+body.student-portal .uims-main-inner :is(.ex-card,.application-row,.student-task-card,.cv-panel) {transition:transform .22s ease,box-shadow .22s ease,border-color .22s ease;}
+body.student-portal .uims-main-inner :is(.ex-card,.application-row,.student-task-card,.cv-panel):hover {transform:translateY(-3px);box-shadow:0 18px 36px rgba(24,53,83,.10);border-color:var(--ui-primary);}
+body.student-portal .uims-main-inner :is(.ex-button,.od-button,.cv-btn,.application-view-link) {border-radius:10px;min-height:42px;transition:transform .18s ease,box-shadow .18s ease,background-color .18s ease;}
+body.student-portal .uims-main-inner :is(.ex-button,.od-button,.cv-btn,.application-view-link):hover {transform:translateY(-2px);}
+body.student-portal .uims-main-inner :is(input,textarea,select,button,a):focus-visible {outline:3px solid var(--ui-focus);outline-offset:3px;}
+body.student-portal .ex-card-applied {border-color:var(--ui-primary);background:linear-gradient(160deg,var(--ui-surface) 65%,var(--ui-primary-soft));}
+body.student-portal .ex-status-applied {color:var(--ui-primary-text,var(--ui-primary));background:var(--ui-primary-soft);font-size:11px;}
+body.student-portal .application-list {display:grid;gap:16px;padding:0;border:0;background:none;}
+body.student-portal .application-row {padding:24px;margin:0;}
+body.student-portal .application-row h3 {font-size:1.18rem;font-weight:700;color:var(--ui-ink);}
+body.student-portal .application-status {border-radius:999px;padding:7px 12px;font-weight:700;}
+body.student-portal .application-sheet .form-control {border-radius:10px;}
+@keyframes student-rise {from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){body.student-portal .uims-main-inner :is(.ex-card,.application-row,.student-task-card,.student-submit-card,.profile-card,.cv-panel,.sw-panel){animation:none;transition:none}}

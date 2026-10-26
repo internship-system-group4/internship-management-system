@@ -1,0 +1,230 @@
+/* Student journey: one visual language for applications, tasks and progress. */
+body.student-portal .uims-main-inner :is(.student-applications-page,.student-tasks-page,.pg-page) {
+  width:100%; max-width:1320px; margin-inline:auto; color:var(--ui-ink);
+}
+body.student-portal .uims-main-inner .student-workspace-hero {
+  position:relative; isolation:isolate; display:flex; align-items:flex-end;
+  justify-content:space-between; gap:28px; min-height:210px; overflow:hidden;
+  margin:0 0 28px; padding:36px 42px; border:1px solid #2e5c7b;
+  border-radius:22px; background:linear-gradient(115deg,#103250 0%,#174666 58%,#245b72 100%);
+  box-shadow:0 20px 45px -26px rgba(8,41,66,.62); color:#fff;
+}
+body.student-portal .student-workspace-hero::before {
+  content:""; position:absolute; z-index:-1; width:520px; height:520px; inset-block-start:-295px;
+  inset-inline-end:-120px; border-radius:50%; border:1px solid rgba(255,255,255,.2);
+  box-shadow:0 0 0 65px rgba(255,255,255,.035),0 0 0 130px rgba(255,255,255,.025);
+}
+body.student-portal .student-workspace-hero::after {
+  content:""; position:absolute; z-index:-1; inset-inline-start:42px; bottom:0;
+  width:92px; height:4px; border-radius:4px 4px 0 0; background:#d9b66e;
+}
+body.student-portal .student-hero-copy {min-width:0; max-width:780px;}
+body.student-portal .student-hero-kicker,
+body.student-portal .pg-page .rv-eyebrow {
+  display:inline-flex; align-items:center; gap:10px; margin:0 0 13px;
+  color:#e4c680; font-size:12px; font-weight:800; letter-spacing:.14em; line-height:1.4;
+  text-transform:uppercase;
+}
+body.student-portal .student-hero-kicker::before,
+body.student-portal .pg-page .rv-eyebrow::before {content:""; width:24px; height:1px; background:currentColor;}
+body.student-portal .uims-main-inner .student-workspace-hero h2 {
+  margin:0 0 10px; color:#fff; font-size:clamp(2.05rem,3vw,2.8rem);
+  font-weight:750; letter-spacing:-.045em; line-height:1.15;
+}
+body.student-portal .uims-main-inner .student-workspace-hero p {
+  max-width:68ch; margin:0; color:#d5e3ee; font-size:15px; line-height:1.7;
+}
+body.student-portal .student-hero-metric {
+  position:relative; flex:none; display:flex; flex-direction:column; justify-content:center;
+  min-width:140px; min-height:105px; padding:18px 22px; border:1px solid rgba(255,255,255,.25);
+  border-radius:16px; background:rgba(255,255,255,.09); text-align:center;
+  box-shadow:inset 0 1px rgba(255,255,255,.12);
+}
+body.student-portal .student-hero-metric strong {font-size:38px; line-height:1; font-weight:750; letter-spacing:-.06em; color:#fff; font-variant-numeric:tabular-nums;}
+body.student-portal .student-hero-metric span {margin-top:8px; color:#d4e6ee; font-size:12px; font-weight:700; line-height:1.4;}
+body.student-portal .student-section-heading {display:flex; align-items:center; gap:15px; margin:30px 0 16px;}
+body.student-portal .student-section-number {display:grid; place-items:center; width:42px; height:42px; flex:none; border-radius:12px; background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary)); font-size:14px; font-weight:800; font-variant-numeric:tabular-nums;}
+body.student-portal .student-section-heading h3 {margin:0 0 3px; font-size:20px; font-weight:750; letter-spacing:-.025em; color:var(--ui-ink);}
+body.student-portal .student-section-heading p {margin:0; font-size:13px; color:var(--ui-muted);}
+
+/* Applications: prominent placement summary and individually readable records. */
+body.student-portal .student-applications-page .confirmed-placement {
+  position:relative; align-items:center; padding:25px 30px 25px 34px; margin:0 0 28px;
+  overflow:hidden; border:1px solid color-mix(in srgb,var(--ui-success) 28%,var(--ui-border));
+  border-radius:18px; background:linear-gradient(110deg,var(--ui-success-soft),var(--ui-surface) 78%);
+  box-shadow:0 12px 32px -25px rgba(10,60,37,.38);
+}
+body.student-portal .student-applications-page .confirmed-placement::before {content:""; position:absolute; inset-block:0; inset-inline-start:0; width:5px; background:var(--ui-success);}
+body.student-portal .student-applications-page .confirmed-placement h3 {margin:10px 0 5px; font-size:22px; font-weight:750; letter-spacing:-.02em; color:var(--ui-ink);}
+body.student-portal .student-applications-page .confirmed-placement > div > p {font-size:14px; color:var(--ui-muted);}
+body.student-portal .student-applications-page .confirmed-placement > .application-help {max-width:32ch; margin:0; font-size:13px; text-align:end;}
+body.student-portal .student-applications-page .application-list {display:grid; gap:14px; padding:0; border:0; background:transparent; box-shadow:none;}
+body.student-portal .student-applications-page .application-row {
+  position:relative; display:flex; flex-direction:column; gap:18px; padding:23px 26px;
+  margin:0; border:1px solid var(--ui-border); border-radius:18px;
+  background:var(--ui-surface); box-shadow:0 12px 30px -24px rgba(12,48,76,.35);
+}
+body.student-portal .student-applications-page .application-row::before {content:""; position:absolute; inset-block:20px; inset-inline-start:0; width:3px; border-radius:0 3px 3px 0; background:var(--ui-primary); opacity:.7;}
+body.student-portal .student-applications-page .application-row-top {gap:20px; align-items:flex-start;}
+body.student-portal .student-applications-page .application-row-identity {display:flex; gap:17px; align-items:flex-start; min-width:0;}
+body.student-portal .student-applications-page .application-row-identity > div {min-width:0;}
+body.student-portal .student-applications-page .application-row-mark {display:grid; place-items:center; width:48px; height:48px; flex:none; border-radius:14px; background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary));}
+body.student-portal .student-applications-page .application-row-mark svg {width:23px; height:23px;}
+body.student-portal .student-applications-page .application-row h3 {margin:0 0 5px; font-size:20px; font-weight:750; line-height:1.35; letter-spacing:-.02em; overflow-wrap:anywhere;}
+body.student-portal .student-applications-page .application-company-name {font-size:14px; font-weight:650; color:var(--ui-primary-text,var(--ui-primary));}
+body.student-portal .student-applications-page .application-help {font-size:13px; color:var(--ui-muted); line-height:1.6;}
+body.student-portal .student-applications-page .application-row-identity .application-help {margin:9px 0 0; font-variant-numeric:tabular-nums;}
+body.student-portal .student-applications-page .application-status {display:inline-flex; align-items:center; gap:8px; border-radius:999px; padding:8px 13px; font-size:12px; font-weight:800; white-space:nowrap;}
+body.student-portal .student-applications-page .application-status::before {content:""; width:7px; height:7px; border-radius:50%; background:currentColor;}
+body.student-portal .student-applications-page .application-view-link {
+  display:inline-flex; align-items:center; justify-content:center; align-self:flex-start;
+  min-height:41px; padding:9px 15px; border:1px solid var(--ui-border); border-radius:10px;
+  background:var(--ui-surface); color:var(--ui-primary-text,var(--ui-primary));
+  font-size:13px; font-weight:750; text-decoration:none;
+}
+body.student-portal .student-applications-page .application-view-link:hover {background:var(--ui-primary-soft); border-color:var(--ui-primary); color:var(--ui-primary-text,var(--ui-primary));}
+body.student-portal .student-applications-page .confirmed-offer-label {display:inline-flex; align-items:center; gap:7px; margin:0; padding:8px 12px; border-radius:9px; background:var(--ui-success-soft); color:var(--ui-success); font-size:13px;}
+body.student-portal .student-applications-page .confirmed-offer-label::before {content:"✓"; font-weight:800;}
+body.student-portal .student-applications-page .offer-confirmation {margin:0; padding:18px; border:1px solid color-mix(in srgb,var(--ui-success) 28%,var(--ui-border)); border-radius:12px; background:var(--ui-success-soft);}
+body.student-portal .student-applications-page .offer-confirmation strong {font-size:16px;}
+body.student-portal .student-applications-page .offer-consent {margin:14px 0;}
+body.student-portal .student-applications-page .offer-consent label {font-size:14px;}
+body.student-portal .student-applications-page .offer-confirmation .btn {border-radius:10px; min-height:43px; padding-inline:19px; font-weight:700;}
+body.student-portal .student-applications-page .application-empty {padding:48px 30px; border:1px dashed var(--ui-control-border); border-radius:18px; background:var(--ui-surface); color:var(--ui-muted);}
+
+/* Tasks: a readable work queue beside the selected task and submission flow. */
+body.student-portal .student-workflow-strip {display:flex; flex-wrap:wrap; gap:8px; margin:-7px 0 24px;}
+body.student-portal .student-workflow-strip > span {display:inline-flex; align-items:center; gap:9px; min-height:37px; padding:7px 12px; border:1px solid var(--ui-border); border-radius:999px; background:var(--ui-surface); color:var(--ui-muted); font-size:12px; font-weight:650;}
+body.student-portal .student-workflow-strip b {font-size:11px; color:var(--ui-primary-text,var(--ui-primary)); font-variant-numeric:tabular-nums;}
+body.student-portal .student-tasks-layout {display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); align-items:start; gap:20px;}
+body.student-portal .student-task-card,body.student-portal .student-submit-card {overflow:hidden; border:1px solid var(--ui-border); border-radius:18px; background:var(--ui-surface); box-shadow:0 12px 32px -25px rgba(12,48,76,.4);}
+body.student-portal .student-card-heading {position:relative; padding:23px 25px; border-bottom:1px solid var(--ui-border); background:linear-gradient(110deg,var(--ui-surface),color-mix(in srgb,var(--ui-primary-soft) 38%,var(--ui-surface)));}
+body.student-portal .student-card-heading::before {content:""; position:absolute; inset-block:23px; inset-inline-start:0; width:3px; border-radius:3px; background:var(--ui-accent);}
+body.student-portal .student-card-heading h3 {margin:0 0 5px; color:var(--ui-ink); font-size:19px; font-weight:750; letter-spacing:-.02em;}
+body.student-portal .student-card-heading p {margin:0; color:var(--ui-muted); font-size:13px; line-height:1.55;}
+body.student-portal .student-task-list {display:grid; gap:10px; padding:16px;}
+body.student-portal .student-task-item {display:grid; grid-template-columns:minmax(0,1fr) auto; gap:13px 18px; padding:18px; border:1px solid var(--ui-border); border-radius:14px; background:var(--ui-surface); transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;}
+body.student-portal .student-task-item:hover {border-color:color-mix(in srgb,var(--ui-primary) 45%,var(--ui-border)); box-shadow:0 13px 26px -22px rgba(12,48,76,.5); transform:translateY(-2px);}
+body.student-portal .student-task-item.is-selected {border-color:color-mix(in srgb,var(--ui-primary) 58%,var(--ui-border)); background:linear-gradient(115deg,var(--ui-surface),color-mix(in srgb,var(--ui-primary-soft) 35%,var(--ui-surface))); box-shadow:inset 3px 0 var(--ui-primary);}
+[dir="rtl"] body.student-portal .student-task-item.is-selected {box-shadow:inset -3px 0 var(--ui-primary);}
+body.student-portal .student-task-item-main {display:flex; align-items:flex-start; gap:12px; min-width:0;}
+body.student-portal .student-task-item-main > div {min-width:0;}
+body.student-portal .student-task-item-icon {display:grid; place-items:center; width:40px; height:40px; flex:none; border-radius:11px; background:var(--ui-primary-soft); color:var(--ui-primary-text,var(--ui-primary));}
+body.student-portal .student-task-item-icon svg {width:21px; height:21px;}
+body.student-portal .student-task-title {display:block; margin:1px 0 5px; color:var(--ui-ink); font-size:16px; font-weight:750; line-height:1.4; overflow-wrap:anywhere;}
+body.student-portal .student-task-subtitle {display:block; color:var(--ui-muted); font-size:12px; line-height:1.5;}
+body.student-portal .student-task-item-meta {grid-column:1/-1; display:flex; flex-wrap:wrap; align-items:center; gap:9px 15px; padding-top:11px; border-top:1px solid var(--ui-border);}
+body.student-portal .student-task-deadline,body.student-portal .student-task-attempts {display:inline-flex; align-items:center; gap:5px; color:var(--ui-muted); font-size:12px;}
+body.student-portal .student-task-deadline strong,body.student-portal .student-task-attempts strong {color:var(--ui-ink); font-weight:750; font-variant-numeric:tabular-nums;}
+body.student-portal .student-task-item-action {grid-column:2; grid-row:1; align-self:start;}
+body.student-portal .student-select-button {display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:7px 11px; border:1px solid var(--ui-primary); border-radius:9px; background:var(--ui-primary); color:#fff; font-size:12px; font-weight:750; text-decoration:none; white-space:nowrap;}
+body.student-portal .student-select-button:hover {background:var(--ui-primary-hover); color:#fff;}
+body.student-portal .student-status {display:inline-flex; align-items:center; gap:6px; min-height:27px; padding:4px 10px; border-radius:999px; background:var(--ui-neutral-soft); color:var(--ui-neutral); font-size:11px; font-weight:800; white-space:nowrap;}
+body.student-portal .student-status::before {content:""; width:6px; height:6px; margin:0; border-radius:50%; background:currentColor;}
+body.student-portal .student-status.status-action,body.student-portal .student-status.status-revision {background:var(--ui-warning-soft); color:var(--ui-warning);}
+body.student-portal .student-status.status-submitted {background:var(--ui-info-soft); color:var(--ui-info);}
+body.student-portal .student-status.status-done {background:var(--ui-success-soft); color:var(--ui-success);}
+body.student-portal .student-submit-body {padding:24px 25px;}
+body.student-portal .student-selected-meta {display:flex; align-items:flex-start; gap:16px; padding:0 0 20px; margin:0 0 21px; border-bottom:1px solid var(--ui-border);}
+body.student-portal .student-selected-meta h4 {margin:0 0 7px; font-size:21px; font-weight:750; letter-spacing:-.025em; color:var(--ui-ink);}
+body.student-portal .student-selected-meta p {font-size:12px; color:var(--ui-muted);}
+body.student-portal .student-selected-meta .student-status {margin-inline-start:auto;}
+body.student-portal .student-detail-block {margin:0 0 20px;}
+body.student-portal .student-detail-block h5 {margin:0 0 8px; font-size:12px; font-weight:800; letter-spacing:.04em; color:var(--ui-primary-text,var(--ui-primary)); text-transform:uppercase;}
+body.student-portal .student-detail-block p {margin:0; color:var(--ui-muted); font-size:14px; line-height:1.7; white-space:pre-line;}
+body.student-portal .student-submit-form {margin:22px 0 0; padding:21px; border:1px solid color-mix(in srgb,var(--ui-primary) 26%,var(--ui-border)); border-radius:14px; background:var(--ui-primary-soft);}
+body.student-portal .student-submit-form h4 {margin:0 0 6px; font-size:16px; font-weight:750; color:var(--ui-ink);}
+body.student-portal .student-submit-form .text-muted {color:var(--ui-muted)!important;}
+body.student-portal .student-submit-form .task-dialog-open {width:100%; min-height:46px; justify-content:center; border-radius:10px;}
+body.student-portal .student-criteria,body.student-portal .student-history {margin-top:25px; padding-top:21px; border-top:1px solid var(--ui-border);}
+body.student-portal .student-criteria h4,body.student-portal .student-history h4 {margin:0 0 12px; font-size:16px; font-weight:750; color:var(--ui-ink);}
+body.student-portal .student-criterion,body.student-portal .student-history-row {padding:12px 0; border-bottom:1px solid var(--ui-border); color:var(--ui-muted); font-size:13px; line-height:1.6;}
+body.student-portal .student-criterion strong,body.student-portal .student-history-row strong {color:var(--ui-ink);}
+body.student-portal .student-empty-selection {padding:36px 24px; color:var(--ui-muted); font-size:14px; line-height:1.65;}
+body.student-portal .student-empty-selection strong {margin-bottom:7px; font-size:17px; color:var(--ui-ink);}
+
+/* Progress: the same surfaces, scale and headings as the other work pages. */
+body.student-portal .pg-page.rv-scope .rv-heading {align-items:flex-end; margin-bottom:28px;}
+body.student-portal .pg-page.rv-scope .rv-heading h2 {color:#fff;}
+body.student-portal .pg-page.rv-scope .rv-heading p {color:#d5e3ee;}
+body.student-portal .pg-page.rv-scope .rv-card {border-radius:18px; margin-bottom:20px; box-shadow:0 12px 32px -25px rgba(12,48,76,.4);}
+body.student-portal .pg-page.rv-scope .rv-card-head {padding:20px 25px; background:linear-gradient(110deg,var(--ui-surface),color-mix(in srgb,var(--ui-primary-soft) 32%,var(--ui-surface)));}
+body.student-portal .pg-page.rv-scope .rv-card-head h3 {font-size:19px; font-weight:750; letter-spacing:-.02em;}
+body.student-portal .pg-page.rv-scope .rv-card-head p {font-size:13px;}
+body.student-portal .pg-page.rv-scope .rv-card-body {padding:23px 25px;}
+body.student-portal .pg-page .pg-stats {gap:14px; margin-bottom:20px;}
+body.student-portal .pg-page .pg-stat {min-height:180px; padding:20px 22px; gap:5px;}
+body.student-portal .pg-page .pg-stat .rv-icon {width:38px; height:38px; margin-bottom:8px; border-radius:11px;}
+body.student-portal .pg-page .pg-stat-label {font-size:11px; font-weight:800; letter-spacing:.08em;}
+body.student-portal .pg-page .pg-stat strong {font-size:35px; font-weight:750; letter-spacing:-.045em;}
+body.student-portal .pg-page .pg-stat strong small {font-size:16px!important;}
+body.student-portal .pg-page .pg-stat-note {font-size:12px!important; line-height:1.55;}
+body.student-portal .pg-page .pg-journey {overflow:visible;}
+body.student-portal .pg-page .pg-journey::before {height:4px; background:linear-gradient(90deg,#c9a457,var(--ui-primary));}
+body.student-portal .pg-page .pg-step-text strong {font-size:16px; font-weight:750;}
+body.student-portal .pg-page .pg-step-index {font-size:11px;}
+body.student-portal .pg-page .pg-step-state {font-size:12px;}
+body.student-portal .pg-page .pg-step-text small {font-size:12px;}
+body.student-portal .pg-page .rv-kv > div {padding:13px 15px; border:1px solid var(--ui-border); border-radius:11px; background:color-mix(in srgb,var(--ui-neutral-soft) 50%,var(--ui-surface));}
+body.student-portal .pg-page .rv-kv dt {font-size:12px; font-weight:700;}
+body.student-portal .pg-page .rv-kv dd {font-size:16px; font-weight:700;}
+body.student-portal .pg-page .rv-table th {background:var(--ui-neutral-soft); font-size:12px; font-weight:800;}
+body.student-portal .pg-page .rv-table td {font-size:14px;}
+body.student-portal .pg-page .pg-hours-split > div {border-radius:11px;}
+body.student-portal .pg-page .pg-timeline-card {border-radius:12px;}
+
+@media(max-width:1050px) {
+  body.student-portal .student-tasks-layout {grid-template-columns:1fr;}
+  body.student-portal .student-submit-card {scroll-margin-top:20px;}
+}
+@media(max-width:700px) {
+  body.student-portal .uims-main-inner .student-workspace-hero {align-items:flex-start; flex-direction:column; gap:20px; min-height:0; padding:28px 24px; border-radius:18px;}
+  body.student-portal .student-workspace-hero::after {inset-inline-start:24px;}
+  body.student-portal .student-hero-metric {flex-direction:row; align-items:baseline; justify-content:flex-start; gap:10px; min-height:0; min-width:0; width:auto; padding:10px 14px; text-align:start;}
+  body.student-portal .student-hero-metric strong {font-size:28px;}
+  body.student-portal .student-hero-metric span {margin:0;}
+  body.student-portal .student-applications-page .confirmed-placement {align-items:flex-start; flex-direction:column; padding:23px; gap:12px;}
+  body.student-portal .student-applications-page .confirmed-placement > .application-help {text-align:start;}
+  body.student-portal .student-applications-page .application-row {padding:19px;}
+  body.student-portal .student-applications-page .application-row-top {flex-wrap:wrap;}
+  body.student-portal .student-workflow-strip {gap:6px;}
+  body.student-portal .student-workflow-strip > span {font-size:11px;}
+  body.student-portal .pg-page .pg-stats {grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+@media(max-width:450px) {
+  body.student-portal .student-task-item {grid-template-columns:1fr;}
+  body.student-portal .student-task-item-action {grid-column:1; grid-row:auto;}
+  body.student-portal .student-task-item-action .student-select-button {width:100%;}
+  body.student-portal .student-selected-meta {flex-direction:column;}
+  body.student-portal .student-selected-meta .student-status {margin:0;}
+  body.student-portal .pg-page .pg-stats {grid-template-columns:1fr;}
+}
+@media(prefers-reduced-motion:reduce) {
+  body.student-portal .student-task-item,body.student-portal .student-applications-page .application-row {animation:none; transition:none;}
+  body.student-portal .student-task-item:hover {transform:none;}
+}
+
+
+/* Assigned tasks fill the page; task details open above them. */
+body.student-portal .student-tasks-layout{display:block}
+body.student-portal .student-task-card{width:100%}
+body.student-portal .student-task-list{gap:12px;padding:20px}
+body.student-portal .student-task-item{grid-template-columns:minmax(0,1fr) auto;align-items:center;padding:20px 23px}
+body.student-portal .student-task-item-meta{grid-column:1/-1}
+body.student-portal .student-task-item-action{align-self:center}
+body.student-portal .student-select-button{min-width:125px;min-height:42px;font-size:13px}
+@media(max-width:600px){body.student-portal .student-task-list{padding:12px}body.student-portal .student-task-item{grid-template-columns:1fr;padding:17px}body.student-portal .student-task-item-action{grid-column:1;grid-row:auto}body.student-portal .student-task-item-action .student-select-button{width:100%}}
+
+body.student-portal .pg-report-hours{margin:22px 0;padding:20px;border:1px solid var(--ui-border);border-radius:14px;background:var(--ui-canvas)}
+body.student-portal .pg-report-hours h4{margin:0 0 4px;color:var(--ui-ink);font-size:17px;font-weight:750}
+body.student-portal .pg-report-hours p{margin:0 0 16px;color:var(--ui-muted);font-size:13px;line-height:1.6}
+body.student-portal .pg-report-hours-grid{display:grid;grid-template-columns:minmax(140px,1fr) minmax(120px,.7fr) minmax(210px,2fr) auto;gap:12px;align-items:end}
+body.student-portal .pg-report-hours-grid label{display:block;margin-bottom:6px;color:var(--ui-ink);font-size:12px;font-weight:750}
+body.student-portal .pg-report-hours-grid .form-control{min-height:42px;border-color:var(--ui-border);background:var(--ui-surface);color:var(--ui-ink)}
+body.student-portal .pg-report-hours-grid textarea{height:42px;min-height:42px}
+body.student-portal .pg-report-submit .btn{min-height:42px;white-space:nowrap}
+body.student-portal .pg-hours-message{display:block;margin-top:12px;padding:10px 12px;border-radius:9px;font-size:13px;font-weight:700}
+body.student-portal .pg-hours-message.is-success{background:var(--ui-success-soft);color:var(--ui-success)}
+body.student-portal .pg-hours-message.is-error{background:var(--ui-danger-soft);color:var(--ui-danger)}
+@media(max-width:1000px){body.student-portal .pg-report-hours-grid{grid-template-columns:1fr 1fr}body.student-portal .pg-report-description{grid-column:1/-1}body.student-portal .pg-report-submit{grid-column:1/-1}}
+@media(max-width:560px){body.student-portal .pg-report-hours-grid{grid-template-columns:1fr}body.student-portal .pg-report-description,body.student-portal .pg-report-submit{grid-column:1}body.student-portal .pg-report-submit .btn{width:100%}}

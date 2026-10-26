@@ -1,0 +1,218 @@
+/* =============================================================================
+   Coordinator pages - one look for every page (2026-10-24).
+   The reference is Manage Academic Supervisors (students.css, .dir-* classes):
+   the same page header, cards, tables, pill buttons, status pills and font
+   sizes. Layout/Coordinator.master loads students.css for every coordinator
+   page and this file last, so it also tunes the older page styles
+   (dashboard, placements, completion review) to match.
+   Only --ui-* theme tokens are used, so light and dark themes both work.
+   ============================================================================= */
+
+/* ---- Page width: every page uses the full content area, like Manage Academic. */
+body.coordinator-portal .uims-main-inner > :is(.dir-page,.coordination-desk,.monitor-page,.rv-scope) { max-width:none; margin-inline:0; }
+/* Same content width on every page (the review used to be wider). */
+body.coordinator-portal .uims-main-inner:has(.cr-page) { max-width:1560px; }
+
+/* ---- Header: optional group of buttons on the right. */
+body.uims-portal .dir-head > div:first-child { min-width:0; }
+body.uims-portal .dir-head-actions { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+body.uims-portal :is(.dir-head,.dir-hero-actions,.dir-card-actions) .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:.65rem 1.35rem; border-radius:999px; font-weight:650; white-space:nowrap; }
+body.uims-portal :is(.dir-head,.dir-hero-actions,.dir-card-actions) .btn .ui-icon,
+body.uims-portal :is(.dir-head,.dir-hero-actions,.dir-card-actions) .btn svg { width:18px; height:18px; flex:none; }
+
+/* Secondary pill: white with brand text, fills with brand colour on hover. */
+body.uims-portal .btn.dir-ghost { color:var(--ui-primary-text,var(--ui-primary)); background:var(--ui-surface); border:1px solid var(--ui-border); transition:background-color .2s,color .2s,border-color .2s,transform .2s; }
+body.uims-portal .btn.dir-ghost:hover,body.uims-portal .btn.dir-ghost:focus-visible { color:#fff; background:var(--ui-primary); border-color:var(--ui-primary); transform:translateY(-1px); }
+body.uims-portal .btn.dir-ghost svg { stroke:currentColor; fill:none; stroke-width:1.9; stroke-linecap:round; stroke-linejoin:round; }
+
+/* ---- Buttons on coordinator pages and pop-ups are pills, as on Manage Academic. */
+body.coordinator-portal :is(.dir-page,.dir-modal) .btn:not(.btn-close):not(.dir-btn) { border-radius:999px; font-weight:650; }
+body.coordinator-portal :is(.dir-page,.dir-modal) .btn:not(.btn-close):not(.btn-sm):not(.dir-btn) { padding-inline:1.2rem; }
+body.coordinator-portal :is(.dir-page,.dir-modal) .btn .ui-icon { width:17px; height:17px; }
+body.coordinator-portal :is(.dir-page,.dir-modal) .btn:has(.ui-icon) { display:inline-flex; align-items:center; justify-content:center; gap:7px; }
+
+/* ---- Status pills: extra tones next to is-active / is-inactive. */
+body.uims-portal .dir-status.is-warning { color:var(--ui-warning); background:var(--ui-warning-soft); }
+body.uims-portal .dir-status.is-info { color:var(--ui-primary-text,var(--ui-primary)); background:var(--ui-primary-soft); }
+body.uims-portal .dir-status.is-neutral { color:var(--ui-muted); background:var(--ui-neutral-soft); }
+body.uims-portal .dir-status.is-lg { padding:6px 14px; font-size:13.5px; }
+
+/* ---- Table buttons: one more tone. */
+body.uims-portal .dir-btn-success { color:var(--ui-success); }
+body.uims-portal .dir-btn-success:hover,body.uims-portal .dir-btn-success:focus-visible { color:#fff; background:var(--ui-success); border-color:var(--ui-success); }
+body.uims-portal .dir-btn[disabled],body.uims-portal .dir-btn.aspNetDisabled { opacity:.5; pointer-events:none; }
+body.uims-portal .dir-btn-icon { width:34px; height:34px; padding:0; }
+
+/* ---- Summary tiles (counts above a table). */
+body.uims-portal .dir-stats { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin:0 0 24px; padding:0; list-style:none; }
+body.uims-portal .dir-stats > li { display:flex; align-items:center; gap:14px; min-width:0; padding:18px 20px; border:1px solid var(--ui-border); border-radius:16px; background:var(--ui-surface); box-shadow:0 1px 2px rgba(15,40,70,.04),0 18px 40px -34px rgba(15,40,70,.35); animation:dir-rise .28s cubic-bezier(.16,1,.3,1) both; animation-delay:calc(var(--dir-i,0) * 30ms); }
+body.uims-portal .dir-stats > li > div { min-width:0; }
+body.uims-portal .dir-stats strong { display:block; font-size:26px; font-weight:700; line-height:1.15; color:var(--ui-ink); font-variant-numeric:tabular-nums; overflow-wrap:anywhere; }
+body.uims-portal .dir-stats small { display:block; margin-top:2px; font-size:13px; color:var(--ui-muted); }
+body.uims-portal .dir-stats .dir-label { margin-bottom:4px; }
+body.uims-portal .dir-stat-icon.is-success { color:var(--ui-success); background:var(--ui-success-soft); }
+body.uims-portal .dir-stat-icon.is-warning { color:var(--ui-warning); background:var(--ui-warning-soft); }
+body.uims-portal .dir-stat-icon.is-danger { color:var(--ui-danger); background:var(--ui-danger-soft); }
+body.uims-portal .dir-stat-icon svg { width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+body.uims-portal .dir-stats .is-pass strong { color:var(--ui-success); }
+body.uims-portal .dir-stats .is-fail strong { color:var(--ui-danger); }
+
+/* ---- Toolbar extras: server-side search buttons, labelled filters. */
+body.uims-portal .dir-filters .btn { display:inline-flex; align-items:center; gap:6px; min-height:40px; padding:.45rem 1.1rem; border-radius:999px; font-weight:650; white-space:nowrap; }
+body.uims-portal .dir-filters .btn .ui-icon { width:16px; height:16px; }
+body.uims-portal .dir-filters .form-control,body.uims-portal .dir-filters .form-select { border-radius:12px; }
+body.uims-portal .dir-filters select.form-select { width:auto; }
+body.uims-portal .dir-card-actions { display:flex; flex-wrap:wrap; gap:10px; }
+
+/* ---- Card heading used inside a dir-card (title + small text + right side). */
+body.uims-portal .dir-card-head { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:12px 20px; margin-bottom:16px; }
+body.uims-portal .dir-card-head h3 { display:flex; align-items:center; gap:10px; margin:0 0 4px; font-size:19px; font-weight:650; color:var(--ui-ink); }
+body.uims-portal .dir-card-head p { margin:0; font-size:14px; color:var(--ui-muted); }
+body.uims-portal .dir-card-head .dir-stat-icon { width:36px; height:36px; border-radius:10px; }
+
+/* ---- Footer under a table: result count and paging. */
+body.uims-portal .dir-foot { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; margin-top:16px; padding-top:14px; border-top:1px solid var(--ui-border); font-size:14px; color:var(--ui-muted); }
+body.uims-portal .dir-foot nav { display:flex; align-items:center; gap:8px; }
+body.uims-portal .dir-page-no { display:inline-grid; place-items:center; min-width:34px; height:34px; padding:0 10px; border-radius:99px; font-weight:700; color:#fff; background:var(--ui-primary); }
+body.uims-portal .dir-note { margin:14px 0 0; font-size:13.5px; color:var(--ui-muted); }
+
+/* ---- Table cells: second line under a value, numbers. */
+body.uims-portal .dir-table td > small,body.uims-portal .dir-table td .dir-sub { display:block; margin-top:2px; font-size:13.5px; color:var(--ui-muted); }
+body.uims-portal .dir-table td > strong { display:block; font-weight:650; }
+body.uims-portal .dir-num { font-variant-numeric:tabular-nums; unicode-bidi:plaintext; }
+body.uims-portal .dir-table-plain tbody tr { animation:none; }
+body.uims-portal .dir-table .dir-flag { color:var(--ui-warning); font-weight:700; }
+/* GridView pages (Companies, Contact messages): the empty-data row. */
+body.uims-portal .dir-table td[colspan] { padding:36px 16px; text-align:center; color:var(--ui-muted); }
+
+/* ---- Simple text tabs (Groups pages), in the same font as the header. */
+body.uims-portal .dir-page .students-tabs { gap:4px; margin-bottom:22px; border-bottom:1px solid var(--ui-border); }
+body.uims-portal .dir-page .students-tabs a { display:inline-flex; align-items:center; gap:8px; padding:10px 16px; font-size:14.5px; font-weight:650; color:var(--ui-muted); border-bottom:3px solid transparent; }
+body.uims-portal .dir-page .students-tabs a .ui-icon { width:17px; height:17px; }
+body.uims-portal .dir-page .students-tabs a:hover { color:var(--ui-primary-text,var(--ui-primary)); }
+body.uims-portal .dir-page .students-tabs a.active { color:var(--ui-primary-text,var(--ui-primary)); border-bottom-color:var(--ui-primary); }
+
+/* ---- Pop-ups that are not Bootstrap modals (Contact messages). */
+body.uims-portal .dir-overlay { position:fixed; inset:0; z-index:var(--ui-z-modal,1055); display:none; align-items:center; justify-content:center; padding:24px 16px; background:rgba(10,25,45,.45); }
+body.uims-portal .dir-overlay.open { display:flex; }
+body.uims-portal .dir-overlay .modal-content { width:min(980px,100%); max-height:calc(100vh - 48px); display:flex; flex-direction:column; }
+body.uims-portal .dir-overlay .modal-body { overflow-y:auto; }
+body.uims-portal .dir-message-box { padding:16px 18px; font-size:15px; line-height:1.7; color:var(--ui-ink); white-space:normal; overflow-wrap:anywhere; border-radius:14px; background:var(--ui-neutral-soft); }
+
+/* ---- Profile pages: lists inside a profile card. */
+body.uims-portal .dir-profile-grid .dir-card > h3 { margin-bottom:14px; }
+body.uims-portal .dir-profile-grid .dir-card .dir-table td { padding-block:12px; }
+body.uims-portal .dir-profile-grid .dir-card .dir-table tbody tr { animation:none; }
+
+/* =============================================================================
+   Older page styles brought in line with the header and cards above.
+   ============================================================================= */
+
+/* ---- Dashboard: same tokens, card shape and title sizes. */
+body.coordinator-portal :is(.coordination-desk,.desk-record-modal) { --desk-ink:var(--ui-ink); --desk-muted:var(--ui-muted); --desk-blue:var(--ui-primary); --desk-action:var(--ui-primary-text,var(--ui-primary)); --desk-surface:var(--ui-surface); --desk-soft:var(--ui-neutral-soft); --desk-line:var(--ui-border); }
+body.coordinator-portal .coordination-desk { padding-block:0 28px; }
+body.coordinator-portal .coordination-desk :is(.desk-stat,.desk-followup,.desk-chart,.desk-card,.desk-panel) { border-color:var(--ui-border); border-radius:16px; box-shadow:0 1px 2px rgba(15,40,70,.04),0 18px 40px -34px rgba(15,40,70,.35); }
+body.coordinator-portal .coordination-desk :is(.desk-section-heading,.desk-chart-heading) h3 { font-size:19px; font-weight:650; color:var(--ui-ink); }
+body.coordinator-portal .coordination-desk :is(.desk-section-heading,.desk-chart-heading) p { font-size:14px; }
+body.coordinator-portal .coordination-desk .desk-stat h4 { font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ui-muted); }
+body.coordinator-portal .coordination-desk .desk-stat-number { font-size:30px; font-weight:700; color:var(--ui-ink); }
+body.coordinator-portal .coordination-desk .desk-stat-icon { width:40px; height:40px; border-radius:12px; color:var(--ui-primary-text,var(--ui-primary)); background:var(--ui-primary-soft); }
+body.coordinator-portal .coordination-desk .desk-stat-action { font-size:13.5px; color:var(--ui-primary-text,var(--ui-primary)); }
+body.coordinator-portal .coordination-desk .desk-stat-action:hover { background:var(--ui-primary-soft); }
+
+/* ---- Placement details (progress page). */
+body.uims-portal .uims-main-inner .placement-redesign { --pd-blue:var(--ui-primary); --pd-ink:var(--ui-ink); --pd-muted:var(--ui-muted); --pd-line:var(--ui-border); --pd-soft:var(--ui-primary-soft); --pd-bg:var(--ui-neutral-soft); max-width:none; }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-panel { border-radius:18px; margin-bottom:20px; box-shadow:0 1px 2px rgba(15,40,70,.04),0 18px 40px -32px rgba(15,40,70,.35); }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-panel-heading { padding:14px 24px; }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-panel-heading h3,
+body.uims-portal .uims-main-inner .placement-redesign .monitor-progress h3 { font-size:17px !important; font-weight:650; }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-panel-heading > span:not([data-ui-icon]) { padding:4px 11px; border-radius:99px; font-size:12.5px; font-weight:600; }
+body.uims-portal .uims-main-inner .placement-redesign .placement-section-icon { border-radius:10px; }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-table th { padding:12px 16px; font-size:12px !important; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--ui-muted); border-bottom:2px solid var(--ui-border); }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-table td { padding:14px 16px; font-size:14.5px !important; color:var(--ui-ink); }
+body.uims-portal .uims-main-inner .placement-redesign .placement-tools button { border-radius:999px; padding:6px 14px; font-weight:650; color:var(--ui-primary-text,var(--ui-primary)); }
+body.uims-portal .uims-main-inner .placement-redesign .placement-tools button:hover { color:#fff; background:var(--ui-primary); border-color:var(--ui-primary); }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-status { display:inline-flex; align-items:center; padding:4px 11px; border-radius:99px; font-size:12.5px; font-weight:700; }
+body.uims-portal .uims-main-inner .placement-redesign .monitor-btn { border-radius:999px; font-weight:650; }
+
+/* ---- Final completion review: rv-* components at the directory sizes. */
+body.coordinator-portal .rv-scope .rv-card { border-radius:18px; box-shadow:0 1px 2px rgba(15,40,70,.04),0 18px 40px -32px rgba(15,40,70,.35); }
+body.coordinator-portal .rv-scope .rv-card-head { padding:20px 24px; }
+body.coordinator-portal .rv-scope .rv-card-head h3 { gap:10px; font-size:19px; font-weight:650; letter-spacing:0; }
+body.coordinator-portal .rv-scope .rv-card-head p { margin-top:4px; font-size:14px; }
+body.coordinator-portal .rv-scope .rv-card-body { padding:20px 24px; }
+body.coordinator-portal .rv-scope .rv-card-foot { padding:14px 24px; font-size:13.5px; }
+body.coordinator-portal .rv-scope .rv-icon { width:36px; height:36px; border-radius:10px; }
+body.coordinator-portal .rv-scope .rv-icon svg { width:19px; height:19px; }
+body.coordinator-portal .rv-scope .rv-badge { gap:6px; padding:4px 11px; font-size:12.5px; font-weight:700; }
+body.coordinator-portal .rv-scope .rv-badge::before { width:7px; height:7px; }
+body.coordinator-portal .rv-scope .rv-source { padding:2px 8px; font-size:12px; border-radius:99px; }
+body.coordinator-portal .rv-scope .rv-note { font-size:13.5px; }
+body.coordinator-portal .rv-scope .rv-alert { padding:14px 18px; font-size:14.5px; border-radius:14px; }
+body.coordinator-portal .rv-scope .rv-empty { padding:18px 20px; font-size:14.5px; border-radius:14px; }
+body.coordinator-portal .rv-scope .rv-kv dt { font-size:12.5px; font-weight:600; }
+body.coordinator-portal .rv-scope .rv-kv dd { font-size:15.5px; }
+body.coordinator-portal .rv-scope .rv-kv dd small { font-size:13px; }
+body.coordinator-portal .rv-scope .rv-table { font-size:15px; }
+body.coordinator-portal .rv-scope .rv-table th { padding:12px 16px; font-size:12px; font-weight:700; letter-spacing:.06em; border-bottom:2px solid var(--ui-border); }
+body.coordinator-portal .rv-scope .rv-table td { padding:14px 16px; vertical-align:middle; }
+body.coordinator-portal .rv-scope .rv-table td small { font-size:13.5px; margin-top:2px; }
+body.coordinator-portal .rv-scope .rv-table-scroll > .ui-table-hint { padding:10px 24px 0; font-size:13px; }
+body.coordinator-portal .rv-scope .rv-actions { gap:10px; }
+body.coordinator-portal .rv-scope .rv-btn-icon { min-height:38px; padding-inline:16px; gap:7px; border-radius:999px; font-weight:650; }
+body.coordinator-portal .rv-scope .rv-btn-icon svg { width:17px; height:17px; }
+/* Queue */
+body.coordinator-portal .cr-toolbar { gap:12px 16px; padding:16px 24px; }
+body.coordinator-portal .cr-chips { gap:8px; }
+body.coordinator-portal .cr-chip { min-height:36px; padding:5px 13px; font-size:13.5px; font-weight:650; }
+body.coordinator-portal .cr-chip b { font-size:12px; min-width:22px; }
+body.coordinator-portal .cr-evals { margin-inline-end:8px; }
+/* Checklist */
+body.coordinator-portal .cr-checks li { grid-template-columns:28px minmax(0,1fr) auto; gap:14px; padding:14px 24px; }
+body.coordinator-portal .cr-check-mark { width:28px; height:28px; }
+body.coordinator-portal .cr-check-title { gap:6px 10px; }
+body.coordinator-portal .cr-check-title strong { font-size:15.5px; }
+body.coordinator-portal .cr-check-body small { margin-top:3px; font-size:13.5px; }
+body.coordinator-portal .cr-check-inputs { margin-top:10px; gap:10px; }
+body.coordinator-portal .cr-check-inputs .form-select,body.coordinator-portal .cr-check-inputs .form-control { min-height:40px; border-radius:10px; }
+body.coordinator-portal .cr-subtitle { font-size:15px !important; font-weight:700; }
+body.coordinator-portal .cr-manual > .cr-subtitle,body.coordinator-portal .cr-manual > .rv-note { padding:0 24px; }
+body.coordinator-portal .cr-manual > .cr-subtitle { padding-top:18px; }
+body.coordinator-portal .cr-manual-actions { padding:16px 24px 20px; }
+body.coordinator-portal .cr-manual-actions .btn { min-height:40px; padding-inline:20px; border-radius:999px; }
+/* Decision */
+body.coordinator-portal .cr-label { font-size:14px; }
+body.coordinator-portal .cr-decision-form textarea { min-height:100px; }
+body.coordinator-portal .cr-decision-actions { margin-top:16px; gap:10px; }
+body.coordinator-portal .cr-decision-actions .btn { min-height:44px; padding-inline:22px; border-radius:999px; }
+body.coordinator-portal .cr-approved { gap:24px; margin-bottom:20px; }
+body.coordinator-portal .cr-approved-title { font-size:19px !important; margin-bottom:12px; }
+body.coordinator-portal .cr-doc { gap:14px; padding:14px 16px; border-radius:14px; }
+body.coordinator-portal .cr-doc strong { font-size:15px; }
+body.coordinator-portal .cr-doc .btn { min-height:38px; }
+body.coordinator-portal .cr-type-form { margin-top:0; padding-top:0; border-top:0; gap:10px; }
+body.coordinator-portal .cr-type-form .form-select { min-width:0; flex:1 1 180px; min-height:40px; border-radius:12px; }
+body.coordinator-portal .cr-type-form .btn { min-height:40px; padding-inline:18px; border-radius:999px; }
+body.coordinator-portal .cr-type-form label { flex-basis:100%; font-size:14px; }
+/* Score breakdown table in the review */
+body.coordinator-portal .cr-result { gap:12px 40px; padding:16px 24px; border-radius:0 0 18px 18px; }
+body.coordinator-portal .cr-result span { font-size:12.5px; }
+body.coordinator-portal .cr-result strong { font-size:26px; }
+body.coordinator-portal .cr-aside { top:24px; }
+body.coordinator-portal .cr-layout { grid-template-columns:minmax(0,1fr) minmax(340px,400px); }
+@media (max-width:1280px) { body.coordinator-portal .cr-layout { grid-template-columns:minmax(0,1fr); } body.coordinator-portal .cr-aside { position:static; } }
+@media (max-width:600px) {
+ body.coordinator-portal .cr-checks li { grid-template-columns:28px minmax(0,1fr); padding:14px 16px; }
+ body.coordinator-portal :is(.rv-scope .rv-card-head,.rv-scope .rv-card-body,.cr-toolbar) { padding:16px; }
+}
+
+/* ---- Small screens: header buttons stack under the title (matches .dir-head). */
+@media (max-width:860px) {
+ body.uims-portal .dir-head-actions { width:100%; }
+ body.uims-portal .dir-filters .btn { flex:1 1 auto; justify-content:center; }
+ body.uims-portal .dir-filters select.form-select { width:100%; }
+}
+@media (prefers-reduced-motion:reduce) {
+ body.uims-portal .dir-stats > li { animation:none; }
+ body.uims-portal .btn.dir-ghost { transition:none; }
+}

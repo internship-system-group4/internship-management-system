@@ -4,6 +4,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
     {
         protected global::System.Web.UI.WebControls.TextBox SearchText;
         protected global::System.Web.UI.WebControls.DropDownList StatusList;
-        protected global::System.Web.UI.WebControls.Button SearchButton;
+        protected global::System.Web.UI.WebControls.LinkButton SearchButton;
     }
 }

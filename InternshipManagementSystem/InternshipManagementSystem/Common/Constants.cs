@@ -43,7 +43,7 @@
             public const string AcademicComments = "academicComments";
             public const string TrainingHours = "trainingHours";
             public const string Completions = "completions";
-            public const string ContactMessages = "contactMessages";
+            public const string ContactMessages = "ContactMessages";
             public const string Meetings = "meetings";
             public const string Notifications = "notifications";
         }

@@ -37,15 +37,22 @@ async function handle(req,res) {
  if (req.method==='PUT' && url.pathname.startsWith('/placements/') && await pm.state.get('firebase.failPlacements')) return reply(500,{error:'Simulated placement failure'});
  if (!url.pathname.endsWith('.json')) return reply(501,{error:'Endpoint not modelled'});
  const parts=url.pathname.slice(1,-5).split('/');
- if (!['users','opportunities','applications','placements','companies','tasks','submissions','taskEvaluations','companyFinalEvaluations','academicFinalEvaluations','trainingHours','academicComments','completions','contactMessages','ContactMessages','publicOpportunityPreviews','notifications','studentGroups','studentCvPortfolios','studentProfileExtras'].includes(parts[0])) return reply(501,{error:'Endpoint not modelled'});
+ if (!['users','opportunities','applications','placements','companies','tasks','submissions','taskEvaluations','companyFinalEvaluations','academicFinalEvaluations','trainingHours','academicComments','completions','contactMessages','ContactMessages','publicOpportunityPreviews','notifications','studentGroups','studentCvPortfolios','studentProfileExtras','meetings'].includes(parts[0])) return reply(501,{error:'Endpoint not modelled'});
  let parent=db; for (const key of parts.slice(0,-1)) { if (!parent[key]) parent[key]={}; parent=parent[key]; }
  const key=parts.at(-1); let value=parent[key] ?? null;
  const etag=value===null?'null_etag':'"'+crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex')+'"';
  if(req.headers['x-firebase-etag']==='true') res.setHeader('ETag',etag);
  if(req.method==='GET') {
    if(url.searchParams.has('orderBy') && value) {
-     const field=JSON.parse(url.searchParams.get('orderBy')), equal=JSON.parse(url.searchParams.get('equalTo'));
-     value=Object.fromEntries(Object.entries(value).filter(([,v])=>v[field]===equal));
+     const field=JSON.parse(url.searchParams.get('orderBy'));
+     let entries=Object.entries(value);
+     if(url.searchParams.has('equalTo')) {
+       const equal=JSON.parse(url.searchParams.get('equalTo'));
+       entries=entries.filter(([k,v])=>(field==='$key'?k:v[field])===equal);
+     }
+     if(field==='$key')entries.sort(([a],[b])=>a.localeCompare(b));
+     if(url.searchParams.has('limitToLast'))entries=entries.slice(-Number(url.searchParams.get('limitToLast')));
+     value=Object.fromEntries(entries);
    }
    return reply(200,value);
  }

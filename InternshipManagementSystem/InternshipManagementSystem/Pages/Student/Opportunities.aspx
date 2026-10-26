@@ -1,4 +1,4 @@
-﻿
+
 <%@ Page Language="C#" MasterPageFile="~/Layout/Student.master"
     AutoEventWireup="true" CodeBehind="Opportunities.aspx.cs"
     Inherits="InternshipManagementSystem.Pages.StudentArea.Opportunities"
@@ -403,6 +403,7 @@
                 <span class="ex-search-icon">&#9906;</span>
 
                 <input id="exSearch"
+                       aria-label="<%: L.T("Student.Opportunities.SearchByOpportunityCompanyOrLocation") %>"
                        type="search"
                        placeholder="<%: L.T("Student.Opportunities.SearchByOpportunityCompanyOrLocation") %>"
                        maxlength="100"
@@ -484,7 +485,7 @@
 
             <% foreach (var opportunity in AvailableOpportunities) { %>
 
-                <article class="ex-card">
+                <article class='ex-card <%= HasApplied(opportunity.Id) ? "ex-card-applied" : "" %>'>
 
                     <div class="ex-card-header">
 
@@ -494,14 +495,12 @@
                             </h3>
 
                             <div class="ex-company">
-                                <%: string.IsNullOrWhiteSpace(opportunity.CompanyName)
-                                    ? "Partner Company"
-                                    : opportunity.CompanyName %>
+                                <%: CompanyNameFor(opportunity) %>
                             </div>
                         </div>
 
-                        <span class="ex-status">
-                            <%: L.T("Student.Opportunities.Open") %>
+                        <span class='ex-status <%= HasApplied(opportunity.Id) ? "ex-status-applied" : "" %>'>
+                            <%: ApplicationLabel(opportunity.Id) %>
                         </span>
 
                     </div>

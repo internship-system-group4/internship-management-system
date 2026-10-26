@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  UIMS - Group 4   |   Owner: Suja  (Trello card S04)
 //  Training-hours approval (card S04).
 // =============================================================================
@@ -27,7 +27,15 @@ namespace InternshipManagementSystem.Services
         /// Reported - do not pass Approved in here.</summary>
         public static string Report(TrainingHoursEntry entry)
         {
-            if (entry == null) return null;
+            var actor = SessionHelper.Current;
+            var placement = entry == null ? null : new PlacementRepository().GetById(entry.PlacementId);
+            if (actor == null || !actor.IsActive || actor.Role != UserRole.Student ||
+                placement == null || placement.StudentId != actor.Id ||
+                entry.StudentId != actor.Id || entry.Hours <= 0 || entry.Hours > 24 ||
+                entry.WorkDate <= 0 || string.IsNullOrWhiteSpace(entry.Description) ||
+                placement.Status == PlacementStatus.Cancelled ||
+                CompletionReviewService.IsFinal(new CompletionRepository().GetByPlacement(placement.Id)))
+                throw new InvalidOperationException("This training-hours entry cannot be reported.");
             entry.Status = HoursStatus.Reported;
             entry.ReportedAt = Time.NowMs();
             string id = new HoursRepository().Insert(entry);
@@ -41,6 +49,8 @@ namespace InternshipManagementSystem.Services
             HoursRepository hours = new HoursRepository();
             TrainingHoursEntry entry = hours.GetById(entryId);
             if (entry == null) return;
+            if (entry.Status != HoursStatus.Reported)
+                throw new InvalidOperationException("Only reported hours can be reviewed.");
             var actor = SessionHelper.Current;
             var placement = new PlacementRepository().GetById(entry.PlacementId);
             if (actor == null || !actor.IsActive || actor.Id != reviewerId || placement == null ||

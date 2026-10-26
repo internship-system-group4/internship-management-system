@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="FinalEvaluation.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.FinalEvaluation" Title="Final Evaluation" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="FinalEvaluation.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.FinalEvaluation" Title="Final Evaluation" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -234,17 +234,23 @@
 
                     <div class="d-flex align-items-center gap-3 mb-4 pb-4 border-bottom">
                         <div class="student-avatar border shadow-sm">
-                            <asp:Literal ID="litStudentInitials" runat="server">--</asp:Literal>
+                            <asp:Literal ID="litStudentInitials" runat="server" Mode="Encode">--</asp:Literal>
                         </div>
                         <div>
-                            <div class="fw-bold text-dark" style="font-size: 0.9rem;"><span id="jsStudentName"><asp:Literal ID="litStudentName" runat="server" Text="<%$ Resources:Company, FinalEvaluation.SelectATraineePlaceholder %>" /></span></div>
-                            <div class="text-muted" style="font-size: 0.75rem;"><asp:Literal ID="litStudentMajor" runat="server">-</asp:Literal></div>
+                            <div class="fw-bold text-dark" style="font-size: 0.9rem;"><span id="jsStudentName"><asp:Literal ID="litStudentName" runat="server" Text="<%$ Resources:Company, FinalEvaluation.SelectATraineePlaceholder %>" Mode="Encode" /></span></div>
+                            <div class="text-muted" style="font-size: 0.75rem;"><asp:Literal ID="litStudentMajor" runat="server" Mode="Encode">-</asp:Literal></div>
                         </div>
+                    </div>
+
+                    <div id="divCvContainer" runat="server" visible="false" class="mb-3">
+                        <asp:HyperLink ID="hlViewCV" runat="server" CssClass="btn btn-outline-primary"
+                            Target="_blank" rel="noopener noreferrer"
+                            Text="<%$ Resources:Company, TraineeDetails.ViewTraineeCV %>" />
                     </div>
 
                     <div class="mb-3">
                         <div class="text-muted mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.Internship") %></div>
-                        <div class="fw-semibold text-dark" style="font-size: 0.85rem;"><span id="jsInternshipTitle"><asp:Literal ID="litInternshipTitle" runat="server">-</asp:Literal></span></div>
+                        <div class="fw-semibold text-dark" style="font-size: 0.85rem;"><span id="jsInternshipTitle"><asp:Literal ID="litInternshipTitle" runat="server" Mode="Encode">-</asp:Literal></span></div>
                     </div>
 
                     <div>
@@ -269,6 +275,7 @@
           </div>
           <div class="modal-body p-0 uims-paper" id="certificatePrintArea" data-bs-theme="light">
               <div class="cert-container">
+                  <p class="small text-muted"><%: L.T("Company.FinalEvaluation.PreviewNotice") %></p>
                   <div class="cert-title"><%: L.T("Company.FinalEvaluation.CertificateOfCompletion") %></div>
                   <div class="cert-subtitle"><%: L.T("Company.FinalEvaluation.InternshipProgram") %></div>
                   <div class="mt-4">
@@ -278,7 +285,7 @@
                           <%: L.T("Company.FinalEvaluation.HasSuccessfullyCompleted") %> <strong id="certHours" style="color:var(--th-fg-0f4c81,#0f4c81);">___</strong> <%: L.T("Company.FinalEvaluation.HoursOfPracticalTraining") %><br />
                           <%: L.T("Company.FinalEvaluation.AsA") %> <strong><span id="certRole"><%: L.T("Company.FinalEvaluation.Trainee") %></span></strong>.<br />
                           <br />
-                          <%: L.T("Company.FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism") %> <br /><%: L.T("Company.FinalFooter.HaveMetTheHighestStandardsOf") %>
+                          <%: L.T("Company.FinalEvaluation.TheirDedicationTechnicalSkillsAndProfessionalism") %> <br /><%: L.T("Company.FinalEvaluation.HaveMetTheHighestStandardsOf") %>
                       </div>
                   </div>
                   <div class="cert-signature-area">
@@ -288,7 +295,7 @@
                       </div>
                       <div class="gold-seal"><%: L.T("Company.FinalEvaluation.Official") %><br/><%: L.T("Company.FinalEvaluation.Company") %><br/><%: L.T("Company.FinalEvaluation.Seal") %></div>
                       <div class="cert-signature-line">
-                          <asp:Literal ID="litCompanySupervisorName" runat="server">Company Supervisor</asp:Literal><br />
+                          <asp:Literal ID="litCompanySupervisorName" runat="server" Mode="Encode">Company Supervisor</asp:Literal><br />
                           <span style="font-size: 0.75rem; color: var(--ui-muted);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
                       </div>
                   </div>
@@ -299,10 +306,10 @@
                   <i class="bi bi-file-earmark-pdf me-1"></i> Download as PDF
               </button>
               
-              <!-- الإرسال الفعلي لقاعدة البيانات عبر الباك إند -->
-              <asp:LinkButton ID="btnSendCert" runat="server" CssClass="btn btn-outline-primary px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;" OnClick="BtnSendEvaluation_Click">
-                  <i class="bi bi-send-check me-1"></i> Send to Trainee
+              <asp:LinkButton ID="btnSendCert" runat="server" CssClass="btn btn-outline-primary px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;" OnClick="BtnSendCertificate_Click" CausesValidation="false">
+                  <i class="bi bi-send-check me-1"></i><%: L.T("Company.FinalEvaluation.SendApprovedCertificate") %>
               </asp:LinkButton>
+              <small class="text-muted w-100 text-center"><%: L.T("Company.FinalEvaluation.CertificateRequiresApproval") %></small>
               
               <button type="button" class="btn btn-primary px-3 rounded-pill fw-semibold" style="background-color:var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" onclick="window.print()">
                   <i class="bi bi-printer me-1"></i> Print
@@ -353,7 +360,7 @@
                   <table class="table table-bordered align-middle" style="font-size: 0.85rem;">
                       <thead class="table-light">
                           <tr>
-                              <th>Evaluation Criteria (GJU Standard)</th>
+                              <th><%: L.T("Company.FinalEvaluation.ProjectCriteria") %></th>
                               <th class="text-center" style="width: 120px;">Max Score</th>
                               <th class="text-center" style="width: 120px;">Awarded</th>
                           </tr>
@@ -578,8 +585,8 @@
       <div class="modal-dialog modal-dialog-centered modal-sm">
         <div class="modal-content rounded-4 border-0 shadow text-center p-4">
           <div class="mb-3" style="font-size: 2.5rem;"><asp:Literal ID="litModalIcon" runat="server"></asp:Literal></div>
-          <h6 class="fw-bold mb-2 text-dark"><asp:Literal ID="litModalTitle" runat="server"></asp:Literal></h6>
-          <p class="text-muted mb-4" style="font-size: 0.85rem;"><asp:Literal ID="litModalMessage" runat="server"></asp:Literal></p>
+          <h6 class="fw-bold mb-2 text-dark"><asp:Literal ID="litModalTitle" runat="server" Mode="Encode"></asp:Literal></h6>
+          <p class="text-muted mb-4" style="font-size: 0.85rem;"><asp:Literal ID="litModalMessage" runat="server" Mode="Encode"></asp:Literal></p>
           <button type="button" class="btn text-white rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); border: none; font-size: 0.85rem;">Okay</button>
         </div>
       </div>

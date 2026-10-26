@@ -8,8 +8,12 @@ import { GLTFLoader } from '../vendor/addons/loaders/GLTFLoader.js';
 const STRIDE = 1.2146, CYCLE = 1.2;
 
 // Path through the campus (metres): courtyard -> past the waterwheel -> passage -> north plaza.
+// Round the south planter on its west side, then pass between the west lawn and the
+// small planter. Keep clearance for the body and the spline's rounded corners.
 export const STUDENT_PATH = [
- [4, 33], [4, 18], [3.6, 6], [2, -1], [-6, -4], [-18, -7], [-26, -12], [-28, -26], [-28, -44], [-28, -60], [-27, -72]
+ [4, 33], [0, 28], [-7, 27], [-10.3, 25.8], [-10.3, 22], [-10.3, 18], [-5, 17],
+ [3, 18], [3.6, 14], [3.6, 6], [2, -1], [-6, -4], [-13, -3.3], [-18, -3.3],
+ [-23, -4], [-26, -12], [-28, -24], [-29, -30], [-28, -36], [-28, -44], [-28, -60], [-27, -72]
 ];
 
 export async function createStudent(url) {
@@ -25,6 +29,20 @@ export async function createStudent(url) {
  const bone = name => model.getObjectByName(name);
  const chain = [[bone('Bip01_Spine2'), .22], [bone('Bip01_Neck'), .33], [bone('Bip01_Head'), .45]].filter(([b]) => b);
  const head = bone('Bip01_Head');
+
+ // Cache only shoe vertices, then use their animated positions to keep the supporting
+ // sole on the paving through both the walk and idle clips (their root heights differ).
+ root.updateMatrixWorld(true);
+ const vertex = new THREE.Vector3(), bounds = new THREE.Box3().setFromObject(model, true), soles = [];
+ model.traverse(mesh => {
+  if (!mesh.isSkinnedMesh) return;
+  const indices = [];
+  for (let i = 0; i < mesh.geometry.attributes.position.count; i++) {
+   mesh.getVertexPosition(i, vertex).applyMatrix4(mesh.matrixWorld);
+   if (vertex.y < bounds.min.y + .12) indices.push(i);
+  }
+  if (indices.length) soles.push({ mesh, indices });
+ });
 
  const curve = new THREE.CatmullRomCurve3(STUDENT_PATH.map(([x, z]) => new THREE.Vector3(x, 0, z)), false, 'centripetal', .5);
  const length = curve.getLength();
@@ -70,7 +88,7 @@ export async function createStudent(url) {
   get state() { return state; },
   headPosition: out => head.getWorldPosition(out),
   // targetDist comes from scroll; the student follows at a believable walking pace.
-  update(dt, targetDist, gaze, groundHeight) {
+  update(dt, targetDist, gaze, surfaceHeight) {
    // A big jump (chapter link, very fast scroll) cuts like a film edit instead of a long catch-up walk.
    if (Math.abs(targetDist - state.dist) > 30) state.dist = targetDist - Math.sign(targetDist - state.dist) * 6;
    const diff = targetDist - state.dist, maxFwd = 2.8 * dt, maxBack = 7 * dt;
@@ -81,7 +99,8 @@ export async function createStudent(url) {
    const p = place(state.dist);
    let dh = p.heading - state.heading; dh = Math.atan2(Math.sin(dh), Math.cos(dh));
    state.heading += dh * (1 - Math.exp(-dt * 4));
-   root.position.set(p.x, groundHeight(p.x, p.z) + .06, p.z); root.rotation.y = state.heading;
+   const surfaceY = surfaceHeight(p.x, p.z);
+   root.position.set(p.x, surfaceY, p.z); root.rotation.y = state.heading;
    // Walk/idle blend and phase-locked stride.
    const w = THREE.MathUtils.smoothstep(state.speed, .05, .45);
    state.walkWeight += (w - state.walkWeight) * (1 - Math.exp(-dt * 4));
@@ -89,6 +108,15 @@ export async function createStudent(url) {
    walk.time = ((state.dist / STRIDE) % 1 + 1) % 1 * CYCLE;
    mixer.update(dt);
    root.updateMatrixWorld(true);
+   let soleY = Infinity;
+   for (const { mesh, indices } of soles) for (const i of indices) {
+    mesh.getVertexPosition(i, vertex).applyMatrix4(mesh.matrixWorld);
+    soleY = Math.min(soleY, vertex.y);
+   }
+   if (Number.isFinite(soleY)) {
+    root.position.y += surfaceY + .003 - soleY;
+    root.updateMatrixWorld(true);
+   }
    applyGaze(gaze?.target, gaze?.weight ?? 0, dt);
   },
   distanceNear(x, z) {

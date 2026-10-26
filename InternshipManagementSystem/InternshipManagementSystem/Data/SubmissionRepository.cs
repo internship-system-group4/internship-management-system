@@ -21,6 +21,15 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
+        /// <summary>A new attempt tells the company supervisor ("submitted" or
+        /// "resubmitted"), with a link to this exact submission.</summary>
+        protected override bool SendNotice(Submission previous, Submission current)
+        {
+            if (previous != null) return false;
+            Services.NotificationService.TaskSubmitted(current);
+            return true;
+        }
+
         public List<Submission> GetByPlacement(string placementId)
         {
             return GetWhere("PlacementId", placementId);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using InternshipManagementSystem.Common;
@@ -87,9 +87,11 @@ namespace InternshipManagementSystem.Data
                 FirebaseRead.Where(Constants.Paths.TaskEvaluations, "StudentId", student.Id),
                 FirebaseRead.Where(Constants.Paths.TrainingHours, "StudentId", student.Id),
                 FirebaseRead.Where(Constants.Paths.Completions, "StudentId", student.Id));
-            var apps = new ApplicationRepository().GetWhere("StudentId", student.Id).OrderByDescending(a => a.SubmittedAt).ToList();
+            var rawApps = new ApplicationRepository().GetWhere("StudentId", student.Id);
             var placement = new PlacementRepository().GetById(student.Id);
             if (!Canonical(placement) || placement.StudentId != student.Id) placement = null;
+            var apps = ApplicationRepository.DistinctForStudent(rawApps,
+                placement == null ? null : placement.ApplicationId);
             var tasks = new TaskRepository().GetByStudent(student.Id).Where(t => placement != null && t.PlacementId == placement.Id && t.CompanyId == placement.CompanyId).ToList();
             var taskIds = new HashSet<string>(tasks.Select(t => t.Id));
             var grades = new EvaluationRepository().GetTaskEvaluationsForStudent(student.Id).Where(e => taskIds.Contains(e.TaskId ?? "") && placement != null && e.PlacementId == placement.Id).Select(e => e.TaskId).Distinct().Count();

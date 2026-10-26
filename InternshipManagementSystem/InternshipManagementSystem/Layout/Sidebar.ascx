@@ -3,6 +3,7 @@
 <%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="InternshipManagementSystem.Security" %>
 <%@ Import Namespace="InternshipManagementSystem.Common" %>
+<%@ Import Namespace="InternshipManagementSystem.Models" %>
 <%@ Register Src="~/Layout/LanguageSelector.ascx" TagPrefix="uims" TagName="LanguageSelector" %>
 <%@ Register Src="~/Layout/ThemeSelector.ascx" TagPrefix="uims" TagName="ThemeSelector" %>
 <%@ Register TagPrefix="live" Namespace="InternshipManagementSystem.Layout" Assembly="InternshipManagementSystem" %>
@@ -77,8 +78,19 @@
         get
         {
             var user = SessionHelper.Current;
-            var value = user == null ? null : user.ProfileImageUrl;
+            if (user == null) return "";
+            var company = user as CompanySupervisor;
+            if (company != null && !string.IsNullOrEmpty(company.ProfileImageBase64))
+            {
+                var image = company.ProfileImageBase64;
+                if (image.StartsWith("data:image/jpeg;base64,", StringComparison.OrdinalIgnoreCase) ||
+                    image.StartsWith("data:image/png;base64,", StringComparison.OrdinalIgnoreCase))
+                    return image;
+            }
+            var value = user.ProfileImageUrl;
             Uri uri;
+            if (string.IsNullOrWhiteSpace(value) && user.Role == UserRole.Student)
+                return ResolveUrl("~/Pages/Student/Profile.aspx?photo=1");
             if (string.IsNullOrWhiteSpace(value)) return "";
             if (value.StartsWith("~/", StringComparison.Ordinal)) return ResolveUrl(value);
             return Uri.TryCreate(value, UriKind.Absolute, out uri) && uri.Scheme == Uri.UriSchemeHttps ? value : "";
@@ -87,10 +99,10 @@
 </script>
 <%-- Shared content of the single desktop/mobile panel. The masters retain their existing logout control and handler. --%>
 <div class="uims-sidebar-heading">
-    <div class="uims-sidebar-brand">
+    <a class="uims-sidebar-brand" href="<%: ResolveUrl("~/Default.aspx") %>" aria-label="<%: L.T("Shared.Public.UIMSHome") %>">
         <img src="<%: ResolveUrl("~/Assets/images/gju-logo.png") %>" alt="<%: L.T("Shared.Sidebar.GermanJordanianUniversity") %>" width="88" height="65" />
         <div class="uims-sidebar-label uims-sidebar-identity"><strong title="<%: L.T("Shared.Sidebar.InternshipManagementSystem") %>">UIMS</strong><small><%: L.T("Shared.Sidebar.GermanJordanianUniversity") %></small><span class="visually-hidden"><%: L.T("Shared.Sidebar.InternshipManagementSystem") %></span></div>
-    </div>
+    </a>
     <button type="button" class="uims-sidebar-pin" aria-pressed="false" aria-expanded="false" aria-label="<%: L.T("Shared.Sidebar.PinNavigationOpen") %>" title="<%: L.T("Shared.Sidebar.PinNavigationOpen") %>">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M14 9l3 3-3 3"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.PinNavigation") %></span>
 </button>
@@ -127,13 +139,13 @@
     <% if (SessionHelper.IsInRole(UserRole.Coordinator)) { %>
 <li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.Dashboard") %>" href="<%: ResolveUrl("~/Pages/Coordinator/Dashboard.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/Dashboard.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.Dashboard") %></span></a></li>
 <li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.ManageStudents") %>" href="<%: ResolveUrl("~/Pages/Coordinator/ManageStudents.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/ManageStudents.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6 1.4 0 2.6.3 3.6.9"/><circle cx="18" cy="17" r="2"/><path d="M18 13.5v1.5M18 19v1.5M14.5 17H16M20 17h1.5M15.5 14.5l1 1M19.5 18.5l1 1M15.5 19.5l1-1M19.5 15.5l1-1"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.ManageStudents") %></span></a></li>
-<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.ManageCompanies") %>" href="<%: ResolveUrl("~/Pages/Coordinator/Companies.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/Companies.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.ManageCompanies") %></span></a></li>
-<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.AcademicSupervisors") %>" href="<%: ResolveUrl("~/Pages/Coordinator/AcademicSupervisors.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/AcademicSupervisors.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h8l4 4v14H6zM14 3v5h4M9 12h6M9 16h6"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.AcademicSupervisors") %></span></a></li>
+<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.ManageCompanies") %>" href="<%: ResolveUrl("~/Pages/Coordinator/Companies.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/Companies.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 7h2m4 0h2M8 11h2m4 0h2M9 21v-5h6v5"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.ManageCompanies") %></span></a></li>
+<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.AcademicSupervisors") %>" href="<%: ResolveUrl("~/Pages/Coordinator/AcademicSupervisors.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/AcademicSupervisors.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5-10-5Zm4 2v6c4 3 8 3 12 0v-6m4-2v7"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.AcademicSupervisors") %></span></a></li>
 <li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.GroupsAssignments") %>" href="<%: ResolveUrl("~/Pages/Coordinator/Groups.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/Groups.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 3h6v4H9zM9 12l2 2 4-4M9 18h6"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.GroupsAssignments") %></span></a></li>
 <li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.PlacementsProgress") %>" href="<%: ResolveUrl("~/Pages/Coordinator/Placements.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/Placements.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 3v17h17M8 15l4-5 4 2 5-6"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.PlacementsProgress") %></span></a></li>
 <li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.FinalCompletionReview") %>" href="<%: ResolveUrl("~/Pages/Coordinator/CompletionReview.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/CompletionReview.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4M17 3v4M3 11h18"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.FinalCompletionReview") %></span></a></li>
-<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.ContactMessages") %>" href="<%: ResolveUrl("~/Pages/Coordinator/ContactMessages.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/ContactMessages.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.ContactMessages") %></span></a></li>
-<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.Meetings") %>" href="<%: ResolveUrl("~/Pages/Meetings/MyMeetings.aspx") %>" <%= NavigationAttributes("~/Pages/Meetings/MyMeetings.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.Meetings") %></span></a></li>
+<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.ContactMessages") %>" href="<%: ResolveUrl("~/Pages/Coordinator/ContactMessages.aspx") %>" <%= NavigationAttributes("~/Pages/Coordinator/ContactMessages.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.ContactMessages") %></span></a></li>
+<li><a class="uims-side-link" title="<%: L.T("Shared.Sidebar.Meetings") %>" href="<%: ResolveUrl("~/Pages/Meetings/MyMeetings.aspx") %>" <%= NavigationAttributes("~/Pages/Meetings/MyMeetings.aspx") %>><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18m5 4h3"/></svg><span class="uims-sidebar-label"><%: L.T("Shared.Sidebar.Meetings") %></span></a></li>
     <% } %>
     </ul>
 </nav>

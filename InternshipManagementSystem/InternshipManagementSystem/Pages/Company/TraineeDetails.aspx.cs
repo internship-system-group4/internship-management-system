@@ -13,6 +13,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
         private readonly UserRepository _userRepo = new UserRepository();
         private readonly TaskRepository _taskRepo = new TaskRepository();
 
+        protected string CvDocumentUrl
+        {
+            get { return ViewState["CvDocumentUrl"] as string ?? ""; }
+            private set { ViewState["CvDocumentUrl"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -62,25 +68,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     litStudentEmail.Text = student.Email;
                     litStudentInitials.Text = GetInitials(student.FullName);
 
-                    string cvLink = "";
-                    try
-                    {
-                        cvLink = !string.IsNullOrEmpty(student.CvUrl) ? student.CvUrl :
-                                (!string.IsNullOrEmpty(student.PortfolioUrl) ? student.PortfolioUrl : "");
-                    }
-                    catch { }
-
-                    if (!string.IsNullOrEmpty(cvLink))
-                    {
-                        string safeLink = cvLink.Replace("'", "\\'");
-                        string script = $"document.getElementById('btnOpenRealCv').href = '{safeLink}'; document.getElementById('btnOpenRealCv').style.display = 'inline-block'; document.getElementById('divNoCv').style.display = 'none';";
-                        ClientScript.RegisterStartupScript(this.GetType(), "SetCvLink", script, true);
-                    }
-                    else
-                    {
-                        string script = "document.getElementById('btnOpenRealCv').style.display = 'none'; document.getElementById('divNoCv').style.display = 'block';";
-                        ClientScript.RegisterStartupScript(this.GetType(), "HideCvLink", script, true);
-                    }
+                    // Render one server-owned document state. CSS and startup scripts
+                    // must not decide whether an unavailable document can be opened.
+                    CvDocumentUrl = Services.StudentDocumentService.IsExternalLink(student.CvUrl)
+                        ? student.CvUrl
+                        : Services.StudentDocumentService.IsExternalLink(student.PortfolioUrl)
+                            ? student.PortfolioUrl : "";
                 }
 
                 litOpportunityTitle.Text = placement.OpportunityTitle;

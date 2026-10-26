@@ -1,4 +1,4 @@
-<%@ Page Language="C#"
+<%@ Page CodePage="65001" Language="C#"
     MasterPageFile="~/Layout/Public.master"
     AutoEventWireup="true"
     CodeBehind="MyMeetings.aspx.cs"
@@ -38,6 +38,16 @@
             border-radius: 22px;
             background: linear-gradient(120deg, var(--th-bg-edf4fd,#edf4fd), var(--th-bg-f5f8ff,#f5f8ff));
         }
+
+        .meeting-eyebrow {
+            font-size: 11px;
+            font-weight: 750;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--primary-text);
+            margin: 0 0 8px;
+        }
+
         .meeting-hero h1 {
             font-size: clamp(27px, 3vw, 37px);
             font-weight: 750;
@@ -200,6 +210,12 @@
         .meeting-view-bar strong {
             font-weight: 650;
         }
+
+        .meeting-live-note {
+            color: var(--muted);
+            font-size: 12px;
+        }
+
         .meeting-table-wrap {
             overflow-x: auto;
         }
@@ -401,6 +417,40 @@
             color: var(--ink);
         }
 
+        /* People picker in the request pop-up: one field that opens a searchable list. */
+        .mp-native { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+        .mp { position: relative; }
+        .mp-toggle { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; padding: 8px 14px; font: inherit; text-align: start; color: var(--ui-muted); background: var(--ui-surface,#fff); border: 1px solid var(--ui-control-border,var(--border)); border-radius: 14px; cursor: pointer; transition: border-color .2s, box-shadow .2s; }
+        .mp-toggle:hover { border-color: var(--ui-primary); }
+        .mp.is-open .mp-toggle, .mp-toggle:focus-visible { border-color: var(--ui-primary); box-shadow: 0 0 0 4px var(--ui-primary-soft); outline: none; }
+        .mp.has-choice .mp-toggle { color: var(--ui-ink); font-weight: 650; }
+        .mp-summary { flex: 1; min-width: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+        .mp-avatar { display: grid; place-items: center; flex: none; width: 38px; height: 38px; border-radius: 50%; font-size: 14px; font-weight: 700; color: var(--ui-primary-text,var(--ui-primary)); background: var(--ui-primary-soft); }
+        .mp-caret { width: 9px; height: 9px; border-inline-end: 2px solid var(--ui-muted); border-bottom: 2px solid var(--ui-muted); transform: translateY(-2px) rotate(45deg); transition: transform .25s; }
+        .mp.is-open .mp-caret { transform: translateY(2px) rotate(-135deg); }
+        .mp-panel { margin-top: 8px; padding: 10px; border: 1px solid var(--border); border-radius: 16px; background: var(--ui-surface,#fff); box-shadow: 0 24px 50px -28px rgba(10,30,55,.45); animation: mpOpen .22s cubic-bezier(.16,1,.3,1); }
+        .mp-panel[hidden] { display: none; }
+        .mp-search { margin-bottom: 8px; }
+        .mp-list { max-height: 232px; margin: 0; padding: 0; overflow-y: auto; list-style: none; }
+        .mp-list li { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 12px; cursor: pointer; transition: background-color .15s; }
+        .mp-list li:hover, .mp-list li:focus-visible { background: var(--ui-neutral-soft); outline: none; }
+        .mp-list li[aria-selected="true"] { background: var(--ui-primary-soft); }
+        .mp-name { min-width: 0; }
+        .mp-name strong { display: block; color: var(--ui-ink); font-weight: 650; }
+        .mp-name small { display: block; color: var(--ui-muted); }
+        .mp-empty { margin: 0; padding: 14px; text-align: center; color: var(--ui-muted); }
+        @keyframes mpOpen { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+        @media (prefers-reduced-motion: reduce) { .mp-panel { animation: none; } .mp-caret, .mp-toggle { transition: none; } }
+
+        .meeting-search {
+            max-width: 270px;
+        }
+
+        .meeting-search-empty {
+            padding: 14px 24px;
+            color: var(--muted);
+        }
+
         textarea.meeting-control {
             min-height: 110px;
             resize: vertical;
@@ -553,144 +603,29 @@
             }
         }
 
+        /* Pop-ups: same look as the coordinator pop-ups (soft header, rounded fields, pill buttons). */
+        body.uims-portal .meeting-dialog { border: 0; border-radius: 22px; box-shadow: 0 30px 80px -24px rgba(10,30,55,.45); }
+        body.uims-portal .meeting-dialog[open] { animation: meetingPop .32s cubic-bezier(.16,1,.3,1); }
+        body.uims-portal .meeting-dialog-header { padding: 22px 28px; background: linear-gradient(120deg,var(--ui-primary-soft),var(--ui-surface,#fff) 70%); }
+        body.uims-portal .uims-main-inner .meeting-dialog-header h2 { font-size: 22px; line-height: 1.3; }
+        body.uims-portal .meeting-dialog-header p { font-size: 15px; }
+        body.uims-portal .meeting-close { border-radius: 50%; }
+        body.uims-portal .meeting-form { padding: 24px 28px; gap: 18px 20px; }
+        body.uims-portal .meeting-label { font-size: 15px !important; font-weight: 700; color: var(--ui-ink); }
+        body.uims-portal .meeting-control { border-radius: 12px; min-height: 48px; }
+        body.uims-portal .meeting-control:focus { border-color: var(--ui-primary); box-shadow: 0 0 0 4px var(--ui-primary-soft); outline: none; }
+        body.uims-portal .meeting-hint { font-size: 14px !important; }
+        body.uims-portal .meeting-help { border-radius: 12px; font-size: 15px; background: var(--ui-primary-soft); }
+        body.uims-portal .meeting-dialog-actions { padding: 16px 28px; background: var(--ui-canvas,var(--ui-neutral-soft)); }
+        body.uims-portal .meeting-dialog .meeting-btn { border-radius: 999px; padding-inline: 1.3rem; }
+        @keyframes meetingPop { from { opacity: 0; transform: translateY(18px) scale(.97); } to { opacity: 1; transform: none; } }
+
         @media (prefers-reduced-motion: reduce) {
-            .meeting-dialog[open] {
+            .meeting-dialog[open], body.uims-portal .meeting-dialog[open] {
                 animation: none;
             }
         }
-            /* Align meeting dialogs with the student profile type scale */
-        body.uims-public .uims-main-inner .meetings-page .meeting-dialog {
-            width:min(680px,calc(100% - 28px));
-            max-height:86vh;
-            font-size:14px;
-            line-height:1.55;
-        }
-        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header { padding:18px 22px; gap:14px; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header h2 { font-size:20px!important; line-height:1.3; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header p { font-size:13px!important; line-height:1.5; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-close { font-size:22px; line-height:1; white-space:nowrap; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-form { gap:16px; padding:20px 22px; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-label { margin-bottom:7px; font-size:13px!important; line-height:1.4; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-control { min-height:44px; padding:10px 12px; font-size:14px!important; line-height:1.45!important; }
-        body.uims-public .uims-main-inner .meetings-page textarea.meeting-control { min-height:92px; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-hint,
-        body.uims-public .uims-main-inner .meetings-page .meeting-help { font-size:12px!important; line-height:1.55; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-actions { gap:9px; padding:15px 22px; }
-        body.uims-public .uims-main-inner .meetings-page .meeting-dialog-actions .meeting-btn { min-height:42px; padding:9px 15px; font-size:13px!important; line-height:1.4; }
-        @media(max-width:700px) {
-            body.uims-public .uims-main-inner .meetings-page .meeting-dialog { width:calc(100% - 20px); max-height:90vh; border-radius:16px; }
-            body.uims-public .uims-main-inner .meetings-page .meeting-dialog-header { padding:16px; }
-            body.uims-public .uims-main-inner .meetings-page .meeting-form { gap:13px; padding:16px; }
-            body.uims-public .uims-main-inner .meetings-page .meeting-dialog-actions { padding:13px 16px; }
-        }
-        /* Refined, compact meetings layout */
-        .meetings-page { padding: 8px 0 28px; }
-        .meetings-page .meeting-hero {
-            padding: 22px 24px;
-            margin-bottom: 18px;
-            gap: 18px;
-            border-radius: 16px;
-        }
-        .meetings-page .meeting-hero h1 {
-            margin: 0 0 5px !important;
-            font-size: 24px !important;
-            line-height: 1.3 !important;
-            font-weight: 700 !important;
-            letter-spacing: -.02em;
-        }
-        .meetings-page .meeting-hero p:last-child {
-            max-width: 620px;
-            font-size: 14px !important;
-            line-height: 1.55 !important;
-        }
-        .meetings-page .meeting-hero .meeting-btn {
-            min-height: 38px;
-            padding: 8px 14px;
-            border-radius: 9px;
-            font-size: 12px;
-        }
-        .meetings-page .meeting-stats { gap: 12px; margin-bottom: 18px; }
-        .meetings-page .meeting-stat {
-            padding: 16px 18px;
-            border-radius: 13px;
-            box-shadow: 0 2px 8px #1b304606;
-            transition: transform .16s ease, box-shadow .16s ease;
-        }
-        .meetings-page .meeting-stat:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 7px 18px #1b304610;
-        }
-        .meetings-page .meeting-stat-number { font-size: 25px; margin-bottom: 5px; }
-        .meetings-page .meeting-stat-label { font-size: 12px; }
-        .meetings-page .meeting-stat small { margin-top: 4px; font-size: 11px; line-height: 1.45; }
-        .meetings-page .meeting-panel {
-            border-radius: 15px;
-            box-shadow: 0 4px 16px #1b304608;
-        }
-        .meetings-page .meeting-panel-heading {
-            padding: 15px 18px !important;
-            gap: 14px;
-        }
-        .meetings-page .meeting-panel-heading h2 {
-            margin: 0 0 3px !important;
-            font-size: 19px !important;
-            line-height: 1.35 !important;
-            font-weight: 700 !important;
-        }
-        .meetings-page .meeting-panel-heading p {
-            margin: 0 !important;
-            font-size: 12px !important;
-            line-height: 1.5 !important;
-        }
-        .meetings-page .meeting-toolbar { gap: 8px; }
-        .meetings-page .meeting-toolbar .meeting-btn {
-            min-height: 34px;
-            padding: 6px 11px;
-            border-radius: 8px;
-            font-size: 11px !important;
-            line-height: 1.35;
-        }
-        .meetings-page .meeting-view-bar {
-            min-height: 44px;
-            padding: 10px 18px;
-            font-size: 11px;
-        }
-        .meetings-page .meeting-table { min-width: 900px; font-size: 12px; }
-        .meetings-page .meeting-table th {
-            padding: 11px 15px;
-            font-size: 11px;
-            letter-spacing: .01em;
-        }
-        .meetings-page .meeting-table td {
-            padding: 13px 15px;
-            vertical-align: middle;
-            line-height: 1.5;
-        }
-        .meetings-page .meeting-subtext { margin-top: 3px; font-size: 11px; line-height: 1.45; }
-        .meetings-page .meeting-actions { gap: 6px; max-width: 250px; min-width: 145px; }
-        .meetings-page .meeting-actions .meeting-btn {
-            min-height: 30px;
-            padding: 5px 9px;
-            border-radius: 7px;
-            font-size: 10px;
-        }
-        .meetings-page .meeting-status { padding: 5px 8px; border-radius: 7px; font-size: 10px; }
-        .meetings-page .meeting-empty { padding: 32px 18px; }
-        .meetings-page .meeting-empty strong { font-size: 15px; }
-        @media (max-width:760px) {
-            .meetings-page { padding-top: 4px; }
-            .meetings-page .meeting-hero,
-            .meetings-page .meeting-panel-heading { padding: 16px !important; }
-            .meetings-page .meeting-hero h1 { font-size: 22px !important; }
-            .meetings-page .meeting-panel-heading h2 { font-size: 17px !important; }
-            .meetings-page .meeting-stat { padding: 13px; }
-            .meetings-page .meeting-stat-number { font-size: 22px; }
-            .meetings-page .meeting-view-bar { padding: 10px 14px; }
-        }
-        @media (prefers-reduced-motion: reduce) {
-            .meetings-page .meeting-stat { transition: none; }
-            .meetings-page .meeting-stat:hover { transform: none; }
-        }</style>
+    </style>
 
 </asp:Content>
 
@@ -704,6 +639,7 @@
 
         <header class="meeting-hero">
             <div>
+                <p class="meeting-eyebrow"><%: L.T("Meetings.MyMeetings.InternshipWorkspace") %></p>
 
                 <h1><%: L.T("Meetings.MyMeetings.MyMeetings") %></h1>
 
@@ -780,6 +716,11 @@
                 </div>
 
                 <div class="meeting-toolbar">
+                    <label class="meeting-search">
+                        <span class="visually-hidden"><%: L.T("Meetings.MyMeetings.SearchMeetings") %></span>
+                        <input id="meetingSearch" type="search" class="meeting-control"
+                            autocomplete="off" placeholder="<%: L.T("Meetings.MyMeetings.SearchMeetings") %>" />
+                    </label>
                     <button type="button"
                         class="meeting-btn"
                         onclick="showMeetingDialog('filterDialog')">
@@ -802,6 +743,10 @@
                         runat="server"
                         Text="<%$ Resources:Meetings, MyMeetings.AllMyMeetings %>" />
                 </strong>
+
+                <span class="meeting-live-note">
+                    <%: L.T("Meetings.MyMeetings.TimesShownInJordanLocalTime") %>
+                </span>
             </div>
 
             <div class="meeting-table-wrap">
@@ -817,7 +762,7 @@
 
                         <asp:TemplateField HeaderText="<%$ Resources:Meetings, MyMeetings.Meeting %>">
                             <ItemTemplate>
-                                <strong><%#: Eval("Title") %></strong>
+                                <strong data-meeting-views='<%#: Eval("ViewGroups") %>' data-initial-view='<%#: Eval("MatchesView") %>'><%#: Eval("Title") %></strong>
 
                                 <div class="meeting-subtext">
                                     <%#: Eval("DurationText") %>
@@ -936,6 +881,12 @@
 
             </div>
 
+            <p id="meetingSearchEmpty" class="meeting-search-empty" hidden><%: L.T("Meetings.MyMeetings.NoMeetingsMatch") %></p>
+
+            <p class="meeting-footer-note">
+                <%: L.T("Meetings.MyMeetings.RequestsNeedTheInvitedPersonS") %>
+            </p>
+
         </section>
 
         <!-- نافذة إنشاء طلب ميتنج -->
@@ -957,7 +908,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('requestDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseRequestForm") %>">
-                    &#215;
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -976,15 +927,26 @@
                         placeholder="<%$ Resources:Meetings, MyMeetings.EGInternshipProgressReview %>" />
                 </div>
 
-                <div>
-                    <asp:Label runat="server"
-                        AssociatedControlID="Recipient"
-                        CssClass="meeting-label"
-                        Text="<%$ Resources:Meetings, MyMeetings.WhoWouldYouLikeToMeet %>" />
+                <div class="meeting-wide">
+                    <span class="meeting-label" id="recipientLabel"><%: L.T("Meetings.MyMeetings.WhoWouldYouLikeToMeet") %></span>
 
-                    <asp:DropDownList ID="Recipient"
-                        runat="server"
-                        CssClass="meeting-control" />
+                    <%-- People picker: one field that opens a searchable list. The hidden
+                         drop-down below still carries the chosen person to the server. --%>
+                    <div class="mp" data-mp>
+                        <button type="button" class="mp-toggle" aria-expanded="false" aria-controls="mpPanel" aria-labelledby="recipientLabel mpSummary">
+                            <span class="mp-avatar" data-mp-avatar aria-hidden="true">?</span>
+                            <span class="mp-summary" id="mpSummary" data-mp-summary><%: L.T("Meetings.MyMeetings.SelectAPerson") %></span>
+                            <span class="mp-caret" aria-hidden="true"></span>
+                        </button>
+                        <div class="mp-panel" id="mpPanel" hidden>
+                            <label for="recipientSearch" class="visually-hidden"><%: L.T("Meetings.MyMeetings.SearchPeople") %></label>
+                            <input id="recipientSearch" type="search" class="meeting-control mp-search" autocomplete="off" placeholder="<%: L.T("Meetings.MyMeetings.SearchPeople") %>" />
+                            <ul class="mp-list" role="listbox" aria-labelledby="recipientLabel" data-mp-list></ul>
+                            <p class="mp-empty" data-mp-empty hidden><%: L.T("Meetings.MyMeetings.NoPeopleMatch") %></p>
+                        </div>
+                    </div>
+                    <asp:DropDownList ID="Recipient" runat="server" CssClass="mp-native" tabindex="-1" aria-hidden="true" />
+                    <span id="recipientCount" class="meeting-hint" aria-live="polite"></span>
                 </div>
 
                 <div>
@@ -1076,7 +1038,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('filterDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseViewSelector") %>">
-                    &#215;
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1134,7 +1096,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('confirmDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseConfirmation") %>">
-                    &#215;
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1172,7 +1134,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('detailsDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseMeetingDetails") %>">
-                    &#215;
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1231,7 +1193,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('noticeDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.CloseMessage") %>">
-                    &#215;
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1270,7 +1232,7 @@
                     class="meeting-close"
                     onclick="closeMeetingDialog('roomDialog')"
                     aria-label="<%: L.T("Meetings.MyMeetings.LeaveAndCloseMeeting") %>">
-                    &#215;
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6" /></svg>
                 </button>
             </div>
 
@@ -1312,6 +1274,122 @@
                 let activeApi = null;
 
                 let roomVersion = 0;
+
+                const recipient = document.getElementById('<%= Recipient.ClientID %>');
+                const recipientSearch = document.getElementById('recipientSearch');
+                const recipientCount = document.getElementById('recipientCount');
+                const picker = document.querySelector('[data-mp]');
+                const pickerToggle = picker.querySelector('.mp-toggle');
+                const pickerPanel = picker.querySelector('.mp-panel');
+                const pickerList = picker.querySelector('[data-mp-list]');
+                const pickerEmpty = picker.querySelector('[data-mp-empty]');
+                const pickerSummary = picker.querySelector('[data-mp-summary]');
+                const pickerAvatar = picker.querySelector('[data-mp-avatar]');
+                const placeholderText = recipient.options.length ? recipient.options[0].text : '';
+
+                // Each option reads "Full Name - Role".
+                function personOf(option) {
+                    const cut = option.text.lastIndexOf(' - ');
+                    const name = cut > 0 ? option.text.slice(0, cut) : option.text;
+                    const role = cut > 0 ? option.text.slice(cut + 3) : '';
+                    const parts = name.trim().split(/\s+/).filter(function (w) { return /^\p{L}/u.test(w); });
+                    const initials = ((parts[0] || '?').charAt(0) + (parts.length > 1 ? parts[parts.length - 1].charAt(0) : '')).toUpperCase();
+                    return { value: option.value, name: name, role: role, initials: initials };
+                }
+                const people = Array.from(recipient.options).filter(function (o) { return o.value; }).map(personOf);
+
+                function showChoice() {
+                    const chosen = people.find(function (p) { return p.value === recipient.value; });
+                    picker.classList.toggle('has-choice', !!chosen);
+                    pickerAvatar.textContent = chosen ? chosen.initials : '?';
+                    pickerSummary.textContent = chosen ? chosen.name + (chosen.role ? ' · ' + chosen.role : '') : placeholderText;
+                }
+
+                function openPicker(open) {
+                    pickerPanel.hidden = !open;
+                    picker.classList.toggle('is-open', open);
+                    pickerToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                    if (open) { recipientSearch.value = ''; filterRecipients(); recipientSearch.focus(); }
+                }
+
+                function filterRecipients() {
+                    const query = recipientSearch.value.trim().toLocaleLowerCase();
+                    pickerList.replaceChildren();
+                    let shown = 0;
+                    people.forEach(function (person) {
+                        if (query && (person.name + ' ' + person.role).toLocaleLowerCase().indexOf(query) < 0) return;
+                        shown++;
+                        const item = document.createElement('li');
+                        item.setAttribute('role', 'option');
+                        item.tabIndex = 0;
+                        item.dataset.value = person.value;
+                        item.setAttribute('aria-selected', person.value === recipient.value ? 'true' : 'false');
+                        const avatar = document.createElement('span');
+                        avatar.className = 'mp-avatar';
+                        avatar.textContent = person.initials;
+                        avatar.setAttribute('aria-hidden', 'true');
+                        const text = document.createElement('span');
+                        text.className = 'mp-name';
+                        const strong = document.createElement('strong');
+                        strong.textContent = person.name;
+                        const small = document.createElement('small');
+                        small.textContent = person.role;
+                        text.append(strong, small);
+                        item.append(avatar, text);
+                        pickerList.append(item);
+                    });
+                    pickerEmpty.hidden = shown > 0;
+                    recipientCount.textContent = people.length + ' <%: L.T("Meetings.MyMeetings.PeopleAvailable") %>';
+                }
+
+                function choose(item) {
+                    recipient.value = item.dataset.value;
+                    showChoice();
+                    openPicker(false);
+                    pickerToggle.focus();
+                }
+
+                pickerToggle.addEventListener('click', function () { openPicker(pickerPanel.hidden); });
+                pickerList.addEventListener('click', function (event) {
+                    const item = event.target.closest('[role="option"]');
+                    if (item) choose(item);
+                });
+                pickerList.addEventListener('keydown', function (event) {
+                    const item = event.target.closest('[role="option"]');
+                    if (!item) return;
+                    if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); choose(item); }
+                    else if (event.key === 'ArrowDown' && item.nextElementSibling) { event.preventDefault(); item.nextElementSibling.focus(); }
+                    else if (event.key === 'ArrowUp') { event.preventDefault(); (item.previousElementSibling || recipientSearch).focus(); }
+                });
+                recipientSearch.addEventListener('keydown', function (event) {
+                    if (event.key === 'ArrowDown' && pickerList.firstElementChild) { event.preventDefault(); pickerList.firstElementChild.focus(); }
+                    else if (event.key === 'Enter') { event.preventDefault(); if (pickerList.firstElementChild) choose(pickerList.firstElementChild); }
+                });
+                picker.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape' && !pickerPanel.hidden) { event.preventDefault(); event.stopPropagation(); openPicker(false); pickerToggle.focus(); }
+                });
+                document.addEventListener('click', function (event) { if (!picker.contains(event.target)) openPicker(false); });
+
+                recipientSearch.addEventListener('input', filterRecipients);
+                filterRecipients();
+                showChoice();
+
+
+                const meetingSearch = document.getElementById('meetingSearch');
+                const meetingRows = Array.from(document.querySelectorAll('#<%= MeetingGrid.ClientID %> tr'))
+                    .filter(function (row) { return row.querySelector('td') && !row.querySelector('.meeting-empty'); });
+                const meetingSearchEmpty = document.getElementById('meetingSearchEmpty');
+                meetingSearch.addEventListener('input', function () {
+                    const query = meetingSearch.value.trim().toLocaleLowerCase();
+                    let visible = 0;
+                    meetingRows.forEach(function (row) {
+                        const matches = row.textContent.toLocaleLowerCase().includes(query);
+                        row.hidden = !matches;
+                        if (matches) visible++;
+                    });
+                    meetingSearchEmpty.hidden = !query || visible > 0 || meetingRows.length === 0;
+                });
+
 
                 window.showMeetingDialog = function (id) {
                     const dialog = document.getElementById(id);

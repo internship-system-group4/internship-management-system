@@ -162,13 +162,13 @@
   <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>تم تأكيد تدريبك وحفظه، لكن علامة الطلب ما زالت بحاجة إلى مزامنة؛ استخدم «مزامنة التأكيد» أدناه.</value></data>
   <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>تم حفظ جهة تدريبك، ولا يمكنك تأكيد عرض آخر.</value></data>
   <data name="MyTasks.Action" xml:space="preserve"><value>الإجراء</value></data>
-  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>أضف ملاحظة أو رابطًا أو مرفقًا وفق المطلوب.</value></data>
+  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>أدخل الوصف ورابط العمل وأرفق ملفًا لإرسال المهمة.</value></data>
   <data name="MyTasks.AddANoteALinkOr2" xml:space="preserve"><value>أضف ملاحظة أو رابطًا أو مرفقًا قبل التسليم.</value></data>
   <data name="MyTasks.AssignedTask" xml:space="preserve"><value>مهمة مسندة</value></data>
   <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>المهام المسندة</value></data>
   <data name="MyTasks.AssignedTasks2" xml:space="preserve"><value>المهام المسندة</value></data>
   <data name="MyTasks.AttachedFile" xml:space="preserve"><value>ملف مرفق</value></data>
-  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>مرفق (اختياري)</value></data>
+  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>المرفق (إلزامي)</value></data>
   <data name="MyTasks.Attempt" xml:space="preserve"><value>المحاولة</value></data>
   <data name="MyTasks.Attempts" xml:space="preserve"><value>المحاولات</value></data>
   <data name="MyTasks.ChooseATask" xml:space="preserve"><value>اختر مهمة</value></data>
@@ -176,7 +176,7 @@
   <data name="MyTasks.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
   <data name="MyTasks.Deadline2" xml:space="preserve"><value>الموعد النهائي:</value></data>
   <data name="MyTasks.Description" xml:space="preserve"><value>الوصف</value></data>
-  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>وصف أو ملاحظة (اختياري)</value></data>
+  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>الوصف أو الملاحظة (إلزامي)</value></data>
   <data name="MyTasks.DownloadSubmittedFile" xml:space="preserve"><value>تنزيل الملف المسلّم</value></data>
   <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>أدخل رابط http أو https صحيحًا.</value></data>
   <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>أدخل نص التسليم أو رابطًا.</value></data>
@@ -187,7 +187,7 @@
   <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>رفع الملفات غير متاح حاليًا. سلّم نصًا أو رابطًا قابلًا للمشاركة.</value></data>
   <data name="MyTasks.Instructions" xml:space="preserve"><value>التعليمات</value></data>
   <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>التعليمات والمتطلبات</value></data>
-  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>رابط (اختياري)</value></data>
+  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>رابط العمل (إلزامي)</value></data>
   <data name="MyTasks.MyTasks" xml:space="preserve"><value>مهامي</value></data>
   <data name="MyTasks.MyTasks2" xml:space="preserve"><value>مهامي</value></data>
   <data name="MyTasks.NoAdditionalCriteriaWereProvided" xml:space="preserve"><value>لم تُحدد معايير إضافية.</value></data>
@@ -256,6 +256,49 @@
   <data name="MyTasks.YourSubmissionWasSavedButThe" xml:space="preserve"><value>تم حفظ تسليمك، لكن تعذر تحديث حالة المهمة. أعد تحميل الصفحة أو تواصل مع مشرفك.</value></data>
   <data name="MyTasks.YourSupervisorSTasksWillAppear" xml:space="preserve"><value>ستظهر هنا مهام مشرفك عند إسنادها.</value></data>
   <data name="MyTasks.YourTaskWasSubmittedSuccessfully" xml:space="preserve"><value>تم تسليم مهمتك بنجاح.</value></data>
+  <data name="SubmissionDetails.Title" xml:space="preserve"><value>تفاصيل التسليم</value></data>
+  <data name="SubmissionDetails.Eyebrow" xml:space="preserve"><value>رحلة الطالب / سجل التسليم</value></data>
+  <data name="SubmissionDetails.Subtitle" xml:space="preserve"><value>تفاصيل المهمة والعمل المحفوظ وملاحظات المشرف لهذه المحاولة تحديدًا.</value></data>
+  <data name="SubmissionDetails.AttemptNumber" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="SubmissionDetails.SubmittedOn" xml:space="preserve"><value>تاريخ التسليم</value></data>
+  <data name="SubmissionDetails.Company" xml:space="preserve"><value>شركة التدريب</value></data>
+  <data name="SubmissionDetails.Deadline" xml:space="preserve"><value>موعد المهمة النهائي</value></data>
+  <data name="SubmissionDetails.YourRecord" xml:space="preserve"><value>سجل محفوظ</value></data>
+  <data name="SubmissionDetails.WhatYouSubmitted" xml:space="preserve"><value>ما قمت بتسليمه</value></data>
+  <data name="SubmissionDetails.SavedAsAttempt" xml:space="preserve"><value>تُحفظ كل محاولة بشكل مستقل لتتمكن من مراجعة أعمالك السابقة.</value></data>
+  <data name="SubmissionDetails.Description" xml:space="preserve"><value>الوصف الذي أرسلته</value></data>
+  <data name="SubmissionDetails.NoDescription" xml:space="preserve"><value>لم يُسجّل وصف لهذه المحاولة السابقة.</value></data>
+  <data name="SubmissionDetails.SubmittedLink" xml:space="preserve"><value>رابط العمل المُسلّم</value></data>
+  <data name="SubmissionDetails.OpenWorkLink" xml:space="preserve"><value>فتح رابط العمل</value></data>
+  <data name="SubmissionDetails.NoLink" xml:space="preserve"><value>لم يُسجّل رابط لهذه المحاولة السابقة.</value></data>
+  <data name="SubmissionDetails.RestrictedLink" xml:space="preserve"><value>يشير الرابط المحفوظ إلى صفحة في البوابة لا يملك حساب الطالب صلاحية فتحها. نعرضه هنا كما سُلّم.</value></data>
+  <data name="SubmissionDetails.SubmittedFile" xml:space="preserve"><value>المرفق المُسلّم</value></data>
+  <data name="SubmissionDetails.DownloadFile" xml:space="preserve"><value>تنزيل المرفق</value></data>
+  <data name="SubmissionDetails.NoFile" xml:space="preserve"><value>لم يُسجّل مرفق لهذه المحاولة السابقة.</value></data>
+  <data name="SubmissionDetails.Review" xml:space="preserve"><value>حالة المراجعة</value></data>
+  <data name="SubmissionDetails.SupervisorFeedback" xml:space="preserve"><value>ملاحظات المشرف</value></data>
+  <data name="SubmissionDetails.ReviewedNoNote" xml:space="preserve"><value>راجع المشرف هذه المحاولة دون إضافة ملاحظة مكتوبة.</value></data>
+  <data name="SubmissionDetails.AwaitingFeedback" xml:space="preserve"><value>حُفظ عملك وينتظر مراجعة المشرف.</value></data>
+  <data name="SubmissionDetails.Score" xml:space="preserve"><value>العلامة: {0} / {1}</value></data>
+  <data name="SubmissionDetails.Assignment" xml:space="preserve"><value>المهمة المسندة</value></data>
+  <data name="SubmissionDetails.TaskBrief" xml:space="preserve"><value>تفاصيل المهمة</value></data>
+  <data name="SubmissionDetails.PreservedHistory" xml:space="preserve"><value>كل المحاولات محفوظة</value></data>
+  <data name="SubmissionDetails.AttemptHistory" xml:space="preserve"><value>سجل التسليمات</value></data>
+  <data name="SubmissionDetails.HistoryHint" xml:space="preserve"><value>افتح أي محاولة لترى ما سلّمته فيها بالتحديد.</value></data>
+  <data name="SubmissionDetails.CurrentAttempt" xml:space="preserve"><value>المحاولة المعروضة</value></data>
+  <data name="SubmissionDetails.ViewAttempt" xml:space="preserve"><value>عرض المحاولة</value></data>
+  <data name="SubmissionDetails.ViewAttemptDetails" xml:space="preserve"><value>عرض تفاصيل المحاولة</value></data>
+  <data name="SubmissionDetails.ViewSubmittedDetails" xml:space="preserve"><value>عرض تفاصيل التسليم</value></data>
+  <data name="SubmissionDetails.ViewResubmittedDetails" xml:space="preserve"><value>عرض تفاصيل إعادة التسليم</value></data>
+  <data name="SubmissionDetails.BackToTasks" xml:space="preserve"><value>العودة إلى مهامي</value></data>
+  <data name="SubmissionDetails.NotFound" xml:space="preserve"><value>التسليم غير متاح</value></data>
+  <data name="SubmissionDetails.LoadError" xml:space="preserve"><value>تعذّر تحميل هذا التسليم</value></data>
+  <data name="SubmissionDetails.NotFoundHint" xml:space="preserve"><value>عُد إلى مهامي وافتح إحدى محاولاتك المحفوظة.</value></data>
+  <data name="SubmissionDetails.Submitted" xml:space="preserve"><value>تم التسليم</value></data>
+  <data name="SubmissionDetails.Resubmitted" xml:space="preserve"><value>أُعيد التسليم</value></data>
+  <data name="SubmissionDetails.UnderReview" xml:space="preserve"><value>قيد المراجعة</value></data>
+  <data name="SubmissionDetails.RevisionRequested" xml:space="preserve"><value>طُلب التعديل</value></data>
+  <data name="SubmissionDetails.Reviewed" xml:space="preserve"><value>تمت المراجعة</value></data>
   <data name="Opportunities.APPLICATIONDEADLINE" xml:space="preserve"><value>آخر موعد للتقديم</value></data>
   <data name="Opportunities.AVAILABLESEATS" xml:space="preserve"><value>المقاعد المتاحة</value></data>
   <data name="Opportunities.AvailableOpportunities" xml:space="preserve"><value>الفرص المتاحة</value></data>
@@ -275,6 +318,7 @@
   <data name="Opportunities.NoMatchingOpportunities" xml:space="preserve"><value>لا توجد فرص مطابقة</value></data>
   <data name="Opportunities.NotSpecified" xml:space="preserve"><value>غير محدد</value></data>
   <data name="Opportunities.Of" xml:space="preserve"><value>من</value></data>
+  <data name="Opportunities.Applied" xml:space="preserve"><value>تم التقديم</value></data>
   <data name="Opportunities.Open" xml:space="preserve"><value>مفتوحة</value></data>
   <data name="Opportunities.PleaseContactTheInternshipCoordinator" xml:space="preserve"><value>يُرجى التواصل مع منسّق التدريب.</value></data>
   <data name="Opportunities.PleaseSignInAsAStudent" xml:space="preserve"><value>يُرجى تسجيل الدخول بحساب طالب.</value></data>
@@ -678,21 +722,48 @@
   <data name="Progress.DownloadReport" xml:space="preserve"><value>تنزيل تقرير الإتمام (PDF)</value></data>
   <data name="Progress.PrintReport" xml:space="preserve"><value>طباعة التقرير</value></data>
   <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>استُبدل بالنتيجة المعلنة</value></data>
-  <data name="Profile.OpenOnlineCV" xml:space="preserve"><value>عرض السيرة الذاتية على الإنترنت</value></data>
-  <data name="Profile.OpenProjectPortfolio" xml:space="preserve"><value>عرض ملف الأعمال</value></data>
-  <data name="Profile.OpenLinkedInProfile" xml:space="preserve"><value>فتح حساب LinkedIn</value></data>
-  <data name="Profile.ProfessionalOnlinePresence" xml:space="preserve"><value>حضورك المهني على الإنترنت</value></data>
-  <data name="Profile.NoLinkedInProfileAvailable" xml:space="preserve"><value>لم تتم إضافة رابط LinkedIn بعد.</value></data>
-
-  <data name="Progress.HideDocuments" xml:space="preserve"><value>إخفاء</value></data>
-  <data name="Progress.ShowDocuments" xml:space="preserve"><value>إظهار</value></data>
-
-  <data name="Progress.ShowAllHistory" xml:space="preserve"><value>عرض الكل</value></data>
-  <data name="Progress.ShowLatestOnly" xml:space="preserve"><value>عرض الأحدث فقط</value></data>
-
-  <data name="Progress.AllAttemptsShown" xml:space="preserve"><value>جميع المحاولات المسجلة ظاهرة بالفعل.</value></data>
-
-  <data name="Progress.ShowAllTasks" xml:space="preserve"><value>عرض الكل</value></data>
-  <data name="Progress.ShowLatestTask" xml:space="preserve"><value>عرض الأحدث فقط</value></data>
-  <data name="Progress.AllTasksShown" xml:space="preserve"><value>كل المهام ظاهرة بالفعل.</value></data>
+  <data name="MyTasks.SupervisorRequestedChanges" xml:space="preserve"><value>التعديلات التي طلبها مشرفك</value></data>
+  <data name="MyTasks.SubmitWork" xml:space="preserve"><value>تسليم عملك</value></data>
+  <data name="MyTasks.ResubmitWork" xml:space="preserve"><value>إعادة تسليم عملك</value></data>
+  <data name="MyTasks.NewSubmissionAttempt" xml:space="preserve"><value>تسليم جديد · المحاولة {0}</value></data>
+  <data name="MyTasks.ResubmissionAttempt" xml:space="preserve"><value>إعادة تسليم · المحاولة {0}</value></data>
+  <data name="MyTasks.WhatHappensNext" xml:space="preserve"><value>ماذا يحدث بعد ذلك</value></data>
+  <data name="MyTasks.WhatHappensNextText" xml:space="preserve"><value>يصل إشعار إلى مشرف الشركة ليراجع المحاولة {0}. تبقى المحاولات السابقة في سجل التسليمات.</value></data>
+  <data name="MyTasks.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="MyTasks.SendSubmission" xml:space="preserve"><value>إرسال التسليم</value></data>
+  <data name="MyTasks.SendResubmission" xml:space="preserve"><value>إرسال إعادة التسليم</value></data>
+  <data name="MyTasks.Sending" xml:space="preserve"><value>جارٍ الإرسال…</value></data>
+  <data name="MyTasks.SubmissionSent" xml:space="preserve"><value>تم تسليم العمل</value></data>
+  <data name="MyTasks.ResubmissionSent" xml:space="preserve"><value>تم إرسال إعادة التسليم</value></data>
+  <data name="MyTasks.SentText" xml:space="preserve"><value>المحاولة {0} من "{1}" الآن لدى مشرفك للمراجعة.</value></data>
+  <data name="MyTasks.AttemptNumber" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="MyTasks.WaitingForReview" xml:space="preserve"><value>بانتظار المراجعة</value></data>
+  <data name="MyTasks.Done" xml:space="preserve"><value>تم</value></data>
+  <data name="Workspace.StudentJourney" xml:space="preserve"><value>رحلة الطالب</value></data>
+  <data name="Workspace.ApplicationsLabel" xml:space="preserve"><value>طلبات</value></data>
+  <data name="Workspace.TasksLabel" xml:space="preserve"><value>مهام مكلّف بها</value></data>
+  <data name="Workspace.ApplicationHistory" xml:space="preserve"><value>سجل الطلبات</value></data>
+  <data name="Workspace.OneApplicationPerOpportunity" xml:space="preserve"><value>سجل واضح واحد لكل فرصة تقدّمت إليها.</value></data>
+  <data name="Workspace.TaskWorkflow" xml:space="preserve"><value>خطوات المهام: اختر المهمة، قدّم عملك، ثم تابع الملاحظات.</value></data>
+  <data name="Workspace.JourneyCompletion" xml:space="preserve"><value>مراحل مكتملة</value></data>
+  <data name="MyTasks.AllThreeRequired" xml:space="preserve"><value>كل الحقول الثلاثة مطلوبة لإرسال المهمة.</value></data>
+  <data name="MyTasks.EnterDescription" xml:space="preserve"><value>اكتب وصفًا أو ملاحظة للعمل (حتى 2000 حرف).</value></data>
+  <data name="MyTasks.EnterLink" xml:space="preserve"><value>أدخل رابط عمل صالحًا يبدأ بـ http أو https.</value></data>
+  <data name="MyTasks.AttachFile" xml:space="preserve"><value>أرفق ملفًا قبل التسليم.</value></data>
+  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>أُلغي هذا التدريب أو اعتُمد إكماله نهائيًا. يمكنك مراجعة الساعات المسجّلة سابقًا، لكن لا يمكنك إضافة ساعات جديدة.</value></data>
+  <data name="Progress.LogHours" xml:space="preserve"><value>سجّل ساعات التدريب</value></data>
+  <data name="Progress.LogHoursHint" xml:space="preserve"><value>أدخل ساعات العمل الفعلية؛ لا تُحتسب ضمن المطلوب إلا بعد اعتماد المشرف الأكاديمي.</value></data>
+  <data name="Progress.WorkDate" xml:space="preserve"><value>تاريخ العمل</value></data>
+  <data name="Progress.HoursWorked" xml:space="preserve"><value>الساعات المنجزة</value></data>
+  <data name="Progress.WorkDescription" xml:space="preserve"><value>وصف العمل المنجز</value></data>
+  <data name="Progress.SubmitHours" xml:space="preserve"><value>إرسال الساعات للمراجعة</value></data>
+  <data name="Progress.HoursReportInvalid" xml:space="preserve"><value>تحقق من التاريخ ضمن فترة تدريبك، ومن الساعات (1–24) والوصف.</value></data>
+  <data name="Progress.HoursReportFailed" xml:space="preserve"><value>تعذر حفظ الساعات الآن. حاول مجددًا.</value></data>
+  <data name="Progress.HoursReportSaved" xml:space="preserve"><value>سُجّلت الساعات وبانتظار اعتماد المشرف الأكاديمي.</value></data>
+  <data name="Profile.SaveChanges" xml:space="preserve"><value>حفظ التغييرات</value></data>
+  <data name="Profile.Saved" xml:space="preserve"><value>تم الحفظ</value></data>
+  <data name="Profile.AllChangesSaved" xml:space="preserve"><value>تم حفظ جميع التغييرات</value></data>
+  <data name="Profile.UnsavedChanges" xml:space="preserve"><value>لديك تغييرات غير محفوظة</value></data>
+  <data name="Profile.ChangePhoto" xml:space="preserve"><value>تغيير الصورة</value></data>
+  <data name="Profile.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
 </root>

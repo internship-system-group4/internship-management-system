@@ -9,6 +9,8 @@
     const number = new Intl.NumberFormat(window.uimsLang === 'ar' ? 'ar-JO-u-nu-latn' : 'en');
     const modal = root.querySelector('#deskRecords');
     let selectedRecords = [], recordPage = 0, opener = null;
+    const recordSearch = modal.querySelector('[data-desk-record-search]');
+    const pageSize = 8;
     function safeUrl(value) {
         if (!value) return '#';
         const raw = value.startsWith('~/') ? data.AppRoot + value.slice(2) : value;
@@ -17,24 +19,40 @@
     }
     function pageRecords() {
         const list = modal.querySelector('.desk-record-list');
+        const query = recordSearch.value.trim().toLocaleLowerCase();
+        const records = query ? selectedRecords.filter(record =>
+            ((record.Title || '') + ' ' + (record.Detail || '')).toLocaleLowerCase().includes(query)) : selectedRecords;
+        const pageCount = Math.max(1, Math.ceil(records.length / pageSize));
+        recordPage = Math.min(recordPage, pageCount - 1);
         list.replaceChildren();
-        list.start = recordPage * 10 + 1;
-        selectedRecords.slice(recordPage * 10, recordPage * 10 + 10).forEach(record => {
-            const item = document.createElement('li'), text = document.createElement('div'), title = document.createElement('strong'), detail = document.createElement('small'), link = document.createElement('a');
+        records.slice(recordPage * pageSize, (recordPage + 1) * pageSize).forEach((record, index) => {
+            const item = document.createElement('li'), numberBadge = document.createElement('span'), text = document.createElement('div'), title = document.createElement('strong'), detail = document.createElement('small'), link = document.createElement('a'), icon = document.createElement('i');
+            numberBadge.className = 'desk-record-number';
+            numberBadge.textContent = number.format(recordPage * pageSize + index + 1);
+            numberBadge.setAttribute('aria-hidden', 'true');
+            text.className = 'desk-record-item-text';
             title.textContent = record.Title; detail.textContent = record.Detail || '';
             link.textContent = t('ChartOpenRecord'); link.href = safeUrl(record.Url);
-            text.append(title, detail); item.append(text, link); list.append(item);
+            link.setAttribute('aria-label', t('ChartOpenRecord') + ': ' + record.Title);
+            icon.className = 'bi bi-arrow-up-right'; icon.setAttribute('aria-hidden', 'true');
+            link.append(icon);
+            text.append(title, detail); item.append(numberBadge, text, link);
+            item.style.setProperty('--record-index', index);
+            list.append(item);
         });
         modal.querySelector('[data-desk-no-records]').hidden = selectedRecords.length > 0;
+        modal.querySelector('[data-desk-no-search-results]').hidden = !selectedRecords.length || records.length > 0;
+        modal.querySelector('.desk-record-toolbar').hidden = selectedRecords.length === 0;
+        modal.querySelector('[data-desk-record-count]').textContent = number.format(records.length) + ' ' + modal.dataset.recordCountLabel;
         modal.querySelector('[data-desk-page="-1"]').disabled = recordPage === 0;
-        modal.querySelector('[data-desk-page="1"]').disabled = (recordPage + 1) * 10 >= selectedRecords.length;
-        modal.querySelector('[data-desk-page-label]').textContent = selectedRecords.length
-            ? t('ChartRecordRange', recordPage * 10 + 1, Math.min(recordPage * 10 + 10, selectedRecords.length), selectedRecords.length) : t('ChartZeroRecords');
-        // Hide redundant navigation for a single page; keep its record count visible.
-        modal.querySelectorAll('[data-desk-page]').forEach(button => button.hidden = selectedRecords.length <= 10);
+        modal.querySelector('[data-desk-page="1"]').disabled = recordPage >= pageCount - 1;
+        modal.querySelector('[data-desk-page-label]').textContent = records.length
+            ? t('ChartRecordRange', recordPage * pageSize + 1, Math.min((recordPage + 1) * pageSize, records.length), records.length) : t('ChartZeroRecords');
+        modal.querySelector('.desk-record-pagination').hidden = records.length <= pageSize;
     }
     function showRecords(title, records, trigger, context) {
         opener = trigger; selectedRecords = records || []; recordPage = 0;
+        recordSearch.value = '';
         modal.querySelector('.modal-title').textContent = title;
         modal.querySelector('#desk-record-context').textContent = context || '';
         pageRecords();
@@ -43,6 +61,7 @@
     modal.addEventListener('hidden.bs.modal', () => {
         if (opener && opener.isConnected) opener.focus({ preventScroll: true });
     });
+    recordSearch.addEventListener('input', () => { recordPage = 0; pageRecords(); });
     function monthRecords(index) {
         const now = new Date(model.Now), from = Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 11 + index, 1), until = Date.UTC(now.getUTCFullYear(), now.getUTCMonth() - 10 + index, 1);
         return model.Events.filter(event => event.Date >= from && event.Date < until && event.Date <= model.Now).map(event => event.Record);
@@ -51,7 +70,7 @@
     modal.addEventListener('click', event => {
         const button = event.target.closest('[data-desk-page]');
         if (!button || button.disabled) return;
-        recordPage = Math.max(0, Math.min(Math.max(0, Math.ceil(selectedRecords.length / 10) - 1), recordPage + Number(button.dataset.deskPage)));
+        recordPage += Number(button.dataset.deskPage);
         pageRecords();
     });
     root.addEventListener('click', event => {

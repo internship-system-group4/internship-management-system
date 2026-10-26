@@ -1,15 +1,26 @@
-﻿using System;
+using System;
 using InternshipManagementSystem.Common;
 using System.Collections.Generic;
 using InternshipManagementSystem.Models;
 using InternshipManagementSystem.Security;
 using InternshipManagementSystem.Data;
 using System.Linq;
+using System.Web.UI.WebControls;
+using InternshipManagementSystem.Services;
 
 namespace InternshipManagementSystem.Pages.Academic
 {
     public partial class StudentProgress : AcademicPage
     {
+        protected int ApprovedHours, RequiredHours, PendingHours, HoursPercent;
+        public class PendingHourRow
+        {
+            public string Id { get; set; }
+            public int Hours { get; set; }
+            public string Date { get; set; }
+            public string Description { get; set; }
+        }
+
         private string CurrentStudentId
         {
             get { return Request.QueryString["id"]; }
@@ -37,6 +48,7 @@ namespace InternshipManagementSystem.Pages.Academic
                 if (!IsPostBack)
                 {
                     LoadStudentAndPlacementData();
+                    LoadHours();
                     LoadTasks();
                     LoadComments();
                 }
@@ -110,8 +122,8 @@ namespace InternshipManagementSystem.Pages.Academic
 
             if (placement != null)
             {
-                litApprovedHours.Text = placement.ApprovedHours.ToString();
-                litRequiredHours.Text = placement.RequiredHours.ToString();
+                RequiredHours = placement.RequiredHours > 0 ? placement.RequiredHours : student.RequiredHours;
+                litRequiredHours.Text = RequiredHours.ToString();
                 litCompanyName.Text = placement.CompanyName;
                 litCompanySupervisor.Text = placement.CompanySupervisorName;
                 litOpportunityTitle.Text = placement.OpportunityTitle;
@@ -121,6 +133,71 @@ namespace InternshipManagementSystem.Pages.Academic
             {
                 litCompanyName.Text = L.T("Academic.StudentProgress.NotAssignedYet");
                 litPlacementStatus.Text = L.T("Academic.StudentProgress.Pending");
+            }
+        }
+
+        private void LoadHours()
+        {
+            Placement placement = new PlacementRepository().GetById(CurrentStudentId);
+            if (placement == null || placement.StudentId != CurrentStudentId ||
+                placement.AcademicSupervisorId != CurrentSupervisor.Id)
+            {
+                rptPendingHours.DataSource = new List<PendingHourRow>();
+                rptPendingHours.DataBind();
+                phNoPendingHours.Visible = true;
+                return;
+            }
+            var entries = new HoursRepository().GetByPlacement(placement.Id)
+                .Where(h => h != null && h.StudentId == CurrentStudentId && h.Hours > 0).ToList();
+            ApprovedHours = entries.Where(h => h.Status == HoursStatus.Approved).Sum(h => h.Hours);
+            PendingHours = entries.Where(h => h.Status == HoursStatus.Reported).Sum(h => h.Hours);
+            HoursPercent = RequiredHours > 0 ? (int)Math.Min(100, ApprovedHours * 100.0 / RequiredHours) : 0;
+            litApprovedHours.Text = ApprovedHours.ToString();
+            var pending = entries.Where(h => h.Status == HoursStatus.Reported)
+                .OrderBy(h => h.WorkDate).Select(h => new PendingHourRow
+                {
+                    Id = h.Id,
+                    Hours = h.Hours,
+                    Date = Time.DisplayDate(h.WorkDate),
+                    Description = h.Description ?? ""
+                }).ToList();
+            rptPendingHours.DataSource = pending;
+            rptPendingHours.DataBind();
+            phNoPendingHours.Visible = pending.Count == 0;
+        }
+
+        protected void rptPendingHours_ItemCommand(object source, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName != "ApproveHours" && e.CommandName != "RejectHours") return;
+            try
+            {
+                string entryId = Convert.ToString(e.CommandArgument);
+                Placement placement = new PlacementRepository().GetById(CurrentStudentId);
+                TrainingHoursEntry entry = new HoursRepository().GetById(entryId);
+                if (placement == null || placement.StudentId != CurrentStudentId ||
+                    placement.AcademicSupervisorId != CurrentSupervisor.Id ||
+                    entry == null || entry.PlacementId != placement.Id ||
+                    entry.StudentId != CurrentStudentId || entry.Status != HoursStatus.Reported)
+                    throw new InvalidOperationException();
+                TextBox noteBox = e.Item.FindControl("txtHoursReviewNote") as TextBox;
+                string note = noteBox == null ? "" : (noteBox.Text ?? "").Trim();
+                if (note.Length > 500 || (e.CommandName == "RejectHours" && note.Length == 0))
+                {
+                    lblHoursReviewMessage.Text = L.T("Academic.StudentProgress.RejectNeedsNote");
+                    lblHoursReviewMessage.Visible = true;
+                    return;
+                }
+                HoursService.Decide(entryId, e.CommandName == "ApproveHours", CurrentSupervisor.Id, note);
+                lblHoursReviewMessage.Text = L.T("Academic.StudentProgress.HoursDecisionSaved");
+                lblHoursReviewMessage.Visible = true;
+                LoadStudentAndPlacementData();
+                LoadHours();
+            }
+            catch (Exception ex) when (ex is FirebaseException || ex is InvalidOperationException || ex is UnauthorizedAccessException)
+            {
+                System.Diagnostics.Trace.TraceError("Hours review failed: " + ex);
+                lblHoursReviewMessage.Text = L.T("Academic.StudentProgress.HoursDecisionFailed");
+                lblHoursReviewMessage.Visible = true;
             }
         }
 

@@ -56,9 +56,7 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 LoadAllowedRecipients();
                 if (Recipient.Items.Count <= 1)
                 {
-                    Recipient.Items[0].Text = CurrentUser.Role == UserRole.Coordinator
-                        ? L.T("Meetings.MyMeetings.MeetingRequestsAreNotAvailableFor")
-                        : L.T("Meetings.MyMeetings.NoAssignedContactsAvailable");
+                    Recipient.Items[0].Text = L.T("Meetings.MyMeetings.NoAssignedContactsAvailable");
                 }
                 SendRequest.Enabled = Recipient.Items.Count > 1;
 
@@ -98,12 +96,20 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
             PlacementRepository placements = new PlacementRepository();
             Dictionary<string, Person> allowed = new Dictionary<string, Person>(StringComparer.Ordinal);
 
+            if (CurrentUser is Coordinator)
+            {
+                foreach (Person supervisor in users.GetAll().Where(person =>
+                    (person is AcademicSupervisor || person is CompanySupervisor) && person.CanLogin()))
+                    allowed[supervisor.Id] = supervisor;
+            }
+
             CompanySupervisor company = CurrentUser as CompanySupervisor;
             if (company != null && !string.IsNullOrWhiteSpace(company.CompanyId))
             {
                 foreach (Placement placement in placements.GetByCompany(company.CompanyId))
                 {
-                    if (!IsMeetingPlacement(placement) || placement.CompanyId != company.CompanyId) continue;
+                    if (!IsMeetingPlacement(placement) || placement.CompanyId != company.CompanyId ||
+                        placement.CompanySupervisorId != company.Id) continue;
                     Student student = users.GetStudent(placement.StudentId);
                     if (student != null && student.CanLogin()) allowed[student.Id] = student;
                 }
@@ -115,6 +121,19 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 foreach (Student student in users.GetStudentsBySupervisor(academic.Id))
                 {
                     if (student != null && student.CanLogin()) allowed[student.Id] = student;
+                }
+                foreach (StudentGroup group in new GroupRepository().GetAll()
+                    .Where(group => group.AcademicSupervisorId == academic.Id))
+                {
+                    foreach (Student member in users.GetStudentsByGroup(group.Id))
+                    {
+                        if (member != null && member.CanLogin()) allowed[member.Id] = member;
+                    }
+                    foreach (string studentId in group.StudentIds ?? new List<string>())
+                    {
+                        Student member = users.GetStudent(studentId);
+                        if (member != null && member.CanLogin()) allowed[member.Id] = member;
+                    }
                 }
                 foreach (Placement placement in placements.GetByAcademicSupervisor(academic.Id))
                 {
@@ -131,6 +150,13 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 string academicSupervisorId = currentStudent.AcademicSupervisorId;
                 if (string.IsNullOrWhiteSpace(academicSupervisorId) && IsMeetingPlacement(placement))
                     academicSupervisorId = placement.AcademicSupervisorId;
+                if (string.IsNullOrWhiteSpace(academicSupervisorId))
+                {
+                    StudentGroup group = new GroupRepository().GetAll().FirstOrDefault(item =>
+                        item.Id == currentStudent.GroupId ||
+                        (item.StudentIds != null && item.StudentIds.Contains(currentStudent.Id)));
+                    if (group != null) academicSupervisorId = group.AcademicSupervisorId;
+                }
                 if (!string.IsNullOrWhiteSpace(academicSupervisorId))
                 {
                     AcademicSupervisor supervisor = users.GetAcademicSupervisor(academicSupervisorId);
@@ -325,12 +351,20 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 Server.HtmlEncode(
                     MeetingFilter.SelectedItem.Text);
 
-            MeetingGrid.DataSource = filtered
+            // Only the supervisor enhancement needs the complete authorized set for live filtering.
+            // Other roles keep their existing server-filtered rendering.
+            bool liveSupervisorViews = CurrentUser.Role == UserRole.CompanySupervisor
+                || CurrentUser.Role == UserRole.AcademicSupervisor;
+            var selectedIds = new HashSet<string>(filtered.Select(meeting => meeting.Id));
+            MeetingGrid.DataSource = (liveSupervisorViews ? all : filtered)
                 .Select(meeting => new
                 {
                     meeting.Id,
 
                     meeting.Title,
+
+                    ViewGroups = MeetingViewGroups(meeting, now),
+                    MatchesView = selectedIds.Contains(meeting.Id),
 
                     FromName = Name(
                         people,
@@ -372,6 +406,17 @@ namespace InternshipManagementSystem.Pages.MeetingsArea
                 .ToList();
 
             MeetingGrid.DataBind();
+        }
+
+        private string MeetingViewGroups(Meeting meeting, long now)
+        {
+            // Reuse the same predicates as the existing server view selector, not display-status text.
+            var groups = new List<string> { "all" };
+            if (CanRespond(meeting, now)) groups.Add("incoming");
+            if (IsPending(meeting, now) && meeting.CreatedById == CurrentUser.Id) groups.Add("sent");
+            if (meeting.IsApproved() && meeting.EndsAt() > now) groups.Add("upcoming");
+            if (meeting.IsHistory(now)) groups.Add("history");
+            return string.Join(" ", groups);
         }
 
         private static bool IsPending(

@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  Explore Opportunities
 //  Owner : Sara Rajoub
 //  Cards : R03
@@ -28,6 +28,33 @@ namespace InternshipManagementSystem.Pages.StudentArea
     {
         protected List<Opportunity> AvailableOpportunities =
             new List<Opportunity>();
+
+        protected Dictionary<string, InternshipApplication> ApplicationsByOpportunity =
+            new Dictionary<string, InternshipApplication>(StringComparer.OrdinalIgnoreCase);
+
+        protected bool HasApplied(string opportunityId)
+        {
+            return !string.IsNullOrEmpty(opportunityId) && ApplicationsByOpportunity.ContainsKey(opportunityId);
+        }
+
+        protected string ApplicationLabel(string opportunityId)
+        {
+            InternshipApplication application;
+            return ApplicationsByOpportunity.TryGetValue(opportunityId ?? "", out application)
+                ? L.T("Student.Opportunities.Applied") + " · " + L.Value("Ui", application.Status)
+                : L.T("Student.Opportunities.Open");
+        }
+
+        protected string CompanyNameFor(Opportunity opportunity)
+        {
+            if (!string.IsNullOrWhiteSpace(opportunity.CompanyName))
+                return opportunity.CompanyName;
+            InternshipApplication application;
+            if (ApplicationsByOpportunity.TryGetValue(opportunity.Id ?? "", out application)
+                && !string.IsNullOrWhiteSpace(application.CompanyName))
+                return application.CompanyName;
+            return "Partner Company";
+        }
 
         protected string SearchText = "";
         protected string Notice = "";
@@ -69,6 +96,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
                 List<Opportunity> allOpportunities =
                     repository.GetAll();
+                ApplicationsByOpportunity = new ApplicationRepository()
+                    .GetByStudent(CurrentStudent.Id)
+                    .Where(a => !string.IsNullOrWhiteSpace(a.OpportunityId))
+                    .ToDictionary(a => a.OpportunityId, StringComparer.OrdinalIgnoreCase);
 
                 // R03: Only open opportunities that match the student's
                 // college and major can be displayed.

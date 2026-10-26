@@ -12,7 +12,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
     {
         protected string ReviewSearch { get { return (IsPostBack ? Request.Form["reviewSearch"] : Session["CompanyReviewSearch"] as string) ?? ""; } }
         protected string ReviewFilter { get { return (IsPostBack ? Request.Form["review-status-filter"] : Session["CompanyReviewFilter"] as string) ?? "all"; } }
-        protected string ReviewSelection { get { return (IsPostBack ? Request.Form["reviewSelection"] : Session["CompanyReviewSelection"] as string) ?? ""; } }
+        protected string ReviewSelection { get { return (IsPostBack ? Request.Form["reviewSelection"] : Request.QueryString["candidate"] ?? Session["CompanyReviewSelection"] as string) ?? ""; } }
         /// <summary>One application plus the applicant's profile details.</summary>
         public class ApplicantRow
         {
@@ -36,6 +36,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             public string TechnicalSkills { get; set; }
             public string SoftSkills { get; set; }
             public string LinkedInUrl { get; set; }
+            public bool DetailsLoaded { get; set; }
             public bool HasCv { get; set; }
             public bool HasInlineCv { get; set; }
             public bool HasPortfolio { get; set; }
@@ -74,22 +75,29 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         private List<ApplicantRow> BuildRows(List<InternshipApplication> applications)
         {
-            // Speed: each applicant needs three reads (profile, extras, documents).
-            // Read them for every applicant at the same time before the loop.
-            var reads = new List<FirebaseRead>();
-            foreach (InternshipApplication application in applications)
+            // The queue uses the snapshots saved with each application. Fetch optional
+            // profile/document data only for the requested application, after company scoping.
+            string requested = Request.QueryString["candidate"];
+            var selected = applications.FirstOrDefault(a => a.Id == requested);
+            if (selected != null && ApplicationRepository.IsValidKey(selected.StudentId))
             {
-                if (!ApplicationRepository.IsValidKey(application.StudentId)) continue;
-                reads.Add(FirebaseRead.Node(Constants.Paths.Users + "/" + application.StudentId));
-                reads.Add(FirebaseRead.Node("studentProfileExtras/" + application.StudentId));
-                reads.Add(FirebaseRead.Node("studentCvPortfolios/" + application.StudentId));
+                FirebaseContext.Prefetch(
+                    FirebaseRead.Node(Constants.Paths.Users + "/" + selected.StudentId),
+                    FirebaseRead.Node("studentProfileExtras/" + selected.StudentId),
+                    FirebaseRead.Node("studentCvPortfolios/" + selected.StudentId));
             }
-            FirebaseContext.Prefetch(reads);
 
             var users = new UserRepository();
             var rows = new List<ApplicantRow>();
             foreach (InternshipApplication application in applications)
             {
+                var row = new ApplicantRow {
+                    Application = application, StudentName = application.StudentName,
+                    StudentMajor = application.StudentMajor
+                };
+                rows.Add(row);
+                if (application != selected) continue;
+                row.DetailsLoaded = true;
                 Student student = null;
                 try { student = users.GetStudent(application.StudentId); }
                 catch (FirebaseException) { /* use the copy saved on the application */ }
@@ -97,7 +105,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 var extras = StudentDocumentService.LoadExtras(application.StudentId);
                 var documents = StudentDocumentService.LoadDocuments(application.StudentId);
 
-                var row = new ApplicantRow { Application = application };
                 row.StudentName = student != null && !string.IsNullOrWhiteSpace(student.FullName)
                     ? student.FullName : application.StudentName;
                 row.StudentMajor = student != null && !string.IsNullOrWhiteSpace(student.Major)
@@ -122,7 +129,6 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     || StudentDocumentService.IsExternalLink(documents.CvUrl);
                 row.HasPortfolio = StudentDocumentService.IsExternalLink(documents.PortfolioUrl)
                     || StudentDocumentService.UploadedFilePath(application.StudentId, documents.PortfolioStorageName) != null;
-                rows.Add(row);
             }
             return rows;
         }

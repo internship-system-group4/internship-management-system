@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -159,4 +159,16 @@
   <data name="StudentProgress.UniversityID" xml:space="preserve"><value>University ID</value></data>
   <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>View Progress</value></data>
   <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>Write your observation or feedback here...</value></data>
+  <data name="StudentProgress.ReviewHours" xml:space="preserve"><value>Review training hours</value></data>
+  <data name="StudentProgress.ReviewHoursHint" xml:space="preserve"><value>Approve verified work hours or reject them with a reason. Reported hours do not count automatically.</value></data>
+  <data name="StudentProgress.HourUnit" xml:space="preserve"><value>hours</value></data>
+  <data name="StudentProgress.ReviewNote" xml:space="preserve"><value>Review note</value></data>
+  <data name="StudentProgress.ApproveHours" xml:space="preserve"><value>Approve</value></data>
+  <data name="StudentProgress.RejectHours" xml:space="preserve"><value>Reject</value></data>
+  <data name="StudentProgress.NoPendingHours" xml:space="preserve"><value>No hours are awaiting approval.</value></data>
+  <data name="StudentProgress.PendingApprovalHours" xml:space="preserve"><value>hours awaiting approval</value></data>
+  <data name="StudentProgress.RejectNeedsNote" xml:space="preserve"><value>Enter a rejection reason first (up to 500 characters).</value></data>
+  <data name="StudentProgress.HoursDecisionSaved" xml:space="preserve"><value>The hours decision was saved.</value></data>
+  <data name="StudentProgress.HoursDecisionFailed" xml:space="preserve"><value>The hours decision could not be saved. Please try again.</value></data>
+  <data name="FinalEvaluation.SaveFailedRetry" xml:space="preserve"><value>The evaluation could not be saved. Your input is retained; refresh the record before retrying.</value></data>
 </root>

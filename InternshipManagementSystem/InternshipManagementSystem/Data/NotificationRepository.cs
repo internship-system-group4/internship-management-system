@@ -22,6 +22,13 @@ namespace InternshipManagementSystem.Data
             return Constants.Paths.Notifications + "/" + userId;
         }
 
+        private static void RequireOwner(string userId)
+        {
+            var user = Security.SessionHelper.Current;
+            if (user == null || !user.IsActive || user.Id != userId || !ApplicationRepository.IsValidKey(userId))
+                throw new System.UnauthorizedAccessException("Notifications belong to the signed-in account.");
+        }
+
         /// <summary>Saves a new notification and returns its id.</summary>
         public string Add(Notification notification)
         {
@@ -55,11 +62,11 @@ namespace InternshipManagementSystem.Data
             foreach (KeyValuePair<Notification, string> pair in keys) pair.Key.Id = pair.Value;
         }
 
-        /// <summary>The newest notifications first.</summary>
+        /// <summary>The signed-in person's newest notifications first.</summary>
         public List<Notification> GetLatest(string userId, int count)
         {
+            RequireOwner(userId);
             List<Notification> list = new List<Notification>();
-            if (string.IsNullOrEmpty(userId)) return list;
 
             string json = FirebaseContext.GetLast(UserPath(userId), count);
             if (string.IsNullOrWhiteSpace(json) || json == "null") return list;
@@ -77,7 +84,8 @@ namespace InternshipManagementSystem.Data
 
         public Notification GetById(string userId, string id)
         {
-            if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(id)) return null;
+            RequireOwner(userId);
+            if (!ApplicationRepository.IsValidKey(id)) return null;
             Notification item = Json.Deserialize<Notification>(FirebaseContext.Get(UserPath(userId) + "/" + id));
             if (item != null) item.Id = id;
             return item;
@@ -85,7 +93,9 @@ namespace InternshipManagementSystem.Data
 
         public void MarkRead(string userId, string id)
         {
+            RequireOwner(userId);
             if (string.IsNullOrEmpty(userId) || string.IsNullOrEmpty(id)) return;
+            if (!ApplicationRepository.IsValidKey(id)) throw new System.InvalidOperationException("Choose a valid notification.");
             FirebaseContext.Patch(UserPath(userId) + "/" + id,
                 new Dictionary<string, object> { { "IsRead", true } });
         }
@@ -93,6 +103,7 @@ namespace InternshipManagementSystem.Data
         /// <summary>Marks every unread notification as read in one request.</summary>
         public void MarkAllRead(string userId)
         {
+            RequireOwner(userId);
             if (string.IsNullOrEmpty(userId)) return;
 
             Dictionary<string, object> changes = new Dictionary<string, object>();
@@ -129,12 +140,20 @@ namespace InternshipManagementSystem.Data
         {
             var user = Security.SessionHelper.Current;
             if (user == null || !user.IsActive) throw new System.UnauthorizedAccessException();
-            return GetLatest(user.Id, 100).Select(n => new UserNotification
+            RequireOwner(user.Id);
+            string json = FirebaseContext.GetLast(UserPath(user.Id), 100);
+            var records = string.IsNullOrWhiteSpace(json) ? null : Json.Deserialize<Dictionary<string, UserNotification>>(json);
+            if (records == null) return new List<UserNotification>();
+            return records.Where(pair => pair.Value != null).Select(pair =>
             {
-                Id = n.Id, RecipientId = user.Id, Title = n.Title, Message = n.Message, Detail = n.Message,
-                Link = n.Link, Page = (n.Link ?? "").TrimStart('~', '/'), Type = n.Type,
-                IsRead = n.IsRead, CreatedAt = n.CreatedAt
-            }).ToList();
+                var item = pair.Value;
+                item.Id = pair.Key; item.RecipientId = user.Id;
+                item.Message = item.Message ?? item.Detail;
+                item.Detail = item.Detail ?? item.Message;
+                item.Link = item.Link ?? "~/" + (item.Page ?? "").TrimStart('~', '/');
+                item.Page = item.Page ?? item.Link.TrimStart('~', '/');
+                return item;
+            }).OrderByDescending(item => item.CreatedAt).ToList();
         }
 
         /// <summary>Marks one of the signed-in person's notifications read, or all of them with "all".</summary>

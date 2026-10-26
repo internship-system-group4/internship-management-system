@@ -9,5 +9,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
 {
     public partial class PlacementDetails
     {
+        protected global::InternshipManagementSystem.Layout.FinalEvaluations ucFinal;
     }
 }

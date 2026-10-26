@@ -6,8 +6,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected global::System.Web.UI.WebControls.Label lblListMessage;
         protected global::System.Web.UI.WebControls.Repeater rptSupervisors;
         protected global::System.Web.UI.WebControls.Label lblNoSupervisors;
-        protected global::System.Web.UI.WebControls.Button btnConfirmDelete;
-        protected global::System.Web.UI.WebControls.HiddenField hfDeleteId;
+        protected global::System.Web.UI.WebControls.Button btnConfirmToggle;
+        protected global::System.Web.UI.WebControls.HiddenField hfToggleId;
         protected global::System.Web.UI.WebControls.Panel pnlCreateContent;
         protected global::System.Web.UI.WebControls.Label lblCreateMessage;
         protected global::System.Web.UI.WebControls.TextBox txtFullName;

@@ -197,4 +197,9 @@
   <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>لا تملك صلاحية الوصول إلى هذا الاجتماع.</value></data>
   <data name="Schedule.ZoomCreatedTheMeetingButIt" xml:space="preserve"><value>أنشأ Zoom الاجتماع، لكن تعذر حفظه هنا. تواصل مع المسؤول قبل المحاولة مجددًا لتجنب تكراره.</value></data>
   <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>رابط اجتماع Zoom</value></data>
+  <data name="MyMeetings.SearchPeople" xml:space="preserve"><value>ابحث عن الأشخاص</value></data>
+  <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>شخص متاح</value></data>
+  <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>ابحث عن الاجتماعات</value></data>
+  <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>لا توجد اجتماعات تطابق بحثك.</value></data>
+  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>لا يوجد أشخاص يطابقون البحث.</value></data>
 </root>

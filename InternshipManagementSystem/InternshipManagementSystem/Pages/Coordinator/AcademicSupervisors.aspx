@@ -1,7 +1,7 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Coordinator.master" AutoEventWireup="true" CodeBehind="AcademicSupervisors.aspx.cs" Inherits="InternshipManagementSystem.Pages.CoordinatorArea.AcademicSupervisors" Title="Academic Supervisors" %>
 <%@ Import Namespace="InternshipManagementSystem.Pages.CoordinatorArea" %>
 
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-theme-7") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page dir-page">
         <header class="dir-head">
@@ -40,7 +40,9 @@
                             <td><div class="dir-actions">
                                 <button type="button" class="dir-btn" data-dir-view="<%# Container.ItemIndex %>" aria-haspopup="dialog"><span data-ui-icon="eye" aria-hidden="true"></span> <%# L.T("Coordinator.AcademicSupervisors.ViewDetails") %><span class="visually-hidden">: <%#: ((SupervisorDirectoryRow)Container.DataItem).FullName %></span></button>
                                 <asp:LinkButton ID="btnEdit" runat="server" CssClass="dir-btn dir-btn-primary" CommandArgument='<%# ((SupervisorDirectoryRow)Container.DataItem).Id %>' OnClick="btnEdit_Click" CausesValidation="false"><span data-ui-icon="edit" aria-hidden="true"></span> <%# L.T("Coordinator.AcademicSupervisors.Manage") %></asp:LinkButton>
-                                <button type="button" class="dir-btn dir-btn-danger" data-delete-supervisor="<%# Container.ItemIndex %>" aria-haspopup="dialog"><span data-ui-icon="trash" aria-hidden="true"></span> <%# L.T("Coordinator.AcademicSupervisors.Delete") %><span class="visually-hidden">: <%#: ((SupervisorDirectoryRow)Container.DataItem).FullName %></span></button>
+                                <button type="button" class='<%# ((SupervisorDirectoryRow)Container.DataItem).IsActive ? "dir-btn dir-toggle is-on" : "dir-btn dir-toggle" %>' role="switch" aria-checked='<%# ((SupervisorDirectoryRow)Container.DataItem).IsActive ? "true" : "false" %>'
+                                    title='<%#: ((SupervisorDirectoryRow)Container.DataItem).IsActive ? L.T("Coordinator.Toggle.ClickToDeactivate") : L.T("Coordinator.Toggle.ClickToActivate") %>'
+                                    data-status-toggle="toggleSupervisorModal" data-id="<%#: ((SupervisorDirectoryRow)Container.DataItem).Id %>" data-name="<%#: ((SupervisorDirectoryRow)Container.DataItem).FullName %>" data-active='<%# ((SupervisorDirectoryRow)Container.DataItem).IsActive ? "true" : "false" %>'><span class="dir-switch" aria-hidden="true"></span><%#: ((SupervisorDirectoryRow)Container.DataItem).StatusText %><span class="visually-hidden">: <%#: ((SupervisorDirectoryRow)Container.DataItem).FullName %></span></button>
                             </div></td>
                         </tr>
                     </ItemTemplate></asp:Repeater></tbody>
@@ -77,51 +79,57 @@
                         </dl></section>
                     </div>
                 </div>
-                <div class="modal-footer"><button type="button" class="btn btn-brand" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Close") %></button></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Close") %></button>
+                    <a class="btn btn-brand" data-field-href="ProfileUrl" href="#"><span data-ui-icon="person" aria-hidden="true"></span> <%: L.T("Coordinator.ManageStudents.ViewProfile") %></a>
+                </div>
             </div></div>
         </div>
 
-        <%-- Delete confirmation. --%>
-        <div class="modal fade dir-modal" id="deleteSupervisorModal" tabindex="-1" aria-labelledby="deleteSupervisorTitle" aria-hidden="true">
+        <%-- Confirm before changing a supervisor's access (filled by Assets/js/coordinator-pages.js). --%>
+        <div class="modal fade dir-modal dir-confirm" id="toggleSupervisorModal" tabindex="-1" aria-labelledby="toggleSupervisorTitle" aria-hidden="true"
+             data-hidden-id="<%= hfToggleId.ClientID %>"
+             data-title-on="<%: L.T("Coordinator.Toggle.ActivateTitle") %>" data-title-off="<%: L.T("Coordinator.Toggle.DeactivateTitle") %>"
+             data-text-on="<%: L.T("Coordinator.Toggle.ActivateText") %>" data-text-off="<%: L.T("Coordinator.Toggle.DeactivateSupervisorText") %>"
+             data-btn-on="<%: L.T("Coordinator.Toggle.ActivateButton") %>" data-btn-off="<%: L.T("Coordinator.Toggle.DeactivateButton") %>">
             <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
-                <div class="modal-body text-center p-4">
-                    <div class="dir-delete-icon"><span data-ui-icon="trash" aria-hidden="true"></span></div>
-                    <h3 class="h5 fw-bold mb-2" id="deleteSupervisorTitle"><%: L.T("Coordinator.AcademicSupervisors.DeleteSupervisorQuestion") %></h3>
-                    <p class="fw-semibold mb-2" data-delete-name></p>
-                    <p class="text-muted small mb-0" data-delete-ok><%: L.T("Coordinator.AcademicSupervisors.DeleteExplanation") %></p>
-                    <p class="alert alert-warning small mb-0 mt-2 text-start" data-delete-blocked hidden><%: L.T("Coordinator.AcademicSupervisors.DeleteBlocked") %> <a href="<%= ResolveUrl("~/Pages/Coordinator/ConfiguredGroups.aspx") %>"><%: L.T("Coordinator.AcademicSupervisors.OpenGroups") %></a></p>
+                <div class="modal-body dir-confirm-body">
+                    <div class="dir-result-icon is-danger" data-confirm-icon><span data-ui-icon="people" aria-hidden="true"></span></div>
+                    <h3 id="toggleSupervisorTitle" data-confirm-title></h3>
+                    <p data-confirm-text></p>
                 </div>
-                <div class="modal-footer justify-content-center">
+                <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Cancel") %></button>
-                    <asp:Button ID="btnConfirmDelete" runat="server" CssClass="btn btn-danger" Text="<%$ Resources:Coordinator, AcademicSupervisors.DeletePermanently %>" OnClick="btnConfirmDelete_Click" CausesValidation="false" data-ui-action="delete" data-loading-label="Deleting…" data-ui-validation="none" />
+                    <asp:Button ID="btnConfirmToggle" runat="server" CssClass="btn btn-danger" Text="<%$ Resources:Coordinator, Companies.YesIMSure %>" OnClick="btnConfirmToggle_Click" CausesValidation="false" formnovalidate="formnovalidate" data-confirm-go="true" data-ui-action="update" data-ui-validation="none" />
                 </div>
             </div></div>
         </div>
-        <asp:HiddenField ID="hfDeleteId" runat="server" />
+        <asp:HiddenField ID="hfToggleId" runat="server" />
 
-        <div class="modal fade creation-modal" id="addAcademicSupervisorModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addAcademicSupervisorTitle" aria-hidden="true" data-open-on-load="<%= ShowCreationModal ? "true" : "false" %>">
+        <div class="modal fade creation-modal dir-modal" id="addAcademicSupervisorModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addAcademicSupervisorTitle" aria-hidden="true" data-open-on-load="<%= ShowCreationModal ? "true" : "false" %>">
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <asp:Panel ID="pnlCreateContent" runat="server" DefaultButton="btnCreate" CssClass="modal-content rounded-4 border-0 shadow-lg">
-                    <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
-                        <div><h5 id="addAcademicSupervisorTitle" class="fw-bold mb-1"><%: L.T("Coordinator.AcademicSupervisors.AddAcademicSupervisor") %></h5><p class="text-muted small mb-0"><%: L.T("Coordinator.AcademicSupervisors.CreateASupervisorAccountAndEnter") %></p></div>
+                <asp:Panel ID="pnlCreateContent" runat="server" DefaultButton="btnCreate" CssClass="modal-content">
+                    <div class="modal-header dir-modal-hero">
+                        <span class="dir-avatar dir-avatar-lg" aria-hidden="true"><span data-ui-icon="study"></span></span>
+                        <div class="dir-hero-text"><span class="dir-eyebrow"><%: L.T("Coordinator.AcademicSupervisors.CoordinatorAcademicSupervisors") %></span><h3 id="addAcademicSupervisorTitle" class="modal-title"><%: L.T("Coordinator.AcademicSupervisors.AddAcademicSupervisor") %></h3><p><%: L.T("Coordinator.AcademicSupervisors.CreateASupervisorAccountAndEnter") %></p></div>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Coordinator.AcademicSupervisors.Close") %>"></button>
                     </div>
-                    <div class="modal-body p-4">
+                    <div class="modal-body">
                         <asp:Label ID="lblCreateMessage" runat="server" Visible="false" EnableViewState="false" role="alert" />
                         <div class="row g-3">
-                            <div class="col-md-6"><label for="<%= txtFullName.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.FullName") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtFullName" runat="server" CssClass="form-control bg-light" MaxLength="120" /></div>
-                            <div class="col-md-6"><label for="<%= txtEmail.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.LoginEmail") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control bg-light" TextMode="Email" MaxLength="254" /></div>
-                            <div class="col-md-6"><label for="<%= txtPhone.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Phone") %> <span class="text-muted"><%: L.T("Coordinator.AcademicSupervisors.Optional") %></span></label><asp:TextBox ID="txtPhone" runat="server" CssClass="form-control bg-light" TextMode="Phone" MaxLength="40" /></div>
-                            <div class="col-md-6"><label for="<%= txtDepartment.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Department") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control bg-light" MaxLength="120" /></div>
-                            <div class="col-md-6"><label for="<%= txtAcademicRank.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.AcademicRank") %> <span class="text-muted"><%: L.T("Coordinator.AcademicSupervisors.Optional") %></span></label><asp:TextBox ID="txtAcademicRank" runat="server" CssClass="form-control bg-light" MaxLength="80" /></div>
-                            <div class="col-md-6"><label for="<%= txtPassword.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.TemporaryPassword") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtPassword" runat="server" CssClass="form-control bg-light" TextMode="Password" MaxLength="128" /></div>
-                            <div class="col-md-6"><label for="<%= txtConfirmPassword.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.ConfirmTemporaryPassword") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control bg-light" TextMode="Password" MaxLength="128" /></div>
+                            <div class="col-md-6"><label for="<%= txtFullName.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.FullName") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" MaxLength="120" /></div>
+                            <div class="col-md-6"><label for="<%= txtEmail.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.LoginEmail") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" TextMode="Email" MaxLength="254" /></div>
+                            <div class="col-md-6"><label for="<%= txtPhone.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Phone") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" TextMode="Phone" MaxLength="10" inputmode="numeric" pattern="[0-9]{10}" title="<%$ Resources:Coordinator, Phone.Hint %>" placeholder="07XXXXXXXX" aria-describedby="phoneHint" /><span id="phoneHint" class="dir-field-hint"><%: L.T("Coordinator.Phone.Hint") %></span></div>
+                            <div class="col-md-6"><label for="<%= txtDepartment.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Department") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtDepartment" runat="server" CssClass="form-control" MaxLength="120" /></div>
+                            <div class="col-md-6"><label for="<%= txtAcademicRank.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.AcademicRank") %> <span class="text-muted"><%: L.T("Coordinator.AcademicSupervisors.Optional") %></span></label><asp:TextBox ID="txtAcademicRank" runat="server" CssClass="form-control" MaxLength="80" /></div>
+                            <div class="col-md-6"><label for="<%= txtPassword.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.TemporaryPassword") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
+                            <div class="col-md-6"><label for="<%= txtConfirmPassword.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.ConfirmTemporaryPassword") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtConfirmPassword" runat="server" CssClass="form-control" TextMode="Password" MaxLength="128" /></div>
                         </div>
                         <p class="text-muted small mt-3 mb-0"><%: L.T("Coordinator.AcademicSupervisors.ShareTheLoginEmailAndTemporary") %></p>
                     </div>
-                    <div class="modal-footer bg-light px-4 border-top-0">
-                        <button type="button" class="btn btn-outline-secondary rounded-pill px-4" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Cancel") %></button>
-                        <asp:Button ID="btnCreate" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.CreateSupervisor %>" CssClass="btn btn-primary rounded-pill px-4" OnClick="btnCreate_Click" data-ui-action="create" data-loading-label="Creating…" />
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Cancel") %></button>
+                        <asp:Button ID="btnCreate" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.CreateSupervisor %>" CssClass="btn btn-brand" OnClick="btnCreate_Click" data-ui-action="create" data-loading-label="Creating…" />
                     </div>
                 </asp:Panel>
             </div>
@@ -140,11 +148,11 @@
                     <h4 class="dir-form-title"><span data-ui-icon="edit" aria-hidden="true"></span><%: L.T("Coordinator.AcademicSupervisors.SupervisorInformation") %></h4>
                     <div class="row g-3">
                         <div class="col-md-6"><label for="<%= txtEditFullName.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.FullName") %></label><asp:TextBox ID="txtEditFullName" runat="server" CssClass="form-control" MaxLength="120" /></div>
-                        <div class="col-md-6"><label for="<%= txtEditPhone.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Phone") %> <span class="text-muted"><%: L.T("Coordinator.AcademicSupervisors.Optional") %></span></label><asp:TextBox ID="txtEditPhone" runat="server" CssClass="form-control" TextMode="Phone" MaxLength="40" /></div>
+                        <div class="col-md-6"><label for="<%= txtEditPhone.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Phone") %> <span class="text-danger">*</span></label><asp:TextBox ID="txtEditPhone" runat="server" CssClass="form-control" TextMode="Phone" MaxLength="10" inputmode="numeric" pattern="[0-9]{10}" title="<%$ Resources:Coordinator, Phone.Hint %>" placeholder="07XXXXXXXX" aria-describedby="editPhoneHint" /><span id="editPhoneHint" class="dir-field-hint"><%: L.T("Coordinator.Phone.Hint") %></span></div>
                         <div class="col-md-6"><label for="<%= txtEditDepartment.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.Department") %></label><asp:TextBox ID="txtEditDepartment" runat="server" CssClass="form-control" MaxLength="120" /></div>
                         <div class="col-md-6"><label for="<%= txtEditAcademicRank.ClientID %>" class="form-label"><%: L.T("Coordinator.AcademicSupervisors.AcademicRank") %> <span class="text-muted"><%: L.T("Coordinator.AcademicSupervisors.Optional") %></span></label><asp:TextBox ID="txtEditAcademicRank" runat="server" CssClass="form-control" MaxLength="80" /></div>
                     </div>
-                    <div class="dir-access"><div><h4><%: L.T("Coordinator.AcademicSupervisors.AccountAccess") %></h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click" data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none" /></div>
+                    <div class="dir-access"><div><h4><%: L.T("Coordinator.AcademicSupervisors.AccountAccess") %></h4><p><asp:Label ID="lblAccessDescription" runat="server" /></p></div><asp:Button ID="btnToggleAccess" runat="server" CausesValidation="false" OnClick="btnToggleAccess_Click" formnovalidate="formnovalidate" data-ui-action="update" data-loading-label="Updating…" data-ui-validation="none" /></div>
                 </div>
                 <div class="modal-footer"><button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Coordinator.AcademicSupervisors.Close") %></button><asp:Button ID="btnSaveDetails" runat="server" Text="<%$ Resources:Coordinator, AcademicSupervisors.SaveChanges %>" CssClass="btn btn-brand" OnClick="btnSaveDetails_Click" data-ui-action="save" data-loading-label="Saving…" /></div>
             </div></div>
@@ -159,25 +167,6 @@
             var modal = document.getElementById('pnlDetails');
             if (modal && window.bootstrap) new bootstrap.Modal(modal).show();
 
-            // Delete: fill the confirmation with the chosen supervisor. Anyone
-            // who still has groups or students must be reassigned first.
-            var rows = [];
-            try { rows = JSON.parse(document.querySelector('[data-dir-data]').textContent || '[]'); } catch (e) { }
-            var dialog = document.getElementById('deleteSupervisorModal');
-            var hidden = document.getElementById('<%= hfDeleteId.ClientID %>');
-            var confirmButton = document.getElementById('<%= btnConfirmDelete.ClientID %>');
-            document.addEventListener('click', function (event) {
-                var button = event.target.closest('[data-delete-supervisor]');
-                if (!button || !dialog) return;
-                var row = rows[Number(button.dataset.deleteSupervisor)];
-                if (!row) return;
-                hidden.value = row.Id;
-                dialog.querySelector('[data-delete-name]').textContent = row.FullName;
-                dialog.querySelector('[data-delete-ok]').hidden = !row.CanDelete;
-                dialog.querySelector('[data-delete-blocked]').hidden = row.CanDelete;
-                confirmButton.disabled = !row.CanDelete;
-                bootstrap.Modal.getOrCreateInstance(dialog).show();
-            });
         });
     </script>
 </asp:Content>

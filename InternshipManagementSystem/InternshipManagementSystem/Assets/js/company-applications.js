@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     'use strict';
     var root = document.querySelector('.company-applications');
     if (!root) return;
@@ -25,6 +25,26 @@
             opportunity: card.querySelector('.review-applied-for strong').textContent,
             text: normalize(card.querySelector('.review-applicant').textContent) };
     });
+    var paneAvatar = pane.querySelector('.review-pane-avatar');
+    var paneStatus = pane.querySelector('.review-pane-status');
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function initials(name) {
+        var words = (name || '').trim().split(/\s+/).filter(Boolean);
+        if (!words.length) return '?';
+        var first = Array.from(words[0])[0], last = words.length > 1 ? Array.from(words[words.length - 1])[0] : '';
+        return (first + last).toLocaleUpperCase();
+    }
+    // Turn "C#, SQL, Git" into separate chips so skills are easy to scan.
+    function skillChips(scope) {
+        scope.querySelectorAll('.candidate-skill-list').forEach(function (list) {
+            if (list.dataset.chips) return;
+            list.dataset.chips = '1';
+            var parts = list.textContent.split(/[,،;\n•]+/).map(function (part) { return part.trim(); }).filter(Boolean);
+            if (parts.length < 1 || list.textContent.trim() === '—') return;
+            list.textContent = '';
+            parts.forEach(function (part) { var chip = document.createElement('span'); chip.className = 'candidate-chip'; chip.textContent = part; list.appendChild(chip); });
+        });
+    }
     function mayLeave() { return !active || !active.reason || !active.reason.value.trim() || window.confirm(root.dataset.draftWarning); }
     function sizeDesk() {
         var top = Math.max(16, workspace.getBoundingClientRect().top);
@@ -68,6 +88,129 @@
         active = null; selection.value = ''; pane.hidden = true; actions.hidden = true;
         placeholder.hidden = records.length === 0; releaseDialog();
     }
+    function wirePreview(record) {
+        var previewButton = record.details.querySelector('.review-preview-toggle');
+        if (previewButton) {
+            previewButton.hidden = false;
+            previewButton.addEventListener('click', function () {
+                var preview = record.details.querySelector('.review-cv-preview'), frame = preview.querySelector('iframe');
+                preview.hidden = !preview.hidden;
+                previewButton.setAttribute('aria-expanded', preview.hidden ? 'false' : 'true');
+                previewButton.textContent = preview.hidden ? previewButton.dataset.showLabel : previewButton.dataset.hideLabel;
+                if (!preview.hidden && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
+            });
+        }
+    }
+    function loadDetails(record) {
+        var panel = record.details.querySelector('.candidate-panel');
+        if (!panel || panel.dataset.detailsLoaded === 'true' || record.loading) return;
+        var link = panel.querySelector('[data-load-candidate]');
+        var status = panel.querySelector('[data-details-status]');
+        if (!link) return;
+        record.loading = true; panel.setAttribute('aria-busy', 'true');
+        status.textContent = root.dataset.detailsLoading;
+        // Same authenticated page and company-scoped repository; only the selected
+        // candidate panel is imported. Decision controls and form state stay in place.
+        var controller = new AbortController();
+        var timeout = window.setTimeout(function () { controller.abort(); }, 15000);
+        fetch(link.href, { credentials: 'same-origin', cache: 'no-store', signal: controller.signal })
+            .then(function (response) { if (!response.ok || response.redirected) throw new Error('Details unavailable'); return response.text(); })
+            .then(function (html) {
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                var source = doc.getElementById(record.details.id);
+                var loaded = source && source.querySelector('.candidate-panel[data-details-loaded="true"]');
+                if (!loaded) throw new Error('Details unavailable');
+                panel.replaceChildren.apply(panel, Array.from(loaded.childNodes).map(function (node) { return document.importNode(node, true); }));
+                panel.dataset.detailsLoaded = 'true'; wirePreview(record); skillChips(panel);
+                if (window.UimsUI && window.UimsUI.refresh) window.UimsUI.refresh();
+            })
+            .catch(function () { status.textContent = root.dataset.detailsError; })
+            .finally(function () { window.clearTimeout(timeout); record.loading = false; panel.removeAttribute('aria-busy'); });
+    }
+    // ---- decision confirm pop-up (accept / reject) ----------------------------
+    // The first click on Accept or Confirm rejection opens the pop-up instead of
+    // posting back. "Confirm" clicks the real server button again.
+    var dialog = root.querySelector('[data-ar-confirm]');
+    var dialogButton = null, dialogOverflow = '';
+    if (dialog) document.body.appendChild(dialog);
+    function format(template, record) { return template.replace('{0}', record.name.trim()).replace('{1}', record.opportunity.trim()); }
+    function openConfirm(button, kind, record) {
+        var data = dialog.dataset;
+        dialogButton = button;
+        dialog.setAttribute('data-kind', kind);
+        dialog.querySelectorAll('[data-ar-icon]').forEach(function (icon) { icon.style.display = icon.getAttribute('data-ar-icon') === kind ? '' : 'none'; });
+        var accept = kind === 'accept';
+        dialog.querySelector('[data-ar-title]').textContent = accept ? data.acceptTitle : data.rejectTitle;
+        dialog.querySelector('[data-ar-text]').textContent = format(accept ? data.acceptText : data.rejectText, record);
+        dialog.querySelector('[data-ar-avatar]').textContent = initials(record.name);
+        dialog.querySelector('[data-ar-name]').textContent = record.name.trim();
+        dialog.querySelector('[data-ar-opportunity]').textContent = record.opportunity.trim();
+        var points = dialog.querySelector('[data-ar-points]');
+        points.textContent = '';
+        (accept ? [data.acceptPoint1, data.acceptPoint2] : [data.rejectPoint1, data.rejectPoint2]).forEach(function (line) {
+            var item = document.createElement('li'); item.textContent = line; points.appendChild(item);
+        });
+        var note = dialog.querySelector('[data-ar-note]');
+        var typed = !accept && record.reason ? record.reason.value.trim() : '';
+        note.hidden = !typed;
+        dialog.querySelector('[data-ar-note-text]').textContent = typed;
+        dialog.querySelector('[data-ar-go]').textContent = accept ? data.acceptGo : data.rejectGo;
+        dialogOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        dialog.inert = false;
+        dialog.classList.remove('is-leaving');
+        dialog.hidden = false;
+        document.addEventListener('keydown', onDialogKey, true);
+        window.setTimeout(function () { dialog.querySelector('[data-ar-cancel]').focus({ preventScroll: true }); }, reduced ? 0 : 60);
+    }
+    function closeConfirm(confirmed) {
+        var button = dialogButton;
+        dialogButton = null;
+        document.removeEventListener('keydown', onDialogKey, true);
+        dialog.classList.add('is-leaving');
+        window.setTimeout(function () {
+            dialog.hidden = true;
+            dialog.classList.remove('is-leaving');
+            document.body.style.overflow = dialogOverflow;
+            if (!button) return;
+            if (confirmed) { button.dataset.confirmed = '1'; button.click(); }
+            else button.focus({ preventScroll: true });
+        }, reduced ? 0 : 200);
+    }
+    function onDialogKey(event) {
+        if (event.key === 'Escape') { event.preventDefault(); event.stopPropagation(); closeConfirm(false); return; }
+        if (event.key !== 'Tab') return;
+        var first = dialog.querySelector('[data-ar-cancel]'), last = dialog.querySelector('[data-ar-go]');
+        if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+        else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+        else if (!dialog.contains(document.activeElement)) { event.preventDefault(); first.focus(); }
+    }
+    if (dialog) {
+        dialog.querySelector('[data-ar-go]').addEventListener('click', function () { closeConfirm(true); });
+        dialog.querySelector('[data-ar-cancel]').addEventListener('click', function () { closeConfirm(false); });
+        dialog.addEventListener('click', function (event) { if (event.target === dialog) closeConfirm(false); });
+    }
+    function wireConfirm(record) {
+        if (!dialog || !record.decision) return;
+        [[record.decision.querySelector('.review-accept-button'), 'accept'],
+         [record.reject && record.reject.querySelector('.review-reject-button'), 'reject']].forEach(function (pair) {
+            var button = pair[0], kind = pair[1];
+            if (!button) return;
+            button.addEventListener('click', function (event) {
+                if (button.dataset.confirmed === '1') { delete button.dataset.confirmed; return; }
+                event.preventDefault(); event.stopImmediatePropagation();
+                if (kind === 'reject' && !record.reason.value.trim()) {
+                    // A reason is required: point at the empty box instead of opening the pop-up.
+                    record.reason.setAttribute('aria-invalid', 'true');
+                    record.reason.classList.remove('is-shaking'); void record.reason.offsetWidth; record.reason.classList.add('is-shaking');
+                    record.reason.focus();
+                    return;
+                }
+                openConfirm(button, kind, record);
+            }, true);
+        });
+        if (record.reason) record.reason.addEventListener('input', function () { record.reason.removeAttribute('aria-invalid'); });
+    }
     function select(record, focus) {
         if (!record || record.card.hidden) return false;
         if (active !== record) {
@@ -78,9 +221,15 @@
             if (active.decision) active.decision.hidden = false;
             selection.value = active.id; title.textContent = active.name; title.title = active.name;
             pane.querySelector('.review-pane-opportunity').textContent = active.opportunity;
+            paneAvatar.textContent = initials(active.name);
+            var badge = active.card.querySelector('.application-status');
+            paneStatus.className = 'review-pane-status ' + (badge ? badge.className : '');
+            paneStatus.textContent = badge ? badge.textContent : '';
+            pane.classList.remove('is-entering'); void pane.offsetWidth; pane.classList.add('is-entering');
             pane.hidden = false; placeholder.hidden = true; actions.hidden = !active.decision;
             content.scrollTop = 0;
         }
+        loadDetails(record);
         sizeDesk(); updateNavigation(); syncDialog();
         if (focus && !mobile.matches) active.card.scrollIntoView({ block: 'nearest', inline: 'nearest' });
         if (focus) title.focus({ preventScroll: true });
@@ -96,17 +245,17 @@
         if (record.decision) { actions.appendChild(record.decision); record.decision.hidden = true; }
         record.button.hidden = false;
         record.button.addEventListener('click', function () { select(record, true); });
-        var previewButton = record.details.querySelector('.review-preview-toggle');
-        if (previewButton) {
-            previewButton.hidden = false;
-            previewButton.addEventListener('click', function () {
-                var preview = record.details.querySelector('.review-cv-preview'), frame = preview.querySelector('iframe');
-                preview.hidden = !preview.hidden;
-                previewButton.setAttribute('aria-expanded', preview.hidden ? 'false' : 'true');
-                previewButton.textContent = preview.hidden ? previewButton.dataset.showLabel : previewButton.dataset.hideLabel;
-                if (!preview.hidden && !frame.hasAttribute('src')) frame.src = frame.dataset.src;
-            });
-        }
+        // The whole card opens the application, not only the small button.
+        record.card.addEventListener('click', function (event) {
+            if (event.target.closest('a,button,input,textarea,select,label')) return;
+            select(record, true);
+        });
+        var avatar = record.card.querySelector('.review-avatar');
+        if (avatar) avatar.textContent = initials(record.name);
+        wirePreview(record); skillChips(record.details);
+        wireConfirm(record);
+        var loadLink = record.details.querySelector('[data-load-candidate]');
+        if (loadLink) loadLink.addEventListener('click', function (event) { event.preventDefault(); loadDetails(record); });
         if (record.reason) record.reason.maxLength = 2000;
         if (record.decision) {
             var toggle = record.decision.querySelector('.review-reject-toggle');
@@ -178,4 +327,5 @@
     if (!initial && !mobile.matches) initial = visible[0];
     if (initial) select(initial, false);
     if (invalid) { invalid.decision.querySelector('.review-reject-toggle').click(); }
+    window.requestAnimationFrame(function () { root.classList.add('is-ready'); });
 }());

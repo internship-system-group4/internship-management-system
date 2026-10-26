@@ -1,127 +1,23 @@
-﻿<%@ Page Title="My Account" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Account" %>
-
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style>
-        .cover-photo { background: linear-gradient(135deg, var(--th-bg-1e5a8c,#1e5a8c), var(--th-bg-0a3457,#0a3457)); height: 130px; border-start-start-radius: var(--radius); border-start-end-radius: var(--radius); }
-        
-        /* Profile Avatar with Edit Badge */
-        .profile-avatar-wrapper { position: relative; width: 100px; height: 100px; margin-top: -50px; margin-inline-start: 2rem; margin-bottom: 1rem; }
-        .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background-color: var(--th-bg-e8f0f7,#e8f0f7); color: var(--brand-text,var(--brand-dark)); display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 700; border: 4px solid var(--surface); box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .edit-badge { position: absolute; bottom: 0; inset-inline-end: 0; background-color: var(--brand); color: #fff; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; border: 2px solid var(--th-line-ffffff,#fff); cursor: pointer; font-size: 0.9rem; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
-        .edit-badge:hover { background-color: var(--brand-dark); }
-        
-        .section-icon { width: 36px; height: 36px; background-color: var(--th-bg-f1f5f9,#f1f5f9); color: var(--brand-text,var(--brand-dark)); border-radius: 8px; display: inline-flex; align-items: center; justify-content: center; margin-inline-end: 1rem; font-size: 1.2rem; }
-    </style>
-</asp:Content>
-
+﻿<%@ Page CodePage="65001" Title="My Account" Language="C#" MasterPageFile="~/Layout/Academic.master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="InternshipManagementSystem.Pages.Academic.Account" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server"></asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+<div class="su-account">
+<header class="su-account-heading"><div><h1><%: L.T("Shared.SupervisorAccount.Title") %></h1><p><%: L.T("Shared.SupervisorAccount.Intro") %></p></div></header>
+<asp:Panel ID="pnlMessage" runat="server" Visible="false" CssClass="alert mb-4"><asp:Literal ID="litMessage" runat="server" Mode="Encode" /></asp:Panel>
+<div class="su-account-layout"><aside class="su-account-summary" aria-labelledby="accountName"><div class="su-account-avatar-wrap"><div class="su-account-avatar"><asp:Literal ID="litAvatarInitials" runat="server" Mode="Encode">AS</asp:Literal></div><button type="button" data-bs-toggle="modal" data-bs-target="#editProfileModal" class="su-account-photo-action" title="<%: L.T("Academic.Account.ChangeProfilePhoto") %>" aria-label="<%: L.T("Academic.Account.ChangeProfilePhoto") %>"><span data-ui-icon="camera" aria-hidden="true"></span></button></div><div class="su-account-identity"><h2 id="accountName"><asp:Literal ID="litProfileName" runat="server" Mode="Encode" /></h2><span class="badge bg-info"><%: L.T("Shared.Role.AcademicSupervisor") %></span><p><asp:Literal ID="litProfileDept" runat="server" Mode="Encode" /></p></div><div class="su-account-actions"><button type="button" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#editProfileModal"><span data-ui-icon="edit" aria-hidden="true"></span><%: L.T("Shared.SupervisorAccount.EditProfile") %></button><button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#passwordModal"><%: L.T("Academic.Account.ChangePassword") %></button></div></aside><div class="su-account-main"><section class="su-account-section" aria-labelledby="accountContactTitle"><header class="su-account-section-heading"><span data-ui-icon="person" aria-hidden="true"></span><div><h2 id="accountContactTitle"><%: L.T("Shared.SupervisorAccount.PersonalTitle") %></h2><p><%: L.T("Shared.SupervisorAccount.PersonalHelp") %></p></div></header><dl class="su-account-facts"><div class="su-account-fact"><dt><label for="<%= txtEmail.ClientID %>"><%: L.T("Academic.Account.AccountEmail") %> <span class="su-account-readonly-note"><%: L.T("Shared.SupervisorAccount.ReadOnly") %></span></label></dt><dd class="su-account-value"><span data-ui-icon="mail" aria-hidden="true"></span><asp:TextBox ID="txtEmail" runat="server" CssClass="d-none" Enabled="false" /><bdi class="su-account-plain"><%: string.IsNullOrWhiteSpace(txtEmail.Text) ? L.T("Shared.SupervisorAccount.NotProvided") : txtEmail.Text %></bdi></dd></div><div class="su-account-fact"><dt><%: L.T("Academic.Account.PhoneNumber") %></dt><dd><span data-ui-icon="phone" aria-hidden="true"></span><bdi><%: string.IsNullOrWhiteSpace(CurrentSupervisor.PhoneNumber) ? L.T("Shared.SupervisorAccount.NotProvided") : CurrentSupervisor.PhoneNumber %></bdi></dd></div><div class="su-account-fact"><dt><%: L.T("Academic.Account.Age") %></dt><dd><span data-ui-icon="person" aria-hidden="true"></span><%: CurrentSupervisor.Age > 0 ? CurrentSupervisor.Age.ToString() : L.T("Shared.SupervisorAccount.NotProvided") %></dd></div></dl></section>
+<section class="su-account-section" aria-labelledby="accountOrganizationTitle"><header class="su-account-section-heading"><span data-ui-icon="building" aria-hidden="true"></span><div><h2 id="accountOrganizationTitle"><%: L.T("Shared.SupervisorAccount.OrganizationTitle") %></h2><p><%: L.T("Shared.SupervisorAccount.OrganizationHelp") %></p></div></header><dl class="su-account-facts"><div class="su-account-fact"><dt><label for="<%= txtUniversity.ClientID %>"><%: L.T("Academic.Account.University") %> <span class="su-account-readonly-note"><%: L.T("Shared.SupervisorAccount.ReadOnly") %></span></label></dt><dd class="su-account-value"><span data-ui-icon="building" aria-hidden="true"></span><asp:TextBox ID="txtUniversity" runat="server" CssClass="d-none" Enabled="false" /><bdi class="su-account-plain"><%: string.IsNullOrWhiteSpace(txtUniversity.Text) ? L.T("Shared.SupervisorAccount.NotProvided") : txtUniversity.Text %></bdi></dd></div><div class="su-account-fact"><dt><label for="<%= txtSupervisorId.ClientID %>"><%: L.T("Academic.Account.SupervisorID") %></label></dt><dd class="su-account-value"><asp:TextBox ID="txtSupervisorId" runat="server" CssClass="d-none" Enabled="false" placeholder="<%$ Resources:Shared, SupervisorAccount.NotProvided %>" /><bdi class="su-account-plain"><%: string.IsNullOrWhiteSpace(txtSupervisorId.Text) ? L.T("Shared.SupervisorAccount.NotProvided") : txtSupervisorId.Text %></bdi></dd></div><div class="su-account-fact"><dt><label for="<%= txtCollege.ClientID %>"><%: L.T("Academic.Account.College") %></label></dt><dd class="su-account-value"><asp:TextBox ID="txtCollege" runat="server" CssClass="d-none" Enabled="false" placeholder="<%$ Resources:Shared, SupervisorAccount.NotProvided %>" /><bdi class="su-account-plain"><%: string.IsNullOrWhiteSpace(txtCollege.Text) ? L.T("Shared.SupervisorAccount.NotProvided") : txtCollege.Text %></bdi></dd></div><div class="su-account-fact"><dt><label for="<%= txtMajor.ClientID %>"><%: L.T("Academic.Account.Major") %></label></dt><dd class="su-account-value"><asp:TextBox ID="txtMajor" runat="server" CssClass="d-none" Enabled="false" placeholder="<%$ Resources:Shared, SupervisorAccount.NotProvided %>" /><bdi class="su-account-plain"><%: string.IsNullOrWhiteSpace(txtMajor.Text) ? L.T("Shared.SupervisorAccount.NotProvided") : txtMajor.Text %></bdi></dd></div><div class="su-account-fact"><dt><label for="<%= txtEnrollmentYear.ClientID %>"><%: L.T("Academic.Account.EnrollmentYear") %></label></dt><dd class="su-account-value"><asp:TextBox ID="txtEnrollmentYear" runat="server" CssClass="d-none" Enabled="false" placeholder="<%$ Resources:Shared, SupervisorAccount.NotProvided %>" /><bdi class="su-account-plain"><%: string.IsNullOrWhiteSpace(txtEnrollmentYear.Text) ? L.T("Shared.SupervisorAccount.NotProvided") : txtEnrollmentYear.Text %></bdi></dd></div></dl></section></div></div>
 
-    <asp:Panel ID="pnlMessage" runat="server" Visible="false" CssClass="alert mb-4">
-        <asp:Literal ID="litMessage" runat="server"></asp:Literal>
-    </asp:Panel>
-
-    <!-- Top Profile Banner (Clean Professional Layout) -->
-    <div class="uims-card p-0 mb-4" style="border: 1px solid var(--line); overflow: hidden;">
-        <div class="cover-photo"></div>
-        
-        <!-- Avatar overlapping cover nicely -->
-        <div class="profile-avatar-wrapper">
-            <div class="profile-avatar">
-                <asp:Literal ID="litAvatarInitials" runat="server">Dr</asp:Literal>
-            </div>
-            <!-- Clickable Pencil Icon -->
-            <label for="<%= fuProfileImage.ClientID %>" class="edit-badge" title="<%: L.T("Academic.Account.ChangeProfilePhoto") %>">
-                ✎
-            </label>
-            <!-- Hidden file upload triggered by pencil -->
-            <asp:FileUpload ID="fuProfileImage" runat="server" style="display:none;" accept="image/jpeg,image/png" />
-        </div>
-
-        <!-- Supervisor Info placed cleanly BELOW the cover -->
-        <div class="px-4 pb-4">
-            <h2 class="mb-1" style="color: var(--brand-text,var(--brand-dark)); font-weight: 700; font-size: 1.4rem;">
-                <%: L.T("Academic.Account.Dr") %> <asp:Literal ID="litProfileName" runat="server"></asp:Literal>
-            </h2>
-            <div class="text-muted" style="font-size: 0.9rem;">
-                <asp:Literal ID="litProfileDept" runat="server" Text="<%$ Resources:Academic, Account.AcademicSupervisorPlaceholder %>" /> <%: L.T("Academic.Account.GermanJordanianUniversity") %>
-            </div>
-            <!-- Hidden upload button for backend handling if needed -->
-            <asp:Button ID="btnUploadPhoto" runat="server" Text="<%$ Resources:Academic, Account.Upload %>" CssClass="d-none" CausesValidation="false" formnovalidate="true" data-ui-action="upload" data-loading-label="<%$ Resources:Shared, I18n.Uploading %>" data-ui-validation="none" />
-        </div>
-    </div>
-
-    <!-- Section 1: Personal Information -->
-    <div class="uims-card mb-4">
-        <div class="d-flex align-items-center justify-content-between mb-4 pb-3" style="border-bottom: 1px solid var(--line);">
-            <div class="d-flex align-items-center">
-                <div class="section-icon">☺</div>
-                <div>
-                    <h3 class="mb-1" style="color: var(--brand-text,var(--brand-dark)); font-weight: 700; font-size: 1.1rem;"><%: L.T("Academic.Account.PersonalInformation") %></h3>
-                    <div class="text-muted" style="font-size: 0.85rem;"><%: L.T("Academic.Account.UpdateYourPersonalAndContactInformation") %></div>
-                </div>
-            </div>
-            <button type="button" class="btn btn-outline-secondary btn-sm" data-bs-toggle="modal" data-bs-target="#passwordModal" style="font-weight: 600;">
-                <%: L.T("Academic.Account.ChangePassword") %>
-            </button>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.FullName") %></label>
-                <asp:TextBox ID="txtFullName" runat="server" CssClass="form-control" style="background-color: var(--th-bg-f8fafc,#f8fafc);" Enabled="false"></asp:TextBox>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.AccountEmail") %></label>
-                <asp:TextBox ID="txtEmail" runat="server" CssClass="form-control" style="background-color: var(--th-bg-f8fafc,#f8fafc);" Enabled="false"></asp:TextBox>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.Age") %></label>
-                <asp:TextBox ID="txtAge" runat="server" CssClass="form-control" type="number"></asp:TextBox>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.PhoneNumber") %></label>
-                <asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" placeholder="<%$ Resources:Academic, Account.9627XXXXXXXX %>"></asp:TextBox>
-            </div>
-        </div>
-    </div>
-
-    <!-- Section 2: Academic Information (READ-ONLY) -->
-    <div class="uims-card mb-4">
-        <div class="d-flex align-items-center mb-4 pb-3" style="border-bottom: 1px solid var(--line);">
-            <div class="section-icon">🎓</div>
-            <div>
-                <h3 class="mb-1" style="color: var(--brand-text,var(--brand-dark)); font-weight: 700; font-size: 1.1rem;"><%: L.T("Academic.Account.AcademicInformation") %></h3>
-                <div class="text-muted" style="font-size: 0.85rem;"><%: L.T("Academic.Account.YourOfficialUniversityDetailsManagedBy") %></div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.SupervisorID") %></label>
-                <asp:TextBox ID="txtSupervisorId" runat="server" CssClass="form-control bg-light" Enabled="false"></asp:TextBox>
-            </div>
-            <div class="col-md-6 mb-4">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.University") %></label>
-                <asp:TextBox ID="txtUniversity" runat="server" CssClass="form-control bg-light" Enabled="false"></asp:TextBox>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.College") %></label>
-                <asp:TextBox ID="txtCollege" runat="server" CssClass="form-control bg-light" Enabled="false"></asp:TextBox>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.Major") %></label>
-                <asp:TextBox ID="txtMajor" runat="server" CssClass="form-control bg-light" Enabled="false"></asp:TextBox>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label" style="font-weight: 700; font-size: 0.9rem;"><%: L.T("Academic.Account.EnrollmentYear") %></label>
-                <asp:TextBox ID="txtEnrollmentYear" runat="server" CssClass="form-control bg-light" Enabled="false"></asp:TextBox>
-            </div>
-        </div>
-    </div>
-
-    <div class="text-end mb-4">
-        <asp:Button ID="btnSaveChanges" runat="server" Text="<%$ Resources:Academic, Account.SaveChanges %>" CssClass="btn btn-brand" style="padding: 0.5rem 1.5rem; font-weight: 600;" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true" data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>" data-ui-validation="none" />
-    </div>
-
+</div>
+<div class="modal fade su-account-modal" id="editProfileModal" tabindex="-1" aria-labelledby="accountEditTitle" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+ <div class="modal-header"><h2 class="modal-title" id="accountEditTitle"><%: L.T("Shared.SupervisorAccount.EditProfile") %></h2><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Academic.Account.Close") %>"></button></div>
+ <div class="modal-body">
+ <div class="mb-3"><label for="<%= fuProfileImage.ClientID %>"><%: L.T("Academic.Account.ChangeProfilePhoto") %></label><asp:FileUpload ID="fuProfileImage" runat="server" accept="image/jpeg,image/png" CssClass="su-account-file" aria-describedby="accountUploadHint" /><p class="form-text" id="accountUploadHint"><%: L.T("Shared.SupervisorAccount.PhotoUploadHint") %></p><asp:Button ID="btnUploadPhoto" runat="server" Text="<%$ Resources:Academic, Account.Upload %>" CssClass="d-none" CausesValidation="false" formnovalidate="true" data-ui-action="upload" data-loading-label="<%$ Resources:Shared, I18n.Uploading %>" data-ui-validation="none" /></div>
+ <div class="mb-3"><asp:Label runat="server" AssociatedControlID="txtFullName" Text="<%$ Resources:Academic, Account.FullName %>" /><asp:TextBox ID="txtFullName" runat="server" Enabled="false" CssClass="form-control" /><p class="form-text"><%: L.T("Academic.Account.YourOfficialUniversityDetailsManagedBy") %></p></div>
+ <div class="mb-3"><asp:Label runat="server" AssociatedControlID="txtPhone" Text="<%$ Resources:Academic, Account.PhoneNumber %>" /><asp:TextBox ID="txtPhone" runat="server" CssClass="form-control" TextMode="Phone" autocomplete="tel" placeholder="<%$ Resources:Academic, Account.9627XXXXXXXX %>" /></div>
+ <div class="mb-3"><asp:Label runat="server" AssociatedControlID="txtAge" Text="<%$ Resources:Academic, Account.Age %>" /><asp:TextBox ID="txtAge" runat="server" CssClass="form-control" TextMode="Number" /></div>
+ </div>
+ <div class="modal-footer"><button type="button" class="btn btn-light" data-bs-dismiss="modal"><%: L.T("Academic.Account.Cancel") %></button><asp:Button ID="btnSaveChanges" runat="server" Text="<%$ Resources:Academic, Account.SaveChanges %>" CssClass="btn btn-brand" OnClick="btnSaveChanges_Click" CausesValidation="false" formnovalidate="true" data-ui-action="save" data-loading-label="<%$ Resources:Shared, I18n.Saving %>" data-ui-validation="none" /></div>
+</div></div></div>
     <!-- Change Password Modal -->
     <div class="modal fade" id="passwordModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -147,5 +43,6 @@
             </div>
         </div>
     </div>
+
 
 </asp:Content>

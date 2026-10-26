@@ -36,7 +36,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (CurrentSupervisor == null ||
                 string.IsNullOrWhiteSpace(CurrentSupervisor.CompanyId))
             {
-                ShowError(L.T("Company.ManageOpportunities.YourAccountIsNotLinkedTo"));
+                ShowError(
+                    L.T("Company.ManageOpportunities.YourAccountIsNotLinkedTo"));
                 return;
             }
 
@@ -108,7 +109,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (!ValidId(id))
             {
-                ShowError(L.T("Company.ManageOpportunities.InvalidOpportunityID"));
+                ShowError(
+                    L.T("Company.ManageOpportunities.InvalidOpportunityID"));
                 return null;
             }
 
@@ -121,7 +123,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (string.IsNullOrWhiteSpace(json) ||
                 json.Trim() == "null")
             {
-                ShowError(L.T("Company.ManageOpportunities.OpportunityNotFound"));
+                ShowError(
+                    L.T("Company.ManageOpportunities.OpportunityNotFound"));
                 return null;
             }
 
@@ -168,7 +171,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             if (item == null)
                 return;
 
-            // Closed is reused as temporary Inactive.
+            // Closed is displayed as Inactive.
+            // Draft opportunities cannot be toggled.
             if (item.Status != OpportunityStatus.Open &&
                 item.Status != OpportunityStatus.Closed)
             {
@@ -180,27 +184,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             bool activating =
                 item.Status == OpportunityStatus.Closed;
 
-            if (activating)
-            {
-                if (item.ApplicationDeadline <= 0 ||
-                    DateTimeOffset
-                        .FromUnixTimeMilliseconds(item.ApplicationDeadline)
-                        .ToLocalTime()
-                        .Date < DateTime.Today)
-                {
-                    ShowError(
-                        "Last Date to Apply has passed. Edit the deadline before activating this opportunity.");
-                    return;
-                }
-
-                if (item.TotalSeats <= item.FilledSeats)
-                {
-                    ShowError(
-                        "No available seats. Edit the seats before activating this opportunity.");
-                    return;
-                }
-            }
-
+            // Activate / Deactivate freely.
+            // No deadline or seat validation here.
             item.Status = activating
                 ? OpportunityStatus.Open
                 : OpportunityStatus.Closed;
@@ -213,14 +198,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
+                // Keep the public preview synchronized.
+                repository.SyncPublicPreview(id);
 
                 Notice = activating
                     ? "Opportunity activated successfully."
                     : "Opportunity deactivated successfully.";
-
-
-                new OpportunityRepository().SyncPublicPreview(id);
-                Notice = L.T("Company.ManageOpportunities.OpportunityClosedSuccessfully");
 
                 IsError = false;
             }
@@ -360,13 +343,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (saved)
             {
+                repository.SyncPublicPreview(id);
 
-                Notice =
-                    L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
-
-
-                new OpportunityRepository().SyncPublicPreview(id);
-                Notice = L.T("Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
+                Notice = L.T(
+                    "Company.ManageOpportunities.OpportunityUpdatedSuccessfully");
 
                 IsError = false;
             }
@@ -406,6 +386,19 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 return false;
 
             return Editing.EligibleMajors.Contains(major);
+        }
+
+        protected string StatusClass(Opportunity item)
+        {
+            if (item == null)
+                return "is-draft";
+
+            if (item.Status == OpportunityStatus.Open)
+                return "is-open";
+
+            return item.Status == OpportunityStatus.Closed
+                ? "is-inactive"
+                : "is-draft";
         }
 
         protected string StatusText(Opportunity item)

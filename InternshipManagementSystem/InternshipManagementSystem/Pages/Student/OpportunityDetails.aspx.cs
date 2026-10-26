@@ -1,4 +1,4 @@
-﻿// =============================================================================
+// =============================================================================
 //  Opportunity Details
 //  Owner : Sara Rajoub
 //  Cards : R04
@@ -28,6 +28,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
         protected Opportunity SelectedOpportunity;
 
         protected string Notice = "";
+        protected InternshipApplication ExistingApplication;
         protected bool CanApply = false;
         protected string ApplyUrl = "";
 
@@ -74,9 +75,12 @@ namespace InternshipManagementSystem.Pages.StudentArea
                 }
 
                 // The model checks status, deadline and remaining seats.
-                CanApply = SelectedOpportunity.IsOpenForApplications;
+                ExistingApplication = new ApplicationRepository().GetByStudent(CurrentStudent.Id)
+                    .FirstOrDefault(a => string.Equals(a.OpportunityId, opportunityId,
+                        StringComparison.OrdinalIgnoreCase));
+                CanApply = SelectedOpportunity.IsOpenForApplications && ExistingApplication == null;
 
-                if (CanApply)
+                if (CanApply || ExistingApplication != null)
                 {
                     // Osama's Apply.aspx expects opportunityId.
                     ApplyUrl = "Apply.aspx?opportunityId=" +
@@ -111,9 +115,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     return L.T("Student.OpportunityDetails.NotSpecified");
                 }
 
-                return ValueOrDefault(
-                    SelectedOpportunity.CompanyName
-                );
+                string name = SelectedOpportunity.CompanyName;
+                if (string.IsNullOrWhiteSpace(name) && ExistingApplication != null)
+                    name = ExistingApplication.CompanyName;
+                return ValueOrDefault(name);
             }
         }
 

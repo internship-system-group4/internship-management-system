@@ -162,13 +162,13 @@
   <data name="MyApplications.YourInternshipIsConfirmedAndSaved" xml:space="preserve"><value>Your internship is confirmed and saved. The application flag still needs syncing; use Sync confirmation below.</value></data>
   <data name="MyApplications.YourPlacementIsSavedYouCannot" xml:space="preserve"><value>Your placement is saved. You cannot confirm another offer.</value></data>
   <data name="MyTasks.Action" xml:space="preserve"><value>Action</value></data>
-  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>Add a note, a link, or an attachment as requested.</value></data>
+  <data name="MyTasks.AddANoteALinkOr" xml:space="preserve"><value>Enter a description and work link, and attach a file to submit.</value></data>
   <data name="MyTasks.AddANoteALinkOr2" xml:space="preserve"><value>Add a note, a link, or an attachment before submitting.</value></data>
   <data name="MyTasks.AssignedTask" xml:space="preserve"><value>Assigned task</value></data>
   <data name="MyTasks.AssignedTasks" xml:space="preserve"><value>Assigned Tasks</value></data>
   <data name="MyTasks.AssignedTasks2" xml:space="preserve"><value>Assigned tasks</value></data>
   <data name="MyTasks.AttachedFile" xml:space="preserve"><value>Attached file</value></data>
-  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>Attachment (optional)</value></data>
+  <data name="MyTasks.AttachmentOptional" xml:space="preserve"><value>Attachment (required)</value></data>
   <data name="MyTasks.Attempt" xml:space="preserve"><value>Attempt</value></data>
   <data name="MyTasks.Attempts" xml:space="preserve"><value>Attempts</value></data>
   <data name="MyTasks.ChooseATask" xml:space="preserve"><value>Choose a task</value></data>
@@ -176,7 +176,7 @@
   <data name="MyTasks.Deadline" xml:space="preserve"><value>Deadline</value></data>
   <data name="MyTasks.Deadline2" xml:space="preserve"><value>Deadline:</value></data>
   <data name="MyTasks.Description" xml:space="preserve"><value>Description</value></data>
-  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>Description or note (optional)</value></data>
+  <data name="MyTasks.DescriptionOrNoteOptional" xml:space="preserve"><value>Description or note (required)</value></data>
   <data name="MyTasks.DownloadSubmittedFile" xml:space="preserve"><value>Download submitted file</value></data>
   <data name="MyTasks.EnterAValidHttpOrHttps" xml:space="preserve"><value>Enter a valid http or https link.</value></data>
   <data name="MyTasks.EnterSubmissionTextOrALink" xml:space="preserve"><value>Enter submission text or a link.</value></data>
@@ -187,7 +187,7 @@
   <data name="MyTasks.FileUploadsAreNotAvailableYet" xml:space="preserve"><value>File uploads are not available yet. Submit text or a shareable link.</value></data>
   <data name="MyTasks.Instructions" xml:space="preserve"><value>Instructions</value></data>
   <data name="MyTasks.InstructionsAndRequirements" xml:space="preserve"><value>Instructions and Requirements</value></data>
-  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>Link (optional)</value></data>
+  <data name="MyTasks.LinkOptional" xml:space="preserve"><value>Work link (required)</value></data>
   <data name="MyTasks.MyTasks" xml:space="preserve"><value>My Tasks</value></data>
   <data name="MyTasks.MyTasks2" xml:space="preserve"><value>My tasks</value></data>
   <data name="MyTasks.NoAdditionalCriteriaWereProvided" xml:space="preserve"><value>No additional criteria were provided.</value></data>
@@ -256,6 +256,49 @@
   <data name="MyTasks.YourSubmissionWasSavedButThe" xml:space="preserve"><value>Your submission was saved, but the task status could not be refreshed. Reload the page or contact your supervisor.</value></data>
   <data name="MyTasks.YourSupervisorSTasksWillAppear" xml:space="preserve"><value>Your supervisor's tasks will appear here when they are assigned.</value></data>
   <data name="MyTasks.YourTaskWasSubmittedSuccessfully" xml:space="preserve"><value>Your task was submitted successfully.</value></data>
+  <data name="SubmissionDetails.Title" xml:space="preserve"><value>Submission details</value></data>
+  <data name="SubmissionDetails.Eyebrow" xml:space="preserve"><value>Student journey / submission record</value></data>
+  <data name="SubmissionDetails.Subtitle" xml:space="preserve"><value>The task brief, your saved work, and feedback for this exact attempt.</value></data>
+  <data name="SubmissionDetails.AttemptNumber" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="SubmissionDetails.SubmittedOn" xml:space="preserve"><value>Submitted on</value></data>
+  <data name="SubmissionDetails.Company" xml:space="preserve"><value>Training company</value></data>
+  <data name="SubmissionDetails.Deadline" xml:space="preserve"><value>Task deadline</value></data>
+  <data name="SubmissionDetails.YourRecord" xml:space="preserve"><value>Saved record</value></data>
+  <data name="SubmissionDetails.WhatYouSubmitted" xml:space="preserve"><value>What you submitted</value></data>
+  <data name="SubmissionDetails.SavedAsAttempt" xml:space="preserve"><value>Each attempt is kept separately so you can review earlier work.</value></data>
+  <data name="SubmissionDetails.Description" xml:space="preserve"><value>Your description</value></data>
+  <data name="SubmissionDetails.NoDescription" xml:space="preserve"><value>No description was recorded for this earlier attempt.</value></data>
+  <data name="SubmissionDetails.SubmittedLink" xml:space="preserve"><value>Submitted work link</value></data>
+  <data name="SubmissionDetails.OpenWorkLink" xml:space="preserve"><value>Open work link</value></data>
+  <data name="SubmissionDetails.NoLink" xml:space="preserve"><value>No link was recorded for this earlier attempt.</value></data>
+  <data name="SubmissionDetails.RestrictedLink" xml:space="preserve"><value>This saved URL points to a portal page your student account cannot open. It is shown here as submitted data.</value></data>
+  <data name="SubmissionDetails.SubmittedFile" xml:space="preserve"><value>Submitted attachment</value></data>
+  <data name="SubmissionDetails.DownloadFile" xml:space="preserve"><value>Download attachment</value></data>
+  <data name="SubmissionDetails.NoFile" xml:space="preserve"><value>No attachment was recorded for this earlier attempt.</value></data>
+  <data name="SubmissionDetails.Review" xml:space="preserve"><value>Review status</value></data>
+  <data name="SubmissionDetails.SupervisorFeedback" xml:space="preserve"><value>Supervisor feedback</value></data>
+  <data name="SubmissionDetails.ReviewedNoNote" xml:space="preserve"><value>The supervisor reviewed this attempt without a written note.</value></data>
+  <data name="SubmissionDetails.AwaitingFeedback" xml:space="preserve"><value>Your work is saved and waiting for the supervisor&#x27;s review.</value></data>
+  <data name="SubmissionDetails.Score" xml:space="preserve"><value>Score: {0} / {1}</value></data>
+  <data name="SubmissionDetails.Assignment" xml:space="preserve"><value>Assigned task</value></data>
+  <data name="SubmissionDetails.TaskBrief" xml:space="preserve"><value>Task brief</value></data>
+  <data name="SubmissionDetails.PreservedHistory" xml:space="preserve"><value>Every attempt preserved</value></data>
+  <data name="SubmissionDetails.AttemptHistory" xml:space="preserve"><value>Submission history</value></data>
+  <data name="SubmissionDetails.HistoryHint" xml:space="preserve"><value>Open any attempt to see exactly what you sent at that time.</value></data>
+  <data name="SubmissionDetails.CurrentAttempt" xml:space="preserve"><value>Viewing now</value></data>
+  <data name="SubmissionDetails.ViewAttempt" xml:space="preserve"><value>View attempt</value></data>
+  <data name="SubmissionDetails.ViewAttemptDetails" xml:space="preserve"><value>View attempt details</value></data>
+  <data name="SubmissionDetails.ViewSubmittedDetails" xml:space="preserve"><value>View submitted details</value></data>
+  <data name="SubmissionDetails.ViewResubmittedDetails" xml:space="preserve"><value>View resubmitted details</value></data>
+  <data name="SubmissionDetails.BackToTasks" xml:space="preserve"><value>Back to my tasks</value></data>
+  <data name="SubmissionDetails.NotFound" xml:space="preserve"><value>Submission unavailable</value></data>
+  <data name="SubmissionDetails.LoadError" xml:space="preserve"><value>We could not load this submission</value></data>
+  <data name="SubmissionDetails.NotFoundHint" xml:space="preserve"><value>Return to My Tasks and open one of your saved attempts.</value></data>
+  <data name="SubmissionDetails.Submitted" xml:space="preserve"><value>Submitted</value></data>
+  <data name="SubmissionDetails.Resubmitted" xml:space="preserve"><value>Resubmitted</value></data>
+  <data name="SubmissionDetails.UnderReview" xml:space="preserve"><value>Under review</value></data>
+  <data name="SubmissionDetails.RevisionRequested" xml:space="preserve"><value>Revision requested</value></data>
+  <data name="SubmissionDetails.Reviewed" xml:space="preserve"><value>Reviewed</value></data>
   <data name="Opportunities.APPLICATIONDEADLINE" xml:space="preserve"><value>APPLICATION DEADLINE</value></data>
   <data name="Opportunities.AVAILABLESEATS" xml:space="preserve"><value>AVAILABLE SEATS</value></data>
   <data name="Opportunities.AvailableOpportunities" xml:space="preserve"><value>Available Opportunities</value></data>
@@ -275,6 +318,7 @@
   <data name="Opportunities.NoMatchingOpportunities" xml:space="preserve"><value>No Matching Opportunities</value></data>
   <data name="Opportunities.NotSpecified" xml:space="preserve"><value>Not specified</value></data>
   <data name="Opportunities.Of" xml:space="preserve"><value>of</value></data>
+  <data name="Opportunities.Applied" xml:space="preserve"><value>Applied</value></data>
   <data name="Opportunities.Open" xml:space="preserve"><value>Open</value></data>
   <data name="Opportunities.PleaseContactTheInternshipCoordinator" xml:space="preserve"><value>Please contact the internship coordinator.</value></data>
   <data name="Opportunities.PleaseSignInAsAStudent" xml:space="preserve"><value>Please sign in as a student.</value></data>
@@ -678,21 +722,48 @@
   <data name="Progress.DownloadReport" xml:space="preserve"><value>Download completion report (PDF)</value></data>
   <data name="Progress.PrintReport" xml:space="preserve"><value>Print report</value></data>
   <data name="Progress.ProvisionalReleased" xml:space="preserve"><value>Replaced by the released result</value></data>
-  <data name="Profile.OpenOnlineCV" xml:space="preserve"><value>View online CV</value></data>
-  <data name="Profile.OpenProjectPortfolio" xml:space="preserve"><value>View portfolio</value></data>
-  <data name="Profile.OpenLinkedInProfile" xml:space="preserve"><value>Open LinkedIn profile</value></data>
-  <data name="Profile.ProfessionalOnlinePresence" xml:space="preserve"><value>Professional online presence</value></data>
-  <data name="Profile.NoLinkedInProfileAvailable" xml:space="preserve"><value>No LinkedIn profile added yet.</value></data>
-
-  <data name="Progress.HideDocuments" xml:space="preserve"><value>Hide</value></data>
-  <data name="Progress.ShowDocuments" xml:space="preserve"><value>Show</value></data>
-
-  <data name="Progress.ShowAllHistory" xml:space="preserve"><value>Show all</value></data>
-  <data name="Progress.ShowLatestOnly" xml:space="preserve"><value>Show latest only</value></data>
-
-  <data name="Progress.AllAttemptsShown" xml:space="preserve"><value>All recorded attempts are already shown.</value></data>
-
-  <data name="Progress.ShowAllTasks" xml:space="preserve"><value>Show all</value></data>
-  <data name="Progress.ShowLatestTask" xml:space="preserve"><value>Show latest only</value></data>
-  <data name="Progress.AllTasksShown" xml:space="preserve"><value>All tasks are already shown.</value></data>
+  <data name="MyTasks.SupervisorRequestedChanges" xml:space="preserve"><value>Changes requested by your supervisor</value></data>
+  <data name="MyTasks.SubmitWork" xml:space="preserve"><value>Submit your work</value></data>
+  <data name="MyTasks.ResubmitWork" xml:space="preserve"><value>Resubmit your work</value></data>
+  <data name="MyTasks.NewSubmissionAttempt" xml:space="preserve"><value>New submission · Attempt {0}</value></data>
+  <data name="MyTasks.ResubmissionAttempt" xml:space="preserve"><value>Resubmission · Attempt {0}</value></data>
+  <data name="MyTasks.WhatHappensNext" xml:space="preserve"><value>What happens next</value></data>
+  <data name="MyTasks.WhatHappensNextText" xml:space="preserve"><value>Your company supervisor is notified and reviews attempt {0}. Earlier attempts stay in your submission history.</value></data>
+  <data name="MyTasks.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="MyTasks.SendSubmission" xml:space="preserve"><value>Send submission</value></data>
+  <data name="MyTasks.SendResubmission" xml:space="preserve"><value>Send resubmission</value></data>
+  <data name="MyTasks.Sending" xml:space="preserve"><value>Sending…</value></data>
+  <data name="MyTasks.SubmissionSent" xml:space="preserve"><value>Work submitted</value></data>
+  <data name="MyTasks.ResubmissionSent" xml:space="preserve"><value>Resubmission sent</value></data>
+  <data name="MyTasks.SentText" xml:space="preserve"><value>Attempt {0} of "{1}" is now with your supervisor for review.</value></data>
+  <data name="MyTasks.AttemptNumber" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="MyTasks.WaitingForReview" xml:space="preserve"><value>Waiting for review</value></data>
+  <data name="MyTasks.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="Workspace.StudentJourney" xml:space="preserve"><value>STUDENT JOURNEY</value></data>
+  <data name="Workspace.ApplicationsLabel" xml:space="preserve"><value>applications</value></data>
+  <data name="Workspace.TasksLabel" xml:space="preserve"><value>assigned tasks</value></data>
+  <data name="Workspace.ApplicationHistory" xml:space="preserve"><value>Application history</value></data>
+  <data name="Workspace.OneApplicationPerOpportunity" xml:space="preserve"><value>One clear record for every opportunity you've applied to.</value></data>
+  <data name="Workspace.TaskWorkflow" xml:space="preserve"><value>Task workflow: choose a task, submit work, then follow feedback.</value></data>
+  <data name="Workspace.JourneyCompletion" xml:space="preserve"><value>milestones completed</value></data>
+  <data name="MyTasks.AllThreeRequired" xml:space="preserve"><value>All three fields are required to submit this task.</value></data>
+  <data name="MyTasks.EnterDescription" xml:space="preserve"><value>Enter a description or note (up to 2,000 characters).</value></data>
+  <data name="MyTasks.EnterLink" xml:space="preserve"><value>Enter a valid work link beginning with http or https.</value></data>
+  <data name="MyTasks.AttachFile" xml:space="preserve"><value>Attach a file before submitting.</value></data>
+  <data name="Progress.HoursReportingClosed" xml:space="preserve"><value>This placement is cancelled or its completion is finalized. You can review previously reported hours, but cannot add new ones.</value></data>
+  <data name="Progress.LogHours" xml:space="preserve"><value>Log training hours</value></data>
+  <data name="Progress.LogHoursHint" xml:space="preserve"><value>Record actual work hours. They count toward the target only after academic supervisor approval.</value></data>
+  <data name="Progress.WorkDate" xml:space="preserve"><value>Work date</value></data>
+  <data name="Progress.HoursWorked" xml:space="preserve"><value>Hours worked</value></data>
+  <data name="Progress.WorkDescription" xml:space="preserve"><value>Work completed</value></data>
+  <data name="Progress.SubmitHours" xml:space="preserve"><value>Send hours for review</value></data>
+  <data name="Progress.HoursReportInvalid" xml:space="preserve"><value>Check the date is within your placement, the hours are 1–24, and the description is filled in.</value></data>
+  <data name="Progress.HoursReportFailed" xml:space="preserve"><value>The hours could not be saved. Please try again.</value></data>
+  <data name="Progress.HoursReportSaved" xml:space="preserve"><value>Hours recorded and awaiting academic supervisor approval.</value></data>
+  <data name="Profile.SaveChanges" xml:space="preserve"><value>Save changes</value></data>
+  <data name="Profile.Saved" xml:space="preserve"><value>Saved</value></data>
+  <data name="Profile.AllChangesSaved" xml:space="preserve"><value>All changes saved</value></data>
+  <data name="Profile.UnsavedChanges" xml:space="preserve"><value>You have unsaved changes</value></data>
+  <data name="Profile.ChangePhoto" xml:space="preserve"><value>Change photo</value></data>
+  <data name="Profile.TrainingHours" xml:space="preserve"><value>Training hours</value></data>
 </root>

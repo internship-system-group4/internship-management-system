@@ -28,12 +28,51 @@ namespace InternshipManagementSystem.Data
 
         public List<InternshipApplication> GetByStudent(string studentId)
         {
-            return GetWhere("StudentId", studentId).OrderByDescending(a => a.SubmittedAt).ToList();
+            return DistinctForStudent(GetWhere("StudentId", studentId));
+        }
+
+        // Older Firebase data can contain more than one record per opportunity.
+        // Student pages show one record, keeping the confirmed or accepted decision.
+        public static List<InternshipApplication> DistinctForStudent(
+            IEnumerable<InternshipApplication> applications, string confirmedApplicationId = null)
+        {
+            return (applications ?? Enumerable.Empty<InternshipApplication>())
+                .Where(a => a != null)
+                .GroupBy(a => string.IsNullOrWhiteSpace(a.OpportunityId)
+                    ? "record:" + a.Id : "opportunity:" + a.OpportunityId,
+                    StringComparer.OrdinalIgnoreCase)
+                .Select(group => group
+                    .OrderByDescending(a => !string.IsNullOrEmpty(confirmedApplicationId)
+                        && a.Id == confirmedApplicationId)
+                    .ThenByDescending(a => a.IsConfirmedByStudent)
+                    .ThenByDescending(a => a.Status == ApplicationStatus.Accepted)
+                    .ThenByDescending(a => a.SubmittedAt)
+                    .First())
+                .OrderByDescending(a => a.SubmittedAt)
+                .ToList();
         }
 
         public List<InternshipApplication> GetByCompany(string companyId)
         {
             return GetWhere("CompanyId", companyId).OrderByDescending(a => a.SubmittedAt).ToList();
+        }
+
+        /// <summary>A new application tells the company's supervisors; an accept or
+        /// reject tells the student. Used by Submit, Decide and generic saves.</summary>
+        protected override bool SendNotice(InternshipApplication previous, InternshipApplication current)
+        {
+            if (previous == null && current.Status == ApplicationStatus.Pending)
+            {
+                Services.NotificationService.ApplicationSubmitted(current);
+                return true;
+            }
+            bool decided = current.Status == ApplicationStatus.Accepted || current.Status == ApplicationStatus.Rejected;
+            if ((previous == null || previous.Status != current.Status) && decided)
+            {
+                Services.NotificationService.ApplicationDecided(current, current.Status);
+                return true;
+            }
+            return false;
         }
 
         public static bool IsValidKey(string key)
@@ -78,7 +117,7 @@ namespace InternshipManagementSystem.Data
             if (!FirebaseContext.PutIfUnchanged(path, record, etag))
                 throw new InvalidOperationException("This application changed during review. Refresh before making another decision.");
 
-            Services.EmailNotificationService.Saved(Json.Deserialize<InternshipApplication>(json), Json.Deserialize<InternshipApplication>(Json.Serialize(record)));
+            NotifySaved(Json.Deserialize<InternshipApplication>(json), Json.Deserialize<InternshipApplication>(Json.Serialize(record)));
         }
 
         public static bool IsSafeDocumentUrl(string value)
@@ -137,7 +176,7 @@ namespace InternshipManagementSystem.Data
             if (!FirebaseContext.PutIfEmpty(Collection + "/" + id, application))
                 throw new InvalidOperationException("You have already applied to this internship. Check My Applications.");
 
-            Services.EmailNotificationService.Saved(null, application);
+            NotifySaved(null, application);
             return application;
         }
     }

@@ -1,6 +1,7 @@
 <%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="Tasks.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.Tasks" Title="Manage Tasks" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+<link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261025-4") %>" />
 <style>
 .tasks-page{color:var(--th-fg-123f63,#123f63)}
 .tasks-page-header{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
@@ -89,12 +90,6 @@
 .create-task-required{color:var(--ui-muted);font-size:10px}
 @media(max-width:600px){.create-task-page{margin:-12px;padding:18px 12px}.create-task-card{padding:16px}}
 .create-task-overlay{position:fixed;inset:0;z-index:2500;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(16,35,55,.48);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
-.task-success-overlay{position:fixed;inset:0;z-index:2600;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(16,35,55,.48);-webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px)}
-.task-success-dialog{width:100%;max-width:380px;padding:30px 26px;text-align:center;background:var(--ui-surface,#fff);border:1px solid var(--th-line-e1e9f2,#e1e9f2);border-radius:14px;box-shadow:0 18px 55px rgba(19,50,77,.22)}
-.task-success-check{width:64px;height:64px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--th-bg-e8f6ee,#e8f6ee);color:var(--th-fg-198754,#198754)}
-.task-success-check svg{width:34px;height:34px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
-.task-success-dialog h2{margin:0 0 8px;color:var(--th-fg-173e61,#173e61);font-size:22px;font-weight:700}
-.task-success-dialog p{margin:0 0 22px;color:var(--th-fg-61758a,#61758a);font-size:14px}
 .create-task-dialog{position:relative;width:100%;max-width:760px;max-height:calc(100vh - 44px);overflow-y:auto;padding:24px;background:var(--ui-surface,#fff);border:1px solid var(--th-line-dce6f0,#dce6f0);border-radius:12px;box-shadow:0 24px 70px rgba(15,40,65,.24)}
 .create-task-dialog .form-label{display:block;margin-bottom:5px;color:var(--th-fg-274a68,#274a68);font-size:12px;font-weight:650}
 .create-task-dialog .form-control,.create-task-dialog .form-select{min-height:38px;border:1px solid var(--th-line-d9e3ed,#d9e3ed);border-radius:6px;color:var(--th-fg-344b60,#344b60);font-size:13px;box-shadow:none}
@@ -128,7 +123,7 @@
                 <p class="tasks-stat-number"><asp:Literal ID="litPendingReview" runat="server" /></p>
                 <p class="tasks-stat-note"><%: L.T("Company.Tasks.AwaitingYourEvaluation") %></p>
             </div>
-            <span class="tasks-stat-icon" aria-hidden="true">&#9719;</span>
+            <span class="tasks-stat-icon" data-ui-icon="clock" aria-hidden="true"></span>
         </article>
         <article class="tasks-stat-card">
             <div>
@@ -136,7 +131,7 @@
                 <p class="tasks-stat-number"><asp:Literal ID="litReviewedTasks" runat="server" /></p>
                 <p class="tasks-stat-note"><%: L.T("Company.Tasks.EvaluationsCompleted") %></p>
             </div>
-            <span class="tasks-stat-icon" aria-hidden="true">&#10003;</span>
+            <span class="tasks-stat-icon" data-ui-icon="approved" aria-hidden="true"></span>
         </article>
         <article class="tasks-stat-card">
             <div>
@@ -144,7 +139,7 @@
                 <p class="tasks-stat-number"><asp:Literal ID="litOverdueTasks" runat="server" /></p>
                 <p class="tasks-stat-note"><%: L.T("Company.Tasks.PastTheirDueDate") %></p>
             </div>
-            <span class="tasks-stat-icon" aria-hidden="true">!</span>
+            <span class="tasks-stat-icon" data-ui-icon="warning" aria-hidden="true"></span>
         </article>
     </section>
 
@@ -361,14 +356,17 @@
     </section>
 </div>
 
-<div id="taskSuccessOverlay" class="task-success-overlay" style="display:none;" role="alertdialog" aria-modal="true" aria-labelledby="taskSuccessTitle" aria-describedby="taskSuccessMessage">
-    <div class="task-success-dialog">
-        <div class="task-success-check" aria-hidden="true">
-            <svg viewBox="0 0 24 24" focusable="false"><path d="m5 12.5 4.2 4.2L19 7" /></svg>
+<%-- Same result popup design as My Tasks and Review Submissions (Assets/css/task-dialogs.css). --%>
+<div class="modal fade uims-task-dialog task-result" id="taskSuccessOverlay" tabindex="-1" aria-labelledby="taskSuccessTitle" aria-describedby="taskSuccessMessage" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="task-result-body" role="status">
+                <span class="task-dialog-icon is-success" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="m5 12.5 4.2 4.2L19 7" /></svg></span>
+                <h2 id="taskSuccessTitle"><%: L.T("Company.Tasks.TaskCreated") %></h2>
+                <p id="taskSuccessMessage"><%: L.T("Company.Tasks.TheTaskWasSuccessfullyAssignedTo") %></p>
+                <button type="button" class="task-dialog-btn task-dialog-btn-primary" data-bs-dismiss="modal"><%: L.T("Company.Tasks.Done") %></button>
+            </div>
         </div>
-        <h2 id="taskSuccessTitle"><%: L.T("Company.Tasks.TaskCreated") %></h2>
-        <p id="taskSuccessMessage"><%: L.T("Company.Tasks.TheTaskWasSuccessfullyAssignedTo") %></p>
-        <button type="button" class="btn tasks-create-button" onclick="closeTaskSuccessDialog()"><%: L.T("Company.Tasks.Done") %></button>
     </div>
 </div>
 
@@ -581,13 +579,14 @@
         document.getElementById("taskSuccessMessage").textContent = taskCount === 1
             ? uimsT('ArabicThetaskwassuccessfullyassignedtothetrainee')
             : uimsT('TasksCreatedMany', taskCount);
-        document.getElementById("taskSuccessOverlay").style.display = "flex";
-        document.body.style.overflow = "hidden";
+        // Opens with the page through Assets/js/task-dialogs.js (same as the other task popups).
+        var popup = document.getElementById("taskSuccessOverlay");
+        popup.setAttribute("data-open", "true");
+        if (document.readyState !== "loading" && window.UimsTaskDialog) window.UimsTaskDialog.show(popup);
     }
 
     function closeTaskSuccessDialog() {
-        document.getElementById("taskSuccessOverlay").style.display = "none";
-        document.body.style.overflow = "";
+        if (window.UimsTaskDialog) window.UimsTaskDialog.close();
     }
 
     populateDepartmentFilter();
@@ -598,6 +597,7 @@
         showTaskForm();
     }
 </script>
+<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261025-4") %>"></script>
 </asp:Content>
 
 

@@ -2,7 +2,7 @@
 <%@ Import Namespace="InternshipManagementSystem.Common" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
-    <link rel="stylesheet" href="<%= ResolveUrl("~/Assets/css/students.css?v=20261024-theme-7") %>" />
+
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
     <div class="students-page dir-page">
@@ -20,8 +20,8 @@
             <p class="dir-muted mb-3"><%: L.T("Coordinator.Groups.EachStudentCanBelongToOne") %></p>
             <div class="row g-3">
                 <div class="col-md-6"><label for="<%= txtName.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.GroupName") %></label><asp:TextBox ID="txtName" runat="server" CssClass="form-control" MaxLength="120" /></div>
-                <div class="col-md-3"><label for="<%= txtAcademicYear.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.AcademicYearOptional") %></label><asp:TextBox ID="txtAcademicYear" runat="server" CssClass="form-control" MaxLength="30" /></div>
-                <div class="col-md-3"><label for="<%= txtSemester.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.SemesterOptional") %></label><asp:TextBox ID="txtSemester" runat="server" CssClass="form-control" MaxLength="40" /></div>
+                <div class="col-md-3"><label for="<%= txtAcademicYear.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.AcademicYearOptional") %></label><asp:TextBox ID="txtAcademicYear" runat="server" CssClass="form-control" MaxLength="30" required="required" /></div>
+                <div class="col-md-3"><label for="<%= txtSemester.ClientID %>" class="form-label"><%: L.T("Coordinator.Groups.SemesterOptional") %></label><asp:TextBox ID="txtSemester" runat="server" CssClass="form-control" MaxLength="40" required="required" /></div>
                 <div class="col-12">
                     <span id="supervisorPickerLabel" class="form-label d-block"><%: L.T("Coordinator.Groups.AcademicSupervisor") %></span>
                     <div class="sp" data-supervisor-picker data-search-label="<%: L.T("Coordinator.AcademicSupervisors.SearchSupervisors") %>" data-empty-label="<%: L.T("Coordinator.AcademicSupervisors.NoSupervisorsMatchYourSearch") %>" data-clear-label="<%: L.T("Coordinator.Groups.ClearSelection") %>" data-done-label="<%: L.T("Coordinator.Groups.Done") %>">
@@ -83,7 +83,7 @@
 
                 <div class="col-12 d-flex gap-2 pt-2">
                     <asp:Button ID="btnSave" runat="server" Text="<%$ Resources:Coordinator, Groups.CreateGroup %>" CssClass="btn btn-brand" OnClick="btnSave_Click"  data-ui-action="create" data-loading-label="Creating…"/>
-                    <asp:Button ID="btnCancel" runat="server" Text="<%$ Resources:Coordinator, Groups.CancelEdit %>" CssClass="btn btn-outline-secondary" OnClick="btnCancel_Click" CausesValidation="false" Visible="false" />
+                    <asp:Button ID="btnCancel" runat="server" Text="<%$ Resources:Coordinator, Groups.CancelEdit %>" CssClass="btn btn-outline-secondary" OnClick="btnCancel_Click" CausesValidation="false" formnovalidate="formnovalidate" Visible="false" />
                 </div>
             </div>
         </section>

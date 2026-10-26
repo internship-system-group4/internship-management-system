@@ -116,15 +116,25 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ddlType.SelectedValue = Summary.InternshipType;
             }
 
+            // The two final evaluations shown at the top of the review.
+            if (Progress != null)
+            {
+                ucFinal.Company = Progress.CompanyFinal;
+                ucFinal.Academic = Progress.AcademicFinal;
+                ucFinal.CompanySupervisorName = Progress.CompanySupervisorName;
+                ucFinal.AcademicSupervisorName = Progress.AcademicSupervisorName;
+            }
+
             pnlDecision.Visible = IsEditable;
             pnlChecks.Visible = IsEditable;
             pnlType.Visible = IsEditable;
             if (IsEditable)
             {
                 btnApprove.Enabled = Summary.CanApprove;
-                btnApprove.OnClientClick = Confirm("Coordinator.Review.ConfirmApprove");
-                btnReturn.OnClientClick = Confirm("Coordinator.Review.ConfirmCorrections");
-                btnReject.OnClientClick = Confirm("Coordinator.Review.ConfirmReject");
+                string student = Progress.Overview.StudentName;
+                SetConfirm(btnApprove, "Approve", "Coordinator.Review.ConfirmApprove", student);
+                SetConfirm(btnReturn, "Return", "Coordinator.Review.ConfirmCorrections", student);
+                SetConfirm(btnReject, "Reject", "Coordinator.Review.ConfirmReject", student);
             }
         }
 
@@ -220,9 +230,19 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             return true;
         }
 
-        private static string Confirm(string key)
+        /// <summary>Gives a decision button the text for its confirm pop-up
+        /// (drawn by completion-review.js). Without JavaScript the browser's
+        /// own confirm box is used instead.</summary>
+        private static void SetConfirm(Button button, string kind, string fallbackKey, string student)
         {
-            return "return confirm('" + System.Web.HttpUtility.JavaScriptStringEncode(L.T(key)) + "');";
+            string prefix = "Coordinator.Review.Dialog" + kind;
+            button.Attributes["data-cr-confirm"] = kind.ToLowerInvariant();
+            button.Attributes["data-cr-title"] = L.T(prefix + "Title");
+            button.Attributes["data-cr-text"] = L.F(prefix + "Text", student ?? "");
+            button.Attributes["data-cr-points"] = L.T(prefix + "Points");
+            button.Attributes["data-cr-go"] = L.T(prefix + "Go");
+            button.OnClientClick = "return window.UimsCrConfirm ? UimsCrConfirm(this) : confirm('"
+                + System.Web.HttpUtility.JavaScriptStringEncode(L.T(fallbackKey)) + "');";
         }
 
         private void LoadReview()
@@ -415,6 +435,46 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             return Queue == null ? 0 : Queue.Count(r => r.ReviewStatus == status);
         }
 
+        /// <summary>One summary tile on the queue; clicking it filters the list.</summary>
+        protected class QueueTile
+        {
+            public string Status, Icon, IconCss, Css;
+            public int Count;
+        }
+
+        /// <summary>The main tiles always show; "in progress" and "rejected" only when they have records.</summary>
+        protected List<QueueTile> QueueTiles
+        {
+            get
+            {
+                var tiles = new List<QueueTile>
+                {
+                    new QueueTile { Status = CompletionQueueRow.ReviewReady, Icon = "approved", IconCss = "is-success" },
+                    new QueueTile { Status = CompletionQueueRow.ReviewAwaitingEvaluations, Icon = "clock", IconCss = "is-warning" },
+                    new QueueTile { Status = CompletionQueueRow.ReviewCorrections, Icon = "warning", IconCss = "is-danger" },
+                    new QueueTile { Status = CompletionQueueRow.ReviewApproved, Icon = "study", IconCss = "is-success" },
+                    new QueueTile { Status = CompletionQueueRow.ReviewInProgress, Icon = "chart", IconCss = "" },
+                    new QueueTile { Status = CompletionQueueRow.ReviewRejected, Icon = "close", IconCss = "is-danger" }
+                };
+                foreach (var tile in tiles) tile.Count = CountStatus(tile.Status);
+                return tiles.Where((t, i) => i < 4 || t.Count > 0).ToList();
+            }
+        }
+
+        /// <summary>Status pill on a queue row, in the same colours as the rest of the portal.</summary>
+        protected static string QueuePill(string status)
+        {
+            switch (status)
+            {
+                case CompletionQueueRow.ReviewApproved: return "dir-status is-active";
+                case CompletionQueueRow.ReviewReady: return "dir-status is-info";
+                case CompletionQueueRow.ReviewRejected: return "dir-status is-inactive";
+                case CompletionQueueRow.ReviewCorrections:
+                case CompletionQueueRow.ReviewAwaitingEvaluations: return "dir-status is-warning";
+                default: return "dir-status is-neutral";
+            }
+        }
+
         protected static string ReviewLabel(string status)
         {
             switch (status)
@@ -569,6 +629,17 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             }
         }
 
+        /// <summary>Mandatory checks the coordinator verifies by hand, and how many are done.</summary>
+        protected int ManualTotal
+        {
+            get { return Summary == null ? 0 : Summary.Items.Count(i => i.Manual && i.Mandatory); }
+        }
+
+        protected int ManualMet
+        {
+            get { return Summary == null ? 0 : Summary.Items.Count(i => i.Manual && i.Mandatory && i.Satisfied); }
+        }
+
         protected int RequirementsPercent
         {
             get { return Summary.MandatoryTotal == 0 ? 0 : (int)Math.Round(Summary.MandatoryMet * 100.0 / Summary.MandatoryTotal); }
@@ -577,7 +648,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         protected string CheckedBy(RequirementItem item)
         {
             if (item.Check == null || item.Check.CheckedAt <= 0) return "";
-            return L.F("Coordinator.Review.CheckedBy", CoordinatorName(item.Check.CoordinatorId), Time.Display(item.Check.CheckedAt));
+            return L.F("Coordinator.Review.CheckedBy", CoordinatorName(item.Check.CoordinatorId), Time.Friendly(item.Check.CheckedAt));
         }
 
         protected static string Initials(string name)

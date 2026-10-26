@@ -1,4 +1,4 @@
-// Compiled with the notification/repository sources and an in-memory Firebase fixture.
+﻿// Compiled with the notification/repository sources and an in-memory Firebase fixture.
 // No production accounts, mailboxes, credentials or network services are used.
 using System;
 using System.Collections.Generic;
@@ -157,7 +157,7 @@ class EmailNotificationsSmoke
             EvaluationRepository evaluations = new EvaluationRepository();
             // Final evaluations now require the assigned author and are immutable once submitted.
             UseUser("company");
-            FinalCompanyEvaluation company = new FinalCompanyEvaluation { StudentId = "s", PlacementId = "s", CompanyId = "c", SupervisorId = "company", IsSubmitted = true, SubmittedAt = Time.NowMs() };
+            FinalCompanyEvaluation company = new FinalCompanyEvaluation { StudentId = "s", PlacementId = "s", CompanyId = "c", SupervisorId = "company", TotalScore = 80, MaxScore = 100, IsSubmitted = true, SubmittedAt = Time.NowMs() };
             evaluations.SaveCompanyFinal(company);
             Check(smtp.Count == 5, "Company final did not notify coordinator and academic");
             try { evaluations.SaveCompanyFinal(company); throw new Exception("Submitted company evaluation was mutable"); }
@@ -167,6 +167,7 @@ class EmailNotificationsSmoke
             FinalAcademicEvaluation draft = new FinalAcademicEvaluation { StudentId = "s", PlacementId = "s", AcademicSupervisorId = "academic" };
             string evaluationId = evaluations.SaveAcademicFinal(draft);
             Check(smtp.Count == 5 && draft.Id == evaluationId, "Draft mail or missing generated ID");
+            draft.TotalScore = 80; draft.MaxScore = 100;
             draft.IsSubmitted = true;
             draft.SubmittedAt = Time.NowMs();
             evaluations.SaveAcademicFinal(draft);
@@ -221,6 +222,20 @@ class EmailNotificationsSmoke
     }
 
     static List<UserNotification> Inbox(string id) { UseUser(id); return new NotificationRepository().GetMine(); }
+    // Raw bell records, oldest first (fixture keys sort by creation order).
+    static List<Notification> Notices(string id)
+    {
+        var map = Json.Deserialize<Dictionary<string, Notification>>(FirebaseContext.Get("notifications/" + id));
+        return map == null ? new List<Notification>() : map.OrderBy(k => k.Key, StringComparer.Ordinal).Select(k => k.Value).ToList();
+    }
+    // The newest notice must be the bilingual NotificationService one, opening the given page.
+    static void Newest(string id, int count, string key, string link, string reason)
+    {
+        var all = Notices(id);
+        var last = all.LastOrDefault();
+        Check(all.Count == count && last != null && last.Key == key && last.Link == link,
+            reason + ": " + string.Join(" || ", all.Select(n => (n.Key ?? n.Title) + " -> " + n.Link)));
+    }
     static void Denied(Action action, string reason) {
         bool denied = false; try { action(); } catch (InvalidOperationException) { denied = true; } catch (UnauthorizedAccessException) { denied = true; }
         Check(denied, reason);
@@ -237,7 +252,7 @@ class EmailNotificationsSmoke
                 MaxScore = 25, Weight = 2, Criteria = new List<GradeComponent> {
                     new GradeComponent { Name = "Research", MaxScore = 40, Weight = 20 }, new GradeComponent { Name = "Implementation", MaxScore = 10, Weight = 80 } } };
             string id = TaskWorkflowService.Assign(task);
-            Check(Inbox("s").Count == 1 && Inbox("s")[0].Title == "New task assigned", "Assigned task missing from student inbox");
+            Newest("s", 1, "TaskAssigned", "~/Pages/Student/MyTasks.aspx?task=" + id, "Assigned task missing from student inbox or duplicated");
             Check(smtp.Count == (EmailNotificationService.Enabled ? 1 : 0), "Inbox incorrectly depends on email toggle");
             if (EmailNotificationService.Enabled) Check(smtp.Last.Contains("text/html") && smtp.Last.Contains("&lt;script&gt;"), "HTML email escaping or MIME alternatives");
             UseUser("outsider"); Denied(() => TaskWorkflowService.Assign(task), "Unassigned company supervisor assigned a task");
@@ -246,22 +261,24 @@ class EmailNotificationsSmoke
             string first = TaskWorkflowService.Submit(id, "First attempt", "https://example.test/work");
             Check(new TaskRepository().GetById(id).Status == InternshipTaskStatus.Submitted, "Submission did not update task status atomically");
             Denied(() => TaskWorkflowService.Submit(id, "Duplicate", ""), "Double submit created another attempt");
-            Check(Inbox("company").Count == 1 && Inbox("company")[0].Title.Contains("submission"), "Submission did not notify the assigned company supervisor");
+            Newest("company", 1, "TaskSubmitted", "~/Pages/Company/TaskReview.aspx?submission=" + first, "Submission did not notify the assigned company supervisor once");
             UseUser("company"); TaskWorkflowService.Review(first, true, null, "Please add evidence");
             Check(new SubmissionRepository().GetById(first).Status == SubmissionStatus.RevisionRequested, "Submission revision status missing");
-            Check(Inbox("s").Count == 2, "Revision notification missing or duplicated");
+            Newest("s", 2, "TaskRevision", "~/Pages/Student/MyTasks.aspx?task=" + id, "Revision notification missing or duplicated");
             UseUser("company"); Denied(() => TaskWorkflowService.Review(first, true, null, "Again"), "Same attempt was reviewed twice");
             UseUser("s"); string second = TaskWorkflowService.Submit(id, "Improved attempt", "");
             var attempts = new SubmissionRepository().GetByPlacement("s").Where(s => s.TaskId == id).OrderBy(s => s.AttemptNumber).ToList();
             Check(attempts.Count == 2 && attempts[0].DescriptionText == "First attempt" && attempts[1].AttemptNumber == 2, "Submission history was overwritten");
-            Check(Inbox("company").Count == 2, "Resubmission notification missing or duplicated");
+            Newest("company", 2, "TaskResubmitted", "~/Pages/Company/TaskReview.aspx?submission=" + second, "Resubmission notification missing or duplicated");
             UseUser("company"); TaskWorkflowService.Review(second, false, new List<double> { 20, 8 }, "Good improvement");
             var grade = new EvaluationRepository().GetTaskEvaluationsForPlacement("s").Single(e => e.SubmissionId == second);
             Check(Math.Abs(grade.TotalScore - 18.5) < 0.001 && grade.MaxScore == 25, "Rubric weights or task maximum ignored");
             Check(new SubmissionRepository().GetById(second).Status == SubmissionStatus.Accepted && new TaskRepository().GetById(id).Status == InternshipTaskStatus.Graded, "Grading status changes missing");
-            Check(Inbox("s").Count == 3, "Evaluation notification missing or duplicated");
+            Newest("s", 3, "TaskGraded", "~/Pages/Student/MyTasks.aspx?task=" + id, "Evaluation notification missing or duplicated");
+            Check(Notices("s").Last().Args.SequenceEqual(new[] { task.Title, "18.5", "25" }), "Grade notice is missing the task title or score");
+            if (EmailNotificationService.Enabled) Check(smtp.Count == 5, "Task cycle should send one email per event (assign, submit, revision, resubmit, grade): " + smtp.Count);
             Check(new HoursRepository().GetByPlacement("s").Count == 0, "Task completion approved training hours automatically");
-            var repository = new NotificationRepository();
+            UseUser("s"); var repository = new NotificationRepository();
             string studentNotice = repository.GetMine().First().Id;
             repository.MarkRead(studentNotice);
             Check(repository.GetMine().Count(n => !n.IsRead) == 2, "Single read flag not persisted");
@@ -298,8 +315,8 @@ class EmailNotificationsSmoke
             beforeStudent = Inbox("s").Count;
             UseUser("company"); smtp.Reject = true;
             task.Title = "SMTP failure"; string retained = TaskWorkflowService.Assign(task);
-            var failed = Inbox("s").Single(n => n.Detail.Contains("SMTP failure"));
-            Check(new TaskRepository().GetById(retained) != null && failed.EmailStatus == (EmailNotificationService.Enabled ? "Failed" : "Disabled"), "Email failure lost saved task or in-app notification");
+            Check(new TaskRepository().GetById(retained) != null && Notices("s").Count(n => n.Args != null && n.Args.Contains("SMTP failure")) == 1,
+                "Email failure lost saved task or in-app notification");
             smtp.Reject = false; int emailCount = smtp.Count;
             FirebaseContext.FailNotificationWrites = true; UseUser("company"); task.Title = "Inbox write failure"; TaskWorkflowService.Assign(task); FirebaseContext.FailNotificationWrites = false;
             Check(smtp.Count == emailCount + (EmailNotificationService.Enabled ? 1 : 0), "Inbox failure prevented email attempt");
@@ -314,7 +331,67 @@ class EmailNotificationsSmoke
             SessionHelper.SignIn(noEmail, "fixture"); Check(new NotificationRepository().GetMine().Count == 1, "Recipient without email lost in-app notice");
             UseUser("coord"); EmailNotificationService.Saved(null, new FinalAcademicEvaluation { StudentId = "s", IsSubmitted = true, TotalScore = 93.12345, AcademicComments = "PRIVATE_FEEDBACK" });
             Check(new NotificationRepository().GetMine().All(n => !n.Detail.Contains("PRIVATE_FEEDBACK") && !n.Detail.Contains("93.12345")), "Private final evaluations leaked into inbox");
+            NotificationServiceOnlyEvents(smtp);
         }
+    }
+
+    // Events whose bell notice AND email come from NotificationService alone.
+    // (In this fixture the English text is the resource id, e.g. "Shared.Notify.GroupAdded.Message".)
+    static void NotificationServiceOnlyEvents(SmtpFixture smtp)
+    {
+        int expected = EmailNotificationService.Enabled ? 1 : 0;
+        // Exactly `count` emails so far, and (when email is on) the newest one contains `text`.
+        Func<int, string, bool> mailed = (count, text) => smtp.Count == count && (expected == 0 || smtp.Last.Contains(text));
+        FirebaseContext.Put("placements/s", assigned); // earlier group steps cleared its academic supervisor
+
+        // Welcome email to a new student.
+        int start = smtp.Count; UseUser("coord");
+        NotificationService.StudentAccountCreated((Student)users["s2"]);
+        Check(smtp.Count == start + expected && Notices("s2").Count(n => n.Key == "WelcomeStudent") == 1, "Welcome notice or email missing");
+
+        // Group create / reassign / delete: one email per person per event.
+        users["academic3"] = new AcademicSupervisor { Id = "academic3", Email = "academic3@example.test" };
+        FirebaseContext.Put("users/academic3", users["academic3"]);
+        UseUser("coord"); var group = new StudentGroup { Name = "Email cohort", AcademicSupervisorId = "academic" };
+        start = smtp.Count; new GroupRepository().SaveAssignments(group, new List<string> { "s" });
+        Check(smtp.Count == start + 2 * expected, "Group creation should email the student and the supervisor: " + (smtp.Count - start));
+        start = smtp.Count; UseUser("coord"); new GroupRepository().SaveAssignments(group, new List<string> { "s" });
+        Check(smtp.Count == start, "Unchanged group save sent email");
+        start = smtp.Count; UseUser("coord"); group.AcademicSupervisorId = "academic3"; new GroupRepository().SaveAssignments(group, new List<string> { "s" });
+        Check(smtp.Count == start + 3 * expected, "Group reassignment should email the student, new and former supervisor: " + (smtp.Count - start));
+        start = smtp.Count; UseUser("coord"); new GroupRepository().DeleteGroup(group.Id);
+        Check(mailed(start + 2 * expected, "GroupDeletedSupervisor"), "Group deletion emails");
+        FirebaseContext.Put("placements/s", assigned);
+
+        // A published opportunity emails eligible active students that have an address.
+        FirebaseContext.Put("opportunities/open", new Opportunity { Id = "open", CompanyId = "c", CompanyName = "Fixture Co", Title = "Open role", Status = OpportunityStatus.Open, TotalSeats = 2 });
+        start = smtp.Count; UseUser("company"); NotificationService.OpportunityPublished("open");
+        Check(smtp.Count == start + 2 * expected && Notices("s").Count(n => n.Key == "OpportunityPublished") == 1, "Opportunity emails: " + (smtp.Count - start));
+
+        // Meeting replies email the requester once.
+        UseUser("company"); var meeting = new Meeting { Title = "Check-in", CreatedById = "company", RequestedToId = "s", ScheduledAt = Time.NowMs() + 7200000, DurationMinutes = 30 };
+        start = smtp.Count; string meetingId = new MeetingRepository().Insert(meeting);
+        Check(mailed(start + expected, "student@example.test") && Notices("s").Count(n => n.Key == "MeetingRequest") == 2, "Meeting request: one notice and one email");
+        start = smtp.Count; UseUser("s"); new MeetingRepository().ApplyAction(meetingId, "s", "Reject");
+        Check(mailed(start + expected, "company@example.test") && Notices("company").Last().Key == "MeetingDeclined", "Meeting decline did not email the requester");
+
+        // Company final evaluation page: the academic supervisor and each coordinator address once.
+        start = smtp.Count; UseUser("company"); NotificationService.CompanyEvaluationSent("s");
+        Check(smtp.Count == start + 2 * expected, "Company evaluation page emails: " + (smtp.Count - start));
+        start = smtp.Count; NotificationService.CompanyFinalSubmitted(new FinalCompanyEvaluation { PlacementId = "s", IsSubmitted = true });
+        Check(smtp.Count == start, "Repository company final path must not email twice (EmailNotificationService already does)");
+
+        // Completion decisions: the bell shows the note/result, the email never does.
+        UseUser("coord"); start = smtp.Count;
+        NotificationService.CompletionDecided(new CompletionRecord { StudentId = "s", PlacementId = "s", Status = CompletionStatus.Approved, Result = "PRIVATE_RESULT", CoordinatorNote = "PRIVATE_NOTE" });
+        var mails = smtp.Since(start);
+        Check(mails.Count == 3 * expected && mails.All(m => !m.Contains("PRIVATE_RESULT") && !m.Contains("PRIVATE_NOTE")), "Completion approval emails missing or leaked the result");
+        Check(!EmailNotificationService.Enabled || mails.Any(m => m.Contains("student@example.test") && m.Contains("CompletionApprovedNoResult") && m.Contains("https://example.test/uims/Pages/Student/Progress.aspx")), "Student approval email text or link");
+        Check(Notices("s").Last(n => n.Key != null && n.Key.StartsWith("Completion")).Args.Contains("PRIVATE_RESULT"), "Bell lost the released result");
+        start = smtp.Count;
+        NotificationService.CompletionDecided(new CompletionRecord { StudentId = "s", PlacementId = "s", Status = CompletionStatus.Rejected, Decision = CompletionRecord.DecisionCorrections, CoordinatorNote = "PRIVATE_NOTE" });
+        Check(mailed(start + expected, "CompletionReturnedNoNote") && smtp.Since(start).All(m => !m.Contains("PRIVATE_NOTE")), "Returned completion email missing or leaked the note");
+        Check(Notices("s").Last().Key == "CompletionReturned" && Notices("s").Last().Args.Contains("PRIVATE_NOTE"), "Bell lost the coordinator's note");
     }
 
     static void UseUser(string id)
@@ -346,6 +423,7 @@ class EmailNotificationsSmoke
         public volatile bool Reject;
         public int Count { get { lock (mail) return mail.Count; } }
         public string Last { get { lock (mail) return mail.Last(); } }
+        public List<string> Since(int index) { lock (mail) return mail.Skip(index).ToList(); }
         public SmtpFixture(int port)
         {
             listener = new TcpListener(IPAddress.Loopback, port);
@@ -435,7 +513,23 @@ namespace InternshipManagementSystem.Data
             return Json.Serialize(value);
         }
         public static string Push(string path, object value)
-        { string id = "record" + (++nextId); Put(path + "/" + id, value); return id; }
+        { string id = NewKey(); Put(path + "/" + id, value); return id; }
+        // Zero-padded so keys sort by creation order, like real Firebase push keys.
+        public static string NewKey() { return "record" + (++nextId).ToString("D6"); }
+        public static string PushWithId(string path, object value)
+        {
+            string id = NewKey();
+            var property = value == null ? null : value.GetType().GetProperty("Id");
+            if (property != null && property.CanWrite && property.PropertyType == typeof(string)) property.SetValue(value, id, null);
+            Put(path.TrimEnd('/') + "/" + id, value);
+            return id;
+        }
+        public static string GetLast(string path, int count)
+        {
+            var map = Json.ToMap(Get(path) ?? "null");
+            if (map == null || map.Count == 0) return null;
+            return Json.Serialize(map.OrderBy(k => k.Key, StringComparer.Ordinal).Skip(Math.Max(0, map.Count - count)).ToDictionary(k => k.Key, k => k.Value));
+        }
         public static string Patch(string path, object changes)
         {
             if (FailWrites) throw new IOException("Fixture write failure");

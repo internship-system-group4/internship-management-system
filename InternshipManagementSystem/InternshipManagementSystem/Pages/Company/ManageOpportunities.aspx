@@ -30,11 +30,7 @@
 }
 
 .mo-muted {
-<<<<<<< HEAD
-    color: var(--th-fg-718298, #718298);
-=======
     color: var(--ui-muted);
->>>>>>> 92609b2de163de49122c0c0aacaef691ee68bc27
     font-size: 13px;
     line-height: 1.6;
 }
@@ -190,29 +186,6 @@
     font-weight: 750;
     color: var(--th-fg-173451, #173451);
     margin-bottom: 3px;
-}
-
-.mo-badge {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 5px 11px;
-    border-radius: 20px;
-    background: #e5f5ec;
-    color: #17603a;
-    font-size: 12px;
-    font-weight: 700;
-    white-space: nowrap;
-}
-
-.mo-badge.draft {
-    background: #edf2f8;
-    color: #526985;
-}
-
-.mo-badge.inactive {
-    background: #fff3e6;
-    color: #a15c16;
 }
 
 .mo-actions {
@@ -436,8 +409,6 @@
         grid-template-columns: 1fr;
     }
 
-<<<<<<< HEAD
-=======
     .mo-form-grid {
         grid-template-columns: 1fr;
     }
@@ -636,6 +607,144 @@
     margin-bottom: 4px;
 }
 
+/* Status badges: one colour family per status, with a dot so the
+   state still reads without colour. */
+
+.mo-badge {
+    --mo-status-fg: #526985;
+    --mo-status-bg: #f1f5fa;
+    --mo-status-line: #d5dfeb;
+    --mo-status-dot: #8a9bb2;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    min-height: 26px;
+    padding: 3px 11px 3px 9px;
+    border: 1px solid var(--mo-status-line);
+    border-radius: 999px;
+    background: var(--mo-status-bg);
+    color: var(--mo-status-fg);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+.mo-badge-dot {
+    position: relative;
+    flex: 0 0 auto;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--mo-status-dot);
+}
+
+.mo-badge.is-open {
+    --mo-status-fg: #146c43;
+    --mo-status-bg: #e8f7ef;
+    --mo-status-line: #bfe6cf;
+    --mo-status-dot: #1f9d5c;
+}
+
+/* Live pulse on Open: it is the only state students can apply to. */
+.mo-badge.is-open .mo-badge-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--mo-status-dot);
+    animation: mo-status-pulse 2s ease-out infinite;
+}
+
+.mo-badge.is-draft {
+    --mo-status-fg: #4d6582;
+    --mo-status-bg: #f1f5fa;
+    --mo-status-line: #c9d6e5;
+    --mo-status-dot: transparent;
+    border-style: dashed;
+}
+
+.mo-badge.is-draft .mo-badge-dot {
+    box-shadow: inset 0 0 0 1.5px #7d93ad;
+}
+
+.mo-badge.is-inactive {
+    --mo-status-fg: #9a5310;
+    --mo-status-bg: #fff4e8;
+    --mo-status-line: #f5d6b3;
+    --mo-status-dot: #e08a2e;
+}
+
+@keyframes mo-status-pulse {
+    0%   { transform: scale(1);   opacity: .55; }
+    70%  { transform: scale(2.6); opacity: 0; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mo-badge.is-open .mo-badge-dot::after {
+        animation: none;
+        display: none;
+    }
+}
+
+/* Statistic cards pick up the same status colour as a top accent. */
+
+.mo-stat {
+    position: relative;
+    overflow: hidden;
+}
+
+.mo-stat::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 3px;
+    background: var(--mo-stat-accent, transparent);
+}
+
+.mo-stat.is-open     { --mo-stat-accent: #1f9d5c; }
+.mo-stat.is-draft    { --mo-stat-accent: #8a9bb2; }
+.mo-stat.is-inactive { --mo-stat-accent: #e08a2e; }
+
+[data-theme="dark"] .mo-badge {
+    --mo-status-fg: #b8c7da;
+    --mo-status-bg: #1e2a3a;
+    --mo-status-line: #34465c;
+    --mo-status-dot: #8295ad;
+}
+
+[data-theme="dark"] .mo-badge.is-open {
+    --mo-status-fg: #8fe0b2;
+    --mo-status-bg: #15291f;
+    --mo-status-line: #2a5a3f;
+    --mo-status-dot: #3ccf83;
+}
+
+[data-theme="dark"] .mo-badge.is-draft {
+    --mo-status-fg: #b8c7da;
+    --mo-status-bg: #1c2633;
+    --mo-status-line: #3e5068;
+    --mo-status-dot: transparent;
+}
+
+[data-theme="dark"] .mo-badge.is-draft .mo-badge-dot {
+    box-shadow: inset 0 0 0 1.5px #8ea3bd;
+}
+
+[data-theme="dark"] .mo-badge.is-inactive {
+    --mo-status-fg: #f3c58f;
+    --mo-status-bg: #33261a;
+    --mo-status-line: #5e4427;
+    --mo-status-dot: #f0a050;
+}
+
+[data-theme="dark"] .mo-stat.is-open     { --mo-stat-accent: #3ccf83; }
+[data-theme="dark"] .mo-stat.is-draft    { --mo-stat-accent: #8295ad; }
+[data-theme="dark"] .mo-stat.is-inactive { --mo-stat-accent: #f0a050; }
 
 </style>
 
@@ -671,7 +780,7 @@
                 </p>
             </div>
 
-           
+
              <a href="Opportunities.aspx" class="mo-btn">
                  <%: L.T("Company.ManageOpportunities.AddOpportunity") %>
                    </a>
@@ -682,7 +791,7 @@
 
         <div class="mo-stats">
 
-            <div class="mo-stat">
+            <div class="mo-stat is-open">
                 <span class="mo-muted">
                     <%: L.T("Company.ManageOpportunities.OpenOpportunities") %>
                 </span>
@@ -694,7 +803,7 @@
                 </span>
             </div>
 
-            <div class="mo-stat">
+            <div class="mo-stat is-draft">
                 <span class="mo-muted">
                     <%: L.T("Company.ManageOpportunities.Drafts") %>
                 </span>
@@ -706,7 +815,7 @@
                 </span>
             </div>
 
-            <div class="mo-stat">
+            <div class="mo-stat is-inactive">
                 <span class="mo-muted">
                     Inactive Opportunities
                 </span>
@@ -776,9 +885,6 @@
                                     <%: item.Title %>
                                 </div>
 
-                                <span class="mo-muted">
-                                    <%: item.Id %>
-                                </span>
                             </td>
 
                             <td>
@@ -798,13 +904,8 @@
                             </td>
 
                             <td>
-                                <span class='mo-badge <%=
-                                    item.Status == OpportunityStatus.Closed
-                                    ? "inactive"
-                                    : item.Status == OpportunityStatus.Draft
-                                    ? "draft"
-                                    : ""
-                                %>'>
+                                <span class="mo-badge <%= StatusClass(item) %>">
+                                    <span class="mo-badge-dot" aria-hidden="true"></span>
                                     <%: StatusText(item) %>
                                 </span>
                             </td>
@@ -891,17 +992,23 @@
              role="dialog"
              aria-modal="true"
              aria-labelledby="moDialogTitle"
+             data-activate-title="<%: L.T("Company.ManageOpportunities.ActivateTitle") %>"
+             data-deactivate-title="<%: L.T("Company.ManageOpportunities.DeactivateTitle") %>"
+             data-activate-label="<%: L.T("Company.ManageOpportunities.ActivateLabel") %>"
+             data-deactivate-label="<%: L.T("Company.ManageOpportunities.DeactivateLabel") %>"
+             data-activate-message="<%: L.T("Company.ManageOpportunities.ActivateMessage") %>"
+             data-deactivate-message="<%: L.T("Company.ManageOpportunities.DeactivateMessage") %>"
              aria-hidden="true">
 
             <div class="mo-dialog-box">
 
                 <div id="moDialogIcon" class="mo-dialog-icon"
                      aria-hidden="true">
-                    ↻
+                    <span data-ui-icon="warning" aria-hidden="true"></span>
                 </div>
 
                 <h3 id="moDialogTitle">
-                    Confirm Action
+                    <%: L.T("Company.ManageOpportunities.ConfirmAction") %>
                 </h3>
 
                 <p class="mo-muted"
@@ -927,13 +1034,7 @@
                             data-ui-action="toggle"
                             data-ui-validation="none">
 
-                        Confirm
-
-                        class="mo-btn mo-btn-danger"
-                        name="moAction"
-                        value="close"
-                        onclick="document.getElementById('moCloseId').value = window.selectedOpportunityId;" data-ui-action="close" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Closing") %>">
-                        <%: L.T("Company.ManageOpportunities.CloseOpportunity") %>
+                        <%: L.T("Company.ManageOpportunities.ConfirmAction") %>
                     </button>
 
                 </div>
@@ -956,7 +1057,7 @@
         <a href="ManageOpportunities.aspx"
            class="mo-muted mo-back">
 
-            ← <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+            <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
 
         </a>
 
@@ -969,16 +1070,9 @@
 
             <div class="mo-actions">
 
-                <span class='mo-badge <%=
-                    Viewing.Status == OpportunityStatus.Closed
-                    ? "inactive"
-                    : Viewing.Status == OpportunityStatus.Draft
-                    ? "draft"
-                    : ""
-                %>'>
-
+                <span class="mo-badge <%= StatusClass(Viewing) %>">
+                    <span class="mo-badge-dot" aria-hidden="true"></span>
                     <%: StatusText(Viewing) %>
-
                 </span>
 
                 <a class="mo-btn"
@@ -1136,7 +1230,7 @@
         <a href="ManageOpportunities.aspx"
            class="mo-muted mo-back">
 
-            ← <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
+            <%: L.T("Company.ManageOpportunities.BackToOpportunities") %>
 
         </a>
 
@@ -1152,16 +1246,9 @@
                 </p>
             </div>
 
-            <span class='mo-badge <%=
-                Editing.Status == OpportunityStatus.Closed
-                ? "inactive"
-                : Editing.Status == OpportunityStatus.Draft
-                ? "draft"
-                : ""
-            %>'>
-
+            <span class="mo-badge <%= StatusClass(Editing) %>">
+                <span class="mo-badge-dot" aria-hidden="true"></span>
                 <%: StatusText(Editing) %>
-
             </span>
 
         </div>
@@ -1422,11 +1509,7 @@
                         value="save"
                         data-ui-action="save"
                         data-ui-validation="none"
-                        data-loading-label="Saving…">
-
-                    class="mo-btn"
-                    name="moAction"
-                    value="save" data-ui-action="save" data-ui-validation="none" data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
+                        data-loading-label="<%: L.T("Shared.I18n.Saving") %>">
 
                     <%: L.T("Company.ManageOpportunities.SaveChanges") %>
 
@@ -1475,15 +1558,13 @@
         if (action === "deactivate") {
 
             dialogTitle.textContent =
-                "Deactivate Opportunity";
+                dialog.dataset.deactivateTitle;
 
             message.textContent =
-                'Are you sure you want to deactivate "' +
-                title +
-                '"? This opportunity will no longer be available for new student applications. Existing applications will be preserved.';
+                dialog.dataset.deactivateMessage.replace('{0}', function () { return title; });
 
             confirmButton.textContent =
-                "Deactivate";
+                dialog.dataset.deactivateLabel;
 
             confirmButton.classList.remove(
                 "mo-btn-success"
@@ -1495,21 +1576,20 @@
 
             if (dialogIcon) {
                 dialogIcon.textContent = "−";
+                if (window.UimsUI) dialogIcon.replaceChildren(window.UimsUI.icon('warning'));
                 dialogIcon.classList.remove("activate");
             }
 
         } else {
 
             dialogTitle.textContent =
-                "Activate Opportunity";
+                dialog.dataset.activateTitle;
 
             message.textContent =
-                'Are you sure you want to activate "' +
-                title +
-                '"? Students will be able to apply again if the application deadline has not passed and seats are available.';
+                dialog.dataset.activateMessage.replace('{0}', function () { return title; });
 
             confirmButton.textContent =
-                "Activate";
+                dialog.dataset.activateLabel;
 
             confirmButton.classList.remove(
                 "mo-btn-danger"
@@ -1521,13 +1601,14 @@
 
             if (dialogIcon) {
                 dialogIcon.textContent = "✓";
+                if (window.UimsUI) dialogIcon.replaceChildren(window.UimsUI.icon('approved'));
                 dialogIcon.classList.add("activate");
             }
         }
 
         dialog.classList.add("show");
         dialog.setAttribute("aria-hidden", "false");
-        confirmButton.focus();
+        // The shared supervisor dialog enhancement manages focus and keyboard navigation.
     }
 
     function hideToggleDialog() {

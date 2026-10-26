@@ -1,0 +1,136 @@
+/* Password recovery (Pages/Account/ForgotPassword.aspx) only. The page, scene and ID card come from login-campus.css
+   (.login-campus, .login-campus-layout, .login-campus-form, .login-id-*); this file only sizes the card to the recovery
+   design and adds the email field, the sent state and the information note. Several rules carry body.uims-public
+   because interface.css, which loads after the page's head, sets public form type sizes at that specificity. */
+.recovery-campus { --rc-navy:#183f60; --rc-blue:#285578; --rc-gold:#e5b344; --rc-heading:#183f60; --rc-text:#4a5b6d;
+ --rc-field:#c3cfdb; --rc-field-bg:#fff; --rc-soft:#eaf1f8; --rc-ok:#2f9e63; }
+[data-theme="dark"] .recovery-campus { --rc-heading:var(--ui-ink); --rc-text:var(--ui-muted); --rc-field:#4d6378; --rc-field-bg:var(--ui-canvas);
+ --rc-soft:rgb(147 194 234 / 12%); --rc-navy:#2d5f8c; --rc-blue:#3a71a1; }
+
+/* Layout: a wider card than Login, as in the recovery reference. */
+.login-campus-layout.recovery-campus-layout { grid-template-columns:clamp(440px,35vw,540px) 1fr; }
+.recovery-card .login-id-header { padding:36px 28px 20px; gap:18px; border-bottom-color:var(--rc-gold); }
+.recovery-card .login-id-header .login-campus-logo { width:70px; padding:6px; border-radius:8px; }
+.recovery-card .login-id-header strong, .recovery-card .login-id-header > div span { font-size:15.5px; }
+.recovery-card .login-id-header > div span { margin-top:2px; }
+.recovery-card .login-id-holo { width:50px; height:50px; }
+.recovery-card .login-id-holo img { width:26px; }
+.recovery-card .login-id-body { padding:26px 34px 28px; }
+.recovery-card .login-id-kind { font-size:12.5px; letter-spacing:.2em; margin-bottom:26px; color:var(--rc-text); }
+.recovery-card .login-id-kind span { font-size:11.5px; padding:3px 11px; letter-spacing:.08em; font-weight:700; }
+
+/* Heading and introduction. */
+.recovery-card.login-campus-form h1 { font-size:clamp(32px,2.6vw,40px); line-height:1.12; font-weight:700; letter-spacing:-.025em; color:var(--rc-heading); margin:0 0 12px; }
+body.uims-public .recovery-campus .recovery-card .public-form-intro { font-size:19px; line-height:1.62; color:var(--rc-text); margin:0 0 26px; max-width:30em; }
+
+/* Email field with its envelope icon. */
+.recovery-card.login-campus-form .public-field { margin-bottom:22px; }
+.recovery-card.login-campus-form .public-field label { font-size:17px; font-weight:650; letter-spacing:0; text-transform:none; color:var(--rc-heading); margin-bottom:10px; }
+.recovery-input { position:relative; }
+.recovery-input svg { position:absolute; inset-inline-start:19px; top:50%; width:24px; height:24px; margin-top:-12px; color:#6a7c8e; pointer-events:none; transition:color 180ms ease; }
+body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type] { min-height:60px; padding:14px 18px; padding-inline-start:56px; border:1px solid var(--rc-field); border-radius:8px;
+ background:var(--rc-field-bg); color:var(--ui-ink); font-size:18px; transition:border-color 180ms ease, box-shadow 180ms ease; }
+body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type]:hover { border-color:#9fb1c3; }
+/* Focus: a navy border with a soft ring (the ring replaces the global outline and stays clearly visible). */
+body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type]:focus { outline:none; border-color:var(--rc-blue); box-shadow:0 0 0 4px rgb(40 85 120 / 18%); }
+body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type]:focus-visible { outline:2px solid transparent; }
+.recovery-input:focus-within svg { color:var(--rc-blue); }
+[data-theme="dark"] .recovery-input svg { color:var(--ui-muted); }
+[data-theme="dark"] .recovery-input:focus-within svg { color:var(--ui-primary-text,#9cc7ef); }
+[data-theme="dark"] body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type]:focus { border-color:#7fb0dd; box-shadow:0 0 0 4px rgb(127 176 221 / 22%); }
+body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type][aria-invalid="true"] { border-color:var(--th-line-ab3932,#ab3932); }
+body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type][aria-invalid="true"]:focus { box-shadow:0 0 0 4px rgb(171 57 50 / 16%); }
+.recovery-card .public-hint { font-size:14px; margin-top:10px; color:var(--rc-text); }
+.recovery-card .public-field-error:empty { display:none; }
+
+/* Primary action. While the request runs (data-submitting from public-forms.js) a slow light sweep crosses the button. */
+body.uims-public .recovery-card .public-button.recovery-submit { display:block; width:100%; min-height:58px; margin:0; padding:14px 20px; border:0; border-radius:8px;
+ background-color:var(--rc-navy); color:#fff; font-size:19px; font-weight:650; letter-spacing:.005em; cursor:pointer;
+ transition:background-color 180ms ease, transform 120ms ease, box-shadow 180ms ease; box-shadow:0 10px 22px -14px rgb(24 63 96 / 70%); }
+body.uims-public .recovery-card .public-button.recovery-submit:hover { background-color:var(--rc-blue); }
+body.uims-public .recovery-card .public-button.recovery-submit:active { transform:translateY(1px); }
+body.uims-public .recovery-card .public-button.recovery-submit:focus-visible { outline:3px solid var(--rc-gold); outline-offset:3px; }
+.recovery-card[data-submitting="true"] .public-button.recovery-submit { cursor:progress; background-image:linear-gradient(110deg,transparent 30%,rgb(255 255 255 / 16%) 50%,transparent 70%); background-size:220% 100%; animation:recovery-sweep 1.5s linear infinite; }
+@keyframes recovery-sweep { from { background-position:120% 0; } to { background-position:-120% 0; } }
+.recovery-card .login-campus-status { margin:12px 0 0; color:var(--rc-text); }
+.recovery-card .alert { margin-bottom:18px; }
+
+/* Request and sent states. data-result is rendered by the server ("" | "sent" | "error") and updated by recovery-campus.js. */
+.recovery-campus[data-result="sent"] [data-recovery-request], .recovery-campus[data-result="sent"] [data-recovery-return] { display:none; }
+.recovery-campus:not([data-result="sent"]) [data-recovery-sent] { display:none; }
+.recovery-sent { outline:none; animation:recovery-in 360ms cubic-bezier(.16,1,.3,1) both; }
+.recovery-sent-mark { display:grid; place-items:center; width:58px; height:58px; margin-bottom:18px; border-radius:50%; color:#fff; background:var(--rc-ok); box-shadow:0 0 0 7px rgb(47 158 99 / 14%); }
+.recovery-sent-mark svg { width:30px; height:30px; }
+.recovery-sent-mark path { stroke-dasharray:24; stroke-dashoffset:0; animation:recovery-tick 520ms ease-out 180ms both; }
+@keyframes recovery-tick { from { stroke-dashoffset:24; } }
+@keyframes recovery-in { from { opacity:0; transform:translateY(8px); } }
+.recovery-sent h2 { font-size:30px; line-height:1.15; font-weight:700; letter-spacing:-.02em; color:var(--rc-heading); margin:0 0 10px; }
+.recovery-sent p { font-size:17px; line-height:1.6; color:var(--rc-text); margin:0 0 22px; }
+.recovery-sent-actions { display:grid; gap:6px; }
+body.uims-public .recovery-sent-actions a.public-button { min-height:56px; border-radius:8px; background:var(--rc-navy); border-color:var(--rc-navy); font-size:18px; color:#fff; }
+body.uims-public .recovery-sent-actions a.public-button:hover { background:var(--rc-blue); border-color:var(--rc-blue); }
+.recovery-again { justify-self:center; min-height:44px; padding:8px 14px; border:0; border-radius:6px; background:none; color:var(--brand-text,var(--rc-navy)); font-family:inherit; font-size:15px; font-weight:600; line-height:1.4; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
+.recovery-again:hover { color:var(--rc-blue); }
+[data-theme="dark"] .recovery-again { color:var(--ui-primary-text,#9cc7ef); }
+
+/* Information note. */
+.recovery-info { display:flex; align-items:flex-start; gap:20px; margin-top:30px; }
+.recovery-info-icon { flex:none; display:grid; place-items:center; width:48px; height:48px; border-radius:50%; background:var(--rc-soft); color:var(--rc-blue); }
+[data-theme="dark"] .recovery-info-icon { color:var(--ui-primary-text,#9cc7ef); }
+.recovery-info-icon svg { width:22px; height:22px; }
+.recovery-info p { margin:0; font-size:15px; line-height:1.62; color:var(--rc-text); }
+body.uims-public .recovery-return { margin:18px 0 0; padding-top:14px; border-top:1px dashed var(--ui-border); font-size:15px; }
+.recovery-return a { display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none; min-height:32px; }
+.recovery-return a:hover { text-decoration:underline; }
+.recovery-return svg { width:18px; height:18px; }
+html[dir="rtl"] .recovery-return svg { transform:scaleX(-1); }
+
+/* Narrower desktops and landscape tablets keep the side-by-side layout with a smaller card. */
+@media(max-width:1280px) { .login-campus-layout.recovery-campus-layout { grid-template-columns:minmax(0,440px) 1fr; } .recovery-card .login-id-body { padding:24px 28px 26px; } }
+@media(max-width:1100px) { .login-campus-layout.recovery-campus-layout { grid-template-columns:minmax(0,410px) 1fr; } body.uims-public .recovery-campus .recovery-card .public-form-intro { font-size:17px; } }
+/* Short desktop screens (1366x768, 1440x810): the whole card stays inside one viewport. */
+@media(min-width:701px) and (max-height:860px) and (min-aspect-ratio:9/10) {
+ .login-campus-layout.recovery-campus-layout { padding-top:108px; padding-bottom:20px; }
+ .recovery-card .login-id-header { padding:28px 24px 14px; }
+ .recovery-card .login-id-header .login-campus-logo { width:58px; }
+ .recovery-card .login-id-holo { width:42px; height:42px; }
+ .recovery-card .login-id-body { padding:18px 30px 20px; }
+ .recovery-card .login-id-kind { margin-bottom:14px; }
+ .recovery-card.login-campus-form h1 { font-size:34px; margin-bottom:8px; }
+ body.uims-public .recovery-campus .recovery-card .public-form-intro { margin-bottom:16px; font-size:16.5px; line-height:1.55; }
+ .recovery-card.login-campus-form .public-field { margin-bottom:16px; }
+ .recovery-card.login-campus-form .public-field label { font-size:16px; margin-bottom:8px; }
+ body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type] { min-height:54px; }
+ .recovery-card .public-hint { margin-top:7px; font-size:13.5px; }
+ body.uims-public .recovery-card .public-button.recovery-submit { min-height:54px; font-size:18px; }
+ .recovery-info { margin-top:18px; gap:16px; }
+ .recovery-info-icon { width:42px; height:42px; }
+ .recovery-info p { font-size:14px; line-height:1.55; }
+ body.uims-public .recovery-return { margin-top:12px; padding-top:10px; }
+}
+/* The sent message already covers the inbox and privacy note. */
+.recovery-campus[data-result="sent"] .recovery-info { display:none; }
+/* Portrait tablets and phones: login-campus.css stacks the scene above the card; only the type scale changes here. */
+@media(max-width:700px),(max-width:1100px) and (max-aspect-ratio:9/10) {
+ .recovery-card .login-id-header { padding:28px 18px 16px; gap:12px; }
+ .recovery-card .login-id-header .login-campus-logo { width:52px; }
+ .recovery-card .login-id-header strong, .recovery-card .login-id-header > div span { font-size:12.5px; }
+ .recovery-card .login-id-holo { width:38px; height:38px; }
+ .recovery-card .login-id-body { padding:20px 20px 22px; }
+ .recovery-card .login-id-kind { margin-bottom:16px; font-size:11.5px; }
+ .recovery-card.login-campus-form h1 { font-size:30px; }
+ body.uims-public .recovery-campus .recovery-card .public-form-intro { font-size:16px; margin-bottom:20px; }
+ .recovery-card.login-campus-form .public-field label { font-size:16px; }
+ body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type] { min-height:54px; font-size:17px; }
+ body.uims-public .recovery-card .public-button.recovery-submit { min-height:54px; font-size:17px; }
+ .recovery-info { gap:14px; margin-top:22px; }
+ .recovery-info-icon { width:40px; height:40px; }
+ .recovery-info p { font-size:14px; }
+ .recovery-sent h2 { font-size:26px; }
+}
+html[lang="ar"] .recovery-card .login-id-kind { letter-spacing:0; }
+html[lang="ar"] .recovery-card.login-campus-form h1 { letter-spacing:0; }
+@media(prefers-reduced-motion:reduce) {
+ .recovery-sent, .recovery-sent-mark path, .recovery-card[data-submitting="true"] .public-button.recovery-submit { animation:none; }
+ .recovery-input svg, body.uims-public .recovery-campus .recovery-card .public-field .recovery-input input[type], body.uims-public .recovery-card .public-button.recovery-submit { transition:none; }
+}

@@ -1,4 +1,4 @@
-﻿
+
 <%@ Page Language="C#" MasterPageFile="~/Layout/Student.master"
     AutoEventWireup="true"
     CodeBehind="OpportunityDetails.aspx.cs"
@@ -304,8 +304,8 @@
                     </div>
                 </div>
 
-                <span class='od-badge <%= CanApply ? "" : "od-badge-unavailable" %>'>
-                    <%: CanApply ? "Open for Applications" : "Unavailable" %>
+                <span class='od-badge <%= ExistingApplication == null && !CanApply ? "od-badge-unavailable" : "" %>'>
+                    <%: ExistingApplication != null ? L.T("Student.Opportunities.Applied") + " \u00B7 " + L.Value("Ui", ExistingApplication.Status) : CanApply ? L.T("Student.Opportunities.Open") : L.T("Student.OpportunityDetails.ApplicationsUnavailable") %>
                 </span>
             </div>
 
@@ -442,16 +442,18 @@
                 </section>
 
                 <section class="od-panel od-apply-panel">
-                    <h3><%: L.T("Student.OpportunityDetails.ReadyToApply") %></h3>
+                    <h3><%: ExistingApplication != null ? L.T("Student.Opportunities.Applied") : L.T("Student.OpportunityDetails.ReadyToApply") %></h3>
 
+                    <% if (ExistingApplication == null) { %>
                     <p>
                         <%: L.T("Student.OpportunityDetails.InterestedInThisOpportunityStartYour") %>
                     </p>
+                    <% } %>
 
-                    <% if (CanApply) { %>
+                    <% if (CanApply || ExistingApplication != null) { %>
 
                         <a class="od-button" href="<%: ApplyUrl %>">
-                            <%: L.T("Student.OpportunityDetails.ApplyNow") %>
+                            <%: ExistingApplication != null ? L.T("Student.MyApplications.ViewApplication") : L.T("Student.OpportunityDetails.ApplyNow") %>
                         </a>
 
                     <% } else { %>

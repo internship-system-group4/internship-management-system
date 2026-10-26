@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ===========================================================================
   UIMS - Group 4
@@ -123,6 +123,14 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Content Include="Layout\WorkspaceChart.ascx" />
+    <Compile Include="Layout\FinalEvaluations.ascx.cs">
+      <DependentUpon>FinalEvaluations.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Layout\FinalEvaluations.ascx.designer.cs">
+      <DependentUpon>FinalEvaluations.ascx</DependentUpon>
+    </Compile>
+    <Content Include="Layout\FinalEvaluations.ascx" />
     <Content Include="Assets\css\interface.css" />
     <Content Include="Assets\css\reference-analytics.css" />
     <Content Include="Assets\js\workspace-charts.js" />
@@ -335,8 +343,8 @@
       <DependentUpon>Opportunities.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Company\ManageOpportunities.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>ManageOpportunities.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Pages\Company\ManageOpportunities.aspx.designer.cs">
       <DependentUpon>ManageOpportunities.aspx</DependentUpon>
@@ -442,7 +450,6 @@
       <DependentUpon>PlacementDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Placements.aspx.cs">
-      <SubType>ASPXCodeBehind</SubType>
       <DependentUpon>Placements.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\Placements.aspx.designer.cs">
@@ -454,6 +461,13 @@
     </Compile>
     <Compile Include="Pages\Coordinator\Students.aspx.designer.cs">
       <DependentUpon>Students.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\SupervisorProfile.aspx.cs">
+      <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>SupervisorProfile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\Coordinator\SupervisorProfile.aspx.designer.cs">
+      <DependentUpon>SupervisorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\Coordinator\StudentCreation.ascx.cs">
       <DependentUpon>StudentCreation.ascx</DependentUpon>
@@ -590,6 +604,11 @@
     <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Layout\NotificationBell.cs" />
     <Compile Include="Pages\Notifications\Feed.ashx.cs" />
+    <Compile Include="Pages\Student\SubmissionFile.ashx.cs" />
+    <Compile Include="Pages\Student\SubmissionDetails.aspx.cs">
+      <DependentUpon>SubmissionDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Pages\Notifications\Inbox.aspx.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
@@ -638,6 +657,7 @@
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\PdfReportService.cs" />
     <Compile Include="Services\StorageService.cs" />
+    <Compile Include="Services\TaskSubmissionStorage.cs" />
     <Compile Include="Services\StudentDocumentService.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -647,6 +667,8 @@
     <Content Include="Pages\Notifications\Feed.ashx" />
     <Content Include="Pages\Notifications\Inbox.aspx" />
     <Content Include="Assets\css\task-workflow.css" />
+    <Content Include="Assets\css\task-dialogs.css" />
+    <Content Include="Assets\js\task-dialogs.js" />
     <Content Include="Default.aspx" />
     <Content Include="App_Data\completion-rules.json" />
     <Content Include="Global.asax" />
@@ -693,10 +715,14 @@
     <Content Include="Assets\css\site.css" />
     <Content Include="Assets\theme.css" />
     <Content Include="Assets\css\coordinator-dashboard.css" />
+    <Content Include="Assets\css\coordinator-sidebar.css" />
     <Content Include="Assets\css\portal-motion.css" />
     <Content Include="Assets\js\portal-motion.js" />
     <Content Include="Assets\js\coordinator-dashboard.js" />
     <Content Include="Assets\css\students.css" />
+    <Content Include="Assets\css\coordinator-ui.css" />
+    <Content Include="Assets\css\coordinator-pages.css" />
+    <Content Include="Assets\js\coordinator-pages.js" />
     <Content Include="Assets\css\applications.css" />
     <Content Include="Assets\css\apply-theme.css" />
     <Content Include="Assets\css\portal-layout.css" />
@@ -706,6 +732,7 @@
     <Content Include="Assets\css\review-system.css" />
     <Content Include="Pages\Coordinator\DemoStudent.aspx" />
     <Content Include="Assets\css\student-progress.css" />
+    <Content Include="Assets\css\student-workspace.css" />
     <Content Include="Assets\css\coordinator-monitoring.css" />
     <Content Include="Assets\css\home.css" />
     <Content Include="Assets\images\home-campus.jpg" />
@@ -765,6 +792,8 @@
     <Content Include="Assets\js\site.js" />
     <Content Include="Assets\js\ui-system.js" />
     <Content Include="Assets\css\ui-system.css" />
+    <Content Include="Assets\css\supervisor-ui.css" />
+    <Content Include="Assets\js\supervisor-ui.js" />
     <Content Include="Assets\css\workspace.css" />
     <Content Include="Assets\js\workspace.js" />
     <Content Include="Assets\css\ui-tokens.css" />
@@ -772,6 +801,9 @@
     <Content Include="Assets\js\login-campus.js" />
     <Content Include="Assets\js\login-campus-scene.js" />
     <Content Include="Assets\js\login-campus-actors.js" />
+    <Content Include="Assets\css\recovery-campus.css" />
+    <Content Include="Assets\js\recovery-campus.js" />
+    <Content Include="Assets\js\recovery-terminal.js" />
     <Content Include="Assets\css\public-footer.css" />
     <Content Include="Assets\css\about.css" />
     <Content Include="Assets\js\about.js" />
@@ -784,7 +816,7 @@
     <Content Include="Layout\ThemeSelector.ascx" />
     <Content Include="Assets\js\contact.js" />
     <Content Include="Assets\images\contact\contact-walkway.jpg" />
-    <Content Include="Assets\images\about\about-film-poster.jpg" />
+    <Content Include="Assets\video\about-film-poster.jpg" />
     <Content Include="Assets\images\university\materials\-578791943103387727.mp4" />
     <Content Include="Assets\js\public-footer.js" />
     <Content Include="Assets\js\public-footer-map.js" />
@@ -872,6 +904,7 @@
     <Content Include="Pages\Coordinator\PlacementDetails.aspx" />
     <Content Include="Pages\Coordinator\Placements.aspx" />
     <Content Include="Pages\Coordinator\Students.aspx" />
+    <Content Include="Pages\Coordinator\SupervisorProfile.aspx" />
     <Content Include="Pages\Coordinator\StudentCreation.ascx" />
     <Content Include="Assets\js\account-creation-modal.js" />
     <Content Include="Assets\js\directory.js" />
@@ -889,6 +922,9 @@
     <Content Include="Pages\Student\Dashboard.aspx" />
     <Content Include="Pages\Student\MyApplications.aspx" />
     <Content Include="Pages\Student\MyTasks.aspx" />
+    <Content Include="Pages\Student\SubmissionFile.ashx" />
+    <Content Include="Pages\Student\SubmissionDetails.aspx" />
+    <Content Include="Assets\css\student-submission.css" />
     <Content Include="Pages\Student\Opportunities.aspx" />
     <Content Include="Pages\Student\OpportunityDetails.aspx" />
     <Content Include="Pages\Student\Profile.aspx" />

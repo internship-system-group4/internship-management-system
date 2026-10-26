@@ -16,12 +16,12 @@ namespace InternshipManagementSystem.Data
             entity.Id = id;
         }
 
-        /// <summary>Saves a grade or a revision request and tells the student.</summary>
-        public override string Insert(TaskEvaluation entity)
+        /// <summary>A new grade or revision request tells the student.</summary>
+        protected override bool SendNotice(TaskEvaluation previous, TaskEvaluation current)
         {
-            string id = base.Insert(entity);
-            if (!string.IsNullOrEmpty(id)) Services.NotificationService.TaskReviewed(entity);
-            return id;
+            if (previous != null) return false;
+            Services.NotificationService.TaskReviewed(current);
+            return true;
         }
 
         public List<TaskEvaluation> GetByTask(string taskId)

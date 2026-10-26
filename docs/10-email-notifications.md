@@ -62,6 +62,7 @@ Existing `Notification` entries with `Message` and `Link` remain readable. New e
 | Training hours approved or rejected | Student |
 | Public academic feedback added or updated | Student; hidden comments produce no student notice |
 | Company final evaluation submitted | Academic supervisor and active coordinators |
+| Approved completion certificate shared by the assigned company supervisor | Trainee; link opens the protected PDF after coordinator approval |
 | Academic final evaluation submitted | Active coordinators |
 | Completion awaits a final evaluation | Relevant assigned supervisor |
 | Completion enters coordinator review | Active coordinators |
@@ -73,7 +74,11 @@ Final-evaluation emails and inbox entries contain no scores, confidential commen
 
 ## Integration
 
-`NotifyingRepositoryBase<T>` covers successful `Insert`, `Save`, and `Update` calls. Specialized conditional writes in applications, placements, evaluations and completion review have explicit post-save hooks. `NotificationService.Send` is the compatibility entry point for existing group, opportunity and meeting workflows; it uses the same inbox/email delivery method.
+`NotifyingRepositoryBase<T>` covers successful `Insert`, `Save`, and `Update` calls. Specialized conditional writes in applications, placements, evaluations and completion review have explicit post-save hooks.
+
+Each event writes exactly one inbox entry. For the events listed in `docs/23-notifications.md` (new task, submission/resubmission, grade/revision request, application, decision, placement confirmation, visible academic comment, hours, final evaluations), `Services/NotificationService.cs` writes the bilingual entry with a deep link, and this service sends only the email (`EmailNotificationService.Saved(previous, current, writeInbox: false)`, or a repository's `SendNotice` override returning true). Other events (task edits and reassignment, supervisor changes, placement cancellation, completion waiting states, generic meeting edits) keep this service's English inbox entry plus the email. `EmailStatus` is recorded only on this service's own inbox entries.
+
+Group changes, published opportunities, the student welcome, meeting requests and replies, completion decisions and the company final evaluation page are handled by `NotificationService` alone: it saves the bell notice and then emails the same English text through `EmailNotificationService.EmailOnly` (one email per address per event, skipped when `Email.Enabled` is false or the person has no address). Completion emails to the student never contain the result or the coordinator's note; they use `Notify.CompletionApprovedNoResult`, `CompletionReturnedNoNote` or `CompletionRejectedNoNote`. Publishing an opportunity emails every eligible student while the page waits (up to five seconds per address if SMTP is slow).
 
 `TaskWorkflowService` handles assignment authorization, submission attempts, rubric-weighted evaluation and revision requests. Each submission/review and its status changes use a single Firebase multi-path PATCH. Earlier attempts are retained. Browser retries within one application instance are serialized and already-submitted/reviewed states are rejected. Multiple worker processes still need distributed idempotency before claiming exactly-once behavior.
 

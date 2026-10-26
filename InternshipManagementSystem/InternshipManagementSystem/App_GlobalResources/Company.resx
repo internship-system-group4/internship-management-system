@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -90,6 +90,18 @@
   <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>Choose a student from the list to review their profile, documents, and application.</value></data>
   <data name="Applications.ShowingApplications" xml:space="preserve"><value>Showing {0} of {1} applications</value></data>
   <data name="Applications.SoftSkills" xml:space="preserve"><value>Soft skills</value></data>
+  <data name="Applications.StudentProfile" xml:space="preserve"><value>Student profile</value></data>
+  <data name="Applications.Skills" xml:space="preserve"><value>Skills</value></data>
+  <data name="Applications.ConfirmAcceptTitle" xml:space="preserve"><value>Accept this application?</value></data>
+  <data name="Applications.ConfirmAcceptText" xml:space="preserve"><value>{0} will be offered a place in {1}.</value></data>
+  <data name="Applications.ConfirmAcceptPoint1" xml:space="preserve"><value>The student will see your decision right away.</value></data>
+  <data name="Applications.ConfirmAcceptPoint2" xml:space="preserve"><value>The placement starts only after the student confirms the offer.</value></data>
+  <data name="Applications.ConfirmRejectTitle" xml:space="preserve"><value>Reject this application?</value></data>
+  <data name="Applications.ConfirmRejectText" xml:space="preserve"><value>{0}'s application for {1} will be rejected.</value></data>
+  <data name="Applications.ConfirmRejectPoint1" xml:space="preserve"><value>The student will see the reason you wrote.</value></data>
+  <data name="Applications.ConfirmRejectPoint2" xml:space="preserve"><value>This decision cannot be undone.</value></data>
+  <data name="Applications.YourReason" xml:space="preserve"><value>Your reason</value></data>
+  <data name="Applications.GoBack" xml:space="preserve"><value>Go back</value></data>
   <data name="Applications.StudentApplications" xml:space="preserve"><value>Student applications</value></data>
   <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>The student has confirmed this offer.</value></data>
   <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>The student has been offered a place and still needs to confirm it.</value></data>
@@ -807,4 +819,46 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>Unable to load opportunity details.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>weeks</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>Your account is not linked to a company.</value></data>
+  <data name="TaskReview.AttemptFact" xml:space="preserve"><value>Attempt {0}</value></data>
+  <data name="TaskReview.RequestChangesHelp" xml:space="preserve"><value>Tell {0} what to fix in "{1}". The task goes back to them so they can resubmit.</value></data>
+  <data name="TaskReview.ResubmissionOf" xml:space="preserve"><value>Resubmission · Attempt {0} — what you asked to change</value></data>
+  <data name="TaskReview.NoEarlierRequest" xml:space="preserve"><value>No instructions were saved with the earlier request.</value></data>
+  <data name="TaskReview.ChangesRequestedTitle" xml:space="preserve"><value>Changes requested</value></data>
+  <data name="TaskReview.EvaluationSavedTitle" xml:space="preserve"><value>Evaluation saved</value></data>
+  <data name="TaskReview.ChangesRequestedText" xml:space="preserve"><value>{0} was notified and can now resubmit "{1}". The new attempt will appear in your submissions list.</value></data>
+  <data name="TaskReview.EvaluationSavedText" xml:space="preserve"><value>The grade and feedback for "{1}" are now visible to {0}.</value></data>
+  <data name="TaskReview.ScoreFact" xml:space="preserve"><value>Score {0} / {1}</value></data>
+  <data name="TaskReview.Cancel" xml:space="preserve"><value>Cancel</value></data>
+  <data name="TaskReview.ChangesToMake" xml:space="preserve"><value>Changes the trainee should make</value></data>
+  <data name="TaskReview.ChangesPlaceholder" xml:space="preserve"><value>For example: add input validation to the form and explain how you tested it.</value></data>
+  <data name="TaskReview.ChangesHelp" xml:space="preserve"><value>Be specific — the trainee sees this text exactly as you write it.</value></data>
+  <data name="TaskReview.WhatHappensNext" xml:space="preserve"><value>What happens next</value></data>
+  <data name="TaskReview.RequestChangesNext" xml:space="preserve"><value>The trainee is notified, the task becomes "Revision requested", and this attempt stays in the history.</value></data>
+  <data name="TaskReview.SendRequest" xml:space="preserve"><value>Send request</value></data>
+  <data name="TaskReview.Saving" xml:space="preserve"><value>Saving…</value></data>
+  <data name="TaskReview.BackToSubmissions" xml:space="preserve"><value>Back to submissions</value></data>
+  <data name="TaskReview.Done" xml:space="preserve"><value>Done</value></data>
+  <data name="ManageOpportunities.ConfirmAction" xml:space="preserve"><value>Confirm action</value></data>
+  <data name="ManageOpportunities.ActivateTitle" xml:space="preserve"><value>Activate opportunity</value></data>
+  <data name="ManageOpportunities.DeactivateTitle" xml:space="preserve"><value>Deactivate opportunity</value></data>
+  <data name="ManageOpportunities.ActivateLabel" xml:space="preserve"><value>Activate</value></data>
+  <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>Deactivate</value></data>
+  <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>Activate “{0}”? Students can apply again if the deadline has not passed and seats are available.</value></data>
+  <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>Deactivate “{0}”? New applications will stop. Existing applications will be preserved.</value></data>
+  <data name="Applications.LoadingDetails" xml:space="preserve"><value>Loading candidate details…</value></data>
+  <data name="Applications.DetailsLoadFailed" xml:space="preserve"><value>Could not load details. Try again using the link below.</value></data>
+  <data name="FinalEvaluation.SelectTraineePrompt" xml:space="preserve"><value>-- Select a trainee to evaluate --</value></data>
+  <data name="FinalEvaluation.UnassignedPlacement" xml:space="preserve"><value>This trainee is not assigned to your supervision.</value></data>
+  <data name="FinalEvaluation.SubmittedStatus" xml:space="preserve"><value>Final evaluation submitted</value></data>
+  <data name="FinalEvaluation.SubmittedTitle" xml:space="preserve"><value>Evaluation submitted</value></data>
+  <data name="FinalEvaluation.SubmittedMessage" xml:space="preserve"><value>The company evaluation was submitted to the academic supervisor. Completion and report release still require coordinator approval.</value></data>
+  <data name="FinalEvaluation.InvalidScoreRange" xml:space="preserve"><value>Enter whole-number scores from zero up to the maximum shown for each criterion.</value></data>
+  <data name="FinalEvaluation.PreviewNotice" xml:space="preserve"><value>Draft preview only. This is not an approved completion document. Final reports require coordinator approval.</value></data>
+  <data name="FinalEvaluation.SendApprovedCertificate" xml:space="preserve"><value>Send approved certificate to trainee</value></data>
+  <data name="FinalEvaluation.CertificateRequiresApproval" xml:space="preserve"><value>Available only after the coordinator approves completion. The trainee receives the official PDF link, not this draft preview.</value></data>
+  <data name="FinalEvaluation.CertificateAwaitingApproval" xml:space="preserve"><value>The approved certificate is not available yet. Ask the coordinator to complete the approval first.</value></data>
+  <data name="FinalEvaluation.CertificateSharedTitle" xml:space="preserve"><value>Certificate shared</value></data>
+  <data name="FinalEvaluation.CertificateSharedMessage" xml:space="preserve"><value>The trainee can open the approved certificate from their notifications.</value></data>
+  <data name="FinalEvaluation.CertificateShareFailed" xml:space="preserve"><value>Could not share the certificate. Please try again.</value></data>
+  <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>Evaluation criteria (UIMS project)</value></data>
 </root>

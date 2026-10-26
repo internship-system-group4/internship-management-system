@@ -161,7 +161,9 @@ namespace InternshipManagementSystem.Data
                 return existing.Id;
             }
 
+            // One bilingual notice for the invited person, plus the invitation email.
             Services.NotificationService.MeetingChanged(meeting, actorId, meeting.RequestedToId, "MeetingRequest");
+            Services.EmailNotificationService.Saved(null, meeting, false);
 
             return meeting.Id;
         }
@@ -174,12 +176,17 @@ namespace InternshipManagementSystem.Data
             matchedPlacement = null;
             PlacementRepository placements = new PlacementRepository();
             Student recipientStudent = recipient as Student;
+            if (requester is Coordinator &&
+                (recipient is AcademicSupervisor || recipient is CompanySupervisor))
+                return true;
+
             CompanySupervisor requesterCompany = requester as CompanySupervisor;
             if (requesterCompany != null && recipientStudent != null)
             {
                 Placement placement = placements.GetById(recipientStudent.Id);
                 if (!IsCurrentPlacement(placement) || placement.StudentId != recipientStudent.Id ||
-                    placement.CompanyId != requesterCompany.CompanyId) return false;
+                    placement.CompanyId != requesterCompany.CompanyId ||
+                    placement.CompanySupervisorId != requesterCompany.Id) return false;
                 matchedPlacement = placement;
                 return true;
             }
@@ -189,7 +196,11 @@ namespace InternshipManagementSystem.Data
             {
                 Placement placement = placements.GetById(recipientStudent.Id);
                 bool assigned = recipientStudent.AcademicSupervisorId == requesterAcademic.Id ||
-                    (IsCurrentPlacement(placement) && placement.AcademicSupervisorId == requesterAcademic.Id);
+                    (IsCurrentPlacement(placement) && placement.AcademicSupervisorId == requesterAcademic.Id) ||
+                    new GroupRepository().GetAll().Any(group =>
+                        group.AcademicSupervisorId == requesterAcademic.Id &&
+                        (group.Id == recipientStudent.GroupId ||
+                         (group.StudentIds != null && group.StudentIds.Contains(recipientStudent.Id))));
                 if (!assigned) return false;
                 matchedPlacement = IsCurrentPlacement(placement) ? placement : null;
                 return true;
@@ -206,7 +217,11 @@ namespace InternshipManagementSystem.Data
                 if (academicRecipient != null)
                 {
                     bool assigned = requesterStudent.AcademicSupervisorId == academicRecipient.Id ||
-                        (hasCurrentPlacement && placement.AcademicSupervisorId == academicRecipient.Id);
+                        (hasCurrentPlacement && placement.AcademicSupervisorId == academicRecipient.Id) ||
+                        new GroupRepository().GetAll().Any(group =>
+                            group.AcademicSupervisorId == academicRecipient.Id &&
+                            (group.Id == requesterStudent.GroupId ||
+                             (group.StudentIds != null && group.StudentIds.Contains(requesterStudent.Id))));
                     if (!assigned) return false;
                     matchedPlacement = hasCurrentPlacement ? placement : null;
                     return true;
@@ -222,7 +237,7 @@ namespace InternshipManagementSystem.Data
                 }
             }
 
-            // Coordinators and unrelated roles cannot create meeting requests.
+            // Unrelated roles cannot create meeting requests.
             return false;
         }
 
@@ -343,6 +358,7 @@ namespace InternshipManagementSystem.Data
             }
 
             Services.NotificationService.MeetingChanged(meeting, actorId, recipient, title);
+            Services.EmailNotificationService.Saved(Json.Deserialize<Meeting>(raw), meeting, false);
         }
     }
 }

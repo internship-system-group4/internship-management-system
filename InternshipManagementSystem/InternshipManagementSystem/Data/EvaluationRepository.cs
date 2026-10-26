@@ -1,4 +1,4 @@
-// =============================================================================
+﻿// =============================================================================
 //  UIMS - Group 4   |   Owner: Ahmad  (Trello card X02)
 //  Task evaluations and the two confidential final evaluations.
 // =============================================================================
@@ -70,7 +70,12 @@ namespace InternshipManagementSystem.Data
             if (Services.CompletionReviewService.IsFinal(new CompletionRepository().GetByPlacement(placement.Id)))
                 throw new InvalidOperationException("Completion is finalized; task evidence is read-only.");
             string id = PushWithId(Constants.Paths.TaskEvaluations, evaluation);
-            if (!string.IsNullOrEmpty(id)) Services.EmailNotificationService.Saved(null, evaluation);
+            if (!string.IsNullOrEmpty(id))
+            {
+                // One bilingual notice for the student, plus the email.
+                Services.NotificationService.TaskReviewed(evaluation);
+                Services.EmailNotificationService.Saved(null, evaluation, false);
+            }
             return id;
         }
 
@@ -87,6 +92,8 @@ namespace InternshipManagementSystem.Data
 
         public string SaveCompanyFinal(FinalCompanyEvaluation evaluation)
         {
+            if (evaluation == null || evaluation.IsSubmitted && !Services.CompletionReviewService.ValidScore(evaluation.TotalScore, evaluation.MaxScore))
+                throw new InvalidOperationException("Enter a valid evaluation score and maximum.");
             var placement = AuthorizeFinalWrite(evaluation.PlacementId, false);
             if (evaluation.StudentId != placement.StudentId || evaluation.CompanyId != placement.CompanyId || evaluation.SupervisorId != SessionHelper.Current.Id)
                 throw new UnauthorizedAccessException("Company evaluation identity does not match this placement.");
@@ -101,7 +108,10 @@ namespace InternshipManagementSystem.Data
             evaluation.Id = key;
             if (!FirebaseContext.PutIfVersion(Constants.Paths.CompanyEvaluations + "/" + key, evaluation, etag))
                 throw new InvalidOperationException("Another request submitted this evaluation. Reload before retrying.");
-            Services.EmailNotificationService.Saved(previous, evaluation);
+            // A submitted form tells the academic supervisor and the coordinators
+            // (a draft sends nothing). The email service only adds the email.
+            Services.NotificationService.CompanyFinalSubmitted(evaluation);
+            Services.EmailNotificationService.Saved(previous, evaluation, false);
             return key;
         }
         // ---- final academic evaluation: CONFIDENTIAL --------------------
@@ -117,6 +127,8 @@ namespace InternshipManagementSystem.Data
 
         public string SaveAcademicFinal(FinalAcademicEvaluation evaluation)
         {
+            if (evaluation == null || evaluation.IsSubmitted && !Services.CompletionReviewService.ValidScore(evaluation.TotalScore, evaluation.MaxScore))
+                throw new InvalidOperationException("Enter a valid evaluation score and maximum.");
             var placement = AuthorizeFinalWrite(evaluation.PlacementId, true);
             if (evaluation.StudentId != placement.StudentId || evaluation.AcademicSupervisorId != SessionHelper.Current.Id)
                 throw new UnauthorizedAccessException("Academic evaluation identity does not match this placement.");
@@ -134,7 +146,9 @@ namespace InternshipManagementSystem.Data
             evaluation.Id = key;
             if (!FirebaseContext.PutIfVersion(Constants.Paths.AcademicEvaluations + "/" + key, evaluation, etag))
                 throw new InvalidOperationException("Another request submitted this evaluation. Reload before retrying.");
-            Services.EmailNotificationService.Saved(previous, evaluation);
+            // A submitted form tells the coordinators (a draft sends nothing).
+            Services.NotificationService.AcademicFinalSubmitted(evaluation);
+            Services.EmailNotificationService.Saved(previous, evaluation, false);
             return key;
         }
         // ----------------------------------------------------------------

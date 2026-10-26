@@ -8,6 +8,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
     public partial class MyApplications : Security.StudentPage
     {
         protected Placement ConfirmedPlacement;
+        protected int ApplicationCount;
         protected override void OnInit(EventArgs e)
         {
             ViewStateUserKey = Session.SessionID;
@@ -32,7 +33,10 @@ namespace InternshipManagementSystem.Pages.StudentArea
                     PlacementTitle.Text = ConfirmedPlacement.OpportunityTitle;
                     PlacementCompany.Text = ConfirmedPlacement.CompanyName;
                 }
-                var applications = new ApplicationRepository().GetByStudent(CurrentStudent.Id);
+                var applications = ApplicationRepository.DistinctForStudent(
+                    new ApplicationRepository().GetWhere("StudentId", CurrentStudent.Id),
+                    ConfirmedPlacement == null ? null : ConfirmedPlacement.ApplicationId);
+                ApplicationCount = applications.Count;
                 ApplicationRepeater.DataSource = applications;
                 ApplicationRepeater.DataBind();
                 EmptyPanel.Visible = applications.Count == 0;
@@ -40,6 +44,16 @@ namespace InternshipManagementSystem.Pages.StudentArea
             catch (FirebaseException) { ShowError(L.T("Student.MyApplications.WeCouldNotLoadApplicationsRefresh")); }
             catch (InvalidOperationException) { ShowError(L.T("Student.MyApplications.TheApplicationServiceIsNotConfigured")); }
         }
+        protected string CompanyNameFor(object item)
+        {
+            var application = item as InternshipApplication;
+            if (application == null) return L.T("Student.Opportunities.NotSpecified");
+            if (!string.IsNullOrWhiteSpace(application.CompanyName)) return application.CompanyName;
+            if (ConfirmedPlacement != null && ConfirmedPlacement.ApplicationId == application.Id &&
+                !string.IsNullOrWhiteSpace(ConfirmedPlacement.CompanyName)) return ConfirmedPlacement.CompanyName;
+            return L.T("Student.Opportunities.NotSpecified");
+        }
+
         protected bool CanConfirm(object item)
         {
             return ConfirmedPlacement == null && ((InternshipApplication)item).Status == ApplicationStatus.Accepted;

@@ -11,18 +11,20 @@
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <script>document.documentElement.classList.add('rv-js');setTimeout(function(){if(!window.UimsReview)document.documentElement.classList.remove('rv-js');},2500);</script>
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261024-theme-7") %>" />
-    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/student-progress.css?v=20261024-theme-20") %>" />
-
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/review-system.css?v=20261024-qa-20261024-8") %>" />
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/student-progress.css?v=20261024-qa-20261024-8") %>" />
 </asp:Content>
 
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="rv-scope pg-page">
 
-    <header class="rv-heading" data-rv-reveal>
+    <header class="rv-heading student-workspace-hero" data-rv-reveal>
         <div>
+            <span class="rv-eyebrow"><%: L.T("Student.Progress.Eyebrow") %></span>
             <h2><%: L.T("Student.Progress.MyProgressEvaluation") %></h2>
+            <p><%: L.T("Student.Progress.YourTaskGradesSupervisorFeedbackApproved") %></p>
         </div>
+        <span class="student-hero-metric"><strong><bdi dir="ltr"><%: CompletedRun %> / <%: Journey.Count %></bdi></strong><span><%: L.T("Student.Workspace.JourneyCompletion") %></span></span>
     </header>
 
     <% if (LoadFailed) { %>
@@ -125,13 +127,13 @@
     <section class="rv-card" aria-labelledby="pgTasksTitle" data-rv-reveal>
         <div class="rv-card-head">
             <div><h3 id="pgTasksTitle"><span class="rv-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h9"/></svg></span><%: L.T("Student.Progress.TaskEvaluationsFeedback") %></h3><p><%: L.T("Student.Progress.EachTaskIsGradedOutOf") %></p></div>
-            <div class="pg-task-tools"><button type="button" class="pg-history-toggle" data-pg-task-toggle data-show-all-label="<%: L.T("Student.Progress.ShowAllTasks") %>" data-show-one-label="<%: L.T("Student.Progress.ShowLatestTask") %>" data-no-extra-label="<%: L.T("Student.Progress.AllTasksShown") %>" aria-controls="pgTaskTable" aria-expanded="false"><span data-pg-task-toggle-label><%: L.T("Student.Progress.ShowAllTasks") %></span><% if (Tasks.Count > 1) { %><span class="pg-history-count"><%: Tasks.Count - 1 %></span><% } %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button><a class="rv-link" href="<%: ResolveUrl("~/Pages/Student/MyTasks.aspx") %>"><%: L.T("Student.Progress.OpenMyTasks") %></a></div>
+            <a class="rv-link" href="<%: ResolveUrl("~/Pages/Student/MyTasks.aspx") %>"><%: L.T("Student.Progress.OpenMyTasks") %></a>
         </div>
         <% if (Tasks.Count == 0) { %>
             <div class="rv-card-body"><div class="rv-empty"><%: L.T("Student.Progress.NoTasksHaveBeenAssignedTo") %></div></div>
         <% } else { %>
         <div class="rv-table-scroll" tabindex="0" role="region" aria-labelledby="pgTasksTitle">
-            <table class="rv-table pg-task-table" id="pgTaskTable">
+            <table class="rv-table pg-task-table">
                 <thead><tr>
                     <th scope="col"><%: L.T("Student.Progress.Task") %></th>
                     <th scope="col"><%: L.T("Student.Progress.Deadline") %></th>
@@ -141,9 +143,9 @@
                     <th scope="col"><%: L.T("Student.Progress.SupervisorFeedback") %></th>
                 </tr></thead>
                 <tbody>
-                <% for (int taskIndex = 0; taskIndex < Tasks.Count; taskIndex++) { var row = Tasks[taskIndex]; %>
-                    <tr class="pg-task-row <%: taskIndex > 0 ? "pg-task-extra" : "" %>" tabindex="0" data-pg-task-row aria-haspopup="dialog" aria-controls="pgTaskDialog">
-                        <td><button type="button" class="pg-task-trigger" data-pg-open-task aria-label="<%: row.Title %> — <%: L.T("Student.MyTasks.ViewDetails") %>"><strong><%: row.Title %></strong><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg></button></td>
+                <% foreach (var row in Tasks) { %>
+                    <tr>
+                        <td><strong><%: row.Title %></strong></td>
                         <td class="rv-num"><%: row.Deadline %><% if (!string.IsNullOrEmpty(row.DueText)) { %><small class="pg-due <%: row.DueCss %>"><%: row.DueText %></small><% } %></td>
                         <td><span class="<%: row.StatusCss %>"><%: row.Status %></span></td>
                         <td class="rv-num"><%: row.Attempts %></td>
@@ -163,26 +165,18 @@
             </table>
         </div>
         <% } %>
-        <dialog class="pg-task-dialog" id="pgTaskDialog" aria-labelledby="pgTaskDialogTitle">
-            <div class="pg-task-dialog-head">
-                <div><span><%: L.T("Student.MyTasks.ViewDetails") %></span><h3 id="pgTaskDialogTitle"></h3></div>
-                <form method="dialog"><button class="pg-task-dialog-x" value="close" aria-label="<%: L.T("Student.MyTasks.Close") %>">&times;</button></form>
-            </div>
-            <dl class="pg-task-dialog-details" id="pgTaskDialogDetails"></dl>
-            <div class="pg-task-dialog-foot"><form method="dialog"><button class="pg-task-dialog-close" value="close"><%: L.T("Student.MyTasks.Close") %></button></form></div>
-        </dialog>
     </section>
 
     <%-- ================= Submission & revision history ================= --%>
     <section class="rv-card" aria-labelledby="pgHistoryTitle" data-rv-reveal>
-        <div class="rv-card-head"><div><h3 id="pgHistoryTitle"><span class="rv-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span><%: L.T("Student.Progress.SubmissionsRevisionHistory") %></h3><p><%: L.F("Student.Progress.HistoryNote", Attempts.Count) %></p></div><button type="button" class="pg-history-toggle" data-pg-history-toggle data-show-all-label="<%: L.T("Student.Progress.ShowAllHistory") %>" data-show-latest-label="<%: L.T("Student.Progress.ShowLatestOnly") %>" data-no-extra-label="<%: L.T("Student.Progress.AllAttemptsShown") %>" aria-controls="pgTimeline" aria-expanded="false"><span data-pg-history-label><%: L.T("Student.Progress.ShowAllHistory") %></span><% if (Attempts.Count > 1) { %><span class="pg-history-count"><%: Attempts.Count - 1 %></span><% } %><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div>
+        <div class="rv-card-head"><div><h3 id="pgHistoryTitle"><span class="rv-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/><path d="M12 7v5l3 2"/></svg></span><%: L.T("Student.Progress.SubmissionsRevisionHistory") %></h3><p><%: L.F("Student.Progress.HistoryNote", Attempts.Count) %></p></div></div>
         <div class="rv-card-body">
         <% if (Attempts.Count == 0) { %>
             <div class="rv-empty"><div><%: L.T("Student.Progress.YouHaveNotSubmittedAnyWork") %> <a href="<%: ResolveUrl("~/Pages/Student/MyTasks.aspx") %>"><%: L.T("Student.Progress.MyTasks") %></a>.</div></div>
         <% } else { %>
-            <ol class="pg-timeline" id="pgTimeline">
+            <ol class="pg-timeline">
             <% for (int i = 0; i < Attempts.Count; i++) { var a = Attempts[i]; %>
-                <li class="is-<%: a.Tone %> <%: i > 0 ? "pg-history-extra" : "" %>" data-rv-reveal style="--rv-i:<%: Math.Min(i, 8) %>">
+                <li class="is-<%: a.Tone %>" data-rv-reveal style="--rv-i:<%: Math.Min(i, 8) %>">
                     <span class="pg-timeline-dot" aria-hidden="true"></span>
                     <div class="pg-timeline-card">
                         <div class="pg-timeline-head"><strong><%: a.TaskTitle %></strong><span class="pg-attempt rv-num"><%: L.F("Student.Progress.AttemptNumber", a.Attempt) %></span><span class="rv-badge is-<%: a.Tone %>"><%: a.Outcome %></span></div>
@@ -197,10 +191,61 @@
         </div>
     </section>
 
+    <%-- ================= Training hours ================= --%>
+    <section class="rv-card" aria-labelledby="pgHoursTitle" data-rv-reveal>
+        <div class="rv-card-head"><div><h3 id="pgHoursTitle"><span class="rv-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><%: L.T("Student.Progress.TrainingHours") %></h3><p><%: L.T("Student.Progress.OnlyHoursApprovedByYourSupervisor") %></p></div></div>
+        <div class="rv-card-body">
+            <div class="pg-hours">
+                <div class="pg-hours-main">
+                    <strong class="rv-num"><%: L.F("Student.Progress.HoursOfRequired", ApprovedHours, RequiredHours) %></strong>
+                    <p><%: RequiredHours > 0 ? L.F("Student.Progress.PercentOfRequired", HoursPercent) : L.T("Student.Progress.TargetNotSet") %></p>
+                    <div class="rv-meter <%: RequiredHours > 0 && ApprovedHours >= RequiredHours ? "is-complete" : "" %>" role="progressbar" aria-label="<%: L.T("Student.Progress.ApprovedHoursProgress") %>" aria-valuemin="0" aria-valuemax="<%: RequiredHours %>" aria-valuenow="<%: Math.Min(ApprovedHours, Math.Max(RequiredHours, 0)) %>" aria-valuetext="<%: L.F("Student.Progress.HoursValueText", ApprovedHours, RequiredHours, HoursPercent) %>" data-rv-value="<%: HoursPercent %>" data-rv-pending><span></span></div>
+                    <% if (IsInternational) { %><p class="rv-note pg-intl-note"><%: L.T("Student.Progress.HoursInternationalNote") %></p><% } %>
+                </div>
+                <dl class="pg-hours-split">
+                    <div class="is-done"><dt><%: L.T("Student.Progress.Approved") %></dt><dd class="rv-num"><%: ApprovedHours %> h</dd></div>
+                    <div class="is-pending"><dt><%: L.T("Student.Progress.PendingApproval") %></dt><dd class="rv-num"><%: PendingHours %> h</dd></div>
+                    <div class="is-rejected"><dt><%: L.T("Student.Progress.Rejected") %></dt><dd class="rv-num"><%: RejectedHours %> h</dd></div>
+                </dl>
+            </div>
+            <% if (CanReportHours) { %>
+            <div class="pg-report-hours">
+                <div><h4><%: L.T("Student.Progress.LogHours") %></h4><p><%: L.T("Student.Progress.LogHoursHint") %></p></div>
+                <div class="pg-report-hours-grid">
+                    <div><asp:Label ID="lblWorkDate" runat="server" AssociatedControlID="txtWorkDate" Text="<%$ Resources:Student, Progress.WorkDate %>" /><asp:TextBox ID="txtWorkDate" runat="server" TextMode="Date" CssClass="form-control" required="required" /></div>
+                    <div><asp:Label ID="lblWorkedHours" runat="server" AssociatedControlID="txtWorkedHours" Text="<%$ Resources:Student, Progress.HoursWorked %>" /><asp:TextBox ID="txtWorkedHours" runat="server" TextMode="Number" CssClass="form-control" min="1" max="24" required="required" /></div>
+                    <div class="pg-report-description"><asp:Label ID="lblWorkDescription" runat="server" AssociatedControlID="txtWorkDescription" Text="<%$ Resources:Student, Progress.WorkDescription %>" /><asp:TextBox ID="txtWorkDescription" runat="server" TextMode="MultiLine" Rows="2" MaxLength="500" CssClass="form-control" required="required" /></div>
+                    <div class="pg-report-submit"><asp:Button ID="btnReportHours" runat="server" Text="<%$ Resources:Student, Progress.SubmitHours %>" CssClass="btn btn-primary" OnClick="btnReportHours_Click" /></div>
+                </div>
+                <asp:Label ID="lblHoursMessage" runat="server" Visible="false" EnableViewState="false" role="status" />
+            </div>
+            <% } else { %>
+            <p class="rv-note pg-intl-note"><%: L.T("Student.Progress.HoursReportingClosed") %></p>
+            <% } %>
+            <% if (HoursLog.Count == 0) { %>
+                <div class="rv-empty"><%: L.T("Student.Progress.NoTrainingHoursHaveBeenRecorded") %></div>
+            <% } else { %>
+            <details class="pg-log" <%: HoursLog.Count <= 6 ? "open" : "" %>>
+                <summary><%: L.F("Student.Progress.HoursLog", HoursLog.Count) %></summary>
+                <div class="rv-table-scroll" tabindex="0" role="region" aria-labelledby="pgHoursTitle">
+                    <table class="rv-table">
+                        <thead><tr><th scope="col"><%: L.T("Student.Progress.Date") %></th><th scope="col"><%: L.T("Student.Progress.Hours") %></th><th scope="col"><%: L.T("Student.Progress.Description") %></th><th scope="col"><%: L.T("Student.Progress.Status") %></th><th scope="col"><%: L.T("Student.Progress.ReviewerNote") %></th></tr></thead>
+                        <tbody>
+                        <% foreach (var h in HoursLog) { %>
+                            <tr><td class="rv-num"><%: h.Date %></td><td class="rv-num"><%: h.Hours %></td><td><%: h.Description %></td><td><span class="<%: h.StatusCss %>"><%: h.Status %></span></td><td><%: h.Note %></td></tr>
+                        <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </details>
+            <% } %>
+        </div>
+    </section>
+
     <%-- ================= Requirements & documents ================= --%>
     <section class="rv-card" aria-labelledby="pgDocsTitle" data-rv-reveal>
-        <div class="rv-card-head"><div><h3 id="pgDocsTitle"><span class="rv-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="m9 15 2 2 4-4"/></svg></span><%: L.T("Student.Progress.DocsTitle") %></h3><p><%: L.T("Student.Progress.DocsNote") %></p></div><button type="button" class="pg-doc-toggle" data-pg-doc-toggle data-hide-label="<%: L.T("Student.Progress.HideDocuments") %>" data-show-label="<%: L.T("Student.Progress.ShowDocuments") %>" aria-controls="pgDocsList" aria-expanded="true"><span data-pg-doc-toggle-label><%: L.T("Student.Progress.HideDocuments") %></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></div>
-        <ul class="pg-docs" id="pgDocsList">
+        <div class="rv-card-head"><div><h3 id="pgDocsTitle"><span class="rv-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6"/><path d="m9 15 2 2 4-4"/></svg></span><%: L.T("Student.Progress.DocsTitle") %></h3><p><%: L.T("Student.Progress.DocsNote") %></p></div></div>
+        <ul class="pg-docs">
         <% foreach (var d in Docs) { %>
             <li class="is-<%: d.State %>">
                 <span class="pg-doc-mark" aria-hidden="true"></span>
@@ -250,104 +295,8 @@
 
     <% } %>
 </div>
-
 </asp:Content>
 
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
     <script src="<%: ResolveUrl("~/Assets/js/review-system.js?v=20261023-rv6") %>"></script>
-    <script>
-        (function () {
-            "use strict";
-            var table = document.querySelector(".pg-task-table");
-            var dialog = document.getElementById("pgTaskDialog");
-            var details = document.getElementById("pgTaskDialogDetails");
-            var title = document.getElementById("pgTaskDialogTitle");
-            if (!table || !dialog || !details || !title) return;
-
-            function openTask(row) {
-                var cells = Array.prototype.slice.call(row.cells);
-                var headers = Array.prototype.slice.call(table.querySelectorAll("thead th"));
-                var trigger = row.querySelector("[data-pg-open-task]");
-                title.textContent = trigger ? trigger.querySelector("strong").textContent.trim() : "";
-                details.replaceChildren();
-                headers.forEach(function (header, index) {
-                    if (!cells[index]) return;
-                    var item = document.createElement("div");
-                    var label = document.createElement("dt");
-                    var value = document.createElement("dd");
-                    label.textContent = header.textContent.trim();
-                    value.textContent = (cells[index].innerText || cells[index].textContent || "").replace(/\s+/g, " ").trim();
-                    if (!value.textContent) value.textContent = "—";
-                    item.appendChild(label);
-                    item.appendChild(value);
-                    details.appendChild(item);
-                });
-                if (!dialog.open) dialog.showModal();
-            }
-
-            table.addEventListener("click", function (event) {
-                var row = event.target.closest("[data-pg-task-row]");
-                if (row) openTask(row);
-            });
-            table.addEventListener("keydown", function (event) {
-                var row = event.target.closest("[data-pg-task-row]");
-                if (row && (event.key === "Enter" || event.key === " ")) {
-                    event.preventDefault();
-                    openTask(row);
-                }
-            });
-            dialog.addEventListener("click", function (event) {
-                if (event.target === dialog) dialog.close();
-            });
-        }());
-    </script>
-
-    <script>
-        (function () {
-            var toggle = document.querySelector("[data-pg-doc-toggle]");
-            var list = document.getElementById("pgDocsList");
-            if (!toggle || !list) return;
-            toggle.addEventListener("click", function () {
-                var expanded = toggle.getAttribute("aria-expanded") === "true";
-                list.hidden = expanded;
-                toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-                toggle.querySelector("[data-pg-doc-toggle-label]").textContent = expanded ? toggle.getAttribute("data-show-label") : toggle.getAttribute("data-hide-label");
-            });
-        }());
-    </script>
-    <script>
-        (function () {
-            var toggle = document.querySelector("[data-pg-history-toggle]");
-            var timeline = document.getElementById("pgTimeline");
-            if (!toggle || !timeline) return;
-            toggle.addEventListener("click", function () {
-                var expanded = toggle.getAttribute("aria-expanded") === "true";
-                timeline.classList.toggle("is-expanded", !expanded);
-                toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-                toggle.querySelector("[data-pg-history-label]").textContent = expanded ? toggle.getAttribute("data-show-all-label") : toggle.getAttribute("data-show-latest-label");
-                var count = toggle.querySelector(".pg-history-count");
-                if (count) count.hidden = !expanded;
-            });
-        }());
-    </script>
-    <script>
-        (function () {
-            var toggle = document.querySelector("[data-pg-task-toggle]");
-            var table = document.getElementById("pgTaskTable");
-            if (!toggle || !table) return;
-            if (!table.querySelector(".pg-task-extra")) {
-                toggle.disabled = true;
-                toggle.title = toggle.getAttribute("data-no-extra-label");
-                return;
-            }
-            toggle.addEventListener("click", function () {
-                var expanded = toggle.getAttribute("aria-expanded") === "true";
-                table.classList.toggle("is-expanded", !expanded);
-                toggle.setAttribute("aria-expanded", expanded ? "false" : "true");
-                toggle.querySelector("[data-pg-task-toggle-label]").textContent = expanded ? toggle.getAttribute("data-show-all-label") : toggle.getAttribute("data-show-one-label");
-                var count = toggle.querySelector(".pg-history-count");
-                if (count) count.hidden = !expanded;
-            });
-        }());
-    </script>
 </asp:Content>

@@ -7,6 +7,9 @@ html.student-nav-ready body.uims-portal .uims-sidebar {--sidebar-width:76px;}
 html.student-nav-ready body.uims-portal .uims-sidebar[data-expanded=true] {--sidebar-width:264px;}
 .uims-sidebar-heading {position:relative;flex:none;}
 body.uims-portal .uims-sidebar-brand {display:flex;align-items:center;gap:12px;min-height:94px;padding:0 7px;overflow:hidden;border:0;}
+body.uims-portal .uims-sidebar-brand {color:inherit;text-decoration:none;border-radius:8px;}
+body.uims-portal .uims-sidebar-brand:hover {background:var(--ui-neutral-soft);}
+body.uims-portal .uims-sidebar-brand:focus-visible {outline:3px solid var(--ui-focus);outline-offset:2px;}
 body.uims-portal .uims-sidebar-brand img {width:32px;height:auto;flex:none;margin:0;}
 .uims-sidebar-label {display:block;min-width:0;white-space:nowrap;opacity:1;transition:opacity 160ms ease;}
 html.student-nav-ready .uims-sidebar:not([data-expanded=true]) .uims-sidebar-label {opacity:0;visibility:hidden;}

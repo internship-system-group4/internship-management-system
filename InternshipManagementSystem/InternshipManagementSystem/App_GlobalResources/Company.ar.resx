@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -90,6 +90,18 @@
   <data name="Applications.SelectApplicationHelp" xml:space="preserve"><value>اختر طالبًا من القائمة لمراجعة بياناته ومستنداته وطلبه.</value></data>
   <data name="Applications.ShowingApplications" xml:space="preserve"><value>عرض {0} من أصل {1} طلبات</value></data>
   <data name="Applications.SoftSkills" xml:space="preserve"><value>المهارات الشخصية</value></data>
+  <data name="Applications.StudentProfile" xml:space="preserve"><value>ملف الطالب</value></data>
+  <data name="Applications.Skills" xml:space="preserve"><value>المهارات</value></data>
+  <data name="Applications.ConfirmAcceptTitle" xml:space="preserve"><value>قبول هذا الطلب؟</value></data>
+  <data name="Applications.ConfirmAcceptText" xml:space="preserve"><value>سيُعرض على {0} مقعد في {1}.</value></data>
+  <data name="Applications.ConfirmAcceptPoint1" xml:space="preserve"><value>سيرى الطالب قرارك فورًا.</value></data>
+  <data name="Applications.ConfirmAcceptPoint2" xml:space="preserve"><value>يبدأ التدريب فقط بعد أن يؤكد الطالب العرض.</value></data>
+  <data name="Applications.ConfirmRejectTitle" xml:space="preserve"><value>رفض هذا الطلب؟</value></data>
+  <data name="Applications.ConfirmRejectText" xml:space="preserve"><value>سيتم رفض طلب {0} لفرصة {1}.</value></data>
+  <data name="Applications.ConfirmRejectPoint1" xml:space="preserve"><value>سيرى الطالب السبب الذي كتبته.</value></data>
+  <data name="Applications.ConfirmRejectPoint2" xml:space="preserve"><value>لا يمكن التراجع عن هذا القرار.</value></data>
+  <data name="Applications.YourReason" xml:space="preserve"><value>السبب الذي كتبته</value></data>
+  <data name="Applications.GoBack" xml:space="preserve"><value>رجوع</value></data>
   <data name="Applications.StudentApplications" xml:space="preserve"><value>طلبات الطلبة</value></data>
   <data name="Applications.StudentConfirmedOffer" xml:space="preserve"><value>أكّد الطالب قبول هذا العرض.</value></data>
   <data name="Applications.StudentMustConfirmOffer" xml:space="preserve"><value>تم تقديم عرض تدريب للطالب، وما زال عليه تأكيد قبوله.</value></data>
@@ -807,4 +819,46 @@
   <data name="ViewOpportunity.UnableToLoadOpportunityDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل الفرصة.</value></data>
   <data name="ViewOpportunity.Weeks" xml:space="preserve"><value>أسابيع</value></data>
   <data name="ViewOpportunity.YourAccountIsNotLinkedTo" xml:space="preserve"><value>حسابك غير مرتبط بأي شركة.</value></data>
+  <data name="TaskReview.AttemptFact" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="TaskReview.RequestChangesHelp" xml:space="preserve"><value>أخبر {0} بما يجب تعديله في "{1}". تعود المهمة إليه ليعيد تسليمها.</value></data>
+  <data name="TaskReview.ResubmissionOf" xml:space="preserve"><value>إعادة تسليم · المحاولة {0} — التعديلات التي طلبتها</value></data>
+  <data name="TaskReview.NoEarlierRequest" xml:space="preserve"><value>لم تُحفظ تعليمات مع الطلب السابق.</value></data>
+  <data name="TaskReview.ChangesRequestedTitle" xml:space="preserve"><value>تم طلب التعديلات</value></data>
+  <data name="TaskReview.EvaluationSavedTitle" xml:space="preserve"><value>تم حفظ التقييم</value></data>
+  <data name="TaskReview.ChangesRequestedText" xml:space="preserve"><value>تم إشعار {0} ويمكنه الآن إعادة تسليم "{1}". ستظهر المحاولة الجديدة في قائمة التسليمات.</value></data>
+  <data name="TaskReview.EvaluationSavedText" xml:space="preserve"><value>أصبحت العلامة والملاحظات الخاصة بـ "{1}" ظاهرة لـ {0}.</value></data>
+  <data name="TaskReview.ScoreFact" xml:space="preserve"><value>العلامة {0} / {1}</value></data>
+  <data name="TaskReview.Cancel" xml:space="preserve"><value>إلغاء</value></data>
+  <data name="TaskReview.ChangesToMake" xml:space="preserve"><value>التعديلات المطلوبة من المتدرب</value></data>
+  <data name="TaskReview.ChangesPlaceholder" xml:space="preserve"><value>مثال: أضف التحقق من المدخلات في النموذج واشرح كيف اختبرته.</value></data>
+  <data name="TaskReview.ChangesHelp" xml:space="preserve"><value>كن محددًا — يرى المتدرب هذا النص كما تكتبه تمامًا.</value></data>
+  <data name="TaskReview.WhatHappensNext" xml:space="preserve"><value>ماذا يحدث بعد ذلك</value></data>
+  <data name="TaskReview.RequestChangesNext" xml:space="preserve"><value>يصل إشعار إلى المتدرب، وتصبح حالة المهمة "مطلوب تعديلها"، وتبقى هذه المحاولة في السجل.</value></data>
+  <data name="TaskReview.SendRequest" xml:space="preserve"><value>إرسال الطلب</value></data>
+  <data name="TaskReview.Saving" xml:space="preserve"><value>جارٍ الحفظ…</value></data>
+  <data name="TaskReview.BackToSubmissions" xml:space="preserve"><value>العودة إلى التسليمات</value></data>
+  <data name="TaskReview.Done" xml:space="preserve"><value>تم</value></data>
+  <data name="ManageOpportunities.ConfirmAction" xml:space="preserve"><value>تأكيد الإجراء</value></data>
+  <data name="ManageOpportunities.ActivateTitle" xml:space="preserve"><value>تفعيل الفرصة</value></data>
+  <data name="ManageOpportunities.DeactivateTitle" xml:space="preserve"><value>إيقاف الفرصة</value></data>
+  <data name="ManageOpportunities.ActivateLabel" xml:space="preserve"><value>تفعيل</value></data>
+  <data name="ManageOpportunities.DeactivateLabel" xml:space="preserve"><value>إيقاف</value></data>
+  <data name="ManageOpportunities.ActivateMessage" xml:space="preserve"><value>هل تريد تفعيل «{0}»؟ يمكن للطلاب التقديم مجددًا إذا لم ينتهِ الموعد النهائي وكانت هناك مقاعد متاحة.</value></data>
+  <data name="ManageOpportunities.DeactivateMessage" xml:space="preserve"><value>هل تريد إيقاف «{0}»؟ سيتوقف استقبال الطلبات الجديدة مع الاحتفاظ بالطلبات الحالية.</value></data>
+  <data name="Applications.LoadingDetails" xml:space="preserve"><value>جارٍ تحميل تفاصيل المتقدم…</value></data>
+  <data name="Applications.DetailsLoadFailed" xml:space="preserve"><value>تعذّر تحميل التفاصيل. حاول مجددًا باستخدام الرابط أدناه.</value></data>
+  <data name="FinalEvaluation.SelectTraineePrompt" xml:space="preserve"><value>-- اختر متدربًا للتقييم --</value></data>
+  <data name="FinalEvaluation.UnassignedPlacement" xml:space="preserve"><value>هذا المتدرب غير مرتبط بإشرافك.</value></data>
+  <data name="FinalEvaluation.SubmittedStatus" xml:space="preserve"><value>تم إرسال التقييم النهائي</value></data>
+  <data name="FinalEvaluation.SubmittedTitle" xml:space="preserve"><value>تم إرسال التقييم</value></data>
+  <data name="FinalEvaluation.SubmittedMessage" xml:space="preserve"><value>تم إرسال تقييم الشركة إلى المشرف الأكاديمي. إكمال التدريب وإصدار التقرير ما زالا يتطلبان موافقة المنسق.</value></data>
+  <data name="FinalEvaluation.InvalidScoreRange" xml:space="preserve"><value>أدخل درجات صحيحة من الصفر حتى الحد الأعلى الموضح لكل معيار.</value></data>
+  <data name="FinalEvaluation.PreviewNotice" xml:space="preserve"><value>معاينة مسودة فقط؛ هذه ليست وثيقة إكمال معتمدة. التقارير النهائية تتطلب موافقة المنسق.</value></data>
+  <data name="FinalEvaluation.SendApprovedCertificate" xml:space="preserve"><value>إرسال الشهادة المعتمدة إلى المتدرّب</value></data>
+  <data name="FinalEvaluation.CertificateRequiresApproval" xml:space="preserve"><value>تتاح بعد اعتماد المنسق إتمام التدريب. سيتلقى المتدرّب رابط ملف PDF المعتمد وليس هذه المعاينة.</value></data>
+  <data name="FinalEvaluation.CertificateAwaitingApproval" xml:space="preserve"><value>الشهادة المعتمدة غير متاحة بعد. يجب أن يعتمد المنسق إتمام التدريب أولًا.</value></data>
+  <data name="FinalEvaluation.CertificateSharedTitle" xml:space="preserve"><value>تمت مشاركة الشهادة</value></data>
+  <data name="FinalEvaluation.CertificateSharedMessage" xml:space="preserve"><value>يمكن للمتدرّب فتح الشهادة المعتمدة من الإشعارات.</value></data>
+  <data name="FinalEvaluation.CertificateShareFailed" xml:space="preserve"><value>تعذّرت مشاركة الشهادة. يرجى المحاولة مجددًا.</value></data>
+  <data name="FinalEvaluation.ProjectCriteria" xml:space="preserve"><value>معايير التقييم (مشروع UIMS)</value></data>
 </root>

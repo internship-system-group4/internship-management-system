@@ -12,6 +12,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 {
     public partial class TaskReview : CompanyPage
     {
+        /// <summary>Which popup opens when the page loads: "revision", "result" or "" (none).</summary>
+        protected string OpenDialog = "";
+
+        /// <summary>True when the result popup is for a change request (not a grade).</summary>
+        protected bool ResultIsRevision;
+
+        /// <summary>Saved total of an already graded attempt ("" while it can still be graded).</summary>
+        protected string SavedScore = "";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -40,6 +49,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             List<Submission> submissions =
                 new SubmissionRepository().GetAll();
+            // Newest attempt first, so a resubmission waiting for review is at the top.
+            submissions.Sort((a, b) => b.SubmittedAt.CompareTo(a.SubmittedAt));
             PlacementRepository placementRepository =
     new PlacementRepository();
             List<TaskEvaluation> evaluations =
@@ -138,6 +149,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             btnSaveGrade.Visible = canReview;
             btnRequestRevision.Visible = canReview;
+            phRequestChangesOpen.Visible = canReview;
             txtCodeQuality.Enabled = canReview;
             txtFunctionality.Enabled = canReview;
             txtDesignUsability.Enabled = canReview;
@@ -177,6 +189,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             }
 
             lblDetailTask.Text = Server.HtmlEncode(task.Title ?? "");
+            SavedScore = existingEvaluation != null && !existingEvaluation.RevisionRequested
+                ? existingEvaluation.TotalScore.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)
+                : "";
             lblTaskMaxScore.Text = task.MaxScore.ToString(
                 "0.##", System.Globalization.CultureInfo.InvariantCulture);
             lblDetailAttempt.Text =
@@ -198,12 +213,11 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     ? existingEvaluation.RevisionInstructions ?? ""
                     : existingEvaluation.Feedback ?? "";
             }
-            Placement placement = new PlacementRepository()
-                .GetById(submission.PlacementId);
-            lblDetailTrainee.Text = Server.HtmlEncode(
-                placement != null && !string.IsNullOrWhiteSpace(placement.StudentName)
-                    ? placement.StudentName
-                    : submission.StudentId);
+            string traineeName = TraineeName(submission);
+            lblDetailTrainee.Text = Server.HtmlEncode(traineeName);
+            litRevisionEyebrow.Text = L.F("Company.TaskReview.AttemptFact", submission.AttemptNumber);
+            litRevisionSubtitle.Text = L.F("Company.TaskReview.RequestChangesHelp", traineeName, task.Title ?? "");
+            BindResubmission(submission, taskAttempts, taskEvaluations);
             lblDetailSubmittedAt.Text = DateTimeOffset
                 .FromUnixTimeMilliseconds(submission.SubmittedAt)
                 .ToLocalTime()
@@ -230,11 +244,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 lnkDetailWork.NavigateUrl = submission.LinkUrl;
             }
 
-            Uri file;
             lnkDetailFile.Visible =
-                Uri.TryCreate(
-                    submission.FileUrl, UriKind.Absolute, out file) &&
-                file.Scheme == Uri.UriSchemeHttps;
+                TaskSubmissionStorage.IsSafeUrl(submission.FileUrl);
 
             if (lnkDetailFile.Visible)
             {
@@ -243,6 +254,60 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     ? L.T("Company.TaskReview.ViewSubmissionFile")
                     : L.T("Company.TaskReview.View") + Server.HtmlEncode(submission.FileName);
             }
+        }
+
+        private static string TraineeName(Submission submission)
+        {
+            Placement placement = new PlacementRepository().GetById(submission.PlacementId);
+            return placement != null && !string.IsNullOrWhiteSpace(placement.StudentName)
+                ? placement.StudentName
+                : submission.StudentId;
+        }
+
+        /// <summary>For attempt 2+, shows what the supervisor asked to change last time.</summary>
+        private void BindResubmission(Submission submission, List<Submission> attempts, List<TaskEvaluation> evaluations)
+        {
+            phResubmission.Visible = submission.AttemptNumber > 1;
+            if (!phResubmission.Visible) return;
+
+            string previous = "";
+            foreach (Submission attempt in attempts ?? new List<Submission>())
+            {
+                if (attempt == null || attempt.StudentId != submission.StudentId ||
+                    attempt.PlacementId != submission.PlacementId ||
+                    attempt.AttemptNumber != submission.AttemptNumber - 1) continue;
+                TaskEvaluation earlier = FindEvaluationForSubmission(evaluations, attempt.Id);
+                if (earlier != null && earlier.RevisionRequested)
+                    previous = earlier.RevisionInstructions ?? earlier.Feedback ?? "";
+            }
+
+            litResubmissionLabel.Text = L.F("Company.TaskReview.ResubmissionOf", submission.AttemptNumber);
+            litPreviousRequest.Text = previous.Trim().Length > 0
+                ? previous.Trim()
+                : L.T("Company.TaskReview.NoEarlierRequest");
+        }
+
+        /// <summary>Shows the result popup after a grade or a change request was saved.</summary>
+        private void ShowResult(bool revision, Submission submission, InternshipTask task, double score)
+        {
+            string trainee = TraineeName(submission);
+            ResultIsRevision = revision;
+            phReviewResult.Visible = true;
+            litResultTitle.Text = revision ? L.T("Company.TaskReview.ChangesRequestedTitle") : L.T("Company.TaskReview.EvaluationSavedTitle");
+            litResultMessage.Text = L.F(revision ? "Company.TaskReview.ChangesRequestedText" : "Company.TaskReview.EvaluationSavedText", trainee, task.Title ?? "");
+            litResultAttempt.Text = L.F("Company.TaskReview.AttemptFact", submission.AttemptNumber);
+            litResultFact.Text = revision
+                ? L.T("Company.Tasks.RevisionRequested")
+                : L.F("Company.TaskReview.ScoreFact", score.ToString("0.##"), task.MaxScore.ToString("0.##"));
+            OpenDialog = "result";
+        }
+
+        /// <summary>Keeps the request-changes popup open and shows why it was not sent.</summary>
+        private void RevisionError(string message)
+        {
+            lblRevisionError.Text = Server.HtmlEncode(message);
+            lblRevisionError.Visible = true;
+            OpenDialog = "revision";
         }
 
         private static TaskEvaluation FindEvaluationForSubmission(
@@ -572,10 +637,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     return;
                 }
 
-                lblReviewMessage.CssClass =
-                    "text-success d-block mt-3";
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.GradeSavedSuccessfully");
+                // Reload the review so it shows as completed, then confirm in a popup.
+                OpenSubmission(submission.Id);
+                ShowResult(false, submission, task, evaluation.TotalScore);
             }
             catch (FirebaseException)
             {
@@ -596,13 +660,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
         protected void btnRequestRevision_Click(object sender, EventArgs e)
         {
-            lblReviewMessage.CssClass = "text-danger d-block mt-3";
+            // Errors are shown inside the request-changes popup.
             pnlSubmissionDetails.Visible = true;
 
             string submissionId = ViewState["SelectedSubmissionId"] as string;
             if (string.IsNullOrEmpty(submissionId))
             {
-                lblReviewMessage.Text = L.T("Company.TaskReview.OpenASubmissionFirst");
+                RevisionError(L.T("Company.TaskReview.OpenASubmissionFirst"));
                 return;
             }
 
@@ -611,7 +675,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
             if (submission == null)
             {
-                lblReviewMessage.Text = L.T("Company.TaskReview.SubmissionWasNotFound");
+                RevisionError(L.T("Company.TaskReview.SubmissionWasNotFound"));
                 return;
             }
 
@@ -624,7 +688,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 task.StudentId != submission.StudentId ||
                 task.PlacementId != submission.PlacementId)
             {
-                lblReviewMessage.Text = L.T("Company.TaskReview.YouCannotReviewThisSubmission");
+                RevisionError(L.T("Company.TaskReview.YouCannotReviewThisSubmission"));
                 return;
             }
 
@@ -634,15 +698,15 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     new SubmissionRepository().GetByTask(task.Id),
                     new TaskEvaluationRepository().GetByTask(task.Id)))
             {
-                lblReviewMessage.Text = L.T("Company.TaskReview.ThisSubmissionIsAlreadyReviewedOr");
+                RevisionError(L.T("Company.TaskReview.ThisSubmissionIsAlreadyReviewedOr"));
                 return;
             }
 
-            string instructions = txtFeedback.Text.Trim();
+            string instructions = txtRevisionInstructions.Text.Trim();
 
             if (instructions == "")
             {
-                lblReviewMessage.Text = L.T("Company.TaskReview.TellTheStudentWhatNeedsTo");
+                RevisionError(L.T("Company.TaskReview.TellTheStudentWhatNeedsTo"));
                 return;
             }
 
@@ -701,7 +765,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                 if (!revisionSaved)
                 {
-                    lblReviewMessage.Text = L.T("Company.TaskReview.TheRevisionRequestCouldNotBe");
+                    RevisionError(L.T("Company.TaskReview.TheRevisionRequestCouldNotBe"));
                     return;
                 }
 
@@ -712,15 +776,14 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 { "Status", InternshipTaskStatus.RevisionRequested }
                     });
 
-                lblReviewMessage.CssClass = "text-success d-block mt-3";
-                lblReviewMessage.Text = L.T("Company.TaskReview.RevisionRequestedSuccessfully");
-                txtFeedback.Text = "";
-                LoadCompanySubmissions();
+                // Reload the review so it shows "Revision requested", then confirm in a popup.
+                txtRevisionInstructions.Text = "";
+                OpenSubmission(submission.Id);
+                ShowResult(true, submission, task, 0);
             }
             catch (FirebaseException)
             {
-                lblReviewMessage.Text =
-                    L.T("Company.TaskReview.CouldNotCompleteTheRevisionRequest");
+                RevisionError(L.T("Company.TaskReview.CouldNotCompleteTheRevisionRequest"));
             }
         }
     }

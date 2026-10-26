@@ -46,17 +46,29 @@ Without it Firebase refuses every notification. The app then:
 | Opportunity published | `Company/Opportunities.aspx.cs` | Eligible active students | Opportunity details |
 | Student applies | `ApplicationRepository.Submit` | All active supervisors of that company + the supervisor who posted it | Applications, card highlighted |
 | Application accepted / rejected | `ApplicationRepository.Decide` | The student | My Applications, card highlighted |
-| Offer confirmed (placement) | `PlacementRepository.ConfirmAcceptedOffer` | Company supervisor, academic supervisor, coordinators | Trainee / student / placement details |
+| Offer confirmed (placement) | `PlacementRepository.Confirm` (used by `ConfirmAcceptedOffer`) | Company supervisor, academic supervisor, coordinators | Trainee / student / placement details |
 | Group created / edited / deleted | `GroupRepository` | Affected students and academic supervisors | Dashboards |
-| Task created | `TaskRepository.Insert` | The student | My Tasks, task opened |
-| Task submitted / resubmitted | `SubmissionRepository.Insert` | The task's company supervisor | Review Submissions, submission opened |
-| Task graded / changes requested | `TaskEvaluationRepository.Insert` (and `EvaluationRepository.SaveTaskEvaluation`) | The student | My Tasks, task opened |
+| Task created | `TaskRepository.Insert` (and `TaskWorkflowService.Assign`) | The student | My Tasks, task opened |
+| Task submitted / resubmitted | `SubmissionRepository.Insert` (and `TaskWorkflowService.Submit`) | The trainee's company supervisor; attempt 2+ says "resubmitted" | Review Submissions, submission opened |
+| Task graded / changes requested | `TaskEvaluationRepository.Insert` (and `EvaluationRepository.SaveTaskEvaluation`, `TaskWorkflowService.Review`) | The student | My Tasks, task opened |
 | Academic comment (visible to student) | `AcademicCommentRepository.Insert` | The student | My Progress |
-| Hours reported / decided | `HoursService` | Academic supervisor / student | Student progress / My Progress |
+| Hours reported / decided | `HoursRepository` (`HoursService.Report` / `Decide` save through it) | Academic supervisor / student | Student progress / My Progress |
 | Company final evaluation sent | `Company/FinalEvaluation.aspx.cs` (and `EvaluationRepository.SaveCompanyFinal`) | Academic supervisor ("your evaluation is due"), coordinators | Academic final evaluation opened / placement details |
 | Academic final evaluation sent | `EvaluationRepository.SaveAcademicFinal` | Coordinators ("completion review needed") | Completion review for that student |
-| Completion approved / returned / rejected | `CompletionRepository` | The student; on approval also both supervisors | My Progress / student pages |
+| Completion approved / returned / rejected | `CompletionRepository.TrySaveDecision` | The student; on approval also both supervisors | My Progress / student pages |
 | Meeting requested / accepted / declined / completed / cancelled | `MeetingRepository` | The other person | My Meetings |
+
+**One notice per event.** The older email channel (`Services/EmailNotificationService.cs`,
+see `docs/10-email-notifications.md`) also reacts to these saves. For every event
+in this table it now sends only the email; the bell entry comes from
+`NotificationService`. Events not in this table (for example a task edited or
+reassigned, a placement supervisor changed, completion waiting for a final
+evaluation) still get the email channel's own English inbox entry.
+
+**Emails.** Events that only `NotificationService` handles (groups, opportunity
+published, welcome, meetings, completion decisions, company final evaluation
+page) are emailed by `NotificationService` itself (`SendAndEmail`), in English.
+The student's completion email leaves out the result and the coordinator's note.
 
 Final evaluation forms are confidential, so students are told only about the
 released result, never about the forms.
@@ -68,6 +80,13 @@ released result, never about the forms.
 - For a new event: add a method to `Services/NotificationService.cs` that calls
   `Send(recipientId, type, "YourKey", "~/Pages/...", args...)`, and add
   `Notify.YourKey.Title` / `.Message` to **both** `Shared.resx` and `Shared.ar.resx`.
+- Call it from the repository. In a repository based on `NotifyingRepositoryBase`,
+  override `SendNotice(previous, current)` (previous is null for a new record),
+  call your method and `return true` - the email service then skips its own
+  inbox entry. Elsewhere, call your method and then
+  `EmailNotificationService.Saved(previous, current, false)`.
+- If `EmailNotificationService` has no rule for your event, use `SendAndEmail`
+  instead of `Send` inside your method so the person is emailed too.
 - A failed notification is only logged; it never stops the save.
 - Nobody is notified about their own action.
 

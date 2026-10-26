@@ -1755,3 +1755,23 @@ ar: تعذرت قراءة الملف المحدد.
 I18n.Storagedidnotreturnadownloadlink
 en: Storage did not return a download link.
 ar: لم تُرجع خدمة التخزين رابط تنزيل.
+
+Profile.Saved
+en: Saved
+ar: تم الحفظ
+
+Profile.AllChangesSaved
+en: All changes saved
+ar: تم حفظ جميع التغييرات
+
+Profile.UnsavedChanges
+en: You have unsaved changes
+ar: لديك تغييرات غير محفوظة
+
+Profile.ChangePhoto
+en: Change photo
+ar: تغيير الصورة
+
+Profile.TrainingHours
+en: Training hours
+ar: ساعات التدريب

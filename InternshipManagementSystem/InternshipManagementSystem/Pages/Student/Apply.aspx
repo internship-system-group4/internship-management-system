@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="Apply.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.Apply" Title="Internship Application" %>
+<%@ Page Language="C#" MasterPageFile="~/Layout/Student.master" AutoEventWireup="true" CodeBehind="Apply.aspx.cs" Inherits="InternshipManagementSystem.Pages.StudentArea.Apply" Title="Internship Application" %>
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
     <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/applications.css") %>" />
     <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/apply-theme.css") %>" />
@@ -45,7 +45,7 @@
             <% if (ExistingApplication != null) { %>
             <section class="application-section">
                 <h3><span><%: L.T("Student.Apply.Status") %></span></h3>
-                <p><span class="application-status status-<%: ExistingApplication.Status.ToString().ToLowerInvariant() %>"><%: ExistingApplication.Status %></span></p>
+                <p><span class="application-status status-<%: ExistingApplication.Status.ToString().ToLowerInvariant() %>"><%: L.Value("Ui", ExistingApplication.Status) %></span></p>
                 <p class="application-help"><%: L.T("Student.Apply.Submitted") %> <%: Time.Display(ExistingApplication.SubmittedAt) %></p>
                 <% if (ExistingApplication.Status == ApplicationStatus.Rejected && !string.IsNullOrEmpty(ExistingApplication.RejectionReason)) { %>
                 <p class="review-rejection-reason"><strong><%: L.T("Student.Apply.RejectionReason") %></strong> <%: ExistingApplication.RejectionReason %></p>

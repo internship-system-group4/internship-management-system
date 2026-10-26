@@ -76,7 +76,8 @@ namespace InternshipManagementSystem.Services
                     { "submissions/" + submission.Id, submission },
                     { "tasks/" + task.Id + "/Status", (int)(attempts.Count == 0 ? InternshipTaskStatus.Submitted : InternshipTaskStatus.Resubmitted) }
                 });
-                EmailNotificationService.Saved(null, submission);
+                NotificationService.TaskSubmitted(submission);
+                EmailNotificationService.Saved(null, submission, false);
                 return submission.Id;
             }
         }
@@ -112,7 +113,8 @@ namespace InternshipManagementSystem.Services
                     { "submissions/" + submission.Id + "/Status", (int)(revision ? SubmissionStatus.RevisionRequested : SubmissionStatus.Accepted) },
                     { "tasks/" + task.Id + "/Status", (int)(revision ? InternshipTaskStatus.RevisionRequested : InternshipTaskStatus.Graded) }
                 });
-                EmailNotificationService.Saved(null, evaluation);
+                NotificationService.TaskReviewed(evaluation);
+                EmailNotificationService.Saved(null, evaluation, false);
             }
         }
 

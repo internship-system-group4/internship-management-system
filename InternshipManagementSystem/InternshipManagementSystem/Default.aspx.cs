@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.IO;
 using InternshipManagementSystem.Common;
+using InternshipManagementSystem.Data;
 
 namespace InternshipManagementSystem.Pages.PublicArea
 {
-    // Home shows explicitly illustrative examples; live opportunities remain in the student portal.
     public partial class Default : System.Web.UI.Page
     {
-        protected sealed class DemoOpportunity
+        /// <summary>One card in the "Explore opportunities" rail.</summary>
+        protected sealed class HomeOffer
         {
-            public string Title, CompanyName, Location, Specialization, Summary, IconPath;
+            public string Title, CompanyName, Location, Specialization, Summary, IconPath, Link;
         }
-        protected List<DemoOpportunity> Previews = new List<DemoOpportunity>();
+
+        protected List<HomeOffer> Previews = new List<HomeOffer>();
         protected bool ProcessVideoAvailable, ProcessCaptionsAvailable;
         protected string[] TracksFor(string program)
         {
@@ -24,6 +26,35 @@ namespace InternshipManagementSystem.Pages.PublicArea
         {
             ProcessVideoAvailable = File.Exists(Server.MapPath("~/Assets/video/internship-process.mp4"));
             ProcessCaptionsAvailable = File.Exists(Server.MapPath("~/Assets/video/internship-process.en.vtt"));
+            AddLiveOffers();
+            AddExampleOffers();
+        }
+
+        // Published opportunities from Firebase come first. If Firebase is not
+        // reachable the rail still shows the example offers below.
+        private void AddLiveOffers()
+        {
+            List<PublicOpportunityPreview> live;
+            try { live = new OpportunityRepository().GetPublicPreviews(int.MaxValue); }
+            catch (FirebaseAuthExpiredException) { return; }
+            catch (FirebaseException) { return; }
+            catch (InvalidOperationException) { return; }
+
+            foreach (var item in live)
+            {
+                Previews.Add(new HomeOffer {
+                    Title = item.Title, CompanyName = item.CompanyName, Location = item.Location,
+                    Specialization = item.Specialization, Summary = item.Summary,
+                    IconPath = "M3 4h18v16H3zM3 9h18M7 6.5h.01M10 6.5h.01",
+                    Link = ResolveUrl("~/Pages/Student/OpportunityDetails.aspx") + "?id=" + Server.UrlEncode(item.Id)
+                });
+            }
+        }
+
+        // Six example offers (texts in Public.resx: Home.Demo1..6) so the rail is
+        // never empty and the moving cards always have enough content.
+        private void AddExampleOffers()
+        {
             string[] icons = {
                 "m8 7-5 5 5 5m8-10 5 5-5 5M14 4l-4 16",
                 "M3 4h18v16H3zM3 9h18M7 6.5h.01M10 6.5h.01",
@@ -35,10 +66,11 @@ namespace InternshipManagementSystem.Pages.PublicArea
             for (int i = 1; i <= 6; i++)
             {
                 string prefix = "Public.Home.Demo" + i;
-                Previews.Add(new DemoOpportunity {
+                Previews.Add(new HomeOffer {
                     Title = L.T(prefix + "Title"), CompanyName = L.T(prefix + "Company"),
                     Location = L.T(prefix + "Location"), Specialization = L.T(prefix + "Field"),
-                    Summary = L.T(prefix + "Summary"), IconPath = icons[i - 1]
+                    Summary = L.T(prefix + "Summary"), IconPath = icons[i - 1],
+                    Link = ResolveUrl("~/Pages/Account/Login.aspx")
                 });
             }
         }

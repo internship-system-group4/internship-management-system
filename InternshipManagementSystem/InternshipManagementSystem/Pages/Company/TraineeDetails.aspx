@@ -5,11 +5,11 @@
     <style>
         .dashboard-header { padding-bottom: 1rem; margin-bottom: 1.5rem; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem; border-bottom: 1px solid var(--th-line-e3e8ee, #e3e8ee); }
         .dashboard-header h3 { font-size: 1.4rem; font-weight: 700; color: var(--th-fg-0f4c81,#0f4c81); margin-bottom: 0.2rem; }
-        
+
         .card-custom { border: none; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); background: var(--ui-surface,#fff); margin-bottom: 1.5rem; overflow: hidden; }
 
         .student-avatar-large { width: 48px; height: 48px; border-radius: 50%; background-color: var(--th-bg-f0f4f8,#f0f4f8); color: var(--th-fg-0f4c81,#0f4c81); font-weight: 700; font-size: 1rem; display: flex; align-items: center; justify-content: center; border: 1px solid var(--th-line-e3e8ee,#e3e8ee); flex-shrink: 0; }
-        
+
         .progress-container { width: 100%; background-color: var(--th-bg-e2e8f0,#e2e8f0); border-radius: 10px; height: 5px; overflow: hidden; margin-top: 5px; }
         .progress-fill { height: 100%; background-color: var(--th-bg-0f4c81,#0f4c81); border-radius: 10px; }
 
@@ -92,18 +92,18 @@
             <div class="row align-items-center">
                 <div class="col-md-12 d-flex align-items-start gap-3 mb-1">
                     <div class="student-avatar-large shadow-sm">
-                        <asp:Literal ID="litStudentInitials" runat="server">ST</asp:Literal>
+                        <asp:Literal ID="litStudentInitials" runat="server" Mode="Encode">ST</asp:Literal>
                     </div>
                     <div class="flex-grow-1">
                         <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
                             <div>
-                                <h5 class="fw-bold mb-1 text-dark" style="font-size: 0.95rem;"><asp:Literal ID="litStudentName" runat="server" Text="<%$ Resources:Company, TraineeDetails.TraineeNamePlaceholder %>" /></h5>
+                                <h5 class="fw-bold mb-1 text-dark" style="font-size: 0.95rem;"><asp:Literal ID="litStudentName" runat="server" Text="<%$ Resources:Company, TraineeDetails.TraineeNamePlaceholder %>" Mode="Encode" /></h5>
                                 <div class="text-muted small mb-1" style="font-size: 0.7rem;">
-                                    <i class="bi bi-book me-1 text-primary"></i><asp:Literal ID="litStudentMajor" runat="server" Text="<%$ Resources:Company, TraineeDetails.MajorPlaceholder %>" /> | 
-                                    <i class="bi bi-envelope me-1 text-primary"></i><asp:Literal ID="litStudentEmail" runat="server">email@example.com</asp:Literal>
+                                    <i class="bi bi-book me-1 text-primary"></i><asp:Literal ID="litStudentMajor" runat="server" Text="<%$ Resources:Company, TraineeDetails.MajorPlaceholder %>" Mode="Encode" /> |
+                                    <i class="bi bi-envelope me-1 text-primary"></i><asp:Literal ID="litStudentEmail" runat="server" Mode="Encode">email@example.com</asp:Literal>
                                 </div>
                             </div>
-                            
+
                             <!-- زر الـ CV -->
                             <button type="button" class="btn btn-exact-match btn-style-light shadow-sm" data-bs-toggle="modal" data-bs-target="#cvModal">
                                 <i class="bi bi-file-earmark-person me-1"></i> <%: L.T("Company.TraineeDetails.ViewTraineeCV") %>
@@ -131,7 +131,7 @@
             <div class="row g-3">
                 <div class="col-md-4">
                     <div class="info-label"><%: L.T("Company.TraineeDetails.Opportunity") %></div>
-                    <div class="info-value"><asp:Literal ID="litOpportunityTitle" runat="server">-</asp:Literal></div>
+                    <div class="info-value"><asp:Literal ID="litOpportunityTitle" runat="server" Mode="Encode">-</asp:Literal></div>
                 </div>
                 <div class="col-md-4">
                     <div class="info-label"><%: L.T("Company.TraineeDetails.StartDate") %></div>
@@ -143,7 +143,7 @@
                 </div>
                 <div class="col-md-4 mt-2">
                     <div class="info-label"><%: L.T("Company.TraineeDetails.AcademicSupervisor") %></div>
-                    <div class="info-value"><i class="bi bi-person-badge me-1 text-muted"></i><asp:Literal ID="litAcademicSupervisor" runat="server" Text="<%$ Resources:Company, TraineeDetails.NotAssigned %>" /></div>
+                    <div class="info-value"><i class="bi bi-person-badge me-1 text-muted"></i><asp:Literal ID="litAcademicSupervisor" runat="server" Text="<%$ Resources:Company, TraineeDetails.NotAssigned %>" Mode="Encode" /></div>
                 </div>
                 <div class="col-md-4 mt-2">
                     <div class="info-label mb-1"><%: L.T("Company.TraineeDetails.PlacementStatus") %></div>
@@ -160,7 +160,7 @@
         <div class="card card-custom border border-light">
             <div class="card-header bg-white border-bottom d-flex justify-content-between align-items-center py-2 px-3">
                 <h6 class="fw-bold text-dark mb-0" style="font-size: 0.9rem;"><i class="bi bi-list-check me-2 text-primary"></i><%: L.T("Company.TraineeDetails.AssignedTasks") %></h6>
-                
+
                 <!-- زر تعيين مهمة جديدة -->
                 <a href="Tasks.aspx" class="btn btn-exact-match btn-style-primary shadow-sm">
                     <i class="bi bi-plus-lg me-1"></i><%: L.T("Company.TraineeDetails.AssignNewTask") %>
@@ -186,7 +186,7 @@
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="<%$ Resources:Company, TraineeDetails.Action %>">
                             <ItemTemplate>
-                                <a href='TaskReview.aspx?id=<%# Eval("Id") %>' class="btn btn-exact-match btn-style-light shadow-sm"><%: L.T("Company.TraineeDetails.Review") %></a>
+                                <a href='TaskReview.aspx?taskId=<%# Eval("Id") %>' class="btn btn-exact-match btn-style-light shadow-sm"><%: L.T("Company.TraineeDetails.Review") %></a>
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
@@ -195,29 +195,26 @@
         </div>
     </div>
 
-    <!-- نافذة منبثقة للـ CV -->
-    <div class="modal fade" id="cvModal" tabindex="-1" aria-hidden="true">
+    <!-- One document state is rendered on the server, independent of theme CSS. -->
+    <div class="modal fade" id="cvModal" tabindex="-1" aria-labelledby="traineeCvTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 border-0 shadow-lg p-3">
-          <div class="modal-header border-bottom-0 pb-0 pt-2 px-3">
-            <h5 class="modal-title fw-bold text-dark" style="font-size: 0.95rem;"><i class="bi bi-file-earmark-pdf me-2 text-primary"></i><%: L.T("Company.TraineeDetails.TraineeCVPortfolio") %></h5>
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title" id="traineeCvTitle"><span data-ui-icon="document" aria-hidden="true"></span> <%: L.T("Company.TraineeDetails.TraineeCVPortfolio") %></h2>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.TraineeDetails.Close") %>"></button>
           </div>
-          <div class="modal-body p-3 text-center">
-              <div class="mb-2 text-primary" style="font-size: 2rem;"><i class="bi bi-file-earmark-pdf-fill"></i></div>
-              <p class="text-muted small mb-3" style="font-size: 0.75rem;"><%: L.T("Company.TraineeDetails.YouCanAccessTheTraineeS") %></p>
-
-              <div class="mt-2">
-                  <a id="btnOpenRealCv" href="#" target="_blank" class="cv-btn-theme shadow-sm" style="display:none;">
-                      <i class="bi bi-box-arrow-up-right me-1"></i> <%: L.T("Company.TraineeDetails.OpenCVInNewTab") %>
-                  </a>
-                  <div id="divNoCv" class="text-muted fst-italic p-2 bg-light rounded-3 border" style="font-size: 0.75rem; display:none;">
-                      <%: L.T("Company.TraineeDetails.NoCVOrPortfolioWasProvided") %>
-                  </div>
-              </div>
+          <div class="modal-body">
+            <% if (!string.IsNullOrEmpty(CvDocumentUrl)) { %>
+              <p class="text-muted"><%: L.T("Company.TraineeDetails.YouCanAccessTheTraineeS") %></p>
+              <a id="btnOpenRealCv" href="<%: CvDocumentUrl %>" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                <span data-ui-icon="next" aria-hidden="true"></span> <%: L.T("Company.TraineeDetails.OpenCVInNewTab") %>
+              </a>
+            <% } else { %>
+              <p id="divNoCv" class="text-muted mb-0" role="status"><%: L.T("Company.TraineeDetails.NoCVOrPortfolioWasProvided") %></p>
+            <% } %>
           </div>
-          <div class="modal-footer border-top-0 px-3 pb-2 justify-content-center">
-            <button type="button" class="btn btn-light border rounded-pill text-muted" data-bs-dismiss="modal" style="font-size: 0.7rem; height: 26px; padding: 0 14px;"><%: L.T("Company.TraineeDetails.Close") %></button>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"><%: L.T("Company.TraineeDetails.Close") %></button>
           </div>
         </div>
       </div>

@@ -1,0 +1,193 @@
+/* =============================================================================
+   Shared popups for the task cycle (student submit/resubmit, company review).
+   One look on every page: same header, callout, fields, buttons and result card.
+   Built on Bootstrap 5 modals; colours come from the --ui-* tokens so the
+   popups follow light and dark themes automatically.
+   ============================================================================= */
+
+body.uims-portal .uims-task-dialog .modal-dialog { max-width: 620px; }
+body.uims-portal .uims-task-dialog .modal-content {
+    overflow: hidden;
+    color: var(--ui-ink);
+    background: var(--ui-surface);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius-dialog, 16px);
+}
+
+/* Header: icon + small label + title + one helper line. */
+.task-dialog-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--ui-border);
+}
+.task-dialog-heading { flex: 1; min-width: 0; }
+.task-dialog-header .btn-close { flex: 0 0 auto; margin: 2px 0 0; }
+/* Long prefix on purpose: beats the portal-wide modal title and page h2 sizes in ui-system.css. */
+body.uims-portal .modal.uims-task-dialog .modal-title {
+    margin: 0;
+    color: var(--ui-ink);
+    font: 700 1.2rem/1.3 var(--ui-heading-font, inherit);
+    overflow-wrap: anywhere;
+}
+.task-dialog-sub { margin: 4px 0 0; color: var(--ui-muted); font-size: .86rem; line-height: 1.5; }
+
+.task-dialog-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 6px;
+    padding: 3px 10px;
+    color: var(--ui-primary-text, var(--ui-primary));
+    background: var(--ui-primary-soft);
+    border-radius: 999px;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .02em;
+}
+.task-dialog-eyebrow.is-warning { color: var(--ui-warning); background: var(--ui-warning-soft); }
+
+/* Round icon used in headers and result cards. */
+.task-dialog-icon {
+    display: grid;
+    place-items: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    color: var(--ui-primary-text, var(--ui-primary));
+    background: var(--ui-primary-soft);
+    border-radius: 12px;
+}
+.task-dialog-icon svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+.task-dialog-icon.is-warning { color: var(--ui-warning); background: var(--ui-warning-soft); }
+.task-dialog-icon.is-success { color: var(--ui-success); background: var(--ui-success-soft); }
+.task-dialog-icon.is-danger { color: var(--ui-danger); background: var(--ui-danger-soft); }
+
+/* Body. */
+.uims-task-dialog .modal-body { padding: 18px 24px 8px; }
+.uims-task-dialog .form-label { margin-bottom: 6px; color: var(--ui-ink); font-size: .84rem; font-weight: 700; }
+.uims-task-dialog .form-control { border-color: var(--ui-control-border, var(--ui-border)); border-radius: var(--ui-radius, 8px); font-size: .9rem; }
+.uims-task-dialog textarea.form-control { min-height: 96px; }
+.task-dialog-help { margin-top: 5px; color: var(--ui-muted); font-size: .76rem; }
+.task-dialog-field { margin-bottom: 16px; }
+
+/* Highlighted note: the supervisor's requested changes, or what happens next. */
+.task-dialog-callout {
+    margin: 0 0 18px;
+    padding: 12px 14px;
+    color: var(--ui-ink);
+    background: var(--ui-warning-soft);
+    border: 1px solid var(--ui-border);
+    border-inline-start: 4px solid var(--ui-warning);
+    border-radius: 10px;
+}
+.task-dialog-callout strong { display: block; margin-bottom: 4px; color: var(--ui-warning); font-size: .8rem; }
+.task-dialog-callout p { margin: 0; font-size: .88rem; line-height: 1.55; white-space: pre-line; overflow-wrap: anywhere; }
+.task-dialog-callout.is-info { background: var(--ui-info-soft); border-inline-start-color: var(--ui-info); }
+.task-dialog-callout.is-info strong { color: var(--ui-info); }
+
+/* Error shown inside an open popup after a failed save. */
+.task-dialog-alert {
+    display: block;
+    margin: 0 0 16px;
+    padding: 10px 12px;
+    color: var(--ui-danger);
+    background: var(--ui-danger-soft);
+    border: 1px solid var(--ui-danger);
+    border-radius: var(--ui-radius, 8px);
+    font-size: .86rem;
+    font-weight: 600;
+}
+
+/* Footer and buttons. */
+.task-dialog-footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 14px 24px;
+    background: var(--ui-canvas);
+    border-top: 1px solid var(--ui-border);
+}
+.task-dialog-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 9px 18px;
+    border: 1px solid transparent;
+    border-radius: var(--ui-radius, 8px);
+    font-size: 1.125rem; /* portal standard for controls (interface.css) */
+    font-weight: 650;
+    line-height: 1.2;
+    text-decoration: none;
+    cursor: pointer;
+}
+.task-dialog-btn-primary { color: #fff; background: var(--ui-primary); border-color: var(--ui-primary); }
+.task-dialog-btn-primary:hover, .task-dialog-btn-primary:focus-visible { color: #fff; background: var(--ui-primary-hover); border-color: var(--ui-primary-hover); }
+.task-dialog-btn-secondary { color: var(--ui-ink); background: var(--ui-surface); border-color: var(--ui-border); }
+.task-dialog-btn-secondary:hover, .task-dialog-btn-secondary:focus-visible { background: var(--ui-neutral-soft); color: var(--ui-ink); }
+.task-dialog-btn-warning { color: var(--ui-warning); background: var(--ui-warning-soft); border-color: var(--ui-warning); }
+.task-dialog-btn-warning:hover, .task-dialog-btn-warning:focus-visible { color: #fff; background: var(--ui-warning-strong, #76500b); border-color: var(--ui-warning-strong, #76500b); }
+/* ui-system.js wraps submit inputs in .ui-button-frame (busy spinner). It measures the
+   button while the popup is hidden, so it would mark it full width - keep it natural. */
+.task-dialog-footer .ui-button-frame.ui-button-block,
+.review-actions .ui-button-frame.ui-button-block { display: inline-grid; width: auto; }
+.task-dialog-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* Result popup: big icon, title, message, small facts, one button. */
+body.uims-portal .uims-task-dialog.task-result .modal-dialog { max-width: 430px; }
+.task-result-body { padding: 30px 28px 26px; text-align: center; }
+.task-result-body .task-dialog-icon { width: 64px; height: 64px; margin: 0 auto 16px; border-radius: 50%; }
+.task-result-body .task-dialog-icon svg { width: 32px; height: 32px; stroke-width: 2.4; }
+body.uims-portal .uims-task-dialog .task-result-body h2 { margin: 0 0 8px; color: var(--ui-ink); font-size: 1.3rem; font-weight: 700; letter-spacing: 0; }
+.task-result-body p { margin: 0 0 16px; color: var(--ui-muted); font-size: .92rem; line-height: 1.55; }
+.task-result-facts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 0 0 20px; padding: 0; list-style: none; }
+.task-result-facts li { padding: 4px 11px; color: var(--ui-ink); background: var(--ui-neutral-soft); border-radius: 999px; font-size: .76rem; font-weight: 650; }
+.task-result-facts:empty { display: none; }
+.task-result-body .task-dialog-btn { min-width: 140px; }
+
+/* Button that opens a popup from a page section. */
+.task-dialog-open { width: 100%; margin-top: 4px; }
+
+@media (max-width: 576px) {
+    .task-dialog-header, .uims-task-dialog .modal-body, .task-dialog-footer { padding-inline: 16px; }
+    .task-dialog-icon { flex-basis: 38px; width: 38px; height: 38px; }
+    .task-dialog-footer .task-dialog-btn { flex: 1 1 auto; }
+}
+
+
+/* Task dialogs remain usable when the Bootstrap CDN is unavailable. */
+body.uims-portal .uims-task-dialog.modal{position:fixed;inset:0;z-index:2100;display:none;overflow:auto;padding:28px 14px;background:rgba(5,24,42,.66);opacity:1;transition:none}
+body.uims-portal .uims-task-dialog.modal.is-open{display:grid;place-items:center;animation:task-overlay-in .22s ease-out both}
+body.uims-portal .uims-task-dialog .modal-dialog{width:min(100%,880px);max-width:880px;margin:auto;pointer-events:auto;transform:none}
+body.uims-portal .uims-task-dialog .modal-content{display:flex;flex-direction:column;max-height:calc(100vh - 56px);box-shadow:0 28px 85px rgba(4,25,45,.32);animation:task-dialog-in .26s cubic-bezier(.2,.8,.2,1) both}
+body.uims-portal .uims-task-dialog .modal-body{overflow:auto;overscroll-behavior:contain}
+body.uims-portal .uims-task-dialog.task-result .modal-dialog{width:min(100%,430px)}
+body.task-dialog-lock{overflow:hidden}
+body.uims-portal .uims-task-dialog .task-modal-details{padding-bottom:4px}
+body.uims-portal .uims-task-dialog .student-selected-meta{margin:0 0 20px}
+body.uims-portal .uims-task-dialog .student-selected-meta h3{margin:0 0 5px;color:var(--ui-ink);font-size:20px;font-weight:750}
+body.uims-portal .uims-task-dialog .task-modal-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+body.uims-portal .uims-task-dialog .student-detail-block{margin:0;padding:16px;border:1px solid var(--ui-border);border-radius:12px;background:var(--ui-canvas)}
+body.uims-portal .uims-task-dialog .student-detail-block h4{margin:0 0 8px;color:var(--ui-primary-text,var(--ui-primary));font-size:12px;font-weight:800;text-transform:uppercase}
+body.uims-portal .uims-task-dialog .student-detail-block p{margin:0;color:var(--ui-ink);line-height:1.6;white-space:pre-line;overflow-wrap:anywhere}
+body.uims-portal .uims-task-dialog .student-criteria,body.uims-portal .uims-task-dialog .student-history{margin:19px 0 0;padding:17px 0 0;border-top:1px solid var(--ui-border)}
+body.uims-portal .uims-task-dialog .student-criteria h4,body.uims-portal .uims-task-dialog .student-history h4{margin:0 0 8px;color:var(--ui-ink);font-size:15px;font-weight:750}
+body.uims-portal .uims-task-dialog .student-criterion{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+body.uims-portal .uims-task-dialog .student-criterion b{margin-inline-start:auto;color:var(--ui-primary-text,var(--ui-primary))}
+body.uims-portal .uims-task-dialog .task-modal-form{display:block;margin-top:22px;padding:22px;border:1px solid var(--ui-border);border-radius:14px;background:var(--ui-canvas)}
+body.uims-portal .uims-task-dialog .task-modal-section-title{margin-bottom:17px}
+body.uims-portal .uims-task-dialog .task-modal-section-title h3{margin:0 0 5px;color:var(--ui-ink);font-size:17px;font-weight:750}
+body.uims-portal .uims-task-dialog .task-modal-section-title p{margin:0;color:var(--ui-muted);font-size:13px}
+body.uims-portal .uims-task-dialog .task-dialog-field .form-control{display:block;width:100%;min-height:42px;padding:9px 12px;background:var(--ui-surface);color:var(--ui-ink)}
+body.uims-portal .uims-task-dialog .task-dialog-field textarea.form-control{min-height:102px}
+body.uims-portal .uims-task-dialog .task-dialog-footer{flex:none}
+body.uims-portal .uims-task-dialog .btn-close{min-width:32px;min-height:32px;cursor:pointer}
+body.uims-portal .uims-task-dialog .btn-close:after{content:"×";display:block;color:var(--ui-ink);font-size:25px;line-height:18px}
+@keyframes task-overlay-in{from{background:rgba(5,24,42,0)}to{background:rgba(5,24,42,.66)}}
+@keyframes task-dialog-in{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:640px){body.uims-portal .uims-task-dialog.modal{padding:10px}body.uims-portal .uims-task-dialog .modal-content{max-height:calc(100vh - 20px)}body.uims-portal .uims-task-dialog .task-modal-detail-grid{grid-template-columns:1fr}body.uims-portal .uims-task-dialog .task-modal-form{padding:16px}}
+@media(prefers-reduced-motion:reduce){body.uims-portal .uims-task-dialog.modal.is-open,body.uims-portal .uims-task-dialog .modal-content{animation:none}}

@@ -262,9 +262,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                         item.FormattedDate);
 
                     litStatus.Text =
-                        "<span class='status-badge " +
-                        (item.Status == "Reviewed" ? "reviewed" : "new") +
-                        "'>" + item.Status + "</span>";
+                        "<span class='" + StatusCss(item.Status) + "'>" +
+                        HttpUtility.HtmlEncode(L.Value("Ui", item.Status)) + "</span>";
 
                     litFullMessage.Text =
                         HttpUtility.HtmlEncode(item.Message)
@@ -291,6 +290,21 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                     lblError.Visible = true;
                 }
             }));
+        }
+
+        /// <summary>Status pill colour: new messages need attention, reviewed ones are done.</summary>
+        protected static string StatusCss(object status)
+        {
+            return Convert.ToString(status) == "Reviewed" ? "dir-status is-active" : "dir-status is-warning";
+        }
+
+        /// <summary>The messages are bound by an async task, so the header row is
+        /// moved into a real &lt;thead&gt; after those tasks have run.</summary>
+        protected override void OnPreRenderComplete(EventArgs e)
+        {
+            base.OnPreRenderComplete(e);
+            if (gvMessages.HeaderRow != null)
+                gvMessages.HeaderRow.TableSection = TableRowSection.TableHeader;
         }
 
         protected void btnClose_Click(object sender, EventArgs e)

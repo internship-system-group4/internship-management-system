@@ -1,10 +1,10 @@
 ﻿<%@ Page Language="C#" MasterPageFile="~/Layout/Company.master" AutoEventWireup="true" CodeBehind="Applications.aspx.cs" Inherits="InternshipManagementSystem.Pages.CompanyArea.Applications" Title="Applications Review" %>
-<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/applications.css?v=20261024-review-panel-4") %>" /></asp:Content>
+<asp:Content ID="Head" ContentPlaceHolderID="head" runat="server"><link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/applications.css?v=20261025-review-redesign-1") %>" /></asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
-<div class="application-page company-applications" data-draft-warning="<%: L.T("Company.Applications.DraftWarning") %>" data-position-template="<%: L.T("Company.Applications.ApplicationPosition") %>" data-initial-search="<%: ReviewSearch %>" data-initial-filter="<%: ReviewFilter %>" data-initial-selection="<%: ReviewSelection %>">
+<div class="application-page company-applications" data-draft-warning="<%: L.T("Company.Applications.DraftWarning") %>" data-position-template="<%: L.T("Company.Applications.ApplicationPosition") %>" data-details-loading="<%: L.T("Company.Applications.LoadingDetails") %>" data-details-error="<%: L.T("Company.Applications.DetailsLoadFailed") %>" data-initial-search="<%: ReviewSearch %>" data-initial-filter="<%: ReviewFilter %>" data-initial-selection="<%: ReviewSelection %>">
     <input type="hidden" name="reviewSelection" value="" />
     <div class="application-heading"><h2><%: L.T("Company.Applications.ApplicationsReview") %></h2><p><%: L.T("Company.Applications.ReviewDeskIntro") %></p></div>
-    <asp:Panel ID="NoticePanel" runat="server" Visible="false" CssClass="application-message application-success" role="status"><asp:Literal ID="NoticeText" runat="server" Mode="Encode" /></asp:Panel>
+    <asp:Panel ID="NoticePanel" runat="server" Visible="false" CssClass="application-message application-success review-notice" role="status"><span class="review-notice-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path pathLength="1" d="m6 12.5 4 4 8-9" /></svg></span><span class="review-notice-text"><asp:Literal ID="NoticeText" runat="server" Mode="Encode" /></span></asp:Panel>
     <asp:Panel ID="ErrorPanel" runat="server" Visible="false" CssClass="application-message" role="alert"><asp:Literal ID="ErrorText" runat="server" Mode="Encode" /> <a href="Applications.aspx"><%: L.T("Company.Applications.RefreshApplications") %></a></asp:Panel>
     <div class="application-list">
         <div class="review-toolbar" data-no-dirty hidden>
@@ -51,25 +51,38 @@
                             </button>
                         </div>
                     </div>
-                    <details class="review-application-details" id="candidate-<%#: Eval("Id") %>" aria-labelledby="applicant-<%#: Eval("Id") %>">
+                    <details <%# (bool)Eval("DetailsLoaded") ? "open" : "" %> class="review-application-details" id="candidate-<%#: Eval("Id") %>" aria-labelledby="applicant-<%#: Eval("Id") %>">
                         <summary><span class="candidate-toggle-label candidate-toggle-show"><%: L.T("Company.Applications.ViewCandidateDetails") %></span><span class="candidate-toggle-label candidate-toggle-hide"><%: L.T("Company.Applications.HideCandidateDetails") %></span><span class="candidate-toggle-hint"><%: L.T("Company.Applications.ProfileCoverLetterAndCV") %></span></summary>
-                        <div class="candidate-panel">
+                        <div class="candidate-panel" data-details-loaded="<%# (bool)Eval("DetailsLoaded") ? "true" : "false" %>">
+                        <asp:PlaceHolder runat="server" Visible='<%# !(bool)Eval("DetailsLoaded") %>'>
+                            <p class="application-help" role="status" data-details-status></p>
+                            <a class="candidate-link" data-load-candidate href="Applications.aspx?candidate=<%#: System.Uri.EscapeDataString((string)Eval("Id")) %>"><%: L.T("Company.Applications.ViewCandidateDetails") %></a>
+                        </asp:PlaceHolder>
+                        <asp:PlaceHolder runat="server" Visible='<%# (bool)Eval("DetailsLoaded") %>'>
                             <div class="candidate-profile">
-                            <dl class="candidate-details">
-                                <div><dt><%: L.T("Company.Applications.StudentNumber") %></dt><dd><%#: OrDash(Eval("StudentNumber")) %></dd></div>
-                                <div><dt><%: L.T("Company.Applications.Major") %></dt><dd><%#: OrDash(Eval("StudentMajor")) %></dd></div>
-                                <div><dt><%: L.T("Company.Applications.College") %></dt><dd><%#: OrDash(Eval("College")) %></dd></div>
-                                <div><dt><%: L.T("Company.Applications.University") %></dt><dd><%#: OrDash(Eval("University")) %></dd></div>
-                                <div><dt><%: L.T("Company.Applications.Email") %></dt><dd><%#: OrDash(Eval("Email")) %></dd></div>
-                                <div><dt><%: L.T("Company.Applications.Phone") %></dt><dd><%#: OrDash(Eval("Phone")) %></dd></div>
-                                <div class="candidate-wide"><dt><%: L.T("Company.Applications.TechnicalSkills") %></dt><dd><%#: OrDash(Eval("TechnicalSkills")) %></dd></div>
-                                <div class="candidate-wide"><dt><%: L.T("Company.Applications.SoftSkills") %></dt><dd><%#: OrDash(Eval("SoftSkills")) %></dd></div>
-                            </dl>
+                            <div class="candidate-section">
+                                <h4 class="candidate-heading"><%: L.T("Company.Applications.StudentProfile") %></h4>
+                                <dl class="candidate-details">
+                                    <div><dt><%: L.T("Company.Applications.StudentNumber") %></dt><dd dir="auto"><%#: OrDash(Eval("StudentNumber")) %></dd></div>
+                                    <div><dt><%: L.T("Company.Applications.Major") %></dt><dd dir="auto"><%#: OrDash(Eval("StudentMajor")) %></dd></div>
+                                    <div><dt><%: L.T("Company.Applications.College") %></dt><dd dir="auto"><%#: OrDash(Eval("College")) %></dd></div>
+                                    <div><dt><%: L.T("Company.Applications.University") %></dt><dd dir="auto"><%#: OrDash(Eval("University")) %></dd></div>
+                                    <div><dt><%: L.T("Company.Applications.Email") %></dt><dd dir="ltr"><%#: OrDash(Eval("Email")) %></dd></div>
+                                    <div><dt><%: L.T("Company.Applications.Phone") %></dt><dd dir="ltr"><%#: OrDash(Eval("Phone")) %></dd></div>
+                                </dl>
+                            </div>
+                            <div class="candidate-section">
+                                <h4 class="candidate-heading"><%: L.T("Company.Applications.Skills") %></h4>
+                                <dl class="candidate-skills">
+                                    <div><dt><%: L.T("Company.Applications.TechnicalSkills") %></dt><dd class="candidate-skill-list" dir="auto"><%#: OrDash(Eval("TechnicalSkills")) %></dd></div>
+                                    <div><dt><%: L.T("Company.Applications.SoftSkills") %></dt><dd class="candidate-skill-list" dir="auto"><%#: OrDash(Eval("SoftSkills")) %></dd></div>
+                                </dl>
+                            </div>
                             </div>
                             <div class="candidate-support">
                             <div class="candidate-section">
                                 <h4 class="candidate-heading"><%: L.T("Company.Applications.CoverLetter") %></h4>
-                                <p class="candidate-letter" tabindex="0" role="region" aria-label="<%: L.T("Company.Applications.CoverLetter") %>"><%#: Eval("CoverLetter") %></p>
+                                <p class="candidate-letter" dir="auto"><%#: Eval("CoverLetter") %></p>
                             </div>
                             <div class="candidate-section">
                                 <h4 class="candidate-heading"><%: L.T("Company.Applications.DocumentsAndLinks") %></h4>
@@ -89,6 +102,7 @@
                                 <asp:PlaceHolder runat="server" Visible='<%# (bool)Eval("HasCv") && !(bool)Eval("HasInlineCv") %>'><p class="application-help"><%: L.T("Company.Applications.ExternalCvHelp") %></p></asp:PlaceHolder>
                             </div>
                         </div>
+                        </asp:PlaceHolder>
                         </div>
                     <asp:PlaceHolder runat="server" Visible='<%# (ApplicationStatus)Eval("Status") == ApplicationStatus.Pending %>'>
                         <div class="review-decision">
@@ -124,18 +138,49 @@
         </div>
         <section class="review-detail-pane" role="region" aria-labelledby="reviewPaneTitle" hidden>
             <header class="review-pane-header">
+                <span class="review-pane-avatar" aria-hidden="true"></span>
                 <div class="review-pane-heading"><h3 id="reviewPaneTitle" tabindex="-1"></h3><p class="review-pane-opportunity" dir="auto"></p></div>
-                <button type="button" class="review-pane-close btn" aria-label="<%: L.T("Company.Applications.CloseApplication") %>"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
-                <nav class="review-pane-navigation" aria-label="<%: L.T("Company.Applications.ApplicationNavigation") %>"><button type="button" class="btn" data-review-step="-1"><%: L.T("Company.Applications.PreviousApplication") %></button><span class="review-pane-position" role="status" aria-live="polite"></span><button type="button" class="btn" data-review-step="1"><%: L.T("Company.Applications.NextApplication") %></button></nav>
+                <span class="review-pane-status"></span>
+                <div class="review-pane-tools">
+                    <nav class="review-pane-navigation" aria-label="<%: L.T("Company.Applications.ApplicationNavigation") %>">
+                        <button type="button" class="btn" data-review-step="-1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 5-7 7 7 7" /></svg><span><%: L.T("Company.Applications.PreviousApplication") %></span></button>
+                        <span class="review-pane-position" role="status" aria-live="polite"></span>
+                        <button type="button" class="btn" data-review-step="1"><span><%: L.T("Company.Applications.NextApplication") %></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 7 7-7 7" /></svg></button>
+                    </nav>
+                    <button type="button" class="review-pane-close btn" aria-label="<%: L.T("Company.Applications.CloseApplication") %>"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" /></svg></button>
+                </div>
             </header>
             <div class="review-pane-content"></div>
             <div class="review-pane-actions"></div>
         </section>
+        <div class="ar-confirm" data-ar-confirm hidden
+            data-accept-title="<%: L.T("Company.Applications.ConfirmAcceptTitle") %>" data-accept-text="<%: L.T("Company.Applications.ConfirmAcceptText") %>"
+            data-accept-point1="<%: L.T("Company.Applications.ConfirmAcceptPoint1") %>" data-accept-point2="<%: L.T("Company.Applications.ConfirmAcceptPoint2") %>"
+            data-accept-go="<%: L.T("Company.Applications.AcceptApplication") %>"
+            data-reject-title="<%: L.T("Company.Applications.ConfirmRejectTitle") %>" data-reject-text="<%: L.T("Company.Applications.ConfirmRejectText") %>"
+            data-reject-point1="<%: L.T("Company.Applications.ConfirmRejectPoint1") %>" data-reject-point2="<%: L.T("Company.Applications.ConfirmRejectPoint2") %>"
+            data-reject-go="<%: L.T("Company.Applications.ConfirmRejection") %>">
+            <div class="ar-confirm-card" role="alertdialog" aria-modal="true" aria-labelledby="arConfirmTitle" aria-describedby="arConfirmText">
+                <div class="ar-confirm-icon" aria-hidden="true">
+                    <svg data-ar-icon="accept" viewBox="0 0 24 24"><path pathLength="1" d="m6 12.5 4 4 8-9" /></svg>
+                    <svg data-ar-icon="reject" viewBox="0 0 24 24"><path pathLength="1" d="M7.5 7.5l9 9M16.5 7.5l-9 9" /></svg>
+                </div>
+                <h3 id="arConfirmTitle" data-ar-title></h3>
+                <p id="arConfirmText" data-ar-text></p>
+                <div class="ar-confirm-person"><span class="ar-confirm-avatar" data-ar-avatar aria-hidden="true"></span><span><strong data-ar-name dir="auto"></strong><small data-ar-opportunity dir="auto"></small></span></div>
+                <ul class="ar-confirm-points" data-ar-points></ul>
+                <div class="ar-confirm-note" data-ar-note hidden><span><%: L.T("Company.Applications.YourReason") %></span><p data-ar-note-text dir="auto"></p></div>
+                <div class="ar-confirm-actions">
+                    <button type="button" class="btn ar-confirm-cancel" data-ar-cancel><%: L.T("Company.Applications.GoBack") %></button>
+                    <button type="button" class="btn ar-confirm-go" data-ar-go></button>
+                </div>
+            </div>
+        </div>
         <div class="review-pane-placeholder" hidden><svg class="review-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M8 4H5v17h14V4h-3M9 3h6v4H9zM8 12h8M8 16h5" /></svg><h3><%: L.T("Company.Applications.SelectApplication") %></h3><p><%: L.T("Company.Applications.SelectApplicationHelp") %></p></div>
         </div>
     </div>
 </div>
 </asp:Content>
 <asp:Content ID="Scripts" ContentPlaceHolderID="scripts" runat="server">
-<script src="<%: ResolveUrl("~/Assets/js/company-applications.js?v=20261024-panel-1") %>"></script>
+<script src="<%: ResolveUrl("~/Assets/js/company-applications.js?v=20261025-review-redesign-1") %>"></script>
 </asp:Content>

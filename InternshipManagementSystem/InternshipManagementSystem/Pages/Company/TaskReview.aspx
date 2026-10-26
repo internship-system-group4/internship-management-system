@@ -6,6 +6,7 @@
     Title="Review Submissions" %>
 
 <asp:Content ID="Head" ContentPlaceHolderID="head" runat="server">
+    <link rel="stylesheet" href="<%: ResolveUrl("~/Assets/css/task-dialogs.css?v=20261025-4") %>" />
     <style>
         .submission-page {
             color: var(--th-fg-123f63,#123f63);
@@ -584,6 +585,12 @@
                 <div><span class="review-detail-label"><%: L.T("Company.TaskReview.DueDate") %></span><span class="review-detail-value"><asp:Label ID="lblDetailDeadline" runat="server" /></span></div>
                 <div><span class="review-detail-label"><%: L.T("Company.TaskReview.Attempt") %></span><span class="review-detail-value"><asp:Label ID="lblDetailAttempt" runat="server" /></span></div>
             </div>
+            <asp:PlaceHolder ID="phResubmission" runat="server" Visible="false">
+                <div class="task-dialog-callout mt-3 mb-0">
+                    <strong><asp:Literal ID="litResubmissionLabel" runat="server" Mode="Encode" /></strong>
+                    <p><asp:Literal ID="litPreviousRequest" runat="server" Mode="Encode" /></p>
+                </div>
+            </asp:PlaceHolder>
             <div class="review-work-area">
                 <span class="review-detail-label"><%: L.T("Company.TaskReview.SubmittedWork2") %></span>
                 <div class="review-work-text"><asp:Label ID="lblDetailText" runat="server" /></div>
@@ -598,21 +605,81 @@
             <div class="review-rubric-row"><label for="<%= txtFunctionality.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.Functionality") %> <span>/ 35</span></label><asp:TextBox ID="txtFunctionality" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="35" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
             <div class="review-rubric-row"><label for="<%= txtDesignUsability.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.DesignUsability") %> <span>/ 25</span></label><asp:TextBox ID="txtDesignUsability" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="25" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
             <div class="review-rubric-row"><label for="<%= txtDocumentation.ClientID %>" class="review-rubric-label"><%: L.T("Company.TaskReview.Documentation") %> <span>/ 15</span></label><asp:TextBox ID="txtDocumentation" runat="server" CssClass="form-control review-score-input review-score" TextMode="Number" min="0" max="15" step="0.01" placeholder="-" oninput="updateReviewTotal()" /></div>
-            <div class="review-total"><span><%: L.T("Company.TaskReview.TotalEvaluationScore") %><small><%: L.T("Company.TaskReview.EnterScoresToCalculateTheTotal") %></small></span><span><strong id="reviewComputedScore">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
+            <div class="review-total"><span><%: L.T("Company.TaskReview.TotalEvaluationScore") %><small><%: L.T("Company.TaskReview.EnterScoresToCalculateTheTotal") %></small></span><span><strong id="reviewComputedScore" data-saved="<%: SavedScore %>">-</strong> / <asp:Label ID="lblTaskMaxScore" runat="server" /></span></div>
             <div class="mb-2">
                 <asp:Label ID="lblFeedback" runat="server" AssociatedControlID="txtFeedback" CssClass="review-form-label" Text="<%$ Resources:Company, TaskReview.FeedbackForTrainee %>" />
                 <asp:TextBox ID="txtFeedback" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="4" placeholder="<%$ Resources:Company, TaskReview.AddFeedbackAndSuggestions %>" />
             </div>
             <div class="review-actions">
-                <asp:Button ID="btnRequestRevision" runat="server" Text="<%$ Resources:Company, TaskReview.RequestChanges %>" CssClass="review-secondary-button" OnClick="btnRequestRevision_Click" />
-                <asp:Button ID="btnSaveGrade" runat="server" Text="<%$ Resources:Company, TaskReview.SubmitEvaluation %>" CssClass="review-primary-button" OnClick="btnSaveGrade_Click" />
+                <asp:PlaceHolder ID="phRequestChangesOpen" runat="server">
+                    <button type="button" id="btnOpenRequestChanges" class="task-dialog-btn task-dialog-btn-warning" data-task-dialog="requestChangesDialog">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m15 5 4 4M4 20l4-1L20 7l-4-4L4 15z" /></svg>
+                        <%: L.T("Company.TaskReview.RequestChanges") %>
+                    </button>
+                </asp:PlaceHolder>
+                <asp:Button ID="btnSaveGrade" runat="server" Text="<%$ Resources:Company, TaskReview.SubmitEvaluation %>" CssClass="task-dialog-btn task-dialog-btn-primary" OnClick="btnSaveGrade_Click" data-ui-action="save" data-loading-label="<%$ Resources:Company, TaskReview.Saving %>" />
             </div>
         </section>
     </div>
 </div>
+
+<%-- Request changes popup (shared design: Assets/css/task-dialogs.css). --%>
+<div class="modal fade uims-task-dialog" id="requestChangesDialog" tabindex="-1" aria-labelledby="requestChangesTitle" aria-hidden="true" data-open="<%= OpenDialog == "revision" ? "true" : "false" %>">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="task-dialog-header">
+                <span class="task-dialog-icon is-warning" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m15 5 4 4M4 20l4-1L20 7l-4-4L4 15z" /></svg></span>
+                <div class="task-dialog-heading">
+                    <span class="task-dialog-eyebrow is-warning"><asp:Literal ID="litRevisionEyebrow" runat="server" Mode="Encode" /></span>
+                    <h2 class="modal-title" id="requestChangesTitle"><%: L.T("Company.TaskReview.RequestChanges") %></h2>
+                    <p class="task-dialog-sub"><asp:Literal ID="litRevisionSubtitle" runat="server" Mode="Encode" /></p>
+                </div>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.TaskReview.Cancel") %>"></button>
+            </div>
+            <div class="modal-body">
+                <asp:Label ID="lblRevisionError" runat="server" Visible="false" EnableViewState="false" CssClass="task-dialog-alert" role="alert" />
+                <div class="task-dialog-field">
+                    <asp:Label ID="lblRevisionInstructions" runat="server" AssociatedControlID="txtRevisionInstructions" CssClass="form-label" Text="<%$ Resources:Company, TaskReview.ChangesToMake %>" />
+                    <asp:TextBox ID="txtRevisionInstructions" runat="server" CssClass="form-control" TextMode="MultiLine" Rows="5" MaxLength="8000" placeholder="<%$ Resources:Company, TaskReview.ChangesPlaceholder %>" />
+                    <div class="task-dialog-help"><%: L.T("Company.TaskReview.ChangesHelp") %></div>
+                </div>
+                <div class="task-dialog-callout is-info"><strong><%: L.T("Company.TaskReview.WhatHappensNext") %></strong><p><%: L.T("Company.TaskReview.RequestChangesNext") %></p></div>
+            </div>
+            <div class="task-dialog-footer">
+                <button type="button" class="task-dialog-btn task-dialog-btn-secondary" data-bs-dismiss="modal"><%: L.T("Company.TaskReview.Cancel") %></button>
+                <asp:Button ID="btnRequestRevision" runat="server" Text="<%$ Resources:Company, TaskReview.SendRequest %>" CssClass="task-dialog-btn task-dialog-btn-primary" OnClick="btnRequestRevision_Click" data-ui-action="submit" data-loading-label="<%$ Resources:Company, TaskReview.Saving %>" />
+            </div>
+        </div>
+    </div>
+</div>
 </asp:Panel>
+
+<%-- Result popup after a grade or a change request was saved. --%>
+<asp:PlaceHolder ID="phReviewResult" runat="server" Visible="false">
+<div class="modal fade uims-task-dialog task-result" id="reviewResultDialog" tabindex="-1" aria-labelledby="reviewResultTitle" aria-hidden="true" data-open="<%= OpenDialog == "result" ? "true" : "false" %>">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="task-result-body" role="status">
+                <span class="task-dialog-icon <%= ResultIsRevision ? "is-warning" : "is-success" %>" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="<%= ResultIsRevision ? "m15 5 4 4M4 20l4-1L20 7l-4-4L4 15z" : "m5 12.5 4.2 4.2L19 7" %>" /></svg>
+                </span>
+                <h2 id="reviewResultTitle"><asp:Literal ID="litResultTitle" runat="server" Mode="Encode" /></h2>
+                <p><asp:Literal ID="litResultMessage" runat="server" Mode="Encode" /></p>
+                <ul class="task-result-facts"><li><asp:Literal ID="litResultAttempt" runat="server" Mode="Encode" /></li><li><asp:Literal ID="litResultFact" runat="server" Mode="Encode" /></li></ul>
+                <div class="d-flex flex-wrap gap-2 justify-content-center">
+                    <a href="TaskReview.aspx" class="task-dialog-btn task-dialog-btn-secondary"><%: L.T("Company.TaskReview.BackToSubmissions") %></a>
+                    <button type="button" class="task-dialog-btn task-dialog-btn-primary" data-bs-dismiss="modal"><%: L.T("Company.TaskReview.Done") %></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</asp:PlaceHolder>
+<script src="<%: ResolveUrl("~/Assets/js/task-dialogs.js?v=20261025-4") %>"></script>
 <script type="text/javascript">
     function filterCompanySubmissions() {
+        // The list is not on the page while one submission is open.
+        if (!document.getElementById("submissionSearch")) return;
         var rows = document.querySelectorAll(".submission-table tbody tr[data-review-task]");
         var search = (document.getElementById("submissionSearch").value || "").toLowerCase().trim();
         var trainee = document.getElementById("submissionTraineeFilter").value;
@@ -663,6 +730,11 @@
         var maxScore = maxLabel ? parseFloat(maxLabel.textContent || maxLabel.innerText) : 100;
         var computedScore = document.getElementById("reviewComputedScore");
         if (!computedScore) return;
+        // Already graded: show the saved total (older grades may use other criterion names).
+        if (computedScore.getAttribute("data-saved")) {
+            computedScore.textContent = computedScore.getAttribute("data-saved");
+            return;
+        }
         computedScore.textContent = hasValue
             ? (total * maxScore / 100).toFixed(2).replace(/\.00$/, "")
             : "-";

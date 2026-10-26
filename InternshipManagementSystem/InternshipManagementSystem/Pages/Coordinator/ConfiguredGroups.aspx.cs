@@ -97,20 +97,6 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             catch (FirebaseException) { ShowMessage(L.T("Coordinator.ConfiguredGroups.CouldNotLoadTheGroupDetails"), false); }
         }
 
-        protected void btnDelete_Click(object sender, EventArgs e)
-        {
-            string id = GetGroupId(sender);
-            if (id == null) return;
-            try
-            {
-                new GroupRepository().DeleteGroup(id);
-                ShowMessage(L.T("Coordinator.ConfiguredGroups.GroupDeletedItsStudentsAreNow"), true);
-            }
-            catch (InvalidOperationException ex) { ShowMessage(ex.Message, false); }
-            catch (FirebaseException) { ShowMessage(L.T("Coordinator.ConfiguredGroups.CouldNotDeleteTheGroupPlease"), false); }
-            BindGroups();
-        }
-
         private void ShowGroupDetails(StudentGroup group)
         {
             List<Person> people = new UserRepository().GetAllPeople();
@@ -130,9 +116,10 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 placements.TryGetValue(student.Id, out placement);
                 string internship = placement == null
                     ? L.T("Coordinator.ConfiguredGroups.NoInternshipYet")
-                    : (placement.CompanyName ?? "Company") + " (" + placement.Status + ")";
+                    : (placement.CompanyName ?? "Company") + " · " + L.Value("PlacementStatus", placement.Status);
                 return new
                 {
+                    student.Id,
                     Name = student.FullName,
                     student.StudentNumber,
                     student.Email,

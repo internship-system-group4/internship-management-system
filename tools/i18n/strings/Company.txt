@@ -117,6 +117,54 @@ en: Technical skills
 Applications.SoftSkills
 en: Soft skills
 
+Applications.StudentProfile
+en: Student profile
+ar: ملف الطالب
+
+Applications.Skills
+en: Skills
+ar: المهارات
+
+Applications.ConfirmAcceptTitle
+en: Accept this application?
+ar: قبول هذا الطلب؟
+
+Applications.ConfirmAcceptText
+en: {0} will be offered a place in {1}.
+ar: سيُعرض على {0} مقعد في {1}.
+
+Applications.ConfirmAcceptPoint1
+en: The student will see your decision right away.
+ar: سيرى الطالب قرارك فورًا.
+
+Applications.ConfirmAcceptPoint2
+en: The placement starts only after the student confirms the offer.
+ar: يبدأ التدريب فقط بعد أن يؤكد الطالب العرض.
+
+Applications.ConfirmRejectTitle
+en: Reject this application?
+ar: رفض هذا الطلب؟
+
+Applications.ConfirmRejectText
+en: {0}'s application for {1} will be rejected.
+ar: سيتم رفض طلب {0} لفرصة {1}.
+
+Applications.ConfirmRejectPoint1
+en: The student will see the reason you wrote.
+ar: سيرى الطالب السبب الذي كتبته.
+
+Applications.ConfirmRejectPoint2
+en: This decision cannot be undone.
+ar: لا يمكن التراجع عن هذا القرار.
+
+Applications.YourReason
+en: Your reason
+ar: السبب الذي كتبته
+
+Applications.GoBack
+en: Go back
+ar: رجوع
+
 Applications.CoverLetter
 en: Cover letter
 
