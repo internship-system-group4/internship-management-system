@@ -24,7 +24,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 }
                 else
                 {
-                    lblMessage.Text = "User session expired or Company assignment is missing.";
+                    lblMessage.Text = L.T("Company.Trainees.SessionAssignmentMissing");
                     lblMessage.CssClass = "alert alert-danger d-block";
                 }
             }
@@ -76,7 +76,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     allTraineesList.Add(new TraineeViewModel
                     {
                         Id = p.Id,
-                        StudentName = p.StudentName ?? "Unknown Student",
+                        StudentName = p.StudentName ?? L.T("Company.Trainees.UnknownStudent"),
                         StudentMajor = major,
                         OpportunityTitle = p.OpportunityTitle ?? "N/A",
                         StartDate = p.StartDate,

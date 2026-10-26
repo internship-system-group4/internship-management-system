@@ -86,7 +86,7 @@ export function mountCourtyard(viewport, toggle, status, fallback) {
         model.root.userData = {}; model.parts.clear();
         host.dataset.sceneState = 'disposed'; toggle.hidden = true;
     }
-    resize(); toggle.hidden = false; status.textContent = 'GJU courtyard waterwheel · 3D reconstruction'; sync();
+    resize(); toggle.hidden = false; status.textContent = window.uimsT('CourtyardReconstruction'); sync();
     return {
         dispose,
         snapshot: () => ({ state: host.dataset.sceneState, angle: model.wheel.rotation.z, draws, visible, hidden: document.hidden, reducedMotion: reduce.matches, running: running(), triangles: renderer.info.render.triangles, calls: renderer.info.render.calls, geometries: renderer.info.memory.geometries, textures: renderer.info.memory.textures, width: canvas.width, height: canvas.height, architecture: model.parts.get('arcade')?.matrixWorld.elements.slice() || null }),

@@ -7,7 +7,7 @@
         .dashboard-header h3 { font-size: 1.4rem; font-weight: 700; color: var(--th-fg-0f4c81,#0f4c81); margin-bottom: 0.2rem; }
         .dashboard-header p { font-size: 0.85rem; margin-bottom: 0; color: var(--ui-muted); }
 
-        .metric-card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-left: 4px solid var(--th-bg-0f4c81,#0f4c81) !important; transition: transform 0.2s; background: var(--ui-surface,#fff); }
+        .metric-card { border: none; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); border-inline-start: 4px solid var(--th-bg-0f4c81,#0f4c81) !important; transition: transform 0.2s; background: var(--ui-surface,#fff); }
         .metric-card:hover { transform: translateY(-3px); }
         .metric-card .title { font-size: 0.7rem; font-weight: 700; text-transform: uppercase; color: var(--th-fg-6b7786,#6b7786); letter-spacing: 0.5px; margin-bottom: 0.5rem; }
         .metric-card .value { font-size: 1.5rem; font-weight: 800; color: var(--th-fg-1d2733,#1d2733); margin-bottom: 0.2rem; }
@@ -195,7 +195,7 @@
                                         <div class="student-avatar shadow-sm"><%# GetInitials(Eval("StudentName").ToString()) %></div>
                                         <div>
                                             <div class="fw-bold text-dark" style="font-size: 0.85rem;"><%# Eval("StudentName") %></div>
-                                            <div class="text-muted" style="font-size: 0.7rem;"><%# Eval("StudentMajor") %></div>
+                                            <div class="text-muted" style="font-size: 0.7rem;"><%#: L.Value("Directory", Eval("StudentMajor")) %></div>
                                         </div>
                                     </div>
                                 </ItemTemplate>

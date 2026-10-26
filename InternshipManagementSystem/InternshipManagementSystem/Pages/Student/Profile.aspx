@@ -110,6 +110,7 @@ body.uims-portal .spx .spx-name { margin: 0 0 4px; font-size: 22px; font-weight:
 
 /* Two columns: form + side information */
 .spx-grid { display: grid; grid-template-columns: minmax(0,1fr) 340px; gap: 20px; align-items: start; }
+.spx-grid > *, .spx-side > * { min-width: 0; }
 .spx-side { display: grid; gap: 20px; }
 
 .spx-card-head {
@@ -169,7 +170,7 @@ textarea.spx-input { min-height: 92px; resize: vertical; line-height: 1.5; }
 .spx-dirty .spx-status { color: var(--ui-warning-strong, #8a5a00); font-weight: 700; }
 .spx-dirty .spx-status-dot { background: var(--ui-warning, #e0a100); animation: spx-pulse 1.4s ease-in-out infinite; }
 @keyframes spx-pulse { 50% { box-shadow: 0 0 0 5px color-mix(in srgb, var(--ui-warning, #e0a100) 25%, transparent); } }
-.spx-buttons { display: flex; gap: 8px; }
+.spx-buttons { display: flex; flex-wrap: wrap; gap: 8px; }
 .spx-btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 7px;
     min-height: 42px; padding: 9px 18px; border-radius: 10px;
@@ -202,7 +203,7 @@ textarea.spx-input { min-height: 92px; resize: vertical; line-height: 1.5; }
 .spx-doc a { color: var(--ui-primary-text, var(--spx-primary)); font-weight: 700; }
 .spx-doc span { color: var(--spx-muted); }
 .spx-side-foot { padding: 14px 22px 18px; }
-.spx-side-foot .spx-btn { width: 100%; }
+.spx-side-foot .spx-btn { width: 100%; white-space: normal; text-align: center; }
 
 /* Animated "Saved" toast */
 .spx-toast {
@@ -236,14 +237,14 @@ textarea.spx-input { min-height: 92px; resize: vertical; line-height: 1.5; }
 .spx-visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 
 @media (max-width: 1080px) {
-    .spx-grid { grid-template-columns: 1fr; }
+    .spx-grid { grid-template-columns: minmax(0,1fr); }
     .spx-side { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 720px) {
     .spx-hero { grid-template-columns: auto 1fr; padding: 18px; gap: 16px; }
     .spx-hours { grid-column: 1 / -1; text-align: start; }
     .spx-avatar { width: 72px; height: 72px; font-size: 24px; }
-    .spx-fields, .spx-side { grid-template-columns: 1fr; }
+    .spx-fields, .spx-side { grid-template-columns: minmax(0,1fr); }
     .spx-body { padding: 16px 16px 4px; }
     .spx-card-head { padding: 16px; }
     .spx-savebar { flex-direction: column; align-items: stretch; margin: 6px 8px 8px; }
@@ -288,7 +289,7 @@ textarea.spx-input { min-height: 92px; resize: vertical; line-height: 1.5; }
 
         <div>
             <h3 class="spx-name"><%: StudentName %></h3>
-            <p class="spx-meta"><%: StudentMajor %><%: string.IsNullOrEmpty(StudentMajor) ? "" : " · " %><%: L.T("Student.Profile.GermanJordanianUniversity").TrimStart('|', ' ') %></p>
+            <p class="spx-meta"><%: L.Value("Directory", StudentMajor) %><%: string.IsNullOrEmpty(StudentMajor) ? "" : " · " %><%: L.T("Student.Profile.GermanJordanianUniversity").TrimStart('|', ' ') %></p>
             <div class="spx-chips">
                 <span class="spx-chip">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m2 9 10-5 10 5-10 5-10-5Zm4 2v5c4 3 8 3 12 0v-5"/></svg>
@@ -420,7 +421,7 @@ textarea.spx-input { min-height: 92px; resize: vertical; line-height: 1.5; }
                     <div><dt><%: L.T("Student.Profile.StudentID") %></dt><dd><%: StudentNumber %></dd></div>
                     <div><dt><%: L.T("Student.Profile.University") %></dt><dd><%: StudentUniversity %></dd></div>
                     <div><dt><%: L.T("Student.Profile.College") %></dt><dd><%: StudentCollege %></dd></div>
-                    <div><dt><%: L.T("Student.Profile.MajorSpecialization") %></dt><dd><%: StudentMajor %></dd></div>
+                    <div><dt><%: L.T("Student.Profile.MajorSpecialization") %></dt><dd><%: L.Value("Directory", StudentMajor) %></dd></div>
                     <div><dt><%: L.T("Student.Profile.RequiredTrainingHours") %></dt><dd><%: RequiredHoursText %></dd></div>
                     <div><dt><%: L.T("Student.Profile.ApprovedTrainingHours") %></dt><dd><%: ApprovedHoursText %></dd></div>
                 </dl>

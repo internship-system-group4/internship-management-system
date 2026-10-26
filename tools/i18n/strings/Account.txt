@@ -238,3 +238,59 @@ ar: إيقاف الحركة
 Login.ResumeMotion
 en: Resume motion
 ar: استئناف الحركة
+
+ForgotPassword.CheckYourEmail
+en: Check your email
+ar: تحقّق من بريدك الإلكتروني
+
+ForgotPassword.EnterYourUniversityEmailAddress
+en: Enter your university email address and we'll send you a link to reset your password.
+ar: أدخل بريدك الإلكتروني الجامعي وسنرسل إليك رابطًا لإعادة تعيين كلمة المرور.
+
+ForgotPassword.PasswordRecovery
+en: Password recovery
+ar: استعادة كلمة المرور
+
+ForgotPassword.PleaseWaitAMomentBefore
+en: Please wait a moment before requesting another link.
+ar: يُرجى الانتظار قليلًا قبل طلب رابط آخر.
+
+ForgotPassword.RecoverYourAccess
+en: Recover your access.
+ar: استعِد وصولك.
+
+ForgotPassword.RememberedItBackToLogin
+en: Remembered it? Back to Login
+ar: تذكّرتها؟ العودة إلى تسجيل الدخول
+
+ForgotPassword.ScreenProcessing
+en: Processing…
+ar: جارٍ المعالجة…
+
+ForgotPassword.ScreenReady
+en: Password Recovery
+ar: استعادة كلمة المرور
+
+ForgotPassword.ScreenReadyHint
+en: Ready for your request
+ar: جاهز لاستقبال طلبك
+
+ForgotPassword.ScreenRetry
+en: Please try again
+ar: يُرجى المحاولة مجددًا
+
+ForgotPassword.ScreenSent
+en: Reset Link Sent
+ar: تم إرسال الرابط
+
+ForgotPassword.UseADifferentEmail
+en: Use a different email
+ar: استخدام بريد إلكتروني آخر
+
+ForgotPassword.UseTheEmailRegisteredWithUims
+en: Use the email address registered with UIMS (e.g. @gju.edu.jo).
+ar: استخدم البريد الإلكتروني المسجّل في النظام (مثل ‎@gju.edu.jo).
+
+Login.UniversityAccessCard
+en: University access card
+ar: بطاقة الدخول الجامعية

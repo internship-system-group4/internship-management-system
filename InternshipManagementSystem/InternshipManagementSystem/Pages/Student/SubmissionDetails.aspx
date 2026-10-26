@@ -4,7 +4,7 @@
 </asp:Content>
 <asp:Content ID="Body" ContentPlaceHolderID="MainContent" runat="server">
 <div class="sd-page">
-    <nav class="sd-breadcrumb" aria-label="Breadcrumb">
+    <nav class="sd-breadcrumb" aria-label="<%: L.T("Student.SubmissionDetails.Breadcrumb") %>">
         <a href="<%: ResolveUrl("~/Pages/Student/MyTasks.aspx") %>"><%: L.T("Student.MyTasks.MyTasks2") %></a>
         <span aria-hidden="true">/</span><span><%: L.T("Student.SubmissionDetails.Title") %></span>
     </nav>

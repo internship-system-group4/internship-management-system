@@ -207,6 +207,7 @@
   <data name="Home.FaqIntro" xml:space="preserve"><value>من طلبك الأول إلى المراجعة النهائية، تعرّف على ما ينتظرك خلال رحلة التدريب.</value></data>
   <data name="Home.FaqTitle" xml:space="preserve"><value>الأسئلة الشائعة</value></data>
   <data name="Home.FindCurrent" xml:space="preserve"><value>اكتشف الفرص الحالية</value></data>
+  <data name="Home.LiveNote" xml:space="preserve"><value>لمحة عن فرص التدريب. تعرض بوابة الطالب الفرص التي يمكنك التقدم إليها.</value></data>
   <data name="Home.Location" xml:space="preserve"><value>الموقع</value></data>
   <data name="Home.MoreDetails" xml:space="preserve"><value>مزيد من التفاصيل</value></data>
   <data name="Home.MoreQuestions" xml:space="preserve"><value>لديك سؤال آخر؟ تواصل معنا</value></data>
@@ -215,9 +216,8 @@
   <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>ستظهر الفرص الجديدة هنا</value></data>
   <data name="Home.PauseCards" xml:space="preserve"><value>إيقاف حركة البطاقات</value></data>
   <data name="Home.PreviewIntro" xml:space="preserve"><value>استكشف فرص التدريب الحالية التي تنشرها الشركات الشريكة. سجّل الدخول لمعرفة الفرص المناسبة لتخصصك.</value></data>
-  <data name="Home.LiveNote" xml:space="preserve"><value>لمحة عن فرص التدريب. تعرض بوابة الطالب الفرص التي يمكنك التقدم إليها.</value></data>
-  <data name="Home.PreviewUnavailable" xml:space="preserve"><value>تعذّر تحميل فرص التدريب الحالية الآن. حاول لاحقًا أو سجّل الدخول إلى بوابة الطالب.</value></data>
   <data name="Home.PreviewTitle" xml:space="preserve"><value>اكتشف مسارك القادم.</value></data>
+  <data name="Home.PreviewUnavailable" xml:space="preserve"><value>تعذّر تحميل فرص التدريب الحالية الآن. حاول لاحقًا أو سجّل الدخول إلى بوابة الطالب.</value></data>
   <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>تعذّر تحميل الملخصات المنشورة. حاول مجددًا أو سجّل الدخول إلى بوابتك.</value></data>
   <data name="Home.ResumeCards" xml:space="preserve"><value>استئناف الحركة</value></data>
   <data name="Home.Retry" xml:space="preserve"><value>المحاولة مجددًا</value></data>
@@ -234,6 +234,7 @@
   <data name="Journey.AcademicDirectory" xml:space="preserve"><value>دليل الكليات</value></data>
   <data name="Journey.AerialViewOfTheGermanJordanian" xml:space="preserve"><value>منظر جوي لحرم الجامعة الألمانية الأردنية في مادبا</value></data>
   <data name="Journey.ApplyAndConfirm" xml:space="preserve"><value>قدّم وأكّد اختيارك</value></data>
+  <data name="Journey.ApplyByDate" xml:space="preserve"><value>آخر موعد للتقديم: {0}</value></data>
   <data name="Journey.ApplyFollowTheCompanyDecisionAnd" xml:space="preserve"><value>قدّم طلبك، وتابع قرار الشركة، وأكِّد عرضًا مقبولًا واحدًا.</value></data>
   <data name="Journey.ApplyNow" xml:space="preserve"><value>قدّم الآن</value></data>
   <data name="Journey.Bridge" xml:space="preserve"><value>الجسر</value></data>
@@ -271,6 +272,9 @@
   <data name="Journey.OpenTheVideo" xml:space="preserve"><value>فتح الفيديو</value></data>
   <data name="Journey.PauseSceneMotion" xml:space="preserve"><value>إيقاف حركة المشهد مؤقتًا</value></data>
   <data name="Journey.PreparingTheDawn" xml:space="preserve"><value>جارٍ استقبال الفجر</value></data>
+  <data name="Journey.PreviewsLoadFailed" xml:space="preserve"><value>تعذّر تحميل ملخصات التدريب. يُرجى تحديث الصفحة للمحاولة مجددًا.</value></data>
+  <data name="Journey.PreviewsNotConfigured" xml:space="preserve"><value>لم تُعَدّ ملخصات التدريب بعد.</value></data>
+  <data name="Journey.PreviewsUnavailable" xml:space="preserve"><value>ملخصات التدريب غير متاحة للزوار حاليًا. يُرجى المحاولة لاحقًا أو تسجيل الدخول لعرض الفرص في حسابك.</value></data>
   <data name="Journey.ProcessVideo" xml:space="preserve"><value>فيديو الخطوات</value></data>
   <data name="Journey.ProgrammeNamesFromGjuEduJo" xml:space="preserve"><value>أسماء البرامج من gju.edu.jo. الحرم في المشهد ثلاثي الأبعاد تصور فني، وتُعرض الكليات بحسب تخصصاتها وليس بحسب المباني.</value></data>
   <data name="Journey.PublishSelectMentor" xml:space="preserve"><value>انشر الفرص واختر ووجّه</value></data>

@@ -710,3 +710,35 @@ en: Awaiting academic evaluation
 
 FirebaseAuthExpiredException.YourSessionHasExpiredPleaseSign
 en: Your session has expired. Please sign in again.
+
+MajorMissing
+en: Major not recorded
+ar: تخصص غير مسجّل
+
+MajorNotRecorded
+en: Major not recorded
+ar: التخصص غير مسجّل
+
+MajorUnrecognized
+en: Unrecognized major
+ar: تخصص غير معروف
+
+MajorVerificationNotice
+en: Academic information verification required for {0} student records.
+ar: يلزم التحقق من المعلومات الأكاديمية لـ {0} من سجلات الطلاب.
+
+RecordedMajor
+en: Recorded major:\u0020
+ar: التخصص المسجّل:\u0020
+
+StudentsByMajor
+en: Students by Major
+ar: الطلاب حسب التخصص
+
+StudentsByMajorContext
+en: Distribution of School of Computing students by academic major.
+ar: توزيع طلاب كلية الحوسبة حسب التخصص الأكاديمي.
+
+ViewStudentBreakdown
+en: View student breakdown
+ar: عرض توزيع الطلاب

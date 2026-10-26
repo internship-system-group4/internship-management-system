@@ -702,3 +702,23 @@ ar: يتاح الانضمام قبل الاجتماع الموافق عليه ب
 I18n.ThisisanoldermeetinglinkCreate
 en: This is an older meeting link. Create a new request to use the embedded room.
 ar: هذا رابط اجتماع قديم. أنشئ طلبًا جديدًا لاستخدام الغرفة المضمنة.
+
+MyMeetings.NoMeetingsMatch
+en: No meetings match your search.
+ar: لا توجد اجتماعات تطابق بحثك.
+
+MyMeetings.NoPeopleMatch
+en: No people match your search.
+ar: لا يوجد أشخاص يطابقون البحث.
+
+MyMeetings.PeopleAvailable
+en: people available
+ar: شخص متاح
+
+MyMeetings.SearchMeetings
+en: Search meetings
+ar: ابحث عن الاجتماعات
+
+MyMeetings.SearchPeople
+en: Search people
+ar: ابحث عن الأشخاص

@@ -10,6 +10,10 @@ async page => {
   'academic-one':['/Pages/Academic/Dashboard.aspx','/Pages/Academic/StudentProgress.aspx','/Pages/Academic/FinalEvaluation.aspx','/Pages/Academic/Account.aspx','/Pages/Reports/Grades.aspx','/Pages/Meetings/Schedule.aspx'],
   'coordinator-one':['/Pages/Coordinator/Dashboard.aspx','/Pages/Coordinator/Students.aspx','/Pages/Coordinator/ManageStudents.aspx','/Pages/Coordinator/Companies.aspx','/Pages/Coordinator/AcademicSupervisors.aspx','/Pages/Coordinator/Groups.aspx','/Pages/Coordinator/ConfiguredGroups.aspx','/Pages/Coordinator/Placements.aspx','/Pages/Coordinator/PlacementDetails.aspx','/Pages/Coordinator/CompletionReview.aspx','/Pages/Coordinator/ContactMessages.aspx','/Pages/Coordinator/Account.aspx','/Pages/Coordinator/AddStudent.aspx']
  };
+ // Pages added after the original language audit, plus role-specific report masters.
+ routes['student-one'].push('/Pages/Student/SubmissionDetails.aspx?id=submission-one');
+ routes['supervisor-one'].push('/Pages/Reports/Grades.aspx','/Pages/Company/FinalEvaluation.aspx?id=student-one');
+ routes['coordinator-one'].push('/Pages/Coordinator/SupervisorProfile.aspx?id=academic-one','/Pages/Coordinator/DemoStudent.aspx','/Pages/Reports/Grades.aspx');
  const rows=[];
  for(const lang of LANGS)for(const [w,h] of WIDTHS)for(const [who,list] of Object.entries(routes)){
   const ctx=await page.context().browser().newContext({viewport:{width:w,height:h},reducedMotion:'reduce',isMobile:w<500,hasTouch:w<500});

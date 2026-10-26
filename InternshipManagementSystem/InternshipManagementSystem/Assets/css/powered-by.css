@@ -19,6 +19,12 @@ body.uims-public:has(.team-experience) .uims-public-nav .public-header-inner { b
 .team-lede { margin:8px 0 0; font-size:14px; line-height:1.55; color:var(--muted); }
 .team-credit { margin:8px 0 0; font-size:12px; line-height:1.5; color:var(--muted); }
 
+/* Keep the hall introduction compact despite the shared public reading scale. */
+body.uims-public .team-experience:not([data-mode="fallback"]) .team-heading { max-width:320px; padding:12px 14px; }
+body.uims-public .team-experience:not([data-mode="fallback"]) .team-heading h1 { font-size:22px; }
+body.uims-public .team-experience:not([data-mode="fallback"]) .team-lede { margin-top:6px; font-size:13px; line-height:1.45; }
+body.uims-public .team-experience:not([data-mode="fallback"]) .team-credit { margin-top:6px; font-size:12px; line-height:1.45; }
+
 .team-loading { position:absolute; z-index:1; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:12px; color:#f4efe8; font-size:14px; letter-spacing:.02em; transition:opacity 400ms ease; }
 .team-loading-bar { width:180px; height:2px; background:rgba(255,255,255,.18); border-radius:2px; overflow:hidden; }
 .team-loading-bar span { display:block; width:0; height:100%; background:var(--th-bg-f2c14e,#f2c14e); transition:width 260ms ease; }

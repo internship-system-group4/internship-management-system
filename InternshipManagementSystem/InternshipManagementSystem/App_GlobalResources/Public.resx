@@ -207,6 +207,7 @@
   <data name="Home.FaqIntro" xml:space="preserve"><value>From your first application to the final review, here is what to expect along the way.</value></data>
   <data name="Home.FaqTitle" xml:space="preserve"><value>Frequently asked questions</value></data>
   <data name="Home.FindCurrent" xml:space="preserve"><value>Find current opportunities</value></data>
+  <data name="Home.LiveNote" xml:space="preserve"><value>A preview of internship opportunities. Your student portal shows the ones you are eligible for.</value></data>
   <data name="Home.Location" xml:space="preserve"><value>Location</value></data>
   <data name="Home.MoreDetails" xml:space="preserve"><value>More details</value></data>
   <data name="Home.MoreQuestions" xml:space="preserve"><value>Still have a question? Contact us</value></data>
@@ -215,9 +216,8 @@
   <data name="Home.NoPreviewsTitle" xml:space="preserve"><value>New opportunities will appear here</value></data>
   <data name="Home.PauseCards" xml:space="preserve"><value>Pause cards</value></data>
   <data name="Home.PreviewIntro" xml:space="preserve"><value>Explore current internships published by partner companies. Sign in to see which opportunities match your field of study.</value></data>
-  <data name="Home.LiveNote" xml:space="preserve"><value>A preview of internship opportunities. Your student portal shows the ones you are eligible for.</value></data>
-  <data name="Home.PreviewUnavailable" xml:space="preserve"><value>We could not load current internships right now. Please try again later or sign in to your student portal.</value></data>
   <data name="Home.PreviewTitle" xml:space="preserve"><value>Find your next direction.</value></data>
+  <data name="Home.PreviewUnavailable" xml:space="preserve"><value>We could not load current internships right now. Please try again later or sign in to your student portal.</value></data>
   <data name="Home.PreviewsUnavailable" xml:space="preserve"><value>We could not load published summaries. Try again, or sign in to your portal.</value></data>
   <data name="Home.ResumeCards" xml:space="preserve"><value>Resume movement</value></data>
   <data name="Home.Retry" xml:space="preserve"><value>Try again</value></data>
@@ -234,6 +234,7 @@
   <data name="Journey.AcademicDirectory" xml:space="preserve"><value>Academic directory</value></data>
   <data name="Journey.AerialViewOfTheGermanJordanian" xml:space="preserve"><value>Aerial view of the German Jordanian University campus in Madaba</value></data>
   <data name="Journey.ApplyAndConfirm" xml:space="preserve"><value>Apply and confirm</value></data>
+  <data name="Journey.ApplyByDate" xml:space="preserve"><value>Apply by {0}</value></data>
   <data name="Journey.ApplyFollowTheCompanyDecisionAnd" xml:space="preserve"><value>Apply, follow the company decision and confirm one accepted offer.</value></data>
   <data name="Journey.ApplyNow" xml:space="preserve"><value>Apply now</value></data>
   <data name="Journey.Bridge" xml:space="preserve"><value>Bridge</value></data>
@@ -271,6 +272,9 @@
   <data name="Journey.OpenTheVideo" xml:space="preserve"><value>Open the video</value></data>
   <data name="Journey.PauseSceneMotion" xml:space="preserve"><value>Pause scene motion</value></data>
   <data name="Journey.PreparingTheDawn" xml:space="preserve"><value>Preparing the dawn</value></data>
+  <data name="Journey.PreviewsLoadFailed" xml:space="preserve"><value>We could not load internship summaries. Please refresh to try again.</value></data>
+  <data name="Journey.PreviewsNotConfigured" xml:space="preserve"><value>Internship summaries are not configured yet.</value></data>
+  <data name="Journey.PreviewsUnavailable" xml:space="preserve"><value>Internship summaries are not available to visitors yet. Please try again later, or log in to see opportunities in your portal.</value></data>
   <data name="Journey.ProcessVideo" xml:space="preserve"><value>Process video</value></data>
   <data name="Journey.ProgrammeNamesFromGjuEduJo" xml:space="preserve"><value>Programme names from gju.edu.jo. The campus in the 3D scene is an artistic interpretation; schools are introduced thematically, not by building.</value></data>
   <data name="Journey.PublishSelectMentor" xml:space="preserve"><value>Publish, select, mentor</value></data>

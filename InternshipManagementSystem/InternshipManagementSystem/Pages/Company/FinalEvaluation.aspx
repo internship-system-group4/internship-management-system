@@ -92,10 +92,10 @@
                 var role = document.getElementById('jsInternshipTitle').innerText;
                 var hoursElement = document.getElementById('<%= txtActualHours.ClientID %>');
                 var hours = (hoursElement && hoursElement.value) ? hoursElement.value : '___';
-                var today = new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+                var today = new Date().toLocaleDateString(document.documentElement.lang === 'ar' ? 'ar-JO' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
 
-                if (studentName.includes("Select") || studentName === "--") {
-                    showClientAlert("Missing Information", "Please select a trainee from the list first before previewing the certificate.", false);
+                if (!document.getElementById('<%= ddlTrainees.ClientID %>').value) {
+                    showClientAlert(uimsT('EvaluationMissingInformation'), uimsT('EvaluationSelectForCertificate'), false);
                     return;
                 }
 
@@ -113,12 +113,12 @@
 
         function showOfficialReportModal() {
             var studentName = document.getElementById('jsStudentName').innerText;
-            if (studentName.includes("Select") || studentName === "--") {
-                showClientAlert("Missing Information", "Please select a trainee from the list first before reviewing the report.", false);
+            if (!document.getElementById('<%= ddlTrainees.ClientID %>').value) {
+                showClientAlert(uimsT('EvaluationMissingInformation'), uimsT('EvaluationSelectForReport'), false);
                 return;
             }
 
-            var role = document.getElementById('jsInternshipTitle').innerText || 'Intern';
+            var role = document.getElementById('jsInternshipTitle').innerText || uimsT('EvaluationIntern');
             var hours = document.getElementById('<%= txtActualHours.ClientID %>').value || '0';
 
             var tech = parseInt(document.getElementById('<%= txtTechSkills.ClientID %>').value) || 0;
@@ -133,11 +133,11 @@
             var recElem = document.getElementById('<%= ddlRecommendation.ClientID %>');
             var recText = recElem.options[recElem.selectedIndex] ? recElem.options[recElem.selectedIndex].text : '-';
 
-            var strengths = document.getElementById('<%= txtStrengths.ClientID %>').value || 'No strengths noted.';
-            var improvements = document.getElementById('<%= txtImprovements.ClientID %>').value || 'No improvements noted.';
+            var strengths = document.getElementById('<%= txtStrengths.ClientID %>').value || uimsT('EvaluationNoStrengths');
+            var improvements = document.getElementById('<%= txtImprovements.ClientID %>').value || uimsT('EvaluationNoImprovements');
 
             document.getElementById('repStudentName').innerText = studentName;
-            document.getElementById('repMajor').innerText = "Computer Engineering / GJU";
+            document.getElementById('repMajor').innerText = document.getElementById('jsStudentMajor').innerText;
             document.getElementById('repRole').innerText = role;
             document.getElementById('repHours').innerText = hours;
 
@@ -151,7 +151,7 @@
             document.getElementById('repRecommendation').innerText = recText;
             document.getElementById('repStrengths').innerText = strengths;
             document.getElementById('repImprovements').innerText = improvements;
-            document.getElementById('repDate').innerText = new Date().toLocaleDateString('en-GB');
+            document.getElementById('repDate').innerText = new Date().toLocaleDateString(document.documentElement.lang === 'ar' ? 'ar-JO' : 'en-GB');
 
             var reportModal = new bootstrap.Modal(document.getElementById('officialReportModal'));
             reportModal.show();
@@ -216,7 +216,7 @@
 
                     <div class="d-flex justify-content-end align-items-center gap-2 pt-3 border-top flex-wrap">
                         <button type="button" class="btn btn-exact-match btn-style-outline-dark shadow-sm me-auto" onclick="showOfficialReportModal()">
-                            <i class="bi bi-file-earmark-text-fill me-1 text-primary"></i> Review Official Report
+                            <i class="bi bi-file-earmark-text-fill me-1 text-primary"></i> <%: L.T("Company.FinalEvaluation.ReviewOfficialReport") %>
                         </button>
 
                         <button type="button" class="btn btn-exact-match btn-style-light shadow-sm text-warning" onclick="generateCertificate()">
@@ -238,7 +238,7 @@
                         </div>
                         <div>
                             <div class="fw-bold text-dark" style="font-size: 0.9rem;"><span id="jsStudentName"><asp:Literal ID="litStudentName" runat="server" Text="<%$ Resources:Company, FinalEvaluation.SelectATraineePlaceholder %>" Mode="Encode" /></span></div>
-                            <div class="text-muted" style="font-size: 0.75rem;"><asp:Literal ID="litStudentMajor" runat="server" Mode="Encode">-</asp:Literal></div>
+                            <div class="text-muted" style="font-size: 0.75rem;" id="jsStudentMajor"><asp:Literal ID="litStudentMajor" runat="server" Mode="Encode">-</asp:Literal></div>
                         </div>
                     </div>
 
@@ -271,7 +271,7 @@
       <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0 shadow-lg" style="background: transparent;">
           <div class="modal-header border-bottom-0 pb-0 justify-content-end pe-3 pt-3">
-              <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="Close" style="opacity: 1;"></button>
+              <button type="button" class="btn-close bg-white rounded-circle p-2 shadow-sm" data-bs-dismiss="modal" aria-label="<%: L.T("Company.FinalEvaluation.Close2") %>" style="opacity: 1;"></button>
           </div>
           <div class="modal-body p-0 uims-paper" id="certificatePrintArea" data-bs-theme="light">
               <div class="cert-container">
@@ -295,7 +295,7 @@
                       </div>
                       <div class="gold-seal"><%: L.T("Company.FinalEvaluation.Official") %><br/><%: L.T("Company.FinalEvaluation.Company") %><br/><%: L.T("Company.FinalEvaluation.Seal") %></div>
                       <div class="cert-signature-line">
-                          <asp:Literal ID="litCompanySupervisorName" runat="server" Mode="Encode">Company Supervisor</asp:Literal><br />
+                          <asp:Literal ID="litCompanySupervisorName" runat="server" Mode="Encode" Text="<%$ Resources:Company, Account.CompanySupervisor %>" /><br />
                           <span style="font-size: 0.75rem; color: var(--ui-muted);"><%: L.T("Company.FinalEvaluation.AuthorizedSignature") %></span>
                       </div>
                   </div>
@@ -303,7 +303,7 @@
           </div>
           <div class="modal-footer bg-white border-top-0 rounded-bottom-4 d-flex justify-content-center align-items-center flex-wrap gap-2 py-3 px-4">
               <button type="button" class="btn btn-outline-primary px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;" onclick="downloadCertificatePDF()">
-                  <i class="bi bi-file-earmark-pdf me-1"></i> Download as PDF
+                  <i class="bi bi-file-earmark-pdf me-1"></i> <%: L.T("Company.FinalEvaluation.DownloadAsPDF") %>
               </button>
               
               <asp:LinkButton ID="btnSendCert" runat="server" CssClass="btn btn-outline-primary px-3 rounded-pill fw-semibold" style="font-size: 0.85rem;" OnClick="BtnSendCertificate_Click" CausesValidation="false">
@@ -312,7 +312,7 @@
               <small class="text-muted w-100 text-center"><%: L.T("Company.FinalEvaluation.CertificateRequiresApproval") %></small>
               
               <button type="button" class="btn btn-primary px-3 rounded-pill fw-semibold" style="background-color:var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" onclick="window.print()">
-                  <i class="bi bi-printer me-1"></i> Print
+                  <i class="bi bi-printer me-1"></i> <%: L.T("Company.FinalEvaluation.Print") %>
               </button>
           </div>
         </div>
@@ -325,34 +325,34 @@
         <div class="modal-content border-0 shadow-lg rounded-4">
           <div class="modal-header bg-light border-bottom-0 pt-4 px-4">
             <h5 class="modal-title fw-bold text-dark" style="font-size: 1rem;">
-              <i class="bi bi-journal-check text-primary me-2"></i> Official Internship Evaluation Report
+              <i class="bi bi-journal-check text-primary me-2"></i> <%: L.T("Company.FinalEvaluation.OfficialInternshipEvaluationReport") %>
             </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.FinalEvaluation.Close2") %>"></button>
           </div>
           <div class="modal-body p-4 p-md-5 bg-white uims-paper" id="reportPrintArea" data-bs-theme="light">
               <div class="text-center border-bottom pb-4 mb-4">
-                  <h5 class="fw-bold text-uppercase text-primary mb-1">German Jordanian University</h5>
-                  <p class="text-muted mb-0" style="font-size: 0.8rem;">Internship Management System (UIMS) - Official Academic Report</p>
+                  <h5 class="fw-bold text-uppercase text-primary mb-1"><%: L.T("Company.FinalEvaluation.GermanJordanianUniversity") %></h5>
+                  <p class="text-muted mb-0" style="font-size: 0.8rem;"><%: L.T("Company.FinalEvaluation.InternshipManagementSystemUIMSOfficialAcademic") %></p>
                   <hr class="w-25 mx-auto my-3 border-primary">
-                  <h6 class="fw-bold text-dark mt-2">Final Performance Evaluation & Grade Report</h6>
+                  <h6 class="fw-bold text-dark mt-2"><%: L.T("Company.FinalEvaluation.FinalPerformanceEvaluationGradeReport") %></h6>
               </div>
 
               <div class="row mb-4 bg-light p-3 rounded-3 border g-2">
                   <div class="col-md-6">
-                      <span class="text-muted d-block" style="font-size: 0.75rem;">Trainee Student:</span>
+                      <span class="text-muted d-block" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.TraineeStudent") %></span>
                       <strong class="text-dark fs-6" id="repStudentName">--</strong>
                   </div>
                   <div class="col-md-6">
-                      <span class="text-muted d-block" style="font-size: 0.75rem;">Academic Major:</span>
+                      <span class="text-muted d-block" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.AcademicMajor") %></span>
                       <strong class="text-dark fs-6" id="repMajor">--</strong>
                   </div>
                   <div class="col-md-6 mt-2">
-                      <span class="text-muted d-block" style="font-size: 0.75rem;">Internship Position:</span>
+                      <span class="text-muted d-block" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.InternshipPosition") %></span>
                       <strong class="text-dark" style="font-size: 0.9rem;" id="repRole">--</strong>
                   </div>
                   <div class="col-md-6 mt-2">
-                      <span class="text-muted d-block" style="font-size: 0.75rem;">Actual Training Hours:</span>
-                      <strong class="text-primary" style="font-size: 0.9rem;" id="repHours">--</strong> Hours
+                      <span class="text-muted d-block" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.ActualTrainingHours2") %></span>
+                      <strong class="text-primary" style="font-size: 0.9rem;" id="repHours">--</strong> <%: L.T("Company.FinalEvaluation.Hours") %>
                   </div>
               </div>
 
@@ -361,35 +361,35 @@
                       <thead class="table-light">
                           <tr>
                               <th><%: L.T("Company.FinalEvaluation.ProjectCriteria") %></th>
-                              <th class="text-center" style="width: 120px;">Max Score</th>
-                              <th class="text-center" style="width: 120px;">Awarded</th>
+                              <th class="text-center" style="width: 120px;"><%: L.T("Company.FinalEvaluation.MaxScore") %></th>
+                              <th class="text-center" style="width: 120px;"><%: L.T("Company.FinalEvaluation.Awarded") %></th>
                           </tr>
                       </thead>
                       <tbody>
                           <tr>
-                              <td><strong>Technical Skills & Application</strong></td>
+                              <td><strong><%: L.T("Company.FinalEvaluation.TechnicalSkillsApplication") %></strong></td>
                               <td class="text-center text-muted">40</td>
-                              <td class="text-center fw-bold text-primary" id="repTech">0</td>
+                              <td class="text-center fw-bold text-primary" dir="ltr" id="repTech">0</td>
                           </tr>
                           <tr>
-                              <td><strong>Quality of Work & Logic</strong></td>
+                              <td><strong><%: L.T("Company.FinalEvaluation.QualityOfWorkLogic") %></strong></td>
                               <td class="text-center text-muted">25</td>
-                              <td class="text-center fw-bold text-primary" id="repWork">0</td>
+                              <td class="text-center fw-bold text-primary" dir="ltr" id="repWork">0</td>
                           </tr>
                           <tr>
-                              <td><strong>Professionalism & Ethics</strong></td>
+                              <td><strong><%: L.T("Company.FinalEvaluation.ProfessionalismEthics") %></strong></td>
                               <td class="text-center text-muted">20</td>
-                              <td class="text-center fw-bold text-primary" id="repProf">0</td>
+                              <td class="text-center fw-bold text-primary" dir="ltr" id="repProf">0</td>
                           </tr>
                           <tr>
-                              <td><strong>Communication & Teamwork</strong></td>
+                              <td><strong><%: L.T("Company.FinalEvaluation.CommunicationTeamwork") %></strong></td>
                               <td class="text-center text-muted">15</td>
-                              <td class="text-center fw-bold text-primary" id="repComm">0</td>
+                              <td class="text-center fw-bold text-primary" dir="ltr" id="repComm">0</td>
                           </tr>
                           <tr class="table-primary">
-                              <td><strong>Total Calculated Score</strong></td>
+                              <td><strong><%: L.T("Company.FinalEvaluation.TotalCalculatedScore") %></strong></td>
                               <td class="text-center"><strong>100</strong></td>
-                              <td class="text-center fw-bold text-dark" id="repTotalScore">-- / 100</td>
+                              <td class="text-center fw-bold text-dark" dir="ltr" id="repTotalScore">-- / 100</td>
                           </tr>
                       </tbody>
                   </table>
@@ -399,13 +399,13 @@
                   <div class="row g-3">
                       <div class="col-md-6">
                           <div class="p-3 border rounded-3 bg-light h-100">
-                              <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;">Performance Level:</span>
+                              <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.PerformanceLevel2") %></span>
                               <span class="text-dark fw-semibold" style="font-size: 0.85rem;" id="repPerformance">-</span>
                           </div>
                       </div>
                       <div class="col-md-6">
                           <div class="p-3 border rounded-3 bg-light h-100">
-                              <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;">Company Recommendation:</span>
+                              <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.CompanyRecommendation2") %></span>
                               <span class="text-primary fw-semibold" style="font-size: 0.85rem;" id="repRecommendation">-</span>
                           </div>
                       </div>
@@ -413,39 +413,39 @@
               </div>
 
               <div class="mb-4">
-                  <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;">Key Strengths:</span>
+                  <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.KeyStrengths") %></span>
                   <p class="p-3 border rounded-3 bg-light mb-2 text-dark" style="font-size: 0.85rem;" id="repStrengths">-</p>
                   
-                  <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;">Areas for Improvement:</span>
+                  <span class="text-muted d-block fw-bold mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.AreasForImprovement2") %></span>
                   <p class="p-3 border rounded-3 bg-light mb-0 text-dark" style="font-size: 0.85rem;" id="repImprovements">-</p>
               </div>
 
               <div class="d-flex justify-content-between align-items-end mt-5 pt-4 border-top">
                   <div>
-                      <p class="text-muted mb-1" style="font-size: 0.75rem;">Report Generated Date:</p>
+                      <p class="text-muted mb-1" style="font-size: 0.75rem;"><%: L.T("Company.FinalEvaluation.ReportGeneratedDate") %></p>
                       <strong class="text-dark" style="font-size: 0.85rem;" id="repDate">--</strong>
                   </div>
                   <div class="text-end">
                       <div style="font-family: 'Georgia', serif; font-style: italic; font-size: 1rem; color: var(--th-fg-0f4c81,#0f4c81);" class="mb-1">
-                          <asp:Literal ID="litReportSupervisorSig" runat="server">Company Supervisor</asp:Literal>
+                          <asp:Literal ID="litReportSupervisorSig" runat="server" Text="<%$ Resources:Company, Account.CompanySupervisor %>" />
                       </div>
                       <div class="border-top border-dark pt-1" style="width: 200px;">
-                          <span class="text-muted text-uppercase fw-bold" style="font-size: 0.65rem;">Authorized Company Signature & Seal</span>
+                          <span class="text-muted text-uppercase fw-bold" style="font-size: 0.65rem;"><%: L.T("Company.FinalEvaluation.AuthorizedCompanySignatureSeal") %></span>
                       </div>
                   </div>
               </div>
           </div>
 
           <div class="modal-footer bg-light border-top-0 rounded-bottom-4 px-4 py-3 d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary px-4 rounded-pill" style="font-size: 0.85rem;" data-bs-dismiss="modal">Close</button>
-            <div class="d-flex gap-2">
+            <button type="button" class="btn btn-secondary px-4 rounded-pill" style="font-size: 0.85rem;" data-bs-dismiss="modal"><%: L.T("Company.FinalEvaluation.Close2") %></button>
+            <div class="d-flex flex-wrap gap-2">
                 <button type="button" class="btn btn-outline-primary px-3 rounded-pill" style="font-size: 0.85rem;" onclick="window.print()">
-                    <i class="bi bi-printer me-1"></i> Print Report
+                    <i class="bi bi-printer me-1"></i> <%: L.T("Company.FinalEvaluation.PrintReport") %>
                 </button>
                 
                 <!-- الإرسال الفعلي لقاعدة البيانات عبر الباك إند للمشرف -->
                 <asp:LinkButton ID="btnSendReport" runat="server" CssClass="btn btn-primary px-4 rounded-pill fw-semibold shadow-sm" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" OnClick="BtnSendEvaluation_Click">
-                    <i class="bi bi-send-fill me-2"></i> Send to Academic Supervisor
+                    <i class="bi bi-send-fill me-2"></i> <%: L.T("Company.EvaluationReport.SendToAcademicSupervisor") %>
                 </asp:LinkButton>
             </div>
           </div>
@@ -459,7 +459,7 @@
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
             <h6 class="modal-title fw-bold" style="color: var(--th-fg-0f4c81,#0f4c81); font-size: 1rem;"><%: L.T("Company.FinalEvaluation.ScoresAttendance") %></h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.FinalEvaluation.Close2") %>"></button>
           </div>
           <div class="modal-body p-4">
               <div class="mb-4 bg-light p-3 rounded-3 border">
@@ -486,11 +486,11 @@
                   <div class="text-end"><div class="text-muted" style="font-size: 0.7rem;">/ 15</div><asp:TextBox ID="txtCommunication" runat="server" CssClass="form-control score-input form-control-sm" TextMode="Number" min="0" max="15" oninput="calculateTotal()"></asp:TextBox></div>
               </div>
               <div class="d-flex justify-content-between align-items-center total-row">
-                  <span><%: L.T("Company.FinalEvaluation.TotalScore") %></span><span id="spanTotalScore">-- / 100</span>
+                  <span><%: L.T("Company.FinalEvaluation.TotalScore") %></span><span dir="ltr" id="spanTotalScore">-- / 100</span>
               </div>
           </div>
           <div class="modal-footer border-top-0 px-4 pb-4">
-            <button type="button" class="btn w-100 text-white rounded-3 fw-bold" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" data-bs-dismiss="modal">Save Scores</button>
+            <button type="button" class="btn w-100 text-white rounded-3 fw-bold" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" data-bs-dismiss="modal"><%: L.T("Company.FinalEvaluation.SaveScores") %></button>
           </div>
         </div>
       </div>
@@ -502,42 +502,42 @@
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
             <h6 class="modal-title fw-bold" style="color: var(--th-fg-0f4c81,#0f4c81); font-size: 1rem;"><%: L.T("Company.FinalEvaluation.FeedbackRecommendation") %></h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.FinalEvaluation.Close2") %>"></button>
           </div>
           <div class="modal-body p-4">
                 <div class="row mb-4">
                     <div class="col-md-6">
                         <label class="form-label fw-semibold" style="font-size: 0.8rem;"><%: L.T("Company.FinalEvaluation.PerformanceLevel") %></label>
                         <asp:DropDownList ID="ddlPerformance" runat="server" CssClass="form-select bg-light" style="font-size: 0.85rem;">
-                            <asp:ListItem Text="Select Performance Level" Value="" />
-                            <asp:ListItem Text="Excellent (A)" Value="Excellent" />
-                            <asp:ListItem Text="Very Good (B)" Value="VeryGood" />
-                            <asp:ListItem Text="Good (C)" Value="Good" />
-                            <asp:ListItem Text="Needs Improvement (D)" Value="NeedsImprovement" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.SelectPerformanceLevel2 %>" Value="" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.ExcellentA %>" Value="Excellent" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.VeryGoodB %>" Value="VeryGood" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.GoodC %>" Value="Good" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.NeedsImprovementD %>" Value="NeedsImprovement" />
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-6">
                         <label class="form-label fw-semibold text-primary" style="font-size: 0.8rem;"><%: L.T("Company.FinalEvaluation.CompanyRecommendation") %></label>
                         <asp:DropDownList ID="ddlRecommendation" runat="server" CssClass="form-select bg-light border-primary" style="font-size: 0.85rem;">
-                            <asp:ListItem Text="Select Recommendation" Value="" />
-                            <asp:ListItem Text="Highly Recommended for Hire" Value="HighlyRecommend" />
-                            <asp:ListItem Text="Recommended" Value="Recommend" />
-                            <asp:ListItem Text="Recommend with Reservations" Value="Reservations" />
-                            <asp:ListItem Text="Do Not Recommend" Value="DoNotRecommend" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.SelectRecommendation2 %>" Value="" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.HighlyRecommendedForHire %>" Value="HighlyRecommend" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.Recommended %>" Value="Recommend" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.RecommendWithReservations %>" Value="Reservations" />
+                            <asp:ListItem Text="<%$ Resources:Company, FinalEvaluation.DoNotRecommend %>" Value="DoNotRecommend" />
                         </asp:DropDownList>
                     </div>
                 </div>
                 <div class="mb-4">
                     <label class="form-label fw-semibold" style="font-size: 0.8rem;"><%: L.T("Company.FinalEvaluation.Strengths") %></label>
-                    <asp:TextBox ID="txtStrengths" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="Describe main strengths..." style="font-size: 0.85rem;"></asp:TextBox>
+                    <asp:TextBox ID="txtStrengths" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="<%$ Resources:Company, FinalEvaluation.DescribeMainStrengths %>" style="font-size: 0.85rem;"></asp:TextBox>
                 </div>
                 <div class="mb-2">
                     <label class="form-label fw-semibold" style="font-size: 0.8rem;"><%: L.T("Company.FinalEvaluation.AreasForImprovement") %></label>
-                    <asp:TextBox ID="txtImprovements" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="Describe areas to develop..." style="font-size: 0.85rem;"></asp:TextBox>
+                    <asp:TextBox ID="txtImprovements" runat="server" CssClass="form-control bg-light" TextMode="MultiLine" Rows="3" placeholder="<%$ Resources:Company, FinalEvaluation.DescribeAreasToDevelop %>" style="font-size: 0.85rem;"></asp:TextBox>
                 </div>
           </div>
           <div class="modal-footer border-top-0 px-4 pb-4">
-            <button type="button" class="btn px-4 text-white rounded-3 fw-bold" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" data-bs-dismiss="modal">Save Feedback</button>
+            <button type="button" class="btn px-4 text-white rounded-3 fw-bold" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;" data-bs-dismiss="modal"><%: L.T("Company.FinalEvaluation.SaveFeedback") %></button>
           </div>
         </div>
       </div>
@@ -549,16 +549,16 @@
         <div class="modal-content rounded-4 border-0 shadow">
           <div class="modal-header border-bottom-0 pb-0 pt-4 px-4">
             <h6 class="modal-title fw-bold" style="color: var(--th-fg-0f4c81,#0f4c81); font-size: 1rem;"><%: L.T("Company.FinalEvaluation.MySavedDrafts") %></h6>
-            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<%: L.T("Company.FinalEvaluation.Close2") %>"></button>
           </div>
           <div class="modal-body p-4">
-              <asp:GridView ID="gvDrafts" runat="server" CssClass="table table-hover align-middle mb-0 drafts-table" AutoGenerateColumns="False" EmptyDataText="You have no saved drafts." GridLines="None" OnRowCommand="GvDrafts_RowCommand">
+              <asp:GridView ID="gvDrafts" runat="server" CssClass="table table-hover align-middle mb-0 drafts-table" AutoGenerateColumns="False" EmptyDataText="<%$ Resources:Company, FinalEvaluation.YouHaveNoSavedDrafts %>" GridLines="None" OnRowCommand="GvDrafts_RowCommand">
                   <HeaderStyle CssClass="bg-light text-muted text-uppercase" />
                   <Columns>
-                      <asp:BoundField DataField="StudentName" HeaderText="Trainee Name" ItemStyle-CssClass="fw-bold text-dark" />
-                      <asp:TemplateField HeaderText="Action">
+                      <asp:BoundField DataField="StudentName" HeaderText="<%$ Resources:Company, FinalEvaluation.TraineeName %>" ItemStyle-CssClass="fw-bold text-dark" />
+                      <asp:TemplateField HeaderText="<%$ Resources:Company, FinalEvaluation.Action %>">
                           <ItemTemplate>
-                              <asp:LinkButton ID="btnLoadDraft" runat="server" CommandName="LoadDraft" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-exact-match btn-style-outline-dark">Continue Draft</asp:LinkButton>
+                              <asp:LinkButton ID="btnLoadDraft" runat="server" CommandName="LoadDraft" CommandArgument='<%# Eval("Id") %>' CssClass="btn btn-exact-match btn-style-outline-dark"><%: L.T("Company.FinalEvaluation.ContinueDraft") %></asp:LinkButton>
                           </ItemTemplate>
                       </asp:TemplateField>
                   </Columns>
@@ -575,7 +575,7 @@
           <div class="mb-3" style="font-size: 2.5rem;" id="clientAlertIcon"></div>
           <h6 class="fw-bold mb-2 text-dark" id="clientAlertTitle"></h6>
           <p class="text-muted mb-4" style="font-size: 0.85rem;" id="clientAlertMessage"></p>
-          <button type="button" class="btn text-white rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;">Okay</button>
+          <button type="button" class="btn text-white rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); font-size: 0.85rem;"><%: L.T("Company.FinalEvaluation.Okay2") %></button>
         </div>
       </div>
     </div>
@@ -587,7 +587,7 @@
           <div class="mb-3" style="font-size: 2.5rem;"><asp:Literal ID="litModalIcon" runat="server"></asp:Literal></div>
           <h6 class="fw-bold mb-2 text-dark"><asp:Literal ID="litModalTitle" runat="server" Mode="Encode"></asp:Literal></h6>
           <p class="text-muted mb-4" style="font-size: 0.85rem;"><asp:Literal ID="litModalMessage" runat="server" Mode="Encode"></asp:Literal></p>
-          <button type="button" class="btn text-white rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); border: none; font-size: 0.85rem;">Okay</button>
+          <button type="button" class="btn text-white rounded-pill px-4 w-100 fw-bold" data-bs-dismiss="modal" style="background-color: var(--th-bg-0f4c81,#0f4c81); border: none; font-size: 0.85rem;"><%: L.T("Company.FinalEvaluation.Okay2") %></button>
         </div>
       </div>
     </div>

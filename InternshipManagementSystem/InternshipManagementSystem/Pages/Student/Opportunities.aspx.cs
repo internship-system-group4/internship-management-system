@@ -53,7 +53,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
             if (ApplicationsByOpportunity.TryGetValue(opportunity.Id ?? "", out application)
                 && !string.IsNullOrWhiteSpace(application.CompanyName))
                 return application.CompanyName;
-            return "Partner Company";
+            return L.T("Student.Opportunities.PartnerCompany");
         }
 
         protected string SearchText = "";

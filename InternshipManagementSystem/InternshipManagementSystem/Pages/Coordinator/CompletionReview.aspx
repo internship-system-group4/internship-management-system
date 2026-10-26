@@ -282,9 +282,9 @@
                     <path id="crStampRing" d="M100,100 m-72,0 a72,72 0 1,1 144,0 a72,72 0 1,1 -144,0"/></defs>
                     <g filter="url(#crInk)">
                         <circle cx="100" cy="100" r="92" class="cr-seal-outer"/><circle cx="100" cy="100" r="82" class="cr-seal-inner"/>
-                        <text class="cr-seal-ring"><textPath href="#crStampRing" startOffset="0" textLength="440" lengthAdjust="spacing">UIMS &#183; INTERNSHIP COMPLETION VERIFIED &#183; UIMS &#183;</textPath></text>
+                        <text class="cr-seal-ring"><textPath href="#crStampRing" startOffset="0" textLength="440" lengthAdjust="spacing"><%: L.T("Coordinator.CompletionReview.UIMSINTERNSHIPCOMPLETIONVERIFIEDUIMS") %></textPath></text>
                         <line x1="44" y1="86" x2="156" y2="86"/><line x1="44" y1="118" x2="156" y2="118"/>
-                        <text x="100" y="109" class="cr-seal-word" text-anchor="middle">APPROVED</text>
+                        <text x="100" y="109" class="cr-seal-word" text-anchor="middle"><%: L.T("Coordinator.CompletionReview.Approved") %></text>
                     </g>
                 </svg>
             </div>

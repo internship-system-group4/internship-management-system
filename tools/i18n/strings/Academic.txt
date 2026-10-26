@@ -510,3 +510,51 @@ ar: / 160 ساعة
 StudentProgress.PendingCompanyVerification
 en: Pending Company Verification
 ar: بانتظار تحقق الشركة
+
+FinalEvaluation.SaveFailedRetry
+en: The evaluation could not be saved. Your input is retained; refresh the record before retrying.
+ar: تعذّر حفظ التقييم. تم الاحتفاظ بإدخالك؛ حدّث السجل قبل إعادة المحاولة.
+
+StudentProgress.ApproveHours
+en: Approve
+ar: اعتماد
+
+StudentProgress.HourUnit
+en: hours
+ar: ساعة
+
+StudentProgress.HoursDecisionFailed
+en: The hours decision could not be saved. Please try again.
+ar: تعذر حفظ قرار الساعات. حاول مجددًا.
+
+StudentProgress.HoursDecisionSaved
+en: The hours decision was saved.
+ar: حُفظ قرار مراجعة الساعات.
+
+StudentProgress.NoPendingHours
+en: No hours are awaiting approval.
+ar: لا توجد ساعات بانتظار الاعتماد.
+
+StudentProgress.PendingApprovalHours
+en: hours awaiting approval
+ar: ساعة بانتظار الاعتماد
+
+StudentProgress.RejectHours
+en: Reject
+ar: رفض
+
+StudentProgress.RejectNeedsNote
+en: Enter a rejection reason first (up to 500 characters).
+ar: اكتب سبب الرفض أولًا (حتى 500 حرف).
+
+StudentProgress.ReviewHours
+en: Review training hours
+ar: مراجعة ساعات التدريب
+
+StudentProgress.ReviewHoursHint
+en: Approve verified work hours or reject them with a reason. Reported hours do not count automatically.
+ar: اعتمد ساعات العمل الفعلية أو ارفضها مع توضيح السبب. لا تُحتسب الساعات المبلّغ عنها تلقائيًا.
+
+StudentProgress.ReviewNote
+en: Review note
+ar: ملاحظة المراجعة

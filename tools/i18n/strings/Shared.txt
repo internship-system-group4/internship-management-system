@@ -471,7 +471,8 @@ Title.Pages.Coordinator.Placements
 en: Placements & Progress
 
 Title.Pages.Coordinator.Students
-en: Student records
+en: Student profile
+ar: ملف الطالب
 
 Title.Pages.Meetings.MyMeetings
 en: My Meetings
@@ -2165,3 +2166,655 @@ ar: {0} أسابيع
 Duration.NotSpecified
 en: Not specified
 ar: غير محدد
+
+Grades.AllConfirmedInternships
+en: All confirmed internships
+ar: جميع التدريبات المؤكدة
+
+Grades.LoadFailed
+en: Grades could not be loaded. Please try again shortly.
+ar: تعذّر تحميل الدرجات. يُرجى المحاولة مجددًا بعد قليل.
+
+Grades.StudentCountMany
+en: {0} students
+ar: عدد الطلاب: {0}
+
+Grades.StudentCountOne
+en: {0} student
+ar: {0} طالب
+
+Grades.YourAssignedInternships
+en: Your assigned internships
+ar: التدريبات المسندة إليك
+
+Js.CampusPhotograph
+en: German Jordanian University | Campus photograph
+ar: الجامعة الألمانية الأردنية | صورة للحرم الجامعي
+
+Js.ChartFixedRangeCaption
+en: {0} – {1} · UTC. Approvals from the last {2} months; categories are current snapshots.
+ar: {0} – {1} · UTC. الموافقات خلال آخر {2} شهراً؛ والفئات لقطات حالية.
+
+Js.ChartNoStudentsByMajor
+en: No student records yet.
+ar: لا توجد سجلات طلاب بعد.
+
+Js.CourtyardPhotograph
+en: Courtyard reference photograph
+ar: صورة مرجعية للساحة
+
+Js.CourtyardReconstruction
+en: GJU courtyard waterwheel · 3D reconstruction
+ar: ناعورة ساحة الجامعة الألمانية الأردنية · نموذج ثلاثي الأبعاد
+
+Js.Edit
+en: Edit
+ar: تعديل
+
+Js.EvaluationIntern
+en: Intern
+ar: متدرب
+
+Js.EvaluationMissingInformation
+en: Missing Information
+ar: معلومات ناقصة
+
+Js.EvaluationNoImprovements
+en: No improvements noted.
+ar: لم تُذكر جوانب للتحسين.
+
+Js.EvaluationNoStrengths
+en: No strengths noted.
+ar: لم تُذكر نقاط قوة.
+
+Js.EvaluationSelectForCertificate
+en: Please select a trainee from the list first before previewing the certificate.
+ar: يُرجى اختيار متدرب من القائمة أولًا قبل معاينة الشهادة.
+
+Js.EvaluationSelectForReport
+en: Please select a trainee from the list first before reviewing the report.
+ar: يُرجى اختيار متدرب من القائمة أولًا قبل مراجعة التقرير.
+
+Js.GroupPickerRemove
+en: Remove {0}
+ar: إزالة {0}
+
+Js.GroupPickerSelected
+en: {0} students selected
+ar: تم اختيار {0} طلاب
+
+Js.MeetingClearSearch
+en: Clear meeting search
+ar: مسح البحث في الاجتماعات
+
+Js.MeetingSearchEmpty
+en: No meetings match this search and view.
+ar: لا توجد اجتماعات تطابق البحث والعرض المحدد.
+
+Js.MeetingSearchLabel
+en: Search meetings
+ar: البحث في الاجتماعات
+
+Js.MeetingSearchPlaceholder
+en: Search by meeting title or person
+ar: ابحث بعنوان الاجتماع أو اسم الشخص
+
+Js.MeetingSearchResults
+en: Showing {0} of {1} meetings
+ar: عرض {0} من أصل {1} اجتماع
+
+Js.NotifyBellLabel
+en: Notifications, {0} unread
+ar: الإشعارات، {0} غير مقروءة
+
+Js.NotifyDismiss
+en: Dismiss
+ar: إغلاق
+
+Js.NotifyMany
+en: You have {0} new notifications
+ar: لديك {0} إشعارات جديدة
+
+Js.NotifyOpen
+en: Open
+ar: فتح
+
+Js.NotifyUnread
+en: {0} new
+ar: {0} جديد
+
+Js.NotifyViewAll
+en: View all
+ar: عرض الكل
+
+Js.RecoveryOffline
+en: We could not reach the server. Check your connection and try again.
+ar: تعذّر الوصول إلى الخادم. تحقّق من اتصالك وحاول مجددًا.
+
+Js.ReviewQueueShowing
+en: Showing {0} of {1} internships
+ar: عرض {0} من {1} تدريب
+
+Js.SupervisorProgress
+en: Training progress
+ar: التقدم في التدريب
+
+Notify.AStudent
+en: A student
+ar: أحد الطلاب
+
+Notify.AcademicEvalForCoordinator.Message
+en: Both final evaluations for {0} are in. Review the file, then approve or return the completion.
+ar: اكتمل التقييمان النهائيان للطالب {0}. راجع الملف ثم اعتمد إنهاء التدريب أو أعده للتصحيح.
+
+Notify.AcademicEvalForCoordinator.Title
+en: Completion review needed
+ar: مطلوب مراجعة إنهاء تدريب
+
+Notify.ApplicationAccepted.Message
+en: {0} accepted your application for “{1}”. Confirm the offer to secure your place.
+ar: قبلت {0} طلبك على فرصة «{1}». أكّد العرض لتثبيت مكانك.
+
+Notify.ApplicationAccepted.Title
+en: Your application was accepted
+ar: تم قبول طلبك
+
+Notify.ApplicationRejected.Message
+en: {0} did not accept your application for “{1}”. You can read the reason in My Applications.
+ar: لم تقبل {0} طلبك على فرصة «{1}». يمكنك قراءة السبب في صفحة طلباتي.
+
+Notify.ApplicationRejected.Title
+en: Application not accepted
+ar: لم يتم قبول طلبك
+
+Notify.ApplicationSubmitted.Message
+en: {0} applied for “{1}”. Open it to read the cover letter and CV, then accept or reject.
+ar: قدّم {0} على فرصة «{1}». افتح الطلب لقراءة رسالة التقديم والسيرة الذاتية ثم اقبله أو ارفضه.
+
+Notify.ApplicationSubmitted.Title
+en: New application to review
+ar: طلب تدريب جديد بانتظار مراجعتك
+
+Notify.ApprovedCertificateShared.Message
+en: Open this notification to view or download your approved internship certificate.
+ar: افتح هذا الإشعار لعرض شهادة إتمام التدريب المعتمدة أو تنزيلها.
+
+Notify.ApprovedCertificateShared.Title
+en: Your approved internship certificate is ready
+ar: شهادة إتمام التدريب المعتمدة جاهزة
+
+Notify.BlockedByRules
+en: Notifications are blocked by the Firebase database rules. Publish the "notifications" rule from docs/05-firebase-setup.md (Firebase > Realtime Database > Rules).
+ar: الإشعارات محظورة بسبب قواعد قاعدة بيانات Firebase. انشر قاعدة "notifications" من الملف docs/05-firebase-setup.md (Firebase > Realtime Database > Rules).
+
+Notify.CommentAdded.Message
+en: {0}
+ar: {0}
+
+Notify.CommentAdded.Title
+en: New note from your academic supervisor
+ar: ملاحظة جديدة من مشرفك الأكاديمي
+
+Notify.CompanyEvalForAcademic.Message
+en: The company submitted its final evaluation for {0}. Please complete your academic evaluation.
+ar: أرسلت الشركة تقييمها النهائي للطالب {0}. يرجى إكمال التقييم الأكاديمي.
+
+Notify.CompanyEvalForAcademic.Title
+en: Your final evaluation is due
+ar: حان موعد تقييمك النهائي
+
+Notify.CompanyEvalForCoordinator.Message
+en: {0} submitted the final evaluation for {1}.
+ar: أرسلت {0} التقييم النهائي للطالب {1}.
+
+Notify.CompanyEvalForCoordinator.Title
+en: Company evaluation submitted
+ar: تم إرسال تقييم الشركة
+
+Notify.CompletionApproved.Message
+en: Your internship result is {0}. Open My Progress to see the details and download your report.
+ar: نتيجة تدريبك: {0}. افتح صفحة تقدّمي لرؤية التفاصيل وتحميل التقرير.
+
+Notify.CompletionApproved.Title
+en: Your final result is released
+ar: صدرت نتيجتك النهائية
+
+Notify.CompletionApprovedNoResult.Message
+en: The coordinator approved your internship completion. Open My Progress to see your result and download your report.
+ar: اعتمد المنسق إنهاء تدريبك. افتح صفحة تقدّمي لرؤية نتيجتك وتنزيل تقريرك.
+
+Notify.CompletionApprovedNoResult.Title
+en: Your final result is released
+ar: صدرت نتيجتك النهائية
+
+Notify.CompletionApprovedSupervisor.Message
+en: The coordinator approved the internship completion of {0}.
+ar: اعتمد المنسق إنهاء تدريب الطالب {0}.
+
+Notify.CompletionApprovedSupervisor.Title
+en: Internship completed
+ar: اكتمل التدريب
+
+Notify.CompletionRejected.Message
+en: Coordinator’s note: {0}
+ar: ملاحظة المنسق: {0}
+
+Notify.CompletionRejected.Title
+en: Internship completion not approved
+ar: لم يُعتمد إنهاء التدريب
+
+Notify.CompletionRejectedNoNote.Message
+en: The coordinator did not approve your internship completion.
+ar: لم يعتمد المنسق إنهاء تدريبك.
+
+Notify.CompletionRejectedNoNote.Title
+en: Internship completion not approved
+ar: لم يُعتمد إنهاء التدريب
+
+Notify.CompletionReturned.Message
+en: Coordinator’s note: {0}
+ar: ملاحظة المنسق: {0}
+
+Notify.CompletionReturned.Title
+en: Completion returned for corrections
+ar: أُعيد ملف إنهاء التدريب للتصحيح
+
+Notify.CompletionReturnedNoNote.Message
+en: The coordinator returned your completion review. Open My Progress to see what is missing.
+ar: أعاد المنسق ملف إنهاء تدريبك. افتح صفحة تقدّمي لمعرفة ما ينقص.
+
+Notify.CompletionReturnedNoNote.Title
+en: Completion returned for corrections
+ar: أُعيد ملف إنهاء التدريب للتصحيح
+
+Notify.FilterAll
+en: All
+ar: الكل
+
+Notify.FilterUnread
+en: Unread
+ar: غير المقروءة
+
+Notify.GroupAdded.Message
+en: You are now in {0}. Your academic supervisor is {1}.
+ar: أصبحت ضمن {0}. مشرفك الأكاديمي هو {1}.
+
+Notify.GroupAdded.Title
+en: You were added to a group
+ar: تمت إضافتك إلى مجموعة
+
+Notify.GroupAssigned.Message
+en: {0} is now assigned to you. Students in the group: {1}.
+ar: أُسندت إليك {0}. عدد طلاب المجموعة: {1}.
+
+Notify.GroupAssigned.Title
+en: Group assigned to you
+ar: تم إسناد مجموعة إليك
+
+Notify.GroupDeletedStudent.Message
+en: {0} was deleted. The coordinator will assign you a new group.
+ar: تم حذف {0}. سيعيّنك المنسق في مجموعة جديدة.
+
+Notify.GroupDeletedStudent.Title
+en: Your group was removed
+ar: تم حذف مجموعتك
+
+Notify.GroupDeletedSupervisor.Message
+en: {0} was deleted and is no longer assigned to you.
+ar: تم حذف {0} ولم تعد مسندة إليك.
+
+Notify.GroupDeletedSupervisor.Title
+en: Group removed
+ar: تم حذف مجموعة
+
+Notify.GroupNewSupervisor.Message
+en: {0} is now the academic supervisor of {1}.
+ar: أصبح {0} المشرف الأكاديمي لـ {1}.
+
+Notify.GroupNewSupervisor.Title
+en: New academic supervisor
+ar: مشرف أكاديمي جديد
+
+Notify.GroupReassigned.Message
+en: {0} is now supervised by {1}.
+ar: أصبح {1} المشرف على {0}.
+
+Notify.GroupReassigned.Title
+en: Group reassigned
+ar: تم نقل الإشراف على مجموعة
+
+Notify.GroupRemoved.Message
+en: You were removed from {0}. The coordinator will assign you a new group.
+ar: تمت إزالتك من {0}. سيعيّنك المنسق في مجموعة جديدة.
+
+Notify.GroupRemoved.Title
+en: Removed from a group
+ar: تمت إزالتك من مجموعة
+
+Notify.GroupStudentsAdded.Message
+en: Students added to {0}: {1}.
+ar: عدد الطلاب المضافين إلى {0}: {1}.
+
+Notify.GroupStudentsAdded.Title
+en: New students in your group
+ar: طلاب جدد في مجموعتك
+
+Notify.HoursAgo
+en: {0} h ago
+ar: قبل {0} ساعة
+
+Notify.HoursApproved.Message
+en: {0} hours were added to your approved total.
+ar: أُضيفت {0} ساعة إلى مجموع ساعاتك المعتمدة.
+
+Notify.HoursApproved.Title
+en: Training hours approved
+ar: تم اعتماد ساعات التدريب
+
+Notify.HoursRejected.Message
+en: {0} hours were not approved. Read the note on My Progress.
+ar: لم تُعتمد {0} ساعة. اقرأ الملاحظة في صفحة تقدّمي.
+
+Notify.HoursRejected.Title
+en: Training hours not approved
+ar: لم تُعتمد ساعات التدريب
+
+Notify.HoursReported.Message
+en: {0} reported {1} training hours. Review them and approve or reject.
+ar: سجّل {0} عدد {1} ساعة تدريب. راجعها ثم اعتمدها أو ارفضها.
+
+Notify.HoursReported.Title
+en: Training hours to approve
+ar: ساعات تدريب بانتظار الاعتماد
+
+Notify.MarkAllRead
+en: Mark all as read
+ar: تحديد الكل كمقروء
+
+Notify.MeetingAccepted.Message
+en: {0} accepted “{1}” on {2}.
+ar: قبل {0} اجتماع «{1}» بتاريخ {2}.
+
+Notify.MeetingAccepted.Title
+en: Meeting accepted
+ar: تم قبول الاجتماع
+
+Notify.MeetingCancelled.Message
+en: {0} cancelled “{1}” on {2}.
+ar: ألغى {0} اجتماع «{1}» بتاريخ {2}.
+
+Notify.MeetingCancelled.Title
+en: Meeting cancelled
+ar: تم إلغاء الاجتماع
+
+Notify.MeetingCompleted.Message
+en: {0} marked “{1}” as completed.
+ar: سجّل {0} اجتماع «{1}» كمكتمل.
+
+Notify.MeetingCompleted.Title
+en: Meeting marked completed
+ar: تم إنهاء الاجتماع
+
+Notify.MeetingDeclined.Message
+en: {0} declined “{1}”.
+ar: رفض {0} اجتماع «{1}».
+
+Notify.MeetingDeclined.Title
+en: Meeting declined
+ar: تم رفض الاجتماع
+
+Notify.MeetingRequest.Message
+en: {0} invited you to “{1}” on {2}. Accept or decline the request.
+ar: دعاك {0} إلى اجتماع «{1}» بتاريخ {2}. اقبل الطلب أو ارفضه.
+
+Notify.MeetingRequest.Title
+en: New meeting request
+ar: طلب اجتماع جديد
+
+Notify.MinutesAgo
+en: {0} min ago
+ar: قبل {0} دقيقة
+
+Notify.NewBadge
+en: New
+ar: جديد
+
+Notify.NoUnread
+en: No unread notifications.
+ar: لا توجد إشعارات غير مقروءة.
+
+Notify.Open
+en: Open
+ar: فتح
+
+Notify.OpportunityPublished.Message
+en: {0} posted “{1}”. Open it to check the details and apply.
+ar: نشرت {0} فرصة «{1}». افتحها لقراءة التفاصيل والتقديم.
+
+Notify.OpportunityPublished.Title
+en: New internship opportunity
+ar: فرصة تدريب جديدة
+
+Notify.PageIntro
+en: Every update about your internship cycle. Select one to open the page where you can act on it.
+ar: كل التحديثات المتعلقة بمراحل التدريب. اختر أي إشعار لفتح الصفحة التي تتخذ فيها الإجراء.
+
+Notify.PlacementConfirmedAcademic.Message
+en: {0} will train at {1}. Follow their progress from Student Progress.
+ar: سيتدرب {0} في {1}. تابع تقدمه من صفحة تقدم الطالب.
+
+Notify.PlacementConfirmedAcademic.Title
+en: Student placement confirmed
+ar: تم تأكيد تدريب طالب
+
+Notify.PlacementConfirmedCompany.Message
+en: {0} confirmed the internship “{1}” and is now your trainee. You can start assigning tasks.
+ar: أكّد {0} التدريب «{1}» وأصبح متدرباً لديك. يمكنك البدء بإسناد المهام.
+
+Notify.PlacementConfirmedCompany.Title
+en: New trainee confirmed
+ar: تم تأكيد متدرب جديد
+
+Notify.PlacementConfirmedCoordinator.Message
+en: {0} confirmed a placement at {1}.
+ar: أكّد {0} تدريبه في {1}.
+
+Notify.PlacementConfirmedCoordinator.Title
+en: Placement confirmed
+ar: تم تأكيد تدريب
+
+Notify.SomeNotDelivered
+en: Some notifications could not be delivered because of the Firebase database rules. See docs/05-firebase-setup.md.
+ar: تعذّر إيصال بعض الإشعارات بسبب قواعد قاعدة بيانات Firebase. راجع الملف docs/05-firebase-setup.md.
+
+Notify.TaskAssigned.Message
+en: Your supervisor assigned “{0}”, due {1}. Open it to read the instructions and submit your work.
+ar: أسند إليك مشرفك مهمة «{0}»، موعد تسليمها {1}. افتحها لقراءة التعليمات وتسليم عملك.
+
+Notify.TaskAssigned.Title
+en: New task assigned
+ar: مهمة جديدة
+
+Notify.TaskAssignedNoDue.Message
+en: Your supervisor assigned “{0}”. Open it to read the instructions and submit your work.
+ar: أسند إليك مشرفك مهمة «{0}». افتحها لقراءة التعليمات وتسليم عملك.
+
+Notify.TaskAssignedNoDue.Title
+en: New task assigned
+ar: مهمة جديدة
+
+Notify.TaskGraded.Message
+en: “{0}” was graded {1} / {2}. Open it to read your supervisor’s feedback.
+ar: حصلت مهمة «{0}» على {1} من {2}. افتحها لقراءة ملاحظات المشرف.
+
+Notify.TaskGraded.Title
+en: Your task was graded
+ar: تم تقييم مهمتك
+
+Notify.TaskResubmitted.Message
+en: {0} resubmitted “{1}” after your revision request. Open it to grade the new attempt.
+ar: أعاد {0} تسليم مهمة «{1}» بعد طلب التعديل. افتحها لتقييم المحاولة الجديدة.
+
+Notify.TaskResubmitted.Title
+en: Revised work to review
+ar: تسليم معدّل بانتظار التقييم
+
+Notify.TaskRevision.Message
+en: Your supervisor asked for changes to “{0}”: {1}
+ar: طلب مشرفك تعديلات على مهمة «{0}»: {1}
+
+Notify.TaskRevision.Title
+en: Changes requested on your task
+ar: مطلوب تعديل على مهمتك
+
+Notify.TaskSubmitted.Message
+en: {0} submitted “{1}”. Open it to grade the work or ask for changes.
+ar: سلّم {0} مهمة «{1}». افتحها لتقييم العمل أو طلب تعديلات.
+
+Notify.TaskSubmitted.Title
+en: Submission to review
+ar: تسليم بانتظار التقييم
+
+Notify.Type.Account
+en: Account
+ar: الحساب
+
+Notify.Type.Application
+en: Application
+ar: طلب تدريب
+
+Notify.Type.Comment
+en: Supervisor note
+ar: ملاحظة المشرف
+
+Notify.Type.Completion
+en: Completion
+ar: إنهاء التدريب
+
+Notify.Type.Evaluation
+en: Evaluation
+ar: تقييم
+
+Notify.Type.General
+en: Update
+ar: تحديث
+
+Notify.Type.Group
+en: Group
+ar: مجموعة
+
+Notify.Type.Hours
+en: Training hours
+ar: ساعات التدريب
+
+Notify.Type.Meeting
+en: Meeting
+ar: اجتماع
+
+Notify.Type.Opportunity
+en: Opportunity
+ar: فرصة تدريب
+
+Notify.Type.Placement
+en: Placement
+ar: تدريب مؤكد
+
+Notify.Type.Task
+en: Task
+ar: مهمة
+
+Notify.UnreadCount
+en: {0} unread
+ar: {0} غير مقروءة
+
+Notify.WelcomeStudent.Message
+en: Your student account is ready, {0}. Complete your profile, then browse internship opportunities.
+ar: حسابك جاهز يا {0}. أكمل ملفك الشخصي ثم تصفّح فرص التدريب.
+
+Notify.WelcomeStudent.Title
+en: Welcome to UIMS
+ar: مرحباً بك في نظام إدارة التدريب
+
+Notify.Yesterday
+en: Yesterday
+ar: أمس
+
+SupervisorAccount.EditProfile
+en: Edit profile
+ar: تعديل الملف الشخصي
+
+SupervisorAccount.Intro
+en: Manage your profile and view your account associations.
+ar: أدر ملفك الشخصي واطّلع على الجهات المرتبطة بحسابك.
+
+SupervisorAccount.NotProvided
+en: Not provided
+ar: غير متوفر
+
+SupervisorAccount.OrganizationHelp
+en: Official account details managed by your university.
+ar: بيانات الحساب الرسمية التي تديرها الجامعة.
+
+SupervisorAccount.OrganizationTitle
+en: Organization & association
+ar: الجهة والارتباط المؤسسي
+
+SupervisorAccount.PersonalHelp
+en: Your contact information and profile details.
+ar: معلومات التواصل وبيانات ملفك الشخصي.
+
+SupervisorAccount.PersonalTitle
+en: Personal details
+ar: البيانات الشخصية
+
+SupervisorAccount.PhotoUploadHint
+en: Choose a JPG or PNG photo. Selecting a file uploads it immediately.
+ar: اختر صورة JPG أو PNG. يبدأ رفع الصورة مباشرة بعد اختيار الملف.
+
+SupervisorAccount.ReadOnly
+en: Read-only
+ar: للقراءة فقط
+
+SupervisorAccount.Title
+en: My Account
+ar: حسابي
+
+Title.Pages.Coordinator.DemoStudent
+en: Demo student
+ar: طالب تجريبي
+
+Title.Pages.Coordinator.SupervisorProfile
+en: Supervisor profile
+ar: الملف الشخصي للمشرف
+
+Title.Pages.Student.SubmissionDetails
+en: Submission details
+ar: تفاصيل التسليم
+
+Value.Track.ArtificialIntelligenceandMachineLearning
+en: Artificial Intelligence and Machine Learning
+ar: الذكاء الاصطناعي وتعلّم الآلة
+
+Value.Track.ComputerVisionandRobotics
+en: Computer Vision and Robotics
+ar: الرؤية الحاسوبية والروبوتات
+
+Value.Track.CyberSecurity
+en: Cyber Security
+ar: الأمن السيبراني
+
+Value.Track.DataScience
+en: Data Science
+ar: علم البيانات
+
+Value.Track.General
+en: General
+ar: عام
+
+WorkspaceChart.OpenStudentList
+en: Open student list
+ar: فتح قائمة الطلاب
+
+WorkspaceChart.Share
+en: Share
+ar: النسبة

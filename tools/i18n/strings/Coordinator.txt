@@ -613,7 +613,7 @@ ConfiguredGroups.CoordinatorGroups
 en: Coordinator / Groups
 
 ConfiguredGroups.ConfiguredGroups
-en: Configured groups
+en: Configured Groups
 ar: المجموعات المُعدّة
 
 ConfiguredGroups.ReviewGroupMembershipAndSupervisorAssignments
@@ -626,13 +626,15 @@ ConfiguredGroups.GroupPages
 en: Group pages
 
 ConfiguredGroups.CreateEditGroup
-en: Create / edit group
+en: Create / Edit Group
+ar: إنشاء / تعديل مجموعة
 
 ConfiguredGroups.Groups
 en: Groups
 
 ConfiguredGroups.SearchByGroupNameAcademicYear
-en: Search by group name, academic year, semester, or supervisor.
+en: Search by group name, academic year, semester, or supervisor to find a specific group.
+ar: ابحث باسم المجموعة أو العام الأكاديمي أو الفصل أو المشرف.
 
 ConfiguredGroups.SearchConfiguredGroups
 en: Search configured groups
@@ -647,7 +649,8 @@ ConfiguredGroups.Group
 en: Group
 
 ConfiguredGroups.AcademicYear
-en: Academic year
+en: Academic Year
+ar: العام الأكاديمي
 
 ConfiguredGroups.Semester
 en: Semester
@@ -942,10 +945,12 @@ Groups.GroupName
 en: Group name
 
 Groups.AcademicYearOptional
-en: Academic year (optional)
+en: Academic year
+ar: العام الأكاديمي
 
 Groups.SemesterOptional
-en: Semester (optional)
+en: Semester
+ar: الفصل الدراسي
 
 Groups.AcademicSupervisor
 en: Academic supervisor
@@ -1057,7 +1062,8 @@ ManageStudents.SaveChanges
 en: Save changes
 
 PlacementDetails.PlacementsProgress
-en: ← Placements & progress
+en: Placements & progress
+ar: جهات التدريب والتقدّم
 
 PlacementDetails.InternshipDetails
 en: Internship details
@@ -1282,7 +1288,8 @@ Placements.SearchPlacements
 en: Search placements
 
 Placements.StudentNameNumberUIDOrCompany
-en: Student name, number, UID or company
+en: Student name, number or company
+ar: اسم الطالب أو رقمه أو الشركة
 
 Placements.PlacementStatus
 en: Placement status
@@ -1670,7 +1677,8 @@ Groups.GroupNotFound
 en: Group not found.
 
 Groups.EnterAGroupNameOfAt
-en: Enter a group name of at most 120 characters and check the academic fields.
+en: Enter a group name, academic year, and semester within the allowed lengths.
+ar: أدخل اسم المجموعة والعام الأكاديمي والفصل الدراسي ضمن حدود الأحرف المسموحة.
 
 Groups.ChooseAnAcademicSupervisor
 en: Choose an academic supervisor.
@@ -1694,7 +1702,8 @@ ManageStudents.OneOrMoreAcademicInformationFields
 en: One or more academic information fields are too long.
 
 ManageStudents.RequiredTrainingHoursMustBeA
-en: Required training hours must be a positive whole number.
+en: Required training hours must be a whole number of at least 160.
+ar: يجب أن تكون ساعات التدريب المطلوبة عددًا صحيحًا لا يقل عن 160.
 
 ManageStudents.StudentRecordNotFound
 en: Student record not found.
@@ -1745,7 +1754,8 @@ StudentCreation.EnterAValidEmailAddress
 en: Enter a valid email address.
 
 StudentCreation.RequiredTrainingHoursMustBeA
-en: Required training hours must be a positive whole number.
+en: Required training hours must be a whole number of at least 160.
+ar: يجب أن تكون ساعات التدريب المطلوبة عددًا صحيحًا لا يقل عن 160.
 
 StudentCreation.TheTemporaryPasswordMustBeAt
 en: The temporary password must be at least 6 characters.
@@ -2962,3 +2972,2375 @@ ar:  · التدريب مستمر
 I18n.Totalassignedtasks0Completedtaskswith
 en: Total assigned tasks: {0} · Completed tasks with current grades: {1} · Outstanding tasks: {2}
 ar: إجمالي المهام المسندة: {0} · المهام المكتملة ذات العلامات الحالية: {1} · المهام المتبقية: {2}
+
+AcademicSupervisors.AcademicInformation
+en: Academic information
+ar: المعلومات الأكاديمية
+
+AcademicSupervisors.AddSupervisorShort
+en: Add supervisor
+ar: إضافة مشرف
+
+AcademicSupervisors.ConfirmRemoveAccess
+en: Remove this supervisor’s access? Assigned groups and history will be retained.
+ar: هل تريد إزالة صلاحية دخول هذا المشرف؟ ستبقى المجموعات المسندة والسجل محفوظة.
+
+AcademicSupervisors.ContactInformation
+en: Contact information
+ar: معلومات التواصل
+
+AcademicSupervisors.CouldNotDeleteSupervisor
+en: Could not delete the supervisor. Please try again.
+ar: تعذّر حذف المشرف. يرجى المحاولة مرة أخرى.
+
+AcademicSupervisors.Delete
+en: Delete
+ar: حذف
+
+AcademicSupervisors.DeleteBlocked
+en: This supervisor still has groups or students. Move them to another supervisor or delete the groups first, then try again.
+ar: ما زال لدى هذا المشرف مجموعات أو طلاب. انقلهم إلى مشرف آخر أو احذف المجموعات أولاً ثم حاول مرة أخرى.
+
+AcademicSupervisors.DeleteExplanation
+en: This permanently removes the supervisor’s profile. They will no longer be able to sign in. This cannot be undone.
+ar: سيؤدي هذا إلى حذف ملف المشرف نهائياً ولن يتمكن من تسجيل الدخول بعد ذلك. لا يمكن التراجع عن هذا الإجراء.
+
+AcademicSupervisors.DeletePermanently
+en: Delete permanently
+ar: حذف نهائي
+
+AcademicSupervisors.DeleteSupervisorQuestion
+en: Delete this supervisor?
+ar: حذف هذا المشرف؟
+
+AcademicSupervisors.DirectoryHelp
+en: Search, filter, view details or manage any supervisor.
+ar: ابحث وصفِّ واعرض التفاصيل أو أدِر أي مشرف.
+
+AcademicSupervisors.DirectoryIntro
+en: Create supervisor accounts, review their groups and students, and turn their access on or off.
+ar: أنشئ حسابات المشرفين وراجع مجموعاتهم وطلابهم، وفعّل حساباتهم أو أوقفها.
+
+AcademicSupervisors.NoGroupsYet
+en: No groups yet
+ar: لا توجد مجموعات بعد
+
+AcademicSupervisors.OpenGroups
+en: Open groups
+ar: فتح المجموعات
+
+AcademicSupervisors.Students
+en: Students
+ar: الطلاب
+
+AcademicSupervisors.Supervision
+en: Supervision
+ar: الإشراف
+
+AcademicSupervisors.SupervisorDeleted
+en: {0} was deleted.
+ar: تم حذف {0}.
+
+AcademicSupervisors.SupervisorDetails
+en: Supervisor details
+ar: تفاصيل المشرف
+
+AcademicSupervisors.SupervisorDirectory
+en: Supervisor directory
+ar: دليل المشرفين
+
+AcademicSupervisors.SupervisorInformation
+en: Supervisor information
+ar: معلومات المشرف
+
+AcademicSupervisors.ViewDetails
+en: View details
+ar: عرض التفاصيل
+
+AccountAccess.Active
+en: Active
+ar: نشط
+
+AccountAccess.Block
+en: Block
+ar: حظر
+
+AccountAccess.Blocked
+en: Blocked
+ar: محظور
+
+AccountAccess.ConfirmBlock
+en: Are you sure you want to block {0}? They will no longer be able to sign in. Their records and history will be retained.
+ar: هل أنت متأكد من حظر {0}؟ لن يتمكن من تسجيل الدخول، وسيتم الاحتفاظ بسجلاته وتاريخه.
+
+AccountAccess.ConfirmUnblock
+en: Are you sure you want to unblock {0}? They will be able to sign in again.
+ar: هل أنت متأكد من إلغاء حظر {0}؟ سيتمكن من تسجيل الدخول مجددًا.
+
+AccountAccess.StudentBlocked
+en: Student blocked. Their record and training history are retained.
+ar: تم حظر الطالب مع الاحتفاظ بسجله وتاريخ تدريبه.
+
+AccountAccess.StudentUnblocked
+en: Student unblocked. They can sign in again.
+ar: تم إلغاء حظر الطالب ويمكنه تسجيل الدخول مجددًا.
+
+AccountAccess.SupervisorBlocked
+en: Academic supervisor blocked. Assigned groups and history are retained.
+ar: تم حظر المشرف الأكاديمي مع الاحتفاظ بالمجموعات المسندة والسجل.
+
+AccountAccess.SupervisorUnblocked
+en: Academic supervisor unblocked. They can sign in again.
+ar: تم إلغاء حظر المشرف الأكاديمي ويمكنه تسجيل الدخول مجددًا.
+
+AccountAccess.Unblock
+en: Unblock
+ar: إلغاء الحظر
+
+Companies.AccountCreatedTitle
+en: Account created
+ar: تم إنشاء الحساب
+
+Companies.Activate
+en: Activate
+ar: تفعيل
+
+Companies.CompanySupervisorRole
+en: Company supervisor
+ar: مشرف شركة
+
+Companies.Crumb
+en: Coordinator / Companies
+ar: منسّق التدريب / الشركات
+
+Companies.Deactivate
+en: Deactivate
+ar: إيقاف
+
+Companies.DirectoryHelp
+en: Search, filter, view details or change any supervisor's access.
+ar: ابحث وصفِّ واعرض التفاصيل أو غيّر صلاحية دخول أي مشرف.
+
+Companies.DirectoryIntro
+en: Create company supervisor accounts, link them to a company, and control their access.
+ar: أنشئ حسابات مشرفي الشركات واربطها بشركة، وتحكّم في صلاحية دخولهم.
+
+Companies.NoMatch
+en: No supervisors match your search.
+ar: لا يوجد مشرفون مطابقون لبحثك.
+
+Companies.NoSupervisorsYet
+en: No company supervisors yet. Add the first one.
+ar: لا يوجد مشرفو شركات بعد. أضف أول مشرف.
+
+Companies.SearchPlaceholder
+en: Search name, email or company
+ar: ابحث بالاسم أو البريد أو الشركة
+
+CompletionReview.Crumb
+en: Coordinator / Completion review
+ar: منسّق التدريب / مراجعة الإنجاز
+
+CompletionReview.ReadEvaluations
+en: Read evaluations
+ar: قراءة التقييمات
+
+CompletionReview.UIMSINTERNSHIPCOMPLETIONVERIFIEDUIMS
+en: UIMS · INTERNSHIP COMPLETION VERIFIED · UIMS ·
+ar: UIMS · تم التحقق من إكمال التدريب · UIMS ·
+
+ConfiguredGroups.AllSemesters
+en: All Semesters
+ar: جميع الفصول
+
+ConfiguredGroups.AllSupervisors
+en: All Supervisors
+ar: جميع المشرفين
+
+ConfiguredGroups.AllYears
+en: All Years
+ar: جميع الأعوام
+
+ConfiguredGroups.CreateGroupLabel
+en: Create Group
+ar: إنشاء مجموعة
+
+ConfiguredGroups.Edit
+en: Edit
+ar: تعديل
+
+ConfiguredGroups.Next
+en: Next page
+ar: الصفحة التالية
+
+ConfiguredGroups.Pagination
+en: Group pages
+ar: صفحات المجموعات
+
+ConfiguredGroups.Previous
+en: Previous page
+ar: الصفحة السابقة
+
+ConfiguredGroups.SearchPlaceholder
+en: Search by group name, year, semester, or supervisor...
+ar: ابحث باسم المجموعة أو العام أو الفصل أو المشرف...
+
+ConfiguredGroups.ShowingGroups
+en: Showing {0} to {1} of {2} groups
+ar: عرض {0} إلى {1} من {2} مجموعات
+
+ConfiguredGroups.TotalGroups
+en: Total Groups
+ar: إجمالي المجموعات
+
+ContactMessages.Crumb
+en: Coordinator / Messages
+ar: منسّق التدريب / الرسائل
+
+ContactMessages.DirectoryHelp
+en: Search by sender or subject, then open a message to review it.
+ar: ابحث باسم المرسل أو الموضوع، ثم افتح الرسالة لمراجعتها.
+
+Dashboard.ActionAddStudent
+en: Add a student
+ar: إضافة طالب
+
+Dashboard.ActionCompanies
+en: Manage companies
+ar: إدارة الشركات
+
+Dashboard.ActivePlacementContext
+en: Confirmed or currently in training
+ar: مؤكدة أو قيد التدريب حاليًا
+
+Dashboard.AllClearHelp
+en: No pending assignments, overdue tasks, reported hours or returned completions in the current records.
+ar: لا توجد إسنادات معلّقة أو مهام متأخرة أو ساعات تنتظر الاعتماد أو حالات إكمال معادة في السجلات الحالية.
+
+Dashboard.AllClearTitle
+en: No follow-up needed right now
+ar: لا توجد حالات تحتاج إلى متابعة حاليًا
+
+Dashboard.AllPlacements
+en: All placements
+ar: جميع التدريبات
+
+Dashboard.ApprovalEmptyHelp
+en: Completion approvals will appear here when the coordinator records a decision.
+ar: تظهر موافقات الإكمال هنا عند تسجيل قرار المنسّق.
+
+Dashboard.ApprovalMonthDescription
+en: Available dated completions, by recorded approval month.
+ar: إتمام التدريب المؤرخ، حسب شهر الموافقة المسجّل.
+
+Dashboard.ApprovalsLastYear
+en: Approvals · last 12 months
+ar: الموافقات · آخر 12 شهرًا
+
+Dashboard.AssignmentHelp
+en: Active student profiles awaiting academic assignment
+ar: ملفات طلاب نشطة تنتظر تعيين مشرف أكاديمي
+
+Dashboard.ChartTableAlternative
+en: Read all monthly values in the data table below.
+ar: يمكن قراءة القيم الشهرية في جدول البيانات أدناه.
+
+Dashboard.CompanyCount
+en: {0} companies · {1} active
+ar: {0} شركة · {1} نشطة
+
+Dashboard.CompletionStageHelp
+en: One stage per placement in the completion queue; cancelled placements are excluded.
+ar: مرحلة واحدة لكل تدريب في قائمة مراجعة الإكمال، باستثناء التدريبات الملغاة.
+
+Dashboard.CompletionStages
+en: Completion review stages
+ar: مراحل مراجعة الإكمال
+
+Dashboard.Crumb
+en: Coordinator / Dashboard
+ar: منسّق التدريب / لوحة التحكم
+
+Dashboard.CurrentOverview
+en: Programme at a glance
+ar: نظرة عامة على البرنامج
+
+Dashboard.DatedApprovalsNote
+en: Only approvals with a recorded date are included. Months without dated approvals show zero.
+ar: تُحتسب الموافقات ذات التاريخ المسجّل فقط. الأشهر دون موافقات مؤرخة تظهر بصفر.
+
+Dashboard.DeskDescription
+en: A clear view of students, training follow-up and completion decisions.
+ar: نظرة واضحة على الطلاب ومتابعة التدريب وقرارات الإكمال.
+
+Dashboard.FollowUpDescription
+en: Open a category to see the exact students or training records to follow up.
+ar: افتح الفئة لعرض الطلاب أو سجلات التدريب التي تحتاج إلى متابعة.
+
+Dashboard.FollowUpTitle
+en: Needs your attention
+ar: حالات المتابعة
+
+Dashboard.MajorComputerEngineering
+en: Computer Engineering
+ar: هندسة الحاسوب
+
+Dashboard.MajorComputerScience
+en: Computer Science
+ar: علم الحاسوب
+
+Dashboard.MajorDescription
+en: Distribution of School of Computing students by academic major.
+ar: توزيع طلبة كلية الحوسبة حسب التخصص الأكاديمي.
+
+Dashboard.MajorGameDesign
+en: Game Design and Media Informatics
+ar: تصميم الألعاب وعلم حاسوب الوسائط
+
+Dashboard.MajorScopeDescription
+en: All student profiles, including inactive profiles and unrecorded majors.
+ar: جميع ملفات الطلاب، بما فيها غير النشطة والتخصصات غير المسجّلة.
+
+Dashboard.MonthlyApprovalData
+en: View monthly approval data
+ar: عرض بيانات الموافقات الشهرية
+
+Dashboard.NeedsAttention
+en: Follow up
+ar: تحتاج متابعة
+
+Dashboard.NoDatedApprovals
+en: No dated approvals in this period
+ar: لا توجد موافقات مؤرخة في هذه الفترة
+
+Dashboard.NoFollowUp
+en: No pending items
+ar: لا توجد حالات معلّقة
+
+Dashboard.NoRelatedRecordsMatch
+en: No records match your search.
+ar: لا توجد سجلات تطابق بحثك.
+
+Dashboard.NoStudents
+en: No students in this major
+ar: لا يوجد طلاب في هذا التخصص
+
+Dashboard.OpportunityCount
+en: {0} opportunities · {1} open for applications
+ar: {0} فرصة · {1} متاحة للتقديم
+
+Dashboard.OverdueHelp
+en: Past the deadline on placements still in progress
+ar: تجاوزت الموعد النهائي ضمن تدريبات لم تنتهِ بعد
+
+Dashboard.OverdueTasks
+en: Overdue ungraded tasks
+ar: مهام متأخرة دون تقييم
+
+Dashboard.PendingHours
+en: Hours awaiting company approval
+ar: ساعات تنتظر اعتماد الشركة
+
+Dashboard.PendingHoursHelp
+en: Reported hours on ongoing placements; awaiting company approval
+ar: ساعات مبلّغ عنها ضمن تدريبات لم تنتهِ بعد، وتنتظر اعتماد الشركة
+
+Dashboard.PlacementStatus
+en: Placement status
+ar: حالة التدريب
+
+Dashboard.ProgrammeDirectory
+en: Programme directory
+ar: دليل البرنامج
+
+Dashboard.ProgrammeHealth
+en: Programme health
+ar: مؤشرات البرنامج
+
+Dashboard.ProgrammeHealthContext
+en: Exceptions to follow up, then programme-wide totals.
+ar: حالات تحتاج إلى متابعة، ثم إجماليات البرنامج.
+
+Dashboard.QuickActions
+en: Quick actions
+ar: إجراءات سريعة
+
+Dashboard.QuickActionsContext
+en: Go straight to the coordinator tasks you use most.
+ar: انتقل مباشرة إلى مهام المنسق الأكثر استخداماً.
+
+Dashboard.ReadyHelp
+en: Training target met and both evaluations received; review requirements before approval
+ar: تحقّق هدف التدريب واستُلم التقييمان؛ راجع المتطلبات قبل الاعتماد
+
+Dashboard.RecentPlacementHelp
+en: The five most recently confirmed placements, with their current progress.
+ar: أحدث خمسة تدريبات بحسب تاريخ التأكيد، مع تقدّمها الحالي.
+
+Dashboard.RecordedApprovalDates
+en: Completions with a recorded approval date
+ar: حالات إكمال لها تاريخ موافقة مسجّل
+
+Dashboard.Records
+en: records
+ar: سجل
+
+Dashboard.RequirementsPending
+en: Requirements still pending
+ar: متطلبات لم تُستوفَ بعد
+
+Dashboard.ReturnedCompletions
+en: Completions returned for follow-up
+ar: حالات إكمال أُعيدت للمتابعة
+
+Dashboard.ReturnedHelp
+en: Returned or rejected completion decisions
+ar: قرارات إكمال أُعيدت للتصحيح أو رُفضت
+
+Dashboard.ScriptHelp
+en: Enable JavaScript to inspect record lists. Monthly data and placement links remain available below.
+ar: فعّل JavaScript لعرض قوائم السجلات. تظل البيانات الشهرية وروابط التدريبات متاحة.
+
+Dashboard.SearchRelatedRecords
+en: Search these records
+ar: ابحث في هذه السجلات
+
+Dashboard.ShowingOf
+en: Showing {0} of {1} students
+ar: عرض {0} من أصل {1} طالب
+
+Dashboard.SnapshotScope
+en: All student profiles and confirmed placements · current records
+ar: جميع ملفات الطلاب والتدريبات المؤكدة · السجلات الحالية
+
+Dashboard.StatActiveOf
+en: {0} active
+ar: {0} نشطة
+
+Dashboard.StatAllClear
+en: All clear
+ar: لا يوجد ما يستدعي المتابعة
+
+Dashboard.StatAwaitingCompletion
+en: Placements awaiting completion
+ar: تدريبات بانتظار الإكمال
+
+Dashboard.StatCompanies
+en: Companies
+ar: الشركات
+
+Dashboard.StatLinkedToPlacements
+en: Linked to placements
+ar: مرتبطة بالتدريبات
+
+Dashboard.StatNeedsFollowUp
+en: Needs follow-up
+ar: تحتاج إلى متابعة
+
+Dashboard.StatOpenOf
+en: {0} open
+ar: {0} مفتوحة
+
+Dashboard.StatOpportunities
+en: Opportunities
+ar: الفرص
+
+Dashboard.StatOverdueTasks
+en: Overdue ungraded tasks
+ar: مهام متأخرة غير مقيّمة
+
+Dashboard.StatPendingHours
+en: Hours awaiting company approval
+ar: ساعات بانتظار موافقة الشركة
+
+Dashboard.StatTaskEvaluations
+en: Task evaluations
+ar: تقييمات المهام
+
+Dashboard.StudentProfileContext
+en: {0} active · {1} inactive
+ar: {0} نشط · {1} غير نشط
+
+Dashboard.StudentProfiles
+en: Student profiles
+ar: ملفات الطلاب
+
+Dashboard.StudentsByMajor
+en: Students by Major
+ar: الطلبة حسب التخصص
+
+Dashboard.TwelveMonthCaption
+en: {0} – {1} · UTC · Recorded coordinator approvals
+ar: {0} – {1} · UTC · موافقات المنسّق المسجّلة
+
+Dashboard.UnassignedStudents
+en: Students without a supervisor
+ar: طلاب دون مشرف أكاديمي
+
+Dashboard.UndatedApprovals
+en: {0} approved completions have no usable approval date and are excluded from the chart.
+ar: توجد {0} حالة إكمال معتمدة دون تاريخ موافقة صالح، ولم تُحتسب في الرسم.
+
+Dashboard.UpdatedAt
+en: Updated {0} UTC
+ar: آخر تحديث {0} UTC
+
+Dashboard.ViewActivePlacements
+en: View active placements
+ar: عرض التدريبات الجارية
+
+Dashboard.ViewAffectedRecords
+en: View related records
+ar: عرض السجلات المعنية
+
+Dashboard.ViewApprovals
+en: View approvals
+ar: عرض الموافقات
+
+Dashboard.ViewMore
+en: View more
+ar: عرض المزيد
+
+Dashboard.ViewPending
+en: View pending
+ar: عرض الإسنادات المعلقة
+
+Dashboard.ViewReviews
+en: View reviews
+ar: عرض المراجعات
+
+Dashboard.ViewStudents
+en: View students
+ar: عرض الطلبة
+
+Demo.Confirm
+en: Confirm password
+ar: تأكيد كلمة المرور
+
+Demo.ConfirmCreate
+en: Create a fictional demo student in the connected Firebase project?
+ar: إنشاء طالب تجريبي في مشروع Firebase المتصل؟
+
+Demo.ConfirmReset
+en: Reset this demo internship to "Ready for review"? Its decision and the last two checks are cleared.
+ar: إعادة هذا التدريب التجريبي إلى «جاهز للمراجعة»؟ سيُمسح القرار وآخر بندين.
+
+Demo.Create
+en: Create demo student
+ar: إنشاء الطالب التجريبي
+
+Demo.CreateNote
+en: You choose the password; it is never shown again.
+ar: أنت تختار كلمة المرور، ولن تُعرض مرة أخرى.
+
+Demo.CreateTitle
+en: Create a demo student
+ar: إنشاء طالب تجريبي
+
+Demo.Created
+en: Demo student created. The internship is ready for your review.
+ar: أُنشئ الطالب التجريبي. التدريب جاهز لمراجعتك.
+
+Demo.Email
+en: Sign-in email
+ar: البريد الإلكتروني لتسجيل الدخول
+
+Demo.EmailHelp
+en: Use an address nobody uses yet, for example demo.student2@example.com.
+ar: استخدم عنوانًا غير مستخدم، مثل demo.student2@example.com.
+
+Demo.ErrorAccount
+en: The demo student could not be created. The email may already be in use.
+ar: تعذّر إنشاء الطالب التجريبي. قد يكون البريد مستخدمًا.
+
+Demo.ErrorEmail
+en: Enter a valid email address.
+ar: أدخل بريدًا إلكترونيًا صحيحًا.
+
+Demo.ErrorLoad
+en: Demo data could not be loaded. Please try again.
+ar: تعذّر تحميل البيانات التجريبية. حاول مرة أخرى.
+
+Demo.ErrorMatch
+en: The passwords do not match.
+ar: كلمتا المرور غير متطابقتين.
+
+Demo.ErrorName
+en: Enter the student's full name.
+ar: أدخل اسم الطالب الكامل.
+
+Demo.ErrorNotDemo
+en: Only demo students created by this tool can be reset.
+ar: يمكن إعادة ضبط الطلاب التجريبيين الذين أنشأتهم هذه الأداة فقط.
+
+Demo.ErrorPassword
+en: The password must be at least 6 characters.
+ar: يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.
+
+Demo.ErrorSupervisors
+en: Create an active company supervisor (with a company) and an academic supervisor first.
+ar: أنشئ أولًا مشرف شركة نشطًا (مرتبطًا بشركة) ومشرفًا أكاديميًا.
+
+Demo.Eyebrow
+en: Demo data (this computer only)
+ar: بيانات تجريبية (على هذا الجهاز فقط)
+
+Demo.Intro
+en: Create one fictional student whose internship is complete and waiting for your decision, then approve it and print the report and certificate.
+ar: أنشئ طالبًا تجريبيًا أنهى تدريبه وينتظر قرارك، ثم اعتمده واطبع التقرير والشهادة.
+
+Demo.ListNote
+en: Reset puts a demo internship back to "Ready for review" so you can show the approval again.
+ar: إعادة الضبط تعيد التدريب التجريبي إلى «جاهز للمراجعة» لتعرض الاعتماد مرة أخرى.
+
+Demo.ListTitle
+en: Demo students
+ar: الطلاب التجريبيون
+
+Demo.Name
+en: Student full name
+ar: اسم الطالب الكامل
+
+Demo.None
+en: No demo students yet. Create one above.
+ar: لا يوجد طلاب تجريبيون بعد. أنشئ واحدًا في الأعلى.
+
+Demo.OpenQueue
+en: All completion reviews
+ar: جميع مراجعات الإتمام
+
+Demo.OpenReview
+en: Open completion review
+ar: فتح مراجعة الإتمام
+
+Demo.Password
+en: Password
+ar: كلمة المرور
+
+Demo.PasswordHelp
+en: At least 6 characters. You will use it to sign in as this student and see the released report.
+ar: 6 أحرف على الأقل. ستستخدمها لتسجيل الدخول كهذا الطالب ورؤية التقرير بعد إصداره.
+
+Demo.Reset
+en: Reset to ready for review
+ar: إعادة إلى جاهز للمراجعة
+
+Demo.ReviewNow
+en: Review and approve now
+ar: راجع واعتمد الآن
+
+Demo.SafetyText
+en: It only adds new fictional records (keys starting with demo-) and a new student account in the connected Firebase project. It reuses your existing company and academic supervisor accounts without changing them, sends no notifications, and never edits or deletes other data.
+ar: تضيف فقط سجلات تجريبية جديدة (مفاتيحها تبدأ بـ demo-) وحساب طالب جديدًا في مشروع Firebase المتصل. تستخدم حسابي مشرف الشركة والمشرف الأكاديمي الموجودين دون تعديلهما، ولا ترسل إشعارات، ولا تعدّل أو تحذف أي بيانات أخرى.
+
+Demo.SafetyTitle
+en: What this tool changes
+ar: ما الذي تغيّره هذه الأداة
+
+Demo.SignInHint
+en: Later, sign in with the demo email and password to see the student's side.
+ar: لاحقًا، سجّل الدخول بالبريد وكلمة المرور التجريبيين لرؤية صفحة الطالب.
+
+Demo.StatusDecided
+en: Decided (corrections or rejected)
+ar: تم القرار (تصحيح أو رفض)
+
+Demo.Step1
+en: Open the completion review. Under Coordinator verification set Training report and Department review and dean endorsement to Verified, write an evidence reference for each, and press Save verification.
+ar: افتح مراجعة الإتمام. ضمن «تحقق المنسّق» اجعل «تقرير التدريب» و«مراجعة القسم واعتماد العميد» «تم التحقق»، واكتب مرجعًا للدليل لكل منهما، ثم اضغط «حفظ التحقق».
+
+Demo.Step1Title
+en: Verify the last two checks
+ar: تحقق من آخر بندين
+
+Demo.Step2
+en: All 13 requirements are now met. Press Approve internship completion: the approval stamp plays once the decision is saved.
+ar: أصبحت المتطلبات الـ 13 كلها مستوفاة. اضغط «اعتماد إتمام التدريب»: يظهر ختم الاعتماد بعد حفظ القرار.
+
+Demo.Step2Title
+en: Approve
+ar: اعتمد
+
+Demo.Step3
+en: Use Download PDF and Print for the Internship Completion Report and the Certificate.
+ar: استخدم «تنزيل PDF» و«طباعة» لتقرير إتمام التدريب وللشهادة.
+
+Demo.Step3Title
+en: Download and print
+ar: نزّل واطبع
+
+Demo.Step4
+en: Sign out, sign in with the demo email and password, and open My Progress & Evaluation: the journey is complete and the report can be downloaded.
+ar: سجّل الخروج، ثم ادخل بالبريد وكلمة المرور التجريبيين وافتح «تقدّمي وتقييمي»: الرحلة مكتملة ويمكن تنزيل التقرير.
+
+Demo.Step4Title
+en: See the student's side
+ar: شاهد صفحة الطالب
+
+Demo.StepsTitle
+en: How to show the result
+ar: كيف تعرض النتيجة
+
+Demo.Supervisors
+en: Supervisors:
+ar: المشرفان:
+
+Demo.Title
+en: Demo student for the completion review
+ar: طالب تجريبي لمراجعة الإتمام
+
+Demo.WasReset
+en: Demo internship reset to "Ready for review".
+ar: أُعيد التدريب التجريبي إلى «جاهز للمراجعة».
+
+Demo.What1
+en: A confirmed local internship (Computer Science, CS391) at your existing company, with its accepted application.
+ar: تدريب محلي مؤكَّد (علم الحاسوب، CS391) في شركتك الموجودة، مع طلب التقديم المقبول.
+
+Demo.What2
+en: Five graded tasks on different scales (out of 10, 20, 25, 50 and 100); one was returned once for revision.
+ar: خمس مهام مقيَّمة على مقاييس مختلفة (من 10 و20 و25 و50 و100)؛ إحداها أُعيدت مرة للتعديل.
+
+Demo.What3
+en: 160 training hours over 4 weeks, all approved by the company supervisor.
+ar: 160 ساعة تدريب خلال 4 أسابيع، اعتمدها مشرف الشركة كلها.
+
+Demo.What4
+en: Both confidential final evaluations submitted (company 86 / 100, academic 43 / 50).
+ar: التقييمان النهائيان السريّان مقدَّمان (الشركة 86 / 100، الأكاديمي 43 / 50).
+
+Demo.What5
+en: Six of the eight local-training checks already verified with evidence.
+ar: ست من ثماني بنود تحقق للتدريب المحلي موثّقة مسبقًا بالأدلة.
+
+Demo.What6
+en: Left for you: the training report and the dean endorsement, then the approval itself.
+ar: متروك لك: تقرير التدريب واعتماد العميد، ثم الاعتماد نفسه.
+
+Demo.WhatTitle
+en: What the demo student gets
+ar: ما الذي يحصل عليه الطالب التجريبي
+
+Export.AcademicScore
+en: Academic evaluation (%)
+ar: التقييم الأكاديمي (%)
+
+Export.ApprovedHours
+en: Approved hours
+ar: الساعات المعتمدة
+
+Export.Button
+en: Export grades to Excel
+ar: تصدير الدرجات إلى Excel
+
+Export.Company
+en: Company
+ar: الشركة
+
+Export.CompanyScore
+en: Company evaluation (%)
+ar: تقييم الشركة (%)
+
+Export.DecidedOn
+en: Decision date
+ar: تاريخ القرار
+
+Export.Failed
+en: The grades could not be exported. Please try again.
+ar: تعذّر تصدير الدرجات. حاول مرة أخرى.
+
+Export.FinalScore
+en: Final score (%)
+ar: الدرجة النهائية (%)
+
+Export.InternshipType
+en: Internship type
+ar: نوع التدريب
+
+Export.Opportunity
+en: Opportunity
+ar: الفرصة
+
+Export.Program
+en: Program
+ar: البرنامج
+
+Export.RequiredHours
+en: Required hours
+ar: الساعات المطلوبة
+
+Export.Result
+en: Result
+ar: النتيجة
+
+Export.ReviewStatus
+en: Review status
+ar: حالة المراجعة
+
+Export.SheetName
+en: Grades and results
+ar: الدرجات والنتائج
+
+Export.StudentName
+en: Student name
+ar: اسم الطالب
+
+Export.StudentNumber
+en: Student number
+ar: الرقم الجامعي
+
+Export.TaskScore
+en: Tasks score (%)
+ar: درجة المهام (%)
+
+Export.TasksGraded
+en: Tasks graded
+ar: المهام المقيّمة
+
+Final.AcademicComments
+en: Academic supervisor's comments
+ar: ملاحظات المشرف الأكاديمي
+
+Final.AcademicKicker
+en: Academic supervisor
+ar: المشرف الأكاديمي
+
+Final.CompanyKicker
+en: Company supervisor
+ar: مشرف الشركة
+
+Final.CompanyRemarks
+en: Remarks on the company evaluation
+ar: ملاحظات على تقييم الشركة
+
+Final.Criteria
+en: Criteria
+ar: معايير التقييم
+
+Final.DraftText
+en: {0} started this evaluation but has not submitted it. It does not count until it is submitted.
+ar: بدأ {0} هذا التقييم ولم يرسله بعد. لا يُحتسب حتى يتم إرساله.
+
+Final.DraftTitle
+en: Draft saved, not submitted
+ar: مسودة محفوظة ولم تُرسل بعد
+
+Final.Improve
+en: Areas for improvement
+ar: جوانب للتحسين
+
+Final.NotAssigned
+en: Not assigned
+ar: غير محدد
+
+Final.Overall
+en: Overall comment
+ar: التعليق العام
+
+Final.SectionCount
+en: {0} of 2 received
+ar: وصل {0} من 2
+
+Final.SectionTitle
+en: Final evaluations
+ar: التقييمات النهائية
+
+Final.Strengths
+en: Strengths
+ar: نقاط القوة
+
+Final.SubmittedOn
+en: Submitted {0}
+ar: أُرسل في {0}
+
+Final.Title
+en: Final evaluation
+ar: التقييم النهائي
+
+Final.WaitingText
+en: Waiting for {0} to submit the final evaluation.
+ar: بانتظار أن يرسل {0} التقييم النهائي.
+
+Final.WaitingTitle
+en: Not received yet
+ar: لم يصل بعد
+
+Final.Weight
+en: Counts for {0}% of the final result
+ar: يُحتسب بنسبة {0}% من النتيجة النهائية
+
+Groups.ClearSelection
+en: Clear selection
+ar: مسح الاختيار
+
+Groups.Done
+en: Done
+ar: تم
+
+Groups.IdLabel
+en: ID
+ar: الرقم
+
+Groups.PickerHelp
+en: Only students without a group are listed (plus this group’s members when editing). Open the list to search, filter by major or status, or select everyone shown.
+ar: تظهر هنا فقط الطلاب غير المنضمين إلى مجموعة (بالإضافة إلى أعضاء هذه المجموعة عند التعديل). افتح القائمة للبحث أو التصفية حسب التخصص أو الحالة أو لتحديد جميع الظاهرين.
+
+Groups.SearchStudents
+en: Search name, ID, email or major
+ar: ابحث بالاسم أو الرقم أو البريد أو التخصص
+
+Groups.SelectAllShown
+en: Select all shown
+ar: تحديد كل الظاهرين
+
+Groups.SelectStudents
+en: Select students
+ar: اختر الطلاب
+
+ManageStudents.AcademicSupervisor
+en: Academic supervisor
+ar: المشرف الأكاديمي
+
+ManageStudents.AllMajors
+en: All majors
+ar: كل التخصصات
+
+ManageStudents.AllStatuses
+en: All statuses
+ar: كل الحالات
+
+ManageStudents.ClearMajorFilter
+en: Show all students
+ar: عرض جميع الطلاب
+
+ManageStudents.ConfirmRemoveAccess
+en: Remove this student’s access? Their record and training history will be retained.
+ar: هل تريد إزالة صلاحية دخول هذا الطالب؟ سيبقى سجله وتاريخ تدريبه محفوظين.
+
+ManageStudents.CreatedOn
+en: Account created
+ar: تاريخ إنشاء الحساب
+
+ManageStudents.DirectoryHelp
+en: Search, filter by major or status, then view details or manage a student.
+ar: ابحث وصفِّ حسب التخصص أو الحالة، ثم اعرض التفاصيل أو أدِر الطالب.
+
+ManageStudents.DirectoryIntro
+en: Every student in the programme. Add students, view their details and profile, or update academic information and access.
+ar: جميع طلاب البرنامج. أضف طلاباً واعرض تفاصيلهم وملفاتهم، أو حدّث المعلومات الأكاديمية وصلاحية الدخول.
+
+ManageStudents.FilterMissingMajor
+en: Major not recorded
+ar: تخصص غير مسجّل
+
+ManageStudents.FilterUnrecognizedMajor
+en: Unrecognized major
+ar: تخصص غير معروف
+
+ManageStudents.FilteredByMajor
+en: Showing students with major:
+ar: عرض الطلاب ذوي التخصص:
+
+ManageStudents.Group
+en: Group
+ar: المجموعة
+
+ManageStudents.LoginEmail
+en: Login email
+ar: البريد الإلكتروني للدخول
+
+ManageStudents.NoGroup
+en: No group yet
+ar: لا توجد مجموعة بعد
+
+ManageStudents.NoPlacement
+en: No placement yet
+ar: لا يوجد تدريب بعد
+
+ManageStudents.NotAssigned
+en: Not assigned
+ar: غير مسند
+
+ManageStudents.NotRecorded
+en: Not recorded
+ar: غير مسجل
+
+ManageStudents.PersonalInformation
+en: Personal information
+ar: المعلومات الشخصية
+
+ManageStudents.Phone
+en: Phone
+ar: الهاتف
+
+ManageStudents.Placement
+en: Placement
+ar: التدريب
+
+ManageStudents.StatusActive
+en: Active
+ar: نشط
+
+ManageStudents.StatusInactive
+en: Inactive
+ar: غير نشط
+
+ManageStudents.StudentDetails
+en: Student details
+ar: تفاصيل الطالب
+
+ManageStudents.StudentDirectory
+en: Student directory
+ar: دليل الطلاب
+
+ManageStudents.TrainingAndSupervision
+en: Training and supervision
+ar: التدريب والإشراف
+
+ManageStudents.TrainingHours
+en: Training hours
+ar: ساعات التدريب
+
+ManageStudents.ViewDetails
+en: View details
+ar: عرض التفاصيل
+
+ManageStudents.ViewProfile
+en: View profile
+ar: عرض الملف الشخصي
+
+Pd.AttemptN
+en: Attempt {0}
+ar: المحاولة {0}
+
+Pd.ConfirmedOn
+en: Confirmed {0}
+ar: تم التأكيد في {0}
+
+Pd.Feedback
+en: Supervisor feedback
+ar: ملاحظات المشرف
+
+Pd.FinalsNote
+en: Company and academic supervisors
+ar: مشرف الشركة والمشرف الأكاديمي
+
+Pd.Grade
+en: Grade
+ar: العلامة
+
+Pd.HiddenFromStudent
+en: Not visible to student
+ar: غير ظاهر للطالب
+
+Pd.NoFeedbackYet
+en: Waiting for the company supervisor's review
+ar: بانتظار مراجعة مشرف الشركة
+
+Pd.People
+en: Supervisors & contact
+ar: المشرفون والتواصل
+
+Pd.Sections
+en: Progress sections
+ar: أقسام التقدم
+
+Pd.TabHours
+en: Training hours
+ar: ساعات التدريب
+
+Pd.TabOverview
+en: Overview
+ar: نظرة عامة
+
+Pd.TabSubmissions
+en: Submissions & feedback
+ar: التسليمات والملاحظات
+
+Pd.TasksGraded
+en: tasks graded
+ar: مهام مقيّمة
+
+Pd.VisibleToStudent
+en: Visible to student
+ar: ظاهر للطالب
+
+Pd.WaitingHours
+en: Hours waiting for approval
+ar: ساعات بانتظار الاعتماد
+
+Pd.WaitingHoursNote
+en: Reported, not approved yet
+ar: مُبلّغ عنها ولم تُعتمد بعد
+
+Phone.Hint
+en: 10 digits, numbers only — e.g. 0791234567
+ar: 10 أرقام فقط — مثل 0791234567
+
+Phone.Invalid
+en: Enter a phone number: exactly 10 digits, numbers only (e.g. 0791234567).
+ar: أدخل رقم الهاتف: 10 أرقام بالضبط، أرقام فقط (مثل 0791234567).
+
+Placements.ApprovedHoursFor
+en: Approved hours for {0}
+ar: الساعات المعتمدة للطالب {0}
+
+Placements.Crumb
+en: Coordinator / Placements
+ar: منسّق التدريب / التدريبات
+
+Placements.NoName
+en: Not recorded
+ar: غير مسجّل
+
+Placements.NoPlacementsMatch
+en: No placements match these filters. Try another name, number or status.
+ar: لا توجد جهات تدريب تطابق عوامل التصفية. جرّب اسمًا أو رقمًا أو حالة أخرى.
+
+Placements.NoPlacementsYet
+en: No confirmed placements yet. A student's first offer confirmation creates their placement.
+ar: لا توجد جهات تدريب مؤكدة بعد. يُنشأ تدريب الطالب عند تأكيده أول عرض.
+
+Placements.ViewInternshipFor
+en: View internship for {0}
+ar: عرض تدريب الطالب {0}
+
+Placements.ViewProgress
+en: View progress
+ar: عرض التقدم
+
+Queue.Academic
+en: Academic evaluation
+ar: التقييم الأكاديمي
+
+Queue.All
+en: All internships
+ar: كل التدريبات
+
+Queue.Company
+en: Company evaluation
+ar: تقييم الشركة
+
+Queue.Help
+en: Click a tile above to filter. Highlighted rows are ready for your decision.
+ar: اضغط على إحدى البطاقات أعلاه للتصفية. الصفوف المميّزة جاهزة لقرارك.
+
+Queue.Intro
+en: Open an internship to read both final evaluations and record the completion decision.
+ar: افتح تدريبًا لقراءة التقييمين النهائيين وتسجيل قرار الإتمام.
+
+Queue.Search
+en: Search student, company or programme
+ar: ابحث عن طالب أو شركة أو تخصص
+
+Req.AcademicEvaluation
+en: Academic final evaluation submitted
+ar: تقديم التقييم النهائي الأكاديمي
+
+Req.Certificate
+en: Internship certificate
+ar: شهادة التدريب
+
+Req.CertificateHint
+en: The company's internship certificate was uploaded after the internship.
+ar: رُفعت شهادة التدريب من الشركة بعد انتهاء التدريب.
+
+Req.CompanyEligibility
+en: Company eligibility
+ar: أهلية الشركة
+
+Req.CompanyEligibilityHint
+en: One company, relevant industry, and no blood relative employing the student.
+ar: شركة واحدة في مجال ذي صلة، ولا يعمل الطالب لدى قريب له.
+
+Req.CompanyEvaluation
+en: Company final evaluation submitted
+ar: تقديم التقييم النهائي من الشركة
+
+Req.DraftNotSubmitted
+en: Saved as a draft, not submitted yet
+ar: محفوظ كمسودة ولم يُقدَّم بعد
+
+Req.Duration
+en: Minimum internship duration
+ar: الحد الأدنى لمدة التدريب
+
+Req.DurationDetail
+en: {0} weeks between the recorded start and end dates (minimum {1} weeks full time)
+ar: {0} أسبوعًا بين تاريخي البداية والنهاية المسجّلين (الحد الأدنى {1} أسبوعًا بدوام كامل)
+
+Req.DurationUnknown
+en: Training dates are missing, so the duration cannot be calculated
+ar: تواريخ التدريب غير مسجّلة، لذلك لا يمكن حساب المدة
+
+Req.Endorsement
+en: Department review and dean endorsement
+ar: مراجعة القسم واعتماد العميد
+
+Req.EndorsementHint
+en: Head of department signed the evaluation and report; the dean endorsed it.
+ar: وقّع رئيس القسم على التقييم والتقرير، واعتمده العميد.
+
+Req.ErrorAlreadyApproved
+en: Completion has already been approved for this internship.
+ar: اعتُمد إتمام هذا التدريب مسبقًا.
+
+Req.ErrorAlreadyRejected
+en: Completion has already been rejected for this internship.
+ar: رُفض إتمام هذا التدريب مسبقًا.
+
+Req.ErrorChanged
+en: Another decision was saved for this internship at the same time. Refresh the page and review again.
+ar: حُفظ قرار آخر لهذا التدريب في الوقت نفسه. حدّث الصفحة وراجع مجددًا.
+
+Req.ErrorCorrectionsNote
+en: Explain what the student needs to correct (at least 5 characters).
+ar: اشرح ما يجب على الطالب تصحيحه (5 أحرف على الأقل).
+
+Req.ErrorDecided
+en: This review is closed and can no longer be changed.
+ar: هذه المراجعة مغلقة ولا يمكن تعديلها.
+
+Req.ErrorEvidence
+en: Add an evidence reference for "{0}" (for example a form number, file name or email date).
+ar: أضف مرجعًا للدليل لـ «{0}» (مثل رقم نموذج أو اسم ملف أو تاريخ بريد).
+
+Req.ErrorNoPlacement
+en: This internship could not be loaded.
+ar: تعذّر تحميل هذا التدريب.
+
+Req.ErrorNotReady
+en: This internship does not meet every mandatory requirement yet.
+ar: هذا التدريب لا يستوفي جميع المتطلبات الإلزامية بعد.
+
+Req.ErrorRejectReason
+en: Write the documented reason for rejecting completion (at least 10 characters).
+ar: اكتب السبب الموثّق لرفض الإتمام (10 أحرف على الأقل).
+
+Req.ErrorStatus
+en: Choose a valid verification status.
+ar: اختر حالة تحقق صحيحة.
+
+Req.ErrorType
+en: Choose Local or International.
+ar: اختر محلي أو دولي.
+
+Req.ErrorUnknownCheck
+en: That requirement does not apply to this internship type.
+ar: هذا المتطلّب لا ينطبق على نوع التدريب هذا.
+
+Req.FacultyValidation
+en: Faculty validation
+ar: مصادقة الكلية
+
+Req.FacultyValidationHint
+en: The faculty validated the certificate and report.
+ar: صادقت الكلية على الشهادة والتقرير.
+
+Req.FullTime
+en: Full-time internship
+ar: تدريب بدوام كامل
+
+Req.FullTimeHint
+en: The contract shows full-time work for the whole period.
+ar: يبيّن العقد دوامًا كاملًا طوال المدة.
+
+Req.Hours
+en: Required training hours approved
+ar: اعتماد ساعات التدريب المطلوبة
+
+Req.HoursDetail
+en: {0} of {1} hours approved. Only approved entries count.
+ar: اعتُمدت {0} من {1} ساعة. تُحتسب الساعات المعتمدة فقط.
+
+Req.HoursPending
+en: {0} h still awaiting approval.
+ar: {0} ساعة ما زالت بانتظار الاعتماد.
+
+Req.InternationalReport
+en: Internship report
+ar: تقرير التدريب
+
+Req.InternationalReportHint
+en: The internship report was uploaded within the published deadline.
+ar: رُفع تقرير التدريب ضمن الموعد المنشور.
+
+Req.LocalTrainingDone
+en: Local field training completed first
+ar: إنهاء التدريب الميداني المحلي أولًا
+
+Req.LocalTrainingDoneHint
+en: The FAQ requires the Jordan field training before going to Germany.
+ar: تشترط الأسئلة الشائعة إنهاء التدريب الميداني في الأردن قبل السفر إلى ألمانيا.
+
+Req.MajorRelevance
+en: Training related to the student's major
+ar: ارتباط التدريب بتخصص الطالب
+
+Req.MajorRelevanceHint
+en: The company and tasks match the student's programme.
+ar: تتوافق الشركة والمهام مع برنامج الطالب.
+
+Req.NoTasks
+en: No tasks are recorded for this internship
+ar: لا توجد مهام مسجّلة لهذا التدريب
+
+Req.NotStartedByAcademic
+en: Not started by the academic supervisor
+ar: لم يبدأه المشرف الأكاديمي بعد
+
+Req.NotStartedByCompany
+en: Not started by the company supervisor
+ar: لم يبدأه مشرف الشركة بعد
+
+Req.NotVerifiedYet
+en: Not verified yet
+ar: لم يُتحقَّق منه بعد
+
+Req.Prerequisites
+en: Training prerequisites (credit hours)
+ar: متطلبات التدريب السابقة (الساعات المعتمدة)
+
+Req.PrerequisitesHint
+en: GJU pages disagree (programme thresholds such as 90 or 115 credit hours, and a 0 credit-hour line). Record what the department confirmed.
+ar: تتعارض صفحات الجامعة (حدود مثل 90 أو 115 ساعة معتمدة، وسطر يذكر 0 ساعة). سجّل ما أكّده القسم.
+
+Req.PriorApproval
+en: Department approval before training began
+ar: موافقة القسم قبل بدء التدريب
+
+Req.PriorApprovalHint
+en: Documented approval from the department or school before the first training day. Hours before approval do not count.
+ar: موافقة موثّقة من القسم أو الكلية قبل أول يوم تدريب. لا تُحتسب الساعات التي تسبق الموافقة.
+
+Req.PriorContract
+en: Internship contract approved before start
+ar: اعتماد عقد التدريب قبل البدء
+
+Req.PriorContractHint
+en: Signed contract uploaded and approved by the internship team before the internship started.
+ar: رُفع العقد الموقّع واعتمده فريق التدريب قبل بدء التدريب.
+
+Req.Result
+en: Provisional result is Pass
+ar: النتيجة المبدئية: ناجح
+
+Req.ResultDetail
+en: {0} at {1}% (pass mark {2}%, project-proposed method)
+ar: {0} بنسبة {1}% (علامة النجاح {2}%، طريقة مقترحة من المشروع)
+
+Req.ResultWaiting
+en: Calculated once both final evaluations are submitted
+ar: تُحسب بعد تقديم التقييمين النهائيين
+
+Req.Schedule
+en: Permitted training period and schedule
+ar: فترة التدريب وجدوله المسموح بهما
+
+Req.ScheduleHint
+en: Outside registered semesters. Official wording differs (4 continuous weeks vs. 4 weeks x 8 h or 8 weeks x 4 h for CS); record the schedule the department accepted.
+ar: خارج الفصول المسجَّل فيها. تختلف الصياغة الرسمية (4 أسابيع متواصلة أو 4 أسابيع × 8 ساعات أو 8 أسابيع × 4 ساعات لعلم الحاسوب)؛ سجّل الجدول الذي قبله القسم.
+
+Req.SourceBrief
+en: Project brief
+ar: متطلّب وثيقة المشروع
+
+Req.SourceProposal
+en: Project proposal (not GJU policy)
+ar: مقترح المشروع (ليس سياسة رسمية)
+
+Req.SourceUnresolved
+en: Unresolved: verify manually
+ar: غير محسوم: يُتحقَّق يدويًا
+
+Req.SourceVerified
+en: Verified GJU rule
+ar: قاعدة موثّقة من الجامعة
+
+Req.SubmittedOn
+en: Submitted {0}
+ar: قُدِّم في {0}
+
+Req.Tasks
+en: Task documentation graded
+ar: تقييم توثيق المهام
+
+Req.TasksDetail
+en: {0} of {1} assigned tasks graded
+ar: قُيِّمت {0} من {1} مهمة مُسندة
+
+Req.TrainingForms
+en: Signed and stamped local training forms
+ar: نماذج التدريب المحلي موقّعة ومختومة
+
+Req.TrainingFormsHint
+en: Forms signed and stamped by the company supervisor, with the list of tasks performed, received by the school.
+ar: نماذج موقّعة ومختومة من مشرف الشركة مع قائمة المهام المنفّذة، استلمتها الكلية.
+
+Req.TrainingReport
+en: Training report
+ar: تقرير التدريب
+
+Req.TrainingReportHint
+en: The student's training report has been received and reviewed.
+ar: استُلم تقرير تدريب الطالب ورُوجع.
+
+Review.Approve
+en: Approve internship completion
+ar: اعتماد إتمام التدريب
+
+Review.ApprovedHeadline
+en: Internship completion verified and approved
+ar: تم التحقق من إتمام التدريب واعتماده
+
+Review.ApprovedHoursUnit
+en: approved hours
+ar: ساعة معتمدة
+
+Review.ApprovedLine
+en: Approved by {0} on {1}.
+ar: اعتمده {0} في {1}.
+
+Review.Attempts
+en: Attempts
+ar: المحاولات
+
+Review.Automatic
+en: Automatic
+ar: تلقائي
+
+Review.BackToQueue
+en: All completion reviews
+ar: جميع مراجعات الإتمام
+
+Review.CertificateDoc
+en: Internship Completion Certificate
+ar: شهادة إتمام التدريب
+
+Review.CertificateDocNote
+en: Printable certificate, available to the coordinator.
+ar: شهادة قابلة للطباعة، متاحة للمنسّق.
+
+Review.ChangeType
+en: Internship type
+ar: نوع التدريب
+
+Review.CheckedBy
+en: Recorded by {0} on {1}
+ar: سجّله {0} في {1}
+
+Review.ChecksNote
+en: Every mandatory line must be met. Manual lines need a written evidence reference; a tick alone is never evidence.
+ar: يجب استيفاء كل بند إلزامي. تحتاج البنود اليدوية إلى مرجع مكتوب للدليل؛ علامة الاختيار وحدها ليست دليلًا.
+
+Review.ChecksTitle
+en: Completion requirements: {0}
+ar: متطلبات الإتمام: {0}
+
+Review.ChecksVerified
+en: {0} of {1} verified
+ar: تم التحقق من {0} من {1}
+
+Review.Confidential
+en: Confidential: coordinator and supervisors only
+ar: سرّي: للمنسّق والمشرفين فقط
+
+Review.ConfirmApprove
+en: Approve internship completion? The completion report will be released to the student.
+ar: اعتماد إتمام التدريب؟ سيصدر تقرير الإتمام للطالب.
+
+Review.ConfirmCorrections
+en: Return this completion to the student for corrections?
+ar: إعادة هذا الإتمام إلى الطالب للتصحيح؟
+
+Review.ConfirmReject
+en: Reject completion? This closes the review and cannot be undone here.
+ar: رفض الإتمام؟ سيُغلق هذا المراجعة ولا يمكن التراجع عنه هنا.
+
+Review.ConfirmedOn
+en: Confirmed {0}
+ar: أُكِّد في {0}
+
+Review.CorrectionsHeadline
+en: Returned to the student for corrections
+ar: أُعيدت إلى الطالب للتصحيح
+
+Review.CourseCode
+en: Local training course {0}
+ar: مساق التدريب المحلي {0}
+
+Review.Criterion
+en: Criterion
+ar: المعيار
+
+Review.Deadline
+en: Deadline
+ar: الموعد النهائي
+
+Review.DecidedBy
+en: Approved by
+ar: اعتمده
+
+Review.DecisionNote
+en: Note to the student
+ar: ملاحظة للطالب
+
+Review.DecisionNoteHelp
+en: Return for corrections when something can be fixed; reject only for a documented reason. Neither is an academic grade.
+ar: أعِد للتصحيح عندما يمكن إصلاح شيء؛ وارفض فقط لسبب موثّق. أي منهما ليس علامة أكاديمية.
+
+Review.DecisionNotePlaceholder
+en: Optional for approval. Required when returning for corrections or rejecting.
+ar: اختيارية عند الاعتماد، ومطلوبة عند الإعادة للتصحيح أو الرفض.
+
+Review.DecisionTitle
+en: Coordinator decision
+ar: قرار المنسّق
+
+Review.DetailsTitle
+en: Student and internship
+ar: الطالب والتدريب
+
+Review.DialogApproveGo
+en: Yes, approve completion
+ar: نعم، اعتمد الإتمام
+
+Review.DialogApprovePoints
+en: The completion report is released to the student|The completion certificate becomes available to download
+ar: يصدر تقرير الإتمام للطالب|تصبح شهادة الإتمام متاحة للتنزيل
+
+Review.DialogApproveText
+en: {0} has met every completion requirement. When you approve:
+ar: استوفى {0} جميع متطلبات الإتمام. عند الاعتماد:
+
+Review.DialogApproveTitle
+en: Approve internship completion?
+ar: اعتماد إتمام التدريب؟
+
+Review.DialogCancel
+en: Not yet
+ar: ليس الآن
+
+Review.DialogNote
+en: Your note
+ar: ملاحظتك
+
+Review.DialogRejectGo
+en: Reject completion
+ar: رفض الإتمام
+
+Review.DialogRejectPoints
+en: No completion report or certificate is released|This cannot be undone from this page
+ar: لن يصدر تقرير إتمام أو شهادة|لا يمكن التراجع عن ذلك من هذه الصفحة
+
+Review.DialogRejectText
+en: This closes the review for {0}.
+ar: سيُغلق هذا مراجعة {0}.
+
+Review.DialogRejectTitle
+en: Reject this completion?
+ar: رفض هذا الإتمام؟
+
+Review.DialogReturnGo
+en: Return for corrections
+ar: إعادة للتصحيح
+
+Review.DialogReturnPoints
+en: The student sees your note and can resubmit|Nothing is released until you approve
+ar: يرى الطالب ملاحظتك ويمكنه إعادة التقديم|لا يصدر أي شيء حتى تعتمد الإتمام
+
+Review.DialogReturnText
+en: The completion goes back to {0} so the missing items can be fixed.
+ar: سيُعاد الإتمام إلى {0} لاستكمال العناصر الناقصة.
+
+Review.DialogReturnTitle
+en: Return for corrections?
+ar: إعادة للتصحيح؟
+
+Review.DocsDisclaimer
+en: Documents are UIMS project records with a digital "UIMS - APPROVED" status mark. They carry no university seal or signature.
+ar: الوثائق سجلات من مشروع النظام عليها علامة رقمية «UIMS - APPROVED». لا تحمل ختم الجامعة أو توقيعها.
+
+Review.DocumentsTitle
+en: Approved: completion documents
+ar: معتمد: وثائق الإتمام
+
+Review.DoneApproved
+en: Completion approved. The report is now available to the student.
+ar: اعتُمد الإتمام. التقرير متاح الآن للطالب.
+
+Review.DoneChecks
+en: Verification saved.
+ar: حُفظ التحقق.
+
+Review.DoneCorrections
+en: Returned to the student for corrections. You can review it again later.
+ar: أُعيد إلى الطالب للتصحيح. يمكنك مراجعته لاحقًا.
+
+Review.DoneRejected
+en: Completion rejected. The student has been notified with your reason.
+ar: رُفض الإتمام. أُبلغ الطالب بالسبب.
+
+Review.DoneType
+en: Internship type saved. The requirement list has been updated.
+ar: حُفظ نوع التدريب. حُدِّثت قائمة المتطلبات.
+
+Review.DownloadPdf
+en: Download PDF
+ar: تنزيل PDF
+
+Review.Draft
+en: Draft
+ar: مسودة
+
+Review.DurationSource
+en: Published German Year rule
+ar: قاعدة منشورة للسنة الألمانية
+
+Review.EvalAcademicOnly
+en: Academic only
+ar: الأكاديمي فقط
+
+Review.EvalBoth
+en: Both submitted
+ar: قُدِّم الاثنان
+
+Review.EvalCompanyOnly
+en: Company only
+ar: الشركة فقط
+
+Review.EvalNone
+en: None yet
+ar: لا شيء بعد
+
+Review.EvaluatedBy
+en: {0} ({1}) · submitted {2}
+ar: {0} ({1}) · قُدِّم في {2}
+
+Review.EvaluationStatus
+en: Evaluations
+ar: التقييمات
+
+Review.Evidence
+en: Evidence
+ar: الدليل
+
+Review.EvidenceFor
+en: Evidence reference for
+ar: مرجع الدليل لـ
+
+Review.EvidencePlaceholder
+en: Evidence reference, e.g. form no. or file
+ar: مرجع الدليل، مثل رقم النموذج أو الملف
+
+Review.EvidenceRequired
+en: Add an evidence reference (at least 3 characters) for:
+ar: أضف مرجعًا للدليل (3 أحرف على الأقل) لـ:
+
+Review.Eyebrow
+en: Coordinator review
+ar: مراجعة المنسّق
+
+Review.Fail
+en: Fail
+ar: راسب
+
+Review.FilterAll
+en: All
+ar: الكل
+
+Review.FilterLabel
+en: Filter by review status
+ar: التصفية حسب حالة المراجعة
+
+Review.Grade
+en: Grade
+ar: العلامة
+
+Review.HoursApproved
+en: Approved
+ar: معتمدة
+
+Review.HoursPending
+en: Pending
+ar: معلّقة
+
+Review.HoursPercent
+en: {0}% of the required hours
+ar: {0}% من الساعات المطلوبة
+
+Review.HoursRejected
+en: Rejected
+ar: مرفوضة
+
+Review.HoursSource
+en: Placement target (GJU local training: 160 contact hours)
+ar: هدف التدريب (التدريب المحلي في الجامعة: 160 ساعة اتصال)
+
+Review.HoursValue
+en: {0} contact hours
+ar: {0} ساعة اتصال
+
+Review.Internships
+en: internships
+ar: تدريب
+
+Review.LastDecision
+en: Last decision by {0} on {1}
+ar: آخر قرار من {0} في {1}
+
+Review.LockedHeadline
+en: Approval stays locked until these are met:
+ar: يبقى الاعتماد مقفلًا حتى تُستوفى هذه البنود:
+
+Review.ManualNote
+en: Record what you checked and where the evidence is. Each change stores your name and the time.
+ar: سجّل ما تحققت منه وأين يوجد الدليل. يُحفظ اسمك والوقت مع كل تغيير.
+
+Review.ManualTitle
+en: Coordinator verification
+ar: تحقق المنسّق
+
+Review.MetricApproved
+en: Report released to the student
+ar: صدر التقرير للطالب
+
+Review.MetricAwaiting
+en: Training done or one evaluation in
+ar: التدريب منتهٍ أو وصل تقييم واحد
+
+Review.MetricCorrections
+en: Returned to the student
+ar: أُعيدت إلى الطالب
+
+Review.MetricReady
+en: Both final evaluations received
+ar: استُلم التقييمان النهائيان
+
+Review.MinWeeks
+en: At least {0} weeks full time
+ar: {0} أسبوعًا على الأقل بدوام كامل
+
+Review.MissingShort
+en: Missing
+ar: ناقص
+
+Review.NoMatch
+en: No internships match this search or filter.
+ar: لا توجد تدريبات مطابقة لهذا البحث أو التصفية.
+
+Review.NotGraded
+en: Not graded
+ar: غير مقيَّمة
+
+Review.NotReadyToApprove
+en: Approval unlocks when every line above is green.
+ar: يُتاح الاعتماد عندما تصبح كل البنود أعلاه خضراء.
+
+Review.NotStarted
+en: Not started
+ar: لم يبدأ
+
+Review.NothingChanged
+en: Nothing changed. Update a status or an evidence reference first.
+ar: لم يتغير شيء. حدّث حالة أو مرجع دليل أولًا.
+
+Review.Open
+en: Open
+ar: فتح
+
+Review.PartAcademic
+en: Academic evaluation ({0}%)
+ar: التقييم الأكاديمي ({0}%)
+
+Review.PartCompany
+en: Company evaluation ({0}%)
+ar: تقييم الشركة ({0}%)
+
+Review.PartTasks
+en: Graded tasks ({0}%)
+ar: المهام المقيّمة ({0}%)
+
+Review.Pass
+en: Pass
+ar: ناجح
+
+Review.Pending
+en: Pending
+ar: قيد الانتظار
+
+Review.PlacementApproval
+en: Placement
+ar: التدريب
+
+Review.Points
+en: pts
+ar: نقطة
+
+Review.Print
+en: Print
+ar: طباعة
+
+Review.ProfileUnavailable
+en: Profile unavailable
+ar: الملف غير متاح
+
+Review.Program
+en: Academic program
+ar: البرنامج الأكاديمي
+
+Review.ProgramCheck
+en: Needs verification
+ar: يحتاج إلى تحقق
+
+Review.ProgramCheckLong
+en: The recorded major is missing or not a School of Computing programme. Verify the academic record.
+ar: التخصص المسجّل مفقود أو ليس من برامج كلية الحوسبة. تحقّق من السجل الأكاديمي.
+
+Review.ProvisionalResult
+en: Provisional result
+ar: النتيجة المبدئية
+
+Review.ProvisionalScore
+en: Provisional score
+ar: العلامة المبدئية
+
+Review.QueueCaption
+en: Internships and their completion review status
+ar: التدريبات وحالة مراجعة إتمامها
+
+Review.QueueIntro
+en: Review both final evaluations, the training record and the requirements for each internship, then record the completion decision.
+ar: راجع التقييمين النهائيين وسجل التدريب والمتطلبات لكل تدريب، ثم سجّل قرار الإتمام.
+
+Review.QueueNote
+en: A confirmed internship is not automatically ready: it needs both final evaluations and verified requirements.
+ar: التدريب المؤكَّد ليس جاهزًا تلقائيًا: يحتاج التقييمين النهائيين ومتطلبات موثّقة.
+
+Review.QueueTitle
+en: Internship Completion Reviews
+ar: مراجعات إتمام التدريب
+
+Review.Rating
+en: Score / scale
+ar: العلامة / المقياس
+
+Review.ReadOnlyNote
+en: This review is closed and read-only.
+ar: هذه المراجعة مغلقة وللقراءة فقط.
+
+Review.ReadyTitle
+en: Ready for approval
+ar: جاهزية الاعتماد
+
+Review.ReadyToApprove
+en: Everything is in place. You can approve this internship.
+ar: كل المتطلبات مكتملة. يمكنك اعتماد هذا التدريب.
+
+Review.Reason
+en: Reason
+ar: السبب
+
+Review.Reference
+en: Reference
+ar: المرجع
+
+Review.RejectCompletion
+en: Reject completion
+ar: رفض الإتمام
+
+Review.RejectedHeadline
+en: Completion was not approved
+ar: لم يُعتمد الإتمام
+
+Review.ReleasedResult
+en: Released result
+ar: النتيجة المعلنة
+
+Review.ReportDoc
+en: Internship Completion Report
+ar: تقرير إتمام التدريب
+
+Review.ReportDocNote
+en: Released to the student. Shows the result, never the confidential forms.
+ar: صدر للطالب. يعرض النتيجة ولا يعرض النماذج السرية.
+
+Review.RequiredDuration
+en: Required duration
+ar: المدة المطلوبة
+
+Review.RequiredHours
+en: Required hours
+ar: الساعات المطلوبة
+
+Review.RequirementsMet
+en: Mandatory requirements met
+ar: المتطلبات الإلزامية المستوفاة
+
+Review.RequirementsValue
+en: {0} of {1} met
+ar: {0} من {1} مستوفاة
+
+Review.ResultExplain
+en: Weights and the {0}% pass mark are a UIMS project proposal, not a published GJU internship grading policy. The student sees only the released Pass/Fail result after approval, never these forms.
+ar: الأوزان وعلامة النجاح {0}% مقترح من مشروع النظام، وليست سياسة منشورة لتقييم التدريب في الجامعة. يرى الطالب نتيجة ناجح/راسب بعد الاعتماد فقط، ولا يرى هذه النماذج.
+
+Review.ResultNote
+en: Calculated with the project-proposed evaluation method. It supports the decision but never approves completion by itself.
+ar: محسوبة بطريقة التقييم المقترحة في المشروع. تدعم القرار لكنها لا تعتمد الإتمام بمفردها.
+
+Review.ResultTitle
+en: Provisional result
+ar: النتيجة المبدئية
+
+Review.ReturnForCorrections
+en: Return for corrections
+ar: إعادة للتصحيح
+
+Review.Review
+en: Review
+ar: مراجعة
+
+Review.ReviewStatus
+en: Review status
+ar: حالة المراجعة
+
+Review.RoleAcademic
+en: academic supervisor
+ar: المشرف الأكاديمي
+
+Review.RoleCompany
+en: company supervisor
+ar: مشرف الشركة
+
+Review.SaveChecks
+en: Save verification
+ar: حفظ التحقق
+
+Review.SaveChecksNote
+en: Saving does not approve anything. The decision is made below.
+ar: الحفظ لا يعتمد شيئًا. يُتخذ القرار في الأسفل.
+
+Review.SaveFailed
+en: The change could not be saved. Please try again.
+ar: تعذّر حفظ التغيير. يرجى المحاولة مجددًا.
+
+Review.SaveType
+en: Save type
+ar: حفظ النوع
+
+Review.Scale
+en: Recorded scale
+ar: المقياس المسجّل
+
+Review.ScaleTasks
+en: Each task on its own scale
+ar: كل مهمة على مقياسها
+
+Review.SearchLabel
+en: Search completion reviews
+ar: ابحث في مراجعات الإتمام
+
+Review.SearchPlaceholder
+en: Search name, number, company or major
+ar: ابحث بالاسم أو الرقم أو الشركة أو التخصص
+
+Review.StampContinue
+en: View completion documents
+ar: عرض وثائق الإتمام
+
+Review.StampTitle
+en: Internship completion approved
+ar: اعتُمد إتمام التدريب
+
+Review.StateCorrections
+en: Needs corrections
+ar: يحتاج إلى تصحيح
+
+Review.StateMet
+en: Met
+ar: مستوفى
+
+Review.StateMissing
+en: Not met
+ar: غير مستوفى
+
+Review.StateNotApplicable
+en: Not applicable
+ar: لا ينطبق
+
+Review.StatePending
+en: Pending
+ar: قيد الانتظار
+
+Review.StateVerified
+en: Verified
+ar: تم التحقق
+
+Review.Status
+en: Status
+ar: الحالة
+
+Review.StatusApproved
+en: Approved
+ar: معتمد
+
+Review.StatusAwaiting
+en: Awaiting evaluations
+ar: بانتظار التقييمات
+
+Review.StatusCorrections
+en: Needs corrections
+ar: يحتاج إلى تصحيحات
+
+Review.StatusDisclaimer
+en: These are UIMS workflow statuses, not the internal status names of MyGJU or any other university system.
+ar: هذه حالات سير عمل في النظام، وليست أسماء الحالات الداخلية في MyGJU أو أي نظام جامعي آخر.
+
+Review.StatusFor
+en: Verification status for
+ar: حالة التحقق لـ
+
+Review.StatusInProgress
+en: In progress
+ar: قيد التنفيذ
+
+Review.StatusReady
+en: Ready for review
+ar: جاهز للمراجعة
+
+Review.StatusRejected
+en: Rejected
+ar: مرفوض
+
+Review.StudentNumber
+en: Student number
+ar: الرقم الجامعي
+
+Review.Submitted
+en: Submitted
+ar: مقدَّم
+
+Review.SupportingScore
+en: Supporting score {0}
+ar: العلامة الداعمة {0}
+
+Review.Task
+en: Task
+ar: المهمة
+
+Review.TaskEvidence
+en: Task evidence: {0} of {1} graded
+ar: أدلة المهام: قُيِّمت {0} من {1}
+
+Review.TaskEvidenceLabel
+en: Task evidence
+ar: أدلة المهام
+
+Review.TrainingTitle
+en: Training record
+ar: سجل التدريب
+
+Review.Type
+en: Internship type
+ar: نوع التدريب
+
+Review.TypeDefault
+en: Default (not set)
+ar: افتراضي (غير محدد)
+
+Review.TypeDefaultLong
+en: Not recorded on the placement; local training is assumed until you set it.
+ar: غير مسجّل في التدريب؛ يُفترض أنه تدريب محلي حتى تحدده.
+
+Review.TypeHelp
+en: The type decides which requirements apply. Local and international training are checked against different rules.
+ar: يحدد النوع المتطلبات المنطبقة. يُتحقق من التدريب المحلي والدولي وفق قواعد مختلفة.
+
+Review.TypeInternational
+en: International internship (German Year)
+ar: تدريب دولي (السنة الألمانية)
+
+Review.TypeLocal
+en: Local field training
+ar: تدريب ميداني محلي
+
+Review.Weeks
+en: weeks
+ar: أسبوعًا
+
+Review.WeeksNote
+en: Calculated from the placement start and end dates; hours are not used for international internships.
+ar: محسوبة من تاريخي بداية التدريب ونهايته؛ لا تُستخدم الساعات للتدريب الدولي.
+
+Review.WeeksValue
+en: {0} weeks
+ar: {0} أسبوعًا
+
+StudentCreation.CreatedSuccessDone
+en: Done
+ar: تم
+
+StudentCreation.CreatedSuccessTitle
+en: Student created successfully
+ar: تم إنشاء الطالب بنجاح
+
+Students.AcademicInformation
+en: Academic information
+ar: المعلومات الأكاديمية
+
+Students.AcademicSupervisor
+en: Academic supervisor
+ar: المشرف الأكاديمي
+
+Students.AllStudents
+en: All students
+ar: كل الطلاب
+
+Students.Company
+en: Company
+ar: الشركة
+
+Students.CompanySupervisor
+en: Company supervisor
+ar: مشرف الشركة
+
+Students.CreatedOn
+en: Account created
+ar: تاريخ إنشاء الحساب
+
+Students.EndDate
+en: End date
+ar: تاريخ الانتهاء
+
+Students.Group
+en: Group
+ar: المجموعة
+
+Students.InternshipPlacement
+en: Internship placement
+ar: تدريب الطالب
+
+Students.NoPlacementYet
+en: This student has not confirmed a placement yet.
+ar: لم يؤكد هذا الطالب أي تدريب بعد.
+
+Students.Opportunity
+en: Opportunity
+ar: الفرصة
+
+Students.PersonalInformation
+en: Personal information
+ar: المعلومات الشخصية
+
+Students.Placement
+en: Placement
+ar: التدريب
+
+Students.StartDate
+en: Start date
+ar: تاريخ البدء
+
+Students.StudentProfile
+en: Student profile
+ar: ملف الطالب
+
+Students.TrainingProgress
+en: Training progress
+ar: تقدّم التدريب
+
+SupervisorProfile.AcademicInformation
+en: Academic information
+ar: المعلومات الأكاديمية
+
+SupervisorProfile.AcademicProfile
+en: Academic supervisor profile
+ar: ملف المشرف الأكاديمي
+
+SupervisorProfile.AcademicRank
+en: Academic rank
+ar: الرتبة الأكاديمية
+
+SupervisorProfile.AccountStatus
+en: Account status
+ar: حالة الحساب
+
+SupervisorProfile.Action
+en: Action
+ar: الإجراء
+
+SupervisorProfile.Address
+en: Address
+ar: العنوان
+
+SupervisorProfile.AllAcademicSupervisors
+en: All academic supervisors
+ar: كل المشرفين الأكاديميين
+
+SupervisorProfile.AllCompanySupervisors
+en: All company supervisors
+ar: كل مشرفي الشركات
+
+SupervisorProfile.Company
+en: Company
+ar: الشركة
+
+SupervisorProfile.CompanyContact
+en: Company contact
+ar: تواصل الشركة
+
+SupervisorProfile.CompanyInformation
+en: Company information
+ar: معلومات الشركة
+
+SupervisorProfile.CompanyInterns
+en: Interns supervised
+ar: المتدربون تحت الإشراف
+
+SupervisorProfile.CompanyInternsHelp
+en: Students whose placement names this supervisor, with their approved hours.
+ar: الطلاب الذين يحدد تدريبهم هذا المشرف مع ساعاتهم المعتمدة.
+
+SupervisorProfile.CompanyProfile
+en: Company supervisor profile
+ar: ملف مشرف الشركة
+
+SupervisorProfile.ContactInformation
+en: Contact information
+ar: معلومات التواصل
+
+SupervisorProfile.CreatedOn
+en: Account created
+ar: تاريخ إنشاء الحساب
+
+SupervisorProfile.Department
+en: Department
+ar: القسم
+
+SupervisorProfile.Groups
+en: Assigned groups
+ar: المجموعات المسندة
+
+SupervisorProfile.Industry
+en: Industry
+ar: القطاع
+
+SupervisorProfile.Interns
+en: Interns
+ar: المتدربون
+
+SupervisorProfile.JobTitle
+en: Job title
+ar: المسمى الوظيفي
+
+SupervisorProfile.LoadError
+en: Could not load this supervisor. Please try again.
+ar: تعذر تحميل بيانات المشرف. حاول مرة أخرى.
+
+SupervisorProfile.LoginEmail
+en: Login email
+ar: البريد الإلكتروني للدخول
+
+SupervisorProfile.NoGroups
+en: No groups assigned yet.
+ar: لا توجد مجموعات مسندة بعد.
+
+SupervisorProfile.NoInterns
+en: No interns are linked to this supervisor yet.
+ar: لا يوجد متدربون مرتبطون بهذا المشرف بعد.
+
+SupervisorProfile.NoStudents
+en: No students are assigned to this supervisor yet.
+ar: لا يوجد طلاب مسندون لهذا المشرف بعد.
+
+SupervisorProfile.NotFound
+en: Supervisor record not found.
+ar: لم يتم العثور على سجل المشرف.
+
+SupervisorProfile.Phone
+en: Phone
+ar: الهاتف
+
+SupervisorProfile.Placement
+en: Placement
+ar: التدريب
+
+SupervisorProfile.SendEmail
+en: Send email
+ar: إرسال بريد إلكتروني
+
+SupervisorProfile.Student
+en: Student
+ar: الطالب
+
+SupervisorProfile.StudentNumber
+en: Student number
+ar: الرقم الجامعي
+
+SupervisorProfile.Students
+en: Students
+ar: الطلاب
+
+SupervisorProfile.SupervisedStudents
+en: Supervised students
+ar: الطلاب تحت الإشراف
+
+SupervisorProfile.SupervisedStudentsHelp
+en: Students assigned to this supervisor, with their placement and approved hours.
+ar: الطلاب المسندون لهذا المشرف مع تدريبهم وساعاتهم المعتمدة.
+
+SupervisorProfile.TrainingHours
+en: Training hours
+ar: ساعات التدريب
+
+SupervisorProfile.Website
+en: Website
+ar: الموقع الإلكتروني
+
+SupervisorProfile.WithPlacement
+en: With a placement
+ar: لديهم تدريب
+
+Toggle.ActivateButton
+en: Yes, activate
+ar: نعم، فعّل الحساب
+
+Toggle.ActivateText
+en: They will be able to sign in again straight away.
+ar: سيتمكن من تسجيل الدخول مرة أخرى فورًا.
+
+Toggle.ActivateTitle
+en: Activate {0}?
+ar: تفعيل حساب {0}؟
+
+Toggle.ClickToActivate
+en: Inactive — click to activate
+ar: غير نشط — اضغط لتفعيل الحساب
+
+Toggle.ClickToDeactivate
+en: Active — click to deactivate
+ar: نشط — اضغط لإيقاف الحساب
+
+Toggle.DeactivateButton
+en: Yes, deactivate
+ar: نعم، أوقف الحساب
+
+Toggle.DeactivateSupervisorText
+en: They will not be able to sign in until you activate the account again. Their groups and students stay assigned to them.
+ar: لن يتمكن من تسجيل الدخول حتى تعيد تفعيل الحساب. تبقى مجموعاته وطلابه مسندين إليه.
+
+Toggle.DeactivateText
+en: They will not be able to sign in until you activate the account again. Nothing is deleted.
+ar: لن يتمكن من تسجيل الدخول حتى تعيد تفعيل الحساب. لن يُحذف أي شيء.
+
+Toggle.DeactivateTitle
+en: Deactivate {0}?
+ar: إيقاف حساب {0}؟
+
+Toggle.NowActive
+en: {0}'s account is now active.
+ar: أصبح حساب {0} نشطًا.
+
+Toggle.NowInactive
+en: {0}'s account is now inactive.
+ar: أصبح حساب {0} غير نشط.
