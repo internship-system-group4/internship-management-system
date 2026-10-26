@@ -283,9 +283,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
             lblListMessage.Visible = false;
             try
             {
+                long loadedAt = Time.NowMs();
                 List<Person> people = new UserRepository().GetAllPeople();
+                // Newest first, so a student you just created is at the top.
                 List<Student> students = people.OfType<Student>()
-                    .OrderBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase).ToList();
+                    .OrderByDescending(s => s.CreatedSortKey(loadedAt))
+                    .ThenBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase).ToList();
                 Rows = StudentDirectoryRow.Build(students, people, ResolveUrl("~/Pages/Coordinator/Students.aspx?id="));
                 rptStudents.DataSource = Rows;
                 rptStudents.DataBind();

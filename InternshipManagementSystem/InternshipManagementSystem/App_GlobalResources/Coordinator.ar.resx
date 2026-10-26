@@ -1436,7 +1436,7 @@
   <data name="Toggle.NowActive" xml:space="preserve"><value>أصبح حساب {0} نشطًا.</value></data>
   <data name="Toggle.NowInactive" xml:space="preserve"><value>أصبح حساب {0} غير نشط.</value></data>
   <data name="Phone.Hint" xml:space="preserve"><value>10 أرقام فقط — مثل 0791234567</value></data>
-  <data name="Phone.Invalid" xml:space="preserve"><value>أدخل رقم هاتف المشرف: 10 أرقام بالضبط، أرقام فقط (مثل 0791234567).</value></data>
+  <data name="Phone.Invalid" xml:space="preserve"><value>أدخل رقم الهاتف: 10 أرقام بالضبط، أرقام فقط (مثل 0791234567).</value></data>
   <data name="Companies.AccountCreatedTitle" xml:space="preserve"><value>تم إنشاء الحساب</value></data>
   <data name="Final.Title" xml:space="preserve"><value>التقييم النهائي</value></data>
   <data name="Final.CompanyKicker" xml:space="preserve"><value>مشرف الشركة</value></data>

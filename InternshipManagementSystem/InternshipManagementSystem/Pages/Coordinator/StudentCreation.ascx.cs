@@ -54,6 +54,12 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 ShowMessage(L.T("Coordinator.StudentCreation.EnterAValidEmailAddress"), false);
                 return;
             }
+            // Phone is required: exactly 10 digits (same rule as the supervisor forms).
+            if (!InternshipManagementSystem.Common.Validators.IsPhone10(phone))
+            {
+                ShowMessage(L.T("Coordinator.Phone.Invalid"), false);
+                return;
+            }
             if (!int.TryParse(txtRequiredHours.Text, out requiredHours) || requiredHours < InternshipRules.LocalContactHours)
             {
                 ShowMessage(L.T("Coordinator.StudentCreation.RequiredTrainingHoursMustBeA"), false);

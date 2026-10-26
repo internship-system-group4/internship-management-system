@@ -40,6 +40,7 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         private void BindSupervisors()
         {
             List<CompanySupervisor> supervisorsList = new List<CompanySupervisor>();
+            long loadedAt = Time.NowMs();
             List<Person> allSupervisors = _userRepo.GetByRole(UserRole.CompanySupervisor);
 
             foreach (Person person in allSupervisors)
@@ -51,7 +52,8 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 }
             }
 
-            gvSupervisors.DataSource = supervisorsList.OrderBy(supervisor => supervisor.CreatedAt).ThenBy(supervisor => supervisor.Id, StringComparer.Ordinal).ToList();
+            // Newest first, so a company supervisor you just created is at the top.
+            gvSupervisors.DataSource = supervisorsList.OrderByDescending(supervisor => supervisor.CreatedSortKey(loadedAt)).ThenBy(supervisor => supervisor.Id, StringComparer.Ordinal).ToList();
             gvSupervisors.DataBind();
         }
 

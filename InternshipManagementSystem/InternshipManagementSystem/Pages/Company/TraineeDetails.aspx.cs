@@ -19,6 +19,12 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             private set { ViewState["CvDocumentUrl"] = value; }
         }
 
+        protected string AcademicSupervisorEmail
+        {
+            get { return ViewState["AcademicSupervisorEmail"] as string ?? ""; }
+            private set { ViewState["AcademicSupervisorEmail"] = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (IsPostBack == false)
@@ -80,10 +86,26 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litEndDate.Text = FormatDate(placement.EndDate);
                 litPlacementStatus.Text = L.Value("PlacementStatus", placement.Status);
 
-                if (!string.IsNullOrEmpty(placement.AcademicSupervisorId))
+                // The trainee's academic supervisor: name and email.
+                string academicId = !string.IsNullOrEmpty(placement.AcademicSupervisorId)
+                    ? placement.AcademicSupervisorId
+                    : (student == null ? null : student.AcademicSupervisorId);
+                if (!string.IsNullOrEmpty(academicId))
                 {
-                    var academicSup = _userRepo.GetAcademicSupervisor(placement.AcademicSupervisorId);
-                    if (academicSup != null) litAcademicSupervisor.Text = academicSup.FullName;
+                    try
+                    {
+                        var academicSup = _userRepo.GetAcademicSupervisor(academicId);
+                        if (academicSup != null)
+                        {
+                            litAcademicSupervisor.Text = academicSup.FullName;
+                            AcademicSupervisorEmail = academicSup.Email ?? "";
+                        }
+                    }
+                    catch (FirebaseException ex)
+                    {
+                        // Optional detail: the rest of the trainee page still loads.
+                        System.Diagnostics.Trace.TraceWarning("Trainee academic supervisor: " + ex.Message);
+                    }
                 }
 
                 litRequiredHours.Text = placement.RequiredHours.ToString();

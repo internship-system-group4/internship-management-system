@@ -144,6 +144,11 @@
                 <div class="col-md-4 mt-2">
                     <div class="info-label"><%: L.T("Company.TraineeDetails.AcademicSupervisor") %></div>
                     <div class="info-value"><i class="bi bi-person-badge me-1 text-muted"></i><asp:Literal ID="litAcademicSupervisor" runat="server" Text="<%$ Resources:Company, TraineeDetails.NotAssigned %>" Mode="Encode" /></div>
+                    <% if (!string.IsNullOrEmpty(AcademicSupervisorEmail)) { %>
+                    <div class="info-value mt-1" style="font-weight:500;font-size:.92em;overflow-wrap:anywhere">
+                        <i class="bi bi-envelope me-1 text-muted" aria-hidden="true"></i><a href="mailto:<%: AcademicSupervisorEmail %>"><%: AcademicSupervisorEmail %></a>
+                    </div>
+                    <% } %>
                 </div>
                 <div class="col-md-4 mt-2">
                     <div class="info-label mb-1"><%: L.T("Company.TraineeDetails.PlacementStatus") %></div>

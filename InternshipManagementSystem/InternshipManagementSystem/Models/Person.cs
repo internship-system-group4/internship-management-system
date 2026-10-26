@@ -57,6 +57,14 @@ namespace InternshipManagementSystem.Models
             get { return Time.FromUnixMs(CreatedAt); }
         }
 
+        /// <summary>Sort key for "newest first" lists. A record saved without
+        /// CreatedAt gets "now" from the constructor when it is loaded, so any
+        /// value at or after <paramref name="loadedAt"/> means "unknown" (sorted last).</summary>
+        public long CreatedSortKey(long loadedAt)
+        {
+            return CreatedAt >= loadedAt ? 0 : CreatedAt;
+        }
+
         protected Person(UserRole role)
         {
             Role = role;

@@ -36,7 +36,74 @@ namespace InternshipManagementSystem.Services
 
         public static Documents LoadDocuments(string studentId)
         {
-            return LoadNode<Documents>("studentCvPortfolios/", studentId) ?? new Documents();
+            // Firebase may not let a company read the student's CV record, so the
+            // copy kept next to the uploaded files on this server fills any gaps.
+            Documents online = LoadNode<Documents>("studentCvPortfolios/", studentId) ?? new Documents();
+            Documents local = LoadLocalIndex(studentId);
+            if (string.IsNullOrEmpty(online.CvStorageName) && local != null)
+            {
+                online.CvStorageName = local.CvStorageName;
+                online.CvFileName = local.CvFileName;
+            }
+            if (string.IsNullOrEmpty(online.PortfolioStorageName) && local != null)
+            {
+                online.PortfolioStorageName = local.PortfolioStorageName;
+                online.PortfolioFileName = local.PortfolioFileName;
+            }
+            if (string.IsNullOrEmpty(online.CvUrl) && local != null) online.CvUrl = local.CvUrl;
+            if (string.IsNullOrEmpty(online.PortfolioUrl) && local != null) online.PortfolioUrl = local.PortfolioUrl;
+
+            // Uploads made before the local copy existed: use the newest PDF as the CV.
+            if (local == null && string.IsNullOrEmpty(online.CvStorageName) && string.IsNullOrEmpty(online.PortfolioStorageName))
+                online.CvStorageName = NewestPdf(studentId);
+            return online;
+        }
+
+        private const string LocalIndexName = "documents.json";
+
+        /// <summary>Called by StudentCVPortfolio.aspx after every save: keeps the CV and
+        /// portfolio details next to the files, readable by any role on this server.</summary>
+        public static void SaveLocalIndex(string studentId, object documents)
+        {
+            if (!ApplicationRepository.IsValidKey(studentId) || documents == null) return;
+            try
+            {
+                string folder = HttpContext.Current.Server.MapPath("~/App_Data/StudentDocuments/" + studentId);
+                Directory.CreateDirectory(folder);
+                File.WriteAllText(Path.Combine(folder, LocalIndexName), Json.Serialize(documents));
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceWarning("StudentDocumentService index: " + ex.Message);
+            }
+        }
+
+        private static Documents LoadLocalIndex(string studentId)
+        {
+            if (!ApplicationRepository.IsValidKey(studentId)) return null;
+            try
+            {
+                string path = Path.Combine(
+                    HttpContext.Current.Server.MapPath("~/App_Data/StudentDocuments/" + studentId), LocalIndexName);
+                return File.Exists(path) ? Json.Deserialize<Documents>(File.ReadAllText(path)) : null;
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Trace.TraceWarning("StudentDocumentService index: " + ex.Message);
+                return null;
+            }
+        }
+
+        private static string NewestPdf(string studentId)
+        {
+            if (!ApplicationRepository.IsValidKey(studentId)) return null;
+            string folder = HttpContext.Current.Server.MapPath("~/App_Data/StudentDocuments/" + studentId);
+            if (!Directory.Exists(folder)) return null;
+            FileInfo newest = null;
+            foreach (FileInfo file in new DirectoryInfo(folder).GetFiles("*.pdf"))
+                if (IsSafePdfName(file.Name) && (newest == null || file.LastWriteTimeUtc > newest.LastWriteTimeUtc))
+                    newest = file;
+            return newest == null ? null : newest.Name;
         }
 
         public static ProfileExtras LoadExtras(string studentId)

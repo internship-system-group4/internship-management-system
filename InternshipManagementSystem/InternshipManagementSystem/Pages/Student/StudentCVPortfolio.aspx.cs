@@ -147,6 +147,11 @@ namespace InternshipManagementSystem.Pages.StudentArea
             bool updated = FirebaseContext.PutIfUnchanged(
                 DataPath, current, etag);
 
+            // Keep a copy next to the files so the company can find the CV even
+            // when Firebase does not let it read this record.
+            if (updated)
+                Services.StudentDocumentService.SaveLocalIndex(StudentId, current);
+
             if (!updated)
             {
                 ShowError(

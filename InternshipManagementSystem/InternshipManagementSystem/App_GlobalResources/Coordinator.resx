@@ -1436,7 +1436,7 @@
   <data name="Toggle.NowActive" xml:space="preserve"><value>{0}'s account is now active.</value></data>
   <data name="Toggle.NowInactive" xml:space="preserve"><value>{0}'s account is now inactive.</value></data>
   <data name="Phone.Hint" xml:space="preserve"><value>10 digits, numbers only — e.g. 0791234567</value></data>
-  <data name="Phone.Invalid" xml:space="preserve"><value>Enter the supervisor's phone number: exactly 10 digits, numbers only (e.g. 0791234567).</value></data>
+  <data name="Phone.Invalid" xml:space="preserve"><value>Enter a phone number: exactly 10 digits, numbers only (e.g. 0791234567).</value></data>
   <data name="Companies.AccountCreatedTitle" xml:space="preserve"><value>Account created</value></data>
   <data name="Final.Title" xml:space="preserve"><value>Final evaluation</value></data>
   <data name="Final.CompanyKicker" xml:space="preserve"><value>Company supervisor</value></data>

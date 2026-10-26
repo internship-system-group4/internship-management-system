@@ -289,13 +289,16 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
         {
             try
             {
+                long loadedAt = Time.NowMs();
                 List<Person> people = new UserRepository().GetAllPeople();
                 List<StudentGroup> groups = new GroupRepository().GetAll();
                 List<Student> students = people.OfType<Student>().ToList();
                 string none = L.T("Coordinator.ManageStudents.NotRecorded");
                 string profileBase = ResolveUrl("~/Pages/Coordinator/SupervisorProfile.aspx?id=");
+                // Newest first, so a supervisor you just created is at the top.
                 Rows = people.OfType<AcademicSupervisor>()
-                    .OrderBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase)
+                    .OrderByDescending(s => s.CreatedSortKey(loadedAt))
+                    .ThenBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase)
                     .Select(s =>
                     {
                         List<string> groupNames = groups.Where(g => g.AcademicSupervisorId == s.Id)
