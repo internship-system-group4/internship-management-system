@@ -67,8 +67,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 litStudentName.Text = student == null ? placement.StudentName : student.FullName;
                 litStudentMajor.Text = student == null ? "-" : student.Major;
                 litStudentInitials.Text = GetInitials(litStudentName.Text);
-                string cv = student == null ? "" : ApplicationRepository.IsSafeDocumentUrl(student.CvUrl) ? student.CvUrl :
-                    ApplicationRepository.IsSafeDocumentUrl(student.PortfolioUrl) ? student.PortfolioUrl : "";
+                // Uploaded CV/portfolio PDF or a shared link (checked by ApplicantDocument.aspx).
+                string cv = Services.StudentDocumentService.TraineeCvUrl(placement, student);
                 hlViewCV.NavigateUrl = cv; divCvContainer.Visible = !string.IsNullOrEmpty(cv);
                 litInternshipTitle.Text = placement.OpportunityTitle;
                 var evaluation = _evaluations.GetCompanyFinalForPlacement(placement.Id);

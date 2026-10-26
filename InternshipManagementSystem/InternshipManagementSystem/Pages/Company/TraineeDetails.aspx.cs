@@ -70,10 +70,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 
                     // Render one server-owned document state. CSS and startup scripts
                     // must not decide whether an unavailable document can be opened.
-                    CvDocumentUrl = Services.StudentDocumentService.IsExternalLink(student.CvUrl)
-                        ? student.CvUrl
-                        : Services.StudentDocumentService.IsExternalLink(student.PortfolioUrl)
-                            ? student.PortfolioUrl : "";
+                    // The uploaded CV/portfolio PDF or a shared link, opened through
+                    // ApplicantDocument.aspx (which checks this company).
+                    CvDocumentUrl = Services.StudentDocumentService.TraineeCvUrl(placement, student);
                 }
 
                 litOpportunityTitle.Text = placement.OpportunityTitle;

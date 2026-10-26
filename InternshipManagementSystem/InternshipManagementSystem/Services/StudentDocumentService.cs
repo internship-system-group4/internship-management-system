@@ -64,6 +64,25 @@ namespace InternshipManagementSystem.Services
             return !uri.Host.Equals(request.Url.Host, StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <summary>Link a company opens to see its trainee's CV (the PDF uploaded on the
+        /// CV &amp; Portfolio page, or a CV/portfolio link), or "" when nothing was shared.
+        /// The link goes through Company/ApplicantDocument.aspx, which checks the company.</summary>
+        public static string TraineeCvUrl(Models.Placement placement, Models.Student student)
+        {
+            if (placement == null || !ApplicationRepository.IsValidKey(placement.Id)) return "";
+            Documents docs = LoadDocuments(placement.StudentId);
+            bool hasDocument =
+                UploadedFilePath(placement.StudentId, docs.CvStorageName) != null ||
+                IsExternalLink(docs.CvUrl) ||
+                (student != null && IsExternalLink(student.CvUrl)) ||
+                UploadedFilePath(placement.StudentId, docs.PortfolioStorageName) != null ||
+                IsExternalLink(docs.PortfolioUrl) ||
+                (student != null && IsExternalLink(student.PortfolioUrl));
+            return hasDocument
+                ? VirtualPathUtility.ToAbsolute("~/Pages/Company/ApplicantDocument.aspx") + "?trainee=" + HttpUtility.UrlEncode(placement.Id)
+                : "";
+        }
+
         private static T LoadNode<T>(string folder, string studentId) where T : class
         {
             if (!ApplicationRepository.IsValidKey(studentId)) return null;

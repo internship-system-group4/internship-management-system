@@ -21,6 +21,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             bool isCv = Request.QueryString["type"] != "portfolio";
             bool preview = Request.QueryString["preview"] == "1";
 
+            // A trainee's CV (My Trainees, Final Evaluation): ?trainee={placementId}
+            if (!string.IsNullOrEmpty(Request.QueryString["trainee"]))
+            {
+                SendTraineeDocument(Request.QueryString["trainee"]);
+                return;
+            }
+
             InternshipApplication application;
             try
             {
@@ -75,6 +82,63 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             ShowMessage(isCv
                 ? L.T("Company.ApplicantDocument.ThisStudentHasNotSharedA")
                 : L.T("Company.ApplicantDocument.ThisStudentHasNotSharedA2"));
+        }
+
+        /// <summary>Opens the CV of a trainee placed at this company: the uploaded PDF
+        /// first, then a CV link, then the portfolio (file or link).</summary>
+        private void SendTraineeDocument(string placementId)
+        {
+            Placement placement;
+            Student student;
+            try
+            {
+                placement = ApplicationRepository.IsValidKey(placementId) ? new PlacementRepository().GetById(placementId) : null;
+                student = placement == null ? null : new UserRepository().GetStudent(placement.StudentId);
+            }
+            catch (Exception)
+            {
+                ShowMessage(L.T("Company.ApplicantDocument.WeCouldNotLoadThisApplication"));
+                return;
+            }
+
+            // Only the trainee's own company may open the document.
+            if (placement == null || placement.CompanyId != CurrentSupervisor.CompanyId)
+            {
+                ShowMessage(L.T("Company.ApplicantDocument.ThisApplicationIsNotAvailableTo"));
+                return;
+            }
+
+            var documents = StudentDocumentService.LoadDocuments(placement.StudentId);
+
+            string cvFile = StudentDocumentService.UploadedFilePath(placement.StudentId, documents.CvStorageName);
+            if (cvFile != null) { SendPdf(cvFile, "Trainee-CV.pdf"); return; }
+
+            string[] links = { documents.CvUrl, student == null ? null : student.CvUrl };
+            foreach (string link in links)
+            {
+                if (StudentDocumentService.IsExternalLink(link))
+                {
+                    Response.Redirect(link, false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+            }
+
+            string portfolioFile = StudentDocumentService.UploadedFilePath(placement.StudentId, documents.PortfolioStorageName);
+            if (portfolioFile != null) { SendPdf(portfolioFile, "Trainee-Portfolio.pdf"); return; }
+
+            string[] portfolioLinks = { documents.PortfolioUrl, student == null ? null : student.PortfolioUrl };
+            foreach (string link in portfolioLinks)
+            {
+                if (StudentDocumentService.IsExternalLink(link))
+                {
+                    Response.Redirect(link, false);
+                    Context.ApplicationInstance.CompleteRequest();
+                    return;
+                }
+            }
+
+            ShowMessage(L.T("Company.ApplicantDocument.ThisStudentHasNotSharedA"));
         }
 
         private void SendPdf(string path, string fileName)
