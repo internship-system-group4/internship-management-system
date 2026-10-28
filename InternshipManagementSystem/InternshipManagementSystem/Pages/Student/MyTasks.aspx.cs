@@ -25,6 +25,7 @@ namespace InternshipManagementSystem.Pages.StudentArea
 
         /// <summary>Colour class for the status badge in the task details panel.</summary>
         protected string SelectedStatusClass = "";
+        protected string SelectedTaskHours = "";
         protected int TaskCount;
         protected string ResultDetailsUrl = "";
 
@@ -220,6 +221,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             litDescription.Text = string.IsNullOrWhiteSpace(task.Description) ? L.T("Student.MyTasks.NoDescriptionWasProvided") : task.Description;
             litInstructions.Text = string.IsNullOrWhiteSpace(task.Instructions) ? L.T("Student.MyTasks.NoAdditionalInstructionsWereProvided") : task.Instructions;
             litDeadline.Text = task.Deadline > 0 ? FormatDate(task.Deadline) : L.T("Student.MyTasks.NotSet");
+            // The task's weight in training hours, counted once the company accepts the work.
+            SelectedTaskHours = task.CreditHours > 0 ? L.F("Student.TaskHours.Worth", task.CreditHours) : "";
 
             Uri attachment;
             // Firebase Storage link, or a file kept on the server (TaskAttachmentStorage).

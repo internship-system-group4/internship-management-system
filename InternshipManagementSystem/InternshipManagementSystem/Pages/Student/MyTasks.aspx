@@ -55,7 +55,7 @@
             <div class="modal-body">
                 <asp:Label ID="lblSubmitMessage" runat="server" Visible="false" EnableViewState="false" CssClass="task-dialog-alert" role="alert" />
                 <asp:Panel ID="pnlSelectedTask" runat="server" Visible="false" CssClass="task-modal-details">
-                    <div class="student-selected-meta"><div><h3><asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" /></h3><p><%: L.T("Student.MyTasks.Deadline2") %> <asp:Literal ID="litDeadline" runat="server" Mode="Encode" /></p></div><span class="student-status <%: SelectedStatusClass %>"><asp:Literal ID="litStatus" runat="server" Mode="Encode" /></span></div>
+                    <div class="student-selected-meta"><div><h3><asp:Literal ID="litTaskTitle" runat="server" Mode="Encode" /></h3><p><%: L.T("Student.MyTasks.Deadline2") %> <asp:Literal ID="litDeadline" runat="server" Mode="Encode" /><% if (!string.IsNullOrEmpty(SelectedTaskHours)) { %> <span class="student-task-hours">&middot; <%: SelectedTaskHours %></span><% } %></p></div><span class="student-status <%: SelectedStatusClass %>"><asp:Literal ID="litStatus" runat="server" Mode="Encode" /></span></div>
                     <div class="task-modal-detail-grid">
                         <div class="student-detail-block"><h4><%: L.T("Student.MyTasks.Description") %></h4><p><asp:Literal ID="litDescription" runat="server" Mode="Encode" /></p></div>
                         <div class="student-detail-block"><h4><%: L.T("Student.MyTasks.Instructions") %></h4><p><asp:Literal ID="litInstructions" runat="server" Mode="Encode" /></p><asp:HyperLink ID="lnkTaskAttachment" runat="server" CssClass="student-attachment-link" Target="_blank" Visible="false" /></div>

@@ -48,6 +48,12 @@ namespace InternshipManagementSystem.Models
         /// hours still need separate approval (card S04).</summary>
         public int EstimatedHours { get; set; }
 
+        /// <summary>Training hours this task is worth (its weight), set by the company
+        /// supervisor when assigning it. They count toward the trainee's approved hours
+        /// once the supervisor accepts the submitted work (Services/TaskHoursCredit.cs).
+        /// 0 for tasks created before this field existed.</summary>
+        public int CreditHours { get; set; }
+
         public bool RequiresFileUpload { get; set; }
 
         public InternshipTaskStatus Status { get; set; }

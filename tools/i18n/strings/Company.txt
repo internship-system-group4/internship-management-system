@@ -2852,3 +2852,35 @@ ar: 20 حرفاً على الأقل.
 OpportunityForm.DraftHint
 en: A draft needs only a title. Publishing checks every field.
 ar: المسودة تحتاج إلى عنوان فقط، أما النشر فيتطلب كل الحقول.
+
+TaskHours.Label
+en: Training hours for this task (weight) *
+ar: ساعات التدريب لهذه المهمة (الوزن) *
+
+TaskHours.Help
+en: These hours are added to the trainee’s training record when you accept the submitted work (not when you ask for a revision). Training is complete when every task is accepted and the hours reach {0}.
+ar: تُضاف هذه الساعات إلى سجل تدريب المتدرب عندما تقبل العمل المسلَّم (وليس عند طلب تعديل). يكتمل التدريب عندما تُقبل كل المهام وتصل الساعات إلى {0}.
+
+TaskHours.Plan
+en: This trainee already has {0} h in tasks ({1} h earned). With this task: {2} of {3} h.
+ar: لدى هذا المتدرب {0} ساعة في المهام حالياً (اكتسب منها {1} ساعة). مع هذه المهمة: {2} من {3} ساعة.
+
+TaskHours.PlanAll
+en: Each trainee gets {0} h for this task.
+ar: يحصل كل متدرب على {0} ساعة لهذه المهمة.
+
+TaskHours.Invalid
+en: Enter the training hours for this task: a whole number from 1 to {0}.
+ar: أدخل ساعات التدريب لهذه المهمة: رقم صحيح من 1 إلى {0}.
+
+TaskHours.HoursShort
+en: {0} h
+ar: {0} ساعة
+
+TaskHours.Unit
+en: hours
+ar: ساعة
+
+TaskHours.ChipTitle
+en: Training hours credited when this task is accepted
+ar: ساعات التدريب التي تُحتسب عند قبول هذه المهمة

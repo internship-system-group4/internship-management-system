@@ -728,4 +728,6 @@
   <data name="Duration.ThreeMonths" xml:space="preserve"><value>3 أشهر</value></data>
   <data name="Duration.Weeks" xml:space="preserve"><value>{0} أسابيع</value></data>
   <data name="Duration.NotSpecified" xml:space="preserve"><value>غير محدد</value></data>
+  <data name="TaskHours.EntryDescription" xml:space="preserve"><value>مهمة: {0}</value></data>
+  <data name="TaskHours.EntryNote" xml:space="preserve"><value>احتُسبت عند قبول مشرف الشركة لهذه المهمة.</value></data>
 </root>

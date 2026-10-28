@@ -1779,3 +1779,7 @@ ar: ساعات التدريب
 Opportunities.YouCannotApplyToOtherInternships
 en: You cannot apply to other internships.
 ar: لا يمكنك التقديم على فرص تدريب أخرى.
+
+TaskHours.Worth
+en: worth {0} training hours when accepted
+ar: تُحتسب {0} ساعة تدريب عند قبولها

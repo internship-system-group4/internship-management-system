@@ -108,6 +108,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     }
                 }
 
+                // Live approved hours, including hours earned through accepted tasks.
+                placement.ApprovedHours = new HoursRepository().ApprovedOrCached(placement.Id, placement.ApprovedHours);
                 litRequiredHours.Text = placement.RequiredHours.ToString();
                 litApprovedHours.Text = placement.ApprovedHours.ToString();
 

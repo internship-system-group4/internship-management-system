@@ -96,6 +96,12 @@
 .create-task-dialog textarea.form-control{min-height:74px;resize:vertical}
 @media(max-width:600px){.create-task-overlay{padding:10px}.create-task-dialog{max-height:calc(100vh - 20px);padding:16px}}
 .create-task-dialog .create-task-card{width:auto;max-width:none;padding:0;background:transparent;border:0;border-radius:0;box-shadow:none}
+/* Training hours (task weight) */
+.task-hours-field{padding:12px 14px;border:1px solid var(--ui-border,#d9e3ed);border-radius:10px;background:var(--ui-primary-soft,#eef4fb)}
+.task-hours-input{max-width:220px}
+.task-hours-plan{display:block;margin-top:6px;font-size:12.5px;font-weight:650;color:var(--ui-primary-text,#1d4f7a)}
+.task-hours-plan.is-over{color:var(--ui-warning-strong,#8a5a00)}
+.tasks-hours-chip{display:inline-block;margin-inline-start:6px;padding:1px 8px;border-radius:999px;background:var(--ui-primary-soft,#e8eef6);color:var(--ui-primary-text,#1d4f7a);font-size:11px;font-weight:700;vertical-align:middle}
 </style>
 </asp:Content>
 
@@ -209,7 +215,7 @@
                                 data-task-attachment-name='<%#: Eval("AttachmentName") %>'
                                 data-task-attachment-url='<%#: Eval("AttachmentUrl") %>'>
                                 <td>
-                                    <div class="tasks-title-cell"><%#: Eval("Title") %></div>
+                                    <div class="tasks-title-cell"><%#: Eval("Title") %><asp:PlaceHolder runat="server" Visible='<%# !string.IsNullOrEmpty(Convert.ToString(Eval("Hours"))) %>'> <span class="tasks-hours-chip" title="<%#: L.T("Company.TaskHours.ChipTitle") %>"><%#: Eval("Hours") %></span></asp:PlaceHolder></div>
                                     <div class="tasks-trainee-name"><%#: Eval("Trainee") %></div>
                                     <div class="tasks-trainee-department"><%#: Eval("Department") %></div>
                                 </td>
@@ -291,6 +297,24 @@
                     <asp:Label ID="lblDeadline" runat="server" AssociatedControlID="txtDeadline" CssClass="form-label" Text="<%$ Resources:Company, Tasks.DeadlineTime %>" />
                     <asp:TextBox ID="txtDeadline" runat="server" CssClass="form-control" TextMode="DateTimeLocal" />
                 </div>
+            </div>
+
+            <%-- The task's weight in training hours (Services/TaskHoursCredit.cs). --%>
+            <div class="task-hours-field mb-3">
+                <label for="taskCreditHours" class="form-label"><%: L.T("Company.TaskHours.Label") %></label>
+                <div class="input-group task-hours-input">
+                    <input id="taskCreditHours" name="taskCreditHours" type="number" min="1" max="<%= RequiredTrainingHours %>" step="1"
+                        inputmode="numeric" class="form-control" placeholder="40"
+                        value="<%: TaskHoursValue %>"
+                        data-hours-plan="<%: HoursPlanJson %>"
+                        data-required-hours="<%= RequiredTrainingHours %>"
+                        data-plan-text="<%: L.T("Company.TaskHours.Plan") %>"
+                        data-plan-all-text="<%: L.T("Company.TaskHours.PlanAll") %>"
+                        aria-describedby="taskHoursHelp taskHoursPlan" />
+                    <span class="input-group-text"><%: L.T("Company.TaskHours.Unit") %></span>
+                </div>
+                <small id="taskHoursHelp" class="text-muted d-block mt-1"><%: L.F("Company.TaskHours.Help", RequiredTrainingHours) %></small>
+                <small id="taskHoursPlan" class="task-hours-plan" aria-live="polite" hidden></small>
             </div>
 
             <hr class="create-task-divider" />
@@ -588,6 +612,36 @@
     function closeTaskSuccessDialog() {
         if (window.UimsTaskDialog) window.UimsTaskDialog.close();
     }
+
+    // Training hours for the new task: show the chosen trainee's hours plan.
+    (function () {
+        var input = document.getElementById("taskCreditHours");
+        var plan = document.getElementById("taskHoursPlan");
+        var trainee = document.getElementById("<%= ddlTrainee.ClientID %>");
+        if (!input || !plan || !trainee) return;
+        var data = {};
+        try { data = JSON.parse(input.getAttribute("data-hours-plan") || "{}"); } catch (ignore) { data = {}; }
+        var required = Number(input.getAttribute("data-required-hours")) || 160;
+        function fill(text, values) {
+            return values.reduce(function (t, v, i) { return t.split("{" + i + "}").join(v); }, text || "");
+        }
+        function update() {
+            var hours = Math.max(0, parseInt(input.value, 10) || 0);
+            var id = trainee.value;
+            if (!id) { plan.hidden = true; return; }
+            if (id === "<%= AllTraineesValue %>") {
+                plan.textContent = fill(input.getAttribute("data-plan-all-text"), [hours]);
+            } else {
+                var row = data[id] || [0, 0];
+                plan.textContent = fill(input.getAttribute("data-plan-text"), [row[0], row[1], row[0] + hours, required]);
+                plan.classList.toggle("is-over", row[0] + hours > required);
+            }
+            plan.hidden = false;
+        }
+        input.addEventListener("input", update);
+        trainee.addEventListener("change", update);
+        update();
+    })();
 
     populateDepartmentFilter();
     renderCompanyTasks();

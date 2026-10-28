@@ -767,4 +767,5 @@
   <data name="Profile.ChangePhoto" xml:space="preserve"><value>Change photo</value></data>
   <data name="Profile.TrainingHours" xml:space="preserve"><value>Training hours</value></data>
   <data name="Opportunities.YouCannotApplyToOtherInternships" xml:space="preserve"><value>You cannot apply to other internships.</value></data>
+  <data name="TaskHours.Worth" xml:space="preserve"><value>worth {0} training hours when accepted</value></data>
 </root>

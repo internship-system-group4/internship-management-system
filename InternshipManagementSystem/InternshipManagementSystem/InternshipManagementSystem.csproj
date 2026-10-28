@@ -657,6 +657,7 @@
     <Compile Include="Services\HoursService.cs" />
     <Compile Include="Services\OpportunityFormRules.cs" />
     <Compile Include="Services\TaskAttachmentStorage.cs" />
+    <Compile Include="Services\TaskHoursCredit.cs" />
     <Compile Include="Pages\Account\TaskAttachment.ashx.cs">
       <DependentUpon>TaskAttachment.ashx</DependentUpon>
     </Compile>

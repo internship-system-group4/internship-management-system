@@ -24,6 +24,14 @@ namespace InternshipManagementSystem.Pages.AcademicArea
                 students.Sort((a, b) => string.Compare(a.FullName, b.FullName, StringComparison.OrdinalIgnoreCase));
                 StudentCount = students.Count;
                 GroupCount = students.Select(student => student.GroupId).Where(id => !string.IsNullOrWhiteSpace(id)).Distinct().Count();
+                // Live approved hours, including hours earned through accepted tasks.
+                var liveHours = new HoursRepository().ApprovedTotalsByPlacement();
+                if (liveHours != null)
+                    foreach (Student student in students)
+                    {
+                        int live;
+                        if (liveHours.TryGetValue(student.Id, out live)) student.ApprovedHours = live;
+                    }
                 TotalApprovedHours = students.Sum(student => (long)student.ApprovedHours);
                 HoursMetCount = students.Count(student => student.RequiredHours > 0 && student.ApprovedHours >= student.RequiredHours);
                 rptStudents.DataSource = students;

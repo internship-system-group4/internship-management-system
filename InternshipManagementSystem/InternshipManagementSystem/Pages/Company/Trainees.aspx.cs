@@ -57,8 +57,13 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 }
                 FirebaseContext.Prefetch(profiles);
 
+                // Live approved hours, including hours earned through accepted tasks.
+                var liveHours = new HoursRepository().ApprovedTotalsByPlacement();
+
                 foreach (Placement p in companyPlacements)
                 {
+                    int live;
+                    if (liveHours != null && liveHours.TryGetValue(p.Id, out live)) p.ApprovedHours = live;
                     var student = _userRepo.GetStudent(p.StudentId);
                     string major = student != null && !string.IsNullOrWhiteSpace(student.Major) ? student.Major : "General";
 

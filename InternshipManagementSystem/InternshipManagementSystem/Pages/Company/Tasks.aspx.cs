@@ -15,7 +15,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
 {
     public partial class Tasks : CompanyPage
     {
-        private const string AllTraineesValue = "__ALL_TRAINEES__";
+        protected const string AllTraineesValue = "__ALL_TRAINEES__";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -79,6 +79,16 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 return;
             }
 
+            // The task's weight in training hours, credited when the work is accepted.
+            int creditHours;
+            if (!int.TryParse((Request.Form["taskCreditHours"] ?? "").Trim(), NumberStyles.None,
+                    CultureInfo.InvariantCulture, out creditHours) ||
+                creditHours < 1 || creditHours > Constants.DefaultRequiredHours)
+            {
+                ShowMessage(L.F("Company.TaskHours.Invalid", Constants.DefaultRequiredHours), false);
+                return;
+            }
+
             string attachmentUrl = null;
             string attachmentName = null;
             string attachmentObjectName = null;
@@ -133,7 +143,10 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                         StartDate = startTimestamp,
                         Deadline = deadlineTimestamp,
                         MaxScore = maxScore,
-                        Weight = 1,
+                        // Hours are the task's weight: in the training hours and in the task grade.
+                        Weight = creditHours,
+                        CreditHours = creditHours,
+                        EstimatedHours = creditHours,
                         Criteria = criteria,
                         AttachmentUrl = attachmentUrl,
                         AttachmentName = attachmentName
@@ -609,6 +622,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     }
 
                     string evaluationSummary = L.T("Company.Tasks.NotEvaluated");
+                    bool accepted = false;
 
                     if (latestSubmission != null)
                     {
@@ -644,12 +658,18 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                                     : latestEvaluation.TotalScore.ToString("0.##") +
                                       " / " +
                                       latestEvaluation.MaxScore.ToString("0.##");
+                            accepted = !latestEvaluation.RevisionRequested;
                         }
                     }
+
+                    // Hours plan per trainee: hours assigned through tasks and hours earned.
+                    AddHours(assignedHoursByPlacement, task.PlacementId, task.CreditHours);
+                    if (accepted) AddHours(earnedHoursByPlacement, task.PlacementId, task.CreditHours);
 
                     rows.Add(new CompanyTaskRow
                     {
                         TaskId = task.Id,
+                        Hours = task.CreditHours > 0 ? L.F("Company.TaskHours.HoursShort", task.CreditHours) : "",
                         StudentId = task.StudentId,
                         Title = task.Title,
                         Trainee = traineeName,
@@ -827,8 +847,17 @@ namespace InternshipManagementSystem.Pages.CompanyArea
             lblMessage.Text = message;
         }
 
+        private bool taskFormReset;
+
+        /// <summary>Hours typed in the form: kept after a failed save, cleared after success.</summary>
+        protected string TaskHoursValue
+        {
+            get { return !IsPostBack || taskFormReset ? "" : (Request.Form["taskCreditHours"] ?? "").Trim(); }
+        }
+
         private void ResetTaskForm()
         {
+            taskFormReset = true;
             txtTitle.Text = "";
             txtDescription.Text = "";
             txtInstructions.Text = "";
@@ -858,9 +887,41 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     attachmentUri.Scheme == Uri.UriSchemeHttp);
         }
 
+        // ---- Training hours per task (weights) ----
+        private readonly Dictionary<string, int> assignedHoursByPlacement = new Dictionary<string, int>();
+        private readonly Dictionary<string, int> earnedHoursByPlacement = new Dictionary<string, int>();
+
+        private static void AddHours(Dictionary<string, int> totals, string placementId, int hours)
+        {
+            if (string.IsNullOrEmpty(placementId) || hours <= 0) return;
+            int current;
+            totals.TryGetValue(placementId, out current);
+            totals[placementId] = current + hours;
+        }
+
+        /// <summary>For the Assign Task form: {placementId: [assigned, earned]} so the
+        /// page can show "40 of 160 h assigned" for the chosen trainee.</summary>
+        protected string HoursPlanJson
+        {
+            get
+            {
+                var plan = new Dictionary<string, int[]>();
+                foreach (var pair in assignedHoursByPlacement)
+                {
+                    int earned;
+                    earnedHoursByPlacement.TryGetValue(pair.Key, out earned);
+                    plan[pair.Key] = new[] { pair.Value, earned };
+                }
+                return new System.Web.Script.Serialization.JavaScriptSerializer().Serialize(plan);
+            }
+        }
+
+        protected int RequiredTrainingHours { get { return Constants.DefaultRequiredHours; } }
+
         public class CompanyTaskRow
         {
             public string TaskId { get; set; }
+            public string Hours { get; set; }
             public string StudentId { get; set; }
             public string Title { get; set; }
             public string Trainee { get; set; }

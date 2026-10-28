@@ -886,4 +886,12 @@
   <data name="OpportunityForm.DatesHelp" xml:space="preserve"><value>يقدّم الطلاب حتى آخر موعد للتقديم. يمكن أن يبدأ التدريب في ذلك اليوم أو بعده، ومدته دائماً 3 أشهر.</value></data>
   <data name="OpportunityForm.DescriptionHint" xml:space="preserve"><value>20 حرفاً على الأقل.</value></data>
   <data name="OpportunityForm.DraftHint" xml:space="preserve"><value>المسودة تحتاج إلى عنوان فقط، أما النشر فيتطلب كل الحقول.</value></data>
+  <data name="TaskHours.Label" xml:space="preserve"><value>ساعات التدريب لهذه المهمة (الوزن) *</value></data>
+  <data name="TaskHours.Help" xml:space="preserve"><value>تُضاف هذه الساعات إلى سجل تدريب المتدرب عندما تقبل العمل المسلَّم (وليس عند طلب تعديل). يكتمل التدريب عندما تُقبل كل المهام وتصل الساعات إلى {0}.</value></data>
+  <data name="TaskHours.Plan" xml:space="preserve"><value>لدى هذا المتدرب {0} ساعة في المهام حالياً (اكتسب منها {1} ساعة). مع هذه المهمة: {2} من {3} ساعة.</value></data>
+  <data name="TaskHours.PlanAll" xml:space="preserve"><value>يحصل كل متدرب على {0} ساعة لهذه المهمة.</value></data>
+  <data name="TaskHours.Invalid" xml:space="preserve"><value>أدخل ساعات التدريب لهذه المهمة: رقم صحيح من 1 إلى {0}.</value></data>
+  <data name="TaskHours.HoursShort" xml:space="preserve"><value>{0} ساعة</value></data>
+  <data name="TaskHours.Unit" xml:space="preserve"><value>ساعة</value></data>
+  <data name="TaskHours.ChipTitle" xml:space="preserve"><value>ساعات التدريب التي تُحتسب عند قبول هذه المهمة</value></data>
 </root>

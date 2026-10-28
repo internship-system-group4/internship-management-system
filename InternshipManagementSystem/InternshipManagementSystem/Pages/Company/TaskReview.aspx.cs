@@ -637,6 +637,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     return;
                 }
 
+                // The accepted task's hours now count: refresh the stored totals.
+                RefreshTrainingHours(task);
+
                 // Reload the review so it shows as completed, then confirm in a popup.
                 OpenSubmission(submission.Id);
                 ShowResult(false, submission, task, evaluation.TotalScore);
@@ -647,6 +650,22 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     L.T("Company.TaskReview.CouldNotLoadOrSaveThe");
             }
         }
+        /// <summary>Recomputes the cached approved-hours totals (placement and student)
+        /// after a task decision. Pages also count task hours live, so a refused
+        /// write here only leaves the cached number behind until the next update.</summary>
+        private static void RefreshTrainingHours(InternshipTask task)
+        {
+            if (task == null || task.CreditHours <= 0) return;
+            try
+            {
+                Services.HoursService.RecomputeTotals(task.PlacementId, task.StudentId);
+            }
+            catch (FirebaseException ex)
+            {
+                System.Diagnostics.Trace.TraceWarning("Task hours totals: " + ex.Message);
+            }
+        }
+
         private static List<GradeComponent> CreateUniversityRubric()
         {
             return new List<GradeComponent>
@@ -775,6 +794,9 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                     {
                 { "Status", InternshipTaskStatus.RevisionRequested }
                     });
+
+                // A task sent back no longer earns its hours: refresh the stored totals.
+                RefreshTrainingHours(task);
 
                 // Reload the review so it shows "Revision requested", then confirm in a popup.
                 txtRevisionInstructions.Text = "";

@@ -728,4 +728,6 @@
   <data name="Duration.ThreeMonths" xml:space="preserve"><value>3 months</value></data>
   <data name="Duration.Weeks" xml:space="preserve"><value>{0} weeks</value></data>
   <data name="Duration.NotSpecified" xml:space="preserve"><value>Not specified</value></data>
+  <data name="TaskHours.EntryDescription" xml:space="preserve"><value>Task: {0}</value></data>
+  <data name="TaskHours.EntryNote" xml:space="preserve"><value>Credited when the company supervisor accepted this task.</value></data>
 </root>

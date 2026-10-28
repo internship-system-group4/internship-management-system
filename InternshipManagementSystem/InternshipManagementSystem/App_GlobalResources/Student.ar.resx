@@ -767,4 +767,5 @@
   <data name="Profile.ChangePhoto" xml:space="preserve"><value>تغيير الصورة</value></data>
   <data name="Profile.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
   <data name="Opportunities.YouCannotApplyToOtherInternships" xml:space="preserve"><value>لا يمكنك التقديم على فرص تدريب أخرى.</value></data>
+  <data name="TaskHours.Worth" xml:space="preserve"><value>تُحتسب {0} ساعة تدريب عند قبولها</value></data>
 </root>

@@ -191,7 +191,10 @@ namespace InternshipManagementSystem.Data
             var submissionMap = submissions.ToDictionary(s => s.Id);
             var evaluations = Read<TaskEvaluation>(Constants.Paths.TaskEvaluations, "PlacementId", id)
                 .Where(e => e.StudentId == placement.StudentId && taskIds.Contains(e.TaskId) && submissionMap.ContainsKey(e.SubmissionId ?? "") && submissionMap[e.SubmissionId].TaskId == e.TaskId).OrderByDescending(e => e.EvaluatedAt).ToList();
-            var hours = Read<TrainingHoursEntry>(Constants.Paths.TrainingHours, "PlacementId", id).Where(h => h.StudentId == placement.StudentId).OrderByDescending(h => h.WorkDate).ToList();
+            var hours = Read<TrainingHoursEntry>(Constants.Paths.TrainingHours, "PlacementId", id).Where(h => h.StudentId == placement.StudentId)
+                // Plus the hours earned through accepted tasks (Services/TaskHoursCredit.cs).
+                .Concat(Services.TaskHoursCredit.Build(tasks, submissions, evaluations))
+                .OrderByDescending(h => h.WorkDate).ToList();
             var companyFinal = Read<FinalCompanyEvaluation>(Constants.Paths.CompanyEvaluations, "PlacementId", id)
                 .Where(e => e.StudentId == placement.StudentId && e.CompanyId == placement.CompanyId)
                 .OrderByDescending(e => e.IsSubmitted).ThenByDescending(e => e.SubmittedAt).ThenByDescending(e => e.CreatedAt).FirstOrDefault();

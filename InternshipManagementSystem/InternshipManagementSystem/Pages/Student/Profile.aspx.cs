@@ -227,6 +227,8 @@ namespace InternshipManagementSystem.Pages.StudentArea
             StudentCollege = student.College ?? "";
             StudentMajor = student.Major ?? "";
 
+            // Live approved hours, including hours earned through accepted tasks.
+            student.ApprovedHours = new HoursRepository().ApprovedOrCached(StudentId, student.ApprovedHours);
             RequiredHoursText = student.RequiredHours.ToString();
             ApprovedHoursText = student.ApprovedHours.ToString();
             HoursPercent = student.RequiredHours > 0

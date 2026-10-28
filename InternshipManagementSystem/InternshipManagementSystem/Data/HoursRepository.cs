@@ -39,6 +39,81 @@ namespace InternshipManagementSystem.Data
             return false;
         }
 
+        // ---- Hours earned through accepted tasks (Services/TaskHoursCredit.cs) ----
+        // Lists of hours entries also contain one calculated, approved entry per
+        // accepted task, so every page that totals hours includes them.
+
+        public override List<TrainingHoursEntry> GetAll()
+        {
+            List<TrainingHoursEntry> list = base.GetAll();
+            list.AddRange(TaskCredits(null, null));
+            return list;
+        }
+
+        public override List<TrainingHoursEntry> GetWhere(string field, string value)
+        {
+            List<TrainingHoursEntry> list = base.GetWhere(field, value);
+            if (field == "PlacementId" || field == "StudentId")
+                list.AddRange(TaskCredits(field, value));
+            return list;
+        }
+
+        private static List<TrainingHoursEntry> TaskCredits(string field, string value)
+        {
+            try
+            {
+                List<InternshipTask> tasks = field == null
+                    ? new TaskRepository().GetAll()
+                    : new TaskRepository().GetWhere(field, value);
+                tasks = tasks.FindAll(t => t != null && t.CreditHours > 0);
+                if (tasks.Count == 0) return new List<TrainingHoursEntry>();
+
+                List<TaskEvaluation> evaluations = field == null
+                    ? new TaskEvaluationRepository().GetAll()
+                    : new TaskEvaluationRepository().GetWhere(field, value);
+                List<Submission> submissions = field == null
+                    ? new SubmissionRepository().GetAll()
+                    : new SubmissionRepository().GetWhere(field, value);
+                return Services.TaskHoursCredit.Build(tasks, submissions, evaluations);
+            }
+            catch (FirebaseException ex)
+            {
+                // The saved entries still load; only the task hours are missing.
+                System.Diagnostics.Trace.TraceWarning("Task hours: " + ex.Message);
+                return new List<TrainingHoursEntry>();
+            }
+        }
+
+        /// <summary>Approved hours per placement (placements are keyed by the student's
+        /// UID), including hours earned through accepted tasks. One read for a whole
+        /// list page; returns null when the hours cannot be read, so pages fall back
+        /// to the cached totals.</summary>
+        public Dictionary<string, int> ApprovedTotalsByPlacement()
+        {
+            try
+            {
+                var totals = new Dictionary<string, int>();
+                foreach (TrainingHoursEntry entry in GetAll())
+                {
+                    if (entry == null || entry.Status != HoursStatus.Approved || entry.Hours <= 0 ||
+                        string.IsNullOrEmpty(entry.PlacementId)) continue;
+                    int current;
+                    totals.TryGetValue(entry.PlacementId, out current);
+                    totals[entry.PlacementId] = current + entry.Hours;
+                }
+                return totals;
+            }
+            catch (FirebaseException) { return null; }
+        }
+
+        /// <summary>Approved hours of one placement, or <paramref name="cached"/> when
+        /// the hours cannot be read.</summary>
+        public int ApprovedOrCached(string placementId, int cached)
+        {
+            try { return SumApproved(placementId); }
+            catch (FirebaseException) { return cached; }
+        }
+
         public List<TrainingHoursEntry> GetByPlacement(string placementId)
         {
             return GetWhere("PlacementId", placementId);

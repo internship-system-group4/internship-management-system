@@ -2165,3 +2165,11 @@ ar: {0} أسابيع
 Duration.NotSpecified
 en: Not specified
 ar: غير محدد
+
+TaskHours.EntryDescription
+en: Task: {0}
+ar: مهمة: {0}
+
+TaskHours.EntryNote
+en: Credited when the company supervisor accepted this task.
+ar: احتُسبت عند قبول مشرف الشركة لهذه المهمة.

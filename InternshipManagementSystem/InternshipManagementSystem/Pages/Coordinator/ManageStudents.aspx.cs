@@ -289,6 +289,14 @@ namespace InternshipManagementSystem.Pages.CoordinatorArea
                 List<Student> students = people.OfType<Student>()
                     .OrderByDescending(s => s.CreatedSortKey(loadedAt))
                     .ThenBy(s => s.FullName ?? "", StringComparer.OrdinalIgnoreCase).ToList();
+                // Live approved hours, including hours earned through accepted tasks.
+                var liveHours = new HoursRepository().ApprovedTotalsByPlacement();
+                if (liveHours != null)
+                    foreach (Student s in students)
+                    {
+                        int live;
+                        if (liveHours.TryGetValue(s.Id, out live)) s.ApprovedHours = live;
+                    }
                 Rows = StudentDirectoryRow.Build(students, people, ResolveUrl("~/Pages/Coordinator/Students.aspx?id="));
                 rptStudents.DataSource = Rows;
                 rptStudents.DataBind();
