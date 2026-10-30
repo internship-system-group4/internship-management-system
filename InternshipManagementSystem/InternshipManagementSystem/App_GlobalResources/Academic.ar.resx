@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -101,6 +101,7 @@
   <data name="FinalEvaluation.NoStudentsAssigned" xml:space="preserve"><value>لا يوجد طلبة مسندون إليك حاليًا.</value></data>
   <data name="FinalEvaluation.OverallComment" xml:space="preserve"><value>التعليق العام:</value></data>
   <data name="FinalEvaluation.Pass" xml:space="preserve"><value>ناجح</value></data>
+  <data name="FinalEvaluation.SaveFailedRetry" xml:space="preserve"><value>تعذّر حفظ التقييم. تم الاحتفاظ بإدخالك؛ حدّث السجل قبل إعادة المحاولة.</value></data>
   <data name="FinalEvaluation.Search" xml:space="preserve"><value>بحث</value></data>
   <data name="FinalEvaluation.SearchAndViewStudentEvaluationAssignments" xml:space="preserve"><value>ابحث عن الطلاب واعرض التكليفات الخاصة بتقييمهم.</value></data>
   <data name="FinalEvaluation.SearchNameOrID" xml:space="preserve"><value>ابحث بالاسم أو الرقم الجامعي...</value></data>
@@ -122,6 +123,7 @@
   <data name="StudentProgress.Action" xml:space="preserve"><value>الإجراء</value></data>
   <data name="StudentProgress.AddANewComment" xml:space="preserve"><value>إضافة تعليق جديد</value></data>
   <data name="StudentProgress.AllMajors" xml:space="preserve"><value>جميع التخصصات</value></data>
+  <data name="StudentProgress.ApproveHours" xml:space="preserve"><value>اعتماد</value></data>
   <data name="StudentProgress.BackToStudentsList" xml:space="preserve"><value>العودة إلى قائمة الطلبة</value></data>
   <data name="StudentProgress.CommentSavedSuccessfully" xml:space="preserve"><value>تم حفظ التعليق بنجاح!</value></data>
   <data name="StudentProgress.CompanyName" xml:space="preserve"><value>اسم الشركة</value></data>
@@ -130,19 +132,29 @@
   <data name="StudentProgress.ComputerEngineering" xml:space="preserve"><value>هندسة الحاسوب</value></data>
   <data name="StudentProgress.ComputerScience" xml:space="preserve"><value>علم الحاسوب</value></data>
   <data name="StudentProgress.EstimatedHours" xml:space="preserve"><value>الساعات التقديرية</value></data>
+  <data name="StudentProgress.HourUnit" xml:space="preserve"><value>ساعة</value></data>
+  <data name="StudentProgress.HoursDecisionFailed" xml:space="preserve"><value>تعذر حفظ قرار الساعات. حاول مجددًا.</value></data>
+  <data name="StudentProgress.HoursDecisionSaved" xml:space="preserve"><value>حُفظ قرار مراجعة الساعات.</value></data>
   <data name="StudentProgress.InProgress" xml:space="preserve"><value>قيد التنفيذ ⏳</value></data>
   <data name="StudentProgress.Major" xml:space="preserve"><value>التخصص</value></data>
   <data name="StudentProgress.MakeThisCommentVisibleToThe" xml:space="preserve"><value>إظهار هذا التعليق للطالب</value></data>
   <data name="StudentProgress.MaxScore" xml:space="preserve"><value>الدرجة القصوى</value></data>
   <data name="StudentProgress.NoCommentsYet" xml:space="preserve"><value>لم تُضَف أي تعليقات بعد.</value></data>
+  <data name="StudentProgress.NoPendingHours" xml:space="preserve"><value>لا توجد ساعات بانتظار الاعتماد.</value></data>
   <data name="StudentProgress.NoStudentsAssigned" xml:space="preserve"><value>لا يوجد طلبة مسندون إليك حاليًا.</value></data>
   <data name="StudentProgress.NoTasksAssignedYet" xml:space="preserve"><value>لم تُسند أي مهام بعد.</value></data>
   <data name="StudentProgress.NotAssignedYet" xml:space="preserve"><value>لم يُسند بعد</value></data>
   <data name="StudentProgress.OpportunityTitle" xml:space="preserve"><value>عنوان الفرصة</value></data>
   <data name="StudentProgress.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="StudentProgress.PendingApprovalHours" xml:space="preserve"><value>ساعة بانتظار الاعتماد</value></data>
   <data name="StudentProgress.PendingCompanyVerification" xml:space="preserve"><value>بانتظار تحقق الشركة</value></data>
   <data name="StudentProgress.PlacementCompanyDetails" xml:space="preserve"><value>تفاصيل جهة التدريب والشركة</value></data>
   <data name="StudentProgress.ProceedToFinalEvaluation" xml:space="preserve"><value>المتابعة إلى التقييم النهائي</value></data>
+  <data name="StudentProgress.RejectHours" xml:space="preserve"><value>رفض</value></data>
+  <data name="StudentProgress.RejectNeedsNote" xml:space="preserve"><value>اكتب سبب الرفض أولًا (حتى 500 حرف).</value></data>
+  <data name="StudentProgress.ReviewHours" xml:space="preserve"><value>مراجعة ساعات التدريب</value></data>
+  <data name="StudentProgress.ReviewHoursHint" xml:space="preserve"><value>اعتمد ساعات العمل الفعلية أو ارفضها مع توضيح السبب. لا تُحتسب الساعات المبلّغ عنها تلقائيًا.</value></data>
+  <data name="StudentProgress.ReviewNote" xml:space="preserve"><value>ملاحظة المراجعة</value></data>
   <data name="StudentProgress.SaveComment" xml:space="preserve"><value>حفظ التعليق</value></data>
   <data name="StudentProgress.Search" xml:space="preserve"><value>بحث</value></data>
   <data name="StudentProgress.SearchAndViewStudentProgressAnd" xml:space="preserve"><value>ابحث عن الطلاب واعرض معلومات تقدمهم وتكليفاتهم.</value></data>
@@ -159,16 +171,4 @@
   <data name="StudentProgress.UniversityID" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>عرض التقدّم</value></data>
   <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>اكتب ملاحظتك أو تعليقك هنا...</value></data>
-  <data name="StudentProgress.ReviewHours" xml:space="preserve"><value>مراجعة ساعات التدريب</value></data>
-  <data name="StudentProgress.ReviewHoursHint" xml:space="preserve"><value>اعتمد ساعات العمل الفعلية أو ارفضها مع توضيح السبب. لا تُحتسب الساعات المبلّغ عنها تلقائيًا.</value></data>
-  <data name="StudentProgress.HourUnit" xml:space="preserve"><value>ساعة</value></data>
-  <data name="StudentProgress.ReviewNote" xml:space="preserve"><value>ملاحظة المراجعة</value></data>
-  <data name="StudentProgress.ApproveHours" xml:space="preserve"><value>اعتماد</value></data>
-  <data name="StudentProgress.RejectHours" xml:space="preserve"><value>رفض</value></data>
-  <data name="StudentProgress.NoPendingHours" xml:space="preserve"><value>لا توجد ساعات بانتظار الاعتماد.</value></data>
-  <data name="StudentProgress.PendingApprovalHours" xml:space="preserve"><value>ساعة بانتظار الاعتماد</value></data>
-  <data name="StudentProgress.RejectNeedsNote" xml:space="preserve"><value>اكتب سبب الرفض أولًا (حتى 500 حرف).</value></data>
-  <data name="StudentProgress.HoursDecisionSaved" xml:space="preserve"><value>حُفظ قرار مراجعة الساعات.</value></data>
-  <data name="StudentProgress.HoursDecisionFailed" xml:space="preserve"><value>تعذر حفظ قرار الساعات. حاول مجددًا.</value></data>
-  <data name="FinalEvaluation.SaveFailedRetry" xml:space="preserve"><value>تعذّر حفظ التقييم. تم الاحتفاظ بإدخالك؛ حدّث السجل قبل إعادة المحاولة.</value></data>
 </root>

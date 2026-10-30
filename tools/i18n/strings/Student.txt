@@ -1369,24 +1369,24 @@ en: Submit or resubmit work
 ar: تسليم العمل أو إعادة تسليمه
 
 MyTasks.AddANoteALinkOr
-en: Add a note, a link, or an attachment as requested.
-ar: أضف ملاحظة أو رابطًا أو مرفقًا وفق المطلوب.
+en: Enter a description and work link, and attach a file to submit.
+ar: أدخل الوصف ورابط العمل وأرفق ملفًا لإرسال المهمة.
 
 MyTasks.DescriptionOrNoteOptional
-en: Description or note (optional)
-ar: وصف أو ملاحظة (اختياري)
+en: Description or note (required)
+ar: الوصف أو الملاحظة (إلزامي)
 
 MyTasks.LinkOptional
-en: Link (optional)
-ar: رابط (اختياري)
+en: Work link (required)
+ar: رابط العمل (إلزامي)
 
 MyTasks.UseAFullLinkBeginningWith
 en: Use a full link beginning with https:// or http://.
 ar: استخدم رابطًا كاملًا يبدأ بـ https:// أو http://.
 
 MyTasks.AttachmentOptional
-en: Attachment (optional)
-ar: مرفق (اختياري)
+en: Attachment (required)
+ar: المرفق (إلزامي)
 
 MyTasks.PDFWordZIPOrImageFile
 en: PDF, Word, ZIP, or image file. Maximum size: 10 MB.
@@ -1783,3 +1783,862 @@ ar: لا يمكنك التقديم على فرص تدريب أخرى.
 TaskHours.Worth
 en: worth {0} training hours when accepted
 ar: تُحتسب {0} ساعة تدريب عند قبولها
+MyTasks.AllThreeRequired
+en: All three fields are required to submit this task.
+ar: كل الحقول الثلاثة مطلوبة لإرسال المهمة.
+
+MyTasks.AttachFile
+en: Attach a file before submitting.
+ar: أرفق ملفًا قبل التسليم.
+
+MyTasks.AttemptNumber
+en: Attempt {0}
+ar: المحاولة {0}
+
+MyTasks.Cancel
+en: Cancel
+ar: إلغاء
+
+MyTasks.Done
+en: Done
+ar: تم
+
+MyTasks.EnterDescription
+en: Enter a description or note (up to 2,000 characters).
+ar: اكتب وصفًا أو ملاحظة للعمل (حتى 2000 حرف).
+
+MyTasks.EnterLink
+en: Enter a valid work link beginning with http or https.
+ar: أدخل رابط عمل صالحًا يبدأ بـ http أو https.
+
+MyTasks.NewSubmissionAttempt
+en: New submission · Attempt {0}
+ar: تسليم جديد · المحاولة {0}
+
+MyTasks.ResubmissionAttempt
+en: Resubmission · Attempt {0}
+ar: إعادة تسليم · المحاولة {0}
+
+MyTasks.ResubmissionSent
+en: Resubmission sent
+ar: تم إرسال إعادة التسليم
+
+MyTasks.ResubmitWork
+en: Resubmit your work
+ar: إعادة تسليم عملك
+
+MyTasks.SendResubmission
+en: Send resubmission
+ar: إرسال إعادة التسليم
+
+MyTasks.SendSubmission
+en: Send submission
+ar: إرسال التسليم
+
+MyTasks.Sending
+en: Sending…
+ar: جارٍ الإرسال…
+
+MyTasks.SentText
+en: Attempt {0} of "{1}" is now with your supervisor for review.
+ar: المحاولة {0} من "{1}" الآن لدى مشرفك للمراجعة.
+
+MyTasks.SubmissionSent
+en: Work submitted
+ar: تم تسليم العمل
+
+MyTasks.SubmitWork
+en: Submit your work
+ar: تسليم عملك
+
+MyTasks.SupervisorRequestedChanges
+en: Changes requested by your supervisor
+ar: التعديلات التي طلبها مشرفك
+
+MyTasks.WaitingForReview
+en: Waiting for review
+ar: بانتظار المراجعة
+
+MyTasks.WhatHappensNext
+en: What happens next
+ar: ماذا يحدث بعد ذلك
+
+MyTasks.WhatHappensNextText
+en: Your company supervisor is notified and reviews attempt {0}. Earlier attempts stay in your submission history.
+ar: يصل إشعار إلى مشرف الشركة ليراجع المحاولة {0}. تبقى المحاولات السابقة في سجل التسليمات.
+
+Opportunities.Applied
+en: Applied
+ar: تم التقديم
+
+Opportunities.PartnerCompany
+en: Partner Company
+ar: شركة شريكة
+
+Profile.SaveChanges
+en: Save changes
+ar: حفظ التغييرات
+
+Progress.AcademicProgram
+en: Academic program
+ar: البرنامج الأكاديمي
+
+Progress.AcademicSupervisor
+en: Academic supervisor
+ar: المشرف الأكاديمي
+
+Progress.ApplicableRequirement
+en: Training requirement
+ar: متطلب التدريب
+
+Progress.ApprovalApproved
+en: Approved {0}
+ar: اعتُمد في {0}
+
+Progress.ApprovalCorrections
+en: Returned for corrections
+ar: أُعيد للتصحيح
+
+Progress.ApprovalNotStarted
+en: Not started
+ar: لم يبدأ
+
+Progress.ApprovalRejected
+en: Not approved
+ar: غير معتمد
+
+Progress.ApprovalWaiting
+en: Waiting for coordinator review
+ar: بانتظار مراجعة المنسّق
+
+Progress.AttemptNumber
+en: Attempt {0}
+ar: المحاولة {0}
+
+Progress.AverageNote
+en: Graded tasks only, each on its own scale. Not your final internship grade.
+ar: المهام المقيَّمة فقط، كلٌّ على مقياسها. ليست علامتك النهائية في التدريب.
+
+Progress.ConfirmedOn
+en: Confirmed {0}
+ar: أُكِّد في {0}
+
+Progress.CoordinatorNote
+en: Coordinator's note
+ar: ملاحظة المنسّق
+
+Progress.CourseCode
+en: Local training course {0}
+ar: مساق التدريب المحلي {0}
+
+Progress.CurrentStatus
+en: Current stage
+ar: المرحلة الحالية
+
+Progress.DocCertificate
+en: Internship certificate
+ar: شهادة التدريب
+
+Progress.DocCoordinator
+en: Final coordinator approval
+ar: الاعتماد النهائي من المنسّق
+
+Progress.DocCoordinatorApproved
+en: Approved {0}
+ar: اعتُمد في {0}
+
+Progress.DocCoordinatorPending
+en: Not decided yet
+ar: لم يُتخذ قرار بعد
+
+Progress.DocDepartment
+en: Department review
+ar: مراجعة القسم
+
+Progress.DocDeptNotVerified
+en: Department approval not verified yet.
+ar: لم يُتحقق من موافقة القسم بعد.
+
+Progress.DocDuration
+en: Internship duration
+ar: مدة التدريب
+
+Progress.DocDurationDetail
+en: {0} of {1} weeks
+ar: {0} من {1} أسبوعًا
+
+Progress.DocEndorsement
+en: Department and dean endorsement
+ar: اعتماد القسم والعميد
+
+Progress.DocFacultyValidation
+en: Faculty validation
+ar: مصادقة الكلية
+
+Progress.DocForms
+en: Company training forms
+ar: نماذج تدريب الشركة
+
+Progress.DocHours
+en: Training hours requirement
+ar: متطلب ساعات التدريب
+
+Progress.DocHoursDetail
+en: {0} of {1} hours approved
+ar: اعتُمدت {0} من {1} ساعة
+
+Progress.DocInternationalReport
+en: Internship report
+ar: تقرير التدريب
+
+Progress.DocNotVerified
+en: Not verified yet
+ar: لم يُتحقق منه بعد
+
+Progress.DocPartlyVerified
+en: {0} of {1} checks verified
+ar: تم التحقق من {0} من {1} بنود
+
+Progress.DocPlacementConfirmed
+en: Placement confirmed in UIMS on {0}.
+ar: أُكِّد التدريب في النظام في {0}.
+
+Progress.DocPriorApproval
+en: Prior placement approval
+ar: الموافقة المسبقة على التدريب
+
+Progress.DocReport
+en: Training report
+ar: تقرير التدريب
+
+Progress.DocStateCorrections
+en: Needs corrections
+ar: يحتاج إلى تصحيح
+
+Progress.DocStateMissing
+en: Missing
+ar: مفقود
+
+Progress.DocStateNA
+en: Not applicable
+ar: لا ينطبق
+
+Progress.DocStatePending
+en: Pending
+ar: قيد الانتظار
+
+Progress.DocStateSubmitted
+en: Submitted
+ar: مقدَّم
+
+Progress.DocStateVerified
+en: Verified
+ar: تم التحقق
+
+Progress.DocTasks
+en: Required task documentation
+ar: توثيق المهام المطلوب
+
+Progress.DocTasksDetail
+en: {0} of {1} tasks graded
+ar: قُيِّمت {0} من {1} مهمة
+
+Progress.DocTasksNone
+en: No tasks assigned yet
+ar: لم تُسند مهام بعد
+
+Progress.DocTasksRevision
+en: {0} task(s) waiting for your resubmission
+ar: {0} مهمة بانتظار إعادة تسليمك
+
+Progress.DocVerifiedOn
+en: Verified {0}
+ar: تم التحقق في {0}
+
+Progress.DocsNote
+en: Status comes from the coordinator's recorded verification. "Pending" means not verified yet, which is not a rejection.
+ar: تأتي الحالة من تحقق المنسّق المسجّل. «قيد الانتظار» تعني أنه لم يُتحقق منه بعد، وليست رفضًا.
+
+Progress.DocsTitle
+en: Training Requirements & Documents
+ar: متطلبات التدريب والوثائق
+
+Progress.DownloadReport
+en: Download completion report (PDF)
+ar: تنزيل تقرير الإتمام (PDF)
+
+Progress.DueInDays
+en: Due in {0} days
+ar: تستحق خلال {0} أيام
+
+Progress.DueToday
+en: Due today
+ar: تستحق اليوم
+
+Progress.Eyebrow
+en: Student workspace
+ar: مساحة الطالب
+
+Progress.Fail
+en: Fail
+ar: راسب
+
+Progress.FinalNote
+en: Progress, evaluation, approval and the released result are separate steps.
+ar: التقدّم والتقييم والاعتماد والنتيجة المعلنة خطوات منفصلة.
+
+Progress.GradeValue
+en: Grade {0} / {1}
+ar: العلامة ⁦{0} / {1}⁩
+
+Progress.Graded
+en: Graded
+ar: مقيَّمة
+
+Progress.GradedOutOf
+en: Graded out of {0}
+ar: تُقيَّم من {0}
+
+Progress.HistoryNote
+en: {0} attempts recorded. Every attempt is kept, newest first.
+ar: سُجِّلت {0} محاولة. تُحفظ كل محاولة، والأحدث أولًا.
+
+Progress.HoursInternationalNote
+en: International internships are checked by duration (weeks), not by this hour count.
+ar: يُتحقق من التدريب الدولي بالمدة (أسابيع) لا بعدد الساعات هذا.
+
+Progress.HoursLog
+en: Hours log ({0} entries)
+ar: سجل الساعات ({0} إدخالات)
+
+Progress.HoursOfRequired
+en: {0} / {1} approved hours
+ar: ⁦{0} / {1}⁩ ساعة معتمدة
+
+Progress.HoursReportFailed
+en: The hours could not be saved. Please try again.
+ar: تعذر حفظ الساعات الآن. حاول مجددًا.
+
+Progress.HoursReportInvalid
+en: Check the date is within your placement, the hours are 1–24, and the description is filled in.
+ar: تحقق من التاريخ ضمن فترة تدريبك، ومن الساعات (1–24) والوصف.
+
+Progress.HoursReportSaved
+en: Hours recorded and awaiting academic supervisor approval.
+ar: سُجّلت الساعات وبانتظار اعتماد المشرف الأكاديمي.
+
+Progress.HoursReportingClosed
+en: This placement is cancelled or its completion is finalized. You can review previously reported hours, but cannot add new ones.
+ar: أُلغي هذا التدريب أو اعتُمد إكماله نهائيًا. يمكنك مراجعة الساعات المسجّلة سابقًا، لكن لا يمكنك إضافة ساعات جديدة.
+
+Progress.HoursValueText
+en: {0} approved hours of {1} required ({2}%)
+ar: {0} ساعة معتمدة من {1} مطلوبة ({2}%)
+
+Progress.HoursWorked
+en: Hours worked
+ar: الساعات المنجزة
+
+Progress.InternshipType
+en: Internship type
+ar: نوع التدريب
+
+Progress.JourneyAria
+en: {0} of {1} milestones completed
+ar: أُنجزت {0} من {1} مراحل
+
+Progress.JourneyDisclaimer
+en: These are UIMS workflow stages based on your recorded data, not MyGJU status names.
+ar: هذه مراحل سير عمل في النظام مبنية على بياناتك المسجّلة، وليست أسماء حالات MyGJU.
+
+Progress.JourneyNote
+en: Where your internship stands, from placement to the completion report.
+ar: أين وصل تدريبك، من التثبيت حتى تقرير الإتمام.
+
+Progress.JourneyTitle
+en: My Internship Journey
+ar: رحلتي التدريبية
+
+Progress.LogHours
+en: Log training hours
+ar: سجّل ساعات التدريب
+
+Progress.LogHoursHint
+en: Record actual work hours. They count toward the target only after academic supervisor approval.
+ar: أدخل ساعات العمل الفعلية؛ لا تُحتسب ضمن المطلوب إلا بعد اعتماد المشرف الأكاديمي.
+
+Progress.NotAssigned
+en: Not assigned yet
+ar: لم يُعيَّن بعد
+
+Progress.NotRecorded
+en: Not recorded
+ar: غير مسجّل
+
+Progress.NotReleased
+en: Not released
+ar: لم تُعلن
+
+Progress.Now
+en: Now
+ar: الآن
+
+Progress.OpenMyTasks
+en: Open My Tasks
+ar: فتح مهامي
+
+Progress.Overdue
+en: Overdue
+ar: متأخرة
+
+Progress.Pass
+en: Pass
+ar: ناجح
+
+Progress.PercentOfRequired
+en: {0}% of required hours
+ar: {0}% من الساعات المطلوبة
+
+Progress.PrintReport
+en: Print report
+ar: طباعة التقرير
+
+Progress.ProgramCheck
+en: Not a recognized School of Computing program; the coordinator will verify it
+ar: ليس برنامجًا معروفًا في كلية الحوسبة؛ سيتحقق منه المنسّق
+
+Progress.ProvisionalHidden
+en: Confidential until released
+ar: سرّي حتى الإعلان
+
+Progress.ProvisionalReleased
+en: Replaced by the released result
+ar: استُبدل بالنتيجة المعلنة
+
+Progress.ReleasedLine
+en: Result: {0} · supporting score {1}% · approved {2}
+ar: النتيجة: {0} · العلامة الداعمة {1}% · اعتُمد في {2}
+
+Progress.RequirementInternational
+en: At least {0} weeks full time
+ar: {0} أسبوعًا على الأقل بدوام كامل
+
+Progress.RequirementLocal
+en: {0} approved contact hours
+ar: {0} ساعة اتصال معتمدة
+
+Progress.RequirementSourceIntl
+en: GJU German Year internship
+ar: تدريب السنة الألمانية في الجامعة
+
+Progress.RequirementSourceLocal
+en: GJU School of Computing local training
+ar: التدريب المحلي في كلية الحوسبة
+
+Progress.ScoreMethodNote
+en: The supporting score uses the UIMS project-proposed method; the released result is the Pass/Fail outcome.
+ar: تستخدم العلامة الداعمة الطريقة المقترحة في المشروع؛ والنتيجة المعلنة هي ناجح/راسب.
+
+Progress.SectionSubmissions
+en: Submissions
+ar: التسليمات
+
+Progress.SectionTasks
+en: Tasks
+ar: المهام
+
+Progress.StateAttention
+en: Needs attention
+ar: يحتاج إلى انتباه
+
+Progress.StateCompleted
+en: Completed
+ar: مكتمل
+
+Progress.StateInProgress
+en: In progress
+ar: قيد التنفيذ
+
+Progress.StatePending
+en: Pending
+ar: قيد الانتظار
+
+Progress.StateRejected
+en: Rejected
+ar: مرفوض
+
+Progress.StepDocuments
+en: Required documents & reports
+ar: الوثائق والتقارير المطلوبة
+
+Progress.StepDocumentsDetail
+en: {0} of {1} verified
+ar: تم التحقق من {0} من {1}
+
+Progress.StepDocumentsHint
+en: Training forms, report, task work and department review, as verified by the coordinator.
+ar: نماذج التدريب والتقرير وأعمال المهام ومراجعة القسم، كما تحقق منها المنسّق.
+
+Progress.StepEvaluations
+en: Final evaluations
+ar: التقييمات النهائية
+
+Progress.StepEvaluationsActive
+en: Your supervisors complete these confidentially
+ar: يُكملها مشرفاك بسرية
+
+Progress.StepEvaluationsDone
+en: Received by the coordinator
+ar: استلمها المنسّق
+
+Progress.StepEvaluationsHint
+en: The company and academic evaluation forms are confidential. You will see the released result, not the forms.
+ar: نماذج تقييم الشركة والتقييم الأكاديمي سرّية. سترى النتيجة المعلنة لا النماذج.
+
+Progress.StepEvaluationsPending
+en: After the training requirement is met
+ar: بعد استيفاء متطلب التدريب
+
+Progress.StepNumber
+en: Step {0}
+ar: المرحلة {0}
+
+Progress.StepOverdue
+en: a task is overdue
+ar: توجد مهمة متأخرة
+
+Progress.StepPlacement
+en: Placement approved
+ar: اعتماد التدريب
+
+Progress.StepPlacementCancelled
+en: This placement was cancelled
+ar: أُلغي هذا التدريب
+
+Progress.StepPlacementDone
+en: Confirmed {0}
+ar: أُكِّد في {0}
+
+Progress.StepPlacementHint
+en: Your accepted offer became a confirmed internship in UIMS.
+ar: تحوّل عرضك المقبول إلى تدريب مؤكَّد في النظام.
+
+Progress.StepReport
+en: Official completion report
+ar: تقرير الإتمام الرسمي
+
+Progress.StepReportDone
+en: Ready to download
+ar: جاهز للتنزيل
+
+Progress.StepReportHint
+en: A UIMS-generated PDF you can download and print once completion is approved.
+ar: ملف PDF يصدره النظام يمكنك تنزيله وطباعته بعد اعتماد الإتمام.
+
+Progress.StepReportPending
+en: Available after approval
+ar: متاح بعد الاعتماد
+
+Progress.StepReportPreparing
+en: Being prepared
+ar: قيد التجهيز
+
+Progress.StepReview
+en: Coordinator completion review
+ar: مراجعة المنسّق للإتمام
+
+Progress.StepReviewActive
+en: The coordinator is verifying your requirements
+ar: يتحقق المنسّق من متطلباتك
+
+Progress.StepReviewApproved
+en: Approved {0}
+ar: اعتُمد في {0}
+
+Progress.StepReviewCorrections
+en: Returned to you for corrections
+ar: أُعيد إليك للتصحيح
+
+Progress.StepReviewHint
+en: The coordinator checks evaluations, hours and documents before approving completion.
+ar: يتحقق المنسّق من التقييمات والساعات والوثائق قبل اعتماد الإتمام.
+
+Progress.StepReviewPending
+en: Starts after both final evaluations
+ar: تبدأ بعد التقييمين النهائيين
+
+Progress.StepReviewRejected
+en: Completion was not approved
+ar: لم يُعتمد الإتمام
+
+Progress.StepTraining
+en: Training in progress
+ar: التدريب جارٍ
+
+Progress.StepTrainingHint
+en: Only hours your supervisor approved count. Finishing a task does not approve hours.
+ar: تُحتسب فقط الساعات التي اعتمدها مشرفك. إنهاء مهمة لا يعتمد الساعات.
+
+Progress.StepTrainingHours
+en: {0} of {1} hours approved
+ar: اعتُمدت {0} من {1} ساعة
+
+Progress.StepTrainingWeeks
+en: {0} of {1} weeks
+ar: {0} من {1} أسبوعًا
+
+Progress.SubmitHours
+en: Send hours for review
+ar: إرسال الساعات للمراجعة
+
+Progress.TargetNotSet
+en: The hours target is not set yet
+ar: لم يُحدَّد هدف الساعات بعد
+
+Progress.TileApproval
+en: Completion approval
+ar: اعتماد الإتمام
+
+Progress.TileProgress
+en: Internship progress
+ar: تقدّم التدريب
+
+Progress.TileProvisional
+en: Provisional evaluation
+ar: التقييم المبدئي
+
+Progress.TileResult
+en: Released final result
+ar: النتيجة النهائية المعلنة
+
+Progress.TypeDefault
+en: Default until the coordinator confirms it
+ar: افتراضي حتى يؤكده المنسّق
+
+Progress.TypeInternational
+en: International internship (German Year)
+ar: تدريب دولي (السنة الألمانية)
+
+Progress.TypeLocal
+en: Local field training
+ar: تدريب ميداني محلي
+
+Progress.WeeksFromDates
+en: Calculated from your training dates
+ar: محسوبة من تواريخ تدريبك
+
+Progress.WeeksUnit
+en: weeks
+ar: أسبوعًا
+
+Progress.WeeksValue
+en: {0} weeks
+ar: {0} أسبوعًا
+
+Progress.WorkDescription
+en: Work completed
+ar: وصف العمل المنجز
+
+SubmissionDetails.Assignment
+en: Assigned task
+ar: المهمة المسندة
+
+SubmissionDetails.AttemptHistory
+en: Submission history
+ar: سجل التسليمات
+
+SubmissionDetails.AttemptNumber
+en: Attempt {0}
+ar: المحاولة {0}
+
+SubmissionDetails.AwaitingFeedback
+en: Your work is saved and waiting for the supervisor's review.
+ar: حُفظ عملك وينتظر مراجعة المشرف.
+
+SubmissionDetails.BackToTasks
+en: Back to my tasks
+ar: العودة إلى مهامي
+
+SubmissionDetails.Breadcrumb
+en: Breadcrumb
+ar: مسار التنقل
+
+SubmissionDetails.Company
+en: Training company
+ar: شركة التدريب
+
+SubmissionDetails.CurrentAttempt
+en: Viewing now
+ar: المحاولة المعروضة
+
+SubmissionDetails.Deadline
+en: Task deadline
+ar: موعد المهمة النهائي
+
+SubmissionDetails.Description
+en: Your description
+ar: الوصف الذي أرسلته
+
+SubmissionDetails.DownloadFile
+en: Download attachment
+ar: تنزيل المرفق
+
+SubmissionDetails.Eyebrow
+en: Student journey / submission record
+ar: رحلة الطالب / سجل التسليم
+
+SubmissionDetails.HistoryHint
+en: Open any attempt to see exactly what you sent at that time.
+ar: افتح أي محاولة لترى ما سلّمته فيها بالتحديد.
+
+SubmissionDetails.LoadError
+en: We could not load this submission
+ar: تعذّر تحميل هذا التسليم
+
+SubmissionDetails.NoDescription
+en: No description was recorded for this earlier attempt.
+ar: لم يُسجّل وصف لهذه المحاولة السابقة.
+
+SubmissionDetails.NoFile
+en: No attachment was recorded for this earlier attempt.
+ar: لم يُسجّل مرفق لهذه المحاولة السابقة.
+
+SubmissionDetails.NoLink
+en: No link was recorded for this earlier attempt.
+ar: لم يُسجّل رابط لهذه المحاولة السابقة.
+
+SubmissionDetails.NotFound
+en: Submission unavailable
+ar: التسليم غير متاح
+
+SubmissionDetails.NotFoundHint
+en: Return to My Tasks and open one of your saved attempts.
+ar: عُد إلى مهامي وافتح إحدى محاولاتك المحفوظة.
+
+SubmissionDetails.OpenWorkLink
+en: Open work link
+ar: فتح رابط العمل
+
+SubmissionDetails.PreservedHistory
+en: Every attempt preserved
+ar: كل المحاولات محفوظة
+
+SubmissionDetails.RestrictedLink
+en: This saved URL points to a portal page your student account cannot open. It is shown here as submitted data.
+ar: يشير الرابط المحفوظ إلى صفحة في البوابة لا يملك حساب الطالب صلاحية فتحها. نعرضه هنا كما سُلّم.
+
+SubmissionDetails.Resubmitted
+en: Resubmitted
+ar: أُعيد التسليم
+
+SubmissionDetails.Review
+en: Review status
+ar: حالة المراجعة
+
+SubmissionDetails.Reviewed
+en: Reviewed
+ar: تمت المراجعة
+
+SubmissionDetails.ReviewedNoNote
+en: The supervisor reviewed this attempt without a written note.
+ar: راجع المشرف هذه المحاولة دون إضافة ملاحظة مكتوبة.
+
+SubmissionDetails.RevisionRequested
+en: Revision requested
+ar: طُلب التعديل
+
+SubmissionDetails.SavedAsAttempt
+en: Each attempt is kept separately so you can review earlier work.
+ar: تُحفظ كل محاولة بشكل مستقل لتتمكن من مراجعة أعمالك السابقة.
+
+SubmissionDetails.Score
+en: Score: {0} / {1}
+ar: العلامة: {0} / {1}
+
+SubmissionDetails.Submitted
+en: Submitted
+ar: تم التسليم
+
+SubmissionDetails.SubmittedFile
+en: Submitted attachment
+ar: المرفق المُسلّم
+
+SubmissionDetails.SubmittedLink
+en: Submitted work link
+ar: رابط العمل المُسلّم
+
+SubmissionDetails.SubmittedOn
+en: Submitted on
+ar: تاريخ التسليم
+
+SubmissionDetails.Subtitle
+en: The task brief, your saved work, and feedback for this exact attempt.
+ar: تفاصيل المهمة والعمل المحفوظ وملاحظات المشرف لهذه المحاولة تحديدًا.
+
+SubmissionDetails.SupervisorFeedback
+en: Supervisor feedback
+ar: ملاحظات المشرف
+
+SubmissionDetails.TaskBrief
+en: Task brief
+ar: تفاصيل المهمة
+
+SubmissionDetails.Title
+en: Submission details
+ar: تفاصيل التسليم
+
+SubmissionDetails.UnderReview
+en: Under review
+ar: قيد المراجعة
+
+SubmissionDetails.ViewAttempt
+en: View attempt
+ar: عرض المحاولة
+
+SubmissionDetails.ViewAttemptDetails
+en: View attempt details
+ar: عرض تفاصيل المحاولة
+
+SubmissionDetails.ViewResubmittedDetails
+en: View resubmitted details
+ar: عرض تفاصيل إعادة التسليم
+
+SubmissionDetails.ViewSubmittedDetails
+en: View submitted details
+ar: عرض تفاصيل التسليم
+
+SubmissionDetails.WhatYouSubmitted
+en: What you submitted
+ar: ما قمت بتسليمه
+
+SubmissionDetails.YourRecord
+en: Saved record
+ar: سجل محفوظ
+
+Workspace.ApplicationHistory
+en: Application history
+ar: سجل الطلبات
+
+Workspace.ApplicationsLabel
+en: applications
+ar: طلبات
+
+Workspace.JourneyCompletion
+en: milestones completed
+ar: مراحل مكتملة
+
+Workspace.OneApplicationPerOpportunity
+en: One clear record for every opportunity you've applied to.
+ar: سجل واضح واحد لكل فرصة تقدّمت إليها.
+
+Workspace.StudentJourney
+en: STUDENT JOURNEY
+ar: رحلة الطالب
+
+Workspace.TaskWorkflow
+en: Task workflow: choose a task, submit work, then follow feedback.
+ar: خطوات المهام: اختر المهمة، قدّم عملك، ثم تابع الملاحظات.
+
+Workspace.TasksLabel
+en: assigned tasks
+ar: مهام مكلّف بها

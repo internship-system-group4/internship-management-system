@@ -27,7 +27,7 @@ namespace InternshipManagementSystem.Pages.Reports
         {
             Response.Cache.SetCacheability(HttpCacheability.NoCache);
             Response.Cache.SetNoStore();
-            litScope.Text = CurrentUser.Role == UserRole.Coordinator ? "All confirmed internships" : "Your assigned internships";
+            litScope.Text = CurrentUser.Role == UserRole.Coordinator ? L.T("Shared.Grades.AllConfirmedInternships") : L.T("Shared.Grades.YourAssignedInternships");
             if (!IsPostBack) BindResults();
         }
 
@@ -54,7 +54,7 @@ namespace InternshipManagementSystem.Pages.Reports
                 pnlTable.Visible = rows.Count > 0;
                 pnlEmpty.Visible = rows.Count == 0;
                 btnExport.Enabled = rows.Count > 0;
-                litCount.Text = rows.Count.ToString(CultureInfo.InvariantCulture) + (rows.Count == 1 ? " student" : " students");
+                litCount.Text = L.F(rows.Count == 1 ? "Shared.Grades.StudentCountOne" : "Shared.Grades.StudentCountMany", rows.Count);
             }
             catch (FirebaseAuthExpiredException) { throw; }
             catch (FirebaseException) { ShowLoadError(); }
@@ -93,13 +93,13 @@ namespace InternshipManagementSystem.Pages.Reports
 
         private void ShowLoadError()
         {
-            lblMessage.Text = "Grades could not be loaded. Please try again shortly.";
+            lblMessage.Text = L.T("Shared.Grades.LoadFailed");
             lblMessage.CssClass = "alert alert-danger d-block";
             lblMessage.Visible = true;
             btnExport.Enabled = false;
             pnlTable.Visible = false;
             pnlEmpty.Visible = false;
-            litCount.Text = "Unavailable";
+            litCount.Text = L.Value("Ui", "Unavailable");
         }
         private static bool Contains(string value, string search)
         { return (value ?? "").IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0; }

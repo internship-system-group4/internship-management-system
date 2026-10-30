@@ -10,7 +10,7 @@
     let idleId, idleTimer;
     const fallback = () => {
         host.dataset.sceneState = 'fallback'; button.hidden = true;
-        status.textContent = 'Courtyard reference photograph';
+        status.textContent = window.uimsT('CourtyardPhotograph');
     };
     async function load() {
         if (started || disposed) return;

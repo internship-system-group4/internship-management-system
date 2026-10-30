@@ -818,13 +818,13 @@
 
             <div class="mo-stat is-inactive">
                 <span class="mo-muted">
-                    Inactive Opportunities
+                    <%: L.T("Company.ManageOpportunities.InactiveOpportunities") %>
                 </span>
 
                 <strong><%: ClosedCount %></strong>
 
                 <span class="mo-muted">
-                    Temporarily hidden from students
+                    <%: L.T("Company.ManageOpportunities.TemporarilyHiddenFromStudents") %>
                 </span>
             </div>
 
@@ -862,7 +862,7 @@
                             </th>
 
                             <th>
-                                Last Date to Apply
+                                <%: L.T("Company.ManageOpportunities.LastDateToApply") %>
                             </th>
 
                             <th>
@@ -1192,7 +1192,7 @@
 
                 <div>
                     <span class="mo-muted">
-                        Last Date to Apply
+                        <%: L.T("Company.ManageOpportunities.LastDateToApply") %>
                     </span>
                     <p>
                         <%: TextOrDash(DateText(Viewing.ApplicationDeadline)) %>
@@ -1303,7 +1303,7 @@
             <!-- 2. Who can apply -->
             <section class="oppf-step">
                 <h3><span class="oppf-step-no">2</span><%: L.T("Company.OpportunityForm.StepWho") %></h3>
-                <p class="mo-muted oppf-lead"><%: L.T("Company.ManageOpportunities.EligibleCollege") %>: <strong><%: CollegeName %></strong></p>
+                <p class="mo-muted oppf-lead"><%: L.T("Company.ManageOpportunities.EligibleCollege") %>: <strong><%: L.Value("Directory", CollegeName) %></strong></p>
 
                 <div class="mo-field op-field<%= EditInvalid("Majors") %>" data-field>
                     <span class="oppf-label"><%: L.T("Company.ManageOpportunities.EligibleSpecializations2") %></span>
@@ -1311,7 +1311,7 @@
                         <% foreach (string major in Majors) { %>
                             <label class="mo-major">
                                 <input type="checkbox" name="moMajors" value="<%: major %>" <%= IsMajorSelected(major) ? "checked" : "" %> />
-                                <%: major %>
+                                <%: L.Value("Directory", major) %>
                             </label>
                         <% } %>
                     </div>

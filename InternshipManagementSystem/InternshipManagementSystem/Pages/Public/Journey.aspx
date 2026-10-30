@@ -125,7 +125,7 @@
       <p class="jisr-school-label"><%: L.Value("Directory", school.ProgramLabel) %></p>
       <ul>
        <% foreach (var program in school.Programs) { %>
-        <li><%: L.Value("Directory", program) %><% var tracks = school.OnUims ? TracksFor(program) : new string[0]; if (tracks.Length > 0) { %><small><%: L.T("Public.Journey.Specializations") %> <%: string.Join(", ", tracks) %></small><% } %></li>
+        <li><%: L.Value("Directory", program) %><% var tracks = school.OnUims ? TracksFor(program) : new string[0]; if (tracks.Length > 0) { %><small><%: L.T("Public.Journey.Specializations") %> <%: string.Join(L.IsArabic ? "، " : ", ", System.Linq.Enumerable.Select(tracks, track => L.Value("Track", track))) %></small><% } %></li>
        <% } %>
       </ul>
      </div>

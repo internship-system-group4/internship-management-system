@@ -88,6 +88,8 @@
   <data name="MyMeetings.NoAgendaProvided" xml:space="preserve"><value>لم يُحدد جدول أعمال.</value></data>
   <data name="MyMeetings.NoAssignedContactsAvailable" xml:space="preserve"><value>لا توجد جهات اتصال مرتبطة متاحة</value></data>
   <data name="MyMeetings.NoMeetingsInThisView" xml:space="preserve"><value>لا توجد اجتماعات في هذا العرض</value></data>
+  <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>لا توجد اجتماعات تطابق بحثك.</value></data>
+  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>لا يوجد أشخاص يطابقون البحث.</value></data>
   <data name="MyMeetings.OnlyPeopleLinkedToYourInternship" xml:space="preserve"><value>تظهر فقط الأسماء المرتبطة بتدريبك أو إشرافك الأكاديمي. يدعو كل طلب شخصًا واحدًا ويبقى معلقًا حتى يقبله.</value></data>
   <data name="MyMeetings.OpenSeparatelyIfNeeded" xml:space="preserve"><value>فتح في نافذة مستقلة عند الحاجة ↗</value></data>
   <data name="MyMeetings.OpenTheDetailsRespondToA" xml:space="preserve"><value>افتح التفاصيل، أو ردّ على طلب، أو انضم إلى اجتماع موافق عليه.</value></data>
@@ -95,6 +97,7 @@
   <data name="MyMeetings.PastCompletedOrClosed" xml:space="preserve"><value>سابقة أو مكتملة أو مغلقة</value></data>
   <data name="MyMeetings.PastMeetings" xml:space="preserve"><value>الاجتماعات السابقة</value></data>
   <data name="MyMeetings.People" xml:space="preserve"><value>الأشخاص</value></data>
+  <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>شخص متاح</value></data>
   <data name="MyMeetings.PreparingTheMeeting" xml:space="preserve"><value>جارٍ تجهيز الاجتماع…</value></data>
   <data name="MyMeetings.RefreshList" xml:space="preserve"><value>تحديث القائمة</value></data>
   <data name="MyMeetings.RefreshTheListToCheckThe" xml:space="preserve"><value>حدّث القائمة للتحقق من الحالة الأحدث قبل المحاولة مجددًا.</value></data>
@@ -109,6 +112,8 @@
   <data name="MyMeetings.ScheduleAMeeting" xml:space="preserve"><value>جدولة اجتماع</value></data>
   <data name="MyMeetings.ScheduleMeeting" xml:space="preserve"><value>+ جدولة اجتماع</value></data>
   <data name="MyMeetings.ScheduleMeeting2" xml:space="preserve"><value>جدولة الاجتماع</value></data>
+  <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>ابحث عن الاجتماعات</value></data>
+  <data name="MyMeetings.SearchPeople" xml:space="preserve"><value>ابحث عن الأشخاص</value></data>
   <data name="MyMeetings.SelectAPerson" xml:space="preserve"><value>اختر شخصًا</value></data>
   <data name="MyMeetings.SendRequest" xml:space="preserve"><value>إرسال الطلب</value></data>
   <data name="MyMeetings.ShowMeetings" xml:space="preserve"><value>عرض الاجتماعات</value></data>
@@ -197,9 +202,4 @@
   <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>لا تملك صلاحية الوصول إلى هذا الاجتماع.</value></data>
   <data name="Schedule.ZoomCreatedTheMeetingButIt" xml:space="preserve"><value>أنشأ Zoom الاجتماع، لكن تعذر حفظه هنا. تواصل مع المسؤول قبل المحاولة مجددًا لتجنب تكراره.</value></data>
   <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>رابط اجتماع Zoom</value></data>
-  <data name="MyMeetings.SearchPeople" xml:space="preserve"><value>ابحث عن الأشخاص</value></data>
-  <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>شخص متاح</value></data>
-  <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>ابحث عن الاجتماعات</value></data>
-  <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>لا توجد اجتماعات تطابق بحثك.</value></data>
-  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>لا يوجد أشخاص يطابقون البحث.</value></data>
 </root>

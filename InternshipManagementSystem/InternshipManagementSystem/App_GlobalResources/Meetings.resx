@@ -88,6 +88,8 @@
   <data name="MyMeetings.NoAgendaProvided" xml:space="preserve"><value>No agenda provided.</value></data>
   <data name="MyMeetings.NoAssignedContactsAvailable" xml:space="preserve"><value>No assigned contacts available</value></data>
   <data name="MyMeetings.NoMeetingsInThisView" xml:space="preserve"><value>No meetings in this view</value></data>
+  <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>No meetings match your search.</value></data>
+  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>No people match your search.</value></data>
   <data name="MyMeetings.OnlyPeopleLinkedToYourInternship" xml:space="preserve"><value>Only people linked to your internship or academic supervision assignment are listed. Each request invites one person and stays pending until they accept.</value></data>
   <data name="MyMeetings.OpenSeparatelyIfNeeded" xml:space="preserve"><value>Open separately if needed ↗</value></data>
   <data name="MyMeetings.OpenTheDetailsRespondToA" xml:space="preserve"><value>Open the details, respond to a request, or join an approved meeting.</value></data>
@@ -95,6 +97,7 @@
   <data name="MyMeetings.PastCompletedOrClosed" xml:space="preserve"><value>Past, completed, or closed</value></data>
   <data name="MyMeetings.PastMeetings" xml:space="preserve"><value>Past Meetings</value></data>
   <data name="MyMeetings.People" xml:space="preserve"><value>People</value></data>
+  <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>people available</value></data>
   <data name="MyMeetings.PreparingTheMeeting" xml:space="preserve"><value>Preparing the meeting…</value></data>
   <data name="MyMeetings.RefreshList" xml:space="preserve"><value>Refresh list</value></data>
   <data name="MyMeetings.RefreshTheListToCheckThe" xml:space="preserve"><value>Refresh the list to check the latest state before trying again.</value></data>
@@ -109,6 +112,8 @@
   <data name="MyMeetings.ScheduleAMeeting" xml:space="preserve"><value>Schedule a Meeting</value></data>
   <data name="MyMeetings.ScheduleMeeting" xml:space="preserve"><value>+ Schedule Meeting</value></data>
   <data name="MyMeetings.ScheduleMeeting2" xml:space="preserve"><value>Schedule Meeting</value></data>
+  <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>Search meetings</value></data>
+  <data name="MyMeetings.SearchPeople" xml:space="preserve"><value>Search people</value></data>
   <data name="MyMeetings.SelectAPerson" xml:space="preserve"><value>Select a person</value></data>
   <data name="MyMeetings.SendRequest" xml:space="preserve"><value>Send request</value></data>
   <data name="MyMeetings.ShowMeetings" xml:space="preserve"><value>Show meetings</value></data>
@@ -197,9 +202,4 @@
   <data name="Schedule.YouDoNotHaveAccessTo" xml:space="preserve"><value>You do not have access to this meeting.</value></data>
   <data name="Schedule.ZoomCreatedTheMeetingButIt" xml:space="preserve"><value>Zoom created the meeting, but it could not be saved here. Contact the administrator before retrying to avoid a duplicate.</value></data>
   <data name="Schedule.ZoomMeetingLink" xml:space="preserve"><value>Zoom Meeting Link</value></data>
-  <data name="MyMeetings.SearchPeople" xml:space="preserve"><value>Search people</value></data>
-  <data name="MyMeetings.PeopleAvailable" xml:space="preserve"><value>people available</value></data>
-  <data name="MyMeetings.SearchMeetings" xml:space="preserve"><value>Search meetings</value></data>
-  <data name="MyMeetings.NoMeetingsMatch" xml:space="preserve"><value>No meetings match your search.</value></data>
-  <data name="MyMeetings.NoPeopleMatch" xml:space="preserve"><value>No people match your search.</value></data>
 </root>

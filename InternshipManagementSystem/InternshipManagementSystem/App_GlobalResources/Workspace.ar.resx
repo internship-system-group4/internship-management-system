@@ -123,6 +123,10 @@
   <data name="HoursTargetMet2" xml:space="preserve"><value> استوفى الساعات المستهدفة</value></data>
   <data name="HoursTargetsMet" xml:space="preserve"><value> استوفوا الساعات المستهدفة</value></data>
   <data name="IndependentQueuesATraineeMayAppearIn" xml:space="preserve"><value>قوائم مستقلة، وقد يظهر المتدرّب في أكثر من قائمة. ليست مخططًا لأجزاء من كل.</value></data>
+  <data name="MajorMissing" xml:space="preserve"><value>تخصص غير مسجّل</value></data>
+  <data name="MajorNotRecorded" xml:space="preserve"><value>التخصص غير مسجّل</value></data>
+  <data name="MajorUnrecognized" xml:space="preserve"><value>تخصص غير معروف</value></data>
+  <data name="MajorVerificationNotice" xml:space="preserve"><value>يلزم التحقق من المعلومات الأكاديمية لـ {0} من سجلات الطلاب.</value></data>
   <data name="ManageAssignments" xml:space="preserve"><value>إدارة الإسنادات</value></data>
   <data name="MeetingAnHoursTargetDoesNotComplete" xml:space="preserve"><value>استيفاء الساعات المستهدفة لا يعني إنهاء التدريب؛ فمنسّق التدريب وحده يعتمد الإنهاء ويُصدر النتيجة النهائية.</value></data>
   <data name="MonitorConfirmedTrainingAndExceptionsEachRecord" xml:space="preserve"><value>تابع التدريب المؤكَّد والاستثناءات. يحتفظ كل سجل بشركته ومشرفه ومتطلب ساعاته.</value></data>
@@ -166,6 +170,7 @@
   <data name="ReadyForReview" xml:space="preserve"><value>جاهز للمراجعة</value></data>
   <data name="ReadyForReview2" xml:space="preserve"><value> جاهز للمراجعة</value></data>
   <data name="Record" xml:space="preserve"><value>السجل</value></data>
+  <data name="RecordedMajor" xml:space="preserve"><value>التخصص المسجّل: </value></data>
   <data name="Rejected" xml:space="preserve"><value>مرفوضة</value></data>
   <data name="ReportedHoursEntry" xml:space="preserve"><value>إدخال ساعات مسجّلة</value></data>
   <data name="ReportedHoursNotApproved" xml:space="preserve"><value>ساعات مسجّلة غير معتمدة</value></data>
@@ -188,6 +193,8 @@
   <data name="Student" xml:space="preserve"><value>الطالب: </value></data>
   <data name="Students" xml:space="preserve"><value> طالب</value></data>
   <data name="StudentsByCollege" xml:space="preserve"><value>الطلبة حسب الكلية</value></data>
+  <data name="StudentsByMajor" xml:space="preserve"><value>الطلاب حسب التخصص</value></data>
+  <data name="StudentsByMajorContext" xml:space="preserve"><value>توزيع طلاب كلية الحوسبة حسب التخصص الأكاديمي.</value></data>
   <data name="StudentsInScope" xml:space="preserve"><value>الطلبة ضمن النطاق</value></data>
   <data name="SubmissionAttempt" xml:space="preserve"><value>محاولة التسليم </value></data>
   <data name="Submissions" xml:space="preserve"><value>التسليمات</value></data>
@@ -227,6 +234,7 @@
   <data name="ViewAssignedStudents" xml:space="preserve"><value>عرض الطلبة المسندين</value></data>
   <data name="ViewPlacement" xml:space="preserve"><value>عرض جهة التدريب</value></data>
   <data name="ViewProgressAndFeedback" xml:space="preserve"><value>عرض التقدّم والملاحظات</value></data>
+  <data name="ViewStudentBreakdown" xml:space="preserve"><value>عرض توزيع الطلاب</value></data>
   <data name="ViewTraineesAndHours" xml:space="preserve"><value>عرض المتدرّبين والساعات</value></data>
   <data name="WaitingSubmissions" xml:space="preserve"><value>تسليمات بالانتظار</value></data>
   <data name="WithConfirmedPlacements" xml:space="preserve"><value>لديهم جهات تدريب مؤكَّدة</value></data>
@@ -238,12 +246,4 @@
   <data name="YourOwnApplicationConfirmedPlacementAndTraining" xml:space="preserve"><value>طلبك وجهة تدريبك المؤكَّدة وسجل تدريبك.</value></data>
   <data name="YourOwnInternshipRecordsCurrentTotalsAnd" xml:space="preserve"><value>سجلات تدريبك فقط: المجاميع الحالية ونشاط الاعتماد المؤرّخ.</value></data>
   <data name="YourSupervisorsManageTheFinalAssessmentsTheir" xml:space="preserve"><value>يتولّى مشرفوك التقييمات النهائية، وتبقى نماذجهم الداخلية خاصة، ولا تظهر نتيجتك إلا بعد اعتماد منسّق التدريب.</value></data>
-  <data name="StudentsByMajor" xml:space="preserve"><value>الطلاب حسب التخصص</value></data>
-  <data name="StudentsByMajorContext" xml:space="preserve"><value>توزيع طلاب كلية الحوسبة حسب التخصص الأكاديمي.</value></data>
-  <data name="MajorMissing" xml:space="preserve"><value>تخصص غير مسجّل</value></data>
-  <data name="MajorUnrecognized" xml:space="preserve"><value>تخصص غير معروف</value></data>
-  <data name="MajorNotRecorded" xml:space="preserve"><value>التخصص غير مسجّل</value></data>
-  <data name="RecordedMajor" xml:space="preserve"><value>التخصص المسجّل: </value></data>
-  <data name="MajorVerificationNotice" xml:space="preserve"><value>يلزم التحقق من المعلومات الأكاديمية لـ {0} من سجلات الطلاب.</value></data>
-  <data name="ViewStudentBreakdown" xml:space="preserve"><value>عرض توزيع الطلاب</value></data>
 </root>

@@ -32,31 +32,31 @@
   <data name="CompletionReport.ThisReportIsNotAvailable" xml:space="preserve"><value>This report is not available.</value></data>
   <data name="ForgotPassword.BackOnTrack" xml:space="preserve"><value>back on track.</value></data>
   <data name="ForgotPassword.BackToLogin" xml:space="preserve"><value>Back to Login</value></data>
+  <data name="ForgotPassword.CheckYourEmail" xml:space="preserve"><value>Check your email</value></data>
   <data name="ForgotPassword.CheckYourInboxAndSpamFolder" xml:space="preserve"><value>Check your inbox and spam folder after requesting a link.</value></data>
   <data name="ForgotPassword.ContactTheCoordinationTeam" xml:space="preserve"><value>Contact the coordination team</value></data>
   <data name="ForgotPassword.EmailAddress" xml:space="preserve"><value>Email address</value></data>
   <data name="ForgotPassword.EnterYourAccountEmailToRequest" xml:space="preserve"><value>Enter your account email to request a reset link.</value></data>
   <data name="ForgotPassword.EnterYourEmailAddress" xml:space="preserve"><value>Enter your email address.</value></data>
+  <data name="ForgotPassword.EnterYourUniversityEmailAddress" xml:space="preserve"><value>Enter your university email address and we'll send you a link to reset your password.</value></data>
   <data name="ForgotPassword.ForYourPrivacyTheResponseWill" xml:space="preserve"><value>For your privacy, the response will not confirm whether an account exists for an email address.</value></data>
   <data name="ForgotPassword.ForgotYourPasswordRequestAReset" xml:space="preserve"><value>Forgot your password? Request a reset link using the email address associated with your internship account.</value></data>
   <data name="ForgotPassword.IfAnAccountExistsForThis" xml:space="preserve"><value>If an account exists for this email, a password reset link has been sent. Please check your inbox and spam folder.</value></data>
   <data name="ForgotPassword.IfYouCannotAccessThatEmail" xml:space="preserve"><value>If you cannot access that email address, your university coordinator can help you with the next step.</value></data>
   <data name="ForgotPassword.LetSGetYou" xml:space="preserve"><value>Let's get you</value></data>
+  <data name="ForgotPassword.PasswordRecovery" xml:space="preserve"><value>Password recovery</value></data>
   <data name="ForgotPassword.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>Please enter a valid email address.</value></data>
   <data name="ForgotPassword.PleaseEnterYourEmailAddress" xml:space="preserve"><value>Please enter your email address.</value></data>
-  <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>Reset your password</value></data>
-  <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>Send Reset Link</value></data>
-  <data name="ForgotPassword.CheckYourEmail" xml:space="preserve"><value>Check your email</value></data>
-  <data name="ForgotPassword.EnterYourUniversityEmailAddress" xml:space="preserve"><value>Enter your university email address and we'll send you a link to reset your password.</value></data>
-  <data name="ForgotPassword.PasswordRecovery" xml:space="preserve"><value>Password recovery</value></data>
   <data name="ForgotPassword.PleaseWaitAMomentBefore" xml:space="preserve"><value>Please wait a moment before requesting another link.</value></data>
   <data name="ForgotPassword.RecoverYourAccess" xml:space="preserve"><value>Recover your access.</value></data>
   <data name="ForgotPassword.RememberedItBackToLogin" xml:space="preserve"><value>Remembered it? Back to Login</value></data>
+  <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>Reset your password</value></data>
   <data name="ForgotPassword.ScreenProcessing" xml:space="preserve"><value>Processing…</value></data>
   <data name="ForgotPassword.ScreenReady" xml:space="preserve"><value>Password Recovery</value></data>
   <data name="ForgotPassword.ScreenReadyHint" xml:space="preserve"><value>Ready for your request</value></data>
   <data name="ForgotPassword.ScreenRetry" xml:space="preserve"><value>Please try again</value></data>
   <data name="ForgotPassword.ScreenSent" xml:space="preserve"><value>Reset Link Sent</value></data>
+  <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>Send Reset Link</value></data>
   <data name="ForgotPassword.UseADifferentEmail" xml:space="preserve"><value>Use a different email</value></data>
   <data name="ForgotPassword.UseTheEmailRegisteredWithUims" xml:space="preserve"><value>Use the email address registered with UIMS (e.g. @gju.edu.jo).</value></data>
   <data name="Login.ContactYourCoordinator" xml:space="preserve"><value>Contact your coordinator</value></data>
@@ -79,6 +79,7 @@
   <data name="Login.Show" xml:space="preserve"><value>Show</value></data>
   <data name="Login.ShowPassword" xml:space="preserve"><value>Show password</value></data>
   <data name="Login.TheSignInServiceIsNot" xml:space="preserve"><value>The sign-in service is not configured. Please contact the coordinator.</value></data>
+  <data name="Login.UniversityAccessCard" xml:space="preserve"><value>University access card</value></data>
   <data name="Login.WeCouldNotLoadYourAccount" xml:space="preserve"><value>We could not load your account. Please try again later.</value></data>
   <data name="Login.WeCouldNotVerifyYourAccount" xml:space="preserve"><value>We could not verify your account. Please log in again.</value></data>
   <data name="Login.WeCouldNotVerifyYourAccount2" xml:space="preserve"><value>We could not verify your account access. Please try logging in again.</value></data>
@@ -95,5 +96,4 @@
   <data name="Notifications.Notifications" xml:space="preserve"><value>Notifications</value></data>
   <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>Notifications are unavailable right now.</value></data>
   <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>You're all caught up. New tasks, decisions and updates will appear here.</value></data>
-  <data name="Login.UniversityAccessCard" xml:space="preserve"><value>University access card</value></data>
 </root>

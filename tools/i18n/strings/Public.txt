@@ -518,8 +518,8 @@ en: Find your next direction.
 ar: اكتشف مسارك القادم.
 
 Home.PreviewIntro
-en: Explore the kind of experience an internship could offer. Sign in to find current openings for your field of study.
-ar: تعرّف على تجارب قد تخوضها في تدريبك. سجّل الدخول للعثور على الفرص الحالية المناسبة لتخصصك.
+en: Explore current internships published by partner companies. Sign in to see which opportunities match your field of study.
+ar: استكشف فرص التدريب الحالية التي تنشرها الشركات الشريكة. سجّل الدخول لمعرفة الفرص المناسبة لتخصصك.
 
 Home.AccessNote
 en: Open to explore. Sign in as a student to view full details or apply.
@@ -674,8 +674,8 @@ en: Software Engineering Intern
 ar: متدرب هندسة برمجيات
 
 Home.Demo1Company
-en: Example software team
-ar: فريق برمجيات افتراضي
+en: Nabd Software Labs
+ar: مختبرات نبض للبرمجيات
 
 Home.Demo1Location
 en: Amman, Jordan
@@ -694,8 +694,8 @@ en: Frontend Development Intern
 ar: متدرب تطوير واجهات
 
 Home.Demo2Company
-en: Example digital studio
-ar: استوديو رقمي افتراضي
+en: Zaytoon Digital Studio
+ar: استوديو زيتون الرقمي
 
 Home.Demo2Location
 en: Hybrid, Jordan
@@ -714,8 +714,8 @@ en: Data Analysis Intern
 ar: متدرب تحليل بيانات
 
 Home.Demo3Company
-en: Example analytics team
-ar: فريق تحليلات افتراضي
+en: Wadi Data Analytics
+ar: وادي لتحليل البيانات
 
 Home.Demo3Location
 en: Amman, Jordan
@@ -750,8 +750,8 @@ en: Quality Assurance Intern
 ar: متدرب ضمان الجودة
 
 Home.Demo4Company
-en: Example product team
-ar: فريق منتجات افتراضي
+en: Qamar Product House
+ar: بيت قمر للمنتجات
 
 Home.Demo4Location
 en: Hybrid, Jordan
@@ -770,8 +770,8 @@ en: Cybersecurity Intern
 ar: متدرب الأمن السيبراني
 
 Home.Demo5Company
-en: Example security lab
-ar: مختبر أمن افتراضي
+en: Hisn Cyber Lab
+ar: مختبر حصن السيبراني
 
 Home.Demo5Location
 en: Amman, Jordan
@@ -790,8 +790,8 @@ en: Embedded Systems Intern
 ar: متدرب الأنظمة المدمجة
 
 Home.Demo6Company
-en: Example engineering team
-ar: فريق هندسي افتراضي
+en: Madar Embedded Systems
+ar: مدار للأنظمة المدمجة
 
 Home.Demo6Location
 en: Madaba, Jordan
@@ -1144,3 +1144,27 @@ ar: رجوع
 NotFound.Contact
 en: Contact us
 ar: تواصل معنا
+
+Home.LiveNote
+en: A preview of internship opportunities. Your student portal shows the ones you are eligible for.
+ar: لمحة عن فرص التدريب. تعرض بوابة الطالب الفرص التي يمكنك التقدم إليها.
+
+Home.PreviewUnavailable
+en: We could not load current internships right now. Please try again later or sign in to your student portal.
+ar: تعذّر تحميل فرص التدريب الحالية الآن. حاول لاحقًا أو سجّل الدخول إلى بوابة الطالب.
+
+Journey.ApplyByDate
+en: Apply by {0}
+ar: آخر موعد للتقديم: {0}
+
+Journey.PreviewsLoadFailed
+en: We could not load internship summaries. Please refresh to try again.
+ar: تعذّر تحميل ملخصات التدريب. يُرجى تحديث الصفحة للمحاولة مجددًا.
+
+Journey.PreviewsNotConfigured
+en: Internship summaries are not configured yet.
+ar: لم تُعَدّ ملخصات التدريب بعد.
+
+Journey.PreviewsUnavailable
+en: Internship summaries are not available to visitors yet. Please try again later, or log in to see opportunities in your portal.
+ar: ملخصات التدريب غير متاحة للزوار حاليًا. يُرجى المحاولة لاحقًا أو تسجيل الدخول لعرض الفرص في حسابك.

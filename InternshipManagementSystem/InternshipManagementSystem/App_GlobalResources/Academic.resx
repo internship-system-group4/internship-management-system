@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <resheader name="resmimetype"><value>text/microsoft-resx</value></resheader>
   <resheader name="version"><value>2.0</value></resheader>
@@ -101,6 +101,7 @@
   <data name="FinalEvaluation.NoStudentsAssigned" xml:space="preserve"><value>No students are currently assigned to you.</value></data>
   <data name="FinalEvaluation.OverallComment" xml:space="preserve"><value>Overall Comment:</value></data>
   <data name="FinalEvaluation.Pass" xml:space="preserve"><value>Pass</value></data>
+  <data name="FinalEvaluation.SaveFailedRetry" xml:space="preserve"><value>The evaluation could not be saved. Your input is retained; refresh the record before retrying.</value></data>
   <data name="FinalEvaluation.Search" xml:space="preserve"><value>Search</value></data>
   <data name="FinalEvaluation.SearchAndViewStudentEvaluationAssignments" xml:space="preserve"><value>Search and view student evaluation assignments.</value></data>
   <data name="FinalEvaluation.SearchNameOrID" xml:space="preserve"><value>Search name or ID...</value></data>
@@ -122,6 +123,7 @@
   <data name="StudentProgress.Action" xml:space="preserve"><value>Action</value></data>
   <data name="StudentProgress.AddANewComment" xml:space="preserve"><value>Add a New Comment</value></data>
   <data name="StudentProgress.AllMajors" xml:space="preserve"><value>All Majors</value></data>
+  <data name="StudentProgress.ApproveHours" xml:space="preserve"><value>Approve</value></data>
   <data name="StudentProgress.BackToStudentsList" xml:space="preserve"><value>Back to Students List</value></data>
   <data name="StudentProgress.CommentSavedSuccessfully" xml:space="preserve"><value>Comment saved successfully!</value></data>
   <data name="StudentProgress.CompanyName" xml:space="preserve"><value>Company Name</value></data>
@@ -130,19 +132,29 @@
   <data name="StudentProgress.ComputerEngineering" xml:space="preserve"><value>Computer Engineering</value></data>
   <data name="StudentProgress.ComputerScience" xml:space="preserve"><value>Computer Science</value></data>
   <data name="StudentProgress.EstimatedHours" xml:space="preserve"><value>Estimated Hours</value></data>
+  <data name="StudentProgress.HourUnit" xml:space="preserve"><value>hours</value></data>
+  <data name="StudentProgress.HoursDecisionFailed" xml:space="preserve"><value>The hours decision could not be saved. Please try again.</value></data>
+  <data name="StudentProgress.HoursDecisionSaved" xml:space="preserve"><value>The hours decision was saved.</value></data>
   <data name="StudentProgress.InProgress" xml:space="preserve"><value>In Progress ⏳</value></data>
   <data name="StudentProgress.Major" xml:space="preserve"><value>Major</value></data>
   <data name="StudentProgress.MakeThisCommentVisibleToThe" xml:space="preserve"><value>Make this comment visible to the student</value></data>
   <data name="StudentProgress.MaxScore" xml:space="preserve"><value>Max Score</value></data>
   <data name="StudentProgress.NoCommentsYet" xml:space="preserve"><value>No comments added yet.</value></data>
+  <data name="StudentProgress.NoPendingHours" xml:space="preserve"><value>No hours are awaiting approval.</value></data>
   <data name="StudentProgress.NoStudentsAssigned" xml:space="preserve"><value>No students are currently assigned to you.</value></data>
   <data name="StudentProgress.NoTasksAssignedYet" xml:space="preserve"><value>No tasks assigned yet.</value></data>
   <data name="StudentProgress.NotAssignedYet" xml:space="preserve"><value>Not assigned yet</value></data>
   <data name="StudentProgress.OpportunityTitle" xml:space="preserve"><value>Opportunity Title</value></data>
   <data name="StudentProgress.Pending" xml:space="preserve"><value>Pending</value></data>
+  <data name="StudentProgress.PendingApprovalHours" xml:space="preserve"><value>hours awaiting approval</value></data>
   <data name="StudentProgress.PendingCompanyVerification" xml:space="preserve"><value>Pending Company Verification</value></data>
   <data name="StudentProgress.PlacementCompanyDetails" xml:space="preserve"><value>Placement &amp; Company Details</value></data>
   <data name="StudentProgress.ProceedToFinalEvaluation" xml:space="preserve"><value>Proceed to Final Evaluation</value></data>
+  <data name="StudentProgress.RejectHours" xml:space="preserve"><value>Reject</value></data>
+  <data name="StudentProgress.RejectNeedsNote" xml:space="preserve"><value>Enter a rejection reason first (up to 500 characters).</value></data>
+  <data name="StudentProgress.ReviewHours" xml:space="preserve"><value>Review training hours</value></data>
+  <data name="StudentProgress.ReviewHoursHint" xml:space="preserve"><value>Approve verified work hours or reject them with a reason. Reported hours do not count automatically.</value></data>
+  <data name="StudentProgress.ReviewNote" xml:space="preserve"><value>Review note</value></data>
   <data name="StudentProgress.SaveComment" xml:space="preserve"><value>Save Comment</value></data>
   <data name="StudentProgress.Search" xml:space="preserve"><value>Search</value></data>
   <data name="StudentProgress.SearchAndViewStudentProgressAnd" xml:space="preserve"><value>Search and view student progress and assignment information.</value></data>
@@ -159,16 +171,4 @@
   <data name="StudentProgress.UniversityID" xml:space="preserve"><value>University ID</value></data>
   <data name="StudentProgress.ViewProgress" xml:space="preserve"><value>View Progress</value></data>
   <data name="StudentProgress.WriteYourObservationOrFeedbackHere" xml:space="preserve"><value>Write your observation or feedback here...</value></data>
-  <data name="StudentProgress.ReviewHours" xml:space="preserve"><value>Review training hours</value></data>
-  <data name="StudentProgress.ReviewHoursHint" xml:space="preserve"><value>Approve verified work hours or reject them with a reason. Reported hours do not count automatically.</value></data>
-  <data name="StudentProgress.HourUnit" xml:space="preserve"><value>hours</value></data>
-  <data name="StudentProgress.ReviewNote" xml:space="preserve"><value>Review note</value></data>
-  <data name="StudentProgress.ApproveHours" xml:space="preserve"><value>Approve</value></data>
-  <data name="StudentProgress.RejectHours" xml:space="preserve"><value>Reject</value></data>
-  <data name="StudentProgress.NoPendingHours" xml:space="preserve"><value>No hours are awaiting approval.</value></data>
-  <data name="StudentProgress.PendingApprovalHours" xml:space="preserve"><value>hours awaiting approval</value></data>
-  <data name="StudentProgress.RejectNeedsNote" xml:space="preserve"><value>Enter a rejection reason first (up to 500 characters).</value></data>
-  <data name="StudentProgress.HoursDecisionSaved" xml:space="preserve"><value>The hours decision was saved.</value></data>
-  <data name="StudentProgress.HoursDecisionFailed" xml:space="preserve"><value>The hours decision could not be saved. Please try again.</value></data>
-  <data name="FinalEvaluation.SaveFailedRetry" xml:space="preserve"><value>The evaluation could not be saved. Your input is retained; refresh the record before retrying.</value></data>
 </root>

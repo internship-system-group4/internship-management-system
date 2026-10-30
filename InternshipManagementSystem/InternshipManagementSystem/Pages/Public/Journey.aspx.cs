@@ -60,7 +60,7 @@ namespace InternshipManagementSystem.Pages.PublicArea
         protected static string DeadlineText(long deadline)
         {
             if (deadline <= 0) return null;
-            return "Apply by " + DateTimeOffset.FromUnixTimeMilliseconds(deadline).ToLocalTime().ToString("d MMMM yyyy");
+            return L.F("Public.Journey.ApplyByDate", DateTimeOffset.FromUnixTimeMilliseconds(deadline).ToLocalTime().ToString("d MMMM yyyy"));
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -68,9 +68,9 @@ namespace InternshipManagementSystem.Pages.PublicArea
             ProcessVideoAvailable = File.Exists(Server.MapPath("~/Assets/video/internship-process.mp4"));
             ProcessCaptionsAvailable = File.Exists(Server.MapPath("~/Assets/video/internship-process.en.vtt"));
             try { Previews = new OpportunityRepository().GetPublicPreviews(6); }
-            catch (FirebaseAuthExpiredException) { PreviewError = "Internship summaries are not available to visitors yet. Please try again later, or log in to see opportunities in your portal."; }
-            catch (FirebaseException) { PreviewError = "We could not load internship summaries. Please refresh to try again."; }
-            catch (InvalidOperationException) { PreviewError = "Internship summaries are not configured yet."; }
+            catch (FirebaseAuthExpiredException) { PreviewError = L.T("Public.Journey.PreviewsUnavailable"); }
+            catch (FirebaseException) { PreviewError = L.T("Public.Journey.PreviewsLoadFailed"); }
+            catch (InvalidOperationException) { PreviewError = L.T("Public.Journey.PreviewsNotConfigured"); }
         }
     }
 }

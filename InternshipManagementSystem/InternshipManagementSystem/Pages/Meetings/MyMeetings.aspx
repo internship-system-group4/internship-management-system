@@ -234,7 +234,7 @@
             border: 0 !important;
             border-bottom: 1px solid var(--border) !important;
             color: var(--th-fg-5b6c80,#5b6c80);
-            text-align: left;
+            text-align: start;
             font-size: 12px;
             font-weight: 700;
         }

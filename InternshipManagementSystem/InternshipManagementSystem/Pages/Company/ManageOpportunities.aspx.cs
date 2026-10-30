@@ -193,7 +193,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 item.Status != OpportunityStatus.Closed)
             {
                 ShowError(
-                    "Only open or inactive opportunities can be toggled.");
+                    L.T("Company.ManageOpportunities.OnlyOpenOrInactiveCanToggle"));
                 return;
             }
 
@@ -218,8 +218,8 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 repository.SyncPublicPreview(id);
 
                 Notice = activating
-                    ? "Opportunity activated successfully."
-                    : "Opportunity deactivated successfully.";
+                    ? L.T("Company.ManageOpportunities.ActivatedSuccessfully")
+                    : L.T("Company.ManageOpportunities.DeactivatedSuccessfully");
 
                 IsError = false;
             }

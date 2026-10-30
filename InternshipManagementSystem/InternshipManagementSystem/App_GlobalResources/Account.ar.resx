@@ -32,31 +32,31 @@
   <data name="CompletionReport.ThisReportIsNotAvailable" xml:space="preserve"><value>هذا التقرير غير متاح.</value></data>
   <data name="ForgotPassword.BackOnTrack" xml:space="preserve"><value>إلى المسار.</value></data>
   <data name="ForgotPassword.BackToLogin" xml:space="preserve"><value>العودة إلى تسجيل الدخول</value></data>
+  <data name="ForgotPassword.CheckYourEmail" xml:space="preserve"><value>تحقّق من بريدك الإلكتروني</value></data>
   <data name="ForgotPassword.CheckYourInboxAndSpamFolder" xml:space="preserve"><value>تحقّق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها بعد طلب الرابط.</value></data>
   <data name="ForgotPassword.ContactTheCoordinationTeam" xml:space="preserve"><value>تواصل مع فريق التنسيق</value></data>
   <data name="ForgotPassword.EmailAddress" xml:space="preserve"><value>البريد الإلكتروني</value></data>
   <data name="ForgotPassword.EnterYourAccountEmailToRequest" xml:space="preserve"><value>أدخل البريد الإلكتروني لحسابك لطلب رابط إعادة التعيين.</value></data>
   <data name="ForgotPassword.EnterYourEmailAddress" xml:space="preserve"><value>أدخل بريدك الإلكتروني.</value></data>
+  <data name="ForgotPassword.EnterYourUniversityEmailAddress" xml:space="preserve"><value>أدخل بريدك الإلكتروني الجامعي وسنرسل إليك رابطًا لإعادة تعيين كلمة المرور.</value></data>
   <data name="ForgotPassword.ForYourPrivacyTheResponseWill" xml:space="preserve"><value>حرصًا على خصوصيتك، لن يؤكّد الرد وجود حساب مرتبط بالبريد الإلكتروني من عدمه.</value></data>
   <data name="ForgotPassword.ForgotYourPasswordRequestAReset" xml:space="preserve"><value>نسيت كلمة المرور؟ اطلب رابطًا لإعادة تعيينها باستخدام البريد الإلكتروني المرتبط بحسابك في نظام التدريب.</value></data>
   <data name="ForgotPassword.IfAnAccountExistsForThis" xml:space="preserve"><value>إن كان هناك حساب مرتبط بهذا البريد، فقد أُرسل إليه رابط لإعادة تعيين كلمة المرور. يُرجى التحقق من صندوق الوارد ومجلد الرسائل غير المرغوب فيها.</value></data>
   <data name="ForgotPassword.IfYouCannotAccessThatEmail" xml:space="preserve"><value>إن لم تتمكن من الوصول إلى ذلك البريد، يمكن لمنسّق التدريب في الجامعة مساعدتك في الخطوة التالية.</value></data>
   <data name="ForgotPassword.LetSGetYou" xml:space="preserve"><value>لنُعِدك</value></data>
+  <data name="ForgotPassword.PasswordRecovery" xml:space="preserve"><value>استعادة كلمة المرور</value></data>
   <data name="ForgotPassword.PleaseEnterAValidEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريد إلكتروني صحيح.</value></data>
   <data name="ForgotPassword.PleaseEnterYourEmailAddress" xml:space="preserve"><value>يُرجى إدخال بريدك الإلكتروني.</value></data>
-  <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>إعادة تعيين كلمة المرور</value></data>
-  <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>إرسال رابط إعادة التعيين</value></data>
-  <data name="ForgotPassword.CheckYourEmail" xml:space="preserve"><value>تحقّق من بريدك الإلكتروني</value></data>
-  <data name="ForgotPassword.EnterYourUniversityEmailAddress" xml:space="preserve"><value>أدخل بريدك الإلكتروني الجامعي وسنرسل إليك رابطًا لإعادة تعيين كلمة المرور.</value></data>
-  <data name="ForgotPassword.PasswordRecovery" xml:space="preserve"><value>استعادة كلمة المرور</value></data>
   <data name="ForgotPassword.PleaseWaitAMomentBefore" xml:space="preserve"><value>يُرجى الانتظار قليلًا قبل طلب رابط آخر.</value></data>
   <data name="ForgotPassword.RecoverYourAccess" xml:space="preserve"><value>استعِد وصولك.</value></data>
   <data name="ForgotPassword.RememberedItBackToLogin" xml:space="preserve"><value>تذكّرتها؟ العودة إلى تسجيل الدخول</value></data>
+  <data name="ForgotPassword.ResetYourPassword" xml:space="preserve"><value>إعادة تعيين كلمة المرور</value></data>
   <data name="ForgotPassword.ScreenProcessing" xml:space="preserve"><value>جارٍ المعالجة…</value></data>
   <data name="ForgotPassword.ScreenReady" xml:space="preserve"><value>استعادة كلمة المرور</value></data>
   <data name="ForgotPassword.ScreenReadyHint" xml:space="preserve"><value>جاهز لاستقبال طلبك</value></data>
   <data name="ForgotPassword.ScreenRetry" xml:space="preserve"><value>يُرجى المحاولة مجددًا</value></data>
   <data name="ForgotPassword.ScreenSent" xml:space="preserve"><value>تم إرسال الرابط</value></data>
+  <data name="ForgotPassword.SendResetLink" xml:space="preserve"><value>إرسال رابط إعادة التعيين</value></data>
   <data name="ForgotPassword.UseADifferentEmail" xml:space="preserve"><value>استخدام بريد إلكتروني آخر</value></data>
   <data name="ForgotPassword.UseTheEmailRegisteredWithUims" xml:space="preserve"><value>استخدم البريد الإلكتروني المسجّل في النظام (مثل ‎@gju.edu.jo).</value></data>
   <data name="Login.ContactYourCoordinator" xml:space="preserve"><value>تواصل مع منسّق التدريب</value></data>
@@ -79,6 +79,7 @@
   <data name="Login.Show" xml:space="preserve"><value>إظهار</value></data>
   <data name="Login.ShowPassword" xml:space="preserve"><value>إظهار كلمة المرور</value></data>
   <data name="Login.TheSignInServiceIsNot" xml:space="preserve"><value>خدمة تسجيل الدخول غير مُعدّة. يُرجى التواصل مع منسّق التدريب.</value></data>
+  <data name="Login.UniversityAccessCard" xml:space="preserve"><value>بطاقة الدخول الجامعية</value></data>
   <data name="Login.WeCouldNotLoadYourAccount" xml:space="preserve"><value>تعذّر تحميل حسابك. يُرجى المحاولة لاحقًا.</value></data>
   <data name="Login.WeCouldNotVerifyYourAccount" xml:space="preserve"><value>تعذّر التحقق من حسابك. يُرجى تسجيل الدخول مرة أخرى.</value></data>
   <data name="Login.WeCouldNotVerifyYourAccount2" xml:space="preserve"><value>تعذّر التحقق من صلاحية الوصول إلى حسابك. يُرجى تسجيل الدخول مرة أخرى.</value></data>
@@ -95,5 +96,4 @@
   <data name="Notifications.Notifications" xml:space="preserve"><value>الإشعارات</value></data>
   <data name="Notifications.NotificationsAreUnavailableRightNow" xml:space="preserve"><value>الإشعارات غير متاحة حاليًا.</value></data>
   <data name="Notifications.YouReAllCaughtUpNew" xml:space="preserve"><value>لا يوجد جديد. ستظهر هنا المهام والقرارات والتحديثات الجديدة.</value></data>
-  <data name="Login.UniversityAccessCard" xml:space="preserve"><value>بطاقة الدخول الجامعية</value></data>
 </root>

@@ -4,6 +4,7 @@
   <resheader name="version"><value>2.0</value></resheader>
   <resheader name="reader"><value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
   <resheader name="writer"><value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value></resheader>
+  <data name="AcademicSupervisors.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
   <data name="AcademicSupervisors.AcademicRank" xml:space="preserve"><value>الرتبة الأكاديمية</value></data>
   <data name="AcademicSupervisors.AcademicSupervisorAccountCreatedShareThe" xml:space="preserve"><value>تم إنشاء حساب المشرف الأكاديمي. شارك بيانات تسجيل الدخول بشكل خاص.</value></data>
   <data name="AcademicSupervisors.AcademicSupervisors" xml:space="preserve"><value>المشرفون الأكاديميون</value></data>
@@ -13,22 +14,33 @@
   <data name="AcademicSupervisors.Actions" xml:space="preserve"><value>الإجراءات</value></data>
   <data name="AcademicSupervisors.AddAcademicSupervisor" xml:space="preserve"><value>إضافة مشرف أكاديمي</value></data>
   <data name="AcademicSupervisors.AddSupervisor" xml:space="preserve"><value>+ إضافة مشرف</value></data>
+  <data name="AcademicSupervisors.AddSupervisorShort" xml:space="preserve"><value>إضافة مشرف</value></data>
   <data name="AcademicSupervisors.AssignedGroups" xml:space="preserve"><value>المجموعات المسندة</value></data>
   <data name="AcademicSupervisors.AssignedGroups2" xml:space="preserve"><value>المجموعات المسندة:</value></data>
   <data name="AcademicSupervisors.Cancel" xml:space="preserve"><value>إلغاء</value></data>
   <data name="AcademicSupervisors.ChooseAnAccountToUpdateIts" xml:space="preserve"><value>اختر حسابًا لتحديث بياناته أو تغيير صلاحية وصوله.</value></data>
   <data name="AcademicSupervisors.Clear" xml:space="preserve"><value>مسح</value></data>
   <data name="AcademicSupervisors.Close" xml:space="preserve"><value>إغلاق</value></data>
+  <data name="AcademicSupervisors.ConfirmRemoveAccess" xml:space="preserve"><value>هل تريد إزالة صلاحية دخول هذا المشرف؟ ستبقى المجموعات المسندة والسجل محفوظة.</value></data>
   <data name="AcademicSupervisors.ConfirmTemporaryPassword" xml:space="preserve"><value>تأكيد كلمة المرور المؤقتة</value></data>
+  <data name="AcademicSupervisors.ContactInformation" xml:space="preserve"><value>معلومات التواصل</value></data>
   <data name="AcademicSupervisors.CoordinatorAcademicSupervisors" xml:space="preserve"><value>منسّق التدريب / المشرفون الأكاديميون</value></data>
   <data name="AcademicSupervisors.CouldNotChangeSupervisorAccessPlease" xml:space="preserve"><value>تعذّر تغيير صلاحية وصول المشرف. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="AcademicSupervisors.CouldNotCreateTheAccount" xml:space="preserve"><value>تعذّر إنشاء الحساب.</value></data>
+  <data name="AcademicSupervisors.CouldNotDeleteSupervisor" xml:space="preserve"><value>تعذّر حذف المشرف. يرجى المحاولة مرة أخرى.</value></data>
   <data name="AcademicSupervisors.CouldNotLoadSupervisorsPleaseTry" xml:space="preserve"><value>تعذّر تحميل المشرفين. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="AcademicSupervisors.CouldNotLoadThisSupervisorPlease" xml:space="preserve"><value>تعذّر تحميل بيانات هذا المشرف. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="AcademicSupervisors.CouldNotSaveSupervisorInformationPlease" xml:space="preserve"><value>تعذّر حفظ بيانات المشرف. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="AcademicSupervisors.CreateASupervisorAccountAndEnter" xml:space="preserve"><value>أنشئ حساب مشرف وأدخل بياناته الأكاديمية.</value></data>
   <data name="AcademicSupervisors.CreateSupervisor" xml:space="preserve"><value>إنشاء المشرف</value></data>
+  <data name="AcademicSupervisors.Delete" xml:space="preserve"><value>حذف</value></data>
+  <data name="AcademicSupervisors.DeleteBlocked" xml:space="preserve"><value>ما زال لدى هذا المشرف مجموعات أو طلاب. انقلهم إلى مشرف آخر أو احذف المجموعات أولاً ثم حاول مرة أخرى.</value></data>
+  <data name="AcademicSupervisors.DeleteExplanation" xml:space="preserve"><value>سيؤدي هذا إلى حذف ملف المشرف نهائياً ولن يتمكن من تسجيل الدخول بعد ذلك. لا يمكن التراجع عن هذا الإجراء.</value></data>
+  <data name="AcademicSupervisors.DeletePermanently" xml:space="preserve"><value>حذف نهائي</value></data>
+  <data name="AcademicSupervisors.DeleteSupervisorQuestion" xml:space="preserve"><value>حذف هذا المشرف؟</value></data>
   <data name="AcademicSupervisors.Department" xml:space="preserve"><value>القسم</value></data>
+  <data name="AcademicSupervisors.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ واعرض التفاصيل أو أدِر أي مشرف.</value></data>
+  <data name="AcademicSupervisors.DirectoryIntro" xml:space="preserve"><value>أنشئ حسابات المشرفين وراجع مجموعاتهم وطلابهم، وفعّل حساباتهم أو أوقفها.</value></data>
   <data name="AcademicSupervisors.EnterANameAndDepartment" xml:space="preserve"><value>أدخل الاسم والقسم.</value></data>
   <data name="AcademicSupervisors.EnterANameLoginEmailAnd" xml:space="preserve"><value>أدخل الاسم وبريد تسجيل الدخول والقسم.</value></data>
   <data name="AcademicSupervisors.EnterAValidEmailAddress" xml:space="preserve"><value>أدخل بريدًا إلكترونيًا صحيحًا.</value></data>
@@ -39,8 +51,10 @@
   <data name="AcademicSupervisors.ManageSupervisor" xml:space="preserve"><value>إدارة المشرف</value></data>
   <data name="AcademicSupervisors.ManageSupervisors" xml:space="preserve"><value>إدارة المشرفين</value></data>
   <data name="AcademicSupervisors.NoAcademicSupervisorsFound" xml:space="preserve"><value>لا يوجد مشرفون أكاديميون.</value></data>
+  <data name="AcademicSupervisors.NoGroupsYet" xml:space="preserve"><value>لا توجد مجموعات بعد</value></data>
   <data name="AcademicSupervisors.NoSupervisorsMatchYourSearch" xml:space="preserve"><value>لا يوجد مشرفون يطابقون بحثك.</value></data>
   <data name="AcademicSupervisors.OneOrMoreFieldsAreToo" xml:space="preserve"><value>حقل واحد أو أكثر أطول من المسموح.</value></data>
+  <data name="AcademicSupervisors.OpenGroups" xml:space="preserve"><value>فتح المجموعات</value></data>
   <data name="AcademicSupervisors.Optional" xml:space="preserve"><value>(اختياري)</value></data>
   <data name="AcademicSupervisors.Phone" xml:space="preserve"><value>الهاتف</value></data>
   <data name="AcademicSupervisors.RemoveAccess" xml:space="preserve"><value>إيقاف الوصول</value></data>
@@ -59,9 +73,15 @@
   <data name="AcademicSupervisors.SelectedRecord" xml:space="preserve"><value>السجل المحدد</value></data>
   <data name="AcademicSupervisors.ShareTheLoginEmailAndTemporary" xml:space="preserve"><value>شارك بريد تسجيل الدخول وكلمة المرور المؤقتة بشكل خاص، وسيغيّر المشرف كلمة المرور عند أول تسجيل دخول.</value></data>
   <data name="AcademicSupervisors.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="AcademicSupervisors.Students" xml:space="preserve"><value>الطلاب</value></data>
+  <data name="AcademicSupervisors.Supervision" xml:space="preserve"><value>الإشراف</value></data>
   <data name="AcademicSupervisors.Supervisor" xml:space="preserve"><value>المشرف</value></data>
   <data name="AcademicSupervisors.SupervisorAccessRemovedAssignedGroupsAnd" xml:space="preserve"><value>أُوقف وصول المشرف، مع الاحتفاظ بالمجموعات المسندة والسجل.</value></data>
   <data name="AcademicSupervisors.SupervisorAccessRestored" xml:space="preserve"><value>تمت استعادة وصول المشرف.</value></data>
+  <data name="AcademicSupervisors.SupervisorDeleted" xml:space="preserve"><value>تم حذف {0}.</value></data>
+  <data name="AcademicSupervisors.SupervisorDetails" xml:space="preserve"><value>تفاصيل المشرف</value></data>
+  <data name="AcademicSupervisors.SupervisorDirectory" xml:space="preserve"><value>دليل المشرفين</value></data>
+  <data name="AcademicSupervisors.SupervisorInformation" xml:space="preserve"><value>معلومات المشرف</value></data>
   <data name="AcademicSupervisors.SupervisorInformationSaved" xml:space="preserve"><value>تم حفظ بيانات المشرف.</value></data>
   <data name="AcademicSupervisors.SupervisorRecordNotFound" xml:space="preserve"><value>لم يُعثر على سجل المشرف.</value></data>
   <data name="AcademicSupervisors.SupervisorRecords" xml:space="preserve"><value>سجلات المشرفين</value></data>
@@ -73,6 +93,7 @@
   <data name="AcademicSupervisors.TheTemporaryPasswordMustBeAt" xml:space="preserve"><value>يجب أن تتكوّن كلمة المرور المؤقتة من 6 أحرف على الأقل.</value></data>
   <data name="AcademicSupervisors.ThisSupervisorCannotSignInRestore" xml:space="preserve"><value>لا يستطيع هذا المشرف تسجيل الدخول. استعد وصوله عند الحاجة.</value></data>
   <data name="AcademicSupervisors.View" xml:space="preserve"><value>عرض</value></data>
+  <data name="AcademicSupervisors.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
   <data name="AcademicSupervisors.ViewRecords" xml:space="preserve"><value>عرض السجلات</value></data>
   <data name="Account.ACCOUNTSECURITY" xml:space="preserve"><value>أمان الحساب</value></data>
   <data name="Account.AccountSettings" xml:space="preserve"><value>إعدادات الحساب</value></data>
@@ -134,6 +155,16 @@
   <data name="Account.UpdateYourPersonalInformationBelow" xml:space="preserve"><value>حدّث معلوماتك الشخصية أدناه.</value></data>
   <data name="Account.Use8128Characters" xml:space="preserve"><value>استخدم من 8 إلى 128 محرفًا.</value></data>
   <data name="Account.UseAtLeast8Characters" xml:space="preserve"><value>استخدم 8 أحرف على الأقل.</value></data>
+  <data name="AccountAccess.Active" xml:space="preserve"><value>نشط</value></data>
+  <data name="AccountAccess.Block" xml:space="preserve"><value>حظر</value></data>
+  <data name="AccountAccess.Blocked" xml:space="preserve"><value>محظور</value></data>
+  <data name="AccountAccess.ConfirmBlock" xml:space="preserve"><value>هل أنت متأكد من حظر {0}؟ لن يتمكن من تسجيل الدخول، وسيتم الاحتفاظ بسجلاته وتاريخه.</value></data>
+  <data name="AccountAccess.ConfirmUnblock" xml:space="preserve"><value>هل أنت متأكد من إلغاء حظر {0}؟ سيتمكن من تسجيل الدخول مجددًا.</value></data>
+  <data name="AccountAccess.StudentBlocked" xml:space="preserve"><value>تم حظر الطالب مع الاحتفاظ بسجله وتاريخ تدريبه.</value></data>
+  <data name="AccountAccess.StudentUnblocked" xml:space="preserve"><value>تم إلغاء حظر الطالب ويمكنه تسجيل الدخول مجددًا.</value></data>
+  <data name="AccountAccess.SupervisorBlocked" xml:space="preserve"><value>تم حظر المشرف الأكاديمي مع الاحتفاظ بالمجموعات المسندة والسجل.</value></data>
+  <data name="AccountAccess.SupervisorUnblocked" xml:space="preserve"><value>تم إلغاء حظر المشرف الأكاديمي ويمكنه تسجيل الدخول مجددًا.</value></data>
+  <data name="AccountAccess.Unblock" xml:space="preserve"><value>إلغاء الحظر</value></data>
   <data name="AddStudent.AcademicInformation" xml:space="preserve"><value>البيانات الأكاديمية</value></data>
   <data name="AddStudent.AccountAccess" xml:space="preserve"><value>الوصول إلى الحساب</value></data>
   <data name="AddStudent.AddStudent" xml:space="preserve"><value>إضافة طالب</value></data>
@@ -173,9 +204,11 @@
   <data name="AddStudent.ViewRecords" xml:space="preserve"><value>عرض السجلات</value></data>
   <data name="Companies.AccountAccess" xml:space="preserve"><value>الوصول إلى الحساب</value></data>
   <data name="Companies.AccountCreatedSuccessfullySupervisorIsLinked" xml:space="preserve"><value>تم إنشاء الحساب بنجاح! وارتبط المشرف بشركة {0}</value></data>
+  <data name="Companies.AccountCreatedTitle" xml:space="preserve"><value>تم إنشاء الحساب</value></data>
   <data name="Companies.AccountRole" xml:space="preserve"><value>دور الحساب</value></data>
   <data name="Companies.ActionRequired" xml:space="preserve"><value>مطلوب إجراء</value></data>
   <data name="Companies.Actions" xml:space="preserve"><value>الإجراءات</value></data>
+  <data name="Companies.Activate" xml:space="preserve"><value>تفعيل</value></data>
   <data name="Companies.AddCompanySupervisor" xml:space="preserve"><value>إضافة مشرف شركة</value></data>
   <data name="Companies.AddSupervisor" xml:space="preserve"><value>إضافة مشرف</value></data>
   <data name="Companies.AreYouSureYouWantTo" xml:space="preserve"><value>هل أنت متأكد من أنك تريد تغيير حالة هذا المشرف؟</value></data>
@@ -191,11 +224,16 @@
   <data name="Companies.CompanyName2" xml:space="preserve"><value>اسم الشركة</value></data>
   <data name="Companies.CompanyPhone" xml:space="preserve"><value>هاتف الشركة</value></data>
   <data name="Companies.CompanyRole" xml:space="preserve"><value>الشركة والدور</value></data>
+  <data name="Companies.CompanySupervisorRole" xml:space="preserve"><value>مشرف شركة</value></data>
   <data name="Companies.ConfirmAction" xml:space="preserve"><value>تأكيد الإجراء</value></data>
   <data name="Companies.CoordinatorWorkspace" xml:space="preserve"><value>مساحة عمل منسّق التدريب &lt;</value></data>
   <data name="Companies.CreateASupervisorAccountAndLink" xml:space="preserve"><value>أنشئ حساب مشرف واربطه بشركة تدريب.</value></data>
   <data name="Companies.CreateAccount" xml:space="preserve"><value>إنشاء الحساب</value></data>
   <data name="Companies.CreationFailed" xml:space="preserve"><value>تعذّر الإنشاء</value></data>
+  <data name="Companies.Crumb" xml:space="preserve"><value>منسّق التدريب / الشركات</value></data>
+  <data name="Companies.Deactivate" xml:space="preserve"><value>إيقاف</value></data>
+  <data name="Companies.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ واعرض التفاصيل أو غيّر صلاحية دخول أي مشرف.</value></data>
+  <data name="Companies.DirectoryIntro" xml:space="preserve"><value>أنشئ حسابات مشرفي الشركات واربطها بشركة، وتحكّم في صلاحية دخولهم.</value></data>
   <data name="Companies.EGAhmadKhaled" xml:space="preserve"><value>مثال: أحمد خالد</value></data>
   <data name="Companies.EGAmman" xml:space="preserve"><value>مثال: عمّان</value></data>
   <data name="Companies.EGHRManager" xml:space="preserve"><value>مثال: مدير الموارد البشرية</value></data>
@@ -224,6 +262,8 @@
   <data name="Companies.Minimum6Characters" xml:space="preserve"><value>6 أحرف على الأقل</value></data>
   <data name="Companies.MissingFields" xml:space="preserve"><value>حقول ناقصة</value></data>
   <data name="Companies.NewCompany" xml:space="preserve"><value>شركة جديدة</value></data>
+  <data name="Companies.NoMatch" xml:space="preserve"><value>لا يوجد مشرفون مطابقون لبحثك.</value></data>
+  <data name="Companies.NoSupervisorsYet" xml:space="preserve"><value>لا يوجد مشرفو شركات بعد. أضف أول مشرف.</value></data>
   <data name="Companies.NotProvided" xml:space="preserve"><value>غير مُدخل</value></data>
   <data name="Companies.Okay" xml:space="preserve"><value>حسنًا</value></data>
   <data name="Companies.PersonalInfo" xml:space="preserve"><value>البيانات الشخصية</value></data>
@@ -232,6 +272,7 @@
   <data name="Companies.PleaseFillInAllRequiredSupervisor" xml:space="preserve"><value>يُرجى تعبئة جميع حقول المشرف المطلوبة (*).</value></data>
   <data name="Companies.PleaseFillInTheRequiredCompany" xml:space="preserve"><value>يُرجى تعبئة حقول الشركة المطلوبة (*).</value></data>
   <data name="Companies.PleaseSelectAnExistingCompanyFrom" xml:space="preserve"><value>يُرجى اختيار شركة حالية من القائمة.</value></data>
+  <data name="Companies.SearchPlaceholder" xml:space="preserve"><value>ابحث بالاسم أو البريد أو الشركة</value></data>
   <data name="Companies.Select" xml:space="preserve"><value>اختيار</value></data>
   <data name="Companies.Selected" xml:space="preserve"><value>المحدد:</value></data>
   <data name="Companies.Status" xml:space="preserve"><value>الحالة</value></data>
@@ -289,6 +330,7 @@
   <data name="CompletionReview.CoordinatorNoteRequiredForCorrectionsOr" xml:space="preserve"><value>ملاحظة المنسق (مطلوبة عند طلب التصحيح أو الرفض)</value></data>
   <data name="CompletionReview.CoordinatorVerification" xml:space="preserve"><value>تحقق المنسق</value></data>
   <data name="CompletionReview.CouldNotLoadTheQueuePlease" xml:space="preserve"><value>تعذر تحميل قائمة المراجعة. يرجى المحاولة مجددًا.</value></data>
+  <data name="CompletionReview.Crumb" xml:space="preserve"><value>منسّق التدريب / مراجعة الإنجاز</value></data>
   <data name="CompletionReview.DateOfSchoolApprovalBeforeTraining" xml:space="preserve"><value>تاريخ موافقة الكلية (قبل التدريب)</value></data>
   <data name="CompletionReview.DownloadInternshipCompletionReport" xml:space="preserve"><value>تنزيل تقرير إتمام التدريب</value></data>
   <data name="CompletionReview.EvaluationEvidence" xml:space="preserve"><value>أدلة التقييم</value></data>
@@ -342,6 +384,7 @@
   <data name="CompletionReview.Points" xml:space="preserve"><value>النقاط</value></data>
   <data name="CompletionReview.PrintCertificatePDF" xml:space="preserve"><value>طباعة الشهادة (PDF)</value></data>
   <data name="CompletionReview.ProvisionalEvaluationResult" xml:space="preserve"><value>نتيجة التقييم الأولية:</value></data>
+  <data name="CompletionReview.ReadEvaluations" xml:space="preserve"><value>قراءة التقييمات</value></data>
   <data name="CompletionReview.ReadyForReview" xml:space="preserve"><value>جاهز للمراجعة</value></data>
   <data name="CompletionReview.ReadyToApprove" xml:space="preserve"><value>جاهز للاعتماد</value></data>
   <data name="CompletionReview.RejectCompletion" xml:space="preserve"><value>رفض إتمام التدريب</value></data>
@@ -399,6 +442,7 @@
   <data name="CompletionReview.TrainingRequirementsDocuments" xml:space="preserve"><value>متطلبات التدريب ومستنداته</value></data>
   <data name="CompletionReview.TrainingStart" xml:space="preserve"><value>بداية التدريب</value></data>
   <data name="CompletionReview.TrainingStatus" xml:space="preserve"><value>حالة التدريب</value></data>
+  <data name="CompletionReview.UIMSINTERNSHIPCOMPLETIONVERIFIEDUIMS" xml:space="preserve"><value>UIMS · تم التحقق من إكمال التدريب · UIMS ·</value></data>
   <data name="CompletionReview.UniversityRequirements" xml:space="preserve"><value>متطلبات الجامعة</value></data>
   <data name="CompletionReview.UseViewDetailsToReviewAn" xml:space="preserve"><value>استخدم «عرض التفاصيل» لمراجعة التدريب.</value></data>
   <data name="CompletionReview.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
@@ -411,6 +455,9 @@
   <data name="ConfiguredGroups.AcademicYearSemester" xml:space="preserve"><value>العام الأكاديمي / الفصل الدراسي</value></data>
   <data name="ConfiguredGroups.Account" xml:space="preserve"><value>الحساب</value></data>
   <data name="ConfiguredGroups.Actions" xml:space="preserve"><value>الإجراءات</value></data>
+  <data name="ConfiguredGroups.AllSemesters" xml:space="preserve"><value>جميع الفصول</value></data>
+  <data name="ConfiguredGroups.AllSupervisors" xml:space="preserve"><value>جميع المشرفين</value></data>
+  <data name="ConfiguredGroups.AllYears" xml:space="preserve"><value>جميع الأعوام</value></data>
   <data name="ConfiguredGroups.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
   <data name="ConfiguredGroups.Clear" xml:space="preserve"><value>مسح</value></data>
   <data name="ConfiguredGroups.Close" xml:space="preserve"><value>إغلاق</value></data>
@@ -421,8 +468,10 @@
   <data name="ConfiguredGroups.CouldNotLoadTheGroupDetails" xml:space="preserve"><value>تعذّر تحميل تفاصيل المجموعة. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="ConfiguredGroups.CreateEditGroup" xml:space="preserve"><value>إنشاء / تعديل مجموعة</value></data>
   <data name="ConfiguredGroups.CreateGroup" xml:space="preserve"><value>+ إنشاء مجموعة</value></data>
+  <data name="ConfiguredGroups.CreateGroupLabel" xml:space="preserve"><value>إنشاء مجموعة</value></data>
   <data name="ConfiguredGroups.Created" xml:space="preserve"><value>تاريخ الإنشاء</value></data>
   <data name="ConfiguredGroups.Delete" xml:space="preserve"><value>حذف</value></data>
+  <data name="ConfiguredGroups.Edit" xml:space="preserve"><value>تعديل</value></data>
   <data name="ConfiguredGroups.EditGroup" xml:space="preserve"><value>تعديل المجموعة</value></data>
   <data name="ConfiguredGroups.Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
   <data name="ConfiguredGroups.Group" xml:space="preserve"><value>المجموعة</value></data>
@@ -436,27 +485,35 @@
   <data name="ConfiguredGroups.InvalidGroupLink" xml:space="preserve"><value>رابط المجموعة غير صالح.</value></data>
   <data name="ConfiguredGroups.Major" xml:space="preserve"><value>التخصص</value></data>
   <data name="ConfiguredGroups.Name" xml:space="preserve"><value>الاسم</value></data>
+  <data name="ConfiguredGroups.Next" xml:space="preserve"><value>الصفحة التالية</value></data>
   <data name="ConfiguredGroups.NoGroupsHaveBeenCreatedYet" xml:space="preserve"><value>لم تُنشأ أي مجموعات بعد.</value></data>
   <data name="ConfiguredGroups.NoGroupsMatchYourSearch" xml:space="preserve"><value>لا توجد مجموعات تطابق بحثك.</value></data>
   <data name="ConfiguredGroups.NoInternshipYet" xml:space="preserve"><value>لا يوجد تدريب بعد</value></data>
   <data name="ConfiguredGroups.NoStudentsAreAssignedToThis" xml:space="preserve"><value>لا يوجد طلبة في هذه المجموعة.</value></data>
   <data name="ConfiguredGroups.NotAssigned" xml:space="preserve"><value>غير مُسند</value></data>
+  <data name="ConfiguredGroups.Pagination" xml:space="preserve"><value>صفحات المجموعات</value></data>
+  <data name="ConfiguredGroups.Previous" xml:space="preserve"><value>الصفحة السابقة</value></data>
   <data name="ConfiguredGroups.ReviewGroupMembershipAndSupervisorAssignments" xml:space="preserve"><value>راجع أعضاء المجموعات وإسناد المشرفين.</value></data>
   <data name="ConfiguredGroups.Search" xml:space="preserve"><value>بحث</value></data>
   <data name="ConfiguredGroups.SearchByGroupNameAcademicYear" xml:space="preserve"><value>ابحث باسم المجموعة أو العام الأكاديمي أو الفصل أو المشرف.</value></data>
   <data name="ConfiguredGroups.SearchConfiguredGroups" xml:space="preserve"><value>البحث في المجموعات المُعدّة</value></data>
+  <data name="ConfiguredGroups.SearchPlaceholder" xml:space="preserve"><value>ابحث باسم المجموعة أو العام أو الفصل أو المشرف...</value></data>
   <data name="ConfiguredGroups.Semester" xml:space="preserve"><value>الفصل الدراسي</value></data>
+  <data name="ConfiguredGroups.ShowingGroups" xml:space="preserve"><value>عرض {0} إلى {1} من {2} مجموعات</value></data>
   <data name="ConfiguredGroups.StudentID" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="ConfiguredGroups.Students" xml:space="preserve"><value>الطلبة</value></data>
   <data name="ConfiguredGroups.Supervisor" xml:space="preserve"><value>المشرف</value></data>
+  <data name="ConfiguredGroups.TotalGroups" xml:space="preserve"><value>إجمالي المجموعات</value></data>
   <data name="ConfiguredGroups.View" xml:space="preserve"><value>عرض</value></data>
   <data name="ContactMessages.Actions" xml:space="preserve"><value>الإجراءات</value></data>
   <data name="ContactMessages.AllMessages" xml:space="preserve"><value>جميع الرسائل</value></data>
   <data name="ContactMessages.Close" xml:space="preserve"><value>إغلاق</value></data>
   <data name="ContactMessages.ContactMessages" xml:space="preserve"><value>رسائل التواصل</value></data>
   <data name="ContactMessages.CouldNotUpdateTheMessageStatus" xml:space="preserve"><value>تعذّر تحديث حالة الرسالة.</value></data>
+  <data name="ContactMessages.Crumb" xml:space="preserve"><value>منسّق التدريب / الرسائل</value></data>
   <data name="ContactMessages.Date" xml:space="preserve"><value>التاريخ</value></data>
   <data name="ContactMessages.Date2" xml:space="preserve"><value>التاريخ:</value></data>
+  <data name="ContactMessages.DirectoryHelp" xml:space="preserve"><value>ابحث باسم المرسل أو الموضوع، ثم افتح الرسالة لمراجعتها.</value></data>
   <data name="ContactMessages.Email" xml:space="preserve"><value>البريد الإلكتروني</value></data>
   <data name="ContactMessages.Email2" xml:space="preserve"><value>البريد الإلكتروني:</value></data>
   <data name="ContactMessages.MarkAsReviewed" xml:space="preserve"><value>تعليم كمراجَعة</value></data>
@@ -485,22 +542,36 @@
   <data name="Dashboard.Academic" xml:space="preserve"><value>أكاديمي</value></data>
   <data name="Dashboard.AcademicSupervisors" xml:space="preserve"><value>المشرفون الأكاديميون</value></data>
   <data name="Dashboard.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="Dashboard.ActionAddStudent" xml:space="preserve"><value>إضافة طالب</value></data>
+  <data name="Dashboard.ActionCompanies" xml:space="preserve"><value>إدارة الشركات</value></data>
   <data name="Dashboard.Active" xml:space="preserve"><value>نشطة</value></data>
   <data name="Dashboard.ActiveAccounts" xml:space="preserve"><value>حساب نشط</value></data>
+  <data name="Dashboard.ActivePlacementContext" xml:space="preserve"><value>مؤكدة أو قيد التدريب حاليًا</value></data>
   <data name="Dashboard.ActivePlacements" xml:space="preserve"><value>التدريبات النشطة</value></data>
   <data name="Dashboard.ActiveStudentProfilesHaveNoAcademic" xml:space="preserve"><value>ملفًا طلابيًا نشطًا بلا مشرف أكاديمي مسجّل.</value></data>
   <data name="Dashboard.AddAStudent" xml:space="preserve"><value>إضافة طالب</value></data>
   <data name="Dashboard.AddStudent" xml:space="preserve"><value>إضافة طالب</value></data>
+  <data name="Dashboard.AllClearHelp" xml:space="preserve"><value>لا توجد إسنادات معلّقة أو مهام متأخرة أو ساعات تنتظر الاعتماد أو حالات إكمال معادة في السجلات الحالية.</value></data>
+  <data name="Dashboard.AllClearTitle" xml:space="preserve"><value>لا توجد حالات تحتاج إلى متابعة حاليًا</value></data>
+  <data name="Dashboard.AllPlacements" xml:space="preserve"><value>جميع التدريبات</value></data>
+  <data name="Dashboard.ApprovalEmptyHelp" xml:space="preserve"><value>تظهر موافقات الإكمال هنا عند تسجيل قرار المنسّق.</value></data>
+  <data name="Dashboard.ApprovalMonthDescription" xml:space="preserve"><value>إتمام التدريب المؤرخ، حسب شهر الموافقة المسجّل.</value></data>
+  <data name="Dashboard.ApprovalsLastYear" xml:space="preserve"><value>الموافقات · آخر 12 شهرًا</value></data>
   <data name="Dashboard.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
   <data name="Dashboard.AssignStudentGroups" xml:space="preserve"><value>تعيين مجموعات الطلاب</value></data>
+  <data name="Dashboard.AssignmentHelp" xml:space="preserve"><value>ملفات طلاب نشطة تنتظر تعيين مشرف أكاديمي</value></data>
   <data name="Dashboard.Assignments" xml:space="preserve"><value>الإسنادات</value></data>
   <data name="Dashboard.AvailableToStudents" xml:space="preserve"><value>متاحة للطلاب</value></data>
   <data name="Dashboard.BothEvaluationsNotYetApproved" xml:space="preserve"><value>التقييمان مكتملان ولم يُعتمدا بعد</value></data>
+  <data name="Dashboard.ChartTableAlternative" xml:space="preserve"><value>يمكن قراءة القيم الشهرية في جدول البيانات أدناه.</value></data>
   <data name="Dashboard.Companies" xml:space="preserve"><value>شركة ·</value></data>
   <data name="Dashboard.Company" xml:space="preserve"><value>للشركة ·</value></data>
   <data name="Dashboard.Company2" xml:space="preserve"><value>الشركة</value></data>
+  <data name="Dashboard.CompanyCount" xml:space="preserve"><value>{0} شركة · {1} نشطة</value></data>
   <data name="Dashboard.CompletionQueue" xml:space="preserve"><value>قائمة إنهاء التدريب</value></data>
   <data name="Dashboard.CompletionReviews" xml:space="preserve"><value>مراجعات الإتمام</value></data>
+  <data name="Dashboard.CompletionStageHelp" xml:space="preserve"><value>مرحلة واحدة لكل تدريب في قائمة مراجعة الإكمال، باستثناء التدريبات الملغاة.</value></data>
+  <data name="Dashboard.CompletionStages" xml:space="preserve"><value>مراحل مراجعة الإكمال</value></data>
   <data name="Dashboard.CompletionWorkAndApprovedHoursFor" xml:space="preserve"><value>أعمال الإنهاء والساعات المعتمدة لجهات التدريب المؤكَّدة</value></data>
   <data name="Dashboard.ConfirmedInProgress" xml:space="preserve"><value>مؤكدة وقيد التنفيذ</value></data>
   <data name="Dashboard.ConfirmedOrActive" xml:space="preserve"><value>مؤكَّدة أو نشطة</value></data>
@@ -509,11 +580,17 @@
   <data name="Dashboard.CoordinationDesk" xml:space="preserve"><value>مكتب التنسيق</value></data>
   <data name="Dashboard.CoordinatorActions" xml:space="preserve"><value>إجراءات المنسق</value></data>
   <data name="Dashboard.CoordinatorWorkspace" xml:space="preserve"><value>مساحة عمل المنسق</value></data>
+  <data name="Dashboard.Crumb" xml:space="preserve"><value>منسّق التدريب / لوحة التحكم</value></data>
+  <data name="Dashboard.CurrentOverview" xml:space="preserve"><value>نظرة عامة على البرنامج</value></data>
   <data name="Dashboard.CurrentProgramOverview" xml:space="preserve"><value>نظرة عامة على البرنامج الحالي</value></data>
+  <data name="Dashboard.DatedApprovalsNote" xml:space="preserve"><value>تُحتسب الموافقات ذات التاريخ المسجّل فقط. الأشهر دون موافقات مؤرخة تظهر بصفر.</value></data>
+  <data name="Dashboard.DeskDescription" xml:space="preserve"><value>نظرة واضحة على الطلاب ومتابعة التدريب وقرارات الإكمال.</value></data>
   <data name="Dashboard.Details" xml:space="preserve"><value>التفاصيل</value></data>
   <data name="Dashboard.EachStudentNeedsAnIndividualCoordinator" xml:space="preserve"><value>يحتاج كل طالب إلى قرار مستقل من منسّق التدريب.</value></data>
   <data name="Dashboard.ExplorePlacements" xml:space="preserve"><value>استعراض التدريبات ←</value></data>
   <data name="Dashboard.FinalAssessmentsReceived" xml:space="preserve"><value>التقييمات النهائية المستلمة</value></data>
+  <data name="Dashboard.FollowUpDescription" xml:space="preserve"><value>افتح الفئة لعرض الطلاب أو سجلات التدريب التي تحتاج إلى متابعة.</value></data>
+  <data name="Dashboard.FollowUpTitle" xml:space="preserve"><value>حالات المتابعة</value></data>
   <data name="Dashboard.FromClassroomToCareer" xml:space="preserve"><value>من الدراسة إلى العمل</value></data>
   <data name="Dashboard.GoToPlacements" xml:space="preserve"><value>الانتقال إلى التدريبات ←</value></data>
   <data name="Dashboard.GoodToSeeYou" xml:space="preserve"><value>أهلًا بك،</value></data>
@@ -525,12 +602,23 @@
   <data name="Dashboard.KeepEveryInternshipMovingForwardConnect" xml:space="preserve"><value>ساعد كل تدريب على التقدم. اربط الأشخاص المناسبين، وتابع تقدمهم، واحتفِ بإنجازاتهم.</value></data>
   <data name="Dashboard.Latest" xml:space="preserve"><value>أحدث</value></data>
   <data name="Dashboard.LinkedTaskEvaluations" xml:space="preserve"><value>تقييم مهمة مرتبط</value></data>
+  <data name="Dashboard.MajorComputerEngineering" xml:space="preserve"><value>هندسة الحاسوب</value></data>
+  <data name="Dashboard.MajorComputerScience" xml:space="preserve"><value>علم الحاسوب</value></data>
+  <data name="Dashboard.MajorDescription" xml:space="preserve"><value>توزيع طلبة كلية الحوسبة حسب التخصص الأكاديمي.</value></data>
+  <data name="Dashboard.MajorGameDesign" xml:space="preserve"><value>تصميم الألعاب وعلم حاسوب الوسائط</value></data>
+  <data name="Dashboard.MajorScopeDescription" xml:space="preserve"><value>جميع ملفات الطلاب، بما فيها غير النشطة والتخصصات غير المسجّلة.</value></data>
   <data name="Dashboard.MakeThingsHappen" xml:space="preserve"><value>أنجز الخطوة التالية</value></data>
   <data name="Dashboard.MakeTimeForAConversation" xml:space="preserve"><value>خصص وقتًا للحوار</value></data>
   <data name="Dashboard.ManageGroupsAssignments" xml:space="preserve"><value>إدارة المجموعات والإسنادات</value></data>
   <data name="Dashboard.ManageStudentRecords" xml:space="preserve"><value>إدارة سجلات الطلبة</value></data>
+  <data name="Dashboard.MonthlyApprovalData" xml:space="preserve"><value>عرض بيانات الموافقات الشهرية</value></data>
+  <data name="Dashboard.NeedsAttention" xml:space="preserve"><value>تحتاج متابعة</value></data>
   <data name="Dashboard.NoCompletionRecordsAreCurrentlyAwaiting" xml:space="preserve"><value>لا توجد سجلات إتمام بانتظار مراجعة المنسق حاليًا.</value></data>
   <data name="Dashboard.NoConfirmedPlacementsYet" xml:space="preserve"><value>لا توجد جهات تدريب مؤكَّدة بعد</value></data>
+  <data name="Dashboard.NoDatedApprovals" xml:space="preserve"><value>لا توجد موافقات مؤرخة في هذه الفترة</value></data>
+  <data name="Dashboard.NoFollowUp" xml:space="preserve"><value>لا توجد حالات معلّقة</value></data>
+  <data name="Dashboard.NoRelatedRecordsMatch" xml:space="preserve"><value>لا توجد سجلات تطابق بحثك.</value></data>
+  <data name="Dashboard.NoStudents" xml:space="preserve"><value>لا يوجد طلاب في هذا التخصص</value></data>
   <data name="Dashboard.Open" xml:space="preserve"><value>مفتوحة</value></data>
   <data name="Dashboard.OpenCompletionReview" xml:space="preserve"><value>فتح مراجعة الإنهاء</value></data>
   <data name="Dashboard.OpenCompletionReview2" xml:space="preserve"><value>فتح مراجعة الإتمام ←</value></data>
@@ -538,54 +626,192 @@
   <data name="Dashboard.OpenPlacements" xml:space="preserve"><value>جهات التدريب المفتوحة</value></data>
   <data name="Dashboard.OpenTheReviewWorkspaceToCheck" xml:space="preserve"><value>افتح مساحة المراجعة للتحقق من التقييمات النهائية وإتمام التدريب.</value></data>
   <data name="Dashboard.Opportunities" xml:space="preserve"><value>فرصة ·</value></data>
+  <data name="Dashboard.OpportunityCount" xml:space="preserve"><value>{0} فرصة · {1} متاحة للتقديم</value></data>
+  <data name="Dashboard.OverdueHelp" xml:space="preserve"><value>تجاوزت الموعد النهائي ضمن تدريبات لم تنتهِ بعد</value></data>
+  <data name="Dashboard.OverdueTasks" xml:space="preserve"><value>مهام متأخرة دون تقييم</value></data>
   <data name="Dashboard.PartnerCompanies" xml:space="preserve"><value>الشركات الشريكة</value></data>
+  <data name="Dashboard.PendingHours" xml:space="preserve"><value>ساعات تنتظر اعتماد الشركة</value></data>
+  <data name="Dashboard.PendingHoursHelp" xml:space="preserve"><value>ساعات مبلّغ عنها ضمن تدريبات لم تنتهِ بعد، وتنتظر اعتماد الشركة</value></data>
+  <data name="Dashboard.PlacementStatus" xml:space="preserve"><value>حالة التدريب</value></data>
   <data name="Dashboard.PlacementsAwaitingCompletion" xml:space="preserve"><value>جهة تدريب بانتظار الإنهاء</value></data>
   <data name="Dashboard.PlacementsProgressReflectsApprovedTrainingHours" xml:space="preserve"><value>تدريبات · يعكس التقدم ساعات التدريب المعتمدة.</value></data>
+  <data name="Dashboard.ProgrammeDirectory" xml:space="preserve"><value>دليل البرنامج</value></data>
+  <data name="Dashboard.ProgrammeHealth" xml:space="preserve"><value>مؤشرات البرنامج</value></data>
+  <data name="Dashboard.ProgrammeHealthContext" xml:space="preserve"><value>حالات تحتاج إلى متابعة، ثم إجماليات البرنامج.</value></data>
+  <data name="Dashboard.QuickActions" xml:space="preserve"><value>إجراءات سريعة</value></data>
+  <data name="Dashboard.QuickActionsContext" xml:space="preserve"><value>انتقل مباشرة إلى مهام المنسق الأكثر استخداماً.</value></data>
   <data name="Dashboard.ReadyForReview" xml:space="preserve"><value>جاهز للمراجعة</value></data>
+  <data name="Dashboard.ReadyHelp" xml:space="preserve"><value>تحقّق هدف التدريب واستُلم التقييمان؛ راجع المتطلبات قبل الاعتماد</value></data>
+  <data name="Dashboard.RecentPlacementHelp" xml:space="preserve"><value>أحدث خمسة تدريبات بحسب تاريخ التأكيد، مع تقدّمها الحالي.</value></data>
   <data name="Dashboard.RecentPlacements" xml:space="preserve"><value>أحدث التدريبات</value></data>
+  <data name="Dashboard.RecordedApprovalDates" xml:space="preserve"><value>حالات إكمال لها تاريخ موافقة مسجّل</value></data>
+  <data name="Dashboard.Records" xml:space="preserve"><value>سجل</value></data>
   <data name="Dashboard.RegisteredCompanies" xml:space="preserve"><value>الشركات المسجلة</value></data>
   <data name="Dashboard.ReportedAwaitingCompanyApproval" xml:space="preserve"><value>مسجّلة بانتظار اعتماد الشركة</value></data>
+  <data name="Dashboard.RequirementsPending" xml:space="preserve"><value>متطلبات لم تُستوفَ بعد</value></data>
   <data name="Dashboard.Retry" xml:space="preserve"><value>إعادة المحاولة</value></data>
+  <data name="Dashboard.ReturnedCompletions" xml:space="preserve"><value>حالات إكمال أُعيدت للمتابعة</value></data>
+  <data name="Dashboard.ReturnedHelp" xml:space="preserve"><value>قرارات إكمال أُعيدت للتصحيح أو رُفضت</value></data>
   <data name="Dashboard.Review" xml:space="preserve"><value>مراجعة</value></data>
   <data name="Dashboard.ReviewStage" xml:space="preserve"><value>مرحلة المراجعة</value></data>
   <data name="Dashboard.RoomForTheNextMilestone" xml:space="preserve"><value>نحو الإنجاز التالي</value></data>
   <data name="Dashboard.ScheduleAMeeting" xml:space="preserve"><value>جدولة اجتماع</value></data>
+  <data name="Dashboard.ScriptHelp" xml:space="preserve"><value>فعّل JavaScript لعرض قوائم السجلات. تظل البيانات الشهرية وروابط التدريبات متاحة.</value></data>
+  <data name="Dashboard.SearchRelatedRecords" xml:space="preserve"><value>ابحث في هذه السجلات</value></data>
+  <data name="Dashboard.ShowingOf" xml:space="preserve"><value>عرض {0} من أصل {1} طالب</value></data>
   <data name="Dashboard.SmallStepsRealProgress" xml:space="preserve"><value>خطوات صغيرة. تقدم حقيقي.</value></data>
+  <data name="Dashboard.SnapshotScope" xml:space="preserve"><value>جميع ملفات الطلاب والتدريبات المؤكدة · السجلات الحالية</value></data>
   <data name="Dashboard.StartANewInternshipJourney" xml:space="preserve"><value>ابدأ رحلة تدريب جديدة</value></data>
+  <data name="Dashboard.StatActiveOf" xml:space="preserve"><value>{0} نشطة</value></data>
+  <data name="Dashboard.StatAllClear" xml:space="preserve"><value>لا يوجد ما يستدعي المتابعة</value></data>
+  <data name="Dashboard.StatAwaitingCompletion" xml:space="preserve"><value>تدريبات بانتظار الإكمال</value></data>
+  <data name="Dashboard.StatCompanies" xml:space="preserve"><value>الشركات</value></data>
+  <data name="Dashboard.StatLinkedToPlacements" xml:space="preserve"><value>مرتبطة بالتدريبات</value></data>
+  <data name="Dashboard.StatNeedsFollowUp" xml:space="preserve"><value>تحتاج إلى متابعة</value></data>
+  <data name="Dashboard.StatOpenOf" xml:space="preserve"><value>{0} مفتوحة</value></data>
+  <data name="Dashboard.StatOpportunities" xml:space="preserve"><value>الفرص</value></data>
+  <data name="Dashboard.StatOverdueTasks" xml:space="preserve"><value>مهام متأخرة غير مقيّمة</value></data>
+  <data name="Dashboard.StatPendingHours" xml:space="preserve"><value>ساعات بانتظار موافقة الشركة</value></data>
+  <data name="Dashboard.StatTaskEvaluations" xml:space="preserve"><value>تقييمات المهام</value></data>
   <data name="Dashboard.Status" xml:space="preserve"><value>الحالة</value></data>
   <data name="Dashboard.Student" xml:space="preserve"><value>الطالب</value></data>
   <data name="Dashboard.StudentAccounts" xml:space="preserve"><value>حسابات الطلاب</value></data>
   <data name="Dashboard.StudentCompany" xml:space="preserve"><value>الطالب والشركة</value></data>
+  <data name="Dashboard.StudentProfileContext" xml:space="preserve"><value>{0} نشط · {1} غير نشط</value></data>
+  <data name="Dashboard.StudentProfiles" xml:space="preserve"><value>ملفات الطلاب</value></data>
   <data name="Dashboard.Students" xml:space="preserve"><value>الطلبة</value></data>
   <data name="Dashboard.StudentsAppearHereAfterConfirmingOne" xml:space="preserve"><value>يظهر الطلبة هنا بعد تأكيد أحد العروض المقبولة.</value></data>
+  <data name="Dashboard.StudentsByMajor" xml:space="preserve"><value>الطلبة حسب التخصص</value></data>
   <data name="Dashboard.TheNextMilestone" xml:space="preserve"><value>الإنجاز التالي</value></data>
   <data name="Dashboard.TheProgramOverviewIsUnavailableUntil" xml:space="preserve"><value>لا تتاح النظرة العامة على البرنامج حتى يتم إعداد قاعدة البيانات.</value></data>
   <data name="Dashboard.TotalStudents" xml:space="preserve"><value>إجمالي الطلاب</value></data>
   <data name="Dashboard.TrainingExceptions" xml:space="preserve"><value>استثناءات التدريب</value></data>
   <data name="Dashboard.TryAgain" xml:space="preserve"><value>المحاولة مجددًا</value></data>
+  <data name="Dashboard.TwelveMonthCaption" xml:space="preserve"><value>{0} – {1} · UTC · موافقات المنسّق المسجّلة</value></data>
   <data name="Dashboard.UIMSABetterPathFromLearning" xml:space="preserve"><value>UIMS · طريق أفضل من التعلم إلى التطبيق.</value></data>
   <data name="Dashboard.UTC" xml:space="preserve"><value>UTC</value></data>
+  <data name="Dashboard.UnassignedStudents" xml:space="preserve"><value>طلاب دون مشرف أكاديمي</value></data>
+  <data name="Dashboard.UndatedApprovals" xml:space="preserve"><value>توجد {0} حالة إكمال معتمدة دون تاريخ موافقة صالح، ولم تُحتسب في الرسم.</value></data>
   <data name="Dashboard.UngradedTasksPastTheirDeadline" xml:space="preserve"><value>مهمة غير مقيّمة تجاوزت موعدها النهائي</value></data>
+  <data name="Dashboard.UpdatedAt" xml:space="preserve"><value>آخر تحديث {0} UTC</value></data>
   <data name="Dashboard.UpdatedOnPageLoad" xml:space="preserve"><value>يُحدَّث عند تحميل الصفحة ·</value></data>
+  <data name="Dashboard.ViewActivePlacements" xml:space="preserve"><value>عرض التدريبات الجارية</value></data>
+  <data name="Dashboard.ViewAffectedRecords" xml:space="preserve"><value>عرض السجلات المعنية</value></data>
   <data name="Dashboard.ViewAll" xml:space="preserve"><value>عرض الكل ←</value></data>
+  <data name="Dashboard.ViewApprovals" xml:space="preserve"><value>عرض الموافقات</value></data>
+  <data name="Dashboard.ViewMore" xml:space="preserve"><value>عرض المزيد</value></data>
+  <data name="Dashboard.ViewPending" xml:space="preserve"><value>عرض الإسنادات المعلقة</value></data>
   <data name="Dashboard.ViewQueue" xml:space="preserve"><value>عرض القائمة</value></data>
   <data name="Dashboard.ViewResults" xml:space="preserve"><value>عرض النتائج</value></data>
+  <data name="Dashboard.ViewReviews" xml:space="preserve"><value>عرض المراجعات</value></data>
+  <data name="Dashboard.ViewStudents" xml:space="preserve"><value>عرض الطلبة</value></data>
   <data name="Dashboard.WeCouldNotLoadTheProgramme" xml:space="preserve"><value>تعذّر تحميل قوائم عمل البرنامج. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
   <data name="Dashboard.WeCouldnTLoadYourProgram" xml:space="preserve"><value>تعذر تحميل النظرة العامة على البرنامج. يرجى المحاولة مجددًا.</value></data>
   <data name="Dashboard.YourCoordinatorWorkspace" xml:space="preserve"><value>مساحة عمل المنسق</value></data>
   <data name="Dashboard.YourEverydayActionsOneClickAway" xml:space="preserve"><value>إجراءاتك اليومية على بعد نقرة واحدة.</value></data>
   <data name="Dashboard.YourProgramAtAGlance" xml:space="preserve"><value>برنامجك في لمحة</value></data>
+  <data name="Demo.Confirm" xml:space="preserve"><value>تأكيد كلمة المرور</value></data>
+  <data name="Demo.ConfirmCreate" xml:space="preserve"><value>إنشاء طالب تجريبي في مشروع Firebase المتصل؟</value></data>
+  <data name="Demo.ConfirmReset" xml:space="preserve"><value>إعادة هذا التدريب التجريبي إلى «جاهز للمراجعة»؟ سيُمسح القرار وآخر بندين.</value></data>
+  <data name="Demo.Create" xml:space="preserve"><value>إنشاء الطالب التجريبي</value></data>
+  <data name="Demo.CreateNote" xml:space="preserve"><value>أنت تختار كلمة المرور، ولن تُعرض مرة أخرى.</value></data>
+  <data name="Demo.CreateTitle" xml:space="preserve"><value>إنشاء طالب تجريبي</value></data>
+  <data name="Demo.Created" xml:space="preserve"><value>أُنشئ الطالب التجريبي. التدريب جاهز لمراجعتك.</value></data>
+  <data name="Demo.Email" xml:space="preserve"><value>البريد الإلكتروني لتسجيل الدخول</value></data>
+  <data name="Demo.EmailHelp" xml:space="preserve"><value>استخدم عنوانًا غير مستخدم، مثل demo.student2@example.com.</value></data>
+  <data name="Demo.ErrorAccount" xml:space="preserve"><value>تعذّر إنشاء الطالب التجريبي. قد يكون البريد مستخدمًا.</value></data>
+  <data name="Demo.ErrorEmail" xml:space="preserve"><value>أدخل بريدًا إلكترونيًا صحيحًا.</value></data>
+  <data name="Demo.ErrorLoad" xml:space="preserve"><value>تعذّر تحميل البيانات التجريبية. حاول مرة أخرى.</value></data>
+  <data name="Demo.ErrorMatch" xml:space="preserve"><value>كلمتا المرور غير متطابقتين.</value></data>
+  <data name="Demo.ErrorName" xml:space="preserve"><value>أدخل اسم الطالب الكامل.</value></data>
+  <data name="Demo.ErrorNotDemo" xml:space="preserve"><value>يمكن إعادة ضبط الطلاب التجريبيين الذين أنشأتهم هذه الأداة فقط.</value></data>
+  <data name="Demo.ErrorPassword" xml:space="preserve"><value>يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.</value></data>
+  <data name="Demo.ErrorSupervisors" xml:space="preserve"><value>أنشئ أولًا مشرف شركة نشطًا (مرتبطًا بشركة) ومشرفًا أكاديميًا.</value></data>
+  <data name="Demo.Eyebrow" xml:space="preserve"><value>بيانات تجريبية (على هذا الجهاز فقط)</value></data>
+  <data name="Demo.Intro" xml:space="preserve"><value>أنشئ طالبًا تجريبيًا أنهى تدريبه وينتظر قرارك، ثم اعتمده واطبع التقرير والشهادة.</value></data>
+  <data name="Demo.ListNote" xml:space="preserve"><value>إعادة الضبط تعيد التدريب التجريبي إلى «جاهز للمراجعة» لتعرض الاعتماد مرة أخرى.</value></data>
+  <data name="Demo.ListTitle" xml:space="preserve"><value>الطلاب التجريبيون</value></data>
+  <data name="Demo.Name" xml:space="preserve"><value>اسم الطالب الكامل</value></data>
+  <data name="Demo.None" xml:space="preserve"><value>لا يوجد طلاب تجريبيون بعد. أنشئ واحدًا في الأعلى.</value></data>
+  <data name="Demo.OpenQueue" xml:space="preserve"><value>جميع مراجعات الإتمام</value></data>
+  <data name="Demo.OpenReview" xml:space="preserve"><value>فتح مراجعة الإتمام</value></data>
+  <data name="Demo.Password" xml:space="preserve"><value>كلمة المرور</value></data>
+  <data name="Demo.PasswordHelp" xml:space="preserve"><value>6 أحرف على الأقل. ستستخدمها لتسجيل الدخول كهذا الطالب ورؤية التقرير بعد إصداره.</value></data>
+  <data name="Demo.Reset" xml:space="preserve"><value>إعادة إلى جاهز للمراجعة</value></data>
+  <data name="Demo.ReviewNow" xml:space="preserve"><value>راجع واعتمد الآن</value></data>
+  <data name="Demo.SafetyText" xml:space="preserve"><value>تضيف فقط سجلات تجريبية جديدة (مفاتيحها تبدأ بـ demo-) وحساب طالب جديدًا في مشروع Firebase المتصل. تستخدم حسابي مشرف الشركة والمشرف الأكاديمي الموجودين دون تعديلهما، ولا ترسل إشعارات، ولا تعدّل أو تحذف أي بيانات أخرى.</value></data>
+  <data name="Demo.SafetyTitle" xml:space="preserve"><value>ما الذي تغيّره هذه الأداة</value></data>
+  <data name="Demo.SignInHint" xml:space="preserve"><value>لاحقًا، سجّل الدخول بالبريد وكلمة المرور التجريبيين لرؤية صفحة الطالب.</value></data>
+  <data name="Demo.StatusDecided" xml:space="preserve"><value>تم القرار (تصحيح أو رفض)</value></data>
+  <data name="Demo.Step1" xml:space="preserve"><value>افتح مراجعة الإتمام. ضمن «تحقق المنسّق» اجعل «تقرير التدريب» و«مراجعة القسم واعتماد العميد» «تم التحقق»، واكتب مرجعًا للدليل لكل منهما، ثم اضغط «حفظ التحقق».</value></data>
+  <data name="Demo.Step1Title" xml:space="preserve"><value>تحقق من آخر بندين</value></data>
+  <data name="Demo.Step2" xml:space="preserve"><value>أصبحت المتطلبات الـ 13 كلها مستوفاة. اضغط «اعتماد إتمام التدريب»: يظهر ختم الاعتماد بعد حفظ القرار.</value></data>
+  <data name="Demo.Step2Title" xml:space="preserve"><value>اعتمد</value></data>
+  <data name="Demo.Step3" xml:space="preserve"><value>استخدم «تنزيل PDF» و«طباعة» لتقرير إتمام التدريب وللشهادة.</value></data>
+  <data name="Demo.Step3Title" xml:space="preserve"><value>نزّل واطبع</value></data>
+  <data name="Demo.Step4" xml:space="preserve"><value>سجّل الخروج، ثم ادخل بالبريد وكلمة المرور التجريبيين وافتح «تقدّمي وتقييمي»: الرحلة مكتملة ويمكن تنزيل التقرير.</value></data>
+  <data name="Demo.Step4Title" xml:space="preserve"><value>شاهد صفحة الطالب</value></data>
+  <data name="Demo.StepsTitle" xml:space="preserve"><value>كيف تعرض النتيجة</value></data>
+  <data name="Demo.Supervisors" xml:space="preserve"><value>المشرفان:</value></data>
+  <data name="Demo.Title" xml:space="preserve"><value>طالب تجريبي لمراجعة الإتمام</value></data>
+  <data name="Demo.WasReset" xml:space="preserve"><value>أُعيد التدريب التجريبي إلى «جاهز للمراجعة».</value></data>
+  <data name="Demo.What1" xml:space="preserve"><value>تدريب محلي مؤكَّد (علم الحاسوب، CS391) في شركتك الموجودة، مع طلب التقديم المقبول.</value></data>
+  <data name="Demo.What2" xml:space="preserve"><value>خمس مهام مقيَّمة على مقاييس مختلفة (من 10 و20 و25 و50 و100)؛ إحداها أُعيدت مرة للتعديل.</value></data>
+  <data name="Demo.What3" xml:space="preserve"><value>160 ساعة تدريب خلال 4 أسابيع، اعتمدها مشرف الشركة كلها.</value></data>
+  <data name="Demo.What4" xml:space="preserve"><value>التقييمان النهائيان السريّان مقدَّمان (الشركة 86 / 100، الأكاديمي 43 / 50).</value></data>
+  <data name="Demo.What5" xml:space="preserve"><value>ست من ثماني بنود تحقق للتدريب المحلي موثّقة مسبقًا بالأدلة.</value></data>
+  <data name="Demo.What6" xml:space="preserve"><value>متروك لك: تقرير التدريب واعتماد العميد، ثم الاعتماد نفسه.</value></data>
+  <data name="Demo.WhatTitle" xml:space="preserve"><value>ما الذي يحصل عليه الطالب التجريبي</value></data>
+  <data name="Export.AcademicScore" xml:space="preserve"><value>التقييم الأكاديمي (%)</value></data>
+  <data name="Export.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
+  <data name="Export.Button" xml:space="preserve"><value>تصدير الدرجات إلى Excel</value></data>
+  <data name="Export.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="Export.CompanyScore" xml:space="preserve"><value>تقييم الشركة (%)</value></data>
+  <data name="Export.DecidedOn" xml:space="preserve"><value>تاريخ القرار</value></data>
+  <data name="Export.Failed" xml:space="preserve"><value>تعذّر تصدير الدرجات. حاول مرة أخرى.</value></data>
+  <data name="Export.FinalScore" xml:space="preserve"><value>الدرجة النهائية (%)</value></data>
+  <data name="Export.InternshipType" xml:space="preserve"><value>نوع التدريب</value></data>
+  <data name="Export.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
+  <data name="Export.Program" xml:space="preserve"><value>البرنامج</value></data>
+  <data name="Export.RequiredHours" xml:space="preserve"><value>الساعات المطلوبة</value></data>
+  <data name="Export.Result" xml:space="preserve"><value>النتيجة</value></data>
+  <data name="Export.ReviewStatus" xml:space="preserve"><value>حالة المراجعة</value></data>
+  <data name="Export.SheetName" xml:space="preserve"><value>الدرجات والنتائج</value></data>
+  <data name="Export.StudentName" xml:space="preserve"><value>اسم الطالب</value></data>
+  <data name="Export.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="Export.TaskScore" xml:space="preserve"><value>درجة المهام (%)</value></data>
+  <data name="Export.TasksGraded" xml:space="preserve"><value>المهام المقيّمة</value></data>
+  <data name="Final.AcademicComments" xml:space="preserve"><value>ملاحظات المشرف الأكاديمي</value></data>
+  <data name="Final.AcademicKicker" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
+  <data name="Final.CompanyKicker" xml:space="preserve"><value>مشرف الشركة</value></data>
+  <data name="Final.CompanyRemarks" xml:space="preserve"><value>ملاحظات على تقييم الشركة</value></data>
+  <data name="Final.Criteria" xml:space="preserve"><value>معايير التقييم</value></data>
+  <data name="Final.DraftText" xml:space="preserve"><value>بدأ {0} هذا التقييم ولم يرسله بعد. لا يُحتسب حتى يتم إرساله.</value></data>
+  <data name="Final.DraftTitle" xml:space="preserve"><value>مسودة محفوظة ولم تُرسل بعد</value></data>
+  <data name="Final.Improve" xml:space="preserve"><value>جوانب للتحسين</value></data>
+  <data name="Final.NotAssigned" xml:space="preserve"><value>غير محدد</value></data>
+  <data name="Final.Overall" xml:space="preserve"><value>التعليق العام</value></data>
+  <data name="Final.SectionCount" xml:space="preserve"><value>وصل {0} من 2</value></data>
+  <data name="Final.SectionTitle" xml:space="preserve"><value>التقييمات النهائية</value></data>
+  <data name="Final.Strengths" xml:space="preserve"><value>نقاط القوة</value></data>
+  <data name="Final.SubmittedOn" xml:space="preserve"><value>أُرسل في {0}</value></data>
+  <data name="Final.Title" xml:space="preserve"><value>التقييم النهائي</value></data>
+  <data name="Final.WaitingText" xml:space="preserve"><value>بانتظار أن يرسل {0} التقييم النهائي.</value></data>
+  <data name="Final.WaitingTitle" xml:space="preserve"><value>لم يصل بعد</value></data>
+  <data name="Final.Weight" xml:space="preserve"><value>يُحتسب بنسبة {0}% من النتيجة النهائية</value></data>
   <data name="Groups.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
   <data name="Groups.AcademicYearOptional" xml:space="preserve"><value>العام الأكاديمي</value></data>
   <data name="Groups.CancelEdit" xml:space="preserve"><value>إلغاء التعديل</value></data>
   <data name="Groups.ChooseASupervisorAndAssignAvailable" xml:space="preserve"><value>اختر مشرفًا وأسند إليه الطلبة المتاحين.</value></data>
   <data name="Groups.ChooseAnAcademicSupervisor" xml:space="preserve"><value>اختر مشرفًا أكاديميًا.</value></data>
+  <data name="Groups.ClearSelection" xml:space="preserve"><value>مسح الاختيار</value></data>
   <data name="Groups.ConfiguredGroups" xml:space="preserve"><value>المجموعات المُعدّة</value></data>
   <data name="Groups.CoordinatorGroups" xml:space="preserve"><value>منسّق التدريب / المجموعات</value></data>
   <data name="Groups.CouldNotLoadGroupsAndAccount" xml:space="preserve"><value>تعذّر تحميل المجموعات وسجلات الحسابات. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="Groups.CouldNotSaveTheGroupPlease" xml:space="preserve"><value>تعذّر حفظ المجموعة. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="Groups.CreateEditGroup" xml:space="preserve"><value>إنشاء / تعديل مجموعة</value></data>
   <data name="Groups.CreateGroup" xml:space="preserve"><value>إنشاء مجموعة</value></data>
+  <data name="Groups.Done" xml:space="preserve"><value>تم</value></data>
   <data name="Groups.EachStudentCanBelongToOne" xml:space="preserve"><value>يمكن أن ينتمي كل طالب إلى مجموعة واحدة فقط في الوقت نفسه.</value></data>
   <data name="Groups.EditGroup" xml:space="preserve"><value>تعديل المجموعة</value></data>
   <data name="Groups.EnterAGroupNameOfAt" xml:space="preserve"><value>أدخل اسم المجموعة والعام الأكاديمي والفصل الدراسي ضمن حدود الأحرف المسموحة.</value></data>
@@ -593,11 +819,16 @@
   <data name="Groups.GroupName" xml:space="preserve"><value>اسم المجموعة</value></data>
   <data name="Groups.GroupNotFound" xml:space="preserve"><value>لم يُعثر على المجموعة.</value></data>
   <data name="Groups.GroupPages" xml:space="preserve"><value>صفحات المجموعات</value></data>
+  <data name="Groups.IdLabel" xml:space="preserve"><value>الرقم</value></data>
   <data name="Groups.InvalidGroupLink" xml:space="preserve"><value>رابط المجموعة غير صالح.</value></data>
   <data name="Groups.NoAvailableStudents" xml:space="preserve"><value>لا يوجد طلبة متاحون.</value></data>
   <data name="Groups.OnlyUnassignedStudentsAreAvailableWhen" xml:space="preserve"><value>لا يظهر إلا الطلبة غير المسندين، وعند تعديل مجموعة يظهر طلبتها الحاليون أيضًا.</value></data>
+  <data name="Groups.PickerHelp" xml:space="preserve"><value>تظهر هنا فقط الطلاب غير المنضمين إلى مجموعة (بالإضافة إلى أعضاء هذه المجموعة عند التعديل). افتح القائمة للبحث أو التصفية حسب التخصص أو الحالة أو لتحديد جميع الظاهرين.</value></data>
   <data name="Groups.SaveChanges" xml:space="preserve"><value>حفظ التغييرات</value></data>
+  <data name="Groups.SearchStudents" xml:space="preserve"><value>ابحث بالاسم أو الرقم أو البريد أو التخصص</value></data>
   <data name="Groups.SelectASupervisor" xml:space="preserve"><value>اختر مشرفًا</value></data>
+  <data name="Groups.SelectAllShown" xml:space="preserve"><value>تحديد كل الظاهرين</value></data>
+  <data name="Groups.SelectStudents" xml:space="preserve"><value>اختر الطلاب</value></data>
   <data name="Groups.SemesterOptional" xml:space="preserve"><value>الفصل الدراسي</value></data>
   <data name="Groups.Students" xml:space="preserve"><value>الطلبة</value></data>
   <data name="I18n.AwaitingEvaluations" xml:space="preserve"><value>بانتظار التقييمات</value></data>
@@ -609,28 +840,48 @@
   <data name="I18n.Totalassignedtasks0Completedtaskswith" xml:space="preserve"><value>إجمالي المهام المسندة: {0} · المهام المكتملة ذات العلامات الحالية: {1} · المهام المتبقية: {2}</value></data>
   <data name="I18n.Trainingongoing" xml:space="preserve"><value> · التدريب مستمر</value></data>
   <data name="ManageStudents.AcademicInformation" xml:space="preserve"><value>البيانات الأكاديمية</value></data>
+  <data name="ManageStudents.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
   <data name="ManageStudents.AccountAccess" xml:space="preserve"><value>الوصول إلى الحساب</value></data>
   <data name="ManageStudents.Action" xml:space="preserve"><value>الإجراء</value></data>
   <data name="ManageStudents.AddStudent" xml:space="preserve"><value>+ إضافة طالب</value></data>
   <data name="ManageStudents.AddStudent2" xml:space="preserve"><value>إضافة طالب</value></data>
+  <data name="ManageStudents.AllMajors" xml:space="preserve"><value>كل التخصصات</value></data>
+  <data name="ManageStudents.AllStatuses" xml:space="preserve"><value>كل الحالات</value></data>
   <data name="ManageStudents.AssignedWhenTheAccountIsCreated" xml:space="preserve"><value>يُحدَّد عند إنشاء الحساب.</value></data>
   <data name="ManageStudents.ChooseARecordToEditInactive" xml:space="preserve"><value>اختر سجلًا لتعديله، ويبقى الطلبة غير النشطين متاحين للاستعادة.</value></data>
   <data name="ManageStudents.Clear" xml:space="preserve"><value>مسح</value></data>
+  <data name="ManageStudents.ClearMajorFilter" xml:space="preserve"><value>عرض جميع الطلاب</value></data>
   <data name="ManageStudents.Close" xml:space="preserve"><value>إغلاق</value></data>
   <data name="ManageStudents.College" xml:space="preserve"><value>الكلية</value></data>
   <data name="ManageStudents.CompleteAllAcademicInformationFields" xml:space="preserve"><value>أكمل جميع حقول البيانات الأكاديمية.</value></data>
+  <data name="ManageStudents.ConfirmRemoveAccess" xml:space="preserve"><value>هل تريد إزالة صلاحية دخول هذا الطالب؟ سيبقى سجله وتاريخ تدريبه محفوظين.</value></data>
   <data name="ManageStudents.CoordinatorStudents" xml:space="preserve"><value>منسّق التدريب / الطلبة</value></data>
   <data name="ManageStudents.CouldNotChangeStudentAccessPlease" xml:space="preserve"><value>تعذّر تغيير صلاحية وصول الطالب. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="ManageStudents.CouldNotLoadStudentRecordsPlease" xml:space="preserve"><value>تعذّر تحميل سجلات الطلبة. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="ManageStudents.CouldNotLoadThisStudentPlease" xml:space="preserve"><value>تعذّر تحميل بيانات هذا الطالب. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="ManageStudents.CouldNotSaveStudentInformationPlease" xml:space="preserve"><value>تعذّر حفظ بيانات الطالب. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="ManageStudents.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
+  <data name="ManageStudents.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ حسب التخصص أو الحالة، ثم اعرض التفاصيل أو أدِر الطالب.</value></data>
+  <data name="ManageStudents.DirectoryIntro" xml:space="preserve"><value>جميع طلاب البرنامج. أضف طلاباً واعرض تفاصيلهم وملفاتهم، أو حدّث المعلومات الأكاديمية وصلاحية الدخول.</value></data>
+  <data name="ManageStudents.FilterMissingMajor" xml:space="preserve"><value>تخصص غير مسجّل</value></data>
+  <data name="ManageStudents.FilterUnrecognizedMajor" xml:space="preserve"><value>تخصص غير معروف</value></data>
+  <data name="ManageStudents.FilteredByMajor" xml:space="preserve"><value>عرض الطلاب ذوي التخصص:</value></data>
+  <data name="ManageStudents.Group" xml:space="preserve"><value>المجموعة</value></data>
+  <data name="ManageStudents.LoginEmail" xml:space="preserve"><value>البريد الإلكتروني للدخول</value></data>
   <data name="ManageStudents.Major" xml:space="preserve"><value>التخصص</value></data>
   <data name="ManageStudents.Manage" xml:space="preserve"><value>إدارة</value></data>
   <data name="ManageStudents.ManageStudent" xml:space="preserve"><value>إدارة الطالب</value></data>
   <data name="ManageStudents.ManageStudents" xml:space="preserve"><value>إدارة الطلبة</value></data>
+  <data name="ManageStudents.NoGroup" xml:space="preserve"><value>لا توجد مجموعة بعد</value></data>
+  <data name="ManageStudents.NoPlacement" xml:space="preserve"><value>لا يوجد تدريب بعد</value></data>
   <data name="ManageStudents.NoStudentsFound" xml:space="preserve"><value>لا يوجد طلبة.</value></data>
   <data name="ManageStudents.NoStudentsMatchYourSearch" xml:space="preserve"><value>لا يوجد طلبة يطابقون بحثك.</value></data>
+  <data name="ManageStudents.NotAssigned" xml:space="preserve"><value>غير مسند</value></data>
+  <data name="ManageStudents.NotRecorded" xml:space="preserve"><value>غير مسجل</value></data>
   <data name="ManageStudents.OneOrMoreAcademicInformationFields" xml:space="preserve"><value>حقل واحد أو أكثر من حقول البيانات الأكاديمية أطول من المسموح.</value></data>
+  <data name="ManageStudents.PersonalInformation" xml:space="preserve"><value>المعلومات الشخصية</value></data>
+  <data name="ManageStudents.Phone" xml:space="preserve"><value>الهاتف</value></data>
+  <data name="ManageStudents.Placement" xml:space="preserve"><value>التدريب</value></data>
   <data name="ManageStudents.RemoveAccess" xml:space="preserve"><value>إيقاف الوصول</value></data>
   <data name="ManageStudents.RemovingAccessBlocksSignInWhile" xml:space="preserve"><value>إيقاف الوصول يمنع تسجيل الدخول مع الاحتفاظ بالسجل وتاريخ التدريب، ويمكنك استعادة الوصول لاحقًا.</value></data>
   <data name="ManageStudents.RequiredTrainingHours" xml:space="preserve"><value>ساعات التدريب المطلوبة</value></data>
@@ -644,19 +895,45 @@
   <data name="ManageStudents.SelectAStudentBeforeChangingAccess" xml:space="preserve"><value>اختر طالبًا قبل تغيير صلاحية الوصول.</value></data>
   <data name="ManageStudents.SelectAStudentBeforeSavingChanges" xml:space="preserve"><value>اختر طالبًا قبل حفظ التغييرات.</value></data>
   <data name="ManageStudents.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="ManageStudents.StatusActive" xml:space="preserve"><value>نشط</value></data>
+  <data name="ManageStudents.StatusInactive" xml:space="preserve"><value>غير نشط</value></data>
   <data name="ManageStudents.Student" xml:space="preserve"><value>الطالب</value></data>
   <data name="ManageStudents.StudentAcademicInformationSaved" xml:space="preserve"><value>تم حفظ البيانات الأكاديمية للطالب.</value></data>
   <data name="ManageStudents.StudentAccessRemovedTheRecordAnd" xml:space="preserve"><value>أُوقف وصول الطالب، مع الاحتفاظ بسجله وتاريخ تدريبه.</value></data>
   <data name="ManageStudents.StudentAccessRestored" xml:space="preserve"><value>تمت استعادة وصول الطالب.</value></data>
+  <data name="ManageStudents.StudentDetails" xml:space="preserve"><value>تفاصيل الطالب</value></data>
+  <data name="ManageStudents.StudentDirectory" xml:space="preserve"><value>دليل الطلاب</value></data>
   <data name="ManageStudents.StudentID" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="ManageStudents.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="ManageStudents.StudentPages" xml:space="preserve"><value>صفحات الطلبة</value></data>
   <data name="ManageStudents.StudentRecordNotFound" xml:space="preserve"><value>لم يُعثر على سجل الطالب.</value></data>
   <data name="ManageStudents.ThisStudentCannotSignInRestore" xml:space="preserve"><value>لا يستطيع هذا الطالب تسجيل الدخول. استعد وصوله عند الحاجة.</value></data>
+  <data name="ManageStudents.TrainingAndSupervision" xml:space="preserve"><value>التدريب والإشراف</value></data>
+  <data name="ManageStudents.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
   <data name="ManageStudents.University" xml:space="preserve"><value>الجامعة</value></data>
   <data name="ManageStudents.UpdateAcademicDetailsOrRemoveAnd" xml:space="preserve"><value>حدّث البيانات الأكاديمية، أو أوقف وصول الطلبة أو استعده.</value></data>
+  <data name="ManageStudents.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
+  <data name="ManageStudents.ViewProfile" xml:space="preserve"><value>عرض الملف الشخصي</value></data>
   <data name="ManageStudents.ViewRecord" xml:space="preserve"><value>عرض السجل</value></data>
   <data name="ManageStudents.ViewRecords" xml:space="preserve"><value>عرض السجلات</value></data>
+  <data name="Pd.AttemptN" xml:space="preserve"><value>المحاولة {0}</value></data>
+  <data name="Pd.ConfirmedOn" xml:space="preserve"><value>تم التأكيد في {0}</value></data>
+  <data name="Pd.Feedback" xml:space="preserve"><value>ملاحظات المشرف</value></data>
+  <data name="Pd.FinalsNote" xml:space="preserve"><value>مشرف الشركة والمشرف الأكاديمي</value></data>
+  <data name="Pd.Grade" xml:space="preserve"><value>العلامة</value></data>
+  <data name="Pd.HiddenFromStudent" xml:space="preserve"><value>غير ظاهر للطالب</value></data>
+  <data name="Pd.NoFeedbackYet" xml:space="preserve"><value>بانتظار مراجعة مشرف الشركة</value></data>
+  <data name="Pd.People" xml:space="preserve"><value>المشرفون والتواصل</value></data>
+  <data name="Pd.Sections" xml:space="preserve"><value>أقسام التقدم</value></data>
+  <data name="Pd.TabHours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Pd.TabOverview" xml:space="preserve"><value>نظرة عامة</value></data>
+  <data name="Pd.TabSubmissions" xml:space="preserve"><value>التسليمات والملاحظات</value></data>
+  <data name="Pd.TasksGraded" xml:space="preserve"><value>مهام مقيّمة</value></data>
+  <data name="Pd.VisibleToStudent" xml:space="preserve"><value>ظاهر للطالب</value></data>
+  <data name="Pd.WaitingHours" xml:space="preserve"><value>ساعات بانتظار الاعتماد</value></data>
+  <data name="Pd.WaitingHoursNote" xml:space="preserve"><value>مُبلّغ عنها ولم تُعتمد بعد</value></data>
+  <data name="Phone.Hint" xml:space="preserve"><value>10 أرقام فقط — مثل 0791234567</value></data>
+  <data name="Phone.Invalid" xml:space="preserve"><value>أدخل رقم الهاتف: 10 أرقام بالضبط، أرقام فقط (مثل 0791234567).</value></data>
   <data name="PlacementDetails.AcademicFinalEvaluation" xml:space="preserve"><value>التقييم الأكاديمي النهائي</value></data>
   <data name="PlacementDetails.AcademicFinalEvaluation2" xml:space="preserve"><value>التقييم الأكاديمي النهائي</value></data>
   <data name="PlacementDetails.AcademicFollowUp" xml:space="preserve"><value>المتابعة الأكاديمية</value></data>
@@ -734,6 +1011,9 @@
   <data name="PlacementDetails.OverallComment" xml:space="preserve"><value>التعليق العام:</value></data>
   <data name="PlacementDetails.PastDeadline" xml:space="preserve"><value>تجاوزت الموعد النهائي</value></data>
   <data name="PlacementDetails.PastDeadlineAndNotGraded" xml:space="preserve"><value>تجاوزت موعدها ولم تُقيَّم ·</value></data>
+  <data name="PlacementDetails.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="PlacementDetails.PlacementDetails" xml:space="preserve"><value>تفاصيل التدريب</value></data>
+  <data name="PlacementDetails.PlacementNotFound" xml:space="preserve"><value>لم يتم العثور على التدريب.</value></data>
   <data name="PlacementDetails.PlacementsProgress" xml:space="preserve"><value>جهات التدريب والتقدّم</value></data>
   <data name="PlacementDetails.Program" xml:space="preserve"><value>البرنامج</value></data>
   <data name="PlacementDetails.RecordedFinalResult" xml:space="preserve"><value>النتيجة النهائية المسجّلة:</value></data>
@@ -780,6 +1060,7 @@
   <data name="Placements.AllStatuses" xml:space="preserve"><value>جميع الحالات</value></data>
   <data name="Placements.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
   <data name="Placements.ApprovedHours2" xml:space="preserve"><value>الساعات المعتمدة</value></data>
+  <data name="Placements.ApprovedHoursFor" xml:space="preserve"><value>الساعات المعتمدة للطالب {0}</value></data>
   <data name="Placements.BackToDashboard" xml:space="preserve"><value>العودة إلى لوحة التحكم</value></data>
   <data name="Placements.Clear" xml:space="preserve"><value>مسح</value></data>
   <data name="Placements.ClearFilters" xml:space="preserve"><value>مسح عوامل التصفية</value></data>
@@ -789,6 +1070,7 @@
   <data name="Placements.ConfirmedInternships" xml:space="preserve"><value>التدريبات المؤكدة</value></data>
   <data name="Placements.ConfirmedStudentPlacementsAndApprovedHour" xml:space="preserve"><value>جهات تدريب الطلبة المؤكَّدة وتقدّم الساعات المعتمدة</value></data>
   <data name="Placements.CouldNotLoadPlacementsPleaseTry" xml:space="preserve"><value>تعذر تحميل التدريبات. يرجى المحاولة مجددًا.</value></data>
+  <data name="Placements.Crumb" xml:space="preserve"><value>منسّق التدريب / التدريبات</value></data>
   <data name="Placements.Details" xml:space="preserve"><value>التفاصيل</value></data>
   <data name="Placements.FindAStudentSConfirmedInternship" xml:space="preserve"><value>ابحث عن تدريب الطالب المؤكَّد وراجع تقدّمه.</value></data>
   <data name="Placements.FirebaseIsNotConfiguredContactThe" xml:space="preserve"><value>لم تُعدّ Firebase بعد. تواصل مع مسؤول المشروع.</value></data>
@@ -798,7 +1080,10 @@
   <data name="Placements.MonitorEachConfirmedInternshipAndOpen" xml:space="preserve"><value>تابع كل تدريب مؤكد واعرض تفاصيل المهام والتقييم والساعات.</value></data>
   <data name="Placements.Next" xml:space="preserve"><value>التالي</value></data>
   <data name="Placements.NoConfirmedInternshipsYet" xml:space="preserve"><value>لا توجد تدريبات مؤكدة بعد.</value></data>
+  <data name="Placements.NoName" xml:space="preserve"><value>غير مسجّل</value></data>
+  <data name="Placements.NoPlacementsMatch" xml:space="preserve"><value>لا توجد جهات تدريب تطابق عوامل التصفية. جرّب اسمًا أو رقمًا أو حالة أخرى.</value></data>
   <data name="Placements.NoPlacementsMatchYourSearch" xml:space="preserve"><value>لا توجد تدريبات تطابق بحثك.</value></data>
+  <data name="Placements.NoPlacementsYet" xml:space="preserve"><value>لا توجد جهات تدريب مؤكدة بعد. يُنشأ تدريب الطالب عند تأكيده أول عرض.</value></data>
   <data name="Placements.Of" xml:space="preserve"><value>من</value></data>
   <data name="Placements.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
   <data name="Placements.Page" xml:space="preserve"><value>الصفحة</value></data>
@@ -823,12 +1108,251 @@
   <data name="Placements.UnnamedStudent" xml:space="preserve"><value>طالب بلا اسم</value></data>
   <data name="Placements.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
   <data name="Placements.ViewDetails2" xml:space="preserve"><value>عرض التفاصيل</value></data>
-  <data name="Placements.WeCouldNotLoadPlacementsRefresh" xml:space="preserve"><value>تعذّر تحميل جهات التدريب. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
-  <data name="Placements.NoPlacementsYet" xml:space="preserve"><value>لا توجد جهات تدريب مؤكدة بعد. يُنشأ تدريب الطالب عند تأكيده أول عرض.</value></data>
-  <data name="Placements.NoPlacementsMatch" xml:space="preserve"><value>لا توجد جهات تدريب تطابق عوامل التصفية. جرّب اسمًا أو رقمًا أو حالة أخرى.</value></data>
-  <data name="Placements.ApprovedHoursFor" xml:space="preserve"><value>الساعات المعتمدة للطالب {0}</value></data>
   <data name="Placements.ViewInternshipFor" xml:space="preserve"><value>عرض تدريب الطالب {0}</value></data>
-  <data name="Placements.NoName" xml:space="preserve"><value>غير مسجّل</value></data>
+  <data name="Placements.ViewProgress" xml:space="preserve"><value>عرض التقدم</value></data>
+  <data name="Placements.WeCouldNotLoadPlacementsRefresh" xml:space="preserve"><value>تعذّر تحميل جهات التدريب. حدّث الصفحة للمحاولة مرة أخرى.</value></data>
+  <data name="Queue.Academic" xml:space="preserve"><value>التقييم الأكاديمي</value></data>
+  <data name="Queue.All" xml:space="preserve"><value>كل التدريبات</value></data>
+  <data name="Queue.Company" xml:space="preserve"><value>تقييم الشركة</value></data>
+  <data name="Queue.Help" xml:space="preserve"><value>اضغط على إحدى البطاقات أعلاه للتصفية. الصفوف المميّزة جاهزة لقرارك.</value></data>
+  <data name="Queue.Intro" xml:space="preserve"><value>افتح تدريبًا لقراءة التقييمين النهائيين وتسجيل قرار الإتمام.</value></data>
+  <data name="Queue.Search" xml:space="preserve"><value>ابحث عن طالب أو شركة أو تخصص</value></data>
+  <data name="Req.AcademicEvaluation" xml:space="preserve"><value>تقديم التقييم النهائي الأكاديمي</value></data>
+  <data name="Req.Certificate" xml:space="preserve"><value>شهادة التدريب</value></data>
+  <data name="Req.CertificateHint" xml:space="preserve"><value>رُفعت شهادة التدريب من الشركة بعد انتهاء التدريب.</value></data>
+  <data name="Req.CompanyEligibility" xml:space="preserve"><value>أهلية الشركة</value></data>
+  <data name="Req.CompanyEligibilityHint" xml:space="preserve"><value>شركة واحدة في مجال ذي صلة، ولا يعمل الطالب لدى قريب له.</value></data>
+  <data name="Req.CompanyEvaluation" xml:space="preserve"><value>تقديم التقييم النهائي من الشركة</value></data>
+  <data name="Req.DraftNotSubmitted" xml:space="preserve"><value>محفوظ كمسودة ولم يُقدَّم بعد</value></data>
+  <data name="Req.Duration" xml:space="preserve"><value>الحد الأدنى لمدة التدريب</value></data>
+  <data name="Req.DurationDetail" xml:space="preserve"><value>{0} أسبوعًا بين تاريخي البداية والنهاية المسجّلين (الحد الأدنى {1} أسبوعًا بدوام كامل)</value></data>
+  <data name="Req.DurationUnknown" xml:space="preserve"><value>تواريخ التدريب غير مسجّلة، لذلك لا يمكن حساب المدة</value></data>
+  <data name="Req.Endorsement" xml:space="preserve"><value>مراجعة القسم واعتماد العميد</value></data>
+  <data name="Req.EndorsementHint" xml:space="preserve"><value>وقّع رئيس القسم على التقييم والتقرير، واعتمده العميد.</value></data>
+  <data name="Req.ErrorAlreadyApproved" xml:space="preserve"><value>اعتُمد إتمام هذا التدريب مسبقًا.</value></data>
+  <data name="Req.ErrorAlreadyRejected" xml:space="preserve"><value>رُفض إتمام هذا التدريب مسبقًا.</value></data>
+  <data name="Req.ErrorChanged" xml:space="preserve"><value>حُفظ قرار آخر لهذا التدريب في الوقت نفسه. حدّث الصفحة وراجع مجددًا.</value></data>
+  <data name="Req.ErrorCorrectionsNote" xml:space="preserve"><value>اشرح ما يجب على الطالب تصحيحه (5 أحرف على الأقل).</value></data>
+  <data name="Req.ErrorDecided" xml:space="preserve"><value>هذه المراجعة مغلقة ولا يمكن تعديلها.</value></data>
+  <data name="Req.ErrorEvidence" xml:space="preserve"><value>أضف مرجعًا للدليل لـ «{0}» (مثل رقم نموذج أو اسم ملف أو تاريخ بريد).</value></data>
+  <data name="Req.ErrorNoPlacement" xml:space="preserve"><value>تعذّر تحميل هذا التدريب.</value></data>
+  <data name="Req.ErrorNotReady" xml:space="preserve"><value>هذا التدريب لا يستوفي جميع المتطلبات الإلزامية بعد.</value></data>
+  <data name="Req.ErrorRejectReason" xml:space="preserve"><value>اكتب السبب الموثّق لرفض الإتمام (10 أحرف على الأقل).</value></data>
+  <data name="Req.ErrorStatus" xml:space="preserve"><value>اختر حالة تحقق صحيحة.</value></data>
+  <data name="Req.ErrorType" xml:space="preserve"><value>اختر محلي أو دولي.</value></data>
+  <data name="Req.ErrorUnknownCheck" xml:space="preserve"><value>هذا المتطلّب لا ينطبق على نوع التدريب هذا.</value></data>
+  <data name="Req.FacultyValidation" xml:space="preserve"><value>مصادقة الكلية</value></data>
+  <data name="Req.FacultyValidationHint" xml:space="preserve"><value>صادقت الكلية على الشهادة والتقرير.</value></data>
+  <data name="Req.FullTime" xml:space="preserve"><value>تدريب بدوام كامل</value></data>
+  <data name="Req.FullTimeHint" xml:space="preserve"><value>يبيّن العقد دوامًا كاملًا طوال المدة.</value></data>
+  <data name="Req.Hours" xml:space="preserve"><value>اعتماد ساعات التدريب المطلوبة</value></data>
+  <data name="Req.HoursDetail" xml:space="preserve"><value>اعتُمدت {0} من {1} ساعة. تُحتسب الساعات المعتمدة فقط.</value></data>
+  <data name="Req.HoursPending" xml:space="preserve"><value>{0} ساعة ما زالت بانتظار الاعتماد.</value></data>
+  <data name="Req.InternationalReport" xml:space="preserve"><value>تقرير التدريب</value></data>
+  <data name="Req.InternationalReportHint" xml:space="preserve"><value>رُفع تقرير التدريب ضمن الموعد المنشور.</value></data>
+  <data name="Req.LocalTrainingDone" xml:space="preserve"><value>إنهاء التدريب الميداني المحلي أولًا</value></data>
+  <data name="Req.LocalTrainingDoneHint" xml:space="preserve"><value>تشترط الأسئلة الشائعة إنهاء التدريب الميداني في الأردن قبل السفر إلى ألمانيا.</value></data>
+  <data name="Req.MajorRelevance" xml:space="preserve"><value>ارتباط التدريب بتخصص الطالب</value></data>
+  <data name="Req.MajorRelevanceHint" xml:space="preserve"><value>تتوافق الشركة والمهام مع برنامج الطالب.</value></data>
+  <data name="Req.NoTasks" xml:space="preserve"><value>لا توجد مهام مسجّلة لهذا التدريب</value></data>
+  <data name="Req.NotStartedByAcademic" xml:space="preserve"><value>لم يبدأه المشرف الأكاديمي بعد</value></data>
+  <data name="Req.NotStartedByCompany" xml:space="preserve"><value>لم يبدأه مشرف الشركة بعد</value></data>
+  <data name="Req.NotVerifiedYet" xml:space="preserve"><value>لم يُتحقَّق منه بعد</value></data>
+  <data name="Req.Prerequisites" xml:space="preserve"><value>متطلبات التدريب السابقة (الساعات المعتمدة)</value></data>
+  <data name="Req.PrerequisitesHint" xml:space="preserve"><value>تتعارض صفحات الجامعة (حدود مثل 90 أو 115 ساعة معتمدة، وسطر يذكر 0 ساعة). سجّل ما أكّده القسم.</value></data>
+  <data name="Req.PriorApproval" xml:space="preserve"><value>موافقة القسم قبل بدء التدريب</value></data>
+  <data name="Req.PriorApprovalHint" xml:space="preserve"><value>موافقة موثّقة من القسم أو الكلية قبل أول يوم تدريب. لا تُحتسب الساعات التي تسبق الموافقة.</value></data>
+  <data name="Req.PriorContract" xml:space="preserve"><value>اعتماد عقد التدريب قبل البدء</value></data>
+  <data name="Req.PriorContractHint" xml:space="preserve"><value>رُفع العقد الموقّع واعتمده فريق التدريب قبل بدء التدريب.</value></data>
+  <data name="Req.Result" xml:space="preserve"><value>النتيجة المبدئية: ناجح</value></data>
+  <data name="Req.ResultDetail" xml:space="preserve"><value>{0} بنسبة {1}% (علامة النجاح {2}%، طريقة مقترحة من المشروع)</value></data>
+  <data name="Req.ResultWaiting" xml:space="preserve"><value>تُحسب بعد تقديم التقييمين النهائيين</value></data>
+  <data name="Req.Schedule" xml:space="preserve"><value>فترة التدريب وجدوله المسموح بهما</value></data>
+  <data name="Req.ScheduleHint" xml:space="preserve"><value>خارج الفصول المسجَّل فيها. تختلف الصياغة الرسمية (4 أسابيع متواصلة أو 4 أسابيع × 8 ساعات أو 8 أسابيع × 4 ساعات لعلم الحاسوب)؛ سجّل الجدول الذي قبله القسم.</value></data>
+  <data name="Req.SourceBrief" xml:space="preserve"><value>متطلّب وثيقة المشروع</value></data>
+  <data name="Req.SourceProposal" xml:space="preserve"><value>مقترح المشروع (ليس سياسة رسمية)</value></data>
+  <data name="Req.SourceUnresolved" xml:space="preserve"><value>غير محسوم: يُتحقَّق يدويًا</value></data>
+  <data name="Req.SourceVerified" xml:space="preserve"><value>قاعدة موثّقة من الجامعة</value></data>
+  <data name="Req.SubmittedOn" xml:space="preserve"><value>قُدِّم في {0}</value></data>
+  <data name="Req.Tasks" xml:space="preserve"><value>تقييم توثيق المهام</value></data>
+  <data name="Req.TasksDetail" xml:space="preserve"><value>قُيِّمت {0} من {1} مهمة مُسندة</value></data>
+  <data name="Req.TrainingForms" xml:space="preserve"><value>نماذج التدريب المحلي موقّعة ومختومة</value></data>
+  <data name="Req.TrainingFormsHint" xml:space="preserve"><value>نماذج موقّعة ومختومة من مشرف الشركة مع قائمة المهام المنفّذة، استلمتها الكلية.</value></data>
+  <data name="Req.TrainingReport" xml:space="preserve"><value>تقرير التدريب</value></data>
+  <data name="Req.TrainingReportHint" xml:space="preserve"><value>استُلم تقرير تدريب الطالب ورُوجع.</value></data>
+  <data name="Review.Approve" xml:space="preserve"><value>اعتماد إتمام التدريب</value></data>
+  <data name="Review.ApprovedHeadline" xml:space="preserve"><value>تم التحقق من إتمام التدريب واعتماده</value></data>
+  <data name="Review.ApprovedHoursUnit" xml:space="preserve"><value>ساعة معتمدة</value></data>
+  <data name="Review.ApprovedLine" xml:space="preserve"><value>اعتمده {0} في {1}.</value></data>
+  <data name="Review.Attempts" xml:space="preserve"><value>المحاولات</value></data>
+  <data name="Review.Automatic" xml:space="preserve"><value>تلقائي</value></data>
+  <data name="Review.BackToQueue" xml:space="preserve"><value>جميع مراجعات الإتمام</value></data>
+  <data name="Review.CertificateDoc" xml:space="preserve"><value>شهادة إتمام التدريب</value></data>
+  <data name="Review.CertificateDocNote" xml:space="preserve"><value>شهادة قابلة للطباعة، متاحة للمنسّق.</value></data>
+  <data name="Review.ChangeType" xml:space="preserve"><value>نوع التدريب</value></data>
+  <data name="Review.CheckedBy" xml:space="preserve"><value>سجّله {0} في {1}</value></data>
+  <data name="Review.ChecksNote" xml:space="preserve"><value>يجب استيفاء كل بند إلزامي. تحتاج البنود اليدوية إلى مرجع مكتوب للدليل؛ علامة الاختيار وحدها ليست دليلًا.</value></data>
+  <data name="Review.ChecksTitle" xml:space="preserve"><value>متطلبات الإتمام: {0}</value></data>
+  <data name="Review.ChecksVerified" xml:space="preserve"><value>تم التحقق من {0} من {1}</value></data>
+  <data name="Review.Confidential" xml:space="preserve"><value>سرّي: للمنسّق والمشرفين فقط</value></data>
+  <data name="Review.ConfirmApprove" xml:space="preserve"><value>اعتماد إتمام التدريب؟ سيصدر تقرير الإتمام للطالب.</value></data>
+  <data name="Review.ConfirmCorrections" xml:space="preserve"><value>إعادة هذا الإتمام إلى الطالب للتصحيح؟</value></data>
+  <data name="Review.ConfirmReject" xml:space="preserve"><value>رفض الإتمام؟ سيُغلق هذا المراجعة ولا يمكن التراجع عنه هنا.</value></data>
+  <data name="Review.ConfirmedOn" xml:space="preserve"><value>أُكِّد في {0}</value></data>
+  <data name="Review.CorrectionsHeadline" xml:space="preserve"><value>أُعيدت إلى الطالب للتصحيح</value></data>
+  <data name="Review.CourseCode" xml:space="preserve"><value>مساق التدريب المحلي {0}</value></data>
+  <data name="Review.Criterion" xml:space="preserve"><value>المعيار</value></data>
+  <data name="Review.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
+  <data name="Review.DecidedBy" xml:space="preserve"><value>اعتمده</value></data>
+  <data name="Review.DecisionNote" xml:space="preserve"><value>ملاحظة للطالب</value></data>
+  <data name="Review.DecisionNoteHelp" xml:space="preserve"><value>أعِد للتصحيح عندما يمكن إصلاح شيء؛ وارفض فقط لسبب موثّق. أي منهما ليس علامة أكاديمية.</value></data>
+  <data name="Review.DecisionNotePlaceholder" xml:space="preserve"><value>اختيارية عند الاعتماد، ومطلوبة عند الإعادة للتصحيح أو الرفض.</value></data>
+  <data name="Review.DecisionTitle" xml:space="preserve"><value>قرار المنسّق</value></data>
+  <data name="Review.DetailsTitle" xml:space="preserve"><value>الطالب والتدريب</value></data>
+  <data name="Review.DialogApproveGo" xml:space="preserve"><value>نعم، اعتمد الإتمام</value></data>
+  <data name="Review.DialogApprovePoints" xml:space="preserve"><value>يصدر تقرير الإتمام للطالب|تصبح شهادة الإتمام متاحة للتنزيل</value></data>
+  <data name="Review.DialogApproveText" xml:space="preserve"><value>استوفى {0} جميع متطلبات الإتمام. عند الاعتماد:</value></data>
+  <data name="Review.DialogApproveTitle" xml:space="preserve"><value>اعتماد إتمام التدريب؟</value></data>
+  <data name="Review.DialogCancel" xml:space="preserve"><value>ليس الآن</value></data>
+  <data name="Review.DialogNote" xml:space="preserve"><value>ملاحظتك</value></data>
+  <data name="Review.DialogRejectGo" xml:space="preserve"><value>رفض الإتمام</value></data>
+  <data name="Review.DialogRejectPoints" xml:space="preserve"><value>لن يصدر تقرير إتمام أو شهادة|لا يمكن التراجع عن ذلك من هذه الصفحة</value></data>
+  <data name="Review.DialogRejectText" xml:space="preserve"><value>سيُغلق هذا مراجعة {0}.</value></data>
+  <data name="Review.DialogRejectTitle" xml:space="preserve"><value>رفض هذا الإتمام؟</value></data>
+  <data name="Review.DialogReturnGo" xml:space="preserve"><value>إعادة للتصحيح</value></data>
+  <data name="Review.DialogReturnPoints" xml:space="preserve"><value>يرى الطالب ملاحظتك ويمكنه إعادة التقديم|لا يصدر أي شيء حتى تعتمد الإتمام</value></data>
+  <data name="Review.DialogReturnText" xml:space="preserve"><value>سيُعاد الإتمام إلى {0} لاستكمال العناصر الناقصة.</value></data>
+  <data name="Review.DialogReturnTitle" xml:space="preserve"><value>إعادة للتصحيح؟</value></data>
+  <data name="Review.DocsDisclaimer" xml:space="preserve"><value>الوثائق سجلات من مشروع النظام عليها علامة رقمية «UIMS - APPROVED». لا تحمل ختم الجامعة أو توقيعها.</value></data>
+  <data name="Review.DocumentsTitle" xml:space="preserve"><value>معتمد: وثائق الإتمام</value></data>
+  <data name="Review.DoneApproved" xml:space="preserve"><value>اعتُمد الإتمام. التقرير متاح الآن للطالب.</value></data>
+  <data name="Review.DoneChecks" xml:space="preserve"><value>حُفظ التحقق.</value></data>
+  <data name="Review.DoneCorrections" xml:space="preserve"><value>أُعيد إلى الطالب للتصحيح. يمكنك مراجعته لاحقًا.</value></data>
+  <data name="Review.DoneRejected" xml:space="preserve"><value>رُفض الإتمام. أُبلغ الطالب بالسبب.</value></data>
+  <data name="Review.DoneType" xml:space="preserve"><value>حُفظ نوع التدريب. حُدِّثت قائمة المتطلبات.</value></data>
+  <data name="Review.DownloadPdf" xml:space="preserve"><value>تنزيل PDF</value></data>
+  <data name="Review.Draft" xml:space="preserve"><value>مسودة</value></data>
+  <data name="Review.DurationSource" xml:space="preserve"><value>قاعدة منشورة للسنة الألمانية</value></data>
+  <data name="Review.EvalAcademicOnly" xml:space="preserve"><value>الأكاديمي فقط</value></data>
+  <data name="Review.EvalBoth" xml:space="preserve"><value>قُدِّم الاثنان</value></data>
+  <data name="Review.EvalCompanyOnly" xml:space="preserve"><value>الشركة فقط</value></data>
+  <data name="Review.EvalNone" xml:space="preserve"><value>لا شيء بعد</value></data>
+  <data name="Review.EvaluatedBy" xml:space="preserve"><value>{0} ({1}) · قُدِّم في {2}</value></data>
+  <data name="Review.EvaluationStatus" xml:space="preserve"><value>التقييمات</value></data>
+  <data name="Review.Evidence" xml:space="preserve"><value>الدليل</value></data>
+  <data name="Review.EvidenceFor" xml:space="preserve"><value>مرجع الدليل لـ</value></data>
+  <data name="Review.EvidencePlaceholder" xml:space="preserve"><value>مرجع الدليل، مثل رقم النموذج أو الملف</value></data>
+  <data name="Review.EvidenceRequired" xml:space="preserve"><value>أضف مرجعًا للدليل (3 أحرف على الأقل) لـ:</value></data>
+  <data name="Review.Eyebrow" xml:space="preserve"><value>مراجعة المنسّق</value></data>
+  <data name="Review.Fail" xml:space="preserve"><value>راسب</value></data>
+  <data name="Review.FilterAll" xml:space="preserve"><value>الكل</value></data>
+  <data name="Review.FilterLabel" xml:space="preserve"><value>التصفية حسب حالة المراجعة</value></data>
+  <data name="Review.Grade" xml:space="preserve"><value>العلامة</value></data>
+  <data name="Review.HoursApproved" xml:space="preserve"><value>معتمدة</value></data>
+  <data name="Review.HoursPending" xml:space="preserve"><value>معلّقة</value></data>
+  <data name="Review.HoursPercent" xml:space="preserve"><value>{0}% من الساعات المطلوبة</value></data>
+  <data name="Review.HoursRejected" xml:space="preserve"><value>مرفوضة</value></data>
+  <data name="Review.HoursSource" xml:space="preserve"><value>هدف التدريب (التدريب المحلي في الجامعة: 160 ساعة اتصال)</value></data>
+  <data name="Review.HoursValue" xml:space="preserve"><value>{0} ساعة اتصال</value></data>
+  <data name="Review.Internships" xml:space="preserve"><value>تدريب</value></data>
+  <data name="Review.LastDecision" xml:space="preserve"><value>آخر قرار من {0} في {1}</value></data>
+  <data name="Review.LockedHeadline" xml:space="preserve"><value>يبقى الاعتماد مقفلًا حتى تُستوفى هذه البنود:</value></data>
+  <data name="Review.ManualNote" xml:space="preserve"><value>سجّل ما تحققت منه وأين يوجد الدليل. يُحفظ اسمك والوقت مع كل تغيير.</value></data>
+  <data name="Review.ManualTitle" xml:space="preserve"><value>تحقق المنسّق</value></data>
+  <data name="Review.MetricApproved" xml:space="preserve"><value>صدر التقرير للطالب</value></data>
+  <data name="Review.MetricAwaiting" xml:space="preserve"><value>التدريب منتهٍ أو وصل تقييم واحد</value></data>
+  <data name="Review.MetricCorrections" xml:space="preserve"><value>أُعيدت إلى الطالب</value></data>
+  <data name="Review.MetricReady" xml:space="preserve"><value>استُلم التقييمان النهائيان</value></data>
+  <data name="Review.MinWeeks" xml:space="preserve"><value>{0} أسبوعًا على الأقل بدوام كامل</value></data>
+  <data name="Review.MissingShort" xml:space="preserve"><value>ناقص</value></data>
+  <data name="Review.NoMatch" xml:space="preserve"><value>لا توجد تدريبات مطابقة لهذا البحث أو التصفية.</value></data>
+  <data name="Review.NotGraded" xml:space="preserve"><value>غير مقيَّمة</value></data>
+  <data name="Review.NotReadyToApprove" xml:space="preserve"><value>يُتاح الاعتماد عندما تصبح كل البنود أعلاه خضراء.</value></data>
+  <data name="Review.NotStarted" xml:space="preserve"><value>لم يبدأ</value></data>
+  <data name="Review.NothingChanged" xml:space="preserve"><value>لم يتغير شيء. حدّث حالة أو مرجع دليل أولًا.</value></data>
+  <data name="Review.Open" xml:space="preserve"><value>فتح</value></data>
+  <data name="Review.PartAcademic" xml:space="preserve"><value>التقييم الأكاديمي ({0}%)</value></data>
+  <data name="Review.PartCompany" xml:space="preserve"><value>تقييم الشركة ({0}%)</value></data>
+  <data name="Review.PartTasks" xml:space="preserve"><value>المهام المقيّمة ({0}%)</value></data>
+  <data name="Review.Pass" xml:space="preserve"><value>ناجح</value></data>
+  <data name="Review.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Review.PlacementApproval" xml:space="preserve"><value>التدريب</value></data>
+  <data name="Review.Points" xml:space="preserve"><value>نقطة</value></data>
+  <data name="Review.Print" xml:space="preserve"><value>طباعة</value></data>
+  <data name="Review.ProfileUnavailable" xml:space="preserve"><value>الملف غير متاح</value></data>
+  <data name="Review.Program" xml:space="preserve"><value>البرنامج الأكاديمي</value></data>
+  <data name="Review.ProgramCheck" xml:space="preserve"><value>يحتاج إلى تحقق</value></data>
+  <data name="Review.ProgramCheckLong" xml:space="preserve"><value>التخصص المسجّل مفقود أو ليس من برامج كلية الحوسبة. تحقّق من السجل الأكاديمي.</value></data>
+  <data name="Review.ProvisionalResult" xml:space="preserve"><value>النتيجة المبدئية</value></data>
+  <data name="Review.ProvisionalScore" xml:space="preserve"><value>العلامة المبدئية</value></data>
+  <data name="Review.QueueCaption" xml:space="preserve"><value>التدريبات وحالة مراجعة إتمامها</value></data>
+  <data name="Review.QueueIntro" xml:space="preserve"><value>راجع التقييمين النهائيين وسجل التدريب والمتطلبات لكل تدريب، ثم سجّل قرار الإتمام.</value></data>
+  <data name="Review.QueueNote" xml:space="preserve"><value>التدريب المؤكَّد ليس جاهزًا تلقائيًا: يحتاج التقييمين النهائيين ومتطلبات موثّقة.</value></data>
+  <data name="Review.QueueTitle" xml:space="preserve"><value>مراجعات إتمام التدريب</value></data>
+  <data name="Review.Rating" xml:space="preserve"><value>العلامة / المقياس</value></data>
+  <data name="Review.ReadOnlyNote" xml:space="preserve"><value>هذه المراجعة مغلقة وللقراءة فقط.</value></data>
+  <data name="Review.ReadyTitle" xml:space="preserve"><value>جاهزية الاعتماد</value></data>
+  <data name="Review.ReadyToApprove" xml:space="preserve"><value>كل المتطلبات مكتملة. يمكنك اعتماد هذا التدريب.</value></data>
+  <data name="Review.Reason" xml:space="preserve"><value>السبب</value></data>
+  <data name="Review.Reference" xml:space="preserve"><value>المرجع</value></data>
+  <data name="Review.RejectCompletion" xml:space="preserve"><value>رفض الإتمام</value></data>
+  <data name="Review.RejectedHeadline" xml:space="preserve"><value>لم يُعتمد الإتمام</value></data>
+  <data name="Review.ReleasedResult" xml:space="preserve"><value>النتيجة المعلنة</value></data>
+  <data name="Review.ReportDoc" xml:space="preserve"><value>تقرير إتمام التدريب</value></data>
+  <data name="Review.ReportDocNote" xml:space="preserve"><value>صدر للطالب. يعرض النتيجة ولا يعرض النماذج السرية.</value></data>
+  <data name="Review.RequiredDuration" xml:space="preserve"><value>المدة المطلوبة</value></data>
+  <data name="Review.RequiredHours" xml:space="preserve"><value>الساعات المطلوبة</value></data>
+  <data name="Review.RequirementsMet" xml:space="preserve"><value>المتطلبات الإلزامية المستوفاة</value></data>
+  <data name="Review.RequirementsValue" xml:space="preserve"><value>{0} من {1} مستوفاة</value></data>
+  <data name="Review.ResultExplain" xml:space="preserve"><value>الأوزان وعلامة النجاح {0}% مقترح من مشروع النظام، وليست سياسة منشورة لتقييم التدريب في الجامعة. يرى الطالب نتيجة ناجح/راسب بعد الاعتماد فقط، ولا يرى هذه النماذج.</value></data>
+  <data name="Review.ResultNote" xml:space="preserve"><value>محسوبة بطريقة التقييم المقترحة في المشروع. تدعم القرار لكنها لا تعتمد الإتمام بمفردها.</value></data>
+  <data name="Review.ResultTitle" xml:space="preserve"><value>النتيجة المبدئية</value></data>
+  <data name="Review.ReturnForCorrections" xml:space="preserve"><value>إعادة للتصحيح</value></data>
+  <data name="Review.Review" xml:space="preserve"><value>مراجعة</value></data>
+  <data name="Review.ReviewStatus" xml:space="preserve"><value>حالة المراجعة</value></data>
+  <data name="Review.RoleAcademic" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
+  <data name="Review.RoleCompany" xml:space="preserve"><value>مشرف الشركة</value></data>
+  <data name="Review.SaveChecks" xml:space="preserve"><value>حفظ التحقق</value></data>
+  <data name="Review.SaveChecksNote" xml:space="preserve"><value>الحفظ لا يعتمد شيئًا. يُتخذ القرار في الأسفل.</value></data>
+  <data name="Review.SaveFailed" xml:space="preserve"><value>تعذّر حفظ التغيير. يرجى المحاولة مجددًا.</value></data>
+  <data name="Review.SaveType" xml:space="preserve"><value>حفظ النوع</value></data>
+  <data name="Review.Scale" xml:space="preserve"><value>المقياس المسجّل</value></data>
+  <data name="Review.ScaleTasks" xml:space="preserve"><value>كل مهمة على مقياسها</value></data>
+  <data name="Review.SearchLabel" xml:space="preserve"><value>ابحث في مراجعات الإتمام</value></data>
+  <data name="Review.SearchPlaceholder" xml:space="preserve"><value>ابحث بالاسم أو الرقم أو الشركة أو التخصص</value></data>
+  <data name="Review.StampContinue" xml:space="preserve"><value>عرض وثائق الإتمام</value></data>
+  <data name="Review.StampTitle" xml:space="preserve"><value>اعتُمد إتمام التدريب</value></data>
+  <data name="Review.StateCorrections" xml:space="preserve"><value>يحتاج إلى تصحيح</value></data>
+  <data name="Review.StateMet" xml:space="preserve"><value>مستوفى</value></data>
+  <data name="Review.StateMissing" xml:space="preserve"><value>غير مستوفى</value></data>
+  <data name="Review.StateNotApplicable" xml:space="preserve"><value>لا ينطبق</value></data>
+  <data name="Review.StatePending" xml:space="preserve"><value>قيد الانتظار</value></data>
+  <data name="Review.StateVerified" xml:space="preserve"><value>تم التحقق</value></data>
+  <data name="Review.Status" xml:space="preserve"><value>الحالة</value></data>
+  <data name="Review.StatusApproved" xml:space="preserve"><value>معتمد</value></data>
+  <data name="Review.StatusAwaiting" xml:space="preserve"><value>بانتظار التقييمات</value></data>
+  <data name="Review.StatusCorrections" xml:space="preserve"><value>يحتاج إلى تصحيحات</value></data>
+  <data name="Review.StatusDisclaimer" xml:space="preserve"><value>هذه حالات سير عمل في النظام، وليست أسماء الحالات الداخلية في MyGJU أو أي نظام جامعي آخر.</value></data>
+  <data name="Review.StatusFor" xml:space="preserve"><value>حالة التحقق لـ</value></data>
+  <data name="Review.StatusInProgress" xml:space="preserve"><value>قيد التنفيذ</value></data>
+  <data name="Review.StatusReady" xml:space="preserve"><value>جاهز للمراجعة</value></data>
+  <data name="Review.StatusRejected" xml:space="preserve"><value>مرفوض</value></data>
+  <data name="Review.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
+  <data name="Review.Submitted" xml:space="preserve"><value>مقدَّم</value></data>
+  <data name="Review.SupportingScore" xml:space="preserve"><value>العلامة الداعمة {0}</value></data>
+  <data name="Review.Task" xml:space="preserve"><value>المهمة</value></data>
+  <data name="Review.TaskEvidence" xml:space="preserve"><value>أدلة المهام: قُيِّمت {0} من {1}</value></data>
+  <data name="Review.TaskEvidenceLabel" xml:space="preserve"><value>أدلة المهام</value></data>
+  <data name="Review.TrainingTitle" xml:space="preserve"><value>سجل التدريب</value></data>
+  <data name="Review.Type" xml:space="preserve"><value>نوع التدريب</value></data>
+  <data name="Review.TypeDefault" xml:space="preserve"><value>افتراضي (غير محدد)</value></data>
+  <data name="Review.TypeDefaultLong" xml:space="preserve"><value>غير مسجّل في التدريب؛ يُفترض أنه تدريب محلي حتى تحدده.</value></data>
+  <data name="Review.TypeHelp" xml:space="preserve"><value>يحدد النوع المتطلبات المنطبقة. يُتحقق من التدريب المحلي والدولي وفق قواعد مختلفة.</value></data>
+  <data name="Review.TypeInternational" xml:space="preserve"><value>تدريب دولي (السنة الألمانية)</value></data>
+  <data name="Review.TypeLocal" xml:space="preserve"><value>تدريب ميداني محلي</value></data>
+  <data name="Review.Weeks" xml:space="preserve"><value>أسبوعًا</value></data>
+  <data name="Review.WeeksNote" xml:space="preserve"><value>محسوبة من تاريخي بداية التدريب ونهايته؛ لا تُستخدم الساعات للتدريب الدولي.</value></data>
+  <data name="Review.WeeksValue" xml:space="preserve"><value>{0} أسبوعًا</value></data>
   <data name="StudentCreation.AcademicInformation" xml:space="preserve"><value>البيانات الأكاديمية</value></data>
   <data name="StudentCreation.AccountAccess" xml:space="preserve"><value>الوصول إلى الحساب</value></data>
   <data name="StudentCreation.AddStudent" xml:space="preserve"><value>إضافة طالب</value></data>
@@ -840,6 +1364,8 @@
   <data name="StudentCreation.CouldNotCreateTheAccount" xml:space="preserve"><value>تعذّر إنشاء الحساب.</value></data>
   <data name="StudentCreation.CreateAnAccountAndEnterThe" xml:space="preserve"><value>أنشئ حسابًا وأدخل البيانات الأكاديمية للطالب.</value></data>
   <data name="StudentCreation.CreateStudent" xml:space="preserve"><value>إنشاء الطالب</value></data>
+  <data name="StudentCreation.CreatedSuccessDone" xml:space="preserve"><value>تم</value></data>
+  <data name="StudentCreation.CreatedSuccessTitle" xml:space="preserve"><value>تم إنشاء الطالب بنجاح</value></data>
   <data name="StudentCreation.EnterAValidEmailAddress" xml:space="preserve"><value>أدخل بريدًا إلكترونيًا صحيحًا.</value></data>
   <data name="StudentCreation.FirebaseIsNotConfiguredAskThe" xml:space="preserve"><value>لم تُعدّ Firebase بعد. اطلب من مسؤول المشروع التحقق من الإعدادات المحلية.</value></data>
   <data name="StudentCreation.FullName" xml:space="preserve"><value>الاسم الكامل</value></data>
@@ -855,8 +1381,6 @@
   <data name="StudentCreation.SelectAMajor" xml:space="preserve"><value>اختر تخصصًا</value></data>
   <data name="StudentCreation.ShareTheEmailAndTemporaryPassword" xml:space="preserve"><value>شارك البريد الإلكتروني وكلمة المرور المؤقتة بشكل خاص، ويجب على الطالب تغيير كلمة المرور بعد تسجيل الدخول.</value></data>
   <data name="StudentCreation.StudentAccountCreatedWithIDShare" xml:space="preserve"><value>أُنشئ حساب الطالب بالرقم {0}. شارك بريد تسجيل الدخول وكلمة المرور المؤقتة بشكل خاص.</value></data>
-  <data name="StudentCreation.CreatedSuccessTitle" xml:space="preserve"><value>تم إنشاء الطالب بنجاح</value></data>
-  <data name="StudentCreation.CreatedSuccessDone" xml:space="preserve"><value>تم</value></data>
   <data name="StudentCreation.StudentID" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="StudentCreation.TemporaryPassword" xml:space="preserve"><value>كلمة المرور المؤقتة</value></data>
   <data name="StudentCreation.TheAccountWasCreatedButIts" xml:space="preserve"><value>أُنشئ الحساب لكن تعذّر حفظ ملفه. تواصل مع المسؤول قبل إعادة المحاولة.</value></data>
@@ -866,626 +1390,103 @@
   <data name="StudentCreation.TheseDetailsAppearInTheStudent" xml:space="preserve"><value>تظهر هذه البيانات في سجل الطالب.</value></data>
   <data name="StudentCreation.University" xml:space="preserve"><value>الجامعة</value></data>
   <data name="StudentCreation.UseTheStudentSOfficialName" xml:space="preserve"><value>استخدم الاسم الرسمي للطالب وبريد تسجيل الدخول.</value></data>
+  <data name="Students.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
+  <data name="Students.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
   <data name="Students.AccountStatus" xml:space="preserve"><value>حالة الحساب</value></data>
   <data name="Students.AddStudent" xml:space="preserve"><value>+ إضافة طالب</value></data>
   <data name="Students.AddStudent2" xml:space="preserve"><value>إضافة طالب</value></data>
+  <data name="Students.AllStudents" xml:space="preserve"><value>كل الطلاب</value></data>
   <data name="Students.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
   <data name="Students.Clear" xml:space="preserve"><value>مسح</value></data>
   <data name="Students.College" xml:space="preserve"><value>الكلية</value></data>
+  <data name="Students.Company" xml:space="preserve"><value>الشركة</value></data>
+  <data name="Students.CompanySupervisor" xml:space="preserve"><value>مشرف الشركة</value></data>
   <data name="Students.CoordinatorStudents" xml:space="preserve"><value>منسّق التدريب / الطلبة</value></data>
   <data name="Students.CouldNotLoadStudentRecordsPlease" xml:space="preserve"><value>تعذّر تحميل سجلات الطلبة. يُرجى المحاولة مرة أخرى.</value></data>
   <data name="Students.CouldNotLoadThisStudentPlease" xml:space="preserve"><value>تعذّر تحميل بيانات هذا الطالب. يُرجى المحاولة مرة أخرى.</value></data>
+  <data name="Students.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
   <data name="Students.Directory" xml:space="preserve"><value>الدليل</value></data>
+  <data name="Students.EndDate" xml:space="preserve"><value>تاريخ الانتهاء</value></data>
   <data name="Students.FindAStudentAndReviewTheir" xml:space="preserve"><value>ابحث عن طالب وراجع بيانات حسابه وتدريبه.</value></data>
+  <data name="Students.Group" xml:space="preserve"><value>المجموعة</value></data>
+  <data name="Students.InternshipPlacement" xml:space="preserve"><value>تدريب الطالب</value></data>
   <data name="Students.LoginEmail" xml:space="preserve"><value>بريد تسجيل الدخول</value></data>
   <data name="Students.Major" xml:space="preserve"><value>التخصص</value></data>
   <data name="Students.ManageStudents" xml:space="preserve"><value>إدارة الطلبة</value></data>
   <data name="Students.ManageThisStudent" xml:space="preserve"><value>إدارة هذا الطالب</value></data>
+  <data name="Students.NoPlacementYet" xml:space="preserve"><value>لم يؤكد هذا الطالب أي تدريب بعد.</value></data>
   <data name="Students.NoStudentsFoundAddAStudent" xml:space="preserve"><value>لا يوجد طلبة. أضف طالبًا للبدء.</value></data>
   <data name="Students.NoStudentsMatchYourSearch" xml:space="preserve"><value>لا يوجد طلبة يطابقون بحثك.</value></data>
+  <data name="Students.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
+  <data name="Students.PersonalInformation" xml:space="preserve"><value>المعلومات الشخصية</value></data>
   <data name="Students.Phone" xml:space="preserve"><value>الهاتف</value></data>
+  <data name="Students.Placement" xml:space="preserve"><value>التدريب</value></data>
   <data name="Students.Record" xml:space="preserve"><value>السجل</value></data>
   <data name="Students.RequiredHours" xml:space="preserve"><value>الساعات المطلوبة</value></data>
   <data name="Students.Search" xml:space="preserve"><value>بحث</value></data>
   <data name="Students.SearchByNameStudentNumberEmail" xml:space="preserve"><value>ابحث بالاسم أو الرقم الجامعي أو البريد الإلكتروني أو الجامعة أو الكلية أو التخصص.</value></data>
   <data name="Students.SearchStudentRecords" xml:space="preserve"><value>البحث في سجلات الطلبة</value></data>
   <data name="Students.SelectedRecord" xml:space="preserve"><value>السجل المحدد</value></data>
+  <data name="Students.StartDate" xml:space="preserve"><value>تاريخ البدء</value></data>
   <data name="Students.Status" xml:space="preserve"><value>الحالة</value></data>
   <data name="Students.Student" xml:space="preserve"><value>الطالب</value></data>
   <data name="Students.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
   <data name="Students.StudentPages" xml:space="preserve"><value>صفحات الطلبة</value></data>
+  <data name="Students.StudentProfile" xml:space="preserve"><value>ملف الطالب</value></data>
   <data name="Students.StudentRecordNotFound" xml:space="preserve"><value>لم يُعثر على سجل الطالب.</value></data>
   <data name="Students.StudentRecords" xml:space="preserve"><value>سجلات الطلبة</value></data>
   <data name="Students.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
+  <data name="Students.TrainingProgress" xml:space="preserve"><value>تقدّم التدريب</value></data>
   <data name="Students.University" xml:space="preserve"><value>الجامعة</value></data>
   <data name="Students.ViewRecord" xml:space="preserve"><value>عرض السجل</value></data>
   <data name="Students.ViewRecords" xml:space="preserve"><value>عرض السجلات</value></data>
-  <data name="Req.SourceVerified" xml:space="preserve"><value>قاعدة موثّقة من الجامعة</value></data>
-  <data name="Req.SourceBrief" xml:space="preserve"><value>متطلّب وثيقة المشروع</value></data>
-  <data name="Req.SourceProposal" xml:space="preserve"><value>مقترح المشروع (ليس سياسة رسمية)</value></data>
-  <data name="Req.SourceUnresolved" xml:space="preserve"><value>غير محسوم: يُتحقَّق يدويًا</value></data>
-  <data name="Req.CompanyEvaluation" xml:space="preserve"><value>تقديم التقييم النهائي من الشركة</value></data>
-  <data name="Req.AcademicEvaluation" xml:space="preserve"><value>تقديم التقييم النهائي الأكاديمي</value></data>
-  <data name="Req.SubmittedOn" xml:space="preserve"><value>قُدِّم في {0}</value></data>
-  <data name="Req.NotStartedByCompany" xml:space="preserve"><value>لم يبدأه مشرف الشركة بعد</value></data>
-  <data name="Req.NotStartedByAcademic" xml:space="preserve"><value>لم يبدأه المشرف الأكاديمي بعد</value></data>
-  <data name="Req.DraftNotSubmitted" xml:space="preserve"><value>محفوظ كمسودة ولم يُقدَّم بعد</value></data>
-  <data name="Req.Duration" xml:space="preserve"><value>الحد الأدنى لمدة التدريب</value></data>
-  <data name="Req.DurationDetail" xml:space="preserve"><value>{0} أسبوعًا بين تاريخي البداية والنهاية المسجّلين (الحد الأدنى {1} أسبوعًا بدوام كامل)</value></data>
-  <data name="Req.DurationUnknown" xml:space="preserve"><value>تواريخ التدريب غير مسجّلة، لذلك لا يمكن حساب المدة</value></data>
-  <data name="Req.Hours" xml:space="preserve"><value>اعتماد ساعات التدريب المطلوبة</value></data>
-  <data name="Req.HoursDetail" xml:space="preserve"><value>اعتُمدت {0} من {1} ساعة. تُحتسب الساعات المعتمدة فقط.</value></data>
-  <data name="Req.HoursPending" xml:space="preserve"><value>{0} ساعة ما زالت بانتظار الاعتماد.</value></data>
-  <data name="Req.Tasks" xml:space="preserve"><value>تقييم توثيق المهام</value></data>
-  <data name="Req.TasksDetail" xml:space="preserve"><value>قُيِّمت {0} من {1} مهمة مُسندة</value></data>
-  <data name="Req.NoTasks" xml:space="preserve"><value>لا توجد مهام مسجّلة لهذا التدريب</value></data>
-  <data name="Req.Result" xml:space="preserve"><value>النتيجة المبدئية: ناجح</value></data>
-  <data name="Req.ResultDetail" xml:space="preserve"><value>{0} بنسبة {1}% (علامة النجاح {2}%، طريقة مقترحة من المشروع)</value></data>
-  <data name="Req.ResultWaiting" xml:space="preserve"><value>تُحسب بعد تقديم التقييمين النهائيين</value></data>
-  <data name="Req.NotVerifiedYet" xml:space="preserve"><value>لم يُتحقَّق منه بعد</value></data>
-  <data name="Req.PriorApproval" xml:space="preserve"><value>موافقة القسم قبل بدء التدريب</value></data>
-  <data name="Req.PriorApprovalHint" xml:space="preserve"><value>موافقة موثّقة من القسم أو الكلية قبل أول يوم تدريب. لا تُحتسب الساعات التي تسبق الموافقة.</value></data>
-  <data name="Req.Prerequisites" xml:space="preserve"><value>متطلبات التدريب السابقة (الساعات المعتمدة)</value></data>
-  <data name="Req.PrerequisitesHint" xml:space="preserve"><value>تتعارض صفحات الجامعة (حدود مثل 90 أو 115 ساعة معتمدة، وسطر يذكر 0 ساعة). سجّل ما أكّده القسم.</value></data>
-  <data name="Req.MajorRelevance" xml:space="preserve"><value>ارتباط التدريب بتخصص الطالب</value></data>
-  <data name="Req.MajorRelevanceHint" xml:space="preserve"><value>تتوافق الشركة والمهام مع برنامج الطالب.</value></data>
-  <data name="Req.Schedule" xml:space="preserve"><value>فترة التدريب وجدوله المسموح بهما</value></data>
-  <data name="Req.ScheduleHint" xml:space="preserve"><value>خارج الفصول المسجَّل فيها. تختلف الصياغة الرسمية (4 أسابيع متواصلة أو 4 أسابيع × 8 ساعات أو 8 أسابيع × 4 ساعات لعلم الحاسوب)؛ سجّل الجدول الذي قبله القسم.</value></data>
-  <data name="Req.CompanyEligibility" xml:space="preserve"><value>أهلية الشركة</value></data>
-  <data name="Req.CompanyEligibilityHint" xml:space="preserve"><value>شركة واحدة في مجال ذي صلة، ولا يعمل الطالب لدى قريب له.</value></data>
-  <data name="Req.TrainingForms" xml:space="preserve"><value>نماذج التدريب المحلي موقّعة ومختومة</value></data>
-  <data name="Req.TrainingFormsHint" xml:space="preserve"><value>نماذج موقّعة ومختومة من مشرف الشركة مع قائمة المهام المنفّذة، استلمتها الكلية.</value></data>
-  <data name="Req.TrainingReport" xml:space="preserve"><value>تقرير التدريب</value></data>
-  <data name="Req.TrainingReportHint" xml:space="preserve"><value>استُلم تقرير تدريب الطالب ورُوجع.</value></data>
-  <data name="Req.Endorsement" xml:space="preserve"><value>مراجعة القسم واعتماد العميد</value></data>
-  <data name="Req.EndorsementHint" xml:space="preserve"><value>وقّع رئيس القسم على التقييم والتقرير، واعتمده العميد.</value></data>
-  <data name="Req.PriorContract" xml:space="preserve"><value>اعتماد عقد التدريب قبل البدء</value></data>
-  <data name="Req.PriorContractHint" xml:space="preserve"><value>رُفع العقد الموقّع واعتمده فريق التدريب قبل بدء التدريب.</value></data>
-  <data name="Req.FullTime" xml:space="preserve"><value>تدريب بدوام كامل</value></data>
-  <data name="Req.FullTimeHint" xml:space="preserve"><value>يبيّن العقد دوامًا كاملًا طوال المدة.</value></data>
-  <data name="Req.LocalTrainingDone" xml:space="preserve"><value>إنهاء التدريب الميداني المحلي أولًا</value></data>
-  <data name="Req.LocalTrainingDoneHint" xml:space="preserve"><value>تشترط الأسئلة الشائعة إنهاء التدريب الميداني في الأردن قبل السفر إلى ألمانيا.</value></data>
-  <data name="Req.Certificate" xml:space="preserve"><value>شهادة التدريب</value></data>
-  <data name="Req.CertificateHint" xml:space="preserve"><value>رُفعت شهادة التدريب من الشركة بعد انتهاء التدريب.</value></data>
-  <data name="Req.InternationalReport" xml:space="preserve"><value>تقرير التدريب</value></data>
-  <data name="Req.InternationalReportHint" xml:space="preserve"><value>رُفع تقرير التدريب ضمن الموعد المنشور.</value></data>
-  <data name="Req.FacultyValidation" xml:space="preserve"><value>مصادقة الكلية</value></data>
-  <data name="Req.FacultyValidationHint" xml:space="preserve"><value>صادقت الكلية على الشهادة والتقرير.</value></data>
-  <data name="Req.ErrorNoPlacement" xml:space="preserve"><value>تعذّر تحميل هذا التدريب.</value></data>
-  <data name="Req.ErrorDecided" xml:space="preserve"><value>هذه المراجعة مغلقة ولا يمكن تعديلها.</value></data>
-  <data name="Req.ErrorUnknownCheck" xml:space="preserve"><value>هذا المتطلّب لا ينطبق على نوع التدريب هذا.</value></data>
-  <data name="Req.ErrorStatus" xml:space="preserve"><value>اختر حالة تحقق صحيحة.</value></data>
-  <data name="Req.ErrorEvidence" xml:space="preserve"><value>أضف مرجعًا للدليل لـ «{0}» (مثل رقم نموذج أو اسم ملف أو تاريخ بريد).</value></data>
-  <data name="Req.ErrorType" xml:space="preserve"><value>اختر محلي أو دولي.</value></data>
-  <data name="Req.ErrorNotReady" xml:space="preserve"><value>هذا التدريب لا يستوفي جميع المتطلبات الإلزامية بعد.</value></data>
-  <data name="Req.ErrorCorrectionsNote" xml:space="preserve"><value>اشرح ما يجب على الطالب تصحيحه (5 أحرف على الأقل).</value></data>
-  <data name="Req.ErrorRejectReason" xml:space="preserve"><value>اكتب السبب الموثّق لرفض الإتمام (10 أحرف على الأقل).</value></data>
-  <data name="Req.ErrorAlreadyApproved" xml:space="preserve"><value>اعتُمد إتمام هذا التدريب مسبقًا.</value></data>
-  <data name="Req.ErrorAlreadyRejected" xml:space="preserve"><value>رُفض إتمام هذا التدريب مسبقًا.</value></data>
-  <data name="Req.ErrorChanged" xml:space="preserve"><value>حُفظ قرار آخر لهذا التدريب في الوقت نفسه. حدّث الصفحة وراجع مجددًا.</value></data>
-  <data name="Review.Eyebrow" xml:space="preserve"><value>مراجعة المنسّق</value></data>
-  <data name="Review.QueueIntro" xml:space="preserve"><value>راجع التقييمين النهائيين وسجل التدريب والمتطلبات لكل تدريب، ثم سجّل قرار الإتمام.</value></data>
-  <data name="Review.MetricReady" xml:space="preserve"><value>استُلم التقييمان النهائيان</value></data>
-  <data name="Review.MetricCorrections" xml:space="preserve"><value>أُعيدت إلى الطالب</value></data>
-  <data name="Review.MetricAwaiting" xml:space="preserve"><value>التدريب منتهٍ أو وصل تقييم واحد</value></data>
-  <data name="Review.MetricApproved" xml:space="preserve"><value>صدر التقرير للطالب</value></data>
-  <data name="Review.QueueTitle" xml:space="preserve"><value>مراجعات إتمام التدريب</value></data>
-  <data name="Review.QueueNote" xml:space="preserve"><value>التدريب المؤكَّد ليس جاهزًا تلقائيًا: يحتاج التقييمين النهائيين ومتطلبات موثّقة.</value></data>
-  <data name="Review.Internships" xml:space="preserve"><value>تدريب</value></data>
-  <data name="Review.SearchLabel" xml:space="preserve"><value>ابحث في مراجعات الإتمام</value></data>
-  <data name="Review.SearchPlaceholder" xml:space="preserve"><value>ابحث بالاسم أو الرقم أو الشركة أو التخصص</value></data>
-  <data name="Review.FilterLabel" xml:space="preserve"><value>التصفية حسب حالة المراجعة</value></data>
-  <data name="Review.FilterAll" xml:space="preserve"><value>الكل</value></data>
-  <data name="Review.QueueCaption" xml:space="preserve"><value>التدريبات وحالة مراجعة إتمامها</value></data>
-  <data name="Review.Program" xml:space="preserve"><value>البرنامج الأكاديمي</value></data>
-  <data name="Review.Type" xml:space="preserve"><value>نوع التدريب</value></data>
-  <data name="Review.EvaluationStatus" xml:space="preserve"><value>التقييمات</value></data>
-  <data name="Review.ReviewStatus" xml:space="preserve"><value>حالة المراجعة</value></data>
-  <data name="Review.ProgramCheck" xml:space="preserve"><value>يحتاج إلى تحقق</value></data>
-  <data name="Review.ProgramCheckLong" xml:space="preserve"><value>التخصص المسجّل مفقود أو ليس من برامج كلية الحوسبة. تحقّق من السجل الأكاديمي.</value></data>
-  <data name="Review.TypeDefault" xml:space="preserve"><value>افتراضي (غير محدد)</value></data>
-  <data name="Review.TypeDefaultLong" xml:space="preserve"><value>غير مسجّل في التدريب؛ يُفترض أنه تدريب محلي حتى تحدده.</value></data>
-  <data name="Review.TypeLocal" xml:space="preserve"><value>تدريب ميداني محلي</value></data>
-  <data name="Review.TypeInternational" xml:space="preserve"><value>تدريب دولي (السنة الألمانية)</value></data>
-  <data name="Review.EvalBoth" xml:space="preserve"><value>قُدِّم الاثنان</value></data>
-  <data name="Review.EvalCompanyOnly" xml:space="preserve"><value>الشركة فقط</value></data>
-  <data name="Review.EvalAcademicOnly" xml:space="preserve"><value>الأكاديمي فقط</value></data>
-  <data name="Review.EvalNone" xml:space="preserve"><value>لا شيء بعد</value></data>
-  <data name="Review.StatusInProgress" xml:space="preserve"><value>قيد التنفيذ</value></data>
-  <data name="Review.StatusAwaiting" xml:space="preserve"><value>بانتظار التقييمات</value></data>
-  <data name="Review.StatusReady" xml:space="preserve"><value>جاهز للمراجعة</value></data>
-  <data name="Review.StatusCorrections" xml:space="preserve"><value>يحتاج إلى تصحيحات</value></data>
-  <data name="Review.StatusApproved" xml:space="preserve"><value>معتمد</value></data>
-  <data name="Review.StatusRejected" xml:space="preserve"><value>مرفوض</value></data>
-  <data name="Review.Review" xml:space="preserve"><value>مراجعة</value></data>
-  <data name="Review.Open" xml:space="preserve"><value>فتح</value></data>
-  <data name="Review.NoMatch" xml:space="preserve"><value>لا توجد تدريبات مطابقة لهذا البحث أو التصفية.</value></data>
-  <data name="Review.StatusDisclaimer" xml:space="preserve"><value>هذه حالات سير عمل في النظام، وليست أسماء الحالات الداخلية في MyGJU أو أي نظام جامعي آخر.</value></data>
-  <data name="Review.BackToQueue" xml:space="preserve"><value>جميع مراجعات الإتمام</value></data>
-  <data name="Review.RequirementsMet" xml:space="preserve"><value>المتطلبات الإلزامية المستوفاة</value></data>
-  <data name="Review.RequirementsValue" xml:space="preserve"><value>{0} من {1} مستوفاة</value></data>
-  <data name="Review.DetailsTitle" xml:space="preserve"><value>الطالب والتدريب</value></data>
-  <data name="Review.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
-  <data name="Review.CourseCode" xml:space="preserve"><value>مساق التدريب المحلي {0}</value></data>
-  <data name="Review.WeeksValue" xml:space="preserve"><value>{0} أسبوعًا</value></data>
-  <data name="Review.RequiredDuration" xml:space="preserve"><value>المدة المطلوبة</value></data>
-  <data name="Review.RequiredHours" xml:space="preserve"><value>الساعات المطلوبة</value></data>
-  <data name="Review.MinWeeks" xml:space="preserve"><value>{0} أسبوعًا على الأقل بدوام كامل</value></data>
-  <data name="Review.HoursValue" xml:space="preserve"><value>{0} ساعة اتصال</value></data>
-  <data name="Review.DurationSource" xml:space="preserve"><value>قاعدة منشورة للسنة الألمانية</value></data>
-  <data name="Review.HoursSource" xml:space="preserve"><value>هدف التدريب (التدريب المحلي في الجامعة: 160 ساعة اتصال)</value></data>
-  <data name="Review.PlacementApproval" xml:space="preserve"><value>التدريب</value></data>
-  <data name="Review.ConfirmedOn" xml:space="preserve"><value>أُكِّد في {0}</value></data>
-  <data name="Review.ProfileUnavailable" xml:space="preserve"><value>الملف غير متاح</value></data>
-  <data name="Review.ChangeType" xml:space="preserve"><value>نوع التدريب</value></data>
-  <data name="Review.SaveType" xml:space="preserve"><value>حفظ النوع</value></data>
-  <data name="Review.TypeHelp" xml:space="preserve"><value>يحدد النوع المتطلبات المنطبقة. يُتحقق من التدريب المحلي والدولي وفق قواعد مختلفة.</value></data>
-  <data name="Review.TrainingTitle" xml:space="preserve"><value>سجل التدريب</value></data>
-  <data name="Review.Weeks" xml:space="preserve"><value>أسبوعًا</value></data>
-  <data name="Review.WeeksNote" xml:space="preserve"><value>محسوبة من تاريخي بداية التدريب ونهايته؛ لا تُستخدم الساعات للتدريب الدولي.</value></data>
-  <data name="Review.ApprovedHoursUnit" xml:space="preserve"><value>ساعة معتمدة</value></data>
-  <data name="Review.HoursPercent" xml:space="preserve"><value>{0}% من الساعات المطلوبة</value></data>
-  <data name="Review.HoursApproved" xml:space="preserve"><value>معتمدة</value></data>
-  <data name="Review.HoursPending" xml:space="preserve"><value>معلّقة</value></data>
-  <data name="Review.HoursRejected" xml:space="preserve"><value>مرفوضة</value></data>
-  <data name="Review.TaskEvidence" xml:space="preserve"><value>أدلة المهام: قُيِّمت {0} من {1}</value></data>
-  <data name="Review.TaskEvidenceLabel" xml:space="preserve"><value>أدلة المهام</value></data>
-  <data name="Review.Task" xml:space="preserve"><value>المهمة</value></data>
-  <data name="Review.Deadline" xml:space="preserve"><value>الموعد النهائي</value></data>
-  <data name="Review.Status" xml:space="preserve"><value>الحالة</value></data>
-  <data name="Review.Attempts" xml:space="preserve"><value>المحاولات</value></data>
-  <data name="Review.Grade" xml:space="preserve"><value>العلامة</value></data>
-  <data name="Review.NotGraded" xml:space="preserve"><value>غير مقيَّمة</value></data>
-  <data name="Review.Confidential" xml:space="preserve"><value>سرّي: للمنسّق والمشرفين فقط</value></data>
-  <data name="Review.Submitted" xml:space="preserve"><value>مقدَّم</value></data>
-  <data name="Review.NotStarted" xml:space="preserve"><value>لم يبدأ</value></data>
-  <data name="Review.Draft" xml:space="preserve"><value>مسودة</value></data>
-  <data name="Review.EvaluatedBy" xml:space="preserve"><value>{0} ({1}) · قُدِّم في {2}</value></data>
-  <data name="Review.RoleCompany" xml:space="preserve"><value>مشرف الشركة</value></data>
-  <data name="Review.RoleAcademic" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
-  <data name="Review.Criterion" xml:space="preserve"><value>المعيار</value></data>
-  <data name="Review.Rating" xml:space="preserve"><value>العلامة / المقياس</value></data>
-  <data name="Review.ResultTitle" xml:space="preserve"><value>النتيجة المبدئية</value></data>
-  <data name="Review.ResultNote" xml:space="preserve"><value>محسوبة بطريقة التقييم المقترحة في المشروع. تدعم القرار لكنها لا تعتمد الإتمام بمفردها.</value></data>
-  <data name="Review.Scale" xml:space="preserve"><value>المقياس المسجّل</value></data>
-  <data name="Review.ScaleTasks" xml:space="preserve"><value>كل مهمة على مقياسها</value></data>
-  <data name="Review.ProvisionalScore" xml:space="preserve"><value>العلامة المبدئية</value></data>
-  <data name="Review.ProvisionalResult" xml:space="preserve"><value>النتيجة المبدئية</value></data>
-  <data name="Review.Pass" xml:space="preserve"><value>ناجح</value></data>
-  <data name="Review.Fail" xml:space="preserve"><value>راسب</value></data>
-  <data name="Review.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
-  <data name="Review.ResultExplain" xml:space="preserve"><value>الأوزان وعلامة النجاح {0}% مقترح من مشروع النظام، وليست سياسة منشورة لتقييم التدريب في الجامعة. يرى الطالب نتيجة ناجح/راسب بعد الاعتماد فقط، ولا يرى هذه النماذج.</value></data>
-  <data name="Review.ChecksTitle" xml:space="preserve"><value>متطلبات الإتمام: {0}</value></data>
-  <data name="Review.ChecksNote" xml:space="preserve"><value>يجب استيفاء كل بند إلزامي. تحتاج البنود اليدوية إلى مرجع مكتوب للدليل؛ علامة الاختيار وحدها ليست دليلًا.</value></data>
-  <data name="Review.Automatic" xml:space="preserve"><value>تلقائي</value></data>
-  <data name="Review.Evidence" xml:space="preserve"><value>الدليل</value></data>
-  <data name="Review.ManualTitle" xml:space="preserve"><value>تحقق المنسّق</value></data>
-  <data name="Review.ManualNote" xml:space="preserve"><value>سجّل ما تحققت منه وأين يوجد الدليل. يُحفظ اسمك والوقت مع كل تغيير.</value></data>
-  <data name="Review.EvidencePlaceholder" xml:space="preserve"><value>مرجع الدليل، مثل رقم النموذج أو الملف</value></data>
-  <data name="Review.StatusFor" xml:space="preserve"><value>حالة التحقق لـ</value></data>
-  <data name="Review.EvidenceFor" xml:space="preserve"><value>مرجع الدليل لـ</value></data>
-  <data name="Review.SaveChecks" xml:space="preserve"><value>حفظ التحقق</value></data>
-  <data name="Review.SaveChecksNote" xml:space="preserve"><value>الحفظ لا يعتمد شيئًا. يُتخذ القرار في الأسفل.</value></data>
-  <data name="Review.StatePending" xml:space="preserve"><value>قيد الانتظار</value></data>
-  <data name="Review.StateVerified" xml:space="preserve"><value>تم التحقق</value></data>
-  <data name="Review.StateCorrections" xml:space="preserve"><value>يحتاج إلى تصحيح</value></data>
-  <data name="Review.StateNotApplicable" xml:space="preserve"><value>لا ينطبق</value></data>
-  <data name="Review.StateMet" xml:space="preserve"><value>مستوفى</value></data>
-  <data name="Review.StateMissing" xml:space="preserve"><value>غير مستوفى</value></data>
-  <data name="Review.CheckedBy" xml:space="preserve"><value>سجّله {0} في {1}</value></data>
-  <data name="Review.EvidenceRequired" xml:space="preserve"><value>أضف مرجعًا للدليل (3 أحرف على الأقل) لـ:</value></data>
-  <data name="Review.NothingChanged" xml:space="preserve"><value>لم يتغير شيء. حدّث حالة أو مرجع دليل أولًا.</value></data>
-  <data name="Review.SaveFailed" xml:space="preserve"><value>تعذّر حفظ التغيير. يرجى المحاولة مجددًا.</value></data>
-  <data name="Review.DecisionTitle" xml:space="preserve"><value>قرار المنسّق</value></data>
-  <data name="Review.DocumentsTitle" xml:space="preserve"><value>معتمد: وثائق الإتمام</value></data>
-  <data name="Review.LastDecision" xml:space="preserve"><value>آخر قرار من {0} في {1}</value></data>
-  <data name="Review.ApprovedHeadline" xml:space="preserve"><value>تم التحقق من إتمام التدريب واعتماده</value></data>
-  <data name="Review.DecidedBy" xml:space="preserve"><value>اعتمده</value></data>
-  <data name="Review.ReleasedResult" xml:space="preserve"><value>النتيجة المعلنة</value></data>
-  <data name="Review.SupportingScore" xml:space="preserve"><value>العلامة الداعمة {0}</value></data>
-  <data name="Review.Reference" xml:space="preserve"><value>المرجع</value></data>
-  <data name="Review.ReportDoc" xml:space="preserve"><value>تقرير إتمام التدريب</value></data>
-  <data name="Review.ReportDocNote" xml:space="preserve"><value>صدر للطالب. يعرض النتيجة ولا يعرض النماذج السرية.</value></data>
-  <data name="Review.CertificateDoc" xml:space="preserve"><value>شهادة إتمام التدريب</value></data>
-  <data name="Review.CertificateDocNote" xml:space="preserve"><value>شهادة قابلة للطباعة، متاحة للمنسّق.</value></data>
-  <data name="Review.DownloadPdf" xml:space="preserve"><value>تنزيل PDF</value></data>
-  <data name="Review.Print" xml:space="preserve"><value>طباعة</value></data>
-  <data name="Review.DocsDisclaimer" xml:space="preserve"><value>الوثائق سجلات من مشروع النظام عليها علامة رقمية «UIMS - APPROVED». لا تحمل ختم الجامعة أو توقيعها.</value></data>
-  <data name="Review.RejectedHeadline" xml:space="preserve"><value>لم يُعتمد الإتمام</value></data>
-  <data name="Review.Reason" xml:space="preserve"><value>السبب</value></data>
-  <data name="Review.ReadOnlyNote" xml:space="preserve"><value>هذه المراجعة مغلقة وللقراءة فقط.</value></data>
-  <data name="Review.CorrectionsHeadline" xml:space="preserve"><value>أُعيدت إلى الطالب للتصحيح</value></data>
-  <data name="Review.LockedHeadline" xml:space="preserve"><value>يبقى الاعتماد مقفلًا حتى تُستوفى هذه البنود:</value></data>
-  <data name="Review.DecisionNote" xml:space="preserve"><value>ملاحظة للطالب</value></data>
-  <data name="Review.DecisionNotePlaceholder" xml:space="preserve"><value>اختيارية عند الاعتماد، ومطلوبة عند الإعادة للتصحيح أو الرفض.</value></data>
-  <data name="Review.DecisionNoteHelp" xml:space="preserve"><value>أعِد للتصحيح عندما يمكن إصلاح شيء؛ وارفض فقط لسبب موثّق. أي منهما ليس علامة أكاديمية.</value></data>
-  <data name="Review.Approve" xml:space="preserve"><value>اعتماد إتمام التدريب</value></data>
-  <data name="Review.ReturnForCorrections" xml:space="preserve"><value>إعادة للتصحيح</value></data>
-  <data name="Review.RejectCompletion" xml:space="preserve"><value>رفض الإتمام</value></data>
-  <data name="Review.ConfirmApprove" xml:space="preserve"><value>اعتماد إتمام التدريب؟ سيصدر تقرير الإتمام للطالب.</value></data>
-  <data name="Review.ConfirmCorrections" xml:space="preserve"><value>إعادة هذا الإتمام إلى الطالب للتصحيح؟</value></data>
-  <data name="Review.ConfirmReject" xml:space="preserve"><value>رفض الإتمام؟ سيُغلق هذا المراجعة ولا يمكن التراجع عنه هنا.</value></data>
-  <data name="Review.DialogApproveTitle" xml:space="preserve"><value>اعتماد إتمام التدريب؟</value></data>
-  <data name="Review.DialogApproveText" xml:space="preserve"><value>استوفى {0} جميع متطلبات الإتمام. عند الاعتماد:</value></data>
-  <data name="Review.DialogApprovePoints" xml:space="preserve"><value>يصدر تقرير الإتمام للطالب|تصبح شهادة الإتمام متاحة للتنزيل</value></data>
-  <data name="Review.DialogApproveGo" xml:space="preserve"><value>نعم، اعتمد الإتمام</value></data>
-  <data name="Review.DialogReturnTitle" xml:space="preserve"><value>إعادة للتصحيح؟</value></data>
-  <data name="Review.DialogReturnText" xml:space="preserve"><value>سيُعاد الإتمام إلى {0} لاستكمال العناصر الناقصة.</value></data>
-  <data name="Review.DialogReturnPoints" xml:space="preserve"><value>يرى الطالب ملاحظتك ويمكنه إعادة التقديم|لا يصدر أي شيء حتى تعتمد الإتمام</value></data>
-  <data name="Review.DialogReturnGo" xml:space="preserve"><value>إعادة للتصحيح</value></data>
-  <data name="Review.DialogRejectTitle" xml:space="preserve"><value>رفض هذا الإتمام؟</value></data>
-  <data name="Review.DialogRejectText" xml:space="preserve"><value>سيُغلق هذا مراجعة {0}.</value></data>
-  <data name="Review.DialogRejectPoints" xml:space="preserve"><value>لن يصدر تقرير إتمام أو شهادة|لا يمكن التراجع عن ذلك من هذه الصفحة</value></data>
-  <data name="Review.DialogRejectGo" xml:space="preserve"><value>رفض الإتمام</value></data>
-  <data name="Review.DialogCancel" xml:space="preserve"><value>ليس الآن</value></data>
-  <data name="Review.DialogNote" xml:space="preserve"><value>ملاحظتك</value></data>
-  <data name="Review.DoneApproved" xml:space="preserve"><value>اعتُمد الإتمام. التقرير متاح الآن للطالب.</value></data>
-  <data name="Review.DoneCorrections" xml:space="preserve"><value>أُعيد إلى الطالب للتصحيح. يمكنك مراجعته لاحقًا.</value></data>
-  <data name="Review.DoneRejected" xml:space="preserve"><value>رُفض الإتمام. أُبلغ الطالب بالسبب.</value></data>
-  <data name="Review.DoneChecks" xml:space="preserve"><value>حُفظ التحقق.</value></data>
-  <data name="Review.DoneType" xml:space="preserve"><value>حُفظ نوع التدريب. حُدِّثت قائمة المتطلبات.</value></data>
-  <data name="Review.StampTitle" xml:space="preserve"><value>اعتُمد إتمام التدريب</value></data>
-  <data name="Review.StampContinue" xml:space="preserve"><value>عرض وثائق الإتمام</value></data>
-  <data name="ManageStudents.FilteredByMajor" xml:space="preserve"><value>عرض الطلاب ذوي التخصص:</value></data>
-  <data name="ManageStudents.ClearMajorFilter" xml:space="preserve"><value>عرض جميع الطلاب</value></data>
-  <data name="ManageStudents.FilterMissingMajor" xml:space="preserve"><value>تخصص غير مسجّل</value></data>
-  <data name="ManageStudents.FilterUnrecognizedMajor" xml:space="preserve"><value>تخصص غير معروف</value></data>
-  <data name="Demo.Eyebrow" xml:space="preserve"><value>بيانات تجريبية (على هذا الجهاز فقط)</value></data>
-  <data name="Demo.Title" xml:space="preserve"><value>طالب تجريبي لمراجعة الإتمام</value></data>
-  <data name="Demo.Intro" xml:space="preserve"><value>أنشئ طالبًا تجريبيًا أنهى تدريبه وينتظر قرارك، ثم اعتمده واطبع التقرير والشهادة.</value></data>
-  <data name="Demo.OpenQueue" xml:space="preserve"><value>جميع مراجعات الإتمام</value></data>
-  <data name="Demo.SafetyTitle" xml:space="preserve"><value>ما الذي تغيّره هذه الأداة</value></data>
-  <data name="Demo.SafetyText" xml:space="preserve"><value>تضيف فقط سجلات تجريبية جديدة (مفاتيحها تبدأ بـ demo-) وحساب طالب جديدًا في مشروع Firebase المتصل. تستخدم حسابي مشرف الشركة والمشرف الأكاديمي الموجودين دون تعديلهما، ولا ترسل إشعارات، ولا تعدّل أو تحذف أي بيانات أخرى.</value></data>
-  <data name="Demo.CreateTitle" xml:space="preserve"><value>إنشاء طالب تجريبي</value></data>
-  <data name="Demo.CreateNote" xml:space="preserve"><value>أنت تختار كلمة المرور، ولن تُعرض مرة أخرى.</value></data>
-  <data name="Demo.Name" xml:space="preserve"><value>اسم الطالب الكامل</value></data>
-  <data name="Demo.Email" xml:space="preserve"><value>البريد الإلكتروني لتسجيل الدخول</value></data>
-  <data name="Demo.EmailHelp" xml:space="preserve"><value>استخدم عنوانًا غير مستخدم، مثل demo.student2@example.com.</value></data>
-  <data name="Demo.Password" xml:space="preserve"><value>كلمة المرور</value></data>
-  <data name="Demo.Confirm" xml:space="preserve"><value>تأكيد كلمة المرور</value></data>
-  <data name="Demo.PasswordHelp" xml:space="preserve"><value>6 أحرف على الأقل. ستستخدمها لتسجيل الدخول كهذا الطالب ورؤية التقرير بعد إصداره.</value></data>
-  <data name="Demo.Create" xml:space="preserve"><value>إنشاء الطالب التجريبي</value></data>
-  <data name="Demo.ConfirmCreate" xml:space="preserve"><value>إنشاء طالب تجريبي في مشروع Firebase المتصل؟</value></data>
-  <data name="Demo.WhatTitle" xml:space="preserve"><value>ما الذي يحصل عليه الطالب التجريبي</value></data>
-  <data name="Demo.What1" xml:space="preserve"><value>تدريب محلي مؤكَّد (علم الحاسوب، CS391) في شركتك الموجودة، مع طلب التقديم المقبول.</value></data>
-  <data name="Demo.What2" xml:space="preserve"><value>خمس مهام مقيَّمة على مقاييس مختلفة (من 10 و20 و25 و50 و100)؛ إحداها أُعيدت مرة للتعديل.</value></data>
-  <data name="Demo.What3" xml:space="preserve"><value>160 ساعة تدريب خلال 4 أسابيع، اعتمدها مشرف الشركة كلها.</value></data>
-  <data name="Demo.What4" xml:space="preserve"><value>التقييمان النهائيان السريّان مقدَّمان (الشركة 86 / 100، الأكاديمي 43 / 50).</value></data>
-  <data name="Demo.What5" xml:space="preserve"><value>ست من ثماني بنود تحقق للتدريب المحلي موثّقة مسبقًا بالأدلة.</value></data>
-  <data name="Demo.What6" xml:space="preserve"><value>متروك لك: تقرير التدريب واعتماد العميد، ثم الاعتماد نفسه.</value></data>
-  <data name="Demo.ListTitle" xml:space="preserve"><value>الطلاب التجريبيون</value></data>
-  <data name="Demo.ListNote" xml:space="preserve"><value>إعادة الضبط تعيد التدريب التجريبي إلى «جاهز للمراجعة» لتعرض الاعتماد مرة أخرى.</value></data>
-  <data name="Demo.None" xml:space="preserve"><value>لا يوجد طلاب تجريبيون بعد. أنشئ واحدًا في الأعلى.</value></data>
-  <data name="Demo.Supervisors" xml:space="preserve"><value>المشرفان:</value></data>
-  <data name="Demo.OpenReview" xml:space="preserve"><value>فتح مراجعة الإتمام</value></data>
-  <data name="Demo.Reset" xml:space="preserve"><value>إعادة إلى جاهز للمراجعة</value></data>
-  <data name="Demo.ConfirmReset" xml:space="preserve"><value>إعادة هذا التدريب التجريبي إلى «جاهز للمراجعة»؟ سيُمسح القرار وآخر بندين.</value></data>
-  <data name="Demo.StatusDecided" xml:space="preserve"><value>تم القرار (تصحيح أو رفض)</value></data>
-  <data name="Demo.Created" xml:space="preserve"><value>أُنشئ الطالب التجريبي. التدريب جاهز لمراجعتك.</value></data>
-  <data name="Demo.WasReset" xml:space="preserve"><value>أُعيد التدريب التجريبي إلى «جاهز للمراجعة».</value></data>
-  <data name="Demo.ReviewNow" xml:space="preserve"><value>راجع واعتمد الآن</value></data>
-  <data name="Demo.SignInHint" xml:space="preserve"><value>لاحقًا، سجّل الدخول بالبريد وكلمة المرور التجريبيين لرؤية صفحة الطالب.</value></data>
-  <data name="Demo.StepsTitle" xml:space="preserve"><value>كيف تعرض النتيجة</value></data>
-  <data name="Demo.Step1Title" xml:space="preserve"><value>تحقق من آخر بندين</value></data>
-  <data name="Demo.Step1" xml:space="preserve"><value>افتح مراجعة الإتمام. ضمن «تحقق المنسّق» اجعل «تقرير التدريب» و«مراجعة القسم واعتماد العميد» «تم التحقق»، واكتب مرجعًا للدليل لكل منهما، ثم اضغط «حفظ التحقق».</value></data>
-  <data name="Demo.Step2Title" xml:space="preserve"><value>اعتمد</value></data>
-  <data name="Demo.Step2" xml:space="preserve"><value>أصبحت المتطلبات الـ 13 كلها مستوفاة. اضغط «اعتماد إتمام التدريب»: يظهر ختم الاعتماد بعد حفظ القرار.</value></data>
-  <data name="Demo.Step3Title" xml:space="preserve"><value>نزّل واطبع</value></data>
-  <data name="Demo.Step3" xml:space="preserve"><value>استخدم «تنزيل PDF» و«طباعة» لتقرير إتمام التدريب وللشهادة.</value></data>
-  <data name="Demo.Step4Title" xml:space="preserve"><value>شاهد صفحة الطالب</value></data>
-  <data name="Demo.Step4" xml:space="preserve"><value>سجّل الخروج، ثم ادخل بالبريد وكلمة المرور التجريبيين وافتح «تقدّمي وتقييمي»: الرحلة مكتملة ويمكن تنزيل التقرير.</value></data>
-  <data name="Demo.ErrorName" xml:space="preserve"><value>أدخل اسم الطالب الكامل.</value></data>
-  <data name="Demo.ErrorEmail" xml:space="preserve"><value>أدخل بريدًا إلكترونيًا صحيحًا.</value></data>
-  <data name="Demo.ErrorPassword" xml:space="preserve"><value>يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.</value></data>
-  <data name="Demo.ErrorMatch" xml:space="preserve"><value>كلمتا المرور غير متطابقتين.</value></data>
-  <data name="Demo.ErrorSupervisors" xml:space="preserve"><value>أنشئ أولًا مشرف شركة نشطًا (مرتبطًا بشركة) ومشرفًا أكاديميًا.</value></data>
-  <data name="Demo.ErrorAccount" xml:space="preserve"><value>تعذّر إنشاء الطالب التجريبي. قد يكون البريد مستخدمًا.</value></data>
-  <data name="Demo.ErrorNotDemo" xml:space="preserve"><value>يمكن إعادة ضبط الطلاب التجريبيين الذين أنشأتهم هذه الأداة فقط.</value></data>
-  <data name="Demo.ErrorLoad" xml:space="preserve"><value>تعذّر تحميل البيانات التجريبية. حاول مرة أخرى.</value></data>
-  <data name="Export.Button" xml:space="preserve"><value>تصدير الدرجات إلى Excel</value></data>
-  <data name="Export.SheetName" xml:space="preserve"><value>الدرجات والنتائج</value></data>
-  <data name="Export.Failed" xml:space="preserve"><value>تعذّر تصدير الدرجات. حاول مرة أخرى.</value></data>
-  <data name="Export.StudentName" xml:space="preserve"><value>اسم الطالب</value></data>
-  <data name="Export.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
-  <data name="Export.Program" xml:space="preserve"><value>البرنامج</value></data>
-  <data name="Export.Company" xml:space="preserve"><value>الشركة</value></data>
-  <data name="Export.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
-  <data name="Export.InternshipType" xml:space="preserve"><value>نوع التدريب</value></data>
-  <data name="Export.ApprovedHours" xml:space="preserve"><value>الساعات المعتمدة</value></data>
-  <data name="Export.RequiredHours" xml:space="preserve"><value>الساعات المطلوبة</value></data>
-  <data name="Export.TasksGraded" xml:space="preserve"><value>المهام المقيّمة</value></data>
-  <data name="Export.TaskScore" xml:space="preserve"><value>درجة المهام (%)</value></data>
-  <data name="Export.CompanyScore" xml:space="preserve"><value>تقييم الشركة (%)</value></data>
-  <data name="Export.AcademicScore" xml:space="preserve"><value>التقييم الأكاديمي (%)</value></data>
-  <data name="Export.FinalScore" xml:space="preserve"><value>الدرجة النهائية (%)</value></data>
-  <data name="Export.Result" xml:space="preserve"><value>النتيجة</value></data>
-  <data name="Export.ReviewStatus" xml:space="preserve"><value>حالة المراجعة</value></data>
-  <data name="Export.DecidedOn" xml:space="preserve"><value>تاريخ القرار</value></data>
-  <data name="AcademicSupervisors.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
-  <data name="AcademicSupervisors.AddSupervisorShort" xml:space="preserve"><value>إضافة مشرف</value></data>
-  <data name="AcademicSupervisors.ConfirmRemoveAccess" xml:space="preserve"><value>هل تريد إزالة صلاحية دخول هذا المشرف؟ ستبقى المجموعات المسندة والسجل محفوظة.</value></data>
-  <data name="AcademicSupervisors.ContactInformation" xml:space="preserve"><value>معلومات التواصل</value></data>
-  <data name="AcademicSupervisors.CouldNotDeleteSupervisor" xml:space="preserve"><value>تعذّر حذف المشرف. يرجى المحاولة مرة أخرى.</value></data>
-  <data name="AcademicSupervisors.Delete" xml:space="preserve"><value>حذف</value></data>
-  <data name="AcademicSupervisors.DeleteBlocked" xml:space="preserve"><value>ما زال لدى هذا المشرف مجموعات أو طلاب. انقلهم إلى مشرف آخر أو احذف المجموعات أولاً ثم حاول مرة أخرى.</value></data>
-  <data name="AcademicSupervisors.DeleteExplanation" xml:space="preserve"><value>سيؤدي هذا إلى حذف ملف المشرف نهائياً ولن يتمكن من تسجيل الدخول بعد ذلك. لا يمكن التراجع عن هذا الإجراء.</value></data>
-  <data name="AcademicSupervisors.DeletePermanently" xml:space="preserve"><value>حذف نهائي</value></data>
-  <data name="AcademicSupervisors.DeleteSupervisorQuestion" xml:space="preserve"><value>حذف هذا المشرف؟</value></data>
-  <data name="AcademicSupervisors.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ واعرض التفاصيل أو أدِر أي مشرف.</value></data>
-  <data name="AcademicSupervisors.DirectoryIntro" xml:space="preserve"><value>أنشئ حسابات المشرفين وراجع مجموعاتهم وطلابهم، وفعّل حساباتهم أو أوقفها.</value></data>
-  <data name="AcademicSupervisors.NoGroupsYet" xml:space="preserve"><value>لا توجد مجموعات بعد</value></data>
-  <data name="AcademicSupervisors.OpenGroups" xml:space="preserve"><value>فتح المجموعات</value></data>
-  <data name="AcademicSupervisors.Students" xml:space="preserve"><value>الطلاب</value></data>
-  <data name="AcademicSupervisors.Supervision" xml:space="preserve"><value>الإشراف</value></data>
-  <data name="AcademicSupervisors.SupervisorDeleted" xml:space="preserve"><value>تم حذف {0}.</value></data>
-  <data name="AcademicSupervisors.SupervisorDetails" xml:space="preserve"><value>تفاصيل المشرف</value></data>
-  <data name="AcademicSupervisors.SupervisorDirectory" xml:space="preserve"><value>دليل المشرفين</value></data>
-  <data name="AcademicSupervisors.SupervisorInformation" xml:space="preserve"><value>معلومات المشرف</value></data>
-  <data name="AcademicSupervisors.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
-  <data name="Dashboard.ActionAddStudent" xml:space="preserve"><value>إضافة طالب</value></data>
-  <data name="Dashboard.ActionCompanies" xml:space="preserve"><value>إدارة الشركات</value></data>
-  <data name="Dashboard.ProgrammeHealth" xml:space="preserve"><value>مؤشرات البرنامج</value></data>
-  <data name="Dashboard.ProgrammeHealthContext" xml:space="preserve"><value>حالات تحتاج إلى متابعة، ثم إجماليات البرنامج.</value></data>
-  <data name="Dashboard.QuickActions" xml:space="preserve"><value>إجراءات سريعة</value></data>
-  <data name="Dashboard.QuickActionsContext" xml:space="preserve"><value>انتقل مباشرة إلى مهام المنسق الأكثر استخداماً.</value></data>
-  <data name="Dashboard.ShowingOf" xml:space="preserve"><value>عرض {0} من أصل {1} طالب</value></data>
-  <data name="Dashboard.StatActiveOf" xml:space="preserve"><value>{0} نشطة</value></data>
-  <data name="Dashboard.StatAllClear" xml:space="preserve"><value>لا يوجد ما يستدعي المتابعة</value></data>
-  <data name="Dashboard.StatAwaitingCompletion" xml:space="preserve"><value>تدريبات بانتظار الإكمال</value></data>
-  <data name="Dashboard.StatCompanies" xml:space="preserve"><value>الشركات</value></data>
-  <data name="Dashboard.StatLinkedToPlacements" xml:space="preserve"><value>مرتبطة بالتدريبات</value></data>
-  <data name="Dashboard.StatNeedsFollowUp" xml:space="preserve"><value>تحتاج إلى متابعة</value></data>
-  <data name="Dashboard.StatOpenOf" xml:space="preserve"><value>{0} مفتوحة</value></data>
-  <data name="Dashboard.StatOpportunities" xml:space="preserve"><value>الفرص</value></data>
-  <data name="Dashboard.StatOverdueTasks" xml:space="preserve"><value>مهام متأخرة غير مقيّمة</value></data>
-  <data name="Dashboard.StatPendingHours" xml:space="preserve"><value>ساعات بانتظار موافقة الشركة</value></data>
-  <data name="Dashboard.StatTaskEvaluations" xml:space="preserve"><value>تقييمات المهام</value></data>
-  <data name="Dashboard.UpdatedAt" xml:space="preserve"><value>آخر تحديث {0} UTC</value></data>
-  <data name="Dashboard.ViewMore" xml:space="preserve"><value>عرض المزيد</value></data>
-  <data name="Groups.ClearSelection" xml:space="preserve"><value>مسح الاختيار</value></data>
-  <data name="Groups.Done" xml:space="preserve"><value>تم</value></data>
-  <data name="Groups.IdLabel" xml:space="preserve"><value>الرقم</value></data>
-  <data name="Groups.PickerHelp" xml:space="preserve"><value>تظهر هنا فقط الطلاب غير المنضمين إلى مجموعة (بالإضافة إلى أعضاء هذه المجموعة عند التعديل). افتح القائمة للبحث أو التصفية حسب التخصص أو الحالة أو لتحديد جميع الظاهرين.</value></data>
-  <data name="Groups.SearchStudents" xml:space="preserve"><value>ابحث بالاسم أو الرقم أو البريد أو التخصص</value></data>
-  <data name="Groups.SelectAllShown" xml:space="preserve"><value>تحديد كل الظاهرين</value></data>
-  <data name="Groups.SelectStudents" xml:space="preserve"><value>اختر الطلاب</value></data>
-  <data name="ManageStudents.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
-  <data name="ManageStudents.AllMajors" xml:space="preserve"><value>كل التخصصات</value></data>
-  <data name="ManageStudents.AllStatuses" xml:space="preserve"><value>كل الحالات</value></data>
-  <data name="ManageStudents.ConfirmRemoveAccess" xml:space="preserve"><value>هل تريد إزالة صلاحية دخول هذا الطالب؟ سيبقى سجله وتاريخ تدريبه محفوظين.</value></data>
-  <data name="ManageStudents.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
-  <data name="ManageStudents.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ حسب التخصص أو الحالة، ثم اعرض التفاصيل أو أدِر الطالب.</value></data>
-  <data name="ManageStudents.DirectoryIntro" xml:space="preserve"><value>جميع طلاب البرنامج. أضف طلاباً واعرض تفاصيلهم وملفاتهم، أو حدّث المعلومات الأكاديمية وصلاحية الدخول.</value></data>
-  <data name="ManageStudents.Group" xml:space="preserve"><value>المجموعة</value></data>
-  <data name="ManageStudents.LoginEmail" xml:space="preserve"><value>البريد الإلكتروني للدخول</value></data>
-  <data name="ManageStudents.NoGroup" xml:space="preserve"><value>لا توجد مجموعة بعد</value></data>
-  <data name="ManageStudents.NoPlacement" xml:space="preserve"><value>لا يوجد تدريب بعد</value></data>
-  <data name="ManageStudents.NotAssigned" xml:space="preserve"><value>غير مسند</value></data>
-  <data name="ManageStudents.NotRecorded" xml:space="preserve"><value>غير مسجل</value></data>
-  <data name="ManageStudents.PersonalInformation" xml:space="preserve"><value>المعلومات الشخصية</value></data>
-  <data name="ManageStudents.Phone" xml:space="preserve"><value>الهاتف</value></data>
-  <data name="ManageStudents.Placement" xml:space="preserve"><value>التدريب</value></data>
-  <data name="ManageStudents.StatusActive" xml:space="preserve"><value>نشط</value></data>
-  <data name="ManageStudents.StatusInactive" xml:space="preserve"><value>غير نشط</value></data>
-  <data name="ManageStudents.StudentDetails" xml:space="preserve"><value>تفاصيل الطالب</value></data>
-  <data name="ManageStudents.StudentDirectory" xml:space="preserve"><value>دليل الطلاب</value></data>
-  <data name="ManageStudents.TrainingAndSupervision" xml:space="preserve"><value>التدريب والإشراف</value></data>
-  <data name="ManageStudents.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
-  <data name="ManageStudents.ViewDetails" xml:space="preserve"><value>عرض التفاصيل</value></data>
-  <data name="ManageStudents.ViewProfile" xml:space="preserve"><value>عرض الملف الشخصي</value></data>
-  <data name="Students.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
-  <data name="Students.AcademicSupervisor" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
-  <data name="Students.AllStudents" xml:space="preserve"><value>كل الطلاب</value></data>
-  <data name="Students.Company" xml:space="preserve"><value>الشركة</value></data>
-  <data name="Students.CompanySupervisor" xml:space="preserve"><value>مشرف الشركة</value></data>
-  <data name="Students.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
-  <data name="Students.EndDate" xml:space="preserve"><value>تاريخ الانتهاء</value></data>
-  <data name="Students.Group" xml:space="preserve"><value>المجموعة</value></data>
-  <data name="Students.InternshipPlacement" xml:space="preserve"><value>تدريب الطالب</value></data>
-  <data name="Students.NoPlacementYet" xml:space="preserve"><value>لم يؤكد هذا الطالب أي تدريب بعد.</value></data>
-  <data name="Students.Opportunity" xml:space="preserve"><value>الفرصة</value></data>
-  <data name="Students.PersonalInformation" xml:space="preserve"><value>المعلومات الشخصية</value></data>
-  <data name="Students.Placement" xml:space="preserve"><value>التدريب</value></data>
-  <data name="Students.StartDate" xml:space="preserve"><value>تاريخ البدء</value></data>
-  <data name="Students.StudentProfile" xml:space="preserve"><value>ملف الطالب</value></data>
-  <data name="Students.TrainingProgress" xml:space="preserve"><value>تقدّم التدريب</value></data>
-  <data name="Dashboard.ApprovalMonthDescription" xml:space="preserve"><value>إتمام التدريب المؤرخ، حسب شهر الموافقة المسجّل.</value></data>
-  <data name="Dashboard.ChartTableAlternative" xml:space="preserve"><value>يمكن قراءة القيم الشهرية في جدول البيانات أدناه.</value></data>
-  <data name="Dashboard.StudentsByMajor" xml:space="preserve"><value>الطلبة حسب التخصص</value></data>
-  <data name="Dashboard.MajorDescription" xml:space="preserve"><value>توزيع طلبة كلية الحوسبة حسب التخصص الأكاديمي.</value></data>
-  <data name="Dashboard.TwelveMonthCaption" xml:space="preserve"><value>{0} – {1} · UTC · موافقات المنسّق المسجّلة</value></data>
-  <data name="Dashboard.ViewStudents" xml:space="preserve"><value>عرض الطلبة</value></data>
-  <data name="Dashboard.ViewPending" xml:space="preserve"><value>عرض الإسنادات المعلقة</value></data>
-  <data name="Dashboard.ViewReviews" xml:space="preserve"><value>عرض المراجعات</value></data>
-  <data name="Dashboard.ViewApprovals" xml:space="preserve"><value>عرض الموافقات</value></data>
-  <data name="Dashboard.UndatedApprovals" xml:space="preserve"><value>توجد {0} حالة إكمال معتمدة دون تاريخ موافقة صالح، ولم تُحتسب في الرسم.</value></data>
-  <data name="Dashboard.DatedApprovalsNote" xml:space="preserve"><value>تُحتسب الموافقات ذات التاريخ المسجّل فقط. الأشهر دون موافقات مؤرخة تظهر بصفر.</value></data>
-  <data name="Dashboard.DeskDescription" xml:space="preserve"><value>نظرة واضحة على الطلاب ومتابعة التدريب وقرارات الإكمال.</value></data>
-  <data name="Dashboard.CurrentOverview" xml:space="preserve"><value>نظرة عامة على البرنامج</value></data>
-  <data name="Dashboard.SnapshotScope" xml:space="preserve"><value>جميع ملفات الطلاب والتدريبات المؤكدة · السجلات الحالية</value></data>
-  <data name="Dashboard.StudentProfiles" xml:space="preserve"><value>ملفات الطلاب</value></data>
-  <data name="Dashboard.StudentProfileContext" xml:space="preserve"><value>{0} نشط · {1} غير نشط</value></data>
-  <data name="Dashboard.ActivePlacementContext" xml:space="preserve"><value>مؤكدة أو قيد التدريب حاليًا</value></data>
-  <data name="Dashboard.ReadyHelp" xml:space="preserve"><value>تحقّق هدف التدريب واستُلم التقييمان؛ راجع المتطلبات قبل الاعتماد</value></data>
-  <data name="Dashboard.ApprovalsLastYear" xml:space="preserve"><value>الموافقات · آخر 12 شهرًا</value></data>
-  <data name="Dashboard.RecordedApprovalDates" xml:space="preserve"><value>حالات إكمال لها تاريخ موافقة مسجّل</value></data>
-  <data name="Dashboard.FollowUpTitle" xml:space="preserve"><value>حالات المتابعة</value></data>
-  <data name="Dashboard.FollowUpDescription" xml:space="preserve"><value>افتح الفئة لعرض الطلاب أو سجلات التدريب التي تحتاج إلى متابعة.</value></data>
-  <data name="Dashboard.UnassignedStudents" xml:space="preserve"><value>طلاب دون مشرف أكاديمي</value></data>
-  <data name="Dashboard.AssignmentHelp" xml:space="preserve"><value>ملفات طلاب نشطة تنتظر تعيين مشرف أكاديمي</value></data>
-  <data name="Dashboard.OverdueTasks" xml:space="preserve"><value>مهام متأخرة دون تقييم</value></data>
-  <data name="Dashboard.OverdueHelp" xml:space="preserve"><value>تجاوزت الموعد النهائي ضمن تدريبات لم تنتهِ بعد</value></data>
-  <data name="Dashboard.PendingHours" xml:space="preserve"><value>ساعات تنتظر اعتماد الشركة</value></data>
-  <data name="Dashboard.PendingHoursHelp" xml:space="preserve"><value>ساعات مبلّغ عنها ضمن تدريبات لم تنتهِ بعد، وتنتظر اعتماد الشركة</value></data>
-  <data name="Dashboard.ReturnedCompletions" xml:space="preserve"><value>حالات إكمال أُعيدت للمتابعة</value></data>
-  <data name="Dashboard.ReturnedHelp" xml:space="preserve"><value>قرارات إكمال أُعيدت للتصحيح أو رُفضت</value></data>
-  <data name="Dashboard.NeedsAttention" xml:space="preserve"><value>تحتاج متابعة</value></data>
-  <data name="Dashboard.NoFollowUp" xml:space="preserve"><value>لا توجد حالات معلّقة</value></data>
-  <data name="Dashboard.ViewAffectedRecords" xml:space="preserve"><value>عرض السجلات المعنية</value></data>
-  <data name="Dashboard.SearchRelatedRecords" xml:space="preserve"><value>ابحث في هذه السجلات</value></data>
-  <data name="Dashboard.NoRelatedRecordsMatch" xml:space="preserve"><value>لا توجد سجلات تطابق بحثك.</value></data>
-  <data name="Dashboard.Records" xml:space="preserve"><value>سجل</value></data>
-  <data name="Dashboard.MajorScopeDescription" xml:space="preserve"><value>جميع ملفات الطلاب، بما فيها غير النشطة والتخصصات غير المسجّلة.</value></data>
-  <data name="Dashboard.NoStudents" xml:space="preserve"><value>لا يوجد طلاب في هذا التخصص</value></data>
-  <data name="Dashboard.CompletionStages" xml:space="preserve"><value>مراحل مراجعة الإكمال</value></data>
-  <data name="Dashboard.CompletionStageHelp" xml:space="preserve"><value>مرحلة واحدة لكل تدريب في قائمة مراجعة الإكمال، باستثناء التدريبات الملغاة.</value></data>
-  <data name="Dashboard.NoDatedApprovals" xml:space="preserve"><value>لا توجد موافقات مؤرخة في هذه الفترة</value></data>
-  <data name="Dashboard.ApprovalEmptyHelp" xml:space="preserve"><value>تظهر موافقات الإكمال هنا عند تسجيل قرار المنسّق.</value></data>
-  <data name="Dashboard.MonthlyApprovalData" xml:space="preserve"><value>عرض بيانات الموافقات الشهرية</value></data>
-  <data name="Dashboard.RecentPlacementHelp" xml:space="preserve"><value>أحدث خمسة تدريبات بحسب تاريخ التأكيد، مع تقدّمها الحالي.</value></data>
-  <data name="Dashboard.AllPlacements" xml:space="preserve"><value>جميع التدريبات</value></data>
-  <data name="Dashboard.PlacementStatus" xml:space="preserve"><value>حالة التدريب</value></data>
-  <data name="Dashboard.ProgrammeDirectory" xml:space="preserve"><value>دليل البرنامج</value></data>
-  <data name="Dashboard.CompanyCount" xml:space="preserve"><value>{0} شركة · {1} نشطة</value></data>
-  <data name="Dashboard.OpportunityCount" xml:space="preserve"><value>{0} فرصة · {1} متاحة للتقديم</value></data>
-  <data name="Dashboard.ScriptHelp" xml:space="preserve"><value>فعّل JavaScript لعرض قوائم السجلات. تظل البيانات الشهرية وروابط التدريبات متاحة.</value></data>
-  <data name="Dashboard.RequirementsPending" xml:space="preserve"><value>متطلبات لم تُستوفَ بعد</value></data>
-  <data name="Dashboard.ViewActivePlacements" xml:space="preserve"><value>عرض التدريبات الجارية</value></data>
-  <data name="Dashboard.MajorComputerScience" xml:space="preserve"><value>علم الحاسوب</value></data>
-  <data name="Dashboard.MajorComputerEngineering" xml:space="preserve"><value>هندسة الحاسوب</value></data>
-  <data name="Dashboard.MajorGameDesign" xml:space="preserve"><value>تصميم الألعاب وعلم حاسوب الوسائط</value></data>
-  <data name="Dashboard.AllClearTitle" xml:space="preserve"><value>لا توجد حالات تحتاج إلى متابعة حاليًا</value></data>
-  <data name="Dashboard.AllClearHelp" xml:space="preserve"><value>لا توجد إسنادات معلّقة أو مهام متأخرة أو ساعات تنتظر الاعتماد أو حالات إكمال معادة في السجلات الحالية.</value></data>
-  <data name="ConfiguredGroups.TotalGroups" xml:space="preserve"><value>إجمالي المجموعات</value></data>
-  <data name="ConfiguredGroups.AllYears" xml:space="preserve"><value>جميع الأعوام</value></data>
-  <data name="ConfiguredGroups.AllSemesters" xml:space="preserve"><value>جميع الفصول</value></data>
-  <data name="ConfiguredGroups.AllSupervisors" xml:space="preserve"><value>جميع المشرفين</value></data>
-  <data name="ConfiguredGroups.CreateGroupLabel" xml:space="preserve"><value>إنشاء مجموعة</value></data>
-  <data name="ConfiguredGroups.Edit" xml:space="preserve"><value>تعديل</value></data>
-  <data name="ConfiguredGroups.SearchPlaceholder" xml:space="preserve"><value>ابحث باسم المجموعة أو العام أو الفصل أو المشرف...</value></data>
-  <data name="ConfiguredGroups.ShowingGroups" xml:space="preserve"><value>عرض {0} إلى {1} من {2} مجموعات</value></data>
-  <data name="ConfiguredGroups.Pagination" xml:space="preserve"><value>صفحات المجموعات</value></data>
-  <data name="ConfiguredGroups.Previous" xml:space="preserve"><value>الصفحة السابقة</value></data>
-  <data name="ConfiguredGroups.Next" xml:space="preserve"><value>الصفحة التالية</value></data>
-  <data name="AccountAccess.Block" xml:space="preserve"><value>حظر</value></data>
-  <data name="AccountAccess.Unblock" xml:space="preserve"><value>إلغاء الحظر</value></data>
-  <data name="AccountAccess.Active" xml:space="preserve"><value>نشط</value></data>
-  <data name="AccountAccess.Blocked" xml:space="preserve"><value>محظور</value></data>
-  <data name="AccountAccess.ConfirmBlock" xml:space="preserve"><value>هل أنت متأكد من حظر {0}؟ لن يتمكن من تسجيل الدخول، وسيتم الاحتفاظ بسجلاته وتاريخه.</value></data>
-  <data name="AccountAccess.ConfirmUnblock" xml:space="preserve"><value>هل أنت متأكد من إلغاء حظر {0}؟ سيتمكن من تسجيل الدخول مجددًا.</value></data>
-  <data name="AccountAccess.StudentBlocked" xml:space="preserve"><value>تم حظر الطالب مع الاحتفاظ بسجله وتاريخ تدريبه.</value></data>
-  <data name="AccountAccess.StudentUnblocked" xml:space="preserve"><value>تم إلغاء حظر الطالب ويمكنه تسجيل الدخول مجددًا.</value></data>
-  <data name="AccountAccess.SupervisorBlocked" xml:space="preserve"><value>تم حظر المشرف الأكاديمي مع الاحتفاظ بالمجموعات المسندة والسجل.</value></data>
-  <data name="AccountAccess.SupervisorUnblocked" xml:space="preserve"><value>تم إلغاء حظر المشرف الأكاديمي ويمكنه تسجيل الدخول مجددًا.</value></data>
-  <data name="PlacementDetails.Pending" xml:space="preserve"><value>قيد الانتظار</value></data>
-  <data name="PlacementDetails.PlacementDetails" xml:space="preserve"><value>تفاصيل التدريب</value></data>
-  <data name="PlacementDetails.PlacementNotFound" xml:space="preserve"><value>لم يتم العثور على التدريب.</value></data>
+  <data name="SupervisorProfile.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
+  <data name="SupervisorProfile.AcademicProfile" xml:space="preserve"><value>ملف المشرف الأكاديمي</value></data>
+  <data name="SupervisorProfile.AcademicRank" xml:space="preserve"><value>الرتبة الأكاديمية</value></data>
+  <data name="SupervisorProfile.AccountStatus" xml:space="preserve"><value>حالة الحساب</value></data>
+  <data name="SupervisorProfile.Action" xml:space="preserve"><value>الإجراء</value></data>
+  <data name="SupervisorProfile.Address" xml:space="preserve"><value>العنوان</value></data>
   <data name="SupervisorProfile.AllAcademicSupervisors" xml:space="preserve"><value>كل المشرفين الأكاديميين</value></data>
   <data name="SupervisorProfile.AllCompanySupervisors" xml:space="preserve"><value>كل مشرفي الشركات</value></data>
-  <data name="SupervisorProfile.AcademicProfile" xml:space="preserve"><value>ملف المشرف الأكاديمي</value></data>
-  <data name="SupervisorProfile.CompanyProfile" xml:space="preserve"><value>ملف مشرف الشركة</value></data>
-  <data name="SupervisorProfile.SendEmail" xml:space="preserve"><value>إرسال بريد إلكتروني</value></data>
-  <data name="SupervisorProfile.Groups" xml:space="preserve"><value>المجموعات المسندة</value></data>
-  <data name="SupervisorProfile.Students" xml:space="preserve"><value>الطلاب</value></data>
-  <data name="SupervisorProfile.WithPlacement" xml:space="preserve"><value>لديهم تدريب</value></data>
-  <data name="SupervisorProfile.Department" xml:space="preserve"><value>القسم</value></data>
-  <data name="SupervisorProfile.ContactInformation" xml:space="preserve"><value>معلومات التواصل</value></data>
-  <data name="SupervisorProfile.LoginEmail" xml:space="preserve"><value>البريد الإلكتروني للدخول</value></data>
-  <data name="SupervisorProfile.Phone" xml:space="preserve"><value>الهاتف</value></data>
-  <data name="SupervisorProfile.AccountStatus" xml:space="preserve"><value>حالة الحساب</value></data>
-  <data name="SupervisorProfile.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
-  <data name="SupervisorProfile.AcademicInformation" xml:space="preserve"><value>المعلومات الأكاديمية</value></data>
-  <data name="SupervisorProfile.AcademicRank" xml:space="preserve"><value>الرتبة الأكاديمية</value></data>
-  <data name="SupervisorProfile.NoGroups" xml:space="preserve"><value>لا توجد مجموعات مسندة بعد.</value></data>
-  <data name="SupervisorProfile.SupervisedStudents" xml:space="preserve"><value>الطلاب تحت الإشراف</value></data>
-  <data name="SupervisorProfile.SupervisedStudentsHelp" xml:space="preserve"><value>الطلاب المسندون لهذا المشرف مع تدريبهم وساعاتهم المعتمدة.</value></data>
-  <data name="SupervisorProfile.NoStudents" xml:space="preserve"><value>لا يوجد طلاب مسندون لهذا المشرف بعد.</value></data>
   <data name="SupervisorProfile.Company" xml:space="preserve"><value>الشركة</value></data>
-  <data name="SupervisorProfile.JobTitle" xml:space="preserve"><value>المسمى الوظيفي</value></data>
-  <data name="SupervisorProfile.Interns" xml:space="preserve"><value>المتدربون</value></data>
-  <data name="SupervisorProfile.CompanyInformation" xml:space="preserve"><value>معلومات الشركة</value></data>
-  <data name="SupervisorProfile.Industry" xml:space="preserve"><value>القطاع</value></data>
-  <data name="SupervisorProfile.Address" xml:space="preserve"><value>العنوان</value></data>
-  <data name="SupervisorProfile.Website" xml:space="preserve"><value>الموقع الإلكتروني</value></data>
   <data name="SupervisorProfile.CompanyContact" xml:space="preserve"><value>تواصل الشركة</value></data>
+  <data name="SupervisorProfile.CompanyInformation" xml:space="preserve"><value>معلومات الشركة</value></data>
   <data name="SupervisorProfile.CompanyInterns" xml:space="preserve"><value>المتدربون تحت الإشراف</value></data>
   <data name="SupervisorProfile.CompanyInternsHelp" xml:space="preserve"><value>الطلاب الذين يحدد تدريبهم هذا المشرف مع ساعاتهم المعتمدة.</value></data>
+  <data name="SupervisorProfile.CompanyProfile" xml:space="preserve"><value>ملف مشرف الشركة</value></data>
+  <data name="SupervisorProfile.ContactInformation" xml:space="preserve"><value>معلومات التواصل</value></data>
+  <data name="SupervisorProfile.CreatedOn" xml:space="preserve"><value>تاريخ إنشاء الحساب</value></data>
+  <data name="SupervisorProfile.Department" xml:space="preserve"><value>القسم</value></data>
+  <data name="SupervisorProfile.Groups" xml:space="preserve"><value>المجموعات المسندة</value></data>
+  <data name="SupervisorProfile.Industry" xml:space="preserve"><value>القطاع</value></data>
+  <data name="SupervisorProfile.Interns" xml:space="preserve"><value>المتدربون</value></data>
+  <data name="SupervisorProfile.JobTitle" xml:space="preserve"><value>المسمى الوظيفي</value></data>
+  <data name="SupervisorProfile.LoadError" xml:space="preserve"><value>تعذر تحميل بيانات المشرف. حاول مرة أخرى.</value></data>
+  <data name="SupervisorProfile.LoginEmail" xml:space="preserve"><value>البريد الإلكتروني للدخول</value></data>
+  <data name="SupervisorProfile.NoGroups" xml:space="preserve"><value>لا توجد مجموعات مسندة بعد.</value></data>
   <data name="SupervisorProfile.NoInterns" xml:space="preserve"><value>لا يوجد متدربون مرتبطون بهذا المشرف بعد.</value></data>
+  <data name="SupervisorProfile.NoStudents" xml:space="preserve"><value>لا يوجد طلاب مسندون لهذا المشرف بعد.</value></data>
+  <data name="SupervisorProfile.NotFound" xml:space="preserve"><value>لم يتم العثور على سجل المشرف.</value></data>
+  <data name="SupervisorProfile.Phone" xml:space="preserve"><value>الهاتف</value></data>
+  <data name="SupervisorProfile.Placement" xml:space="preserve"><value>التدريب</value></data>
+  <data name="SupervisorProfile.SendEmail" xml:space="preserve"><value>إرسال بريد إلكتروني</value></data>
   <data name="SupervisorProfile.Student" xml:space="preserve"><value>الطالب</value></data>
   <data name="SupervisorProfile.StudentNumber" xml:space="preserve"><value>الرقم الجامعي</value></data>
-  <data name="SupervisorProfile.Placement" xml:space="preserve"><value>التدريب</value></data>
+  <data name="SupervisorProfile.Students" xml:space="preserve"><value>الطلاب</value></data>
+  <data name="SupervisorProfile.SupervisedStudents" xml:space="preserve"><value>الطلاب تحت الإشراف</value></data>
+  <data name="SupervisorProfile.SupervisedStudentsHelp" xml:space="preserve"><value>الطلاب المسندون لهذا المشرف مع تدريبهم وساعاتهم المعتمدة.</value></data>
   <data name="SupervisorProfile.TrainingHours" xml:space="preserve"><value>ساعات التدريب</value></data>
-  <data name="SupervisorProfile.Action" xml:space="preserve"><value>الإجراء</value></data>
-  <data name="SupervisorProfile.NotFound" xml:space="preserve"><value>لم يتم العثور على سجل المشرف.</value></data>
-  <data name="SupervisorProfile.LoadError" xml:space="preserve"><value>تعذر تحميل بيانات المشرف. حاول مرة أخرى.</value></data>
-  <data name="Companies.Crumb" xml:space="preserve"><value>منسّق التدريب / الشركات</value></data>
-  <data name="Companies.DirectoryIntro" xml:space="preserve"><value>أنشئ حسابات مشرفي الشركات واربطها بشركة، وتحكّم في صلاحية دخولهم.</value></data>
-  <data name="Companies.DirectoryHelp" xml:space="preserve"><value>ابحث وصفِّ واعرض التفاصيل أو غيّر صلاحية دخول أي مشرف.</value></data>
-  <data name="Companies.SearchPlaceholder" xml:space="preserve"><value>ابحث بالاسم أو البريد أو الشركة</value></data>
-  <data name="Companies.NoMatch" xml:space="preserve"><value>لا يوجد مشرفون مطابقون لبحثك.</value></data>
-  <data name="Companies.NoSupervisorsYet" xml:space="preserve"><value>لا يوجد مشرفو شركات بعد. أضف أول مشرف.</value></data>
-  <data name="Companies.Deactivate" xml:space="preserve"><value>إيقاف</value></data>
-  <data name="Companies.Activate" xml:space="preserve"><value>تفعيل</value></data>
-  <data name="Companies.CompanySupervisorRole" xml:space="preserve"><value>مشرف شركة</value></data>
-  <data name="Dashboard.Crumb" xml:space="preserve"><value>منسّق التدريب / لوحة التحكم</value></data>
-  <data name="Placements.Crumb" xml:space="preserve"><value>منسّق التدريب / التدريبات</value></data>
-  <data name="Placements.ViewProgress" xml:space="preserve"><value>عرض التقدم</value></data>
-  <data name="ContactMessages.Crumb" xml:space="preserve"><value>منسّق التدريب / الرسائل</value></data>
-  <data name="ContactMessages.DirectoryHelp" xml:space="preserve"><value>ابحث باسم المرسل أو الموضوع، ثم افتح الرسالة لمراجعتها.</value></data>
-  <data name="CompletionReview.Crumb" xml:space="preserve"><value>منسّق التدريب / مراجعة الإنجاز</value></data>
-  <data name="CompletionReview.ReadEvaluations" xml:space="preserve"><value>قراءة التقييمات</value></data>
-  <data name="Toggle.ClickToDeactivate" xml:space="preserve"><value>نشط — اضغط لإيقاف الحساب</value></data>
-  <data name="Toggle.ClickToActivate" xml:space="preserve"><value>غير نشط — اضغط لتفعيل الحساب</value></data>
-  <data name="Toggle.ActivateTitle" xml:space="preserve"><value>تفعيل حساب {0}؟</value></data>
-  <data name="Toggle.DeactivateTitle" xml:space="preserve"><value>إيقاف حساب {0}؟</value></data>
-  <data name="Toggle.ActivateText" xml:space="preserve"><value>سيتمكن من تسجيل الدخول مرة أخرى فورًا.</value></data>
-  <data name="Toggle.DeactivateText" xml:space="preserve"><value>لن يتمكن من تسجيل الدخول حتى تعيد تفعيل الحساب. لن يُحذف أي شيء.</value></data>
-  <data name="Toggle.DeactivateSupervisorText" xml:space="preserve"><value>لن يتمكن من تسجيل الدخول حتى تعيد تفعيل الحساب. تبقى مجموعاته وطلابه مسندين إليه.</value></data>
+  <data name="SupervisorProfile.Website" xml:space="preserve"><value>الموقع الإلكتروني</value></data>
+  <data name="SupervisorProfile.WithPlacement" xml:space="preserve"><value>لديهم تدريب</value></data>
   <data name="Toggle.ActivateButton" xml:space="preserve"><value>نعم، فعّل الحساب</value></data>
+  <data name="Toggle.ActivateText" xml:space="preserve"><value>سيتمكن من تسجيل الدخول مرة أخرى فورًا.</value></data>
+  <data name="Toggle.ActivateTitle" xml:space="preserve"><value>تفعيل حساب {0}؟</value></data>
+  <data name="Toggle.ClickToActivate" xml:space="preserve"><value>غير نشط — اضغط لتفعيل الحساب</value></data>
+  <data name="Toggle.ClickToDeactivate" xml:space="preserve"><value>نشط — اضغط لإيقاف الحساب</value></data>
   <data name="Toggle.DeactivateButton" xml:space="preserve"><value>نعم، أوقف الحساب</value></data>
+  <data name="Toggle.DeactivateSupervisorText" xml:space="preserve"><value>لن يتمكن من تسجيل الدخول حتى تعيد تفعيل الحساب. تبقى مجموعاته وطلابه مسندين إليه.</value></data>
+  <data name="Toggle.DeactivateText" xml:space="preserve"><value>لن يتمكن من تسجيل الدخول حتى تعيد تفعيل الحساب. لن يُحذف أي شيء.</value></data>
+  <data name="Toggle.DeactivateTitle" xml:space="preserve"><value>إيقاف حساب {0}؟</value></data>
   <data name="Toggle.NowActive" xml:space="preserve"><value>أصبح حساب {0} نشطًا.</value></data>
   <data name="Toggle.NowInactive" xml:space="preserve"><value>أصبح حساب {0} غير نشط.</value></data>
-  <data name="Phone.Hint" xml:space="preserve"><value>10 أرقام فقط — مثل 0791234567</value></data>
-  <data name="Phone.Invalid" xml:space="preserve"><value>أدخل رقم الهاتف: 10 أرقام بالضبط، أرقام فقط (مثل 0791234567).</value></data>
-  <data name="Companies.AccountCreatedTitle" xml:space="preserve"><value>تم إنشاء الحساب</value></data>
-  <data name="Final.Title" xml:space="preserve"><value>التقييم النهائي</value></data>
-  <data name="Final.CompanyKicker" xml:space="preserve"><value>مشرف الشركة</value></data>
-  <data name="Final.AcademicKicker" xml:space="preserve"><value>المشرف الأكاديمي</value></data>
-  <data name="Final.DraftTitle" xml:space="preserve"><value>مسودة محفوظة ولم تُرسل بعد</value></data>
-  <data name="Final.WaitingTitle" xml:space="preserve"><value>لم يصل بعد</value></data>
-  <data name="Final.DraftText" xml:space="preserve"><value>بدأ {0} هذا التقييم ولم يرسله بعد. لا يُحتسب حتى يتم إرساله.</value></data>
-  <data name="Final.WaitingText" xml:space="preserve"><value>بانتظار أن يرسل {0} التقييم النهائي.</value></data>
-  <data name="Final.SubmittedOn" xml:space="preserve"><value>أُرسل في {0}</value></data>
-  <data name="Final.Criteria" xml:space="preserve"><value>معايير التقييم</value></data>
-  <data name="Final.Weight" xml:space="preserve"><value>يُحتسب بنسبة {0}% من النتيجة النهائية</value></data>
-  <data name="Final.Strengths" xml:space="preserve"><value>نقاط القوة</value></data>
-  <data name="Final.Improve" xml:space="preserve"><value>جوانب للتحسين</value></data>
-  <data name="Final.Overall" xml:space="preserve"><value>التعليق العام</value></data>
-  <data name="Final.AcademicComments" xml:space="preserve"><value>ملاحظات المشرف الأكاديمي</value></data>
-  <data name="Final.CompanyRemarks" xml:space="preserve"><value>ملاحظات على تقييم الشركة</value></data>
-  <data name="Final.NotAssigned" xml:space="preserve"><value>غير محدد</value></data>
-  <data name="Final.SectionTitle" xml:space="preserve"><value>التقييمات النهائية</value></data>
-  <data name="Final.SectionCount" xml:space="preserve"><value>وصل {0} من 2</value></data>
-  <data name="Review.ChecksVerified" xml:space="preserve"><value>تم التحقق من {0} من {1}</value></data>
-  <data name="Review.PartTasks" xml:space="preserve"><value>المهام المقيّمة ({0}%)</value></data>
-  <data name="Review.PartCompany" xml:space="preserve"><value>تقييم الشركة ({0}%)</value></data>
-  <data name="Review.PartAcademic" xml:space="preserve"><value>التقييم الأكاديمي ({0}%)</value></data>
-  <data name="Review.Points" xml:space="preserve"><value>نقطة</value></data>
-  <data name="Review.ReadyTitle" xml:space="preserve"><value>جاهزية الاعتماد</value></data>
-  <data name="Review.MissingShort" xml:space="preserve"><value>ناقص</value></data>
-  <data name="Review.ApprovedLine" xml:space="preserve"><value>اعتمده {0} في {1}.</value></data>
-  <data name="Review.ReadyToApprove" xml:space="preserve"><value>كل المتطلبات مكتملة. يمكنك اعتماد هذا التدريب.</value></data>
-  <data name="Review.NotReadyToApprove" xml:space="preserve"><value>يُتاح الاعتماد عندما تصبح كل البنود أعلاه خضراء.</value></data>
-  <data name="Pd.TasksGraded" xml:space="preserve"><value>مهام مقيّمة</value></data>
-  <data name="Pd.WaitingHours" xml:space="preserve"><value>ساعات بانتظار الاعتماد</value></data>
-  <data name="Pd.WaitingHoursNote" xml:space="preserve"><value>مُبلّغ عنها ولم تُعتمد بعد</value></data>
-  <data name="Pd.FinalsNote" xml:space="preserve"><value>مشرف الشركة والمشرف الأكاديمي</value></data>
-  <data name="Pd.Sections" xml:space="preserve"><value>أقسام التقدم</value></data>
-  <data name="Pd.TabOverview" xml:space="preserve"><value>نظرة عامة</value></data>
-  <data name="Pd.TabSubmissions" xml:space="preserve"><value>التسليمات والملاحظات</value></data>
-  <data name="Pd.TabHours" xml:space="preserve"><value>ساعات التدريب</value></data>
-  <data name="Pd.ConfirmedOn" xml:space="preserve"><value>تم التأكيد في {0}</value></data>
-  <data name="Pd.People" xml:space="preserve"><value>المشرفون والتواصل</value></data>
-  <data name="Pd.VisibleToStudent" xml:space="preserve"><value>ظاهر للطالب</value></data>
-  <data name="Pd.HiddenFromStudent" xml:space="preserve"><value>غير ظاهر للطالب</value></data>
-  <data name="Pd.Grade" xml:space="preserve"><value>العلامة</value></data>
-  <data name="Pd.AttemptN" xml:space="preserve"><value>المحاولة {0}</value></data>
-  <data name="Pd.NoFeedbackYet" xml:space="preserve"><value>بانتظار مراجعة مشرف الشركة</value></data>
-  <data name="Pd.Feedback" xml:space="preserve"><value>ملاحظات المشرف</value></data>
-  <data name="Queue.Intro" xml:space="preserve"><value>افتح تدريبًا لقراءة التقييمين النهائيين وتسجيل قرار الإتمام.</value></data>
-  <data name="Queue.All" xml:space="preserve"><value>كل التدريبات</value></data>
-  <data name="Queue.Help" xml:space="preserve"><value>اضغط على إحدى البطاقات أعلاه للتصفية. الصفوف المميّزة جاهزة لقرارك.</value></data>
-  <data name="Queue.Search" xml:space="preserve"><value>ابحث عن طالب أو شركة أو تخصص</value></data>
-  <data name="Queue.Company" xml:space="preserve"><value>تقييم الشركة</value></data>
-  <data name="Queue.Academic" xml:space="preserve"><value>التقييم الأكاديمي</value></data>
 </root>

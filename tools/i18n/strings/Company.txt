@@ -2884,3 +2884,318 @@ ar: ساعة
 TaskHours.ChipTitle
 en: Training hours credited when this task is accepted
 ar: ساعات التدريب التي تُحتسب عند قبول هذه المهمة
+Applications.DetailsLoadFailed
+en: Could not load details. Try again using the link below.
+ar: تعذّر تحميل التفاصيل. حاول مجددًا باستخدام الرابط أدناه.
+
+Applications.LoadingDetails
+en: Loading candidate details…
+ar: جارٍ تحميل تفاصيل المتقدم…
+
+FinalEvaluation.AcademicMajor
+en: Academic Major:
+ar: التخصص الأكاديمي:
+
+FinalEvaluation.ActualTrainingHours2
+en: Actual Training Hours:
+ar: ساعات التدريب الفعلية:
+
+FinalEvaluation.AreasForImprovement2
+en: Areas for Improvement:
+ar: جوانب التحسين:
+
+FinalEvaluation.AuthorizedCompanySignatureSeal
+en: Authorized Company Signature & Seal
+ar: توقيع الشركة المعتمد وختمها
+
+FinalEvaluation.Awarded
+en: Awarded
+ar: الدرجة الممنوحة
+
+FinalEvaluation.CertificateAwaitingApproval
+en: The approved certificate is not available yet. Ask the coordinator to complete the approval first.
+ar: الشهادة المعتمدة غير متاحة بعد. يجب أن يعتمد المنسق إتمام التدريب أولًا.
+
+FinalEvaluation.CertificateRequiresApproval
+en: Available only after the coordinator approves completion. The trainee receives the official PDF link, not this draft preview.
+ar: تتاح بعد اعتماد المنسق إتمام التدريب. سيتلقى المتدرّب رابط ملف PDF المعتمد وليس هذه المعاينة.
+
+FinalEvaluation.CertificateShareFailed
+en: Could not share the certificate. Please try again.
+ar: تعذّرت مشاركة الشهادة. يرجى المحاولة مجددًا.
+
+FinalEvaluation.CertificateSharedMessage
+en: The trainee can open the approved certificate from their notifications.
+ar: يمكن للمتدرّب فتح الشهادة المعتمدة من الإشعارات.
+
+FinalEvaluation.CertificateSharedTitle
+en: Certificate shared
+ar: تمت مشاركة الشهادة
+
+FinalEvaluation.Close2
+en: Close
+ar: إغلاق
+
+FinalEvaluation.CompanyRecommendation2
+en: Company Recommendation:
+ar: توصية الشركة:
+
+FinalEvaluation.DescribeAreasToDevelop
+en: Describe areas to develop...
+ar: صِف الجوانب التي تحتاج إلى تطوير...
+
+FinalEvaluation.DescribeMainStrengths
+en: Describe main strengths...
+ar: صِف أبرز نقاط القوة...
+
+FinalEvaluation.DownloadAsPDF
+en: Download as PDF
+ar: تنزيل بصيغة PDF
+
+FinalEvaluation.FinalPerformanceEvaluationGradeReport
+en: Final Performance Evaluation & Grade Report
+ar: تقرير التقييم النهائي للأداء والدرجات
+
+FinalEvaluation.GermanJordanianUniversity
+en: German Jordanian University
+ar: الجامعة الألمانية الأردنية
+
+FinalEvaluation.Hours
+en: Hours
+ar: الساعات
+
+FinalEvaluation.InternshipManagementSystemUIMSOfficialAcademic
+en: Internship Management System (UIMS) - Official Academic Report
+ar: نظام إدارة التدريب (UIMS) - التقرير الأكاديمي الرسمي
+
+FinalEvaluation.InternshipPosition
+en: Internship Position:
+ar: المسمى التدريبي:
+
+FinalEvaluation.InvalidScoreRange
+en: Enter whole-number scores from zero up to the maximum shown for each criterion.
+ar: أدخل درجات صحيحة من الصفر حتى الحد الأعلى الموضح لكل معيار.
+
+FinalEvaluation.KeyStrengths
+en: Key Strengths:
+ar: أبرز نقاط القوة:
+
+FinalEvaluation.MaxScore
+en: Max Score
+ar: الدرجة القصوى
+
+FinalEvaluation.OfficialInternshipEvaluationReport
+en: Official Internship Evaluation Report
+ar: التقرير الرسمي لتقييم التدريب
+
+FinalEvaluation.Okay2
+en: Okay
+ar: حسنًا
+
+FinalEvaluation.PerformanceLevel2
+en: Performance Level:
+ar: مستوى الأداء:
+
+FinalEvaluation.PreviewNotice
+en: Draft preview only. This is not an approved completion document. Final reports require coordinator approval.
+ar: معاينة مسودة فقط؛ هذه ليست وثيقة إكمال معتمدة. التقارير النهائية تتطلب موافقة المنسق.
+
+FinalEvaluation.Print
+en: Print
+ar: طباعة
+
+FinalEvaluation.PrintReport
+en: Print Report
+ar: طباعة التقرير
+
+FinalEvaluation.ProjectCriteria
+en: Evaluation criteria (UIMS project)
+ar: معايير التقييم (مشروع UIMS)
+
+FinalEvaluation.ReportGeneratedDate
+en: Report Generated Date:
+ar: تاريخ إنشاء التقرير:
+
+FinalEvaluation.ReviewOfficialReport
+en: Review Official Report
+ar: مراجعة التقرير الرسمي
+
+FinalEvaluation.SelectPerformanceLevel2
+en: Select Performance Level
+ar: اختر مستوى الأداء
+
+FinalEvaluation.SelectRecommendation2
+en: Select Recommendation
+ar: اختر التوصية
+
+FinalEvaluation.SelectTraineePrompt
+en: -- Select a trainee to evaluate --
+ar: -- اختر متدربًا للتقييم --
+
+FinalEvaluation.SendApprovedCertificate
+en: Send approved certificate to trainee
+ar: إرسال الشهادة المعتمدة إلى المتدرّب
+
+FinalEvaluation.SubmittedMessage
+en: The company evaluation was submitted to the academic supervisor. Completion and report release still require coordinator approval.
+ar: تم إرسال تقييم الشركة إلى المشرف الأكاديمي. إكمال التدريب وإصدار التقرير ما زالا يتطلبان موافقة المنسق.
+
+FinalEvaluation.SubmittedStatus
+en: Final evaluation submitted
+ar: تم إرسال التقييم النهائي
+
+FinalEvaluation.SubmittedTitle
+en: Evaluation submitted
+ar: تم إرسال التقييم
+
+FinalEvaluation.TechnicalSkillsApplication
+en: Technical Skills & Application
+ar: المهارات التقنية وتطبيقها
+
+FinalEvaluation.TotalCalculatedScore
+en: Total Calculated Score
+ar: مجموع الدرجات المحتسب
+
+FinalEvaluation.TraineeStudent
+en: Trainee Student:
+ar: الطالب المتدرب:
+
+FinalEvaluation.UnassignedPlacement
+en: This trainee is not assigned to your supervision.
+ar: هذا المتدرب غير مرتبط بإشرافك.
+
+ManageOpportunities.ActivateLabel
+en: Activate
+ar: تفعيل
+
+ManageOpportunities.ActivateMessage
+en: Activate “{0}”? Students can apply again if the deadline has not passed and seats are available.
+ar: هل تريد تفعيل «{0}»؟ يمكن للطلاب التقديم مجددًا إذا لم ينتهِ الموعد النهائي وكانت هناك مقاعد متاحة.
+
+ManageOpportunities.ActivateTitle
+en: Activate opportunity
+ar: تفعيل الفرصة
+
+ManageOpportunities.ActivatedSuccessfully
+en: Opportunity activated successfully.
+ar: تم تفعيل الفرصة بنجاح.
+
+ManageOpportunities.ConfirmAction
+en: Confirm action
+ar: تأكيد الإجراء
+
+ManageOpportunities.DeactivateLabel
+en: Deactivate
+ar: إيقاف
+
+ManageOpportunities.DeactivateMessage
+en: Deactivate “{0}”? New applications will stop. Existing applications will be preserved.
+ar: هل تريد إيقاف «{0}»؟ سيتوقف استقبال الطلبات الجديدة مع الاحتفاظ بالطلبات الحالية.
+
+ManageOpportunities.DeactivateTitle
+en: Deactivate opportunity
+ar: إيقاف الفرصة
+
+ManageOpportunities.DeactivatedSuccessfully
+en: Opportunity deactivated successfully.
+ar: تم إلغاء تفعيل الفرصة بنجاح.
+
+ManageOpportunities.InactiveOpportunities
+en: Inactive Opportunities
+ar: الفرص غير النشطة
+
+ManageOpportunities.LastDateToApply
+en: Last Date to Apply
+ar: آخر موعد للتقديم
+
+ManageOpportunities.OnlyOpenOrInactiveCanToggle
+en: Only open or inactive opportunities can be toggled.
+ar: يمكن تغيير حالة الفرص المفتوحة أو غير النشطة فقط.
+
+ManageOpportunities.TemporarilyHiddenFromStudents
+en: Temporarily hidden from students
+ar: مخفية مؤقتًا عن الطلاب
+
+TaskReview.AttemptFact
+en: Attempt {0}
+ar: المحاولة {0}
+
+TaskReview.BackToSubmissions
+en: Back to submissions
+ar: العودة إلى التسليمات
+
+TaskReview.Cancel
+en: Cancel
+ar: إلغاء
+
+TaskReview.ChangesHelp
+en: Be specific — the trainee sees this text exactly as you write it.
+ar: كن محددًا — يرى المتدرب هذا النص كما تكتبه تمامًا.
+
+TaskReview.ChangesPlaceholder
+en: For example: add input validation to the form and explain how you tested it.
+ar: مثال: أضف التحقق من المدخلات في النموذج واشرح كيف اختبرته.
+
+TaskReview.ChangesRequestedText
+en: {0} was notified and can now resubmit "{1}". The new attempt will appear in your submissions list.
+ar: تم إشعار {0} ويمكنه الآن إعادة تسليم "{1}". ستظهر المحاولة الجديدة في قائمة التسليمات.
+
+TaskReview.ChangesRequestedTitle
+en: Changes requested
+ar: تم طلب التعديلات
+
+TaskReview.ChangesToMake
+en: Changes the trainee should make
+ar: التعديلات المطلوبة من المتدرب
+
+TaskReview.Done
+en: Done
+ar: تم
+
+TaskReview.EvaluationSavedText
+en: The grade and feedback for "{1}" are now visible to {0}.
+ar: أصبحت العلامة والملاحظات الخاصة بـ "{1}" ظاهرة لـ {0}.
+
+TaskReview.EvaluationSavedTitle
+en: Evaluation saved
+ar: تم حفظ التقييم
+
+TaskReview.NoEarlierRequest
+en: No instructions were saved with the earlier request.
+ar: لم تُحفظ تعليمات مع الطلب السابق.
+
+TaskReview.RequestChangesHelp
+en: Tell {0} what to fix in "{1}". The task goes back to them so they can resubmit.
+ar: أخبر {0} بما يجب تعديله في "{1}". تعود المهمة إليه ليعيد تسليمها.
+
+TaskReview.RequestChangesNext
+en: The trainee is notified, the task becomes "Revision requested", and this attempt stays in the history.
+ar: يصل إشعار إلى المتدرب، وتصبح حالة المهمة "مطلوب تعديلها"، وتبقى هذه المحاولة في السجل.
+
+TaskReview.ResubmissionOf
+en: Resubmission · Attempt {0} — what you asked to change
+ar: إعادة تسليم · المحاولة {0} — التعديلات التي طلبتها
+
+TaskReview.Saving
+en: Saving…
+ar: جارٍ الحفظ…
+
+TaskReview.ScoreFact
+en: Score {0} / {1}
+ar: العلامة {0} / {1}
+
+TaskReview.SendRequest
+en: Send request
+ar: إرسال الطلب
+
+TaskReview.WhatHappensNext
+en: What happens next
+ar: ماذا يحدث بعد ذلك
+
+Trainees.SessionAssignmentMissing
+en: User session expired or Company assignment is missing.
+ar: انتهت جلسة المستخدم أو لم يُربط الحساب بشركة.
+
+Trainees.UnknownStudent
+en: Unknown Student
+ar: طالب غير معروف

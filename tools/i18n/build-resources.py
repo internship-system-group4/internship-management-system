@@ -18,6 +18,7 @@ back to English and are recorded by L.T().
     python -I tools/i18n/build-resources.py --check  (report only)
 """
 import os, re, sys
+import xml.etree.ElementTree as ET
 from xml.sax.saxutils import escape
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -68,7 +69,7 @@ if os.path.exists(mp):
         if line.startswith('en: '): en = line[4:]
         elif line.startswith('ar: ') and en is not None: MEMORY[en] = line[4:]; en = None
 
-areas, gaps, problems, total = [], [], [], 0
+areas, gaps, problems, total, resources = [], [], [], 0, {}
 for name in sorted(os.listdir(os.path.join(HERE, 'strings'))):
     if not name.endswith('.txt'): continue
     area = name[:-4]; areas.append(area)
@@ -78,12 +79,38 @@ for name in sorted(os.listdir(os.path.join(HERE, 'strings'))):
     for v in entries.values():
         if 'ar' not in v and v.get('en') in MEMORY: v['ar'] = MEMORY[v['en']]
     gaps += ['%s.%s' % (area, k) for k, v in entries.items() if 'ar' not in v]
-    if not CHECK:
-        os.makedirs(OUT, exist_ok=True)
+    resources[area] = entries
+    # Older changes added keys directly to .resx. Refuse to erase those keys
+    # when source tables have fallen behind, before writing ANY resource file.
+    for lang, suffix in (('en', '.resx'), ('ar', '.ar.resx')):
+        path = os.path.join(OUT, area + suffix)
+        if not os.path.exists(path):
+            if CHECK: problems.append('%s: generated file is missing' % (area + suffix))
+            continue
+        existing = {d.attrib['name']: d.findtext('value', '') for d in ET.parse(path).getroot().findall('data')}
+        expected = {key: v[lang] for key, v in entries.items() if lang in v}
+        removed = sorted(set(existing) - set(expected))
+        if removed:
+            problems.append('%s: refusing to remove %d keys absent from the source tables: %s. Sync strings first.' %
+                            (area + suffix, len(removed), ', '.join(removed[:8])))
+        elif CHECK and existing != expected:
+            problems.append('%s: generated translations are out of date; run build-resources.py' % (area + suffix))
+
+for area, entries in resources.items():
+    for key, values in entries.items():
+        # A dropped argument can silently turn a factual count into the wrong message.
+        en_args = set(re.findall(r'(?<!\{)\{(\d+)(?:[,}:])', values.get('en', '')))
+        ar_args = set(re.findall(r'(?<!\{)\{(\d+)(?:[,}:])', values.get('ar', '')))
+        if en_args != ar_args:
+            problems.append('%s.%s: English and Arabic format arguments differ' % (area, key))
+
+if not CHECK and not problems and not gaps:
+    os.makedirs(OUT, exist_ok=True)
+    for area, entries in resources.items():
         open(os.path.join(OUT, area + '.resx'), 'w', encoding='utf-8', newline='\r\n').write(resx(entries, 'en'))
         open(os.path.join(OUT, area + '.ar.resx'), 'w', encoding='utf-8', newline='\r\n').write(resx(entries, 'ar'))
 
-if not CHECK:
+if not CHECK and not problems and not gaps:
     proj = os.path.join(WEB, 'InternshipManagementSystem.csproj')
     s = open(proj, 'rb').read().decode('utf-8-sig')
     for area in areas:
@@ -96,4 +123,4 @@ if not CHECK:
 
 for p in problems: print('PROBLEM', p)
 print('%d entries in %d areas; %d without Arabic%s' % (total, len(areas), len(gaps), (': ' + ', '.join(gaps[:20])) if gaps else ''))
-sys.exit(1 if problems else 0)
+sys.exit(1 if problems or gaps else 0)

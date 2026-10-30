@@ -65,7 +65,7 @@ namespace InternshipManagementSystem.Pages.CompanyArea
                 var placement = SelectedPlacement();
                 var student = _userRepo.GetStudent(placement.StudentId);
                 litStudentName.Text = student == null ? placement.StudentName : student.FullName;
-                litStudentMajor.Text = student == null ? "-" : student.Major;
+                litStudentMajor.Text = student == null ? "-" : L.Value("Directory", student.Major);
                 litStudentInitials.Text = GetInitials(litStudentName.Text);
                 // Uploaded CV/portfolio PDF or a shared link (checked by ApplicantDocument.aspx).
                 string cv = Services.StudentDocumentService.TraineeCvUrl(placement, student);
